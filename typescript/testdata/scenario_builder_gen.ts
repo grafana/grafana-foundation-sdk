@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as testdata from '../testdata';
 
 // TODO: Should this live here given it's not used in the dataquery?
-export class ScenarioBuilder implements cog.OptionsBuilder<testdata.Scenario> {
+export class ScenarioBuilder implements cog.Builder<testdata.Scenario> {
     private readonly internal: testdata.Scenario;
 
     constructor() {

@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class StackingConfigBuilder implements cog.OptionsBuilder<common.StackingConfig> {
+export class StackingConfigBuilder implements cog.Builder<common.StackingConfig> {
     private readonly internal: common.StackingConfig;
 
     constructor() {

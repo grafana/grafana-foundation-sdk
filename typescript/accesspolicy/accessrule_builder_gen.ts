@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as accesspolicy from '../accesspolicy';
 
-export class AccessRuleBuilder implements cog.OptionsBuilder<accesspolicy.AccessRule> {
+export class AccessRuleBuilder implements cog.Builder<accesspolicy.AccessRule> {
     private readonly internal: accesspolicy.AccessRule;
 
     constructor() {

@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class SubscriptionsQueryBuilder implements cog.OptionsBuilder<azuremonitor.SubscriptionsQuery> {
+export class SubscriptionsQueryBuilder implements cog.Builder<azuremonitor.SubscriptionsQuery> {
     private readonly internal: azuremonitor.SubscriptionsQuery;
 
     constructor() {

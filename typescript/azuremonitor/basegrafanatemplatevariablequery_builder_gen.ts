@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class BaseGrafanaTemplateVariableQueryBuilder implements cog.OptionsBuilder<azuremonitor.BaseGrafanaTemplateVariableQuery> {
+export class BaseGrafanaTemplateVariableQueryBuilder implements cog.Builder<azuremonitor.BaseGrafanaTemplateVariableQuery> {
     private readonly internal: azuremonitor.BaseGrafanaTemplateVariableQuery;
 
     constructor() {

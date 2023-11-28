@@ -5,7 +5,7 @@ import * as folder from '../folder';
 
 // TODO:
 // common metadata will soon support setting the parent folder in the metadata
-export class FolderBuilder implements cog.OptionsBuilder<folder.Folder> {
+export class FolderBuilder implements cog.Builder<folder.Folder> {
     private readonly internal: folder.Folder;
 
     constructor(title: string) {

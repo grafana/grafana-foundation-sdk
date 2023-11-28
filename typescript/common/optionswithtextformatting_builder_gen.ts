@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class OptionsWithTextFormattingBuilder implements cog.OptionsBuilder<common.OptionsWithTextFormatting> {
+export class OptionsWithTextFormattingBuilder implements cog.Builder<common.OptionsWithTextFormatting> {
     private readonly internal: common.OptionsWithTextFormatting;
 
     constructor() {
@@ -15,7 +15,7 @@ export class OptionsWithTextFormattingBuilder implements cog.OptionsBuilder<comm
         return this.internal;
     }
 
-    text(text: cog.OptionsBuilder<common.VizTextDisplayOptions>): this {
+    text(text: cog.Builder<common.VizTextDisplayOptions>): this {
         const textResource = text.build();
         this.internal.text = textResource;
         return this;

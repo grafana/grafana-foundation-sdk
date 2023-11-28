@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class MovingAverageModelOptionBuilder implements cog.OptionsBuilder<elasticsearch.MovingAverageModelOption> {
+export class MovingAverageModelOptionBuilder implements cog.Builder<elasticsearch.MovingAverageModelOption> {
     private readonly internal: elasticsearch.MovingAverageModelOption;
 
     constructor() {

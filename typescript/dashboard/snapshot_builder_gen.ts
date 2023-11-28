@@ -8,7 +8,7 @@ import * as dashboard from '../dashboard';
 // It is possible to create a snapshot of a snapshot.
 // Grafana strips away all sensitive information from the dashboard.
 // Sensitive information stripped: queries (metric, template,annotation) and panel links.
-export class SnapshotBuilder implements cog.OptionsBuilder<dashboard.Snapshot> {
+export class SnapshotBuilder implements cog.Builder<dashboard.Snapshot> {
     private readonly internal: dashboard.Snapshot;
 
     constructor() {

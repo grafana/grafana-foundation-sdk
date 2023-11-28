@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // Sparkline cell options
-export class TableSparklineCellOptionsBuilder implements cog.OptionsBuilder<common.TableSparklineCellOptions> {
+export class TableSparklineCellOptionsBuilder implements cog.Builder<common.TableSparklineCellOptions> {
     private readonly internal: common.TableSparklineCellOptions;
 
     constructor() {
@@ -26,7 +26,7 @@ export class TableSparklineCellOptionsBuilder implements cog.OptionsBuilder<comm
         return this;
     }
 
-    thresholdsStyle(thresholdsStyle: cog.OptionsBuilder<common.GraphThresholdsStyleConfig>): this {
+    thresholdsStyle(thresholdsStyle: cog.Builder<common.GraphThresholdsStyleConfig>): this {
         const thresholdsStyleResource = thresholdsStyle.build();
         this.internal.thresholdsStyle = thresholdsStyleResource;
         return this;
@@ -47,7 +47,7 @@ export class TableSparklineCellOptionsBuilder implements cog.OptionsBuilder<comm
         return this;
     }
 
-    lineStyle(lineStyle: cog.OptionsBuilder<common.LineStyle>): this {
+    lineStyle(lineStyle: cog.Builder<common.LineStyle>): this {
         const lineStyleResource = lineStyle.build();
         this.internal.lineStyle = lineStyleResource;
         return this;
@@ -113,7 +113,7 @@ export class TableSparklineCellOptionsBuilder implements cog.OptionsBuilder<comm
         return this;
     }
 
-    scaleDistribution(scaleDistribution: cog.OptionsBuilder<common.ScaleDistributionConfig>): this {
+    scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>): this {
         const scaleDistributionResource = scaleDistribution.build();
         this.internal.scaleDistribution = scaleDistributionResource;
         return this;
@@ -134,13 +134,13 @@ export class TableSparklineCellOptionsBuilder implements cog.OptionsBuilder<comm
         return this;
     }
 
-    stacking(stacking: cog.OptionsBuilder<common.StackingConfig>): this {
+    stacking(stacking: cog.Builder<common.StackingConfig>): this {
         const stackingResource = stacking.build();
         this.internal.stacking = stackingResource;
         return this;
     }
 
-    hideFrom(hideFrom: cog.OptionsBuilder<common.HideSeriesConfig>): this {
+    hideFrom(hideFrom: cog.Builder<common.HideSeriesConfig>): this {
         const hideFromResource = hideFrom.build();
         this.internal.hideFrom = hideFromResource;
         return this;

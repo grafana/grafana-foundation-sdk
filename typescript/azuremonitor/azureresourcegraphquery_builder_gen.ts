@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class AzureResourceGraphQueryBuilder implements cog.OptionsBuilder<azuremonitor.AzureResourceGraphQuery> {
+export class AzureResourceGraphQueryBuilder implements cog.Builder<azuremonitor.AzureResourceGraphQuery> {
     private readonly internal: azuremonitor.AzureResourceGraphQuery;
 
     constructor() {

@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-export class TextDimensionConfigBuilder implements cog.OptionsBuilder<common.TextDimensionConfig> {
+export class TextDimensionConfigBuilder implements cog.Builder<common.TextDimensionConfig> {
     private readonly internal: common.TextDimensionConfig;
 
     constructor() {

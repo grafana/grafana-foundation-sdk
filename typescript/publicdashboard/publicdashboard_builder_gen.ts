@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as publicdashboard from '../publicdashboard';
 
-export class PublicDashboardBuilder implements cog.OptionsBuilder<publicdashboard.PublicDashboard> {
+export class PublicDashboardBuilder implements cog.Builder<publicdashboard.PublicDashboard> {
     private readonly internal: publicdashboard.PublicDashboard;
 
     constructor() {

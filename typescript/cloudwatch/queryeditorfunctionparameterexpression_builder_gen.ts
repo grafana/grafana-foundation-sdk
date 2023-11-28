@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 
-export class QueryEditorFunctionParameterExpressionBuilder implements cog.OptionsBuilder<cloudwatch.QueryEditorFunctionParameterExpression> {
+export class QueryEditorFunctionParameterExpressionBuilder implements cog.Builder<cloudwatch.QueryEditorFunctionParameterExpression> {
     private readonly internal: cloudwatch.QueryEditorFunctionParameterExpression;
 
     constructor() {

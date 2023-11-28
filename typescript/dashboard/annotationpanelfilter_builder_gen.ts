@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-export class AnnotationPanelFilterBuilder implements cog.OptionsBuilder<dashboard.AnnotationPanelFilter> {
+export class AnnotationPanelFilterBuilder implements cog.Builder<dashboard.AnnotationPanelFilter> {
     private readonly internal: dashboard.AnnotationPanelFilter;
 
     constructor() {

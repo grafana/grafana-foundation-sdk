@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 
-export class QueryEditorFunctionExpressionBuilder implements cog.OptionsBuilder<cloudwatch.QueryEditorFunctionExpression> {
+export class QueryEditorFunctionExpressionBuilder implements cog.Builder<cloudwatch.QueryEditorFunctionExpression> {
     private readonly internal: cloudwatch.QueryEditorFunctionExpression;
 
     constructor() {
@@ -20,7 +20,7 @@ export class QueryEditorFunctionExpressionBuilder implements cog.OptionsBuilder<
         return this;
     }
 
-    parameters(parameters: cog.OptionsBuilder<cloudwatch.QueryEditorFunctionParameterExpression>[]): this {
+    parameters(parameters: cog.Builder<cloudwatch.QueryEditorFunctionParameterExpression>[]): this {
         const parametersResources = parameters.map(builder => builder.build());
         this.internal.parameters = parametersResources;
         return this;

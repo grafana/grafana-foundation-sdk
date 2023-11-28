@@ -1,5 +1,5 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-export interface OptionsBuilder<T> {
+export interface Builder<T> {
   build: () => T;
 }

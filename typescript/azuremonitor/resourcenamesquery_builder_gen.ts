@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class ResourceNamesQueryBuilder implements cog.OptionsBuilder<azuremonitor.ResourceNamesQuery> {
+export class ResourceNamesQueryBuilder implements cog.Builder<azuremonitor.ResourceNamesQuery> {
     private readonly internal: azuremonitor.ResourceNamesQuery;
 
     constructor() {

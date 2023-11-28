@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
 // @deprecated Use TimeSeriesList instead. Legacy annotation query properties for migration purposes.
-export class LegacyCloudMonitoringAnnotationQueryBuilder implements cog.OptionsBuilder<googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery> {
+export class LegacyCloudMonitoringAnnotationQueryBuilder implements cog.Builder<googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery> {
     private readonly internal: googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery;
 
     constructor() {

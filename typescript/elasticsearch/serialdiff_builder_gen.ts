@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class SerialDiffBuilder implements cog.OptionsBuilder<elasticsearch.SerialDiff> {
+export class SerialDiffBuilder implements cog.Builder<elasticsearch.SerialDiff> {
     private readonly internal: elasticsearch.SerialDiff;
 
     constructor() {

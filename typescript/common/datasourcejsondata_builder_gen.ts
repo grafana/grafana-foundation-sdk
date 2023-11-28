@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class DataSourceJsonDataBuilder implements cog.OptionsBuilder<common.DataSourceJsonData> {
+export class DataSourceJsonDataBuilder implements cog.Builder<common.DataSourceJsonData> {
     private readonly internal: common.DataSourceJsonData;
 
     constructor() {

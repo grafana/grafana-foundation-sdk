@@ -6,7 +6,7 @@ import * as dashboard from '../dashboard';
 // Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color.
 // See SpecialValueMatch to see the list of special values.
 // For example, you can configure a special value mapping so that null values appear as N/A.
-export class SpecialValueMapBuilder implements cog.OptionsBuilder<dashboard.SpecialValueMap> {
+export class SpecialValueMapBuilder implements cog.Builder<dashboard.SpecialValueMap> {
     private readonly internal: dashboard.SpecialValueMap;
 
     constructor() {

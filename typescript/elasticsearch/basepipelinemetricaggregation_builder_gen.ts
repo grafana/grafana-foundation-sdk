@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class BasePipelineMetricAggregationBuilder implements cog.OptionsBuilder<elasticsearch.BasePipelineMetricAggregation> {
+export class BasePipelineMetricAggregationBuilder implements cog.Builder<elasticsearch.BasePipelineMetricAggregation> {
     private readonly internal: elasticsearch.BasePipelineMetricAggregation;
 
     constructor() {

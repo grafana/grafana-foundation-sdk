@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class AzureMonitorResourceBuilder implements cog.OptionsBuilder<azuremonitor.AzureMonitorResource> {
+export class AzureMonitorResourceBuilder implements cog.Builder<azuremonitor.AzureMonitorResource> {
     private readonly internal: azuremonitor.AzureMonitorResource;
 
     constructor() {

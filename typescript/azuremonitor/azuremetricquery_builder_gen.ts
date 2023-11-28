@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class AzureMetricQueryBuilder implements cog.OptionsBuilder<azuremonitor.AzureMetricQuery> {
+export class AzureMetricQueryBuilder implements cog.Builder<azuremonitor.AzureMetricQuery> {
     private readonly internal: azuremonitor.AzureMetricQuery;
 
     constructor() {
@@ -15,7 +15,7 @@ export class AzureMetricQueryBuilder implements cog.OptionsBuilder<azuremonitor.
     }
 
     // Array of resource URIs to be queried.
-    resources(resources: cog.OptionsBuilder<azuremonitor.AzureMonitorResource>[]): this {
+    resources(resources: cog.Builder<azuremonitor.AzureMonitorResource>[]): this {
         const resourcesResources = resources.map(builder => builder.build());
         this.internal.resources = resourcesResources;
         return this;
@@ -60,7 +60,7 @@ export class AzureMetricQueryBuilder implements cog.OptionsBuilder<azuremonitor.
     }
 
     // Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric.
-    dimensionFilters(dimensionFilters: cog.OptionsBuilder<azuremonitor.AzureMetricDimension>[]): this {
+    dimensionFilters(dimensionFilters: cog.Builder<azuremonitor.AzureMetricDimension>[]): this {
         const dimensionFiltersResources = dimensionFilters.map(builder => builder.build());
         this.internal.dimensionFilters = dimensionFiltersResources;
         return this;

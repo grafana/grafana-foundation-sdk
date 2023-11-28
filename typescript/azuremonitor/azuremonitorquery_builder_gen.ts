@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class AzureMonitorQueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
+export class AzureMonitorQueryBuilder implements cog.Builder<cog.Dataquery> {
     private readonly internal: azuremonitor.AzureMonitorQuery;
 
     constructor() {
@@ -50,28 +50,28 @@ export class AzureMonitorQueryBuilder implements cog.OptionsBuilder<cog.Dataquer
     }
 
     // Azure Monitor Metrics sub-query properties.
-    azureMonitor(azureMonitor: cog.OptionsBuilder<azuremonitor.AzureMetricQuery>): this {
+    azureMonitor(azureMonitor: cog.Builder<azuremonitor.AzureMetricQuery>): this {
         const azureMonitorResource = azureMonitor.build();
         this.internal.azureMonitor = azureMonitorResource;
         return this;
     }
 
     // Azure Monitor Logs sub-query properties.
-    azureLogAnalytics(azureLogAnalytics: cog.OptionsBuilder<azuremonitor.AzureLogsQuery>): this {
+    azureLogAnalytics(azureLogAnalytics: cog.Builder<azuremonitor.AzureLogsQuery>): this {
         const azureLogAnalyticsResource = azureLogAnalytics.build();
         this.internal.azureLogAnalytics = azureLogAnalyticsResource;
         return this;
     }
 
     // Azure Resource Graph sub-query properties.
-    azureResourceGraph(azureResourceGraph: cog.OptionsBuilder<azuremonitor.AzureResourceGraphQuery>): this {
+    azureResourceGraph(azureResourceGraph: cog.Builder<azuremonitor.AzureResourceGraphQuery>): this {
         const azureResourceGraphResource = azureResourceGraph.build();
         this.internal.azureResourceGraph = azureResourceGraphResource;
         return this;
     }
 
     // Application Insights Traces sub-query properties.
-    azureTraces(azureTraces: cog.OptionsBuilder<azuremonitor.AzureTracesQuery>): this {
+    azureTraces(azureTraces: cog.Builder<azuremonitor.AzureTracesQuery>): this {
         const azureTracesResource = azureTraces.build();
         this.internal.azureTraces = azureTracesResource;
         return this;

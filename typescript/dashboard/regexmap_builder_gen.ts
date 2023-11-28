@@ -5,7 +5,7 @@ import * as dashboard from '../dashboard';
 
 // Maps regular expressions to replacement text and a color.
 // For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
-export class RegexMapBuilder implements cog.OptionsBuilder<dashboard.RegexMap> {
+export class RegexMapBuilder implements cog.Builder<dashboard.RegexMap> {
     private readonly internal: dashboard.RegexMap;
 
     constructor() {

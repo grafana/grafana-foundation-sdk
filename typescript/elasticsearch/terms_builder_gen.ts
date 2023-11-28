@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class TermsBuilder implements cog.OptionsBuilder<elasticsearch.Terms> {
+export class TermsBuilder implements cog.Builder<elasticsearch.Terms> {
     private readonly internal: elasticsearch.Terms;
 
     constructor() {

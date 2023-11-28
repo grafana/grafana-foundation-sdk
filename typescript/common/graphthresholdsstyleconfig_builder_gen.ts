@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class GraphThresholdsStyleConfigBuilder implements cog.OptionsBuilder<common.GraphThresholdsStyleConfig> {
+export class GraphThresholdsStyleConfigBuilder implements cog.Builder<common.GraphThresholdsStyleConfig> {
     private readonly internal: common.GraphThresholdsStyleConfig;
 
     constructor() {

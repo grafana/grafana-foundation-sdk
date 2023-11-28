@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class BarConfigBuilder implements cog.OptionsBuilder<common.BarConfig> {
+export class BarConfigBuilder implements cog.Builder<common.BarConfig> {
     private readonly internal: common.BarConfig;
 
     constructor() {

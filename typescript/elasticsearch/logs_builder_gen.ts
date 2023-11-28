@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class LogsBuilder implements cog.OptionsBuilder<elasticsearch.Logs> {
+export class LogsBuilder implements cog.Builder<elasticsearch.Logs> {
     private readonly internal: elasticsearch.Logs;
 
     constructor() {

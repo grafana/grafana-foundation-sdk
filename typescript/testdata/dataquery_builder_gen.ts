@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as testdata from '../testdata';
 
-export class DataqueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
+export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     private readonly internal: testdata.dataquery;
 
     constructor() {
@@ -29,25 +29,25 @@ export class DataqueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
         return this;
     }
 
-    stream(stream: cog.OptionsBuilder<testdata.StreamingQuery>): this {
+    stream(stream: cog.Builder<testdata.StreamingQuery>): this {
         const streamResource = stream.build();
         this.internal.stream = streamResource;
         return this;
     }
 
-    pulseWave(pulseWave: cog.OptionsBuilder<testdata.PulseWaveQuery>): this {
+    pulseWave(pulseWave: cog.Builder<testdata.PulseWaveQuery>): this {
         const pulseWaveResource = pulseWave.build();
         this.internal.pulseWave = pulseWaveResource;
         return this;
     }
 
-    sim(sim: cog.OptionsBuilder<testdata.SimulationQuery>): this {
+    sim(sim: cog.Builder<testdata.SimulationQuery>): this {
         const simResource = sim.build();
         this.internal.sim = simResource;
         return this;
     }
 
-    csvWave(csvWave: cog.OptionsBuilder<testdata.CSVWave>[]): this {
+    csvWave(csvWave: cog.Builder<testdata.CSVWave>[]): this {
         const csvWaveResources = csvWave.map(builder => builder.build());
         this.internal.csvWave = csvWaveResources;
         return this;
@@ -73,7 +73,7 @@ export class DataqueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
         return this;
     }
 
-    nodes(nodes: cog.OptionsBuilder<testdata.NodesQuery>): this {
+    nodes(nodes: cog.Builder<testdata.NodesQuery>): this {
         const nodesResource = nodes.build();
         this.internal.nodes = nodesResource;
         return this;
@@ -99,7 +99,7 @@ export class DataqueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
         return this;
     }
 
-    usa(usa: cog.OptionsBuilder<testdata.USAQuery>): this {
+    usa(usa: cog.Builder<testdata.USAQuery>): this {
         const usaResource = usa.build();
         this.internal.usa = usaResource;
         return this;

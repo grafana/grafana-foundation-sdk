@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class LineStyleBuilder implements cog.OptionsBuilder<common.LineStyle> {
+export class LineStyleBuilder implements cog.Builder<common.LineStyle> {
     private readonly internal: common.LineStyle;
 
     constructor() {

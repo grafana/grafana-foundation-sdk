@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class MetricAggregationWithFieldBuilder implements cog.OptionsBuilder<elasticsearch.MetricAggregationWithField> {
+export class MetricAggregationWithFieldBuilder implements cog.Builder<elasticsearch.MetricAggregationWithField> {
     private readonly internal: elasticsearch.MetricAggregationWithField;
 
     constructor() {

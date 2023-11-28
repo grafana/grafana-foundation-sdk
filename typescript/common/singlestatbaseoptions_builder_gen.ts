@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class SingleStatBaseOptionsBuilder implements cog.OptionsBuilder<common.SingleStatBaseOptions> {
+export class SingleStatBaseOptionsBuilder implements cog.Builder<common.SingleStatBaseOptions> {
     private readonly internal: common.SingleStatBaseOptions;
 
     constructor() {
@@ -15,13 +15,13 @@ export class SingleStatBaseOptionsBuilder implements cog.OptionsBuilder<common.S
         return this.internal;
     }
 
-    reduceOptions(reduceOptions: cog.OptionsBuilder<common.ReduceDataOptions>): this {
+    reduceOptions(reduceOptions: cog.Builder<common.ReduceDataOptions>): this {
         const reduceOptionsResource = reduceOptions.build();
         this.internal.reduceOptions = reduceOptionsResource;
         return this;
     }
 
-    text(text: cog.OptionsBuilder<common.VizTextDisplayOptions>): this {
+    text(text: cog.Builder<common.VizTextDisplayOptions>): this {
         const textResource = text.build();
         this.internal.text = textResource;
         return this;

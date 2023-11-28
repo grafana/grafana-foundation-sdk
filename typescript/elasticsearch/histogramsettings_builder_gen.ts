@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class HistogramSettingsBuilder implements cog.OptionsBuilder<elasticsearch.HistogramSettings> {
+export class HistogramSettingsBuilder implements cog.Builder<elasticsearch.HistogramSettings> {
     private readonly internal: elasticsearch.HistogramSettings;
 
     constructor() {

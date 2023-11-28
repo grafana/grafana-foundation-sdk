@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 
 // Shape of a CloudWatch Metrics query
-export class CloudWatchMetricsQueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
+export class CloudWatchMetricsQueryBuilder implements cog.Builder<cog.Dataquery> {
     private readonly internal: cloudwatch.CloudWatchMetricsQuery;
 
     constructor() {
@@ -136,7 +136,7 @@ export class CloudWatchMetricsQueryBuilder implements cog.OptionsBuilder<cog.Dat
     }
 
     // When the metric query type is `metricQueryType` is set to `Query` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
-    sql(sql: cog.OptionsBuilder<cloudwatch.SQLExpression>): this {
+    sql(sql: cog.Builder<cloudwatch.SQLExpression>): this {
         const sqlResource = sql.build();
         this.internal.sql = sqlResource;
         return this;

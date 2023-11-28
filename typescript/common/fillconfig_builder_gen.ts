@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class FillConfigBuilder implements cog.OptionsBuilder<common.FillConfig> {
+export class FillConfigBuilder implements cog.Builder<common.FillConfig> {
     private readonly internal: common.FillConfig;
 
     constructor() {

@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class FiltersSettingsBuilder implements cog.OptionsBuilder<elasticsearch.FiltersSettings> {
+export class FiltersSettingsBuilder implements cog.Builder<elasticsearch.FiltersSettings> {
     private readonly internal: elasticsearch.FiltersSettings;
 
     constructor() {
@@ -14,7 +14,7 @@ export class FiltersSettingsBuilder implements cog.OptionsBuilder<elasticsearch.
         return this.internal;
     }
 
-    filters(filters: cog.OptionsBuilder<elasticsearch.Filter>[]): this {
+    filters(filters: cog.Builder<elasticsearch.Filter>[]): this {
         const filtersResources = filters.map(builder => builder.build());
         this.internal.filters = filtersResources;
         return this;

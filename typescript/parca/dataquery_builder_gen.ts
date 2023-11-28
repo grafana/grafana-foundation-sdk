@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as parca from '../parca';
 
-export class DataqueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
+export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     private readonly internal: parca.dataquery;
 
     constructor() {

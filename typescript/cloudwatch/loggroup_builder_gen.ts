@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 
-export class LogGroupBuilder implements cog.OptionsBuilder<cloudwatch.LogGroup> {
+export class LogGroupBuilder implements cog.Builder<cloudwatch.LogGroup> {
     private readonly internal: cloudwatch.LogGroup;
 
     constructor() {

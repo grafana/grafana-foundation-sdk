@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class AzureTracesFilterBuilder implements cog.OptionsBuilder<azuremonitor.AzureTracesFilter> {
+export class AzureTracesFilterBuilder implements cog.Builder<azuremonitor.AzureTracesFilter> {
     private readonly internal: azuremonitor.AzureTracesFilter;
 
     constructor() {

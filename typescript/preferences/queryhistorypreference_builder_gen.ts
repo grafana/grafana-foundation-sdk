@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as preferences from '../preferences';
 
-export class QueryHistoryPreferenceBuilder implements cog.OptionsBuilder<preferences.QueryHistoryPreference> {
+export class QueryHistoryPreferenceBuilder implements cog.Builder<preferences.QueryHistoryPreference> {
     private readonly internal: preferences.QueryHistoryPreference;
 
     constructor() {

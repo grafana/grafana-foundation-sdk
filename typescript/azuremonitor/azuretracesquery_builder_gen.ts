@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
 // Application Insights Traces sub-query properties
-export class AzureTracesQueryBuilder implements cog.OptionsBuilder<azuremonitor.AzureTracesQuery> {
+export class AzureTracesQueryBuilder implements cog.Builder<azuremonitor.AzureTracesQuery> {
     private readonly internal: azuremonitor.AzureTracesQuery;
 
     constructor() {
@@ -40,7 +40,7 @@ export class AzureTracesQueryBuilder implements cog.OptionsBuilder<azuremonitor.
     }
 
     // Filters for property values.
-    filters(filters: cog.OptionsBuilder<azuremonitor.AzureTracesFilter>[]): this {
+    filters(filters: cog.Builder<azuremonitor.AzureTracesFilter>[]): this {
         const filtersResources = filters.map(builder => builder.build());
         this.internal.filters = filtersResources;
         return this;

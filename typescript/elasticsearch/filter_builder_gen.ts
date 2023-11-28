@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class FilterBuilder implements cog.OptionsBuilder<elasticsearch.Filter> {
+export class FilterBuilder implements cog.Builder<elasticsearch.Filter> {
     private readonly internal: elasticsearch.Filter;
 
     constructor() {

@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-export class ScaleDimensionConfigBuilder implements cog.OptionsBuilder<common.ScaleDimensionConfig> {
+export class ScaleDimensionConfigBuilder implements cog.Builder<common.ScaleDimensionConfig> {
     private readonly internal: common.ScaleDimensionConfig;
 
     constructor() {

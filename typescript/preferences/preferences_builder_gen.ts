@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as preferences from '../preferences';
 
-export class PreferencesBuilder implements cog.OptionsBuilder<preferences.Preferences> {
+export class PreferencesBuilder implements cog.Builder<preferences.Preferences> {
     private readonly internal: preferences.Preferences;
 
     constructor() {
@@ -46,14 +46,14 @@ export class PreferencesBuilder implements cog.OptionsBuilder<preferences.Prefer
     }
 
     // Explore query history preferences
-    queryHistory(queryHistory: cog.OptionsBuilder<preferences.QueryHistoryPreference>): this {
+    queryHistory(queryHistory: cog.Builder<preferences.QueryHistoryPreference>): this {
         const queryHistoryResource = queryHistory.build();
         this.internal.queryHistory = queryHistoryResource;
         return this;
     }
 
     // Cookie preferences
-    cookiePreferences(cookiePreferences: cog.OptionsBuilder<preferences.CookiePreferences>): this {
+    cookiePreferences(cookiePreferences: cog.Builder<preferences.CookiePreferences>): this {
         const cookiePreferencesResource = cookiePreferences.build();
         this.internal.cookiePreferences = cookiePreferencesResource;
         return this;

@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-export class HeatmapCalculationBucketConfigBuilder implements cog.OptionsBuilder<common.HeatmapCalculationBucketConfig> {
+export class HeatmapCalculationBucketConfigBuilder implements cog.Builder<common.HeatmapCalculationBucketConfig> {
     private readonly internal: common.HeatmapCalculationBucketConfig;
 
     constructor() {
@@ -27,7 +27,7 @@ export class HeatmapCalculationBucketConfigBuilder implements cog.OptionsBuilder
     }
 
     // Controls the scale of the buckets
-    scale(scale: cog.OptionsBuilder<common.ScaleDistributionConfig>): this {
+    scale(scale: cog.Builder<common.ScaleDistributionConfig>): this {
         const scaleResource = scale.build();
         this.internal.scale = scaleResource;
         return this;

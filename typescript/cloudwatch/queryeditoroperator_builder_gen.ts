@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 
 // TS type is QueryEditorOperator<T extends QueryEditorOperatorValueType>, extended in veneer
-export class QueryEditorOperatorBuilder implements cog.OptionsBuilder<cloudwatch.QueryEditorOperator> {
+export class QueryEditorOperatorBuilder implements cog.Builder<cloudwatch.QueryEditorOperator> {
     private readonly internal: cloudwatch.QueryEditorOperator;
 
     constructor() {

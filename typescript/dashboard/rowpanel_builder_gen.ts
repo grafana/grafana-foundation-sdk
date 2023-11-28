@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
 // Row panel
-export class RowBuilder implements cog.OptionsBuilder<dashboard.RowPanel> {
+export class RowBuilder implements cog.Builder<dashboard.RowPanel> {
     private readonly internal: dashboard.RowPanel;
 
     constructor(title: string) {
@@ -42,7 +42,7 @@ export class RowBuilder implements cog.OptionsBuilder<dashboard.RowPanel> {
     }
 
     // List of panels in the row
-    panels(panels: cog.OptionsBuilder<dashboard.Panel>[]): this {
+    panels(panels: cog.Builder<dashboard.Panel>[]): this {
         const panelsResources = panels.map(builder => builder.build());
         this.internal.panels = panelsResources;
         return this;

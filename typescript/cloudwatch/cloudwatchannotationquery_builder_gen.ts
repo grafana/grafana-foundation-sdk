@@ -6,7 +6,7 @@ import * as cloudwatch from '../cloudwatch';
 // Shape of a CloudWatch Annotation query
 // TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
 // #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
-export class CloudWatchAnnotationQueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
+export class CloudWatchAnnotationQueryBuilder implements cog.Builder<cog.Dataquery> {
     private readonly internal: cloudwatch.CloudWatchAnnotationQuery;
 
     constructor() {

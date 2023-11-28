@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-export class FrameGeometrySourceBuilder implements cog.OptionsBuilder<common.FrameGeometrySource> {
+export class FrameGeometrySourceBuilder implements cog.Builder<common.FrameGeometrySource> {
     private readonly internal: common.FrameGeometrySource;
 
     constructor() {

@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
 // Time Series List sub-query properties.
-export class TimeSeriesListBuilder implements cog.OptionsBuilder<googlecloudmonitoring.TimeSeriesList> {
+export class TimeSeriesListBuilder implements cog.Builder<googlecloudmonitoring.TimeSeriesList> {
     private readonly internal: googlecloudmonitoring.TimeSeriesList;
 
     constructor() {

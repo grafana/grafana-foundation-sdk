@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class MovingFunctionBuilder implements cog.OptionsBuilder<elasticsearch.MovingFunction> {
+export class MovingFunctionBuilder implements cog.Builder<elasticsearch.MovingFunction> {
     private readonly internal: elasticsearch.MovingFunction;
 
     constructor() {

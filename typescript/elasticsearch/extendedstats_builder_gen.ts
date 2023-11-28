@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class ExtendedStatsBuilder implements cog.OptionsBuilder<elasticsearch.ExtendedStats> {
+export class ExtendedStatsBuilder implements cog.Builder<elasticsearch.ExtendedStats> {
     private readonly internal: elasticsearch.ExtendedStats;
 
     constructor() {

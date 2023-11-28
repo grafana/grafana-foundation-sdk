@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class OptionsWithTooltipBuilder implements cog.OptionsBuilder<common.OptionsWithTooltip> {
+export class OptionsWithTooltipBuilder implements cog.Builder<common.OptionsWithTooltip> {
     private readonly internal: common.OptionsWithTooltip;
 
     constructor() {
@@ -15,7 +15,7 @@ export class OptionsWithTooltipBuilder implements cog.OptionsBuilder<common.Opti
         return this.internal;
     }
 
-    tooltip(tooltip: cog.OptionsBuilder<common.VizTooltipOptions>): this {
+    tooltip(tooltip: cog.Builder<common.VizTooltipOptions>): this {
         const tooltipResource = tooltip.build();
         this.internal.tooltip = tooltipResource;
         return this;

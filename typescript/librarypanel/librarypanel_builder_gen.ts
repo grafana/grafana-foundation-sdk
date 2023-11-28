@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as librarypanel from '../librarypanel';
 import * as dashboard from '../dashboard';
 
-export class LibraryPanelBuilder implements cog.OptionsBuilder<librarypanel.LibraryPanel> {
+export class LibraryPanelBuilder implements cog.Builder<librarypanel.LibraryPanel> {
     private readonly internal: librarypanel.LibraryPanel;
 
     constructor() {
@@ -129,7 +129,7 @@ export class LibraryPanelBuilder implements cog.OptionsBuilder<librarypanel.Libr
     }
 
     // Object storage metadata
-    meta(meta: cog.OptionsBuilder<librarypanel.LibraryElementDTOMeta>): this {
+    meta(meta: cog.Builder<librarypanel.LibraryElementDTOMeta>): this {
         const metaResource = meta.build();
         this.internal.meta = metaResource;
         return this;

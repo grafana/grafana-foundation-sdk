@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class AverageBuilder implements cog.OptionsBuilder<elasticsearch.Average> {
+export class AverageBuilder implements cog.Builder<elasticsearch.Average> {
     private readonly internal: elasticsearch.Average;
 
     constructor() {

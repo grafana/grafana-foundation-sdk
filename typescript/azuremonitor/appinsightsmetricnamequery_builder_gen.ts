@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class AppInsightsMetricNameQueryBuilder implements cog.OptionsBuilder<azuremonitor.AppInsightsMetricNameQuery> {
+export class AppInsightsMetricNameQueryBuilder implements cog.Builder<azuremonitor.AppInsightsMetricNameQuery> {
     private readonly internal: azuremonitor.AppInsightsMetricNameQuery;
 
     constructor() {

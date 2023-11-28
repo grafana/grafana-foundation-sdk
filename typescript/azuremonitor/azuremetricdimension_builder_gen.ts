@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class AzureMetricDimensionBuilder implements cog.OptionsBuilder<azuremonitor.AzureMetricDimension> {
+export class AzureMetricDimensionBuilder implements cog.Builder<azuremonitor.AzureMetricDimension> {
     private readonly internal: azuremonitor.AzureMetricDimension;
 
     constructor() {

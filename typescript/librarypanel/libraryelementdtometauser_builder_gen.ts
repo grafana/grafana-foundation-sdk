@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as librarypanel from '../librarypanel';
 
-export class LibraryElementDTOMetaUserBuilder implements cog.OptionsBuilder<librarypanel.LibraryElementDTOMetaUser> {
+export class LibraryElementDTOMetaUserBuilder implements cog.Builder<librarypanel.LibraryElementDTOMetaUser> {
     private readonly internal: librarypanel.LibraryElementDTOMetaUser;
 
     constructor() {

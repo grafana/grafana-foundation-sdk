@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as rolebinding from '../rolebinding';
 
-export class RoleBindingSubjectBuilder implements cog.OptionsBuilder<rolebinding.RoleBindingSubject> {
+export class RoleBindingSubjectBuilder implements cog.Builder<rolebinding.RoleBindingSubject> {
     private readonly internal: rolebinding.RoleBindingSubject;
 
     constructor() {

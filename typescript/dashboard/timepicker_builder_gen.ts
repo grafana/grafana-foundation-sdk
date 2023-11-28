@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-export class TimePickerBuilder implements cog.OptionsBuilder<dashboard.TimePicker> {
+export class TimePickerBuilder implements cog.Builder<dashboard.TimePicker> {
     private readonly internal: dashboard.TimePicker;
 
     constructor() {

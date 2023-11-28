@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class MetricAggregationWithInlineScriptBuilder implements cog.OptionsBuilder<elasticsearch.MetricAggregationWithInlineScript> {
+export class MetricAggregationWithInlineScriptBuilder implements cog.Builder<elasticsearch.MetricAggregationWithInlineScript> {
     private readonly internal: elasticsearch.MetricAggregationWithInlineScript;
 
     constructor() {

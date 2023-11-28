@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class PipelineVariableBuilder implements cog.OptionsBuilder<elasticsearch.PipelineVariable> {
+export class PipelineVariableBuilder implements cog.Builder<elasticsearch.PipelineVariable> {
     private readonly internal: elasticsearch.PipelineVariable;
 
     constructor() {

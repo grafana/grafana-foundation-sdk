@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class ReduceDataOptionsBuilder implements cog.OptionsBuilder<common.ReduceDataOptions> {
+export class ReduceDataOptionsBuilder implements cog.Builder<common.ReduceDataOptions> {
     private readonly internal: common.ReduceDataOptions;
 
     constructor() {

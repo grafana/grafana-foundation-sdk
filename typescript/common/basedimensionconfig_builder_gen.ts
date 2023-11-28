@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-export class BaseDimensionConfigBuilder implements cog.OptionsBuilder<common.BaseDimensionConfig> {
+export class BaseDimensionConfigBuilder implements cog.Builder<common.BaseDimensionConfig> {
     private readonly internal: common.BaseDimensionConfig;
 
     constructor() {

@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class GeoHashGridSettingsBuilder implements cog.OptionsBuilder<elasticsearch.GeoHashGridSettings> {
+export class GeoHashGridSettingsBuilder implements cog.Builder<elasticsearch.GeoHashGridSettings> {
     private readonly internal: elasticsearch.GeoHashGridSettings;
 
     constructor() {

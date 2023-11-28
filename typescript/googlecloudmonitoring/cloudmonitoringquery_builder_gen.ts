@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
-export class CloudMonitoringQueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
+export class CloudMonitoringQueryBuilder implements cog.Builder<cog.Dataquery> {
     private readonly internal: googlecloudmonitoring.CloudMonitoringQuery;
 
     constructor() {
@@ -46,28 +46,28 @@ export class CloudMonitoringQueryBuilder implements cog.OptionsBuilder<cog.Dataq
     // GCM query type.
     // queryType: #QueryType
     // Time Series List sub-query properties.
-    timeSeriesList(timeSeriesList: cog.OptionsBuilder<googlecloudmonitoring.TimeSeriesList>): this {
+    timeSeriesList(timeSeriesList: cog.Builder<googlecloudmonitoring.TimeSeriesList>): this {
         const timeSeriesListResource = timeSeriesList.build();
         this.internal.timeSeriesList = timeSeriesListResource;
         return this;
     }
 
     // Time Series sub-query properties.
-    timeSeriesQuery(timeSeriesQuery: cog.OptionsBuilder<googlecloudmonitoring.TimeSeriesQuery>): this {
+    timeSeriesQuery(timeSeriesQuery: cog.Builder<googlecloudmonitoring.TimeSeriesQuery>): this {
         const timeSeriesQueryResource = timeSeriesQuery.build();
         this.internal.timeSeriesQuery = timeSeriesQueryResource;
         return this;
     }
 
     // SLO sub-query properties.
-    sloQuery(sloQuery: cog.OptionsBuilder<googlecloudmonitoring.SLOQuery>): this {
+    sloQuery(sloQuery: cog.Builder<googlecloudmonitoring.SLOQuery>): this {
         const sloQueryResource = sloQuery.build();
         this.internal.sloQuery = sloQueryResource;
         return this;
     }
 
     // PromQL sub-query properties.
-    promQLQuery(promQLQuery: cog.OptionsBuilder<googlecloudmonitoring.PromQLQuery>): this {
+    promQLQuery(promQLQuery: cog.Builder<googlecloudmonitoring.PromQLQuery>): this {
         const promQLQueryResource = promQLQuery.build();
         this.internal.promQLQuery = promQLQueryResource;
         return this;

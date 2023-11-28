@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class SumBuilder implements cog.OptionsBuilder<elasticsearch.Sum> {
+export class SumBuilder implements cog.Builder<elasticsearch.Sum> {
     private readonly internal: elasticsearch.Sum;
 
     constructor() {

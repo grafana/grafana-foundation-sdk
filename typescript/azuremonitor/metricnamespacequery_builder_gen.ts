@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class MetricNamespaceQueryBuilder implements cog.OptionsBuilder<azuremonitor.MetricNamespaceQuery> {
+export class MetricNamespaceQueryBuilder implements cog.Builder<azuremonitor.MetricNamespaceQuery> {
     private readonly internal: azuremonitor.MetricNamespaceQuery;
 
     constructor() {

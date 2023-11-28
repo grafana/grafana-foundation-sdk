@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class HideableFieldConfigBuilder implements cog.OptionsBuilder<common.HideableFieldConfig> {
+export class HideableFieldConfigBuilder implements cog.Builder<common.HideableFieldConfig> {
     private readonly internal: common.HideableFieldConfig;
 
     constructor() {
@@ -15,7 +15,7 @@ export class HideableFieldConfigBuilder implements cog.OptionsBuilder<common.Hid
         return this.internal;
     }
 
-    hideFrom(hideFrom: cog.OptionsBuilder<common.HideSeriesConfig>): this {
+    hideFrom(hideFrom: cog.Builder<common.HideSeriesConfig>): this {
         const hideFromResource = hideFrom.build();
         this.internal.hideFrom = hideFromResource;
         return this;

@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as role from '../role';
 
-export class RoleBuilder implements cog.OptionsBuilder<role.Role> {
+export class RoleBuilder implements cog.Builder<role.Role> {
     private readonly internal: role.Role;
 
     constructor() {

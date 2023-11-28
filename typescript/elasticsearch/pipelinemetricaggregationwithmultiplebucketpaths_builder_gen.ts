@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class PipelineMetricAggregationWithMultipleBucketPathsBuilder implements cog.OptionsBuilder<elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths> {
+export class PipelineMetricAggregationWithMultipleBucketPathsBuilder implements cog.Builder<elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths> {
     private readonly internal: elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths;
 
     constructor() {
@@ -14,7 +14,7 @@ export class PipelineMetricAggregationWithMultipleBucketPathsBuilder implements 
         return this.internal;
     }
 
-    pipelineVariables(pipelineVariables: cog.OptionsBuilder<elasticsearch.PipelineVariable>[]): this {
+    pipelineVariables(pipelineVariables: cog.Builder<elasticsearch.PipelineVariable>[]): this {
         const pipelineVariablesResources = pipelineVariables.map(builder => builder.build());
         this.internal.pipelineVariables = pipelineVariablesResources;
         return this;

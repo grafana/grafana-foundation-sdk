@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as team from '../team';
 
-export class TeamBuilder implements cog.OptionsBuilder<team.Team> {
+export class TeamBuilder implements cog.Builder<team.Team> {
     private readonly internal: team.Team;
 
     constructor(name: string) {

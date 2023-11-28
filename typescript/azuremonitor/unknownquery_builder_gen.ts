@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class UnknownQueryBuilder implements cog.OptionsBuilder<azuremonitor.UnknownQuery> {
+export class UnknownQueryBuilder implements cog.Builder<azuremonitor.UnknownQuery> {
     private readonly internal: azuremonitor.UnknownQuery;
 
     constructor() {

@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 // #MovingAverage's settings are overridden in types.ts
-export class MovingAverageBuilder implements cog.OptionsBuilder<elasticsearch.MovingAverage> {
+export class MovingAverageBuilder implements cog.Builder<elasticsearch.MovingAverage> {
     private readonly internal: elasticsearch.MovingAverage;
 
     constructor() {

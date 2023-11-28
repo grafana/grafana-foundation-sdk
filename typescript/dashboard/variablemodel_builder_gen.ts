@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
-export class VariableModelBuilder implements cog.OptionsBuilder<dashboard.VariableModel> {
+export class VariableModelBuilder implements cog.Builder<dashboard.VariableModel> {
     private readonly internal: dashboard.VariableModel;
 
     constructor() {

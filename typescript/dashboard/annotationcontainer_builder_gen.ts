@@ -7,7 +7,7 @@ import * as dashboard from '../dashboard';
 // Annotations are used to overlay event markers and overlay event tags on graphs.
 // Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
 // See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-export class AnnotationContainerBuilder implements cog.OptionsBuilder<dashboard.AnnotationContainer> {
+export class AnnotationContainerBuilder implements cog.Builder<dashboard.AnnotationContainer> {
     private readonly internal: dashboard.AnnotationContainer;
 
     constructor() {
@@ -19,7 +19,7 @@ export class AnnotationContainerBuilder implements cog.OptionsBuilder<dashboard.
     }
 
     // List of annotations
-    list(list: cog.OptionsBuilder<dashboard.AnnotationQuery>[]): this {
+    list(list: cog.Builder<dashboard.AnnotationQuery>[]): this {
         const listResources = list.map(builder => builder.build());
         this.internal.list = listResources;
         return this;

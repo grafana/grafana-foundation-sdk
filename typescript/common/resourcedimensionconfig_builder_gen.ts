@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // Links to a resource (image/svg path)
-export class ResourceDimensionConfigBuilder implements cog.OptionsBuilder<common.ResourceDimensionConfig> {
+export class ResourceDimensionConfigBuilder implements cog.Builder<common.ResourceDimensionConfig> {
     private readonly internal: common.ResourceDimensionConfig;
 
     constructor() {

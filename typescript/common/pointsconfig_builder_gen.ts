@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class PointsConfigBuilder implements cog.OptionsBuilder<common.PointsConfig> {
+export class PointsConfigBuilder implements cog.Builder<common.PointsConfig> {
     private readonly internal: common.PointsConfig;
 
     constructor() {

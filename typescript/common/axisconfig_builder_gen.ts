@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class AxisConfigBuilder implements cog.OptionsBuilder<common.AxisConfig> {
+export class AxisConfigBuilder implements cog.Builder<common.AxisConfig> {
     private readonly internal: common.AxisConfig;
 
     constructor() {
@@ -50,7 +50,7 @@ export class AxisConfigBuilder implements cog.OptionsBuilder<common.AxisConfig> 
         return this;
     }
 
-    scaleDistribution(scaleDistribution: cog.OptionsBuilder<common.ScaleDistributionConfig>): this {
+    scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>): this {
         const scaleDistributionResource = scaleDistribution.build();
         this.internal.scaleDistribution = scaleDistributionResource;
         return this;

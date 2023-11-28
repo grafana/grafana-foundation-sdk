@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class BaseBucketAggregationBuilder implements cog.OptionsBuilder<elasticsearch.BaseBucketAggregation> {
+export class BaseBucketAggregationBuilder implements cog.Builder<elasticsearch.BaseBucketAggregation> {
     private readonly internal: elasticsearch.BaseBucketAggregation;
 
     constructor() {

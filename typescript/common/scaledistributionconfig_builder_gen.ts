@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class ScaleDistributionConfigBuilder implements cog.OptionsBuilder<common.ScaleDistributionConfig> {
+export class ScaleDistributionConfigBuilder implements cog.Builder<common.ScaleDistributionConfig> {
     private readonly internal: common.ScaleDistributionConfig;
 
     constructor() {

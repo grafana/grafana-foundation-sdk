@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as testdata from '../testdata';
 
-export class PulseWaveQueryBuilder implements cog.OptionsBuilder<testdata.PulseWaveQuery> {
+export class PulseWaveQueryBuilder implements cog.Builder<testdata.PulseWaveQuery> {
     private readonly internal: testdata.PulseWaveQuery;
 
     constructor() {

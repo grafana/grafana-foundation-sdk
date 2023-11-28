@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class PercentilesBuilder implements cog.OptionsBuilder<elasticsearch.Percentiles> {
+export class PercentilesBuilder implements cog.Builder<elasticsearch.Percentiles> {
     private readonly internal: elasticsearch.Percentiles;
 
     constructor() {

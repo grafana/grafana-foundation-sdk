@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class StackableFieldConfigBuilder implements cog.OptionsBuilder<common.StackableFieldConfig> {
+export class StackableFieldConfigBuilder implements cog.Builder<common.StackableFieldConfig> {
     private readonly internal: common.StackableFieldConfig;
 
     constructor() {
@@ -15,7 +15,7 @@ export class StackableFieldConfigBuilder implements cog.OptionsBuilder<common.St
         return this.internal;
     }
 
-    stacking(stacking: cog.OptionsBuilder<common.StackingConfig>): this {
+    stacking(stacking: cog.Builder<common.StackingConfig>): this {
         const stackingResource = stacking.build();
         this.internal.stacking = stackingResource;
         return this;

@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class BucketScriptBuilder implements cog.OptionsBuilder<elasticsearch.BucketScript> {
+export class BucketScriptBuilder implements cog.Builder<elasticsearch.BucketScript> {
     private readonly internal: elasticsearch.BucketScript;
 
     constructor() {
@@ -15,7 +15,7 @@ export class BucketScriptBuilder implements cog.OptionsBuilder<elasticsearch.Buc
         return this.internal;
     }
 
-    pipelineVariables(pipelineVariables: cog.OptionsBuilder<elasticsearch.PipelineVariable>[]): this {
+    pipelineVariables(pipelineVariables: cog.Builder<elasticsearch.PipelineVariable>[]): this {
         const pipelineVariablesResources = pipelineVariables.map(builder => builder.build());
         this.internal.pipelineVariables = pipelineVariablesResources;
         return this;

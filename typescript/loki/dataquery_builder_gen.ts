@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as loki from '../loki';
 
-export class DataqueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
+export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     private readonly internal: loki.dataquery;
 
     constructor() {

@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class MinBuilder implements cog.OptionsBuilder<elasticsearch.Min> {
+export class MinBuilder implements cog.Builder<elasticsearch.Min> {
     private readonly internal: elasticsearch.Min;
 
     constructor() {

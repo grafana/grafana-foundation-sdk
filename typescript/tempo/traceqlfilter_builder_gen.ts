@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as tempo from '../tempo';
 
-export class TraceqlFilterBuilder implements cog.OptionsBuilder<tempo.TraceqlFilter> {
+export class TraceqlFilterBuilder implements cog.Builder<tempo.TraceqlFilter> {
     private readonly internal: tempo.TraceqlFilter;
 
     constructor() {

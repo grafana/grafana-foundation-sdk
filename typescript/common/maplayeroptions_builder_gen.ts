@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-export class MapLayerOptionsBuilder implements cog.OptionsBuilder<common.MapLayerOptions> {
+export class MapLayerOptionsBuilder implements cog.Builder<common.MapLayerOptions> {
     private readonly internal: common.MapLayerOptions;
 
     constructor() {
@@ -32,7 +32,7 @@ export class MapLayerOptionsBuilder implements cog.OptionsBuilder<common.MapLaye
     }
 
     // Common method to define geometry fields
-    location(location: cog.OptionsBuilder<common.FrameGeometrySource>): this {
+    location(location: cog.Builder<common.FrameGeometrySource>): this {
         const locationResource = location.build();
         this.internal.location = locationResource;
         return this;

@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class LineConfigBuilder implements cog.OptionsBuilder<common.LineConfig> {
+export class LineConfigBuilder implements cog.Builder<common.LineConfig> {
     private readonly internal: common.LineConfig;
 
     constructor() {
@@ -30,7 +30,7 @@ export class LineConfigBuilder implements cog.OptionsBuilder<common.LineConfig> 
         return this;
     }
 
-    lineStyle(lineStyle: cog.OptionsBuilder<common.LineStyle>): this {
+    lineStyle(lineStyle: cog.Builder<common.LineStyle>): this {
         const lineStyleResource = lineStyle.build();
         this.internal.lineStyle = lineStyleResource;
         return this;

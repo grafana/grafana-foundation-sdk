@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as rolebinding from '../rolebinding';
 
-export class CustomRoleRefBuilder implements cog.OptionsBuilder<rolebinding.CustomRoleRef> {
+export class CustomRoleRefBuilder implements cog.Builder<rolebinding.CustomRoleRef> {
     private readonly internal: rolebinding.CustomRoleRef;
 
     constructor() {

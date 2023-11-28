@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class MovingAverageHoltWintersModelSettingsBuilder implements cog.OptionsBuilder<elasticsearch.MovingAverageHoltWintersModelSettings> {
+export class MovingAverageHoltWintersModelSettingsBuilder implements cog.Builder<elasticsearch.MovingAverageHoltWintersModelSettings> {
     private readonly internal: elasticsearch.MovingAverageHoltWintersModelSettings;
 
     constructor() {

@@ -5,7 +5,7 @@ import * as dashboard from '../dashboard';
 
 // TODO: this should be a regular DataQuery that depends on the selected dashboard
 // these match the properties of the "grafana" datasouce that is default in most dashboards
-export class AnnotationTargetBuilder implements cog.OptionsBuilder<dashboard.AnnotationTarget> {
+export class AnnotationTargetBuilder implements cog.Builder<dashboard.AnnotationTarget> {
     private readonly internal: dashboard.AnnotationTarget;
 
     constructor() {

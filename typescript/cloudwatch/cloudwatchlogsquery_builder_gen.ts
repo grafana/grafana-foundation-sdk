@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 
 // Shape of a CloudWatch Logs query
-export class CloudWatchLogsQueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
+export class CloudWatchLogsQueryBuilder implements cog.Builder<cog.Dataquery> {
     private readonly internal: cloudwatch.CloudWatchLogsQuery;
 
     constructor() {
@@ -45,7 +45,7 @@ export class CloudWatchLogsQueryBuilder implements cog.OptionsBuilder<cog.Dataqu
     }
 
     // Log groups to query
-    logGroups(logGroups: cog.OptionsBuilder<cloudwatch.LogGroup>[]): this {
+    logGroups(logGroups: cog.Builder<cloudwatch.LogGroup>[]): this {
         const logGroupsResources = logGroups.map(builder => builder.build());
         this.internal.logGroups = logGroupsResources;
         return this;

@@ -6,7 +6,7 @@ import * as common from '../common';
 // These are the common properties available to all queries in all datasources.
 // Specific implementations will *extend* this interface, adding the required
 // properties for the given context.
-export class DataQueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
+export class DataQueryBuilder implements cog.Builder<cog.Dataquery> {
     private readonly internal: common.DataQuery;
 
     constructor() {

@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // Field options for each field within a table (e.g 10, "The String", 64.20, etc.)
 // Generally defines alignment, filtering capabilties, display options, etc.
-export class TableFieldOptionsBuilder implements cog.OptionsBuilder<common.TableFieldOptions> {
+export class TableFieldOptionsBuilder implements cog.Builder<common.TableFieldOptions> {
     private readonly internal: common.TableFieldOptions;
 
     constructor() {

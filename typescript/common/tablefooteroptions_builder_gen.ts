@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // Footer options
-export class TableFooterOptionsBuilder implements cog.OptionsBuilder<common.TableFooterOptions> {
+export class TableFooterOptionsBuilder implements cog.Builder<common.TableFooterOptions> {
     private readonly internal: common.TableFooterOptions;
 
     constructor() {

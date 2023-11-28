@@ -5,7 +5,7 @@ import * as dashboard from '../dashboard';
 
 // Maps numerical ranges to a display text and color.
 // For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
-export class RangeMapBuilder implements cog.OptionsBuilder<dashboard.RangeMap> {
+export class RangeMapBuilder implements cog.Builder<dashboard.RangeMap> {
     private readonly internal: dashboard.RangeMap;
 
     constructor() {

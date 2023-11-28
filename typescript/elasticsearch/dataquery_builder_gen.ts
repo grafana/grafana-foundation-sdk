@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class DataqueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
+export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     private readonly internal: elasticsearch.dataquery;
 
     constructor() {

@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-export class AppInsightsGroupByQueryBuilder implements cog.OptionsBuilder<azuremonitor.AppInsightsGroupByQuery> {
+export class AppInsightsGroupByQueryBuilder implements cog.Builder<azuremonitor.AppInsightsGroupByQuery> {
     private readonly internal: azuremonitor.AppInsightsGroupByQuery;
 
     constructor() {

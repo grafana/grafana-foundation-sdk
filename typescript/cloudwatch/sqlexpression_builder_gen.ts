@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 
-export class SQLExpressionBuilder implements cog.OptionsBuilder<cloudwatch.SQLExpression> {
+export class SQLExpressionBuilder implements cog.Builder<cloudwatch.SQLExpression> {
     private readonly internal: cloudwatch.SQLExpression;
 
     constructor() {
@@ -15,35 +15,35 @@ export class SQLExpressionBuilder implements cog.OptionsBuilder<cloudwatch.SQLEx
     }
 
     // SELECT part of the SQL expression
-    select(select: cog.OptionsBuilder<cloudwatch.QueryEditorFunctionExpression>): this {
+    select(select: cog.Builder<cloudwatch.QueryEditorFunctionExpression>): this {
         const selectResource = select.build();
         this.internal.select = selectResource;
         return this;
     }
 
     // FROM part of the SQL expression
-    from(from: cog.OptionsBuilder<cloudwatch.QueryEditorPropertyExpression> | cog.OptionsBuilder<cloudwatch.QueryEditorFunctionExpression>): this {
+    from(from: cog.Builder<cloudwatch.QueryEditorPropertyExpression> | cog.Builder<cloudwatch.QueryEditorFunctionExpression>): this {
         const fromResource = from.build();
         this.internal.from = fromResource;
         return this;
     }
 
     // WHERE part of the SQL expression
-    where(where: cog.OptionsBuilder<cloudwatch.QueryEditorArrayExpression>): this {
+    where(where: cog.Builder<cloudwatch.QueryEditorArrayExpression>): this {
         const whereResource = where.build();
         this.internal.where = whereResource;
         return this;
     }
 
     // GROUP BY part of the SQL expression
-    groupBy(groupBy: cog.OptionsBuilder<cloudwatch.QueryEditorArrayExpression>): this {
+    groupBy(groupBy: cog.Builder<cloudwatch.QueryEditorArrayExpression>): this {
         const groupByResource = groupBy.build();
         this.internal.groupBy = groupByResource;
         return this;
     }
 
     // ORDER BY part of the SQL expression
-    orderBy(orderBy: cog.OptionsBuilder<cloudwatch.QueryEditorFunctionExpression>): this {
+    orderBy(orderBy: cog.Builder<cloudwatch.QueryEditorFunctionExpression>): this {
         const orderByResource = orderBy.build();
         this.internal.orderBy = orderByResource;
         return this;

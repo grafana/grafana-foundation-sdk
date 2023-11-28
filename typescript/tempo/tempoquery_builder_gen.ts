@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as tempo from '../tempo';
 
-export class TempoQueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
+export class TempoQueryBuilder implements cog.Builder<cog.Dataquery> {
     private readonly internal: tempo.TempoQuery;
 
     constructor() {
@@ -97,14 +97,14 @@ export class TempoQueryBuilder implements cog.OptionsBuilder<cog.Dataquery> {
         return this;
     }
 
-    filters(filters: cog.OptionsBuilder<tempo.TraceqlFilter>[]): this {
+    filters(filters: cog.Builder<tempo.TraceqlFilter>[]): this {
         const filtersResources = filters.map(builder => builder.build());
         this.internal.filters = filtersResources;
         return this;
     }
 
     // Filters that are used to query the metrics summary
-    groupBy(groupBy: cog.OptionsBuilder<tempo.TraceqlFilter>[]): this {
+    groupBy(groupBy: cog.Builder<tempo.TraceqlFilter>[]): this {
         const groupByResources = groupBy.map(builder => builder.build());
         this.internal.groupBy = groupByResources;
         return this;

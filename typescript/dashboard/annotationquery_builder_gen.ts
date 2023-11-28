@@ -5,7 +5,7 @@ import * as dashboard from '../dashboard';
 
 // TODO docs
 // FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
-export class AnnotationQueryBuilder implements cog.OptionsBuilder<dashboard.AnnotationQuery> {
+export class AnnotationQueryBuilder implements cog.Builder<dashboard.AnnotationQuery> {
     private readonly internal: dashboard.AnnotationQuery;
 
     constructor() {
@@ -48,14 +48,14 @@ export class AnnotationQueryBuilder implements cog.OptionsBuilder<dashboard.Anno
     }
 
     // Filters to apply when fetching annotations
-    filter(filter: cog.OptionsBuilder<dashboard.AnnotationPanelFilter>): this {
+    filter(filter: cog.Builder<dashboard.AnnotationPanelFilter>): this {
         const filterResource = filter.build();
         this.internal.filter = filterResource;
         return this;
     }
 
     // TODO.. this should just be a normal query target
-    target(target: cog.OptionsBuilder<dashboard.AnnotationTarget>): this {
+    target(target: cog.Builder<dashboard.AnnotationTarget>): this {
         const targetResource = target.build();
         this.internal.target = targetResource;
         return this;

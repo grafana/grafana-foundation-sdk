@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // Colored background cell options
-export class TableColoredBackgroundCellOptionsBuilder implements cog.OptionsBuilder<common.TableColoredBackgroundCellOptions> {
+export class TableColoredBackgroundCellOptionsBuilder implements cog.Builder<common.TableColoredBackgroundCellOptions> {
     private readonly internal: common.TableColoredBackgroundCellOptions;
 
     constructor() {

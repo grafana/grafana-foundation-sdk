@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-export class ColorDimensionConfigBuilder implements cog.OptionsBuilder<common.ColorDimensionConfig> {
+export class ColorDimensionConfigBuilder implements cog.Builder<common.ColorDimensionConfig> {
     private readonly internal: common.ColorDimensionConfig;
 
     constructor() {

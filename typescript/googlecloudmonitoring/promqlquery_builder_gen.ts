@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
 // PromQL sub-query properties.
-export class PromQLQueryBuilder implements cog.OptionsBuilder<googlecloudmonitoring.PromQLQuery> {
+export class PromQLQueryBuilder implements cog.Builder<googlecloudmonitoring.PromQLQuery> {
     private readonly internal: googlecloudmonitoring.PromQLQuery;
 
     constructor() {

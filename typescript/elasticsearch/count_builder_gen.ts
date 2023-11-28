@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class CountBuilder implements cog.OptionsBuilder<elasticsearch.Count> {
+export class CountBuilder implements cog.Builder<elasticsearch.Count> {
     private readonly internal: elasticsearch.Count;
 
     constructor() {

@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as testdata from '../testdata';
 
-export class CSVWaveBuilder implements cog.OptionsBuilder<testdata.CSVWave> {
+export class CSVWaveBuilder implements cog.Builder<testdata.CSVWave> {
     private readonly internal: testdata.CSVWave;
 
     constructor() {

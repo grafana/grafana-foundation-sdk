@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-export class DashboardBuilder implements cog.OptionsBuilder<dashboard.Dashboard> {
+export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     private readonly internal: dashboard.Dashboard;
     private currentY: number = 0;
     private currentX: number = 0;
@@ -98,7 +98,7 @@ export class DashboardBuilder implements cog.OptionsBuilder<dashboard.Dashboard>
     }
 
     // Configuration of the time picker shown at the top of a dashboard.
-    timepicker(timepicker: cog.OptionsBuilder<dashboard.TimePicker>): this {
+    timepicker(timepicker: cog.Builder<dashboard.TimePicker>): this {
         const timepickerResource = timepicker.build();
         this.internal.timepicker = timepickerResource;
         return this;
@@ -139,7 +139,7 @@ export class DashboardBuilder implements cog.OptionsBuilder<dashboard.Dashboard>
         return this;
     }
 
-    withPanel(panel: cog.OptionsBuilder<dashboard.Panel>): this {
+    withPanel(panel: cog.Builder<dashboard.Panel>): this {
 		if (!this.internal.panels) {
 			this.internal.panels = [];
 		}
@@ -167,7 +167,7 @@ export class DashboardBuilder implements cog.OptionsBuilder<dashboard.Dashboard>
         return this;
     }
 
-    withRow(rowPanel: cog.OptionsBuilder<dashboard.RowPanel>): this {
+    withRow(rowPanel: cog.Builder<dashboard.RowPanel>): this {
 		if (!this.internal.panels) {
 			this.internal.panels = [];
 		}
@@ -191,7 +191,7 @@ export class DashboardBuilder implements cog.OptionsBuilder<dashboard.Dashboard>
     }
 
     // Configured template variables
-    withVariable(list: cog.OptionsBuilder<dashboard.VariableModel>): this {
+    withVariable(list: cog.Builder<dashboard.VariableModel>): this {
 		if (!this.internal.templating) {
 			this.internal.templating = {
 };
@@ -208,21 +208,21 @@ export class DashboardBuilder implements cog.OptionsBuilder<dashboard.Dashboard>
     // Annotations are used to overlay event markers and overlay event tags on graphs.
     // Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
     // See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-    annotations(annotations: cog.OptionsBuilder<dashboard.AnnotationContainer>): this {
+    annotations(annotations: cog.Builder<dashboard.AnnotationContainer>): this {
         const annotationsResource = annotations.build();
         this.internal.annotations = annotationsResource;
         return this;
     }
 
     // Links with references to other dashboards or external websites.
-    links(links: cog.OptionsBuilder<dashboard.DashboardLink>[]): this {
+    links(links: cog.Builder<dashboard.DashboardLink>[]): this {
         const linksResources = links.map(builder => builder.build());
         this.internal.links = linksResources;
         return this;
     }
 
     // Snapshot options. They are present only if the dashboard is a snapshot.
-    snapshot(snapshot: cog.OptionsBuilder<dashboard.Snapshot>): this {
+    snapshot(snapshot: cog.Builder<dashboard.Snapshot>): this {
         const snapshotResource = snapshot.build();
         this.internal.snapshot = snapshotResource;
         return this;

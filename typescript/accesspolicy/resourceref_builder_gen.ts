@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as accesspolicy from '../accesspolicy';
 
-export class ResourceRefBuilder implements cog.OptionsBuilder<accesspolicy.ResourceRef> {
+export class ResourceRefBuilder implements cog.Builder<accesspolicy.ResourceRef> {
     private readonly internal: accesspolicy.ResourceRef;
 
     constructor() {

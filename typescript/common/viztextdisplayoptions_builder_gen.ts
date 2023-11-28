@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 // TODO docs
-export class VizTextDisplayOptionsBuilder implements cog.OptionsBuilder<common.VizTextDisplayOptions> {
+export class VizTextDisplayOptionsBuilder implements cog.Builder<common.VizTextDisplayOptions> {
     private readonly internal: common.VizTextDisplayOptions;
 
     constructor() {

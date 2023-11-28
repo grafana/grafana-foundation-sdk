@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-export class DataSourceRefBuilder implements cog.OptionsBuilder<common.DataSourceRef> {
+export class DataSourceRefBuilder implements cog.Builder<common.DataSourceRef> {
     private readonly internal: common.DataSourceRef;
 
     constructor() {

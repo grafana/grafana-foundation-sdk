@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class RawDocumentBuilder implements cog.OptionsBuilder<elasticsearch.RawDocument> {
+export class RawDocumentBuilder implements cog.Builder<elasticsearch.RawDocument> {
     private readonly internal: elasticsearch.RawDocument;
 
     constructor() {

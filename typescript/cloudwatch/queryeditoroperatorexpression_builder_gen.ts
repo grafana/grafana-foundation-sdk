@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 
-export class QueryEditorOperatorExpressionBuilder implements cog.OptionsBuilder<cloudwatch.QueryEditorOperatorExpression> {
+export class QueryEditorOperatorExpressionBuilder implements cog.Builder<cloudwatch.QueryEditorOperatorExpression> {
     private readonly internal: cloudwatch.QueryEditorOperatorExpression;
 
     constructor() {
@@ -15,14 +15,14 @@ export class QueryEditorOperatorExpressionBuilder implements cog.OptionsBuilder<
         return this.internal;
     }
 
-    property(property: cog.OptionsBuilder<cloudwatch.QueryEditorProperty>): this {
+    property(property: cog.Builder<cloudwatch.QueryEditorProperty>): this {
         const propertyResource = property.build();
         this.internal.property = propertyResource;
         return this;
     }
 
     // TS type is operator: QueryEditorOperator<QueryEditorOperatorValueType>, extended in veneer
-    operator(operator: cog.OptionsBuilder<cloudwatch.QueryEditorOperator>): this {
+    operator(operator: cog.Builder<cloudwatch.QueryEditorOperator>): this {
         const operatorResource = operator.build();
         this.internal.operator = operatorResource;
         return this;

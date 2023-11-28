@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
 // Dashboard panels are the basic visualization building blocks.
-export class PanelBuilder implements cog.OptionsBuilder<dashboard.Panel> {
+export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     private readonly internal: dashboard.Panel;
 
     constructor() {
@@ -17,7 +17,7 @@ export class PanelBuilder implements cog.OptionsBuilder<dashboard.Panel> {
     }
 
     // Depends on the panel plugin. See the plugin documentation for details.
-    withTarget(targets: cog.OptionsBuilder<cog.Dataquery>): this {
+    withTarget(targets: cog.Builder<cog.Dataquery>): this {
 		if (!this.internal.targets) {
 			this.internal.targets = [];
 		}
@@ -78,7 +78,7 @@ export class PanelBuilder implements cog.OptionsBuilder<dashboard.Panel> {
     }
 
     // Panel links.
-    links(links: cog.OptionsBuilder<dashboard.DashboardLink>[]): this {
+    links(links: cog.Builder<dashboard.DashboardLink>[]): this {
         const linksResources = links.map(builder => builder.build());
         this.internal.links = linksResources;
         return this;
@@ -249,7 +249,7 @@ export class PanelBuilder implements cog.OptionsBuilder<dashboard.Panel> {
     }
 
     // Map numeric values to states
-    thresholds(thresholds: cog.OptionsBuilder<dashboard.ThresholdsConfig>): this {
+    thresholds(thresholds: cog.Builder<dashboard.ThresholdsConfig>): this {
 		if (!this.internal.fieldConfig) {
 			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
 		}
@@ -262,7 +262,7 @@ export class PanelBuilder implements cog.OptionsBuilder<dashboard.Panel> {
     }
 
     // Panel color configuration
-    color(color: cog.OptionsBuilder<dashboard.FieldColor>): this {
+    color(color: cog.Builder<dashboard.FieldColor>): this {
 		if (!this.internal.fieldConfig) {
 			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
 		}

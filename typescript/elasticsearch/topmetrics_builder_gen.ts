@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
-export class TopMetricsBuilder implements cog.OptionsBuilder<elasticsearch.TopMetrics> {
+export class TopMetricsBuilder implements cog.Builder<elasticsearch.TopMetrics> {
     private readonly internal: elasticsearch.TopMetrics;
 
     constructor() {

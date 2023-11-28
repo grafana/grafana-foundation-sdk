@@ -3,7 +3,7 @@
 import * as cog from '../cog';
 import * as librarypanel from '../librarypanel';
 
-export class LibraryElementDTOMetaBuilder implements cog.OptionsBuilder<librarypanel.LibraryElementDTOMeta> {
+export class LibraryElementDTOMetaBuilder implements cog.Builder<librarypanel.LibraryElementDTOMeta> {
     private readonly internal: librarypanel.LibraryElementDTOMeta;
 
     constructor() {
@@ -39,13 +39,13 @@ export class LibraryElementDTOMetaBuilder implements cog.OptionsBuilder<libraryp
         return this;
     }
 
-    createdBy(createdBy: cog.OptionsBuilder<librarypanel.LibraryElementDTOMetaUser>): this {
+    createdBy(createdBy: cog.Builder<librarypanel.LibraryElementDTOMetaUser>): this {
         const createdByResource = createdBy.build();
         this.internal.createdBy = createdByResource;
         return this;
     }
 
-    updatedBy(updatedBy: cog.OptionsBuilder<librarypanel.LibraryElementDTOMetaUser>): this {
+    updatedBy(updatedBy: cog.Builder<librarypanel.LibraryElementDTOMetaUser>): this {
         const updatedByResource = updatedBy.build();
         this.internal.updatedBy = updatedByResource;
         return this;
