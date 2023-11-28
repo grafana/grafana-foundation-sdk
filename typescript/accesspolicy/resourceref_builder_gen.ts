@@ -1,0 +1,26 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+import * as cog from '../cog';
+import * as accesspolicy from '../accesspolicy';
+
+export class ResourceRefBuilder implements cog.OptionsBuilder<accesspolicy.ResourceRef> {
+    private readonly internal: accesspolicy.ResourceRef;
+
+    constructor() {
+        this.internal = accesspolicy.defaultResourceRef();
+    }
+
+    build(): accesspolicy.ResourceRef {
+        return this.internal;
+    }
+
+    kind(kind: string): this {
+        this.internal.kind = kind;
+        return this;
+    }
+
+    name(name: string): this {
+        this.internal.name = name;
+        return this;
+    }
+}

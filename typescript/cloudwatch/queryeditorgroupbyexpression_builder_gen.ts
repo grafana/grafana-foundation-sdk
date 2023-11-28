@@ -1,0 +1,23 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+import * as cog from '../cog';
+import * as cloudwatch from '../cloudwatch';
+
+export class QueryEditorGroupByExpressionBuilder implements cog.OptionsBuilder<cloudwatch.QueryEditorGroupByExpression> {
+    private readonly internal: cloudwatch.QueryEditorGroupByExpression;
+
+    constructor() {
+        this.internal = cloudwatch.defaultQueryEditorGroupByExpression();
+        this.internal.type = "groupBy";
+    }
+
+    build(): cloudwatch.QueryEditorGroupByExpression {
+        return this.internal;
+    }
+
+    property(property: cog.OptionsBuilder<cloudwatch.QueryEditorProperty>): this {
+        const propertyResource = property.build();
+        this.internal.property = propertyResource;
+        return this;
+    }
+}
