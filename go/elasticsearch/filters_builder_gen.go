@@ -1,0 +1,58 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+package elasticsearch
+
+import (
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+)
+
+var _ cog.Builder[Filters] = (*FiltersBuilder)(nil)
+
+type FiltersBuilder struct {
+	internal *Filters
+	errors   map[string]cog.BuildErrors
+}
+
+func NewFiltersBuilder() *FiltersBuilder {
+	resource := &Filters{}
+	builder := &FiltersBuilder{
+		internal: resource,
+		errors:   make(map[string]cog.BuildErrors),
+	}
+
+	builder.applyDefaults()
+	builder.internal.Type = "filters"
+
+	return builder
+}
+
+func (builder *FiltersBuilder) Build() (Filters, error) {
+	var errs cog.BuildErrors
+
+	for _, err := range builder.errors {
+		errs = append(errs, cog.MakeBuildErrors("Filters", err)...)
+	}
+
+	if len(errs) != 0 {
+		return Filters{}, errs
+	}
+
+	return *builder.internal, nil
+}
+
+func (builder *FiltersBuilder) Id(id string) *FiltersBuilder {
+	builder.internal.Id = id
+
+	return builder
+}
+
+func (builder *FiltersBuilder) Settings(settings struct {
+	Filters []Filter `json:"filters,omitempty"`
+}) *FiltersBuilder {
+	builder.internal.Settings = &settings
+
+	return builder
+}
+
+func (builder *FiltersBuilder) applyDefaults() {
+}
