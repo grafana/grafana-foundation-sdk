@@ -18,3 +18,5 @@ export * from './scenario_builder_gen';
 export type * from './scenario_builder_gen';
 export * from './dataquery_builder_gen';
 export type * from './dataquery_builder_gen';
+export * from './key_builder_gen';
+export type * from './key_builder_gen';
