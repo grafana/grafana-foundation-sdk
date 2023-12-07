@@ -14,12 +14,9 @@ export class SimulationQueryBuilder implements cog.Builder<testdata.SimulationQu
         return this.internal;
     }
 
-    key(key: {
-	type: string;
-	tick: number;
-	uid?: string;
-}): this {
-        this.internal.key = key;
+    key(key: cog.Builder<testdata.Key>): this {
+        const keyResource = key.build();
+        this.internal.key = keyResource;
         return this;
     }
 

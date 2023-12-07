@@ -54,11 +54,7 @@ type PulseWaveQuery struct {
 }
 
 type SimulationQuery struct {
-	Key struct {
-		Type string  `json:"type"`
-		Tick float64 `json:"tick"`
-		Uid  *string `json:"uid,omitempty"`
-	} `json:"key"`
+	Key    Key   `json:"key"`
 	Config any   `json:"config,omitempty"`
 	Stream *bool `json:"stream,omitempty"`
 	Last   *bool `json:"last,omitempty"`
@@ -122,6 +118,12 @@ type Dataquery struct {
 }
 
 func (resource Dataquery) ImplementsDataqueryVariant() {}
+
+type Key struct {
+	Type string  `json:"type"`
+	Tick float64 `json:"tick"`
+	Uid  *string `json:"uid,omitempty"`
+}
 
 type StreamingQueryType string
 

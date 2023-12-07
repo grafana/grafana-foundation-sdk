@@ -39,12 +39,13 @@ func (builder *SimulationQueryBuilder) Build() (SimulationQuery, error) {
 	return *builder.internal, nil
 }
 
-func (builder *SimulationQueryBuilder) Key(key struct {
-	Type string  `json:"type"`
-	Tick float64 `json:"tick"`
-	Uid  *string `json:"uid,omitempty"`
-}) *SimulationQueryBuilder {
-	builder.internal.Key = key
+func (builder *SimulationQueryBuilder) Key(key cog.Builder[Key]) *SimulationQueryBuilder {
+	keyResource, err := key.Build()
+	if err != nil {
+		builder.errors["key"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Key = keyResource
 
 	return builder
 }
