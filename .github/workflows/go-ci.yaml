@@ -12,6 +12,11 @@ jobs:
     name: Go
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./go
+
     steps:
       - uses: actions/checkout@v4
 
@@ -24,7 +29,6 @@ jobs:
         run: go mod vendor
 
       - name: Go build
-        shell: bash
         run: |
           for d in */ ; do
             echo "Building $d"
