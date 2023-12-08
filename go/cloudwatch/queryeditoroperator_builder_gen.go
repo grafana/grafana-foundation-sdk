@@ -46,8 +46,11 @@ func (builder *QueryEditorOperatorBuilder) Name(name string) *QueryEditorOperato
 	return builder
 }
 
-func (builder *QueryEditorOperatorBuilder) Value(value StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) *QueryEditorOperatorBuilder {
-	builder.internal.Value = &value
+func (builder *QueryEditorOperatorBuilder) Value(arrayOfQueryEditorOperatorType []QueryEditorOperatorType) *QueryEditorOperatorBuilder {
+	if builder.internal.Value == nil {
+		builder.internal.Value = &StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType{}
+	}
+	builder.internal.Value.ArrayOfQueryEditorOperatorType = arrayOfQueryEditorOperatorType
 
 	return builder
 }

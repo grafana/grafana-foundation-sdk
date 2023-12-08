@@ -61,8 +61,11 @@ func (builder *TraceqlFilterBuilder) Operator(operator string) *TraceqlFilterBui
 }
 
 // The value for the search filter
-func (builder *TraceqlFilterBuilder) Value(value StringOrArrayOfString) *TraceqlFilterBuilder {
-	builder.internal.Value = &value
+func (builder *TraceqlFilterBuilder) Value(arrayOfString []string) *TraceqlFilterBuilder {
+	if builder.internal.Value == nil {
+		builder.internal.Value = &StringOrArrayOfString{}
+	}
+	builder.internal.Value.ArrayOfString = arrayOfString
 
 	return builder
 }
