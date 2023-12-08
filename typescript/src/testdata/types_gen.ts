@@ -62,21 +62,14 @@ export const defaultPulseWaveQuery = (): PulseWaveQuery => ({
 });
 
 export interface SimulationQuery {
-	key: {
-		type: string;
-		tick: number;
-		uid?: string;
-	};
+	key: Key;
 	config?: any;
 	stream?: boolean;
 	last?: boolean;
 }
 
 export const defaultSimulationQuery = (): SimulationQuery => ({
-	key: {
-	type: "",
-	tick: 0,
-},
+	key: defaultKey(),
 });
 
 export interface NodesQuery {
@@ -155,5 +148,16 @@ export interface dataquery {
 export const defaultDataquery = (): dataquery => ({
 	scenarioId: TestDataQueryType.RandomWalk,
 	_implementsDataqueryVariant: () => {},
+});
+
+export interface Key {
+	type: string;
+	tick: number;
+	uid?: string;
+}
+
+export const defaultKey = (): Key => ({
+	type: "",
+	tick: 0,
 });
 
