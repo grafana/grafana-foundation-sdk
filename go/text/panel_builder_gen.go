@@ -307,21 +307,6 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 	return builder
 }
 
-// Panel color configuration
-func (builder *PanelBuilder) Color(color cog.Builder[dashboard.FieldColor]) *PanelBuilder {
-	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
-	}
-	colorResource, err := color.Build()
-	if err != nil {
-		builder.errors["fieldConfig.defaults.color"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.FieldConfig.Defaults.Color = &colorResource
-
-	return builder
-}
-
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
@@ -358,8 +343,37 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 	return builder
 }
 
+func (builder *PanelBuilder) Mode(mode TextMode) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).Mode = mode
+
+	return builder
+}
+
+func (builder *PanelBuilder) Code(code CodeOptions) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).Code = &code
+
+	return builder
+}
+
+func (builder *PanelBuilder) Content(content string) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).Content = content
+
+	return builder
+}
+
 func (builder *PanelBuilder) applyDefaults() {
 	builder.Transparent(false)
 	builder.Height(9)
 	builder.Span(12)
+	builder.Mode("markdown")
+	builder.Content("# Title\n\nFor markdown syntax help: [commonmark.org/help](https://commonmark.org/help/)")
 }

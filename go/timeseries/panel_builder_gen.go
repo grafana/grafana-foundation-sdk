@@ -308,21 +308,6 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 	return builder
 }
 
-// Panel color configuration
-func (builder *PanelBuilder) Color(color cog.Builder[dashboard.FieldColor]) *PanelBuilder {
-	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
-	}
-	colorResource, err := color.Build()
-	if err != nil {
-		builder.errors["fieldConfig.defaults.color"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.FieldConfig.Defaults.Color = &colorResource
-
-	return builder
-}
-
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
