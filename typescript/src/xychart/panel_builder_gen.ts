@@ -2,6 +2,8 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
+import * as xychart from '../xychart';
+import * as common from '../common';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -261,19 +263,6 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // Panel color configuration
-    color(color: cog.Builder<dashboard.FieldColor>): this {
-		if (!this.internal.fieldConfig) {
-			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
-		}
-		if (!this.internal.fieldConfig.defaults) {
-			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
-		}
-        const colorResource = color.build();
-        this.internal.fieldConfig.defaults.color = colorResource;
-        return this;
-    }
-
     // Alternative to empty string
     noValue(noValue: string): this {
 		if (!this.internal.fieldConfig) {
@@ -304,6 +293,324 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 			this.internal.fieldConfig.overrides = [];
 		}
         this.internal.fieldConfig.overrides.push();
+        return this;
+    }
+
+    show(show: xychart.ScatterShow): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.show = show;
+        return this;
+    }
+
+    pointSize(pointSize: cog.Builder<common.ScaleDimensionConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        const pointSizeResource = pointSize.build();
+        this.internal.fieldConfig.defaults.custom.pointSize = pointSizeResource;
+        return this;
+    }
+
+    pointColor(pointColor: cog.Builder<common.ColorDimensionConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        const pointColorResource = pointColor.build();
+        this.internal.fieldConfig.defaults.custom.pointColor = pointColorResource;
+        return this;
+    }
+
+    lineColor(lineColor: cog.Builder<common.ColorDimensionConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        const lineColorResource = lineColor.build();
+        this.internal.fieldConfig.defaults.custom.lineColor = lineColorResource;
+        return this;
+    }
+
+    lineWidth(lineWidth: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        if (!(lineWidth >= 0)) {
+            throw new Error("lineWidth must be >= 0");
+        }
+        this.internal.fieldConfig.defaults.custom.lineWidth = lineWidth;
+        return this;
+    }
+
+    lineStyle(lineStyle: cog.Builder<common.LineStyle>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        const lineStyleResource = lineStyle.build();
+        this.internal.fieldConfig.defaults.custom.lineStyle = lineStyleResource;
+        return this;
+    }
+
+    label(label: common.VisibilityMode): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.label = label;
+        return this;
+    }
+
+    hideFrom(hideFrom: cog.Builder<common.HideSeriesConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        const hideFromResource = hideFrom.build();
+        this.internal.fieldConfig.defaults.custom.hideFrom = hideFromResource;
+        return this;
+    }
+
+    axisPlacement(axisPlacement: common.AxisPlacement): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisPlacement = axisPlacement;
+        return this;
+    }
+
+    axisColorMode(axisColorMode: common.AxisColorMode): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisColorMode = axisColorMode;
+        return this;
+    }
+
+    axisLabel(axisLabel: string): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisLabel = axisLabel;
+        return this;
+    }
+
+    axisWidth(axisWidth: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisWidth = axisWidth;
+        return this;
+    }
+
+    axisSoftMin(axisSoftMin: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisSoftMin = axisSoftMin;
+        return this;
+    }
+
+    axisSoftMax(axisSoftMax: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisSoftMax = axisSoftMax;
+        return this;
+    }
+
+    axisGridShow(axisGridShow: boolean): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisGridShow = axisGridShow;
+        return this;
+    }
+
+    scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        const scaleDistributionResource = scaleDistribution.build();
+        this.internal.fieldConfig.defaults.custom.scaleDistribution = scaleDistributionResource;
+        return this;
+    }
+
+    axisCenteredZero(axisCenteredZero: boolean): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisCenteredZero = axisCenteredZero;
+        return this;
+    }
+
+    labelValue(labelValue: cog.Builder<common.TextDimensionConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        const labelValueResource = labelValue.build();
+        this.internal.fieldConfig.defaults.custom.labelValue = labelValueResource;
+        return this;
+    }
+
+    axisBorderShow(axisBorderShow: boolean): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisBorderShow = axisBorderShow;
+        return this;
+    }
+
+    seriesMapping(seriesMapping: xychart.SeriesMapping): this {
+		if (!this.internal.options) {
+			this.internal.options = xychart.defaultOptions();
+		}
+        this.internal.options.seriesMapping = seriesMapping;
+        return this;
+    }
+
+    dims(dims: xychart.XYDimensionConfig): this {
+		if (!this.internal.options) {
+			this.internal.options = xychart.defaultOptions();
+		}
+        this.internal.options.dims = dims;
+        return this;
+    }
+
+    legend(legend: cog.Builder<common.VizLegendOptions>): this {
+		if (!this.internal.options) {
+			this.internal.options = xychart.defaultOptions();
+		}
+        const legendResource = legend.build();
+        this.internal.options.legend = legendResource;
+        return this;
+    }
+
+    tooltip(tooltip: cog.Builder<common.VizTooltipOptions>): this {
+		if (!this.internal.options) {
+			this.internal.options = xychart.defaultOptions();
+		}
+        const tooltipResource = tooltip.build();
+        this.internal.options.tooltip = tooltipResource;
+        return this;
+    }
+
+    series(series: xychart.ScatterSeriesConfig[]): this {
+		if (!this.internal.options) {
+			this.internal.options = xychart.defaultOptions();
+		}
+        this.internal.options.series = series;
         return this;
     }
 }

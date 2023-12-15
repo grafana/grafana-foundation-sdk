@@ -2,6 +2,8 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
+import * as candlestick from '../candlestick';
+import * as common from '../common';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -261,19 +263,6 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // Panel color configuration
-    color(color: cog.Builder<dashboard.FieldColor>): this {
-		if (!this.internal.fieldConfig) {
-			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
-		}
-		if (!this.internal.fieldConfig.defaults) {
-			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
-		}
-        const colorResource = color.build();
-        this.internal.fieldConfig.defaults.color = colorResource;
-        return this;
-    }
-
     // Alternative to empty string
     noValue(noValue: string): this {
 		if (!this.internal.fieldConfig) {
@@ -304,6 +293,515 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 			this.internal.fieldConfig.overrides = [];
 		}
         this.internal.fieldConfig.overrides.push();
+        return this;
+    }
+
+    // Sets which dimensions are used for the visualization
+    mode(mode: candlestick.VizDisplayMode): this {
+		if (!this.internal.options) {
+			this.internal.options = candlestick.defaultOptions();
+		}
+        this.internal.options.mode = mode;
+        return this;
+    }
+
+    // Sets the style of the candlesticks
+    candleStyle(candleStyle: candlestick.CandleStyle): this {
+		if (!this.internal.options) {
+			this.internal.options = candlestick.defaultOptions();
+		}
+        this.internal.options.candleStyle = candleStyle;
+        return this;
+    }
+
+    // Sets the color strategy for the candlesticks
+    colorStrategy(colorStrategy: candlestick.ColorStrategy): this {
+		if (!this.internal.options) {
+			this.internal.options = candlestick.defaultOptions();
+		}
+        this.internal.options.colorStrategy = colorStrategy;
+        return this;
+    }
+
+    // Map fields to appropriate dimension
+    fields(fields: candlestick.CandlestickFieldMap): this {
+		if (!this.internal.options) {
+			this.internal.options = candlestick.defaultOptions();
+		}
+        this.internal.options.fields = fields;
+        return this;
+    }
+
+    // Set which colors are used when the price movement is up or down
+    colors(colors: {
+	down: "red";
+	up: "green";
+	flat: "gray";
+}): this {
+		if (!this.internal.options) {
+			this.internal.options = candlestick.defaultOptions();
+		}
+        this.internal.options.colors = colors;
+        return this;
+    }
+
+    legend(legend: cog.Builder<common.VizLegendOptions>): this {
+		if (!this.internal.options) {
+			this.internal.options = candlestick.defaultOptions();
+		}
+        const legendResource = legend.build();
+        this.internal.options.legend = legendResource;
+        return this;
+    }
+
+    // When enabled, all fields will be sent to the graph
+    includeAllFields(includeAllFields: boolean): this {
+		if (!this.internal.options) {
+			this.internal.options = candlestick.defaultOptions();
+		}
+        this.internal.options.includeAllFields = includeAllFields;
+        return this;
+    }
+
+    drawStyle(drawStyle: common.GraphDrawStyle): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.drawStyle = drawStyle;
+        return this;
+    }
+
+    gradientMode(gradientMode: common.GraphGradientMode): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.gradientMode = gradientMode;
+        return this;
+    }
+
+    thresholdsStyle(thresholdsStyle: cog.Builder<common.GraphThresholdsStyleConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        const thresholdsStyleResource = thresholdsStyle.build();
+        this.internal.fieldConfig.defaults.custom.thresholdsStyle = thresholdsStyleResource;
+        return this;
+    }
+
+    lineColor(lineColor: string): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.lineColor = lineColor;
+        return this;
+    }
+
+    lineWidth(lineWidth: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.lineWidth = lineWidth;
+        return this;
+    }
+
+    lineInterpolation(lineInterpolation: common.LineInterpolation): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.lineInterpolation = lineInterpolation;
+        return this;
+    }
+
+    lineStyle(lineStyle: cog.Builder<common.LineStyle>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        const lineStyleResource = lineStyle.build();
+        this.internal.fieldConfig.defaults.custom.lineStyle = lineStyleResource;
+        return this;
+    }
+
+    fillColor(fillColor: string): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.fillColor = fillColor;
+        return this;
+    }
+
+    fillOpacity(fillOpacity: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.fillOpacity = fillOpacity;
+        return this;
+    }
+
+    showPoints(showPoints: common.VisibilityMode): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.showPoints = showPoints;
+        return this;
+    }
+
+    pointSize(pointSize: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.pointSize = pointSize;
+        return this;
+    }
+
+    pointColor(pointColor: string): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.pointColor = pointColor;
+        return this;
+    }
+
+    axisPlacement(axisPlacement: common.AxisPlacement): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisPlacement = axisPlacement;
+        return this;
+    }
+
+    axisColorMode(axisColorMode: common.AxisColorMode): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisColorMode = axisColorMode;
+        return this;
+    }
+
+    axisLabel(axisLabel: string): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisLabel = axisLabel;
+        return this;
+    }
+
+    axisWidth(axisWidth: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisWidth = axisWidth;
+        return this;
+    }
+
+    axisSoftMin(axisSoftMin: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisSoftMin = axisSoftMin;
+        return this;
+    }
+
+    axisSoftMax(axisSoftMax: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisSoftMax = axisSoftMax;
+        return this;
+    }
+
+    axisGridShow(axisGridShow: boolean): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisGridShow = axisGridShow;
+        return this;
+    }
+
+    scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        const scaleDistributionResource = scaleDistribution.build();
+        this.internal.fieldConfig.defaults.custom.scaleDistribution = scaleDistributionResource;
+        return this;
+    }
+
+    axisCenteredZero(axisCenteredZero: boolean): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisCenteredZero = axisCenteredZero;
+        return this;
+    }
+
+    barAlignment(barAlignment: common.BarAlignment): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.barAlignment = barAlignment;
+        return this;
+    }
+
+    barWidthFactor(barWidthFactor: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.barWidthFactor = barWidthFactor;
+        return this;
+    }
+
+    stacking(stacking: cog.Builder<common.StackingConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        const stackingResource = stacking.build();
+        this.internal.fieldConfig.defaults.custom.stacking = stackingResource;
+        return this;
+    }
+
+    hideFrom(hideFrom: cog.Builder<common.HideSeriesConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        const hideFromResource = hideFrom.build();
+        this.internal.fieldConfig.defaults.custom.hideFrom = hideFromResource;
+        return this;
+    }
+
+    transform(transform: common.GraphTransform): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.transform = transform;
+        return this;
+    }
+
+    // Indicate if null values should be treated as gaps or connected.
+    // When the value is a number, it represents the maximum delta in the
+    // X axis that should be considered connected.  For timeseries, this is milliseconds
+    spanNulls(spanNulls: boolean | number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.spanNulls = spanNulls;
+        return this;
+    }
+
+    fillBelowTo(fillBelowTo: string): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.fillBelowTo = fillBelowTo;
+        return this;
+    }
+
+    pointSymbol(pointSymbol: string): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.pointSymbol = pointSymbol;
+        return this;
+    }
+
+    axisBorderShow(axisBorderShow: boolean): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.axisBorderShow = axisBorderShow;
+        return this;
+    }
+
+    barMaxWidth(barMaxWidth: number): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom.barMaxWidth = barMaxWidth;
         return this;
     }
 }

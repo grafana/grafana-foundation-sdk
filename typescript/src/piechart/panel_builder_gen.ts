@@ -2,6 +2,8 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
+import * as piechart from '../piechart';
+import * as common from '../common';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -261,19 +263,6 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // Panel color configuration
-    color(color: cog.Builder<dashboard.FieldColor>): this {
-		if (!this.internal.fieldConfig) {
-			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
-		}
-		if (!this.internal.fieldConfig.defaults) {
-			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
-		}
-        const colorResource = color.build();
-        this.internal.fieldConfig.defaults.color = colorResource;
-        return this;
-    }
-
     // Alternative to empty string
     noValue(noValue: string): this {
 		if (!this.internal.fieldConfig) {
@@ -304,6 +293,80 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 			this.internal.fieldConfig.overrides = [];
 		}
         this.internal.fieldConfig.overrides.push();
+        return this;
+    }
+
+    pieType(pieType: piechart.PieChartType): this {
+		if (!this.internal.options) {
+			this.internal.options = piechart.defaultOptions();
+		}
+        this.internal.options.pieType = pieType;
+        return this;
+    }
+
+    displayLabels(displayLabels: piechart.PieChartLabels[]): this {
+		if (!this.internal.options) {
+			this.internal.options = piechart.defaultOptions();
+		}
+        this.internal.options.displayLabels = displayLabels;
+        return this;
+    }
+
+    tooltip(tooltip: cog.Builder<common.VizTooltipOptions>): this {
+		if (!this.internal.options) {
+			this.internal.options = piechart.defaultOptions();
+		}
+        const tooltipResource = tooltip.build();
+        this.internal.options.tooltip = tooltipResource;
+        return this;
+    }
+
+    reduceOptions(reduceOptions: cog.Builder<common.ReduceDataOptions>): this {
+		if (!this.internal.options) {
+			this.internal.options = piechart.defaultOptions();
+		}
+        const reduceOptionsResource = reduceOptions.build();
+        this.internal.options.reduceOptions = reduceOptionsResource;
+        return this;
+    }
+
+    text(text: cog.Builder<common.VizTextDisplayOptions>): this {
+		if (!this.internal.options) {
+			this.internal.options = piechart.defaultOptions();
+		}
+        const textResource = text.build();
+        this.internal.options.text = textResource;
+        return this;
+    }
+
+    legend(legend: piechart.PieChartLegendOptions): this {
+		if (!this.internal.options) {
+			this.internal.options = piechart.defaultOptions();
+		}
+        this.internal.options.legend = legend;
+        return this;
+    }
+
+    orientation(orientation: common.VizOrientation): this {
+		if (!this.internal.options) {
+			this.internal.options = piechart.defaultOptions();
+		}
+        this.internal.options.orientation = orientation;
+        return this;
+    }
+
+    hideFrom(hideFrom: cog.Builder<common.HideSeriesConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = piechart.defaultFieldConfig();
+		}
+        const hideFromResource = hideFrom.build();
+        this.internal.fieldConfig.defaults.custom.hideFrom = hideFromResource;
         return this;
     }
 }

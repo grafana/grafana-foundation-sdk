@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
+import * as canvas from '../canvas';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -261,19 +262,6 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // Panel color configuration
-    color(color: cog.Builder<dashboard.FieldColor>): this {
-		if (!this.internal.fieldConfig) {
-			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
-		}
-		if (!this.internal.fieldConfig.defaults) {
-			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
-		}
-        const colorResource = color.build();
-        this.internal.fieldConfig.defaults.color = colorResource;
-        return this;
-    }
-
     // Alternative to empty string
     noValue(noValue: string): this {
 		if (!this.internal.fieldConfig) {
@@ -304,6 +292,41 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 			this.internal.fieldConfig.overrides = [];
 		}
         this.internal.fieldConfig.overrides.push();
+        return this;
+    }
+
+    // Enable inline editing
+    inlineEditing(inlineEditing: boolean): this {
+		if (!this.internal.options) {
+			this.internal.options = canvas.defaultOptions();
+		}
+        this.internal.options.inlineEditing = inlineEditing;
+        return this;
+    }
+
+    // Show all available element types
+    showAdvancedTypes(showAdvancedTypes: boolean): this {
+		if (!this.internal.options) {
+			this.internal.options = canvas.defaultOptions();
+		}
+        this.internal.options.showAdvancedTypes = showAdvancedTypes;
+        return this;
+    }
+
+    // The root element of canvas (frame), where all canvas elements are nested
+    // TODO: Figure out how to define a default value for this
+    root(root: {
+	// Name of the root element
+	name: string;
+	// Type of root element (frame)
+	type: "frame";
+	// The list of canvas elements attached to the root element
+	elements: canvas.CanvasElementOptions[];
+}): this {
+		if (!this.internal.options) {
+			this.internal.options = canvas.defaultOptions();
+		}
+        this.internal.options.root = root;
         return this;
     }
 }

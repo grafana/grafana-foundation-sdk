@@ -307,21 +307,6 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 	return builder
 }
 
-// Panel color configuration
-func (builder *PanelBuilder) Color(color cog.Builder[dashboard.FieldColor]) *PanelBuilder {
-	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
-	}
-	colorResource, err := color.Build()
-	if err != nil {
-		builder.errors["fieldConfig.defaults.color"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.FieldConfig.Defaults.Color = &colorResource
-
-	return builder
-}
-
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
@@ -358,8 +343,48 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 	return builder
 }
 
+// Enable inline editing
+func (builder *PanelBuilder) InlineEditing(inlineEditing bool) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).InlineEditing = inlineEditing
+
+	return builder
+}
+
+// Show all available element types
+func (builder *PanelBuilder) ShowAdvancedTypes(showAdvancedTypes bool) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).ShowAdvancedTypes = showAdvancedTypes
+
+	return builder
+}
+
+// The root element of canvas (frame), where all canvas elements are nested
+// TODO: Figure out how to define a default value for this
+func (builder *PanelBuilder) Root(root struct {
+	// Name of the root element
+	Name string `json:"name"`
+	// Type of root element (frame)
+	Type string `json:"type"`
+	// The list of canvas elements attached to the root element
+	Elements []CanvasElementOptions `json:"elements"`
+}) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).Root = root
+
+	return builder
+}
+
 func (builder *PanelBuilder) applyDefaults() {
 	builder.Transparent(false)
 	builder.Height(9)
 	builder.Span(12)
+	builder.InlineEditing(true)
+	builder.ShowAdvancedTypes(true)
 }

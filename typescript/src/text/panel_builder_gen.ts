@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
+import * as text from '../text';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -261,19 +262,6 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // Panel color configuration
-    color(color: cog.Builder<dashboard.FieldColor>): this {
-		if (!this.internal.fieldConfig) {
-			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
-		}
-		if (!this.internal.fieldConfig.defaults) {
-			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
-		}
-        const colorResource = color.build();
-        this.internal.fieldConfig.defaults.color = colorResource;
-        return this;
-    }
-
     // Alternative to empty string
     noValue(noValue: string): this {
 		if (!this.internal.fieldConfig) {
@@ -304,6 +292,30 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 			this.internal.fieldConfig.overrides = [];
 		}
         this.internal.fieldConfig.overrides.push();
+        return this;
+    }
+
+    mode(mode: text.TextMode): this {
+		if (!this.internal.options) {
+			this.internal.options = text.defaultOptions();
+		}
+        this.internal.options.mode = mode;
+        return this;
+    }
+
+    code(code: text.CodeOptions): this {
+		if (!this.internal.options) {
+			this.internal.options = text.defaultOptions();
+		}
+        this.internal.options.code = code;
+        return this;
+    }
+
+    content(content: string): this {
+		if (!this.internal.options) {
+			this.internal.options = text.defaultOptions();
+		}
+        this.internal.options.content = content;
         return this;
     }
 }

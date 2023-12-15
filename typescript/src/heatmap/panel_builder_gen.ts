@@ -2,6 +2,8 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
+import * as heatmap from '../heatmap';
+import * as common from '../common';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -261,19 +263,6 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // Panel color configuration
-    color(color: cog.Builder<dashboard.FieldColor>): this {
-		if (!this.internal.fieldConfig) {
-			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
-		}
-		if (!this.internal.fieldConfig.defaults) {
-			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
-		}
-        const colorResource = color.build();
-        this.internal.fieldConfig.defaults.color = colorResource;
-        return this;
-    }
-
     // Alternative to empty string
     noValue(noValue: string): this {
 		if (!this.internal.fieldConfig) {
@@ -304,6 +293,237 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 			this.internal.fieldConfig.overrides = [];
 		}
         this.internal.fieldConfig.overrides.push();
+        return this;
+    }
+
+    // Controls if the heatmap should be calculated from data
+    calculate(calculate: boolean): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+        this.internal.options.calculate = calculate;
+        return this;
+    }
+
+    // Calculation options for the heatmap
+    calculation(calculation: cog.Builder<common.HeatmapCalculationOptions>): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+        const calculationResource = calculation.build();
+        this.internal.options.calculation = calculationResource;
+        return this;
+    }
+
+    // Controls the color options
+    color(color: heatmap.HeatmapColorOptions): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+        this.internal.options.color = color;
+        return this;
+    }
+
+    // Filters values between a given range
+    filterValues(filterValues: heatmap.FilterValueRange): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+        this.internal.options.filterValues = filterValues;
+        return this;
+    }
+
+    // Controls tick alignment and value name when not calculating from data
+    rowsFrame(rowsFrame: heatmap.RowsHeatmapOptions): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+        this.internal.options.rowsFrame = rowsFrame;
+        return this;
+    }
+
+    // | *{
+    // 	layout: ui.HeatmapCellLayout & "auto" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
+    // }
+    // Controls the display of the value in the cell
+    showValue(showValue: common.VisibilityMode): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+        this.internal.options.showValue = showValue;
+        return this;
+    }
+
+    // Controls gap between cells
+    cellGap(cellGap: number): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+        if (!(cellGap <= 25)) {
+            throw new Error("cellGap must be <= 25");
+        }
+        this.internal.options.cellGap = cellGap;
+        return this;
+    }
+
+    // Controls cell radius
+    cellRadius(cellRadius: number): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+        this.internal.options.cellRadius = cellRadius;
+        return this;
+    }
+
+    // Controls cell value unit
+    cellValues(cellValues: heatmap.CellValues): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+        this.internal.options.cellValues = cellValues;
+        return this;
+    }
+
+    // Controls yAxis placement
+    yAxis(yAxis: heatmap.YAxisConfig): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+        this.internal.options.yAxis = yAxis;
+        return this;
+    }
+
+    // | *{
+    // 	axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
+    // }
+    // Controls legend options
+    showLegend(): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+		if (!this.internal.options.legend) {
+			this.internal.options.legend = {
+	show: true,
+};
+		}
+        this.internal.options.legend.show = true;
+        return this;
+    }
+
+    // | *{
+    // 	axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
+    // }
+    // Controls legend options
+    hideLegend(): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+		if (!this.internal.options.legend) {
+			this.internal.options.legend = {
+	show: true,
+};
+		}
+        this.internal.options.legend.show = false;
+        return this;
+    }
+
+    showTooltip(): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+		if (!this.internal.options.tooltip) {
+			this.internal.options.tooltip = {
+	show: true,
+	yHistogram: false,
+};
+		}
+        this.internal.options.tooltip.show = true;
+        return this;
+    }
+
+    hideTooltip(): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+		if (!this.internal.options.tooltip) {
+			this.internal.options.tooltip = {
+	show: true,
+	yHistogram: false,
+};
+		}
+        this.internal.options.tooltip.show = false;
+        return this;
+    }
+
+    showYHistogram(): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+		if (!this.internal.options.tooltip) {
+			this.internal.options.tooltip = {
+	show: true,
+	yHistogram: false,
+};
+		}
+        this.internal.options.tooltip.yHistogram = true;
+        return this;
+    }
+
+    hideYHistogram(): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+		if (!this.internal.options.tooltip) {
+			this.internal.options.tooltip = {
+	show: true,
+	yHistogram: false,
+};
+		}
+        this.internal.options.tooltip.yHistogram = false;
+        return this;
+    }
+
+    // Controls exemplar options
+    exemplarsColor(): this {
+		if (!this.internal.options) {
+			this.internal.options = heatmap.defaultOptions();
+		}
+		if (!this.internal.options.exemplars) {
+			this.internal.options.exemplars = {
+	color: "rgba(255,0,255,0.7)",
+};
+		}
+        this.internal.options.exemplars.color = "rgba(255,0,255,0.7)";
+        return this;
+    }
+
+    scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = heatmap.defaultFieldConfig();
+		}
+        const scaleDistributionResource = scaleDistribution.build();
+        this.internal.fieldConfig.defaults.custom.scaleDistribution = scaleDistributionResource;
+        return this;
+    }
+
+    hideFrom(hideFrom: cog.Builder<common.HideSeriesConfig>): this {
+		if (!this.internal.fieldConfig) {
+			this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+		}
+		if (!this.internal.fieldConfig.defaults) {
+			this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+		}
+		if (!this.internal.fieldConfig.defaults.custom) {
+			this.internal.fieldConfig.defaults.custom = heatmap.defaultFieldConfig();
+		}
+        const hideFromResource = hideFrom.build();
+        this.internal.fieldConfig.defaults.custom.hideFrom = hideFromResource;
         return this;
     }
 }

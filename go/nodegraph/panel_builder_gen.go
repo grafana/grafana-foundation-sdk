@@ -307,21 +307,6 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 	return builder
 }
 
-// Panel color configuration
-func (builder *PanelBuilder) Color(color cog.Builder[dashboard.FieldColor]) *PanelBuilder {
-	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
-	}
-	colorResource, err := color.Build()
-	if err != nil {
-		builder.errors["fieldConfig.defaults.color"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.FieldConfig.Defaults.Color = &colorResource
-
-	return builder
-}
-
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
@@ -354,6 +339,24 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 		Matcher:    matcher,
 		Properties: properties,
 	})
+
+	return builder
+}
+
+func (builder *PanelBuilder) Nodes(nodes NodeOptions) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).Nodes = &nodes
+
+	return builder
+}
+
+func (builder *PanelBuilder) Edges(edges EdgeOptions) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).Edges = &edges
 
 	return builder
 }

@@ -7,6 +7,7 @@ import (
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
@@ -307,21 +308,6 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 	return builder
 }
 
-// Panel color configuration
-func (builder *PanelBuilder) Color(color cog.Builder[dashboard.FieldColor]) *PanelBuilder {
-	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
-	}
-	colorResource, err := color.Build()
-	if err != nil {
-		builder.errors["fieldConfig.defaults.color"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.FieldConfig.Defaults.Color = &colorResource
-
-	return builder
-}
-
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
@@ -358,8 +344,332 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 	return builder
 }
 
+func (builder *PanelBuilder) Show(show ScatterShow) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).Show = &show
+
+	return builder
+}
+
+func (builder *PanelBuilder) PointSize(pointSize cog.Builder[common.ScaleDimensionConfig]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	pointSizeResource, err := pointSize.Build()
+	if err != nil {
+		builder.errors["fieldConfig.defaults.custom.pointSize"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).PointSize = &pointSizeResource
+
+	return builder
+}
+
+func (builder *PanelBuilder) PointColor(pointColor cog.Builder[common.ColorDimensionConfig]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	pointColorResource, err := pointColor.Build()
+	if err != nil {
+		builder.errors["fieldConfig.defaults.custom.pointColor"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).PointColor = &pointColorResource
+
+	return builder
+}
+
+func (builder *PanelBuilder) LineColor(lineColor cog.Builder[common.ColorDimensionConfig]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	lineColorResource, err := lineColor.Build()
+	if err != nil {
+		builder.errors["fieldConfig.defaults.custom.lineColor"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).LineColor = &lineColorResource
+
+	return builder
+}
+
+func (builder *PanelBuilder) LineWidth(lineWidth int32) *PanelBuilder {
+	if !(lineWidth >= 0) {
+		builder.errors["lineWidth"] = cog.MakeBuildErrors("lineWidth", errors.New("lineWidth must be >= 0"))
+		return builder
+	}
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).LineWidth = &lineWidth
+
+	return builder
+}
+
+func (builder *PanelBuilder) LineStyle(lineStyle cog.Builder[common.LineStyle]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	lineStyleResource, err := lineStyle.Build()
+	if err != nil {
+		builder.errors["fieldConfig.defaults.custom.lineStyle"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).LineStyle = &lineStyleResource
+
+	return builder
+}
+
+func (builder *PanelBuilder) Label(label common.VisibilityMode) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).Label = &label
+
+	return builder
+}
+
+func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConfig]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	hideFromResource, err := hideFrom.Build()
+	if err != nil {
+		builder.errors["fieldConfig.defaults.custom.hideFrom"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).HideFrom = &hideFromResource
+
+	return builder
+}
+
+func (builder *PanelBuilder) AxisPlacement(axisPlacement common.AxisPlacement) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisPlacement = &axisPlacement
+
+	return builder
+}
+
+func (builder *PanelBuilder) AxisColorMode(axisColorMode common.AxisColorMode) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisColorMode = &axisColorMode
+
+	return builder
+}
+
+func (builder *PanelBuilder) AxisLabel(axisLabel string) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisLabel = &axisLabel
+
+	return builder
+}
+
+func (builder *PanelBuilder) AxisWidth(axisWidth float64) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisWidth = &axisWidth
+
+	return builder
+}
+
+func (builder *PanelBuilder) AxisSoftMin(axisSoftMin float64) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisSoftMin = &axisSoftMin
+
+	return builder
+}
+
+func (builder *PanelBuilder) AxisSoftMax(axisSoftMax float64) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisSoftMax = &axisSoftMax
+
+	return builder
+}
+
+func (builder *PanelBuilder) AxisGridShow(axisGridShow bool) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisGridShow = &axisGridShow
+
+	return builder
+}
+
+func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[common.ScaleDistributionConfig]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	scaleDistributionResource, err := scaleDistribution.Build()
+	if err != nil {
+		builder.errors["fieldConfig.defaults.custom.scaleDistribution"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).ScaleDistribution = &scaleDistributionResource
+
+	return builder
+}
+
+func (builder *PanelBuilder) AxisCenteredZero(axisCenteredZero bool) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisCenteredZero = &axisCenteredZero
+
+	return builder
+}
+
+func (builder *PanelBuilder) LabelValue(labelValue cog.Builder[common.TextDimensionConfig]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	labelValueResource, err := labelValue.Build()
+	if err != nil {
+		builder.errors["fieldConfig.defaults.custom.labelValue"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).LabelValue = &labelValueResource
+
+	return builder
+}
+
+func (builder *PanelBuilder) AxisBorderShow(axisBorderShow bool) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisBorderShow = &axisBorderShow
+
+	return builder
+}
+
+func (builder *PanelBuilder) SeriesMapping(seriesMapping SeriesMapping) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).SeriesMapping = &seriesMapping
+
+	return builder
+}
+
+func (builder *PanelBuilder) Dims(dims XYDimensionConfig) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).Dims = dims
+
+	return builder
+}
+
+func (builder *PanelBuilder) Legend(legend cog.Builder[common.VizLegendOptions]) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	legendResource, err := legend.Build()
+	if err != nil {
+		builder.errors["options.legend"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Legend = legendResource
+
+	return builder
+}
+
+func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[common.VizTooltipOptions]) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	tooltipResource, err := tooltip.Build()
+	if err != nil {
+		builder.errors["options.tooltip"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Tooltip = tooltipResource
+
+	return builder
+}
+
+func (builder *PanelBuilder) Series(series []ScatterSeriesConfig) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).Series = series
+
+	return builder
+}
+
 func (builder *PanelBuilder) applyDefaults() {
 	builder.Transparent(false)
 	builder.Height(9)
 	builder.Span(12)
+	builder.Show("points")
+	builder.Label("auto")
 }
