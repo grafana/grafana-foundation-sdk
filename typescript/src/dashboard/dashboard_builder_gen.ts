@@ -147,9 +147,9 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     }
 
     withPanel(panel: cog.Builder<dashboard.Panel>): this {
-		if (!this.internal.panels) {
-			this.internal.panels = [];
-		}
+        if (!this.internal.panels) {
+            this.internal.panels = [];
+        }
         const panelResource = panel.build();
 
 		if (!panelResource.gridPos) {
@@ -175,9 +175,9 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     }
 
     withRow(rowPanel: cog.Builder<dashboard.RowPanel>): this {
-		if (!this.internal.panels) {
-			this.internal.panels = [];
-		}
+        if (!this.internal.panels) {
+            this.internal.panels = [];
+        }
         const rowPanelResource = rowPanel.build();
 
 		// Position the row on the grid
@@ -199,13 +199,13 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
 
     // Configured template variables
     withVariable(list: cog.Builder<dashboard.VariableModel>): this {
-		if (!this.internal.templating) {
-			this.internal.templating = {
+        if (!this.internal.templating) {
+            this.internal.templating = {
 };
-		}
-		if (!this.internal.templating.list) {
-			this.internal.templating.list = [];
-		}
+        }
+        if (!this.internal.templating.list) {
+            this.internal.templating.list = [];
+        }
         const listResource = list.build();
         this.internal.templating.list.push(listResource);
         return this;
