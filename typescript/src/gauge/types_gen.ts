@@ -6,6 +6,7 @@ import * as common from '../common';
 export interface Options {
 	showThresholdLabels: boolean;
 	showThresholdMarkers: boolean;
+	sizing: common.BarGaugeSizing;
 	minVizWidth: number;
 	reduceOptions: common.ReduceDataOptions;
 	text?: common.VizTextDisplayOptions;
@@ -16,6 +17,7 @@ export interface Options {
 export const defaultOptions = (): Options => ({
 	showThresholdLabels: false,
 	showThresholdMarkers: true,
+	sizing: common.BarGaugeSizing.Auto,
 	minVizWidth: 75,
 	reduceOptions: common.defaultReduceDataOptions(),
 	minVizHeight: 75,

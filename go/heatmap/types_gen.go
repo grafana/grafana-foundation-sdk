@@ -90,6 +90,8 @@ type HeatmapTooltip struct {
 	Show bool `json:"show"`
 	// Controls if the tooltip shows a histogram of the y-axis values
 	YHistogram *bool `json:"yHistogram,omitempty"`
+	// Controls if the tooltip shows a color scale in header
+	ShowColorScale *bool `json:"showColorScale,omitempty"`
 }
 
 // Controls legend options
@@ -145,8 +147,9 @@ type Options struct {
 	} `json:"legend"`
 	// Controls tooltip options
 	Tooltip struct {
-		Show       bool `json:"show"`
-		YHistogram bool `json:"yHistogram"`
+		Show           bool `json:"show"`
+		YHistogram     bool `json:"yHistogram"`
+		ShowColorScale bool `json:"showColorScale"`
 	} `json:"tooltip"`
 	// Controls exemplar options
 	Exemplars struct {

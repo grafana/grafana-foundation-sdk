@@ -19,6 +19,11 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
+    spanSelector(spanSelector: string[]): this {
+        this.internal.spanSelector = spanSelector;
+        return this;
+    }
+
     profileTypeId(profileTypeId: string): this {
         this.internal.profileTypeId = profileTypeId;
         return this;

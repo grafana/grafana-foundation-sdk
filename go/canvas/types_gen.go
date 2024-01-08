@@ -66,6 +66,7 @@ type HttpRequestMethod string
 const (
 	HttpRequestMethodGET  HttpRequestMethod = "GET"
 	HttpRequestMethodPOST HttpRequestMethod = "POST"
+	HttpRequestMethodPUT  HttpRequestMethod = "PUT"
 )
 
 type ConnectionCoordinates struct {

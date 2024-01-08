@@ -104,6 +104,8 @@ export interface HeatmapTooltip {
 	show: boolean;
 	// Controls if the tooltip shows a histogram of the y-axis values
 	yHistogram?: boolean;
+	// Controls if the tooltip shows a color scale in header
+	showColorScale?: boolean;
 }
 
 export const defaultHeatmapTooltip = (): HeatmapTooltip => ({
@@ -176,6 +178,7 @@ export interface Options {
 	tooltip: {
 		show: true;
 		yHistogram: false;
+		showColorScale: false;
 	};
 	// Controls exemplar options
 	exemplars: {
@@ -195,6 +198,7 @@ export const defaultOptions = (): Options => ({
 	tooltip: {
 	show: true,
 	yHistogram: false,
+	showColorScale: false,
 },
 	exemplars: {
 	color: "rgba(255,0,255,0.7)",

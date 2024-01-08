@@ -73,6 +73,7 @@ export const defaultLineConfig = (): LineConfig => ({
 export enum HttpRequestMethod {
 	GET = "GET",
 	POST = "POST",
+	PUT = "PUT",
 }
 
 export const defaultHttpRequestMethod = (): HttpRequestMethod => (HttpRequestMethod.GET);

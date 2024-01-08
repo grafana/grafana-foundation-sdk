@@ -46,6 +46,12 @@ func (builder *DataqueryBuilder) LabelSelector(labelSelector string) *DataqueryB
 	return builder
 }
 
+func (builder *DataqueryBuilder) SpanSelector(spanSelector []string) *DataqueryBuilder {
+	builder.internal.SpanSelector = spanSelector
+
+	return builder
+}
+
 func (builder *DataqueryBuilder) ProfileTypeId(profileTypeId string) *DataqueryBuilder {
 	builder.internal.ProfileTypeId = &profileTypeId
 

@@ -8,6 +8,8 @@ import (
 
 var _ cog.Builder[Preferences] = (*PreferencesBuilder)(nil)
 
+// Spec defines user, team or org Grafana preferences
+// swagger:model Preferences
 type PreferencesBuilder struct {
 	internal *Preferences
 	errors   map[string]cog.BuildErrors

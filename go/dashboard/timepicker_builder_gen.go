@@ -6,15 +6,17 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
-var _ cog.Builder[TimePicker] = (*TimePickerBuilder)(nil)
+var _ cog.Builder[TimePickerConfig] = (*TimePickerBuilder)(nil)
 
+// Time picker configuration
+// It defines the default config for the time picker and the refresh picker for the specific dashboard.
 type TimePickerBuilder struct {
-	internal *TimePicker
+	internal *TimePickerConfig
 	errors   map[string]cog.BuildErrors
 }
 
 func NewTimePickerBuilder() *TimePickerBuilder {
-	resource := &TimePicker{}
+	resource := &TimePickerConfig{}
 	builder := &TimePickerBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
@@ -25,7 +27,7 @@ func NewTimePickerBuilder() *TimePickerBuilder {
 	return builder
 }
 
-func (builder *TimePickerBuilder) Build() (TimePicker, error) {
+func (builder *TimePickerBuilder) Build() (TimePickerConfig, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {
@@ -33,7 +35,7 @@ func (builder *TimePickerBuilder) Build() (TimePicker, error) {
 	}
 
 	if len(errs) != 0 {
-		return TimePicker{}, errs
+		return TimePickerConfig{}, errs
 	}
 
 	return *builder.internal, nil
@@ -53,13 +55,6 @@ func (builder *TimePickerBuilder) RefreshIntervals(refreshIntervals []string) *T
 	return builder
 }
 
-// Whether timepicker is collapsed or not. Has no effect on provisioned dashboard.
-func (builder *TimePickerBuilder) Collapse(collapse bool) *TimePickerBuilder {
-	builder.internal.Collapse = collapse
-
-	return builder
-}
-
 // Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
 func (builder *TimePickerBuilder) TimeOptions(timeOptions []string) *TimePickerBuilder {
 	builder.internal.TimeOptions = timeOptions
@@ -70,6 +65,5 @@ func (builder *TimePickerBuilder) TimeOptions(timeOptions []string) *TimePickerB
 func (builder *TimePickerBuilder) applyDefaults() {
 	builder.Hidden(false)
 	builder.RefreshIntervals([]string{"5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"})
-	builder.Collapse(false)
 	builder.TimeOptions([]string{"5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"})
 }

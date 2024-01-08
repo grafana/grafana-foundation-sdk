@@ -715,6 +715,14 @@ export enum BarGaugeNamePlacement {
 
 export const defaultBarGaugeNamePlacement = (): BarGaugeNamePlacement => (BarGaugeNamePlacement.Auto);
 
+// Allows for the bar gauge size to be set explicitly
+export enum BarGaugeSizing {
+	Auto = "auto",
+	Manual = "manual",
+}
+
+export const defaultBarGaugeSizing = (): BarGaugeSizing => (BarGaugeSizing.Auto);
+
 // TODO docs
 export interface VizTooltipOptions {
 	mode: TooltipDisplayMode;
