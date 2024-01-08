@@ -86,10 +86,12 @@ type FilterValueRange struct {
 
 // Controls tooltip options
 type HeatmapTooltip struct {
-	// Controls if the tooltip is shown
-	Show bool `json:"show"`
+	// Controls how the tooltip is shown
+	Mode common.TooltipDisplayMode `json:"mode"`
 	// Controls if the tooltip shows a histogram of the y-axis values
 	YHistogram *bool `json:"yHistogram,omitempty"`
+	// Controls if the tooltip shows a color scale in header
+	ShowColorScale *bool `json:"showColorScale,omitempty"`
 }
 
 // Controls legend options
@@ -144,10 +146,7 @@ type Options struct {
 		Show bool `json:"show"`
 	} `json:"legend"`
 	// Controls tooltip options
-	Tooltip struct {
-		Show       bool `json:"show"`
-		YHistogram bool `json:"yHistogram"`
-	} `json:"tooltip"`
+	Tooltip HeatmapTooltip `json:"tooltip"`
 	// Controls exemplar options
 	Exemplars struct {
 		Color string `json:"color"`

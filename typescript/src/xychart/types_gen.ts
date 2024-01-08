@@ -3,6 +3,7 @@
 import * as common from '../common';
 
 
+// Auto is "table" in the UI
 export enum SeriesMapping {
 	Auto = "auto",
 	Manual = "manual",
@@ -18,6 +19,7 @@ export enum ScatterShow {
 
 export const defaultScatterShow = (): ScatterShow => (ScatterShow.Points);
 
+// Configuration for the Table/Auto mode
 export interface XYDimensionConfig {
 	frame: number;
 	x?: string;
@@ -87,9 +89,11 @@ export const defaultScatterSeriesConfig = (): ScatterSeriesConfig => ({
 
 export interface Options {
 	seriesMapping?: SeriesMapping;
+	// Table Mode (auto)
 	dims: XYDimensionConfig;
 	legend: common.VizLegendOptions;
 	tooltip: common.VizTooltipOptions;
+	// Manual Mode
 	series: ScatterSeriesConfig[];
 }
 

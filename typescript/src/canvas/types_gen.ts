@@ -131,6 +131,8 @@ export interface Options {
 	inlineEditing: boolean;
 	// Show all available element types
 	showAdvancedTypes: boolean;
+	// Enable pan and zoom
+	panZoom: boolean;
 	// The root element of canvas (frame), where all canvas elements are nested
 	// TODO: Figure out how to define a default value for this
 	root: {
@@ -146,6 +148,7 @@ export interface Options {
 export const defaultOptions = (): Options => ({
 	inlineEditing: true,
 	showAdvancedTypes: true,
+	panZoom: true,
 	root: {
 	name: "",
 	type: "frame",

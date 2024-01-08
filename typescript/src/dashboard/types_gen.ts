@@ -34,7 +34,7 @@ export interface Dashboard {
 		to: string;
 	};
 	// Configuration of the time picker shown at the top of a dashboard.
-	timepicker?: TimePicker;
+	timepicker?: TimePickerConfig;
 	// The month that the fiscal year starts on.  0 = January, 11 = December
 	fiscalYearStartMonth?: number;
 	// When set to true, the dashboard will redraw panels at an interval matching the pixel width.
@@ -585,6 +585,8 @@ export interface DataTransformerConfig {
 	disabled?: boolean;
 	// Optional frame matcher. When missing it will be applied to all results
 	filter?: MatcherConfig;
+	// Where to pull DataFrames from as input to transformation
+	topic?: "series" | "annotations" | "alertStates";
 	// Options to be passed to the transformer
 	// Valid options depend on the transformer id
 	options: any;
@@ -593,6 +595,44 @@ export interface DataTransformerConfig {
 export const defaultDataTransformerConfig = (): DataTransformerConfig => ({
 	id: "",
 	options: {},
+});
+
+// Time picker configuration
+// It defines the default config for the time picker and the refresh picker for the specific dashboard.
+export interface TimePickerConfig {
+	// Whether timepicker is visible or not.
+	hidden: boolean;
+	// Interval options available in the refresh picker dropdown.
+	refresh_intervals: string[];
+	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
+	time_options: string[];
+}
+
+export const defaultTimePickerConfig = (): TimePickerConfig => ({
+	hidden: false,
+	refresh_intervals: [
+"5s",
+"10s",
+"30s",
+"1m",
+"5m",
+"15m",
+"30m",
+"1h",
+"2h",
+"1d",
+],
+	time_options: [
+"5m",
+"15m",
+"1h",
+"6h",
+"12h",
+"24h",
+"2d",
+"7d",
+"30d",
+],
 });
 
 // 0 for no shared crosshair or tooltip (default).
@@ -861,44 +901,5 @@ export const defaultRowPanel = (): RowPanel => ({
 	collapsed: false,
 	id: 0,
 	panels: [],
-});
-
-export interface TimePicker {
-	// Whether timepicker is visible or not.
-	hidden: boolean;
-	// Interval options available in the refresh picker dropdown.
-	refresh_intervals: string[];
-	// Whether timepicker is collapsed or not. Has no effect on provisioned dashboard.
-	collapse: boolean;
-	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-	time_options: string[];
-}
-
-export const defaultTimePicker = (): TimePicker => ({
-	hidden: false,
-	refresh_intervals: [
-"5s",
-"10s",
-"30s",
-"1m",
-"5m",
-"15m",
-"30m",
-"1h",
-"2h",
-"1d",
-],
-	collapse: false,
-	time_options: [
-"5m",
-"15m",
-"1h",
-"6h",
-"12h",
-"24h",
-"2d",
-"7d",
-"30d",
-],
 });
 

@@ -98,7 +98,7 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     }
 
     // Configuration of the time picker shown at the top of a dashboard.
-    timepicker(timepicker: cog.Builder<dashboard.TimePicker>): this {
+    timepicker(timepicker: cog.Builder<dashboard.TimePickerConfig>): this {
         const timepickerResource = timepicker.build();
         this.internal.timepicker = timepickerResource;
         return this;
@@ -140,9 +140,9 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     }
 
     withPanel(panel: cog.Builder<dashboard.Panel>): this {
-		if (!this.internal.panels) {
-			this.internal.panels = [];
-		}
+        if (!this.internal.panels) {
+            this.internal.panels = [];
+        }
         const panelResource = panel.build();
 
 		if (!panelResource.gridPos) {
@@ -168,9 +168,9 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     }
 
     withRow(rowPanel: cog.Builder<dashboard.RowPanel>): this {
-		if (!this.internal.panels) {
-			this.internal.panels = [];
-		}
+        if (!this.internal.panels) {
+            this.internal.panels = [];
+        }
         const rowPanelResource = rowPanel.build();
 
 		// Position the row on the grid
@@ -192,13 +192,13 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
 
     // Configured template variables
     withVariable(list: cog.Builder<dashboard.VariableModel>): this {
-		if (!this.internal.templating) {
-			this.internal.templating = {
+        if (!this.internal.templating) {
+            this.internal.templating = {
 };
-		}
-		if (!this.internal.templating.list) {
-			this.internal.templating.list = [];
-		}
+        }
+        if (!this.internal.templating.list) {
+            this.internal.templating.list = [];
+        }
         const listResource = list.build();
         this.internal.templating.list.push(listResource);
         return this;

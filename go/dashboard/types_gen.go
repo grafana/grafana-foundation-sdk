@@ -37,7 +37,7 @@ type Dashboard struct {
 		To   string `json:"to"`
 	} `json:"time,omitempty"`
 	// Configuration of the time picker shown at the top of a dashboard.
-	Timepicker *TimePicker `json:"timepicker,omitempty"`
+	Timepicker *TimePickerConfig `json:"timepicker,omitempty"`
 	// The month that the fiscal year starts on.  0 = January, 11 = December
 	FiscalYearStartMonth *uint8 `json:"fiscalYearStartMonth,omitempty"`
 	// When set to true, the dashboard will redraw panels at an interval matching the pixel width.
@@ -473,9 +473,22 @@ type DataTransformerConfig struct {
 	Disabled *bool `json:"disabled,omitempty"`
 	// Optional frame matcher. When missing it will be applied to all results
 	Filter *MatcherConfig `json:"filter,omitempty"`
+	// Where to pull DataFrames from as input to transformation
+	Topic *DataTransformerConfigTopic `json:"topic,omitempty"`
 	// Options to be passed to the transformer
 	// Valid options depend on the transformer id
 	Options any `json:"options"`
+}
+
+// Time picker configuration
+// It defines the default config for the time picker and the refresh picker for the specific dashboard.
+type TimePickerConfig struct {
+	// Whether timepicker is visible or not.
+	Hidden bool `json:"hidden"`
+	// Interval options available in the refresh picker dropdown.
+	RefreshIntervals []string `json:"refresh_intervals"`
+	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
+	TimeOptions []string `json:"time_options"`
 }
 
 // 0 for no shared crosshair or tooltip (default).
@@ -699,16 +712,13 @@ type RowPanel struct {
 	Repeat *string `json:"repeat,omitempty"`
 }
 
-type TimePicker struct {
-	// Whether timepicker is visible or not.
-	Hidden bool `json:"hidden"`
-	// Interval options available in the refresh picker dropdown.
-	RefreshIntervals []string `json:"refresh_intervals"`
-	// Whether timepicker is collapsed or not. Has no effect on provisioned dashboard.
-	Collapse bool `json:"collapse"`
-	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-	TimeOptions []string `json:"time_options"`
-}
+type DataTransformerConfigTopic string
+
+const (
+	DataTransformerConfigTopicSeries      DataTransformerConfigTopic = "series"
+	DataTransformerConfigTopicAnnotations DataTransformerConfigTopic = "annotations"
+	DataTransformerConfigTopicAlertStates DataTransformerConfigTopic = "alertStates"
+)
 
 type PanelRepeatDirection string
 

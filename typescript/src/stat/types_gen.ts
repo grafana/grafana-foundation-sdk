@@ -8,9 +8,10 @@ export interface Options {
 	colorMode: common.BigValueColorMode;
 	justifyMode: common.BigValueJustifyMode;
 	textMode: common.BigValueTextMode;
+	wideLayout: boolean;
 	reduceOptions: common.ReduceDataOptions;
 	text?: common.VizTextDisplayOptions;
-	wideLayout: boolean;
+	showPercentChange: boolean;
 	orientation: common.VizOrientation;
 }
 
@@ -19,8 +20,9 @@ export const defaultOptions = (): Options => ({
 	colorMode: common.BigValueColorMode.Value,
 	justifyMode: common.BigValueJustifyMode.Auto,
 	textMode: common.BigValueTextMode.Auto,
-	reduceOptions: common.defaultReduceDataOptions(),
 	wideLayout: true,
+	reduceOptions: common.defaultReduceDataOptions(),
+	showPercentChange: false,
 	orientation: common.VizOrientation.Auto,
 });
 

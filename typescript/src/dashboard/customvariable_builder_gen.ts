@@ -4,21 +4,17 @@ import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
-export class VariableModelBuilder implements cog.Builder<dashboard.VariableModel> {
+export class CustomVariableBuilder implements cog.Builder<dashboard.VariableModel> {
     private readonly internal: dashboard.VariableModel;
 
-    constructor() {
+    constructor(name: string) {
         this.internal = dashboard.defaultVariableModel();
+        this.internal.name = name;
+        this.internal.type = dashboard.VariableType.Custom;
     }
 
     build(): dashboard.VariableModel {
         return this.internal;
-    }
-
-    // Type of variable
-    type(type: dashboard.VariableType): this {
-        this.internal.type = type;
-        return this;
     }
 
     // Name of variable
@@ -39,12 +35,6 @@ export class VariableModelBuilder implements cog.Builder<dashboard.VariableModel
         return this;
     }
 
-    // Whether the variable value should be managed by URL query params or not
-    skipUrlSync(skipUrlSync: boolean): this {
-        this.internal.skipUrlSync = skipUrlSync;
-        return this;
-    }
-
     // Description of variable. It can be defined but `null`.
     description(description: string): this {
         this.internal.description = description;
@@ -52,14 +42,8 @@ export class VariableModelBuilder implements cog.Builder<dashboard.VariableModel
     }
 
     // Query used to fetch values for a variable
-    query(query: string | any): this {
+    values(query: string | any): this {
         this.internal.query = query;
-        return this;
-    }
-
-    // Data source used to fetch values for a variable. It can be defined but `null`.
-    datasource(datasource: dashboard.DataSourceRef): this {
-        this.internal.datasource = datasource;
         return this;
     }
 
@@ -78,17 +62,6 @@ export class VariableModelBuilder implements cog.Builder<dashboard.VariableModel
     // Options that can be selected for a variable.
     options(options: dashboard.VariableOption[]): this {
         this.internal.options = options;
-        return this;
-    }
-
-    refresh(refresh: dashboard.VariableRefresh): this {
-        this.internal.refresh = refresh;
-        return this;
-    }
-
-    // Options sort order
-    sort(sort: dashboard.VariableSort): this {
-        this.internal.sort = sort;
         return this;
     }
 }

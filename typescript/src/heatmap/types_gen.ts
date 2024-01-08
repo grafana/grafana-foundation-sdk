@@ -100,14 +100,16 @@ export const defaultFilterValueRange = (): FilterValueRange => ({
 
 // Controls tooltip options
 export interface HeatmapTooltip {
-	// Controls if the tooltip is shown
-	show: boolean;
+	// Controls how the tooltip is shown
+	mode: common.TooltipDisplayMode;
 	// Controls if the tooltip shows a histogram of the y-axis values
 	yHistogram?: boolean;
+	// Controls if the tooltip shows a color scale in header
+	showColorScale?: boolean;
 }
 
 export const defaultHeatmapTooltip = (): HeatmapTooltip => ({
-	show: false,
+	mode: common.TooltipDisplayMode.Single,
 });
 
 // Controls legend options
@@ -173,10 +175,7 @@ export interface Options {
 		show: true;
 	};
 	// Controls tooltip options
-	tooltip: {
-		show: true;
-		yHistogram: false;
-	};
+	tooltip: HeatmapTooltip;
 	// Controls exemplar options
 	exemplars: {
 		color: "rgba(255,0,255,0.7)";
@@ -192,10 +191,7 @@ export const defaultOptions = (): Options => ({
 	legend: {
 	show: true,
 },
-	tooltip: {
-	show: true,
-	yHistogram: false,
-},
+	tooltip: defaultHeatmapTooltip(),
 	exemplars: {
 	color: "rgba(255,0,255,0.7)",
 },

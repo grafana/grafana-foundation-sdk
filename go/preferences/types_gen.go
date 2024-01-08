@@ -2,6 +2,8 @@
 
 package preferences
 
+// Spec defines user, team or org Grafana preferences
+// swagger:model Preferences
 type Preferences struct {
 	// UID for the home dashboard
 	HomeDashboardUID *string `json:"homeDashboardUID,omitempty"`

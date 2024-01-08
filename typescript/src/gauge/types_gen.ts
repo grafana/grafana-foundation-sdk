@@ -18,9 +18,9 @@ export const defaultOptions = (): Options => ({
 	showThresholdLabels: false,
 	showThresholdMarkers: true,
 	sizing: common.BarGaugeSizing.Auto,
-	minVizWidth: 200,
+	minVizWidth: 75,
 	reduceOptions: common.defaultReduceDataOptions(),
-	minVizHeight: 200,
+	minVizHeight: 75,
 	orientation: common.VizOrientation.Auto,
 });
 
