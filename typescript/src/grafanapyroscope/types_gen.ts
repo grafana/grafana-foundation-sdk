@@ -10,6 +10,7 @@ export const defaultPyroscopeQueryType = (): PyroscopeQueryType => (PyroscopeQue
 
 export interface dataquery {
 	labelSelector?: string;
+	spanSelector?: string[];
 	profileTypeId?: string;
 	groupBy?: string[];
 	maxNodes?: number;

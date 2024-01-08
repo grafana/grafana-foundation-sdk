@@ -169,6 +169,7 @@ export enum ResultFormat {
 	Table = "table",
 	TimeSeries = "time_series",
 	Trace = "trace",
+	Logs = "logs",
 }
 
 export const defaultResultFormat = (): ResultFormat => (ResultFormat.Table);

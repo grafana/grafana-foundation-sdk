@@ -8,10 +8,12 @@ export interface Options {
 	valueMode: common.BarGaugeValueMode;
 	namePlacement: common.BarGaugeNamePlacement;
 	showUnfilled: boolean;
+	sizing: common.BarGaugeSizing;
 	minVizWidth: number;
+	minVizHeight: number;
 	reduceOptions: common.ReduceDataOptions;
 	text?: common.VizTextDisplayOptions;
-	minVizHeight: number;
+	maxVizHeight: number;
 	orientation: common.VizOrientation;
 }
 
@@ -20,9 +22,11 @@ export const defaultOptions = (): Options => ({
 	valueMode: common.BarGaugeValueMode.Color,
 	namePlacement: common.BarGaugeNamePlacement.Auto,
 	showUnfilled: true,
-	minVizWidth: 0,
+	sizing: common.BarGaugeSizing.Auto,
+	minVizWidth: 8,
+	minVizHeight: 16,
 	reduceOptions: common.defaultReduceDataOptions(),
-	minVizHeight: 10,
+	maxVizHeight: 300,
 	orientation: common.VizOrientation.Auto,
 });
 

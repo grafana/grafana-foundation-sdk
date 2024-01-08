@@ -9,6 +9,7 @@ import (
 type Options struct {
 	ShowThresholdLabels  bool                          `json:"showThresholdLabels"`
 	ShowThresholdMarkers bool                          `json:"showThresholdMarkers"`
+	Sizing               common.BarGaugeSizing         `json:"sizing"`
 	MinVizWidth          uint32                        `json:"minVizWidth"`
 	ReduceOptions        common.ReduceDataOptions      `json:"reduceOptions"`
 	Text                 *common.VizTextDisplayOptions `json:"text,omitempty"`

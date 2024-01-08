@@ -34,7 +34,7 @@ export interface Dashboard {
 		to: string;
 	};
 	// Configuration of the time picker shown at the top of a dashboard.
-	timepicker?: TimePicker;
+	timepicker?: TimePickerConfig;
 	// The month that the fiscal year starts on.  0 = January, 11 = December
 	fiscalYearStartMonth?: number;
 	// When set to true, the dashboard will redraw panels at an interval matching the pixel width.
@@ -239,6 +239,8 @@ export const defaultVariableHide = (): VariableHide => (VariableHide.DontHide);
 // `4`: Numerical DESC
 // `5`: Alphabetical Case Insensitive ASC
 // `6`: Alphabetical Case Insensitive DESC
+// `7`: Natural ASC
+// `8`: Natural DESC
 export enum VariableSort {
 	Disabled = 0,
 	AlphabeticalAsc = 1,
@@ -247,6 +249,8 @@ export enum VariableSort {
 	NumericalDesc = 4,
 	AlphabeticalCaseInsensitiveAsc = 5,
 	AlphabeticalCaseInsensitiveDesc = 6,
+	NaturalAsc = 7,
+	NaturalDesc = 8,
 }
 
 export const defaultVariableSort = (): VariableSort => (VariableSort.Disabled);
@@ -273,7 +277,7 @@ export interface DashboardLink {
 	// Tooltip to display when the user hovers their mouse over it
 	tooltip: string;
 	// Link URL. Only required/valid if the type is link
-	url: string;
+	url?: string;
 	// List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
 	tags: string[];
 	// If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
@@ -291,7 +295,6 @@ export const defaultDashboardLink = (): DashboardLink => ({
 	type: DashboardLinkType.Link,
 	icon: "",
 	tooltip: "",
-	url: "",
 	tags: [],
 	asDropdown: false,
 	targetBlank: false,
@@ -592,6 +595,44 @@ export const defaultDataTransformerConfig = (): DataTransformerConfig => ({
 	options: {},
 });
 
+// Time picker configuration
+// It defines the default config for the time picker and the refresh picker for the specific dashboard.
+export interface TimePickerConfig {
+	// Whether timepicker is visible or not.
+	hidden: boolean;
+	// Interval options available in the refresh picker dropdown.
+	refresh_intervals: string[];
+	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
+	time_options: string[];
+}
+
+export const defaultTimePickerConfig = (): TimePickerConfig => ({
+	hidden: false,
+	refresh_intervals: [
+"5s",
+"10s",
+"30s",
+"1m",
+"5m",
+"15m",
+"30m",
+"1h",
+"2h",
+"1d",
+],
+	time_options: [
+"5m",
+"15m",
+"1h",
+"6h",
+"12h",
+"24h",
+"2d",
+"7d",
+"30d",
+],
+});
+
 // 0 for no shared crosshair or tooltip (default).
 // 1 for shared crosshair.
 // 2 for shared crosshair AND shared tooltip.
@@ -858,70 +899,5 @@ export const defaultRowPanel = (): RowPanel => ({
 	collapsed: false,
 	id: 0,
 	panels: [],
-});
-
-// Support for legacy graph panel.
-// @deprecated this a deprecated panel type
-export interface GraphPanel {
-	type: "graph";
-	// @deprecated this is part of deprecated graph panel
-	legend?: {
-		show: boolean;
-		sort?: string;
-		sortDesc?: boolean;
-	};
-}
-
-export const defaultGraphPanel = (): GraphPanel => ({
-	type: "graph",
-});
-
-// Support for legacy heatmap panel.
-// @deprecated this a deprecated panel type
-export interface HeatmapPanel {
-	type: "heatmap";
-}
-
-export const defaultHeatmapPanel = (): HeatmapPanel => ({
-	type: "heatmap",
-});
-
-export interface TimePicker {
-	// Whether timepicker is visible or not.
-	hidden: boolean;
-	// Interval options available in the refresh picker dropdown.
-	refresh_intervals: string[];
-	// Whether timepicker is collapsed or not. Has no effect on provisioned dashboard.
-	collapse: boolean;
-	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-	time_options: string[];
-}
-
-export const defaultTimePicker = (): TimePicker => ({
-	hidden: false,
-	refresh_intervals: [
-"5s",
-"10s",
-"30s",
-"1m",
-"5m",
-"15m",
-"30m",
-"1h",
-"2h",
-"1d",
-],
-	collapse: false,
-	time_options: [
-"5m",
-"15m",
-"1h",
-"6h",
-"12h",
-"24h",
-"2d",
-"7d",
-"30d",
-],
 });
 

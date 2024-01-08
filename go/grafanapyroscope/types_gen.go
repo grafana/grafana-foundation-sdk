@@ -12,6 +12,7 @@ const (
 
 type Dataquery struct {
 	LabelSelector *string  `json:"labelSelector,omitempty"`
+	SpanSelector  []string `json:"spanSelector,omitempty"`
 	ProfileTypeId *string  `json:"profileTypeId,omitempty"`
 	GroupBy       []string `json:"groupBy,omitempty"`
 	MaxNodes      *int64   `json:"maxNodes,omitempty"`

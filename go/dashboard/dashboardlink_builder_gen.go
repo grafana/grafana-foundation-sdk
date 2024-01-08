@@ -70,7 +70,7 @@ func (builder *DashboardLinkBuilder) Tooltip(tooltip string) *DashboardLinkBuild
 
 // Link URL. Only required/valid if the type is link
 func (builder *DashboardLinkBuilder) Url(url string) *DashboardLinkBuilder {
-	builder.internal.Url = url
+	builder.internal.Url = &url
 
 	return builder
 }

@@ -605,6 +605,14 @@ const (
 	BarGaugeNamePlacementLeft BarGaugeNamePlacement = "left"
 )
 
+// Allows for the bar gauge size to be set explicitly
+type BarGaugeSizing string
+
+const (
+	BarGaugeSizingAuto   BarGaugeSizing = "auto"
+	BarGaugeSizingManual BarGaugeSizing = "manual"
+)
+
 // TODO docs
 type VizTooltipOptions struct {
 	Mode TooltipDisplayMode `json:"mode"`

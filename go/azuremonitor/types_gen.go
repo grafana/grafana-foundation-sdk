@@ -154,6 +154,7 @@ const (
 	ResultFormatTable      ResultFormat = "table"
 	ResultFormatTimeSeries ResultFormat = "time_series"
 	ResultFormatTrace      ResultFormat = "trace"
+	ResultFormatLogs       ResultFormat = "logs"
 )
 
 type AzureResourceGraphQuery struct {

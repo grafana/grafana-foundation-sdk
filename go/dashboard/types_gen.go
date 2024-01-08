@@ -37,7 +37,7 @@ type Dashboard struct {
 		To   string `json:"to"`
 	} `json:"time,omitempty"`
 	// Configuration of the time picker shown at the top of a dashboard.
-	Timepicker *TimePicker `json:"timepicker,omitempty"`
+	Timepicker *TimePickerConfig `json:"timepicker,omitempty"`
 	// The month that the fiscal year starts on.  0 = January, 11 = December
 	FiscalYearStartMonth *uint8 `json:"fiscalYearStartMonth,omitempty"`
 	// When set to true, the dashboard will redraw panels at an interval matching the pixel width.
@@ -198,6 +198,8 @@ const (
 // `4`: Numerical DESC
 // `5`: Alphabetical Case Insensitive ASC
 // `6`: Alphabetical Case Insensitive DESC
+// `7`: Natural ASC
+// `8`: Natural DESC
 type VariableSort int64
 
 const (
@@ -208,6 +210,8 @@ const (
 	VariableSortNumericalDesc                   VariableSort = 4
 	VariableSortAlphabeticalCaseInsensitiveAsc  VariableSort = 5
 	VariableSortAlphabeticalCaseInsensitiveDesc VariableSort = 6
+	VariableSortNaturalAsc                      VariableSort = 7
+	VariableSortNaturalDesc                     VariableSort = 8
 )
 
 // Ref to a DataSource instance
@@ -229,7 +233,7 @@ type DashboardLink struct {
 	// Tooltip to display when the user hovers their mouse over it
 	Tooltip string `json:"tooltip"`
 	// Link URL. Only required/valid if the type is link
-	Url string `json:"url"`
+	Url *string `json:"url,omitempty"`
 	// List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
 	Tags []string `json:"tags"`
 	// If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
@@ -474,6 +478,17 @@ type DataTransformerConfig struct {
 	Options any `json:"options"`
 }
 
+// Time picker configuration
+// It defines the default config for the time picker and the refresh picker for the specific dashboard.
+type TimePickerConfig struct {
+	// Whether timepicker is visible or not.
+	Hidden bool `json:"hidden"`
+	// Interval options available in the refresh picker dropdown.
+	RefreshIntervals []string `json:"refresh_intervals"`
+	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
+	TimeOptions []string `json:"time_options"`
+}
+
 // 0 for no shared crosshair or tooltip (default).
 // 1 for shared crosshair.
 // 2 for shared crosshair AND shared tooltip.
@@ -693,35 +708,6 @@ type RowPanel struct {
 	Panels []Panel `json:"panels"`
 	// Name of template variable to repeat for.
 	Repeat *string `json:"repeat,omitempty"`
-}
-
-// Support for legacy graph panel.
-// @deprecated this a deprecated panel type
-type GraphPanel struct {
-	Type string `json:"type"`
-	// @deprecated this is part of deprecated graph panel
-	Legend *struct {
-		Show     bool    `json:"show"`
-		Sort     *string `json:"sort,omitempty"`
-		SortDesc *bool   `json:"sortDesc,omitempty"`
-	} `json:"legend,omitempty"`
-}
-
-// Support for legacy heatmap panel.
-// @deprecated this a deprecated panel type
-type HeatmapPanel struct {
-	Type string `json:"type"`
-}
-
-type TimePicker struct {
-	// Whether timepicker is visible or not.
-	Hidden bool `json:"hidden"`
-	// Interval options available in the refresh picker dropdown.
-	RefreshIntervals []string `json:"refresh_intervals"`
-	// Whether timepicker is collapsed or not. Has no effect on provisioned dashboard.
-	Collapse bool `json:"collapse"`
-	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-	TimeOptions []string `json:"time_options"`
 }
 
 type PanelRepeatDirection string
