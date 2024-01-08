@@ -149,7 +149,7 @@ func (builder *DashboardBuilder) Time(from string, to string) *DashboardBuilder 
 }
 
 // Configuration of the time picker shown at the top of a dashboard.
-func (builder *DashboardBuilder) Timepicker(timepicker cog.Builder[TimePicker]) *DashboardBuilder {
+func (builder *DashboardBuilder) Timepicker(timepicker cog.Builder[TimePickerConfig]) *DashboardBuilder {
 	timepickerResource, err := timepicker.Build()
 	if err != nil {
 		builder.errors["timepicker"] = err.(cog.BuildErrors)

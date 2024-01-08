@@ -3,14 +3,16 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-export class TimePickerBuilder implements cog.Builder<dashboard.TimePicker> {
-    private readonly internal: dashboard.TimePicker;
+// Time picker configuration
+// It defines the default config for the time picker and the refresh picker for the specific dashboard.
+export class TimePickerBuilder implements cog.Builder<dashboard.TimePickerConfig> {
+    private readonly internal: dashboard.TimePickerConfig;
 
     constructor() {
-        this.internal = dashboard.defaultTimePicker();
+        this.internal = dashboard.defaultTimePickerConfig();
     }
 
-    build(): dashboard.TimePicker {
+    build(): dashboard.TimePickerConfig {
         return this.internal;
     }
 
@@ -23,12 +25,6 @@ export class TimePickerBuilder implements cog.Builder<dashboard.TimePicker> {
     // Interval options available in the refresh picker dropdown.
     refresh_intervals(refresh_intervals: string[]): this {
         this.internal.refresh_intervals = refresh_intervals;
-        return this;
-    }
-
-    // Whether timepicker is collapsed or not. Has no effect on provisioned dashboard.
-    collapse(collapse: boolean): this {
-        this.internal.collapse = collapse;
         return this;
     }
 

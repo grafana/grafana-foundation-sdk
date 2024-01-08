@@ -2,6 +2,16 @@
 
 package common
 
+// A topic is attached to DataFrame metadata in query results.
+// This specifies where the data should be used.
+type DataTopic string
+
+const (
+	DataTopicSeries      DataTopic = "series"
+	DataTopicAnnotations DataTopic = "annotations"
+	DataTopicAlertStates DataTopic = "alertStates"
+)
+
 // TODO docs
 type DataSourceJsonData struct {
 	AuthType        *string `json:"authType,omitempty"`

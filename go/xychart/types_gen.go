@@ -6,6 +6,7 @@ import (
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
+// Auto is "table" in the UI
 type SeriesMapping string
 
 const (
@@ -21,6 +22,7 @@ const (
 	ScatterShowPointsAndLines ScatterShow = "points+lines"
 )
 
+// Configuration for the Table/Auto mode
 type XYDimensionConfig struct {
 	Frame   int32    `json:"frame"`
 	X       *string  `json:"x,omitempty"`
@@ -75,9 +77,11 @@ type ScatterSeriesConfig struct {
 }
 
 type Options struct {
-	SeriesMapping *SeriesMapping           `json:"seriesMapping,omitempty"`
-	Dims          XYDimensionConfig        `json:"dims"`
-	Legend        common.VizLegendOptions  `json:"legend"`
-	Tooltip       common.VizTooltipOptions `json:"tooltip"`
-	Series        []ScatterSeriesConfig    `json:"series"`
+	SeriesMapping *SeriesMapping `json:"seriesMapping,omitempty"`
+	// Table Mode (auto)
+	Dims    XYDimensionConfig        `json:"dims"`
+	Legend  common.VizLegendOptions  `json:"legend"`
+	Tooltip common.VizTooltipOptions `json:"tooltip"`
+	// Manual Mode
+	Series []ScatterSeriesConfig `json:"series"`
 }
