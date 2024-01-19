@@ -56,7 +56,7 @@ export interface Dashboard {
 	// List of dashboard panels
 	panels?: (Panel | RowPanel)[];
 	// Configured template variables
-	templating?: {
+	templating: {
 		// List of configured template variables with their saved values along with some other metadata
 		list?: VariableModel[];
 	};
@@ -64,7 +64,7 @@ export interface Dashboard {
 	// Annotations are used to overlay event markers and overlay event tags on graphs.
 	// Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
 	// See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-	annotations?: AnnotationContainer;
+	annotations: AnnotationContainer;
 	// Links with references to other dashboards or external websites.
 	links?: DashboardLink[];
 	// Snapshot options. They are present only if the dashboard is a snapshot.
@@ -78,6 +78,9 @@ export const defaultDashboard = (): Dashboard => ({
 	graphTooltip: DashboardCursorSync.Off,
 	fiscalYearStartMonth: 0,
 	schemaVersion: 36,
+	templating: {
+},
+	annotations: defaultAnnotationContainer(),
 });
 
 // TODO: this should be a regular DataQuery that depends on the selected dashboard
@@ -187,6 +190,9 @@ export interface VariableModel {
 	// Options that can be selected for a variable.
 	options?: VariableOption[];
 	refresh?: VariableRefresh;
+	allValue?: string;
+	regex?: string;
+	includeAll?: boolean;
 }
 
 export const defaultVariableModel = (): VariableModel => ({
@@ -196,6 +202,7 @@ export const defaultVariableModel = (): VariableModel => ({
 	hide: VariableHide.DontHide,
 	skipUrlSync: false,
 	multi: false,
+	includeAll: false,
 });
 
 // Option to be selected in a variable.

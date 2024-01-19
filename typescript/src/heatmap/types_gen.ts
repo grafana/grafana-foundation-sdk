@@ -184,20 +184,14 @@ export interface Options {
 
 export const defaultOptions = (): Options => ({
 	calculate: false,
-	color: defaultHeatmapColorOptions(),
+	color: { scheme: "Oranges", fill: "dark-orange", exponent: 0.5, steps: 64, reverse: false, },
+	filterValues: { le: 1e-09, },
 	showValue: common.VisibilityMode.Auto,
 	cellGap: 1,
 	yAxis: defaultYAxisConfig(),
-	legend: {
-	show: true,
-},
-	tooltip: {
-	show: true,
-	yHistogram: false,
-},
-	exemplars: {
-	color: "rgba(255,0,255,0.7)",
-},
+	legend: { show: true, },
+	tooltip: { show: true, yHistogram: false, },
+	exemplars: { color: "rgba(255,0,255,0.7)", },
 });
 
 export interface FieldConfig {

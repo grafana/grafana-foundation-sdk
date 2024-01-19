@@ -87,4 +87,14 @@ export class QueryVariableBuilder implements cog.Builder<dashboard.VariableModel
         this.internal.refresh = refresh;
         return this;
     }
+
+    allValue(allValue: string): this {
+        this.internal.allValue = allValue;
+        return this;
+    }
+
+    includeAll(includeAll: boolean): this {
+        this.internal.includeAll = includeAll;
+        return this;
+    }
 }

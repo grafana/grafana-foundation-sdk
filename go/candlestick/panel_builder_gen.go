@@ -689,5 +689,14 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.Mode("candles+volume")
 	builder.CandleStyle("candles")
 	builder.ColorStrategy("open-close")
+	builder.Colors(struct {
+		Down string `json:"down"`
+		Up   string `json:"up"`
+		Flat string `json:"flat"`
+	}{
+		Down: "red",
+		Flat: "gray",
+		Up:   "green",
+	})
 	builder.IncludeAllFields(false)
 }
