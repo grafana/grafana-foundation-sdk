@@ -78,11 +78,7 @@ export const defaultOptions = (): Options => ({
 	candleStyle: CandleStyle.Candles,
 	colorStrategy: ColorStrategy.OpenClose,
 	fields: defaultCandlestickFieldMap(),
-	colors: {
-	down: "red",
-	up: "green",
-	flat: "gray",
-},
+	colors: { down: "red", up: "green", flat: "gray", },
 	legend: common.defaultVizLegendOptions(),
 	includeAllFields: false,
 });
