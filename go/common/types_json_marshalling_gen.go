@@ -67,7 +67,7 @@ func (resource *BoolOrFloat64) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
-func (resource *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableJsonViewCellOptions) MarshalJSON() ([]byte, error) {
+func (resource *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions) MarshalJSON() ([]byte, error) {
 	if resource.TableAutoCellOptions != nil {
 		return json.Marshal(resource.TableAutoCellOptions)
 	}
@@ -86,6 +86,9 @@ func (resource *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCe
 	if resource.TableImageCellOptions != nil {
 		return json.Marshal(resource.TableImageCellOptions)
 	}
+	if resource.TableDataLinksCellOptions != nil {
+		return json.Marshal(resource.TableDataLinksCellOptions)
+	}
 	if resource.TableJsonViewCellOptions != nil {
 		return json.Marshal(resource.TableJsonViewCellOptions)
 	}
@@ -93,7 +96,7 @@ func (resource *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCe
 	return nil, nil
 }
 
-func (resource *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableJsonViewCellOptions) UnmarshalJSON(raw []byte) error {
+func (resource *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -133,6 +136,14 @@ func (resource *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCe
 		}
 
 		resource.TableColorTextCellOptions = &tableColorTextCellOptions
+		return nil
+	case "data-links":
+		var tableDataLinksCellOptions TableDataLinksCellOptions
+		if err := json.Unmarshal(raw, &tableDataLinksCellOptions); err != nil {
+			return err
+		}
+
+		resource.TableDataLinksCellOptions = &tableDataLinksCellOptions
 		return nil
 	case "gauge":
 		var tableBarGaugeCellOptions TableBarGaugeCellOptions

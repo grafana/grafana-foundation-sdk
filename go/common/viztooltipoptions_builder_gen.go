@@ -52,5 +52,17 @@ func (builder *VizTooltipOptionsBuilder) Sort(sort SortOrder) *VizTooltipOptions
 	return builder
 }
 
+func (builder *VizTooltipOptionsBuilder) MaxWidth(maxWidth float64) *VizTooltipOptionsBuilder {
+	builder.internal.MaxWidth = &maxWidth
+
+	return builder
+}
+
+func (builder *VizTooltipOptionsBuilder) MaxHeight(maxHeight float64) *VizTooltipOptionsBuilder {
+	builder.internal.MaxHeight = &maxHeight
+
+	return builder
+}
+
 func (builder *VizTooltipOptionsBuilder) applyDefaults() {
 }

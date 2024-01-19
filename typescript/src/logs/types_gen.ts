@@ -7,6 +7,7 @@ export interface Options {
 	showLabels: boolean;
 	showCommonLabels: boolean;
 	showTime: boolean;
+	showLogContextToggle: boolean;
 	wrapLogMessage: boolean;
 	prettifyLogMessage: boolean;
 	enableLogDetails: boolean;
@@ -18,6 +19,7 @@ export const defaultOptions = (): Options => ({
 	showLabels: false,
 	showCommonLabels: false,
 	showTime: false,
+	showLogContextToggle: false,
 	wrapLogMessage: false,
 	prettifyLogMessage: false,
 	enableLogDetails: false,

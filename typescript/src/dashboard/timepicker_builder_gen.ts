@@ -33,4 +33,10 @@ export class TimePickerBuilder implements cog.Builder<dashboard.TimePickerConfig
         this.internal.time_options = time_options;
         return this;
     }
+
+    // Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
+    nowDelay(nowDelay: string): this {
+        this.internal.nowDelay = nowDelay;
+        return this;
+    }
 }

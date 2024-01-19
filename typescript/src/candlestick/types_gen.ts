@@ -69,6 +69,7 @@ export interface Options {
 		flat: "gray";
 	};
 	legend: common.VizLegendOptions;
+	tooltip: common.VizTooltipOptions;
 	// When enabled, all fields will be sent to the graph
 	includeAllFields?: boolean;
 }
@@ -78,12 +79,9 @@ export const defaultOptions = (): Options => ({
 	candleStyle: CandleStyle.Candles,
 	colorStrategy: ColorStrategy.OpenClose,
 	fields: defaultCandlestickFieldMap(),
-	colors: {
-	down: "red",
-	up: "green",
-	flat: "gray",
-},
+	colors: { down: "red", up: "green", flat: "gray", },
 	legend: common.defaultVizLegendOptions(),
+	tooltip: common.defaultVizTooltipOptions(),
 	includeAllFields: false,
 });
 

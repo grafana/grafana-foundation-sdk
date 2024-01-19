@@ -737,6 +737,8 @@ export const defaultBarGaugeSizing = (): BarGaugeSizing => (BarGaugeSizing.Auto)
 export interface VizTooltipOptions {
 	mode: TooltipDisplayMode;
 	sort: SortOrder;
+	maxWidth?: number;
+	maxHeight?: number;
 }
 
 export const defaultVizTooltipOptions = (): VizTooltipOptions => ({
@@ -764,6 +766,7 @@ export enum TableCellDisplayMode {
 	Image = "image",
 	Gauge = "gauge",
 	Sparkline = "sparkline",
+	DataLinks = "data-links",
 	Custom = "custom",
 }
 
@@ -842,6 +845,15 @@ export const defaultTableImageCellOptions = (): TableImageCellOptions => ({
 	type: "image",
 });
 
+// Show data links in the cell
+export interface TableDataLinksCellOptions {
+	type: "data-links";
+}
+
+export const defaultTableDataLinksCellOptions = (): TableDataLinksCellOptions => ({
+	type: "data-links",
+});
+
 // Gauge cell options
 export interface TableBarGaugeCellOptions {
 	type: "gauge";
@@ -918,7 +930,7 @@ export const defaultTableCellHeight = (): TableCellHeight => (TableCellHeight.Sm
 
 // Table cell options. Each cell has a display mode
 // and other potential options for that display.
-export type TableCellOptions = TableAutoCellOptions | TableSparklineCellOptions | TableBarGaugeCellOptions | TableColoredBackgroundCellOptions | TableColorTextCellOptions | TableImageCellOptions | TableJsonViewCellOptions;
+export type TableCellOptions = TableAutoCellOptions | TableSparklineCellOptions | TableBarGaugeCellOptions | TableColoredBackgroundCellOptions | TableColorTextCellOptions | TableImageCellOptions | TableDataLinksCellOptions | TableJsonViewCellOptions;
 
 export const defaultTableCellOptions = (): TableCellOptions => (defaultTableAutoCellOptions());
 
