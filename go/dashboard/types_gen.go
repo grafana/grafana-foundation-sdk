@@ -56,15 +56,15 @@ type Dashboard struct {
 	// List of dashboard panels
 	Panels []PanelOrRowPanel `json:"panels,omitempty"`
 	// Configured template variables
-	Templating *struct {
+	Templating struct {
 		// List of configured template variables with their saved values along with some other metadata
 		List []VariableModel `json:"list,omitempty"`
-	} `json:"templating,omitempty"`
+	} `json:"templating"`
 	// Contains the list of annotations that are associated with the dashboard.
 	// Annotations are used to overlay event markers and overlay event tags on graphs.
 	// Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
 	// See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-	Annotations *AnnotationContainer `json:"annotations,omitempty"`
+	Annotations AnnotationContainer `json:"annotations"`
 	// Links with references to other dashboards or external websites.
 	Links []DashboardLink `json:"links,omitempty"`
 	// Snapshot options. They are present only if the dashboard is a snapshot.
@@ -154,7 +154,10 @@ type VariableModel struct {
 	Options []VariableOption `json:"options,omitempty"`
 	Refresh *VariableRefresh `json:"refresh,omitempty"`
 	// Options sort order
-	Sort *VariableSort `json:"sort,omitempty"`
+	Sort       *VariableSort `json:"sort,omitempty"`
+	AllValue   *string       `json:"allValue,omitempty"`
+	Regex      *string       `json:"regex,omitempty"`
+	IncludeAll *bool         `json:"includeAll,omitempty"`
 }
 
 // Option to be selected in a variable.

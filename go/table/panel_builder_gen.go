@@ -543,6 +543,11 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.FrameIndex(0)
 	builder.ShowHeader(true)
 	builder.ShowTypeIcons(false)
+	builder.Footer(common.NewTableFooterOptionsBuilder().
+		CountRows(false).
+		Reducer([]string{}).
+		Show(false),
+	)
 	builder.CellHeight("sm")
 	builder.Align("auto")
 	builder.Inspect(false)

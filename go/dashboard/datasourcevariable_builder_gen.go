@@ -94,5 +94,23 @@ func (builder *DatasourceVariableBuilder) Multi(multi bool) *DatasourceVariableB
 	return builder
 }
 
+func (builder *DatasourceVariableBuilder) AllValue(allValue string) *DatasourceVariableBuilder {
+	builder.internal.AllValue = &allValue
+
+	return builder
+}
+
+func (builder *DatasourceVariableBuilder) Regex(regex string) *DatasourceVariableBuilder {
+	builder.internal.Regex = &regex
+
+	return builder
+}
+
+func (builder *DatasourceVariableBuilder) IncludeAll(includeAll bool) *DatasourceVariableBuilder {
+	builder.internal.IncludeAll = &includeAll
+
+	return builder
+}
+
 func (builder *DatasourceVariableBuilder) applyDefaults() {
 }
