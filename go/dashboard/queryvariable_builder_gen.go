@@ -125,5 +125,17 @@ func (builder *QueryVariableBuilder) Refresh(refresh VariableRefresh) *QueryVari
 	return builder
 }
 
+func (builder *QueryVariableBuilder) AllValue(allValue string) *QueryVariableBuilder {
+	builder.internal.AllValue = &allValue
+
+	return builder
+}
+
+func (builder *QueryVariableBuilder) IncludeAll(includeAll bool) *QueryVariableBuilder {
+	builder.internal.IncludeAll = &includeAll
+
+	return builder
+}
+
 func (builder *QueryVariableBuilder) applyDefaults() {
 }

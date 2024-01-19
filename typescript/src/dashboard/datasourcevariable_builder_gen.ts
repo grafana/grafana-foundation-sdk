@@ -70,4 +70,19 @@ export class DatasourceVariableBuilder implements cog.Builder<dashboard.Variable
         this.internal.multi = multi;
         return this;
     }
+
+    allValue(allValue: string): this {
+        this.internal.allValue = allValue;
+        return this;
+    }
+
+    regex(regex: string): this {
+        this.internal.regex = regex;
+        return this;
+    }
+
+    includeAll(includeAll: boolean): this {
+        this.internal.includeAll = includeAll;
+        return this;
+    }
 }

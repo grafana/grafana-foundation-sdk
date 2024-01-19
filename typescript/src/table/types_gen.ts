@@ -22,6 +22,8 @@ export const defaultOptions = (): Options => ({
 	frameIndex: 0,
 	showHeader: true,
 	showTypeIcons: false,
+	footer: { show: false, reducer: [
+], countRows: false, },
 	cellHeight: common.TableCellHeight.Sm,
 });
 
