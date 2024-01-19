@@ -87,7 +87,9 @@ type FilterValueRange struct {
 // Controls tooltip options
 type HeatmapTooltip struct {
 	// Controls how the tooltip is shown
-	Mode common.TooltipDisplayMode `json:"mode"`
+	Mode      common.TooltipDisplayMode `json:"mode"`
+	MaxHeight *float64                  `json:"maxHeight,omitempty"`
+	MaxWidth  *float64                  `json:"maxWidth,omitempty"`
 	// Controls if the tooltip shows a histogram of the y-axis values
 	YHistogram *bool `json:"yHistogram,omitempty"`
 	// Controls if the tooltip shows a color scale in header

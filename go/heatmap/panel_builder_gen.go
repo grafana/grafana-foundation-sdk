@@ -551,6 +551,21 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.Height(9)
 	builder.Span(12)
 	builder.Calculate(false)
+	builder.Color(HeatmapColorOptions{
+		Exponent: 0.5,
+		Fill:     "dark-orange",
+		Reverse:  false,
+		Scheme:   "Oranges",
+		Steps:    64,
+	})
+	builder.FilterValues(FilterValueRange{
+		Le: cog.ToPtr[float32](1e-09),
+	})
 	builder.ShowValue("auto")
 	builder.CellGap(1)
+	builder.Tooltip(HeatmapTooltip{
+		Mode:           "single",
+		ShowColorScale: cog.ToPtr[bool](false),
+		YHistogram:     cog.ToPtr[bool](false),
+	})
 }

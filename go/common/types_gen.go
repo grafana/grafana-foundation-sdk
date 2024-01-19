@@ -625,8 +625,10 @@ const (
 
 // TODO docs
 type VizTooltipOptions struct {
-	Mode TooltipDisplayMode `json:"mode"`
-	Sort SortOrder          `json:"sort"`
+	Mode      TooltipDisplayMode `json:"mode"`
+	Sort      SortOrder          `json:"sort"`
+	MaxWidth  *float64           `json:"maxWidth,omitempty"`
+	MaxHeight *float64           `json:"maxHeight,omitempty"`
 }
 
 type Labels map[string]string
@@ -649,6 +651,7 @@ const (
 	TableCellDisplayModeImage                TableCellDisplayMode = "image"
 	TableCellDisplayModeGauge                TableCellDisplayMode = "gauge"
 	TableCellDisplayModeSparkline            TableCellDisplayMode = "sparkline"
+	TableCellDisplayModeDataLinks            TableCellDisplayMode = "data-links"
 	TableCellDisplayModeCustom               TableCellDisplayMode = "custom"
 )
 
@@ -697,6 +700,11 @@ type TableJsonViewCellOptions struct {
 
 // Json view cell options
 type TableImageCellOptions struct {
+	Type string `json:"type"`
+}
+
+// Show data links in the cell
+type TableDataLinksCellOptions struct {
 	Type string `json:"type"`
 }
 
@@ -764,7 +772,7 @@ const (
 
 // Table cell options. Each cell has a display mode
 // and other potential options for that display.
-type TableCellOptions TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableJsonViewCellOptions
+type TableCellOptions TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions
 
 // Use UTC/GMT timezone
 const TimeZoneUtc = "utc"
@@ -885,12 +893,13 @@ type BoolOrFloat64 struct {
 	Float64 *float64 `json:"Float64,omitempty"`
 }
 
-type TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableJsonViewCellOptions struct {
+type TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions struct {
 	TableAutoCellOptions              *TableAutoCellOptions              `json:"TableAutoCellOptions,omitempty"`
 	TableSparklineCellOptions         *TableSparklineCellOptions         `json:"TableSparklineCellOptions,omitempty"`
 	TableBarGaugeCellOptions          *TableBarGaugeCellOptions          `json:"TableBarGaugeCellOptions,omitempty"`
 	TableColoredBackgroundCellOptions *TableColoredBackgroundCellOptions `json:"TableColoredBackgroundCellOptions,omitempty"`
 	TableColorTextCellOptions         *TableColorTextCellOptions         `json:"TableColorTextCellOptions,omitempty"`
 	TableImageCellOptions             *TableImageCellOptions             `json:"TableImageCellOptions,omitempty"`
+	TableDataLinksCellOptions         *TableDataLinksCellOptions         `json:"TableDataLinksCellOptions,omitempty"`
 	TableJsonViewCellOptions          *TableJsonViewCellOptions          `json:"TableJsonViewCellOptions,omitempty"`
 }

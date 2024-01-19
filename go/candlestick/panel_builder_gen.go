@@ -419,6 +419,20 @@ func (builder *PanelBuilder) Legend(legend cog.Builder[common.VizLegendOptions])
 	return builder
 }
 
+func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[common.VizTooltipOptions]) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	tooltipResource, err := tooltip.Build()
+	if err != nil {
+		builder.errors["options.tooltip"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Tooltip = tooltipResource
+
+	return builder
+}
+
 // When enabled, all fields will be sent to the graph
 func (builder *PanelBuilder) IncludeAllFields(includeAllFields bool) *PanelBuilder {
 	if builder.internal.Options == nil {
@@ -836,5 +850,14 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.Mode("candles+volume")
 	builder.CandleStyle("candles")
 	builder.ColorStrategy("open-close")
+	builder.Colors(struct {
+		Down string `json:"down"`
+		Up   string `json:"up"`
+		Flat string `json:"flat"`
+	}{
+		Down: "red",
+		Flat: "gray",
+		Up:   "green",
+	})
 	builder.IncludeAllFields(false)
 }

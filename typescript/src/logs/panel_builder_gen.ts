@@ -329,6 +329,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    showLogContextToggle(showLogContextToggle: boolean): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.showLogContextToggle = showLogContextToggle;
+        return this;
+    }
+
     wrapLogMessage(wrapLogMessage: boolean): this {
         if (!this.internal.options) {
             this.internal.options = logs.defaultOptions();

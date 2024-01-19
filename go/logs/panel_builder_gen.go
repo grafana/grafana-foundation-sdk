@@ -378,6 +378,15 @@ func (builder *PanelBuilder) ShowTime(showTime bool) *PanelBuilder {
 	return builder
 }
 
+func (builder *PanelBuilder) ShowLogContextToggle(showLogContextToggle bool) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).ShowLogContextToggle = showLogContextToggle
+
+	return builder
+}
+
 func (builder *PanelBuilder) WrapLogMessage(wrapLogMessage bool) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}

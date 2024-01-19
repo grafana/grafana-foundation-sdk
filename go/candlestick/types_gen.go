@@ -62,7 +62,8 @@ type Options struct {
 		Up   string `json:"up"`
 		Flat string `json:"flat"`
 	} `json:"colors"`
-	Legend common.VizLegendOptions `json:"legend"`
+	Legend  common.VizLegendOptions  `json:"legend"`
+	Tooltip common.VizTooltipOptions `json:"tooltip"`
 	// When enabled, all fields will be sent to the graph
 	IncludeAllFields *bool `json:"includeAllFields,omitempty"`
 }

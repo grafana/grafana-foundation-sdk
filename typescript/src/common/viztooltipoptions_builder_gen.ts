@@ -24,4 +24,14 @@ export class VizTooltipOptionsBuilder implements cog.Builder<common.VizTooltipOp
         this.internal.sort = sort;
         return this;
     }
+
+    maxWidth(maxWidth: number): this {
+        this.internal.maxWidth = maxWidth;
+        return this;
+    }
+
+    maxHeight(maxHeight: number): this {
+        this.internal.maxHeight = maxHeight;
+        return this;
+    }
 }

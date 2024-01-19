@@ -261,12 +261,6 @@ func (builder *DashboardBuilder) WithRow(rowPanel cog.Builder[RowPanel]) *Dashbo
 
 // Configured template variables
 func (builder *DashboardBuilder) WithVariable(list cog.Builder[VariableModel]) *DashboardBuilder {
-	if builder.internal.Templating == nil {
-		builder.internal.Templating = &struct {
-			// List of configured template variables with their saved values along with some other metadata
-			List []VariableModel `json:"list,omitempty"`
-		}{}
-	}
 	listResource, err := list.Build()
 	if err != nil {
 		builder.errors["templating.list"] = err.(cog.BuildErrors)
@@ -287,7 +281,7 @@ func (builder *DashboardBuilder) Annotations(annotations cog.Builder[AnnotationC
 		builder.errors["annotations"] = err.(cog.BuildErrors)
 		return builder
 	}
-	builder.internal.Annotations = &annotationsResource
+	builder.internal.Annotations = annotationsResource
 
 	return builder
 }
@@ -322,7 +316,6 @@ func (builder *DashboardBuilder) Snapshot(snapshot cog.Builder[Snapshot]) *Dashb
 
 func (builder *DashboardBuilder) applyDefaults() {
 	builder.Timezone("browser")
-	builder.Editable()
 	builder.Tooltip(0)
 	builder.FiscalYearStartMonth(0)
 }

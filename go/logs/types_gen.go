@@ -7,12 +7,13 @@ import (
 )
 
 type Options struct {
-	ShowLabels         bool                     `json:"showLabels"`
-	ShowCommonLabels   bool                     `json:"showCommonLabels"`
-	ShowTime           bool                     `json:"showTime"`
-	WrapLogMessage     bool                     `json:"wrapLogMessage"`
-	PrettifyLogMessage bool                     `json:"prettifyLogMessage"`
-	EnableLogDetails   bool                     `json:"enableLogDetails"`
-	SortOrder          common.LogsSortOrder     `json:"sortOrder"`
-	DedupStrategy      common.LogsDedupStrategy `json:"dedupStrategy"`
+	ShowLabels           bool                     `json:"showLabels"`
+	ShowCommonLabels     bool                     `json:"showCommonLabels"`
+	ShowTime             bool                     `json:"showTime"`
+	ShowLogContextToggle bool                     `json:"showLogContextToggle"`
+	WrapLogMessage       bool                     `json:"wrapLogMessage"`
+	PrettifyLogMessage   bool                     `json:"prettifyLogMessage"`
+	EnableLogDetails     bool                     `json:"enableLogDetails"`
+	SortOrder            common.LogsSortOrder     `json:"sortOrder"`
+	DedupStrategy        common.LogsDedupStrategy `json:"dedupStrategy"`
 }

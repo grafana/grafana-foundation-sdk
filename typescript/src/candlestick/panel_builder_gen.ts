@@ -363,6 +363,15 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    tooltip(tooltip: cog.Builder<common.VizTooltipOptions>): this {
+        if (!this.internal.options) {
+            this.internal.options = candlestick.defaultOptions();
+        }
+        const tooltipResource = tooltip.build();
+        this.internal.options.tooltip = tooltipResource;
+        return this;
+    }
+
     // When enabled, all fields will be sent to the graph
     includeAllFields(includeAllFields: boolean): this {
         if (!this.internal.options) {
