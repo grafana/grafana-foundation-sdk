@@ -108,20 +108,24 @@ func (builder *DatasourceVariableBuilder) Multi(multi bool) *DatasourceVariableB
 	return builder
 }
 
+// Whether all value option is available or not
+func (builder *DatasourceVariableBuilder) IncludeAll(includeAll bool) *DatasourceVariableBuilder {
+	builder.internal.IncludeAll = &includeAll
+
+	return builder
+}
+
+// Custom all value
 func (builder *DatasourceVariableBuilder) AllValue(allValue string) *DatasourceVariableBuilder {
 	builder.internal.AllValue = &allValue
 
 	return builder
 }
 
+// Optional field, if you want to extract part of a series name or metric node segment.
+// Named capture groups can be used to separate the display text and value.
 func (builder *DatasourceVariableBuilder) Regex(regex string) *DatasourceVariableBuilder {
 	builder.internal.Regex = &regex
-
-	return builder
-}
-
-func (builder *DatasourceVariableBuilder) IncludeAll(includeAll bool) *DatasourceVariableBuilder {
-	builder.internal.IncludeAll = &includeAll
 
 	return builder
 }
