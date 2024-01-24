@@ -77,13 +77,15 @@ export class CustomVariableBuilder implements cog.Builder<dashboard.VariableMode
         return this;
     }
 
-    allValue(allValue: string): this {
-        this.internal.allValue = allValue;
+    // Whether all value option is available or not
+    includeAll(includeAll: boolean): this {
+        this.internal.includeAll = includeAll;
         return this;
     }
 
-    includeAll(includeAll: boolean): this {
-        this.internal.includeAll = includeAll;
+    // Custom all value
+    allValue(allValue: string): this {
+        this.internal.allValue = allValue;
         return this;
     }
 }

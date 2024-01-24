@@ -119,20 +119,30 @@ func (builder *QueryVariableBuilder) Options(options []VariableOption) *QueryVar
 	return builder
 }
 
+// Options to config when to refresh a variable
 func (builder *QueryVariableBuilder) Refresh(refresh VariableRefresh) *QueryVariableBuilder {
 	builder.internal.Refresh = &refresh
 
 	return builder
 }
 
-func (builder *QueryVariableBuilder) AllValue(allValue string) *QueryVariableBuilder {
-	builder.internal.AllValue = &allValue
+// Options sort order
+func (builder *QueryVariableBuilder) Sort(sort VariableSort) *QueryVariableBuilder {
+	builder.internal.Sort = &sort
 
 	return builder
 }
 
+// Whether all value option is available or not
 func (builder *QueryVariableBuilder) IncludeAll(includeAll bool) *QueryVariableBuilder {
 	builder.internal.IncludeAll = &includeAll
+
+	return builder
+}
+
+// Custom all value
+func (builder *QueryVariableBuilder) AllValue(allValue string) *QueryVariableBuilder {
+	builder.internal.AllValue = &allValue
 
 	return builder
 }
