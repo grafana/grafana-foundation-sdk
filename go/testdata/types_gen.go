@@ -131,6 +131,7 @@ const (
 	StreamingQueryTypeSignal StreamingQueryType = "signal"
 	StreamingQueryTypeLogs   StreamingQueryType = "logs"
 	StreamingQueryTypeFetch  StreamingQueryType = "fetch"
+	StreamingQueryTypeTraces StreamingQueryType = "traces"
 )
 
 type NodesQueryType string

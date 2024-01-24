@@ -14,7 +14,7 @@ export class StreamingQueryBuilder implements cog.Builder<testdata.StreamingQuer
         return this.internal;
     }
 
-    type(type: "signal" | "logs" | "fetch"): this {
+    type(type: "signal" | "logs" | "fetch" | "traces"): this {
         this.internal.type = type;
         return this;
     }

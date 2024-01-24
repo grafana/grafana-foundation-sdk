@@ -98,14 +98,16 @@ func (builder *CustomVariableBuilder) Options(options []VariableOption) *CustomV
 	return builder
 }
 
-func (builder *CustomVariableBuilder) AllValue(allValue string) *CustomVariableBuilder {
-	builder.internal.AllValue = &allValue
+// Whether all value option is available or not
+func (builder *CustomVariableBuilder) IncludeAll(includeAll bool) *CustomVariableBuilder {
+	builder.internal.IncludeAll = &includeAll
 
 	return builder
 }
 
-func (builder *CustomVariableBuilder) IncludeAll(includeAll bool) *CustomVariableBuilder {
-	builder.internal.IncludeAll = &includeAll
+// Custom all value
+func (builder *CustomVariableBuilder) AllValue(allValue string) *CustomVariableBuilder {
+	builder.internal.AllValue = &allValue
 
 	return builder
 }

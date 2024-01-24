@@ -35,7 +35,7 @@ export enum TestDataQueryType {
 export const defaultTestDataQueryType = (): TestDataQueryType => (TestDataQueryType.RandomWalk);
 
 export interface StreamingQuery {
-	type: "signal" | "logs" | "fetch";
+	type: "signal" | "logs" | "fetch" | "traces";
 	speed: number;
 	spread: number;
 	noise: number;

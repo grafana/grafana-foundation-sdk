@@ -71,6 +71,7 @@ export class QueryVariableBuilder implements cog.Builder<dashboard.VariableModel
         return this;
     }
 
+    // Options to config when to refresh a variable
     refresh(refresh: dashboard.VariableRefresh): this {
         this.internal.refresh = refresh;
         return this;
@@ -82,13 +83,15 @@ export class QueryVariableBuilder implements cog.Builder<dashboard.VariableModel
         return this;
     }
 
-    allValue(allValue: string): this {
-        this.internal.allValue = allValue;
+    // Whether all value option is available or not
+    includeAll(includeAll: boolean): this {
+        this.internal.includeAll = includeAll;
         return this;
     }
 
-    includeAll(includeAll: boolean): this {
-        this.internal.includeAll = includeAll;
+    // Custom all value
+    allValue(allValue: string): this {
+        this.internal.allValue = allValue;
         return this;
     }
 }
