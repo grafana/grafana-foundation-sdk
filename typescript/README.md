@@ -29,7 +29,7 @@ environments, and the risks are unknown/high.
 ## Installing
 
 ```shell
-yarn add '@grafana/grafana-foundation-sdk@~10.2.0-cogv0.0.x.1705679056'
+yarn add '@grafana/grafana-foundation-sdk@~10.2.0-cogv0.0.x.1706098251'
 ```
 
 ## Example usage

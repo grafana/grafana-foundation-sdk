@@ -152,12 +152,17 @@ type VariableModel struct {
 	Multi *bool `json:"multi,omitempty"`
 	// Options that can be selected for a variable.
 	Options []VariableOption `json:"options,omitempty"`
+	// Options to config when to refresh a variable
 	Refresh *VariableRefresh `json:"refresh,omitempty"`
 	// Options sort order
-	Sort       *VariableSort `json:"sort,omitempty"`
-	AllValue   *string       `json:"allValue,omitempty"`
-	Regex      *string       `json:"regex,omitempty"`
-	IncludeAll *bool         `json:"includeAll,omitempty"`
+	Sort *VariableSort `json:"sort,omitempty"`
+	// Whether all value option is available or not
+	IncludeAll *bool `json:"includeAll,omitempty"`
+	// Custom all value
+	AllValue *string `json:"allValue,omitempty"`
+	// Optional field, if you want to extract part of a series name or metric node segment.
+	// Named capture groups can be used to separate the display text and value.
+	Regex *string `json:"regex,omitempty"`
 }
 
 // Option to be selected in a variable.
