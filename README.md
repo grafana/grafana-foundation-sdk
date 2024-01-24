@@ -21,6 +21,7 @@ your Grafana instance.
 | Grafana Version                | `cog` Version | Branch |
 | ------------------------------ | ------------- | ------ |
 | `next` (Grafana's main branch) | `v0.0.x`      | [next+cog-v0.0.x](https://github.com/grafana/grafana-foundation-sdk/tree/next%2Bcog-v0.0.x) |
+| `v10.3.x`                      | `v0.0.x`      | [v10.3.x+cog-v0.0.x](https://github.com/grafana/grafana-foundation-sdk/tree/v10.3.x%2Bcog-v0.0.x) |
 | `v10.2.x`                      | `v0.0.x`      | [v10.2.x+cog-v0.0.x](https://github.com/grafana/grafana-foundation-sdk/tree/v10.2.x%2Bcog-v0.0.x) |
 | `v10.1.x`                      | `v0.0.x`      | [v10.1.x+cog-v0.0.x](https://github.com/grafana/grafana-foundation-sdk/tree/v10.1.x%2Bcog-v0.0.x) |
 
