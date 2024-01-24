@@ -59,18 +59,22 @@ export class DatasourceVariableBuilder implements cog.Builder<dashboard.Variable
         return this;
     }
 
+    // Whether all value option is available or not
+    includeAll(includeAll: boolean): this {
+        this.internal.includeAll = includeAll;
+        return this;
+    }
+
+    // Custom all value
     allValue(allValue: string): this {
         this.internal.allValue = allValue;
         return this;
     }
 
+    // Optional field, if you want to extract part of a series name or metric node segment.
+    // Named capture groups can be used to separate the display text and value.
     regex(regex: string): this {
         this.internal.regex = regex;
-        return this;
-    }
-
-    includeAll(includeAll: boolean): this {
-        this.internal.includeAll = includeAll;
         return this;
     }
 }
