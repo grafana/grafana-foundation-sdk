@@ -1,6 +1,6 @@
 # Grafana Foundation SDK – Go
 
-A set of tools, types and *builder libraries* for building and manipulating Grafana objects in TypeScript.
+A set of tools, types and *builder libraries* for building and manipulating Grafana objects in Go.
 
 > ℹ️ This branch contains **types and builders generated for Grafana v10.2.x.**
 > Other supported versions of Grafana can be found at [this repository's root](https://github.com/grafana/grafana-foundation-sdk/).
