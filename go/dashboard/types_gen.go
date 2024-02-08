@@ -374,7 +374,7 @@ type ThresholdsConfig struct {
 }
 
 // Allow to transform the visual representation of specific data values in a visualization, irrespective of their original units
-type ValueMapping ValueMapOrRangeMapOrRegexMapOrSpecialValueMap
+type ValueMapping = ValueMapOrRangeMapOrRegexMapOrSpecialValueMap
 
 // Supported value mapping types
 // `value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
