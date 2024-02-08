@@ -88,6 +88,14 @@ func (builder *DataqueryBuilder) IntervalFactor(intervalFactor float64) *Dataque
 	return builder
 }
 
+func (builder *DataqueryBuilder) Scope(scope struct {
+	Matchers string `json:"matchers"`
+}) *DataqueryBuilder {
+	builder.internal.Scope = &scope
+
+	return builder
+}
+
 func (builder *DataqueryBuilder) RefId(refId string) *DataqueryBuilder {
 	builder.internal.RefId = &refId
 
@@ -108,6 +116,14 @@ func (builder *DataqueryBuilder) QueryType(queryType string) *DataqueryBuilder {
 
 func (builder *DataqueryBuilder) Datasource(datasource any) *DataqueryBuilder {
 	builder.internal.Datasource = &datasource
+
+	return builder
+}
+
+// An additional lower limit for the step parameter of the Prometheus query and for the
+// `$__interval` and `$__rate_interval` variables.
+func (builder *DataqueryBuilder) Interval(interval string) *DataqueryBuilder {
+	builder.internal.Interval = &interval
 
 	return builder
 }

@@ -108,8 +108,8 @@ func (builder *TempoQueryBuilder) MaxDuration(maxDuration string) *TempoQueryBui
 	return builder
 }
 
-// Filters to be included in a PromQL query to select data for the service graph. Example: {client="app",service="app"}
-func (builder *TempoQueryBuilder) ServiceMapQuery(serviceMapQuery string) *TempoQueryBuilder {
+// Filters to be included in a PromQL query to select data for the service graph. Example: {client="app",service="app"}. Providing multiple values will produce union of results for each filter, using PromQL OR operator internally.
+func (builder *TempoQueryBuilder) ServiceMapQuery(serviceMapQuery StringOrArrayOfString) *TempoQueryBuilder {
 	builder.internal.ServiceMapQuery = &serviceMapQuery
 
 	return builder

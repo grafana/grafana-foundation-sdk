@@ -8,7 +8,7 @@ import (
 	"fmt"
 )
 
-func (resource *BuiltinRoleRefOrCustomRoleRef) MarshalJSON() ([]byte, error) {
+func (resource BuiltinRoleRefOrCustomRoleRef) MarshalJSON() ([]byte, error) {
 	if resource.BuiltinRoleRef != nil {
 		return json.Marshal(resource.BuiltinRoleRef)
 	}

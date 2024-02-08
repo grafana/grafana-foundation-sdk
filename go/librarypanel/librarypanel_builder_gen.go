@@ -107,8 +107,6 @@ func (builder *LibraryPanelBuilder) Model(model struct {
 	Type string `json:"type"`
 	// The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
 	PluginVersion *string `json:"pluginVersion,omitempty"`
-	// Tags for the panel.
-	Tags []string `json:"tags,omitempty"`
 	// Depends on the panel plugin. See the plugin documentation for details.
 	Targets []cogvariants.Dataquery `json:"targets,omitempty"`
 	// Panel title.

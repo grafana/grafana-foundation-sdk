@@ -19,6 +19,7 @@ export enum SupportingQueryType {
 	LogsVolume = "logsVolume",
 	LogsSample = "logsSample",
 	DataSample = "dataSample",
+	InfiniteScroll = "infiniteScroll",
 }
 
 export const defaultSupportingQueryType = (): SupportingQueryType => (SupportingQueryType.LogsVolume);

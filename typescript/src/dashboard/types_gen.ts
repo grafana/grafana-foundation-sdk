@@ -44,7 +44,7 @@ export interface Dashboard {
 	// Day when the week starts. Expressed by the name of the day in lowercase, e.g. "monday".
 	weekStart?: string;
 	// Refresh rate of dashboard. Represented via interval string, e.g. "5s", "1m", "1h", "1d".
-	refresh?: string | false;
+	refresh?: string;
 	// Version of the JSON schema, incremented each time a Grafana update brings
 	// changes to said schema.
 	schemaVersion: number;
@@ -334,6 +334,7 @@ export const defaultDashboardLinkType = (): DashboardLinkType => (DashboardLinkT
 export enum VariableType {
 	Query = "query",
 	Adhoc = "adhoc",
+	Groupby = "groupby",
 	Constant = "constant",
 	Datasource = "datasource",
 	Interval = "interval",
@@ -613,11 +614,11 @@ export const defaultDataTransformerConfig = (): DataTransformerConfig => ({
 // It defines the default config for the time picker and the refresh picker for the specific dashboard.
 export interface TimePickerConfig {
 	// Whether timepicker is visible or not.
-	hidden: boolean;
+	hidden?: boolean;
 	// Interval options available in the refresh picker dropdown.
-	refresh_intervals: string[];
+	refresh_intervals?: string[];
 	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-	time_options: string[];
+	time_options?: string[];
 	// Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
 	nowDelay?: string;
 }
@@ -711,8 +712,6 @@ export interface Panel {
 	id?: number;
 	// The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
 	pluginVersion?: string;
-	// Tags for the panel.
-	tags?: string[];
 	// Depends on the panel plugin. See the plugin documentation for details.
 	targets?: cog.Dataquery[];
 	// Panel title.

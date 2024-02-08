@@ -128,7 +128,7 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     }
 
     // Refresh rate of dashboard. Represented via interval string, e.g. "5s", "1m", "1h", "1d".
-    refresh(refresh: string | false): this {
+    refresh(refresh: string): this {
         this.internal.refresh = refresh;
         return this;
     }
@@ -215,9 +215,12 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     }
 
     // Links with references to other dashboards or external websites.
-    links(links: cog.Builder<dashboard.DashboardLink>[]): this {
-        const linksResources = links.map(builder => builder.build());
-        this.internal.links = linksResources;
+    link(links: cog.Builder<dashboard.DashboardLink>): this {
+        if (!this.internal.links) {
+            this.internal.links = [];
+        }
+        const linksResource = links.build();
+        this.internal.links.push(linksResource);
         return this;
     }
 

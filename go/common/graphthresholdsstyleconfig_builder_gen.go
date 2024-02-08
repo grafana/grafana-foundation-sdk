@@ -40,7 +40,7 @@ func (builder *GraphThresholdsStyleConfigBuilder) Build() (GraphThresholdsStyleC
 	return *builder.internal, nil
 }
 
-func (builder *GraphThresholdsStyleConfigBuilder) Mode(mode GraphTresholdsStyleMode) *GraphThresholdsStyleConfigBuilder {
+func (builder *GraphThresholdsStyleConfigBuilder) Mode(mode GraphThresholdsStyleMode) *GraphThresholdsStyleConfigBuilder {
 	builder.internal.Mode = mode
 
 	return builder

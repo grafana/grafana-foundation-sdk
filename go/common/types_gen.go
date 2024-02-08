@@ -369,21 +369,21 @@ type HideableFieldConfig struct {
 }
 
 // TODO docs
-type GraphTresholdsStyleMode string
+type GraphThresholdsStyleMode string
 
 const (
-	GraphTresholdsStyleModeOff           GraphTresholdsStyleMode = "off"
-	GraphTresholdsStyleModeLine          GraphTresholdsStyleMode = "line"
-	GraphTresholdsStyleModeDashed        GraphTresholdsStyleMode = "dashed"
-	GraphTresholdsStyleModeArea          GraphTresholdsStyleMode = "area"
-	GraphTresholdsStyleModeLineAndArea   GraphTresholdsStyleMode = "line+area"
-	GraphTresholdsStyleModeDashedAndArea GraphTresholdsStyleMode = "dashed+area"
-	GraphTresholdsStyleModeSeries        GraphTresholdsStyleMode = "series"
+	GraphThresholdsStyleModeOff           GraphThresholdsStyleMode = "off"
+	GraphThresholdsStyleModeLine          GraphThresholdsStyleMode = "line"
+	GraphThresholdsStyleModeDashed        GraphThresholdsStyleMode = "dashed"
+	GraphThresholdsStyleModeArea          GraphThresholdsStyleMode = "area"
+	GraphThresholdsStyleModeLineAndArea   GraphThresholdsStyleMode = "line+area"
+	GraphThresholdsStyleModeDashedAndArea GraphThresholdsStyleMode = "dashed+area"
+	GraphThresholdsStyleModeSeries        GraphThresholdsStyleMode = "series"
 )
 
 // TODO docs
 type GraphThresholdsStyleConfig struct {
-	Mode GraphTresholdsStyleMode `json:"mode"`
+	Mode GraphThresholdsStyleMode `json:"mode"`
 }
 
 // TODO docs
@@ -772,7 +772,7 @@ const (
 
 // Table cell options. Each cell has a display mode
 // and other potential options for that display.
-type TableCellOptions TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions
+type TableCellOptions = TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions
 
 // Use UTC/GMT timezone
 const TimeZoneUtc = "utc"

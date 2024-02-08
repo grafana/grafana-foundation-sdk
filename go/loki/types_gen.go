@@ -20,9 +20,10 @@ const (
 type SupportingQueryType string
 
 const (
-	SupportingQueryTypeLogsVolume SupportingQueryType = "logsVolume"
-	SupportingQueryTypeLogsSample SupportingQueryType = "logsSample"
-	SupportingQueryTypeDataSample SupportingQueryType = "dataSample"
+	SupportingQueryTypeLogsVolume     SupportingQueryType = "logsVolume"
+	SupportingQueryTypeLogsSample     SupportingQueryType = "logsSample"
+	SupportingQueryTypeDataSample     SupportingQueryType = "dataSample"
+	SupportingQueryTypeInfiniteScroll SupportingQueryType = "infiniteScroll"
 )
 
 type LokiQueryDirection string

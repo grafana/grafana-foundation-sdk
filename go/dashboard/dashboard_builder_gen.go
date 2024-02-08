@@ -188,11 +188,8 @@ func (builder *DashboardBuilder) WeekStart(weekStart string) *DashboardBuilder {
 }
 
 // Refresh rate of dashboard. Represented via interval string, e.g. "5s", "1m", "1h", "1d".
-func (builder *DashboardBuilder) Refresh(string string) *DashboardBuilder {
-	if builder.internal.Refresh == nil {
-		builder.internal.Refresh = &StringOrBool{}
-	}
-	builder.internal.Refresh.String = &string
+func (builder *DashboardBuilder) Refresh(refresh string) *DashboardBuilder {
+	builder.internal.Refresh = &refresh
 
 	return builder
 }
@@ -287,17 +284,13 @@ func (builder *DashboardBuilder) Annotations(annotations cog.Builder[AnnotationC
 }
 
 // Links with references to other dashboards or external websites.
-func (builder *DashboardBuilder) Links(links []cog.Builder[DashboardLink]) *DashboardBuilder {
-	linksResources := make([]DashboardLink, 0, len(links))
-	for _, r := range links {
-		linksResource, err := r.Build()
-		if err != nil {
-			builder.errors["links"] = err.(cog.BuildErrors)
-			return builder
-		}
-		linksResources = append(linksResources, linksResource)
+func (builder *DashboardBuilder) Link(links cog.Builder[DashboardLink]) *DashboardBuilder {
+	linksResource, err := links.Build()
+	if err != nil {
+		builder.errors["links"] = err.(cog.BuildErrors)
+		return builder
 	}
-	builder.internal.Links = linksResources
+	builder.internal.Links = append(builder.internal.Links, linksResource)
 
 	return builder
 }

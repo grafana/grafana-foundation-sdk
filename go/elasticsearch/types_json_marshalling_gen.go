@@ -25,7 +25,7 @@ func VariantConfig() cogvariants.DataqueryConfig {
 	}
 }
 
-func (resource *BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics) MarshalJSON() ([]byte, error) {
+func (resource BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics) MarshalJSON() ([]byte, error) {
 	if resource.BucketScript != nil {
 		return json.Marshal(resource.BucketScript)
 	}
@@ -250,7 +250,7 @@ func (resource *BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRa
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
-func (resource *CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics) MarshalJSON() ([]byte, error) {
+func (resource CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics) MarshalJSON() ([]byte, error) {
 	if resource.Count != nil {
 		return json.Marshal(resource.Count)
 	}
@@ -486,7 +486,7 @@ func (resource *CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrS
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
-func (resource *DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested) MarshalJSON() ([]byte, error) {
+func (resource DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested) MarshalJSON() ([]byte, error) {
 	if resource.DateHistogram != nil {
 		return json.Marshal(resource.DateHistogram)
 	}
@@ -579,7 +579,7 @@ func (resource *DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested) U
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
-func (resource *MovingAverageOrDerivativeOrCumulativeSumOrBucketScript) MarshalJSON() ([]byte, error) {
+func (resource MovingAverageOrDerivativeOrCumulativeSumOrBucketScript) MarshalJSON() ([]byte, error) {
 	if resource.MovingAverage != nil {
 		return json.Marshal(resource.MovingAverage)
 	}

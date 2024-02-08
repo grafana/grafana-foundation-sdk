@@ -54,6 +54,13 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
+    scope(scope: {
+	matchers: string;
+}): this {
+        this.internal.scope = scope;
+        return this;
+    }
+
     refId(refId: string): this {
         this.internal.refId = refId;
         return this;
@@ -71,6 +78,13 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
 
     datasource(datasource: any): this {
         this.internal.datasource = datasource;
+        return this;
+    }
+
+    // An additional lower limit for the step parameter of the Prometheus query and for the
+    // `$__interval` and `$__rate_interval` variables.
+    interval(interval: string): this {
+        this.internal.interval = interval;
         return this;
     }
 }

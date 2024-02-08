@@ -60,6 +60,7 @@ export const defaultFieldConfig = (): FieldConfig => ({
 export interface ScatterSeriesConfig {
 	x?: string;
 	y?: string;
+	name?: string;
 	show?: ScatterShow;
 	pointSize?: common.ScaleDimensionConfig;
 	pointColor?: common.ColorDimensionConfig;
@@ -77,7 +78,7 @@ export interface ScatterSeriesConfig {
 	axisGridShow?: boolean;
 	scaleDistribution?: common.ScaleDistributionConfig;
 	axisCenteredZero?: boolean;
-	name?: string;
+	frame?: number;
 	labelValue?: common.TextDimensionConfig;
 	axisBorderShow?: boolean;
 }

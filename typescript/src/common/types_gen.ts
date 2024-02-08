@@ -439,7 +439,7 @@ export const defaultHideableFieldConfig = (): HideableFieldConfig => ({
 });
 
 // TODO docs
-export enum GraphTresholdsStyleMode {
+export enum GraphThresholdsStyleMode {
 	Off = "off",
 	Line = "line",
 	Dashed = "dashed",
@@ -449,15 +449,15 @@ export enum GraphTresholdsStyleMode {
 	Series = "series",
 }
 
-export const defaultGraphTresholdsStyleMode = (): GraphTresholdsStyleMode => (GraphTresholdsStyleMode.Off);
+export const defaultGraphThresholdsStyleMode = (): GraphThresholdsStyleMode => (GraphThresholdsStyleMode.Off);
 
 // TODO docs
 export interface GraphThresholdsStyleConfig {
-	mode: GraphTresholdsStyleMode;
+	mode: GraphThresholdsStyleMode;
 }
 
 export const defaultGraphThresholdsStyleConfig = (): GraphThresholdsStyleConfig => ({
-	mode: GraphTresholdsStyleMode.Off,
+	mode: GraphThresholdsStyleMode.Off,
 });
 
 // TODO docs

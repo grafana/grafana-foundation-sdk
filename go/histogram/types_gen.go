@@ -7,10 +7,12 @@ import (
 )
 
 type Options struct {
+	// Bucket count (approx)
+	BucketCount *int32 `json:"bucketCount,omitempty"`
 	// Size of each bucket
 	BucketSize *int32 `json:"bucketSize,omitempty"`
 	// Offset buckets by this amount
-	BucketOffset *int32                   `json:"bucketOffset,omitempty"`
+	BucketOffset *float32                 `json:"bucketOffset,omitempty"`
 	Legend       common.VizLegendOptions  `json:"legend"`
 	Tooltip      common.VizTooltipOptions `json:"tooltip"`
 	// Combines multiple series into a single histogram

@@ -73,8 +73,8 @@ export class TempoQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
-    // Filters to be included in a PromQL query to select data for the service graph. Example: {client="app",service="app"}
-    serviceMapQuery(serviceMapQuery: string): this {
+    // Filters to be included in a PromQL query to select data for the service graph. Example: {client="app",service="app"}. Providing multiple values will produce union of results for each filter, using PromQL OR operator internally.
+    serviceMapQuery(serviceMapQuery: string | string[]): this {
         this.internal.serviceMapQuery = serviceMapQuery;
         return this;
     }
