@@ -25,7 +25,7 @@ func VariantConfig() cogvariants.DataqueryConfig {
 	}
 }
 
-func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) MarshalJSON() ([]byte, error) {
+func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) MarshalJSON() ([]byte, error) {
 	if resource.CloudWatchMetricsQuery != nil {
 		return json.Marshal(resource.CloudWatchMetricsQuery)
 	}
@@ -85,7 +85,7 @@ func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotatio
 	return fmt.Errorf("could not unmarshal resource with `queryMode = %v`", discriminator)
 }
 
-func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) MarshalJSON() ([]byte, error) {
+func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) MarshalJSON() ([]byte, error) {
 	if resource.QueryEditorArrayExpression != nil {
 		return json.Marshal(resource.QueryEditorArrayExpression)
 	}
@@ -186,7 +186,7 @@ func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQuery
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
-func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) MarshalJSON() ([]byte, error) {
+func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) MarshalJSON() ([]byte, error) {
 	if resource.QueryEditorPropertyExpression != nil {
 		return json.Marshal(resource.QueryEditorPropertyExpression)
 	}
@@ -235,7 +235,7 @@ func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Un
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
-func (resource *StringOrArrayOfString) MarshalJSON() ([]byte, error) {
+func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
 	}
@@ -277,7 +277,7 @@ func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
-func (resource *StringOrBoolOrInt64) MarshalJSON() ([]byte, error) {
+func (resource StringOrBoolOrInt64) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
 	}
@@ -333,7 +333,7 @@ func (resource *StringOrBoolOrInt64) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
-func (resource *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) MarshalJSON() ([]byte, error) {
+func (resource StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
 	}

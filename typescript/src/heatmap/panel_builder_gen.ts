@@ -487,9 +487,9 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         }
         if (!this.internal.options.tooltip) {
             this.internal.options.tooltip = {
+	showColorScale: false,
 	show: true,
 	yHistogram: false,
-	showColorScale: false,
 };
         }
         this.internal.options.tooltip.yHistogram = false;
@@ -502,9 +502,9 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         }
         if (!this.internal.options.tooltip) {
             this.internal.options.tooltip = {
-	showColorScale: false,
 	show: true,
 	yHistogram: false,
+	showColorScale: false,
 };
         }
         this.internal.options.tooltip.showColorScale = showColorScale;
