@@ -25,7 +25,7 @@ func VariantConfig() cogvariants.DataqueryConfig {
 	}
 }
 
-func (resource *BoolOrFloat64) MarshalJSON() ([]byte, error) {
+func (resource BoolOrFloat64) MarshalJSON() ([]byte, error) {
 	if resource.Bool != nil {
 		return json.Marshal(resource.Bool)
 	}
@@ -67,7 +67,7 @@ func (resource *BoolOrFloat64) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
-func (resource *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableJsonViewCellOptions) MarshalJSON() ([]byte, error) {
+func (resource TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableJsonViewCellOptions) MarshalJSON() ([]byte, error) {
 	if resource.TableAutoCellOptions != nil {
 		return json.Marshal(resource.TableAutoCellOptions)
 	}

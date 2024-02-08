@@ -457,8 +457,8 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         }
         if (!this.internal.options.tooltip) {
             this.internal.options.tooltip = {
-	show: true,
 	yHistogram: false,
+	show: true,
 };
         }
         this.internal.options.tooltip.yHistogram = true;

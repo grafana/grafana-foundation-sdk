@@ -2,9 +2,9 @@
 
 package elasticsearch
 
-type BucketAggregation DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested
+type BucketAggregation = DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested
 
-type MetricAggregation CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
+type MetricAggregation = CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
 
 type BucketAggregationType string
 
@@ -142,7 +142,7 @@ const (
 	PipelineMetricAggregationTypeBucketScript  PipelineMetricAggregationType = "bucket_script"
 )
 
-type MetricAggregationType StringOrPipelineMetricAggregationType
+type MetricAggregationType = StringOrPipelineMetricAggregationType
 
 type BaseMetricAggregation struct {
 	Type MetricAggregationType `json:"type"`
@@ -171,7 +171,7 @@ type MetricAggregationWithMissingSupport struct {
 	Hide *bool                 `json:"hide,omitempty"`
 }
 
-type InlineScript StringOrStruct
+type InlineScript = StringOrStruct
 
 type MetricAggregationWithInlineScript struct {
 	Settings *struct {
@@ -484,9 +484,9 @@ type TopMetrics struct {
 	Hide *bool `json:"hide,omitempty"`
 }
 
-type PipelineMetricAggregation MovingAverageOrDerivativeOrCumulativeSumOrBucketScript
+type PipelineMetricAggregation = MovingAverageOrDerivativeOrCumulativeSumOrBucketScript
 
-type MetricAggregationWithSettings BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
+type MetricAggregationWithSettings = BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
 
 type Dataquery struct {
 	Alias      *string             `json:"alias,omitempty"`

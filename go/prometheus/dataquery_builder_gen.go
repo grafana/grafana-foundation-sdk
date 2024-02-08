@@ -112,5 +112,13 @@ func (builder *DataqueryBuilder) Datasource(datasource any) *DataqueryBuilder {
 	return builder
 }
 
+// An additional lower limit for the step parameter of the Prometheus query and for the
+// `$__interval` and `$__rate_interval` variables.
+func (builder *DataqueryBuilder) Interval(interval string) *DataqueryBuilder {
+	builder.internal.Interval = &interval
+
+	return builder
+}
+
 func (builder *DataqueryBuilder) applyDefaults() {
 }

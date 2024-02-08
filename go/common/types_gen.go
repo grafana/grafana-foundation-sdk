@@ -733,7 +733,7 @@ const (
 
 // Table cell options. Each cell has a display mode
 // and other potential options for that display.
-type TableCellOptions TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableJsonViewCellOptions
+type TableCellOptions = TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableJsonViewCellOptions
 
 // Use UTC/GMT timezone
 const TimeZoneUtc = "utc"
