@@ -12,4 +12,4 @@ type Options struct {
 	Tooltip  common.VizTooltipOptions `json:"tooltip"`
 }
 
-type FieldConfig common.GraphFieldConfig
+type FieldConfig = common.GraphFieldConfig

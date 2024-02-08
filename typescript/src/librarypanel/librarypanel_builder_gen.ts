@@ -70,8 +70,6 @@ export class LibraryPanelBuilder implements cog.Builder<librarypanel.LibraryPane
 	type: string;
 	// The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
 	pluginVersion?: string;
-	// Tags for the panel.
-	tags?: string[];
 	// Depends on the panel plugin. See the plugin documentation for details.
 	targets?: cog.Dataquery[];
 	// Panel title.

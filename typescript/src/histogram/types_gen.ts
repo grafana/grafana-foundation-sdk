@@ -4,6 +4,8 @@ import * as common from '../common';
 
 
 export interface Options {
+	// Bucket count (approx)
+	bucketCount?: number;
 	// Size of each bucket
 	bucketSize?: number;
 	// Offset buckets by this amount
@@ -15,6 +17,7 @@ export interface Options {
 }
 
 export const defaultOptions = (): Options => ({
+	bucketCount: 30,
 	bucketOffset: 0,
 	legend: common.defaultVizLegendOptions(),
 	tooltip: common.defaultVizTooltipOptions(),

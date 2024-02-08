@@ -63,6 +63,7 @@ type SimulationQuery struct {
 type NodesQuery struct {
 	Type  *NodesQueryType `json:"type,omitempty"`
 	Count *int64          `json:"count,omitempty"`
+	Seed  *int64          `json:"seed,omitempty"`
 }
 
 type USAQuery struct {
@@ -137,9 +138,10 @@ const (
 type NodesQueryType string
 
 const (
-	NodesQueryTypeRandom      NodesQueryType = "random"
-	NodesQueryTypeResponse    NodesQueryType = "response"
-	NodesQueryTypeRandomEdges NodesQueryType = "random edges"
+	NodesQueryTypeRandom         NodesQueryType = "random"
+	NodesQueryTypeResponseSmall  NodesQueryType = "response_small"
+	NodesQueryTypeResponseMedium NodesQueryType = "response_medium"
+	NodesQueryTypeRandomEdges    NodesQueryType = "random edges"
 )
 
 type DataqueryErrorType string

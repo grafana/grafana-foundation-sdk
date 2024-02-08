@@ -170,9 +170,9 @@ type QueryEditorOperator struct {
 	Value *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType `json:"value,omitempty"`
 }
 
-type QueryEditorOperatorValueType StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType
+type QueryEditorOperatorValueType = StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType
 
-type QueryEditorOperatorType StringOrBoolOrInt64
+type QueryEditorOperatorType = StringOrBoolOrInt64
 
 type QueryEditorProperty struct {
 	Type QueryEditorPropertyType `json:"type"`
@@ -190,7 +190,7 @@ type QueryEditorArrayExpression struct {
 	Expressions []QueryEditorExpression        `json:"expressions"`
 }
 
-type QueryEditorExpression QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
+type QueryEditorExpression = QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
 
 // Shape of a CloudWatch Logs query
 type CloudWatchLogsQuery struct {
@@ -294,7 +294,7 @@ type CloudWatchAnnotationQuery struct {
 
 func (resource CloudWatchAnnotationQuery) ImplementsDataqueryVariant() {}
 
-type CloudWatchQuery CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
+type CloudWatchQuery = CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
 
 func (resource CloudWatchQuery) ImplementsDataqueryVariant() {}
 

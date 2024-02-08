@@ -351,6 +351,20 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 	return builder
 }
 
+// Bucket count (approx)
+func (builder *PanelBuilder) BucketCount(bucketCount int32) *PanelBuilder {
+	if !(bucketCount > 0) {
+		builder.errors["bucketCount"] = cog.MakeBuildErrors("bucketCount", errors.New("bucketCount must be > 0"))
+		return builder
+	}
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).BucketCount = &bucketCount
+
+	return builder
+}
+
 // Size of each bucket
 func (builder *PanelBuilder) BucketSize(bucketSize int32) *PanelBuilder {
 	if builder.internal.Options == nil {
@@ -362,7 +376,7 @@ func (builder *PanelBuilder) BucketSize(bucketSize int32) *PanelBuilder {
 }
 
 // Offset buckets by this amount
-func (builder *PanelBuilder) BucketOffset(bucketOffset int32) *PanelBuilder {
+func (builder *PanelBuilder) BucketOffset(bucketOffset float32) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
@@ -603,6 +617,7 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.Transparent(false)
 	builder.Height(9)
 	builder.Span(12)
+	builder.BucketCount(30)
 	builder.BucketOffset(0)
 	builder.LineWidth(1)
 	builder.FillOpacity(80)

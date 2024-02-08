@@ -47,7 +47,7 @@ type Dashboard struct {
 	// Day when the week starts. Expressed by the name of the day in lowercase, e.g. "monday".
 	WeekStart *string `json:"weekStart,omitempty"`
 	// Refresh rate of dashboard. Represented via interval string, e.g. "5s", "1m", "1h", "1d".
-	Refresh *StringOrBool `json:"refresh,omitempty"`
+	Refresh *string `json:"refresh,omitempty"`
 	// Version of the JSON schema, incremented each time a Grafana update brings
 	// changes to said schema.
 	SchemaVersion uint16 `json:"schemaVersion"`
@@ -276,6 +276,7 @@ type VariableType string
 const (
 	VariableTypeQuery      VariableType = "query"
 	VariableTypeAdhoc      VariableType = "adhoc"
+	VariableTypeGroupby    VariableType = "groupby"
 	VariableTypeConstant   VariableType = "constant"
 	VariableTypeDatasource VariableType = "datasource"
 	VariableTypeInterval   VariableType = "interval"
@@ -382,7 +383,7 @@ type ThresholdsConfig struct {
 }
 
 // Allow to transform the visual representation of specific data values in a visualization, irrespective of their original units
-type ValueMapping ValueMapOrRangeMapOrRegexMapOrSpecialValueMap
+type ValueMapping = ValueMapOrRangeMapOrRegexMapOrSpecialValueMap
 
 // Supported value mapping types
 // `value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
@@ -492,11 +493,11 @@ type DataTransformerConfig struct {
 // It defines the default config for the time picker and the refresh picker for the specific dashboard.
 type TimePickerConfig struct {
 	// Whether timepicker is visible or not.
-	Hidden bool `json:"hidden"`
+	Hidden *bool `json:"hidden,omitempty"`
 	// Interval options available in the refresh picker dropdown.
-	RefreshIntervals []string `json:"refresh_intervals"`
+	RefreshIntervals []string `json:"refresh_intervals,omitempty"`
 	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-	TimeOptions []string `json:"time_options"`
+	TimeOptions []string `json:"time_options,omitempty"`
 	// Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
 	NowDelay *string `json:"nowDelay,omitempty"`
 }
@@ -550,8 +551,6 @@ type Panel struct {
 	Id *uint32 `json:"id,omitempty"`
 	// The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
 	PluginVersion *string `json:"pluginVersion,omitempty"`
-	// Tags for the panel.
-	Tags []string `json:"tags,omitempty"`
 	// Depends on the panel plugin. See the plugin documentation for details.
 	Targets []cogvariants.Dataquery `json:"targets,omitempty"`
 	// Panel title.
@@ -750,11 +749,6 @@ type StringOrAny struct {
 type StringOrArrayOfString struct {
 	String        *string  `json:"String,omitempty"`
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
-}
-
-type StringOrBool struct {
-	String *string `json:"String,omitempty"`
-	Bool   *bool   `json:"Bool,omitempty"`
 }
 
 type ValueMapOrRangeMapOrRegexMapOrSpecialValueMap struct {

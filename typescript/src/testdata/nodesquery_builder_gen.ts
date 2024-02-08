@@ -14,13 +14,18 @@ export class NodesQueryBuilder implements cog.Builder<testdata.NodesQuery> {
         return this.internal;
     }
 
-    type(type: "random" | "response" | "random edges"): this {
+    type(type: "random" | "response_small" | "response_medium" | "random edges"): this {
         this.internal.type = type;
         return this;
     }
 
     count(count: number): this {
         this.internal.count = count;
+        return this;
+    }
+
+    seed(seed: number): this {
+        this.internal.seed = seed;
         return this;
     }
 }

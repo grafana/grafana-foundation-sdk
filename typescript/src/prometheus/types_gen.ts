@@ -24,10 +24,16 @@ export interface dataquery {
 	format?: PromQueryFormat;
 	legendFormat?: string;
 	intervalFactor?: number;
+	scope?: {
+		matchers: string;
+	};
 	refId?: string;
 	hide?: boolean;
 	queryType?: string;
 	datasource?: any;
+	// An additional lower limit for the step parameter of the Prometheus query and for the
+	// `$__interval` and `$__rate_interval` variables.
+	interval?: string;
 	_implementsDataqueryVariant(): void;
 }
 

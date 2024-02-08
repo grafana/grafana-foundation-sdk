@@ -59,4 +59,4 @@ type Options struct {
 	Orientation   common.VizOrientation         `json:"orientation"`
 }
 
-type FieldConfig common.HideableFieldConfig
+type FieldConfig = common.HideableFieldConfig

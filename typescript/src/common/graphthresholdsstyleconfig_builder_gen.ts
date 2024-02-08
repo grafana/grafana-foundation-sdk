@@ -15,7 +15,7 @@ export class GraphThresholdsStyleConfigBuilder implements cog.Builder<common.Gra
         return this.internal;
     }
 
-    mode(mode: common.GraphTresholdsStyleMode): this {
+    mode(mode: common.GraphThresholdsStyleMode): this {
         this.internal.mode = mode;
         return this;
     }

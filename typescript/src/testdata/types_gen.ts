@@ -73,8 +73,9 @@ export const defaultSimulationQuery = (): SimulationQuery => ({
 });
 
 export interface NodesQuery {
-	type?: "random" | "response" | "random edges";
+	type?: "random" | "response_small" | "response_medium" | "random edges";
 	count?: number;
+	seed?: number;
 }
 
 export const defaultNodesQuery = (): NodesQuery => ({

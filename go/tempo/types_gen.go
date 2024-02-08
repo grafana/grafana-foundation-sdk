@@ -26,8 +26,8 @@ type TempoQuery struct {
 	MinDuration *string `json:"minDuration,omitempty"`
 	// @deprecated Define the maximum duration to select traces. Use duration format, for example: 1.2s, 100ms
 	MaxDuration *string `json:"maxDuration,omitempty"`
-	// Filters to be included in a PromQL query to select data for the service graph. Example: {client="app",service="app"}
-	ServiceMapQuery *string `json:"serviceMapQuery,omitempty"`
+	// Filters to be included in a PromQL query to select data for the service graph. Example: {client="app",service="app"}. Providing multiple values will produce union of results for each filter, using PromQL OR operator internally.
+	ServiceMapQuery *StringOrArrayOfString `json:"serviceMapQuery,omitempty"`
 	// Use service.namespace in addition to service.name to uniquely identify a service.
 	ServiceMapIncludeNamespace *bool `json:"serviceMapIncludeNamespace,omitempty"`
 	// Defines the maximum number of traces that are returned from Tempo

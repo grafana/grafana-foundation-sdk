@@ -54,6 +54,7 @@ type FieldConfig struct {
 type ScatterSeriesConfig struct {
 	X                 *string                         `json:"x,omitempty"`
 	Y                 *string                         `json:"y,omitempty"`
+	Name              *string                         `json:"name,omitempty"`
 	Show              *ScatterShow                    `json:"show,omitempty"`
 	PointSize         *common.ScaleDimensionConfig    `json:"pointSize,omitempty"`
 	PointColor        *common.ColorDimensionConfig    `json:"pointColor,omitempty"`
@@ -71,7 +72,7 @@ type ScatterSeriesConfig struct {
 	AxisGridShow      *bool                           `json:"axisGridShow,omitempty"`
 	ScaleDistribution *common.ScaleDistributionConfig `json:"scaleDistribution,omitempty"`
 	AxisCenteredZero  *bool                           `json:"axisCenteredZero,omitempty"`
-	Name              *string                         `json:"name,omitempty"`
+	Frame             *float64                        `json:"frame,omitempty"`
 	LabelValue        *common.TextDimensionConfig     `json:"labelValue,omitempty"`
 	AxisBorderShow    *bool                           `json:"axisBorderShow,omitempty"`
 }

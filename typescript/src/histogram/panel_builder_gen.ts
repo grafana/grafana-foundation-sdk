@@ -305,6 +305,18 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Bucket count (approx)
+    bucketCount(bucketCount: number): this {
+        if (!this.internal.options) {
+            this.internal.options = histogram.defaultOptions();
+        }
+        if (!(bucketCount > 0)) {
+            throw new Error("bucketCount must be > 0");
+        }
+        this.internal.options.bucketCount = bucketCount;
+        return this;
+    }
+
     // Size of each bucket
     bucketSize(bucketSize: number): this {
         if (!this.internal.options) {

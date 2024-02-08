@@ -14,4 +14,4 @@ type Options struct {
 	XField *string `json:"xField,omitempty"`
 }
 
-type FieldConfig common.GraphFieldConfig
+type FieldConfig = common.GraphFieldConfig

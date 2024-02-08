@@ -37,12 +37,6 @@ func (resource *Panel) UnmarshalJSON(raw []byte) error {
 		}
 	}
 
-	if fields["tags"] != nil {
-		if err := json.Unmarshal(fields["tags"], &resource.Tags); err != nil {
-			return err
-		}
-	}
-
 	if fields["title"] != nil {
 		if err := json.Unmarshal(fields["title"], &resource.Title); err != nil {
 			return err
@@ -194,7 +188,7 @@ func (resource *Panel) UnmarshalJSON(raw []byte) error {
 
 	return nil
 }
-func (resource *PanelOrRowPanel) MarshalJSON() ([]byte, error) {
+func (resource PanelOrRowPanel) MarshalJSON() ([]byte, error) {
 	if resource.Panel != nil {
 		return json.Marshal(resource.Panel)
 	}
@@ -243,7 +237,7 @@ func (resource *PanelOrRowPanel) UnmarshalJSON(raw []byte) error {
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
-func (resource *StringOrAny) MarshalJSON() ([]byte, error) {
+func (resource StringOrAny) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
 	}
@@ -285,7 +279,7 @@ func (resource *StringOrAny) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
-func (resource *StringOrArrayOfString) MarshalJSON() ([]byte, error) {
+func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
 	}
@@ -327,49 +321,7 @@ func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
-func (resource *StringOrBool) MarshalJSON() ([]byte, error) {
-	if resource.String != nil {
-		return json.Marshal(resource.String)
-	}
-
-	if resource.Bool != nil {
-		return json.Marshal(resource.Bool)
-	}
-
-	return nil, nil
-}
-
-func (resource *StringOrBool) UnmarshalJSON(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-
-	var errList []error
-
-	// String
-	var String string
-	if err := json.Unmarshal(raw, &String); err != nil {
-		errList = append(errList, err)
-		resource.String = nil
-	} else {
-		resource.String = &String
-		return nil
-	}
-
-	// Bool
-	var Bool bool
-	if err := json.Unmarshal(raw, &Bool); err != nil {
-		errList = append(errList, err)
-		resource.Bool = nil
-	} else {
-		resource.Bool = &Bool
-		return nil
-	}
-
-	return errors.Join(errList...)
-}
-
-func (resource *ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) MarshalJSON() ([]byte, error) {
+func (resource ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) MarshalJSON() ([]byte, error) {
 	if resource.ValueMap != nil {
 		return json.Marshal(resource.ValueMap)
 	}

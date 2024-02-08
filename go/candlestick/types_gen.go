@@ -68,4 +68,4 @@ type Options struct {
 	IncludeAllFields *bool `json:"includeAllFields,omitempty"`
 }
 
-type FieldConfig common.GraphFieldConfig
+type FieldConfig = common.GraphFieldConfig

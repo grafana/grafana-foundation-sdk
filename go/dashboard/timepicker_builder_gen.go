@@ -43,7 +43,7 @@ func (builder *TimePickerBuilder) Build() (TimePickerConfig, error) {
 
 // Whether timepicker is visible or not.
 func (builder *TimePickerBuilder) Hidden(hidden bool) *TimePickerBuilder {
-	builder.internal.Hidden = hidden
+	builder.internal.Hidden = &hidden
 
 	return builder
 }

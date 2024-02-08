@@ -51,5 +51,11 @@ func (builder *NodesQueryBuilder) Count(count int64) *NodesQueryBuilder {
 	return builder
 }
 
+func (builder *NodesQueryBuilder) Seed(seed int64) *NodesQueryBuilder {
+	builder.internal.Seed = &seed
+
+	return builder
+}
+
 func (builder *NodesQueryBuilder) applyDefaults() {
 }

@@ -24,7 +24,7 @@ func VariantConfig() cogvariants.DataqueryConfig {
 	}
 }
 
-func (resource *StringOrArrayOfString) MarshalJSON() ([]byte, error) {
+func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
 	}

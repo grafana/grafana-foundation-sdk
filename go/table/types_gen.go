@@ -21,4 +21,4 @@ type Options struct {
 	CellHeight *common.TableCellHeight `json:"cellHeight,omitempty"`
 }
 
-type FieldConfig common.TableFieldOptions
+type FieldConfig = common.TableFieldOptions
