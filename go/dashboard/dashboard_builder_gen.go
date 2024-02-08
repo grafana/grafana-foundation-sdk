@@ -293,17 +293,13 @@ func (builder *DashboardBuilder) Annotations(annotations cog.Builder[AnnotationC
 }
 
 // Links with references to other dashboards or external websites.
-func (builder *DashboardBuilder) Links(links []cog.Builder[DashboardLink]) *DashboardBuilder {
-	linksResources := make([]DashboardLink, 0, len(links))
-	for _, r := range links {
-		linksResource, err := r.Build()
-		if err != nil {
-			builder.errors["links"] = err.(cog.BuildErrors)
-			return builder
-		}
-		linksResources = append(linksResources, linksResource)
+func (builder *DashboardBuilder) Link(links cog.Builder[DashboardLink]) *DashboardBuilder {
+	linksResource, err := links.Build()
+	if err != nil {
+		builder.errors["links"] = err.(cog.BuildErrors)
+		return builder
 	}
-	builder.internal.Links = linksResources
+	builder.internal.Links = append(builder.internal.Links, linksResource)
 
 	return builder
 }

@@ -73,4 +73,11 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         this.internal.datasource = datasource;
         return this;
     }
+
+    // An additional lower limit for the step parameter of the Prometheus query and for the
+    // `$__interval` and `$__rate_interval` variables.
+    interval(interval: string): this {
+        this.internal.interval = interval;
+        return this;
+    }
 }

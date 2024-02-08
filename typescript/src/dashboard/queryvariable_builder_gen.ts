@@ -106,4 +106,11 @@ export class QueryVariableBuilder implements cog.Builder<dashboard.VariableModel
         this.internal.allValue = allValue;
         return this;
     }
+
+    // Optional field, if you want to extract part of a series name or metric node segment.
+    // Named capture groups can be used to separate the display text and value.
+    regex(regex: string): this {
+        this.internal.regex = regex;
+        return this;
+    }
 }

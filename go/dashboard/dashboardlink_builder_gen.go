@@ -14,7 +14,7 @@ type DashboardLinkBuilder struct {
 	errors   map[string]cog.BuildErrors
 }
 
-func NewDashboardLinkBuilder() *DashboardLinkBuilder {
+func NewDashboardLinkBuilder(title string) *DashboardLinkBuilder {
 	resource := &DashboardLink{}
 	builder := &DashboardLinkBuilder{
 		internal: resource,
@@ -22,6 +22,7 @@ func NewDashboardLinkBuilder() *DashboardLinkBuilder {
 	}
 
 	builder.applyDefaults()
+	builder.internal.Title = title
 
 	return builder
 }

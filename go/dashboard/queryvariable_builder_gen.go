@@ -147,5 +147,13 @@ func (builder *QueryVariableBuilder) AllValue(allValue string) *QueryVariableBui
 	return builder
 }
 
+// Optional field, if you want to extract part of a series name or metric node segment.
+// Named capture groups can be used to separate the display text and value.
+func (builder *QueryVariableBuilder) Regex(regex string) *QueryVariableBuilder {
+	builder.internal.Regex = &regex
+
+	return builder
+}
+
 func (builder *QueryVariableBuilder) applyDefaults() {
 }
