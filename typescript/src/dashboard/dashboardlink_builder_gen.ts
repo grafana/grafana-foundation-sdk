@@ -7,8 +7,9 @@ import * as dashboard from '../dashboard';
 export class DashboardLinkBuilder implements cog.Builder<dashboard.DashboardLink> {
     private readonly internal: dashboard.DashboardLink;
 
-    constructor() {
+    constructor(title: string) {
         this.internal = dashboard.defaultDashboardLink();
+        this.internal.title = title;
     }
 
     build(): dashboard.DashboardLink {

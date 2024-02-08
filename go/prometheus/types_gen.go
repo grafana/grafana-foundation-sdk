@@ -30,6 +30,9 @@ type Dataquery struct {
 	Hide           *bool            `json:"hide,omitempty"`
 	QueryType      *string          `json:"queryType,omitempty"`
 	Datasource     any              `json:"datasource,omitempty"`
+	// An additional lower limit for the step parameter of the Prometheus query and for the
+	// `$__interval` and `$__rate_interval` variables.
+	Interval *string `json:"interval,omitempty"`
 }
 
 func (resource Dataquery) ImplementsDataqueryVariant() {}
