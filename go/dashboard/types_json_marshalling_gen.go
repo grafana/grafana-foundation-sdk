@@ -194,7 +194,7 @@ func (resource *Panel) UnmarshalJSON(raw []byte) error {
 
 	return nil
 }
-func (resource *PanelOrRowPanel) MarshalJSON() ([]byte, error) {
+func (resource PanelOrRowPanel) MarshalJSON() ([]byte, error) {
 	if resource.Panel != nil {
 		return json.Marshal(resource.Panel)
 	}
@@ -243,7 +243,7 @@ func (resource *PanelOrRowPanel) UnmarshalJSON(raw []byte) error {
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
-func (resource *StringOrAny) MarshalJSON() ([]byte, error) {
+func (resource StringOrAny) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
 	}
@@ -285,7 +285,7 @@ func (resource *StringOrAny) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
-func (resource *StringOrArrayOfString) MarshalJSON() ([]byte, error) {
+func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
 	}
@@ -327,7 +327,7 @@ func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
-func (resource *StringOrBool) MarshalJSON() ([]byte, error) {
+func (resource StringOrBool) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
 	}
@@ -369,7 +369,7 @@ func (resource *StringOrBool) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
-func (resource *ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) MarshalJSON() ([]byte, error) {
+func (resource ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) MarshalJSON() ([]byte, error) {
 	if resource.ValueMap != nil {
 		return json.Marshal(resource.ValueMap)
 	}
