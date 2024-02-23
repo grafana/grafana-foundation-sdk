@@ -26,7 +26,7 @@ func NewPanelBuilder() *PanelBuilder {
 	}
 
 	builder.applyDefaults()
-	builder.internal.Type = "nodegraph"
+	builder.internal.Type = "nodeGraph"
 
 	return builder
 }

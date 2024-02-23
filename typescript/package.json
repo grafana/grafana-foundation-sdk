@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "10.3.0-cogv0.0.x.1707410936",
+  "version": "10.3.0-cogv0.0.x.1708698385",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -30,105 +30,29 @@
       "types": "./dist/cog/index.d.ts",
       "default": "./dist/cog/index.js"
     },
-    "./common": {
-      "types": "./dist/common/index.d.ts",
-      "default": "./dist/common/index.js"
-    },
-    "./accesspolicy": {
-      "types": "./dist/accesspolicy/index.d.ts",
-      "default": "./dist/accesspolicy/index.js"
-    },
-    "./dashboard": {
-      "types": "./dist/dashboard/index.d.ts",
-      "default": "./dist/dashboard/index.js"
-    },
-    "./librarypanel": {
-      "types": "./dist/librarypanel/index.d.ts",
-      "default": "./dist/librarypanel/index.js"
-    },
-    "./preferences": {
-      "types": "./dist/preferences/index.d.ts",
-      "default": "./dist/preferences/index.js"
-    },
-    "./publicdashboard": {
-      "types": "./dist/publicdashboard/index.d.ts",
-      "default": "./dist/publicdashboard/index.js"
-    },
     "./role": {
       "types": "./dist/role/index.d.ts",
       "default": "./dist/role/index.js"
-    },
-    "./rolebinding": {
-      "types": "./dist/rolebinding/index.d.ts",
-      "default": "./dist/rolebinding/index.js"
-    },
-    "./team": {
-      "types": "./dist/team/index.d.ts",
-      "default": "./dist/team/index.js"
-    },
-    "./alertgroups": {
-      "types": "./dist/alertgroups/index.d.ts",
-      "default": "./dist/alertgroups/index.js"
-    },
-    "./annotationslist": {
-      "types": "./dist/annotationslist/index.d.ts",
-      "default": "./dist/annotationslist/index.js"
-    },
-    "./azuremonitor": {
-      "types": "./dist/azuremonitor/index.d.ts",
-      "default": "./dist/azuremonitor/index.js"
-    },
-    "./barchart": {
-      "types": "./dist/barchart/index.d.ts",
-      "default": "./dist/barchart/index.js"
-    },
-    "./bargauge": {
-      "types": "./dist/bargauge/index.d.ts",
-      "default": "./dist/bargauge/index.js"
     },
     "./candlestick": {
       "types": "./dist/candlestick/index.d.ts",
       "default": "./dist/candlestick/index.js"
     },
-    "./canvas": {
-      "types": "./dist/canvas/index.d.ts",
-      "default": "./dist/canvas/index.js"
-    },
-    "./cloudwatch": {
-      "types": "./dist/cloudwatch/index.d.ts",
-      "default": "./dist/cloudwatch/index.js"
-    },
     "./dashboardlist": {
       "types": "./dist/dashboardlist/index.d.ts",
       "default": "./dist/dashboardlist/index.js"
     },
-    "./datagrid": {
-      "types": "./dist/datagrid/index.d.ts",
-      "default": "./dist/datagrid/index.js"
+    "./prometheus": {
+      "types": "./dist/prometheus/index.d.ts",
+      "default": "./dist/prometheus/index.js"
     },
-    "./debug": {
-      "types": "./dist/debug/index.d.ts",
-      "default": "./dist/debug/index.js"
+    "./timeseries": {
+      "types": "./dist/timeseries/index.d.ts",
+      "default": "./dist/timeseries/index.js"
     },
-    "./elasticsearch": {
-      "types": "./dist/elasticsearch/index.d.ts",
-      "default": "./dist/elasticsearch/index.js"
-    },
-    "./gauge": {
-      "types": "./dist/gauge/index.d.ts",
-      "default": "./dist/gauge/index.js"
-    },
-    "./geomap": {
-      "types": "./dist/geomap/index.d.ts",
-      "default": "./dist/geomap/index.js"
-    },
-    "./googlecloudmonitoring": {
-      "types": "./dist/googlecloudmonitoring/index.d.ts",
-      "default": "./dist/googlecloudmonitoring/index.js"
-    },
-    "./grafanapyroscope": {
-      "types": "./dist/grafanapyroscope/index.d.ts",
-      "default": "./dist/grafanapyroscope/index.js"
+    "./librarypanel": {
+      "types": "./dist/librarypanel/index.d.ts",
+      "default": "./dist/librarypanel/index.js"
     },
     "./heatmap": {
       "types": "./dist/heatmap/index.d.ts",
@@ -138,45 +62,49 @@
       "types": "./dist/histogram/index.d.ts",
       "default": "./dist/histogram/index.js"
     },
-    "./logs": {
-      "types": "./dist/logs/index.d.ts",
-      "default": "./dist/logs/index.js"
+    "./stat": {
+      "types": "./dist/stat/index.d.ts",
+      "default": "./dist/stat/index.js"
     },
-    "./loki": {
-      "types": "./dist/loki/index.d.ts",
-      "default": "./dist/loki/index.js"
+    "./common": {
+      "types": "./dist/common/index.d.ts",
+      "default": "./dist/common/index.js"
     },
-    "./news": {
-      "types": "./dist/news/index.d.ts",
-      "default": "./dist/news/index.js"
+    "./dashboard": {
+      "types": "./dist/dashboard/index.d.ts",
+      "default": "./dist/dashboard/index.js"
     },
-    "./nodegraph": {
-      "types": "./dist/nodegraph/index.d.ts",
-      "default": "./dist/nodegraph/index.js"
+    "./annotationslist": {
+      "types": "./dist/annotationslist/index.d.ts",
+      "default": "./dist/annotationslist/index.js"
     },
-    "./parca": {
-      "types": "./dist/parca/index.d.ts",
-      "default": "./dist/parca/index.js"
+    "./bargauge": {
+      "types": "./dist/bargauge/index.d.ts",
+      "default": "./dist/bargauge/index.js"
+    },
+    "./debug": {
+      "types": "./dist/debug/index.d.ts",
+      "default": "./dist/debug/index.js"
+    },
+    "./gauge": {
+      "types": "./dist/gauge/index.d.ts",
+      "default": "./dist/gauge/index.js"
     },
     "./piechart": {
       "types": "./dist/piechart/index.d.ts",
       "default": "./dist/piechart/index.js"
     },
-    "./prometheus": {
-      "types": "./dist/prometheus/index.d.ts",
-      "default": "./dist/prometheus/index.js"
+    "./team": {
+      "types": "./dist/team/index.d.ts",
+      "default": "./dist/team/index.js"
     },
-    "./stat": {
-      "types": "./dist/stat/index.d.ts",
-      "default": "./dist/stat/index.js"
+    "./azuremonitor": {
+      "types": "./dist/azuremonitor/index.d.ts",
+      "default": "./dist/azuremonitor/index.js"
     },
-    "./statetimeline": {
-      "types": "./dist/statetimeline/index.d.ts",
-      "default": "./dist/statetimeline/index.js"
-    },
-    "./statushistory": {
-      "types": "./dist/statushistory/index.d.ts",
-      "default": "./dist/statushistory/index.js"
+    "./cloudwatch": {
+      "types": "./dist/cloudwatch/index.d.ts",
+      "default": "./dist/cloudwatch/index.js"
     },
     "./table": {
       "types": "./dist/table/index.d.ts",
@@ -194,13 +122,85 @@
       "types": "./dist/text/index.d.ts",
       "default": "./dist/text/index.js"
     },
-    "./timeseries": {
-      "types": "./dist/timeseries/index.d.ts",
-      "default": "./dist/timeseries/index.js"
+    "./preferences": {
+      "types": "./dist/preferences/index.d.ts",
+      "default": "./dist/preferences/index.js"
+    },
+    "./alertgroups": {
+      "types": "./dist/alertgroups/index.d.ts",
+      "default": "./dist/alertgroups/index.js"
+    },
+    "./elasticsearch": {
+      "types": "./dist/elasticsearch/index.d.ts",
+      "default": "./dist/elasticsearch/index.js"
+    },
+    "./googlecloudmonitoring": {
+      "types": "./dist/googlecloudmonitoring/index.d.ts",
+      "default": "./dist/googlecloudmonitoring/index.js"
+    },
+    "./publicdashboard": {
+      "types": "./dist/publicdashboard/index.d.ts",
+      "default": "./dist/publicdashboard/index.js"
+    },
+    "./barchart": {
+      "types": "./dist/barchart/index.d.ts",
+      "default": "./dist/barchart/index.js"
+    },
+    "./canvas": {
+      "types": "./dist/canvas/index.d.ts",
+      "default": "./dist/canvas/index.js"
+    },
+    "./datagrid": {
+      "types": "./dist/datagrid/index.d.ts",
+      "default": "./dist/datagrid/index.js"
+    },
+    "./logs": {
+      "types": "./dist/logs/index.d.ts",
+      "default": "./dist/logs/index.js"
+    },
+    "./nodegraph": {
+      "types": "./dist/nodegraph/index.d.ts",
+      "default": "./dist/nodegraph/index.js"
     },
     "./trend": {
       "types": "./dist/trend/index.d.ts",
       "default": "./dist/trend/index.js"
+    },
+    "./rolebinding": {
+      "types": "./dist/rolebinding/index.d.ts",
+      "default": "./dist/rolebinding/index.js"
+    },
+    "./geomap": {
+      "types": "./dist/geomap/index.d.ts",
+      "default": "./dist/geomap/index.js"
+    },
+    "./parca": {
+      "types": "./dist/parca/index.d.ts",
+      "default": "./dist/parca/index.js"
+    },
+    "./statetimeline": {
+      "types": "./dist/statetimeline/index.d.ts",
+      "default": "./dist/statetimeline/index.js"
+    },
+    "./accesspolicy": {
+      "types": "./dist/accesspolicy/index.d.ts",
+      "default": "./dist/accesspolicy/index.js"
+    },
+    "./grafanapyroscope": {
+      "types": "./dist/grafanapyroscope/index.d.ts",
+      "default": "./dist/grafanapyroscope/index.js"
+    },
+    "./loki": {
+      "types": "./dist/loki/index.d.ts",
+      "default": "./dist/loki/index.js"
+    },
+    "./news": {
+      "types": "./dist/news/index.d.ts",
+      "default": "./dist/news/index.js"
+    },
+    "./statushistory": {
+      "types": "./dist/statushistory/index.d.ts",
+      "default": "./dist/statushistory/index.js"
     },
     "./xychart": {
       "types": "./dist/xychart/index.d.ts",

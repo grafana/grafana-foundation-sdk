@@ -10,7 +10,7 @@ import (
 
 func VariantConfig() cogvariants.PanelcfgConfig {
 	return cogvariants.PanelcfgConfig{
-		Identifier: "dashboardlist",
+		Identifier: "dashlist",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}
 

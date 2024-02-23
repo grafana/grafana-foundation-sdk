@@ -12,7 +12,7 @@ import (
 
 func VariantConfig() cogvariants.DataqueryConfig {
 	return cogvariants.DataqueryConfig{
-		Identifier: "azuremonitor",
+		Identifier: "grafana-azure-monitor-datasource",
 		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
 			dataquery := AzureMonitorQuery{}
 
