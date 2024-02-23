@@ -236,6 +236,20 @@ func (builder *PanelBuilder) LibraryPanel(libraryPanel LibraryPanelRef) *PanelBu
 	return builder
 }
 
+// Sets panel queries cache timeout.
+func (builder *PanelBuilder) CacheTimeout(cacheTimeout string) *PanelBuilder {
+	builder.internal.CacheTimeout = &cacheTimeout
+
+	return builder
+}
+
+// Overrides the data source configured time-to-live for a query cache item in milliseconds
+func (builder *PanelBuilder) QueryCachingTTL(queryCachingTTL float64) *PanelBuilder {
+	builder.internal.QueryCachingTTL = &queryCachingTTL
+
+	return builder
+}
+
 // The display value for this field.  This supports template variables blank is auto
 func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {

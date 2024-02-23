@@ -10,7 +10,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 
     constructor() {
         this.internal = dashboard.defaultPanel();
-        this.internal.type = "alertgroups";
+        this.internal.type = "alertGroups";
     }
 
     build(): dashboard.Panel {
@@ -168,6 +168,18 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     // Dynamically load the panel
     libraryPanel(libraryPanel: dashboard.LibraryPanelRef): this {
         this.internal.libraryPanel = libraryPanel;
+        return this;
+    }
+
+    // Sets panel queries cache timeout.
+    cacheTimeout(cacheTimeout: string): this {
+        this.internal.cacheTimeout = cacheTimeout;
+        return this;
+    }
+
+    // Overrides the data source configured time-to-live for a query cache item in milliseconds
+    queryCachingTTL(queryCachingTTL: number): this {
+        this.internal.queryCachingTTL = queryCachingTTL;
         return this;
     }
 

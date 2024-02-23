@@ -43,6 +43,12 @@ export class SnapshotBuilder implements cog.Builder<dashboard.Snapshot> {
         return this;
     }
 
+    // original url, url of the dashboard that was snapshotted
+    originalUrl(originalUrl: string): this {
+        this.internal.originalUrl = originalUrl;
+        return this;
+    }
+
     // Unique identifier of the snapshot
     id(id: number): this {
         this.internal.id = id;

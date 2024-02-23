@@ -73,6 +73,10 @@ export interface LibraryPanel {
 		timeShift?: string;
 		// Controls if the timeFrom or timeShift overrides are shown in the panel header
 		hideTimeOverride?: boolean;
+		// Sets panel queries cache timeout.
+		cacheTimeout?: string;
+		// Overrides the data source configured time-to-live for a query cache item in milliseconds
+		queryCachingTTL?: number;
 		// It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
 		options?: any;
 		// Field options allow you to change how the data is displayed in your visualizations.

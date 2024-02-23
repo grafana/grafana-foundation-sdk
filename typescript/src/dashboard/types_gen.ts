@@ -675,6 +675,8 @@ export interface Snapshot {
 	external: boolean;
 	// external url, if snapshot was shared in external grafana instance
 	externalUrl: string;
+	// original url, url of the dashboard that was snapshotted
+	originalUrl: string;
 	// Unique identifier of the snapshot
 	id: number;
 	// Optional, defined the unique key of the snapshot, required if external is true
@@ -696,6 +698,7 @@ export const defaultSnapshot = (): Snapshot => ({
 	expires: "",
 	external: false,
 	externalUrl: "",
+	originalUrl: "",
 	id: 0,
 	key: "",
 	name: "",
@@ -763,6 +766,10 @@ export interface Panel {
 	hideTimeOverride?: boolean;
 	// Dynamically load the panel
 	libraryPanel?: LibraryPanelRef;
+	// Sets panel queries cache timeout.
+	cacheTimeout?: string;
+	// Overrides the data source configured time-to-live for a query cache item in milliseconds
+	queryCachingTTL?: number;
 	// It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
 	options?: any;
 	// Field options allow you to change how the data is displayed in your visualizations.

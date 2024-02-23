@@ -10,7 +10,7 @@ import (
 
 func VariantConfig() cogvariants.DataqueryConfig {
 	return cogvariants.DataqueryConfig{
-		Identifier: "googlecloudmonitoring",
+		Identifier: "cloud-monitoring",
 		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
 			dataquery := CloudMonitoringQuery{}
 

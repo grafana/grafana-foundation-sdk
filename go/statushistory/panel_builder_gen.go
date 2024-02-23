@@ -27,7 +27,7 @@ func NewPanelBuilder() *PanelBuilder {
 	}
 
 	builder.applyDefaults()
-	builder.internal.Type = "statushistory"
+	builder.internal.Type = "status-history"
 
 	return builder
 }
@@ -224,6 +224,20 @@ func (builder *PanelBuilder) HideTimeOverride(hideTimeOverride bool) *PanelBuild
 // Dynamically load the panel
 func (builder *PanelBuilder) LibraryPanel(libraryPanel dashboard.LibraryPanelRef) *PanelBuilder {
 	builder.internal.LibraryPanel = &libraryPanel
+
+	return builder
+}
+
+// Sets panel queries cache timeout.
+func (builder *PanelBuilder) CacheTimeout(cacheTimeout string) *PanelBuilder {
+	builder.internal.CacheTimeout = &cacheTimeout
+
+	return builder
+}
+
+// Overrides the data source configured time-to-live for a query cache item in milliseconds
+func (builder *PanelBuilder) QueryCachingTTL(queryCachingTTL float64) *PanelBuilder {
+	builder.internal.QueryCachingTTL = &queryCachingTTL
 
 	return builder
 }

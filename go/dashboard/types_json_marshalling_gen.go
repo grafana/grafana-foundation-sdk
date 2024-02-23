@@ -133,6 +133,18 @@ func (resource *Panel) UnmarshalJSON(raw []byte) error {
 		}
 	}
 
+	if fields["cacheTimeout"] != nil {
+		if err := json.Unmarshal(fields["cacheTimeout"], &resource.CacheTimeout); err != nil {
+			return err
+		}
+	}
+
+	if fields["queryCachingTTL"] != nil {
+		if err := json.Unmarshal(fields["queryCachingTTL"], &resource.QueryCachingTTL); err != nil {
+			return err
+		}
+	}
+
 	if fields["options"] != nil {
 		variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Type)
 		if found && variantCfg.OptionsUnmarshaler != nil {
