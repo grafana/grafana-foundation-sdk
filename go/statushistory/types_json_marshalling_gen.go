@@ -10,7 +10,7 @@ import (
 
 func VariantConfig() cogvariants.PanelcfgConfig {
 	return cogvariants.PanelcfgConfig{
-		Identifier: "statushistory",
+		Identifier: "status-history",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}
 

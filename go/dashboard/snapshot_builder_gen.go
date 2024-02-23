@@ -72,6 +72,13 @@ func (builder *SnapshotBuilder) ExternalUrl(externalUrl string) *SnapshotBuilder
 	return builder
 }
 
+// original url, url of the dashboard that was snapshotted
+func (builder *SnapshotBuilder) OriginalUrl(originalUrl string) *SnapshotBuilder {
+	builder.internal.OriginalUrl = originalUrl
+
+	return builder
+}
+
 // Unique identifier of the snapshot
 func (builder *SnapshotBuilder) Id(id uint32) *SnapshotBuilder {
 	builder.internal.Id = id

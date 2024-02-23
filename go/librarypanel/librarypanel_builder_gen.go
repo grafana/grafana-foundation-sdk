@@ -154,6 +154,10 @@ func (builder *LibraryPanelBuilder) Model(model struct {
 	TimeShift *string `json:"timeShift,omitempty"`
 	// Controls if the timeFrom or timeShift overrides are shown in the panel header
 	HideTimeOverride *bool `json:"hideTimeOverride,omitempty"`
+	// Sets panel queries cache timeout.
+	CacheTimeout *string `json:"cacheTimeout,omitempty"`
+	// Overrides the data source configured time-to-live for a query cache item in milliseconds
+	QueryCachingTTL *float64 `json:"queryCachingTTL,omitempty"`
 	// It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
 	Options any `json:"options,omitempty"`
 	// Field options allow you to change how the data is displayed in your visualizations.

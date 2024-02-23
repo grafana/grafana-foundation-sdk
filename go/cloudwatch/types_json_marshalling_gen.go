@@ -25,21 +25,60 @@ func VariantConfig() cogvariants.DataqueryConfig {
 	}
 }
 
-func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) MarshalJSON() ([]byte, error) {
-	if resource.CloudWatchMetricsQuery != nil {
-		return json.Marshal(resource.CloudWatchMetricsQuery)
+func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
+	if resource.String != nil {
+		return json.Marshal(resource.String)
 	}
-	if resource.CloudWatchLogsQuery != nil {
-		return json.Marshal(resource.CloudWatchLogsQuery)
-	}
-	if resource.CloudWatchAnnotationQuery != nil {
-		return json.Marshal(resource.CloudWatchAnnotationQuery)
+
+	if resource.ArrayOfString != nil {
+		return json.Marshal(resource.ArrayOfString)
 	}
 
 	return nil, nil
 }
 
-func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) UnmarshalJSON(raw []byte) error {
+func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+		resource.String = nil
+	} else {
+		resource.String = &String
+		return nil
+	}
+
+	// ArrayOfString
+	var ArrayOfString []string
+	if err := json.Unmarshal(raw, &ArrayOfString); err != nil {
+		errList = append(errList, err)
+		resource.ArrayOfString = nil
+	} else {
+		resource.ArrayOfString = ArrayOfString
+		return nil
+	}
+
+	return errors.Join(errList...)
+}
+
+func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) MarshalJSON() ([]byte, error) {
+	if resource.QueryEditorPropertyExpression != nil {
+		return json.Marshal(resource.QueryEditorPropertyExpression)
+	}
+	if resource.QueryEditorFunctionExpression != nil {
+		return json.Marshal(resource.QueryEditorFunctionExpression)
+	}
+
+	return nil, nil
+}
+
+func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -50,39 +89,157 @@ func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotatio
 		return err
 	}
 
-	discriminator, found := parsedAsMap["queryMode"]
+	discriminator, found := parsedAsMap["type"]
 	if !found {
-		return errors.New("discriminator field 'queryMode' not found in payload")
+		return errors.New("discriminator field 'type' not found in payload")
 	}
 
 	switch discriminator {
-	case "Annotations":
-		var cloudWatchAnnotationQuery CloudWatchAnnotationQuery
-		if err := json.Unmarshal(raw, &cloudWatchAnnotationQuery); err != nil {
+	case "function":
+		var queryEditorFunctionExpression QueryEditorFunctionExpression
+		if err := json.Unmarshal(raw, &queryEditorFunctionExpression); err != nil {
 			return err
 		}
 
-		resource.CloudWatchAnnotationQuery = &cloudWatchAnnotationQuery
+		resource.QueryEditorFunctionExpression = &queryEditorFunctionExpression
 		return nil
-	case "Logs":
-		var cloudWatchLogsQuery CloudWatchLogsQuery
-		if err := json.Unmarshal(raw, &cloudWatchLogsQuery); err != nil {
+	case "property":
+		var queryEditorPropertyExpression QueryEditorPropertyExpression
+		if err := json.Unmarshal(raw, &queryEditorPropertyExpression); err != nil {
 			return err
 		}
 
-		resource.CloudWatchLogsQuery = &cloudWatchLogsQuery
-		return nil
-	case "Metrics":
-		var cloudWatchMetricsQuery CloudWatchMetricsQuery
-		if err := json.Unmarshal(raw, &cloudWatchMetricsQuery); err != nil {
-			return err
-		}
-
-		resource.CloudWatchMetricsQuery = &cloudWatchMetricsQuery
+		resource.QueryEditorPropertyExpression = &queryEditorPropertyExpression
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `queryMode = %v`", discriminator)
+	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+}
+
+func (resource StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) MarshalJSON() ([]byte, error) {
+	if resource.String != nil {
+		return json.Marshal(resource.String)
+	}
+
+	if resource.Bool != nil {
+		return json.Marshal(resource.Bool)
+	}
+
+	if resource.Int64 != nil {
+		return json.Marshal(resource.Int64)
+	}
+
+	if resource.ArrayOfQueryEditorOperatorType != nil {
+		return json.Marshal(resource.ArrayOfQueryEditorOperatorType)
+	}
+
+	return nil, nil
+}
+
+func (resource *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+		resource.String = nil
+	} else {
+		resource.String = &String
+		return nil
+	}
+
+	// Bool
+	var Bool bool
+	if err := json.Unmarshal(raw, &Bool); err != nil {
+		errList = append(errList, err)
+		resource.Bool = nil
+	} else {
+		resource.Bool = &Bool
+		return nil
+	}
+
+	// Int64
+	var Int64 int64
+	if err := json.Unmarshal(raw, &Int64); err != nil {
+		errList = append(errList, err)
+		resource.Int64 = nil
+	} else {
+		resource.Int64 = &Int64
+		return nil
+	}
+
+	// ArrayOfQueryEditorOperatorType
+	var ArrayOfQueryEditorOperatorType []QueryEditorOperatorType
+	if err := json.Unmarshal(raw, &ArrayOfQueryEditorOperatorType); err != nil {
+		errList = append(errList, err)
+		resource.ArrayOfQueryEditorOperatorType = nil
+	} else {
+		resource.ArrayOfQueryEditorOperatorType = ArrayOfQueryEditorOperatorType
+		return nil
+	}
+
+	return errors.Join(errList...)
+}
+
+func (resource StringOrBoolOrInt64) MarshalJSON() ([]byte, error) {
+	if resource.String != nil {
+		return json.Marshal(resource.String)
+	}
+
+	if resource.Bool != nil {
+		return json.Marshal(resource.Bool)
+	}
+
+	if resource.Int64 != nil {
+		return json.Marshal(resource.Int64)
+	}
+
+	return nil, nil
+}
+
+func (resource *StringOrBoolOrInt64) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+		resource.String = nil
+	} else {
+		resource.String = &String
+		return nil
+	}
+
+	// Bool
+	var Bool bool
+	if err := json.Unmarshal(raw, &Bool); err != nil {
+		errList = append(errList, err)
+		resource.Bool = nil
+	} else {
+		resource.Bool = &Bool
+		return nil
+	}
+
+	// Int64
+	var Int64 int64
+	if err := json.Unmarshal(raw, &Int64); err != nil {
+		errList = append(errList, err)
+		resource.Int64 = nil
+	} else {
+		resource.Int64 = &Int64
+		return nil
+	}
+
+	return errors.Join(errList...)
 }
 
 func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) MarshalJSON() ([]byte, error) {
@@ -186,18 +343,21 @@ func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQuery
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
-func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) MarshalJSON() ([]byte, error) {
-	if resource.QueryEditorPropertyExpression != nil {
-		return json.Marshal(resource.QueryEditorPropertyExpression)
+func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) MarshalJSON() ([]byte, error) {
+	if resource.CloudWatchMetricsQuery != nil {
+		return json.Marshal(resource.CloudWatchMetricsQuery)
 	}
-	if resource.QueryEditorFunctionExpression != nil {
-		return json.Marshal(resource.QueryEditorFunctionExpression)
+	if resource.CloudWatchLogsQuery != nil {
+		return json.Marshal(resource.CloudWatchLogsQuery)
+	}
+	if resource.CloudWatchAnnotationQuery != nil {
+		return json.Marshal(resource.CloudWatchAnnotationQuery)
 	}
 
 	return nil, nil
 }
 
-func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) UnmarshalJSON(raw []byte) error {
+func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -208,197 +368,37 @@ func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Un
 		return err
 	}
 
-	discriminator, found := parsedAsMap["type"]
+	discriminator, found := parsedAsMap["queryMode"]
 	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
+		return errors.New("discriminator field 'queryMode' not found in payload")
 	}
 
 	switch discriminator {
-	case "function":
-		var queryEditorFunctionExpression QueryEditorFunctionExpression
-		if err := json.Unmarshal(raw, &queryEditorFunctionExpression); err != nil {
+	case "Annotations":
+		var cloudWatchAnnotationQuery CloudWatchAnnotationQuery
+		if err := json.Unmarshal(raw, &cloudWatchAnnotationQuery); err != nil {
 			return err
 		}
 
-		resource.QueryEditorFunctionExpression = &queryEditorFunctionExpression
+		resource.CloudWatchAnnotationQuery = &cloudWatchAnnotationQuery
 		return nil
-	case "property":
-		var queryEditorPropertyExpression QueryEditorPropertyExpression
-		if err := json.Unmarshal(raw, &queryEditorPropertyExpression); err != nil {
+	case "Logs":
+		var cloudWatchLogsQuery CloudWatchLogsQuery
+		if err := json.Unmarshal(raw, &cloudWatchLogsQuery); err != nil {
 			return err
 		}
 
-		resource.QueryEditorPropertyExpression = &queryEditorPropertyExpression
+		resource.CloudWatchLogsQuery = &cloudWatchLogsQuery
+		return nil
+	case "Metrics":
+		var cloudWatchMetricsQuery CloudWatchMetricsQuery
+		if err := json.Unmarshal(raw, &cloudWatchMetricsQuery); err != nil {
+			return err
+		}
+
+		resource.CloudWatchMetricsQuery = &cloudWatchMetricsQuery
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
-}
-
-func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
-	if resource.String != nil {
-		return json.Marshal(resource.String)
-	}
-
-	if resource.ArrayOfString != nil {
-		return json.Marshal(resource.ArrayOfString)
-	}
-
-	return nil, nil
-}
-
-func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-
-	var errList []error
-
-	// String
-	var String string
-	if err := json.Unmarshal(raw, &String); err != nil {
-		errList = append(errList, err)
-		resource.String = nil
-	} else {
-		resource.String = &String
-		return nil
-	}
-
-	// ArrayOfString
-	var ArrayOfString []string
-	if err := json.Unmarshal(raw, &ArrayOfString); err != nil {
-		errList = append(errList, err)
-		resource.ArrayOfString = nil
-	} else {
-		resource.ArrayOfString = ArrayOfString
-		return nil
-	}
-
-	return errors.Join(errList...)
-}
-
-func (resource StringOrBoolOrInt64) MarshalJSON() ([]byte, error) {
-	if resource.String != nil {
-		return json.Marshal(resource.String)
-	}
-
-	if resource.Bool != nil {
-		return json.Marshal(resource.Bool)
-	}
-
-	if resource.Int64 != nil {
-		return json.Marshal(resource.Int64)
-	}
-
-	return nil, nil
-}
-
-func (resource *StringOrBoolOrInt64) UnmarshalJSON(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-
-	var errList []error
-
-	// String
-	var String string
-	if err := json.Unmarshal(raw, &String); err != nil {
-		errList = append(errList, err)
-		resource.String = nil
-	} else {
-		resource.String = &String
-		return nil
-	}
-
-	// Bool
-	var Bool bool
-	if err := json.Unmarshal(raw, &Bool); err != nil {
-		errList = append(errList, err)
-		resource.Bool = nil
-	} else {
-		resource.Bool = &Bool
-		return nil
-	}
-
-	// Int64
-	var Int64 int64
-	if err := json.Unmarshal(raw, &Int64); err != nil {
-		errList = append(errList, err)
-		resource.Int64 = nil
-	} else {
-		resource.Int64 = &Int64
-		return nil
-	}
-
-	return errors.Join(errList...)
-}
-
-func (resource StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) MarshalJSON() ([]byte, error) {
-	if resource.String != nil {
-		return json.Marshal(resource.String)
-	}
-
-	if resource.Bool != nil {
-		return json.Marshal(resource.Bool)
-	}
-
-	if resource.Int64 != nil {
-		return json.Marshal(resource.Int64)
-	}
-
-	if resource.ArrayOfQueryEditorOperatorType != nil {
-		return json.Marshal(resource.ArrayOfQueryEditorOperatorType)
-	}
-
-	return nil, nil
-}
-
-func (resource *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) UnmarshalJSON(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-
-	var errList []error
-
-	// String
-	var String string
-	if err := json.Unmarshal(raw, &String); err != nil {
-		errList = append(errList, err)
-		resource.String = nil
-	} else {
-		resource.String = &String
-		return nil
-	}
-
-	// Bool
-	var Bool bool
-	if err := json.Unmarshal(raw, &Bool); err != nil {
-		errList = append(errList, err)
-		resource.Bool = nil
-	} else {
-		resource.Bool = &Bool
-		return nil
-	}
-
-	// Int64
-	var Int64 int64
-	if err := json.Unmarshal(raw, &Int64); err != nil {
-		errList = append(errList, err)
-		resource.Int64 = nil
-	} else {
-		resource.Int64 = &Int64
-		return nil
-	}
-
-	// ArrayOfQueryEditorOperatorType
-	var ArrayOfQueryEditorOperatorType []QueryEditorOperatorType
-	if err := json.Unmarshal(raw, &ArrayOfQueryEditorOperatorType); err != nil {
-		errList = append(errList, err)
-		resource.ArrayOfQueryEditorOperatorType = nil
-	} else {
-		resource.ArrayOfQueryEditorOperatorType = ArrayOfQueryEditorOperatorType
-		return nil
-	}
-
-	return errors.Join(errList...)
+	return fmt.Errorf("could not unmarshal resource with `queryMode = %v`", discriminator)
 }

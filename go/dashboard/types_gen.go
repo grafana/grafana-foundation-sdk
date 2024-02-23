@@ -527,6 +527,8 @@ type Snapshot struct {
 	External bool `json:"external"`
 	// external url, if snapshot was shared in external grafana instance
 	ExternalUrl string `json:"externalUrl"`
+	// original url, url of the dashboard that was snapshotted
+	OriginalUrl string `json:"originalUrl"`
 	// Unique identifier of the snapshot
 	Id uint32 `json:"id"`
 	// Optional, defined the unique key of the snapshot, required if external is true
@@ -602,6 +604,10 @@ type Panel struct {
 	HideTimeOverride *bool `json:"hideTimeOverride,omitempty"`
 	// Dynamically load the panel
 	LibraryPanel *LibraryPanelRef `json:"libraryPanel,omitempty"`
+	// Sets panel queries cache timeout.
+	CacheTimeout *string `json:"cacheTimeout,omitempty"`
+	// Overrides the data source configured time-to-live for a query cache item in milliseconds
+	QueryCachingTTL *float64 `json:"queryCachingTTL,omitempty"`
 	// It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
 	Options any `json:"options,omitempty"`
 	// Field options allow you to change how the data is displayed in your visualizations.

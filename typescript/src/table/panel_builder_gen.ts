@@ -172,6 +172,18 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Sets panel queries cache timeout.
+    cacheTimeout(cacheTimeout: string): this {
+        this.internal.cacheTimeout = cacheTimeout;
+        return this;
+    }
+
+    // Overrides the data source configured time-to-live for a query cache item in milliseconds
+    queryCachingTTL(queryCachingTTL: number): this {
+        this.internal.queryCachingTTL = queryCachingTTL;
+        return this;
+    }
+
     // The display value for this field.  This supports template variables blank is auto
     displayName(displayName: string): this {
         if (!this.internal.fieldConfig) {

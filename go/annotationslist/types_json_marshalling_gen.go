@@ -10,7 +10,7 @@ import (
 
 func VariantConfig() cogvariants.PanelcfgConfig {
 	return cogvariants.PanelcfgConfig{
-		Identifier: "annotationslist",
+		Identifier: "annolist",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}
 
