@@ -10,7 +10,7 @@ import (
 
 func VariantConfig() cogvariants.PanelcfgConfig {
 	return cogvariants.PanelcfgConfig{
-		Identifier: "statetimeline",
+		Identifier: "state-timeline",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}
 

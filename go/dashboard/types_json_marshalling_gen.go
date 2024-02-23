@@ -194,6 +194,48 @@ func (resource *Panel) UnmarshalJSON(raw []byte) error {
 
 	return nil
 }
+func (resource StringOrBool) MarshalJSON() ([]byte, error) {
+	if resource.String != nil {
+		return json.Marshal(resource.String)
+	}
+
+	if resource.Bool != nil {
+		return json.Marshal(resource.Bool)
+	}
+
+	return nil, nil
+}
+
+func (resource *StringOrBool) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+		resource.String = nil
+	} else {
+		resource.String = &String
+		return nil
+	}
+
+	// Bool
+	var Bool bool
+	if err := json.Unmarshal(raw, &Bool); err != nil {
+		errList = append(errList, err)
+		resource.Bool = nil
+	} else {
+		resource.Bool = &Bool
+		return nil
+	}
+
+	return errors.Join(errList...)
+}
+
 func (resource PanelOrRowPanel) MarshalJSON() ([]byte, error) {
 	if resource.Panel != nil {
 		return json.Marshal(resource.Panel)
@@ -321,48 +363,6 @@ func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 		resource.ArrayOfString = nil
 	} else {
 		resource.ArrayOfString = ArrayOfString
-		return nil
-	}
-
-	return errors.Join(errList...)
-}
-
-func (resource StringOrBool) MarshalJSON() ([]byte, error) {
-	if resource.String != nil {
-		return json.Marshal(resource.String)
-	}
-
-	if resource.Bool != nil {
-		return json.Marshal(resource.Bool)
-	}
-
-	return nil, nil
-}
-
-func (resource *StringOrBool) UnmarshalJSON(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-
-	var errList []error
-
-	// String
-	var String string
-	if err := json.Unmarshal(raw, &String); err != nil {
-		errList = append(errList, err)
-		resource.String = nil
-	} else {
-		resource.String = &String
-		return nil
-	}
-
-	// Bool
-	var Bool bool
-	if err := json.Unmarshal(raw, &Bool); err != nil {
-		errList = append(errList, err)
-		resource.Bool = nil
-	} else {
-		resource.Bool = &Bool
 		return nil
 	}
 

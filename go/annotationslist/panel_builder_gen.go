@@ -26,7 +26,7 @@ func NewPanelBuilder() *PanelBuilder {
 	}
 
 	builder.applyDefaults()
-	builder.internal.Type = "annotationslist"
+	builder.internal.Type = "annolist"
 
 	return builder
 }
