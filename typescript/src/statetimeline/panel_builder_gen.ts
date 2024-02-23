@@ -11,7 +11,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 
     constructor() {
         this.internal = dashboard.defaultPanel();
-        this.internal.type = "statetimeline";
+        this.internal.type = "state-timeline";
     }
 
     build(): dashboard.Panel {

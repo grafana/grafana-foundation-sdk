@@ -27,7 +27,7 @@ func NewPanelBuilder() *PanelBuilder {
 	}
 
 	builder.applyDefaults()
-	builder.internal.Type = "statushistory"
+	builder.internal.Type = "status-history"
 
 	return builder
 }

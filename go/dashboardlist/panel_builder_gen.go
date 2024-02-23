@@ -26,7 +26,7 @@ func NewPanelBuilder() *PanelBuilder {
 	}
 
 	builder.applyDefaults()
-	builder.internal.Type = "dashboardlist"
+	builder.internal.Type = "dashlist"
 
 	return builder
 }
