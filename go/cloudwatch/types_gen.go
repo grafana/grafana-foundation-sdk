@@ -305,10 +305,27 @@ const (
 	QueryEditorArrayExpressionTypeOr  QueryEditorArrayExpressionType = "or"
 )
 
-type CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery struct {
-	CloudWatchMetricsQuery    *CloudWatchMetricsQuery    `json:"CloudWatchMetricsQuery,omitempty"`
-	CloudWatchLogsQuery       *CloudWatchLogsQuery       `json:"CloudWatchLogsQuery,omitempty"`
-	CloudWatchAnnotationQuery *CloudWatchAnnotationQuery `json:"CloudWatchAnnotationQuery,omitempty"`
+type StringOrArrayOfString struct {
+	String        *string  `json:"String,omitempty"`
+	ArrayOfString []string `json:"ArrayOfString,omitempty"`
+}
+
+type QueryEditorPropertyExpressionOrQueryEditorFunctionExpression struct {
+	QueryEditorPropertyExpression *QueryEditorPropertyExpression `json:"QueryEditorPropertyExpression,omitempty"`
+	QueryEditorFunctionExpression *QueryEditorFunctionExpression `json:"QueryEditorFunctionExpression,omitempty"`
+}
+
+type StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType struct {
+	String                         *string                   `json:"String,omitempty"`
+	Bool                           *bool                     `json:"Bool,omitempty"`
+	Int64                          *int64                    `json:"Int64,omitempty"`
+	ArrayOfQueryEditorOperatorType []QueryEditorOperatorType `json:"ArrayOfQueryEditorOperatorType,omitempty"`
+}
+
+type StringOrBoolOrInt64 struct {
+	String *string `json:"String,omitempty"`
+	Bool   *bool   `json:"Bool,omitempty"`
+	Int64  *int64  `json:"Int64,omitempty"`
 }
 
 type QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression struct {
@@ -320,25 +337,8 @@ type QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroup
 	QueryEditorOperatorExpression          *QueryEditorOperatorExpression          `json:"QueryEditorOperatorExpression,omitempty"`
 }
 
-type QueryEditorPropertyExpressionOrQueryEditorFunctionExpression struct {
-	QueryEditorPropertyExpression *QueryEditorPropertyExpression `json:"QueryEditorPropertyExpression,omitempty"`
-	QueryEditorFunctionExpression *QueryEditorFunctionExpression `json:"QueryEditorFunctionExpression,omitempty"`
-}
-
-type StringOrArrayOfString struct {
-	String        *string  `json:"String,omitempty"`
-	ArrayOfString []string `json:"ArrayOfString,omitempty"`
-}
-
-type StringOrBoolOrInt64 struct {
-	String *string `json:"String,omitempty"`
-	Bool   *bool   `json:"Bool,omitempty"`
-	Int64  *int64  `json:"Int64,omitempty"`
-}
-
-type StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType struct {
-	String                         *string                   `json:"String,omitempty"`
-	Bool                           *bool                     `json:"Bool,omitempty"`
-	Int64                          *int64                    `json:"Int64,omitempty"`
-	ArrayOfQueryEditorOperatorType []QueryEditorOperatorType `json:"ArrayOfQueryEditorOperatorType,omitempty"`
+type CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery struct {
+	CloudWatchMetricsQuery    *CloudWatchMetricsQuery    `json:"CloudWatchMetricsQuery,omitempty"`
+	CloudWatchLogsQuery       *CloudWatchLogsQuery       `json:"CloudWatchLogsQuery,omitempty"`
+	CloudWatchAnnotationQuery *CloudWatchAnnotationQuery `json:"CloudWatchAnnotationQuery,omitempty"`
 }

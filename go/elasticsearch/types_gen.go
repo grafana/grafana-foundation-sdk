@@ -502,25 +502,13 @@ type Dataquery struct {
 
 func (resource Dataquery) ImplementsDataqueryVariant() {}
 
-type BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics struct {
-	BucketScript   *BucketScript   `json:"BucketScript,omitempty"`
-	CumulativeSum  *CumulativeSum  `json:"CumulativeSum,omitempty"`
-	Derivative     *Derivative     `json:"Derivative,omitempty"`
-	SerialDiff     *SerialDiff     `json:"SerialDiff,omitempty"`
-	RawData        *RawData        `json:"RawData,omitempty"`
-	RawDocument    *RawDocument    `json:"RawDocument,omitempty"`
-	UniqueCount    *UniqueCount    `json:"UniqueCount,omitempty"`
-	Percentiles    *Percentiles    `json:"Percentiles,omitempty"`
-	ExtendedStats  *ExtendedStats  `json:"ExtendedStats,omitempty"`
-	Min            *Min            `json:"Min,omitempty"`
-	Max            *Max            `json:"Max,omitempty"`
-	Sum            *Sum            `json:"Sum,omitempty"`
-	Average        *Average        `json:"Average,omitempty"`
-	MovingAverage  *MovingAverage  `json:"MovingAverage,omitempty"`
-	MovingFunction *MovingFunction `json:"MovingFunction,omitempty"`
-	Logs           *Logs           `json:"Logs,omitempty"`
-	Rate           *Rate           `json:"Rate,omitempty"`
-	TopMetrics     *TopMetrics     `json:"TopMetrics,omitempty"`
+type DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested struct {
+	DateHistogram *DateHistogram `json:"DateHistogram,omitempty"`
+	Histogram     *Histogram     `json:"Histogram,omitempty"`
+	Terms         *Terms         `json:"Terms,omitempty"`
+	Filters       *Filters       `json:"Filters,omitempty"`
+	GeoHashGrid   *GeoHashGrid   `json:"GeoHashGrid,omitempty"`
+	Nested        *Nested        `json:"Nested,omitempty"`
 }
 
 type CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics struct {
@@ -545,22 +533,6 @@ type CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOr
 	TopMetrics     *TopMetrics     `json:"TopMetrics,omitempty"`
 }
 
-type DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested struct {
-	DateHistogram *DateHistogram `json:"DateHistogram,omitempty"`
-	Histogram     *Histogram     `json:"Histogram,omitempty"`
-	Terms         *Terms         `json:"Terms,omitempty"`
-	Filters       *Filters       `json:"Filters,omitempty"`
-	GeoHashGrid   *GeoHashGrid   `json:"GeoHashGrid,omitempty"`
-	Nested        *Nested        `json:"Nested,omitempty"`
-}
-
-type MovingAverageOrDerivativeOrCumulativeSumOrBucketScript struct {
-	MovingAverage *MovingAverage `json:"MovingAverage,omitempty"`
-	Derivative    *Derivative    `json:"Derivative,omitempty"`
-	CumulativeSum *CumulativeSum `json:"CumulativeSum,omitempty"`
-	BucketScript  *BucketScript  `json:"BucketScript,omitempty"`
-}
-
 type StringOrPipelineMetricAggregationType struct {
 	String                        *string                        `json:"String,omitempty"`
 	PipelineMetricAggregationType *PipelineMetricAggregationType `json:"PipelineMetricAggregationType,omitempty"`
@@ -571,4 +543,32 @@ type StringOrStruct struct {
 	Struct *struct {
 		Inline string `json:"inline,omitempty"`
 	} `json:"Struct,omitempty"`
+}
+
+type MovingAverageOrDerivativeOrCumulativeSumOrBucketScript struct {
+	MovingAverage *MovingAverage `json:"MovingAverage,omitempty"`
+	Derivative    *Derivative    `json:"Derivative,omitempty"`
+	CumulativeSum *CumulativeSum `json:"CumulativeSum,omitempty"`
+	BucketScript  *BucketScript  `json:"BucketScript,omitempty"`
+}
+
+type BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics struct {
+	BucketScript   *BucketScript   `json:"BucketScript,omitempty"`
+	CumulativeSum  *CumulativeSum  `json:"CumulativeSum,omitempty"`
+	Derivative     *Derivative     `json:"Derivative,omitempty"`
+	SerialDiff     *SerialDiff     `json:"SerialDiff,omitempty"`
+	RawData        *RawData        `json:"RawData,omitempty"`
+	RawDocument    *RawDocument    `json:"RawDocument,omitempty"`
+	UniqueCount    *UniqueCount    `json:"UniqueCount,omitempty"`
+	Percentiles    *Percentiles    `json:"Percentiles,omitempty"`
+	ExtendedStats  *ExtendedStats  `json:"ExtendedStats,omitempty"`
+	Min            *Min            `json:"Min,omitempty"`
+	Max            *Max            `json:"Max,omitempty"`
+	Sum            *Sum            `json:"Sum,omitempty"`
+	Average        *Average        `json:"Average,omitempty"`
+	MovingAverage  *MovingAverage  `json:"MovingAverage,omitempty"`
+	MovingFunction *MovingFunction `json:"MovingFunction,omitempty"`
+	Logs           *Logs           `json:"Logs,omitempty"`
+	Rate           *Rate           `json:"Rate,omitempty"`
+	TopMetrics     *TopMetrics     `json:"TopMetrics,omitempty"`
 }

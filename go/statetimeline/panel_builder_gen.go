@@ -27,7 +27,7 @@ func NewPanelBuilder() *PanelBuilder {
 	}
 
 	builder.applyDefaults()
-	builder.internal.Type = "statetimeline"
+	builder.internal.Type = "state-timeline"
 
 	return builder
 }
