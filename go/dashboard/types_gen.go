@@ -762,6 +762,11 @@ const (
 	PanelRepeatDirectionV PanelRepeatDirection = "v"
 )
 
+type StringOrBool struct {
+	String *string `json:"String,omitempty"`
+	Bool   *bool   `json:"Bool,omitempty"`
+}
+
 type PanelOrRowPanel struct {
 	Panel    *Panel    `json:"Panel,omitempty"`
 	RowPanel *RowPanel `json:"RowPanel,omitempty"`
@@ -775,11 +780,6 @@ type StringOrAny struct {
 type StringOrArrayOfString struct {
 	String        *string  `json:"String,omitempty"`
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
-}
-
-type StringOrBool struct {
-	String *string `json:"String,omitempty"`
-	Bool   *bool   `json:"Bool,omitempty"`
 }
 
 type ValueMapOrRangeMapOrRegexMapOrSpecialValueMap struct {

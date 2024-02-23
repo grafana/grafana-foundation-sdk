@@ -26,7 +26,7 @@ func NewPanelBuilder() *PanelBuilder {
 	}
 
 	builder.applyDefaults()
-	builder.internal.Type = "alertgroups"
+	builder.internal.Type = "alertGroups"
 
 	return builder
 }

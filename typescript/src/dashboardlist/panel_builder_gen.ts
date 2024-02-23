@@ -10,7 +10,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 
     constructor() {
         this.internal = dashboard.defaultPanel();
-        this.internal.type = "dashboardlist";
+        this.internal.type = "dashlist";
     }
 
     build(): dashboard.Panel {
