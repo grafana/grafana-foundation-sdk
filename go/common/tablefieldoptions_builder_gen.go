@@ -67,7 +67,7 @@ func (builder *TableFieldOptionsBuilder) DisplayMode(displayMode TableCellDispla
 }
 
 func (builder *TableFieldOptionsBuilder) CellOptions(cellOptions TableCellOptions) *TableFieldOptionsBuilder {
-	builder.internal.CellOptions = cellOptions
+	builder.internal.CellOptions = &cellOptions
 
 	return builder
 }

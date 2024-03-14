@@ -66,13 +66,13 @@ func (builder *PlaylistBuilder) Interval(interval string) *PlaylistBuilder {
 // FIXME! This should not be optional, but changing it makes the godegen awkward
 func (builder *PlaylistBuilder) Items(items []cog.Builder[PlaylistItem]) *PlaylistBuilder {
 	itemsResources := make([]PlaylistItem, 0, len(items))
-	for _, r := range items {
-		itemsResource, err := r.Build()
+	for _, r1 := range items {
+		itemsDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["items"] = err.(cog.BuildErrors)
 			return builder
 		}
-		itemsResources = append(itemsResources, itemsResource)
+		itemsResources = append(itemsResources, itemsDepth1)
 	}
 	builder.internal.Items = itemsResources
 

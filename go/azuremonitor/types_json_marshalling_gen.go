@@ -57,9 +57,8 @@ func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscription
 		return json.Marshal(resource.UnknownQuery)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil

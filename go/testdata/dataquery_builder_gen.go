@@ -93,13 +93,13 @@ func (builder *DataqueryBuilder) Sim(sim cog.Builder[SimulationQuery]) *Dataquer
 
 func (builder *DataqueryBuilder) CsvWave(csvWave []cog.Builder[CSVWave]) *DataqueryBuilder {
 	csvWaveResources := make([]CSVWave, 0, len(csvWave))
-	for _, r := range csvWave {
-		csvWaveResource, err := r.Build()
+	for _, r1 := range csvWave {
+		csvWaveDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["csvWave"] = err.(cog.BuildErrors)
 			return builder
 		}
-		csvWaveResources = append(csvWaveResources, csvWaveResource)
+		csvWaveResources = append(csvWaveResources, csvWaveDepth1)
 	}
 	builder.internal.CsvWave = csvWaveResources
 
