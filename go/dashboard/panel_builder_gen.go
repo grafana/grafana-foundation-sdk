@@ -136,13 +136,13 @@ func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 // Panel links.
 func (builder *PanelBuilder) Links(links []cog.Builder[DashboardLink]) *PanelBuilder {
 	linksResources := make([]DashboardLink, 0, len(links))
-	for _, r := range links {
-		linksResource, err := r.Build()
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["links"] = err.(cog.BuildErrors)
 			return builder
 		}
-		linksResources = append(linksResources, linksResource)
+		linksResources = append(linksResources, linksDepth1)
 	}
 	builder.internal.Links = linksResources
 

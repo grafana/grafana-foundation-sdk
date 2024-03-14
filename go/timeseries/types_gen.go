@@ -7,9 +7,10 @@ import (
 )
 
 type Options struct {
-	Timezone []common.TimeZone        `json:"timezone,omitempty"`
-	Legend   common.VizLegendOptions  `json:"legend"`
-	Tooltip  common.VizTooltipOptions `json:"tooltip"`
+	Timezone    []common.TimeZone        `json:"timezone,omitempty"`
+	Legend      common.VizLegendOptions  `json:"legend"`
+	Tooltip     common.VizTooltipOptions `json:"tooltip"`
+	Orientation *common.VizOrientation   `json:"orientation,omitempty"`
 }
 
 type FieldConfig = common.GraphFieldConfig

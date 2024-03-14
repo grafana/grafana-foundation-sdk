@@ -88,14 +88,6 @@ func (builder *DataqueryBuilder) IntervalFactor(intervalFactor float64) *Dataque
 	return builder
 }
 
-func (builder *DataqueryBuilder) Scope(scope struct {
-	Matchers string `json:"matchers"`
-}) *DataqueryBuilder {
-	builder.internal.Scope = &scope
-
-	return builder
-}
-
 func (builder *DataqueryBuilder) RefId(refId string) *DataqueryBuilder {
 	builder.internal.RefId = &refId
 

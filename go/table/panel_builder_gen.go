@@ -128,13 +128,13 @@ func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 // Panel links.
 func (builder *PanelBuilder) Links(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder {
 	linksResources := make([]dashboard.DashboardLink, 0, len(links))
-	for _, r := range links {
-		linksResource, err := r.Build()
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["links"] = err.(cog.BuildErrors)
 			return builder
 		}
-		linksResources = append(linksResources, linksResource)
+		linksResources = append(linksResources, linksDepth1)
 	}
 	builder.internal.Links = linksResources
 
@@ -401,13 +401,13 @@ func (builder *PanelBuilder) SortBy(sortBy []cog.Builder[common.TableSortByField
 		builder.internal.Options = &Options{}
 	}
 	sortByResources := make([]common.TableSortByFieldState, 0, len(sortBy))
-	for _, r := range sortBy {
-		sortByResource, err := r.Build()
+	for _, r1 := range sortBy {
+		sortByDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["options.sortBy"] = err.(cog.BuildErrors)
 			return builder
 		}
-		sortByResources = append(sortByResources, sortByResource)
+		sortByResources = append(sortByResources, sortByDepth1)
 	}
 	builder.internal.Options.(*Options).SortBy = sortByResources
 
@@ -495,7 +495,7 @@ func (builder *PanelBuilder) CellOptions(cellOptions common.TableCellOptions) *P
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
 		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
 	}
-	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).CellOptions = cellOptions
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).CellOptions = &cellOptions
 
 	return builder
 }

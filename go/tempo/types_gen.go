@@ -48,13 +48,12 @@ type TempoQuery struct {
 
 func (resource TempoQuery) ImplementsDataqueryVariant() {}
 
-// search = Loki search, nativeSearch = Tempo search for backwards compatibility
+// nativeSearch = Tempo search for backwards compatibility
 type TempoQueryType string
 
 const (
 	TempoQueryTypeTraceql       TempoQueryType = "traceql"
 	TempoQueryTypeTraceqlSearch TempoQueryType = "traceqlSearch"
-	TempoQueryTypeSearch        TempoQueryType = "search"
 	TempoQueryTypeServiceMap    TempoQueryType = "serviceMap"
 	TempoQueryTypeUpload        TempoQueryType = "upload"
 	TempoQueryTypeNativeSearch  TempoQueryType = "nativeSearch"

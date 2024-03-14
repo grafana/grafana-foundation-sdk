@@ -34,7 +34,7 @@ func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.ArrayOfString)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
 func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
@@ -75,9 +75,8 @@ func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Mar
 		return json.Marshal(resource.QueryEditorFunctionExpression)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -133,7 +132,7 @@ func (resource StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) MarshalJSON(
 		return json.Marshal(resource.ArrayOfQueryEditorOperatorType)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
 func (resource *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) UnmarshalJSON(raw []byte) error {
@@ -199,7 +198,7 @@ func (resource StringOrBoolOrInt64) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.Int64)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
 func (resource *StringOrBoolOrInt64) UnmarshalJSON(raw []byte) error {
@@ -262,9 +261,8 @@ func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryE
 		return json.Marshal(resource.QueryEditorOperatorExpression)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -354,9 +352,8 @@ func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotation
 		return json.Marshal(resource.CloudWatchAnnotationQuery)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
