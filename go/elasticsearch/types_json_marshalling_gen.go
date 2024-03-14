@@ -45,9 +45,8 @@ func (resource DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested) Ma
 		return json.Marshal(resource.Nested)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -177,9 +176,8 @@ func (resource CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSe
 		return json.Marshal(resource.TopMetrics)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -368,9 +366,8 @@ func (resource MovingAverageOrDerivativeOrCumulativeSumOrBucketScript) MarshalJS
 		return json.Marshal(resource.BucketScript)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *MovingAverageOrDerivativeOrCumulativeSumOrBucketScript) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -481,9 +478,8 @@ func (resource BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRaw
 		return json.Marshal(resource.TopMetrics)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil

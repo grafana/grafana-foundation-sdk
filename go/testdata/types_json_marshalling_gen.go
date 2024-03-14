@@ -5,6 +5,7 @@ package testdata
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 
 	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
@@ -33,7 +34,7 @@ func (resource StringOrInt64) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.Int64)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
 func (resource *StringOrInt64) UnmarshalJSON(raw []byte) error {
