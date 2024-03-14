@@ -828,7 +828,7 @@ type TableFieldOptions struct {
 	Align    FieldTextAlignment `json:"align"`
 	// This field is deprecated in favor of using cellOptions
 	DisplayMode *TableCellDisplayMode `json:"displayMode,omitempty"`
-	CellOptions TableCellOptions      `json:"cellOptions"`
+	CellOptions *TableCellOptions     `json:"cellOptions,omitempty"`
 	// ?? default is missing or false ??
 	Hidden     *bool `json:"hidden,omitempty"`
 	Inspect    bool  `json:"inspect"`

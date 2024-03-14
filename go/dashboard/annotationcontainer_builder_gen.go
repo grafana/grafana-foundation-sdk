@@ -46,13 +46,13 @@ func (builder *AnnotationContainerBuilder) Build() (AnnotationContainer, error) 
 // List of annotations
 func (builder *AnnotationContainerBuilder) List(list []cog.Builder[AnnotationQuery]) *AnnotationContainerBuilder {
 	listResources := make([]AnnotationQuery, 0, len(list))
-	for _, r := range list {
-		listResource, err := r.Build()
+	for _, r1 := range list {
+		listDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["list"] = err.(cog.BuildErrors)
 			return builder
 		}
-		listResources = append(listResources, listResource)
+		listResources = append(listResources, listDepth1)
 	}
 	builder.internal.List = listResources
 

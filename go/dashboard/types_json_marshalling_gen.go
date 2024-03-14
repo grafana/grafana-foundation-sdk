@@ -197,7 +197,7 @@ func (resource StringOrBool) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.Bool)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
 func (resource *StringOrBool) UnmarshalJSON(raw []byte) error {
@@ -238,9 +238,8 @@ func (resource PanelOrRowPanel) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.RowPanel)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *PanelOrRowPanel) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -288,7 +287,7 @@ func (resource StringOrAny) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.Any)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
 func (resource *StringOrAny) UnmarshalJSON(raw []byte) error {
@@ -330,7 +329,7 @@ func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.ArrayOfString)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
 func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
@@ -377,9 +376,8 @@ func (resource ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) MarshalJSON() ([]b
 		return json.Marshal(resource.SpecialValueMap)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil

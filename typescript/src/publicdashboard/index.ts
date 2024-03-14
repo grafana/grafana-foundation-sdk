@@ -1,6 +1,6 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-export * from './types_gen';
-export type * from './types_gen';
-export * from './publicdashboard_builder_gen';
-export type * from './publicdashboard_builder_gen';
+export * from './types.gen';
+export type * from './types.gen';
+export * from './publicDashboardBuilder.gen';
+export type * from './publicDashboardBuilder.gen';
