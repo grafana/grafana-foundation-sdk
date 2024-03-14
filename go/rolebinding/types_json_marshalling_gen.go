@@ -16,9 +16,8 @@ func (resource BuiltinRoleRefOrCustomRoleRef) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.CustomRoleRef)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *BuiltinRoleRefOrCustomRoleRef) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil

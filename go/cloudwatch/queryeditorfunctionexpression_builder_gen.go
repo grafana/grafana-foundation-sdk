@@ -48,13 +48,13 @@ func (builder *QueryEditorFunctionExpressionBuilder) Name(name string) *QueryEdi
 
 func (builder *QueryEditorFunctionExpressionBuilder) Parameters(parameters []cog.Builder[QueryEditorFunctionParameterExpression]) *QueryEditorFunctionExpressionBuilder {
 	parametersResources := make([]QueryEditorFunctionParameterExpression, 0, len(parameters))
-	for _, r := range parameters {
-		parametersResource, err := r.Build()
+	for _, r1 := range parameters {
+		parametersDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["parameters"] = err.(cog.BuildErrors)
 			return builder
 		}
-		parametersResources = append(parametersResources, parametersResource)
+		parametersResources = append(parametersResources, parametersDepth1)
 	}
 	builder.internal.Parameters = parametersResources
 

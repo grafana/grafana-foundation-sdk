@@ -41,13 +41,13 @@ func (builder *FiltersSettingsBuilder) Build() (FiltersSettings, error) {
 
 func (builder *FiltersSettingsBuilder) Filters(filters []cog.Builder[Filter]) *FiltersSettingsBuilder {
 	filtersResources := make([]Filter, 0, len(filters))
-	for _, r := range filters {
-		filtersResource, err := r.Build()
+	for _, r1 := range filters {
+		filtersDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["filters"] = err.(cog.BuildErrors)
 			return builder
 		}
-		filtersResources = append(filtersResources, filtersResource)
+		filtersResources = append(filtersResources, filtersDepth1)
 	}
 	builder.internal.Filters = filtersResources
 

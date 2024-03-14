@@ -71,13 +71,13 @@ func (builder *AzureTracesQueryBuilder) TraceTypes(traceTypes []string) *AzureTr
 // Filters for property values.
 func (builder *AzureTracesQueryBuilder) Filters(filters []cog.Builder[AzureTracesFilter]) *AzureTracesQueryBuilder {
 	filtersResources := make([]AzureTracesFilter, 0, len(filters))
-	for _, r := range filters {
-		filtersResource, err := r.Build()
+	for _, r1 := range filters {
+		filtersDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["filters"] = err.(cog.BuildErrors)
 			return builder
 		}
-		filtersResources = append(filtersResources, filtersResource)
+		filtersResources = append(filtersResources, filtersDepth1)
 	}
 	builder.internal.Filters = filtersResources
 

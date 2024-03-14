@@ -42,13 +42,13 @@ func (builder *AzureMetricQueryBuilder) Build() (AzureMetricQuery, error) {
 // Array of resource URIs to be queried.
 func (builder *AzureMetricQueryBuilder) Resources(resources []cog.Builder[AzureMonitorResource]) *AzureMetricQueryBuilder {
 	resourcesResources := make([]AzureMonitorResource, 0, len(resources))
-	for _, r := range resources {
-		resourcesResource, err := r.Build()
+	for _, r1 := range resources {
+		resourcesDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["resources"] = err.(cog.BuildErrors)
 			return builder
 		}
-		resourcesResources = append(resourcesResources, resourcesResource)
+		resourcesResources = append(resourcesResources, resourcesDepth1)
 	}
 	builder.internal.Resources = resourcesResources
 
@@ -102,13 +102,13 @@ func (builder *AzureMetricQueryBuilder) Aggregation(aggregation string) *AzureMe
 // Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric.
 func (builder *AzureMetricQueryBuilder) DimensionFilters(dimensionFilters []cog.Builder[AzureMetricDimension]) *AzureMetricQueryBuilder {
 	dimensionFiltersResources := make([]AzureMetricDimension, 0, len(dimensionFilters))
-	for _, r := range dimensionFilters {
-		dimensionFiltersResource, err := r.Build()
+	for _, r1 := range dimensionFilters {
+		dimensionFiltersDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["dimensionFilters"] = err.(cog.BuildErrors)
 			return builder
 		}
-		dimensionFiltersResources = append(dimensionFiltersResources, dimensionFiltersResource)
+		dimensionFiltersResources = append(dimensionFiltersResources, dimensionFiltersDepth1)
 	}
 	builder.internal.DimensionFilters = dimensionFiltersResources
 
