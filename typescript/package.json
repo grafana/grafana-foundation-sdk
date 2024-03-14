@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "10.2.0-cogv0.0.x.1708698136",
+  "version": "10.2.0-cogv0.0.x.1710412878",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -30,157 +30,13 @@
       "types": "./dist/cog/index.d.ts",
       "default": "./dist/cog/index.js"
     },
-    "./preferences": {
-      "types": "./dist/preferences/index.d.ts",
-      "default": "./dist/preferences/index.js"
-    },
-    "./role": {
-      "types": "./dist/role/index.d.ts",
-      "default": "./dist/role/index.js"
-    },
-    "./histogram": {
-      "types": "./dist/histogram/index.d.ts",
-      "default": "./dist/histogram/index.js"
-    },
-    "./nodegraph": {
-      "types": "./dist/nodegraph/index.d.ts",
-      "default": "./dist/nodegraph/index.js"
-    },
-    "./librarypanel": {
-      "types": "./dist/librarypanel/index.d.ts",
-      "default": "./dist/librarypanel/index.js"
-    },
-    "./dashboardlist": {
-      "types": "./dist/dashboardlist/index.d.ts",
-      "default": "./dist/dashboardlist/index.js"
-    },
-    "./datagrid": {
-      "types": "./dist/datagrid/index.d.ts",
-      "default": "./dist/datagrid/index.js"
-    },
-    "./elasticsearch": {
-      "types": "./dist/elasticsearch/index.d.ts",
-      "default": "./dist/elasticsearch/index.js"
-    },
-    "./googlecloudmonitoring": {
-      "types": "./dist/googlecloudmonitoring/index.d.ts",
-      "default": "./dist/googlecloudmonitoring/index.js"
-    },
-    "./gauge": {
-      "types": "./dist/gauge/index.d.ts",
-      "default": "./dist/gauge/index.js"
-    },
-    "./geomap": {
-      "types": "./dist/geomap/index.d.ts",
-      "default": "./dist/geomap/index.js"
-    },
-    "./tempo": {
-      "types": "./dist/tempo/index.d.ts",
-      "default": "./dist/tempo/index.js"
-    },
-    "./text": {
-      "types": "./dist/text/index.d.ts",
-      "default": "./dist/text/index.js"
-    },
-    "./publicdashboard": {
-      "types": "./dist/publicdashboard/index.d.ts",
-      "default": "./dist/publicdashboard/index.js"
-    },
-    "./alertgroups": {
-      "types": "./dist/alertgroups/index.d.ts",
-      "default": "./dist/alertgroups/index.js"
-    },
-    "./debug": {
-      "types": "./dist/debug/index.d.ts",
-      "default": "./dist/debug/index.js"
-    },
-    "./stat": {
-      "types": "./dist/stat/index.d.ts",
-      "default": "./dist/stat/index.js"
-    },
-    "./timeseries": {
-      "types": "./dist/timeseries/index.d.ts",
-      "default": "./dist/timeseries/index.js"
-    },
-    "./trend": {
-      "types": "./dist/trend/index.d.ts",
-      "default": "./dist/trend/index.js"
-    },
-    "./piechart": {
-      "types": "./dist/piechart/index.d.ts",
-      "default": "./dist/piechart/index.js"
-    },
-    "./common": {
-      "types": "./dist/common/index.d.ts",
-      "default": "./dist/common/index.js"
-    },
     "./accesspolicy": {
       "types": "./dist/accesspolicy/index.d.ts",
       "default": "./dist/accesspolicy/index.js"
     },
-    "./dashboard": {
-      "types": "./dist/dashboard/index.d.ts",
-      "default": "./dist/dashboard/index.js"
-    },
-    "./team": {
-      "types": "./dist/team/index.d.ts",
-      "default": "./dist/team/index.js"
-    },
-    "./canvas": {
-      "types": "./dist/canvas/index.d.ts",
-      "default": "./dist/canvas/index.js"
-    },
-    "./cloudwatch": {
-      "types": "./dist/cloudwatch/index.d.ts",
-      "default": "./dist/cloudwatch/index.js"
-    },
-    "./parca": {
-      "types": "./dist/parca/index.d.ts",
-      "default": "./dist/parca/index.js"
-    },
-    "./prometheus": {
-      "types": "./dist/prometheus/index.d.ts",
-      "default": "./dist/prometheus/index.js"
-    },
-    "./testdata": {
-      "types": "./dist/testdata/index.d.ts",
-      "default": "./dist/testdata/index.js"
-    },
-    "./rolebinding": {
-      "types": "./dist/rolebinding/index.d.ts",
-      "default": "./dist/rolebinding/index.js"
-    },
-    "./heatmap": {
-      "types": "./dist/heatmap/index.d.ts",
-      "default": "./dist/heatmap/index.js"
-    },
-    "./logs": {
-      "types": "./dist/logs/index.d.ts",
-      "default": "./dist/logs/index.js"
-    },
-    "./news": {
-      "types": "./dist/news/index.d.ts",
-      "default": "./dist/news/index.js"
-    },
-    "./folder": {
-      "types": "./dist/folder/index.d.ts",
-      "default": "./dist/folder/index.js"
-    },
-    "./grafanapyroscope": {
-      "types": "./dist/grafanapyroscope/index.d.ts",
-      "default": "./dist/grafanapyroscope/index.js"
-    },
-    "./loki": {
-      "types": "./dist/loki/index.d.ts",
-      "default": "./dist/loki/index.js"
-    },
-    "./table": {
-      "types": "./dist/table/index.d.ts",
-      "default": "./dist/table/index.js"
-    },
-    "./xychart": {
-      "types": "./dist/xychart/index.d.ts",
-      "default": "./dist/xychart/index.js"
+    "./alertgroups": {
+      "types": "./dist/alertgroups/index.d.ts",
+      "default": "./dist/alertgroups/index.js"
     },
     "./annotationslist": {
       "types": "./dist/annotationslist/index.d.ts",
@@ -202,6 +58,118 @@
       "types": "./dist/candlestick/index.d.ts",
       "default": "./dist/candlestick/index.js"
     },
+    "./canvas": {
+      "types": "./dist/canvas/index.d.ts",
+      "default": "./dist/canvas/index.js"
+    },
+    "./cloudwatch": {
+      "types": "./dist/cloudwatch/index.d.ts",
+      "default": "./dist/cloudwatch/index.js"
+    },
+    "./common": {
+      "types": "./dist/common/index.d.ts",
+      "default": "./dist/common/index.js"
+    },
+    "./dashboard": {
+      "types": "./dist/dashboard/index.d.ts",
+      "default": "./dist/dashboard/index.js"
+    },
+    "./dashboardlist": {
+      "types": "./dist/dashboardlist/index.d.ts",
+      "default": "./dist/dashboardlist/index.js"
+    },
+    "./datagrid": {
+      "types": "./dist/datagrid/index.d.ts",
+      "default": "./dist/datagrid/index.js"
+    },
+    "./debug": {
+      "types": "./dist/debug/index.d.ts",
+      "default": "./dist/debug/index.js"
+    },
+    "./elasticsearch": {
+      "types": "./dist/elasticsearch/index.d.ts",
+      "default": "./dist/elasticsearch/index.js"
+    },
+    "./folder": {
+      "types": "./dist/folder/index.d.ts",
+      "default": "./dist/folder/index.js"
+    },
+    "./gauge": {
+      "types": "./dist/gauge/index.d.ts",
+      "default": "./dist/gauge/index.js"
+    },
+    "./geomap": {
+      "types": "./dist/geomap/index.d.ts",
+      "default": "./dist/geomap/index.js"
+    },
+    "./googlecloudmonitoring": {
+      "types": "./dist/googlecloudmonitoring/index.d.ts",
+      "default": "./dist/googlecloudmonitoring/index.js"
+    },
+    "./grafanapyroscope": {
+      "types": "./dist/grafanapyroscope/index.d.ts",
+      "default": "./dist/grafanapyroscope/index.js"
+    },
+    "./heatmap": {
+      "types": "./dist/heatmap/index.d.ts",
+      "default": "./dist/heatmap/index.js"
+    },
+    "./histogram": {
+      "types": "./dist/histogram/index.d.ts",
+      "default": "./dist/histogram/index.js"
+    },
+    "./librarypanel": {
+      "types": "./dist/librarypanel/index.d.ts",
+      "default": "./dist/librarypanel/index.js"
+    },
+    "./logs": {
+      "types": "./dist/logs/index.d.ts",
+      "default": "./dist/logs/index.js"
+    },
+    "./loki": {
+      "types": "./dist/loki/index.d.ts",
+      "default": "./dist/loki/index.js"
+    },
+    "./news": {
+      "types": "./dist/news/index.d.ts",
+      "default": "./dist/news/index.js"
+    },
+    "./nodegraph": {
+      "types": "./dist/nodegraph/index.d.ts",
+      "default": "./dist/nodegraph/index.js"
+    },
+    "./parca": {
+      "types": "./dist/parca/index.d.ts",
+      "default": "./dist/parca/index.js"
+    },
+    "./piechart": {
+      "types": "./dist/piechart/index.d.ts",
+      "default": "./dist/piechart/index.js"
+    },
+    "./preferences": {
+      "types": "./dist/preferences/index.d.ts",
+      "default": "./dist/preferences/index.js"
+    },
+    "./prometheus": {
+      "types": "./dist/prometheus/index.d.ts",
+      "default": "./dist/prometheus/index.js"
+    },
+    "./publicdashboard": {
+      "types": "./dist/publicdashboard/index.d.ts",
+      "default": "./dist/publicdashboard/index.js"
+    },
+    "./role": {
+      "types": "./dist/role/index.d.ts",
+      "default": "./dist/role/index.js"
+    },
+    "./rolebinding": {
+      "types": "./dist/rolebinding/index.d.ts",
+      "default": "./dist/rolebinding/index.js"
+    },
+    "./stat": {
+      "types": "./dist/stat/index.d.ts",
+      "default": "./dist/stat/index.js"
+    },
     "./statetimeline": {
       "types": "./dist/statetimeline/index.d.ts",
       "default": "./dist/statetimeline/index.js"
@@ -209,6 +177,38 @@
     "./statushistory": {
       "types": "./dist/statushistory/index.d.ts",
       "default": "./dist/statushistory/index.js"
+    },
+    "./table": {
+      "types": "./dist/table/index.d.ts",
+      "default": "./dist/table/index.js"
+    },
+    "./team": {
+      "types": "./dist/team/index.d.ts",
+      "default": "./dist/team/index.js"
+    },
+    "./tempo": {
+      "types": "./dist/tempo/index.d.ts",
+      "default": "./dist/tempo/index.js"
+    },
+    "./testdata": {
+      "types": "./dist/testdata/index.d.ts",
+      "default": "./dist/testdata/index.js"
+    },
+    "./text": {
+      "types": "./dist/text/index.d.ts",
+      "default": "./dist/text/index.js"
+    },
+    "./timeseries": {
+      "types": "./dist/timeseries/index.d.ts",
+      "default": "./dist/timeseries/index.js"
+    },
+    "./trend": {
+      "types": "./dist/trend/index.d.ts",
+      "default": "./dist/trend/index.js"
+    },
+    "./xychart": {
+      "types": "./dist/xychart/index.d.ts",
+      "default": "./dist/xychart/index.js"
     }
   },
   "scripts": {

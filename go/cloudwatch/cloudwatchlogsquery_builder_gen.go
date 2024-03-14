@@ -78,13 +78,13 @@ func (builder *CloudWatchLogsQueryBuilder) StatsGroups(statsGroups []string) *Cl
 // Log groups to query
 func (builder *CloudWatchLogsQueryBuilder) LogGroups(logGroups []cog.Builder[LogGroup]) *CloudWatchLogsQueryBuilder {
 	logGroupsResources := make([]LogGroup, 0, len(logGroups))
-	for _, r := range logGroups {
-		logGroupsResource, err := r.Build()
+	for _, r1 := range logGroups {
+		logGroupsDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["logGroups"] = err.(cog.BuildErrors)
 			return builder
 		}
-		logGroupsResources = append(logGroupsResources, logGroupsResource)
+		logGroupsResources = append(logGroupsResources, logGroupsDepth1)
 	}
 	builder.internal.LogGroups = logGroupsResources
 
