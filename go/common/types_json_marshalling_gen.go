@@ -34,7 +34,7 @@ func (resource BoolOrFloat64) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.Float64)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
 func (resource *BoolOrFloat64) UnmarshalJSON(raw []byte) error {
@@ -93,9 +93,8 @@ func (resource TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCel
 		return json.Marshal(resource.TableJsonViewCellOptions)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of refs")
 }
-
 func (resource *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil

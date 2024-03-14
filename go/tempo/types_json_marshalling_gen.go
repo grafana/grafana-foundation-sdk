@@ -5,6 +5,7 @@ package tempo
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 
 	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
@@ -33,7 +34,7 @@ func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.ArrayOfString)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
 func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {

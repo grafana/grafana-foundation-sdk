@@ -26,13 +26,10 @@ type Dataquery struct {
 	Format         *PromQueryFormat `json:"format,omitempty"`
 	LegendFormat   *string          `json:"legendFormat,omitempty"`
 	IntervalFactor *float64         `json:"intervalFactor,omitempty"`
-	Scope          *struct {
-		Matchers string `json:"matchers"`
-	} `json:"scope,omitempty"`
-	RefId      *string `json:"refId,omitempty"`
-	Hide       *bool   `json:"hide,omitempty"`
-	QueryType  *string `json:"queryType,omitempty"`
-	Datasource any     `json:"datasource,omitempty"`
+	RefId          *string          `json:"refId,omitempty"`
+	Hide           *bool            `json:"hide,omitempty"`
+	QueryType      *string          `json:"queryType,omitempty"`
+	Datasource     any              `json:"datasource,omitempty"`
 	// An additional lower limit for the step parameter of the Prometheus query and for the
 	// `$__interval` and `$__rate_interval` variables.
 	Interval *string `json:"interval,omitempty"`

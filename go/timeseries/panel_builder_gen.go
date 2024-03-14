@@ -128,13 +128,13 @@ func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 // Panel links.
 func (builder *PanelBuilder) Links(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder {
 	linksResources := make([]dashboard.DashboardLink, 0, len(links))
-	for _, r := range links {
-		linksResource, err := r.Build()
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["links"] = err.(cog.BuildErrors)
 			return builder
 		}
-		linksResources = append(linksResources, linksResource)
+		linksResources = append(linksResources, linksDepth1)
 	}
 	builder.internal.Links = linksResources
 
@@ -398,6 +398,15 @@ func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[common.VizTooltipOption
 		return builder
 	}
 	builder.internal.Options.(*Options).Tooltip = tooltipResource
+
+	return builder
+}
+
+func (builder *PanelBuilder) Orientation(orientation common.VizOrientation) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).Orientation = &orientation
 
 	return builder
 }
