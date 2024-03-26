@@ -168,18 +168,14 @@ export interface Options {
 	// 	axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
 	// }
 	// Controls legend options
-	legend: {
-		show: true;
-	};
+	legend: HeatmapLegend;
 	// Controls tooltip options
 	tooltip: {
 		show: true;
 		yHistogram: false;
 	};
 	// Controls exemplar options
-	exemplars: {
-		color: "rgba(255,0,255,0.7)";
-	};
+	exemplars: ExemplarConfig;
 }
 
 export const defaultOptions = (): Options => ({

@@ -248,7 +248,7 @@ func (builder *DashboardBuilder) WithRow(rowPanel cog.Builder[RowPanel]) *Dashbo
 	// Position the row on the grid
 	rowPanelResource.GridPos = &GridPos{
 		X: 0, // beginning of the line
-		Y: builder.currentY,
+		Y: builder.currentY + builder.lastPanelHeight,
 
 		H: 1,
 		W: 24, // full width
@@ -259,8 +259,26 @@ func (builder *DashboardBuilder) WithRow(rowPanel cog.Builder[RowPanel]) *Dashbo
 
 	// Reset the state for the next row
 	builder.currentX = 0
-	builder.currentY += rowPanelResource.GridPos.H
+	builder.currentY = rowPanelResource.GridPos.Y + 1
 	builder.lastPanelHeight = 0
+
+	// Position the row's panels on the grid
+	for _, panel := range rowPanelResource.Panels {
+		// Position the panel on the grid
+		panel.GridPos.X = builder.currentX
+		panel.GridPos.Y = builder.currentY
+
+		// Prepare the coordinates for the next panel
+		builder.currentX += panel.GridPos.W
+		builder.lastPanelHeight = max(builder.lastPanelHeight, panel.GridPos.H)
+
+		// Check for grid width overflow?
+		if builder.currentX >= 24 {
+			builder.currentX = 0
+			builder.currentY += builder.lastPanelHeight
+			builder.lastPanelHeight = 0
+		}
+	}
 
 	return builder
 }

@@ -63,11 +63,7 @@ export interface Options {
 	// Map fields to appropriate dimension
 	fields: CandlestickFieldMap;
 	// Set which colors are used when the price movement is up or down
-	colors: {
-		down: "red";
-		up: "green";
-		flat: "gray";
-	};
+	colors: CandlestickColors;
 	legend: common.VizLegendOptions;
 	// When enabled, all fields will be sent to the graph
 	includeAllFields?: boolean;
@@ -78,7 +74,7 @@ export const defaultOptions = (): Options => ({
 	candleStyle: CandleStyle.Candles,
 	colorStrategy: ColorStrategy.OpenClose,
 	fields: defaultCandlestickFieldMap(),
-	colors: { down: "red", up: "green", flat: "gray", },
+	colors: { up: "green", down: "red", flat: "gray", },
 	legend: common.defaultVizLegendOptions(),
 	includeAllFields: false,
 });
