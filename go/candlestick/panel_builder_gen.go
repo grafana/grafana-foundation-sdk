@@ -347,11 +347,7 @@ func (builder *PanelBuilder) Fields(fields CandlestickFieldMap) *PanelBuilder {
 }
 
 // Set which colors are used when the price movement is up or down
-func (builder *PanelBuilder) Colors(colors struct {
-	Down string `json:"down"`
-	Up   string `json:"up"`
-	Flat string `json:"flat"`
-}) *PanelBuilder {
+func (builder *PanelBuilder) Colors(colors CandlestickColors) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
@@ -689,11 +685,7 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.Mode("candles+volume")
 	builder.CandleStyle("candles")
 	builder.ColorStrategy("open-close")
-	builder.Colors(struct {
-		Down string `json:"down"`
-		Up   string `json:"up"`
-		Flat string `json:"flat"`
-	}{
+	builder.Colors(CandlestickColors{
 		Down: "red",
 		Flat: "gray",
 		Up:   "green",
