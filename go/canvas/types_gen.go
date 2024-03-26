@@ -32,12 +32,13 @@ type Constraint struct {
 }
 
 type Placement struct {
-	Top    *float64 `json:"top,omitempty"`
-	Left   *float64 `json:"left,omitempty"`
-	Right  *float64 `json:"right,omitempty"`
-	Bottom *float64 `json:"bottom,omitempty"`
-	Width  *float64 `json:"width,omitempty"`
-	Height *float64 `json:"height,omitempty"`
+	Top      *float64 `json:"top,omitempty"`
+	Left     *float64 `json:"left,omitempty"`
+	Right    *float64 `json:"right,omitempty"`
+	Bottom   *float64 `json:"bottom,omitempty"`
+	Width    *float64 `json:"width,omitempty"`
+	Height   *float64 `json:"height,omitempty"`
+	Rotation *float64 `json:"rotation,omitempty"`
 }
 
 type BackgroundImageSize string
@@ -57,8 +58,9 @@ type BackgroundConfig struct {
 }
 
 type LineConfig struct {
-	Color *common.ColorDimensionConfig `json:"color,omitempty"`
-	Width *float64                     `json:"width,omitempty"`
+	Color  *common.ColorDimensionConfig `json:"color,omitempty"`
+	Width  *float64                     `json:"width,omitempty"`
+	Radius *float64                     `json:"radius,omitempty"`
 }
 
 type HttpRequestMethod string
@@ -87,6 +89,7 @@ type CanvasConnection struct {
 	Path       ConnectionPath               `json:"path"`
 	Color      *common.ColorDimensionConfig `json:"color,omitempty"`
 	Size       *common.ScaleDimensionConfig `json:"size,omitempty"`
+	Vertices   []ConnectionCoordinates      `json:"vertices,omitempty"`
 }
 
 type CanvasElementOptions struct {
@@ -108,6 +111,8 @@ type Options struct {
 	ShowAdvancedTypes bool `json:"showAdvancedTypes"`
 	// Enable pan and zoom
 	PanZoom bool `json:"panZoom"`
+	// Enable infinite pan
+	InfinitePan bool `json:"infinitePan"`
 	// The root element of canvas (frame), where all canvas elements are nested
 	// TODO: Figure out how to define a default value for this
 	Root struct {

@@ -34,6 +34,7 @@ type FieldConfig struct {
 	ScaleDistribution *common.ScaleDistributionConfig `json:"scaleDistribution,omitempty"`
 	AxisCenteredZero  *bool                           `json:"axisCenteredZero,omitempty"`
 	HideFrom          *common.HideSeriesConfig        `json:"hideFrom,omitempty"`
+	Stacking          *common.StackingConfig          `json:"stacking,omitempty"`
 	// Set the mode of the gradient fill. Fill gradient is based on the line color. To change the color, use the standard color scheme field option.
 	// Gradient appearance is influenced by the Fill opacity setting.
 	GradientMode   *common.GraphGradientMode `json:"gradientMode,omitempty"`

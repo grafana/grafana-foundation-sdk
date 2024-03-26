@@ -20,4 +20,9 @@ export class TableColoredBackgroundCellOptionsBuilder implements cog.Builder<com
         this.internal.mode = mode;
         return this;
     }
+
+    applyToRow(applyToRow: boolean): this {
+        this.internal.applyToRow = applyToRow;
+        return this;
+    }
 }
