@@ -469,25 +469,11 @@ func (builder *PanelBuilder) YAxis(yAxis YAxisConfig) *PanelBuilder {
 //	}
 //
 // Controls legend options
-func (builder *PanelBuilder) ShowLegend() *PanelBuilder {
+func (builder *PanelBuilder) Legend(legend HeatmapLegend) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Legend.Show = true
-
-	return builder
-}
-
-//	| *{
-//		axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
-//	}
-//
-// Controls legend options
-func (builder *PanelBuilder) HideLegend() *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
-	}
-	builder.internal.Options.(*Options).Legend.Show = false
+	builder.internal.Options.(*Options).Legend = legend
 
 	return builder
 }
@@ -538,11 +524,11 @@ func (builder *PanelBuilder) ShowColorScale(showColorScale bool) *PanelBuilder {
 }
 
 // Controls exemplar options
-func (builder *PanelBuilder) ExemplarsColor() *PanelBuilder {
+func (builder *PanelBuilder) ExemplarsColor(exemplars ExemplarConfig) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Exemplars.Color = "rgba(255,0,255,0.7)"
+	builder.internal.Options.(*Options).Exemplars = exemplars
 
 	return builder
 }
@@ -598,4 +584,10 @@ func (builder *PanelBuilder) applyDefaults() {
 	})
 	builder.ShowValue("auto")
 	builder.CellGap(1)
+	builder.Legend(HeatmapLegend{
+		Show: true,
+	})
+	builder.ExemplarsColor(ExemplarConfig{
+		Color: "rgba(255,0,255,0.7)",
+	})
 }

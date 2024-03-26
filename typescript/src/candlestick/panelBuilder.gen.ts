@@ -342,11 +342,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // Set which colors are used when the price movement is up or down
-    colors(colors: {
-	down: "red";
-	up: "green";
-	flat: "gray";
-}): this {
+    colors(colors: candlestick.CandlestickColors): this {
         if (!this.internal.options) {
             this.internal.options = candlestick.defaultOptions();
         }
