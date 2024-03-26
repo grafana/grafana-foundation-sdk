@@ -552,6 +552,21 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    stacking(stacking: cog.Builder<common.StackingConfig>): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = histogram.defaultFieldConfig();
+        }
+        const stackingResource = stacking.build();
+        this.internal.fieldConfig.defaults.custom.stacking = stackingResource;
+        return this;
+    }
+
     // Set the mode of the gradient fill. Fill gradient is based on the line color. To change the color, use the standard color scheme field option.
     // Gradient appearance is influenced by the Fill opacity setting.
     gradientMode(gradientMode: common.GraphGradientMode): this {

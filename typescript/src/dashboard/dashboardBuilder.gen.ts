@@ -176,7 +176,7 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
 		// Position the row on the grid
 		rowPanelResource.gridPos = {
 			x: 0, // beginning of the line
-			y: this.currentY,
+			y: this.currentY + this.lastPanelHeight,
 
 			h: 1,
 			w: 24, // full width
@@ -185,8 +185,30 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
 
 		// Reset the state for the next row
 		this.currentX = 0;
-		this.currentY += rowPanelResource.gridPos.h;
+		this.currentY = rowPanelResource.gridPos.y + 1;
 		this.lastPanelHeight = 0;
+
+		// Position the row's panels on the grid
+		rowPanelResource.panels.forEach(panel => {
+			if (!panel.gridPos) {
+				panel.gridPos = dashboard.defaultGridPos();
+			}
+
+			// Position the panel on the grid
+			panel.gridPos.x = this.currentX;
+			panel.gridPos.y = this.currentY;
+
+			// Prepare the coordinates for the next panel
+			this.currentX += panel.gridPos.w;
+			this.lastPanelHeight = Math.max(this.lastPanelHeight, panel.gridPos.h);
+
+			// Check for grid width overflow?
+			if (this.currentX >= 24) {
+				this.currentX = 0;
+				this.currentY += this.lastPanelHeight;
+				this.lastPanelHeight = 0;
+			}
+		});
         return this;
     }
 

@@ -394,6 +394,16 @@ func (builder *PanelBuilder) PanZoom(panZoom bool) *PanelBuilder {
 	return builder
 }
 
+// Enable infinite pan
+func (builder *PanelBuilder) InfinitePan(infinitePan bool) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).InfinitePan = infinitePan
+
+	return builder
+}
+
 // The root element of canvas (frame), where all canvas elements are nested
 // TODO: Figure out how to define a default value for this
 func (builder *PanelBuilder) Root(root struct {
@@ -419,4 +429,5 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.InlineEditing(true)
 	builder.ShowAdvancedTypes(true)
 	builder.PanZoom(true)
+	builder.InfinitePan(true)
 }

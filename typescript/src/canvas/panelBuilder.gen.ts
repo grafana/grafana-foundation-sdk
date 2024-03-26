@@ -343,6 +343,15 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Enable infinite pan
+    infinitePan(infinitePan: boolean): this {
+        if (!this.internal.options) {
+            this.internal.options = canvas.defaultOptions();
+        }
+        this.internal.options.infinitePan = infinitePan;
+        return this;
+    }
+
     // The root element of canvas (frame), where all canvas elements are nested
     // TODO: Figure out how to define a default value for this
     root(root: {

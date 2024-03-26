@@ -601,6 +601,23 @@ func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConf
 	return builder
 }
 
+func (builder *PanelBuilder) Stacking(stacking cog.Builder[common.StackingConfig]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	stackingResource, err := stacking.Build()
+	if err != nil {
+		builder.errors["fieldConfig.defaults.custom.stacking"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).Stacking = &stackingResource
+
+	return builder
+}
+
 // Set the mode of the gradient fill. Fill gradient is based on the line color. To change the color, use the standard color scheme field option.
 // Gradient appearance is influenced by the Fill opacity setting.
 func (builder *PanelBuilder) GradientMode(gradientMode common.GraphGradientMode) *PanelBuilder {

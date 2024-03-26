@@ -47,5 +47,11 @@ func (builder *TableColoredBackgroundCellOptionsBuilder) Mode(mode TableCellBack
 	return builder
 }
 
+func (builder *TableColoredBackgroundCellOptionsBuilder) ApplyToRow(applyToRow bool) *TableColoredBackgroundCellOptionsBuilder {
+	builder.internal.ApplyToRow = &applyToRow
+
+	return builder
+}
+
 func (builder *TableColoredBackgroundCellOptionsBuilder) applyDefaults() {
 }

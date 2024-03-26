@@ -38,6 +38,7 @@ export interface Placement {
 	bottom?: number;
 	width?: number;
 	height?: number;
+	rotation?: number;
 }
 
 export const defaultPlacement = (): Placement => ({
@@ -65,6 +66,7 @@ export const defaultBackgroundConfig = (): BackgroundConfig => ({
 export interface LineConfig {
 	color?: common.ColorDimensionConfig;
 	width?: number;
+	radius?: number;
 }
 
 export const defaultLineConfig = (): LineConfig => ({
@@ -101,6 +103,7 @@ export interface CanvasConnection {
 	path: ConnectionPath;
 	color?: common.ColorDimensionConfig;
 	size?: common.ScaleDimensionConfig;
+	vertices?: ConnectionCoordinates[];
 }
 
 export const defaultCanvasConnection = (): CanvasConnection => ({
@@ -133,6 +136,8 @@ export interface Options {
 	showAdvancedTypes: boolean;
 	// Enable pan and zoom
 	panZoom: boolean;
+	// Enable infinite pan
+	infinitePan: boolean;
 	// The root element of canvas (frame), where all canvas elements are nested
 	// TODO: Figure out how to define a default value for this
 	root: {
@@ -149,6 +154,7 @@ export const defaultOptions = (): Options => ({
 	inlineEditing: true,
 	showAdvancedTypes: true,
 	panZoom: true,
+	infinitePan: true,
 	root: {
 	name: "",
 	type: "frame",
