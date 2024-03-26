@@ -144,15 +144,11 @@ type Options struct {
 	// 	axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
 	// }
 	// Controls legend options
-	Legend struct {
-		Show bool `json:"show"`
-	} `json:"legend"`
+	Legend HeatmapLegend `json:"legend"`
 	// Controls tooltip options
 	Tooltip HeatmapTooltip `json:"tooltip"`
 	// Controls exemplar options
-	Exemplars struct {
-		Color string `json:"color"`
-	} `json:"exemplars"`
+	Exemplars ExemplarConfig `json:"exemplars"`
 }
 
 type FieldConfig struct {

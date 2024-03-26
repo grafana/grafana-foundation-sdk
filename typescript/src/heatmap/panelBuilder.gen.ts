@@ -418,33 +418,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     // 	axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
     // }
     // Controls legend options
-    showLegend(): this {
+    legend(legend: heatmap.HeatmapLegend): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        if (!this.internal.options.legend) {
-            this.internal.options.legend = {
-	show: true,
-};
-        }
-        this.internal.options.legend.show = true;
-        return this;
-    }
-
-    // | *{
-    // 	axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
-    // }
-    // Controls legend options
-    hideLegend(): this {
-        if (!this.internal.options) {
-            this.internal.options = heatmap.defaultOptions();
-        }
-        if (!this.internal.options.legend) {
-            this.internal.options.legend = {
-	show: true,
-};
-        }
-        this.internal.options.legend.show = false;
+        this.internal.options.legend = legend;
         return this;
     }
 
@@ -458,16 +436,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // Controls exemplar options
-    exemplarsColor(): this {
+    exemplarsColor(exemplars: heatmap.ExemplarConfig): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        if (!this.internal.options.exemplars) {
-            this.internal.options.exemplars = {
-	color: "rgba(255,0,255,0.7)",
-};
-        }
-        this.internal.options.exemplars.color = "rgba(255,0,255,0.7)";
+        this.internal.options.exemplars = exemplars;
         return this;
     }
 

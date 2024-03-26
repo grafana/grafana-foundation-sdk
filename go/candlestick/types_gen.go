@@ -57,11 +57,7 @@ type Options struct {
 	// Map fields to appropriate dimension
 	Fields CandlestickFieldMap `json:"fields"`
 	// Set which colors are used when the price movement is up or down
-	Colors struct {
-		Down string `json:"down"`
-		Up   string `json:"up"`
-		Flat string `json:"flat"`
-	} `json:"colors"`
+	Colors  CandlestickColors        `json:"colors"`
 	Legend  common.VizLegendOptions  `json:"legend"`
 	Tooltip common.VizTooltipOptions `json:"tooltip"`
 	// When enabled, all fields will be sent to the graph
