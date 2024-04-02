@@ -186,7 +186,7 @@ export const defaultOptions = (): Options => ({
 	cellGap: 1,
 	yAxis: defaultYAxisConfig(),
 	legend: { show: true, },
-	tooltip: { mode: common.TooltipDisplayMode.Single, yHistogram: false, showColorScale: false, },
+	tooltip: defaultHeatmapTooltip(),
 	exemplars: { color: "rgba(255,0,255,0.7)", },
 });
 

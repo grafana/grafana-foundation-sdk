@@ -552,11 +552,6 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.Legend(HeatmapLegend{
 		Show: true,
 	})
-	builder.Tooltip(HeatmapTooltip{
-		Mode:           "single",
-		ShowColorScale: cog.ToPtr[bool](false),
-		YHistogram:     cog.ToPtr[bool](false),
-	})
 	builder.ExemplarsColor(ExemplarConfig{
 		Color: "rgba(255,0,255,0.7)",
 	})
