@@ -173,11 +173,7 @@ export interface Options {
 	// Controls legend options
 	legend: HeatmapLegend;
 	// Controls tooltip options
-	tooltip: {
-		show: true;
-		yHistogram: false;
-		showColorScale: false;
-	};
+	tooltip: HeatmapTooltip;
 	// Controls exemplar options
 	exemplars: ExemplarConfig;
 }
@@ -190,7 +186,7 @@ export const defaultOptions = (): Options => ({
 	cellGap: 1,
 	yAxis: defaultYAxisConfig(),
 	legend: { show: true, },
-	tooltip: { show: true, yHistogram: false, showColorScale: false, },
+	tooltip: defaultHeatmapTooltip(),
 	exemplars: { color: "rgba(255,0,255,0.7)", },
 });
 
