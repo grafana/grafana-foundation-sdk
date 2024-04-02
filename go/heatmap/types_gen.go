@@ -144,11 +144,7 @@ type Options struct {
 	// Controls legend options
 	Legend HeatmapLegend `json:"legend"`
 	// Controls tooltip options
-	Tooltip struct {
-		Show           bool `json:"show"`
-		YHistogram     bool `json:"yHistogram"`
-		ShowColorScale bool `json:"showColorScale"`
-	} `json:"tooltip"`
+	Tooltip HeatmapTooltip `json:"tooltip"`
 	// Controls exemplar options
 	Exemplars ExemplarConfig `json:"exemplars"`
 }

@@ -414,78 +414,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    showTooltip(): this {
+    // Controls tooltip options
+    tooltip(tooltip: heatmap.HeatmapTooltip): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        if (!this.internal.options.tooltip) {
-            this.internal.options.tooltip = {
-	show: true,
-	yHistogram: false,
-	showColorScale: false,
-};
-        }
-        this.internal.options.tooltip.show = true;
-        return this;
-    }
-
-    hideTooltip(): this {
-        if (!this.internal.options) {
-            this.internal.options = heatmap.defaultOptions();
-        }
-        if (!this.internal.options.tooltip) {
-            this.internal.options.tooltip = {
-	show: true,
-	yHistogram: false,
-	showColorScale: false,
-};
-        }
-        this.internal.options.tooltip.show = false;
-        return this;
-    }
-
-    showYHistogram(): this {
-        if (!this.internal.options) {
-            this.internal.options = heatmap.defaultOptions();
-        }
-        if (!this.internal.options.tooltip) {
-            this.internal.options.tooltip = {
-	show: true,
-	yHistogram: false,
-	showColorScale: false,
-};
-        }
-        this.internal.options.tooltip.yHistogram = true;
-        return this;
-    }
-
-    hideYHistogram(): this {
-        if (!this.internal.options) {
-            this.internal.options = heatmap.defaultOptions();
-        }
-        if (!this.internal.options.tooltip) {
-            this.internal.options.tooltip = {
-	show: true,
-	yHistogram: false,
-	showColorScale: false,
-};
-        }
-        this.internal.options.tooltip.yHistogram = false;
-        return this;
-    }
-
-    showColorScale(showColorScale: false): this {
-        if (!this.internal.options) {
-            this.internal.options = heatmap.defaultOptions();
-        }
-        if (!this.internal.options.tooltip) {
-            this.internal.options.tooltip = {
-	show: true,
-	yHistogram: false,
-	showColorScale: false,
-};
-        }
-        this.internal.options.tooltip.showColorScale = showColorScale;
+        this.internal.options.tooltip = tooltip;
         return this;
     }
 

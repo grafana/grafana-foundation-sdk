@@ -478,47 +478,12 @@ func (builder *PanelBuilder) Legend(legend HeatmapLegend) *PanelBuilder {
 	return builder
 }
 
-func (builder *PanelBuilder) ShowTooltip() *PanelBuilder {
+// Controls tooltip options
+func (builder *PanelBuilder) Tooltip(tooltip HeatmapTooltip) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Tooltip.Show = true
-
-	return builder
-}
-
-func (builder *PanelBuilder) HideTooltip() *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
-	}
-	builder.internal.Options.(*Options).Tooltip.Show = false
-
-	return builder
-}
-
-func (builder *PanelBuilder) ShowYHistogram() *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
-	}
-	builder.internal.Options.(*Options).Tooltip.YHistogram = true
-
-	return builder
-}
-
-func (builder *PanelBuilder) HideYHistogram() *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
-	}
-	builder.internal.Options.(*Options).Tooltip.YHistogram = false
-
-	return builder
-}
-
-func (builder *PanelBuilder) ShowColorScale(showColorScale bool) *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
-	}
-	builder.internal.Options.(*Options).Tooltip.ShowColorScale = showColorScale
+	builder.internal.Options.(*Options).Tooltip = tooltip
 
 	return builder
 }
