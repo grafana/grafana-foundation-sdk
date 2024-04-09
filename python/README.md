@@ -1,4 +1,4 @@
-# Grafana Foundation SDK – TypeScript
+# Grafana Foundation SDK – Python
 
 A set of tools, types and *builder libraries* for building and manipulating Grafana objects in Python.
 
@@ -29,7 +29,7 @@ environments, and the risks are unknown/high.
 ## Installing
 
 ```shell
-python3 -m pip install 'grafana_foundation_sdk==1712096115!10.2.0'
+python3 -m pip install 'grafana_foundation_sdk==1712659053!10.2.0'
 ```
 
 ## Example usage

@@ -44,8 +44,7 @@ jobs:
       - name: Build a binary wheel and a source tarball
         run: python3 -m build
 
-# not yet setup
-#      - name: Publish distribution 📦 to PyPI
-#        uses: pypa/gh-action-pypi-publish@release/v1
-#        with:
-#          packages-dir: python/dist/
+      - name: Publish distribution 📦 to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: python/dist/
