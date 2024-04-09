@@ -292,15 +292,6 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // Defaults are the options applied to all fields.
-    defaults(defaults: dashboard.FieldConfig): this {
-        if (!this.internal.fieldConfig) {
-            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
-        }
-        this.internal.fieldConfig.defaults = defaults;
-        return this;
-    }
-
     // Overrides are the options applied to specific fields overriding the defaults.
     withOverride(overrides: {
 	matcher: dashboard.MatcherConfig;
@@ -340,6 +331,15 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
             this.internal.options = canvas.defaultOptions();
         }
         this.internal.options.panZoom = panZoom;
+        return this;
+    }
+
+    // Enable infinite pan
+    infinitePan(infinitePan: boolean): this {
+        if (!this.internal.options) {
+            this.internal.options = canvas.defaultOptions();
+        }
+        this.internal.options.infinitePan = infinitePan;
         return this;
     }
 
