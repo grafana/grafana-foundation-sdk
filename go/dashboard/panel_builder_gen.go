@@ -294,13 +294,6 @@ func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	return builder
 }
 
-// Defaults are the options applied to all fields.
-func (builder *PanelBuilder) Defaults(defaults FieldConfig) *PanelBuilder {
-	builder.internal.FieldConfig.Defaults = defaults
-
-	return builder
-}
-
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) WithOverride(matcher MatcherConfig, properties []DynamicConfigValue) *PanelBuilder {
 	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, struct {
