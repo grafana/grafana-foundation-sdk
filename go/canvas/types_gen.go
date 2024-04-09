@@ -108,6 +108,8 @@ type Options struct {
 	ShowAdvancedTypes bool `json:"showAdvancedTypes"`
 	// Enable pan and zoom
 	PanZoom bool `json:"panZoom"`
+	// Enable infinite pan
+	InfinitePan bool `json:"infinitePan"`
 	// The root element of canvas (frame), where all canvas elements are nested
 	// TODO: Figure out how to define a default value for this
 	Root struct {

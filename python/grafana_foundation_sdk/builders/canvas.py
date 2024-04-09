@@ -416,20 +416,6 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def defaults(self, defaults: dashboard.FieldConfig) -> typing.Self:    
-        """
-        Defaults are the options applied to all fields.
-        """
-            
-        if self.__internal.field_config is None:
-            self.__internal.field_config = dashboard.FieldConfigSource()
-        
-        assert isinstance(self.__internal.field_config, dashboard.FieldConfigSource)
-        
-        self.__internal.field_config.defaults = defaults
-    
-        return self
-    
     def with_override(self, matcher: dashboard.MatcherConfig, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
         """
         Overrides are the options applied to specific fields overriding the defaults.
@@ -489,6 +475,20 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         assert isinstance(self.__internal.options, canvas.Options)
         
         self.__internal.options.pan_zoom = pan_zoom
+    
+        return self
+    
+    def infinite_pan(self, infinite_pan: bool) -> typing.Self:    
+        """
+        Enable infinite pan
+        """
+            
+        if self.__internal.options is None:
+            self.__internal.options = canvas.Options()
+        
+        assert isinstance(self.__internal.options, canvas.Options)
+        
+        self.__internal.options.infinite_pan = infinite_pan
     
         return self
     

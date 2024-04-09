@@ -334,14 +334,17 @@ class Options:
     show_advanced_types: bool
     # Enable pan and zoom
     pan_zoom: bool
+    # Enable infinite pan
+    infinite_pan: bool
     # The root element of canvas (frame), where all canvas elements are nested
     # TODO: Figure out how to define a default value for this
     root: 'CanvasOptionsRoot'
 
-    def __init__(self, inline_editing: bool = True, show_advanced_types: bool = True, pan_zoom: bool = True, root: typing.Optional['CanvasOptionsRoot'] = None):
+    def __init__(self, inline_editing: bool = True, show_advanced_types: bool = True, pan_zoom: bool = True, infinite_pan: bool = True, root: typing.Optional['CanvasOptionsRoot'] = None):
         self.inline_editing = inline_editing
         self.show_advanced_types = show_advanced_types
         self.pan_zoom = pan_zoom
+        self.infinite_pan = infinite_pan
         self.root = root if root is not None else CanvasOptionsRoot()
 
     def to_json(self) -> dict[str, object]:
@@ -349,6 +352,7 @@ class Options:
             "inlineEditing": self.inline_editing,
             "showAdvancedTypes": self.show_advanced_types,
             "panZoom": self.pan_zoom,
+            "infinitePan": self.infinite_pan,
             "root": self.root,
         }
         return payload
@@ -363,6 +367,8 @@ class Options:
             args["show_advanced_types"] = data["showAdvancedTypes"]
         if "panZoom" in data:
             args["pan_zoom"] = data["panZoom"]
+        if "infinitePan" in data:
+            args["infinite_pan"] = data["infinitePan"]
         if "root" in data:
             args["root"] = CanvasOptionsRoot.from_json(data["root"])        
 
