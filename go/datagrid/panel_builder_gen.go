@@ -324,16 +324,6 @@ func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	return builder
 }
 
-// Defaults are the options applied to all fields.
-func (builder *PanelBuilder) Defaults(defaults dashboard.FieldConfig) *PanelBuilder {
-	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
-	}
-	builder.internal.FieldConfig.Defaults = defaults
-
-	return builder
-}
-
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, properties []dashboard.DynamicConfigValue) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
