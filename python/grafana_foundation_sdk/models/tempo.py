@@ -180,6 +180,7 @@ class SearchTableType(enum.StrEnum):
 
     TRACES = "traces"
     SPANS = "spans"
+    RAW = "raw"
 
 
 class TraceqlSearchScope(enum.StrEnum):
