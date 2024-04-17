@@ -75,6 +75,7 @@ export const defaultSearchStreamingState = (): SearchStreamingState => (SearchSt
 export enum SearchTableType {
 	Traces = "traces",
 	Spans = "spans",
+	Raw = "raw",
 }
 
 export const defaultSearchTableType = (): SearchTableType => (SearchTableType.Traces);

@@ -74,6 +74,7 @@ type SearchTableType string
 const (
 	SearchTableTypeTraces SearchTableType = "traces"
 	SearchTableTypeSpans  SearchTableType = "spans"
+	SearchTableTypeRaw    SearchTableType = "raw"
 )
 
 // static fields are pre-set in the UI, dynamic fields are added by the user
