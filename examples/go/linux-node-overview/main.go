@@ -57,7 +57,7 @@ func main() {
 			queryVariable("instance", "Instance", `label_values(node_uname_info{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job"}, instance)`).
 				AllValue(".+"),
 		).
-		// "Logi data source" variable
+		// "Loki data source" variable
 		WithVariable(dashboard.NewDatasourceVariableBuilder("loki_datasource").
 			Label("Loki data source").
 			Type("loki").
