@@ -1,0 +1,22 @@
+{
+  "name": "custom-query",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "author": "Grafana Labs",
+  "private": true,
+  "scripts": {
+    "start": "node build/src/index.js",
+    "dev": "ts-node src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -w -p tsconfig.json"
+  },
+  "dependencies": {
+    "@grafana/grafana-foundation-sdk": "~10.4.0-cogv0.0.x.1712659373",
+    "tslib": "~2.6"
+  },
+  "devDependencies": {
+    "@types/node": "~20",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.3"
+  }
+}
