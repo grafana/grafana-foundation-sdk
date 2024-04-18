@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class SingleStatBaseOptionsBuilder implements cog.Builder<common.SingleStatBaseOptions> {
-    private readonly internal: common.SingleStatBaseOptions;
+    protected readonly internal: common.SingleStatBaseOptions;
 
     constructor() {
         this.internal = common.defaultSingleStatBaseOptions();

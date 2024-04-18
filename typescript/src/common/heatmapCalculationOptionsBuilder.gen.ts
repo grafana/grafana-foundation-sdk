@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 export class HeatmapCalculationOptionsBuilder implements cog.Builder<common.HeatmapCalculationOptions> {
-    private readonly internal: common.HeatmapCalculationOptions;
+    protected readonly internal: common.HeatmapCalculationOptions;
 
     constructor() {
         this.internal = common.defaultHeatmapCalculationOptions();

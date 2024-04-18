@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class MetricAggregationWithFieldBuilder implements cog.Builder<elasticsearch.MetricAggregationWithField> {
-    private readonly internal: elasticsearch.MetricAggregationWithField;
+    protected readonly internal: elasticsearch.MetricAggregationWithField;
 
     constructor() {
         this.internal = elasticsearch.defaultMetricAggregationWithField();

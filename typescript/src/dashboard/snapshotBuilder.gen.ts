@@ -9,7 +9,7 @@ import * as dashboard from '../dashboard';
 // Grafana strips away all sensitive information from the dashboard.
 // Sensitive information stripped: queries (metric, template,annotation) and panel links.
 export class SnapshotBuilder implements cog.Builder<dashboard.Snapshot> {
-    private readonly internal: dashboard.Snapshot;
+    protected readonly internal: dashboard.Snapshot;
 
     constructor() {
         this.internal = dashboard.defaultSnapshot();

@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
 export class CloudMonitoringQueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: googlecloudmonitoring.CloudMonitoringQuery;
+    protected readonly internal: googlecloudmonitoring.CloudMonitoringQuery;
 
     constructor() {
         this.internal = googlecloudmonitoring.defaultCloudMonitoringQuery();

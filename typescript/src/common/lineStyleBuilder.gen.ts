@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class LineStyleBuilder implements cog.Builder<common.LineStyle> {
-    private readonly internal: common.LineStyle;
+    protected readonly internal: common.LineStyle;
 
     constructor() {
         this.internal = common.defaultLineStyle();

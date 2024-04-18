@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class BucketAggregationWithFieldBuilder implements cog.Builder<elasticsearch.BucketAggregationWithField> {
-    private readonly internal: elasticsearch.BucketAggregationWithField;
+    protected readonly internal: elasticsearch.BucketAggregationWithField;
 
     constructor() {
         this.internal = elasticsearch.defaultBucketAggregationWithField();

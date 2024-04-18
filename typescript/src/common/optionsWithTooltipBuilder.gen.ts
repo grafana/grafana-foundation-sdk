@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class OptionsWithTooltipBuilder implements cog.Builder<common.OptionsWithTooltip> {
-    private readonly internal: common.OptionsWithTooltip;
+    protected readonly internal: common.OptionsWithTooltip;
 
     constructor() {
         this.internal = common.defaultOptionsWithTooltip();

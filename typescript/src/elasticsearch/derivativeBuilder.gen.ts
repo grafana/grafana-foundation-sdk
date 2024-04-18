@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class DerivativeBuilder implements cog.Builder<elasticsearch.Derivative> {
-    private readonly internal: elasticsearch.Derivative;
+    protected readonly internal: elasticsearch.Derivative;
 
     constructor() {
         this.internal = elasticsearch.defaultDerivative();

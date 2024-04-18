@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as testdata from '../testdata';
 
 export class KeyBuilder implements cog.Builder<testdata.Key> {
-    private readonly internal: testdata.Key;
+    protected readonly internal: testdata.Key;
 
     constructor() {
         this.internal = testdata.defaultKey();

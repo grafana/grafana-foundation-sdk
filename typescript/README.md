@@ -9,10 +9,12 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-yarn add '@grafana/grafana-foundation-sdk@~10.2.0-cogv0.0.x.1713348465'
+yarn add '@grafana/grafana-foundation-sdk@~10.2.0-cogv0.0.x.1713437175'
 ```
 
 ## Example usage
+
+[More examples](https://github.com/grafana/grafana-foundation-sdk/tree/main/examples/typescript) can be found at the repository root.
 
 ### Building a dashboard
 
