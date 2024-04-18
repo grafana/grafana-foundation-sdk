@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
 export class UnknownQueryBuilder implements cog.Builder<azuremonitor.UnknownQuery> {
-    private readonly internal: azuremonitor.UnknownQuery;
+    protected readonly internal: azuremonitor.UnknownQuery;
 
     constructor() {
         this.internal = azuremonitor.defaultUnknownQuery();

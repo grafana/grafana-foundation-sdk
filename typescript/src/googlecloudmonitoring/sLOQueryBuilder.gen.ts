@@ -5,7 +5,7 @@ import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
 // SLO sub-query properties.
 export class SLOQueryBuilder implements cog.Builder<googlecloudmonitoring.SLOQuery> {
-    private readonly internal: googlecloudmonitoring.SLOQuery;
+    protected readonly internal: googlecloudmonitoring.SLOQuery;
 
     constructor() {
         this.internal = googlecloudmonitoring.defaultSLOQuery();

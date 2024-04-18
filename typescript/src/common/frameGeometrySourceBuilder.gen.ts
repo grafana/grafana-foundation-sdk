@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 export class FrameGeometrySourceBuilder implements cog.Builder<common.FrameGeometrySource> {
-    private readonly internal: common.FrameGeometrySource;
+    protected readonly internal: common.FrameGeometrySource;
 
     constructor() {
         this.internal = common.defaultFrameGeometrySource();

@@ -5,7 +5,7 @@ import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
 // Annotation sub-query properties.
 export class AnnotationQueryBuilder implements cog.Builder<googlecloudmonitoring.AnnotationQuery> {
-    private readonly internal: googlecloudmonitoring.AnnotationQuery;
+    protected readonly internal: googlecloudmonitoring.AnnotationQuery;
 
     constructor() {
         this.internal = googlecloudmonitoring.defaultAnnotationQuery();

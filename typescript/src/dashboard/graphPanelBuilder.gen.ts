@@ -6,7 +6,7 @@ import * as dashboard from '../dashboard';
 // Support for legacy graph panel.
 // @deprecated this a deprecated panel type
 export class GraphPanelBuilder implements cog.Builder<dashboard.GraphPanel> {
-    private readonly internal: dashboard.GraphPanel;
+    protected readonly internal: dashboard.GraphPanel;
 
     constructor() {
         this.internal = dashboard.defaultGraphPanel();

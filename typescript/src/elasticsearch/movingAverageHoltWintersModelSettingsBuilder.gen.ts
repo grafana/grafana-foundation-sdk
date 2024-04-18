@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class MovingAverageHoltWintersModelSettingsBuilder implements cog.Builder<elasticsearch.MovingAverageHoltWintersModelSettings> {
-    private readonly internal: elasticsearch.MovingAverageHoltWintersModelSettings;
+    protected readonly internal: elasticsearch.MovingAverageHoltWintersModelSettings;
 
     constructor() {
         this.internal = elasticsearch.defaultMovingAverageHoltWintersModelSettings();

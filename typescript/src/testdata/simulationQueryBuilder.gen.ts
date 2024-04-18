@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as testdata from '../testdata';
 
 export class SimulationQueryBuilder implements cog.Builder<testdata.SimulationQuery> {
-    private readonly internal: testdata.SimulationQuery;
+    protected readonly internal: testdata.SimulationQuery;
 
     constructor() {
         this.internal = testdata.defaultSimulationQuery();

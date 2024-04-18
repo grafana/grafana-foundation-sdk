@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as playlist from '../playlist';
 
 export class PlaylistBuilder implements cog.Builder<playlist.Playlist> {
-    private readonly internal: playlist.Playlist;
+    protected readonly internal: playlist.Playlist;
 
     constructor() {
         this.internal = playlist.defaultPlaylist();

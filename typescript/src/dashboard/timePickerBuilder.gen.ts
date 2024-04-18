@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
 export class TimePickerBuilder implements cog.Builder<dashboard.TimePicker> {
-    private readonly internal: dashboard.TimePicker;
+    protected readonly internal: dashboard.TimePicker;
 
     constructor() {
         this.internal = dashboard.defaultTimePicker();

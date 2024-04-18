@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as publicdashboard from '../publicdashboard';
 
 export class PublicDashboardBuilder implements cog.Builder<publicdashboard.PublicDashboard> {
-    private readonly internal: publicdashboard.PublicDashboard;
+    protected readonly internal: publicdashboard.PublicDashboard;
 
     constructor() {
         this.internal = publicdashboard.defaultPublicDashboard();

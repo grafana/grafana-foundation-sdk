@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // Gauge cell options
 export class TableBarGaugeCellOptionsBuilder implements cog.Builder<common.TableBarGaugeCellOptions> {
-    private readonly internal: common.TableBarGaugeCellOptions;
+    protected readonly internal: common.TableBarGaugeCellOptions;
 
     constructor() {
         this.internal = common.defaultTableBarGaugeCellOptions();
