@@ -6,13 +6,13 @@ from ..models import tempo
 
 
 class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):    
-    __internal: tempo.TempoQuery
+    _internal: tempo.TempoQuery
 
     def __init__(self):
-        self.__internal = tempo.TempoQuery()
+        self._internal = tempo.TempoQuery()
 
     def build(self) -> tempo.TempoQuery:
-        return self.__internal    
+        return self._internal    
     
     def ref_id(self, ref_id: str) -> typing.Self:    
         """
@@ -21,7 +21,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         By default, the UI will assign A->Z; however setting meaningful names may be useful.
         """
             
-        self.__internal.ref_id = ref_id
+        self._internal.ref_id = ref_id
     
         return self
     
@@ -32,7 +32,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         the results from a hidden query may be used as the input to other queries (SSE etc)
         """
             
-        self.__internal.hide = hide
+        self._internal.hide = hide
     
         return self
     
@@ -42,7 +42,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         TODO make this required and give it a default
         """
             
-        self.__internal.query_type = query_type
+        self._internal.query_type = query_type
     
         return self
     
@@ -51,7 +51,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         TraceQL query or trace ID
         """
             
-        self.__internal.query = query
+        self._internal.query = query
     
         return self
     
@@ -60,7 +60,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         @deprecated Logfmt query to filter traces by their tags. Example: http.status_code=200 error=true
         """
             
-        self.__internal.search = search
+        self._internal.search = search
     
         return self
     
@@ -69,7 +69,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         @deprecated Query traces by service name
         """
             
-        self.__internal.service_name = service_name
+        self._internal.service_name = service_name
     
         return self
     
@@ -78,7 +78,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         @deprecated Query traces by span name
         """
             
-        self.__internal.span_name = span_name
+        self._internal.span_name = span_name
     
         return self
     
@@ -87,7 +87,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         @deprecated Define the minimum duration to select traces. Use duration format, for example: 1.2s, 100ms
         """
             
-        self.__internal.min_duration = min_duration
+        self._internal.min_duration = min_duration
     
         return self
     
@@ -96,7 +96,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         @deprecated Define the maximum duration to select traces. Use duration format, for example: 1.2s, 100ms
         """
             
-        self.__internal.max_duration = max_duration
+        self._internal.max_duration = max_duration
     
         return self
     
@@ -105,7 +105,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         Filters to be included in a PromQL query to select data for the service graph. Example: {client="app",service="app"}
         """
             
-        self.__internal.service_map_query = service_map_query
+        self._internal.service_map_query = service_map_query
     
         return self
     
@@ -114,7 +114,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         Use service.namespace in addition to service.name to uniquely identify a service.
         """
             
-        self.__internal.service_map_include_namespace = service_map_include_namespace
+        self._internal.service_map_include_namespace = service_map_include_namespace
     
         return self
     
@@ -123,7 +123,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         Defines the maximum number of traces that are returned from Tempo
         """
             
-        self.__internal.limit = limit
+        self._internal.limit = limit
     
         return self
     
@@ -135,32 +135,32 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         TODO this shouldn't be unknown but DataSourceRef | null
         """
             
-        self.__internal.datasource = datasource
+        self._internal.datasource = datasource
     
         return self
     
     def filters(self, filters: list[cogbuilder.Builder[tempo.TraceqlFilter]]) -> typing.Self:        
         filters_resources = [r1.build() for r1 in filters]
-        self.__internal.filters = filters_resources
+        self._internal.filters = filters_resources
     
         return self
     
 
 class TraceqlFilter(cogbuilder.Builder[tempo.TraceqlFilter]):    
-    __internal: tempo.TraceqlFilter
+    _internal: tempo.TraceqlFilter
 
     def __init__(self):
-        self.__internal = tempo.TraceqlFilter()
+        self._internal = tempo.TraceqlFilter()
 
     def build(self) -> tempo.TraceqlFilter:
-        return self.__internal    
+        return self._internal    
     
     def id_val(self, id_val: str) -> typing.Self:    
         """
         Uniquely identify the filter, will not be used in the query generation
         """
             
-        self.__internal.id_val = id_val
+        self._internal.id_val = id_val
     
         return self
     
@@ -169,7 +169,7 @@ class TraceqlFilter(cogbuilder.Builder[tempo.TraceqlFilter]):
         The tag for the search filter, for example: .http.status_code, .service.name, status
         """
             
-        self.__internal.tag = tag
+        self._internal.tag = tag
     
         return self
     
@@ -178,7 +178,7 @@ class TraceqlFilter(cogbuilder.Builder[tempo.TraceqlFilter]):
         The operator that connects the tag to the value, for example: =, >, !=, =~
         """
             
-        self.__internal.operator = operator
+        self._internal.operator = operator
     
         return self
     
@@ -187,7 +187,7 @@ class TraceqlFilter(cogbuilder.Builder[tempo.TraceqlFilter]):
         The value for the search filter
         """
             
-        self.__internal.value = value
+        self._internal.value = value
     
         return self
     
@@ -196,7 +196,7 @@ class TraceqlFilter(cogbuilder.Builder[tempo.TraceqlFilter]):
         The type of the value, used for example to check whether we need to wrap the value in quotes when generating the query
         """
             
-        self.__internal.value_type = value_type
+        self._internal.value_type = value_type
     
         return self
     
@@ -205,7 +205,7 @@ class TraceqlFilter(cogbuilder.Builder[tempo.TraceqlFilter]):
         The scope of the filter, can either be unscoped/all scopes, resource or span
         """
             
-        self.__internal.scope = scope
+        self._internal.scope = scope
     
         return self
     

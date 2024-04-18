@@ -11,21 +11,21 @@ class Folder(cogbuilder.Builder[folder.Folder]):
     common metadata will soon support setting the parent folder in the metadata
     """
     
-    __internal: folder.Folder
+    _internal: folder.Folder
 
     def __init__(self, title: str):
-        self.__internal = folder.Folder()        
-        self.__internal.title = title
+        self._internal = folder.Folder()        
+        self._internal.title = title
 
     def build(self) -> folder.Folder:
-        return self.__internal    
+        return self._internal    
     
     def uid(self, uid: str) -> typing.Self:    
         """
         Unique folder id. (will be k8s name)
         """
             
-        self.__internal.uid = uid
+        self._internal.uid = uid
     
         return self
     
@@ -34,7 +34,7 @@ class Folder(cogbuilder.Builder[folder.Folder]):
         Folder title
         """
             
-        self.__internal.title = title
+        self._internal.title = title
     
         return self
     
@@ -43,7 +43,7 @@ class Folder(cogbuilder.Builder[folder.Folder]):
         Description of the folder.
         """
             
-        self.__internal.description = description
+        self._internal.description = description
     
         return self
     
