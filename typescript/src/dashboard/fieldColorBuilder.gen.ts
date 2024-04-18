@@ -5,7 +5,7 @@ import * as dashboard from '../dashboard';
 
 // Map a field to a color.
 export class FieldColorBuilder implements cog.Builder<dashboard.FieldColor> {
-    private readonly internal: dashboard.FieldColor;
+    protected readonly internal: dashboard.FieldColor;
 
     constructor() {
         this.internal = dashboard.defaultFieldColor();

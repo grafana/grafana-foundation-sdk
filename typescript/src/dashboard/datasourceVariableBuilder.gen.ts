@@ -5,7 +5,7 @@ import * as dashboard from '../dashboard';
 
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
 export class DatasourceVariableBuilder implements cog.Builder<dashboard.VariableModel> {
-    private readonly internal: dashboard.VariableModel;
+    protected readonly internal: dashboard.VariableModel;
 
     constructor(name: string) {
         this.internal = dashboard.defaultVariableModel();

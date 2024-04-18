@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as loki from '../loki';
 
 export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: loki.dataquery;
+    protected readonly internal: loki.dataquery;
 
     constructor() {
         this.internal = loki.defaultDataquery();

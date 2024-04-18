@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class DataSourceJsonDataBuilder implements cog.Builder<common.DataSourceJsonData> {
-    private readonly internal: common.DataSourceJsonData;
+    protected readonly internal: common.DataSourceJsonData;
 
     constructor() {
         this.internal = common.defaultDataSourceJsonData();

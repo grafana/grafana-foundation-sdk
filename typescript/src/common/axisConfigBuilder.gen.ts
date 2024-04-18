@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class AxisConfigBuilder implements cog.Builder<common.AxisConfig> {
-    private readonly internal: common.AxisConfig;
+    protected readonly internal: common.AxisConfig;
 
     constructor() {
         this.internal = common.defaultAxisConfig();

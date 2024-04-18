@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class PointsConfigBuilder implements cog.Builder<common.PointsConfig> {
-    private readonly internal: common.PointsConfig;
+    protected readonly internal: common.PointsConfig;
 
     constructor() {
         this.internal = common.defaultPointsConfig();

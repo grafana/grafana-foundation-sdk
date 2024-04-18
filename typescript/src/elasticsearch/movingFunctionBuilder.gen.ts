@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class MovingFunctionBuilder implements cog.Builder<elasticsearch.MovingFunction> {
-    private readonly internal: elasticsearch.MovingFunction;
+    protected readonly internal: elasticsearch.MovingFunction;
 
     constructor() {
         this.internal = elasticsearch.defaultMovingFunction();

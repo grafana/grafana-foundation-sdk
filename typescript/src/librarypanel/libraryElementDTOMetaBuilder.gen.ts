@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as librarypanel from '../librarypanel';
 
 export class LibraryElementDTOMetaBuilder implements cog.Builder<librarypanel.LibraryElementDTOMeta> {
-    private readonly internal: librarypanel.LibraryElementDTOMeta;
+    protected readonly internal: librarypanel.LibraryElementDTOMeta;
 
     constructor() {
         this.internal = librarypanel.defaultLibraryElementDTOMeta();

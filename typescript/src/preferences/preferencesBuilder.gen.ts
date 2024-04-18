@@ -6,7 +6,7 @@ import * as preferences from '../preferences';
 // Spec defines user, team or org Grafana preferences
 // swagger:model Preferences
 export class PreferencesBuilder implements cog.Builder<preferences.Preferences> {
-    private readonly internal: preferences.Preferences;
+    protected readonly internal: preferences.Preferences;
 
     constructor() {
         this.internal = preferences.defaultPreferences();
