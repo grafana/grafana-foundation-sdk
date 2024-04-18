@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class OptionsWithTextFormattingBuilder implements cog.Builder<common.OptionsWithTextFormatting> {
-    private readonly internal: common.OptionsWithTextFormatting;
+    protected readonly internal: common.OptionsWithTextFormatting;
 
     constructor() {
         this.internal = common.defaultOptionsWithTextFormatting();

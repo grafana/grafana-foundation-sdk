@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: elasticsearch.dataquery;
+    protected readonly internal: elasticsearch.dataquery;
 
     constructor() {
         this.internal = elasticsearch.defaultDataquery();

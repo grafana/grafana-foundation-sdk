@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class CumulativeSumBuilder implements cog.Builder<elasticsearch.CumulativeSum> {
-    private readonly internal: elasticsearch.CumulativeSum;
+    protected readonly internal: elasticsearch.CumulativeSum;
 
     constructor() {
         this.internal = elasticsearch.defaultCumulativeSum();

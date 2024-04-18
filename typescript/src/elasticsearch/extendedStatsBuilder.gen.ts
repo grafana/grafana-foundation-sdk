@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class ExtendedStatsBuilder implements cog.Builder<elasticsearch.ExtendedStats> {
-    private readonly internal: elasticsearch.ExtendedStats;
+    protected readonly internal: elasticsearch.ExtendedStats;
 
     constructor() {
         this.internal = elasticsearch.defaultExtendedStats();

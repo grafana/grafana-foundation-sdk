@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
 export class WorkspacesQueryBuilder implements cog.Builder<azuremonitor.WorkspacesQuery> {
-    private readonly internal: azuremonitor.WorkspacesQuery;
+    protected readonly internal: azuremonitor.WorkspacesQuery;
 
     constructor() {
         this.internal = azuremonitor.defaultWorkspacesQuery();

@@ -5,7 +5,7 @@ import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
 // Time Series List sub-query properties.
 export class TimeSeriesListBuilder implements cog.Builder<googlecloudmonitoring.TimeSeriesList> {
-    private readonly internal: googlecloudmonitoring.TimeSeriesList;
+    protected readonly internal: googlecloudmonitoring.TimeSeriesList;
 
     constructor() {
         this.internal = googlecloudmonitoring.defaultTimeSeriesList();

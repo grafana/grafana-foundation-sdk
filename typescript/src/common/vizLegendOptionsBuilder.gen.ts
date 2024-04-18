@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class VizLegendOptionsBuilder implements cog.Builder<common.VizLegendOptions> {
-    private readonly internal: common.VizLegendOptions;
+    protected readonly internal: common.VizLegendOptions;
 
     constructor() {
         this.internal = common.defaultVizLegendOptions();

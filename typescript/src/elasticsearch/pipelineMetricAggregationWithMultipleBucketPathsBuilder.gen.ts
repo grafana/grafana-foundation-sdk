@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class PipelineMetricAggregationWithMultipleBucketPathsBuilder implements cog.Builder<elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths> {
-    private readonly internal: elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths;
+    protected readonly internal: elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths;
 
     constructor() {
         this.internal = elasticsearch.defaultPipelineMetricAggregationWithMultipleBucketPaths();

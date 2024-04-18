@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class CountBuilder implements cog.Builder<elasticsearch.Count> {
-    private readonly internal: elasticsearch.Count;
+    protected readonly internal: elasticsearch.Count;
 
     constructor() {
         this.internal = elasticsearch.defaultCount();

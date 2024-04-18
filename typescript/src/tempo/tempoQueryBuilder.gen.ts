@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as tempo from '../tempo';
 
 export class TempoQueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: tempo.TempoQuery;
+    protected readonly internal: tempo.TempoQuery;
 
     constructor() {
         this.internal = tempo.defaultTempoQuery();

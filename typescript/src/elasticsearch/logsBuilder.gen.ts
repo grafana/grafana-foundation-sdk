@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class LogsBuilder implements cog.Builder<elasticsearch.Logs> {
-    private readonly internal: elasticsearch.Logs;
+    protected readonly internal: elasticsearch.Logs;
 
     constructor() {
         this.internal = elasticsearch.defaultLogs();
