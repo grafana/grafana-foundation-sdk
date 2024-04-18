@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as tempo from '../tempo';
 
 export class TraceqlFilterBuilder implements cog.Builder<tempo.TraceqlFilter> {
-    private readonly internal: tempo.TraceqlFilter;
+    protected readonly internal: tempo.TraceqlFilter;
 
     constructor() {
         this.internal = tempo.defaultTraceqlFilter();

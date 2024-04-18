@@ -296,7 +296,7 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
     
         return self
     
-    def annotations(self, annotations: cogbuilder.Builder[dashboard.AnnotationContainer]) -> typing.Self:    
+    def annotation(self, list_val: cogbuilder.Builder[dashboard.AnnotationQuery]) -> typing.Self:    
         """
         Contains the list of annotations that are associated with the dashboard.
         Annotations are used to overlay event markers and overlay event tags on graphs.
@@ -304,8 +304,16 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
         """
             
-        annotations_resource = annotations.build()
-        self.__internal.annotations = annotations_resource
+        if self.__internal.annotations is None:
+            self.__internal.annotations = dashboard.AnnotationContainer()
+        
+        assert isinstance(self.__internal.annotations, dashboard.AnnotationContainer)
+        
+        if self.__internal.annotations.list_val is None:
+            self.__internal.annotations.list_val = []
+        
+        list_val_resource = list_val.build()
+        self.__internal.annotations.list_val.append(list_val_resource)
     
         return self
     
@@ -412,33 +420,6 @@ class AnnotationPanelFilter(cogbuilder.Builder[dashboard.AnnotationPanelFilter])
         """
             
         self.__internal.ids = ids
-    
-        return self
-    
-
-class AnnotationContainer(cogbuilder.Builder[dashboard.AnnotationContainer]):    
-    """
-    Contains the list of annotations that are associated with the dashboard.
-    Annotations are used to overlay event markers and overlay event tags on graphs.
-    Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
-    See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-    """
-    
-    __internal: dashboard.AnnotationContainer
-
-    def __init__(self):
-        self.__internal = dashboard.AnnotationContainer()
-
-    def build(self) -> dashboard.AnnotationContainer:
-        return self.__internal    
-    
-    def list_val(self, list_val: list[cogbuilder.Builder[dashboard.AnnotationQuery]]) -> typing.Self:    
-        """
-        List of annotations
-        """
-            
-        list_val_resources = [r1.build() for r1 in list_val]
-        self.__internal.list_val = list_val_resources
     
         return self
     

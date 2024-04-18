@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as preferences from '../preferences';
 
 export class PreferencesBuilder implements cog.Builder<preferences.Preferences> {
-    private readonly internal: preferences.Preferences;
+    protected readonly internal: preferences.Preferences;
 
     constructor() {
         this.internal = preferences.defaultPreferences();

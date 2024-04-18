@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
 export class AzureTracesFilterBuilder implements cog.Builder<azuremonitor.AzureTracesFilter> {
-    private readonly internal: azuremonitor.AzureTracesFilter;
+    protected readonly internal: azuremonitor.AzureTracesFilter;
 
     constructor() {
         this.internal = azuremonitor.defaultAzureTracesFilter();

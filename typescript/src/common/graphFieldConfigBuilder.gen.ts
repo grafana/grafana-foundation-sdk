@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class GraphFieldConfigBuilder implements cog.Builder<common.GraphFieldConfig> {
-    private readonly internal: common.GraphFieldConfig;
+    protected readonly internal: common.GraphFieldConfig;
 
     constructor() {
         this.internal = common.defaultGraphFieldConfig();

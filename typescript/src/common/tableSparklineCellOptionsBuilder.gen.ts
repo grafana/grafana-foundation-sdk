@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // Sparkline cell options
 export class TableSparklineCellOptionsBuilder implements cog.Builder<common.TableSparklineCellOptions> {
-    private readonly internal: common.TableSparklineCellOptions;
+    protected readonly internal: common.TableSparklineCellOptions;
 
     constructor() {
         this.internal = common.defaultTableSparklineCellOptions();

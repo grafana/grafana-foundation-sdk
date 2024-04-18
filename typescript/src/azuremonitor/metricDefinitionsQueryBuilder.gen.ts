@@ -5,7 +5,7 @@ import * as azuremonitor from '../azuremonitor';
 
 // @deprecated Use MetricNamespaceQuery instead
 export class MetricDefinitionsQueryBuilder implements cog.Builder<azuremonitor.MetricDefinitionsQuery> {
-    private readonly internal: azuremonitor.MetricDefinitionsQuery;
+    protected readonly internal: azuremonitor.MetricDefinitionsQuery;
 
     constructor() {
         this.internal = azuremonitor.defaultMetricDefinitionsQuery();

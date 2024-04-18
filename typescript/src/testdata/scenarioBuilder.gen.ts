@@ -5,7 +5,7 @@ import * as testdata from '../testdata';
 
 // TODO: Should this live here given it's not used in the dataquery?
 export class ScenarioBuilder implements cog.Builder<testdata.Scenario> {
-    private readonly internal: testdata.Scenario;
+    protected readonly internal: testdata.Scenario;
 
     constructor() {
         this.internal = testdata.defaultScenario();

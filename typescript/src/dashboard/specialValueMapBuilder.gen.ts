@@ -7,7 +7,7 @@ import * as dashboard from '../dashboard';
 // See SpecialValueMatch to see the list of special values.
 // For example, you can configure a special value mapping so that null values appear as N/A.
 export class SpecialValueMapBuilder implements cog.Builder<dashboard.SpecialValueMap> {
-    private readonly internal: dashboard.SpecialValueMap;
+    protected readonly internal: dashboard.SpecialValueMap;
 
     constructor() {
         this.internal = dashboard.defaultSpecialValueMap();

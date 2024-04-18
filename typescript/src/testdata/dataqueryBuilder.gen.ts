@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as testdata from '../testdata';
 
 export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: testdata.dataquery;
+    protected readonly internal: testdata.dataquery;
 
     constructor() {
         this.internal = testdata.defaultDataquery();

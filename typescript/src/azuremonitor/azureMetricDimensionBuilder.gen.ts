@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
 export class AzureMetricDimensionBuilder implements cog.Builder<azuremonitor.AzureMetricDimension> {
-    private readonly internal: azuremonitor.AzureMetricDimension;
+    protected readonly internal: azuremonitor.AzureMetricDimension;
 
     constructor() {
         this.internal = azuremonitor.defaultAzureMetricDimension();

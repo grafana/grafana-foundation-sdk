@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class FillConfigBuilder implements cog.Builder<common.FillConfig> {
-    private readonly internal: common.FillConfig;
+    protected readonly internal: common.FillConfig;
 
     constructor() {
         this.internal = common.defaultFillConfig();

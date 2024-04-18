@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as accesspolicy from '../accesspolicy';
 
 export class AccessRuleBuilder implements cog.Builder<accesspolicy.AccessRule> {
-    private readonly internal: accesspolicy.AccessRule;
+    protected readonly internal: accesspolicy.AccessRule;
 
     constructor() {
         this.internal = accesspolicy.defaultAccessRule();

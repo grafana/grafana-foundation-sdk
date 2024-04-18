@@ -8,8 +8,6 @@ export * from './annotationTargetBuilder.gen';
 export type * from './annotationTargetBuilder.gen';
 export * from './annotationPanelFilterBuilder.gen';
 export type * from './annotationPanelFilterBuilder.gen';
-export * from './annotationContainerBuilder.gen';
-export type * from './annotationContainerBuilder.gen';
 export * from './annotationQueryBuilder.gen';
 export type * from './annotationQueryBuilder.gen';
 export * from './dashboardLinkBuilder.gen';
