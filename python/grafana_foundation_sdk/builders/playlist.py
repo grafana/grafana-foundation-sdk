@@ -6,13 +6,13 @@ from ..models import playlist
 
 
 class Playlist(cogbuilder.Builder[playlist.Playlist]):    
-    __internal: playlist.Playlist
+    _internal: playlist.Playlist
 
     def __init__(self):
-        self.__internal = playlist.Playlist()
+        self._internal = playlist.Playlist()
 
     def build(self) -> playlist.Playlist:
-        return self.__internal    
+        return self._internal    
     
     def uid(self, uid: str) -> typing.Self:    
         """
@@ -20,7 +20,7 @@ class Playlist(cogbuilder.Builder[playlist.Playlist]):
         creator of the playlist of by the application.
         """
             
-        self.__internal.uid = uid
+        self._internal.uid = uid
     
         return self
     
@@ -29,7 +29,7 @@ class Playlist(cogbuilder.Builder[playlist.Playlist]):
         Name of the playlist.
         """
             
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
@@ -39,7 +39,7 @@ class Playlist(cogbuilder.Builder[playlist.Playlist]):
         FIXME: Is this based on a standardized format or what options are available? Can datemath be used?
         """
             
-        self.__internal.interval = interval
+        self._internal.interval = interval
     
         return self
     
@@ -50,26 +50,26 @@ class Playlist(cogbuilder.Builder[playlist.Playlist]):
         """
             
         items_resources = [r1.build() for r1 in items]
-        self.__internal.items = items_resources
+        self._internal.items = items_resources
     
         return self
     
 
 class PlaylistItem(cogbuilder.Builder[playlist.PlaylistItem]):    
-    __internal: playlist.PlaylistItem
+    _internal: playlist.PlaylistItem
 
     def __init__(self):
-        self.__internal = playlist.PlaylistItem()
+        self._internal = playlist.PlaylistItem()
 
     def build(self) -> playlist.PlaylistItem:
-        return self.__internal    
+        return self._internal    
     
     def type_val(self, type_val: typing.Literal["dashboard_by_uid", "dashboard_by_id", "dashboard_by_tag"]) -> typing.Self:    
         """
         Type of the item.
         """
             
-        self.__internal.type_val = type_val
+        self._internal.type_val = type_val
     
         return self
     
@@ -85,7 +85,7 @@ class PlaylistItem(cogbuilder.Builder[playlist.PlaylistItem]):
          - dashboard_by_uid: The value is the dashboard UID
         """
             
-        self.__internal.value = value
+        self._internal.value = value
     
         return self
     
@@ -94,7 +94,7 @@ class PlaylistItem(cogbuilder.Builder[playlist.PlaylistItem]):
         Title is an unused property -- it will be removed in the future
         """
             
-        self.__internal.title = title
+        self._internal.title = title
     
         return self
     

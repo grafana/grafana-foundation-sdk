@@ -6,13 +6,13 @@ from ..models import rolebinding
 
 
 class RoleBinding(cogbuilder.Builder[rolebinding.RoleBinding]):    
-    __internal: rolebinding.RoleBinding
+    _internal: rolebinding.RoleBinding
 
     def __init__(self):
-        self.__internal = rolebinding.RoleBinding()
+        self._internal = rolebinding.RoleBinding()
 
     def build(self) -> rolebinding.RoleBinding:
-        return self.__internal    
+        return self._internal    
     
     def role(self, role: typing.Union[cogbuilder.Builder[rolebinding.BuiltinRoleRef], cogbuilder.Builder[rolebinding.CustomRoleRef]]) -> typing.Self:    
         """
@@ -20,7 +20,7 @@ class RoleBinding(cogbuilder.Builder[rolebinding.RoleBinding]):
         """
             
         role_resource = role.build()
-        self.__internal.role = role_resource
+        self._internal.role = role_resource
     
         return self
     
@@ -30,54 +30,54 @@ class RoleBinding(cogbuilder.Builder[rolebinding.RoleBinding]):
         """
             
         subject_resource = subject.build()
-        self.__internal.subject = subject_resource
+        self._internal.subject = subject_resource
     
         return self
     
 
 class CustomRoleRef(cogbuilder.Builder[rolebinding.CustomRoleRef]):    
-    __internal: rolebinding.CustomRoleRef
+    _internal: rolebinding.CustomRoleRef
 
     def __init__(self):
-        self.__internal = rolebinding.CustomRoleRef()        
-        self.__internal.kind = "Role"
+        self._internal = rolebinding.CustomRoleRef()        
+        self._internal.kind = "Role"
 
     def build(self) -> rolebinding.CustomRoleRef:
-        return self.__internal    
+        return self._internal    
     
     def name(self, name: str) -> typing.Self:        
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
 
 class BuiltinRoleRef(cogbuilder.Builder[rolebinding.BuiltinRoleRef]):    
-    __internal: rolebinding.BuiltinRoleRef
+    _internal: rolebinding.BuiltinRoleRef
 
     def __init__(self):
-        self.__internal = rolebinding.BuiltinRoleRef()        
-        self.__internal.kind = "BuiltinRole"
+        self._internal = rolebinding.BuiltinRoleRef()        
+        self._internal.kind = "BuiltinRole"
 
     def build(self) -> rolebinding.BuiltinRoleRef:
-        return self.__internal    
+        return self._internal    
     
     def name(self, name: typing.Literal["viewer", "editor", "admin"]) -> typing.Self:        
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
 
 class RoleBindingSubject(cogbuilder.Builder[rolebinding.RoleBindingSubject]):    
-    __internal: rolebinding.RoleBindingSubject
+    _internal: rolebinding.RoleBindingSubject
 
     def __init__(self):
-        self.__internal = rolebinding.RoleBindingSubject()
+        self._internal = rolebinding.RoleBindingSubject()
 
     def build(self) -> rolebinding.RoleBindingSubject:
-        return self.__internal    
+        return self._internal    
     
     def kind(self, kind: typing.Literal["Team", "User"]) -> typing.Self:        
-        self.__internal.kind = kind
+        self._internal.kind = kind
     
         return self
     
@@ -86,7 +86,7 @@ class RoleBindingSubject(cogbuilder.Builder[rolebinding.RoleBindingSubject]):
         The team/user identifier name
         """
             
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     

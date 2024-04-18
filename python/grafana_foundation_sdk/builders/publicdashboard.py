@@ -6,20 +6,20 @@ from ..models import publicdashboard
 
 
 class PublicDashboard(cogbuilder.Builder[publicdashboard.PublicDashboard]):    
-    __internal: publicdashboard.PublicDashboard
+    _internal: publicdashboard.PublicDashboard
 
     def __init__(self):
-        self.__internal = publicdashboard.PublicDashboard()
+        self._internal = publicdashboard.PublicDashboard()
 
     def build(self) -> publicdashboard.PublicDashboard:
-        return self.__internal    
+        return self._internal    
     
     def uid(self, uid: str) -> typing.Self:    
         """
         Unique public dashboard identifier
         """
             
-        self.__internal.uid = uid
+        self._internal.uid = uid
     
         return self
     
@@ -28,7 +28,7 @@ class PublicDashboard(cogbuilder.Builder[publicdashboard.PublicDashboard]):
         Dashboard unique identifier referenced by this public dashboard
         """
             
-        self.__internal.dashboard_uid = dashboard_uid
+        self._internal.dashboard_uid = dashboard_uid
     
         return self
     
@@ -37,7 +37,7 @@ class PublicDashboard(cogbuilder.Builder[publicdashboard.PublicDashboard]):
         Unique public access token
         """
             
-        self.__internal.access_token = access_token
+        self._internal.access_token = access_token
     
         return self
     
@@ -46,7 +46,7 @@ class PublicDashboard(cogbuilder.Builder[publicdashboard.PublicDashboard]):
         Flag that indicates if the public dashboard is enabled
         """
             
-        self.__internal.is_enabled = is_enabled
+        self._internal.is_enabled = is_enabled
     
         return self
     
@@ -55,7 +55,7 @@ class PublicDashboard(cogbuilder.Builder[publicdashboard.PublicDashboard]):
         Flag that indicates if annotations are enabled
         """
             
-        self.__internal.annotations_enabled = annotations_enabled
+        self._internal.annotations_enabled = annotations_enabled
     
         return self
     
@@ -64,7 +64,7 @@ class PublicDashboard(cogbuilder.Builder[publicdashboard.PublicDashboard]):
         Flag that indicates if the time range picker is enabled
         """
             
-        self.__internal.time_selection_enabled = time_selection_enabled
+        self._internal.time_selection_enabled = time_selection_enabled
     
         return self
     

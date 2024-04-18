@@ -6,13 +6,13 @@ from ..models import googlecloudmonitoring
 
 
 class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitoringQuery]):    
-    __internal: googlecloudmonitoring.CloudMonitoringQuery
+    _internal: googlecloudmonitoring.CloudMonitoringQuery
 
     def __init__(self):
-        self.__internal = googlecloudmonitoring.CloudMonitoringQuery()
+        self._internal = googlecloudmonitoring.CloudMonitoringQuery()
 
     def build(self) -> googlecloudmonitoring.CloudMonitoringQuery:
-        return self.__internal    
+        return self._internal    
     
     def ref_id(self, ref_id: str) -> typing.Self:    
         """
@@ -21,7 +21,7 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
         By default, the UI will assign A->Z; however setting meaningful names may be useful.
         """
             
-        self.__internal.ref_id = ref_id
+        self._internal.ref_id = ref_id
     
         return self
     
@@ -32,7 +32,7 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
         the results from a hidden query may be used as the input to other queries (SSE etc)
         """
             
-        self.__internal.hide = hide
+        self._internal.hide = hide
     
         return self
     
@@ -42,7 +42,7 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
         TODO make this required and give it a default
         """
             
-        self.__internal.query_type = query_type
+        self._internal.query_type = query_type
     
         return self
     
@@ -51,7 +51,7 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
         Aliases can be set to modify the legend labels. e.g. {{metric.label.xxx}}. See docs for more detail.
         """
             
-        self.__internal.alias_by = alias_by
+        self._internal.alias_by = alias_by
     
         return self
     
@@ -63,7 +63,7 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
         """
             
         time_series_list_resource = time_series_list.build()
-        self.__internal.time_series_list = time_series_list_resource
+        self._internal.time_series_list = time_series_list_resource
     
         return self
     
@@ -73,7 +73,7 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
         """
             
         time_series_query_resource = time_series_query.build()
-        self.__internal.time_series_query = time_series_query_resource
+        self._internal.time_series_query = time_series_query_resource
     
         return self
     
@@ -83,7 +83,7 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
         """
             
         slo_query_resource = slo_query.build()
-        self.__internal.slo_query = slo_query_resource
+        self._internal.slo_query = slo_query_resource
     
         return self
     
@@ -95,7 +95,7 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
         TODO this shouldn't be unknown but DataSourceRef | null
         """
             
-        self.__internal.datasource = datasource
+        self._internal.datasource = datasource
     
         return self
     
@@ -104,7 +104,7 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
         Time interval in milliseconds.
         """
             
-        self.__internal.interval_ms = interval_ms
+        self._internal.interval_ms = interval_ms
     
         return self
     
@@ -114,20 +114,20 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
     Time Series List sub-query properties.
     """
     
-    __internal: googlecloudmonitoring.TimeSeriesList
+    _internal: googlecloudmonitoring.TimeSeriesList
 
     def __init__(self):
-        self.__internal = googlecloudmonitoring.TimeSeriesList()
+        self._internal = googlecloudmonitoring.TimeSeriesList()
 
     def build(self) -> googlecloudmonitoring.TimeSeriesList:
-        return self.__internal    
+        return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
         """
         GCP project to execute the query against.
         """
             
-        self.__internal.project_name = project_name
+        self._internal.project_name = project_name
     
         return self
     
@@ -136,7 +136,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Reducer applied across a set of time-series values. Defaults to REDUCE_NONE.
         """
             
-        self.__internal.cross_series_reducer = cross_series_reducer
+        self._internal.cross_series_reducer = cross_series_reducer
     
         return self
     
@@ -145,7 +145,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
         """
             
-        self.__internal.alignment_period = alignment_period
+        self._internal.alignment_period = alignment_period
     
         return self
     
@@ -154,7 +154,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Alignment function to be used. Defaults to ALIGN_MEAN.
         """
             
-        self.__internal.per_series_aligner = per_series_aligner
+        self._internal.per_series_aligner = per_series_aligner
     
         return self
     
@@ -163,7 +163,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Array of labels to group data by.
         """
             
-        self.__internal.group_bys = group_bys
+        self._internal.group_bys = group_bys
     
         return self
     
@@ -172,7 +172,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Array of filters to query data by. Labels that can be filtered on are defined by the metric.
         """
             
-        self.__internal.filters = filters
+        self._internal.filters = filters
     
         return self
     
@@ -181,7 +181,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Data view, defaults to FULL.
         """
             
-        self.__internal.view = view
+        self._internal.view = view
     
         return self
     
@@ -190,7 +190,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Only present if a preprocessor is selected. Reducer applied across a set of time-series values. Defaults to REDUCE_NONE.
         """
             
-        self.__internal.secondary_cross_series_reducer = secondary_cross_series_reducer
+        self._internal.secondary_cross_series_reducer = secondary_cross_series_reducer
     
         return self
     
@@ -199,7 +199,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Only present if a preprocessor is selected. Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
         """
             
-        self.__internal.secondary_alignment_period = secondary_alignment_period
+        self._internal.secondary_alignment_period = secondary_alignment_period
     
         return self
     
@@ -208,7 +208,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Only present if a preprocessor is selected. Alignment function to be used. Defaults to ALIGN_MEAN.
         """
             
-        self.__internal.secondary_per_series_aligner = secondary_per_series_aligner
+        self._internal.secondary_per_series_aligner = secondary_per_series_aligner
     
         return self
     
@@ -217,7 +217,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Only present if a preprocessor is selected. Array of labels to group data by.
         """
             
-        self.__internal.secondary_group_bys = secondary_group_bys
+        self._internal.secondary_group_bys = secondary_group_bys
     
         return self
     
@@ -226,7 +226,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters
         """
             
-        self.__internal.preprocessor = preprocessor
+        self._internal.preprocessor = preprocessor
     
         return self
     
@@ -235,7 +235,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Annotation title.
         """
             
-        self.__internal.title = title
+        self._internal.title = title
     
         return self
     
@@ -244,7 +244,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         Annotation text.
         """
             
-        self.__internal.text = text
+        self._internal.text = text
     
         return self
     
@@ -254,20 +254,20 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
     Annotation sub-query properties.
     """
     
-    __internal: googlecloudmonitoring.AnnotationQuery
+    _internal: googlecloudmonitoring.AnnotationQuery
 
     def __init__(self):
-        self.__internal = googlecloudmonitoring.AnnotationQuery()
+        self._internal = googlecloudmonitoring.AnnotationQuery()
 
     def build(self) -> googlecloudmonitoring.AnnotationQuery:
-        return self.__internal    
+        return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
         """
         GCP project to execute the query against.
         """
             
-        self.__internal.project_name = project_name
+        self._internal.project_name = project_name
     
         return self
     
@@ -276,7 +276,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Reducer applied across a set of time-series values. Defaults to REDUCE_NONE.
         """
             
-        self.__internal.cross_series_reducer = cross_series_reducer
+        self._internal.cross_series_reducer = cross_series_reducer
     
         return self
     
@@ -285,7 +285,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
         """
             
-        self.__internal.alignment_period = alignment_period
+        self._internal.alignment_period = alignment_period
     
         return self
     
@@ -294,7 +294,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Alignment function to be used. Defaults to ALIGN_MEAN.
         """
             
-        self.__internal.per_series_aligner = per_series_aligner
+        self._internal.per_series_aligner = per_series_aligner
     
         return self
     
@@ -303,7 +303,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Array of labels to group data by.
         """
             
-        self.__internal.group_bys = group_bys
+        self._internal.group_bys = group_bys
     
         return self
     
@@ -312,7 +312,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Array of filters to query data by. Labels that can be filtered on are defined by the metric.
         """
             
-        self.__internal.filters = filters
+        self._internal.filters = filters
     
         return self
     
@@ -321,7 +321,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Data view, defaults to FULL.
         """
             
-        self.__internal.view = view
+        self._internal.view = view
     
         return self
     
@@ -330,7 +330,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Only present if a preprocessor is selected. Reducer applied across a set of time-series values. Defaults to REDUCE_NONE.
         """
             
-        self.__internal.secondary_cross_series_reducer = secondary_cross_series_reducer
+        self._internal.secondary_cross_series_reducer = secondary_cross_series_reducer
     
         return self
     
@@ -339,7 +339,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Only present if a preprocessor is selected. Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
         """
             
-        self.__internal.secondary_alignment_period = secondary_alignment_period
+        self._internal.secondary_alignment_period = secondary_alignment_period
     
         return self
     
@@ -348,7 +348,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Only present if a preprocessor is selected. Alignment function to be used. Defaults to ALIGN_MEAN.
         """
             
-        self.__internal.secondary_per_series_aligner = secondary_per_series_aligner
+        self._internal.secondary_per_series_aligner = secondary_per_series_aligner
     
         return self
     
@@ -357,7 +357,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Only present if a preprocessor is selected. Array of labels to group data by.
         """
             
-        self.__internal.secondary_group_bys = secondary_group_bys
+        self._internal.secondary_group_bys = secondary_group_bys
     
         return self
     
@@ -366,7 +366,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Annotation title.
         """
             
-        self.__internal.title = title
+        self._internal.title = title
     
         return self
     
@@ -375,7 +375,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters
         """
             
-        self.__internal.preprocessor = preprocessor
+        self._internal.preprocessor = preprocessor
     
         return self
     
@@ -384,7 +384,7 @@ class AnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.AnnotationQuery])
         Annotation text.
         """
             
-        self.__internal.text = text
+        self._internal.text = text
     
         return self
     
@@ -394,20 +394,20 @@ class TimeSeriesQuery(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesQuery])
     Time Series sub-query properties.
     """
     
-    __internal: googlecloudmonitoring.TimeSeriesQuery
+    _internal: googlecloudmonitoring.TimeSeriesQuery
 
     def __init__(self):
-        self.__internal = googlecloudmonitoring.TimeSeriesQuery()
+        self._internal = googlecloudmonitoring.TimeSeriesQuery()
 
     def build(self) -> googlecloudmonitoring.TimeSeriesQuery:
-        return self.__internal    
+        return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
         """
         GCP project to execute the query against.
         """
             
-        self.__internal.project_name = project_name
+        self._internal.project_name = project_name
     
         return self
     
@@ -416,7 +416,7 @@ class TimeSeriesQuery(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesQuery])
         MQL query to be executed.
         """
             
-        self.__internal.query = query
+        self._internal.query = query
     
         return self
     
@@ -425,7 +425,7 @@ class TimeSeriesQuery(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesQuery])
         To disable the graphPeriod, it should explictly be set to 'disabled'.
         """
             
-        self.__internal.graph_period = graph_period
+        self._internal.graph_period = graph_period
     
         return self
     
@@ -435,20 +435,20 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
     SLO sub-query properties.
     """
     
-    __internal: googlecloudmonitoring.SLOQuery
+    _internal: googlecloudmonitoring.SLOQuery
 
     def __init__(self):
-        self.__internal = googlecloudmonitoring.SLOQuery()
+        self._internal = googlecloudmonitoring.SLOQuery()
 
     def build(self) -> googlecloudmonitoring.SLOQuery:
-        return self.__internal    
+        return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
         """
         GCP project to execute the query against.
         """
             
-        self.__internal.project_name = project_name
+        self._internal.project_name = project_name
     
         return self
     
@@ -457,7 +457,7 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
         Alignment function to be used. Defaults to ALIGN_MEAN.
         """
             
-        self.__internal.per_series_aligner = per_series_aligner
+        self._internal.per_series_aligner = per_series_aligner
     
         return self
     
@@ -466,7 +466,7 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
         Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
         """
             
-        self.__internal.alignment_period = alignment_period
+        self._internal.alignment_period = alignment_period
     
         return self
     
@@ -475,7 +475,7 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
         SLO selector.
         """
             
-        self.__internal.selector_name = selector_name
+        self._internal.selector_name = selector_name
     
         return self
     
@@ -484,7 +484,7 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
         ID for the service the SLO is in.
         """
             
-        self.__internal.service_id = service_id
+        self._internal.service_id = service_id
     
         return self
     
@@ -493,7 +493,7 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
         Name for the service the SLO is in.
         """
             
-        self.__internal.service_name = service_name
+        self._internal.service_name = service_name
     
         return self
     
@@ -502,7 +502,7 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
         ID for the SLO.
         """
             
-        self.__internal.slo_id = slo_id
+        self._internal.slo_id = slo_id
     
         return self
     
@@ -511,7 +511,7 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
         Name of the SLO.
         """
             
-        self.__internal.slo_name = slo_name
+        self._internal.slo_name = slo_name
     
         return self
     
@@ -520,7 +520,7 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
         SLO goal value.
         """
             
-        self.__internal.goal = goal
+        self._internal.goal = goal
     
         return self
     
@@ -529,7 +529,7 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
         Specific lookback period for the SLO.
         """
             
-        self.__internal.lookback_period = lookback_period
+        self._internal.lookback_period = lookback_period
     
         return self
     
@@ -539,20 +539,20 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
     @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
     """
     
-    __internal: googlecloudmonitoring.MetricQuery
+    _internal: googlecloudmonitoring.MetricQuery
 
     def __init__(self):
-        self.__internal = googlecloudmonitoring.MetricQuery()
+        self._internal = googlecloudmonitoring.MetricQuery()
 
     def build(self) -> googlecloudmonitoring.MetricQuery:
-        return self.__internal    
+        return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
         """
         GCP project to execute the query against.
         """
             
-        self.__internal.project_name = project_name
+        self._internal.project_name = project_name
     
         return self
     
@@ -561,7 +561,7 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
         Alignment function to be used. Defaults to ALIGN_MEAN.
         """
             
-        self.__internal.per_series_aligner = per_series_aligner
+        self._internal.per_series_aligner = per_series_aligner
     
         return self
     
@@ -570,7 +570,7 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
         Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
         """
             
-        self.__internal.alignment_period = alignment_period
+        self._internal.alignment_period = alignment_period
     
         return self
     
@@ -579,17 +579,17 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
         Aliases can be set to modify the legend labels. e.g. {{metric.label.xxx}}. See docs for more detail.
         """
             
-        self.__internal.alias_by = alias_by
+        self._internal.alias_by = alias_by
     
         return self
     
     def editor_mode(self, editor_mode: str) -> typing.Self:        
-        self.__internal.editor_mode = editor_mode
+        self._internal.editor_mode = editor_mode
     
         return self
     
     def metric_type(self, metric_type: str) -> typing.Self:        
-        self.__internal.metric_type = metric_type
+        self._internal.metric_type = metric_type
     
         return self
     
@@ -598,7 +598,7 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
         Reducer applied across a set of time-series values. Defaults to REDUCE_NONE.
         """
             
-        self.__internal.cross_series_reducer = cross_series_reducer
+        self._internal.cross_series_reducer = cross_series_reducer
     
         return self
     
@@ -607,7 +607,7 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
         Array of labels to group data by.
         """
             
-        self.__internal.group_bys = group_bys
+        self._internal.group_bys = group_bys
     
         return self
     
@@ -616,22 +616,22 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
         Array of filters to query data by. Labels that can be filtered on are defined by the metric.
         """
             
-        self.__internal.filters = filters
+        self._internal.filters = filters
     
         return self
     
     def metric_kind(self, metric_kind: googlecloudmonitoring.MetricKind) -> typing.Self:        
-        self.__internal.metric_kind = metric_kind
+        self._internal.metric_kind = metric_kind
     
         return self
     
     def value_type(self, value_type: str) -> typing.Self:        
-        self.__internal.value_type = value_type
+        self._internal.value_type = value_type
     
         return self
     
     def view(self, view: str) -> typing.Self:        
-        self.__internal.view = view
+        self._internal.view = view
     
         return self
     
@@ -640,7 +640,7 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
         MQL query to be executed.
         """
             
-        self.__internal.query = query
+        self._internal.query = query
     
         return self
     
@@ -649,7 +649,7 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
         Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters
         """
             
-        self.__internal.preprocessor = preprocessor
+        self._internal.preprocessor = preprocessor
     
         return self
     
@@ -658,7 +658,7 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
         To disable the graphPeriod, it should explictly be set to 'disabled'.
         """
             
-        self.__internal.graph_period = graph_period
+        self._internal.graph_period = graph_period
     
         return self
     
@@ -668,25 +668,25 @@ class LegacyCloudMonitoringAnnotationQuery(cogbuilder.Builder[googlecloudmonitor
     @deprecated Use AnnotationQuery instead. Legacy annotation query properties for migration purposes.
     """
     
-    __internal: googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery
+    _internal: googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery
 
     def __init__(self):
-        self.__internal = googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery()
+        self._internal = googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery()
 
     def build(self) -> googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery:
-        return self.__internal    
+        return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
         """
         GCP project to execute the query against.
         """
             
-        self.__internal.project_name = project_name
+        self._internal.project_name = project_name
     
         return self
     
     def metric_type(self, metric_type: str) -> typing.Self:        
-        self.__internal.metric_type = metric_type
+        self._internal.metric_type = metric_type
     
         return self
     
@@ -695,7 +695,7 @@ class LegacyCloudMonitoringAnnotationQuery(cogbuilder.Builder[googlecloudmonitor
         Query refId.
         """
             
-        self.__internal.ref_id = ref_id
+        self._internal.ref_id = ref_id
     
         return self
     
@@ -704,17 +704,17 @@ class LegacyCloudMonitoringAnnotationQuery(cogbuilder.Builder[googlecloudmonitor
         Array of filters to query data by. Labels that can be filtered on are defined by the metric.
         """
             
-        self.__internal.filters = filters
+        self._internal.filters = filters
     
         return self
     
     def metric_kind(self, metric_kind: googlecloudmonitoring.MetricKind) -> typing.Self:        
-        self.__internal.metric_kind = metric_kind
+        self._internal.metric_kind = metric_kind
     
         return self
     
     def value_type(self, value_type: str) -> typing.Self:        
-        self.__internal.value_type = value_type
+        self._internal.value_type = value_type
     
         return self
     
@@ -723,7 +723,7 @@ class LegacyCloudMonitoringAnnotationQuery(cogbuilder.Builder[googlecloudmonitor
         Annotation title.
         """
             
-        self.__internal.title = title
+        self._internal.title = title
     
         return self
     
@@ -732,7 +732,7 @@ class LegacyCloudMonitoringAnnotationQuery(cogbuilder.Builder[googlecloudmonitor
         Annotation text.
         """
             
-        self.__internal.text = text
+        self._internal.text = text
     
         return self
     
@@ -742,20 +742,20 @@ class Filter(cogbuilder.Builder[googlecloudmonitoring.Filter]):
     Query filter representation.
     """
     
-    __internal: googlecloudmonitoring.Filter
+    _internal: googlecloudmonitoring.Filter
 
     def __init__(self):
-        self.__internal = googlecloudmonitoring.Filter()
+        self._internal = googlecloudmonitoring.Filter()
 
     def build(self) -> googlecloudmonitoring.Filter:
-        return self.__internal    
+        return self._internal    
     
     def key(self, key: str) -> typing.Self:    
         """
         Filter key.
         """
             
-        self.__internal.key = key
+        self._internal.key = key
     
         return self
     
@@ -764,7 +764,7 @@ class Filter(cogbuilder.Builder[googlecloudmonitoring.Filter]):
         Filter operator.
         """
             
-        self.__internal.operator = operator
+        self._internal.operator = operator
     
         return self
     
@@ -773,7 +773,7 @@ class Filter(cogbuilder.Builder[googlecloudmonitoring.Filter]):
         Filter value.
         """
             
-        self.__internal.value = value
+        self._internal.value = value
     
         return self
     
@@ -782,7 +782,7 @@ class Filter(cogbuilder.Builder[googlecloudmonitoring.Filter]):
         Filter condition.
         """
             
-        self.__internal.condition = condition
+        self._internal.condition = condition
     
         return self
     

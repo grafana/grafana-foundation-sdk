@@ -6,20 +6,20 @@ from ..models import preferences
 
 
 class Preferences(cogbuilder.Builder[preferences.Preferences]):    
-    __internal: preferences.Preferences
+    _internal: preferences.Preferences
 
     def __init__(self):
-        self.__internal = preferences.Preferences()
+        self._internal = preferences.Preferences()
 
     def build(self) -> preferences.Preferences:
-        return self.__internal    
+        return self._internal    
     
     def home_dashboard_uid(self, home_dashboard_uid: str) -> typing.Self:    
         """
         UID for the home dashboard
         """
             
-        self.__internal.home_dashboard_uid = home_dashboard_uid
+        self._internal.home_dashboard_uid = home_dashboard_uid
     
         return self
     
@@ -29,7 +29,7 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
         TODO: this should use the timezone defined in common
         """
             
-        self.__internal.timezone = timezone
+        self._internal.timezone = timezone
     
         return self
     
@@ -38,7 +38,7 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
         day of the week (sunday, monday, etc)
         """
             
-        self.__internal.week_start = week_start
+        self._internal.week_start = week_start
     
         return self
     
@@ -47,7 +47,7 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
         light, dark, empty is default
         """
             
-        self.__internal.theme = theme
+        self._internal.theme = theme
     
         return self
     
@@ -56,7 +56,7 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
         Selected language (beta)
         """
             
-        self.__internal.language = language
+        self._internal.language = language
     
         return self
     
@@ -66,7 +66,7 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
         """
             
         query_history_resource = query_history.build()
-        self.__internal.query_history = query_history_resource
+        self._internal.query_history = query_history_resource
     
         return self
     
@@ -76,51 +76,51 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
         """
             
         cookie_preferences_resource = cookie_preferences.build()
-        self.__internal.cookie_preferences = cookie_preferences_resource
+        self._internal.cookie_preferences = cookie_preferences_resource
     
         return self
     
 
 class QueryHistoryPreference(cogbuilder.Builder[preferences.QueryHistoryPreference]):    
-    __internal: preferences.QueryHistoryPreference
+    _internal: preferences.QueryHistoryPreference
 
     def __init__(self):
-        self.__internal = preferences.QueryHistoryPreference()
+        self._internal = preferences.QueryHistoryPreference()
 
     def build(self) -> preferences.QueryHistoryPreference:
-        return self.__internal    
+        return self._internal    
     
     def home_tab(self, home_tab: str) -> typing.Self:    
         """
         one of: '' | 'query' | 'starred';
         """
             
-        self.__internal.home_tab = home_tab
+        self._internal.home_tab = home_tab
     
         return self
     
 
 class CookiePreferences(cogbuilder.Builder[preferences.CookiePreferences]):    
-    __internal: preferences.CookiePreferences
+    _internal: preferences.CookiePreferences
 
     def __init__(self):
-        self.__internal = preferences.CookiePreferences()
+        self._internal = preferences.CookiePreferences()
 
     def build(self) -> preferences.CookiePreferences:
-        return self.__internal    
+        return self._internal    
     
     def analytics(self, analytics: object) -> typing.Self:        
-        self.__internal.analytics = analytics
+        self._internal.analytics = analytics
     
         return self
     
     def performance(self, performance: object) -> typing.Self:        
-        self.__internal.performance = performance
+        self._internal.performance = performance
     
         return self
     
     def functional(self, functional: object) -> typing.Self:        
-        self.__internal.functional = functional
+        self._internal.functional = functional
     
         return self
     
