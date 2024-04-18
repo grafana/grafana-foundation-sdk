@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class AverageBuilder implements cog.Builder<elasticsearch.Average> {
-    private readonly internal: elasticsearch.Average;
+    protected readonly internal: elasticsearch.Average;
 
     constructor() {
         this.internal = elasticsearch.defaultAverage();

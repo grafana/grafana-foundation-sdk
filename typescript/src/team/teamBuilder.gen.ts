@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as team from '../team';
 
 export class TeamBuilder implements cog.Builder<team.Team> {
-    private readonly internal: team.Team;
+    protected readonly internal: team.Team;
 
     constructor(name: string) {
         this.internal = team.defaultTeam();

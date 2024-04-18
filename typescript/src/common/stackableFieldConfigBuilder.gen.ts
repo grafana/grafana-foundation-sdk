@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class StackableFieldConfigBuilder implements cog.Builder<common.StackableFieldConfig> {
-    private readonly internal: common.StackableFieldConfig;
+    protected readonly internal: common.StackableFieldConfig;
 
     constructor() {
         this.internal = common.defaultStackableFieldConfig();

@@ -6,7 +6,7 @@ import * as canvas from '../canvas';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
-    private readonly internal: dashboard.Panel;
+    protected readonly internal: dashboard.Panel;
 
     constructor() {
         this.internal = dashboard.defaultPanel();

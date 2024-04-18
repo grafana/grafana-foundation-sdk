@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // Footer options
 export class TableFooterOptionsBuilder implements cog.Builder<common.TableFooterOptions> {
-    private readonly internal: common.TableFooterOptions;
+    protected readonly internal: common.TableFooterOptions;
 
     constructor() {
         this.internal = common.defaultTableFooterOptions();

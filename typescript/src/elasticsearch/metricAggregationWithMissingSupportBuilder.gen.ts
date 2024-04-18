@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class MetricAggregationWithMissingSupportBuilder implements cog.Builder<elasticsearch.MetricAggregationWithMissingSupport> {
-    private readonly internal: elasticsearch.MetricAggregationWithMissingSupport;
+    protected readonly internal: elasticsearch.MetricAggregationWithMissingSupport;
 
     constructor() {
         this.internal = elasticsearch.defaultMetricAggregationWithMissingSupport();

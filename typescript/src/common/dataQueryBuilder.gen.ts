@@ -7,7 +7,7 @@ import * as common from '../common';
 // Specific implementations will *extend* this interface, adding the required
 // properties for the given context.
 export class DataQueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: common.DataQuery;
+    protected readonly internal: common.DataQuery;
 
     constructor() {
         this.internal = common.defaultDataQuery();

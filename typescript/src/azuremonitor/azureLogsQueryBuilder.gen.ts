@@ -5,7 +5,7 @@ import * as azuremonitor from '../azuremonitor';
 
 // Azure Monitor Logs sub-query properties
 export class AzureLogsQueryBuilder implements cog.Builder<azuremonitor.AzureLogsQuery> {
-    private readonly internal: azuremonitor.AzureLogsQuery;
+    protected readonly internal: azuremonitor.AzureLogsQuery;
 
     constructor() {
         this.internal = azuremonitor.defaultAzureLogsQuery();

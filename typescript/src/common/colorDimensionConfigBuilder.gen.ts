@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 export class ColorDimensionConfigBuilder implements cog.Builder<common.ColorDimensionConfig> {
-    private readonly internal: common.ColorDimensionConfig;
+    protected readonly internal: common.ColorDimensionConfig;
 
     constructor() {
         this.internal = common.defaultColorDimensionConfig();
