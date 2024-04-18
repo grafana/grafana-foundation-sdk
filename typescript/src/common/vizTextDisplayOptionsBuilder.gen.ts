@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class VizTextDisplayOptionsBuilder implements cog.Builder<common.VizTextDisplayOptions> {
-    private readonly internal: common.VizTextDisplayOptions;
+    protected readonly internal: common.VizTextDisplayOptions;
 
     constructor() {
         this.internal = common.defaultVizTextDisplayOptions();

@@ -5,7 +5,7 @@ import * as dashboard from '../dashboard';
 
 // Thresholds configuration for the panel
 export class ThresholdsConfigBuilder implements cog.Builder<dashboard.ThresholdsConfig> {
-    private readonly internal: dashboard.ThresholdsConfig;
+    protected readonly internal: dashboard.ThresholdsConfig;
 
     constructor() {
         this.internal = dashboard.defaultThresholdsConfig();

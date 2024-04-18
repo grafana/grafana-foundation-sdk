@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 
 export class MetricStatBuilder implements cog.Builder<cloudwatch.MetricStat> {
-    private readonly internal: cloudwatch.MetricStat;
+    protected readonly internal: cloudwatch.MetricStat;
 
     constructor() {
         this.internal = cloudwatch.defaultMetricStat();

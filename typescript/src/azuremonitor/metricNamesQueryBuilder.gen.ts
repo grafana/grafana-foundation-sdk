@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
 export class MetricNamesQueryBuilder implements cog.Builder<azuremonitor.MetricNamesQuery> {
-    private readonly internal: azuremonitor.MetricNamesQuery;
+    protected readonly internal: azuremonitor.MetricNamesQuery;
 
     constructor() {
         this.internal = azuremonitor.defaultMetricNamesQuery();

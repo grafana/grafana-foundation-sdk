@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class MovingAverageLinearModelSettingsBuilder implements cog.Builder<elasticsearch.MovingAverageLinearModelSettings> {
-    private readonly internal: elasticsearch.MovingAverageLinearModelSettings;
+    protected readonly internal: elasticsearch.MovingAverageLinearModelSettings;
 
     constructor() {
         this.internal = elasticsearch.defaultMovingAverageLinearModelSettings();

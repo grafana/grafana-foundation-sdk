@@ -7,7 +7,7 @@ import * as cloudwatch from '../cloudwatch';
 // TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
 // #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
 export class CloudWatchAnnotationQueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: cloudwatch.CloudWatchAnnotationQuery;
+    protected readonly internal: cloudwatch.CloudWatchAnnotationQuery;
 
     constructor() {
         this.internal = cloudwatch.defaultCloudWatchAnnotationQuery();

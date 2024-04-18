@@ -6,7 +6,7 @@ import * as dashboard from '../dashboard';
 // Maps text values to a color or different display text and color.
 // For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
 export class ValueMapBuilder implements cog.Builder<dashboard.ValueMap> {
-    private readonly internal: dashboard.ValueMap;
+    protected readonly internal: dashboard.ValueMap;
 
     constructor() {
         this.internal = dashboard.defaultValueMap();

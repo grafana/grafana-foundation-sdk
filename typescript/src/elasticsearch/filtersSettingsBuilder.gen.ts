@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class FiltersSettingsBuilder implements cog.Builder<elasticsearch.FiltersSettings> {
-    private readonly internal: elasticsearch.FiltersSettings;
+    protected readonly internal: elasticsearch.FiltersSettings;
 
     constructor() {
         this.internal = elasticsearch.defaultFiltersSettings();

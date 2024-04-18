@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as testdata from '../testdata';
 
 export class CSVWaveBuilder implements cog.Builder<testdata.CSVWave> {
-    private readonly internal: testdata.CSVWave;
+    protected readonly internal: testdata.CSVWave;
 
     constructor() {
         this.internal = testdata.defaultCSVWave();

@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as testdata from '../testdata';
 
 export class StreamingQueryBuilder implements cog.Builder<testdata.StreamingQuery> {
-    private readonly internal: testdata.StreamingQuery;
+    protected readonly internal: testdata.StreamingQuery;
 
     constructor() {
         this.internal = testdata.defaultStreamingQuery();

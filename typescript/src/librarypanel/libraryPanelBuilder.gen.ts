@@ -5,7 +5,7 @@ import * as librarypanel from '../librarypanel';
 import * as dashboard from '../dashboard';
 
 export class LibraryPanelBuilder implements cog.Builder<librarypanel.LibraryPanel> {
-    private readonly internal: librarypanel.LibraryPanel;
+    protected readonly internal: librarypanel.LibraryPanel;
 
     constructor() {
         this.internal = librarypanel.defaultLibraryPanel();

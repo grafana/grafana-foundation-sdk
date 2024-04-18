@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
 export class AppInsightsGroupByQueryBuilder implements cog.Builder<azuremonitor.AppInsightsGroupByQuery> {
-    private readonly internal: azuremonitor.AppInsightsGroupByQuery;
+    protected readonly internal: azuremonitor.AppInsightsGroupByQuery;
 
     constructor() {
         this.internal = azuremonitor.defaultAppInsightsGroupByQuery();

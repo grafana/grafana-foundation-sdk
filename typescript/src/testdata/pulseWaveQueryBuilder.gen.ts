@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as testdata from '../testdata';
 
 export class PulseWaveQueryBuilder implements cog.Builder<testdata.PulseWaveQuery> {
-    private readonly internal: testdata.PulseWaveQuery;
+    protected readonly internal: testdata.PulseWaveQuery;
 
     constructor() {
         this.internal = testdata.defaultPulseWaveQuery();

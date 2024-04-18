@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
 export class AnnotationPanelFilterBuilder implements cog.Builder<dashboard.AnnotationPanelFilter> {
-    private readonly internal: dashboard.AnnotationPanelFilter;
+    protected readonly internal: dashboard.AnnotationPanelFilter;
 
     constructor() {
         this.internal = dashboard.defaultAnnotationPanelFilter();

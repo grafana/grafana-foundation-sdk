@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 
 export class QueryEditorGroupByExpressionBuilder implements cog.Builder<cloudwatch.QueryEditorGroupByExpression> {
-    private readonly internal: cloudwatch.QueryEditorGroupByExpression;
+    protected readonly internal: cloudwatch.QueryEditorGroupByExpression;
 
     constructor() {
         this.internal = cloudwatch.defaultQueryEditorGroupByExpression();

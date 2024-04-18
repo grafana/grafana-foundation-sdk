@@ -5,7 +5,7 @@ import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
 // Query filter representation.
 export class FilterBuilder implements cog.Builder<googlecloudmonitoring.Filter> {
-    private readonly internal: googlecloudmonitoring.Filter;
+    protected readonly internal: googlecloudmonitoring.Filter;
 
     constructor() {
         this.internal = googlecloudmonitoring.defaultFilter();

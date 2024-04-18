@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as preferences from '../preferences';
 
 export class QueryHistoryPreferenceBuilder implements cog.Builder<preferences.QueryHistoryPreference> {
-    private readonly internal: preferences.QueryHistoryPreference;
+    protected readonly internal: preferences.QueryHistoryPreference;
 
     constructor() {
         this.internal = preferences.defaultQueryHistoryPreference();
