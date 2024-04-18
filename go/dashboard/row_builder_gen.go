@@ -71,17 +71,13 @@ func (builder *RowBuilder) Id(id uint32) *RowBuilder {
 }
 
 // List of panels in the row
-func (builder *RowBuilder) Panels(panels []cog.Builder[Panel]) *RowBuilder {
-	panelsResources := make([]Panel, 0, len(panels))
-	for _, r1 := range panels {
-		panelsDepth1, err := r1.Build()
-		if err != nil {
-			builder.errors["panels"] = err.(cog.BuildErrors)
-			return builder
-		}
-		panelsResources = append(panelsResources, panelsDepth1)
+func (builder *RowBuilder) WithPanel(panels cog.Builder[Panel]) *RowBuilder {
+	panelsResource, err := panels.Build()
+	if err != nil {
+		builder.errors["panels"] = err.(cog.BuildErrors)
+		return builder
 	}
-	builder.internal.Panels = panelsResources
+	builder.internal.Panels = append(builder.internal.Panels, panelsResource)
 
 	return builder
 }
