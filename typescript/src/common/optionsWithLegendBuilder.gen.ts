@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class OptionsWithLegendBuilder implements cog.Builder<common.OptionsWithLegend> {
-    private readonly internal: common.OptionsWithLegend;
+    protected readonly internal: common.OptionsWithLegend;
 
     constructor() {
         this.internal = common.defaultOptionsWithLegend();

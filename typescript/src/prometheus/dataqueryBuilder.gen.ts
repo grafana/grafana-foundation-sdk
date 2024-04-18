@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as prometheus from '../prometheus';
 
 export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: prometheus.dataquery;
+    protected readonly internal: prometheus.dataquery;
 
     constructor() {
         this.internal = prometheus.defaultDataquery();

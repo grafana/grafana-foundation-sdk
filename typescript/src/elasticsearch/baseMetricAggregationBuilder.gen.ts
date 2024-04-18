@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class BaseMetricAggregationBuilder implements cog.Builder<elasticsearch.BaseMetricAggregation> {
-    private readonly internal: elasticsearch.BaseMetricAggregation;
+    protected readonly internal: elasticsearch.BaseMetricAggregation;
 
     constructor() {
         this.internal = elasticsearch.defaultBaseMetricAggregation();

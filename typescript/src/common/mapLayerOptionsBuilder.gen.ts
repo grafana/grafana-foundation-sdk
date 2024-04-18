@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 export class MapLayerOptionsBuilder implements cog.Builder<common.MapLayerOptions> {
-    private readonly internal: common.MapLayerOptions;
+    protected readonly internal: common.MapLayerOptions;
 
     constructor() {
         this.internal = common.defaultMapLayerOptions();

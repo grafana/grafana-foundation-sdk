@@ -6,7 +6,7 @@ import * as dashboard from '../dashboard';
 // TODO docs
 // FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
 export class AnnotationQueryBuilder implements cog.Builder<dashboard.AnnotationQuery> {
-    private readonly internal: dashboard.AnnotationQuery;
+    protected readonly internal: dashboard.AnnotationQuery;
 
     constructor() {
         this.internal = dashboard.defaultAnnotationQuery();

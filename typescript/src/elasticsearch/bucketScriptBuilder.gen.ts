@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class BucketScriptBuilder implements cog.Builder<elasticsearch.BucketScript> {
-    private readonly internal: elasticsearch.BucketScript;
+    protected readonly internal: elasticsearch.BucketScript;
 
     constructor() {
         this.internal = elasticsearch.defaultBucketScript();

@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as rolebinding from '../rolebinding';
 
 export class RoleBindingSubjectBuilder implements cog.Builder<rolebinding.RoleBindingSubject> {
-    private readonly internal: rolebinding.RoleBindingSubject;
+    protected readonly internal: rolebinding.RoleBindingSubject;
 
     constructor() {
         this.internal = rolebinding.defaultRoleBindingSubject();

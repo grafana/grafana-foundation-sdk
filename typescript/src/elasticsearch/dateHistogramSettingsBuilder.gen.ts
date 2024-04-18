@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class DateHistogramSettingsBuilder implements cog.Builder<elasticsearch.DateHistogramSettings> {
-    private readonly internal: elasticsearch.DateHistogramSettings;
+    protected readonly internal: elasticsearch.DateHistogramSettings;
 
     constructor() {
         this.internal = elasticsearch.defaultDateHistogramSettings();

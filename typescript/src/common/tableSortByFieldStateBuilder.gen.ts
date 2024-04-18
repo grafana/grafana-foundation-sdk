@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // Sort by field state
 export class TableSortByFieldStateBuilder implements cog.Builder<common.TableSortByFieldState> {
-    private readonly internal: common.TableSortByFieldState;
+    protected readonly internal: common.TableSortByFieldState;
 
     constructor() {
         this.internal = common.defaultTableSortByFieldState();

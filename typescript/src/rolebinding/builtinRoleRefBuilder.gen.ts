@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as rolebinding from '../rolebinding';
 
 export class BuiltinRoleRefBuilder implements cog.Builder<rolebinding.BuiltinRoleRef> {
-    private readonly internal: rolebinding.BuiltinRoleRef;
+    protected readonly internal: rolebinding.BuiltinRoleRef;
 
     constructor() {
         this.internal = rolebinding.defaultBuiltinRoleRef();

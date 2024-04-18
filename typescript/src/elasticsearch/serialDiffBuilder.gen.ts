@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class SerialDiffBuilder implements cog.Builder<elasticsearch.SerialDiff> {
-    private readonly internal: elasticsearch.SerialDiff;
+    protected readonly internal: elasticsearch.SerialDiff;
 
     constructor() {
         this.internal = elasticsearch.defaultSerialDiff();

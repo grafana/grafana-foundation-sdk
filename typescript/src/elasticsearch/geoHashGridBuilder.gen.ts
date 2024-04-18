@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class GeoHashGridBuilder implements cog.Builder<elasticsearch.GeoHashGrid> {
-    private readonly internal: elasticsearch.GeoHashGrid;
+    protected readonly internal: elasticsearch.GeoHashGrid;
 
     constructor() {
         this.internal = elasticsearch.defaultGeoHashGrid();

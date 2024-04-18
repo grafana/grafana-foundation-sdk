@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class RawDataBuilder implements cog.Builder<elasticsearch.RawData> {
-    private readonly internal: elasticsearch.RawData;
+    protected readonly internal: elasticsearch.RawData;
 
     constructor() {
         this.internal = elasticsearch.defaultRawData();

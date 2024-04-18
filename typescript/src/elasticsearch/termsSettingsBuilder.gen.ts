@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class TermsSettingsBuilder implements cog.Builder<elasticsearch.TermsSettings> {
-    private readonly internal: elasticsearch.TermsSettings;
+    protected readonly internal: elasticsearch.TermsSettings;
 
     constructor() {
         this.internal = elasticsearch.defaultTermsSettings();

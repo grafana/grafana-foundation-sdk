@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class SumBuilder implements cog.Builder<elasticsearch.Sum> {
-    private readonly internal: elasticsearch.Sum;
+    protected readonly internal: elasticsearch.Sum;
 
     constructor() {
         this.internal = elasticsearch.defaultSum();
