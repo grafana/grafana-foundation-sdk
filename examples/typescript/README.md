@@ -24,6 +24,9 @@ Each example showcases different aspects of building dashboards as code:
     * `table` panels
     * `timeseries` panels
     * `prometheus` queries
+* [`red-method`](./red-method):
+    * example of a dashboard following
+      the [RED method](https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/#the-red-method)
 
 ## Running the examples
 
