@@ -9,7 +9,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-yarn add '@grafana/grafana-foundation-sdk@~next-cogv0.0.x.1713437432'
+yarn add '@grafana/grafana-foundation-sdk@~next-cogv0.0.x.1713478900'
 ```
 
 ## Example usage
@@ -136,8 +136,7 @@ To do so, define a type and a builder for the custom panel's options:
 
 ```typescript
 // customPanel.ts
-import { Builder, Dataquery } from '@grafana/grafana-foundation-sdk/cog';
-import { Panel, defaultPanel } from '@grafana/grafana-foundation-sdk/dashboard';
+import * as dashboard from '@grafana/grafana-foundation-sdk/dashboard';
 
 export interface CustomPanelOptions {
     makeBeautiful?: boolean;
@@ -146,32 +145,11 @@ export interface CustomPanelOptions {
 export const defaultCustomPanelOptions = (): CustomPanelOptions => ({
 });
 
-export class CustomPanelBuilder implements Builder<Panel> {
-    private readonly internal: Panel;
-
+export class CustomPanelBuilder extends dashboard.PanelBuilder {
     constructor() {
-        this.internal = defaultPanel();
+        super();
         this.internal.type = "custom-panel"; // panel plugin ID
     }
-
-    build(): Panel {
-        return this.internal;
-    }
-
-    withTarget(target: Builder<Dataquery>): this {
-        if (!this.internal.targets) {
-            this.internal.targets = [];
-        }
-        this.internal.targets.push(target.build());
-        return this;
-    }
-
-    title(title: string): this {
-        this.internal.title = title;
-        return this;
-    }
-
-    // [other panel options omitted for brevity]
 
     makeBeautiful(): this {
         if (!this.internal.options) {

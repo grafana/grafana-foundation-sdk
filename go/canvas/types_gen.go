@@ -83,13 +83,15 @@ const (
 )
 
 type CanvasConnection struct {
-	Source     ConnectionCoordinates        `json:"source"`
-	Target     ConnectionCoordinates        `json:"target"`
-	TargetName *string                      `json:"targetName,omitempty"`
-	Path       ConnectionPath               `json:"path"`
-	Color      *common.ColorDimensionConfig `json:"color,omitempty"`
-	Size       *common.ScaleDimensionConfig `json:"size,omitempty"`
-	Vertices   []ConnectionCoordinates      `json:"vertices,omitempty"`
+	Source         ConnectionCoordinates        `json:"source"`
+	Target         ConnectionCoordinates        `json:"target"`
+	TargetName     *string                      `json:"targetName,omitempty"`
+	Path           ConnectionPath               `json:"path"`
+	Color          *common.ColorDimensionConfig `json:"color,omitempty"`
+	Size           *common.ScaleDimensionConfig `json:"size,omitempty"`
+	Vertices       []ConnectionCoordinates      `json:"vertices,omitempty"`
+	SourceOriginal *ConnectionCoordinates       `json:"sourceOriginal,omitempty"`
+	TargetOriginal *ConnectionCoordinates       `json:"targetOriginal,omitempty"`
 }
 
 type CanvasElementOptions struct {

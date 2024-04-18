@@ -6,20 +6,20 @@ from ..models import role
 
 
 class Role(cogbuilder.Builder[role.Role]):    
-    __internal: role.Role
+    _internal: role.Role
 
     def __init__(self):
-        self.__internal = role.Role()
+        self._internal = role.Role()
 
     def build(self) -> role.Role:
-        return self.__internal    
+        return self._internal    
     
     def name(self, name: str) -> typing.Self:    
         """
         The role identifier `managed:builtins:editor:permissions`
         """
             
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
@@ -28,7 +28,7 @@ class Role(cogbuilder.Builder[role.Role]):
         Optional display
         """
             
-        self.__internal.display_name = display_name
+        self._internal.display_name = display_name
     
         return self
     
@@ -37,7 +37,7 @@ class Role(cogbuilder.Builder[role.Role]):
         Name of the team.
         """
             
-        self.__internal.group_name = group_name
+        self._internal.group_name = group_name
     
         return self
     
@@ -46,7 +46,7 @@ class Role(cogbuilder.Builder[role.Role]):
         Role description
         """
             
-        self.__internal.description = description
+        self._internal.description = description
     
         return self
     
@@ -55,7 +55,7 @@ class Role(cogbuilder.Builder[role.Role]):
         Do not show this role
         """
             
-        self.__internal.hidden = hidden
+        self._internal.hidden = hidden
     
         return self
     

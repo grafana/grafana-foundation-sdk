@@ -10,36 +10,36 @@ class DataSourceJsonData(cogbuilder.Builder[common.DataSourceJsonData]):
     TODO docs
     """
     
-    __internal: common.DataSourceJsonData
+    _internal: common.DataSourceJsonData
 
     def __init__(self):
-        self.__internal = common.DataSourceJsonData()
+        self._internal = common.DataSourceJsonData()
 
     def build(self) -> common.DataSourceJsonData:
-        return self.__internal    
+        return self._internal    
     
     def auth_type(self, auth_type: str) -> typing.Self:        
-        self.__internal.auth_type = auth_type
+        self._internal.auth_type = auth_type
     
         return self
     
     def default_region(self, default_region: str) -> typing.Self:        
-        self.__internal.default_region = default_region
+        self._internal.default_region = default_region
     
         return self
     
     def profile(self, profile: str) -> typing.Self:        
-        self.__internal.profile = profile
+        self._internal.profile = profile
     
         return self
     
     def manage_alerts(self, manage_alerts: bool) -> typing.Self:        
-        self.__internal.manage_alerts = manage_alerts
+        self._internal.manage_alerts = manage_alerts
     
         return self
     
     def alertmanager_uid(self, alertmanager_uid: str) -> typing.Self:        
-        self.__internal.alertmanager_uid = alertmanager_uid
+        self._internal.alertmanager_uid = alertmanager_uid
     
         return self
     
@@ -51,13 +51,13 @@ class DataQuery(cogbuilder.Builder[common.DataQuery]):
     properties for the given context.
     """
     
-    __internal: common.DataQuery
+    _internal: common.DataQuery
 
     def __init__(self):
-        self.__internal = common.DataQuery()
+        self._internal = common.DataQuery()
 
     def build(self) -> common.DataQuery:
-        return self.__internal    
+        return self._internal    
     
     def ref_id(self, ref_id: str) -> typing.Self:    
         """
@@ -66,7 +66,7 @@ class DataQuery(cogbuilder.Builder[common.DataQuery]):
         By default, the UI will assign A->Z; however setting meaningful names may be useful.
         """
             
-        self.__internal.ref_id = ref_id
+        self._internal.ref_id = ref_id
     
         return self
     
@@ -75,7 +75,7 @@ class DataQuery(cogbuilder.Builder[common.DataQuery]):
         If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
         """
             
-        self.__internal.hide = hide
+        self._internal.hide = hide
     
         return self
     
@@ -85,7 +85,7 @@ class DataQuery(cogbuilder.Builder[common.DataQuery]):
         TODO make this required and give it a default
         """
             
-        self.__internal.query_type = query_type
+        self._internal.query_type = query_type
     
         return self
     
@@ -97,51 +97,51 @@ class DataQuery(cogbuilder.Builder[common.DataQuery]):
         TODO this shouldn't be unknown but DataSourceRef | null
         """
             
-        self.__internal.datasource = datasource
+        self._internal.datasource = datasource
     
         return self
     
 
 class BaseDimensionConfig(cogbuilder.Builder[common.BaseDimensionConfig]):    
-    __internal: common.BaseDimensionConfig
+    _internal: common.BaseDimensionConfig
 
     def __init__(self):
-        self.__internal = common.BaseDimensionConfig()
+        self._internal = common.BaseDimensionConfig()
 
     def build(self) -> common.BaseDimensionConfig:
-        return self.__internal    
+        return self._internal    
     
     def field(self, field: str) -> typing.Self:    
         """
         fixed: T -- will be added by each element
         """
             
-        self.__internal.field = field
+        self._internal.field = field
     
         return self
     
 
 class ScaleDimensionConfig(cogbuilder.Builder[common.ScaleDimensionConfig]):    
-    __internal: common.ScaleDimensionConfig
+    _internal: common.ScaleDimensionConfig
 
     def __init__(self):
-        self.__internal = common.ScaleDimensionConfig()
+        self._internal = common.ScaleDimensionConfig()
 
     def build(self) -> common.ScaleDimensionConfig:
-        return self.__internal    
+        return self._internal    
     
     def min_val(self, min_val: float) -> typing.Self:        
-        self.__internal.min_val = min_val
+        self._internal.min_val = min_val
     
         return self
     
     def max_val(self, max_val: float) -> typing.Self:        
-        self.__internal.max_val = max_val
+        self._internal.max_val = max_val
     
         return self
     
     def fixed(self, fixed: float) -> typing.Self:        
-        self.__internal.fixed = fixed
+        self._internal.fixed = fixed
     
         return self
     
@@ -150,7 +150,7 @@ class ScaleDimensionConfig(cogbuilder.Builder[common.ScaleDimensionConfig]):
         fixed: T -- will be added by each element
         """
             
-        self.__internal.field = field
+        self._internal.field = field
     
         return self
     
@@ -159,26 +159,26 @@ class ScaleDimensionConfig(cogbuilder.Builder[common.ScaleDimensionConfig]):
         | *"linear"
         """
             
-        self.__internal.mode = mode
+        self._internal.mode = mode
     
         return self
     
 
 class ColorDimensionConfig(cogbuilder.Builder[common.ColorDimensionConfig]):    
-    __internal: common.ColorDimensionConfig
+    _internal: common.ColorDimensionConfig
 
     def __init__(self):
-        self.__internal = common.ColorDimensionConfig()
+        self._internal = common.ColorDimensionConfig()
 
     def build(self) -> common.ColorDimensionConfig:
-        return self.__internal    
+        return self._internal    
     
     def fixed(self, fixed: str) -> typing.Self:    
         """
         color value
         """
             
-        self.__internal.fixed = fixed
+        self._internal.fixed = fixed
     
         return self
     
@@ -187,32 +187,32 @@ class ColorDimensionConfig(cogbuilder.Builder[common.ColorDimensionConfig]):
         fixed: T -- will be added by each element
         """
             
-        self.__internal.field = field
+        self._internal.field = field
     
         return self
     
 
 class ScalarDimensionConfig(cogbuilder.Builder[common.ScalarDimensionConfig]):    
-    __internal: common.ScalarDimensionConfig
+    _internal: common.ScalarDimensionConfig
 
     def __init__(self):
-        self.__internal = common.ScalarDimensionConfig()
+        self._internal = common.ScalarDimensionConfig()
 
     def build(self) -> common.ScalarDimensionConfig:
-        return self.__internal    
+        return self._internal    
     
     def min_val(self, min_val: float) -> typing.Self:        
-        self.__internal.min_val = min_val
+        self._internal.min_val = min_val
     
         return self
     
     def max_val(self, max_val: float) -> typing.Self:        
-        self.__internal.max_val = max_val
+        self._internal.max_val = max_val
     
         return self
     
     def fixed(self, fixed: float) -> typing.Self:        
-        self.__internal.fixed = fixed
+        self._internal.fixed = fixed
     
         return self
     
@@ -221,27 +221,27 @@ class ScalarDimensionConfig(cogbuilder.Builder[common.ScalarDimensionConfig]):
         fixed: T -- will be added by each element
         """
             
-        self.__internal.field = field
+        self._internal.field = field
     
         return self
     
     def mode(self, mode: common.ScalarDimensionMode) -> typing.Self:        
-        self.__internal.mode = mode
+        self._internal.mode = mode
     
         return self
     
 
 class TextDimensionConfig(cogbuilder.Builder[common.TextDimensionConfig]):    
-    __internal: common.TextDimensionConfig
+    _internal: common.TextDimensionConfig
 
     def __init__(self):
-        self.__internal = common.TextDimensionConfig()
+        self._internal = common.TextDimensionConfig()
 
     def build(self) -> common.TextDimensionConfig:
-        return self.__internal    
+        return self._internal    
     
     def mode(self, mode: common.TextDimensionMode) -> typing.Self:        
-        self.__internal.mode = mode
+        self._internal.mode = mode
     
         return self
     
@@ -250,27 +250,27 @@ class TextDimensionConfig(cogbuilder.Builder[common.TextDimensionConfig]):
         fixed: T -- will be added by each element
         """
             
-        self.__internal.field = field
+        self._internal.field = field
     
         return self
     
     def fixed(self, fixed: str) -> typing.Self:        
-        self.__internal.fixed = fixed
+        self._internal.fixed = fixed
     
         return self
     
 
 class MapLayerOptions(cogbuilder.Builder[common.MapLayerOptions]):    
-    __internal: common.MapLayerOptions
+    _internal: common.MapLayerOptions
 
     def __init__(self):
-        self.__internal = common.MapLayerOptions()
+        self._internal = common.MapLayerOptions()
 
     def build(self) -> common.MapLayerOptions:
-        return self.__internal    
+        return self._internal    
     
     def type_val(self, type_val: str) -> typing.Self:        
-        self.__internal.type_val = type_val
+        self._internal.type_val = type_val
     
         return self
     
@@ -279,7 +279,7 @@ class MapLayerOptions(cogbuilder.Builder[common.MapLayerOptions]):
         configured unique display name
         """
             
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
@@ -288,7 +288,7 @@ class MapLayerOptions(cogbuilder.Builder[common.MapLayerOptions]):
         Custom options depending on the type
         """
             
-        self.__internal.config = config
+        self._internal.config = config
     
         return self
     
@@ -298,7 +298,7 @@ class MapLayerOptions(cogbuilder.Builder[common.MapLayerOptions]):
         """
             
         location_resource = location.build()
-        self.__internal.location = location_resource
+        self._internal.location = location_resource
     
         return self
     
@@ -307,7 +307,7 @@ class MapLayerOptions(cogbuilder.Builder[common.MapLayerOptions]):
         Defines a frame MatcherConfig that may filter data for the given layer
         """
             
-        self.__internal.filter_data = filter_data
+        self._internal.filter_data = filter_data
     
         return self
     
@@ -318,7 +318,7 @@ class MapLayerOptions(cogbuilder.Builder[common.MapLayerOptions]):
         Layer opacity (0-1)
         """
             
-        self.__internal.opacity = opacity
+        self._internal.opacity = opacity
     
         return self
     
@@ -327,26 +327,26 @@ class MapLayerOptions(cogbuilder.Builder[common.MapLayerOptions]):
         Check tooltip (defaults to true)
         """
             
-        self.__internal.tooltip = tooltip
+        self._internal.tooltip = tooltip
     
         return self
     
 
 class HeatmapCalculationBucketConfig(cogbuilder.Builder[common.HeatmapCalculationBucketConfig]):    
-    __internal: common.HeatmapCalculationBucketConfig
+    _internal: common.HeatmapCalculationBucketConfig
 
     def __init__(self):
-        self.__internal = common.HeatmapCalculationBucketConfig()
+        self._internal = common.HeatmapCalculationBucketConfig()
 
     def build(self) -> common.HeatmapCalculationBucketConfig:
-        return self.__internal    
+        return self._internal    
     
     def mode(self, mode: common.HeatmapCalculationMode) -> typing.Self:    
         """
         Sets the bucket calculation mode
         """
             
-        self.__internal.mode = mode
+        self._internal.mode = mode
     
         return self
     
@@ -355,7 +355,7 @@ class HeatmapCalculationBucketConfig(cogbuilder.Builder[common.HeatmapCalculatio
         The number of buckets to use for the axis in the heatmap
         """
             
-        self.__internal.value = value
+        self._internal.value = value
     
         return self
     
@@ -365,7 +365,7 @@ class HeatmapCalculationBucketConfig(cogbuilder.Builder[common.HeatmapCalculatio
         """
             
         scale_resource = scale.build()
-        self.__internal.scale = scale_resource
+        self._internal.scale = scale_resource
     
         return self
     
@@ -375,21 +375,21 @@ class LineStyle(cogbuilder.Builder[common.LineStyle]):
     TODO docs
     """
     
-    __internal: common.LineStyle
+    _internal: common.LineStyle
 
     def __init__(self):
-        self.__internal = common.LineStyle()
+        self._internal = common.LineStyle()
 
     def build(self) -> common.LineStyle:
-        return self.__internal    
+        return self._internal    
     
     def fill(self, fill: typing.Literal["solid", "dash", "dot", "square"]) -> typing.Self:        
-        self.__internal.fill = fill
+        self._internal.fill = fill
     
         return self
     
     def dash(self, dash: list[float]) -> typing.Self:        
-        self.__internal.dash = dash
+        self._internal.dash = dash
     
         return self
     
@@ -399,32 +399,32 @@ class LineConfig(cogbuilder.Builder[common.LineConfig]):
     TODO docs
     """
     
-    __internal: common.LineConfig
+    _internal: common.LineConfig
 
     def __init__(self):
-        self.__internal = common.LineConfig()
+        self._internal = common.LineConfig()
 
     def build(self) -> common.LineConfig:
-        return self.__internal    
+        return self._internal    
     
     def line_color(self, line_color: str) -> typing.Self:        
-        self.__internal.line_color = line_color
+        self._internal.line_color = line_color
     
         return self
     
     def line_width(self, line_width: float) -> typing.Self:        
-        self.__internal.line_width = line_width
+        self._internal.line_width = line_width
     
         return self
     
     def line_interpolation(self, line_interpolation: common.LineInterpolation) -> typing.Self:        
-        self.__internal.line_interpolation = line_interpolation
+        self._internal.line_interpolation = line_interpolation
     
         return self
     
     def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:        
         line_style_resource = line_style.build()
-        self.__internal.line_style = line_style_resource
+        self._internal.line_style = line_style_resource
     
         return self
     
@@ -435,7 +435,7 @@ class LineConfig(cogbuilder.Builder[common.LineConfig]):
         X axis that should be considered connected.  For timeseries, this is milliseconds
         """
             
-        self.__internal.span_nulls = span_nulls
+        self._internal.span_nulls = span_nulls
     
         return self
     
@@ -445,26 +445,26 @@ class BarConfig(cogbuilder.Builder[common.BarConfig]):
     TODO docs
     """
     
-    __internal: common.BarConfig
+    _internal: common.BarConfig
 
     def __init__(self):
-        self.__internal = common.BarConfig()
+        self._internal = common.BarConfig()
 
     def build(self) -> common.BarConfig:
-        return self.__internal    
+        return self._internal    
     
     def bar_alignment(self, bar_alignment: common.BarAlignment) -> typing.Self:        
-        self.__internal.bar_alignment = bar_alignment
+        self._internal.bar_alignment = bar_alignment
     
         return self
     
     def bar_width_factor(self, bar_width_factor: float) -> typing.Self:        
-        self.__internal.bar_width_factor = bar_width_factor
+        self._internal.bar_width_factor = bar_width_factor
     
         return self
     
     def bar_max_width(self, bar_max_width: float) -> typing.Self:        
-        self.__internal.bar_max_width = bar_max_width
+        self._internal.bar_max_width = bar_max_width
     
         return self
     
@@ -474,26 +474,26 @@ class FillConfig(cogbuilder.Builder[common.FillConfig]):
     TODO docs
     """
     
-    __internal: common.FillConfig
+    _internal: common.FillConfig
 
     def __init__(self):
-        self.__internal = common.FillConfig()
+        self._internal = common.FillConfig()
 
     def build(self) -> common.FillConfig:
-        return self.__internal    
+        return self._internal    
     
     def fill_color(self, fill_color: str) -> typing.Self:        
-        self.__internal.fill_color = fill_color
+        self._internal.fill_color = fill_color
     
         return self
     
     def fill_opacity(self, fill_opacity: float) -> typing.Self:        
-        self.__internal.fill_opacity = fill_opacity
+        self._internal.fill_opacity = fill_opacity
     
         return self
     
     def fill_below_to(self, fill_below_to: str) -> typing.Self:        
-        self.__internal.fill_below_to = fill_below_to
+        self._internal.fill_below_to = fill_below_to
     
         return self
     
@@ -503,31 +503,31 @@ class PointsConfig(cogbuilder.Builder[common.PointsConfig]):
     TODO docs
     """
     
-    __internal: common.PointsConfig
+    _internal: common.PointsConfig
 
     def __init__(self):
-        self.__internal = common.PointsConfig()
+        self._internal = common.PointsConfig()
 
     def build(self) -> common.PointsConfig:
-        return self.__internal    
+        return self._internal    
     
     def show_points(self, show_points: common.VisibilityMode) -> typing.Self:        
-        self.__internal.show_points = show_points
+        self._internal.show_points = show_points
     
         return self
     
     def point_size(self, point_size: float) -> typing.Self:        
-        self.__internal.point_size = point_size
+        self._internal.point_size = point_size
     
         return self
     
     def point_color(self, point_color: str) -> typing.Self:        
-        self.__internal.point_color = point_color
+        self._internal.point_color = point_color
     
         return self
     
     def point_symbol(self, point_symbol: str) -> typing.Self:        
-        self.__internal.point_symbol = point_symbol
+        self._internal.point_symbol = point_symbol
     
         return self
     
@@ -537,26 +537,26 @@ class ScaleDistributionConfig(cogbuilder.Builder[common.ScaleDistributionConfig]
     TODO docs
     """
     
-    __internal: common.ScaleDistributionConfig
+    _internal: common.ScaleDistributionConfig
 
     def __init__(self):
-        self.__internal = common.ScaleDistributionConfig()
+        self._internal = common.ScaleDistributionConfig()
 
     def build(self) -> common.ScaleDistributionConfig:
-        return self.__internal    
+        return self._internal    
     
     def type_val(self, type_val: common.ScaleDistribution) -> typing.Self:        
-        self.__internal.type_val = type_val
+        self._internal.type_val = type_val
     
         return self
     
     def log(self, log: float) -> typing.Self:        
-        self.__internal.log = log
+        self._internal.log = log
     
         return self
     
     def linear_threshold(self, linear_threshold: float) -> typing.Self:        
-        self.__internal.linear_threshold = linear_threshold
+        self._internal.linear_threshold = linear_threshold
     
         return self
     
@@ -566,62 +566,62 @@ class AxisConfig(cogbuilder.Builder[common.AxisConfig]):
     TODO docs
     """
     
-    __internal: common.AxisConfig
+    _internal: common.AxisConfig
 
     def __init__(self):
-        self.__internal = common.AxisConfig()
+        self._internal = common.AxisConfig()
 
     def build(self) -> common.AxisConfig:
-        return self.__internal    
+        return self._internal    
     
     def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:        
-        self.__internal.axis_placement = axis_placement
+        self._internal.axis_placement = axis_placement
     
         return self
     
     def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:        
-        self.__internal.axis_color_mode = axis_color_mode
+        self._internal.axis_color_mode = axis_color_mode
     
         return self
     
     def axis_label(self, axis_label: str) -> typing.Self:        
-        self.__internal.axis_label = axis_label
+        self._internal.axis_label = axis_label
     
         return self
     
     def axis_width(self, axis_width: float) -> typing.Self:        
-        self.__internal.axis_width = axis_width
+        self._internal.axis_width = axis_width
     
         return self
     
     def axis_soft_min(self, axis_soft_min: float) -> typing.Self:        
-        self.__internal.axis_soft_min = axis_soft_min
+        self._internal.axis_soft_min = axis_soft_min
     
         return self
     
     def axis_soft_max(self, axis_soft_max: float) -> typing.Self:        
-        self.__internal.axis_soft_max = axis_soft_max
+        self._internal.axis_soft_max = axis_soft_max
     
         return self
     
     def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:        
-        self.__internal.axis_grid_show = axis_grid_show
+        self._internal.axis_grid_show = axis_grid_show
     
         return self
     
     def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:        
         scale_distribution_resource = scale_distribution.build()
-        self.__internal.scale_distribution = scale_distribution_resource
+        self._internal.scale_distribution = scale_distribution_resource
     
         return self
     
     def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:        
-        self.__internal.axis_centered_zero = axis_centered_zero
+        self._internal.axis_centered_zero = axis_centered_zero
     
         return self
     
     def axis_border_show(self, axis_border_show: bool) -> typing.Self:        
-        self.__internal.axis_border_show = axis_border_show
+        self._internal.axis_border_show = axis_border_show
     
         return self
     
@@ -631,26 +631,26 @@ class HideSeriesConfig(cogbuilder.Builder[common.HideSeriesConfig]):
     TODO docs
     """
     
-    __internal: common.HideSeriesConfig
+    _internal: common.HideSeriesConfig
 
     def __init__(self):
-        self.__internal = common.HideSeriesConfig()
+        self._internal = common.HideSeriesConfig()
 
     def build(self) -> common.HideSeriesConfig:
-        return self.__internal    
+        return self._internal    
     
     def tooltip(self, tooltip: bool) -> typing.Self:        
-        self.__internal.tooltip = tooltip
+        self._internal.tooltip = tooltip
     
         return self
     
     def legend(self, legend: bool) -> typing.Self:        
-        self.__internal.legend = legend
+        self._internal.legend = legend
     
         return self
     
     def viz(self, viz: bool) -> typing.Self:        
-        self.__internal.viz = viz
+        self._internal.viz = viz
     
         return self
     
@@ -660,21 +660,21 @@ class StackingConfig(cogbuilder.Builder[common.StackingConfig]):
     TODO docs
     """
     
-    __internal: common.StackingConfig
+    _internal: common.StackingConfig
 
     def __init__(self):
-        self.__internal = common.StackingConfig()
+        self._internal = common.StackingConfig()
 
     def build(self) -> common.StackingConfig:
-        return self.__internal    
+        return self._internal    
     
     def mode(self, mode: common.StackingMode) -> typing.Self:        
-        self.__internal.mode = mode
+        self._internal.mode = mode
     
         return self
     
     def group(self, group: str) -> typing.Self:        
-        self.__internal.group = group
+        self._internal.group = group
     
         return self
     
@@ -684,17 +684,17 @@ class StackableFieldConfig(cogbuilder.Builder[common.StackableFieldConfig]):
     TODO docs
     """
     
-    __internal: common.StackableFieldConfig
+    _internal: common.StackableFieldConfig
 
     def __init__(self):
-        self.__internal = common.StackableFieldConfig()
+        self._internal = common.StackableFieldConfig()
 
     def build(self) -> common.StackableFieldConfig:
-        return self.__internal    
+        return self._internal    
     
     def stacking(self, stacking: cogbuilder.Builder[common.StackingConfig]) -> typing.Self:        
         stacking_resource = stacking.build()
-        self.__internal.stacking = stacking_resource
+        self._internal.stacking = stacking_resource
     
         return self
     
@@ -704,17 +704,17 @@ class HideableFieldConfig(cogbuilder.Builder[common.HideableFieldConfig]):
     TODO docs
     """
     
-    __internal: common.HideableFieldConfig
+    _internal: common.HideableFieldConfig
 
     def __init__(self):
-        self.__internal = common.HideableFieldConfig()
+        self._internal = common.HideableFieldConfig()
 
     def build(self) -> common.HideableFieldConfig:
-        return self.__internal    
+        return self._internal    
     
     def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:        
         hide_from_resource = hide_from.build()
-        self.__internal.hide_from = hide_from_resource
+        self._internal.hide_from = hide_from_resource
     
         return self
     
@@ -724,16 +724,16 @@ class GraphThresholdsStyleConfig(cogbuilder.Builder[common.GraphThresholdsStyleC
     TODO docs
     """
     
-    __internal: common.GraphThresholdsStyleConfig
+    _internal: common.GraphThresholdsStyleConfig
 
     def __init__(self):
-        self.__internal = common.GraphThresholdsStyleConfig()
+        self._internal = common.GraphThresholdsStyleConfig()
 
     def build(self) -> common.GraphThresholdsStyleConfig:
-        return self.__internal    
+        return self._internal    
     
     def mode(self, mode: common.GraphThresholdsStyleMode) -> typing.Self:        
-        self.__internal.mode = mode
+        self._internal.mode = mode
     
         return self
     
@@ -743,28 +743,28 @@ class SingleStatBaseOptions(cogbuilder.Builder[common.SingleStatBaseOptions]):
     TODO docs
     """
     
-    __internal: common.SingleStatBaseOptions
+    _internal: common.SingleStatBaseOptions
 
     def __init__(self):
-        self.__internal = common.SingleStatBaseOptions()
+        self._internal = common.SingleStatBaseOptions()
 
     def build(self) -> common.SingleStatBaseOptions:
-        return self.__internal    
+        return self._internal    
     
     def reduce_options(self, reduce_options: cogbuilder.Builder[common.ReduceDataOptions]) -> typing.Self:        
         reduce_options_resource = reduce_options.build()
-        self.__internal.reduce_options = reduce_options_resource
+        self._internal.reduce_options = reduce_options_resource
     
         return self
     
     def text(self, text: cogbuilder.Builder[common.VizTextDisplayOptions]) -> typing.Self:        
         text_resource = text.build()
-        self.__internal.text = text_resource
+        self._internal.text = text_resource
     
         return self
     
     def orientation(self, orientation: common.VizOrientation) -> typing.Self:        
-        self.__internal.orientation = orientation
+        self._internal.orientation = orientation
     
         return self
     
@@ -774,20 +774,20 @@ class ReduceDataOptions(cogbuilder.Builder[common.ReduceDataOptions]):
     TODO docs
     """
     
-    __internal: common.ReduceDataOptions
+    _internal: common.ReduceDataOptions
 
     def __init__(self):
-        self.__internal = common.ReduceDataOptions()
+        self._internal = common.ReduceDataOptions()
 
     def build(self) -> common.ReduceDataOptions:
-        return self.__internal    
+        return self._internal    
     
     def values(self, values: bool) -> typing.Self:    
         """
         If true show each row value
         """
             
-        self.__internal.values = values
+        self._internal.values = values
     
         return self
     
@@ -796,7 +796,7 @@ class ReduceDataOptions(cogbuilder.Builder[common.ReduceDataOptions]):
         if showing all values limit
         """
             
-        self.__internal.limit = limit
+        self._internal.limit = limit
     
         return self
     
@@ -805,7 +805,7 @@ class ReduceDataOptions(cogbuilder.Builder[common.ReduceDataOptions]):
         When !values, pick one value for the whole field
         """
             
-        self.__internal.calcs = calcs
+        self._internal.calcs = calcs
     
         return self
     
@@ -814,7 +814,7 @@ class ReduceDataOptions(cogbuilder.Builder[common.ReduceDataOptions]):
         Which fields to show.  By default this is only numeric fields
         """
             
-        self.__internal.fields = fields
+        self._internal.fields = fields
     
         return self
     
@@ -824,17 +824,17 @@ class OptionsWithTooltip(cogbuilder.Builder[common.OptionsWithTooltip]):
     TODO docs
     """
     
-    __internal: common.OptionsWithTooltip
+    _internal: common.OptionsWithTooltip
 
     def __init__(self):
-        self.__internal = common.OptionsWithTooltip()
+        self._internal = common.OptionsWithTooltip()
 
     def build(self) -> common.OptionsWithTooltip:
-        return self.__internal    
+        return self._internal    
     
     def tooltip(self, tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self:        
         tooltip_resource = tooltip.build()
-        self.__internal.tooltip = tooltip_resource
+        self._internal.tooltip = tooltip_resource
     
         return self
     
@@ -844,17 +844,17 @@ class OptionsWithLegend(cogbuilder.Builder[common.OptionsWithLegend]):
     TODO docs
     """
     
-    __internal: common.OptionsWithLegend
+    _internal: common.OptionsWithLegend
 
     def __init__(self):
-        self.__internal = common.OptionsWithLegend()
+        self._internal = common.OptionsWithLegend()
 
     def build(self) -> common.OptionsWithLegend:
-        return self.__internal    
+        return self._internal    
     
     def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:        
         legend_resource = legend.build()
-        self.__internal.legend = legend_resource
+        self._internal.legend = legend_resource
     
         return self
     
@@ -864,16 +864,16 @@ class OptionsWithTimezones(cogbuilder.Builder[common.OptionsWithTimezones]):
     TODO docs
     """
     
-    __internal: common.OptionsWithTimezones
+    _internal: common.OptionsWithTimezones
 
     def __init__(self):
-        self.__internal = common.OptionsWithTimezones()
+        self._internal = common.OptionsWithTimezones()
 
     def build(self) -> common.OptionsWithTimezones:
-        return self.__internal    
+        return self._internal    
     
     def timezone(self, timezone: list[common.TimeZone]) -> typing.Self:        
-        self.__internal.timezone = timezone
+        self._internal.timezone = timezone
     
         return self
     
@@ -883,17 +883,17 @@ class OptionsWithTextFormatting(cogbuilder.Builder[common.OptionsWithTextFormatt
     TODO docs
     """
     
-    __internal: common.OptionsWithTextFormatting
+    _internal: common.OptionsWithTextFormatting
 
     def __init__(self):
-        self.__internal = common.OptionsWithTextFormatting()
+        self._internal = common.OptionsWithTextFormatting()
 
     def build(self) -> common.OptionsWithTextFormatting:
-        return self.__internal    
+        return self._internal    
     
     def text(self, text: cogbuilder.Builder[common.VizTextDisplayOptions]) -> typing.Self:        
         text_resource = text.build()
-        self.__internal.text = text_resource
+        self._internal.text = text_resource
     
         return self
     
@@ -903,20 +903,20 @@ class VizTextDisplayOptions(cogbuilder.Builder[common.VizTextDisplayOptions]):
     TODO docs
     """
     
-    __internal: common.VizTextDisplayOptions
+    _internal: common.VizTextDisplayOptions
 
     def __init__(self):
-        self.__internal = common.VizTextDisplayOptions()
+        self._internal = common.VizTextDisplayOptions()
 
     def build(self) -> common.VizTextDisplayOptions:
-        return self.__internal    
+        return self._internal    
     
     def title_size(self, title_size: float) -> typing.Self:    
         """
         Explicit title text size
         """
             
-        self.__internal.title_size = title_size
+        self._internal.title_size = title_size
     
         return self
     
@@ -925,7 +925,7 @@ class VizTextDisplayOptions(cogbuilder.Builder[common.VizTextDisplayOptions]):
         Explicit value text size
         """
             
-        self.__internal.value_size = value_size
+        self._internal.value_size = value_size
     
         return self
     
@@ -935,146 +935,146 @@ class GraphFieldConfig(cogbuilder.Builder[common.GraphFieldConfig]):
     TODO docs
     """
     
-    __internal: common.GraphFieldConfig
+    _internal: common.GraphFieldConfig
 
     def __init__(self):
-        self.__internal = common.GraphFieldConfig()
+        self._internal = common.GraphFieldConfig()
 
     def build(self) -> common.GraphFieldConfig:
-        return self.__internal    
+        return self._internal    
     
     def draw_style(self, draw_style: common.GraphDrawStyle) -> typing.Self:        
-        self.__internal.draw_style = draw_style
+        self._internal.draw_style = draw_style
     
         return self
     
     def gradient_mode(self, gradient_mode: common.GraphGradientMode) -> typing.Self:        
-        self.__internal.gradient_mode = gradient_mode
+        self._internal.gradient_mode = gradient_mode
     
         return self
     
     def thresholds_style(self, thresholds_style: cogbuilder.Builder[common.GraphThresholdsStyleConfig]) -> typing.Self:        
         thresholds_style_resource = thresholds_style.build()
-        self.__internal.thresholds_style = thresholds_style_resource
+        self._internal.thresholds_style = thresholds_style_resource
     
         return self
     
     def line_color(self, line_color: str) -> typing.Self:        
-        self.__internal.line_color = line_color
+        self._internal.line_color = line_color
     
         return self
     
     def line_width(self, line_width: float) -> typing.Self:        
-        self.__internal.line_width = line_width
+        self._internal.line_width = line_width
     
         return self
     
     def line_interpolation(self, line_interpolation: common.LineInterpolation) -> typing.Self:        
-        self.__internal.line_interpolation = line_interpolation
+        self._internal.line_interpolation = line_interpolation
     
         return self
     
     def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:        
         line_style_resource = line_style.build()
-        self.__internal.line_style = line_style_resource
+        self._internal.line_style = line_style_resource
     
         return self
     
     def fill_color(self, fill_color: str) -> typing.Self:        
-        self.__internal.fill_color = fill_color
+        self._internal.fill_color = fill_color
     
         return self
     
     def fill_opacity(self, fill_opacity: float) -> typing.Self:        
-        self.__internal.fill_opacity = fill_opacity
+        self._internal.fill_opacity = fill_opacity
     
         return self
     
     def show_points(self, show_points: common.VisibilityMode) -> typing.Self:        
-        self.__internal.show_points = show_points
+        self._internal.show_points = show_points
     
         return self
     
     def point_size(self, point_size: float) -> typing.Self:        
-        self.__internal.point_size = point_size
+        self._internal.point_size = point_size
     
         return self
     
     def point_color(self, point_color: str) -> typing.Self:        
-        self.__internal.point_color = point_color
+        self._internal.point_color = point_color
     
         return self
     
     def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:        
-        self.__internal.axis_placement = axis_placement
+        self._internal.axis_placement = axis_placement
     
         return self
     
     def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:        
-        self.__internal.axis_color_mode = axis_color_mode
+        self._internal.axis_color_mode = axis_color_mode
     
         return self
     
     def axis_label(self, axis_label: str) -> typing.Self:        
-        self.__internal.axis_label = axis_label
+        self._internal.axis_label = axis_label
     
         return self
     
     def axis_width(self, axis_width: float) -> typing.Self:        
-        self.__internal.axis_width = axis_width
+        self._internal.axis_width = axis_width
     
         return self
     
     def axis_soft_min(self, axis_soft_min: float) -> typing.Self:        
-        self.__internal.axis_soft_min = axis_soft_min
+        self._internal.axis_soft_min = axis_soft_min
     
         return self
     
     def axis_soft_max(self, axis_soft_max: float) -> typing.Self:        
-        self.__internal.axis_soft_max = axis_soft_max
+        self._internal.axis_soft_max = axis_soft_max
     
         return self
     
     def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:        
-        self.__internal.axis_grid_show = axis_grid_show
+        self._internal.axis_grid_show = axis_grid_show
     
         return self
     
     def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:        
         scale_distribution_resource = scale_distribution.build()
-        self.__internal.scale_distribution = scale_distribution_resource
+        self._internal.scale_distribution = scale_distribution_resource
     
         return self
     
     def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:        
-        self.__internal.axis_centered_zero = axis_centered_zero
+        self._internal.axis_centered_zero = axis_centered_zero
     
         return self
     
     def bar_alignment(self, bar_alignment: common.BarAlignment) -> typing.Self:        
-        self.__internal.bar_alignment = bar_alignment
+        self._internal.bar_alignment = bar_alignment
     
         return self
     
     def bar_width_factor(self, bar_width_factor: float) -> typing.Self:        
-        self.__internal.bar_width_factor = bar_width_factor
+        self._internal.bar_width_factor = bar_width_factor
     
         return self
     
     def stacking(self, stacking: cogbuilder.Builder[common.StackingConfig]) -> typing.Self:        
         stacking_resource = stacking.build()
-        self.__internal.stacking = stacking_resource
+        self._internal.stacking = stacking_resource
     
         return self
     
     def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:        
         hide_from_resource = hide_from.build()
-        self.__internal.hide_from = hide_from_resource
+        self._internal.hide_from = hide_from_resource
     
         return self
     
     def transform(self, transform: common.GraphTransform) -> typing.Self:        
-        self.__internal.transform = transform
+        self._internal.transform = transform
     
         return self
     
@@ -1085,27 +1085,27 @@ class GraphFieldConfig(cogbuilder.Builder[common.GraphFieldConfig]):
         X axis that should be considered connected.  For timeseries, this is milliseconds
         """
             
-        self.__internal.span_nulls = span_nulls
+        self._internal.span_nulls = span_nulls
     
         return self
     
     def fill_below_to(self, fill_below_to: str) -> typing.Self:        
-        self.__internal.fill_below_to = fill_below_to
+        self._internal.fill_below_to = fill_below_to
     
         return self
     
     def point_symbol(self, point_symbol: str) -> typing.Self:        
-        self.__internal.point_symbol = point_symbol
+        self._internal.point_symbol = point_symbol
     
         return self
     
     def axis_border_show(self, axis_border_show: bool) -> typing.Self:        
-        self.__internal.axis_border_show = axis_border_show
+        self._internal.axis_border_show = axis_border_show
     
         return self
     
     def bar_max_width(self, bar_max_width: float) -> typing.Self:        
-        self.__internal.bar_max_width = bar_max_width
+        self._internal.bar_max_width = bar_max_width
     
         return self
     
@@ -1115,56 +1115,56 @@ class VizLegendOptions(cogbuilder.Builder[common.VizLegendOptions]):
     TODO docs
     """
     
-    __internal: common.VizLegendOptions
+    _internal: common.VizLegendOptions
 
     def __init__(self):
-        self.__internal = common.VizLegendOptions()
+        self._internal = common.VizLegendOptions()
 
     def build(self) -> common.VizLegendOptions:
-        return self.__internal    
+        return self._internal    
     
     def display_mode(self, display_mode: common.LegendDisplayMode) -> typing.Self:        
-        self.__internal.display_mode = display_mode
+        self._internal.display_mode = display_mode
     
         return self
     
     def placement(self, placement: common.LegendPlacement) -> typing.Self:        
-        self.__internal.placement = placement
+        self._internal.placement = placement
     
         return self
     
     def show_legend(self, show_legend: bool) -> typing.Self:        
-        self.__internal.show_legend = show_legend
+        self._internal.show_legend = show_legend
     
         return self
     
     def as_table(self, as_table: bool) -> typing.Self:        
-        self.__internal.as_table = as_table
+        self._internal.as_table = as_table
     
         return self
     
     def is_visible(self, is_visible: bool) -> typing.Self:        
-        self.__internal.is_visible = is_visible
+        self._internal.is_visible = is_visible
     
         return self
     
     def sort_by(self, sort_by: str) -> typing.Self:        
-        self.__internal.sort_by = sort_by
+        self._internal.sort_by = sort_by
     
         return self
     
     def sort_desc(self, sort_desc: bool) -> typing.Self:        
-        self.__internal.sort_desc = sort_desc
+        self._internal.sort_desc = sort_desc
     
         return self
     
     def width(self, width: float) -> typing.Self:        
-        self.__internal.width = width
+        self._internal.width = width
     
         return self
     
     def calcs(self, calcs: list[str]) -> typing.Self:        
-        self.__internal.calcs = calcs
+        self._internal.calcs = calcs
     
         return self
     
@@ -1174,31 +1174,31 @@ class VizTooltipOptions(cogbuilder.Builder[common.VizTooltipOptions]):
     TODO docs
     """
     
-    __internal: common.VizTooltipOptions
+    _internal: common.VizTooltipOptions
 
     def __init__(self):
-        self.__internal = common.VizTooltipOptions()
+        self._internal = common.VizTooltipOptions()
 
     def build(self) -> common.VizTooltipOptions:
-        return self.__internal    
+        return self._internal    
     
     def mode(self, mode: common.TooltipDisplayMode) -> typing.Self:        
-        self.__internal.mode = mode
+        self._internal.mode = mode
     
         return self
     
     def sort(self, sort: common.SortOrder) -> typing.Self:        
-        self.__internal.sort = sort
+        self._internal.sort = sort
     
         return self
     
     def max_width(self, max_width: float) -> typing.Self:        
-        self.__internal.max_width = max_width
+        self._internal.max_width = max_width
     
         return self
     
     def max_height(self, max_height: float) -> typing.Self:        
-        self.__internal.max_height = max_height
+        self._internal.max_height = max_height
     
         return self
     
@@ -1208,20 +1208,20 @@ class TableSortByFieldState(cogbuilder.Builder[common.TableSortByFieldState]):
     Sort by field state
     """
     
-    __internal: common.TableSortByFieldState
+    _internal: common.TableSortByFieldState
 
     def __init__(self):
-        self.__internal = common.TableSortByFieldState()
+        self._internal = common.TableSortByFieldState()
 
     def build(self) -> common.TableSortByFieldState:
-        return self.__internal    
+        return self._internal    
     
     def display_name(self, display_name: str) -> typing.Self:    
         """
         Sets the display name of the field to sort by
         """
             
-        self.__internal.display_name = display_name
+        self._internal.display_name = display_name
     
         return self
     
@@ -1230,7 +1230,7 @@ class TableSortByFieldState(cogbuilder.Builder[common.TableSortByFieldState]):
         Flag used to indicate descending sort order
         """
             
-        self.__internal.desc = desc
+        self._internal.desc = desc
     
         return self
     
@@ -1240,16 +1240,16 @@ class TableFooterOptions(cogbuilder.Builder[common.TableFooterOptions]):
     Footer options
     """
     
-    __internal: common.TableFooterOptions
+    _internal: common.TableFooterOptions
 
     def __init__(self):
-        self.__internal = common.TableFooterOptions()
+        self._internal = common.TableFooterOptions()
 
     def build(self) -> common.TableFooterOptions:
-        return self.__internal    
+        return self._internal    
     
     def show(self, show: bool) -> typing.Self:        
-        self.__internal.show = show
+        self._internal.show = show
     
         return self
     
@@ -1258,22 +1258,22 @@ class TableFooterOptions(cogbuilder.Builder[common.TableFooterOptions]):
         actually 1 value
         """
             
-        self.__internal.reducer = reducer
+        self._internal.reducer = reducer
     
         return self
     
     def fields(self, fields: list[str]) -> typing.Self:        
-        self.__internal.fields = fields
+        self._internal.fields = fields
     
         return self
     
     def enable_pagination(self, enable_pagination: bool) -> typing.Self:        
-        self.__internal.enable_pagination = enable_pagination
+        self._internal.enable_pagination = enable_pagination
     
         return self
     
     def count_rows(self, count_rows: bool) -> typing.Self:        
-        self.__internal.count_rows = count_rows
+        self._internal.count_rows = count_rows
     
         return self
     
@@ -1283,22 +1283,22 @@ class TableBarGaugeCellOptions(cogbuilder.Builder[common.TableBarGaugeCellOption
     Gauge cell options
     """
     
-    __internal: common.TableBarGaugeCellOptions
+    _internal: common.TableBarGaugeCellOptions
 
     def __init__(self):
-        self.__internal = common.TableBarGaugeCellOptions()        
-        self.__internal.type_val = "gauge"
+        self._internal = common.TableBarGaugeCellOptions()        
+        self._internal.type_val = "gauge"
 
     def build(self) -> common.TableBarGaugeCellOptions:
-        return self.__internal    
+        return self._internal    
     
     def mode(self, mode: common.BarGaugeDisplayMode) -> typing.Self:        
-        self.__internal.mode = mode
+        self._internal.mode = mode
     
         return self
     
     def value_display_mode(self, value_display_mode: common.BarGaugeValueMode) -> typing.Self:        
-        self.__internal.value_display_mode = value_display_mode
+        self._internal.value_display_mode = value_display_mode
     
         return self
     
@@ -1308,152 +1308,152 @@ class TableSparklineCellOptions(cogbuilder.Builder[common.TableSparklineCellOpti
     Sparkline cell options
     """
     
-    __internal: common.TableSparklineCellOptions
+    _internal: common.TableSparklineCellOptions
 
     def __init__(self):
-        self.__internal = common.TableSparklineCellOptions()        
-        self.__internal.type_val = "sparkline"
+        self._internal = common.TableSparklineCellOptions()        
+        self._internal.type_val = "sparkline"
 
     def build(self) -> common.TableSparklineCellOptions:
-        return self.__internal    
+        return self._internal    
     
     def draw_style(self, draw_style: common.GraphDrawStyle) -> typing.Self:        
-        self.__internal.draw_style = draw_style
+        self._internal.draw_style = draw_style
     
         return self
     
     def gradient_mode(self, gradient_mode: common.GraphGradientMode) -> typing.Self:        
-        self.__internal.gradient_mode = gradient_mode
+        self._internal.gradient_mode = gradient_mode
     
         return self
     
     def thresholds_style(self, thresholds_style: cogbuilder.Builder[common.GraphThresholdsStyleConfig]) -> typing.Self:        
         thresholds_style_resource = thresholds_style.build()
-        self.__internal.thresholds_style = thresholds_style_resource
+        self._internal.thresholds_style = thresholds_style_resource
     
         return self
     
     def line_color(self, line_color: str) -> typing.Self:        
-        self.__internal.line_color = line_color
+        self._internal.line_color = line_color
     
         return self
     
     def line_width(self, line_width: float) -> typing.Self:        
-        self.__internal.line_width = line_width
+        self._internal.line_width = line_width
     
         return self
     
     def line_interpolation(self, line_interpolation: common.LineInterpolation) -> typing.Self:        
-        self.__internal.line_interpolation = line_interpolation
+        self._internal.line_interpolation = line_interpolation
     
         return self
     
     def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:        
         line_style_resource = line_style.build()
-        self.__internal.line_style = line_style_resource
+        self._internal.line_style = line_style_resource
     
         return self
     
     def fill_color(self, fill_color: str) -> typing.Self:        
-        self.__internal.fill_color = fill_color
+        self._internal.fill_color = fill_color
     
         return self
     
     def fill_opacity(self, fill_opacity: float) -> typing.Self:        
-        self.__internal.fill_opacity = fill_opacity
+        self._internal.fill_opacity = fill_opacity
     
         return self
     
     def show_points(self, show_points: common.VisibilityMode) -> typing.Self:        
-        self.__internal.show_points = show_points
+        self._internal.show_points = show_points
     
         return self
     
     def point_size(self, point_size: float) -> typing.Self:        
-        self.__internal.point_size = point_size
+        self._internal.point_size = point_size
     
         return self
     
     def point_color(self, point_color: str) -> typing.Self:        
-        self.__internal.point_color = point_color
+        self._internal.point_color = point_color
     
         return self
     
     def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:        
-        self.__internal.axis_placement = axis_placement
+        self._internal.axis_placement = axis_placement
     
         return self
     
     def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:        
-        self.__internal.axis_color_mode = axis_color_mode
+        self._internal.axis_color_mode = axis_color_mode
     
         return self
     
     def axis_label(self, axis_label: str) -> typing.Self:        
-        self.__internal.axis_label = axis_label
+        self._internal.axis_label = axis_label
     
         return self
     
     def axis_width(self, axis_width: float) -> typing.Self:        
-        self.__internal.axis_width = axis_width
+        self._internal.axis_width = axis_width
     
         return self
     
     def axis_soft_min(self, axis_soft_min: float) -> typing.Self:        
-        self.__internal.axis_soft_min = axis_soft_min
+        self._internal.axis_soft_min = axis_soft_min
     
         return self
     
     def axis_soft_max(self, axis_soft_max: float) -> typing.Self:        
-        self.__internal.axis_soft_max = axis_soft_max
+        self._internal.axis_soft_max = axis_soft_max
     
         return self
     
     def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:        
-        self.__internal.axis_grid_show = axis_grid_show
+        self._internal.axis_grid_show = axis_grid_show
     
         return self
     
     def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:        
         scale_distribution_resource = scale_distribution.build()
-        self.__internal.scale_distribution = scale_distribution_resource
+        self._internal.scale_distribution = scale_distribution_resource
     
         return self
     
     def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:        
-        self.__internal.axis_centered_zero = axis_centered_zero
+        self._internal.axis_centered_zero = axis_centered_zero
     
         return self
     
     def bar_alignment(self, bar_alignment: common.BarAlignment) -> typing.Self:        
-        self.__internal.bar_alignment = bar_alignment
+        self._internal.bar_alignment = bar_alignment
     
         return self
     
     def bar_width_factor(self, bar_width_factor: float) -> typing.Self:        
-        self.__internal.bar_width_factor = bar_width_factor
+        self._internal.bar_width_factor = bar_width_factor
     
         return self
     
     def stacking(self, stacking: cogbuilder.Builder[common.StackingConfig]) -> typing.Self:        
         stacking_resource = stacking.build()
-        self.__internal.stacking = stacking_resource
+        self._internal.stacking = stacking_resource
     
         return self
     
     def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:        
         hide_from_resource = hide_from.build()
-        self.__internal.hide_from = hide_from_resource
+        self._internal.hide_from = hide_from_resource
     
         return self
     
     def hide_value(self, hide_value: bool) -> typing.Self:        
-        self.__internal.hide_value = hide_value
+        self._internal.hide_value = hide_value
     
         return self
     
     def transform(self, transform: common.GraphTransform) -> typing.Self:        
-        self.__internal.transform = transform
+        self._internal.transform = transform
     
         return self
     
@@ -1464,27 +1464,27 @@ class TableSparklineCellOptions(cogbuilder.Builder[common.TableSparklineCellOpti
         X axis that should be considered connected.  For timeseries, this is milliseconds
         """
             
-        self.__internal.span_nulls = span_nulls
+        self._internal.span_nulls = span_nulls
     
         return self
     
     def fill_below_to(self, fill_below_to: str) -> typing.Self:        
-        self.__internal.fill_below_to = fill_below_to
+        self._internal.fill_below_to = fill_below_to
     
         return self
     
     def point_symbol(self, point_symbol: str) -> typing.Self:        
-        self.__internal.point_symbol = point_symbol
+        self._internal.point_symbol = point_symbol
     
         return self
     
     def axis_border_show(self, axis_border_show: bool) -> typing.Self:        
-        self.__internal.axis_border_show = axis_border_show
+        self._internal.axis_border_show = axis_border_show
     
         return self
     
     def bar_max_width(self, bar_max_width: float) -> typing.Self:        
-        self.__internal.bar_max_width = bar_max_width
+        self._internal.bar_max_width = bar_max_width
     
         return self
     
@@ -1494,41 +1494,41 @@ class TableColoredBackgroundCellOptions(cogbuilder.Builder[common.TableColoredBa
     Colored background cell options
     """
     
-    __internal: common.TableColoredBackgroundCellOptions
+    _internal: common.TableColoredBackgroundCellOptions
 
     def __init__(self):
-        self.__internal = common.TableColoredBackgroundCellOptions()        
-        self.__internal.type_val = "color-background"
+        self._internal = common.TableColoredBackgroundCellOptions()        
+        self._internal.type_val = "color-background"
 
     def build(self) -> common.TableColoredBackgroundCellOptions:
-        return self.__internal    
+        return self._internal    
     
     def mode(self, mode: common.TableCellBackgroundDisplayMode) -> typing.Self:        
-        self.__internal.mode = mode
+        self._internal.mode = mode
     
         return self
     
     def apply_to_row(self, apply_to_row: bool) -> typing.Self:        
-        self.__internal.apply_to_row = apply_to_row
+        self._internal.apply_to_row = apply_to_row
     
         return self
     
 
 class DataSourceRef(cogbuilder.Builder[common.DataSourceRef]):    
-    __internal: common.DataSourceRef
+    _internal: common.DataSourceRef
 
     def __init__(self):
-        self.__internal = common.DataSourceRef()
+        self._internal = common.DataSourceRef()
 
     def build(self) -> common.DataSourceRef:
-        return self.__internal    
+        return self._internal    
     
     def type_val(self, type_val: str) -> typing.Self:    
         """
         The plugin type-id
         """
             
-        self.__internal.type_val = type_val
+        self._internal.type_val = type_val
     
         return self
     
@@ -1537,7 +1537,7 @@ class DataSourceRef(cogbuilder.Builder[common.DataSourceRef]):
         Specific datasource instance
         """
             
-        self.__internal.uid = uid
+        self._internal.uid = uid
     
         return self
     
@@ -1547,16 +1547,16 @@ class ResourceDimensionConfig(cogbuilder.Builder[common.ResourceDimensionConfig]
     Links to a resource (image/svg path)
     """
     
-    __internal: common.ResourceDimensionConfig
+    _internal: common.ResourceDimensionConfig
 
     def __init__(self):
-        self.__internal = common.ResourceDimensionConfig()
+        self._internal = common.ResourceDimensionConfig()
 
     def build(self) -> common.ResourceDimensionConfig:
-        return self.__internal    
+        return self._internal    
     
     def mode(self, mode: common.ResourceDimensionMode) -> typing.Self:        
-        self.__internal.mode = mode
+        self._internal.mode = mode
     
         return self
     
@@ -1565,27 +1565,27 @@ class ResourceDimensionConfig(cogbuilder.Builder[common.ResourceDimensionConfig]
         fixed: T -- will be added by each element
         """
             
-        self.__internal.field = field
+        self._internal.field = field
     
         return self
     
     def fixed(self, fixed: str) -> typing.Self:        
-        self.__internal.fixed = fixed
+        self._internal.fixed = fixed
     
         return self
     
 
 class FrameGeometrySource(cogbuilder.Builder[common.FrameGeometrySource]):    
-    __internal: common.FrameGeometrySource
+    _internal: common.FrameGeometrySource
 
     def __init__(self):
-        self.__internal = common.FrameGeometrySource()
+        self._internal = common.FrameGeometrySource()
 
     def build(self) -> common.FrameGeometrySource:
-        return self.__internal    
+        return self._internal    
     
     def mode(self, mode: common.FrameGeometrySourceMode) -> typing.Self:        
-        self.__internal.mode = mode
+        self._internal.mode = mode
     
         return self
     
@@ -1594,27 +1594,27 @@ class FrameGeometrySource(cogbuilder.Builder[common.FrameGeometrySource]):
         Field mappings
         """
             
-        self.__internal.geohash = geohash
+        self._internal.geohash = geohash
     
         return self
     
     def latitude(self, latitude: str) -> typing.Self:        
-        self.__internal.latitude = latitude
+        self._internal.latitude = latitude
     
         return self
     
     def longitude(self, longitude: str) -> typing.Self:        
-        self.__internal.longitude = longitude
+        self._internal.longitude = longitude
     
         return self
     
     def wkt(self, wkt: str) -> typing.Self:        
-        self.__internal.wkt = wkt
+        self._internal.wkt = wkt
     
         return self
     
     def lookup(self, lookup: str) -> typing.Self:        
-        self.__internal.lookup = lookup
+        self._internal.lookup = lookup
     
         return self
     
@@ -1623,19 +1623,19 @@ class FrameGeometrySource(cogbuilder.Builder[common.FrameGeometrySource]):
         Path to Gazetteer
         """
             
-        self.__internal.gazetteer = gazetteer
+        self._internal.gazetteer = gazetteer
     
         return self
     
 
 class HeatmapCalculationOptions(cogbuilder.Builder[common.HeatmapCalculationOptions]):    
-    __internal: common.HeatmapCalculationOptions
+    _internal: common.HeatmapCalculationOptions
 
     def __init__(self):
-        self.__internal = common.HeatmapCalculationOptions()
+        self._internal = common.HeatmapCalculationOptions()
 
     def build(self) -> common.HeatmapCalculationOptions:
-        return self.__internal    
+        return self._internal    
     
     def x_buckets(self, x_buckets: cogbuilder.Builder[common.HeatmapCalculationBucketConfig]) -> typing.Self:    
         """
@@ -1643,7 +1643,7 @@ class HeatmapCalculationOptions(cogbuilder.Builder[common.HeatmapCalculationOpti
         """
             
         x_buckets_resource = x_buckets.build()
-        self.__internal.x_buckets = x_buckets_resource
+        self._internal.x_buckets = x_buckets_resource
     
         return self
     
@@ -1653,7 +1653,7 @@ class HeatmapCalculationOptions(cogbuilder.Builder[common.HeatmapCalculationOpti
         """
             
         y_buckets_resource = y_buckets.build()
-        self.__internal.y_buckets = y_buckets_resource
+        self._internal.y_buckets = y_buckets_resource
     
         return self
     
@@ -1664,26 +1664,26 @@ class TableFieldOptions(cogbuilder.Builder[common.TableFieldOptions]):
     Generally defines alignment, filtering capabilties, display options, etc.
     """
     
-    __internal: common.TableFieldOptions
+    _internal: common.TableFieldOptions
 
     def __init__(self):
-        self.__internal = common.TableFieldOptions()
+        self._internal = common.TableFieldOptions()
 
     def build(self) -> common.TableFieldOptions:
-        return self.__internal    
+        return self._internal    
     
     def width(self, width: float) -> typing.Self:        
-        self.__internal.width = width
+        self._internal.width = width
     
         return self
     
     def min_width(self, min_width: float) -> typing.Self:        
-        self.__internal.min_width = min_width
+        self._internal.min_width = min_width
     
         return self
     
     def align(self, align: common.FieldTextAlignment) -> typing.Self:        
-        self.__internal.align = align
+        self._internal.align = align
     
         return self
     
@@ -1692,12 +1692,12 @@ class TableFieldOptions(cogbuilder.Builder[common.TableFieldOptions]):
         This field is deprecated in favor of using cellOptions
         """
             
-        self.__internal.display_mode = display_mode
+        self._internal.display_mode = display_mode
     
         return self
     
     def cell_options(self, cell_options: common.TableCellOptions) -> typing.Self:        
-        self.__internal.cell_options = cell_options
+        self._internal.cell_options = cell_options
     
         return self
     
@@ -1706,17 +1706,17 @@ class TableFieldOptions(cogbuilder.Builder[common.TableFieldOptions]):
         ?? default is missing or false ??
         """
             
-        self.__internal.hidden = hidden
+        self._internal.hidden = hidden
     
         return self
     
     def inspect(self, inspect: bool) -> typing.Self:        
-        self.__internal.inspect = inspect
+        self._internal.inspect = inspect
     
         return self
     
     def filterable(self, filterable: bool) -> typing.Self:        
-        self.__internal.filterable = filterable
+        self._internal.filterable = filterable
     
         return self
     
@@ -1725,7 +1725,7 @@ class TableFieldOptions(cogbuilder.Builder[common.TableFieldOptions]):
         Hides any header for a column, useful for columns that show some static content or buttons.
         """
             
-        self.__internal.hide_header = hide_header
+        self._internal.hide_header = hide_header
     
         return self
     
