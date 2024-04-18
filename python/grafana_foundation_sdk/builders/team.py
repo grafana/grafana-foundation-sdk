@@ -6,21 +6,21 @@ from ..models import team
 
 
 class Team(cogbuilder.Builder[team.Team]):    
-    __internal: team.Team
+    _internal: team.Team
 
     def __init__(self, name: str):
-        self.__internal = team.Team()        
-        self.__internal.name = name
+        self._internal = team.Team()        
+        self._internal.name = name
 
     def build(self) -> team.Team:
-        return self.__internal    
+        return self._internal    
     
     def name(self, name: str) -> typing.Self:    
         """
         Name of the team.
         """
             
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
@@ -29,7 +29,7 @@ class Team(cogbuilder.Builder[team.Team]):
         Email of the team.
         """
             
-        self.__internal.email = email
+        self._internal.email = email
     
         return self
     
