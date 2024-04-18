@@ -10,9 +10,9 @@
     "@jridgewell/trace-mapping" "0.3.9"
 
 "@grafana/grafana-foundation-sdk@~10.4.0-cogv0.0.x.1712659373":
-  version "10.4.0-cogv0.0.x.1712659373"
-  resolved "https://registry.yarnpkg.com/@grafana/grafana-foundation-sdk/-/grafana-foundation-sdk-10.4.0-cogv0.0.x.1712659373.tgz#63076db3d9ce7071deb9de3a5e5e04c7f79c022a"
-  integrity sha512-LjNblGXnkgHow68M2GvZSN8NoqFsUiWbPQpGwhzGbIEha7dumyOpi2VRG2SI/dQHFcDMr7IebvvlajnNAPMXtA==
+  version "10.4.0-cogv0.0.x.1713437340"
+  resolved "https://registry.yarnpkg.com/@grafana/grafana-foundation-sdk/-/grafana-foundation-sdk-10.4.0-cogv0.0.x.1713437340.tgz#fd080893819bc1365a4c34f869f70df5dc88874b"
+  integrity sha512-5s6N4/6E40oURkS7j6d5vnPQnP/ic6gbB9odnbbuiv/24aMH04+m/KN2cZVRg29aULNkXb23gotEwjs5mzlXQw==
   dependencies:
     tslib "^2.6.2"
 
