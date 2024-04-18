@@ -293,13 +293,13 @@ func (builder *DashboardBuilder) WithVariable(list cog.Builder[VariableModel]) *
 // Annotations are used to overlay event markers and overlay event tags on graphs.
 // Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
 // See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-func (builder *DashboardBuilder) Annotations(annotations cog.Builder[AnnotationContainer]) *DashboardBuilder {
-	annotationsResource, err := annotations.Build()
+func (builder *DashboardBuilder) Annotation(list cog.Builder[AnnotationQuery]) *DashboardBuilder {
+	listResource, err := list.Build()
 	if err != nil {
-		builder.errors["annotations"] = err.(cog.BuildErrors)
+		builder.errors["annotations.list"] = err.(cog.BuildErrors)
 		return builder
 	}
-	builder.internal.Annotations = annotationsResource
+	builder.internal.Annotations.List = append(builder.internal.Annotations.List, listResource)
 
 	return builder
 }

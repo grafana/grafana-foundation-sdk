@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
 export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
-    private readonly internal: dashboard.Dashboard;
+    protected readonly internal: dashboard.Dashboard;
     private currentY: number = 0;
     private currentX: number = 0;
     private lastPanelHeight: number = 0;
@@ -230,9 +230,15 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     // Annotations are used to overlay event markers and overlay event tags on graphs.
     // Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
     // See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-    annotations(annotations: cog.Builder<dashboard.AnnotationContainer>): this {
-        const annotationsResource = annotations.build();
-        this.internal.annotations = annotationsResource;
+    annotation(list: cog.Builder<dashboard.AnnotationQuery>): this {
+        if (!this.internal.annotations) {
+            this.internal.annotations = dashboard.defaultAnnotationContainer();
+        }
+        if (!this.internal.annotations.list) {
+            this.internal.annotations.list = [];
+        }
+        const listResource = list.build();
+        this.internal.annotations.list.push(listResource);
         return this;
     }
 

@@ -5,7 +5,7 @@ import * as dashboard from '../dashboard';
 
 // Links with references to other dashboards or external resources
 export class DashboardLinkBuilder implements cog.Builder<dashboard.DashboardLink> {
-    private readonly internal: dashboard.DashboardLink;
+    protected readonly internal: dashboard.DashboardLink;
 
     constructor(title: string) {
         this.internal = dashboard.defaultDashboardLink();

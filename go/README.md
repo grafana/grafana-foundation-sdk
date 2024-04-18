@@ -14,6 +14,8 @@ go get github.com/grafana/grafana-foundation-sdk/go@v10.3.x+cog-v0.0.x
 
 ## Example usage
 
+[More examples](https://github.com/grafana/grafana-foundation-sdk/tree/main/examples/go) can be found at the repository root.
+
 ### Building a dashboard
 
 ```go

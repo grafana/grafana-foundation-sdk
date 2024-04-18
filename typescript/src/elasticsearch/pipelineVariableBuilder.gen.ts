@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class PipelineVariableBuilder implements cog.Builder<elasticsearch.PipelineVariable> {
-    private readonly internal: elasticsearch.PipelineVariable;
+    protected readonly internal: elasticsearch.PipelineVariable;
 
     constructor() {
         this.internal = elasticsearch.defaultPipelineVariable();

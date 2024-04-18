@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as accesspolicy from '../accesspolicy';
 
 export class RoleRefBuilder implements cog.Builder<accesspolicy.RoleRef> {
-    private readonly internal: accesspolicy.RoleRef;
+    protected readonly internal: accesspolicy.RoleRef;
 
     constructor() {
         this.internal = accesspolicy.defaultRoleRef();
