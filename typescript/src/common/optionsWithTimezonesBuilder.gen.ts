@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class OptionsWithTimezonesBuilder implements cog.Builder<common.OptionsWithTimezones> {
-    private readonly internal: common.OptionsWithTimezones;
+    protected readonly internal: common.OptionsWithTimezones;
 
     constructor() {
         this.internal = common.defaultOptionsWithTimezones();

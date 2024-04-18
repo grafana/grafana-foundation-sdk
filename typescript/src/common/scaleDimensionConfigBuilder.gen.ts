@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 export class ScaleDimensionConfigBuilder implements cog.Builder<common.ScaleDimensionConfig> {
-    private readonly internal: common.ScaleDimensionConfig;
+    protected readonly internal: common.ScaleDimensionConfig;
 
     constructor() {
         this.internal = common.defaultScaleDimensionConfig();

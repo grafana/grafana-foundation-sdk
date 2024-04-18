@@ -5,7 +5,7 @@ import * as cloudwatch from '../cloudwatch';
 
 // Shape of a CloudWatch Metrics query
 export class CloudWatchMetricsQueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: cloudwatch.CloudWatchMetricsQuery;
+    protected readonly internal: cloudwatch.CloudWatchMetricsQuery;
 
     constructor() {
         this.internal = cloudwatch.defaultCloudWatchMetricsQuery();

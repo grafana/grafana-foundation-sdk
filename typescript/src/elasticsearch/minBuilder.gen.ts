@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class MinBuilder implements cog.Builder<elasticsearch.Min> {
-    private readonly internal: elasticsearch.Min;
+    protected readonly internal: elasticsearch.Min;
 
     constructor() {
         this.internal = elasticsearch.defaultMin();

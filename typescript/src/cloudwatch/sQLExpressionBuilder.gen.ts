@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 
 export class SQLExpressionBuilder implements cog.Builder<cloudwatch.SQLExpression> {
-    private readonly internal: cloudwatch.SQLExpression;
+    protected readonly internal: cloudwatch.SQLExpression;
 
     constructor() {
         this.internal = cloudwatch.defaultSQLExpression();

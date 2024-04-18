@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as preferences from '../preferences';
 
 export class CookiePreferencesBuilder implements cog.Builder<preferences.CookiePreferences> {
-    private readonly internal: preferences.CookiePreferences;
+    protected readonly internal: preferences.CookiePreferences;
 
     constructor() {
         this.internal = preferences.defaultCookiePreferences();

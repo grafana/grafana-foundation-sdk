@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
 export class AzureMonitorQueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: azuremonitor.AzureMonitorQuery;
+    protected readonly internal: azuremonitor.AzureMonitorQuery;
 
     constructor() {
         this.internal = azuremonitor.defaultAzureMonitorQuery();

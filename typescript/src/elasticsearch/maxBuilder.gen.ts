@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class MaxBuilder implements cog.Builder<elasticsearch.Max> {
-    private readonly internal: elasticsearch.Max;
+    protected readonly internal: elasticsearch.Max;
 
     constructor() {
         this.internal = elasticsearch.defaultMax();

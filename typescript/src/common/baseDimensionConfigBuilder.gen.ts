@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 export class BaseDimensionConfigBuilder implements cog.Builder<common.BaseDimensionConfig> {
-    private readonly internal: common.BaseDimensionConfig;
+    protected readonly internal: common.BaseDimensionConfig;
 
     constructor() {
         this.internal = common.defaultBaseDimensionConfig();

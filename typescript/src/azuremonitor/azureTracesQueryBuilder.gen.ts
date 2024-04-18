@@ -5,7 +5,7 @@ import * as azuremonitor from '../azuremonitor';
 
 // Application Insights Traces sub-query properties
 export class AzureTracesQueryBuilder implements cog.Builder<azuremonitor.AzureTracesQuery> {
-    private readonly internal: azuremonitor.AzureTracesQuery;
+    protected readonly internal: azuremonitor.AzureTracesQuery;
 
     constructor() {
         this.internal = azuremonitor.defaultAzureTracesQuery();

@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class RateBuilder implements cog.Builder<elasticsearch.Rate> {
-    private readonly internal: elasticsearch.Rate;
+    protected readonly internal: elasticsearch.Rate;
 
     constructor() {
         this.internal = elasticsearch.defaultRate();

@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class TopMetricsBuilder implements cog.Builder<elasticsearch.TopMetrics> {
-    private readonly internal: elasticsearch.TopMetrics;
+    protected readonly internal: elasticsearch.TopMetrics;
 
     constructor() {
         this.internal = elasticsearch.defaultTopMetrics();

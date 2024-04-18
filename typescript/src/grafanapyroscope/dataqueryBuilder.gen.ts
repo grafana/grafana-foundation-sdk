@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as grafanapyroscope from '../grafanapyroscope';
 
 export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: grafanapyroscope.dataquery;
+    protected readonly internal: grafanapyroscope.dataquery;
 
     constructor() {
         this.internal = grafanapyroscope.defaultDataquery();

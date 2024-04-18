@@ -5,7 +5,7 @@ import * as common from '../common';
 
 // TODO docs
 export class StackingConfigBuilder implements cog.Builder<common.StackingConfig> {
-    private readonly internal: common.StackingConfig;
+    protected readonly internal: common.StackingConfig;
 
     constructor() {
         this.internal = common.defaultStackingConfig();

@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as elasticsearch from '../elasticsearch';
 
 export class NestedBuilder implements cog.Builder<elasticsearch.Nested> {
-    private readonly internal: elasticsearch.Nested;
+    protected readonly internal: elasticsearch.Nested;
 
     constructor() {
         this.internal = elasticsearch.defaultNested();
