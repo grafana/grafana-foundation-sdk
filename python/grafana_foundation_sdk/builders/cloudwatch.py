@@ -6,20 +6,20 @@ from ..models import cloudwatch
 
 
 class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):    
-    __internal: cloudwatch.MetricStat
+    _internal: cloudwatch.MetricStat
 
     def __init__(self):
-        self.__internal = cloudwatch.MetricStat()
+        self._internal = cloudwatch.MetricStat()
 
     def build(self) -> cloudwatch.MetricStat:
-        return self.__internal    
+        return self._internal    
     
     def region(self, region: str) -> typing.Self:    
         """
         AWS region to query for the metric
         """
             
-        self.__internal.region = region
+        self._internal.region = region
     
         return self
     
@@ -28,7 +28,7 @@ class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
         A namespace is a container for CloudWatch metrics. Metrics in different namespaces are isolated from each other, so that metrics from different applications are not mistakenly aggregated into the same statistics. For example, Amazon EC2 uses the AWS/EC2 namespace.
         """
             
-        self.__internal.namespace = namespace
+        self._internal.namespace = namespace
     
         return self
     
@@ -37,7 +37,7 @@ class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
         Name of the metric
         """
             
-        self.__internal.metric_name = metric_name
+        self._internal.metric_name = metric_name
     
         return self
     
@@ -46,7 +46,7 @@ class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
         The dimensions of the metric
         """
             
-        self.__internal.dimensions = dimensions
+        self._internal.dimensions = dimensions
     
         return self
     
@@ -55,7 +55,7 @@ class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
         Only show metrics that exactly match all defined dimension names.
         """
             
-        self.__internal.match_exact = match_exact
+        self._internal.match_exact = match_exact
     
         return self
     
@@ -64,7 +64,7 @@ class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
         The length of time associated with a specific Amazon CloudWatch statistic. Can be specified by a number of seconds, 'auto', or as a duration string e.g. '15m' being 15 minutes
         """
             
-        self.__internal.period = period
+        self._internal.period = period
     
         return self
     
@@ -73,7 +73,7 @@ class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
         The ID of the AWS account to query for the metric, specifying `all` will query all accounts that the monitoring account is permitted to query.
         """
             
-        self.__internal.account_id = account_id
+        self._internal.account_id = account_id
     
         return self
     
@@ -82,7 +82,7 @@ class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
         Metric data aggregations over specified periods of time. For detailed definitions of the statistics supported by CloudWatch, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.
         """
             
-        self.__internal.statistic = statistic
+        self._internal.statistic = statistic
     
         return self
     
@@ -91,7 +91,7 @@ class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
         @deprecated use statistic
         """
             
-        self.__internal.statistics = statistics
+        self._internal.statistics = statistics
     
         return self
     
@@ -101,20 +101,20 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
     Shape of a CloudWatch Metrics query
     """
     
-    __internal: cloudwatch.CloudWatchMetricsQuery
+    _internal: cloudwatch.CloudWatchMetricsQuery
 
     def __init__(self):
-        self.__internal = cloudwatch.CloudWatchMetricsQuery()
+        self._internal = cloudwatch.CloudWatchMetricsQuery()
 
     def build(self) -> cloudwatch.CloudWatchMetricsQuery:
-        return self.__internal    
+        return self._internal    
     
     def query_mode(self, query_mode: cloudwatch.CloudWatchQueryMode) -> typing.Self:    
         """
         Whether a query is a Metrics, Logs, or Annotations query
         """
             
-        self.__internal.query_mode = query_mode
+        self._internal.query_mode = query_mode
     
         return self
     
@@ -123,7 +123,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         Whether to use a metric search or metric query. Metric query is referred to as "Metrics Insights" in the AWS console.
         """
             
-        self.__internal.metric_query_type = metric_query_type
+        self._internal.metric_query_type = metric_query_type
     
         return self
     
@@ -132,7 +132,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         Whether to use the query builder or code editor to create the query
         """
             
-        self.__internal.metric_editor_mode = metric_editor_mode
+        self._internal.metric_editor_mode = metric_editor_mode
     
         return self
     
@@ -141,7 +141,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         ID can be used to reference other queries in math expressions. The ID can include numbers, letters, and underscore, and must start with a lowercase letter.
         """
             
-        self.__internal.id_val = id_val
+        self._internal.id_val = id_val
     
         return self
     
@@ -151,7 +151,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         @deprecated use label
         """
             
-        self.__internal.alias = alias
+        self._internal.alias = alias
     
         return self
     
@@ -160,7 +160,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         Change the time series legend names using dynamic labels. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html for more details.
         """
             
-        self.__internal.label = label
+        self._internal.label = label
     
         return self
     
@@ -169,7 +169,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         Math expression query
         """
             
-        self.__internal.expression = expression
+        self._internal.expression = expression
     
         return self
     
@@ -178,7 +178,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         When the metric query type is `metricQueryType` is set to `Query`, this field is used to specify the query string.
         """
             
-        self.__internal.sql_expression = sql_expression
+        self._internal.sql_expression = sql_expression
     
         return self
     
@@ -189,7 +189,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         By default, the UI will assign A->Z; however setting meaningful names may be useful.
         """
             
-        self.__internal.ref_id = ref_id
+        self._internal.ref_id = ref_id
     
         return self
     
@@ -198,7 +198,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
         """
             
-        self.__internal.hide = hide
+        self._internal.hide = hide
     
         return self
     
@@ -208,7 +208,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         TODO make this required and give it a default
         """
             
-        self.__internal.query_type = query_type
+        self._internal.query_type = query_type
     
         return self
     
@@ -217,7 +217,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         AWS region to query for the metric
         """
             
-        self.__internal.region = region
+        self._internal.region = region
     
         return self
     
@@ -226,7 +226,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         A namespace is a container for CloudWatch metrics. Metrics in different namespaces are isolated from each other, so that metrics from different applications are not mistakenly aggregated into the same statistics. For example, Amazon EC2 uses the AWS/EC2 namespace.
         """
             
-        self.__internal.namespace = namespace
+        self._internal.namespace = namespace
     
         return self
     
@@ -235,7 +235,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         Name of the metric
         """
             
-        self.__internal.metric_name = metric_name
+        self._internal.metric_name = metric_name
     
         return self
     
@@ -244,7 +244,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         The dimensions of the metric
         """
             
-        self.__internal.dimensions = dimensions
+        self._internal.dimensions = dimensions
     
         return self
     
@@ -253,7 +253,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         Only show metrics that exactly match all defined dimension names.
         """
             
-        self.__internal.match_exact = match_exact
+        self._internal.match_exact = match_exact
     
         return self
     
@@ -262,7 +262,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         The length of time associated with a specific Amazon CloudWatch statistic. Can be specified by a number of seconds, 'auto', or as a duration string e.g. '15m' being 15 minutes
         """
             
-        self.__internal.period = period
+        self._internal.period = period
     
         return self
     
@@ -271,7 +271,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         The ID of the AWS account to query for the metric, specifying `all` will query all accounts that the monitoring account is permitted to query.
         """
             
-        self.__internal.account_id = account_id
+        self._internal.account_id = account_id
     
         return self
     
@@ -280,7 +280,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         Metric data aggregations over specified periods of time. For detailed definitions of the statistics supported by CloudWatch, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.
         """
             
-        self.__internal.statistic = statistic
+        self._internal.statistic = statistic
     
         return self
     
@@ -290,7 +290,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         """
             
         sql_resource = sql.build()
-        self.__internal.sql = sql_resource
+        self._internal.sql = sql_resource
     
         return self
     
@@ -302,7 +302,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         TODO this shouldn't be unknown but DataSourceRef | null
         """
             
-        self.__internal.datasource = datasource
+        self._internal.datasource = datasource
     
         return self
     
@@ -311,19 +311,19 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         @deprecated use statistic
         """
             
-        self.__internal.statistics = statistics
+        self._internal.statistics = statistics
     
         return self
     
 
 class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):    
-    __internal: cloudwatch.SQLExpression
+    _internal: cloudwatch.SQLExpression
 
     def __init__(self):
-        self.__internal = cloudwatch.SQLExpression()
+        self._internal = cloudwatch.SQLExpression()
 
     def build(self) -> cloudwatch.SQLExpression:
-        return self.__internal    
+        return self._internal    
     
     def select(self, select: cogbuilder.Builder[cloudwatch.QueryEditorFunctionExpression]) -> typing.Self:    
         """
@@ -331,7 +331,7 @@ class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
         """
             
         select_resource = select.build()
-        self.__internal.select = select_resource
+        self._internal.select = select_resource
     
         return self
     
@@ -341,7 +341,7 @@ class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
         """
             
         from_val_resource = from_val.build()
-        self.__internal.from_val = from_val_resource
+        self._internal.from_val = from_val_resource
     
         return self
     
@@ -351,7 +351,7 @@ class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
         """
             
         where_resource = where.build()
-        self.__internal.where = where_resource
+        self._internal.where = where_resource
     
         return self
     
@@ -361,7 +361,7 @@ class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
         """
             
         group_by_resource = group_by.build()
-        self.__internal.group_by = group_by_resource
+        self._internal.group_by = group_by_resource
     
         return self
     
@@ -371,7 +371,7 @@ class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
         """
             
         order_by_resource = order_by.build()
-        self.__internal.order_by = order_by_resource
+        self._internal.order_by = order_by_resource
     
         return self
     
@@ -380,7 +380,7 @@ class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
         The sort order of the SQL expression, `ASC` or `DESC`
         """
             
-        self.__internal.order_by_direction = order_by_direction
+        self._internal.order_by_direction = order_by_direction
     
         return self
     
@@ -389,96 +389,96 @@ class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
         LIMIT part of the SQL expression
         """
             
-        self.__internal.limit = limit
+        self._internal.limit = limit
     
         return self
     
 
 class QueryEditorFunctionExpression(cogbuilder.Builder[cloudwatch.QueryEditorFunctionExpression]):    
-    __internal: cloudwatch.QueryEditorFunctionExpression
+    _internal: cloudwatch.QueryEditorFunctionExpression
 
     def __init__(self):
-        self.__internal = cloudwatch.QueryEditorFunctionExpression()        
-        self.__internal.type_val = "function"
+        self._internal = cloudwatch.QueryEditorFunctionExpression()        
+        self._internal.type_val = "function"
 
     def build(self) -> cloudwatch.QueryEditorFunctionExpression:
-        return self.__internal    
+        return self._internal    
     
     def name(self, name: str) -> typing.Self:        
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
     def parameters(self, parameters: list[cogbuilder.Builder[cloudwatch.QueryEditorFunctionParameterExpression]]) -> typing.Self:        
         parameters_resources = [r1.build() for r1 in parameters]
-        self.__internal.parameters = parameters_resources
+        self._internal.parameters = parameters_resources
     
         return self
     
 
 class QueryEditorFunctionParameterExpression(cogbuilder.Builder[cloudwatch.QueryEditorFunctionParameterExpression]):    
-    __internal: cloudwatch.QueryEditorFunctionParameterExpression
+    _internal: cloudwatch.QueryEditorFunctionParameterExpression
 
     def __init__(self):
-        self.__internal = cloudwatch.QueryEditorFunctionParameterExpression()        
-        self.__internal.type_val = "functionParameter"
+        self._internal = cloudwatch.QueryEditorFunctionParameterExpression()        
+        self._internal.type_val = "functionParameter"
 
     def build(self) -> cloudwatch.QueryEditorFunctionParameterExpression:
-        return self.__internal    
+        return self._internal    
     
     def name(self, name: str) -> typing.Self:        
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
 
 class QueryEditorPropertyExpression(cogbuilder.Builder[cloudwatch.QueryEditorPropertyExpression]):    
-    __internal: cloudwatch.QueryEditorPropertyExpression
+    _internal: cloudwatch.QueryEditorPropertyExpression
 
     def __init__(self):
-        self.__internal = cloudwatch.QueryEditorPropertyExpression()        
-        self.__internal.type_val = "property"
+        self._internal = cloudwatch.QueryEditorPropertyExpression()        
+        self._internal.type_val = "property"
 
     def build(self) -> cloudwatch.QueryEditorPropertyExpression:
-        return self.__internal    
+        return self._internal    
     
     def property_val(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:        
         property_val_resource = property_val.build()
-        self.__internal.property_val = property_val_resource
+        self._internal.property_val = property_val_resource
     
         return self
     
 
 class QueryEditorGroupByExpression(cogbuilder.Builder[cloudwatch.QueryEditorGroupByExpression]):    
-    __internal: cloudwatch.QueryEditorGroupByExpression
+    _internal: cloudwatch.QueryEditorGroupByExpression
 
     def __init__(self):
-        self.__internal = cloudwatch.QueryEditorGroupByExpression()        
-        self.__internal.type_val = "groupBy"
+        self._internal = cloudwatch.QueryEditorGroupByExpression()        
+        self._internal.type_val = "groupBy"
 
     def build(self) -> cloudwatch.QueryEditorGroupByExpression:
-        return self.__internal    
+        return self._internal    
     
     def property_val(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:        
         property_val_resource = property_val.build()
-        self.__internal.property_val = property_val_resource
+        self._internal.property_val = property_val_resource
     
         return self
     
 
 class QueryEditorOperatorExpression(cogbuilder.Builder[cloudwatch.QueryEditorOperatorExpression]):    
-    __internal: cloudwatch.QueryEditorOperatorExpression
+    _internal: cloudwatch.QueryEditorOperatorExpression
 
     def __init__(self):
-        self.__internal = cloudwatch.QueryEditorOperatorExpression()        
-        self.__internal.type_val = "operator"
+        self._internal = cloudwatch.QueryEditorOperatorExpression()        
+        self._internal.type_val = "operator"
 
     def build(self) -> cloudwatch.QueryEditorOperatorExpression:
-        return self.__internal    
+        return self._internal    
     
     def property_val(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:        
         property_val_resource = property_val.build()
-        self.__internal.property_val = property_val_resource
+        self._internal.property_val = property_val_resource
     
         return self
     
@@ -488,7 +488,7 @@ class QueryEditorOperatorExpression(cogbuilder.Builder[cloudwatch.QueryEditorOpe
         """
             
         operator_resource = operator.build()
-        self.__internal.operator = operator_resource
+        self._internal.operator = operator_resource
     
         return self
     
@@ -498,61 +498,61 @@ class QueryEditorOperator(cogbuilder.Builder[cloudwatch.QueryEditorOperator]):
     TS type is QueryEditorOperator<T extends QueryEditorOperatorValueType>, extended in veneer
     """
     
-    __internal: cloudwatch.QueryEditorOperator
+    _internal: cloudwatch.QueryEditorOperator
 
     def __init__(self):
-        self.__internal = cloudwatch.QueryEditorOperator()
+        self._internal = cloudwatch.QueryEditorOperator()
 
     def build(self) -> cloudwatch.QueryEditorOperator:
-        return self.__internal    
+        return self._internal    
     
     def name(self, name: str) -> typing.Self:        
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
     def value(self, value: typing.Union[str, bool, int, list[cloudwatch.QueryEditorOperatorType]]) -> typing.Self:        
-        self.__internal.value = value
+        self._internal.value = value
     
         return self
     
 
 class QueryEditorProperty(cogbuilder.Builder[cloudwatch.QueryEditorProperty]):    
-    __internal: cloudwatch.QueryEditorProperty
+    _internal: cloudwatch.QueryEditorProperty
 
     def __init__(self):
-        self.__internal = cloudwatch.QueryEditorProperty()
+        self._internal = cloudwatch.QueryEditorProperty()
 
     def build(self) -> cloudwatch.QueryEditorProperty:
-        return self.__internal    
+        return self._internal    
     
     def type_val(self, type_val: cloudwatch.QueryEditorPropertyType) -> typing.Self:        
-        self.__internal.type_val = type_val
+        self._internal.type_val = type_val
     
         return self
     
     def name(self, name: str) -> typing.Self:        
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
 
 class QueryEditorArrayExpression(cogbuilder.Builder[cloudwatch.QueryEditorArrayExpression]):    
-    __internal: cloudwatch.QueryEditorArrayExpression
+    _internal: cloudwatch.QueryEditorArrayExpression
 
     def __init__(self):
-        self.__internal = cloudwatch.QueryEditorArrayExpression()
+        self._internal = cloudwatch.QueryEditorArrayExpression()
 
     def build(self) -> cloudwatch.QueryEditorArrayExpression:
-        return self.__internal    
+        return self._internal    
     
     def type_val(self, type_val: typing.Literal["and", "or"]) -> typing.Self:        
-        self.__internal.type_val = type_val
+        self._internal.type_val = type_val
     
         return self
     
     def expressions(self, expressions: list[cloudwatch.QueryEditorExpression]) -> typing.Self:        
-        self.__internal.expressions = expressions
+        self._internal.expressions = expressions
     
         return self
     
@@ -562,25 +562,25 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
     Shape of a CloudWatch Logs query
     """
     
-    __internal: cloudwatch.CloudWatchLogsQuery
+    _internal: cloudwatch.CloudWatchLogsQuery
 
     def __init__(self):
-        self.__internal = cloudwatch.CloudWatchLogsQuery()
+        self._internal = cloudwatch.CloudWatchLogsQuery()
 
     def build(self) -> cloudwatch.CloudWatchLogsQuery:
-        return self.__internal    
+        return self._internal    
     
     def query_mode(self, query_mode: cloudwatch.CloudWatchQueryMode) -> typing.Self:    
         """
         Whether a query is a Metrics, Logs, or Annotations query
         """
             
-        self.__internal.query_mode = query_mode
+        self._internal.query_mode = query_mode
     
         return self
     
     def id_val(self, id_val: str) -> typing.Self:        
-        self.__internal.id_val = id_val
+        self._internal.id_val = id_val
     
         return self
     
@@ -589,7 +589,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
         AWS region to query for the logs
         """
             
-        self.__internal.region = region
+        self._internal.region = region
     
         return self
     
@@ -598,7 +598,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
         The CloudWatch Logs Insights query to execute
         """
             
-        self.__internal.expression = expression
+        self._internal.expression = expression
     
         return self
     
@@ -607,7 +607,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
         Fields to group the results by, this field is automatically populated whenever the query is updated
         """
             
-        self.__internal.stats_groups = stats_groups
+        self._internal.stats_groups = stats_groups
     
         return self
     
@@ -617,7 +617,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
         """
             
         log_groups_resources = [r1.build() for r1 in log_groups]
-        self.__internal.log_groups = log_groups_resources
+        self._internal.log_groups = log_groups_resources
     
         return self
     
@@ -628,7 +628,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
         By default, the UI will assign A->Z; however setting meaningful names may be useful.
         """
             
-        self.__internal.ref_id = ref_id
+        self._internal.ref_id = ref_id
     
         return self
     
@@ -637,7 +637,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
         If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
         """
             
-        self.__internal.hide = hide
+        self._internal.hide = hide
     
         return self
     
@@ -647,7 +647,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
         TODO make this required and give it a default
         """
             
-        self.__internal.query_type = query_type
+        self._internal.query_type = query_type
     
         return self
     
@@ -656,7 +656,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
         @deprecated use logGroups
         """
             
-        self.__internal.log_group_names = log_group_names
+        self._internal.log_group_names = log_group_names
     
         return self
     
@@ -668,26 +668,26 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
         TODO this shouldn't be unknown but DataSourceRef | null
         """
             
-        self.__internal.datasource = datasource
+        self._internal.datasource = datasource
     
         return self
     
 
 class LogGroup(cogbuilder.Builder[cloudwatch.LogGroup]):    
-    __internal: cloudwatch.LogGroup
+    _internal: cloudwatch.LogGroup
 
     def __init__(self):
-        self.__internal = cloudwatch.LogGroup()
+        self._internal = cloudwatch.LogGroup()
 
     def build(self) -> cloudwatch.LogGroup:
-        return self.__internal    
+        return self._internal    
     
     def arn(self, arn: str) -> typing.Self:    
         """
         ARN of the log group
         """
             
-        self.__internal.arn = arn
+        self._internal.arn = arn
     
         return self
     
@@ -696,7 +696,7 @@ class LogGroup(cogbuilder.Builder[cloudwatch.LogGroup]):
         Name of the log group
         """
             
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
@@ -705,7 +705,7 @@ class LogGroup(cogbuilder.Builder[cloudwatch.LogGroup]):
         AccountId of the log group
         """
             
-        self.__internal.account_id = account_id
+        self._internal.account_id = account_id
     
         return self
     
@@ -714,7 +714,7 @@ class LogGroup(cogbuilder.Builder[cloudwatch.LogGroup]):
         Label of the log group
         """
             
-        self.__internal.account_label = account_label
+        self._internal.account_label = account_label
     
         return self
     
@@ -726,20 +726,20 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
     #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
     """
     
-    __internal: cloudwatch.CloudWatchAnnotationQuery
+    _internal: cloudwatch.CloudWatchAnnotationQuery
 
     def __init__(self):
-        self.__internal = cloudwatch.CloudWatchAnnotationQuery()
+        self._internal = cloudwatch.CloudWatchAnnotationQuery()
 
     def build(self) -> cloudwatch.CloudWatchAnnotationQuery:
-        return self.__internal    
+        return self._internal    
     
     def query_mode(self, query_mode: cloudwatch.CloudWatchQueryMode) -> typing.Self:    
         """
         Whether a query is a Metrics, Logs, or Annotations query
         """
             
-        self.__internal.query_mode = query_mode
+        self._internal.query_mode = query_mode
     
         return self
     
@@ -748,7 +748,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         Enable matching on the prefix of the action name or alarm name, specify the prefixes with actionPrefix and/or alarmNamePrefix
         """
             
-        self.__internal.prefix_matching = prefix_matching
+        self._internal.prefix_matching = prefix_matching
     
         return self
     
@@ -761,7 +761,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         but not match `arn:aws:sns:us-east-1:123456789012:your-app-action`
         """
             
-        self.__internal.action_prefix = action_prefix
+        self._internal.action_prefix = action_prefix
     
         return self
     
@@ -772,7 +772,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         By default, the UI will assign A->Z; however setting meaningful names may be useful.
         """
             
-        self.__internal.ref_id = ref_id
+        self._internal.ref_id = ref_id
     
         return self
     
@@ -781,7 +781,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
         """
             
-        self.__internal.hide = hide
+        self._internal.hide = hide
     
         return self
     
@@ -791,7 +791,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         TODO make this required and give it a default
         """
             
-        self.__internal.query_type = query_type
+        self._internal.query_type = query_type
     
         return self
     
@@ -800,7 +800,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         AWS region to query for the metric
         """
             
-        self.__internal.region = region
+        self._internal.region = region
     
         return self
     
@@ -809,7 +809,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         A namespace is a container for CloudWatch metrics. Metrics in different namespaces are isolated from each other, so that metrics from different applications are not mistakenly aggregated into the same statistics. For example, Amazon EC2 uses the AWS/EC2 namespace.
         """
             
-        self.__internal.namespace = namespace
+        self._internal.namespace = namespace
     
         return self
     
@@ -818,7 +818,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         Name of the metric
         """
             
-        self.__internal.metric_name = metric_name
+        self._internal.metric_name = metric_name
     
         return self
     
@@ -827,7 +827,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         The dimensions of the metric
         """
             
-        self.__internal.dimensions = dimensions
+        self._internal.dimensions = dimensions
     
         return self
     
@@ -836,7 +836,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         Only show metrics that exactly match all defined dimension names.
         """
             
-        self.__internal.match_exact = match_exact
+        self._internal.match_exact = match_exact
     
         return self
     
@@ -845,7 +845,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         The length of time associated with a specific Amazon CloudWatch statistic. Can be specified by a number of seconds, 'auto', or as a duration string e.g. '15m' being 15 minutes
         """
             
-        self.__internal.period = period
+        self._internal.period = period
     
         return self
     
@@ -854,7 +854,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         The ID of the AWS account to query for the metric, specifying `all` will query all accounts that the monitoring account is permitted to query.
         """
             
-        self.__internal.account_id = account_id
+        self._internal.account_id = account_id
     
         return self
     
@@ -863,7 +863,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         Metric data aggregations over specified periods of time. For detailed definitions of the statistics supported by CloudWatch, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.
         """
             
-        self.__internal.statistic = statistic
+        self._internal.statistic = statistic
     
         return self
     
@@ -874,7 +874,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         e.g. `my-team-service-` would match `my-team-service-high-cpu` but not match `your-team-service-high-cpu`
         """
             
-        self.__internal.alarm_name_prefix = alarm_name_prefix
+        self._internal.alarm_name_prefix = alarm_name_prefix
     
         return self
     
@@ -886,7 +886,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         TODO this shouldn't be unknown but DataSourceRef | null
         """
             
-        self.__internal.datasource = datasource
+        self._internal.datasource = datasource
     
         return self
     
@@ -895,7 +895,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         @deprecated use statistic
         """
             
-        self.__internal.statistics = statistics
+        self._internal.statistics = statistics
     
         return self
     

@@ -233,8 +233,10 @@ class CanvasConnection:
     color: typing.Optional[common.ColorDimensionConfig]
     size: typing.Optional[common.ScaleDimensionConfig]
     vertices: typing.Optional[list['ConnectionCoordinates']]
+    source_original: typing.Optional['ConnectionCoordinates']
+    target_original: typing.Optional['ConnectionCoordinates']
 
-    def __init__(self, source: typing.Optional['ConnectionCoordinates'] = None, target: typing.Optional['ConnectionCoordinates'] = None, target_name: typing.Optional[str] = None, path: typing.Optional['ConnectionPath'] = None, color: typing.Optional[common.ColorDimensionConfig] = None, size: typing.Optional[common.ScaleDimensionConfig] = None, vertices: typing.Optional[list['ConnectionCoordinates']] = None):
+    def __init__(self, source: typing.Optional['ConnectionCoordinates'] = None, target: typing.Optional['ConnectionCoordinates'] = None, target_name: typing.Optional[str] = None, path: typing.Optional['ConnectionPath'] = None, color: typing.Optional[common.ColorDimensionConfig] = None, size: typing.Optional[common.ScaleDimensionConfig] = None, vertices: typing.Optional[list['ConnectionCoordinates']] = None, source_original: typing.Optional['ConnectionCoordinates'] = None, target_original: typing.Optional['ConnectionCoordinates'] = None):
         self.source = source if source is not None else ConnectionCoordinates()
         self.target = target if target is not None else ConnectionCoordinates()
         self.target_name = target_name
@@ -242,6 +244,8 @@ class CanvasConnection:
         self.color = color
         self.size = size
         self.vertices = vertices
+        self.source_original = source_original
+        self.target_original = target_original
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -257,6 +261,10 @@ class CanvasConnection:
             payload["size"] = self.size
         if self.vertices is not None:
             payload["vertices"] = self.vertices
+        if self.source_original is not None:
+            payload["sourceOriginal"] = self.source_original
+        if self.target_original is not None:
+            payload["targetOriginal"] = self.target_original
         return payload
 
     @classmethod
@@ -276,7 +284,11 @@ class CanvasConnection:
         if "size" in data:
             args["size"] = common.ScaleDimensionConfig.from_json(data["size"])
         if "vertices" in data:
-            args["vertices"] = data["vertices"]        
+            args["vertices"] = data["vertices"]
+        if "sourceOriginal" in data:
+            args["source_original"] = ConnectionCoordinates.from_json(data["sourceOriginal"])
+        if "targetOriginal" in data:
+            args["target_original"] = ConnectionCoordinates.from_json(data["targetOriginal"])        
 
         return cls(**args)
 

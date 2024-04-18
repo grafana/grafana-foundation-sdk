@@ -104,6 +104,8 @@ export interface CanvasConnection {
 	color?: common.ColorDimensionConfig;
 	size?: common.ScaleDimensionConfig;
 	vertices?: ConnectionCoordinates[];
+	sourceOriginal?: ConnectionCoordinates;
+	targetOriginal?: ConnectionCoordinates;
 }
 
 export const defaultCanvasConnection = (): CanvasConnection => ({
