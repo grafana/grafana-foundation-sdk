@@ -9,7 +9,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-python3 -m pip install 'grafana_foundation_sdk==1713437340!10.4.0'
+python3 -m pip install 'grafana_foundation_sdk==1713478841!10.4.0'
 ```
 
 ## Example usage
@@ -137,21 +137,21 @@ def custom_query_variant_config() -> cogruntime.DataqueryConfig:
 
 
 class CustomQueryBuilder(builder.Builder[CustomQuery]):
-    __internal: CustomQuery
+    _internal: CustomQuery
 
     def __init__(self, query: str):
-        self.__internal = CustomQuery(query=query)
+        self._internal = CustomQuery(query=query)
 
     def build(self) -> CustomQuery:
-        return self.__internal
+        return self._internal
 
     def ref_id(self, ref_id: str) -> Self:
-        self.__internal.ref_id = ref_id
+        self._internal.ref_id = ref_id
 
         return self
 
     def hide(self, hide: bool) -> Self:
-        self.__internal.hide = hide
+        self._internal.hide = hide
 
         return self
 ```
@@ -207,6 +207,7 @@ from typing import Any, Self
 
 from grafana_foundation_sdk.cog import builder
 from grafana_foundation_sdk.cog import runtime as cogruntime
+from grafana_foundation_sdk.builders.dashboard import Panel as PanelBuilder
 from grafana_foundation_sdk.models import dashboard
 
 
@@ -239,28 +240,19 @@ def custom_panel_variant_config() -> cogruntime.PanelCfgConfig:
     )
 
 
-class CustomPanelBuilder(builder.Builder[dashboard.Panel]):
-    __internal: dashboard.Panel
-
+class CustomPanelBuilder(PanelBuilder, builder.Builder[dashboard.Panel]):
     def __init__(self):
-        self.__internal = dashboard.Panel()
-
-    def build(self) -> dashboard.Panel:
-        return self.__internal
-
-    def title(self, title: str) -> Self:
-        self.__internal.title = title
-        return self
-
-    # [other panel options omitted for brevity]
+        super().__init__()
+        # plugin ID
+        self._internal.type_val = "custom-panel"
 
     def make_beautiful(self) -> Self:
-        if self.__internal.options is None:
-            self.__internal.options = CustomPanelOptions()
+        if self._internal.options is None:
+            self._internal.options = CustomPanelOptions()
 
-        assert isinstance(self.__internal.options, CustomPanelOptions)
+        assert isinstance(self._internal.options, CustomPanelOptions)
 
-        self.__internal.options.make_beautiful = True
+        self._internal.options.make_beautiful = True
 
         return self
 ```
