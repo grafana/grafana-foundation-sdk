@@ -1,0 +1,1 @@
+{"openapi":"3.0.0","info":{"title":"datagrid","version":"0.0.0","x-schema-identifier":"datagrid","x-schema-kind":"composable","x-schema-variant":"panelcfg"},"paths":{},"components":{"schemas":{"Options":{"type":"object","additionalProperties":false,"required":["selectedSeries"],"properties":{"selectedSeries":{"type":"integer","minimum":0,"default":0}}}}}}

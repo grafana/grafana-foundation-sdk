@@ -6,13 +6,13 @@ from ..models import accesspolicy
 
 
 class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):    
-    __internal: accesspolicy.AccessPolicy
+    _internal: accesspolicy.AccessPolicy
 
     def __init__(self):
-        self.__internal = accesspolicy.AccessPolicy()
+        self._internal = accesspolicy.AccessPolicy()
 
     def build(self) -> accesspolicy.AccessPolicy:
-        return self.__internal    
+        return self._internal    
     
     def scope(self, scope: cogbuilder.Builder[accesspolicy.ResourceRef]) -> typing.Self:    
         """
@@ -20,7 +20,7 @@ class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):
         """
             
         scope_resource = scope.build()
-        self.__internal.scope = scope_resource
+        self._internal.scope = scope_resource
     
         return self
     
@@ -30,7 +30,7 @@ class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):
         """
             
         role_resource = role.build()
-        self.__internal.role = role_resource
+        self._internal.role = role_resource
     
         return self
     
@@ -40,23 +40,23 @@ class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):
         access policy rules, and that "none" will reject all actions
         """
             
-        if self.__internal.rules is None:
-            self.__internal.rules = []
+        if self._internal.rules is None:
+            self._internal.rules = []
         
         rules_resource = rules.build()
-        self.__internal.rules.append(rules_resource)
+        self._internal.rules.append(rules_resource)
     
         return self
     
 
 class RoleRef(cogbuilder.Builder[accesspolicy.RoleRef]):    
-    __internal: accesspolicy.RoleRef
+    _internal: accesspolicy.RoleRef
 
     def __init__(self):
-        self.__internal = accesspolicy.RoleRef()
+        self._internal = accesspolicy.RoleRef()
 
     def build(self) -> accesspolicy.RoleRef:
-        return self.__internal    
+        return self._internal    
     
     def kind(self, kind: typing.Literal["Role", "BuiltinRole", "Team", "User"]) -> typing.Self:    
         """
@@ -64,56 +64,56 @@ class RoleRef(cogbuilder.Builder[accesspolicy.RoleRef]):
         Applying policies to individual users is supported, but discouraged
         """
             
-        self.__internal.kind = kind
+        self._internal.kind = kind
     
         return self
     
     def name(self, name: str) -> typing.Self:        
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
     def xname(self, xname: str) -> typing.Self:        
-        self.__internal.xname = xname
+        self._internal.xname = xname
     
         return self
     
 
 class ResourceRef(cogbuilder.Builder[accesspolicy.ResourceRef]):    
-    __internal: accesspolicy.ResourceRef
+    _internal: accesspolicy.ResourceRef
 
     def __init__(self):
-        self.__internal = accesspolicy.ResourceRef()
+        self._internal = accesspolicy.ResourceRef()
 
     def build(self) -> accesspolicy.ResourceRef:
-        return self.__internal    
+        return self._internal    
     
     def kind(self, kind: str) -> typing.Self:        
-        self.__internal.kind = kind
+        self._internal.kind = kind
     
         return self
     
     def name(self, name: str) -> typing.Self:        
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
 
 class AccessRule(cogbuilder.Builder[accesspolicy.AccessRule]):    
-    __internal: accesspolicy.AccessRule
+    _internal: accesspolicy.AccessRule
 
     def __init__(self):
-        self.__internal = accesspolicy.AccessRule()
+        self._internal = accesspolicy.AccessRule()
 
     def build(self) -> accesspolicy.AccessRule:
-        return self.__internal    
+        return self._internal    
     
     def kind(self, kind: typing.Union[typing.Literal["*"]]) -> typing.Self:    
         """
         The kind this rule applies to (dashboards, alert, etc)
         """
             
-        self.__internal.kind = kind
+        self._internal.kind = kind
     
         return self
     
@@ -123,7 +123,7 @@ class AccessRule(cogbuilder.Builder[accesspolicy.AccessRule]):
         should move to k8s style verbs like: "get", "list", "watch", "create", "update", "patch", "delete"
         """
             
-        self.__internal.verb = verb
+        self._internal.verb = verb
     
         return self
     
@@ -132,7 +132,7 @@ class AccessRule(cogbuilder.Builder[accesspolicy.AccessRule]):
         Specific sub-elements like "alert.rules" or "dashboard.permissions"????
         """
             
-        self.__internal.target = target
+        self._internal.target = target
     
         return self
     
