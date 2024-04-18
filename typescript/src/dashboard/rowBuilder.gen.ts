@@ -5,7 +5,7 @@ import * as dashboard from '../dashboard';
 
 // Row panel
 export class RowBuilder implements cog.Builder<dashboard.RowPanel> {
-    private readonly internal: dashboard.RowPanel;
+    protected readonly internal: dashboard.RowPanel;
 
     constructor(title: string) {
         this.internal = dashboard.defaultRowPanel();

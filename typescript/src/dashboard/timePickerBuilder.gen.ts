@@ -6,7 +6,7 @@ import * as dashboard from '../dashboard';
 // Time picker configuration
 // It defines the default config for the time picker and the refresh picker for the specific dashboard.
 export class TimePickerBuilder implements cog.Builder<dashboard.TimePickerConfig> {
-    private readonly internal: dashboard.TimePickerConfig;
+    protected readonly internal: dashboard.TimePickerConfig;
 
     constructor() {
         this.internal = dashboard.defaultTimePickerConfig();

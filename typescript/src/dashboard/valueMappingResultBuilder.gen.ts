@@ -5,7 +5,7 @@ import * as dashboard from '../dashboard';
 
 // Result used as replacement with text and color when the value matches
 export class ValueMappingResultBuilder implements cog.Builder<dashboard.ValueMappingResult> {
-    private readonly internal: dashboard.ValueMappingResult;
+    protected readonly internal: dashboard.ValueMappingResult;
 
     constructor() {
         this.internal = dashboard.defaultValueMappingResult();

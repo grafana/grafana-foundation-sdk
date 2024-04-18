@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
 export class ResourceGroupsQueryBuilder implements cog.Builder<azuremonitor.ResourceGroupsQuery> {
-    private readonly internal: azuremonitor.ResourceGroupsQuery;
+    protected readonly internal: azuremonitor.ResourceGroupsQuery;
 
     constructor() {
         this.internal = azuremonitor.defaultResourceGroupsQuery();

@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as testdata from '../testdata';
 
 export class NodesQueryBuilder implements cog.Builder<testdata.NodesQuery> {
-    private readonly internal: testdata.NodesQuery;
+    protected readonly internal: testdata.NodesQuery;
 
     constructor() {
         this.internal = testdata.defaultNodesQuery();

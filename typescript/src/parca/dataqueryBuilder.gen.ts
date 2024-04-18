@@ -4,7 +4,7 @@ import * as cog from '../cog';
 import * as parca from '../parca';
 
 export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
-    private readonly internal: parca.dataquery;
+    protected readonly internal: parca.dataquery;
 
     constructor() {
         this.internal = parca.defaultDataquery();
