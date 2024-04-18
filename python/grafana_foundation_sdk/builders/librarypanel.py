@@ -8,20 +8,20 @@ from ..models import dashboard
 
 
 class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):    
-    __internal: librarypanel.LibraryPanel
+    _internal: librarypanel.LibraryPanel
 
     def __init__(self):
-        self.__internal = librarypanel.LibraryPanel()
+        self._internal = librarypanel.LibraryPanel()
 
     def build(self) -> librarypanel.LibraryPanel:
-        return self.__internal    
+        return self._internal    
     
     def folder_uid(self, folder_uid: str) -> typing.Self:    
         """
         Folder UID
         """
             
-        self.__internal.folder_uid = folder_uid
+        self._internal.folder_uid = folder_uid
     
         return self
     
@@ -30,7 +30,7 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
         Library element UID
         """
             
-        self.__internal.uid = uid
+        self._internal.uid = uid
     
         return self
     
@@ -41,7 +41,7 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
             
         if not len(name) >= 1:
             raise ValueError("len(name) must be >= 1")
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
@@ -50,7 +50,7 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
         Panel description
         """
             
-        self.__internal.description = description
+        self._internal.description = description
     
         return self
     
@@ -61,7 +61,7 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
             
         if not len(type_val) >= 1:
             raise ValueError("len(type_val) must be >= 1")
-        self.__internal.type_val = type_val
+        self._internal.type_val = type_val
     
         return self
     
@@ -70,7 +70,7 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
         Dashboard version when this was saved (zero if unknown)
         """
             
-        self.__internal.schema_version = schema_version
+        self._internal.schema_version = schema_version
     
         return self
     
@@ -79,7 +79,7 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
         panel version, incremented each time the dashboard is updated.
         """
             
-        self.__internal.version = version
+        self._internal.version = version
     
         return self
     
@@ -90,7 +90,7 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
         """
             
         model_resource = model.build()
-        self.__internal.model = model_resource
+        self._internal.model = model_resource
     
         return self
     
@@ -100,91 +100,91 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
         """
             
         meta_resource = meta.build()
-        self.__internal.meta = meta_resource
+        self._internal.meta = meta_resource
     
         return self
     
 
 class LibraryElementDTOMetaUser(cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]):    
-    __internal: librarypanel.LibraryElementDTOMetaUser
+    _internal: librarypanel.LibraryElementDTOMetaUser
 
     def __init__(self):
-        self.__internal = librarypanel.LibraryElementDTOMetaUser()
+        self._internal = librarypanel.LibraryElementDTOMetaUser()
 
     def build(self) -> librarypanel.LibraryElementDTOMetaUser:
-        return self.__internal    
+        return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:        
-        self.__internal.id_val = id_val
+        self._internal.id_val = id_val
     
         return self
     
     def name(self, name: str) -> typing.Self:        
-        self.__internal.name = name
+        self._internal.name = name
     
         return self
     
     def avatar_url(self, avatar_url: str) -> typing.Self:        
-        self.__internal.avatar_url = avatar_url
+        self._internal.avatar_url = avatar_url
     
         return self
     
 
 class LibraryElementDTOMeta(cogbuilder.Builder[librarypanel.LibraryElementDTOMeta]):    
-    __internal: librarypanel.LibraryElementDTOMeta
+    _internal: librarypanel.LibraryElementDTOMeta
 
     def __init__(self):
-        self.__internal = librarypanel.LibraryElementDTOMeta()
+        self._internal = librarypanel.LibraryElementDTOMeta()
 
     def build(self) -> librarypanel.LibraryElementDTOMeta:
-        return self.__internal    
+        return self._internal    
     
     def folder_name(self, folder_name: str) -> typing.Self:        
-        self.__internal.folder_name = folder_name
+        self._internal.folder_name = folder_name
     
         return self
     
     def folder_uid(self, folder_uid: str) -> typing.Self:        
-        self.__internal.folder_uid = folder_uid
+        self._internal.folder_uid = folder_uid
     
         return self
     
     def connected_dashboards(self, connected_dashboards: int) -> typing.Self:        
-        self.__internal.connected_dashboards = connected_dashboards
+        self._internal.connected_dashboards = connected_dashboards
     
         return self
     
     def created(self, created: str) -> typing.Self:        
-        self.__internal.created = created
+        self._internal.created = created
     
         return self
     
     def updated(self, updated: str) -> typing.Self:        
-        self.__internal.updated = updated
+        self._internal.updated = updated
     
         return self
     
     def created_by(self, created_by: cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]) -> typing.Self:        
         created_by_resource = created_by.build()
-        self.__internal.created_by = created_by_resource
+        self._internal.created_by = created_by_resource
     
         return self
     
     def updated_by(self, updated_by: cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]) -> typing.Self:        
         updated_by_resource = updated_by.build()
-        self.__internal.updated_by = updated_by_resource
+        self._internal.updated_by = updated_by_resource
     
         return self
     
 
 class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.LibrarypanelLibraryPanelModel]):    
-    __internal: librarypanel.LibrarypanelLibraryPanelModel
+    _internal: librarypanel.LibrarypanelLibraryPanelModel
 
     def __init__(self):
-        self.__internal = librarypanel.LibrarypanelLibraryPanelModel()
+        self._internal = librarypanel.LibrarypanelLibraryPanelModel()
 
     def build(self) -> librarypanel.LibrarypanelLibraryPanelModel:
-        return self.__internal    
+        return self._internal    
     
     def type_val(self, type_val: str) -> typing.Self:    
         """
@@ -193,7 +193,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
             
         if not len(type_val) >= 1:
             raise ValueError("len(type_val) must be >= 1")
-        self.__internal.type_val = type_val
+        self._internal.type_val = type_val
     
         return self
     
@@ -202,7 +202,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
         """
             
-        self.__internal.plugin_version = plugin_version
+        self._internal.plugin_version = plugin_version
     
         return self
     
@@ -211,7 +211,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         Tags for the panel.
         """
             
-        self.__internal.tags = tags
+        self._internal.tags = tags
     
         return self
     
@@ -221,7 +221,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         """
             
         targets_resources = [r1.build() for r1 in targets]
-        self.__internal.targets = targets_resources
+        self._internal.targets = targets_resources
     
         return self
     
@@ -230,7 +230,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         Panel title.
         """
             
-        self.__internal.title = title
+        self._internal.title = title
     
         return self
     
@@ -239,7 +239,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         Panel description.
         """
             
-        self.__internal.description = description
+        self._internal.description = description
     
         return self
     
@@ -248,7 +248,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         Whether to display the panel without a background.
         """
             
-        self.__internal.transparent = transparent
+        self._internal.transparent = transparent
     
         return self
     
@@ -257,7 +257,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         The datasource used in all targets.
         """
             
-        self.__internal.datasource = datasource
+        self._internal.datasource = datasource
     
         return self
     
@@ -267,7 +267,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         """
             
         links_resources = [r1.build() for r1 in links]
-        self.__internal.links = links_resources
+        self._internal.links = links_resources
     
         return self
     
@@ -276,7 +276,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         Name of template variable to repeat for.
         """
             
-        self.__internal.repeat = repeat
+        self._internal.repeat = repeat
     
         return self
     
@@ -286,7 +286,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         `h` for horizontal, `v` for vertical.
         """
             
-        self.__internal.repeat_direction = repeat_direction
+        self._internal.repeat_direction = repeat_direction
     
         return self
     
@@ -296,7 +296,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         Only relevant for horizontally repeated panels
         """
             
-        self.__internal.max_per_row = max_per_row
+        self._internal.max_per_row = max_per_row
     
         return self
     
@@ -305,7 +305,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         The maximum number of data points that the panel queries are retrieving.
         """
             
-        self.__internal.max_data_points = max_data_points
+        self._internal.max_data_points = max_data_points
     
         return self
     
@@ -316,7 +316,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
         """
             
-        self.__internal.transformations = transformations
+        self._internal.transformations = transformations
     
         return self
     
@@ -328,7 +328,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
         """
             
-        self.__internal.interval = interval
+        self._internal.interval = interval
     
         return self
     
@@ -344,7 +344,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
         """
             
-        self.__internal.time_from = time_from
+        self._internal.time_from = time_from
     
         return self
     
@@ -356,7 +356,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
         """
             
-        self.__internal.time_shift = time_shift
+        self._internal.time_shift = time_shift
     
         return self
     
@@ -365,7 +365,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         Controls if the timeFrom or timeShift overrides are shown in the panel header
         """
             
-        self.__internal.hide_time_override = hide_time_override
+        self._internal.hide_time_override = hide_time_override
     
         return self
     
@@ -374,7 +374,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
         """
             
-        self.__internal.options = options
+        self._internal.options = options
     
         return self
     
@@ -383,7 +383,7 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         Field options allow you to change how the data is displayed in your visualizations.
         """
             
-        self.__internal.field_config = field_config
+        self._internal.field_config = field_config
     
         return self
     
