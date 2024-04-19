@@ -14,6 +14,16 @@ Each example showcases different aspects of building dashboards as code:
     * `table` panels
     * `timeseries` panels
     * `prometheus` queries
+* [`linux-node-overview`](./linux-node-overview):
+    * reproduction of the "Grafana Agent Overview" dashboard from
+      the [Linux Server integration](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/integrations/integration-reference/integration-linux-node/#dashboards)
+      available in Grafana Cloud.
+    * dashboard variables
+    * dashboard links
+    * `stat` panels
+    * `table` panels
+    * `timeseries` panels
+    * `prometheus` queries
 * [`red-method`](./red-method):
     * example of a dashboard following
       the [RED method](https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/#the-red-method)
