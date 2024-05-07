@@ -164,7 +164,7 @@ class Options:
         return cls(**args)
 
 
-FieldConfig = common.HideableFieldConfig
+FieldConfig: typing.TypeAlias = common.HideableFieldConfig
 
 
 
