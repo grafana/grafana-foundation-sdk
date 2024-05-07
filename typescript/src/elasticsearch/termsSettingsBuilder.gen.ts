@@ -24,8 +24,8 @@ export class TermsSettingsBuilder implements cog.Builder<elasticsearch.TermsSett
         return this;
     }
 
-    min_doc_count(min_doc_count: string): this {
-        this.internal.min_doc_count = min_doc_count;
+    minDocCount(minDocCount: string): this {
+        this.internal.min_doc_count = minDocCount;
         return this;
     }
 

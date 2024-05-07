@@ -149,6 +149,10 @@ func (resource *Panel) UnmarshalJSON(raw []byte) error {
 	}
 
 	if fields["fieldConfig"] != nil {
+		if err := json.Unmarshal(fields["fieldConfig"], &resource.FieldConfig); err != nil {
+			return err
+		}
+
 		variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Type)
 		if found && variantCfg.FieldConfigUnmarshaler != nil {
 			fakeFieldConfigSource := struct {
@@ -159,18 +163,14 @@ func (resource *Panel) UnmarshalJSON(raw []byte) error {
 			if err := json.Unmarshal(fields["fieldConfig"], &fakeFieldConfigSource); err != nil {
 				return err
 			}
-			customFieldConfig, err := variantCfg.FieldConfigUnmarshaler(fakeFieldConfigSource.Defaults.Custom)
-			if err != nil {
-				return err
-			}
-			if err := json.Unmarshal(fields["fieldConfig"], &resource.FieldConfig); err != nil {
-				return err
-			}
 
-			resource.FieldConfig.Defaults.Custom = customFieldConfig
-		} else {
-			if err := json.Unmarshal(fields["fieldConfig"], &resource.FieldConfig); err != nil {
-				return err
+			if fakeFieldConfigSource.Defaults.Custom != nil {
+				customFieldConfig, err := variantCfg.FieldConfigUnmarshaler(fakeFieldConfigSource.Defaults.Custom)
+				if err != nil {
+					return err
+				}
+
+				resource.FieldConfig.Defaults.Custom = customFieldConfig
 			}
 		}
 	}
@@ -180,11 +180,13 @@ func (resource *Panel) UnmarshalJSON(raw []byte) error {
 		dataqueryTypeHint = *resource.Datasource.Type
 	}
 
-	targets, err := cog.UnmarshalDataqueryArray(fields["targets"], dataqueryTypeHint)
-	if err != nil {
-		return err
+	if fields["targets"] != nil {
+		targets, err := cog.UnmarshalDataqueryArray(fields["targets"], dataqueryTypeHint)
+		if err != nil {
+			return err
+		}
+		resource.Targets = targets
 	}
-	resource.Targets = targets
 
 	return nil
 }
