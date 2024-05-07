@@ -85,7 +85,7 @@ class MetricStat:
 
 
 # A name/value pair that is part of the identity of a metric. For example, you can get statistics for a specific EC2 instance by specifying the InstanceId dimension when you search for metrics.
-Dimensions = dict[str, typing.Union[str, list[str]]]
+Dimensions: typing.TypeAlias = dict[str, typing.Union[str, list[str]]]
 
 
 class CloudWatchMetricsQuery(cogvariants.Dataquery):
@@ -532,10 +532,10 @@ class QueryEditorOperator:
         return cls(**args)
 
 
-QueryEditorOperatorValueType = typing.Union[str, bool, int, list['QueryEditorOperatorType']]
+QueryEditorOperatorValueType: typing.TypeAlias = typing.Union[str, bool, int, list['QueryEditorOperatorType']]
 
 
-QueryEditorOperatorType = typing.Union[str, bool, int]
+QueryEditorOperatorType: typing.TypeAlias = typing.Union[str, bool, int]
 
 
 class QueryEditorProperty:
@@ -597,7 +597,7 @@ class QueryEditorArrayExpression:
         return cls(**args)
 
 
-QueryEditorExpression = typing.Union['QueryEditorArrayExpression', 'QueryEditorPropertyExpression', 'QueryEditorGroupByExpression', 'QueryEditorFunctionExpression', 'QueryEditorFunctionParameterExpression', 'QueryEditorOperatorExpression']
+QueryEditorExpression: typing.TypeAlias = typing.Union['QueryEditorArrayExpression', 'QueryEditorPropertyExpression', 'QueryEditorGroupByExpression', 'QueryEditorFunctionExpression', 'QueryEditorFunctionParameterExpression', 'QueryEditorOperatorExpression']
 
 
 class CloudWatchLogsQuery(cogvariants.Dataquery):
@@ -896,7 +896,7 @@ class CloudWatchAnnotationQuery(cogvariants.Dataquery):
         return cls(**args)
 
 
-CloudWatchQuery = typing.Union['CloudWatchMetricsQuery', 'CloudWatchLogsQuery', 'CloudWatchAnnotationQuery']
+CloudWatchQuery: typing.TypeAlias = typing.Union['CloudWatchMetricsQuery', 'CloudWatchLogsQuery', 'CloudWatchAnnotationQuery']
 
 
 def variant_config() -> cogruntime.DataqueryConfig:
