@@ -32,6 +32,11 @@ export class TableSparklineCellOptionsBuilder implements cog.Builder<common.Tabl
         return this;
     }
 
+    transform(transform: common.GraphTransform): this {
+        this.internal.transform = transform;
+        return this;
+    }
+
     lineColor(lineColor: string): this {
         this.internal.lineColor = lineColor;
         return this;
@@ -151,8 +156,8 @@ export class TableSparklineCellOptionsBuilder implements cog.Builder<common.Tabl
         return this;
     }
 
-    transform(transform: common.GraphTransform): this {
-        this.internal.transform = transform;
+    insertNulls(insertNulls: boolean | number): this {
+        this.internal.insertNulls = insertNulls;
         return this;
     }
 

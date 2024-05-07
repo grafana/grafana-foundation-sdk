@@ -539,6 +539,7 @@ type GraphFieldConfig struct {
 	DrawStyle         *GraphDrawStyle             `json:"drawStyle,omitempty"`
 	GradientMode      *GraphGradientMode          `json:"gradientMode,omitempty"`
 	ThresholdsStyle   *GraphThresholdsStyleConfig `json:"thresholdsStyle,omitempty"`
+	Transform         *GraphTransform             `json:"transform,omitempty"`
 	LineColor         *string                     `json:"lineColor,omitempty"`
 	LineWidth         *float64                    `json:"lineWidth,omitempty"`
 	LineInterpolation *LineInterpolation          `json:"lineInterpolation,omitempty"`
@@ -561,7 +562,7 @@ type GraphFieldConfig struct {
 	BarWidthFactor    *float64                    `json:"barWidthFactor,omitempty"`
 	Stacking          *StackingConfig             `json:"stacking,omitempty"`
 	HideFrom          *HideSeriesConfig           `json:"hideFrom,omitempty"`
-	Transform         *GraphTransform             `json:"transform,omitempty"`
+	InsertNulls       *BoolOrFloat64              `json:"insertNulls,omitempty"`
 	// Indicate if null values should be treated as gaps or connected.
 	// When the value is a number, it represents the maximum delta in the
 	// X axis that should be considered connected.  For timeseries, this is milliseconds
@@ -719,6 +720,7 @@ type TableSparklineCellOptions struct {
 	DrawStyle         *GraphDrawStyle             `json:"drawStyle,omitempty"`
 	GradientMode      *GraphGradientMode          `json:"gradientMode,omitempty"`
 	ThresholdsStyle   *GraphThresholdsStyleConfig `json:"thresholdsStyle,omitempty"`
+	Transform         *GraphTransform             `json:"transform,omitempty"`
 	LineColor         *string                     `json:"lineColor,omitempty"`
 	LineWidth         *float64                    `json:"lineWidth,omitempty"`
 	LineInterpolation *LineInterpolation          `json:"lineInterpolation,omitempty"`
@@ -742,7 +744,7 @@ type TableSparklineCellOptions struct {
 	Stacking          *StackingConfig             `json:"stacking,omitempty"`
 	HideFrom          *HideSeriesConfig           `json:"hideFrom,omitempty"`
 	HideValue         *bool                       `json:"hideValue,omitempty"`
-	Transform         *GraphTransform             `json:"transform,omitempty"`
+	InsertNulls       *BoolOrFloat64              `json:"insertNulls,omitempty"`
 	// Indicate if null values should be treated as gaps or connected.
 	// When the value is a number, it represents the maximum delta in the
 	// X axis that should be considered connected.  For timeseries, this is milliseconds

@@ -1427,6 +1427,7 @@ class GraphFieldConfig:
     draw_style: typing.Optional['GraphDrawStyle']
     gradient_mode: typing.Optional['GraphGradientMode']
     thresholds_style: typing.Optional['GraphThresholdsStyleConfig']
+    transform: typing.Optional['GraphTransform']
     line_color: typing.Optional[str]
     line_width: typing.Optional[float]
     line_interpolation: typing.Optional['LineInterpolation']
@@ -1449,7 +1450,7 @@ class GraphFieldConfig:
     bar_width_factor: typing.Optional[float]
     stacking: typing.Optional['StackingConfig']
     hide_from: typing.Optional['HideSeriesConfig']
-    transform: typing.Optional['GraphTransform']
+    insert_nulls: typing.Optional[typing.Union[bool, float]]
     # Indicate if null values should be treated as gaps or connected.
     # When the value is a number, it represents the maximum delta in the
     # X axis that should be considered connected.  For timeseries, this is milliseconds
@@ -1459,10 +1460,11 @@ class GraphFieldConfig:
     axis_border_show: typing.Optional[bool]
     bar_max_width: typing.Optional[float]
 
-    def __init__(self, draw_style: typing.Optional['GraphDrawStyle'] = None, gradient_mode: typing.Optional['GraphGradientMode'] = None, thresholds_style: typing.Optional['GraphThresholdsStyleConfig'] = None, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, axis_centered_zero: typing.Optional[bool] = None, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, stacking: typing.Optional['StackingConfig'] = None, hide_from: typing.Optional['HideSeriesConfig'] = None, transform: typing.Optional['GraphTransform'] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None, fill_below_to: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None, axis_border_show: typing.Optional[bool] = None, bar_max_width: typing.Optional[float] = None):
+    def __init__(self, draw_style: typing.Optional['GraphDrawStyle'] = None, gradient_mode: typing.Optional['GraphGradientMode'] = None, thresholds_style: typing.Optional['GraphThresholdsStyleConfig'] = None, transform: typing.Optional['GraphTransform'] = None, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, axis_centered_zero: typing.Optional[bool] = None, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, stacking: typing.Optional['StackingConfig'] = None, hide_from: typing.Optional['HideSeriesConfig'] = None, insert_nulls: typing.Optional[typing.Union[bool, float]] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None, fill_below_to: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None, axis_border_show: typing.Optional[bool] = None, bar_max_width: typing.Optional[float] = None):
         self.draw_style = draw_style
         self.gradient_mode = gradient_mode
         self.thresholds_style = thresholds_style
+        self.transform = transform
         self.line_color = line_color
         self.line_width = line_width
         self.line_interpolation = line_interpolation
@@ -1485,7 +1487,7 @@ class GraphFieldConfig:
         self.bar_width_factor = bar_width_factor
         self.stacking = stacking
         self.hide_from = hide_from
-        self.transform = transform
+        self.insert_nulls = insert_nulls
         self.span_nulls = span_nulls
         self.fill_below_to = fill_below_to
         self.point_symbol = point_symbol
@@ -1501,6 +1503,8 @@ class GraphFieldConfig:
             payload["gradientMode"] = self.gradient_mode
         if self.thresholds_style is not None:
             payload["thresholdsStyle"] = self.thresholds_style
+        if self.transform is not None:
+            payload["transform"] = self.transform
         if self.line_color is not None:
             payload["lineColor"] = self.line_color
         if self.line_width is not None:
@@ -1545,8 +1549,8 @@ class GraphFieldConfig:
             payload["stacking"] = self.stacking
         if self.hide_from is not None:
             payload["hideFrom"] = self.hide_from
-        if self.transform is not None:
-            payload["transform"] = self.transform
+        if self.insert_nulls is not None:
+            payload["insertNulls"] = self.insert_nulls
         if self.span_nulls is not None:
             payload["spanNulls"] = self.span_nulls
         if self.fill_below_to is not None:
@@ -1569,6 +1573,8 @@ class GraphFieldConfig:
             args["gradient_mode"] = data["gradientMode"]
         if "thresholdsStyle" in data:
             args["thresholds_style"] = GraphThresholdsStyleConfig.from_json(data["thresholdsStyle"])
+        if "transform" in data:
+            args["transform"] = data["transform"]
         if "lineColor" in data:
             args["line_color"] = data["lineColor"]
         if "lineWidth" in data:
@@ -1613,8 +1619,8 @@ class GraphFieldConfig:
             args["stacking"] = StackingConfig.from_json(data["stacking"])
         if "hideFrom" in data:
             args["hide_from"] = HideSeriesConfig.from_json(data["hideFrom"])
-        if "transform" in data:
-            args["transform"] = data["transform"]
+        if "insertNulls" in data:
+            args["insert_nulls"] = data["insertNulls"]
         if "spanNulls" in data:
             args["span_nulls"] = data["spanNulls"]
         if "fillBelowTo" in data:
@@ -1783,7 +1789,7 @@ class VizTooltipOptions:
         return cls(**args)
 
 
-Labels = dict[str, str]
+Labels: typing.TypeAlias = dict[str, str]
 
 
 class TableCellDisplayMode(enum.StrEnum):
@@ -2059,6 +2065,7 @@ class TableSparklineCellOptions:
     draw_style: typing.Optional['GraphDrawStyle']
     gradient_mode: typing.Optional['GraphGradientMode']
     thresholds_style: typing.Optional['GraphThresholdsStyleConfig']
+    transform: typing.Optional['GraphTransform']
     line_color: typing.Optional[str]
     line_width: typing.Optional[float]
     line_interpolation: typing.Optional['LineInterpolation']
@@ -2082,7 +2089,7 @@ class TableSparklineCellOptions:
     stacking: typing.Optional['StackingConfig']
     hide_from: typing.Optional['HideSeriesConfig']
     hide_value: typing.Optional[bool]
-    transform: typing.Optional['GraphTransform']
+    insert_nulls: typing.Optional[typing.Union[bool, float]]
     # Indicate if null values should be treated as gaps or connected.
     # When the value is a number, it represents the maximum delta in the
     # X axis that should be considered connected.  For timeseries, this is milliseconds
@@ -2092,11 +2099,12 @@ class TableSparklineCellOptions:
     axis_border_show: typing.Optional[bool]
     bar_max_width: typing.Optional[float]
 
-    def __init__(self, draw_style: typing.Optional['GraphDrawStyle'] = None, gradient_mode: typing.Optional['GraphGradientMode'] = None, thresholds_style: typing.Optional['GraphThresholdsStyleConfig'] = None, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, axis_centered_zero: typing.Optional[bool] = None, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, stacking: typing.Optional['StackingConfig'] = None, hide_from: typing.Optional['HideSeriesConfig'] = None, hide_value: typing.Optional[bool] = None, transform: typing.Optional['GraphTransform'] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None, fill_below_to: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None, axis_border_show: typing.Optional[bool] = None, bar_max_width: typing.Optional[float] = None):
+    def __init__(self, draw_style: typing.Optional['GraphDrawStyle'] = None, gradient_mode: typing.Optional['GraphGradientMode'] = None, thresholds_style: typing.Optional['GraphThresholdsStyleConfig'] = None, transform: typing.Optional['GraphTransform'] = None, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, axis_centered_zero: typing.Optional[bool] = None, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, stacking: typing.Optional['StackingConfig'] = None, hide_from: typing.Optional['HideSeriesConfig'] = None, hide_value: typing.Optional[bool] = None, insert_nulls: typing.Optional[typing.Union[bool, float]] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None, fill_below_to: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None, axis_border_show: typing.Optional[bool] = None, bar_max_width: typing.Optional[float] = None):
         self.type_val = "sparkline"
         self.draw_style = draw_style
         self.gradient_mode = gradient_mode
         self.thresholds_style = thresholds_style
+        self.transform = transform
         self.line_color = line_color
         self.line_width = line_width
         self.line_interpolation = line_interpolation
@@ -2120,7 +2128,7 @@ class TableSparklineCellOptions:
         self.stacking = stacking
         self.hide_from = hide_from
         self.hide_value = hide_value
-        self.transform = transform
+        self.insert_nulls = insert_nulls
         self.span_nulls = span_nulls
         self.fill_below_to = fill_below_to
         self.point_symbol = point_symbol
@@ -2137,6 +2145,8 @@ class TableSparklineCellOptions:
             payload["gradientMode"] = self.gradient_mode
         if self.thresholds_style is not None:
             payload["thresholdsStyle"] = self.thresholds_style
+        if self.transform is not None:
+            payload["transform"] = self.transform
         if self.line_color is not None:
             payload["lineColor"] = self.line_color
         if self.line_width is not None:
@@ -2183,8 +2193,8 @@ class TableSparklineCellOptions:
             payload["hideFrom"] = self.hide_from
         if self.hide_value is not None:
             payload["hideValue"] = self.hide_value
-        if self.transform is not None:
-            payload["transform"] = self.transform
+        if self.insert_nulls is not None:
+            payload["insertNulls"] = self.insert_nulls
         if self.span_nulls is not None:
             payload["spanNulls"] = self.span_nulls
         if self.fill_below_to is not None:
@@ -2207,6 +2217,8 @@ class TableSparklineCellOptions:
             args["gradient_mode"] = data["gradientMode"]
         if "thresholdsStyle" in data:
             args["thresholds_style"] = GraphThresholdsStyleConfig.from_json(data["thresholdsStyle"])
+        if "transform" in data:
+            args["transform"] = data["transform"]
         if "lineColor" in data:
             args["line_color"] = data["lineColor"]
         if "lineWidth" in data:
@@ -2253,8 +2265,8 @@ class TableSparklineCellOptions:
             args["hide_from"] = HideSeriesConfig.from_json(data["hideFrom"])
         if "hideValue" in data:
             args["hide_value"] = data["hideValue"]
-        if "transform" in data:
-            args["transform"] = data["transform"]
+        if "insertNulls" in data:
+            args["insert_nulls"] = data["insertNulls"]
         if "spanNulls" in data:
             args["span_nulls"] = data["spanNulls"]
         if "fillBelowTo" in data:
@@ -2317,7 +2329,7 @@ class TableCellHeight(enum.StrEnum):
 
 # Table cell options. Each cell has a display mode
 # and other potential options for that display.
-TableCellOptions = typing.Union['TableAutoCellOptions', 'TableSparklineCellOptions', 'TableBarGaugeCellOptions', 'TableColoredBackgroundCellOptions', 'TableColorTextCellOptions', 'TableImageCellOptions', 'TableDataLinksCellOptions', 'TableJsonViewCellOptions']
+TableCellOptions: typing.TypeAlias = typing.Union['TableAutoCellOptions', 'TableSparklineCellOptions', 'TableBarGaugeCellOptions', 'TableColoredBackgroundCellOptions', 'TableColorTextCellOptions', 'TableImageCellOptions', 'TableDataLinksCellOptions', 'TableJsonViewCellOptions']
 
 
 # Use UTC/GMT timezone
@@ -2612,7 +2624,7 @@ class TableFieldOptions:
 
 
 # A specific timezone from https://en.wikipedia.org/wiki/Tz_database
-TimeZone = typing.Union[typing.Literal["utc"], typing.Literal["browser"], str]
+TimeZone: typing.TypeAlias = typing.Union[typing.Literal["utc"], typing.Literal["browser"], str]
 
 
 

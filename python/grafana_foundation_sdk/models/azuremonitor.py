@@ -1001,7 +1001,7 @@ class WorkspacesQuery:
         return cls(**args)
 
 
-GrafanaTemplateVariableQuery = typing.Union['AppInsightsMetricNameQuery', 'AppInsightsGroupByQuery', 'SubscriptionsQuery', 'ResourceGroupsQuery', 'ResourceNamesQuery', 'MetricNamespaceQuery', 'MetricDefinitionsQuery', 'MetricNamesQuery', 'WorkspacesQuery', 'UnknownQuery']
+GrafanaTemplateVariableQuery: typing.TypeAlias = typing.Union['AppInsightsMetricNameQuery', 'AppInsightsGroupByQuery', 'SubscriptionsQuery', 'ResourceGroupsQuery', 'ResourceNamesQuery', 'MetricNamespaceQuery', 'MetricDefinitionsQuery', 'MetricNamesQuery', 'WorkspacesQuery', 'UnknownQuery']
 
 
 

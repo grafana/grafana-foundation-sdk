@@ -639,6 +639,7 @@ export interface GraphFieldConfig {
 	drawStyle?: GraphDrawStyle;
 	gradientMode?: GraphGradientMode;
 	thresholdsStyle?: GraphThresholdsStyleConfig;
+	transform?: GraphTransform;
 	lineColor?: string;
 	lineWidth?: number;
 	lineInterpolation?: LineInterpolation;
@@ -661,7 +662,7 @@ export interface GraphFieldConfig {
 	barWidthFactor?: number;
 	stacking?: StackingConfig;
 	hideFrom?: HideSeriesConfig;
-	transform?: GraphTransform;
+	insertNulls?: boolean | number;
 	// Indicate if null values should be treated as gaps or connected.
 	// When the value is a number, it represents the maximum delta in the
 	// X axis that should be considered connected.  For timeseries, this is milliseconds
@@ -869,6 +870,7 @@ export interface TableSparklineCellOptions {
 	drawStyle?: GraphDrawStyle;
 	gradientMode?: GraphGradientMode;
 	thresholdsStyle?: GraphThresholdsStyleConfig;
+	transform?: GraphTransform;
 	lineColor?: string;
 	lineWidth?: number;
 	lineInterpolation?: LineInterpolation;
@@ -892,7 +894,7 @@ export interface TableSparklineCellOptions {
 	stacking?: StackingConfig;
 	hideFrom?: HideSeriesConfig;
 	hideValue?: boolean;
-	transform?: GraphTransform;
+	insertNulls?: boolean | number;
 	// Indicate if null values should be treated as gaps or connected.
 	// When the value is a number, it represents the maximum delta in the
 	// X axis that should be considered connected.  For timeseries, this is milliseconds

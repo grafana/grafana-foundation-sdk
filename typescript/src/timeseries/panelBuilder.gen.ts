@@ -385,6 +385,20 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    transform(transform: common.GraphTransform): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = timeseries.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.transform = transform;
+        return this;
+    }
+
     lineColor(lineColor: string): this {
         if (!this.internal.fieldConfig) {
             this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
@@ -697,7 +711,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    transform(transform: common.GraphTransform): this {
+    insertNulls(insertNulls: boolean | number): this {
         if (!this.internal.fieldConfig) {
             this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
         }
@@ -707,7 +721,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         if (!this.internal.fieldConfig.defaults.custom) {
             this.internal.fieldConfig.defaults.custom = timeseries.defaultFieldConfig();
         }
-        this.internal.fieldConfig.defaults.custom.transform = transform;
+        this.internal.fieldConfig.defaults.custom.insertNulls = insertNulls;
         return this;
     }
 

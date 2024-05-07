@@ -434,6 +434,18 @@ func (builder *PanelBuilder) ThresholdsStyle(thresholdsStyle cog.Builder[common.
 	return builder
 }
 
+func (builder *PanelBuilder) Transform(transform common.GraphTransform) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).Transform = &transform
+
+	return builder
+}
+
 func (builder *PanelBuilder) LineColor(lineColor string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
 		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
@@ -718,14 +730,14 @@ func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConf
 	return builder
 }
 
-func (builder *PanelBuilder) Transform(transform common.GraphTransform) *PanelBuilder {
+func (builder *PanelBuilder) InsertNulls(insertNulls common.BoolOrFloat64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
 		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
 		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
 	}
-	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).Transform = &transform
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls = &insertNulls
 
 	return builder
 }

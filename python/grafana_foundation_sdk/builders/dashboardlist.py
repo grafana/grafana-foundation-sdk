@@ -496,6 +496,16 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def show_folder_names(self, show_folder_names: bool) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = dashboardlist.Options()
+        
+        assert isinstance(self._internal.options, dashboardlist.Options)
+        
+        self._internal.options.show_folder_names = show_folder_names
+    
+        return self
+    
     def max_items(self, max_items: int) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = dashboardlist.Options()

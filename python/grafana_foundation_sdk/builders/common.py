@@ -959,6 +959,11 @@ class GraphFieldConfig(cogbuilder.Builder[common.GraphFieldConfig]):
     
         return self
     
+    def transform(self, transform: common.GraphTransform) -> typing.Self:        
+        self._internal.transform = transform
+    
+        return self
+    
     def line_color(self, line_color: str) -> typing.Self:        
         self._internal.line_color = line_color
     
@@ -1073,8 +1078,8 @@ class GraphFieldConfig(cogbuilder.Builder[common.GraphFieldConfig]):
     
         return self
     
-    def transform(self, transform: common.GraphTransform) -> typing.Self:        
-        self._internal.transform = transform
+    def insert_nulls(self, insert_nulls: typing.Union[bool, float]) -> typing.Self:        
+        self._internal.insert_nulls = insert_nulls
     
         return self
     
@@ -1333,6 +1338,11 @@ class TableSparklineCellOptions(cogbuilder.Builder[common.TableSparklineCellOpti
     
         return self
     
+    def transform(self, transform: common.GraphTransform) -> typing.Self:        
+        self._internal.transform = transform
+    
+        return self
+    
     def line_color(self, line_color: str) -> typing.Self:        
         self._internal.line_color = line_color
     
@@ -1452,8 +1462,8 @@ class TableSparklineCellOptions(cogbuilder.Builder[common.TableSparklineCellOpti
     
         return self
     
-    def transform(self, transform: common.GraphTransform) -> typing.Self:        
-        self._internal.transform = transform
+    def insert_nulls(self, insert_nulls: typing.Union[bool, float]) -> typing.Self:        
+        self._internal.insert_nulls = insert_nulls
     
         return self
     

@@ -63,6 +63,12 @@ func (builder *GraphFieldConfigBuilder) ThresholdsStyle(thresholdsStyle cog.Buil
 	return builder
 }
 
+func (builder *GraphFieldConfigBuilder) Transform(transform GraphTransform) *GraphFieldConfigBuilder {
+	builder.internal.Transform = &transform
+
+	return builder
+}
+
 func (builder *GraphFieldConfigBuilder) LineColor(lineColor string) *GraphFieldConfigBuilder {
 	builder.internal.LineColor = &lineColor
 
@@ -215,8 +221,8 @@ func (builder *GraphFieldConfigBuilder) HideFrom(hideFrom cog.Builder[HideSeries
 	return builder
 }
 
-func (builder *GraphFieldConfigBuilder) Transform(transform GraphTransform) *GraphFieldConfigBuilder {
-	builder.internal.Transform = &transform
+func (builder *GraphFieldConfigBuilder) InsertNulls(insertNulls BoolOrFloat64) *GraphFieldConfigBuilder {
+	builder.internal.InsertNulls = &insertNulls
 
 	return builder
 }

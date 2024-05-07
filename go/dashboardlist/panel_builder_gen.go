@@ -408,6 +408,15 @@ func (builder *PanelBuilder) ShowHeadings(showHeadings bool) *PanelBuilder {
 	return builder
 }
 
+func (builder *PanelBuilder) ShowFolderNames(showFolderNames bool) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).ShowFolderNames = showFolderNames
+
+	return builder
+}
+
 func (builder *PanelBuilder) MaxItems(maxItems int64) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
@@ -455,6 +464,7 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.ShowRecentlyViewed(false)
 	builder.ShowSearch(false)
 	builder.ShowHeadings(true)
+	builder.ShowFolderNames(true)
 	builder.MaxItems(10)
 	builder.Query("")
 }
