@@ -534,6 +534,26 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def transform(self, transform: common.GraphTransform) -> typing.Self:        
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        
+        if self._internal.field_config.defaults.custom is None:
+            self._internal.field_config.defaults.custom = trend.FieldConfig()
+        
+        assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
+        
+        self._internal.field_config.defaults.custom.transform = transform
+    
+        return self
+    
     def line_color(self, line_color: str) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
@@ -978,7 +998,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def transform(self, transform: common.GraphTransform) -> typing.Self:        
+    def insert_nulls(self, insert_nulls: typing.Union[bool, float]) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         
@@ -994,7 +1014,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
         
-        self._internal.field_config.defaults.custom.transform = transform
+        self._internal.field_config.defaults.custom.insert_nulls = insert_nulls
     
         return self
     

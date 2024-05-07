@@ -7,6 +7,7 @@ export interface Options {
 	showRecentlyViewed: boolean;
 	showSearch: boolean;
 	showHeadings: boolean;
+	showFolderNames: boolean;
 	maxItems: number;
 	query: string;
 	tags: string[];
@@ -22,6 +23,7 @@ export const defaultOptions = (): Options => ({
 	showRecentlyViewed: false,
 	showSearch: false,
 	showHeadings: true,
+	showFolderNames: true,
 	maxItems: 10,
 	query: "",
 	tags: [],

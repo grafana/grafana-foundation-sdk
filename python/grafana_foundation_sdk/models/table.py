@@ -62,7 +62,7 @@ class Options:
         return cls(**args)
 
 
-FieldConfig = common.TableFieldOptions
+FieldConfig: typing.TypeAlias = common.TableFieldOptions
 
 
 

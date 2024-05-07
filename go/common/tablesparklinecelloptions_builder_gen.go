@@ -64,6 +64,12 @@ func (builder *TableSparklineCellOptionsBuilder) ThresholdsStyle(thresholdsStyle
 	return builder
 }
 
+func (builder *TableSparklineCellOptionsBuilder) Transform(transform GraphTransform) *TableSparklineCellOptionsBuilder {
+	builder.internal.Transform = &transform
+
+	return builder
+}
+
 func (builder *TableSparklineCellOptionsBuilder) LineColor(lineColor string) *TableSparklineCellOptionsBuilder {
 	builder.internal.LineColor = &lineColor
 
@@ -222,8 +228,8 @@ func (builder *TableSparklineCellOptionsBuilder) HideValue(hideValue bool) *Tabl
 	return builder
 }
 
-func (builder *TableSparklineCellOptionsBuilder) Transform(transform GraphTransform) *TableSparklineCellOptionsBuilder {
-	builder.internal.Transform = &transform
+func (builder *TableSparklineCellOptionsBuilder) InsertNulls(insertNulls BoolOrFloat64) *TableSparklineCellOptionsBuilder {
+	builder.internal.InsertNulls = &insertNulls
 
 	return builder
 }

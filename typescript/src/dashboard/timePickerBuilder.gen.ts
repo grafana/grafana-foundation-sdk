@@ -23,14 +23,14 @@ export class TimePickerBuilder implements cog.Builder<dashboard.TimePickerConfig
     }
 
     // Interval options available in the refresh picker dropdown.
-    refresh_intervals(refresh_intervals: string[]): this {
-        this.internal.refresh_intervals = refresh_intervals;
+    refreshIntervals(refreshIntervals: string[]): this {
+        this.internal.refresh_intervals = refreshIntervals;
         return this;
     }
 
     // Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-    time_options(time_options: string[]): this {
-        this.internal.time_options = time_options;
+    timeOptions(timeOptions: string[]): this {
+        this.internal.time_options = timeOptions;
         return this;
     }
 
