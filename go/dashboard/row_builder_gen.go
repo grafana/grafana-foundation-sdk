@@ -22,8 +22,8 @@ func NewRowBuilder(title string) *RowBuilder {
 	}
 
 	builder.applyDefaults()
-	builder.internal.Title = &title
 	builder.internal.Type = "row"
+	builder.internal.Title = &title
 
 	return builder
 }
