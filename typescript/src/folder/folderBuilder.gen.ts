@@ -8,9 +8,8 @@ import * as folder from '../folder';
 export class FolderBuilder implements cog.Builder<folder.Folder> {
     protected readonly internal: folder.Folder;
 
-    constructor(title: string) {
+    constructor() {
         this.internal = folder.defaultFolder();
-        this.internal.title = title;
     }
 
     build(): folder.Folder {

@@ -9,8 +9,8 @@ export class RowBuilder implements cog.Builder<dashboard.RowPanel> {
 
     constructor(title: string) {
         this.internal = dashboard.defaultRowPanel();
-        this.internal.title = title;
         this.internal.type = "row";
+        this.internal.title = title;
     }
 
     build(): dashboard.RowPanel {
