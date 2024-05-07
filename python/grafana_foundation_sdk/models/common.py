@@ -1762,7 +1762,7 @@ class VizTooltipOptions:
         return cls(**args)
 
 
-Labels = dict[str, str]
+Labels: typing.TypeAlias = dict[str, str]
 
 
 class TableCellDisplayMode(enum.StrEnum):
@@ -2267,7 +2267,7 @@ class TableCellHeight(enum.StrEnum):
 
 # Table cell options. Each cell has a display mode
 # and other potential options for that display.
-TableCellOptions = typing.Union['TableAutoCellOptions', 'TableSparklineCellOptions', 'TableBarGaugeCellOptions', 'TableColoredBackgroundCellOptions', 'TableColorTextCellOptions', 'TableImageCellOptions', 'TableJsonViewCellOptions']
+TableCellOptions: typing.TypeAlias = typing.Union['TableAutoCellOptions', 'TableSparklineCellOptions', 'TableBarGaugeCellOptions', 'TableColoredBackgroundCellOptions', 'TableColorTextCellOptions', 'TableImageCellOptions', 'TableJsonViewCellOptions']
 
 
 # Use UTC/GMT timezone
@@ -2562,7 +2562,7 @@ class TableFieldOptions:
 
 
 # A specific timezone from https://en.wikipedia.org/wiki/Tz_database
-TimeZone = typing.Union[typing.Literal["utc"], typing.Literal["browser"], str]
+TimeZone: typing.TypeAlias = typing.Union[typing.Literal["utc"], typing.Literal["browser"], str]
 
 
 

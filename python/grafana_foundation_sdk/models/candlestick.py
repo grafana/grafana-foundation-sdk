@@ -165,7 +165,7 @@ class Options:
         return cls(**args)
 
 
-FieldConfig = common.GraphFieldConfig
+FieldConfig: typing.TypeAlias = common.GraphFieldConfig
 
 
 
