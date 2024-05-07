@@ -6,10 +6,10 @@ from ..cog import variants as cogvariants
 from ..cog import runtime as cogruntime
 
 
-BucketAggregation = typing.Union['DateHistogram', 'Histogram', 'Terms', 'Filters', 'GeoHashGrid', 'Nested']
+BucketAggregation: typing.TypeAlias = typing.Union['DateHistogram', 'Histogram', 'Terms', 'Filters', 'GeoHashGrid', 'Nested']
 
 
-MetricAggregation = typing.Union['Count', 'MovingAverage', 'Derivative', 'CumulativeSum', 'BucketScript', 'SerialDiff', 'RawData', 'RawDocument', 'UniqueCount', 'Percentiles', 'ExtendedStats', 'Min', 'Max', 'Sum', 'Average', 'MovingFunction', 'Logs', 'Rate', 'TopMetrics']
+MetricAggregation: typing.TypeAlias = typing.Union['Count', 'MovingAverage', 'Derivative', 'CumulativeSum', 'BucketScript', 'SerialDiff', 'RawData', 'RawDocument', 'UniqueCount', 'Percentiles', 'ExtendedStats', 'Min', 'Max', 'Sum', 'Average', 'MovingFunction', 'Logs', 'Rate', 'TopMetrics']
 
 
 class BucketAggregationType(enum.StrEnum):
@@ -519,7 +519,7 @@ class PipelineMetricAggregationType(enum.StrEnum):
     BUCKET_SCRIPT = "bucket_script"
 
 
-MetricAggregationType = typing.Union[typing.Literal["count"], 'PipelineMetricAggregationType']
+MetricAggregationType: typing.TypeAlias = typing.Union[typing.Literal["count"], 'PipelineMetricAggregationType']
 
 
 class BaseMetricAggregation:
@@ -660,7 +660,7 @@ class MetricAggregationWithMissingSupport:
         return cls(**args)
 
 
-InlineScript = typing.Union[str, 'ElasticsearchInlineScript']
+InlineScript: typing.TypeAlias = typing.Union[str, 'ElasticsearchInlineScript']
 
 
 class MetricAggregationWithInlineScript:
@@ -1893,10 +1893,10 @@ class TopMetrics:
         return cls(**args)
 
 
-PipelineMetricAggregation = typing.Union['MovingAverage', 'Derivative', 'CumulativeSum', 'BucketScript']
+PipelineMetricAggregation: typing.TypeAlias = typing.Union['MovingAverage', 'Derivative', 'CumulativeSum', 'BucketScript']
 
 
-MetricAggregationWithSettings = typing.Union['BucketScript', 'CumulativeSum', 'Derivative', 'SerialDiff', 'RawData', 'RawDocument', 'UniqueCount', 'Percentiles', 'ExtendedStats', 'Min', 'Max', 'Sum', 'Average', 'MovingAverage', 'MovingFunction', 'Logs', 'Rate', 'TopMetrics']
+MetricAggregationWithSettings: typing.TypeAlias = typing.Union['BucketScript', 'CumulativeSum', 'Derivative', 'SerialDiff', 'RawData', 'RawDocument', 'UniqueCount', 'Percentiles', 'ExtendedStats', 'Min', 'Max', 'Sum', 'Average', 'MovingAverage', 'MovingFunction', 'Logs', 'Rate', 'TopMetrics']
 
 
 class Dataquery(cogvariants.Dataquery):

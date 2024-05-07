@@ -1381,8 +1381,8 @@ class Row(cogbuilder.Builder[dashboard.RowPanel]):
 
     def __init__(self, title: typing.Optional[str]):
         self._internal = dashboard.RowPanel()        
-        self._internal.title = title        
-        self._internal.type_val = "row"
+        self._internal.type_val = "row"        
+        self._internal.title = title
 
     def build(self) -> dashboard.RowPanel:
         return self._internal    

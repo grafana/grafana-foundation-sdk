@@ -953,7 +953,7 @@ class ThresholdsConfig:
 
 
 # Allow to transform the visual representation of specific data values in a visualization, irrespective of their original units
-ValueMapping = typing.Union['ValueMap', 'RangeMap', 'RegexMap', 'SpecialValueMap']
+ValueMapping: typing.TypeAlias = typing.Union['ValueMap', 'RangeMap', 'RegexMap', 'SpecialValueMap']
 
 
 class MappingType(enum.StrEnum):
