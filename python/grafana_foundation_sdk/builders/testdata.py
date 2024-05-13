@@ -345,27 +345,55 @@ class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
     
         return self
     
-    def drop_percent(self, drop_percent: float) -> typing.Self:        
+    def drop_percent(self, drop_percent: float) -> typing.Self:    
+        """
+        Drop percentage (the chance we will lose a point 0-100)
+        """
+            
         self._internal.drop_percent = drop_percent
     
         return self
     
-    def ref_id(self, ref_id: str) -> typing.Self:        
+    def ref_id(self, ref_id: str) -> typing.Self:    
+        """
+        A unique identifier for the query within the list of targets.
+        In server side expressions, the refId is used as a variable name to identify results.
+        By default, the UI will assign A->Z; however setting meaningful names may be useful.
+        """
+            
         self._internal.ref_id = ref_id
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
+        """
+        true if query is disabled (ie should not be returned to the dashboard)
+        Note this does not always imply that the query should not be executed since
+        the results from a hidden query may be used as the input to other queries (SSE etc)
+        """
+            
         self._internal.hide = hide
     
         return self
     
-    def query_type(self, query_type: str) -> typing.Self:        
+    def query_type(self, query_type: str) -> typing.Self:    
+        """
+        Specify the query flavor
+        TODO make this required and give it a default
+        """
+            
         self._internal.query_type = query_type
     
         return self
     
-    def datasource(self, datasource: object) -> typing.Self:        
+    def datasource(self, datasource: object) -> typing.Self:    
+        """
+        For mixed data sources the selected datasource is on the query level.
+        For non mixed scenarios this is undefined.
+        TODO find a better way to do this ^ that's friendly to schema
+        TODO this shouldn't be unknown but DataSourceRef | null
+        """
+            
         self._internal.datasource = datasource
     
         return self

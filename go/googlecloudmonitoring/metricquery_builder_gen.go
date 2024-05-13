@@ -135,10 +135,11 @@ func (builder *MetricQueryBuilder) Preprocessor(preprocessor PreprocessorType) *
 
 // To disable the graphPeriod, it should explictly be set to 'disabled'.
 func (builder *MetricQueryBuilder) GraphPeriod(graphPeriod string) *MetricQueryBuilder {
-	builder.internal.GraphPeriod = graphPeriod
+	builder.internal.GraphPeriod = &graphPeriod
 
 	return builder
 }
 
 func (builder *MetricQueryBuilder) applyDefaults() {
+	builder.GraphPeriod("disabled")
 }

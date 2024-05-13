@@ -367,9 +367,9 @@ class TimeSeriesQuery:
     # MQL query to be executed.
     query: str
     # To disable the graphPeriod, it should explictly be set to 'disabled'.
-    graph_period: typing.Optional[typing.Union[typing.Literal["disabled"]]]
+    graph_period: typing.Optional[str]
 
-    def __init__(self, project_name: str = "", query: str = "", graph_period: typing.Optional[typing.Union[typing.Literal["disabled"]]] = None):
+    def __init__(self, project_name: str = "", query: str = "", graph_period: typing.Optional[str] = "disabled"):
         self.project_name = project_name
         self.query = query
         self.graph_period = graph_period
@@ -511,9 +511,9 @@ class MetricQuery:
     # Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters
     preprocessor: typing.Optional['PreprocessorType']
     # To disable the graphPeriod, it should explictly be set to 'disabled'.
-    graph_period: typing.Optional[typing.Union[typing.Literal["disabled"]]]
+    graph_period: typing.Optional[str]
 
-    def __init__(self, project_name: str = "", per_series_aligner: typing.Optional[str] = None, alignment_period: typing.Optional[str] = None, alias_by: typing.Optional[str] = None, editor_mode: str = "", metric_type: str = "", cross_series_reducer: str = "", group_bys: typing.Optional[list[str]] = None, filters: typing.Optional[list[str]] = None, metric_kind: typing.Optional['MetricKind'] = None, value_type: typing.Optional[str] = None, view: typing.Optional[str] = None, query: str = "", preprocessor: typing.Optional['PreprocessorType'] = None, graph_period: typing.Optional[typing.Union[typing.Literal["disabled"]]] = None):
+    def __init__(self, project_name: str = "", per_series_aligner: typing.Optional[str] = None, alignment_period: typing.Optional[str] = None, alias_by: typing.Optional[str] = None, editor_mode: str = "", metric_type: str = "", cross_series_reducer: str = "", group_bys: typing.Optional[list[str]] = None, filters: typing.Optional[list[str]] = None, metric_kind: typing.Optional['MetricKind'] = None, value_type: typing.Optional[str] = None, view: typing.Optional[str] = None, query: str = "", preprocessor: typing.Optional['PreprocessorType'] = None, graph_period: typing.Optional[str] = "disabled"):
         self.project_name = project_name
         self.per_series_aligner = per_series_aligner
         self.alignment_period = alignment_period

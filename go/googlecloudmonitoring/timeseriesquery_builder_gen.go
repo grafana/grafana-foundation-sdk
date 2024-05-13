@@ -56,10 +56,11 @@ func (builder *TimeSeriesQueryBuilder) Query(query string) *TimeSeriesQueryBuild
 
 // To disable the graphPeriod, it should explictly be set to 'disabled'.
 func (builder *TimeSeriesQueryBuilder) GraphPeriod(graphPeriod string) *TimeSeriesQueryBuilder {
-	builder.internal.GraphPeriod = graphPeriod
+	builder.internal.GraphPeriod = &graphPeriod
 
 	return builder
 }
 
 func (builder *TimeSeriesQueryBuilder) applyDefaults() {
+	builder.GraphPeriod("disabled")
 }
