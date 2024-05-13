@@ -290,7 +290,7 @@ class TimeSeriesQuery(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesQuery])
     
         return self
     
-    def graph_period(self, graph_period: typing.Union[typing.Literal["disabled"]]) -> typing.Self:    
+    def graph_period(self, graph_period: str) -> typing.Self:    
         """
         To disable the graphPeriod, it should explictly be set to 'disabled'.
         """
@@ -564,7 +564,7 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
     
         return self
     
-    def graph_period(self, graph_period: typing.Union[typing.Literal["disabled"]]) -> typing.Self:    
+    def graph_period(self, graph_period: str) -> typing.Self:    
         """
         To disable the graphPeriod, it should explictly be set to 'disabled'.
         """

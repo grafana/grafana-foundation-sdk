@@ -15,7 +15,7 @@ export class AccessRuleBuilder implements cog.Builder<accesspolicy.AccessRule> {
     }
 
     // The kind this rule applies to (dashboards, alert, etc)
-    kind(kind: "*" | string): this {
+    kind(kind: string): this {
         this.internal.kind = kind;
         return this;
     }

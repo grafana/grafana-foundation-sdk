@@ -50,7 +50,7 @@ class Role(cogbuilder.Builder[role.Role]):
     
         return self
     
-    def hidden(self, hidden: typing.Union[bool]) -> typing.Self:    
+    def hidden(self, hidden: bool) -> typing.Self:    
         """
         Do not show this role
         """
