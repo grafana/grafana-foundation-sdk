@@ -31,6 +31,16 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def targets(self, targets: list[cogbuilder.Builder[cogvariants.Dataquery]]) -> typing.Self:    
+        """
+        Depends on the panel plugin. See the plugin documentation for details.
+        """
+            
+        targets_resources = [r1.build() for r1 in targets]
+        self._internal.targets = targets_resources
+    
+        return self
+    
     def with_target(self, targets: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self:    
         """
         Depends on the panel plugin. See the plugin documentation for details.
@@ -159,6 +169,17 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         """
             
         self._internal.max_data_points = max_data_points
+    
+        return self
+    
+    def transformations(self, transformations: list[dashboard.DataTransformerConfig]) -> typing.Self:    
+        """
+        List of transformations that are applied to the panel data before rendering.
+        When there are multiple transformations, Grafana applies them in the order they are listed.
+        Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+        """
+            
+        self._internal.transformations = transformations
     
         return self
     
@@ -398,6 +419,26 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def color_scheme(self, color: cogbuilder.Builder[dashboard.FieldColor]) -> typing.Self:    
+        """
+        Panel color configuration
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        
+        color_resource = color.build()
+        self._internal.field_config.defaults.color = color_resource
+    
+        return self
+    
     def no_value(self, no_value: str) -> typing.Self:    
         """
         Alternative to empty string
@@ -414,6 +455,21 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
         
         self._internal.field_config.defaults.no_value = no_value
+    
+        return self
+    
+    def overrides(self, overrides: list[cogbuilder.Builder[dashboard.DashboardFieldConfigSourceOverrides]]) -> typing.Self:    
+        """
+        Overrides are the options applied to specific fields overriding the defaults.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        
+        overrides_resources = [r1.build() for r1 in overrides]
+        self._internal.field_config.overrides = overrides_resources
     
         return self
     

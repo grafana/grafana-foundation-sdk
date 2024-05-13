@@ -10,7 +10,7 @@ export interface Role {
 	// Role description
 	description?: string;
 	// Do not show this role
-	hidden: boolean | false;
+	hidden: boolean;
 }
 
 export const defaultRole = (): Role => ({

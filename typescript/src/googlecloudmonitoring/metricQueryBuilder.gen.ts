@@ -95,7 +95,7 @@ export class MetricQueryBuilder implements cog.Builder<googlecloudmonitoring.Met
     }
 
     // To disable the graphPeriod, it should explictly be set to 'disabled'.
-    graphPeriod(graphPeriod: "disabled" | string): this {
+    graphPeriod(graphPeriod: string): this {
         this.internal.graphPeriod = graphPeriod;
         return this;
     }

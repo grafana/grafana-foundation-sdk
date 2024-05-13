@@ -275,6 +275,22 @@ func (builder *DashboardBuilder) WithRow(rowPanel cog.Builder[RowPanel]) *Dashbo
 }
 
 // Configured template variables
+func (builder *DashboardBuilder) Variables(list []cog.Builder[VariableModel]) *DashboardBuilder {
+	listResources := make([]VariableModel, 0, len(list))
+	for _, r1 := range list {
+		listDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["templating.list"] = err.(cog.BuildErrors)
+			return builder
+		}
+		listResources = append(listResources, listDepth1)
+	}
+	builder.internal.Templating.List = listResources
+
+	return builder
+}
+
+// Configured template variables
 func (builder *DashboardBuilder) WithVariable(list cog.Builder[VariableModel]) *DashboardBuilder {
 	listResource, err := list.Build()
 	if err != nil {
@@ -290,6 +306,25 @@ func (builder *DashboardBuilder) WithVariable(list cog.Builder[VariableModel]) *
 // Annotations are used to overlay event markers and overlay event tags on graphs.
 // Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
 // See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
+func (builder *DashboardBuilder) Annotations(list []cog.Builder[AnnotationQuery]) *DashboardBuilder {
+	listResources := make([]AnnotationQuery, 0, len(list))
+	for _, r1 := range list {
+		listDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["annotations.list"] = err.(cog.BuildErrors)
+			return builder
+		}
+		listResources = append(listResources, listDepth1)
+	}
+	builder.internal.Annotations.List = listResources
+
+	return builder
+}
+
+// Contains the list of annotations that are associated with the dashboard.
+// Annotations are used to overlay event markers and overlay event tags on graphs.
+// Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
+// See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
 func (builder *DashboardBuilder) Annotation(list cog.Builder[AnnotationQuery]) *DashboardBuilder {
 	listResource, err := list.Build()
 	if err != nil {
@@ -297,6 +332,22 @@ func (builder *DashboardBuilder) Annotation(list cog.Builder[AnnotationQuery]) *
 		return builder
 	}
 	builder.internal.Annotations.List = append(builder.internal.Annotations.List, listResource)
+
+	return builder
+}
+
+// Links with references to other dashboards or external websites.
+func (builder *DashboardBuilder) Links(links []cog.Builder[DashboardLink]) *DashboardBuilder {
+	linksResources := make([]DashboardLink, 0, len(links))
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["links"] = err.(cog.BuildErrors)
+			return builder
+		}
+		linksResources = append(linksResources, linksDepth1)
+	}
+	builder.internal.Links = linksResources
 
 	return builder
 }

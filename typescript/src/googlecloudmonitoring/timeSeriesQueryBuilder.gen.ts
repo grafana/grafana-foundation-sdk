@@ -28,7 +28,7 @@ export class TimeSeriesQueryBuilder implements cog.Builder<googlecloudmonitoring
     }
 
     // To disable the graphPeriod, it should explictly be set to 'disabled'.
-    graphPeriod(graphPeriod: "disabled" | string): this {
+    graphPeriod(graphPeriod: string): this {
         this.internal.graphPeriod = graphPeriod;
         return this;
     }
