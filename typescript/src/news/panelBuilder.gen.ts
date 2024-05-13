@@ -24,6 +24,13 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // Depends on the panel plugin. See the plugin documentation for details.
+    targets(targets: cog.Builder<cog.Dataquery>[]): this {
+        const targetsResources = targets.map(builder1 => builder1.build());
+        this.internal.targets = targetsResources;
+        return this;
+    }
+
+    // Depends on the panel plugin. See the plugin documentation for details.
     withTarget(targets: cog.Builder<cog.Dataquery>): this {
         if (!this.internal.targets) {
             this.internal.targets = [];
@@ -107,6 +114,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     // The maximum number of data points that the panel queries are retrieving.
     maxDataPoints(maxDataPoints: number): this {
         this.internal.maxDataPoints = maxDataPoints;
+        return this;
+    }
+
+    // List of transformations that are applied to the panel data before rendering.
+    // When there are multiple transformations, Grafana applies them in the order they are listed.
+    // Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+    transformations(transformations: dashboard.DataTransformerConfig[]): this {
+        this.internal.transformations = transformations;
         return this;
     }
 
@@ -255,6 +270,19 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Panel color configuration
+    colorScheme(color: cog.Builder<dashboard.FieldColor>): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        const colorResource = color.build();
+        this.internal.fieldConfig.defaults.color = colorResource;
+        return this;
+    }
+
     // Alternative to empty string
     noValue(noValue: string): this {
         if (!this.internal.fieldConfig) {
@@ -264,6 +292,18 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
             this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
         }
         this.internal.fieldConfig.defaults.noValue = noValue;
+        return this;
+    }
+
+    // Overrides are the options applied to specific fields overriding the defaults.
+    overrides(overrides: {
+	matcher: dashboard.MatcherConfig;
+	properties: dashboard.DynamicConfigValue[];
+}[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        this.internal.fieldConfig.overrides = overrides;
         return this;
     }
 

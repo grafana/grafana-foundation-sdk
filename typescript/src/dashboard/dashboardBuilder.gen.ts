@@ -220,6 +220,17 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     }
 
     // Configured template variables
+    variables(list: cog.Builder<dashboard.VariableModel>[]): this {
+        if (!this.internal.templating) {
+            this.internal.templating = {
+};
+        }
+        const listResources = list.map(builder1 => builder1.build());
+        this.internal.templating.list = listResources;
+        return this;
+    }
+
+    // Configured template variables
     withVariable(list: cog.Builder<dashboard.VariableModel>): this {
         if (!this.internal.templating) {
             this.internal.templating = {
@@ -237,6 +248,19 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     // Annotations are used to overlay event markers and overlay event tags on graphs.
     // Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
     // See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
+    annotations(list: cog.Builder<dashboard.AnnotationQuery>[]): this {
+        if (!this.internal.annotations) {
+            this.internal.annotations = dashboard.defaultAnnotationContainer();
+        }
+        const listResources = list.map(builder1 => builder1.build());
+        this.internal.annotations.list = listResources;
+        return this;
+    }
+
+    // Contains the list of annotations that are associated with the dashboard.
+    // Annotations are used to overlay event markers and overlay event tags on graphs.
+    // Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
+    // See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
     annotation(list: cog.Builder<dashboard.AnnotationQuery>): this {
         if (!this.internal.annotations) {
             this.internal.annotations = dashboard.defaultAnnotationContainer();
@@ -246,6 +270,13 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
         }
         const listResource = list.build();
         this.internal.annotations.list.push(listResource);
+        return this;
+    }
+
+    // Links with references to other dashboards or external websites.
+    links(links: cog.Builder<dashboard.DashboardLink>[]): this {
+        const linksResources = links.map(builder1 => builder1.build());
+        this.internal.links = linksResources;
         return this;
     }
 
