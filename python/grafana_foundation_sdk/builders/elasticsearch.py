@@ -1383,47 +1383,89 @@ class Dataquery(cogbuilder.Builder[elasticsearch.Dataquery]):
     def build(self) -> elasticsearch.Dataquery:
         return self._internal    
     
-    def alias(self, alias: str) -> typing.Self:        
+    def alias(self, alias: str) -> typing.Self:    
+        """
+        Alias pattern
+        """
+            
         self._internal.alias = alias
     
         return self
     
-    def query(self, query: str) -> typing.Self:        
+    def query(self, query: str) -> typing.Self:    
+        """
+        Lucene query
+        """
+            
         self._internal.query = query
     
         return self
     
-    def time_field(self, time_field: str) -> typing.Self:        
+    def time_field(self, time_field: str) -> typing.Self:    
+        """
+        Name of time field
+        """
+            
         self._internal.time_field = time_field
     
         return self
     
-    def bucket_aggs(self, bucket_aggs: list[elasticsearch.BucketAggregation]) -> typing.Self:        
+    def bucket_aggs(self, bucket_aggs: list[elasticsearch.BucketAggregation]) -> typing.Self:    
+        """
+        List of bucket aggregations
+        """
+            
         self._internal.bucket_aggs = bucket_aggs
     
         return self
     
-    def metrics(self, metrics: list[elasticsearch.MetricAggregation]) -> typing.Self:        
+    def metrics(self, metrics: list[elasticsearch.MetricAggregation]) -> typing.Self:    
+        """
+        List of metric aggregations
+        """
+            
         self._internal.metrics = metrics
     
         return self
     
-    def ref_id(self, ref_id: str) -> typing.Self:        
+    def ref_id(self, ref_id: str) -> typing.Self:    
+        """
+        A unique identifier for the query within the list of targets.
+        In server side expressions, the refId is used as a variable name to identify results.
+        By default, the UI will assign A->Z; however setting meaningful names may be useful.
+        """
+            
         self._internal.ref_id = ref_id
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
+        """
+        If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+        """
+            
         self._internal.hide = hide
     
         return self
     
-    def query_type(self, query_type: str) -> typing.Self:        
+    def query_type(self, query_type: str) -> typing.Self:    
+        """
+        Specify the query flavor
+        TODO make this required and give it a default
+        """
+            
         self._internal.query_type = query_type
     
         return self
     
-    def datasource(self, datasource: object) -> typing.Self:        
+    def datasource(self, datasource: object) -> typing.Self:    
+        """
+        For mixed data sources the selected datasource is on the query level.
+        For non mixed scenarios this is undefined.
+        TODO find a better way to do this ^ that's friendly to schema
+        TODO this shouldn't be unknown but DataSourceRef | null
+        """
+            
         self._internal.datasource = datasource
     
         return self

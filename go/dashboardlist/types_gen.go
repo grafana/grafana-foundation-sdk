@@ -9,7 +9,6 @@ type Options struct {
 	ShowRecentlyViewed bool     `json:"showRecentlyViewed"`
 	ShowSearch         bool     `json:"showSearch"`
 	ShowHeadings       bool     `json:"showHeadings"`
-	ShowFolderNames    bool     `json:"showFolderNames"`
 	MaxItems           int64    `json:"maxItems"`
 	Query              string   `json:"query"`
 	Tags               []string `json:"tags"`

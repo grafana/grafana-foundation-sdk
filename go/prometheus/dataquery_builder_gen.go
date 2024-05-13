@@ -40,72 +40,91 @@ func (builder *DataqueryBuilder) Build() (cogvariants.Dataquery, error) {
 	return *builder.internal, nil
 }
 
+// The actual expression/query that will be evaluated by Prometheus
 func (builder *DataqueryBuilder) Expr(expr string) *DataqueryBuilder {
 	builder.internal.Expr = &expr
 
 	return builder
 }
 
+// Returns only the latest value that Prometheus has scraped for the requested time series
 func (builder *DataqueryBuilder) Instant(instant bool) *DataqueryBuilder {
 	builder.internal.Instant = &instant
 
 	return builder
 }
 
+// Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
 func (builder *DataqueryBuilder) Range(rangeArg bool) *DataqueryBuilder {
 	builder.internal.Range = &rangeArg
 
 	return builder
 }
 
+// Execute an additional query to identify interesting raw samples relevant for the given expr
 func (builder *DataqueryBuilder) Exemplar(exemplar bool) *DataqueryBuilder {
 	builder.internal.Exemplar = &exemplar
 
 	return builder
 }
 
+// Specifies which editor is being used to prepare the query. It can be "code" or "builder"
 func (builder *DataqueryBuilder) EditorMode(editorMode QueryEditorMode) *DataqueryBuilder {
 	builder.internal.EditorMode = &editorMode
 
 	return builder
 }
 
+// Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
 func (builder *DataqueryBuilder) Format(format PromQueryFormat) *DataqueryBuilder {
 	builder.internal.Format = &format
 
 	return builder
 }
 
+// Series name override or template. Ex. {{hostname}} will be replaced with label value for hostname
 func (builder *DataqueryBuilder) LegendFormat(legendFormat string) *DataqueryBuilder {
 	builder.internal.LegendFormat = &legendFormat
 
 	return builder
 }
 
+// @deprecated Used to specify how many times to divide max data points by. We use max data points under query options
+// See https://github.com/grafana/grafana/issues/48081
 func (builder *DataqueryBuilder) IntervalFactor(intervalFactor float64) *DataqueryBuilder {
 	builder.internal.IntervalFactor = &intervalFactor
 
 	return builder
 }
 
+// A unique identifier for the query within the list of targets.
+// In server side expressions, the refId is used as a variable name to identify results.
+// By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *DataqueryBuilder) RefId(refId string) *DataqueryBuilder {
 	builder.internal.RefId = &refId
 
 	return builder
 }
 
+// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 func (builder *DataqueryBuilder) Hide(hide bool) *DataqueryBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
 }
 
+// Specify the query flavor
+// TODO make this required and give it a default
 func (builder *DataqueryBuilder) QueryType(queryType string) *DataqueryBuilder {
 	builder.internal.QueryType = &queryType
 
 	return builder
 }
 
+// For mixed data sources the selected datasource is on the query level.
+// For non mixed scenarios this is undefined.
+// TODO find a better way to do this ^ that's friendly to schema
+// TODO this shouldn't be unknown but DataSourceRef | null
 func (builder *DataqueryBuilder) Datasource(datasource any) *DataqueryBuilder {
 	builder.internal.Datasource = &datasource
 

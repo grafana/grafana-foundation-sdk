@@ -108,7 +108,7 @@ class AccessRule(cogbuilder.Builder[accesspolicy.AccessRule]):
     def build(self) -> accesspolicy.AccessRule:
         return self._internal    
     
-    def kind(self, kind: typing.Union[typing.Literal["*"]]) -> typing.Self:    
+    def kind(self, kind: str) -> typing.Self:    
         """
         The kind this rule applies to (dashboards, alert, etc)
         """

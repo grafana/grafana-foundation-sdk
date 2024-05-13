@@ -13,9 +13,9 @@ class Role:
     # Role description
     description: typing.Optional[str]
     # Do not show this role
-    hidden: typing.Union[bool]
+    hidden: bool
 
-    def __init__(self, name: str = "", display_name: typing.Optional[str] = None, group_name: typing.Optional[str] = None, description: typing.Optional[str] = None, hidden: typing.Union[bool] = False):
+    def __init__(self, name: str = "", display_name: typing.Optional[str] = None, group_name: typing.Optional[str] = None, description: typing.Optional[str] = None, hidden: bool = False):
         self.name = name
         self.display_name = display_name
         self.group_name = group_name
