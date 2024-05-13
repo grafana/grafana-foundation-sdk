@@ -96,7 +96,7 @@ type TimeSeriesQuery struct {
 	// MQL query to be executed.
 	Query string `json:"query"`
 	// To disable the graphPeriod, it should explictly be set to 'disabled'.
-	GraphPeriod string `json:"graphPeriod,omitempty"`
+	GraphPeriod *string `json:"graphPeriod,omitempty"`
 }
 
 // SLO sub-query properties.
@@ -159,7 +159,7 @@ type MetricQuery struct {
 	// Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters
 	Preprocessor *PreprocessorType `json:"preprocessor,omitempty"`
 	// To disable the graphPeriod, it should explictly be set to 'disabled'.
-	GraphPeriod string `json:"graphPeriod,omitempty"`
+	GraphPeriod *string `json:"graphPeriod,omitempty"`
 }
 
 type MetricKind string
