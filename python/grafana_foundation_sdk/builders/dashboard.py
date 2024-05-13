@@ -268,6 +268,21 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
     
         return self
     
+    def variables(self, list_val: list[cogbuilder.Builder[dashboard.VariableModel]]) -> typing.Self:    
+        """
+        Configured template variables
+        """
+            
+        if self._internal.templating is None:
+            self._internal.templating = dashboard.DashboardDashboardTemplating()
+        
+        assert isinstance(self._internal.templating, dashboard.DashboardDashboardTemplating)
+        
+        list_val_resources = [r1.build() for r1 in list_val]
+        self._internal.templating.list_val = list_val_resources
+    
+        return self
+    
     def with_variable(self, list_val: cogbuilder.Builder[dashboard.VariableModel]) -> typing.Self:    
         """
         Configured template variables
@@ -283,6 +298,24 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         
         list_val_resource = list_val.build()
         self._internal.templating.list_val.append(list_val_resource)
+    
+        return self
+    
+    def annotations(self, list_val: list[cogbuilder.Builder[dashboard.AnnotationQuery]]) -> typing.Self:    
+        """
+        Contains the list of annotations that are associated with the dashboard.
+        Annotations are used to overlay event markers and overlay event tags on graphs.
+        Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
+        See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
+        """
+            
+        if self._internal.annotations is None:
+            self._internal.annotations = dashboard.AnnotationContainer()
+        
+        assert isinstance(self._internal.annotations, dashboard.AnnotationContainer)
+        
+        list_val_resources = [r1.build() for r1 in list_val]
+        self._internal.annotations.list_val = list_val_resources
     
         return self
     
@@ -304,6 +337,16 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         
         list_val_resource = list_val.build()
         self._internal.annotations.list_val.append(list_val_resource)
+    
+        return self
+    
+    def links(self, links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typing.Self:    
+        """
+        Links with references to other dashboards or external websites.
+        """
+            
+        links_resources = [r1.build() for r1 in links]
+        self._internal.links = links_resources
     
         return self
     
@@ -1001,6 +1044,16 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def targets(self, targets: list[cogbuilder.Builder[cogvariants.Dataquery]]) -> typing.Self:    
+        """
+        Depends on the panel plugin. See the plugin documentation for details.
+        """
+            
+        targets_resources = [r1.build() for r1 in targets]
+        self._internal.targets = targets_resources
+    
+        return self
+    
     def with_target(self, targets: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self:    
         """
         Depends on the panel plugin. See the plugin documentation for details.
@@ -1129,6 +1182,17 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         """
             
         self._internal.max_data_points = max_data_points
+    
+        return self
+    
+    def transformations(self, transformations: list[dashboard.DataTransformerConfig]) -> typing.Self:    
+        """
+        List of transformations that are applied to the panel data before rendering.
+        When there are multiple transformations, Grafana applies them in the order they are listed.
+        Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+        """
+            
+        self._internal.transformations = transformations
     
         return self
     
@@ -1368,6 +1432,26 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def color_scheme(self, color: cogbuilder.Builder[dashboard.FieldColor]) -> typing.Self:    
+        """
+        Panel color configuration
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        
+        color_resource = color.build()
+        self._internal.field_config.defaults.color = color_resource
+    
+        return self
+    
     def no_value(self, no_value: str) -> typing.Self:    
         """
         Alternative to empty string
@@ -1384,6 +1468,21 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
         
         self._internal.field_config.defaults.no_value = no_value
+    
+        return self
+    
+    def overrides(self, overrides: list[cogbuilder.Builder[dashboard.DashboardFieldConfigSourceOverrides]]) -> typing.Self:    
+        """
+        Overrides are the options applied to specific fields overriding the defaults.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        
+        overrides_resources = [r1.build() for r1 in overrides]
+        self._internal.field_config.overrides = overrides_resources
     
         return self
     
