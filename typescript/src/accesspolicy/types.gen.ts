@@ -42,7 +42,7 @@ export const defaultResourceRef = (): ResourceRef => ({
 
 export interface AccessRule {
 	// The kind this rule applies to (dashboards, alert, etc)
-	kind: "*" | string;
+	kind: string;
 	// READ, WRITE, CREATE, DELETE, ...
 	// should move to k8s style verbs like: "get", "list", "watch", "create", "update", "patch", "delete"
 	verb: "*" | "none" | string;

@@ -53,6 +53,22 @@ func (builder *PanelBuilder) Id(id uint32) *PanelBuilder {
 }
 
 // Depends on the panel plugin. See the plugin documentation for details.
+func (builder *PanelBuilder) Targets(targets []cog.Builder[cogvariants.Dataquery]) *PanelBuilder {
+	targetsResources := make([]cogvariants.Dataquery, 0, len(targets))
+	for _, r1 := range targets {
+		targetsDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["targets"] = err.(cog.BuildErrors)
+			return builder
+		}
+		targetsResources = append(targetsResources, targetsDepth1)
+	}
+	builder.internal.Targets = targetsResources
+
+	return builder
+}
+
+// Depends on the panel plugin. See the plugin documentation for details.
 func (builder *PanelBuilder) WithTarget(targets cog.Builder[cogvariants.Dataquery]) *PanelBuilder {
 	targetsResource, err := targets.Build()
 	if err != nil {
@@ -166,6 +182,15 @@ func (builder *PanelBuilder) MaxPerRow(maxPerRow float64) *PanelBuilder {
 // The maximum number of data points that the panel queries are retrieving.
 func (builder *PanelBuilder) MaxDataPoints(maxDataPoints float64) *PanelBuilder {
 	builder.internal.MaxDataPoints = &maxDataPoints
+
+	return builder
+}
+
+// List of transformations that are applied to the panel data before rendering.
+// When there are multiple transformations, Grafana applies them in the order they are listed.
+// Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+func (builder *PanelBuilder) Transformations(transformations []dashboard.DataTransformerConfig) *PanelBuilder {
+	builder.internal.Transformations = transformations
 
 	return builder
 }
@@ -314,12 +339,40 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 	return builder
 }
 
+// Panel color configuration
+func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	colorResource, err := color.Build()
+	if err != nil {
+		builder.errors["fieldConfig.defaults.color"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.FieldConfig.Defaults.Color = &colorResource
+
+	return builder
+}
+
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
 		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
 	}
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
+
+	return builder
+}
+
+// Overrides are the options applied to specific fields overriding the defaults.
+func (builder *PanelBuilder) Overrides(overrides []struct {
+	Matcher    dashboard.MatcherConfig        `json:"matcher"`
+	Properties []dashboard.DynamicConfigValue `json:"properties"`
+}) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	builder.internal.FieldConfig.Overrides = overrides
 
 	return builder
 }

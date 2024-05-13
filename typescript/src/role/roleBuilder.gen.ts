@@ -39,7 +39,7 @@ export class RoleBuilder implements cog.Builder<role.Role> {
     }
 
     // Do not show this role
-    hidden(hidden: boolean | false): this {
+    hidden(hidden: boolean): this {
         this.internal.hidden = hidden;
         return this;
     }

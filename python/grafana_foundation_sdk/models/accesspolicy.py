@@ -102,14 +102,14 @@ class ResourceRef:
 
 class AccessRule:
     # The kind this rule applies to (dashboards, alert, etc)
-    kind: typing.Union[typing.Literal["*"]]
+    kind: str
     # READ, WRITE, CREATE, DELETE, ...
     # should move to k8s style verbs like: "get", "list", "watch", "create", "update", "patch", "delete"
     verb: typing.Union[typing.Literal["*"]]
     # Specific sub-elements like "alert.rules" or "dashboard.permissions"????
     target: typing.Optional[str]
 
-    def __init__(self, kind: typing.Union[typing.Literal["*"]] = "*", verb: typing.Union[typing.Literal["*"]] = "*", target: typing.Optional[str] = None):
+    def __init__(self, kind: str = "*", verb: typing.Union[typing.Literal["*"]] = "*", target: typing.Optional[str] = None):
         self.kind = kind
         self.verb = verb
         self.target = target

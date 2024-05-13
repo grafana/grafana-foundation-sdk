@@ -103,12 +103,13 @@ export interface TimeSeriesQuery {
 	// MQL query to be executed.
 	query: string;
 	// To disable the graphPeriod, it should explictly be set to 'disabled'.
-	graphPeriod?: "disabled" | string;
+	graphPeriod?: string;
 }
 
 export const defaultTimeSeriesQuery = (): TimeSeriesQuery => ({
 	projectName: "",
 	query: "",
+	graphPeriod: "disabled",
 });
 
 // SLO sub-query properties.
@@ -186,7 +187,7 @@ export interface MetricQuery {
 	// Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters
 	preprocessor?: PreprocessorType;
 	// To disable the graphPeriod, it should explictly be set to 'disabled'.
-	graphPeriod?: "disabled" | string;
+	graphPeriod?: string;
 }
 
 export const defaultMetricQuery = (): MetricQuery => ({
@@ -195,6 +196,7 @@ export const defaultMetricQuery = (): MetricQuery => ({
 	metricType: "",
 	crossSeriesReducer: "",
 	query: "",
+	graphPeriod: "disabled",
 });
 
 export enum MetricKind {
