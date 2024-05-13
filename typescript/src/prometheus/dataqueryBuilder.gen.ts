@@ -14,61 +14,82 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         return this.internal;
     }
 
+    // The actual expression/query that will be evaluated by Prometheus
     expr(expr: string): this {
         this.internal.expr = expr;
         return this;
     }
 
+    // Returns only the latest value that Prometheus has scraped for the requested time series
     instant(instant: boolean): this {
         this.internal.instant = instant;
         return this;
     }
 
+    // Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
     range(range: boolean): this {
         this.internal.range = range;
         return this;
     }
 
+    // Execute an additional query to identify interesting raw samples relevant for the given expr
     exemplar(exemplar: boolean): this {
         this.internal.exemplar = exemplar;
         return this;
     }
 
+    // Specifies which editor is being used to prepare the query. It can be "code" or "builder"
     editorMode(editorMode: prometheus.QueryEditorMode): this {
         this.internal.editorMode = editorMode;
         return this;
     }
 
+    // Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
     format(format: prometheus.PromQueryFormat): this {
         this.internal.format = format;
         return this;
     }
 
+    // Series name override or template. Ex. {{hostname}} will be replaced with label value for hostname
     legendFormat(legendFormat: string): this {
         this.internal.legendFormat = legendFormat;
         return this;
     }
 
+    // @deprecated Used to specify how many times to divide max data points by. We use max data points under query options
+    // See https://github.com/grafana/grafana/issues/48081
     intervalFactor(intervalFactor: number): this {
         this.internal.intervalFactor = intervalFactor;
         return this;
     }
 
+    // A unique identifier for the query within the list of targets.
+    // In server side expressions, the refId is used as a variable name to identify results.
+    // By default, the UI will assign A->Z; however setting meaningful names may be useful.
     refId(refId: string): this {
         this.internal.refId = refId;
         return this;
     }
 
+    // true if query is disabled (ie should not be returned to the dashboard)
+    // Note this does not always imply that the query should not be executed since
+    // the results from a hidden query may be used as the input to other queries (SSE etc)
     hide(hide: boolean): this {
         this.internal.hide = hide;
         return this;
     }
 
+    // Specify the query flavor
+    // TODO make this required and give it a default
     queryType(queryType: string): this {
         this.internal.queryType = queryType;
         return this;
     }
 
+    // For mixed data sources the selected datasource is on the query level.
+    // For non mixed scenarios this is undefined.
+    // TODO find a better way to do this ^ that's friendly to schema
+    // TODO this shouldn't be unknown but DataSourceRef | null
     datasource(datasource: any): this {
         this.internal.datasource = datasource;
         return this;

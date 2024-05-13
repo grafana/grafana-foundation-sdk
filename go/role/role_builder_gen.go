@@ -75,4 +75,5 @@ func (builder *RoleBuilder) Hidden(hidden bool) *RoleBuilder {
 }
 
 func (builder *RoleBuilder) applyDefaults() {
+	builder.Hidden(false)
 }

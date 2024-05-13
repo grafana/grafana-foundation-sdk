@@ -62,4 +62,5 @@ func (builder *AccessRuleBuilder) Target(target string) *AccessRuleBuilder {
 }
 
 func (builder *AccessRuleBuilder) applyDefaults() {
+	builder.Kind("*")
 }
