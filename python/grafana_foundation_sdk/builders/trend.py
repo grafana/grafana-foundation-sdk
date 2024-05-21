@@ -3,9 +3,9 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import dashboard
-from ..models import trend
 from ..cog import variants as cogvariants
 from ..models import common
+from ..models import trend
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -99,9 +99,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             raise ValueError("h must be > 0")
         if self._internal.grid_pos is None:
             self._internal.grid_pos = dashboard.GridPos()
-        
         assert isinstance(self._internal.grid_pos, dashboard.GridPos)
-        
         self._internal.grid_pos.h = h
     
         return self
@@ -117,9 +115,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             raise ValueError("w must be <= 24")
         if self._internal.grid_pos is None:
             self._internal.grid_pos = dashboard.GridPos()
-        
         assert isinstance(self._internal.grid_pos, dashboard.GridPos)
-        
         self._internal.grid_pos.w = w
     
         return self
@@ -262,14 +258,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.display_name = display_name
     
         return self
@@ -290,14 +282,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.unit = unit
     
         return self
@@ -312,14 +300,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.decimals = decimals
     
         return self
@@ -331,14 +315,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.min_val = min_val
     
         return self
@@ -350,14 +330,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.max_val = max_val
     
         return self
@@ -369,14 +345,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.mappings = mappings
     
         return self
@@ -388,14 +360,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         thresholds_resource = thresholds.build()
         self._internal.field_config.defaults.thresholds = thresholds_resource
     
@@ -408,14 +376,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         color_resource = color.build()
         self._internal.field_config.defaults.color = color_resource
     
@@ -428,14 +392,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.no_value = no_value
     
         return self
@@ -447,9 +407,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         overrides_resources = [r1.build() for r1 in overrides]
         self._internal.field_config.overrides = overrides_resources
     
@@ -462,9 +420,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.overrides is None:
             self._internal.field_config.overrides = []
         
@@ -478,9 +434,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = trend.Options()
-        
         assert isinstance(self._internal.options, trend.Options)
-        
         legend_resource = legend.build()
         self._internal.options.legend = legend_resource
     
@@ -489,9 +443,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def tooltip(self, tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = trend.Options()
-        
         assert isinstance(self._internal.options, trend.Options)
-        
         tooltip_resource = tooltip.build()
         self._internal.options.tooltip = tooltip_resource
     
@@ -504,9 +456,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.options is None:
             self._internal.options = trend.Options()
-        
         assert isinstance(self._internal.options, trend.Options)
-        
         self._internal.options.x_field = x_field
     
         return self
@@ -514,19 +464,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def draw_style(self, draw_style: common.GraphDrawStyle) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.draw_style = draw_style
     
         return self
@@ -534,19 +478,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def gradient_mode(self, gradient_mode: common.GraphGradientMode) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.gradient_mode = gradient_mode
     
         return self
@@ -554,19 +492,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def thresholds_style(self, thresholds_style: cogbuilder.Builder[common.GraphThresholdsStyleConfig]) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         thresholds_style_resource = thresholds_style.build()
         self._internal.field_config.defaults.custom.thresholds_style = thresholds_style_resource
     
@@ -575,19 +507,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def line_color(self, line_color: str) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.line_color = line_color
     
         return self
@@ -595,19 +521,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def line_width(self, line_width: float) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.line_width = line_width
     
         return self
@@ -615,19 +535,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def line_interpolation(self, line_interpolation: common.LineInterpolation) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.line_interpolation = line_interpolation
     
         return self
@@ -635,19 +549,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         line_style_resource = line_style.build()
         self._internal.field_config.defaults.custom.line_style = line_style_resource
     
@@ -656,19 +564,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def fill_color(self, fill_color: str) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.fill_color = fill_color
     
         return self
@@ -676,19 +578,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def fill_opacity(self, fill_opacity: float) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.fill_opacity = fill_opacity
     
         return self
@@ -696,19 +592,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def show_points(self, show_points: common.VisibilityMode) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.show_points = show_points
     
         return self
@@ -716,19 +606,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def point_size(self, point_size: float) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.point_size = point_size
     
         return self
@@ -736,19 +620,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def point_color(self, point_color: str) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.point_color = point_color
     
         return self
@@ -756,19 +634,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.axis_placement = axis_placement
     
         return self
@@ -776,19 +648,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.axis_color_mode = axis_color_mode
     
         return self
@@ -796,19 +662,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def axis_label(self, axis_label: str) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.axis_label = axis_label
     
         return self
@@ -816,19 +676,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def axis_width(self, axis_width: float) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.axis_width = axis_width
     
         return self
@@ -836,19 +690,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def axis_soft_min(self, axis_soft_min: float) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.axis_soft_min = axis_soft_min
     
         return self
@@ -856,19 +704,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def axis_soft_max(self, axis_soft_max: float) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.axis_soft_max = axis_soft_max
     
         return self
@@ -876,19 +718,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.axis_grid_show = axis_grid_show
     
         return self
@@ -896,19 +732,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         scale_distribution_resource = scale_distribution.build()
         self._internal.field_config.defaults.custom.scale_distribution = scale_distribution_resource
     
@@ -917,19 +747,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.axis_centered_zero = axis_centered_zero
     
         return self
@@ -937,19 +761,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def bar_alignment(self, bar_alignment: common.BarAlignment) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.bar_alignment = bar_alignment
     
         return self
@@ -957,19 +775,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def bar_width_factor(self, bar_width_factor: float) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.bar_width_factor = bar_width_factor
     
         return self
@@ -977,19 +789,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def stacking(self, stacking: cogbuilder.Builder[common.StackingConfig]) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         stacking_resource = stacking.build()
         self._internal.field_config.defaults.custom.stacking = stacking_resource
     
@@ -998,19 +804,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         hide_from_resource = hide_from.build()
         self._internal.field_config.defaults.custom.hide_from = hide_from_resource
     
@@ -1019,19 +819,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def transform(self, transform: common.GraphTransform) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.transform = transform
     
         return self
@@ -1045,19 +839,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.span_nulls = span_nulls
     
         return self
@@ -1065,19 +853,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def fill_below_to(self, fill_below_to: str) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.fill_below_to = fill_below_to
     
         return self
@@ -1085,19 +867,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def point_symbol(self, point_symbol: str) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.point_symbol = point_symbol
     
         return self
@@ -1105,19 +881,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def axis_border_show(self, axis_border_show: bool) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.axis_border_show = axis_border_show
     
         return self
@@ -1125,19 +895,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def bar_max_width(self, bar_max_width: float) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = trend.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, trend.FieldConfig)
-        
         self._internal.field_config.defaults.custom.bar_max_width = bar_max_width
     
         return self
