@@ -46,7 +46,7 @@ func (builder *InlineScriptBuilder) String(string string) *InlineScriptBuilder {
 }
 
 func (builder *InlineScriptBuilder) Struct(structArg struct {
-	Inline string `json:"inline,omitempty"`
+	Inline *string `json:"inline,omitempty"`
 }) *InlineScriptBuilder {
 	builder.internal.Struct = &structArg
 
