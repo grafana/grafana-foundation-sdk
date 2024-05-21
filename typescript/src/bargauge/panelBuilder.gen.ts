@@ -2,8 +2,8 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
-import * as bargauge from '../bargauge';
 import * as common from '../common';
+import * as bargauge from '../bargauge';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
