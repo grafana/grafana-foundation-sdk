@@ -2,5 +2,5 @@
 
 export * from './types.gen';
 export type * from './types.gen';
-export * from './panelBuilder.gen';
-export type * from './panelBuilder.gen';
+export * from './dataqueryBuilder.gen';
+export type * from './dataqueryBuilder.gen';

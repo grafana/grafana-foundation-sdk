@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "11.0.0-cogv0.0.x.1716286617",
+  "version": "11.0.0-cogv0.0.x.1716292049",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -149,6 +149,10 @@
     "./preferences": {
       "types": "./dist/preferences/index.d.ts",
       "default": "./dist/preferences/index.js"
+    },
+    "./prometheus": {
+      "types": "./dist/prometheus/index.d.ts",
+      "default": "./dist/prometheus/index.js"
     },
     "./publicdashboard": {
       "types": "./dist/publicdashboard/index.d.ts",
