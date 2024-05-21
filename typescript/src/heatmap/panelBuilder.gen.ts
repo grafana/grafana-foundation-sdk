@@ -437,29 +437,95 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     // 	axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
     // }
     // Controls legend options
-    legend(legend: heatmap.HeatmapLegend): this {
+    showLegend(): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        this.internal.options.legend = legend;
+        if (!this.internal.options.legend) {
+            this.internal.options.legend = {
+	show: true,
+};
+        }
+        this.internal.options.legend.show = true;
         return this;
     }
 
-    // Controls tooltip options
-    tooltip(tooltip: heatmap.HeatmapTooltip): this {
+    // | *{
+    // 	axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
+    // }
+    // Controls legend options
+    hideLegend(): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        this.internal.options.tooltip = tooltip;
+        if (!this.internal.options.legend) {
+            this.internal.options.legend = {
+	show: true,
+};
+        }
+        this.internal.options.legend.show = false;
+        return this;
+    }
+
+    // Controls how the tooltip is shown
+    mode(mode: common.TooltipDisplayMode): this {
+        if (!this.internal.options) {
+            this.internal.options = heatmap.defaultOptions();
+        }
+        if (!this.internal.options.tooltip) {
+            this.internal.options.tooltip = heatmap.defaultHeatmapTooltip();
+        }
+        this.internal.options.tooltip.mode = mode;
+        return this;
+    }
+
+    // Controls if the tooltip shows a histogram of the y-axis values
+    showYHistogram(): this {
+        if (!this.internal.options) {
+            this.internal.options = heatmap.defaultOptions();
+        }
+        if (!this.internal.options.tooltip) {
+            this.internal.options.tooltip = heatmap.defaultHeatmapTooltip();
+        }
+        this.internal.options.tooltip.yHistogram = true;
+        return this;
+    }
+
+    // Controls if the tooltip shows a histogram of the y-axis values
+    hideYHistogram(): this {
+        if (!this.internal.options) {
+            this.internal.options = heatmap.defaultOptions();
+        }
+        if (!this.internal.options.tooltip) {
+            this.internal.options.tooltip = heatmap.defaultHeatmapTooltip();
+        }
+        this.internal.options.tooltip.yHistogram = false;
+        return this;
+    }
+
+    // Controls if the tooltip shows a color scale in header
+    showColorScale(showColorScale: boolean): this {
+        if (!this.internal.options) {
+            this.internal.options = heatmap.defaultOptions();
+        }
+        if (!this.internal.options.tooltip) {
+            this.internal.options.tooltip = heatmap.defaultHeatmapTooltip();
+        }
+        this.internal.options.tooltip.showColorScale = showColorScale;
         return this;
     }
 
     // Controls exemplar options
-    exemplarsColor(exemplars: heatmap.ExemplarConfig): this {
+    exemplarsColor(color: string): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        this.internal.options.exemplars = exemplars;
+        if (!this.internal.options.exemplars) {
+            this.internal.options.exemplars = {
+	color: "rgba(255,0,255,0.7)",
+};
+        }
+        this.internal.options.exemplars.color = color;
         return this;
     }
 

@@ -512,31 +512,77 @@ func (builder *PanelBuilder) YAxis(yAxis YAxisConfig) *PanelBuilder {
 //	}
 //
 // Controls legend options
-func (builder *PanelBuilder) Legend(legend HeatmapLegend) *PanelBuilder {
+func (builder *PanelBuilder) ShowLegend() *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Legend = legend
+	builder.internal.Options.(*Options).Legend.Show = true
 
 	return builder
 }
 
-// Controls tooltip options
-func (builder *PanelBuilder) Tooltip(tooltip HeatmapTooltip) *PanelBuilder {
+//	| *{
+//		axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
+//	}
+//
+// Controls legend options
+func (builder *PanelBuilder) HideLegend() *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Tooltip = tooltip
+	builder.internal.Options.(*Options).Legend.Show = false
+
+	return builder
+}
+
+// Controls how the tooltip is shown
+func (builder *PanelBuilder) Mode(mode common.TooltipDisplayMode) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).Tooltip.Mode = mode
+
+	return builder
+}
+
+// Controls if the tooltip shows a histogram of the y-axis values
+func (builder *PanelBuilder) ShowYHistogram() *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	valYHistogram := true
+	builder.internal.Options.(*Options).Tooltip.YHistogram = &valYHistogram
+
+	return builder
+}
+
+// Controls if the tooltip shows a histogram of the y-axis values
+func (builder *PanelBuilder) HideYHistogram() *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	valYHistogram := false
+	builder.internal.Options.(*Options).Tooltip.YHistogram = &valYHistogram
+
+	return builder
+}
+
+// Controls if the tooltip shows a color scale in header
+func (builder *PanelBuilder) ShowColorScale(showColorScale bool) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).Tooltip.ShowColorScale = &showColorScale
 
 	return builder
 }
 
 // Controls exemplar options
-func (builder *PanelBuilder) ExemplarsColor(exemplars ExemplarConfig) *PanelBuilder {
+func (builder *PanelBuilder) ExemplarsColor(color string) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Exemplars = exemplars
+	builder.internal.Options.(*Options).Exemplars.Color = color
 
 	return builder
 }
@@ -592,10 +638,5 @@ func (builder *PanelBuilder) applyDefaults() {
 	})
 	builder.ShowValue("auto")
 	builder.CellGap(1)
-	builder.Legend(HeatmapLegend{
-		Show: true,
-	})
-	builder.ExemplarsColor(ExemplarConfig{
-		Color: "rgba(255,0,255,0.7)",
-	})
+	builder.ExemplarsColor("rgba(255,0,255,0.7)")
 }

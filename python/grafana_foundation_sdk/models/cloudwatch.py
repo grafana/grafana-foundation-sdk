@@ -900,7 +900,7 @@ CloudWatchQuery: typing.TypeAlias = typing.Union['CloudWatchMetricsQuery', 'Clou
 
 
 def variant_config() -> cogruntime.DataqueryConfig:
-    decoding_map: dict[str, typing.Union[typing.Type[CloudWatchLogsQuery], typing.Type[CloudWatchAnnotationQuery], typing.Type[CloudWatchMetricsQuery]]] = {"Logs": CloudWatchLogsQuery, "Annotations": CloudWatchAnnotationQuery, "Metrics": CloudWatchMetricsQuery}
+    decoding_map: dict[str, typing.Union[typing.Type[CloudWatchAnnotationQuery], typing.Type[CloudWatchMetricsQuery], typing.Type[CloudWatchLogsQuery]]] = {"Annotations": CloudWatchAnnotationQuery, "Metrics": CloudWatchMetricsQuery, "Logs": CloudWatchLogsQuery}
     return cogruntime.DataqueryConfig(
         identifier="cloudwatch",
         from_json_hook=lambda data: decoding_map[data["queryMode"]].from_json(data),

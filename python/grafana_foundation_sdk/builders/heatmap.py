@@ -3,8 +3,8 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import dashboard
-from ..models import heatmap
 from ..cog import variants as cogvariants
+from ..models import heatmap
 from ..models import common
 
 
@@ -99,9 +99,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             raise ValueError("h must be > 0")
         if self._internal.grid_pos is None:
             self._internal.grid_pos = dashboard.GridPos()
-        
         assert isinstance(self._internal.grid_pos, dashboard.GridPos)
-        
         self._internal.grid_pos.h = h
     
         return self
@@ -117,9 +115,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             raise ValueError("w must be <= 24")
         if self._internal.grid_pos is None:
             self._internal.grid_pos = dashboard.GridPos()
-        
         assert isinstance(self._internal.grid_pos, dashboard.GridPos)
-        
         self._internal.grid_pos.w = w
     
         return self
@@ -262,14 +258,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.display_name = display_name
     
         return self
@@ -290,14 +282,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.unit = unit
     
         return self
@@ -312,14 +300,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.decimals = decimals
     
         return self
@@ -331,14 +315,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.min_val = min_val
     
         return self
@@ -350,14 +330,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.max_val = max_val
     
         return self
@@ -369,14 +345,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.mappings = mappings
     
         return self
@@ -388,14 +360,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         thresholds_resource = thresholds.build()
         self._internal.field_config.defaults.thresholds = thresholds_resource
     
@@ -408,14 +376,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         color_resource = color.build()
         self._internal.field_config.defaults.color = color_resource
     
@@ -428,14 +392,10 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         self._internal.field_config.defaults.no_value = no_value
     
         return self
@@ -447,9 +407,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         overrides_resources = [r1.build() for r1 in overrides]
         self._internal.field_config.overrides = overrides_resources
     
@@ -462,9 +420,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.overrides is None:
             self._internal.field_config.overrides = []
         
@@ -482,9 +438,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
         self._internal.options.calculate = calculate
     
         return self
@@ -496,9 +450,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
         calculation_resource = calculation.build()
         self._internal.options.calculation = calculation_resource
     
@@ -511,9 +463,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
         self._internal.options.color = color
     
         return self
@@ -525,9 +475,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
         self._internal.options.filter_values = filter_values
     
         return self
@@ -539,9 +487,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
         self._internal.options.rows_frame = rows_frame
     
         return self
@@ -556,9 +502,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
         self._internal.options.show_value = show_value
     
         return self
@@ -572,9 +516,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             raise ValueError("cell_gap must be <= 25")
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
         self._internal.options.cell_gap = cell_gap
     
         return self
@@ -586,9 +528,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
         self._internal.options.cell_radius = cell_radius
     
         return self
@@ -600,9 +540,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
         self._internal.options.cell_values = cell_values
     
         return self
@@ -614,14 +552,12 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
         self._internal.options.y_axis = y_axis
     
         return self
     
-    def legend(self, legend: heatmap.HeatmapLegend) -> typing.Self:    
+    def show_legend(self) -> typing.Self:    
         """
         | *{
         	axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
@@ -631,57 +567,117 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
-        self._internal.options.legend = legend
+        if self._internal.options.legend is None:
+            self._internal.options.legend = heatmap.HeatmapLegend()
+        assert isinstance(self._internal.options.legend, heatmap.HeatmapLegend)
+        self._internal.options.legend.show = True
     
         return self
     
-    def tooltip(self, tooltip: heatmap.HeatmapTooltip) -> typing.Self:    
+    def hide_legend(self) -> typing.Self:    
         """
-        Controls tooltip options
+        | *{
+        	axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
+        }
+        Controls legend options
         """
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
-        self._internal.options.tooltip = tooltip
+        if self._internal.options.legend is None:
+            self._internal.options.legend = heatmap.HeatmapLegend()
+        assert isinstance(self._internal.options.legend, heatmap.HeatmapLegend)
+        self._internal.options.legend.show = False
     
         return self
     
-    def exemplars_color(self, exemplars: heatmap.ExemplarConfig) -> typing.Self:    
+    def mode(self, mode: common.TooltipDisplayMode) -> typing.Self:    
+        """
+        Controls how the tooltip is shown
+        """
+            
+        if self._internal.options is None:
+            self._internal.options = heatmap.Options()
+        assert isinstance(self._internal.options, heatmap.Options)
+        if self._internal.options.tooltip is None:
+            self._internal.options.tooltip = heatmap.HeatmapTooltip()
+        assert isinstance(self._internal.options.tooltip, heatmap.HeatmapTooltip)
+        self._internal.options.tooltip.mode = mode
+    
+        return self
+    
+    def show_y_histogram(self) -> typing.Self:    
+        """
+        Controls if the tooltip shows a histogram of the y-axis values
+        """
+            
+        if self._internal.options is None:
+            self._internal.options = heatmap.Options()
+        assert isinstance(self._internal.options, heatmap.Options)
+        if self._internal.options.tooltip is None:
+            self._internal.options.tooltip = heatmap.HeatmapTooltip()
+        assert isinstance(self._internal.options.tooltip, heatmap.HeatmapTooltip)
+        self._internal.options.tooltip.y_histogram = True
+    
+        return self
+    
+    def hide_y_histogram(self) -> typing.Self:    
+        """
+        Controls if the tooltip shows a histogram of the y-axis values
+        """
+            
+        if self._internal.options is None:
+            self._internal.options = heatmap.Options()
+        assert isinstance(self._internal.options, heatmap.Options)
+        if self._internal.options.tooltip is None:
+            self._internal.options.tooltip = heatmap.HeatmapTooltip()
+        assert isinstance(self._internal.options.tooltip, heatmap.HeatmapTooltip)
+        self._internal.options.tooltip.y_histogram = False
+    
+        return self
+    
+    def show_color_scale(self, show_color_scale: bool) -> typing.Self:    
+        """
+        Controls if the tooltip shows a color scale in header
+        """
+            
+        if self._internal.options is None:
+            self._internal.options = heatmap.Options()
+        assert isinstance(self._internal.options, heatmap.Options)
+        if self._internal.options.tooltip is None:
+            self._internal.options.tooltip = heatmap.HeatmapTooltip()
+        assert isinstance(self._internal.options.tooltip, heatmap.HeatmapTooltip)
+        self._internal.options.tooltip.show_color_scale = show_color_scale
+    
+        return self
+    
+    def exemplars_color(self, color: str) -> typing.Self:    
         """
         Controls exemplar options
         """
             
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
-        
         assert isinstance(self._internal.options, heatmap.Options)
-        
-        self._internal.options.exemplars = exemplars
+        if self._internal.options.exemplars is None:
+            self._internal.options.exemplars = heatmap.ExemplarConfig()
+        assert isinstance(self._internal.options.exemplars, heatmap.ExemplarConfig)
+        self._internal.options.exemplars.color = color
     
         return self
     
     def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = heatmap.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, heatmap.FieldConfig)
-        
         scale_distribution_resource = scale_distribution.build()
         self._internal.field_config.defaults.custom.scale_distribution = scale_distribution_resource
     
@@ -690,19 +686,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
-        
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        
         if self._internal.field_config.defaults is None:
             self._internal.field_config.defaults = dashboard.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = heatmap.FieldConfig()
-        
         assert isinstance(self._internal.field_config.defaults.custom, heatmap.FieldConfig)
-        
         hide_from_resource = hide_from.build()
         self._internal.field_config.defaults.custom.hide_from = hide_from_resource
     
