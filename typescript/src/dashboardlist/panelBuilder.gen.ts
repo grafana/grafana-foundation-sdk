@@ -395,6 +395,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    showFolderNames(showFolderNames: boolean): this {
+        if (!this.internal.options) {
+            this.internal.options = dashboardlist.defaultOptions();
+        }
+        this.internal.options.showFolderNames = showFolderNames;
+        return this;
+    }
+
     maxItems(maxItems: number): this {
         if (!this.internal.options) {
             this.internal.options = dashboardlist.defaultOptions();

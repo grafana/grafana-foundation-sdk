@@ -556,7 +556,7 @@ type StringOrPipelineMetricAggregationType struct {
 type StringOrStruct struct {
 	String *string `json:"String,omitempty"`
 	Struct *struct {
-		Inline string `json:"inline,omitempty"`
+		Inline *string `json:"inline,omitempty"`
 	} `json:"Struct,omitempty"`
 }
 

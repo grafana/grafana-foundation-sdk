@@ -11,6 +11,7 @@ class Options:
     show_recently_viewed: bool
     show_search: bool
     show_headings: bool
+    show_folder_names: bool
     max_items: int
     query: str
     tags: list[str]
@@ -18,13 +19,14 @@ class Options:
     folder_id: typing.Optional[int]
     folder_uid: typing.Optional[str]
 
-    def __init__(self, keep_time: bool = False, include_vars: bool = False, show_starred: bool = True, show_recently_viewed: bool = False, show_search: bool = False, show_headings: bool = True, max_items: int = 10, query: str = "", tags: typing.Optional[list[str]] = None, folder_id: typing.Optional[int] = None, folder_uid: typing.Optional[str] = None):
+    def __init__(self, keep_time: bool = False, include_vars: bool = False, show_starred: bool = True, show_recently_viewed: bool = False, show_search: bool = False, show_headings: bool = True, show_folder_names: bool = True, max_items: int = 10, query: str = "", tags: typing.Optional[list[str]] = None, folder_id: typing.Optional[int] = None, folder_uid: typing.Optional[str] = None):
         self.keep_time = keep_time
         self.include_vars = include_vars
         self.show_starred = show_starred
         self.show_recently_viewed = show_recently_viewed
         self.show_search = show_search
         self.show_headings = show_headings
+        self.show_folder_names = show_folder_names
         self.max_items = max_items
         self.query = query
         self.tags = tags if tags is not None else []
@@ -39,6 +41,7 @@ class Options:
             "showRecentlyViewed": self.show_recently_viewed,
             "showSearch": self.show_search,
             "showHeadings": self.show_headings,
+            "showFolderNames": self.show_folder_names,
             "maxItems": self.max_items,
             "query": self.query,
             "tags": self.tags,
@@ -65,6 +68,8 @@ class Options:
             args["show_search"] = data["showSearch"]
         if "showHeadings" in data:
             args["show_headings"] = data["showHeadings"]
+        if "showFolderNames" in data:
+            args["show_folder_names"] = data["showFolderNames"]
         if "maxItems" in data:
             args["max_items"] = data["maxItems"]
         if "query" in data:
