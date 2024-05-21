@@ -2185,9 +2185,9 @@ class ElasticsearchMetricAggregationWithMissingSupportSettings:
 
 
 class ElasticsearchInlineScript:
-    inline: str
+    inline: typing.Optional[str]
 
-    def __init__(self, inline: str = ""):
+    def __init__(self, inline: typing.Optional[str] = None):
         self.inline = inline
 
     def to_json(self) -> dict[str, object]:
