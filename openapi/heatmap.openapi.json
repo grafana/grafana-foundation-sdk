@@ -1,1 +1,466 @@
-{"openapi":"3.0.0","info":{"title":"heatmap","version":"0.0.0","x-schema-identifier":"heatmap","x-schema-kind":"composable","x-schema-variant":"panelcfg"},"paths":{},"components":{"schemas":{"HeatmapColorMode":{"enum":["opacity","scheme"],"description":"Controls the color mode of the heatmap"},"HeatmapColorScale":{"enum":["linear","exponential"],"description":"Controls the color scale of the heatmap"},"HeatmapColorOptions":{"type":"object","additionalProperties":false,"required":["scheme","fill","exponent","steps","reverse"],"properties":{"mode":{"$ref":"#/components/schemas/HeatmapColorMode","description":"Sets the color mode"},"scheme":{"type":"string","description":"Controls the color scheme used"},"fill":{"type":"string","description":"Controls the color fill when in opacity mode"},"scale":{"$ref":"#/components/schemas/HeatmapColorScale","description":"Controls the color scale"},"exponent":{"type":"number","description":"Controls the exponent when scale is set to exponential"},"steps":{"type":"integer","minimum":2,"maximum":128,"description":"Controls the number of color steps"},"reverse":{"type":"boolean","description":"Reverses the color scheme"},"min":{"type":"number","description":"Sets the minimum value for the color scale"},"max":{"type":"number","description":"Sets the maximum value for the color scale"}},"description":"Controls various color options"},"YAxisConfig":{"type":"object","additionalProperties":false,"properties":{"unit":{"type":"string","description":"Sets the yAxis unit"},"reverse":{"type":"boolean","description":"Reverses the yAxis"},"decimals":{"type":"number","description":"Controls the number of decimals for yAxis values"},"min":{"type":"number","description":"Sets the minimum value for the yAxis"},"axisPlacement":{"$ref":"#/components/schemas/AxisPlacement"},"axisColorMode":{"$ref":"#/components/schemas/AxisColorMode"},"axisLabel":{"type":"string"},"axisWidth":{"type":"number"},"axisSoftMin":{"type":"number"},"axisSoftMax":{"type":"number"},"axisGridShow":{"type":"boolean"},"scaleDistribution":{"$ref":"#/components/schemas/ScaleDistributionConfig"},"axisCenteredZero":{"type":"boolean"},"max":{"type":"number","description":"Sets the maximum value for the yAxis"},"axisBorderShow":{"type":"boolean"}},"description":"Configuration options for the yAxis"},"CellValues":{"type":"object","additionalProperties":false,"properties":{"unit":{"type":"string","description":"Controls the cell value unit"},"decimals":{"type":"number","description":"Controls the number of decimals for cell values"}},"description":"Controls cell value options"},"FilterValueRange":{"type":"object","additionalProperties":false,"properties":{"le":{"type":"number","description":"Sets the filter range to values less than or equal to the given value"},"ge":{"type":"number","description":"Sets the filter range to values greater than or equal to the given value"}},"description":"Controls the value filter range"},"HeatmapTooltip":{"type":"object","additionalProperties":false,"required":["mode"],"properties":{"mode":{"$ref":"#/components/schemas/TooltipDisplayMode","description":"Controls how the tooltip is shown"},"maxHeight":{"type":"number"},"maxWidth":{"type":"number"},"yHistogram":{"type":"boolean","description":"Controls if the tooltip shows a histogram of the y-axis values"},"showColorScale":{"type":"boolean","description":"Controls if the tooltip shows a color scale in header"}},"description":"Controls tooltip options"},"HeatmapLegend":{"type":"object","additionalProperties":false,"required":["show"],"properties":{"show":{"type":"boolean","description":"Controls if the legend is shown"}},"description":"Controls legend options"},"ExemplarConfig":{"type":"object","additionalProperties":false,"required":["color"],"properties":{"color":{"type":"string","description":"Sets the color of the exemplar markers"}},"description":"Controls exemplar options"},"RowsHeatmapOptions":{"type":"object","additionalProperties":false,"properties":{"value":{"type":"string","description":"Sets the name of the cell when not calculating from data"},"layout":{"$ref":"#/components/schemas/HeatmapCellLayout","description":"Controls tick alignment when not calculating from data"}},"description":"Controls frame rows options"},"Options":{"type":"object","additionalProperties":false,"required":["color","showValue","yAxis","legend","tooltip","exemplars"],"properties":{"calculate":{"type":"boolean","description":"Controls if the heatmap should be calculated from data","default":false},"calculation":{"$ref":"#/components/schemas/HeatmapCalculationOptions","description":"Calculation options for the heatmap"},"color":{"$ref":"#/components/schemas/HeatmapColorOptions","description":"Controls the color options","default":{"exponent":0.5,"fill":"dark-orange","reverse":false,"scheme":"Oranges","steps":64}},"filterValues":{"$ref":"#/components/schemas/FilterValueRange","description":"Filters values between a given range","default":{"le":1e-9}},"rowsFrame":{"$ref":"#/components/schemas/RowsHeatmapOptions","description":"Controls tick alignment and value name when not calculating from data"},"showValue":{"$ref":"#/components/schemas/VisibilityMode","description":"| *{\n\tlayout: ui.HeatmapCellLayout \u0026 \"auto\" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed\n}\nControls the display of the value in the cell","default":"auto"},"cellGap":{"type":"integer","maximum":25,"description":"Controls gap between cells","default":1},"cellRadius":{"type":"number","description":"Controls cell radius"},"cellValues":{"$ref":"#/components/schemas/CellValues","description":"Controls cell value unit"},"yAxis":{"$ref":"#/components/schemas/YAxisConfig","description":"Controls yAxis placement"},"legend":{"$ref":"#/components/schemas/HeatmapLegend","description":"| *{\n\taxisPlacement: ui.AxisPlacement \u0026 \"left\" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed\n}\nControls legend options","default":{"show":true}},"tooltip":{"$ref":"#/components/schemas/HeatmapTooltip","description":"Controls tooltip options"},"exemplars":{"$ref":"#/components/schemas/ExemplarConfig","description":"Controls exemplar options","default":{"color":"rgba(255,0,255,0.7)"}}}},"FieldConfig":{"type":"object","additionalProperties":false,"properties":{"scaleDistribution":{"$ref":"#/components/schemas/ScaleDistributionConfig"},"hideFrom":{"$ref":"#/components/schemas/HideSeriesConfig"}}},"AxisPlacement":{"enum":["auto","top","right","bottom","left","hidden"],"description":"TODO docs"},"AxisColorMode":{"enum":["text","series"],"description":"TODO docs"},"ScaleDistributionConfig":{"type":"object","additionalProperties":false,"required":["type"],"properties":{"type":{"$ref":"#/components/schemas/ScaleDistribution"},"log":{"type":"number"},"linearThreshold":{"type":"number"}},"description":"TODO docs"},"TooltipDisplayMode":{"enum":["single","multi","none"],"description":"TODO docs"},"HeatmapCellLayout":{"enum":["le","ge","unknown","auto"]},"HeatmapCalculationOptions":{"type":"object","additionalProperties":false,"properties":{"xBuckets":{"$ref":"#/components/schemas/HeatmapCalculationBucketConfig","description":"The number of buckets to use for the xAxis in the heatmap"},"yBuckets":{"$ref":"#/components/schemas/HeatmapCalculationBucketConfig","description":"The number of buckets to use for the yAxis in the heatmap"}}},"VisibilityMode":{"enum":["auto","never","always"],"description":"TODO docs"},"HideSeriesConfig":{"type":"object","additionalProperties":false,"required":["tooltip","legend","viz"],"properties":{"tooltip":{"type":"boolean"},"legend":{"type":"boolean"},"viz":{"type":"boolean"}},"description":"TODO docs"},"ScaleDistribution":{"enum":["linear","log","ordinal","symlog"],"description":"TODO docs"},"HeatmapCalculationBucketConfig":{"type":"object","additionalProperties":false,"properties":{"mode":{"$ref":"#/components/schemas/HeatmapCalculationMode","description":"Sets the bucket calculation mode"},"value":{"type":"string","description":"The number of buckets to use for the axis in the heatmap"},"scale":{"$ref":"#/components/schemas/ScaleDistributionConfig","description":"Controls the scale of the buckets"}}},"HeatmapCalculationMode":{"enum":["size","count"]}}}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "heatmap",
+    "version": "0.0.0",
+    "x-schema-identifier": "heatmap",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "HeatmapColorMode": {
+        "enum": [
+          "opacity",
+          "scheme"
+        ],
+        "description": "Controls the color mode of the heatmap"
+      },
+      "HeatmapColorScale": {
+        "enum": [
+          "linear",
+          "exponential"
+        ],
+        "description": "Controls the color scale of the heatmap"
+      },
+      "HeatmapColorOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scheme",
+          "fill",
+          "exponent",
+          "steps",
+          "reverse"
+        ],
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/HeatmapColorMode",
+            "description": "Sets the color mode"
+          },
+          "scheme": {
+            "type": "string",
+            "description": "Controls the color scheme used"
+          },
+          "fill": {
+            "type": "string",
+            "description": "Controls the color fill when in opacity mode"
+          },
+          "scale": {
+            "$ref": "#/components/schemas/HeatmapColorScale",
+            "description": "Controls the color scale"
+          },
+          "exponent": {
+            "type": "number",
+            "description": "Controls the exponent when scale is set to exponential"
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 128,
+            "description": "Controls the number of color steps"
+          },
+          "reverse": {
+            "type": "boolean",
+            "description": "Reverses the color scheme"
+          },
+          "min": {
+            "type": "number",
+            "description": "Sets the minimum value for the color scale"
+          },
+          "max": {
+            "type": "number",
+            "description": "Sets the maximum value for the color scale"
+          }
+        },
+        "description": "Controls various color options"
+      },
+      "YAxisConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "unit": {
+            "type": "string",
+            "description": "Sets the yAxis unit"
+          },
+          "reverse": {
+            "type": "boolean",
+            "description": "Reverses the yAxis"
+          },
+          "decimals": {
+            "type": "number",
+            "description": "Controls the number of decimals for yAxis values"
+          },
+          "min": {
+            "type": "number",
+            "description": "Sets the minimum value for the yAxis"
+          },
+          "axisPlacement": {
+            "$ref": "#/components/schemas/AxisPlacement"
+          },
+          "axisColorMode": {
+            "$ref": "#/components/schemas/AxisColorMode"
+          },
+          "axisLabel": {
+            "type": "string"
+          },
+          "axisWidth": {
+            "type": "number"
+          },
+          "axisSoftMin": {
+            "type": "number"
+          },
+          "axisSoftMax": {
+            "type": "number"
+          },
+          "axisGridShow": {
+            "type": "boolean"
+          },
+          "scaleDistribution": {
+            "$ref": "#/components/schemas/ScaleDistributionConfig"
+          },
+          "axisCenteredZero": {
+            "type": "boolean"
+          },
+          "max": {
+            "type": "number",
+            "description": "Sets the maximum value for the yAxis"
+          },
+          "axisBorderShow": {
+            "type": "boolean"
+          }
+        },
+        "description": "Configuration options for the yAxis"
+      },
+      "CellValues": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "unit": {
+            "type": "string",
+            "description": "Controls the cell value unit"
+          },
+          "decimals": {
+            "type": "number",
+            "description": "Controls the number of decimals for cell values"
+          }
+        },
+        "description": "Controls cell value options"
+      },
+      "FilterValueRange": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "le": {
+            "type": "number",
+            "description": "Sets the filter range to values less than or equal to the given value"
+          },
+          "ge": {
+            "type": "number",
+            "description": "Sets the filter range to values greater than or equal to the given value"
+          }
+        },
+        "description": "Controls the value filter range"
+      },
+      "HeatmapTooltip": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/TooltipDisplayMode",
+            "description": "Controls how the tooltip is shown"
+          },
+          "maxHeight": {
+            "type": "number"
+          },
+          "maxWidth": {
+            "type": "number"
+          },
+          "yHistogram": {
+            "type": "boolean",
+            "description": "Controls if the tooltip shows a histogram of the y-axis values"
+          },
+          "showColorScale": {
+            "type": "boolean",
+            "description": "Controls if the tooltip shows a color scale in header"
+          }
+        },
+        "description": "Controls tooltip options"
+      },
+      "HeatmapLegend": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "show"
+        ],
+        "properties": {
+          "show": {
+            "type": "boolean",
+            "description": "Controls if the legend is shown"
+          }
+        },
+        "description": "Controls legend options"
+      },
+      "ExemplarConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "color"
+        ],
+        "properties": {
+          "color": {
+            "type": "string",
+            "description": "Sets the color of the exemplar markers"
+          }
+        },
+        "description": "Controls exemplar options"
+      },
+      "RowsHeatmapOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Sets the name of the cell when not calculating from data"
+          },
+          "layout": {
+            "$ref": "#/components/schemas/HeatmapCellLayout",
+            "description": "Controls tick alignment when not calculating from data"
+          }
+        },
+        "description": "Controls frame rows options"
+      },
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "color",
+          "showValue",
+          "yAxis",
+          "legend",
+          "tooltip",
+          "exemplars"
+        ],
+        "properties": {
+          "calculate": {
+            "type": "boolean",
+            "description": "Controls if the heatmap should be calculated from data",
+            "default": false
+          },
+          "calculation": {
+            "$ref": "#/components/schemas/HeatmapCalculationOptions",
+            "description": "Calculation options for the heatmap"
+          },
+          "color": {
+            "$ref": "#/components/schemas/HeatmapColorOptions",
+            "description": "Controls the color options",
+            "default": {
+              "exponent": 0.5,
+              "fill": "dark-orange",
+              "reverse": false,
+              "scheme": "Oranges",
+              "steps": 64
+            }
+          },
+          "filterValues": {
+            "$ref": "#/components/schemas/FilterValueRange",
+            "description": "Filters values between a given range",
+            "default": {
+              "le": 1e-9
+            }
+          },
+          "rowsFrame": {
+            "$ref": "#/components/schemas/RowsHeatmapOptions",
+            "description": "Controls tick alignment and value name when not calculating from data"
+          },
+          "showValue": {
+            "$ref": "#/components/schemas/VisibilityMode",
+            "description": "| *{\n\tlayout: ui.HeatmapCellLayout \u0026 \"auto\" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed\n}\nControls the display of the value in the cell",
+            "default": "auto"
+          },
+          "cellGap": {
+            "type": "integer",
+            "maximum": 25,
+            "description": "Controls gap between cells",
+            "default": 1
+          },
+          "cellRadius": {
+            "type": "number",
+            "description": "Controls cell radius"
+          },
+          "cellValues": {
+            "$ref": "#/components/schemas/CellValues",
+            "description": "Controls cell value unit"
+          },
+          "yAxis": {
+            "$ref": "#/components/schemas/YAxisConfig",
+            "description": "Controls yAxis placement"
+          },
+          "legend": {
+            "$ref": "#/components/schemas/HeatmapLegend",
+            "description": "| *{\n\taxisPlacement: ui.AxisPlacement \u0026 \"left\" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed\n}\nControls legend options",
+            "default": {
+              "show": true
+            }
+          },
+          "tooltip": {
+            "$ref": "#/components/schemas/HeatmapTooltip",
+            "description": "Controls tooltip options"
+          },
+          "exemplars": {
+            "$ref": "#/components/schemas/ExemplarConfig",
+            "description": "Controls exemplar options",
+            "default": {
+              "color": "rgba(255,0,255,0.7)"
+            }
+          }
+        }
+      },
+      "FieldConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "scaleDistribution": {
+            "$ref": "#/components/schemas/ScaleDistributionConfig"
+          },
+          "hideFrom": {
+            "$ref": "#/components/schemas/HideSeriesConfig"
+          }
+        }
+      },
+      "AxisPlacement": {
+        "enum": [
+          "auto",
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "hidden"
+        ],
+        "description": "TODO docs"
+      },
+      "AxisColorMode": {
+        "enum": [
+          "text",
+          "series"
+        ],
+        "description": "TODO docs"
+      },
+      "ScaleDistributionConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ScaleDistribution"
+          },
+          "log": {
+            "type": "number"
+          },
+          "linearThreshold": {
+            "type": "number"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "TooltipDisplayMode": {
+        "enum": [
+          "single",
+          "multi",
+          "none"
+        ],
+        "description": "TODO docs"
+      },
+      "HeatmapCellLayout": {
+        "enum": [
+          "le",
+          "ge",
+          "unknown",
+          "auto"
+        ]
+      },
+      "HeatmapCalculationOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "xBuckets": {
+            "$ref": "#/components/schemas/HeatmapCalculationBucketConfig",
+            "description": "The number of buckets to use for the xAxis in the heatmap"
+          },
+          "yBuckets": {
+            "$ref": "#/components/schemas/HeatmapCalculationBucketConfig",
+            "description": "The number of buckets to use for the yAxis in the heatmap"
+          }
+        }
+      },
+      "VisibilityMode": {
+        "enum": [
+          "auto",
+          "never",
+          "always"
+        ],
+        "description": "TODO docs"
+      },
+      "HideSeriesConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tooltip",
+          "legend",
+          "viz"
+        ],
+        "properties": {
+          "tooltip": {
+            "type": "boolean"
+          },
+          "legend": {
+            "type": "boolean"
+          },
+          "viz": {
+            "type": "boolean"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "ScaleDistribution": {
+        "enum": [
+          "linear",
+          "log",
+          "ordinal",
+          "symlog"
+        ],
+        "description": "TODO docs"
+      },
+      "HeatmapCalculationBucketConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/HeatmapCalculationMode",
+            "description": "Sets the bucket calculation mode"
+          },
+          "value": {
+            "type": "string",
+            "description": "The number of buckets to use for the axis in the heatmap"
+          },
+          "scale": {
+            "$ref": "#/components/schemas/ScaleDistributionConfig",
+            "description": "Controls the scale of the buckets"
+          }
+        }
+      },
+      "HeatmapCalculationMode": {
+        "enum": [
+          "size",
+          "count"
+        ]
+      }
+    }
+  }
+}

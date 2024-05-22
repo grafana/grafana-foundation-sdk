@@ -870,4 +870,9 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.Transparent(false)
 	builder.Height(9)
 	builder.Span(12)
+	builder.Legend(common.NewVizLegendOptionsBuilder().
+		Calcs([]string{}).
+		DisplayMode("list").
+		Placement("bottom"),
+	)
 }
