@@ -13,7 +13,7 @@ class Options:
 
     def __init__(self, timezone: typing.Optional[list[common.TimeZone]] = None, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, orientation: typing.Optional[common.VizOrientation] = None):
         self.timezone = timezone
-        self.legend = legend if legend is not None else common.VizLegendOptions()
+        self.legend = legend if legend is not None else common.VizLegendOptions(calcs=[], display_mode=common.LegendDisplayMode.LIST, placement=common.LegendPlacement.BOTTOM)
         self.tooltip = tooltip if tooltip is not None else common.VizTooltipOptions()
         self.orientation = orientation
 

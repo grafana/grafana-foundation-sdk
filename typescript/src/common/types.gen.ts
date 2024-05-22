@@ -693,7 +693,8 @@ export const defaultVizLegendOptions = (): VizLegendOptions => ({
 	displayMode: LegendDisplayMode.List,
 	placement: LegendPlacement.Bottom,
 	showLegend: false,
-	calcs: [],
+	calcs: [
+],
 });
 
 // Enum expressing the possible display modes
