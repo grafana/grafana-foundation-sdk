@@ -41,8 +41,6 @@ type DataQuery struct {
 	Datasource any `json:"datasource,omitempty"`
 }
 
-func (resource DataQuery) ImplementsDataqueryVariant() {}
-
 type BaseDimensionConfig struct {
 	// fixed: T -- will be added by each element
 	Field *string `json:"field,omitempty"`

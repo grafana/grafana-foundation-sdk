@@ -6,24 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
-
-func VariantConfig() cogvariants.DataqueryConfig {
-	return cogvariants.DataqueryConfig{
-		Identifier: "",
-		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
-			dataquery := DataQuery{}
-
-			if err := json.Unmarshal(raw, &dataquery); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-	}
-}
 
 func (resource BoolOrFloat64) MarshalJSON() ([]byte, error) {
 	if resource.Bool != nil {
