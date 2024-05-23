@@ -4,7 +4,8 @@
     "title": "expr",
     "version": "0.0.0",
     "x-schema-identifier": "__expr__",
-    "x-schema-kind": ""
+    "x-schema-kind": "composable",
+    "x-schema-variant": "dataquery"
   },
   "paths": {},
   "components": {

@@ -2,8 +2,6 @@
 
 import enum
 import typing
-from ..cog import variants as cogvariants
-from ..cog import runtime as cogruntime
 
 
 class DataTopic(enum.StrEnum):
@@ -68,7 +66,7 @@ class DataSourceJsonData:
         return cls(**args)
 
 
-class DataQuery(cogvariants.Dataquery):
+class DataQuery:
     """
     These are the common properties available to all queries in all datasources.
     Specific implementations will *extend* this interface, adding the required
@@ -122,13 +120,6 @@ class DataQuery(cogvariants.Dataquery):
             args["datasource"] = data["datasource"]        
 
         return cls(**args)
-
-
-def variant_config() -> cogruntime.DataqueryConfig:
-    return cogruntime.DataqueryConfig(
-        identifier="",
-        from_json_hook=DataQuery.from_json,
-    )
 
 
 class BaseDimensionConfig:
