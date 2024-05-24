@@ -41,8 +41,6 @@ type DataQuery struct {
 	Datasource any `json:"datasource,omitempty"`
 }
 
-func (resource DataQuery) ImplementsDataqueryVariant() {}
-
 type BaseDimensionConfig struct {
 	// fixed: T -- will be added by each element
 	Field *string `json:"field,omitempty"`
@@ -570,6 +568,7 @@ type GraphFieldConfig struct {
 	PointSymbol    *string        `json:"pointSymbol,omitempty"`
 	AxisBorderShow *bool          `json:"axisBorderShow,omitempty"`
 	BarMaxWidth    *float64       `json:"barMaxWidth,omitempty"`
+	InsertNulls    *BoolOrUint32  `json:"insertNulls,omitempty"`
 }
 
 // TODO docs
@@ -890,6 +889,11 @@ const (
 type BoolOrFloat64 struct {
 	Bool    *bool    `json:"Bool,omitempty"`
 	Float64 *float64 `json:"Float64,omitempty"`
+}
+
+type BoolOrUint32 struct {
+	Bool   *bool   `json:"Bool,omitempty"`
+	Uint32 *uint32 `json:"Uint32,omitempty"`
 }
 
 type TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions struct {

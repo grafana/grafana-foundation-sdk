@@ -1,1 +1,63 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","definitions":{"Options":{"type":"object","additionalProperties":false,"required":["showLabels","showCommonLabels","showTime","showLogContextToggle","wrapLogMessage","prettifyLogMessage","enableLogDetails","sortOrder","dedupStrategy"],"properties":{"showLabels":{"type":"boolean"},"showCommonLabels":{"type":"boolean"},"showTime":{"type":"boolean"},"showLogContextToggle":{"type":"boolean"},"wrapLogMessage":{"type":"boolean"},"prettifyLogMessage":{"type":"boolean"},"enableLogDetails":{"type":"boolean"},"sortOrder":{"$ref":"#/definitions/LogsSortOrder"},"dedupStrategy":{"$ref":"#/definitions/LogsDedupStrategy"}}},"LogsSortOrder":{"enum":["Descending","Ascending"]},"LogsDedupStrategy":{"enum":["none","exact","numbers","signature"]}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "showLabels",
+        "showCommonLabels",
+        "showTime",
+        "showLogContextToggle",
+        "wrapLogMessage",
+        "prettifyLogMessage",
+        "enableLogDetails",
+        "sortOrder",
+        "dedupStrategy"
+      ],
+      "properties": {
+        "showLabels": {
+          "type": "boolean"
+        },
+        "showCommonLabels": {
+          "type": "boolean"
+        },
+        "showTime": {
+          "type": "boolean"
+        },
+        "showLogContextToggle": {
+          "type": "boolean"
+        },
+        "wrapLogMessage": {
+          "type": "boolean"
+        },
+        "prettifyLogMessage": {
+          "type": "boolean"
+        },
+        "enableLogDetails": {
+          "type": "boolean"
+        },
+        "sortOrder": {
+          "$ref": "#/definitions/LogsSortOrder"
+        },
+        "dedupStrategy": {
+          "$ref": "#/definitions/LogsDedupStrategy"
+        }
+      }
+    },
+    "LogsSortOrder": {
+      "enum": [
+        "Descending",
+        "Ascending"
+      ]
+    },
+    "LogsDedupStrategy": {
+      "enum": [
+        "none",
+        "exact",
+        "numbers",
+        "signature"
+      ]
+    }
+  }
+}

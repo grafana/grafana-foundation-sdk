@@ -208,9 +208,15 @@ func (builder *DashboardBuilder) WithPanel(panel cog.Builder[Panel]) *DashboardB
 		return builder
 	}
 
-	// Position the panel on the grid
-	panelResource.GridPos.X = builder.currentX
-	panelResource.GridPos.Y = builder.currentY
+	if panelResource.GridPos == nil {
+		panelResource.GridPos = &GridPos{}
+	}
+	// The panel either has no position set, or it is the first panel of the dashboard.
+	// In that case, we position it on the grid
+	if panelResource.GridPos.X == 0 && panelResource.GridPos.Y == 0 {
+		panelResource.GridPos.X = builder.currentX
+		panelResource.GridPos.Y = builder.currentY
+	}
 	builder.internal.Panels = append(builder.internal.Panels, PanelOrRowPanel{
 		Panel: &panelResource,
 	})
@@ -255,9 +261,12 @@ func (builder *DashboardBuilder) WithRow(rowPanel cog.Builder[RowPanel]) *Dashbo
 
 	// Position the row's panels on the grid
 	for _, panel := range rowPanelResource.Panels {
-		// Position the panel on the grid
-		panel.GridPos.X = builder.currentX
-		panel.GridPos.Y = builder.currentY
+		// The panel either has no position set, or it is the first panel of the dashboard.
+		// In that case, we position it on the grid
+		if panel.GridPos.X == 0 && panel.GridPos.Y == 0 {
+			panel.GridPos.X = builder.currentX
+			panel.GridPos.Y = builder.currentY
+		}
 
 		// Prepare the coordinates for the next panel
 		builder.currentX += panel.GridPos.W
