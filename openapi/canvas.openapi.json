@@ -1,1 +1,324 @@
-{"openapi":"3.0.0","info":{"title":"canvas","version":"0.0.0","x-schema-identifier":"canvas","x-schema-kind":"composable","x-schema-variant":"panelcfg"},"paths":{},"components":{"schemas":{"HorizontalConstraint":{"enum":["left","right","leftright","center","scale"]},"VerticalConstraint":{"enum":["top","bottom","topbottom","center","scale"]},"Constraint":{"type":"object","additionalProperties":false,"properties":{"horizontal":{"$ref":"#/components/schemas/HorizontalConstraint"},"vertical":{"$ref":"#/components/schemas/VerticalConstraint"}}},"Placement":{"type":"object","additionalProperties":false,"properties":{"top":{"type":"number"},"left":{"type":"number"},"right":{"type":"number"},"bottom":{"type":"number"},"width":{"type":"number"},"height":{"type":"number"}}},"BackgroundImageSize":{"enum":["original","contain","cover","fill","tile"]},"BackgroundConfig":{"type":"object","additionalProperties":false,"properties":{"color":{"$ref":"#/components/schemas/ColorDimensionConfig"},"image":{"$ref":"#/components/schemas/ResourceDimensionConfig"},"size":{"$ref":"#/components/schemas/BackgroundImageSize"}}},"LineConfig":{"type":"object","additionalProperties":false,"properties":{"color":{"$ref":"#/components/schemas/ColorDimensionConfig"},"width":{"type":"number"}}},"HttpRequestMethod":{"enum":["GET","POST","PUT"]},"ConnectionCoordinates":{"type":"object","additionalProperties":false,"required":["x","y"],"properties":{"x":{"type":"number"},"y":{"type":"number"}}},"ConnectionPath":{"enum":["straight"]},"CanvasConnection":{"type":"object","additionalProperties":false,"required":["source","target","path"],"properties":{"source":{"$ref":"#/components/schemas/ConnectionCoordinates"},"target":{"$ref":"#/components/schemas/ConnectionCoordinates"},"targetName":{"type":"string"},"path":{"$ref":"#/components/schemas/ConnectionPath"},"color":{"$ref":"#/components/schemas/ColorDimensionConfig"},"size":{"$ref":"#/components/schemas/ScaleDimensionConfig"}}},"CanvasElementOptions":{"type":"object","additionalProperties":false,"required":["name","type"],"properties":{"name":{"type":"string"},"type":{"type":"string"},"config":{"type":"object","additionalProperties":{},"description":"TODO: figure out how to define this (element config(s))"},"constraint":{"$ref":"#/components/schemas/Constraint"},"placement":{"$ref":"#/components/schemas/Placement"},"background":{"$ref":"#/components/schemas/BackgroundConfig"},"border":{"$ref":"#/components/schemas/LineConfig"},"connections":{"type":"array","items":{"$ref":"#/components/schemas/CanvasConnection"}}}},"Options":{"type":"object","additionalProperties":false,"required":["inlineEditing","showAdvancedTypes","root"],"properties":{"inlineEditing":{"type":"boolean","description":"Enable inline editing","default":true},"showAdvancedTypes":{"type":"boolean","description":"Show all available element types","default":true},"root":{"type":"object","additionalProperties":false,"required":["name","type","elements"],"properties":{"name":{"type":"string","description":"Name of the root element"},"type":{"type":"string","const":"frame","description":"Type of root element (frame)"},"elements":{"type":"array","items":{"$ref":"#/components/schemas/CanvasElementOptions"},"description":"The list of canvas elements attached to the root element"}},"description":"The root element of canvas (frame), where all canvas elements are nested\nTODO: Figure out how to define a default value for this"}}},"ColorDimensionConfig":{"type":"object","additionalProperties":false,"properties":{"fixed":{"type":"string","description":"color value"},"field":{"type":"string","description":"fixed: T -- will be added by each element"}}},"ResourceDimensionConfig":{"type":"object","additionalProperties":false,"required":["mode"],"properties":{"mode":{"$ref":"#/components/schemas/ResourceDimensionMode"},"field":{"type":"string","description":"fixed: T -- will be added by each element"},"fixed":{"type":"string"}},"description":"Links to a resource (image/svg path)"},"ScaleDimensionConfig":{"type":"object","additionalProperties":false,"required":["min","max"],"properties":{"min":{"type":"number"},"max":{"type":"number"},"fixed":{"type":"number"},"field":{"type":"string","description":"fixed: T -- will be added by each element"},"mode":{"$ref":"#/components/schemas/ScaleDimensionMode","description":"| *\"linear\""}}},"ResourceDimensionMode":{"enum":["fixed","field","mapping"]},"ScaleDimensionMode":{"enum":["linear","quad"]}}}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "canvas",
+    "version": "0.0.0",
+    "x-schema-identifier": "canvas",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "HorizontalConstraint": {
+        "enum": [
+          "left",
+          "right",
+          "leftright",
+          "center",
+          "scale"
+        ]
+      },
+      "VerticalConstraint": {
+        "enum": [
+          "top",
+          "bottom",
+          "topbottom",
+          "center",
+          "scale"
+        ]
+      },
+      "Constraint": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "horizontal": {
+            "$ref": "#/components/schemas/HorizontalConstraint"
+          },
+          "vertical": {
+            "$ref": "#/components/schemas/VerticalConstraint"
+          }
+        }
+      },
+      "Placement": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "top": {
+            "type": "number"
+          },
+          "left": {
+            "type": "number"
+          },
+          "right": {
+            "type": "number"
+          },
+          "bottom": {
+            "type": "number"
+          },
+          "width": {
+            "type": "number"
+          },
+          "height": {
+            "type": "number"
+          }
+        }
+      },
+      "BackgroundImageSize": {
+        "enum": [
+          "original",
+          "contain",
+          "cover",
+          "fill",
+          "tile"
+        ]
+      },
+      "BackgroundConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "$ref": "#/components/schemas/ColorDimensionConfig"
+          },
+          "image": {
+            "$ref": "#/components/schemas/ResourceDimensionConfig"
+          },
+          "size": {
+            "$ref": "#/components/schemas/BackgroundImageSize"
+          }
+        }
+      },
+      "LineConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "$ref": "#/components/schemas/ColorDimensionConfig"
+          },
+          "width": {
+            "type": "number"
+          }
+        }
+      },
+      "HttpRequestMethod": {
+        "enum": [
+          "GET",
+          "POST",
+          "PUT"
+        ]
+      },
+      "ConnectionCoordinates": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "x",
+          "y"
+        ],
+        "properties": {
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          }
+        }
+      },
+      "ConnectionPath": {
+        "enum": [
+          "straight"
+        ]
+      },
+      "CanvasConnection": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "target",
+          "path"
+        ],
+        "properties": {
+          "source": {
+            "$ref": "#/components/schemas/ConnectionCoordinates"
+          },
+          "target": {
+            "$ref": "#/components/schemas/ConnectionCoordinates"
+          },
+          "targetName": {
+            "type": "string"
+          },
+          "path": {
+            "$ref": "#/components/schemas/ConnectionPath"
+          },
+          "color": {
+            "$ref": "#/components/schemas/ColorDimensionConfig"
+          },
+          "size": {
+            "$ref": "#/components/schemas/ScaleDimensionConfig"
+          }
+        }
+      },
+      "CanvasElementOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "type"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "config": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "TODO: figure out how to define this (element config(s))"
+          },
+          "constraint": {
+            "$ref": "#/components/schemas/Constraint"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/Placement"
+          },
+          "background": {
+            "$ref": "#/components/schemas/BackgroundConfig"
+          },
+          "border": {
+            "$ref": "#/components/schemas/LineConfig"
+          },
+          "connections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CanvasConnection"
+            }
+          }
+        }
+      },
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "inlineEditing",
+          "showAdvancedTypes",
+          "root"
+        ],
+        "properties": {
+          "inlineEditing": {
+            "type": "boolean",
+            "description": "Enable inline editing",
+            "default": true
+          },
+          "showAdvancedTypes": {
+            "type": "boolean",
+            "description": "Show all available element types",
+            "default": true
+          },
+          "root": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "type",
+              "elements"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the root element"
+              },
+              "type": {
+                "type": "string",
+                "const": "frame",
+                "description": "Type of root element (frame)"
+              },
+              "elements": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CanvasElementOptions"
+                },
+                "description": "The list of canvas elements attached to the root element"
+              }
+            },
+            "description": "The root element of canvas (frame), where all canvas elements are nested\nTODO: Figure out how to define a default value for this"
+          }
+        }
+      },
+      "ColorDimensionConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "fixed": {
+            "type": "string",
+            "description": "color value"
+          },
+          "field": {
+            "type": "string",
+            "description": "fixed: T -- will be added by each element"
+          }
+        }
+      },
+      "ResourceDimensionConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/ResourceDimensionMode"
+          },
+          "field": {
+            "type": "string",
+            "description": "fixed: T -- will be added by each element"
+          },
+          "fixed": {
+            "type": "string"
+          }
+        },
+        "description": "Links to a resource (image/svg path)"
+      },
+      "ScaleDimensionConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "min",
+          "max"
+        ],
+        "properties": {
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          },
+          "fixed": {
+            "type": "number"
+          },
+          "field": {
+            "type": "string",
+            "description": "fixed: T -- will be added by each element"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/ScaleDimensionMode",
+            "description": "| *\"linear\""
+          }
+        }
+      },
+      "ResourceDimensionMode": {
+        "enum": [
+          "fixed",
+          "field",
+          "mapping"
+        ]
+      },
+      "ScaleDimensionMode": {
+        "enum": [
+          "linear",
+          "quad"
+        ]
+      }
+    }
+  }
+}

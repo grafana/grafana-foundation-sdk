@@ -1,1 +1,145 @@
-{"openapi":"3.0.0","info":{"title":"stat","version":"0.0.0","x-schema-identifier":"stat","x-schema-kind":"composable","x-schema-variant":"panelcfg"},"paths":{},"components":{"schemas":{"Options":{"type":"object","additionalProperties":false,"required":["graphMode","colorMode","justifyMode","textMode","reduceOptions","wideLayout","orientation"],"properties":{"graphMode":{"$ref":"#/components/schemas/BigValueGraphMode","default":"area"},"colorMode":{"$ref":"#/components/schemas/BigValueColorMode","default":"value"},"justifyMode":{"$ref":"#/components/schemas/BigValueJustifyMode","default":"auto"},"textMode":{"$ref":"#/components/schemas/BigValueTextMode","default":"auto"},"reduceOptions":{"$ref":"#/components/schemas/ReduceDataOptions"},"text":{"$ref":"#/components/schemas/VizTextDisplayOptions"},"wideLayout":{"type":"boolean","default":true},"orientation":{"$ref":"#/components/schemas/VizOrientation"}}},"BigValueGraphMode":{"enum":["none","line","area"],"description":"TODO docs"},"BigValueColorMode":{"enum":["value","background","background_solid","none"],"description":"TODO docs"},"BigValueJustifyMode":{"enum":["auto","center"],"description":"TODO docs"},"BigValueTextMode":{"enum":["auto","value","value_and_name","name","none"],"description":"TODO docs"},"ReduceDataOptions":{"type":"object","additionalProperties":false,"required":["calcs"],"properties":{"values":{"type":"boolean","description":"If true show each row value"},"limit":{"type":"number","description":"if showing all values limit"},"calcs":{"type":"array","items":{"type":"string"},"description":"When !values, pick one value for the whole field"},"fields":{"type":"string","description":"Which fields to show.  By default this is only numeric fields"}},"description":"TODO docs"},"VizTextDisplayOptions":{"type":"object","additionalProperties":false,"properties":{"titleSize":{"type":"number","description":"Explicit title text size"},"valueSize":{"type":"number","description":"Explicit value text size"}},"description":"TODO docs"},"VizOrientation":{"enum":["auto","vertical","horizontal"],"description":"TODO docs"}}}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "stat",
+    "version": "0.0.0",
+    "x-schema-identifier": "stat",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "graphMode",
+          "colorMode",
+          "justifyMode",
+          "textMode",
+          "reduceOptions",
+          "wideLayout",
+          "orientation"
+        ],
+        "properties": {
+          "graphMode": {
+            "$ref": "#/components/schemas/BigValueGraphMode",
+            "default": "area"
+          },
+          "colorMode": {
+            "$ref": "#/components/schemas/BigValueColorMode",
+            "default": "value"
+          },
+          "justifyMode": {
+            "$ref": "#/components/schemas/BigValueJustifyMode",
+            "default": "auto"
+          },
+          "textMode": {
+            "$ref": "#/components/schemas/BigValueTextMode",
+            "default": "auto"
+          },
+          "reduceOptions": {
+            "$ref": "#/components/schemas/ReduceDataOptions"
+          },
+          "text": {
+            "$ref": "#/components/schemas/VizTextDisplayOptions"
+          },
+          "wideLayout": {
+            "type": "boolean",
+            "default": true
+          },
+          "orientation": {
+            "$ref": "#/components/schemas/VizOrientation"
+          }
+        }
+      },
+      "BigValueGraphMode": {
+        "enum": [
+          "none",
+          "line",
+          "area"
+        ],
+        "description": "TODO docs"
+      },
+      "BigValueColorMode": {
+        "enum": [
+          "value",
+          "background",
+          "background_solid",
+          "none"
+        ],
+        "description": "TODO docs"
+      },
+      "BigValueJustifyMode": {
+        "enum": [
+          "auto",
+          "center"
+        ],
+        "description": "TODO docs"
+      },
+      "BigValueTextMode": {
+        "enum": [
+          "auto",
+          "value",
+          "value_and_name",
+          "name",
+          "none"
+        ],
+        "description": "TODO docs"
+      },
+      "ReduceDataOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "calcs"
+        ],
+        "properties": {
+          "values": {
+            "type": "boolean",
+            "description": "If true show each row value"
+          },
+          "limit": {
+            "type": "number",
+            "description": "if showing all values limit"
+          },
+          "calcs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "When !values, pick one value for the whole field"
+          },
+          "fields": {
+            "type": "string",
+            "description": "Which fields to show.  By default this is only numeric fields"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "VizTextDisplayOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "titleSize": {
+            "type": "number",
+            "description": "Explicit title text size"
+          },
+          "valueSize": {
+            "type": "number",
+            "description": "Explicit value text size"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "VizOrientation": {
+        "enum": [
+          "auto",
+          "vertical",
+          "horizontal"
+        ],
+        "description": "TODO docs"
+      }
+    }
+  }
+}
