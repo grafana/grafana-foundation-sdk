@@ -109,6 +109,13 @@ func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *Pan
 	return builder
 }
 
+// Grid position.
+func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
+	builder.internal.GridPos = &gridPos
+
+	return builder
+}
+
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if !(h > 0) {
@@ -864,6 +871,18 @@ func (builder *PanelBuilder) BarMaxWidth(barMaxWidth float64) *PanelBuilder {
 		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).BarMaxWidth = &barMaxWidth
+
+	return builder
+}
+
+func (builder *PanelBuilder) InsertNulls(insertNulls common.BoolOrUint32) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls = &insertNulls
 
 	return builder
 }

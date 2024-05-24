@@ -64,6 +64,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Grid position.
+    gridPos(gridPos: dashboard.GridPos): this {
+        this.internal.gridPos = gridPos;
+        return this;
+    }
+
     // Panel height. The height is the number of rows from the top edge of the panel.
     height(h: number): this {
         if (!this.internal.gridPos) {

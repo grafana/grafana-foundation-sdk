@@ -90,6 +90,15 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def grid_pos(self, grid_pos: dashboard.GridPos) -> typing.Self:    
+        """
+        Grid position.
+        """
+            
+        self._internal.grid_pos = grid_pos
+    
+        return self
+    
     def height(self, h: int) -> typing.Self:    
         """
         Panel height. The height is the number of rows from the top edge of the panel.
@@ -899,6 +908,20 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             self._internal.field_config.defaults.custom = timeseries.FieldConfig()
         assert isinstance(self._internal.field_config.defaults.custom, timeseries.FieldConfig)
         self._internal.field_config.defaults.custom.bar_max_width = bar_max_width
+    
+        return self
+    
+    def insert_nulls(self, insert_nulls: typing.Union[bool, int]) -> typing.Self:        
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        if self._internal.field_config.defaults.custom is None:
+            self._internal.field_config.defaults.custom = timeseries.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults.custom, timeseries.FieldConfig)
+        self._internal.field_config.defaults.custom.insert_nulls = insert_nulls
     
         return self
     

@@ -1,1 +1,320 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","definitions":{"HorizontalConstraint":{"enum":["left","right","leftright","center","scale"]},"VerticalConstraint":{"enum":["top","bottom","topbottom","center","scale"]},"Constraint":{"type":"object","additionalProperties":false,"properties":{"horizontal":{"$ref":"#/definitions/HorizontalConstraint"},"vertical":{"$ref":"#/definitions/VerticalConstraint"}}},"Placement":{"type":"object","additionalProperties":false,"properties":{"top":{"type":"number"},"left":{"type":"number"},"right":{"type":"number"},"bottom":{"type":"number"},"width":{"type":"number"},"height":{"type":"number"}}},"BackgroundImageSize":{"enum":["original","contain","cover","fill","tile"]},"BackgroundConfig":{"type":"object","additionalProperties":false,"properties":{"color":{"$ref":"#/definitions/ColorDimensionConfig"},"image":{"$ref":"#/definitions/ResourceDimensionConfig"},"size":{"$ref":"#/definitions/BackgroundImageSize"}}},"LineConfig":{"type":"object","additionalProperties":false,"properties":{"color":{"$ref":"#/definitions/ColorDimensionConfig"},"width":{"type":"number"}}},"HttpRequestMethod":{"enum":["GET","POST","PUT"]},"ConnectionCoordinates":{"type":"object","additionalProperties":false,"required":["x","y"],"properties":{"x":{"type":"number"},"y":{"type":"number"}}},"ConnectionPath":{"enum":["straight"]},"CanvasConnection":{"type":"object","additionalProperties":false,"required":["source","target","path"],"properties":{"source":{"$ref":"#/definitions/ConnectionCoordinates"},"target":{"$ref":"#/definitions/ConnectionCoordinates"},"targetName":{"type":"string"},"path":{"$ref":"#/definitions/ConnectionPath"},"color":{"$ref":"#/definitions/ColorDimensionConfig"},"size":{"$ref":"#/definitions/ScaleDimensionConfig"}}},"CanvasElementOptions":{"type":"object","additionalProperties":false,"required":["name","type"],"properties":{"name":{"type":"string"},"type":{"type":"string"},"config":{"type":"object","additionalProperties":{},"description":"TODO: figure out how to define this (element config(s))"},"constraint":{"$ref":"#/definitions/Constraint"},"placement":{"$ref":"#/definitions/Placement"},"background":{"$ref":"#/definitions/BackgroundConfig"},"border":{"$ref":"#/definitions/LineConfig"},"connections":{"type":"array","items":{"$ref":"#/definitions/CanvasConnection"}}}},"Options":{"type":"object","additionalProperties":false,"required":["inlineEditing","showAdvancedTypes","panZoom","root"],"properties":{"inlineEditing":{"type":"boolean","description":"Enable inline editing","default":true},"showAdvancedTypes":{"type":"boolean","description":"Show all available element types","default":true},"panZoom":{"type":"boolean","description":"Enable pan and zoom","default":true},"root":{"type":"object","additionalProperties":false,"required":["name","type","elements"],"properties":{"name":{"type":"string","description":"Name of the root element"},"type":{"type":"string","const":"frame","description":"Type of root element (frame)"},"elements":{"type":"array","items":{"$ref":"#/definitions/CanvasElementOptions"},"description":"The list of canvas elements attached to the root element"}},"description":"The root element of canvas (frame), where all canvas elements are nested\nTODO: Figure out how to define a default value for this"}}},"ColorDimensionConfig":{"type":"object","additionalProperties":false,"properties":{"fixed":{"type":"string","description":"color value"},"field":{"type":"string","description":"fixed: T -- will be added by each element"}}},"ResourceDimensionConfig":{"type":"object","additionalProperties":false,"required":["mode"],"properties":{"mode":{"$ref":"#/definitions/ResourceDimensionMode"},"field":{"type":"string","description":"fixed: T -- will be added by each element"},"fixed":{"type":"string"}},"description":"Links to a resource (image/svg path)"},"ScaleDimensionConfig":{"type":"object","additionalProperties":false,"required":["min","max"],"properties":{"min":{"type":"number"},"max":{"type":"number"},"fixed":{"type":"number"},"field":{"type":"string","description":"fixed: T -- will be added by each element"},"mode":{"$ref":"#/definitions/ScaleDimensionMode","description":"| *\"linear\""}}},"ResourceDimensionMode":{"enum":["fixed","field","mapping"]},"ScaleDimensionMode":{"enum":["linear","quad"]}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "HorizontalConstraint": {
+      "enum": [
+        "left",
+        "right",
+        "leftright",
+        "center",
+        "scale"
+      ]
+    },
+    "VerticalConstraint": {
+      "enum": [
+        "top",
+        "bottom",
+        "topbottom",
+        "center",
+        "scale"
+      ]
+    },
+    "Constraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "horizontal": {
+          "$ref": "#/definitions/HorizontalConstraint"
+        },
+        "vertical": {
+          "$ref": "#/definitions/VerticalConstraint"
+        }
+      }
+    },
+    "Placement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "top": {
+          "type": "number"
+        },
+        "left": {
+          "type": "number"
+        },
+        "right": {
+          "type": "number"
+        },
+        "bottom": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        }
+      }
+    },
+    "BackgroundImageSize": {
+      "enum": [
+        "original",
+        "contain",
+        "cover",
+        "fill",
+        "tile"
+      ]
+    },
+    "BackgroundConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "$ref": "#/definitions/ColorDimensionConfig"
+        },
+        "image": {
+          "$ref": "#/definitions/ResourceDimensionConfig"
+        },
+        "size": {
+          "$ref": "#/definitions/BackgroundImageSize"
+        }
+      }
+    },
+    "LineConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "$ref": "#/definitions/ColorDimensionConfig"
+        },
+        "width": {
+          "type": "number"
+        }
+      }
+    },
+    "HttpRequestMethod": {
+      "enum": [
+        "GET",
+        "POST",
+        "PUT"
+      ]
+    },
+    "ConnectionCoordinates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "x",
+        "y"
+      ],
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      }
+    },
+    "ConnectionPath": {
+      "enum": [
+        "straight"
+      ]
+    },
+    "CanvasConnection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "target",
+        "path"
+      ],
+      "properties": {
+        "source": {
+          "$ref": "#/definitions/ConnectionCoordinates"
+        },
+        "target": {
+          "$ref": "#/definitions/ConnectionCoordinates"
+        },
+        "targetName": {
+          "type": "string"
+        },
+        "path": {
+          "$ref": "#/definitions/ConnectionPath"
+        },
+        "color": {
+          "$ref": "#/definitions/ColorDimensionConfig"
+        },
+        "size": {
+          "$ref": "#/definitions/ScaleDimensionConfig"
+        }
+      }
+    },
+    "CanvasElementOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "TODO: figure out how to define this (element config(s))"
+        },
+        "constraint": {
+          "$ref": "#/definitions/Constraint"
+        },
+        "placement": {
+          "$ref": "#/definitions/Placement"
+        },
+        "background": {
+          "$ref": "#/definitions/BackgroundConfig"
+        },
+        "border": {
+          "$ref": "#/definitions/LineConfig"
+        },
+        "connections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CanvasConnection"
+          }
+        }
+      }
+    },
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "inlineEditing",
+        "showAdvancedTypes",
+        "panZoom",
+        "root"
+      ],
+      "properties": {
+        "inlineEditing": {
+          "type": "boolean",
+          "description": "Enable inline editing",
+          "default": true
+        },
+        "showAdvancedTypes": {
+          "type": "boolean",
+          "description": "Show all available element types",
+          "default": true
+        },
+        "panZoom": {
+          "type": "boolean",
+          "description": "Enable pan and zoom",
+          "default": true
+        },
+        "root": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "type",
+            "elements"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the root element"
+            },
+            "type": {
+              "type": "string",
+              "const": "frame",
+              "description": "Type of root element (frame)"
+            },
+            "elements": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CanvasElementOptions"
+              },
+              "description": "The list of canvas elements attached to the root element"
+            }
+          },
+          "description": "The root element of canvas (frame), where all canvas elements are nested\nTODO: Figure out how to define a default value for this"
+        }
+      }
+    },
+    "ColorDimensionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fixed": {
+          "type": "string",
+          "description": "color value"
+        },
+        "field": {
+          "type": "string",
+          "description": "fixed: T -- will be added by each element"
+        }
+      }
+    },
+    "ResourceDimensionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/ResourceDimensionMode"
+        },
+        "field": {
+          "type": "string",
+          "description": "fixed: T -- will be added by each element"
+        },
+        "fixed": {
+          "type": "string"
+        }
+      },
+      "description": "Links to a resource (image/svg path)"
+    },
+    "ScaleDimensionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max"
+      ],
+      "properties": {
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "fixed": {
+          "type": "number"
+        },
+        "field": {
+          "type": "string",
+          "description": "fixed: T -- will be added by each element"
+        },
+        "mode": {
+          "$ref": "#/definitions/ScaleDimensionMode",
+          "description": "| *\"linear\""
+        }
+      }
+    },
+    "ResourceDimensionMode": {
+      "enum": [
+        "fixed",
+        "field",
+        "mapping"
+      ]
+    },
+    "ScaleDimensionMode": {
+      "enum": [
+        "linear",
+        "quad"
+      ]
+    }
+  }
+}

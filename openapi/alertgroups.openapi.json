@@ -1,1 +1,38 @@
-{"openapi":"3.0.0","info":{"title":"alertgroups","version":"0.0.0","x-schema-identifier":"alertGroups","x-schema-kind":"composable","x-schema-variant":"panelcfg"},"paths":{},"components":{"schemas":{"Options":{"type":"object","additionalProperties":false,"required":["labels","alertmanager","expandAll"],"properties":{"labels":{"type":"string","description":"Comma-separated list of values used to filter alert results"},"alertmanager":{"type":"string","description":"Name of the alertmanager used as a source for alerts"},"expandAll":{"type":"boolean","description":"Expand all alert groups by default"}}}}}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "alertgroups",
+    "version": "0.0.0",
+    "x-schema-identifier": "alertGroups",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "labels",
+          "alertmanager",
+          "expandAll"
+        ],
+        "properties": {
+          "labels": {
+            "type": "string",
+            "description": "Comma-separated list of values used to filter alert results"
+          },
+          "alertmanager": {
+            "type": "string",
+            "description": "Name of the alertmanager used as a source for alerts"
+          },
+          "expandAll": {
+            "type": "boolean",
+            "description": "Expand all alert groups by default"
+          }
+        }
+      }
+    }
+  }
+}
