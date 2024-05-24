@@ -1,1 +1,70 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","definitions":{"TextMode":{"enum":["html","markdown","code"]},"CodeLanguage":{"enum":["json","yaml","xml","typescript","sql","go","markdown","html","plaintext"]},"CodeOptions":{"type":"object","additionalProperties":false,"required":["language","showLineNumbers","showMiniMap"],"properties":{"language":{"$ref":"#/definitions/CodeLanguage","description":"The language passed to monaco code editor","default":"plaintext"},"showLineNumbers":{"type":"boolean","default":false},"showMiniMap":{"type":"boolean","default":false}}},"Options":{"type":"object","additionalProperties":false,"required":["mode","content"],"properties":{"mode":{"$ref":"#/definitions/TextMode","default":"markdown"},"code":{"$ref":"#/definitions/CodeOptions"},"content":{"type":"string","default":"# Title\n\nFor markdown syntax help: [commonmark.org/help](https://commonmark.org/help/)"}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "TextMode": {
+      "enum": [
+        "html",
+        "markdown",
+        "code"
+      ]
+    },
+    "CodeLanguage": {
+      "enum": [
+        "json",
+        "yaml",
+        "xml",
+        "typescript",
+        "sql",
+        "go",
+        "markdown",
+        "html",
+        "plaintext"
+      ]
+    },
+    "CodeOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "language",
+        "showLineNumbers",
+        "showMiniMap"
+      ],
+      "properties": {
+        "language": {
+          "$ref": "#/definitions/CodeLanguage",
+          "description": "The language passed to monaco code editor",
+          "default": "plaintext"
+        },
+        "showLineNumbers": {
+          "type": "boolean",
+          "default": false
+        },
+        "showMiniMap": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "content"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/TextMode",
+          "default": "markdown"
+        },
+        "code": {
+          "$ref": "#/definitions/CodeOptions"
+        },
+        "content": {
+          "type": "string",
+          "default": "# Title\n\nFor markdown syntax help: [commonmark.org/help](https://commonmark.org/help/)"
+        }
+      }
+    }
+  }
+}

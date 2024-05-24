@@ -149,9 +149,12 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
 			panelResource.gridPos = dashboard.defaultGridPos();
 		}
 
-		// Position the panel on the grid
-		panelResource.gridPos.x = this.currentX;
-		panelResource.gridPos.y = this.currentY;
+		// The panel either has no position set, or it is the first panel of the dashboard.
+		// In that case, we position it on the grid
+		if (panelResource.gridPos.x == 0 && panelResource.gridPos.y == 0) {
+			panelResource.gridPos.x = this.currentX;
+			panelResource.gridPos.y = this.currentY;
+		}
         this.internal.panels.push(panelResource);
 
 		// Prepare the coordinates for the next panel
@@ -194,9 +197,12 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
 				panel.gridPos = dashboard.defaultGridPos();
 			}
 
-			// Position the panel on the grid
-			panel.gridPos.x = this.currentX;
-			panel.gridPos.y = this.currentY;
+			// The panel either has no position set, or it is the first panel of the dashboard.
+			// In that case, we position it on the grid
+			if (panel.gridPos.x == 0 && panel.gridPos.y == 0) {
+				panel.gridPos.x = this.currentX;
+				panel.gridPos.y = this.currentY;
+			}
 
 			// Prepare the coordinates for the next panel
 			this.currentX += panel.gridPos.w;

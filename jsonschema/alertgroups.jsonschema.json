@@ -1,1 +1,28 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","definitions":{"Options":{"type":"object","additionalProperties":false,"required":["labels","alertmanager","expandAll"],"properties":{"labels":{"type":"string","description":"Comma-separated list of values used to filter alert results"},"alertmanager":{"type":"string","description":"Name of the alertmanager used as a source for alerts"},"expandAll":{"type":"boolean","description":"Expand all alert groups by default"}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "labels",
+        "alertmanager",
+        "expandAll"
+      ],
+      "properties": {
+        "labels": {
+          "type": "string",
+          "description": "Comma-separated list of values used to filter alert results"
+        },
+        "alertmanager": {
+          "type": "string",
+          "description": "Name of the alertmanager used as a source for alerts"
+        },
+        "expandAll": {
+          "type": "boolean",
+          "description": "Expand all alert groups by default"
+        }
+      }
+    }
+  }
+}

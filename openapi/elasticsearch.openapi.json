@@ -1,1 +1,1651 @@
-{"openapi":"3.0.0","info":{"title":"elasticsearch","version":"0.0.0","x-schema-identifier":"elasticsearch","x-schema-kind":"composable","x-schema-variant":"dataquery"},"paths":{},"components":{"schemas":{"BucketAggregation":{"anyOf":[{"$ref":"#/components/schemas/DateHistogram"},{"$ref":"#/components/schemas/Histogram"},{"$ref":"#/components/schemas/Terms"},{"$ref":"#/components/schemas/Filters"},{"$ref":"#/components/schemas/GeoHashGrid"},{"$ref":"#/components/schemas/Nested"}]},"MetricAggregation":{"anyOf":[{"$ref":"#/components/schemas/Count"},{"$ref":"#/components/schemas/PipelineMetricAggregation"},{"$ref":"#/components/schemas/MetricAggregationWithSettings"}]},"BucketAggregationType":{"enum":["terms","filters","geohash_grid","date_histogram","histogram","nested"]},"BaseBucketAggregation":{"type":"object","additionalProperties":false,"required":["id","type"],"properties":{"id":{"type":"string"},"type":{"$ref":"#/components/schemas/BucketAggregationType"},"settings":{"type":"object","additionalProperties":{}}}},"BucketAggregationWithField":{"type":"object","additionalProperties":false,"required":["id","type"],"properties":{"field":{"type":"string"},"id":{"type":"string"},"type":{"$ref":"#/components/schemas/BucketAggregationType"},"settings":{"type":"object","additionalProperties":{}}}},"DateHistogram":{"type":"object","additionalProperties":false,"required":["id","type"],"properties":{"field":{"type":"string"},"id":{"type":"string"},"type":{"type":"string","const":"date_histogram"},"settings":{"type":"object","additionalProperties":false,"properties":{"interval":{"type":"string"},"min_doc_count":{"type":"string"},"trimEdges":{"type":"string"},"offset":{"type":"string"},"timeZone":{"type":"string"}}}}},"DateHistogramSettings":{"type":"object","additionalProperties":false,"properties":{"interval":{"type":"string"},"min_doc_count":{"type":"string"},"trimEdges":{"type":"string"},"offset":{"type":"string"},"timeZone":{"type":"string"}}},"Histogram":{"type":"object","additionalProperties":false,"required":["id","type"],"properties":{"field":{"type":"string"},"id":{"type":"string"},"type":{"type":"string","const":"histogram"},"settings":{"type":"object","additionalProperties":false,"properties":{"interval":{"type":"string"},"min_doc_count":{"type":"string"}}}}},"HistogramSettings":{"type":"object","additionalProperties":false,"properties":{"interval":{"type":"string"},"min_doc_count":{"type":"string"}}},"TermsOrder":{"enum":["desc","asc"]},"Nested":{"type":"object","additionalProperties":false,"required":["id","type"],"properties":{"field":{"type":"string"},"id":{"type":"string"},"type":{"type":"string","const":"nested"},"settings":{"type":"object","additionalProperties":{}}}},"Terms":{"type":"object","additionalProperties":false,"required":["id","type"],"properties":{"field":{"type":"string"},"id":{"type":"string"},"type":{"type":"string","const":"terms"},"settings":{"type":"object","additionalProperties":false,"properties":{"order":{"$ref":"#/components/schemas/TermsOrder"},"size":{"type":"string"},"min_doc_count":{"type":"string"},"orderBy":{"type":"string"},"missing":{"type":"string"}}}}},"TermsSettings":{"type":"object","additionalProperties":false,"properties":{"order":{"$ref":"#/components/schemas/TermsOrder"},"size":{"type":"string"},"min_doc_count":{"type":"string"},"orderBy":{"type":"string"},"missing":{"type":"string"}}},"Filters":{"type":"object","additionalProperties":false,"required":["id","type"],"properties":{"id":{"type":"string"},"type":{"type":"string","const":"filters"},"settings":{"type":"object","additionalProperties":false,"properties":{"filters":{"type":"array","items":{"$ref":"#/components/schemas/Filter"}}}}}},"Filter":{"type":"object","additionalProperties":false,"required":["query","label"],"properties":{"query":{"type":"string"},"label":{"type":"string"}}},"FiltersSettings":{"type":"object","additionalProperties":false,"properties":{"filters":{"type":"array","items":{"$ref":"#/components/schemas/Filter"}}}},"GeoHashGrid":{"type":"object","additionalProperties":false,"required":["id","type"],"properties":{"field":{"type":"string"},"id":{"type":"string"},"type":{"type":"string","const":"geohash_grid"},"settings":{"type":"object","additionalProperties":false,"properties":{"precision":{"type":"string"}}}}},"GeoHashGridSettings":{"type":"object","additionalProperties":false,"properties":{"precision":{"type":"string"}}},"PipelineMetricAggregationType":{"enum":["moving_avg","moving_fn","derivative","serial_diff","cumulative_sum","bucket_script"]},"MetricAggregationType":{"anyOf":[{"type":"string","const":"count"},{"type":"string","const":"avg"},{"type":"string","const":"sum"},{"type":"string","const":"min"},{"type":"string","const":"max"},{"type":"string","const":"extended_stats"},{"type":"string","const":"percentiles"},{"type":"string","const":"cardinality"},{"type":"string","const":"raw_document"},{"type":"string","const":"raw_data"},{"type":"string","const":"logs"},{"type":"string","const":"rate"},{"type":"string","const":"top_metrics"},{"$ref":"#/components/schemas/PipelineMetricAggregationType"}]},"BaseMetricAggregation":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"$ref":"#/components/schemas/MetricAggregationType"},"id":{"type":"string"},"hide":{"type":"boolean"}}},"PipelineVariable":{"type":"object","additionalProperties":false,"required":["name","pipelineAgg"],"properties":{"name":{"type":"string"},"pipelineAgg":{"type":"string"}}},"MetricAggregationWithField":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"field":{"type":"string"},"type":{"$ref":"#/components/schemas/MetricAggregationType"},"id":{"type":"string"},"hide":{"type":"boolean"}}},"MetricAggregationWithMissingSupport":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"settings":{"type":"object","additionalProperties":false,"properties":{"missing":{"type":"string"}}},"type":{"$ref":"#/components/schemas/MetricAggregationType"},"id":{"type":"string"},"hide":{"type":"boolean"}}},"InlineScript":{"anyOf":[{"type":"string"},{"type":"object","additionalProperties":false,"properties":{"inline":{"type":"string"}}}]},"MetricAggregationWithInlineScript":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"settings":{"type":"object","additionalProperties":false,"properties":{"script":{"$ref":"#/components/schemas/InlineScript"}}},"type":{"$ref":"#/components/schemas/MetricAggregationType"},"id":{"type":"string"},"hide":{"type":"boolean"}}},"Count":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"count"},"id":{"type":"string"},"hide":{"type":"boolean"}}},"Average":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"avg"},"field":{"type":"string"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"script":{"$ref":"#/components/schemas/InlineScript"},"missing":{"type":"string"}}},"hide":{"type":"boolean"}}},"Sum":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"sum"},"field":{"type":"string"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"script":{"$ref":"#/components/schemas/InlineScript"},"missing":{"type":"string"}}},"hide":{"type":"boolean"}}},"Max":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"max"},"field":{"type":"string"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"script":{"$ref":"#/components/schemas/InlineScript"},"missing":{"type":"string"}}},"hide":{"type":"boolean"}}},"Min":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"min"},"field":{"type":"string"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"script":{"$ref":"#/components/schemas/InlineScript"},"missing":{"type":"string"}}},"hide":{"type":"boolean"}}},"ExtendedStatMetaType":{"enum":["avg","min","max","sum","count","std_deviation","std_deviation_bounds_upper","std_deviation_bounds_lower"]},"ExtendedStat":{"type":"object","additionalProperties":false,"required":["label","value"],"properties":{"label":{"type":"string"},"value":{"$ref":"#/components/schemas/ExtendedStatMetaType"}}},"ExtendedStats":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"extended_stats"},"settings":{"type":"object","additionalProperties":false,"properties":{"script":{"$ref":"#/components/schemas/InlineScript"},"missing":{"type":"string"},"sigma":{"type":"string"}}},"field":{"type":"string"},"id":{"type":"string"},"meta":{"type":"object","additionalProperties":{}},"hide":{"type":"boolean"}}},"Percentiles":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"percentiles"},"field":{"type":"string"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"script":{"$ref":"#/components/schemas/InlineScript"},"missing":{"type":"string"},"percents":{"type":"array","items":{"type":"string"}}}},"hide":{"type":"boolean"}}},"UniqueCount":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"cardinality"},"field":{"type":"string"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"precision_threshold":{"type":"string"},"missing":{"type":"string"}}},"hide":{"type":"boolean"}}},"RawDocument":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"raw_document"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"size":{"type":"string"}}},"hide":{"type":"boolean"}}},"RawData":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"raw_data"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"size":{"type":"string"}}},"hide":{"type":"boolean"}}},"Logs":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"logs"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"limit":{"type":"string"}}},"hide":{"type":"boolean"}}},"Rate":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"rate"},"field":{"type":"string"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"unit":{"type":"string"},"mode":{"type":"string"}}},"hide":{"type":"boolean"}}},"BasePipelineMetricAggregation":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"pipelineAgg":{"type":"string"},"field":{"type":"string"},"type":{"type":"string"},"id":{"type":"string"},"hide":{"type":"boolean"}}},"PipelineMetricAggregationWithMultipleBucketPaths":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"pipelineVariables":{"type":"array","items":{"$ref":"#/components/schemas/PipelineVariable"}},"type":{"$ref":"#/components/schemas/MetricAggregationType"},"id":{"type":"string"},"hide":{"type":"boolean"}}},"MovingAverageModel":{"enum":["simple","linear","ewma","holt","holt_winters"]},"MovingAverageModelOption":{"type":"object","additionalProperties":false,"required":["label","value"],"properties":{"label":{"type":"string"},"value":{"$ref":"#/components/schemas/MovingAverageModel"}}},"BaseMovingAverageModelSettings":{"type":"object","additionalProperties":false,"required":["model","window","predict"],"properties":{"model":{"$ref":"#/components/schemas/MovingAverageModel"},"window":{"type":"string"},"predict":{"type":"string"}}},"MovingAverageSimpleModelSettings":{"type":"object","additionalProperties":false,"required":["model","window","predict"],"properties":{"model":{"type":"string","const":"simple"},"window":{"type":"string"},"predict":{"type":"string"}}},"MovingAverageLinearModelSettings":{"type":"object","additionalProperties":false,"required":["model","window","predict"],"properties":{"model":{"type":"string","const":"linear"},"window":{"type":"string"},"predict":{"type":"string"}}},"MovingAverageEWMAModelSettings":{"type":"object","additionalProperties":false,"required":["model","window","minimize","predict"],"properties":{"model":{"type":"string","const":"ewma"},"settings":{"type":"object","additionalProperties":false,"properties":{"alpha":{"type":"string"}}},"window":{"type":"string"},"minimize":{"type":"boolean"},"predict":{"type":"string"}}},"MovingAverageHoltModelSettings":{"type":"object","additionalProperties":false,"required":["model","settings","window","minimize","predict"],"properties":{"model":{"type":"string","const":"holt"},"settings":{"type":"object","additionalProperties":false,"properties":{"alpha":{"type":"string"},"beta":{"type":"string"}}},"window":{"type":"string"},"minimize":{"type":"boolean"},"predict":{"type":"string"}}},"MovingAverageHoltWintersModelSettings":{"type":"object","additionalProperties":false,"required":["model","settings","window","minimize","predict"],"properties":{"model":{"type":"string","const":"holt_winters"},"settings":{"type":"object","additionalProperties":false,"properties":{"alpha":{"type":"string"},"beta":{"type":"string"},"gamma":{"type":"string"},"period":{"type":"string"},"pad":{"type":"boolean"}}},"window":{"type":"string"},"minimize":{"type":"boolean"},"predict":{"type":"string"}}},"MovingAverage":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"pipelineAgg":{"type":"string"},"field":{"type":"string"},"type":{"type":"string","const":"moving_avg"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":{}},"hide":{"type":"boolean"}},"description":"#MovingAverage's settings are overridden in types.ts"},"MovingFunction":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"pipelineAgg":{"type":"string"},"field":{"type":"string"},"type":{"type":"string","const":"moving_fn"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"window":{"type":"string"},"script":{"$ref":"#/components/schemas/InlineScript"},"shift":{"type":"string"}}},"hide":{"type":"boolean"}}},"Derivative":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"pipelineAgg":{"type":"string"},"field":{"type":"string"},"type":{"type":"string","const":"derivative"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"unit":{"type":"string"}}},"hide":{"type":"boolean"}}},"SerialDiff":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"pipelineAgg":{"type":"string"},"field":{"type":"string"},"type":{"type":"string","const":"serial_diff"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"lag":{"type":"string"}}},"hide":{"type":"boolean"}}},"CumulativeSum":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"pipelineAgg":{"type":"string"},"field":{"type":"string"},"type":{"type":"string","const":"cumulative_sum"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"format":{"type":"string"}}},"hide":{"type":"boolean"}}},"BucketScript":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"bucket_script"},"pipelineVariables":{"type":"array","items":{"$ref":"#/components/schemas/PipelineVariable"}},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"script":{"$ref":"#/components/schemas/InlineScript"}}},"hide":{"type":"boolean"}}},"TopMetrics":{"type":"object","additionalProperties":false,"required":["type","id"],"properties":{"type":{"type":"string","const":"top_metrics"},"id":{"type":"string"},"settings":{"type":"object","additionalProperties":false,"properties":{"order":{"type":"string"},"orderBy":{"type":"string"},"metrics":{"type":"array","items":{"type":"string"}}}},"hide":{"type":"boolean"}}},"PipelineMetricAggregation":{"anyOf":[{"$ref":"#/components/schemas/MovingAverage"},{"$ref":"#/components/schemas/Derivative"},{"$ref":"#/components/schemas/CumulativeSum"},{"$ref":"#/components/schemas/BucketScript"}]},"MetricAggregationWithSettings":{"anyOf":[{"$ref":"#/components/schemas/BucketScript"},{"$ref":"#/components/schemas/CumulativeSum"},{"$ref":"#/components/schemas/Derivative"},{"$ref":"#/components/schemas/SerialDiff"},{"$ref":"#/components/schemas/RawData"},{"$ref":"#/components/schemas/RawDocument"},{"$ref":"#/components/schemas/UniqueCount"},{"$ref":"#/components/schemas/Percentiles"},{"$ref":"#/components/schemas/ExtendedStats"},{"$ref":"#/components/schemas/Min"},{"$ref":"#/components/schemas/Max"},{"$ref":"#/components/schemas/Sum"},{"$ref":"#/components/schemas/Average"},{"$ref":"#/components/schemas/MovingAverage"},{"$ref":"#/components/schemas/MovingFunction"},{"$ref":"#/components/schemas/Logs"},{"$ref":"#/components/schemas/Rate"},{"$ref":"#/components/schemas/TopMetrics"}]},"dataquery":{"type":"object","additionalProperties":false,"properties":{"alias":{"type":"string","description":"Alias pattern"},"query":{"type":"string","description":"Lucene query"},"timeField":{"type":"string","description":"Name of time field"},"bucketAggs":{"type":"array","items":{"$ref":"#/components/schemas/BucketAggregation"},"description":"List of bucket aggregations"},"metrics":{"type":"array","items":{"$ref":"#/components/schemas/MetricAggregation"},"description":"List of metric aggregations"},"refId":{"type":"string","description":"A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."},"hide":{"type":"boolean","description":"true if query is disabled (ie should not be returned to the dashboard)\nNote this does not always imply that the query should not be executed since\nthe results from a hidden query may be used as the input to other queries (SSE etc)"},"queryType":{"type":"string","description":"Specify the query flavor\nTODO make this required and give it a default"},"datasource":{"type":"object","additionalProperties":{},"description":"For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"}}}}}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "elasticsearch",
+    "version": "0.0.0",
+    "x-schema-identifier": "elasticsearch",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "dataquery"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "BucketAggregation": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/DateHistogram"
+          },
+          {
+            "$ref": "#/components/schemas/Histogram"
+          },
+          {
+            "$ref": "#/components/schemas/Terms"
+          },
+          {
+            "$ref": "#/components/schemas/Filters"
+          },
+          {
+            "$ref": "#/components/schemas/GeoHashGrid"
+          },
+          {
+            "$ref": "#/components/schemas/Nested"
+          }
+        ]
+      },
+      "MetricAggregation": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Count"
+          },
+          {
+            "$ref": "#/components/schemas/PipelineMetricAggregation"
+          },
+          {
+            "$ref": "#/components/schemas/MetricAggregationWithSettings"
+          }
+        ]
+      },
+      "BucketAggregationType": {
+        "enum": [
+          "terms",
+          "filters",
+          "geohash_grid",
+          "date_histogram",
+          "histogram",
+          "nested"
+        ]
+      },
+      "BaseBucketAggregation": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BucketAggregationType"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {}
+          }
+        }
+      },
+      "BucketAggregationWithField": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BucketAggregationType"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {}
+          }
+        }
+      },
+      "DateHistogram": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "const": "date_histogram"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "interval": {
+                "type": "string"
+              },
+              "min_doc_count": {
+                "type": "string"
+              },
+              "trimEdges": {
+                "type": "string"
+              },
+              "offset": {
+                "type": "string"
+              },
+              "timeZone": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "DateHistogramSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "interval": {
+            "type": "string"
+          },
+          "min_doc_count": {
+            "type": "string"
+          },
+          "trimEdges": {
+            "type": "string"
+          },
+          "offset": {
+            "type": "string"
+          },
+          "timeZone": {
+            "type": "string"
+          }
+        }
+      },
+      "Histogram": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "const": "histogram"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "interval": {
+                "type": "string"
+              },
+              "min_doc_count": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "HistogramSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "interval": {
+            "type": "string"
+          },
+          "min_doc_count": {
+            "type": "string"
+          }
+        }
+      },
+      "TermsOrder": {
+        "enum": [
+          "desc",
+          "asc"
+        ]
+      },
+      "Nested": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "const": "nested"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {}
+          }
+        }
+      },
+      "Terms": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "const": "terms"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "order": {
+                "$ref": "#/components/schemas/TermsOrder"
+              },
+              "size": {
+                "type": "string"
+              },
+              "min_doc_count": {
+                "type": "string"
+              },
+              "orderBy": {
+                "type": "string"
+              },
+              "missing": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "TermsSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "order": {
+            "$ref": "#/components/schemas/TermsOrder"
+          },
+          "size": {
+            "type": "string"
+          },
+          "min_doc_count": {
+            "type": "string"
+          },
+          "orderBy": {
+            "type": "string"
+          },
+          "missing": {
+            "type": "string"
+          }
+        }
+      },
+      "Filters": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "const": "filters"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "filters": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Filter"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Filter": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "query",
+          "label"
+        ],
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      },
+      "FiltersSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Filter"
+            }
+          }
+        }
+      },
+      "GeoHashGrid": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "const": "geohash_grid"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "precision": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "GeoHashGridSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "precision": {
+            "type": "string"
+          }
+        }
+      },
+      "PipelineMetricAggregationType": {
+        "enum": [
+          "moving_avg",
+          "moving_fn",
+          "derivative",
+          "serial_diff",
+          "cumulative_sum",
+          "bucket_script"
+        ]
+      },
+      "MetricAggregationType": {
+        "anyOf": [
+          {
+            "type": "string",
+            "const": "count"
+          },
+          {
+            "type": "string",
+            "const": "avg"
+          },
+          {
+            "type": "string",
+            "const": "sum"
+          },
+          {
+            "type": "string",
+            "const": "min"
+          },
+          {
+            "type": "string",
+            "const": "max"
+          },
+          {
+            "type": "string",
+            "const": "extended_stats"
+          },
+          {
+            "type": "string",
+            "const": "percentiles"
+          },
+          {
+            "type": "string",
+            "const": "cardinality"
+          },
+          {
+            "type": "string",
+            "const": "raw_document"
+          },
+          {
+            "type": "string",
+            "const": "raw_data"
+          },
+          {
+            "type": "string",
+            "const": "logs"
+          },
+          {
+            "type": "string",
+            "const": "rate"
+          },
+          {
+            "type": "string",
+            "const": "top_metrics"
+          },
+          {
+            "$ref": "#/components/schemas/PipelineMetricAggregationType"
+          }
+        ]
+      },
+      "BaseMetricAggregation": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
+          "id": {
+            "type": "string"
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PipelineVariable": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "pipelineAgg"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "pipelineAgg": {
+            "type": "string"
+          }
+        }
+      },
+      "MetricAggregationWithField": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
+          "id": {
+            "type": "string"
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MetricAggregationWithMissingSupport": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "missing": {
+                "type": "string"
+              }
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
+          "id": {
+            "type": "string"
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "InlineScript": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "inline": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "MetricAggregationWithInlineScript": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "script": {
+                "$ref": "#/components/schemas/InlineScript"
+              }
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
+          "id": {
+            "type": "string"
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Count": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "count"
+          },
+          "id": {
+            "type": "string"
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Average": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "avg"
+          },
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "script": {
+                "$ref": "#/components/schemas/InlineScript"
+              },
+              "missing": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Sum": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "sum"
+          },
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "script": {
+                "$ref": "#/components/schemas/InlineScript"
+              },
+              "missing": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Max": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "max"
+          },
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "script": {
+                "$ref": "#/components/schemas/InlineScript"
+              },
+              "missing": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Min": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "min"
+          },
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "script": {
+                "$ref": "#/components/schemas/InlineScript"
+              },
+              "missing": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ExtendedStatMetaType": {
+        "enum": [
+          "avg",
+          "min",
+          "max",
+          "sum",
+          "count",
+          "std_deviation",
+          "std_deviation_bounds_upper",
+          "std_deviation_bounds_lower"
+        ]
+      },
+      "ExtendedStat": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "label",
+          "value"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/ExtendedStatMetaType"
+          }
+        }
+      },
+      "ExtendedStats": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "extended_stats"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "script": {
+                "$ref": "#/components/schemas/InlineScript"
+              },
+              "missing": {
+                "type": "string"
+              },
+              "sigma": {
+                "type": "string"
+              }
+            }
+          },
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "meta": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Percentiles": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "percentiles"
+          },
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "script": {
+                "$ref": "#/components/schemas/InlineScript"
+              },
+              "missing": {
+                "type": "string"
+              },
+              "percents": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "UniqueCount": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "cardinality"
+          },
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "precision_threshold": {
+                "type": "string"
+              },
+              "missing": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RawDocument": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "raw_document"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "size": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RawData": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "raw_data"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "size": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Logs": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "logs"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "limit": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Rate": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "rate"
+          },
+          "field": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "unit": {
+                "type": "string"
+              },
+              "mode": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "BasePipelineMetricAggregation": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "pipelineAgg": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PipelineMetricAggregationWithMultipleBucketPaths": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "pipelineVariables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PipelineVariable"
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
+          "id": {
+            "type": "string"
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MovingAverageModel": {
+        "enum": [
+          "simple",
+          "linear",
+          "ewma",
+          "holt",
+          "holt_winters"
+        ]
+      },
+      "MovingAverageModelOption": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "label",
+          "value"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/MovingAverageModel"
+          }
+        }
+      },
+      "BaseMovingAverageModelSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "model",
+          "window",
+          "predict"
+        ],
+        "properties": {
+          "model": {
+            "$ref": "#/components/schemas/MovingAverageModel"
+          },
+          "window": {
+            "type": "string"
+          },
+          "predict": {
+            "type": "string"
+          }
+        }
+      },
+      "MovingAverageSimpleModelSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "model",
+          "window",
+          "predict"
+        ],
+        "properties": {
+          "model": {
+            "type": "string",
+            "const": "simple"
+          },
+          "window": {
+            "type": "string"
+          },
+          "predict": {
+            "type": "string"
+          }
+        }
+      },
+      "MovingAverageLinearModelSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "model",
+          "window",
+          "predict"
+        ],
+        "properties": {
+          "model": {
+            "type": "string",
+            "const": "linear"
+          },
+          "window": {
+            "type": "string"
+          },
+          "predict": {
+            "type": "string"
+          }
+        }
+      },
+      "MovingAverageEWMAModelSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "model",
+          "window",
+          "minimize",
+          "predict"
+        ],
+        "properties": {
+          "model": {
+            "type": "string",
+            "const": "ewma"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "alpha": {
+                "type": "string"
+              }
+            }
+          },
+          "window": {
+            "type": "string"
+          },
+          "minimize": {
+            "type": "boolean"
+          },
+          "predict": {
+            "type": "string"
+          }
+        }
+      },
+      "MovingAverageHoltModelSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "model",
+          "settings",
+          "window",
+          "minimize",
+          "predict"
+        ],
+        "properties": {
+          "model": {
+            "type": "string",
+            "const": "holt"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "alpha": {
+                "type": "string"
+              },
+              "beta": {
+                "type": "string"
+              }
+            }
+          },
+          "window": {
+            "type": "string"
+          },
+          "minimize": {
+            "type": "boolean"
+          },
+          "predict": {
+            "type": "string"
+          }
+        }
+      },
+      "MovingAverageHoltWintersModelSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "model",
+          "settings",
+          "window",
+          "minimize",
+          "predict"
+        ],
+        "properties": {
+          "model": {
+            "type": "string",
+            "const": "holt_winters"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "alpha": {
+                "type": "string"
+              },
+              "beta": {
+                "type": "string"
+              },
+              "gamma": {
+                "type": "string"
+              },
+              "period": {
+                "type": "string"
+              },
+              "pad": {
+                "type": "boolean"
+              }
+            }
+          },
+          "window": {
+            "type": "string"
+          },
+          "minimize": {
+            "type": "boolean"
+          },
+          "predict": {
+            "type": "string"
+          }
+        }
+      },
+      "MovingAverage": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "pipelineAgg": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "const": "moving_avg"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        },
+        "description": "#MovingAverage's settings are overridden in types.ts"
+      },
+      "MovingFunction": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "pipelineAgg": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "const": "moving_fn"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "window": {
+                "type": "string"
+              },
+              "script": {
+                "$ref": "#/components/schemas/InlineScript"
+              },
+              "shift": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Derivative": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "pipelineAgg": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "const": "derivative"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "unit": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SerialDiff": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "pipelineAgg": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "const": "serial_diff"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "lag": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CumulativeSum": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "pipelineAgg": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "const": "cumulative_sum"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "format": {
+                "type": "string"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "BucketScript": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "bucket_script"
+          },
+          "pipelineVariables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PipelineVariable"
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "script": {
+                "$ref": "#/components/schemas/InlineScript"
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TopMetrics": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "top_metrics"
+          },
+          "id": {
+            "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "order": {
+                "type": "string"
+              },
+              "orderBy": {
+                "type": "string"
+              },
+              "metrics": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "hide": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PipelineMetricAggregation": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/MovingAverage"
+          },
+          {
+            "$ref": "#/components/schemas/Derivative"
+          },
+          {
+            "$ref": "#/components/schemas/CumulativeSum"
+          },
+          {
+            "$ref": "#/components/schemas/BucketScript"
+          }
+        ]
+      },
+      "MetricAggregationWithSettings": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/BucketScript"
+          },
+          {
+            "$ref": "#/components/schemas/CumulativeSum"
+          },
+          {
+            "$ref": "#/components/schemas/Derivative"
+          },
+          {
+            "$ref": "#/components/schemas/SerialDiff"
+          },
+          {
+            "$ref": "#/components/schemas/RawData"
+          },
+          {
+            "$ref": "#/components/schemas/RawDocument"
+          },
+          {
+            "$ref": "#/components/schemas/UniqueCount"
+          },
+          {
+            "$ref": "#/components/schemas/Percentiles"
+          },
+          {
+            "$ref": "#/components/schemas/ExtendedStats"
+          },
+          {
+            "$ref": "#/components/schemas/Min"
+          },
+          {
+            "$ref": "#/components/schemas/Max"
+          },
+          {
+            "$ref": "#/components/schemas/Sum"
+          },
+          {
+            "$ref": "#/components/schemas/Average"
+          },
+          {
+            "$ref": "#/components/schemas/MovingAverage"
+          },
+          {
+            "$ref": "#/components/schemas/MovingFunction"
+          },
+          {
+            "$ref": "#/components/schemas/Logs"
+          },
+          {
+            "$ref": "#/components/schemas/Rate"
+          },
+          {
+            "$ref": "#/components/schemas/TopMetrics"
+          }
+        ]
+      },
+      "dataquery": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "alias": {
+            "type": "string",
+            "description": "Alias pattern"
+          },
+          "query": {
+            "type": "string",
+            "description": "Lucene query"
+          },
+          "timeField": {
+            "type": "string",
+            "description": "Name of time field"
+          },
+          "bucketAggs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BucketAggregation"
+            },
+            "description": "List of bucket aggregations"
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricAggregation"
+            },
+            "description": "List of metric aggregations"
+          },
+          "refId": {
+            "type": "string",
+            "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
+          },
+          "hide": {
+            "type": "boolean",
+            "description": "true if query is disabled (ie should not be returned to the dashboard)\nNote this does not always imply that the query should not be executed since\nthe results from a hidden query may be used as the input to other queries (SSE etc)"
+          },
+          "queryType": {
+            "type": "string",
+            "description": "Specify the query flavor\nTODO make this required and give it a default"
+          },
+          "datasource": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+          }
+        }
+      }
+    }
+  }
+}
