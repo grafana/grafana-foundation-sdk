@@ -1,1 +1,89 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","$ref":"#/definitions/RoleBinding","definitions":{"RoleBinding":{"type":"object","additionalProperties":false,"required":["role","subject"],"properties":{"role":{"anyOf":[{"$ref":"#/definitions/BuiltinRoleRef"},{"$ref":"#/definitions/CustomRoleRef"}],"description":"The role we are discussing"},"subject":{"$ref":"#/definitions/RoleBindingSubject","description":"The team or user that has the specified role"}}},"CustomRoleRef":{"type":"object","additionalProperties":false,"required":["kind","name"],"properties":{"kind":{"type":"string","const":"Role"},"name":{"type":"string"}}},"BuiltinRoleRef":{"type":"object","additionalProperties":false,"required":["kind","name"],"properties":{"kind":{"type":"string","const":"BuiltinRole"},"name":{"enum":["viewer","editor","admin"]}}},"RoleBindingSubject":{"type":"object","additionalProperties":false,"required":["kind","name"],"properties":{"kind":{"enum":["Team","User"]},"name":{"type":"string","description":"The team/user identifier name"}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RoleBinding",
+  "definitions": {
+    "RoleBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "subject"
+      ],
+      "properties": {
+        "role": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/BuiltinRoleRef"
+            },
+            {
+              "$ref": "#/definitions/CustomRoleRef"
+            }
+          ],
+          "description": "The role we are discussing"
+        },
+        "subject": {
+          "$ref": "#/definitions/RoleBindingSubject",
+          "description": "The team or user that has the specified role"
+        }
+      }
+    },
+    "CustomRoleRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "name"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "Role"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "BuiltinRoleRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "name"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "BuiltinRole"
+        },
+        "name": {
+          "enum": [
+            "viewer",
+            "editor",
+            "admin"
+          ]
+        }
+      }
+    },
+    "RoleBindingSubject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "name"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "Team",
+            "User"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The team/user identifier name"
+        }
+      }
+    }
+  }
+}

@@ -254,5 +254,11 @@ func (builder *GraphFieldConfigBuilder) BarMaxWidth(barMaxWidth float64) *GraphF
 	return builder
 }
 
+func (builder *GraphFieldConfigBuilder) InsertNulls(insertNulls BoolOrUint32) *GraphFieldConfigBuilder {
+	builder.internal.InsertNulls = &insertNulls
+
+	return builder
+}
+
 func (builder *GraphFieldConfigBuilder) applyDefaults() {
 }
