@@ -1,38 +1,39 @@
 # Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-from ..models import elasticsearch
-from ..models import table
-from ..models import candlestick
-from ..models import dashboardlist
-from ..models import timeseries
-from ..models import piechart
-from ..models import text
-from ..models import bargauge
-from ..models import gauge
-from ..models import googlecloudmonitoring
-from ..models import heatmap
-from ..models import nodegraph
-from ..models import xychart
-from ..models import azuremonitor
-from ..models import barchart
-from ..models import cloudwatch
-from ..models import datagrid
-from ..models import logs
-from ..models import news
-from ..models import statushistory
-from ..models import debug
-from ..models import geomap
 from ..models import canvas
-from ..models import grafanapyroscope
-from ..models import histogram
+from ..models import dashboardlist
+from ..models import elasticsearch
+from ..models import heatmap
+from ..models import news
 from ..models import prometheus
+from ..models import statushistory
+from ..models import bargauge
+from ..models import datagrid
+from ..models import gauge
+from ..models import logs
+from ..models import nodegraph
+from ..models import expr
+from ..models import stat
+from ..models import tempo
+from ..models import candlestick
+from ..models import cloudwatch
+from ..models import geomap
+from ..models import piechart
+from ..models import trend
+from ..models import barchart
+from ..models import histogram
 from ..models import annotationslist
+from ..models import azuremonitor
+from ..models import googlecloudmonitoring
 from ..models import parca
 from ..models import statetimeline
-from ..models import tempo
-from ..models import trend
+from ..models import timeseries
+from ..models import grafanapyroscope
 from ..models import loki
-from ..models import stat
+from ..models import text
+from ..models import xychart
+from ..models import debug
+from ..models import table
 from . import runtime as cogruntime
 
 
@@ -67,6 +68,7 @@ def register_default_plugins():
     cogruntime.register_dataquery_variant(azuremonitor.variant_config())
     cogruntime.register_dataquery_variant(cloudwatch.variant_config())
     cogruntime.register_dataquery_variant(elasticsearch.variant_config())
+    cogruntime.register_dataquery_variant(expr.variant_config())
     cogruntime.register_dataquery_variant(googlecloudmonitoring.variant_config())
     cogruntime.register_dataquery_variant(grafanapyroscope.variant_config())
     cogruntime.register_dataquery_variant(loki.variant_config())

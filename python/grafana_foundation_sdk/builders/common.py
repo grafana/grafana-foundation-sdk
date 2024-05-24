@@ -1109,6 +1109,11 @@ class GraphFieldConfig(cogbuilder.Builder[common.GraphFieldConfig]):
     
         return self
     
+    def insert_nulls(self, insert_nulls: typing.Union[bool, int]) -> typing.Self:        
+        self._internal.insert_nulls = insert_nulls
+    
+        return self
+    
 
 class VizLegendOptions(cogbuilder.Builder[common.VizLegendOptions]):    
     """

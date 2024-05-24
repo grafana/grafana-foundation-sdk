@@ -40,12 +40,10 @@ export interface DataQuery {
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	datasource?: any;
-	_implementsDataqueryVariant(): void;
 }
 
 export const defaultDataQuery = (): DataQuery => ({
 	refId: "",
-	_implementsDataqueryVariant: () => {},
 });
 
 export interface BaseDimensionConfig {
@@ -670,6 +668,7 @@ export interface GraphFieldConfig {
 	pointSymbol?: string;
 	axisBorderShow?: boolean;
 	barMaxWidth?: number;
+	insertNulls?: boolean | number;
 }
 
 export const defaultGraphFieldConfig = (): GraphFieldConfig => ({
@@ -692,7 +691,8 @@ export const defaultVizLegendOptions = (): VizLegendOptions => ({
 	displayMode: LegendDisplayMode.List,
 	placement: LegendPlacement.Bottom,
 	showLegend: false,
-	calcs: [],
+	calcs: [
+],
 });
 
 // Enum expressing the possible display modes

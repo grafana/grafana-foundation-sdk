@@ -6,24 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
-
-func VariantConfig() cogvariants.DataqueryConfig {
-	return cogvariants.DataqueryConfig{
-		Identifier: "",
-		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
-			dataquery := DataQuery{}
-
-			if err := json.Unmarshal(raw, &dataquery); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-	}
-}
 
 func (resource BoolOrFloat64) MarshalJSON() ([]byte, error) {
 	if resource.Bool != nil {
@@ -61,6 +44,48 @@ func (resource *BoolOrFloat64) UnmarshalJSON(raw []byte) error {
 		resource.Float64 = nil
 	} else {
 		resource.Float64 = &Float64
+		return nil
+	}
+
+	return errors.Join(errList...)
+}
+
+func (resource BoolOrUint32) MarshalJSON() ([]byte, error) {
+	if resource.Bool != nil {
+		return json.Marshal(resource.Bool)
+	}
+
+	if resource.Uint32 != nil {
+		return json.Marshal(resource.Uint32)
+	}
+
+	return nil, fmt.Errorf("no value for disjunction of scalars")
+}
+
+func (resource *BoolOrUint32) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// Bool
+	var Bool bool
+	if err := json.Unmarshal(raw, &Bool); err != nil {
+		errList = append(errList, err)
+		resource.Bool = nil
+	} else {
+		resource.Bool = &Bool
+		return nil
+	}
+
+	// Uint32
+	var Uint32 uint32
+	if err := json.Unmarshal(raw, &Uint32); err != nil {
+		errList = append(errList, err)
+		resource.Uint32 = nil
+	} else {
+		resource.Uint32 = &Uint32
 		return nil
 	}
 
