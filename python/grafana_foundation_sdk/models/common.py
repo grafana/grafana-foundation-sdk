@@ -1,8 +1,6 @@
 # Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
 import typing
-from ..cog import variants as cogvariants
-from ..cog import runtime as cogruntime
 import enum
 
 
@@ -57,7 +55,7 @@ class DataSourceJsonData:
         return cls(**args)
 
 
-class DataQuery(cogvariants.Dataquery):
+class DataQuery:
     """
     These are the common properties available to all queries in all datasources.
     Specific implementations will *extend* this interface, adding the required
@@ -113,13 +111,6 @@ class DataQuery(cogvariants.Dataquery):
             args["datasource"] = data["datasource"]        
 
         return cls(**args)
-
-
-def variant_config() -> cogruntime.DataqueryConfig:
-    return cogruntime.DataqueryConfig(
-        identifier="",
-        from_json_hook=DataQuery.from_json,
-    )
 
 
 class BaseDimensionConfig:
@@ -1442,8 +1433,9 @@ class GraphFieldConfig:
     point_symbol: typing.Optional[str]
     axis_centered_zero: typing.Optional[bool]
     bar_max_width: typing.Optional[float]
+    insert_nulls: typing.Optional[typing.Union[bool, int]]
 
-    def __init__(self, draw_style: typing.Optional['GraphDrawStyle'] = None, gradient_mode: typing.Optional['GraphGradientMode'] = None, thresholds_style: typing.Optional['GraphThresholdsStyleConfig'] = None, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, stacking: typing.Optional['StackingConfig'] = None, hide_from: typing.Optional['HideSeriesConfig'] = None, transform: typing.Optional['GraphTransform'] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None, fill_below_to: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None, axis_centered_zero: typing.Optional[bool] = None, bar_max_width: typing.Optional[float] = None):
+    def __init__(self, draw_style: typing.Optional['GraphDrawStyle'] = None, gradient_mode: typing.Optional['GraphGradientMode'] = None, thresholds_style: typing.Optional['GraphThresholdsStyleConfig'] = None, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, stacking: typing.Optional['StackingConfig'] = None, hide_from: typing.Optional['HideSeriesConfig'] = None, transform: typing.Optional['GraphTransform'] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None, fill_below_to: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None, axis_centered_zero: typing.Optional[bool] = None, bar_max_width: typing.Optional[float] = None, insert_nulls: typing.Optional[typing.Union[bool, int]] = None):
         self.draw_style = draw_style
         self.gradient_mode = gradient_mode
         self.thresholds_style = thresholds_style
@@ -1474,6 +1466,7 @@ class GraphFieldConfig:
         self.point_symbol = point_symbol
         self.axis_centered_zero = axis_centered_zero
         self.bar_max_width = bar_max_width
+        self.insert_nulls = insert_nulls
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -1538,6 +1531,8 @@ class GraphFieldConfig:
             payload["axisCenteredZero"] = self.axis_centered_zero
         if self.bar_max_width is not None:
             payload["barMaxWidth"] = self.bar_max_width
+        if self.insert_nulls is not None:
+            payload["insertNulls"] = self.insert_nulls
         return payload
 
     @classmethod
@@ -1603,7 +1598,9 @@ class GraphFieldConfig:
         if "axisCenteredZero" in data:
             args["axis_centered_zero"] = data["axisCenteredZero"]
         if "barMaxWidth" in data:
-            args["bar_max_width"] = data["barMaxWidth"]        
+            args["bar_max_width"] = data["barMaxWidth"]
+        if "insertNulls" in data:
+            args["insert_nulls"] = data["insertNulls"]        
 
         return cls(**args)
 

@@ -172,4 +172,9 @@ export class GraphFieldConfigBuilder implements cog.Builder<common.GraphFieldCon
         this.internal.barMaxWidth = barMaxWidth;
         return this;
     }
+
+    insertNulls(insertNulls: boolean | number): this {
+        this.internal.insertNulls = insertNulls;
+        return this;
+    }
 }

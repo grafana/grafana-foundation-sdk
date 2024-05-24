@@ -16,6 +16,7 @@ import (
 	datagrid "github.com/grafana/grafana-foundation-sdk/go/datagrid"
 	debug "github.com/grafana/grafana-foundation-sdk/go/debug"
 	elasticsearch "github.com/grafana/grafana-foundation-sdk/go/elasticsearch"
+	expr "github.com/grafana/grafana-foundation-sdk/go/expr"
 	gauge "github.com/grafana/grafana-foundation-sdk/go/gauge"
 	geomap "github.com/grafana/grafana-foundation-sdk/go/geomap"
 	googlecloudmonitoring "github.com/grafana/grafana-foundation-sdk/go/googlecloudmonitoring"
@@ -75,6 +76,7 @@ func RegisterDefaultPlugins() {
 	runtime.RegisterDataqueryVariant(azuremonitor.VariantConfig())
 	runtime.RegisterDataqueryVariant(cloudwatch.VariantConfig())
 	runtime.RegisterDataqueryVariant(elasticsearch.VariantConfig())
+	runtime.RegisterDataqueryVariant(expr.VariantConfig())
 	runtime.RegisterDataqueryVariant(googlecloudmonitoring.VariantConfig())
 	runtime.RegisterDataqueryVariant(grafanapyroscope.VariantConfig())
 	runtime.RegisterDataqueryVariant(loki.VariantConfig())

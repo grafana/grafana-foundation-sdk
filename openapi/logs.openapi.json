@@ -1,1 +1,69 @@
-{"openapi":"3.0.0","info":{"title":"logs","version":"0.0.0","x-schema-identifier":"logs","x-schema-kind":"composable","x-schema-variant":"panelcfg"},"paths":{},"components":{"schemas":{"Options":{"type":"object","additionalProperties":false,"required":["showLabels","showCommonLabels","showTime","wrapLogMessage","prettifyLogMessage","enableLogDetails","sortOrder","dedupStrategy"],"properties":{"showLabels":{"type":"boolean"},"showCommonLabels":{"type":"boolean"},"showTime":{"type":"boolean"},"wrapLogMessage":{"type":"boolean"},"prettifyLogMessage":{"type":"boolean"},"enableLogDetails":{"type":"boolean"},"sortOrder":{"$ref":"#/components/schemas/LogsSortOrder"},"dedupStrategy":{"$ref":"#/components/schemas/LogsDedupStrategy"}}},"LogsSortOrder":{"enum":["Descending","Ascending"]},"LogsDedupStrategy":{"enum":["none","exact","numbers","signature"]}}}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "logs",
+    "version": "0.0.0",
+    "x-schema-identifier": "logs",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "showLabels",
+          "showCommonLabels",
+          "showTime",
+          "wrapLogMessage",
+          "prettifyLogMessage",
+          "enableLogDetails",
+          "sortOrder",
+          "dedupStrategy"
+        ],
+        "properties": {
+          "showLabels": {
+            "type": "boolean"
+          },
+          "showCommonLabels": {
+            "type": "boolean"
+          },
+          "showTime": {
+            "type": "boolean"
+          },
+          "wrapLogMessage": {
+            "type": "boolean"
+          },
+          "prettifyLogMessage": {
+            "type": "boolean"
+          },
+          "enableLogDetails": {
+            "type": "boolean"
+          },
+          "sortOrder": {
+            "$ref": "#/components/schemas/LogsSortOrder"
+          },
+          "dedupStrategy": {
+            "$ref": "#/components/schemas/LogsDedupStrategy"
+          }
+        }
+      },
+      "LogsSortOrder": {
+        "enum": [
+          "Descending",
+          "Ascending"
+        ]
+      },
+      "LogsDedupStrategy": {
+        "enum": [
+          "none",
+          "exact",
+          "numbers",
+          "signature"
+        ]
+      }
+    }
+  }
+}

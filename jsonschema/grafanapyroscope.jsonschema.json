@@ -1,1 +1,55 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","definitions":{"PhlareQueryType":{"enum":["metrics","profile","both"]},"dataquery":{"type":"object","additionalProperties":false,"properties":{"labelSelector":{"type":"string","description":"Specifies the query label selectors.","default":"{}"},"profileTypeId":{"type":"string","description":"Specifies the type of profile to query."},"groupBy":{"type":"array","items":{"type":"string"},"description":"Allows to group the results."},"maxNodes":{"type":"integer","description":"Sets the maximum number of nodes in the flamegraph."},"refId":{"type":"string","description":"A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."},"hide":{"type":"boolean","description":"true if query is disabled (ie should not be returned to the dashboard)\nNote this does not always imply that the query should not be executed since\nthe results from a hidden query may be used as the input to other queries (SSE etc)"},"queryType":{"type":"string","description":"Specify the query flavor\nTODO make this required and give it a default"},"datasource":{"type":"object","additionalProperties":{},"description":"For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "PhlareQueryType": {
+      "enum": [
+        "metrics",
+        "profile",
+        "both"
+      ]
+    },
+    "dataquery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "labelSelector": {
+          "type": "string",
+          "description": "Specifies the query label selectors.",
+          "default": "{}"
+        },
+        "profileTypeId": {
+          "type": "string",
+          "description": "Specifies the type of profile to query."
+        },
+        "groupBy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Allows to group the results."
+        },
+        "maxNodes": {
+          "type": "integer",
+          "description": "Sets the maximum number of nodes in the flamegraph."
+        },
+        "refId": {
+          "type": "string",
+          "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
+        },
+        "hide": {
+          "type": "boolean",
+          "description": "true if query is disabled (ie should not be returned to the dashboard)\nNote this does not always imply that the query should not be executed since\nthe results from a hidden query may be used as the input to other queries (SSE etc)"
+        },
+        "queryType": {
+          "type": "string",
+          "description": "Specify the query flavor\nTODO make this required and give it a default"
+        },
+        "datasource": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+        }
+      }
+    }
+  }
+}

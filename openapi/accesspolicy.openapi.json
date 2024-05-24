@@ -1,1 +1,117 @@
-{"openapi":"3.0.0","info":{"title":"accesspolicy","version":"0.0.0","x-schema-identifier":"AccessPolicy","x-schema-kind":"core"},"paths":{},"components":{"schemas":{"AccessPolicy":{"type":"object","additionalProperties":false,"required":["scope","role","rules"],"properties":{"scope":{"$ref":"#/components/schemas/ResourceRef","description":"The scope where these policies should apply"},"role":{"$ref":"#/components/schemas/RoleRef","description":"The role that must apply this policy"},"rules":{"type":"array","items":{"$ref":"#/components/schemas/AccessRule"},"description":"The set of rules to apply.  Note that * is required to modify\naccess policy rules, and that \"none\" will reject all actions"}}},"RoleRef":{"type":"object","additionalProperties":false,"required":["kind","name","xname"],"properties":{"kind":{"enum":["Role","BuiltinRole","Team","User"],"description":"Policies can apply to roles, teams, or users\nApplying policies to individual users is supported, but discouraged"},"name":{"type":"string"},"xname":{"type":"string"}}},"ResourceRef":{"type":"object","additionalProperties":false,"required":["kind","name"],"properties":{"kind":{"type":"string"},"name":{"type":"string"}}},"AccessRule":{"type":"object","additionalProperties":false,"required":["kind","verb"],"properties":{"kind":{"type":"string","description":"The kind this rule applies to (dashboards, alert, etc)","default":"*"},"verb":{"anyOf":[{"type":"string","const":"*"},{"type":"string","const":"none"},{"type":"string"}],"description":"READ, WRITE, CREATE, DELETE, ...\nshould move to k8s style verbs like: \"get\", \"list\", \"watch\", \"create\", \"update\", \"patch\", \"delete\""},"target":{"type":"string","description":"Specific sub-elements like \"alert.rules\" or \"dashboard.permissions\"????"}}}}}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "accesspolicy",
+    "version": "0.0.0",
+    "x-schema-identifier": "AccessPolicy",
+    "x-schema-kind": "core"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "AccessPolicy": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scope",
+          "role",
+          "rules"
+        ],
+        "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/ResourceRef",
+            "description": "The scope where these policies should apply"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleRef",
+            "description": "The role that must apply this policy"
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccessRule"
+            },
+            "description": "The set of rules to apply.  Note that * is required to modify\naccess policy rules, and that \"none\" will reject all actions"
+          }
+        }
+      },
+      "RoleRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "name",
+          "xname"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "Role",
+              "BuiltinRole",
+              "Team",
+              "User"
+            ],
+            "description": "Policies can apply to roles, teams, or users\nApplying policies to individual users is supported, but discouraged"
+          },
+          "name": {
+            "type": "string"
+          },
+          "xname": {
+            "type": "string"
+          }
+        }
+      },
+      "ResourceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "name"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "AccessRule": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "verb"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "description": "The kind this rule applies to (dashboards, alert, etc)",
+            "default": "*"
+          },
+          "verb": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "*"
+              },
+              {
+                "type": "string",
+                "const": "none"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "READ, WRITE, CREATE, DELETE, ...\nshould move to k8s style verbs like: \"get\", \"list\", \"watch\", \"create\", \"update\", \"patch\", \"delete\""
+          },
+          "target": {
+            "type": "string",
+            "description": "Specific sub-elements like \"alert.rules\" or \"dashboard.permissions\"????"
+          }
+        }
+      }
+    }
+  }
+}

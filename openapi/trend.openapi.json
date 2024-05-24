@@ -1,1 +1,431 @@
-{"openapi":"3.0.0","info":{"title":"trend","version":"0.0.0","x-schema-identifier":"trend","x-schema-kind":"composable","x-schema-variant":"panelcfg"},"paths":{},"components":{"schemas":{"Options":{"type":"object","additionalProperties":false,"required":["legend","tooltip"],"properties":{"legend":{"$ref":"#/components/schemas/VizLegendOptions"},"tooltip":{"$ref":"#/components/schemas/VizTooltipOptions"},"xField":{"type":"string","description":"Name of the x field to use (defaults to first number)"}},"description":"Identical to timeseries... except it does not have timezone settings"},"FieldConfig":{"$ref":"#/components/schemas/GraphFieldConfig"},"VizLegendOptions":{"type":"object","additionalProperties":false,"required":["displayMode","placement","showLegend","calcs"],"properties":{"displayMode":{"$ref":"#/components/schemas/LegendDisplayMode"},"placement":{"$ref":"#/components/schemas/LegendPlacement"},"showLegend":{"type":"boolean"},"asTable":{"type":"boolean"},"isVisible":{"type":"boolean"},"sortBy":{"type":"string"},"sortDesc":{"type":"boolean"},"width":{"type":"number"},"calcs":{"type":"array","items":{"type":"string"}}},"description":"TODO docs"},"VizTooltipOptions":{"type":"object","additionalProperties":false,"required":["mode","sort"],"properties":{"mode":{"$ref":"#/components/schemas/TooltipDisplayMode"},"sort":{"$ref":"#/components/schemas/SortOrder"}},"description":"TODO docs"},"GraphFieldConfig":{"type":"object","additionalProperties":false,"properties":{"drawStyle":{"$ref":"#/components/schemas/GraphDrawStyle"},"gradientMode":{"$ref":"#/components/schemas/GraphGradientMode"},"thresholdsStyle":{"$ref":"#/components/schemas/GraphThresholdsStyleConfig"},"lineColor":{"type":"string"},"lineWidth":{"type":"number"},"lineInterpolation":{"$ref":"#/components/schemas/LineInterpolation"},"lineStyle":{"$ref":"#/components/schemas/LineStyle"},"fillColor":{"type":"string"},"fillOpacity":{"type":"number"},"showPoints":{"$ref":"#/components/schemas/VisibilityMode"},"pointSize":{"type":"number"},"pointColor":{"type":"string"},"axisPlacement":{"$ref":"#/components/schemas/AxisPlacement"},"axisColorMode":{"$ref":"#/components/schemas/AxisColorMode"},"axisLabel":{"type":"string"},"axisWidth":{"type":"number"},"axisSoftMin":{"type":"number"},"axisSoftMax":{"type":"number"},"axisGridShow":{"type":"boolean"},"scaleDistribution":{"$ref":"#/components/schemas/ScaleDistributionConfig"},"barAlignment":{"$ref":"#/components/schemas/BarAlignment"},"barWidthFactor":{"type":"number"},"stacking":{"$ref":"#/components/schemas/StackingConfig"},"hideFrom":{"$ref":"#/components/schemas/HideSeriesConfig"},"transform":{"$ref":"#/components/schemas/GraphTransform"},"spanNulls":{"anyOf":[{"type":"boolean"},{"type":"number"}],"description":"Indicate if null values should be treated as gaps or connected.\nWhen the value is a number, it represents the maximum delta in the\nX axis that should be considered connected.  For timeseries, this is milliseconds"},"fillBelowTo":{"type":"string"},"pointSymbol":{"type":"string"},"axisCenteredZero":{"type":"boolean"},"barMaxWidth":{"type":"number"}},"description":"TODO docs"},"LegendDisplayMode":{"enum":["list","table","hidden"],"description":"TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"},"LegendPlacement":{"enum":["bottom","right"],"description":"TODO docs"},"TooltipDisplayMode":{"enum":["single","multi","none"],"description":"TODO docs"},"SortOrder":{"enum":["asc","desc","none"],"description":"TODO docs"},"GraphDrawStyle":{"enum":["line","bars","points"],"description":"TODO docs"},"GraphGradientMode":{"enum":["none","opacity","hue","scheme"],"description":"TODO docs"},"GraphThresholdsStyleConfig":{"type":"object","additionalProperties":false,"required":["mode"],"properties":{"mode":{"$ref":"#/components/schemas/GraphTresholdsStyleMode"}},"description":"TODO docs"},"LineInterpolation":{"enum":["linear","smooth","stepBefore","stepAfter"],"description":"TODO docs"},"LineStyle":{"type":"object","additionalProperties":false,"properties":{"fill":{"enum":["solid","dash","dot","square"]},"dash":{"type":"array","items":{"type":"number"}}},"description":"TODO docs"},"VisibilityMode":{"enum":["auto","never","always"],"description":"TODO docs"},"AxisPlacement":{"enum":["auto","top","right","bottom","left","hidden"],"description":"TODO docs"},"AxisColorMode":{"enum":["text","series"],"description":"TODO docs"},"ScaleDistributionConfig":{"type":"object","additionalProperties":false,"required":["type"],"properties":{"type":{"$ref":"#/components/schemas/ScaleDistribution"},"log":{"type":"number"},"linearThreshold":{"type":"number"}},"description":"TODO docs"},"BarAlignment":{"enum":[-1,0,1],"description":"TODO docs"},"StackingConfig":{"type":"object","additionalProperties":false,"properties":{"mode":{"$ref":"#/components/schemas/StackingMode"},"group":{"type":"string"}},"description":"TODO docs"},"HideSeriesConfig":{"type":"object","additionalProperties":false,"required":["tooltip","legend","viz"],"properties":{"tooltip":{"type":"boolean"},"legend":{"type":"boolean"},"viz":{"type":"boolean"}},"description":"TODO docs"},"GraphTransform":{"enum":["constant","negative-Y"],"description":"TODO docs"},"GraphTresholdsStyleMode":{"enum":["off","line","dashed","area","line+area","dashed+area","series"],"description":"TODO docs"},"ScaleDistribution":{"enum":["linear","log","ordinal","symlog"],"description":"TODO docs"},"StackingMode":{"enum":["none","normal","percent"],"description":"TODO docs"}}}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "trend",
+    "version": "0.0.0",
+    "x-schema-identifier": "trend",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "legend",
+          "tooltip"
+        ],
+        "properties": {
+          "legend": {
+            "$ref": "#/components/schemas/VizLegendOptions"
+          },
+          "tooltip": {
+            "$ref": "#/components/schemas/VizTooltipOptions"
+          },
+          "xField": {
+            "type": "string",
+            "description": "Name of the x field to use (defaults to first number)"
+          }
+        },
+        "description": "Identical to timeseries... except it does not have timezone settings"
+      },
+      "FieldConfig": {
+        "$ref": "#/components/schemas/GraphFieldConfig"
+      },
+      "VizLegendOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "displayMode",
+          "placement",
+          "showLegend",
+          "calcs"
+        ],
+        "properties": {
+          "displayMode": {
+            "$ref": "#/components/schemas/LegendDisplayMode",
+            "default": "list"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/LegendPlacement",
+            "default": "bottom"
+          },
+          "showLegend": {
+            "type": "boolean"
+          },
+          "asTable": {
+            "type": "boolean"
+          },
+          "isVisible": {
+            "type": "boolean"
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "sortDesc": {
+            "type": "boolean"
+          },
+          "width": {
+            "type": "number"
+          },
+          "calcs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        },
+        "description": "TODO docs"
+      },
+      "VizTooltipOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode",
+          "sort"
+        ],
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/TooltipDisplayMode"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortOrder"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "GraphFieldConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "drawStyle": {
+            "$ref": "#/components/schemas/GraphDrawStyle"
+          },
+          "gradientMode": {
+            "$ref": "#/components/schemas/GraphGradientMode"
+          },
+          "thresholdsStyle": {
+            "$ref": "#/components/schemas/GraphThresholdsStyleConfig"
+          },
+          "lineColor": {
+            "type": "string"
+          },
+          "lineWidth": {
+            "type": "number"
+          },
+          "lineInterpolation": {
+            "$ref": "#/components/schemas/LineInterpolation"
+          },
+          "lineStyle": {
+            "$ref": "#/components/schemas/LineStyle"
+          },
+          "fillColor": {
+            "type": "string"
+          },
+          "fillOpacity": {
+            "type": "number"
+          },
+          "showPoints": {
+            "$ref": "#/components/schemas/VisibilityMode"
+          },
+          "pointSize": {
+            "type": "number"
+          },
+          "pointColor": {
+            "type": "string"
+          },
+          "axisPlacement": {
+            "$ref": "#/components/schemas/AxisPlacement"
+          },
+          "axisColorMode": {
+            "$ref": "#/components/schemas/AxisColorMode"
+          },
+          "axisLabel": {
+            "type": "string"
+          },
+          "axisWidth": {
+            "type": "number"
+          },
+          "axisSoftMin": {
+            "type": "number"
+          },
+          "axisSoftMax": {
+            "type": "number"
+          },
+          "axisGridShow": {
+            "type": "boolean"
+          },
+          "scaleDistribution": {
+            "$ref": "#/components/schemas/ScaleDistributionConfig"
+          },
+          "barAlignment": {
+            "$ref": "#/components/schemas/BarAlignment"
+          },
+          "barWidthFactor": {
+            "type": "number"
+          },
+          "stacking": {
+            "$ref": "#/components/schemas/StackingConfig"
+          },
+          "hideFrom": {
+            "$ref": "#/components/schemas/HideSeriesConfig"
+          },
+          "transform": {
+            "$ref": "#/components/schemas/GraphTransform"
+          },
+          "spanNulls": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "description": "Indicate if null values should be treated as gaps or connected.\nWhen the value is a number, it represents the maximum delta in the\nX axis that should be considered connected.  For timeseries, this is milliseconds"
+          },
+          "fillBelowTo": {
+            "type": "string"
+          },
+          "pointSymbol": {
+            "type": "string"
+          },
+          "axisCenteredZero": {
+            "type": "boolean"
+          },
+          "barMaxWidth": {
+            "type": "number"
+          },
+          "insertNulls": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          }
+        },
+        "description": "TODO docs"
+      },
+      "LegendDisplayMode": {
+        "enum": [
+          "list",
+          "table",
+          "hidden"
+        ],
+        "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
+      },
+      "LegendPlacement": {
+        "enum": [
+          "bottom",
+          "right"
+        ],
+        "description": "TODO docs"
+      },
+      "TooltipDisplayMode": {
+        "enum": [
+          "single",
+          "multi",
+          "none"
+        ],
+        "description": "TODO docs"
+      },
+      "SortOrder": {
+        "enum": [
+          "asc",
+          "desc",
+          "none"
+        ],
+        "description": "TODO docs"
+      },
+      "GraphDrawStyle": {
+        "enum": [
+          "line",
+          "bars",
+          "points"
+        ],
+        "description": "TODO docs"
+      },
+      "GraphGradientMode": {
+        "enum": [
+          "none",
+          "opacity",
+          "hue",
+          "scheme"
+        ],
+        "description": "TODO docs"
+      },
+      "GraphThresholdsStyleConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/GraphTresholdsStyleMode"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "LineInterpolation": {
+        "enum": [
+          "linear",
+          "smooth",
+          "stepBefore",
+          "stepAfter"
+        ],
+        "description": "TODO docs"
+      },
+      "LineStyle": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "fill": {
+            "enum": [
+              "solid",
+              "dash",
+              "dot",
+              "square"
+            ]
+          },
+          "dash": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "description": "TODO docs"
+      },
+      "VisibilityMode": {
+        "enum": [
+          "auto",
+          "never",
+          "always"
+        ],
+        "description": "TODO docs"
+      },
+      "AxisPlacement": {
+        "enum": [
+          "auto",
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "hidden"
+        ],
+        "description": "TODO docs"
+      },
+      "AxisColorMode": {
+        "enum": [
+          "text",
+          "series"
+        ],
+        "description": "TODO docs"
+      },
+      "ScaleDistributionConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ScaleDistribution"
+          },
+          "log": {
+            "type": "number"
+          },
+          "linearThreshold": {
+            "type": "number"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "BarAlignment": {
+        "enum": [
+          -1,
+          0,
+          1
+        ],
+        "description": "TODO docs"
+      },
+      "StackingConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/StackingMode"
+          },
+          "group": {
+            "type": "string"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "HideSeriesConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tooltip",
+          "legend",
+          "viz"
+        ],
+        "properties": {
+          "tooltip": {
+            "type": "boolean"
+          },
+          "legend": {
+            "type": "boolean"
+          },
+          "viz": {
+            "type": "boolean"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "GraphTransform": {
+        "enum": [
+          "constant",
+          "negative-Y"
+        ],
+        "description": "TODO docs"
+      },
+      "GraphTresholdsStyleMode": {
+        "enum": [
+          "off",
+          "line",
+          "dashed",
+          "area",
+          "line+area",
+          "dashed+area",
+          "series"
+        ],
+        "description": "TODO docs"
+      },
+      "ScaleDistribution": {
+        "enum": [
+          "linear",
+          "log",
+          "ordinal",
+          "symlog"
+        ],
+        "description": "TODO docs"
+      },
+      "StackingMode": {
+        "enum": [
+          "none",
+          "normal",
+          "percent"
+        ],
+        "description": "TODO docs"
+      }
+    }
+  }
+}
