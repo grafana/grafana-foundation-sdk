@@ -117,6 +117,13 @@ func (builder *PanelBuilder) Datasource(datasource DataSourceRef) *PanelBuilder 
 	return builder
 }
 
+// Grid position.
+func (builder *PanelBuilder) GridPos(gridPos GridPos) *PanelBuilder {
+	builder.internal.GridPos = &gridPos
+
+	return builder
+}
+
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if !(h > 0) {

@@ -1,1 +1,37 @@
-{"openapi":"3.0.0","info":{"title":"folder","version":"0.0.0","x-schema-identifier":"Folder","x-schema-kind":"core"},"paths":{},"components":{"schemas":{"Folder":{"type":"object","additionalProperties":false,"required":["uid","title"],"properties":{"uid":{"type":"string","description":"Unique folder id. (will be k8s name)"},"title":{"type":"string","description":"Folder title"},"description":{"type":"string","description":"Description of the folder."}},"description":"TODO:\ncommon metadata will soon support setting the parent folder in the metadata"}}}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "folder",
+    "version": "0.0.0",
+    "x-schema-identifier": "Folder",
+    "x-schema-kind": "core"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Folder": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "uid",
+          "title"
+        ],
+        "properties": {
+          "uid": {
+            "type": "string",
+            "description": "Unique folder id. (will be k8s name)"
+          },
+          "title": {
+            "type": "string",
+            "description": "Folder title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the folder."
+          }
+        },
+        "description": "TODO:\ncommon metadata will soon support setting the parent folder in the metadata"
+      }
+    }
+  }
+}

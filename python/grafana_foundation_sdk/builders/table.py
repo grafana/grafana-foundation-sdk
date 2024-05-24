@@ -90,6 +90,15 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def grid_pos(self, grid_pos: dashboard.GridPos) -> typing.Self:    
+        """
+        Grid position.
+        """
+            
+        self._internal.grid_pos = grid_pos
+    
+        return self
+    
     def height(self, h: int) -> typing.Self:    
         """
         Panel height. The height is the number of rows from the top edge of the panel.

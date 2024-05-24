@@ -213,12 +213,14 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         
         panel_resource = panel.build()
         
-        # Position the panel on the grid
         if panel_resource.grid_pos is None:
             panel_resource.grid_pos = dashboard.GridPos()
         
-        panel_resource.grid_pos.x = self.__current_x
-        panel_resource.grid_pos.y = self.__current_y
+        # The panel either has no position set, or it is the first panel of the dashboard.
+        # In that case, we position it on the grid
+        if panel_resource.grid_pos.x == 0 and panel_resource.grid_pos.y == 0:
+            panel_resource.grid_pos.x = self.__current_x
+            panel_resource.grid_pos.y = self.__current_y
         self._internal.panels.append(panel_resource)
         
         # Prepare the coordinates for the next panel
@@ -259,8 +261,11 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
             if panel.grid_pos is None:
                 panel.grid_pos = dashboard.GridPos()
         
-            panel.grid_pos.x = self.__current_x
-            panel.grid_pos.y = self.__current_y
+            # The panel either has no position set, or it is the first panel of the dashboard.
+            # In that case, we position it on the grid
+            if panel.grid_pos.x == 0 and panel.grid_pos.y == 0:
+                panel.grid_pos.x = self.__current_x
+                panel.grid_pos.y = self.__current_y
         
             # Prepare the coordinates for the next panel
             self.__current_x += panel.grid_pos.w
@@ -1029,6 +1034,15 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         """
             
         self._internal.datasource = datasource
+    
+        return self
+    
+    def grid_pos(self, grid_pos: dashboard.GridPos) -> typing.Self:    
+        """
+        Grid position.
+        """
+            
+        self._internal.grid_pos = grid_pos
     
         return self
     

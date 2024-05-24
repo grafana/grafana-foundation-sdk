@@ -65,6 +65,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Grid position.
+    gridPos(gridPos: dashboard.GridPos): this {
+        this.internal.gridPos = gridPos;
+        return this;
+    }
+
     // Panel height. The height is the number of rows from the top edge of the panel.
     height(h: number): this {
         if (!this.internal.gridPos) {
@@ -811,6 +817,20 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
             this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
         }
         this.internal.fieldConfig.defaults.custom.barMaxWidth = barMaxWidth;
+        return this;
+    }
+
+    insertNulls(insertNulls: boolean | number): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.insertNulls = insertNulls;
         return this;
     }
 }
