@@ -1,1 +1,19 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","definitions":{"Options":{"type":"object","additionalProperties":false,"required":["selectedSeries"],"properties":{"selectedSeries":{"type":"integer","minimum":0,"default":0}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selectedSeries"
+      ],
+      "properties": {
+        "selectedSeries": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        }
+      }
+    }
+  }
+}

@@ -4,10 +4,9 @@ package common
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
-var _ cog.Builder[cogvariants.Dataquery] = (*DataQueryBuilder)(nil)
+var _ cog.Builder[DataQuery] = (*DataQueryBuilder)(nil)
 
 // These are the common properties available to all queries in all datasources.
 // Specific implementations will *extend* this interface, adding the required
@@ -29,7 +28,7 @@ func NewDataQueryBuilder() *DataQueryBuilder {
 	return builder
 }
 
-func (builder *DataQueryBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *DataQueryBuilder) Build() (DataQuery, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {

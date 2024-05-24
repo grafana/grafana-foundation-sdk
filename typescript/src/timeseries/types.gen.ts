@@ -10,7 +10,8 @@ export interface Options {
 }
 
 export const defaultOptions = (): Options => ({
-	legend: common.defaultVizLegendOptions(),
+	legend: { displayMode: common.LegendDisplayMode.List, placement: common.LegendPlacement.Bottom, showLegend: false, calcs: [
+], },
 	tooltip: common.defaultVizTooltipOptions(),
 });
 

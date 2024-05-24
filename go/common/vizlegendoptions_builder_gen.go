@@ -95,4 +95,7 @@ func (builder *VizLegendOptionsBuilder) Calcs(calcs []string) *VizLegendOptionsB
 }
 
 func (builder *VizLegendOptionsBuilder) applyDefaults() {
+	builder.DisplayMode("list")
+	builder.Placement("bottom")
+	builder.Calcs([]string{})
 }

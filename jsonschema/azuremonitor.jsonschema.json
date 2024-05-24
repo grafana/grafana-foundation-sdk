@@ -1,1 +1,641 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","definitions":{"AzureMonitorQuery":{"type":"object","additionalProperties":false,"required":["refId"],"properties":{"refId":{"type":"string","description":"A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."},"hide":{"type":"boolean","description":"true if query is disabled (ie should not be returned to the dashboard)\nNote this does not always imply that the query should not be executed since\nthe results from a hidden query may be used as the input to other queries (SSE etc)"},"queryType":{"type":"string","description":"Specify the query flavor\nTODO make this required and give it a default"},"subscription":{"type":"string","description":"Azure subscription containing the resource(s) to be queried."},"subscriptions":{"type":"array","items":{"type":"string"},"description":"Subscriptions to be queried via Azure Resource Graph."},"azureMonitor":{"$ref":"#/definitions/AzureMetricQuery","description":"Azure Monitor Metrics sub-query properties."},"azureLogAnalytics":{"$ref":"#/definitions/AzureLogsQuery","description":"Azure Monitor Logs sub-query properties."},"azureResourceGraph":{"$ref":"#/definitions/AzureResourceGraphQuery","description":"Azure Resource Graph sub-query properties."},"azureTraces":{"$ref":"#/definitions/AzureTracesQuery","description":"Application Insights Traces sub-query properties."},"grafanaTemplateVariableFn":{"$ref":"#/definitions/GrafanaTemplateVariableQuery","description":"@deprecated Legacy template variable support."},"resourceGroup":{"type":"string","description":"Template variables params. These exist for backwards compatiblity with legacy template variables."},"namespace":{"type":"string"},"resource":{"type":"string"},"datasource":{"type":"object","additionalProperties":{},"description":"For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"},"region":{"type":"string","description":"Azure Monitor query type.\nqueryType: #AzureQueryType"}}},"AzureQueryType":{"enum":["Azure Monitor","Azure Log Analytics","Azure Resource Graph","Azure Traces","Azure Subscriptions","Azure Resource Groups","Azure Namespaces","Azure Resource Names","Azure Metric Names","Azure Workspaces","Azure Regions","Grafana Template Variable Function"],"description":"Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated"},"AzureMetricQuery":{"type":"object","additionalProperties":false,"properties":{"resources":{"type":"array","items":{"$ref":"#/definitions/AzureMonitorResource"},"description":"Array of resource URIs to be queried."},"metricNamespace":{"type":"string","description":"metricNamespace is used as the resource type (or resource namespace).\nIt's usually equal to the target metric namespace. e.g. microsoft.storage/storageaccounts\nKept the name of the variable as metricNamespace to avoid backward incompatibility issues."},"customNamespace":{"type":"string","description":"Used as the value for the metricNamespace property when it's different from the resource namespace."},"metricName":{"type":"string","description":"The metric to query data for within the specified metricNamespace. e.g. UsedCapacity"},"region":{"type":"string","description":"The Azure region containing the resource(s)."},"timeGrain":{"type":"string","description":"The granularity of data points to be queried. Defaults to auto."},"aggregation":{"type":"string","description":"The aggregation to be used within the query. Defaults to the primaryAggregationType defined by the metric."},"dimensionFilters":{"type":"array","items":{"$ref":"#/definitions/AzureMetricDimension"},"description":"Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric."},"top":{"type":"string","description":"Maximum number of records to return. Defaults to 10."},"allowedTimeGrainsMs":{"type":"array","items":{"type":"integer"},"description":"Time grains that are supported by the metric."},"alias":{"type":"string","description":"Aliases can be set to modify the legend labels. e.g. {{ resourceGroup }}. See docs for more detail."},"timeGrainUnit":{"type":"string","description":"@deprecated"},"dimension":{"type":"string","description":"@deprecated This property was migrated to dimensionFilters and should only be accessed in the migration"},"dimensionFilter":{"type":"string","description":"@deprecated This property was migrated to dimensionFilters and should only be accessed in the migration"},"metricDefinition":{"type":"string","description":"@deprecated Use metricNamespace instead"},"resourceUri":{"type":"string","description":"@deprecated Use resourceGroup, resourceName and metricNamespace instead"},"resourceGroup":{"type":"string","description":"@deprecated Use resources instead"},"resourceName":{"type":"string","description":"@deprecated Use resources instead"}}},"AzureLogsQuery":{"type":"object","additionalProperties":false,"properties":{"query":{"type":"string","description":"KQL query to be executed."},"resultFormat":{"$ref":"#/definitions/ResultFormat","description":"Specifies the format results should be returned as."},"resources":{"type":"array","items":{"type":"string"},"description":"Array of resource URIs to be queried."},"dashboardTime":{"type":"boolean","description":"If set to true the dashboard time range will be used as a filter for the query. Otherwise the query time ranges will be used. Defaults to false."},"timeColumn":{"type":"string","description":"If dashboardTime is set to true this value dictates which column the time filter will be applied to. Defaults to the first tables timeSpan column, the first datetime column found, or TimeGenerated"},"workspace":{"type":"string","description":"Workspace ID. This was removed in Grafana 8, but remains for backwards compat."},"resource":{"type":"string","description":"@deprecated Use resources instead"},"intersectTime":{"type":"boolean","description":"@deprecated Use dashboardTime instead"}},"description":"Azure Monitor Logs sub-query properties"},"AzureTracesQuery":{"type":"object","additionalProperties":false,"properties":{"resultFormat":{"$ref":"#/definitions/ResultFormat","description":"Specifies the format results should be returned as."},"resources":{"type":"array","items":{"type":"string"},"description":"Array of resource URIs to be queried."},"operationId":{"type":"string","description":"Operation ID. Used only for Traces queries."},"traceTypes":{"type":"array","items":{"type":"string"},"description":"Types of events to filter by."},"filters":{"type":"array","items":{"$ref":"#/definitions/AzureTracesFilter"},"description":"Filters for property values."},"query":{"type":"string","description":"KQL query to be executed."}},"description":"Application Insights Traces sub-query properties"},"AzureTracesFilter":{"type":"object","additionalProperties":false,"required":["property","operation","filters"],"properties":{"property":{"type":"string","description":"Property name, auto-populated based on available traces."},"operation":{"type":"string","description":"Comparison operator to use. Either equals or not equals."},"filters":{"type":"array","items":{"type":"string"},"description":"Values to filter by."}}},"ResultFormat":{"enum":["table","time_series","trace","logs"]},"AzureResourceGraphQuery":{"type":"object","additionalProperties":false,"properties":{"query":{"type":"string","description":"Azure Resource Graph KQL query to be executed."},"resultFormat":{"type":"string","description":"Specifies the format results should be returned as. Defaults to table."}}},"AzureMonitorResource":{"type":"object","additionalProperties":false,"properties":{"subscription":{"type":"string"},"resourceGroup":{"type":"string"},"resourceName":{"type":"string"},"metricNamespace":{"type":"string"},"region":{"type":"string"}}},"AzureMetricDimension":{"type":"object","additionalProperties":false,"properties":{"dimension":{"type":"string","description":"Name of Dimension to be filtered on."},"operator":{"type":"string","description":"String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators."},"filters":{"type":"array","items":{"type":"string"},"description":"Values to match with the filter."},"filter":{"type":"string","description":"@deprecated filter is deprecated in favour of filters to support multiselect."}}},"GrafanaTemplateVariableQueryType":{"enum":["AppInsightsMetricNameQuery","AppInsightsGroupByQuery","SubscriptionsQuery","ResourceGroupsQuery","ResourceNamesQuery","MetricNamespaceQuery","MetricNamesQuery","WorkspacesQuery","UnknownQuery"]},"BaseGrafanaTemplateVariableQuery":{"type":"object","additionalProperties":false,"properties":{"rawQuery":{"type":"string"}}},"UnknownQuery":{"type":"object","additionalProperties":false,"required":["kind"],"properties":{"rawQuery":{"type":"string"},"kind":{"type":"string","const":"UnknownQuery"}}},"AppInsightsMetricNameQuery":{"type":"object","additionalProperties":false,"required":["kind"],"properties":{"rawQuery":{"type":"string"},"kind":{"type":"string","const":"AppInsightsMetricNameQuery"}}},"AppInsightsGroupByQuery":{"type":"object","additionalProperties":false,"required":["kind","metricName"],"properties":{"rawQuery":{"type":"string"},"kind":{"type":"string","const":"AppInsightsGroupByQuery"},"metricName":{"type":"string"}}},"SubscriptionsQuery":{"type":"object","additionalProperties":false,"required":["kind"],"properties":{"rawQuery":{"type":"string"},"kind":{"type":"string","const":"SubscriptionsQuery"}}},"ResourceGroupsQuery":{"type":"object","additionalProperties":false,"required":["kind","subscription"],"properties":{"rawQuery":{"type":"string"},"kind":{"type":"string","const":"ResourceGroupsQuery"},"subscription":{"type":"string"}}},"ResourceNamesQuery":{"type":"object","additionalProperties":false,"required":["kind","subscription","resourceGroup","metricNamespace"],"properties":{"rawQuery":{"type":"string"},"kind":{"type":"string","const":"ResourceNamesQuery"},"subscription":{"type":"string"},"resourceGroup":{"type":"string"},"metricNamespace":{"type":"string"}}},"MetricNamespaceQuery":{"type":"object","additionalProperties":false,"required":["kind","subscription","resourceGroup"],"properties":{"rawQuery":{"type":"string"},"kind":{"type":"string","const":"MetricNamespaceQuery"},"subscription":{"type":"string"},"resourceGroup":{"type":"string"},"metricNamespace":{"type":"string"},"resourceName":{"type":"string"}}},"MetricDefinitionsQuery":{"type":"object","additionalProperties":false,"required":["kind","subscription","resourceGroup"],"properties":{"rawQuery":{"type":"string"},"kind":{"type":"string","const":"MetricDefinitionsQuery"},"subscription":{"type":"string"},"resourceGroup":{"type":"string"},"metricNamespace":{"type":"string"},"resourceName":{"type":"string"}},"description":"@deprecated Use MetricNamespaceQuery instead"},"MetricNamesQuery":{"type":"object","additionalProperties":false,"required":["kind","subscription","resourceGroup","resourceName","metricNamespace"],"properties":{"rawQuery":{"type":"string"},"kind":{"type":"string","const":"MetricNamesQuery"},"subscription":{"type":"string"},"resourceGroup":{"type":"string"},"resourceName":{"type":"string"},"metricNamespace":{"type":"string"}}},"WorkspacesQuery":{"type":"object","additionalProperties":false,"required":["kind","subscription"],"properties":{"rawQuery":{"type":"string"},"kind":{"type":"string","const":"WorkspacesQuery"},"subscription":{"type":"string"}}},"GrafanaTemplateVariableQuery":{"anyOf":[{"$ref":"#/definitions/AppInsightsMetricNameQuery"},{"$ref":"#/definitions/AppInsightsGroupByQuery"},{"$ref":"#/definitions/SubscriptionsQuery"},{"$ref":"#/definitions/ResourceGroupsQuery"},{"$ref":"#/definitions/ResourceNamesQuery"},{"$ref":"#/definitions/MetricNamespaceQuery"},{"$ref":"#/definitions/MetricDefinitionsQuery"},{"$ref":"#/definitions/MetricNamesQuery"},{"$ref":"#/definitions/WorkspacesQuery"},{"$ref":"#/definitions/UnknownQuery"}]}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "AzureMonitorQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "refId"
+      ],
+      "properties": {
+        "refId": {
+          "type": "string",
+          "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
+        },
+        "hide": {
+          "type": "boolean",
+          "description": "true if query is disabled (ie should not be returned to the dashboard)\nNote this does not always imply that the query should not be executed since\nthe results from a hidden query may be used as the input to other queries (SSE etc)"
+        },
+        "queryType": {
+          "type": "string",
+          "description": "Specify the query flavor\nTODO make this required and give it a default"
+        },
+        "subscription": {
+          "type": "string",
+          "description": "Azure subscription containing the resource(s) to be queried."
+        },
+        "subscriptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Subscriptions to be queried via Azure Resource Graph."
+        },
+        "azureMonitor": {
+          "$ref": "#/definitions/AzureMetricQuery",
+          "description": "Azure Monitor Metrics sub-query properties."
+        },
+        "azureLogAnalytics": {
+          "$ref": "#/definitions/AzureLogsQuery",
+          "description": "Azure Monitor Logs sub-query properties."
+        },
+        "azureResourceGraph": {
+          "$ref": "#/definitions/AzureResourceGraphQuery",
+          "description": "Azure Resource Graph sub-query properties."
+        },
+        "azureTraces": {
+          "$ref": "#/definitions/AzureTracesQuery",
+          "description": "Application Insights Traces sub-query properties."
+        },
+        "grafanaTemplateVariableFn": {
+          "$ref": "#/definitions/GrafanaTemplateVariableQuery",
+          "description": "@deprecated Legacy template variable support."
+        },
+        "resourceGroup": {
+          "type": "string",
+          "description": "Template variables params. These exist for backwards compatiblity with legacy template variables."
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        },
+        "datasource": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+        },
+        "region": {
+          "type": "string",
+          "description": "Azure Monitor query type.\nqueryType: #AzureQueryType"
+        }
+      }
+    },
+    "AzureQueryType": {
+      "enum": [
+        "Azure Monitor",
+        "Azure Log Analytics",
+        "Azure Resource Graph",
+        "Azure Traces",
+        "Azure Subscriptions",
+        "Azure Resource Groups",
+        "Azure Namespaces",
+        "Azure Resource Names",
+        "Azure Metric Names",
+        "Azure Workspaces",
+        "Azure Regions",
+        "Grafana Template Variable Function"
+      ],
+      "description": "Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated"
+    },
+    "AzureMetricQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "resources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AzureMonitorResource"
+          },
+          "description": "Array of resource URIs to be queried."
+        },
+        "metricNamespace": {
+          "type": "string",
+          "description": "metricNamespace is used as the resource type (or resource namespace).\nIt's usually equal to the target metric namespace. e.g. microsoft.storage/storageaccounts\nKept the name of the variable as metricNamespace to avoid backward incompatibility issues."
+        },
+        "customNamespace": {
+          "type": "string",
+          "description": "Used as the value for the metricNamespace property when it's different from the resource namespace."
+        },
+        "metricName": {
+          "type": "string",
+          "description": "The metric to query data for within the specified metricNamespace. e.g. UsedCapacity"
+        },
+        "region": {
+          "type": "string",
+          "description": "The Azure region containing the resource(s)."
+        },
+        "timeGrain": {
+          "type": "string",
+          "description": "The granularity of data points to be queried. Defaults to auto."
+        },
+        "aggregation": {
+          "type": "string",
+          "description": "The aggregation to be used within the query. Defaults to the primaryAggregationType defined by the metric."
+        },
+        "dimensionFilters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AzureMetricDimension"
+          },
+          "description": "Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric."
+        },
+        "top": {
+          "type": "string",
+          "description": "Maximum number of records to return. Defaults to 10."
+        },
+        "allowedTimeGrainsMs": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "Time grains that are supported by the metric."
+        },
+        "alias": {
+          "type": "string",
+          "description": "Aliases can be set to modify the legend labels. e.g. {{ resourceGroup }}. See docs for more detail."
+        },
+        "timeGrainUnit": {
+          "type": "string",
+          "description": "@deprecated"
+        },
+        "dimension": {
+          "type": "string",
+          "description": "@deprecated This property was migrated to dimensionFilters and should only be accessed in the migration"
+        },
+        "dimensionFilter": {
+          "type": "string",
+          "description": "@deprecated This property was migrated to dimensionFilters and should only be accessed in the migration"
+        },
+        "metricDefinition": {
+          "type": "string",
+          "description": "@deprecated Use metricNamespace instead"
+        },
+        "resourceUri": {
+          "type": "string",
+          "description": "@deprecated Use resourceGroup, resourceName and metricNamespace instead"
+        },
+        "resourceGroup": {
+          "type": "string",
+          "description": "@deprecated Use resources instead"
+        },
+        "resourceName": {
+          "type": "string",
+          "description": "@deprecated Use resources instead"
+        }
+      }
+    },
+    "AzureLogsQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "KQL query to be executed."
+        },
+        "resultFormat": {
+          "$ref": "#/definitions/ResultFormat",
+          "description": "Specifies the format results should be returned as."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of resource URIs to be queried."
+        },
+        "dashboardTime": {
+          "type": "boolean",
+          "description": "If set to true the dashboard time range will be used as a filter for the query. Otherwise the query time ranges will be used. Defaults to false."
+        },
+        "timeColumn": {
+          "type": "string",
+          "description": "If dashboardTime is set to true this value dictates which column the time filter will be applied to. Defaults to the first tables timeSpan column, the first datetime column found, or TimeGenerated"
+        },
+        "workspace": {
+          "type": "string",
+          "description": "Workspace ID. This was removed in Grafana 8, but remains for backwards compat."
+        },
+        "resource": {
+          "type": "string",
+          "description": "@deprecated Use resources instead"
+        },
+        "intersectTime": {
+          "type": "boolean",
+          "description": "@deprecated Use dashboardTime instead"
+        }
+      },
+      "description": "Azure Monitor Logs sub-query properties"
+    },
+    "AzureTracesQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "resultFormat": {
+          "$ref": "#/definitions/ResultFormat",
+          "description": "Specifies the format results should be returned as."
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of resource URIs to be queried."
+        },
+        "operationId": {
+          "type": "string",
+          "description": "Operation ID. Used only for Traces queries."
+        },
+        "traceTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Types of events to filter by."
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AzureTracesFilter"
+          },
+          "description": "Filters for property values."
+        },
+        "query": {
+          "type": "string",
+          "description": "KQL query to be executed."
+        }
+      },
+      "description": "Application Insights Traces sub-query properties"
+    },
+    "AzureTracesFilter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "property",
+        "operation",
+        "filters"
+      ],
+      "properties": {
+        "property": {
+          "type": "string",
+          "description": "Property name, auto-populated based on available traces."
+        },
+        "operation": {
+          "type": "string",
+          "description": "Comparison operator to use. Either equals or not equals."
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Values to filter by."
+        }
+      }
+    },
+    "ResultFormat": {
+      "enum": [
+        "table",
+        "time_series",
+        "trace",
+        "logs"
+      ]
+    },
+    "AzureResourceGraphQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Azure Resource Graph KQL query to be executed."
+        },
+        "resultFormat": {
+          "type": "string",
+          "description": "Specifies the format results should be returned as. Defaults to table."
+        }
+      }
+    },
+    "AzureMonitorResource": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "subscription": {
+          "type": "string"
+        },
+        "resourceGroup": {
+          "type": "string"
+        },
+        "resourceName": {
+          "type": "string"
+        },
+        "metricNamespace": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        }
+      }
+    },
+    "AzureMetricDimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dimension": {
+          "type": "string",
+          "description": "Name of Dimension to be filtered on."
+        },
+        "operator": {
+          "type": "string",
+          "description": "String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators."
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Values to match with the filter."
+        },
+        "filter": {
+          "type": "string",
+          "description": "@deprecated filter is deprecated in favour of filters to support multiselect."
+        }
+      }
+    },
+    "GrafanaTemplateVariableQueryType": {
+      "enum": [
+        "AppInsightsMetricNameQuery",
+        "AppInsightsGroupByQuery",
+        "SubscriptionsQuery",
+        "ResourceGroupsQuery",
+        "ResourceNamesQuery",
+        "MetricNamespaceQuery",
+        "MetricNamesQuery",
+        "WorkspacesQuery",
+        "UnknownQuery"
+      ]
+    },
+    "BaseGrafanaTemplateVariableQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rawQuery": {
+          "type": "string"
+        }
+      }
+    },
+    "UnknownQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "rawQuery": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "const": "UnknownQuery"
+        }
+      }
+    },
+    "AppInsightsMetricNameQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "rawQuery": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "const": "AppInsightsMetricNameQuery"
+        }
+      }
+    },
+    "AppInsightsGroupByQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "metricName"
+      ],
+      "properties": {
+        "rawQuery": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "const": "AppInsightsGroupByQuery"
+        },
+        "metricName": {
+          "type": "string"
+        }
+      }
+    },
+    "SubscriptionsQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "rawQuery": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "const": "SubscriptionsQuery"
+        }
+      }
+    },
+    "ResourceGroupsQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "subscription"
+      ],
+      "properties": {
+        "rawQuery": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "const": "ResourceGroupsQuery"
+        },
+        "subscription": {
+          "type": "string"
+        }
+      }
+    },
+    "ResourceNamesQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "subscription",
+        "resourceGroup",
+        "metricNamespace"
+      ],
+      "properties": {
+        "rawQuery": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "const": "ResourceNamesQuery"
+        },
+        "subscription": {
+          "type": "string"
+        },
+        "resourceGroup": {
+          "type": "string"
+        },
+        "metricNamespace": {
+          "type": "string"
+        }
+      }
+    },
+    "MetricNamespaceQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "subscription",
+        "resourceGroup"
+      ],
+      "properties": {
+        "rawQuery": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "const": "MetricNamespaceQuery"
+        },
+        "subscription": {
+          "type": "string"
+        },
+        "resourceGroup": {
+          "type": "string"
+        },
+        "metricNamespace": {
+          "type": "string"
+        },
+        "resourceName": {
+          "type": "string"
+        }
+      }
+    },
+    "MetricDefinitionsQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "subscription",
+        "resourceGroup"
+      ],
+      "properties": {
+        "rawQuery": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "const": "MetricDefinitionsQuery"
+        },
+        "subscription": {
+          "type": "string"
+        },
+        "resourceGroup": {
+          "type": "string"
+        },
+        "metricNamespace": {
+          "type": "string"
+        },
+        "resourceName": {
+          "type": "string"
+        }
+      },
+      "description": "@deprecated Use MetricNamespaceQuery instead"
+    },
+    "MetricNamesQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "subscription",
+        "resourceGroup",
+        "resourceName",
+        "metricNamespace"
+      ],
+      "properties": {
+        "rawQuery": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "const": "MetricNamesQuery"
+        },
+        "subscription": {
+          "type": "string"
+        },
+        "resourceGroup": {
+          "type": "string"
+        },
+        "resourceName": {
+          "type": "string"
+        },
+        "metricNamespace": {
+          "type": "string"
+        }
+      }
+    },
+    "WorkspacesQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "subscription"
+      ],
+      "properties": {
+        "rawQuery": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "const": "WorkspacesQuery"
+        },
+        "subscription": {
+          "type": "string"
+        }
+      }
+    },
+    "GrafanaTemplateVariableQuery": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/AppInsightsMetricNameQuery"
+        },
+        {
+          "$ref": "#/definitions/AppInsightsGroupByQuery"
+        },
+        {
+          "$ref": "#/definitions/SubscriptionsQuery"
+        },
+        {
+          "$ref": "#/definitions/ResourceGroupsQuery"
+        },
+        {
+          "$ref": "#/definitions/ResourceNamesQuery"
+        },
+        {
+          "$ref": "#/definitions/MetricNamespaceQuery"
+        },
+        {
+          "$ref": "#/definitions/MetricDefinitionsQuery"
+        },
+        {
+          "$ref": "#/definitions/MetricNamesQuery"
+        },
+        {
+          "$ref": "#/definitions/WorkspacesQuery"
+        },
+        {
+          "$ref": "#/definitions/UnknownQuery"
+        }
+      ]
+    }
+  }
+}
