@@ -3,6 +3,8 @@
 package dashboard
 
 import (
+	"time"
+
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
@@ -45,7 +47,7 @@ func (builder *SnapshotBuilder) Build() (Snapshot, error) {
 }
 
 // Time when the snapshot was created
-func (builder *SnapshotBuilder) Created(created string) *SnapshotBuilder {
+func (builder *SnapshotBuilder) Created(created time.Time) *SnapshotBuilder {
 	builder.internal.Created = created
 
 	return builder
@@ -101,7 +103,7 @@ func (builder *SnapshotBuilder) OrgId(orgId uint32) *SnapshotBuilder {
 }
 
 // last time when the snapshot was updated
-func (builder *SnapshotBuilder) Updated(updated string) *SnapshotBuilder {
+func (builder *SnapshotBuilder) Updated(updated time.Time) *SnapshotBuilder {
 	builder.internal.Updated = updated
 
 	return builder

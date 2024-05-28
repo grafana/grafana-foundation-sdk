@@ -64,9 +64,11 @@ func (builder *TypeClassicConditionsBuilder) Conditions(conditions []struct {
 
 // The datasource
 func (builder *TypeClassicConditionsBuilder) Datasource(datasource struct {
+	// The apiserver version
+	ApiVersion *string `json:"apiVersion,omitempty"`
 	// The datasource plugin type
 	Type string `json:"type"`
-	// Datasource UID
+	// Datasource UID (NOTE: name in k8s)
 	Uid *string `json:"uid,omitempty"`
 }) *TypeClassicConditionsBuilder {
 	builder.internal.Datasource = &datasource

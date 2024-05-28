@@ -3,6 +3,10 @@
 package alerting
 
 import (
+	"encoding/json"
+	"time"
+
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
@@ -76,9 +80,9 @@ type TimeInterval struct {
 // Redefining this to avoid an import cycle
 type TimeRange struct {
 	// Redefining this to avoid an import cycle
-	From *string `json:"from,omitempty"`
+	From *time.Time `json:"from,omitempty"`
 	// Redefining this to avoid an import cycle
-	To *string `json:"to,omitempty"`
+	To *time.Time `json:"to,omitempty"`
 }
 
 type RuleGroup struct {
@@ -108,7 +112,7 @@ type Rule struct {
 	RuleGroup   string            `json:"ruleGroup"`
 	Title       string            `json:"title"`
 	Uid         *string           `json:"uid,omitempty"`
-	Updated     *string           `json:"updated,omitempty"`
+	Updated     *time.Time        `json:"updated,omitempty"`
 }
 
 type Query struct {
@@ -117,6 +121,52 @@ type Query struct {
 	QueryType         *string               `json:"queryType,omitempty"`
 	RefId             *string               `json:"refId,omitempty"`
 	RelativeTimeRange *RelativeTimeRange    `json:"relativeTimeRange,omitempty"`
+}
+
+func (resource *Query) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+
+	if fields["datasourceUid"] != nil {
+		if err := json.Unmarshal(fields["datasourceUid"], &resource.DatasourceUid); err != nil {
+			return err
+		}
+	}
+
+	if fields["queryType"] != nil {
+		if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
+			return err
+		}
+	}
+
+	if fields["refId"] != nil {
+		if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
+			return err
+		}
+	}
+
+	if fields["relativeTimeRange"] != nil {
+		if err := json.Unmarshal(fields["relativeTimeRange"], &resource.RelativeTimeRange); err != nil {
+			return err
+		}
+	}
+
+	dataqueryTypeHint := ""
+
+	if fields["model"] != nil {
+		model, err := cog.UnmarshalDataquery(fields["model"], dataqueryTypeHint)
+		if err != nil {
+			return err
+		}
+		resource.Model = model
+	}
+
+	return nil
 }
 
 // EmbeddedContactPoint is the contact point type that is used
