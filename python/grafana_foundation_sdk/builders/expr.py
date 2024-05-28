@@ -718,9 +718,18 @@ class ExprTypeMathDatasource(cogbuilder.Builder[expr.ExprTypeMathDatasource]):
     def build(self) -> expr.ExprTypeMathDatasource:
         return self._internal    
     
+    def api_version(self, api_version: str) -> typing.Self:    
+        """
+        The apiserver version
+        """
+            
+        self._internal.api_version = api_version
+    
+        return self
+    
     def uid(self, uid: str) -> typing.Self:    
         """
-        Datasource UID
+        Datasource UID (NOTE: name in k8s)
         """
             
         self._internal.uid = uid
@@ -816,9 +825,18 @@ class ExprTypeReduceDatasource(cogbuilder.Builder[expr.ExprTypeReduceDatasource]
     def build(self) -> expr.ExprTypeReduceDatasource:
         return self._internal    
     
+    def api_version(self, api_version: str) -> typing.Self:    
+        """
+        The apiserver version
+        """
+            
+        self._internal.api_version = api_version
+    
+        return self
+    
     def uid(self, uid: str) -> typing.Self:    
         """
-        Datasource UID
+        Datasource UID (NOTE: name in k8s)
         """
             
         self._internal.uid = uid
@@ -945,9 +963,18 @@ class ExprTypeResampleDatasource(cogbuilder.Builder[expr.ExprTypeResampleDatasou
     def build(self) -> expr.ExprTypeResampleDatasource:
         return self._internal    
     
+    def api_version(self, api_version: str) -> typing.Self:    
+        """
+        The apiserver version
+        """
+            
+        self._internal.api_version = api_version
+    
+        return self
+    
     def uid(self, uid: str) -> typing.Self:    
         """
-        Datasource UID
+        Datasource UID (NOTE: name in k8s)
         """
             
         self._internal.uid = uid
@@ -1146,9 +1173,18 @@ class ExprTypeClassicConditionsDatasource(cogbuilder.Builder[expr.ExprTypeClassi
     def build(self) -> expr.ExprTypeClassicConditionsDatasource:
         return self._internal    
     
+    def api_version(self, api_version: str) -> typing.Self:    
+        """
+        The apiserver version
+        """
+            
+        self._internal.api_version = api_version
+    
+        return self
+    
     def uid(self, uid: str) -> typing.Self:    
         """
-        Datasource UID
+        Datasource UID (NOTE: name in k8s)
         """
             
         self._internal.uid = uid
@@ -1319,9 +1355,18 @@ class ExprTypeThresholdDatasource(cogbuilder.Builder[expr.ExprTypeThresholdDatas
     def build(self) -> expr.ExprTypeThresholdDatasource:
         return self._internal    
     
+    def api_version(self, api_version: str) -> typing.Self:    
+        """
+        The apiserver version
+        """
+            
+        self._internal.api_version = api_version
+    
+        return self
+    
     def uid(self, uid: str) -> typing.Self:    
         """
-        Datasource UID
+        Datasource UID (NOTE: name in k8s)
         """
             
         self._internal.uid = uid
@@ -1417,9 +1462,18 @@ class ExprTypeSqlDatasource(cogbuilder.Builder[expr.ExprTypeSqlDatasource]):
     def build(self) -> expr.ExprTypeSqlDatasource:
         return self._internal    
     
+    def api_version(self, api_version: str) -> typing.Self:    
+        """
+        The apiserver version
+        """
+            
+        self._internal.api_version = api_version
+    
+        return self
+    
     def uid(self, uid: str) -> typing.Self:    
         """
-        Datasource UID
+        Datasource UID (NOTE: name in k8s)
         """
             
         self._internal.uid = uid

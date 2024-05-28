@@ -3,6 +3,8 @@
 package librarypanel
 
 import (
+	"time"
+
 	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
@@ -97,8 +99,8 @@ type LibraryElementDTOMeta struct {
 	FolderName          string                    `json:"folderName"`
 	FolderUid           string                    `json:"folderUid"`
 	ConnectedDashboards int64                     `json:"connectedDashboards"`
-	Created             string                    `json:"created"`
-	Updated             string                    `json:"updated"`
+	Created             time.Time                 `json:"created"`
+	Updated             time.Time                 `json:"updated"`
 	CreatedBy           LibraryElementDTOMetaUser `json:"createdBy"`
 	UpdatedBy           LibraryElementDTOMetaUser `json:"updatedBy"`
 }
