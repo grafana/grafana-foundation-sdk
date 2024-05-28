@@ -39,6 +39,13 @@ func (builder *DatasourceBuilder) Build() (Datasource, error) {
 	return *builder.internal, nil
 }
 
+// The apiserver version
+func (builder *DatasourceBuilder) ApiVersion(apiVersion string) *DatasourceBuilder {
+	builder.internal.ApiVersion = &apiVersion
+
+	return builder
+}
+
 // The datasource plugin type
 func (builder *DatasourceBuilder) Type(typeArg string) *DatasourceBuilder {
 	builder.internal.Type = typeArg
@@ -46,7 +53,7 @@ func (builder *DatasourceBuilder) Type(typeArg string) *DatasourceBuilder {
 	return builder
 }
 
-// Datasource UID
+// Datasource UID (NOTE: name in k8s)
 func (builder *DatasourceBuilder) Uid(uid string) *DatasourceBuilder {
 	builder.internal.Uid = &uid
 

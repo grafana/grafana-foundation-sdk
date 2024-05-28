@@ -109,9 +109,11 @@ export const defaultCSVWave = (): CSVWave => ({
 });
 
 export interface datasource {
+	// The apiserver version
+	apiVersion?: string;
 	// The datasource plugin type
 	type: string;
-	// Datasource UID
+	// Datasource UID (NOTE: name in k8s)
 	uid?: string;
 }
 

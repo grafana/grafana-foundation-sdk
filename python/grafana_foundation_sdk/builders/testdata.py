@@ -336,6 +336,15 @@ class Datasource(cogbuilder.Builder[testdata.Datasource]):
     def build(self) -> testdata.Datasource:
         return self._internal    
     
+    def api_version(self, api_version: str) -> typing.Self:    
+        """
+        The apiserver version
+        """
+            
+        self._internal.api_version = api_version
+    
+        return self
+    
     def type_val(self, type_val: str) -> typing.Self:    
         """
         The datasource plugin type
@@ -347,7 +356,7 @@ class Datasource(cogbuilder.Builder[testdata.Datasource]):
     
     def uid(self, uid: str) -> typing.Self:    
         """
-        Datasource UID
+        Datasource UID (NOTE: name in k8s)
         """
             
         self._internal.uid = uid
