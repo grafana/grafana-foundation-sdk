@@ -3,6 +3,8 @@
 package librarypanel
 
 import (
+	"time"
+
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
@@ -57,13 +59,13 @@ func (builder *LibraryElementDTOMetaBuilder) ConnectedDashboards(connectedDashbo
 	return builder
 }
 
-func (builder *LibraryElementDTOMetaBuilder) Created(created string) *LibraryElementDTOMetaBuilder {
+func (builder *LibraryElementDTOMetaBuilder) Created(created time.Time) *LibraryElementDTOMetaBuilder {
 	builder.internal.Created = created
 
 	return builder
 }
 
-func (builder *LibraryElementDTOMetaBuilder) Updated(updated string) *LibraryElementDTOMetaBuilder {
+func (builder *LibraryElementDTOMetaBuilder) Updated(updated time.Time) *LibraryElementDTOMetaBuilder {
 	builder.internal.Updated = updated
 
 	return builder
