@@ -3,6 +3,9 @@
 package barchart
 
 import (
+	"encoding/json"
+
+	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -59,4 +62,28 @@ type FieldConfig struct {
 	// Threshold rendering
 	ThresholdsStyle *common.GraphThresholdsStyleConfig `json:"thresholdsStyle,omitempty"`
 	AxisBorderShow  *bool                              `json:"axisBorderShow,omitempty"`
+}
+
+func VariantConfig() cogvariants.PanelcfgConfig {
+	return cogvariants.PanelcfgConfig{
+		Identifier: "barchart",
+		OptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := Options{}
+
+			if err := json.Unmarshal(raw, &options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+		FieldConfigUnmarshaler: func(raw []byte) (any, error) {
+			fieldConfig := FieldConfig{}
+
+			if err := json.Unmarshal(raw, &fieldConfig); err != nil {
+				return nil, err
+			}
+
+			return fieldConfig, nil
+		},
+	}
 }

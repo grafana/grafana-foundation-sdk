@@ -977,6 +977,7 @@
         "properties": {
           "created": {
             "type": "string",
+            "format": "date-time",
             "description": "Time when the snapshot was created"
           },
           "expires": {
@@ -1009,6 +1010,7 @@
           },
           "updated": {
             "type": "string",
+            "format": "date-time",
             "description": "last time when the snapshot was updated"
           },
           "url": {

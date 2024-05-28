@@ -3,6 +3,9 @@
 package statushistory
 
 import (
+	"encoding/json"
+
+	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -22,4 +25,28 @@ type FieldConfig struct {
 	LineWidth   *uint32                  `json:"lineWidth,omitempty"`
 	HideFrom    *common.HideSeriesConfig `json:"hideFrom,omitempty"`
 	FillOpacity *uint32                  `json:"fillOpacity,omitempty"`
+}
+
+func VariantConfig() cogvariants.PanelcfgConfig {
+	return cogvariants.PanelcfgConfig{
+		Identifier: "status-history",
+		OptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := Options{}
+
+			if err := json.Unmarshal(raw, &options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+		FieldConfigUnmarshaler: func(raw []byte) (any, error) {
+			fieldConfig := FieldConfig{}
+
+			if err := json.Unmarshal(raw, &fieldConfig); err != nil {
+				return nil, err
+			}
+
+			return fieldConfig, nil
+		},
+	}
 }

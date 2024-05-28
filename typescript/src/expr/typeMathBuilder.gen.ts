@@ -17,9 +17,11 @@ export class TypeMathBuilder implements cog.Builder<cog.Dataquery> {
 
     // The datasource
     datasource(datasource: {
+	// The apiserver version
+	apiVersion?: string;
 	// The datasource plugin type
 	type: "__expr__";
-	// Datasource UID
+	// Datasource UID (NOTE: name in k8s)
 	uid?: string;
 }): this {
         this.internal.datasource = datasource;

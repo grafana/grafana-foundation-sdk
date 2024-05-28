@@ -3,6 +3,8 @@
 package alerting
 
 import (
+	"time"
+
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
@@ -41,14 +43,14 @@ func (builder *TimeRangeBuilder) Build() (TimeRange, error) {
 }
 
 // Redefining this to avoid an import cycle
-func (builder *TimeRangeBuilder) From(from string) *TimeRangeBuilder {
+func (builder *TimeRangeBuilder) From(from time.Time) *TimeRangeBuilder {
 	builder.internal.From = &from
 
 	return builder
 }
 
 // Redefining this to avoid an import cycle
-func (builder *TimeRangeBuilder) To(to string) *TimeRangeBuilder {
+func (builder *TimeRangeBuilder) To(to time.Time) *TimeRangeBuilder {
 	builder.internal.To = &to
 
 	return builder
