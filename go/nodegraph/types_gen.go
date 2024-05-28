@@ -2,6 +2,12 @@
 
 package nodegraph
 
+import (
+	"encoding/json"
+
+	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+)
+
 type ArcOption struct {
 	// Field from which to get the value. Values should be less than 1, representing fraction of a circle.
 	Field *string `json:"field,omitempty"`
@@ -28,4 +34,19 @@ type EdgeOptions struct {
 type Options struct {
 	Nodes *NodeOptions `json:"nodes,omitempty"`
 	Edges *EdgeOptions `json:"edges,omitempty"`
+}
+
+func VariantConfig() cogvariants.PanelcfgConfig {
+	return cogvariants.PanelcfgConfig{
+		Identifier: "nodegraph",
+		OptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := Options{}
+
+			if err := json.Unmarshal(raw, &options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+	}
 }

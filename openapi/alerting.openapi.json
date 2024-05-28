@@ -218,7 +218,8 @@
             "maxLength": 40
           },
           "updated": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           }
         }
       },

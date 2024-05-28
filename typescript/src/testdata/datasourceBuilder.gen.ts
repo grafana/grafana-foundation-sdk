@@ -14,13 +14,19 @@ export class DatasourceBuilder implements cog.Builder<testdata.datasource> {
         return this.internal;
     }
 
+    // The apiserver version
+    apiVersion(apiVersion: string): this {
+        this.internal.apiVersion = apiVersion;
+        return this;
+    }
+
     // The datasource plugin type
     type(type: string): this {
         this.internal.type = type;
         return this;
     }
 
-    // Datasource UID
+    // Datasource UID (NOTE: name in k8s)
     uid(uid: string): this {
         this.internal.uid = uid;
         return this;

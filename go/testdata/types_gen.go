@@ -2,6 +2,12 @@
 
 package testdata
 
+import (
+	"encoding/json"
+
+	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+)
+
 type Dataquery struct {
 	Alias *string `json:"alias,omitempty"`
 	// Used for live query
@@ -97,6 +103,21 @@ type Dataquery struct {
 
 func (resource Dataquery) ImplementsDataqueryVariant() {}
 
+func VariantConfig() cogvariants.DataqueryConfig {
+	return cogvariants.DataqueryConfig{
+		Identifier: "",
+		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
+			dataquery := Dataquery{}
+
+			if err := json.Unmarshal(raw, &dataquery); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+	}
+}
+
 type CSVWave struct {
 	Labels    *string `json:"labels,omitempty"`
 	Name      *string `json:"name,omitempty"`
@@ -105,9 +126,11 @@ type CSVWave struct {
 }
 
 type Datasource struct {
+	// The apiserver version
+	ApiVersion *string `json:"apiVersion,omitempty"`
 	// The datasource plugin type
 	Type string `json:"type"`
-	// Datasource UID
+	// Datasource UID (NOTE: name in k8s)
 	Uid *string `json:"uid,omitempty"`
 }
 

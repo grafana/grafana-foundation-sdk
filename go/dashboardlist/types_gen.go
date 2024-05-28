@@ -2,6 +2,12 @@
 
 package dashboardlist
 
+import (
+	"encoding/json"
+
+	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+)
+
 type Options struct {
 	KeepTime           bool     `json:"keepTime"`
 	IncludeVars        bool     `json:"includeVars"`
@@ -16,4 +22,19 @@ type Options struct {
 	// folderId is deprecated, and migrated to folderUid on panel init
 	FolderId  *int64  `json:"folderId,omitempty"`
 	FolderUID *string `json:"folderUID,omitempty"`
+}
+
+func VariantConfig() cogvariants.PanelcfgConfig {
+	return cogvariants.PanelcfgConfig{
+		Identifier: "dashlist",
+		OptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := Options{}
+
+			if err := json.Unmarshal(raw, &options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+	}
 }

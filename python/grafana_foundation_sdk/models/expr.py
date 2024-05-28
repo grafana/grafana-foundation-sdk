@@ -9,7 +9,7 @@ Expr: typing.TypeAlias = typing.Union['TypeMath', 'TypeReduce', 'TypeResample', 
 
 
 def variant_config() -> cogruntime.DataqueryConfig:
-    decoding_map: dict[str, typing.Union[typing.Type[TypeReduce], typing.Type[TypeResample], typing.Type[TypeClassicConditions], typing.Type[TypeThreshold], typing.Type[TypeSql], typing.Type[TypeMath]]] = {"reduce": TypeReduce, "resample": TypeResample, "classic_conditions": TypeClassicConditions, "threshold": TypeThreshold, "sql": TypeSql, "math": TypeMath}
+    decoding_map: dict[str, typing.Union[typing.Type[TypeMath], typing.Type[TypeReduce], typing.Type[TypeResample], typing.Type[TypeClassicConditions], typing.Type[TypeThreshold], typing.Type[TypeSql]]] = {"math": TypeMath, "reduce": TypeReduce, "resample": TypeResample, "classic_conditions": TypeClassicConditions, "threshold": TypeThreshold, "sql": TypeSql}
     return cogruntime.DataqueryConfig(
         identifier="__expr__",
         from_json_hook=lambda data: decoding_map[data["type"]].from_json(data),
@@ -663,12 +663,15 @@ class TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOr
 
 
 class ExprTypeMathDatasource:
+    # The apiserver version
+    api_version: typing.Optional[str]
     # The datasource plugin type
     type_val: typing.Literal["__expr__"]
-    # Datasource UID
+    # Datasource UID (NOTE: name in k8s)
     uid: typing.Optional[str]
 
-    def __init__(self, uid: typing.Optional[str] = None):
+    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
+        self.api_version = api_version
         self.type_val = "__expr__"
         self.uid = uid
 
@@ -676,6 +679,8 @@ class ExprTypeMathDatasource:
         payload: dict[str, object] = {
             "type": self.type_val,
         }
+        if self.api_version is not None:
+            payload["apiVersion"] = self.api_version
         if self.uid is not None:
             payload["uid"] = self.uid
         return payload
@@ -684,6 +689,8 @@ class ExprTypeMathDatasource:
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
+        if "apiVersion" in data:
+            args["api_version"] = data["apiVersion"]
         if "uid" in data:
             args["uid"] = data["uid"]        
 
@@ -770,12 +777,15 @@ class ExprTypeMathTimeRange:
 
 
 class ExprTypeReduceDatasource:
+    # The apiserver version
+    api_version: typing.Optional[str]
     # The datasource plugin type
     type_val: typing.Literal["__expr__"]
-    # Datasource UID
+    # Datasource UID (NOTE: name in k8s)
     uid: typing.Optional[str]
 
-    def __init__(self, uid: typing.Optional[str] = None):
+    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
+        self.api_version = api_version
         self.type_val = "__expr__"
         self.uid = uid
 
@@ -783,6 +793,8 @@ class ExprTypeReduceDatasource:
         payload: dict[str, object] = {
             "type": self.type_val,
         }
+        if self.api_version is not None:
+            payload["apiVersion"] = self.api_version
         if self.uid is not None:
             payload["uid"] = self.uid
         return payload
@@ -791,6 +803,8 @@ class ExprTypeReduceDatasource:
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
+        if "apiVersion" in data:
+            args["api_version"] = data["apiVersion"]
         if "uid" in data:
             args["uid"] = data["uid"]        
 
@@ -910,12 +924,15 @@ class ExprTypeReduceTimeRange:
 
 
 class ExprTypeResampleDatasource:
+    # The apiserver version
+    api_version: typing.Optional[str]
     # The datasource plugin type
     type_val: typing.Literal["__expr__"]
-    # Datasource UID
+    # Datasource UID (NOTE: name in k8s)
     uid: typing.Optional[str]
 
-    def __init__(self, uid: typing.Optional[str] = None):
+    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
+        self.api_version = api_version
         self.type_val = "__expr__"
         self.uid = uid
 
@@ -923,6 +940,8 @@ class ExprTypeResampleDatasource:
         payload: dict[str, object] = {
             "type": self.type_val,
         }
+        if self.api_version is not None:
+            payload["apiVersion"] = self.api_version
         if self.uid is not None:
             payload["uid"] = self.uid
         return payload
@@ -931,6 +950,8 @@ class ExprTypeResampleDatasource:
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
+        if "apiVersion" in data:
+            args["api_version"] = data["apiVersion"]
         if "uid" in data:
             args["uid"] = data["uid"]        
 
@@ -1148,12 +1169,15 @@ class ExprTypeClassicConditionsConditions:
 
 
 class ExprTypeClassicConditionsDatasource:
+    # The apiserver version
+    api_version: typing.Optional[str]
     # The datasource plugin type
     type_val: typing.Literal["__expr__"]
-    # Datasource UID
+    # Datasource UID (NOTE: name in k8s)
     uid: typing.Optional[str]
 
-    def __init__(self, uid: typing.Optional[str] = None):
+    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
+        self.api_version = api_version
         self.type_val = "__expr__"
         self.uid = uid
 
@@ -1161,6 +1185,8 @@ class ExprTypeClassicConditionsDatasource:
         payload: dict[str, object] = {
             "type": self.type_val,
         }
+        if self.api_version is not None:
+            payload["apiVersion"] = self.api_version
         if self.uid is not None:
             payload["uid"] = self.uid
         return payload
@@ -1169,6 +1195,8 @@ class ExprTypeClassicConditionsDatasource:
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
+        if "apiVersion" in data:
+            args["api_version"] = data["apiVersion"]
         if "uid" in data:
             args["uid"] = data["uid"]        
 
@@ -1345,12 +1373,15 @@ class ExprTypeThresholdConditions:
 
 
 class ExprTypeThresholdDatasource:
+    # The apiserver version
+    api_version: typing.Optional[str]
     # The datasource plugin type
     type_val: typing.Literal["__expr__"]
-    # Datasource UID
+    # Datasource UID (NOTE: name in k8s)
     uid: typing.Optional[str]
 
-    def __init__(self, uid: typing.Optional[str] = None):
+    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
+        self.api_version = api_version
         self.type_val = "__expr__"
         self.uid = uid
 
@@ -1358,6 +1389,8 @@ class ExprTypeThresholdDatasource:
         payload: dict[str, object] = {
             "type": self.type_val,
         }
+        if self.api_version is not None:
+            payload["apiVersion"] = self.api_version
         if self.uid is not None:
             payload["uid"] = self.uid
         return payload
@@ -1366,6 +1399,8 @@ class ExprTypeThresholdDatasource:
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
+        if "apiVersion" in data:
+            args["api_version"] = data["apiVersion"]
         if "uid" in data:
             args["uid"] = data["uid"]        
 
@@ -1452,12 +1487,15 @@ class ExprTypeThresholdTimeRange:
 
 
 class ExprTypeSqlDatasource:
+    # The apiserver version
+    api_version: typing.Optional[str]
     # The datasource plugin type
     type_val: typing.Literal["__expr__"]
-    # Datasource UID
+    # Datasource UID (NOTE: name in k8s)
     uid: typing.Optional[str]
 
-    def __init__(self, uid: typing.Optional[str] = None):
+    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
+        self.api_version = api_version
         self.type_val = "__expr__"
         self.uid = uid
 
@@ -1465,6 +1503,8 @@ class ExprTypeSqlDatasource:
         payload: dict[str, object] = {
             "type": self.type_val,
         }
+        if self.api_version is not None:
+            payload["apiVersion"] = self.api_version
         if self.uid is not None:
             payload["uid"] = self.uid
         return payload
@@ -1473,6 +1513,8 @@ class ExprTypeSqlDatasource:
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
+        if "apiVersion" in data:
+            args["api_version"] = data["apiVersion"]
         if "uid" in data:
             args["uid"] = data["uid"]        
 

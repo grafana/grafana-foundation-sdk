@@ -7,9 +7,11 @@ export const defaultExpr = (): expr => (defaultTypeMath());
 export interface TypeMath {
 	// The datasource
 	datasource?: {
+		// The apiserver version
+		apiVersion?: string;
 		// The datasource plugin type
 		type: "__expr__";
-		// Datasource UID
+		// Datasource UID (NOTE: name in k8s)
 		uid?: string;
 	};
 	// General math expression
@@ -76,9 +78,11 @@ export const defaultTypeMath = (): TypeMath => ({
 export interface TypeReduce {
 	// The datasource
 	datasource?: {
+		// The apiserver version
+		apiVersion?: string;
 		// The datasource plugin type
 		type: "__expr__";
-		// Datasource UID
+		// Datasource UID (NOTE: name in k8s)
 		uid?: string;
 	};
 	// Reference to single query result
@@ -165,9 +169,11 @@ export const defaultTypeReduce = (): TypeReduce => ({
 export interface TypeResample {
 	// The datasource
 	datasource?: {
+		// The apiserver version
+		apiVersion?: string;
 		// The datasource plugin type
 		type: "__expr__";
-		// Datasource UID
+		// Datasource UID (NOTE: name in k8s)
 		uid?: string;
 	};
 	// The downsample function
@@ -270,9 +276,11 @@ export interface TypeClassicConditions {
 	}[];
 	// The datasource
 	datasource?: {
+		// The apiserver version
+		apiVersion?: string;
 		// The datasource plugin type
 		type: "__expr__";
-		// Datasource UID
+		// Datasource UID (NOTE: name in k8s)
 		uid?: string;
 	};
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -351,9 +359,11 @@ export interface TypeThreshold {
 	}[];
 	// The datasource
 	datasource?: {
+		// The apiserver version
+		apiVersion?: string;
 		// The datasource plugin type
 		type: "__expr__";
-		// Datasource UID
+		// Datasource UID (NOTE: name in k8s)
 		uid?: string;
 	};
 	// Reference to single query result
@@ -421,9 +431,11 @@ export const defaultTypeThreshold = (): TypeThreshold => ({
 export interface TypeSql {
 	// The datasource
 	datasource?: {
+		// The apiserver version
+		apiVersion?: string;
 		// The datasource plugin type
 		type: "__expr__";
-		// Datasource UID
+		// Datasource UID (NOTE: name in k8s)
 		uid?: string;
 	};
 	expression: string;

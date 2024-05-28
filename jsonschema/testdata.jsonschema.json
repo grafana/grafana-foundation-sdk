@@ -197,13 +197,17 @@
         "type"
       ],
       "properties": {
+        "apiVersion": {
+          "type": "string",
+          "description": "The apiserver version"
+        },
         "type": {
           "type": "string",
           "description": "The datasource plugin type"
         },
         "uid": {
           "type": "string",
-          "description": "Datasource UID"
+          "description": "Datasource UID (NOTE: name in k8s)"
         }
       }
     },
