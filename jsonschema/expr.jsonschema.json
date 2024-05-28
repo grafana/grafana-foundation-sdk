@@ -40,6 +40,10 @@
             "type"
           ],
           "properties": {
+            "apiVersion": {
+              "type": "string",
+              "description": "The apiserver version"
+            },
             "type": {
               "type": "string",
               "const": "__expr__",
@@ -47,7 +51,7 @@
             },
             "uid": {
               "type": "string",
-              "description": "Datasource UID"
+              "description": "Datasource UID (NOTE: name in k8s)"
             }
           },
           "description": "The datasource"
@@ -158,6 +162,10 @@
             "type"
           ],
           "properties": {
+            "apiVersion": {
+              "type": "string",
+              "description": "The apiserver version"
+            },
             "type": {
               "type": "string",
               "const": "__expr__",
@@ -165,7 +173,7 @@
             },
             "uid": {
               "type": "string",
-              "description": "Datasource UID"
+              "description": "Datasource UID (NOTE: name in k8s)"
             }
           },
           "description": "The datasource"
@@ -310,6 +318,10 @@
             "type"
           ],
           "properties": {
+            "apiVersion": {
+              "type": "string",
+              "description": "The apiserver version"
+            },
             "type": {
               "type": "string",
               "const": "__expr__",
@@ -317,7 +329,7 @@
             },
             "uid": {
               "type": "string",
-              "description": "Datasource UID"
+              "description": "Datasource UID (NOTE: name in k8s)"
             }
           },
           "description": "The datasource"
@@ -528,6 +540,10 @@
             "type"
           ],
           "properties": {
+            "apiVersion": {
+              "type": "string",
+              "description": "The apiserver version"
+            },
             "type": {
               "type": "string",
               "const": "__expr__",
@@ -535,7 +551,7 @@
             },
             "uid": {
               "type": "string",
-              "description": "Datasource UID"
+              "description": "Datasource UID (NOTE: name in k8s)"
             }
           },
           "description": "The datasource"
@@ -708,6 +724,10 @@
             "type"
           ],
           "properties": {
+            "apiVersion": {
+              "type": "string",
+              "description": "The apiserver version"
+            },
             "type": {
               "type": "string",
               "const": "__expr__",
@@ -715,7 +735,7 @@
             },
             "uid": {
               "type": "string",
-              "description": "Datasource UID"
+              "description": "Datasource UID (NOTE: name in k8s)"
             }
           },
           "description": "The datasource"
@@ -825,6 +845,10 @@
             "type"
           ],
           "properties": {
+            "apiVersion": {
+              "type": "string",
+              "description": "The apiserver version"
+            },
             "type": {
               "type": "string",
               "const": "__expr__",
@@ -832,7 +856,7 @@
             },
             "uid": {
               "type": "string",
-              "description": "Datasource UID"
+              "description": "Datasource UID (NOTE: name in k8s)"
             }
           },
           "description": "The datasource"

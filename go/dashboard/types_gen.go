@@ -3,6 +3,12 @@
 package dashboard
 
 import (
+	"encoding/json"
+	"errors"
+	"fmt"
+	"time"
+
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
@@ -520,7 +526,7 @@ const (
 // Sensitive information stripped: queries (metric, template,annotation) and panel links.
 type Snapshot struct {
 	// Time when the snapshot was created
-	Created string `json:"created"`
+	Created time.Time `json:"created"`
 	// Time when the snapshot expires, default is never to expire
 	Expires string `json:"expires"`
 	// Is the snapshot saved in an external grafana instance
@@ -538,7 +544,7 @@ type Snapshot struct {
 	// org id of the snapshot
 	OrgId uint32 `json:"orgId"`
 	// last time when the snapshot was updated
-	Updated string `json:"updated"`
+	Updated time.Time `json:"updated"`
 	// url of the snapshot, if snapshot was shared internally
 	Url *string `json:"url,omitempty"`
 	// user id of the snapshot creator
@@ -612,6 +618,199 @@ type Panel struct {
 	Options any `json:"options,omitempty"`
 	// Field options allow you to change how the data is displayed in your visualizations.
 	FieldConfig *FieldConfigSource `json:"fieldConfig,omitempty"`
+}
+
+func (resource *Panel) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+
+	if fields["type"] != nil {
+		if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+			return err
+		}
+	}
+
+	if fields["id"] != nil {
+		if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+			return err
+		}
+	}
+
+	if fields["pluginVersion"] != nil {
+		if err := json.Unmarshal(fields["pluginVersion"], &resource.PluginVersion); err != nil {
+			return err
+		}
+	}
+
+	if fields["title"] != nil {
+		if err := json.Unmarshal(fields["title"], &resource.Title); err != nil {
+			return err
+		}
+	}
+
+	if fields["description"] != nil {
+		if err := json.Unmarshal(fields["description"], &resource.Description); err != nil {
+			return err
+		}
+	}
+
+	if fields["transparent"] != nil {
+		if err := json.Unmarshal(fields["transparent"], &resource.Transparent); err != nil {
+			return err
+		}
+	}
+
+	if fields["datasource"] != nil {
+		if err := json.Unmarshal(fields["datasource"], &resource.Datasource); err != nil {
+			return err
+		}
+	}
+
+	if fields["gridPos"] != nil {
+		if err := json.Unmarshal(fields["gridPos"], &resource.GridPos); err != nil {
+			return err
+		}
+	}
+
+	if fields["links"] != nil {
+		if err := json.Unmarshal(fields["links"], &resource.Links); err != nil {
+			return err
+		}
+	}
+
+	if fields["repeat"] != nil {
+		if err := json.Unmarshal(fields["repeat"], &resource.Repeat); err != nil {
+			return err
+		}
+	}
+
+	if fields["repeatDirection"] != nil {
+		if err := json.Unmarshal(fields["repeatDirection"], &resource.RepeatDirection); err != nil {
+			return err
+		}
+	}
+
+	if fields["maxPerRow"] != nil {
+		if err := json.Unmarshal(fields["maxPerRow"], &resource.MaxPerRow); err != nil {
+			return err
+		}
+	}
+
+	if fields["maxDataPoints"] != nil {
+		if err := json.Unmarshal(fields["maxDataPoints"], &resource.MaxDataPoints); err != nil {
+			return err
+		}
+	}
+
+	if fields["transformations"] != nil {
+		if err := json.Unmarshal(fields["transformations"], &resource.Transformations); err != nil {
+			return err
+		}
+	}
+
+	if fields["interval"] != nil {
+		if err := json.Unmarshal(fields["interval"], &resource.Interval); err != nil {
+			return err
+		}
+	}
+
+	if fields["timeFrom"] != nil {
+		if err := json.Unmarshal(fields["timeFrom"], &resource.TimeFrom); err != nil {
+			return err
+		}
+	}
+
+	if fields["timeShift"] != nil {
+		if err := json.Unmarshal(fields["timeShift"], &resource.TimeShift); err != nil {
+			return err
+		}
+	}
+
+	if fields["hideTimeOverride"] != nil {
+		if err := json.Unmarshal(fields["hideTimeOverride"], &resource.HideTimeOverride); err != nil {
+			return err
+		}
+	}
+
+	if fields["libraryPanel"] != nil {
+		if err := json.Unmarshal(fields["libraryPanel"], &resource.LibraryPanel); err != nil {
+			return err
+		}
+	}
+
+	if fields["cacheTimeout"] != nil {
+		if err := json.Unmarshal(fields["cacheTimeout"], &resource.CacheTimeout); err != nil {
+			return err
+		}
+	}
+
+	if fields["queryCachingTTL"] != nil {
+		if err := json.Unmarshal(fields["queryCachingTTL"], &resource.QueryCachingTTL); err != nil {
+			return err
+		}
+	}
+
+	if fields["options"] != nil {
+		variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Type)
+		if found && variantCfg.OptionsUnmarshaler != nil {
+			options, err := variantCfg.OptionsUnmarshaler(fields["options"])
+			if err != nil {
+				return err
+			}
+			resource.Options = options
+		} else {
+			if err := json.Unmarshal(fields["options"], &resource.Options); err != nil {
+				return err
+			}
+		}
+	}
+
+	if fields["fieldConfig"] != nil {
+		if err := json.Unmarshal(fields["fieldConfig"], &resource.FieldConfig); err != nil {
+			return err
+		}
+
+		variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Type)
+		if found && variantCfg.FieldConfigUnmarshaler != nil {
+			fakeFieldConfigSource := struct {
+				Defaults struct {
+					Custom json.RawMessage `json:"custom"`
+				} `json:"defaults"`
+			}{}
+			if err := json.Unmarshal(fields["fieldConfig"], &fakeFieldConfigSource); err != nil {
+				return err
+			}
+
+			if fakeFieldConfigSource.Defaults.Custom != nil {
+				customFieldConfig, err := variantCfg.FieldConfigUnmarshaler(fakeFieldConfigSource.Defaults.Custom)
+				if err != nil {
+					return err
+				}
+
+				resource.FieldConfig.Defaults.Custom = customFieldConfig
+			}
+		}
+	}
+
+	dataqueryTypeHint := ""
+	if resource.Datasource != nil && resource.Datasource.Type != nil {
+		dataqueryTypeHint = *resource.Datasource.Type
+	}
+
+	if fields["targets"] != nil {
+		targets, err := cog.UnmarshalDataqueryArray(fields["targets"], dataqueryTypeHint)
+		if err != nil {
+			return err
+		}
+		resource.Targets = targets
+	}
+
+	return nil
 }
 
 // The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
@@ -747,9 +946,100 @@ type PanelOrRowPanel struct {
 	RowPanel *RowPanel `json:"RowPanel,omitempty"`
 }
 
+func (resource PanelOrRowPanel) MarshalJSON() ([]byte, error) {
+	if resource.Panel != nil {
+		return json.Marshal(resource.Panel)
+	}
+	if resource.RowPanel != nil {
+		return json.Marshal(resource.RowPanel)
+	}
+
+	return nil, fmt.Errorf("no value for disjunction of refs")
+}
+
+func (resource *PanelOrRowPanel) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
+	parsedAsMap := make(map[string]any)
+	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
+		return err
+	}
+
+	discriminator, found := parsedAsMap["type"]
+	if !found {
+		return errors.New("discriminator field 'type' not found in payload")
+	}
+
+	switch discriminator {
+	default:
+		var panel Panel
+		if err := json.Unmarshal(raw, &panel); err != nil {
+			return err
+		}
+
+		resource.Panel = &panel
+		return nil
+	case "row":
+		var rowPanel RowPanel
+		if err := json.Unmarshal(raw, &rowPanel); err != nil {
+			return err
+		}
+
+		resource.RowPanel = &rowPanel
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+}
+
 type StringOrAny struct {
 	String *string `json:"String,omitempty"`
 	Any    any     `json:"Any,omitempty"`
+}
+
+func (resource StringOrAny) MarshalJSON() ([]byte, error) {
+	if resource.String != nil {
+		return json.Marshal(resource.String)
+	}
+
+	if resource.Any != nil {
+		return json.Marshal(resource.Any)
+	}
+
+	return nil, fmt.Errorf("no value for disjunction of scalars")
+}
+
+func (resource *StringOrAny) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+		resource.String = nil
+	} else {
+		resource.String = &String
+		return nil
+	}
+
+	// Any
+	var Any any
+	if err := json.Unmarshal(raw, &Any); err != nil {
+		errList = append(errList, err)
+		resource.Any = nil
+	} else {
+		resource.Any = &Any
+		return nil
+	}
+
+	return errors.Join(errList...)
 }
 
 type StringOrArrayOfString struct {
@@ -757,9 +1047,122 @@ type StringOrArrayOfString struct {
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
 }
 
+func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
+	if resource.String != nil {
+		return json.Marshal(resource.String)
+	}
+
+	if resource.ArrayOfString != nil {
+		return json.Marshal(resource.ArrayOfString)
+	}
+
+	return nil, fmt.Errorf("no value for disjunction of scalars")
+}
+
+func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+		resource.String = nil
+	} else {
+		resource.String = &String
+		return nil
+	}
+
+	// ArrayOfString
+	var ArrayOfString []string
+	if err := json.Unmarshal(raw, &ArrayOfString); err != nil {
+		errList = append(errList, err)
+		resource.ArrayOfString = nil
+	} else {
+		resource.ArrayOfString = ArrayOfString
+		return nil
+	}
+
+	return errors.Join(errList...)
+}
+
 type ValueMapOrRangeMapOrRegexMapOrSpecialValueMap struct {
 	ValueMap        *ValueMap        `json:"ValueMap,omitempty"`
 	RangeMap        *RangeMap        `json:"RangeMap,omitempty"`
 	RegexMap        *RegexMap        `json:"RegexMap,omitempty"`
 	SpecialValueMap *SpecialValueMap `json:"SpecialValueMap,omitempty"`
+}
+
+func (resource ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) MarshalJSON() ([]byte, error) {
+	if resource.ValueMap != nil {
+		return json.Marshal(resource.ValueMap)
+	}
+	if resource.RangeMap != nil {
+		return json.Marshal(resource.RangeMap)
+	}
+	if resource.RegexMap != nil {
+		return json.Marshal(resource.RegexMap)
+	}
+	if resource.SpecialValueMap != nil {
+		return json.Marshal(resource.SpecialValueMap)
+	}
+
+	return nil, fmt.Errorf("no value for disjunction of refs")
+}
+
+func (resource *ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
+	parsedAsMap := make(map[string]any)
+	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
+		return err
+	}
+
+	discriminator, found := parsedAsMap["type"]
+	if !found {
+		return errors.New("discriminator field 'type' not found in payload")
+	}
+
+	switch discriminator {
+	case "range":
+		var rangeMap RangeMap
+		if err := json.Unmarshal(raw, &rangeMap); err != nil {
+			return err
+		}
+
+		resource.RangeMap = &rangeMap
+		return nil
+	case "regex":
+		var regexMap RegexMap
+		if err := json.Unmarshal(raw, &regexMap); err != nil {
+			return err
+		}
+
+		resource.RegexMap = &regexMap
+		return nil
+	case "special":
+		var specialValueMap SpecialValueMap
+		if err := json.Unmarshal(raw, &specialValueMap); err != nil {
+			return err
+		}
+
+		resource.SpecialValueMap = &specialValueMap
+		return nil
+	case "value":
+		var valueMap ValueMap
+		if err := json.Unmarshal(raw, &valueMap); err != nil {
+			return err
+		}
+
+		resource.ValueMap = &valueMap
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
