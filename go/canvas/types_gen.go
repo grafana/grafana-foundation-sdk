@@ -3,6 +3,9 @@
 package canvas
 
 import (
+	"encoding/json"
+
+	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -108,4 +111,19 @@ type Options struct {
 		// The list of canvas elements attached to the root element
 		Elements []CanvasElementOptions `json:"elements"`
 	} `json:"root"`
+}
+
+func VariantConfig() cogvariants.PanelcfgConfig {
+	return cogvariants.PanelcfgConfig{
+		Identifier: "canvas",
+		OptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := Options{}
+
+			if err := json.Unmarshal(raw, &options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+	}
 }

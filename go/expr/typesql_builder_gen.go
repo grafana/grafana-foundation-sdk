@@ -45,9 +45,11 @@ func (builder *TypeSqlBuilder) Build() (cogvariants.Dataquery, error) {
 
 // The datasource
 func (builder *TypeSqlBuilder) Datasource(datasource struct {
+	// The apiserver version
+	ApiVersion *string `json:"apiVersion,omitempty"`
 	// The datasource plugin type
 	Type string `json:"type"`
-	// Datasource UID
+	// Datasource UID (NOTE: name in k8s)
 	Uid *string `json:"uid,omitempty"`
 }) *TypeSqlBuilder {
 	builder.internal.Datasource = &datasource
