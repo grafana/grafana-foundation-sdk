@@ -137,10 +137,12 @@
         "properties": {
           "from": {
             "type": "string",
+            "format": "date-time",
             "description": "Redefining this to avoid an import cycle"
           },
           "to": {
             "type": "string",
+            "format": "date-time",
             "description": "Redefining this to avoid an import cycle"
           }
         },
@@ -253,7 +255,8 @@
             "maxLength": 40
           },
           "updated": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
