@@ -2,6 +2,14 @@
 
 package tempo
 
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+
+	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+)
+
 type TempoQuery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
@@ -41,6 +49,21 @@ type TempoQuery struct {
 }
 
 func (resource TempoQuery) ImplementsDataqueryVariant() {}
+
+func VariantConfig() cogvariants.DataqueryConfig {
+	return cogvariants.DataqueryConfig{
+		Identifier: "tempo",
+		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
+			dataquery := TempoQuery{}
+
+			if err := json.Unmarshal(raw, &dataquery); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+	}
+}
 
 // search = Loki search, nativeSearch = Tempo search for backwards compatibility
 type TempoQueryType string
@@ -93,4 +116,46 @@ type TraceqlFilter struct {
 type StringOrArrayOfString struct {
 	String        *string  `json:"String,omitempty"`
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
+}
+
+func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
+	if resource.String != nil {
+		return json.Marshal(resource.String)
+	}
+
+	if resource.ArrayOfString != nil {
+		return json.Marshal(resource.ArrayOfString)
+	}
+
+	return nil, fmt.Errorf("no value for disjunction of scalars")
+}
+
+func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+		resource.String = nil
+	} else {
+		resource.String = &String
+		return nil
+	}
+
+	// ArrayOfString
+	var ArrayOfString []string
+	if err := json.Unmarshal(raw, &ArrayOfString); err != nil {
+		errList = append(errList, err)
+		resource.ArrayOfString = nil
+	} else {
+		resource.ArrayOfString = ArrayOfString
+		return nil
+	}
+
+	return errors.Join(errList...)
 }

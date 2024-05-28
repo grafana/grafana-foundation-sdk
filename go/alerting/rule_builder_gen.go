@@ -4,6 +4,7 @@ package alerting
 
 import (
 	"errors"
+	"time"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
@@ -178,7 +179,7 @@ func (builder *RuleBuilder) Uid(uid string) *RuleBuilder {
 	return builder
 }
 
-func (builder *RuleBuilder) Updated(updated string) *RuleBuilder {
+func (builder *RuleBuilder) Updated(updated time.Time) *RuleBuilder {
 	builder.internal.Updated = &updated
 
 	return builder

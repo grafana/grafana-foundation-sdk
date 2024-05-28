@@ -2,6 +2,12 @@
 
 package annotationslist
 
+import (
+	"encoding/json"
+
+	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+)
+
 type Options struct {
 	OnlyFromThisDashboard bool     `json:"onlyFromThisDashboard"`
 	OnlyInTimeRange       bool     `json:"onlyInTimeRange"`
@@ -13,4 +19,19 @@ type Options struct {
 	NavigateToPanel       bool     `json:"navigateToPanel"`
 	NavigateBefore        string   `json:"navigateBefore"`
 	NavigateAfter         string   `json:"navigateAfter"`
+}
+
+func VariantConfig() cogvariants.PanelcfgConfig {
+	return cogvariants.PanelcfgConfig{
+		Identifier: "annolist",
+		OptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := Options{}
+
+			if err := json.Unmarshal(raw, &options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+	}
 }

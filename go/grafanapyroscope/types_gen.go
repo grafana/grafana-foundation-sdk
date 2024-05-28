@@ -2,6 +2,12 @@
 
 package grafanapyroscope
 
+import (
+	"encoding/json"
+
+	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+)
+
 type PhlareQueryType string
 
 const (
@@ -38,3 +44,18 @@ type Dataquery struct {
 }
 
 func (resource Dataquery) ImplementsDataqueryVariant() {}
+
+func VariantConfig() cogvariants.DataqueryConfig {
+	return cogvariants.DataqueryConfig{
+		Identifier: "grafanapyroscope",
+		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
+			dataquery := Dataquery{}
+
+			if err := json.Unmarshal(raw, &dataquery); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+	}
+}
