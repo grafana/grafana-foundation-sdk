@@ -203,10 +203,12 @@
           "type": "integer"
         },
         "created": {
-          "type": "string"
+          "type": "string",
+          "format": "date-time"
         },
         "updated": {
-          "type": "string"
+          "type": "string",
+          "format": "date-time"
         },
         "createdBy": {
           "$ref": "#/definitions/LibraryElementDTOMetaUser"

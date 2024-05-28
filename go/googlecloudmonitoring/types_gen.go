@@ -2,6 +2,12 @@
 
 package googlecloudmonitoring
 
+import (
+	"encoding/json"
+
+	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+)
+
 type CloudMonitoringQuery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
@@ -36,6 +42,21 @@ type CloudMonitoringQuery struct {
 }
 
 func (resource CloudMonitoringQuery) ImplementsDataqueryVariant() {}
+
+func VariantConfig() cogvariants.DataqueryConfig {
+	return cogvariants.DataqueryConfig{
+		Identifier: "cloud-monitoring",
+		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
+			dataquery := CloudMonitoringQuery{}
+
+			if err := json.Unmarshal(raw, &dataquery); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+	}
+}
 
 // Defines the supported queryTypes.
 type QueryType string

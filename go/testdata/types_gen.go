@@ -2,6 +2,14 @@
 
 package testdata
 
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+
+	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+)
+
 type TestDataQueryType string
 
 const (
@@ -133,6 +141,21 @@ type Dataquery struct {
 
 func (resource Dataquery) ImplementsDataqueryVariant() {}
 
+func VariantConfig() cogvariants.DataqueryConfig {
+	return cogvariants.DataqueryConfig{
+		Identifier: "testdata",
+		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
+			dataquery := Dataquery{}
+
+			if err := json.Unmarshal(raw, &dataquery); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+	}
+}
+
 type Key struct {
 	Type string  `json:"type"`
 	Tick float64 `json:"tick"`
@@ -168,4 +191,46 @@ const (
 type StringOrInt64 struct {
 	String *string `json:"String,omitempty"`
 	Int64  *int64  `json:"Int64,omitempty"`
+}
+
+func (resource StringOrInt64) MarshalJSON() ([]byte, error) {
+	if resource.String != nil {
+		return json.Marshal(resource.String)
+	}
+
+	if resource.Int64 != nil {
+		return json.Marshal(resource.Int64)
+	}
+
+	return nil, fmt.Errorf("no value for disjunction of scalars")
+}
+
+func (resource *StringOrInt64) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+		resource.String = nil
+	} else {
+		resource.String = &String
+		return nil
+	}
+
+	// Int64
+	var Int64 int64
+	if err := json.Unmarshal(raw, &Int64); err != nil {
+		errList = append(errList, err)
+		resource.Int64 = nil
+	} else {
+		resource.Int64 = &Int64
+		return nil
+	}
+
+	return errors.Join(errList...)
 }
