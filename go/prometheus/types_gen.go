@@ -25,7 +25,7 @@ const (
 
 type Dataquery struct {
 	// The actual expression/query that will be evaluated by Prometheus
-	Expr *string `json:"expr,omitempty"`
+	Expr string `json:"expr"`
 	// Returns only the latest value that Prometheus has scraped for the requested time series
 	Instant *bool `json:"instant,omitempty"`
 	// Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
@@ -44,7 +44,7 @@ type Dataquery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId *string `json:"refId,omitempty"`
+	RefId string `json:"refId"`
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	Hide *bool `json:"hide,omitempty"`
 	// Specify the query flavor
