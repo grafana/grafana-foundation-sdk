@@ -42,7 +42,7 @@ func (builder *DataqueryBuilder) Build() (cogvariants.Dataquery, error) {
 
 // The LogQL query.
 func (builder *DataqueryBuilder) Expr(expr string) *DataqueryBuilder {
-	builder.internal.Expr = &expr
+	builder.internal.Expr = expr
 
 	return builder
 }
@@ -99,7 +99,7 @@ func (builder *DataqueryBuilder) Step(step string) *DataqueryBuilder {
 // In server side expressions, the refId is used as a variable name to identify results.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *DataqueryBuilder) RefId(refId string) *DataqueryBuilder {
-	builder.internal.RefId = &refId
+	builder.internal.RefId = refId
 
 	return builder
 }

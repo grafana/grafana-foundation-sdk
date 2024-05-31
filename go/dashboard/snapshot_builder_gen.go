@@ -3,8 +3,6 @@
 package dashboard
 
 import (
-	"time"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
@@ -44,13 +42,6 @@ func (builder *SnapshotBuilder) Build() (Snapshot, error) {
 	}
 
 	return *builder.internal, nil
-}
-
-// Time when the snapshot was created
-func (builder *SnapshotBuilder) Created(created time.Time) *SnapshotBuilder {
-	builder.internal.Created = created
-
-	return builder
 }
 
 // Time when the snapshot expires, default is never to expire
@@ -109,13 +100,6 @@ func (builder *SnapshotBuilder) OrgId(orgId uint32) *SnapshotBuilder {
 	return builder
 }
 
-// last time when the snapshot was updated
-func (builder *SnapshotBuilder) Updated(updated time.Time) *SnapshotBuilder {
-	builder.internal.Updated = updated
-
-	return builder
-}
-
 // url of the snapshot, if snapshot was shared internally
 func (builder *SnapshotBuilder) Url(url string) *SnapshotBuilder {
 	builder.internal.Url = &url
@@ -123,9 +107,13 @@ func (builder *SnapshotBuilder) Url(url string) *SnapshotBuilder {
 	return builder
 }
 
-// user id of the snapshot creator
-func (builder *SnapshotBuilder) UserId(userId uint32) *SnapshotBuilder {
-	builder.internal.UserId = userId
+func (builder *SnapshotBuilder) Dashboard(dashboard cog.Builder[Dashboard]) *SnapshotBuilder {
+	dashboardResource, err := dashboard.Build()
+	if err != nil {
+		builder.errors["dashboard"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Dashboard = &dashboardResource
 
 	return builder
 }

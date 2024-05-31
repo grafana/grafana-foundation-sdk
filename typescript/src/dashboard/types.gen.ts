@@ -175,7 +175,7 @@ export interface VariableModel {
 	// Description of variable. It can be defined but `null`.
 	description?: string;
 	// Query used to fetch values for a variable
-	query?: string | any;
+	query?: string | Record<string, any>;
 	// Data source used to fetch values for a variable. It can be defined but `null`.
 	datasource?: DataSourceRef;
 	// Shows current selected variable text/value on the dashboard
@@ -691,6 +691,7 @@ export interface Snapshot {
 	url?: string;
 	// user id of the snapshot creator
 	userId: number;
+	dashboard?: Dashboard;
 }
 
 export const defaultSnapshot = (): Snapshot => ({

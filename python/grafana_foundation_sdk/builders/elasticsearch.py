@@ -1155,7 +1155,7 @@ class MovingAverage(cogbuilder.Builder[elasticsearch.MovingAverage]):
     
         return self
     
-    def settings(self, settings: object) -> typing.Self:        
+    def settings(self, settings: dict[str, object]) -> typing.Self:        
         self._internal.settings = settings
     
         return self

@@ -31,7 +31,7 @@ export class MovingAverageBuilder implements cog.Builder<elasticsearch.MovingAve
         return this;
     }
 
-    settings(settings: any): this {
+    settings(settings: Record<string, any>): this {
         this.internal.settings = settings;
         return this;
     }
