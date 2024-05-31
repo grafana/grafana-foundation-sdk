@@ -403,7 +403,7 @@ class VariableModel:
     # Description of variable. It can be defined but `null`.
     description: typing.Optional[str]
     # Query used to fetch values for a variable
-    query: typing.Optional[typing.Union[str, object]]
+    query: typing.Optional[typing.Union[str, dict[str, object]]]
     # Data source used to fetch values for a variable. It can be defined but `null`.
     datasource: typing.Optional['DataSourceRef']
     # Shows current selected variable text/value on the dashboard
@@ -424,7 +424,7 @@ class VariableModel:
     # Named capture groups can be used to separate the display text and value.
     regex: typing.Optional[str]
 
-    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, object]] = None, datasource: typing.Optional['DataSourceRef'] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, include_all: typing.Optional[bool] = False, all_value: typing.Optional[str] = None, regex: typing.Optional[str] = None):
+    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional['DataSourceRef'] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, include_all: typing.Optional[bool] = False, all_value: typing.Optional[str] = None, regex: typing.Optional[str] = None):
         self.type_val = type_val if type_val is not None else VariableType.QUERY
         self.name = name
         self.label = label
@@ -1333,8 +1333,9 @@ class Snapshot:
     url: typing.Optional[str]
     # user id of the snapshot creator
     user_id: int
+    dashboard: typing.Optional['Dashboard']
 
-    def __init__(self, created: str = "", expires: str = "", external: bool = False, external_url: str = "", original_url: str = "", id_val: int = 0, key: str = "", name: str = "", org_id: int = 0, updated: str = "", url: typing.Optional[str] = None, user_id: int = 0):
+    def __init__(self, created: str = "", expires: str = "", external: bool = False, external_url: str = "", original_url: str = "", id_val: int = 0, key: str = "", name: str = "", org_id: int = 0, updated: str = "", url: typing.Optional[str] = None, user_id: int = 0, dashboard: typing.Optional['Dashboard'] = None):
         self.created = created
         self.expires = expires
         self.external = external
@@ -1347,6 +1348,7 @@ class Snapshot:
         self.updated = updated
         self.url = url
         self.user_id = user_id
+        self.dashboard = dashboard
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -1364,6 +1366,8 @@ class Snapshot:
         }
         if self.url is not None:
             payload["url"] = self.url
+        if self.dashboard is not None:
+            payload["dashboard"] = self.dashboard
         return payload
 
     @classmethod
@@ -1393,7 +1397,9 @@ class Snapshot:
         if "url" in data:
             args["url"] = data["url"]
         if "userId" in data:
-            args["user_id"] = data["userId"]        
+            args["user_id"] = data["userId"]
+        if "dashboard" in data:
+            args["dashboard"] = Dashboard.from_json(data["dashboard"])        
 
         return cls(**args)
 
