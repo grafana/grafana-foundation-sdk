@@ -149,7 +149,7 @@ type VariableModel struct {
 	// Description of variable. It can be defined but `null`.
 	Description *string `json:"description,omitempty"`
 	// Query used to fetch values for a variable
-	Query *StringOrAny `json:"query,omitempty"`
+	Query *StringOrMap `json:"query,omitempty"`
 	// Data source used to fetch values for a variable. It can be defined but `null`.
 	Datasource *DataSourceRef `json:"datasource,omitempty"`
 	// Shows current selected variable text/value on the dashboard
@@ -541,7 +541,8 @@ type Snapshot struct {
 	// url of the snapshot, if snapshot was shared internally
 	Url *string `json:"url,omitempty"`
 	// user id of the snapshot creator
-	UserId uint32 `json:"userId"`
+	UserId    uint32     `json:"userId"`
+	Dashboard *Dashboard `json:"dashboard,omitempty"`
 }
 
 // Dashboard panels are the basic visualization building blocks.
@@ -1019,24 +1020,24 @@ func (resource *PanelOrRowPanel) UnmarshalJSON(raw []byte) error {
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
-type StringOrAny struct {
-	String *string `json:"String,omitempty"`
-	Any    any     `json:"Any,omitempty"`
+type StringOrMap struct {
+	String *string        `json:"String,omitempty"`
+	Map    map[string]any `json:"Map,omitempty"`
 }
 
-func (resource StringOrAny) MarshalJSON() ([]byte, error) {
+func (resource StringOrMap) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
 	}
 
-	if resource.Any != nil {
-		return json.Marshal(resource.Any)
+	if resource.Map != nil {
+		return json.Marshal(resource.Map)
 	}
 
 	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
-func (resource *StringOrAny) UnmarshalJSON(raw []byte) error {
+func (resource *StringOrMap) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -1053,13 +1054,13 @@ func (resource *StringOrAny) UnmarshalJSON(raw []byte) error {
 		return nil
 	}
 
-	// Any
-	var Any any
-	if err := json.Unmarshal(raw, &Any); err != nil {
+	// Map
+	var Map map[string]any
+	if err := json.Unmarshal(raw, &Map); err != nil {
 		errList = append(errList, err)
-		resource.Any = nil
+		resource.Map = nil
 	} else {
-		resource.Any = &Any
+		resource.Map = Map
 		return nil
 	}
 

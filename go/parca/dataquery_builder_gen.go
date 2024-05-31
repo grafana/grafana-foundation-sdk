@@ -42,14 +42,14 @@ func (builder *DataqueryBuilder) Build() (cogvariants.Dataquery, error) {
 
 // Specifies the query label selectors.
 func (builder *DataqueryBuilder) LabelSelector(labelSelector string) *DataqueryBuilder {
-	builder.internal.LabelSelector = &labelSelector
+	builder.internal.LabelSelector = labelSelector
 
 	return builder
 }
 
 // Specifies the type of profile to query.
 func (builder *DataqueryBuilder) ProfileTypeId(profileTypeId string) *DataqueryBuilder {
-	builder.internal.ProfileTypeId = &profileTypeId
+	builder.internal.ProfileTypeId = profileTypeId
 
 	return builder
 }
@@ -58,7 +58,7 @@ func (builder *DataqueryBuilder) ProfileTypeId(profileTypeId string) *DataqueryB
 // In server side expressions, the refId is used as a variable name to identify results.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *DataqueryBuilder) RefId(refId string) *DataqueryBuilder {
-	builder.internal.RefId = &refId
+	builder.internal.RefId = refId
 
 	return builder
 }

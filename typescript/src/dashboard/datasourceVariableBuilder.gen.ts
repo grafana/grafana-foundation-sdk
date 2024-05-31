@@ -42,7 +42,7 @@ export class DatasourceVariableBuilder implements cog.Builder<dashboard.Variable
     }
 
     // Query used to fetch values for a variable
-    type(query: string | any): this {
+    type(query: string | Record<string, any>): this {
         this.internal.query = query;
         return this;
     }

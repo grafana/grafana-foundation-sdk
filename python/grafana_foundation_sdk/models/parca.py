@@ -14,13 +14,13 @@ class ParcaQueryType(enum.StrEnum):
 
 class Dataquery(cogvariants.Dataquery):
     # Specifies the query label selectors.
-    label_selector: typing.Optional[str]
+    label_selector: str
     # Specifies the type of profile to query.
-    profile_type_id: typing.Optional[str]
+    profile_type_id: str
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: typing.Optional[str]
+    ref_id: str
     # true if query is disabled (ie should not be returned to the dashboard)
     # Note this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -34,7 +34,7 @@ class Dataquery(cogvariants.Dataquery):
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[object]
 
-    def __init__(self, label_selector: typing.Optional[str] = "{}", profile_type_id: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None):
+    def __init__(self, label_selector: str = "{}", profile_type_id: str = "", ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None):
         self.label_selector = label_selector
         self.profile_type_id = profile_type_id
         self.ref_id = ref_id
@@ -44,13 +44,10 @@ class Dataquery(cogvariants.Dataquery):
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
+            "labelSelector": self.label_selector,
+            "profileTypeId": self.profile_type_id,
+            "refId": self.ref_id,
         }
-        if self.label_selector is not None:
-            payload["labelSelector"] = self.label_selector
-        if self.profile_type_id is not None:
-            payload["profileTypeId"] = self.profile_type_id
-        if self.ref_id is not None:
-            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:

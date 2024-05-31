@@ -95,7 +95,7 @@ class SimulationQuery(cogbuilder.Builder[testdata.SimulationQuery]):
     
         return self
     
-    def config(self, config: object) -> typing.Self:        
+    def config(self, config: dict[str, object]) -> typing.Self:        
         self._internal.config = config
     
         return self
