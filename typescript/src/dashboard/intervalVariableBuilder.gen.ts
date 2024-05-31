@@ -42,7 +42,7 @@ export class IntervalVariableBuilder implements cog.Builder<dashboard.VariableMo
     }
 
     // Query used to fetch values for a variable
-    values(query: string | any): this {
+    values(query: string | Record<string, any>): this {
         this.internal.query = query;
         return this;
     }
