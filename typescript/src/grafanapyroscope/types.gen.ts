@@ -10,19 +10,19 @@ export const defaultPyroscopeQueryType = (): PyroscopeQueryType => (PyroscopeQue
 
 export interface dataquery {
 	// Specifies the query label selectors.
-	labelSelector?: string;
+	labelSelector: string;
 	// Specifies the query span selectors.
 	spanSelector?: string[];
 	// Specifies the type of profile to query.
-	profileTypeId?: string;
+	profileTypeId: string;
 	// Allows to group the results.
-	groupBy?: string[];
+	groupBy: string[];
 	// Sets the maximum number of nodes in the flamegraph.
 	maxNodes?: number;
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	refId?: string;
+	refId: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// Note this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -40,6 +40,9 @@ export interface dataquery {
 
 export const defaultDataquery = (): dataquery => ({
 	labelSelector: "{}",
+	profileTypeId: "",
+	groupBy: [],
+	refId: "",
 	_implementsDataqueryVariant: () => {},
 });
 

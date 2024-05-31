@@ -71,7 +71,7 @@ func (builder *IntervalVariableBuilder) Description(description string) *Interva
 }
 
 // Query used to fetch values for a variable
-func (builder *IntervalVariableBuilder) Values(query StringOrAny) *IntervalVariableBuilder {
+func (builder *IntervalVariableBuilder) Values(query StringOrMap) *IntervalVariableBuilder {
 	builder.internal.Query = &query
 
 	return builder

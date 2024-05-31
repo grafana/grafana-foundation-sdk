@@ -20,7 +20,7 @@ export class SimulationQueryBuilder implements cog.Builder<testdata.SimulationQu
         return this;
     }
 
-    config(config: any): this {
+    config(config: Record<string, any>): this {
         this.internal.config = config;
         return this;
     }
