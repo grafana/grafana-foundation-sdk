@@ -42,7 +42,7 @@ export class ConstantVariableBuilder implements cog.Builder<dashboard.VariableMo
     }
 
     // Query used to fetch values for a variable
-    value(query: string | any): this {
+    value(query: string | Record<string, any>): this {
         this.internal.query = query;
         return this;
     }

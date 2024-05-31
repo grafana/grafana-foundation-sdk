@@ -78,7 +78,7 @@ func (builder *QueryVariableBuilder) Description(description string) *QueryVaria
 }
 
 // Query used to fetch values for a variable
-func (builder *QueryVariableBuilder) Query(query StringOrAny) *QueryVariableBuilder {
+func (builder *QueryVariableBuilder) Query(query StringOrMap) *QueryVariableBuilder {
 	builder.internal.Query = &query
 
 	return builder

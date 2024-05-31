@@ -417,12 +417,12 @@ type MovingAverageHoltWintersModelSettings struct {
 
 // #MovingAverage's settings are overridden in types.ts
 type MovingAverage struct {
-	PipelineAgg *string `json:"pipelineAgg,omitempty"`
-	Field       *string `json:"field,omitempty"`
-	Type        string  `json:"type"`
-	Id          string  `json:"id"`
-	Settings    any     `json:"settings,omitempty"`
-	Hide        *bool   `json:"hide,omitempty"`
+	PipelineAgg *string        `json:"pipelineAgg,omitempty"`
+	Field       *string        `json:"field,omitempty"`
+	Type        string         `json:"type"`
+	Id          string         `json:"id"`
+	Settings    map[string]any `json:"settings,omitempty"`
+	Hide        *bool          `json:"hide,omitempty"`
 }
 
 type MovingFunction struct {
@@ -510,7 +510,7 @@ type Dataquery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId *string `json:"refId,omitempty"`
+	RefId string `json:"refId"`
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// Note this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)

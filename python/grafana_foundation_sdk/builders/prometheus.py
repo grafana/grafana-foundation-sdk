@@ -23,21 +23,23 @@ class Dataquery(cogbuilder.Builder[prometheus.Dataquery]):
     
         return self
     
-    def instant(self, instant: bool) -> typing.Self:    
+    def instant(self) -> typing.Self:    
         """
         Returns only the latest value that Prometheus has scraped for the requested time series
         """
             
-        self._internal.instant = instant
+        self._internal.instant = True    
+        self._internal.range_val = False
     
         return self
     
-    def range_val(self, range_val: bool) -> typing.Self:    
+    def range_val(self) -> typing.Self:    
         """
         Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
         """
             
-        self._internal.range_val = range_val
+        self._internal.range_val = True    
+        self._internal.instant = False
     
         return self
     
@@ -138,6 +140,12 @@ class Dataquery(cogbuilder.Builder[prometheus.Dataquery]):
         """
             
         self._internal.interval = interval
+    
+        return self
+    
+    def range_and_instant(self) -> typing.Self:        
+        self._internal.range_val = True    
+        self._internal.instant = True
     
         return self
     

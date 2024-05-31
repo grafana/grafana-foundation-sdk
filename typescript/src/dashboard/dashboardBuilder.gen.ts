@@ -184,13 +184,15 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
         const rowPanelResource = rowPanel.build();
 
 		// Position the row on the grid
-		rowPanelResource.gridPos = {
-			x: 0, // beginning of the line
-			y: this.currentY + this.lastPanelHeight,
+		if (!rowPanelResource.gridPos || (rowPanelResource.gridPos.x == 0 && rowPanelResource.gridPos.y == 0)) {
+			rowPanelResource.gridPos = {
+				x: 0, // beginning of the line
+				y: this.currentY + this.lastPanelHeight,
 
-			h: 1,
-			w: 24, // full width
-		};
+				h: 1,
+				w: 24, // full width
+			};
+		}
         this.internal.panels.push(rowPanelResource);
 
 		// Reset the state for the next row

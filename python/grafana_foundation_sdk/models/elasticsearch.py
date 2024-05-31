@@ -1573,10 +1573,10 @@ class MovingAverage:
     field: typing.Optional[str]
     type_val: typing.Literal["moving_avg"]
     id_val: str
-    settings: typing.Optional[object]
+    settings: typing.Optional[dict[str, object]]
     hide: typing.Optional[bool]
 
-    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional[object] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional[dict[str, object]] = None, hide: typing.Optional[bool] = None):
         self.pipeline_agg = pipeline_agg
         self.field = field
         self.type_val = "moving_avg"
@@ -1913,7 +1913,7 @@ class Dataquery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: typing.Optional[str]
+    ref_id: str
     # true if query is disabled (ie should not be returned to the dashboard)
     # Note this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -1927,7 +1927,7 @@ class Dataquery(cogvariants.Dataquery):
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[object]
 
-    def __init__(self, alias: typing.Optional[str] = None, query: typing.Optional[str] = None, time_field: typing.Optional[str] = None, bucket_aggs: typing.Optional[list['BucketAggregation']] = None, metrics: typing.Optional[list['MetricAggregation']] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None):
+    def __init__(self, alias: typing.Optional[str] = None, query: typing.Optional[str] = None, time_field: typing.Optional[str] = None, bucket_aggs: typing.Optional[list['BucketAggregation']] = None, metrics: typing.Optional[list['MetricAggregation']] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None):
         self.alias = alias
         self.query = query
         self.time_field = time_field
@@ -1940,6 +1940,7 @@ class Dataquery(cogvariants.Dataquery):
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
+            "refId": self.ref_id,
         }
         if self.alias is not None:
             payload["alias"] = self.alias
@@ -1951,8 +1952,6 @@ class Dataquery(cogvariants.Dataquery):
             payload["bucketAggs"] = self.bucket_aggs
         if self.metrics is not None:
             payload["metrics"] = self.metrics
-        if self.ref_id is not None:
-            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:

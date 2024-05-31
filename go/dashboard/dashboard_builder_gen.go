@@ -252,12 +252,14 @@ func (builder *DashboardBuilder) WithRow(rowPanel cog.Builder[RowPanel]) *Dashbo
 	}
 
 	// Position the row on the grid
-	rowPanelResource.GridPos = &GridPos{
-		X: 0, // beginning of the line
-		Y: builder.currentY + builder.lastPanelHeight,
+	if rowPanelResource.GridPos == nil || (rowPanelResource.GridPos.X == 0 && rowPanelResource.GridPos.Y == 0) {
+		rowPanelResource.GridPos = &GridPos{
+			X: 0, // beginning of the line
+			Y: builder.currentY + builder.lastPanelHeight,
 
-		H: 1,
-		W: 24, // full width
+			H: 1,
+			W: 24, // full width
+		}
 	}
 	builder.internal.Panels = append(builder.internal.Panels, PanelOrRowPanel{
 		RowPanel: &rowPanelResource,

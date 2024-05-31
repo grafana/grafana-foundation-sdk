@@ -80,7 +80,7 @@ func (builder *DatasourceVariableBuilder) Description(description string) *Datas
 // Query used to fetch values for a variable
 func (builder *DatasourceVariableBuilder) Type(string string) *DatasourceVariableBuilder {
 	if builder.internal.Query == nil {
-		builder.internal.Query = &StringOrAny{}
+		builder.internal.Query = &StringOrMap{}
 	}
 	builder.internal.Query.String = &string
 

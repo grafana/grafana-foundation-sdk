@@ -20,6 +20,12 @@
       "dataquery": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "labelSelector",
+          "profileTypeId",
+          "groupBy",
+          "refId"
+        ],
         "properties": {
           "labelSelector": {
             "type": "string",
