@@ -1287,7 +1287,10 @@
         },
         "settings": {
           "type": "object",
-          "additionalProperties": {}
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {}
+          }
         },
         "hide": {
           "type": "boolean"
@@ -1591,6 +1594,9 @@
     "dataquery": {
       "type": "object",
       "additionalProperties": false,
+      "required": [
+        "refId"
+      ],
       "properties": {
         "alias": {
           "type": "string",

@@ -40,6 +40,10 @@
       "dataquery": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "expr",
+          "refId"
+        ],
         "properties": {
           "expr": {
             "type": "string",
