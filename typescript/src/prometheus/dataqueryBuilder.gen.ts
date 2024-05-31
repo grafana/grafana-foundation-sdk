@@ -21,14 +21,16 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     }
 
     // Returns only the latest value that Prometheus has scraped for the requested time series
-    instant(instant: boolean): this {
-        this.internal.instant = instant;
+    instant(): this {
+        this.internal.instant = true;
+        this.internal.range = false;
         return this;
     }
 
     // Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
-    range(range: boolean): this {
-        this.internal.range = range;
+    range(): this {
+        this.internal.range = true;
+        this.internal.instant = false;
         return this;
     }
 
@@ -106,6 +108,12 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     // `$__interval` and `$__rate_interval` variables.
     interval(interval: string): this {
         this.internal.interval = interval;
+        return this;
+    }
+
+    rangeAndInstant(): this {
+        this.internal.range = true;
+        this.internal.instant = true;
         return this;
     }
 }

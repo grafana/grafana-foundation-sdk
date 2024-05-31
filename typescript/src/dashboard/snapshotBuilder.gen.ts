@@ -19,12 +19,6 @@ export class SnapshotBuilder implements cog.Builder<dashboard.Snapshot> {
         return this.internal;
     }
 
-    // Time when the snapshot was created
-    created(created: string): this {
-        this.internal.created = created;
-        return this;
-    }
-
     // Time when the snapshot expires, default is never to expire
     expires(expires: string): this {
         this.internal.expires = expires;
@@ -73,21 +67,15 @@ export class SnapshotBuilder implements cog.Builder<dashboard.Snapshot> {
         return this;
     }
 
-    // last time when the snapshot was updated
-    updated(updated: string): this {
-        this.internal.updated = updated;
-        return this;
-    }
-
     // url of the snapshot, if snapshot was shared internally
     url(url: string): this {
         this.internal.url = url;
         return this;
     }
 
-    // user id of the snapshot creator
-    userId(userId: number): this {
-        this.internal.userId = userId;
+    dashboard(dashboard: cog.Builder<dashboard.Dashboard>): this {
+        const dashboardResource = dashboard.build();
+        this.internal.dashboard = dashboardResource;
         return this;
     }
 }

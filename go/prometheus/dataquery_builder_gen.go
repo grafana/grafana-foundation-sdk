@@ -42,21 +42,27 @@ func (builder *DataqueryBuilder) Build() (cogvariants.Dataquery, error) {
 
 // The actual expression/query that will be evaluated by Prometheus
 func (builder *DataqueryBuilder) Expr(expr string) *DataqueryBuilder {
-	builder.internal.Expr = &expr
+	builder.internal.Expr = expr
 
 	return builder
 }
 
 // Returns only the latest value that Prometheus has scraped for the requested time series
-func (builder *DataqueryBuilder) Instant(instant bool) *DataqueryBuilder {
-	builder.internal.Instant = &instant
+func (builder *DataqueryBuilder) Instant() *DataqueryBuilder {
+	valInstant := true
+	builder.internal.Instant = &valInstant
+	valRange := false
+	builder.internal.Range = &valRange
 
 	return builder
 }
 
 // Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
-func (builder *DataqueryBuilder) Range(rangeArg bool) *DataqueryBuilder {
-	builder.internal.Range = &rangeArg
+func (builder *DataqueryBuilder) Range() *DataqueryBuilder {
+	valRange := true
+	builder.internal.Range = &valRange
+	valInstant := false
+	builder.internal.Instant = &valInstant
 
 	return builder
 }
@@ -109,7 +115,7 @@ func (builder *DataqueryBuilder) Scope(scope struct {
 // In server side expressions, the refId is used as a variable name to identify results.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *DataqueryBuilder) RefId(refId string) *DataqueryBuilder {
-	builder.internal.RefId = &refId
+	builder.internal.RefId = refId
 
 	return builder
 }
@@ -145,6 +151,15 @@ func (builder *DataqueryBuilder) Datasource(datasource any) *DataqueryBuilder {
 // `$__interval` and `$__rate_interval` variables.
 func (builder *DataqueryBuilder) Interval(interval string) *DataqueryBuilder {
 	builder.internal.Interval = &interval
+
+	return builder
+}
+
+func (builder *DataqueryBuilder) RangeAndInstant() *DataqueryBuilder {
+	valRange := true
+	builder.internal.Range = &valRange
+	valInstant := true
+	builder.internal.Instant = &valInstant
 
 	return builder
 }

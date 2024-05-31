@@ -64,7 +64,7 @@ func (builder *ConstantVariableBuilder) Description(description string) *Constan
 }
 
 // Query used to fetch values for a variable
-func (builder *ConstantVariableBuilder) Value(query StringOrAny) *ConstantVariableBuilder {
+func (builder *ConstantVariableBuilder) Value(query StringOrMap) *ConstantVariableBuilder {
 	builder.internal.Query = &query
 
 	return builder
