@@ -30,7 +30,7 @@ class LokiQueryDirection(enum.StrEnum):
 
 class Dataquery(cogvariants.Dataquery):
     # The LogQL query.
-    expr: typing.Optional[str]
+    expr: str
     # Used to override the name of the series.
     legend_format: typing.Optional[str]
     # Used to limit the number of log rows returned.
@@ -47,7 +47,7 @@ class Dataquery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: typing.Optional[str]
+    ref_id: str
     # true if query is disabled (ie should not be returned to the dashboard)
     # Note this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -61,7 +61,7 @@ class Dataquery(cogvariants.Dataquery):
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[object]
 
-    def __init__(self, expr: typing.Optional[str] = None, legend_format: typing.Optional[str] = None, max_lines: typing.Optional[int] = None, resolution: typing.Optional[int] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, range_val: typing.Optional[bool] = None, instant: typing.Optional[bool] = None, step: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None):
+    def __init__(self, expr: str = "", legend_format: typing.Optional[str] = None, max_lines: typing.Optional[int] = None, resolution: typing.Optional[int] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, range_val: typing.Optional[bool] = None, instant: typing.Optional[bool] = None, step: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None):
         self.expr = expr
         self.legend_format = legend_format
         self.max_lines = max_lines
@@ -77,9 +77,9 @@ class Dataquery(cogvariants.Dataquery):
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
+            "expr": self.expr,
+            "refId": self.ref_id,
         }
-        if self.expr is not None:
-            payload["expr"] = self.expr
         if self.legend_format is not None:
             payload["legendFormat"] = self.legend_format
         if self.max_lines is not None:
@@ -94,8 +94,6 @@ class Dataquery(cogvariants.Dataquery):
             payload["instant"] = self.instant
         if self.step is not None:
             payload["step"] = self.step
-        if self.ref_id is not None:
-            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:

@@ -19,7 +19,7 @@ class PromQueryFormat(enum.StrEnum):
 
 class Dataquery(cogvariants.Dataquery):
     # The actual expression/query that will be evaluated by Prometheus
-    expr: typing.Optional[str]
+    expr: str
     # Returns only the latest value that Prometheus has scraped for the requested time series
     instant: typing.Optional[bool]
     # Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
@@ -38,7 +38,7 @@ class Dataquery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: typing.Optional[str]
+    ref_id: str
     # true if query is disabled (ie should not be returned to the dashboard)
     # Note this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -55,7 +55,7 @@ class Dataquery(cogvariants.Dataquery):
     # `$__interval` and `$__rate_interval` variables.
     interval: typing.Optional[str]
 
-    def __init__(self, expr: typing.Optional[str] = None, instant: typing.Optional[bool] = None, range_val: typing.Optional[bool] = None, exemplar: typing.Optional[bool] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, format_val: typing.Optional['PromQueryFormat'] = None, legend_format: typing.Optional[str] = None, interval_factor: typing.Optional[float] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None, interval: typing.Optional[str] = None):
+    def __init__(self, expr: str = "", instant: typing.Optional[bool] = None, range_val: typing.Optional[bool] = None, exemplar: typing.Optional[bool] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, format_val: typing.Optional['PromQueryFormat'] = None, legend_format: typing.Optional[str] = None, interval_factor: typing.Optional[float] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None, interval: typing.Optional[str] = None):
         self.expr = expr
         self.instant = instant
         self.range_val = range_val
@@ -72,9 +72,9 @@ class Dataquery(cogvariants.Dataquery):
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
+            "expr": self.expr,
+            "refId": self.ref_id,
         }
-        if self.expr is not None:
-            payload["expr"] = self.expr
         if self.instant is not None:
             payload["instant"] = self.instant
         if self.range_val is not None:
@@ -89,8 +89,6 @@ class Dataquery(cogvariants.Dataquery):
             payload["legendFormat"] = self.legend_format
         if self.interval_factor is not None:
             payload["intervalFactor"] = self.interval_factor
-        if self.ref_id is not None:
-            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
