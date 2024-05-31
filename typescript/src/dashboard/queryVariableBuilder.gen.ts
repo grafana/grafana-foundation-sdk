@@ -48,7 +48,7 @@ export class QueryVariableBuilder implements cog.Builder<dashboard.VariableModel
     }
 
     // Query used to fetch values for a variable
-    query(query: string | any): this {
+    query(query: string | Record<string, any>): this {
         this.internal.query = query;
         return this;
     }

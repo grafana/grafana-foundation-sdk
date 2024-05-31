@@ -59,8 +59,8 @@ func (builder *MovingAverageBuilder) Id(id string) *MovingAverageBuilder {
 	return builder
 }
 
-func (builder *MovingAverageBuilder) Settings(settings any) *MovingAverageBuilder {
-	builder.internal.Settings = &settings
+func (builder *MovingAverageBuilder) Settings(settings map[string]any) *MovingAverageBuilder {
+	builder.internal.Settings = settings
 
 	return builder
 }

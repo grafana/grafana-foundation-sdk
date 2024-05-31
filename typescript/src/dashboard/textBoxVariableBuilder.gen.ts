@@ -48,7 +48,7 @@ export class TextBoxVariableBuilder implements cog.Builder<dashboard.VariableMod
     }
 
     // Query used to fetch values for a variable
-    defaultValue(query: string | any): this {
+    defaultValue(query: string | Record<string, any>): this {
         this.internal.query = query;
         return this;
     }

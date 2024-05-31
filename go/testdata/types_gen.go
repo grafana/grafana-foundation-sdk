@@ -62,10 +62,10 @@ type PulseWaveQuery struct {
 }
 
 type SimulationQuery struct {
-	Key    Key   `json:"key"`
-	Config any   `json:"config,omitempty"`
-	Stream *bool `json:"stream,omitempty"`
-	Last   *bool `json:"last,omitempty"`
+	Key    Key            `json:"key"`
+	Config map[string]any `json:"config,omitempty"`
+	Stream *bool          `json:"stream,omitempty"`
+	Last   *bool          `json:"last,omitempty"`
 }
 
 type NodesQuery struct {
@@ -122,7 +122,7 @@ type Dataquery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId *string `json:"refId,omitempty"`
+	RefId string `json:"refId"`
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// Note this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)

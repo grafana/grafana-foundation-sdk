@@ -50,8 +50,8 @@ func (builder *SimulationQueryBuilder) Key(key cog.Builder[Key]) *SimulationQuer
 	return builder
 }
 
-func (builder *SimulationQueryBuilder) Config(config any) *SimulationQueryBuilder {
-	builder.internal.Config = &config
+func (builder *SimulationQueryBuilder) Config(config map[string]any) *SimulationQueryBuilder {
+	builder.internal.Config = config
 
 	return builder
 }

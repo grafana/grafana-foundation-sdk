@@ -110,7 +110,10 @@
           },
           "config": {
             "type": "object",
-            "additionalProperties": {}
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {}
+            }
           },
           "stream": {
             "type": "boolean"
@@ -208,6 +211,9 @@
       "dataquery": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "refId"
+        ],
         "properties": {
           "alias": {
             "type": "string"

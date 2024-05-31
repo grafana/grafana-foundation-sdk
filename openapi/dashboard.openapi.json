@@ -340,7 +340,10 @@
               },
               {
                 "type": "object",
-                "additionalProperties": {}
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": {}
+                }
               }
             ],
             "description": "Query used to fetch values for a variable"
@@ -999,6 +1002,9 @@
           "userId": {
             "type": "integer",
             "description": "user id of the snapshot creator"
+          },
+          "dashboard": {
+            "$ref": "#/components/schemas/Dashboard"
           }
         },
         "description": "A dashboard snapshot shares an interactive dashboard publicly.\nIt is a read-only version of a dashboard, and is not editable.\nIt is possible to create a snapshot of a snapshot.\nGrafana strips away all sensitive information from the dashboard.\nSensitive information stripped: queries (metric, template,annotation) and panel links."

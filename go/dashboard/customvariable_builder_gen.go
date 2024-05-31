@@ -78,7 +78,7 @@ func (builder *CustomVariableBuilder) Description(description string) *CustomVar
 }
 
 // Query used to fetch values for a variable
-func (builder *CustomVariableBuilder) Values(query StringOrAny) *CustomVariableBuilder {
+func (builder *CustomVariableBuilder) Values(query StringOrMap) *CustomVariableBuilder {
 	builder.internal.Query = &query
 
 	return builder

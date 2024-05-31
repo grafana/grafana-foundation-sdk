@@ -78,7 +78,7 @@ func (builder *TextBoxVariableBuilder) Description(description string) *TextBoxV
 }
 
 // Query used to fetch values for a variable
-func (builder *TextBoxVariableBuilder) DefaultValue(query StringOrAny) *TextBoxVariableBuilder {
+func (builder *TextBoxVariableBuilder) DefaultValue(query StringOrMap) *TextBoxVariableBuilder {
 	builder.internal.Query = &query
 
 	return builder
