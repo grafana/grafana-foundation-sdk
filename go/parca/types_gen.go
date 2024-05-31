@@ -18,13 +18,13 @@ const (
 
 type Dataquery struct {
 	// Specifies the query label selectors.
-	LabelSelector *string `json:"labelSelector,omitempty"`
+	LabelSelector string `json:"labelSelector"`
 	// Specifies the type of profile to query.
-	ProfileTypeId *string `json:"profileTypeId,omitempty"`
+	ProfileTypeId string `json:"profileTypeId"`
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId *string `json:"refId,omitempty"`
+	RefId string `json:"refId"`
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// Note this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)

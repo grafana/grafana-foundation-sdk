@@ -42,7 +42,7 @@ export class CustomVariableBuilder implements cog.Builder<dashboard.VariableMode
     }
 
     // Query used to fetch values for a variable
-    values(query: string | any): this {
+    values(query: string | Record<string, any>): this {
         this.internal.query = query;
         return this;
     }
