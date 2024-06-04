@@ -8,6 +8,103 @@ import (
 	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
+type CSVWave struct {
+	Labels    *string `json:"labels,omitempty"`
+	Name      *string `json:"name,omitempty"`
+	TimeStep  *int64  `json:"timeStep,omitempty"`
+	ValuesCSV *string `json:"valuesCSV,omitempty"`
+}
+
+type Datasource struct {
+	// The datasource plugin type
+	Type string `json:"type"`
+	// Datasource UID
+	Uid *string `json:"uid,omitempty"`
+}
+
+type NodesQuery struct {
+	Count *int64 `json:"count,omitempty"`
+	Seed  *int64 `json:"seed,omitempty"`
+	// Possible enum values:
+	//  - `"random"`
+	//  - `"random edges"`
+	//  - `"response_medium"`
+	//  - `"response_small"`
+	//  - `"feature_showcase"`
+	Type *NodesQueryType `json:"type,omitempty"`
+}
+
+type PulseWaveQuery struct {
+	OffCount *int64   `json:"offCount,omitempty"`
+	OffValue *float64 `json:"offValue,omitempty"`
+	OnCount  *int64   `json:"onCount,omitempty"`
+	OnValue  *float64 `json:"onValue,omitempty"`
+	TimeStep *int64   `json:"timeStep,omitempty"`
+}
+
+type ResultAssertions struct {
+	// Maximum frame count
+	MaxFrames *int64 `json:"maxFrames,omitempty"`
+	// Type asserts that the frame matches a known type structure.
+	// Possible enum values:
+	//  - `""`
+	//  - `"timeseries-wide"`
+	//  - `"timeseries-long"`
+	//  - `"timeseries-many"`
+	//  - `"timeseries-multi"`
+	//  - `"directory-listing"`
+	//  - `"table"`
+	//  - `"numeric-wide"`
+	//  - `"numeric-multi"`
+	//  - `"numeric-long"`
+	//  - `"log-lines"`
+	Type *ResultAssertionsType `json:"type,omitempty"`
+	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
+	// contract documentation https://grafana.github.io/dataplane/contract/.
+	TypeVersion []int64 `json:"typeVersion"`
+}
+
+type Key struct {
+	Tick float64 `json:"tick"`
+	Type string  `json:"type"`
+	Uid  *string `json:"uid,omitempty"`
+}
+
+type SimulationQuery struct {
+	Config any   `json:"config,omitempty"`
+	Key    Key   `json:"key"`
+	Last   *bool `json:"last,omitempty"`
+	Stream *bool `json:"stream,omitempty"`
+}
+
+type StreamingQuery struct {
+	Bands  *int64  `json:"bands,omitempty"`
+	Noise  float64 `json:"noise"`
+	Speed  float64 `json:"speed"`
+	Spread float64 `json:"spread"`
+	// Possible enum values:
+	//  - `"fetch"`
+	//  - `"logs"`
+	//  - `"signal"`
+	//  - `"traces"`
+	Type StreamingQueryType `json:"type"`
+	Url  *string            `json:"url,omitempty"`
+}
+
+type TimeRange struct {
+	// From is the start time of the query.
+	From string `json:"from"`
+	// To is the end time of the query.
+	To string `json:"to"`
+}
+
+type USAQuery struct {
+	Fields []string `json:"fields,omitempty"`
+	Mode   *string  `json:"mode,omitempty"`
+	Period *string  `json:"period,omitempty"`
+	States []string `json:"states,omitempty"`
+}
+
 type Dataquery struct {
 	Alias *string `json:"alias,omitempty"`
 	// Used for live query
@@ -118,102 +215,40 @@ func VariantConfig() cogvariants.DataqueryConfig {
 	}
 }
 
-type CSVWave struct {
-	Labels    *string `json:"labels,omitempty"`
-	Name      *string `json:"name,omitempty"`
-	TimeStep  *int64  `json:"timeStep,omitempty"`
-	ValuesCSV *string `json:"valuesCSV,omitempty"`
-}
+type NodesQueryType string
 
-type Datasource struct {
-	// The datasource plugin type
-	Type string `json:"type"`
-	// Datasource UID
-	Uid *string `json:"uid,omitempty"`
-}
+const (
+	NodesQueryTypeRandom          NodesQueryType = "random"
+	NodesQueryTypeRandomEdges     NodesQueryType = "random edges"
+	NodesQueryTypeResponseMedium  NodesQueryType = "response_medium"
+	NodesQueryTypeResponseSmall   NodesQueryType = "response_small"
+	NodesQueryTypeFeatureShowcase NodesQueryType = "feature_showcase"
+)
 
-type NodesQuery struct {
-	Count *int64 `json:"count,omitempty"`
-	Seed  *int64 `json:"seed,omitempty"`
-	// Possible enum values:
-	//  - `"random"`
-	//  - `"random edges"`
-	//  - `"response_medium"`
-	//  - `"response_small"`
-	//  - `"feature_showcase"`
-	Type *NodesQueryType `json:"type,omitempty"`
-}
+type ResultAssertionsType string
 
-type PulseWaveQuery struct {
-	OffCount *int64   `json:"offCount,omitempty"`
-	OffValue *float64 `json:"offValue,omitempty"`
-	OnCount  *int64   `json:"onCount,omitempty"`
-	OnValue  *float64 `json:"onValue,omitempty"`
-	TimeStep *int64   `json:"timeStep,omitempty"`
-}
+const (
+	ResultAssertionsTypeNone             ResultAssertionsType = ""
+	ResultAssertionsTypeTimeseriesWide   ResultAssertionsType = "timeseries-wide"
+	ResultAssertionsTypeTimeseriesLong   ResultAssertionsType = "timeseries-long"
+	ResultAssertionsTypeTimeseriesMany   ResultAssertionsType = "timeseries-many"
+	ResultAssertionsTypeTimeseriesMulti  ResultAssertionsType = "timeseries-multi"
+	ResultAssertionsTypeDirectoryListing ResultAssertionsType = "directory-listing"
+	ResultAssertionsTypeTable            ResultAssertionsType = "table"
+	ResultAssertionsTypeNumericWide      ResultAssertionsType = "numeric-wide"
+	ResultAssertionsTypeNumericMulti     ResultAssertionsType = "numeric-multi"
+	ResultAssertionsTypeNumericLong      ResultAssertionsType = "numeric-long"
+	ResultAssertionsTypeLogLines         ResultAssertionsType = "log-lines"
+)
 
-type ResultAssertions struct {
-	// Maximum frame count
-	MaxFrames *int64 `json:"maxFrames,omitempty"`
-	// Type asserts that the frame matches a known type structure.
-	// Possible enum values:
-	//  - `""`
-	//  - `"timeseries-wide"`
-	//  - `"timeseries-long"`
-	//  - `"timeseries-many"`
-	//  - `"timeseries-multi"`
-	//  - `"directory-listing"`
-	//  - `"table"`
-	//  - `"numeric-wide"`
-	//  - `"numeric-multi"`
-	//  - `"numeric-long"`
-	//  - `"log-lines"`
-	Type *ResultAssertionsType `json:"type,omitempty"`
-	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-	// contract documentation https://grafana.github.io/dataplane/contract/.
-	TypeVersion []int64 `json:"typeVersion"`
-}
+type StreamingQueryType string
 
-type Key struct {
-	Tick float64 `json:"tick"`
-	Type string  `json:"type"`
-	Uid  *string `json:"uid,omitempty"`
-}
-
-type SimulationQuery struct {
-	Config any   `json:"config,omitempty"`
-	Key    Key   `json:"key"`
-	Last   *bool `json:"last,omitempty"`
-	Stream *bool `json:"stream,omitempty"`
-}
-
-type StreamingQuery struct {
-	Bands  *int64  `json:"bands,omitempty"`
-	Noise  float64 `json:"noise"`
-	Speed  float64 `json:"speed"`
-	Spread float64 `json:"spread"`
-	// Possible enum values:
-	//  - `"fetch"`
-	//  - `"logs"`
-	//  - `"signal"`
-	//  - `"traces"`
-	Type StreamingQueryType `json:"type"`
-	Url  *string            `json:"url,omitempty"`
-}
-
-type TimeRange struct {
-	// From is the start time of the query.
-	From string `json:"from"`
-	// To is the end time of the query.
-	To string `json:"to"`
-}
-
-type USAQuery struct {
-	Fields []string `json:"fields,omitempty"`
-	Mode   *string  `json:"mode,omitempty"`
-	Period *string  `json:"period,omitempty"`
-	States []string `json:"states,omitempty"`
-}
+const (
+	StreamingQueryTypeFetch  StreamingQueryType = "fetch"
+	StreamingQueryTypeLogs   StreamingQueryType = "logs"
+	StreamingQueryTypeSignal StreamingQueryType = "signal"
+	StreamingQueryTypeTraces StreamingQueryType = "traces"
+)
 
 type DataqueryErrorType string
 
@@ -255,39 +290,4 @@ const (
 	DataqueryScenarioIdTrace                        DataqueryScenarioId = "trace"
 	DataqueryScenarioIdUsa                          DataqueryScenarioId = "usa"
 	DataqueryScenarioIdVariablesQuery               DataqueryScenarioId = "variables-query"
-)
-
-type NodesQueryType string
-
-const (
-	NodesQueryTypeRandom          NodesQueryType = "random"
-	NodesQueryTypeRandomEdges     NodesQueryType = "random edges"
-	NodesQueryTypeResponseMedium  NodesQueryType = "response_medium"
-	NodesQueryTypeResponseSmall   NodesQueryType = "response_small"
-	NodesQueryTypeFeatureShowcase NodesQueryType = "feature_showcase"
-)
-
-type ResultAssertionsType string
-
-const (
-	ResultAssertionsTypeNone             ResultAssertionsType = ""
-	ResultAssertionsTypeTimeseriesWide   ResultAssertionsType = "timeseries-wide"
-	ResultAssertionsTypeTimeseriesLong   ResultAssertionsType = "timeseries-long"
-	ResultAssertionsTypeTimeseriesMany   ResultAssertionsType = "timeseries-many"
-	ResultAssertionsTypeTimeseriesMulti  ResultAssertionsType = "timeseries-multi"
-	ResultAssertionsTypeDirectoryListing ResultAssertionsType = "directory-listing"
-	ResultAssertionsTypeTable            ResultAssertionsType = "table"
-	ResultAssertionsTypeNumericWide      ResultAssertionsType = "numeric-wide"
-	ResultAssertionsTypeNumericMulti     ResultAssertionsType = "numeric-multi"
-	ResultAssertionsTypeNumericLong      ResultAssertionsType = "numeric-long"
-	ResultAssertionsTypeLogLines         ResultAssertionsType = "log-lines"
-)
-
-type StreamingQueryType string
-
-const (
-	StreamingQueryTypeFetch  StreamingQueryType = "fetch"
-	StreamingQueryTypeLogs   StreamingQueryType = "logs"
-	StreamingQueryTypeSignal StreamingQueryType = "signal"
-	StreamingQueryTypeTraces StreamingQueryType = "traces"
 )

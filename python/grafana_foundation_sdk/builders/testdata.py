@@ -5,298 +5,6 @@ from ..cog import builder as cogbuilder
 from ..models import testdata
 
 
-class Dataquery(cogbuilder.Builder[testdata.Dataquery]):    
-    _internal: testdata.Dataquery
-
-    def __init__(self):
-        self._internal = testdata.Dataquery()
-
-    def build(self) -> testdata.Dataquery:
-        return self._internal    
-    
-    def alias(self, alias: str) -> typing.Self:        
-        self._internal.alias = alias
-    
-        return self
-    
-    def channel(self, channel: str) -> typing.Self:    
-        """
-        Used for live query
-        """
-            
-        self._internal.channel = channel
-    
-        return self
-    
-    def csv_content(self, csv_content: str) -> typing.Self:        
-        self._internal.csv_content = csv_content
-    
-        return self
-    
-    def csv_file_name(self, csv_file_name: str) -> typing.Self:        
-        self._internal.csv_file_name = csv_file_name
-    
-        return self
-    
-    def csv_wave(self, csv_wave: list[cogbuilder.Builder[testdata.CSVWave]]) -> typing.Self:        
-        csv_wave_resources = [r1.build() for r1 in csv_wave]
-        self._internal.csv_wave = csv_wave_resources
-    
-        return self
-    
-    def datasource(self, datasource: cogbuilder.Builder[testdata.Datasource]) -> typing.Self:    
-        """
-        The datasource
-        """
-            
-        datasource_resource = datasource.build()
-        self._internal.datasource = datasource_resource
-    
-        return self
-    
-    def drop_percent(self, drop_percent: float) -> typing.Self:    
-        """
-        Drop percentage (the chance we will lose a point 0-100)
-        """
-            
-        self._internal.drop_percent = drop_percent
-    
-        return self
-    
-    def error_type(self, error_type: typing.Literal["frontend_exception", "frontend_observable", "server_panic"]) -> typing.Self:    
-        """
-        Possible enum values:
-         - `"frontend_exception"` 
-         - `"frontend_observable"` 
-         - `"server_panic"` 
-        """
-            
-        self._internal.error_type = error_type
-    
-        return self
-    
-    def flamegraph_diff(self, flamegraph_diff: bool) -> typing.Self:        
-        self._internal.flamegraph_diff = flamegraph_diff
-    
-        return self
-    
-    def hide(self, hide: bool) -> typing.Self:    
-        """
-        true if query is disabled (ie should not be returned to the dashboard)
-        NOTE: this does not always imply that the query should not be executed since
-        the results from a hidden query may be used as the input to other queries (SSE etc)
-        """
-            
-        self._internal.hide = hide
-    
-        return self
-    
-    def interval_ms(self, interval_ms: float) -> typing.Self:    
-        """
-        Interval is the suggested duration between time points in a time series query.
-        NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
-        from the interval required to fill a pixels in the visualization
-        """
-            
-        self._internal.interval_ms = interval_ms
-    
-        return self
-    
-    def labels(self, labels: str) -> typing.Self:        
-        self._internal.labels = labels
-    
-        return self
-    
-    def level_column(self, level_column: bool) -> typing.Self:        
-        self._internal.level_column = level_column
-    
-        return self
-    
-    def lines(self, lines: int) -> typing.Self:        
-        self._internal.lines = lines
-    
-        return self
-    
-    def max_val(self, max_val: float) -> typing.Self:        
-        self._internal.max_val = max_val
-    
-        return self
-    
-    def max_data_points(self, max_data_points: int) -> typing.Self:    
-        """
-        MaxDataPoints is the maximum number of data points that should be returned from a time series query.
-        NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
-        from the number of pixels visible in a visualization
-        """
-            
-        self._internal.max_data_points = max_data_points
-    
-        return self
-    
-    def min_val(self, min_val: float) -> typing.Self:        
-        self._internal.min_val = min_val
-    
-        return self
-    
-    def nodes(self, nodes: cogbuilder.Builder[testdata.NodesQuery]) -> typing.Self:        
-        nodes_resource = nodes.build()
-        self._internal.nodes = nodes_resource
-    
-        return self
-    
-    def noise(self, noise: float) -> typing.Self:        
-        self._internal.noise = noise
-    
-        return self
-    
-    def points(self, points: list[list[object]]) -> typing.Self:        
-        self._internal.points = points
-    
-        return self
-    
-    def pulse_wave(self, pulse_wave: cogbuilder.Builder[testdata.PulseWaveQuery]) -> typing.Self:        
-        pulse_wave_resource = pulse_wave.build()
-        self._internal.pulse_wave = pulse_wave_resource
-    
-        return self
-    
-    def query_type(self, query_type: str) -> typing.Self:    
-        """
-        QueryType is an optional identifier for the type of query.
-        It can be used to distinguish different types of queries.
-        """
-            
-        self._internal.query_type = query_type
-    
-        return self
-    
-    def raw_frame_content(self, raw_frame_content: str) -> typing.Self:        
-        self._internal.raw_frame_content = raw_frame_content
-    
-        return self
-    
-    def ref_id(self, ref_id: str) -> typing.Self:    
-        """
-        RefID is the unique identifier of the query, set by the frontend call.
-        """
-            
-        self._internal.ref_id = ref_id
-    
-        return self
-    
-    def result_assertions(self, result_assertions: cogbuilder.Builder[testdata.ResultAssertions]) -> typing.Self:    
-        """
-        Optionally define expected query result behavior
-        """
-            
-        result_assertions_resource = result_assertions.build()
-        self._internal.result_assertions = result_assertions_resource
-    
-        return self
-    
-    def scenario_id(self, scenario_id: typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]) -> typing.Self:    
-        """
-        Possible enum values:
-         - `"annotations"` 
-         - `"arrow"` 
-         - `"csv_content"` 
-         - `"csv_file"` 
-         - `"csv_metric_values"` 
-         - `"datapoints_outside_range"` 
-         - `"exponential_heatmap_bucket_data"` 
-         - `"flame_graph"` 
-         - `"grafana_api"` 
-         - `"linear_heatmap_bucket_data"` 
-         - `"live"` 
-         - `"logs"` 
-         - `"manual_entry"` 
-         - `"no_data_points"` 
-         - `"node_graph"` 
-         - `"predictable_csv_wave"` 
-         - `"predictable_pulse"` 
-         - `"random_walk"` 
-         - `"random_walk_table"` 
-         - `"random_walk_with_error"` 
-         - `"raw_frame"` 
-         - `"server_error_500"` 
-         - `"simulation"` 
-         - `"slow_query"` 
-         - `"streaming_client"` 
-         - `"table_static"` 
-         - `"trace"` 
-         - `"usa"` 
-         - `"variables-query"` 
-        """
-            
-        self._internal.scenario_id = scenario_id
-    
-        return self
-    
-    def series_count(self, series_count: int) -> typing.Self:        
-        self._internal.series_count = series_count
-    
-        return self
-    
-    def sim(self, sim: cogbuilder.Builder[testdata.SimulationQuery]) -> typing.Self:        
-        sim_resource = sim.build()
-        self._internal.sim = sim_resource
-    
-        return self
-    
-    def span_count(self, span_count: int) -> typing.Self:        
-        self._internal.span_count = span_count
-    
-        return self
-    
-    def spread(self, spread: float) -> typing.Self:        
-        self._internal.spread = spread
-    
-        return self
-    
-    def start_value(self, start_value: float) -> typing.Self:        
-        self._internal.start_value = start_value
-    
-        return self
-    
-    def stream(self, stream: cogbuilder.Builder[testdata.StreamingQuery]) -> typing.Self:        
-        stream_resource = stream.build()
-        self._internal.stream = stream_resource
-    
-        return self
-    
-    def string_input(self, string_input: str) -> typing.Self:    
-        """
-        common parameter used by many query types
-        """
-            
-        self._internal.string_input = string_input
-    
-        return self
-    
-    def time_range(self, time_range: cogbuilder.Builder[testdata.TimeRange]) -> typing.Self:    
-        """
-        TimeRange represents the query range
-        NOTE: unlike generic /ds/query, we can now send explicit time values in each query
-        NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-        """
-            
-        time_range_resource = time_range.build()
-        self._internal.time_range = time_range_resource
-    
-        return self
-    
-    def usa(self, usa: cogbuilder.Builder[testdata.USAQuery]) -> typing.Self:        
-        usa_resource = usa.build()
-        self._internal.usa = usa_resource
-    
-        return self
-    
-    def with_nil(self, with_nil: bool) -> typing.Self:        
-        self._internal.with_nil = with_nil
-    
-        return self
-    
-
 class CSVWave(cogbuilder.Builder[testdata.CSVWave]):    
     _internal: testdata.CSVWave
 
@@ -632,6 +340,298 @@ class USAQuery(cogbuilder.Builder[testdata.USAQuery]):
     
     def states(self, states: list[str]) -> typing.Self:        
         self._internal.states = states
+    
+        return self
+    
+
+class Dataquery(cogbuilder.Builder[testdata.Dataquery]):    
+    _internal: testdata.Dataquery
+
+    def __init__(self):
+        self._internal = testdata.Dataquery()
+
+    def build(self) -> testdata.Dataquery:
+        return self._internal    
+    
+    def alias(self, alias: str) -> typing.Self:        
+        self._internal.alias = alias
+    
+        return self
+    
+    def channel(self, channel: str) -> typing.Self:    
+        """
+        Used for live query
+        """
+            
+        self._internal.channel = channel
+    
+        return self
+    
+    def csv_content(self, csv_content: str) -> typing.Self:        
+        self._internal.csv_content = csv_content
+    
+        return self
+    
+    def csv_file_name(self, csv_file_name: str) -> typing.Self:        
+        self._internal.csv_file_name = csv_file_name
+    
+        return self
+    
+    def csv_wave(self, csv_wave: list[cogbuilder.Builder[testdata.CSVWave]]) -> typing.Self:        
+        csv_wave_resources = [r1.build() for r1 in csv_wave]
+        self._internal.csv_wave = csv_wave_resources
+    
+        return self
+    
+    def datasource(self, datasource: cogbuilder.Builder[testdata.Datasource]) -> typing.Self:    
+        """
+        The datasource
+        """
+            
+        datasource_resource = datasource.build()
+        self._internal.datasource = datasource_resource
+    
+        return self
+    
+    def drop_percent(self, drop_percent: float) -> typing.Self:    
+        """
+        Drop percentage (the chance we will lose a point 0-100)
+        """
+            
+        self._internal.drop_percent = drop_percent
+    
+        return self
+    
+    def error_type(self, error_type: typing.Literal["frontend_exception", "frontend_observable", "server_panic"]) -> typing.Self:    
+        """
+        Possible enum values:
+         - `"frontend_exception"` 
+         - `"frontend_observable"` 
+         - `"server_panic"` 
+        """
+            
+        self._internal.error_type = error_type
+    
+        return self
+    
+    def flamegraph_diff(self, flamegraph_diff: bool) -> typing.Self:        
+        self._internal.flamegraph_diff = flamegraph_diff
+    
+        return self
+    
+    def hide(self, hide: bool) -> typing.Self:    
+        """
+        true if query is disabled (ie should not be returned to the dashboard)
+        NOTE: this does not always imply that the query should not be executed since
+        the results from a hidden query may be used as the input to other queries (SSE etc)
+        """
+            
+        self._internal.hide = hide
+    
+        return self
+    
+    def interval_ms(self, interval_ms: float) -> typing.Self:    
+        """
+        Interval is the suggested duration between time points in a time series query.
+        NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+        from the interval required to fill a pixels in the visualization
+        """
+            
+        self._internal.interval_ms = interval_ms
+    
+        return self
+    
+    def labels(self, labels: str) -> typing.Self:        
+        self._internal.labels = labels
+    
+        return self
+    
+    def level_column(self, level_column: bool) -> typing.Self:        
+        self._internal.level_column = level_column
+    
+        return self
+    
+    def lines(self, lines: int) -> typing.Self:        
+        self._internal.lines = lines
+    
+        return self
+    
+    def max_val(self, max_val: float) -> typing.Self:        
+        self._internal.max_val = max_val
+    
+        return self
+    
+    def max_data_points(self, max_data_points: int) -> typing.Self:    
+        """
+        MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+        NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+        from the number of pixels visible in a visualization
+        """
+            
+        self._internal.max_data_points = max_data_points
+    
+        return self
+    
+    def min_val(self, min_val: float) -> typing.Self:        
+        self._internal.min_val = min_val
+    
+        return self
+    
+    def nodes(self, nodes: cogbuilder.Builder[testdata.NodesQuery]) -> typing.Self:        
+        nodes_resource = nodes.build()
+        self._internal.nodes = nodes_resource
+    
+        return self
+    
+    def noise(self, noise: float) -> typing.Self:        
+        self._internal.noise = noise
+    
+        return self
+    
+    def points(self, points: list[list[object]]) -> typing.Self:        
+        self._internal.points = points
+    
+        return self
+    
+    def pulse_wave(self, pulse_wave: cogbuilder.Builder[testdata.PulseWaveQuery]) -> typing.Self:        
+        pulse_wave_resource = pulse_wave.build()
+        self._internal.pulse_wave = pulse_wave_resource
+    
+        return self
+    
+    def query_type(self, query_type: str) -> typing.Self:    
+        """
+        QueryType is an optional identifier for the type of query.
+        It can be used to distinguish different types of queries.
+        """
+            
+        self._internal.query_type = query_type
+    
+        return self
+    
+    def raw_frame_content(self, raw_frame_content: str) -> typing.Self:        
+        self._internal.raw_frame_content = raw_frame_content
+    
+        return self
+    
+    def ref_id(self, ref_id: str) -> typing.Self:    
+        """
+        RefID is the unique identifier of the query, set by the frontend call.
+        """
+            
+        self._internal.ref_id = ref_id
+    
+        return self
+    
+    def result_assertions(self, result_assertions: cogbuilder.Builder[testdata.ResultAssertions]) -> typing.Self:    
+        """
+        Optionally define expected query result behavior
+        """
+            
+        result_assertions_resource = result_assertions.build()
+        self._internal.result_assertions = result_assertions_resource
+    
+        return self
+    
+    def scenario_id(self, scenario_id: typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]) -> typing.Self:    
+        """
+        Possible enum values:
+         - `"annotations"` 
+         - `"arrow"` 
+         - `"csv_content"` 
+         - `"csv_file"` 
+         - `"csv_metric_values"` 
+         - `"datapoints_outside_range"` 
+         - `"exponential_heatmap_bucket_data"` 
+         - `"flame_graph"` 
+         - `"grafana_api"` 
+         - `"linear_heatmap_bucket_data"` 
+         - `"live"` 
+         - `"logs"` 
+         - `"manual_entry"` 
+         - `"no_data_points"` 
+         - `"node_graph"` 
+         - `"predictable_csv_wave"` 
+         - `"predictable_pulse"` 
+         - `"random_walk"` 
+         - `"random_walk_table"` 
+         - `"random_walk_with_error"` 
+         - `"raw_frame"` 
+         - `"server_error_500"` 
+         - `"simulation"` 
+         - `"slow_query"` 
+         - `"streaming_client"` 
+         - `"table_static"` 
+         - `"trace"` 
+         - `"usa"` 
+         - `"variables-query"` 
+        """
+            
+        self._internal.scenario_id = scenario_id
+    
+        return self
+    
+    def series_count(self, series_count: int) -> typing.Self:        
+        self._internal.series_count = series_count
+    
+        return self
+    
+    def sim(self, sim: cogbuilder.Builder[testdata.SimulationQuery]) -> typing.Self:        
+        sim_resource = sim.build()
+        self._internal.sim = sim_resource
+    
+        return self
+    
+    def span_count(self, span_count: int) -> typing.Self:        
+        self._internal.span_count = span_count
+    
+        return self
+    
+    def spread(self, spread: float) -> typing.Self:        
+        self._internal.spread = spread
+    
+        return self
+    
+    def start_value(self, start_value: float) -> typing.Self:        
+        self._internal.start_value = start_value
+    
+        return self
+    
+    def stream(self, stream: cogbuilder.Builder[testdata.StreamingQuery]) -> typing.Self:        
+        stream_resource = stream.build()
+        self._internal.stream = stream_resource
+    
+        return self
+    
+    def string_input(self, string_input: str) -> typing.Self:    
+        """
+        common parameter used by many query types
+        """
+            
+        self._internal.string_input = string_input
+    
+        return self
+    
+    def time_range(self, time_range: cogbuilder.Builder[testdata.TimeRange]) -> typing.Self:    
+        """
+        TimeRange represents the query range
+        NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+        NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+        """
+            
+        time_range_resource = time_range.build()
+        self._internal.time_range = time_range_resource
+    
+        return self
+    
+    def usa(self, usa: cogbuilder.Builder[testdata.USAQuery]) -> typing.Self:        
+        usa_resource = usa.build()
+        self._internal.usa = usa_resource
+    
+        return self
+    
+    def with_nil(self, with_nil: bool) -> typing.Self:        
+        self._internal.with_nil = with_nil
     
         return self
     
