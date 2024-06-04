@@ -1,9 +1,109 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
+    "Query": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "datasourceUid": {
+          "type": "string"
+        },
+        "model": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "queryType": {
+          "type": "string"
+        },
+        "refId": {
+          "type": "string"
+        },
+        "relativeTimeRange": {
+          "$ref": "#/definitions/RelativeTimeRange"
+        }
+      }
+    },
+    "RuleGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "folderUid": {
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/definitions/Duration",
+          "description": "The interval, in seconds, at which all rules in the group are evaluated.\nIf a group contains many rules, the rules are evaluated sequentially."
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Rule"
+          }
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
     "Duration": {
       "type": "integer",
       "description": "Duration in seconds."
+    },
+    "ContactPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "settings",
+        "type"
+      ],
+      "properties": {
+        "disableResolveMessage": {
+          "type": "boolean",
+          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+        },
+        "name": {
+          "type": "string",
+          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+        },
+        "provenance": {
+          "type": "string",
+          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+        },
+        "settings": {
+          "$ref": "#/definitions/Json",
+          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+        },
+        "type": {
+          "enum": [
+            "alertmanager",
+            " dingding",
+            " discord",
+            " email",
+            " googlechat",
+            " kafka",
+            " line",
+            " opsgenie",
+            " pagerduty",
+            " pushover",
+            " sensugo",
+            " slack",
+            " teams",
+            " telegram",
+            " threema",
+            " victorops",
+            " webhook",
+            " wecom"
+          ],
+          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+        },
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+        }
+      },
+      "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
     },
     "Json": {
       "type": "object",
@@ -16,7 +116,12 @@
       }
     },
     "MatchType": {
-      "type": "integer"
+      "enum": [
+        "=",
+        "!=",
+        "=~",
+        "!~"
+      ]
     },
     "Matcher": {
       "type": "object",
@@ -39,6 +144,21 @@
         "$ref": "#/definitions/Matcher"
       },
       "description": "Matchers is a slice of Matchers that is sortable, implements Stringer, and\nprovides a Matches method to match a LabelSet against all Matchers in the\nslice. Note that some users of Matchers might require it to be sorted."
+    },
+    "MuteTiming": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "time_intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimeInterval"
+          }
+        }
+      }
     },
     "NotificationTemplate": {
       "type": "object",
@@ -69,106 +189,6 @@
     },
     "Provenance": {
       "type": "string"
-    },
-    "RelativeTimeRange": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "from": {
-          "$ref": "#/definitions/Duration",
-          "description": "RelativeTimeRange is the per query start and end time\nfor requests."
-        },
-        "to": {
-          "$ref": "#/definitions/Duration",
-          "description": "RelativeTimeRange is the per query start and end time\nfor requests."
-        }
-      },
-      "description": "RelativeTimeRange is the per query start and end time\nfor requests."
-    },
-    "TimeInterval": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "days_of_month": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
-        },
-        "location": {
-          "type": "string",
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
-        },
-        "months": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
-        },
-        "times": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TimeRange"
-          },
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
-        },
-        "weekdays": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
-        },
-        "years": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
-        }
-      },
-      "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
-    },
-    "TimeRange": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "from": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Redefining this to avoid an import cycle"
-        },
-        "to": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Redefining this to avoid an import cycle"
-        }
-      },
-      "description": "Redefining this to avoid an import cycle"
-    },
-    "RuleGroup": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "folderUid": {
-          "type": "string"
-        },
-        "interval": {
-          "$ref": "#/definitions/Duration",
-          "description": "The interval, in seconds, at which all rules in the group are evaluated.\nIf a group contains many rules, the rules are evaluated sequentially."
-        },
-        "rules": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Rule"
-          }
-        },
-        "title": {
-          "type": "string"
-        }
-      }
     },
     "Rule": {
       "type": "object",
@@ -260,83 +280,20 @@
         }
       }
     },
-    "Query": {
+    "RelativeTimeRange": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "datasourceUid": {
-          "type": "string"
+        "from": {
+          "$ref": "#/definitions/Duration",
+          "description": "RelativeTimeRange is the per query start and end time\nfor requests."
         },
-        "model": {
-          "type": "object",
-          "additionalProperties": {}
-        },
-        "queryType": {
-          "type": "string"
-        },
-        "refId": {
-          "type": "string"
-        },
-        "relativeTimeRange": {
-          "$ref": "#/definitions/RelativeTimeRange"
-        }
-      }
-    },
-    "ContactPoint": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "settings",
-        "type"
-      ],
-      "properties": {
-        "disableResolveMessage": {
-          "type": "boolean",
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
-        },
-        "name": {
-          "type": "string",
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
-        },
-        "provenance": {
-          "type": "string",
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
-        },
-        "settings": {
-          "$ref": "#/definitions/Json",
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
-        },
-        "type": {
-          "enum": [
-            "alertmanager",
-            " dingding",
-            " discord",
-            " email",
-            " googlechat",
-            " kafka",
-            " line",
-            " opsgenie",
-            " pagerduty",
-            " pushover",
-            " sensugo",
-            " slack",
-            " teams",
-            " telegram",
-            " threema",
-            " victorops",
-            " webhook",
-            " wecom"
-          ],
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
-        },
-        "uid": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 40,
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+        "to": {
+          "$ref": "#/definitions/Duration",
+          "description": "RelativeTimeRange is the per query start and end time\nfor requests."
         }
       },
-      "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+      "description": "RelativeTimeRange is the per query start and end time\nfor requests."
     },
     "NotificationPolicy": {
       "type": "object",
@@ -409,20 +366,119 @@
       },
       "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
     },
-    "MuteTiming": {
+    "TimeInterval": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "name": {
-          "type": "string"
-        },
-        "time_intervals": {
+        "days_of_month": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/TimeInterval"
+            "type": "string"
+          },
+          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+        },
+        "location": {
+          "type": "string",
+          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+        },
+        "months": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+        },
+        "times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimeRange"
+          },
+          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+        },
+        "weekdays": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+        },
+        "years": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+        }
+      },
+      "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+    },
+    "TimeIntervalItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "days_of_month": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "location": {
+          "type": "string"
+        },
+        "months": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimeIntervalTimeRange"
+          }
+        },
+        "weekdays": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "years": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }
+    },
+    "TimeIntervalTimeRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "end_time": {
+          "type": "string"
+        },
+        "start_time": {
+          "type": "string"
+        }
+      }
+    },
+    "TimeRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Redefining this to avoid an import cycle"
+        },
+        "to": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Redefining this to avoid an import cycle"
+        }
+      },
+      "description": "Redefining this to avoid an import cycle"
     }
   }
 }
