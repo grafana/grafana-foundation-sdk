@@ -1,4 +1,4 @@
-package main
+package builder
 
 import (
 	"github.com/grafana/grafana-foundation-sdk/go/cog"

@@ -1,4 +1,4 @@
-module github.com/grafana/grafana-foundation-sdk/examples/go/grafana-agent-overview
+module github.com/grafana/grafana-foundation-sdk/examples/go/linux-node-overview
 
 go 1.22.0
 

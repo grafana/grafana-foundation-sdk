@@ -1,0 +1,13 @@
+{
+    "name": "foundation-sdk-typescript",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^18",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@grafana/grafana-foundation-sdk": "~10.4.0-cogv0.0.x.1712659373",
+        "@pulumi/pulumi": "^3.113.0",
+        "@pulumiverse/grafana": "^0.5.0"
+    }
+}
