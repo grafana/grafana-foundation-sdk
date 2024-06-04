@@ -765,6 +765,14 @@
         ],
         "description": "TODO docs"
       },
+      "PercentChangeColorMode": {
+        "enum": [
+          "standard",
+          "inverted",
+          "same_as_value"
+        ],
+        "description": "TODO docs"
+      },
       "FieldTextAlignment": {
         "enum": [
           "auto",

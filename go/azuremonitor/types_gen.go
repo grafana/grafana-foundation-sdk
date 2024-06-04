@@ -136,6 +136,8 @@ type AzureLogsQuery struct {
 	DashboardTime *bool `json:"dashboardTime,omitempty"`
 	// If dashboardTime is set to true this value dictates which column the time filter will be applied to. Defaults to the first tables timeSpan column, the first datetime column found, or TimeGenerated
 	TimeColumn *string `json:"timeColumn,omitempty"`
+	// If set to true the query will be run as a basic logs query
+	BasicLogsQuery *bool `json:"basicLogsQuery,omitempty"`
 	// Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
 	Workspace *string `json:"workspace,omitempty"`
 	// @deprecated Use resources instead

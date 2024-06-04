@@ -318,6 +318,8 @@ class AzureLogsQuery:
     dashboard_time: typing.Optional[bool]
     # If dashboardTime is set to true this value dictates which column the time filter will be applied to. Defaults to the first tables timeSpan column, the first datetime column found, or TimeGenerated
     time_column: typing.Optional[str]
+    # If set to true the query will be run as a basic logs query
+    basic_logs_query: typing.Optional[bool]
     # Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
     workspace: typing.Optional[str]
     # @deprecated Use resources instead
@@ -325,12 +327,13 @@ class AzureLogsQuery:
     # @deprecated Use dashboardTime instead
     intersect_time: typing.Optional[bool]
 
-    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, dashboard_time: typing.Optional[bool] = None, time_column: typing.Optional[str] = None, workspace: typing.Optional[str] = None, resource: typing.Optional[str] = None, intersect_time: typing.Optional[bool] = None):
+    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, dashboard_time: typing.Optional[bool] = None, time_column: typing.Optional[str] = None, basic_logs_query: typing.Optional[bool] = None, workspace: typing.Optional[str] = None, resource: typing.Optional[str] = None, intersect_time: typing.Optional[bool] = None):
         self.query = query
         self.result_format = result_format
         self.resources = resources
         self.dashboard_time = dashboard_time
         self.time_column = time_column
+        self.basic_logs_query = basic_logs_query
         self.workspace = workspace
         self.resource = resource
         self.intersect_time = intersect_time
@@ -348,6 +351,8 @@ class AzureLogsQuery:
             payload["dashboardTime"] = self.dashboard_time
         if self.time_column is not None:
             payload["timeColumn"] = self.time_column
+        if self.basic_logs_query is not None:
+            payload["basicLogsQuery"] = self.basic_logs_query
         if self.workspace is not None:
             payload["workspace"] = self.workspace
         if self.resource is not None:
@@ -370,6 +375,8 @@ class AzureLogsQuery:
             args["dashboard_time"] = data["dashboardTime"]
         if "timeColumn" in data:
             args["time_column"] = data["timeColumn"]
+        if "basicLogsQuery" in data:
+            args["basic_logs_query"] = data["basicLogsQuery"]
         if "workspace" in data:
             args["workspace"] = data["workspace"]
         if "resource" in data:

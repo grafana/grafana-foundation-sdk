@@ -387,6 +387,15 @@ class AzureLogsQuery(cogbuilder.Builder[azuremonitor.AzureLogsQuery]):
     
         return self
     
+    def basic_logs_query(self, basic_logs_query: bool) -> typing.Self:    
+        """
+        If set to true the query will be run as a basic logs query
+        """
+            
+        self._internal.basic_logs_query = basic_logs_query
+    
+        return self
+    
     def workspace(self, workspace: str) -> typing.Self:    
         """
         Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
