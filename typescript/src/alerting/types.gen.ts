@@ -3,10 +3,78 @@
 import * as cog from '../cog';
 
 
+export interface Query {
+	datasourceUid?: string;
+	model?: cog.Dataquery;
+	queryType?: string;
+	refId?: string;
+	relativeTimeRange?: RelativeTimeRange;
+}
+
+export const defaultQuery = (): Query => ({
+});
+
+export interface RuleGroup {
+	folderUid?: string;
+	// The interval, in seconds, at which all rules in the group are evaluated.
+	// If a group contains many rules, the rules are evaluated sequentially.
+	interval?: Duration;
+	rules?: Rule[];
+	title?: string;
+}
+
+export const defaultRuleGroup = (): RuleGroup => ({
+});
+
+export interface NotificationSettings {
+	group_by?: string[];
+	group_interval?: string;
+	group_wait?: string;
+	mute_time_intervals?: string[];
+	receiver: string;
+	repeat_interval?: string;
+}
+
+export const defaultNotificationSettings = (): NotificationSettings => ({
+	group_by: [
+"alertname",
+"grafana_folder",
+],
+	receiver: "",
+});
+
 // Duration in seconds.
 export type Duration = number;
 
 export const defaultDuration = (): Duration => (0);
+
+// EmbeddedContactPoint is the contact point type that is used
+// by grafanas embedded alertmanager implementation.
+export interface ContactPoint {
+	// EmbeddedContactPoint is the contact point type that is used
+	// by grafanas embedded alertmanager implementation.
+	disableResolveMessage?: boolean;
+	// EmbeddedContactPoint is the contact point type that is used
+	// by grafanas embedded alertmanager implementation.
+	name?: string;
+	// EmbeddedContactPoint is the contact point type that is used
+	// by grafanas embedded alertmanager implementation.
+	provenance?: string;
+	// EmbeddedContactPoint is the contact point type that is used
+	// by grafanas embedded alertmanager implementation.
+	settings: Json;
+	// EmbeddedContactPoint is the contact point type that is used
+	// by grafanas embedded alertmanager implementation.
+	type: "alertmanager" | " dingding" | " discord" | " email" | " googlechat" | " kafka" | " line" | " opsgenie" | " pagerduty" | " pushover" | " sensugo" | " slack" | " teams" | " telegram" | " threema" | " victorops" | " webhook" | " wecom";
+	// EmbeddedContactPoint is the contact point type that is used
+	// by grafanas embedded alertmanager implementation.
+	uid?: string;
+}
+
+export const defaultContactPoint = (): ContactPoint => ({
+	settings: defaultJson(),
+	type: "alertmanager",
+});
 
 export type Json = any;
 
@@ -16,9 +84,14 @@ export type MatchRegexps = Record<string, string>;
 
 export const defaultMatchRegexps = (): MatchRegexps => ({});
 
-export type MatchType = number;
+export enum MatchType {
+	Equal = "=",
+	NotEqual = "!=",
+	EqualRegex = "=~",
+	NotEqualRegex = "!~",
+}
 
-export const defaultMatchType = (): MatchType => (0);
+export const defaultMatchType = (): MatchType => (MatchType.Equal);
 
 export interface Matcher {
 	Name?: string;
@@ -35,6 +108,14 @@ export const defaultMatcher = (): Matcher => ({
 export type Matchers = Matcher[];
 
 export const defaultMatchers = (): Matchers => ([]);
+
+export interface MuteTiming {
+	name?: string;
+	time_intervals?: TimeInterval[];
+}
+
+export const defaultMuteTiming = (): MuteTiming => ({
+});
 
 export interface NotificationTemplate {
 	name?: string;
@@ -56,40 +137,6 @@ export const defaultObjectMatchers = (): ObjectMatchers => ([]);
 export type Provenance = string;
 
 export const defaultProvenance = (): Provenance => ("");
-
-// RelativeTimeRange is the per query start and end time
-// for requests.
-export interface RelativeTimeRange {
-	// RelativeTimeRange is the per query start and end time
-	// for requests.
-	from?: Duration;
-	// RelativeTimeRange is the per query start and end time
-	// for requests.
-	to?: Duration;
-}
-
-export const defaultRelativeTimeRange = (): RelativeTimeRange => ({
-});
-
-export interface TimeInterval {
-	name?: string;
-	time_intervals?: TimeInterval[];
-}
-
-export const defaultTimeInterval = (): TimeInterval => ({
-});
-
-export interface RuleGroup {
-	folderUid?: string;
-	// The interval, in seconds, at which all rules in the group are evaluated.
-	// If a group contains many rules, the rules are evaluated sequentially.
-	interval?: Duration;
-	rules?: Rule[];
-	title?: string;
-}
-
-export const defaultRuleGroup = (): RuleGroup => ({
-});
 
 export interface Rule {
 	annotations?: Record<string, string>;
@@ -125,60 +172,18 @@ export const defaultRule = (): Rule => ({
 	title: "",
 });
 
-export interface NotificationSettings {
-	group_by?: string[];
-	group_interval?: string;
-	group_wait?: string;
-	mute_time_intervals?: string[];
-	receiver: string;
-	repeat_interval?: string;
+// RelativeTimeRange is the per query start and end time
+// for requests.
+export interface RelativeTimeRange {
+	// RelativeTimeRange is the per query start and end time
+	// for requests.
+	from?: Duration;
+	// RelativeTimeRange is the per query start and end time
+	// for requests.
+	to?: Duration;
 }
 
-export const defaultNotificationSettings = (): NotificationSettings => ({
-	group_by: [
-"alertname",
-"grafana_folder",
-],
-	receiver: "",
-});
-
-export interface Query {
-	datasourceUid?: string;
-	model?: cog.Dataquery;
-	queryType?: string;
-	refId?: string;
-	relativeTimeRange?: RelativeTimeRange;
-}
-
-export const defaultQuery = (): Query => ({
-});
-
-// EmbeddedContactPoint is the contact point type that is used
-// by grafanas embedded alertmanager implementation.
-export interface ContactPoint {
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
-	disableResolveMessage?: boolean;
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
-	name?: string;
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
-	provenance?: string;
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
-	settings: Json;
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
-	type: "alertmanager" | " dingding" | " discord" | " email" | " googlechat" | " kafka" | " line" | " opsgenie" | " pagerduty" | " pushover" | " sensugo" | " slack" | " teams" | " telegram" | " threema" | " victorops" | " webhook" | " wecom";
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
-	uid?: string;
-}
-
-export const defaultContactPoint = (): ContactPoint => ({
-	settings: defaultJson(),
-	type: "alertmanager",
+export const defaultRelativeTimeRange = (): RelativeTimeRange => ({
 });
 
 // A Route is a node that contains definitions of how to handle alerts. This is modified
@@ -228,11 +233,31 @@ export interface NotificationPolicy {
 export const defaultNotificationPolicy = (): NotificationPolicy => ({
 });
 
-export interface MuteTiming {
+export interface TimeInterval {
 	name?: string;
-	time_intervals?: TimeInterval[];
+	time_intervals?: TimeIntervalItem[];
 }
 
-export const defaultMuteTiming = (): MuteTiming => ({
+export const defaultTimeInterval = (): TimeInterval => ({
+});
+
+export interface TimeIntervalItem {
+	days_of_month?: string[];
+	location?: string;
+	months?: string[];
+	times?: TimeIntervalTimeRange[];
+	weekdays?: string[];
+	years?: string[];
+}
+
+export const defaultTimeIntervalItem = (): TimeIntervalItem => ({
+});
+
+export interface TimeIntervalTimeRange {
+	end_time?: string;
+	start_time?: string;
+}
+
+export const defaultTimeIntervalTimeRange = (): TimeIntervalTimeRange => ({
 });
 

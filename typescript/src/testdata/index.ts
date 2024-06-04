@@ -2,8 +2,6 @@
 
 export * from './types.gen';
 export type * from './types.gen';
-export * from './dataqueryBuilder.gen';
-export type * from './dataqueryBuilder.gen';
 export * from './cSVWaveBuilder.gen';
 export type * from './cSVWaveBuilder.gen';
 export * from './datasourceBuilder.gen';
@@ -24,3 +22,5 @@ export * from './timeRangeBuilder.gen';
 export type * from './timeRangeBuilder.gen';
 export * from './uSAQueryBuilder.gen';
 export type * from './uSAQueryBuilder.gen';
+export * from './dataqueryBuilder.gen';
+export type * from './dataqueryBuilder.gen';
