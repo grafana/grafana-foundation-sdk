@@ -1,302 +1,8 @@
 # Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-from ..cog import variants as cogvariants
 import typing
+from ..cog import variants as cogvariants
 from ..cog import runtime as cogruntime
-
-
-class Dataquery(cogvariants.Dataquery):
-    alias: typing.Optional[str]
-    # Used for live query
-    channel: typing.Optional[str]
-    csv_content: typing.Optional[str]
-    csv_file_name: typing.Optional[str]
-    csv_wave: typing.Optional[list['CSVWave']]
-    # The datasource
-    datasource: typing.Optional['Datasource']
-    # Drop percentage (the chance we will lose a point 0-100)
-    drop_percent: typing.Optional[float]
-    # Possible enum values:
-    #  - `"frontend_exception"` 
-    #  - `"frontend_observable"` 
-    #  - `"server_panic"` 
-    error_type: typing.Optional[typing.Literal["frontend_exception", "frontend_observable", "server_panic"]]
-    flamegraph_diff: typing.Optional[bool]
-    # true if query is disabled (ie should not be returned to the dashboard)
-    # NOTE: this does not always imply that the query should not be executed since
-    # the results from a hidden query may be used as the input to other queries (SSE etc)
-    hide: typing.Optional[bool]
-    # Interval is the suggested duration between time points in a time series query.
-    # NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
-    # from the interval required to fill a pixels in the visualization
-    interval_ms: typing.Optional[float]
-    labels: typing.Optional[str]
-    level_column: typing.Optional[bool]
-    lines: typing.Optional[int]
-    max_val: typing.Optional[float]
-    # MaxDataPoints is the maximum number of data points that should be returned from a time series query.
-    # NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
-    # from the number of pixels visible in a visualization
-    max_data_points: typing.Optional[int]
-    min_val: typing.Optional[float]
-    nodes: typing.Optional['NodesQuery']
-    noise: typing.Optional[float]
-    points: typing.Optional[list[list[object]]]
-    pulse_wave: typing.Optional['PulseWaveQuery']
-    # QueryType is an optional identifier for the type of query.
-    # It can be used to distinguish different types of queries.
-    query_type: typing.Optional[str]
-    raw_frame_content: typing.Optional[str]
-    # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: typing.Optional[str]
-    # Optionally define expected query result behavior
-    result_assertions: typing.Optional['ResultAssertions']
-    # Possible enum values:
-    #  - `"annotations"` 
-    #  - `"arrow"` 
-    #  - `"csv_content"` 
-    #  - `"csv_file"` 
-    #  - `"csv_metric_values"` 
-    #  - `"datapoints_outside_range"` 
-    #  - `"exponential_heatmap_bucket_data"` 
-    #  - `"flame_graph"` 
-    #  - `"grafana_api"` 
-    #  - `"linear_heatmap_bucket_data"` 
-    #  - `"live"` 
-    #  - `"logs"` 
-    #  - `"manual_entry"` 
-    #  - `"no_data_points"` 
-    #  - `"node_graph"` 
-    #  - `"predictable_csv_wave"` 
-    #  - `"predictable_pulse"` 
-    #  - `"random_walk"` 
-    #  - `"random_walk_table"` 
-    #  - `"random_walk_with_error"` 
-    #  - `"raw_frame"` 
-    #  - `"server_error_500"` 
-    #  - `"simulation"` 
-    #  - `"slow_query"` 
-    #  - `"streaming_client"` 
-    #  - `"table_static"` 
-    #  - `"trace"` 
-    #  - `"usa"` 
-    #  - `"variables-query"` 
-    scenario_id: typing.Optional[typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]]
-    series_count: typing.Optional[int]
-    sim: typing.Optional['SimulationQuery']
-    span_count: typing.Optional[int]
-    spread: typing.Optional[float]
-    start_value: typing.Optional[float]
-    stream: typing.Optional['StreamingQuery']
-    # common parameter used by many query types
-    string_input: typing.Optional[str]
-    # TimeRange represents the query range
-    # NOTE: unlike generic /ds/query, we can now send explicit time values in each query
-    # NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-    time_range: typing.Optional['TimeRange']
-    usa: typing.Optional['USAQuery']
-    with_nil: typing.Optional[bool]
-
-    def __init__(self, alias: typing.Optional[str] = None, channel: typing.Optional[str] = None, csv_content: typing.Optional[str] = None, csv_file_name: typing.Optional[str] = None, csv_wave: typing.Optional[list['CSVWave']] = None, datasource: typing.Optional['Datasource'] = None, drop_percent: typing.Optional[float] = None, error_type: typing.Optional[typing.Literal["frontend_exception", "frontend_observable", "server_panic"]] = None, flamegraph_diff: typing.Optional[bool] = None, hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, labels: typing.Optional[str] = None, level_column: typing.Optional[bool] = None, lines: typing.Optional[int] = None, max_val: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, min_val: typing.Optional[float] = None, nodes: typing.Optional['NodesQuery'] = None, noise: typing.Optional[float] = None, points: typing.Optional[list[list[object]]] = None, pulse_wave: typing.Optional['PulseWaveQuery'] = None, query_type: typing.Optional[str] = None, raw_frame_content: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ResultAssertions'] = None, scenario_id: typing.Optional[typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]] = None, series_count: typing.Optional[int] = None, sim: typing.Optional['SimulationQuery'] = None, span_count: typing.Optional[int] = None, spread: typing.Optional[float] = None, start_value: typing.Optional[float] = None, stream: typing.Optional['StreamingQuery'] = None, string_input: typing.Optional[str] = None, time_range: typing.Optional['TimeRange'] = None, usa: typing.Optional['USAQuery'] = None, with_nil: typing.Optional[bool] = None):
-        self.alias = alias
-        self.channel = channel
-        self.csv_content = csv_content
-        self.csv_file_name = csv_file_name
-        self.csv_wave = csv_wave
-        self.datasource = datasource
-        self.drop_percent = drop_percent
-        self.error_type = error_type
-        self.flamegraph_diff = flamegraph_diff
-        self.hide = hide
-        self.interval_ms = interval_ms
-        self.labels = labels
-        self.level_column = level_column
-        self.lines = lines
-        self.max_val = max_val
-        self.max_data_points = max_data_points
-        self.min_val = min_val
-        self.nodes = nodes
-        self.noise = noise
-        self.points = points
-        self.pulse_wave = pulse_wave
-        self.query_type = query_type
-        self.raw_frame_content = raw_frame_content
-        self.ref_id = ref_id
-        self.result_assertions = result_assertions
-        self.scenario_id = scenario_id
-        self.series_count = series_count
-        self.sim = sim
-        self.span_count = span_count
-        self.spread = spread
-        self.start_value = start_value
-        self.stream = stream
-        self.string_input = string_input
-        self.time_range = time_range
-        self.usa = usa
-        self.with_nil = with_nil
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.alias is not None:
-            payload["alias"] = self.alias
-        if self.channel is not None:
-            payload["channel"] = self.channel
-        if self.csv_content is not None:
-            payload["csvContent"] = self.csv_content
-        if self.csv_file_name is not None:
-            payload["csvFileName"] = self.csv_file_name
-        if self.csv_wave is not None:
-            payload["csvWave"] = self.csv_wave
-        if self.datasource is not None:
-            payload["datasource"] = self.datasource
-        if self.drop_percent is not None:
-            payload["dropPercent"] = self.drop_percent
-        if self.error_type is not None:
-            payload["errorType"] = self.error_type
-        if self.flamegraph_diff is not None:
-            payload["flamegraphDiff"] = self.flamegraph_diff
-        if self.hide is not None:
-            payload["hide"] = self.hide
-        if self.interval_ms is not None:
-            payload["intervalMs"] = self.interval_ms
-        if self.labels is not None:
-            payload["labels"] = self.labels
-        if self.level_column is not None:
-            payload["levelColumn"] = self.level_column
-        if self.lines is not None:
-            payload["lines"] = self.lines
-        if self.max_val is not None:
-            payload["max"] = self.max_val
-        if self.max_data_points is not None:
-            payload["maxDataPoints"] = self.max_data_points
-        if self.min_val is not None:
-            payload["min"] = self.min_val
-        if self.nodes is not None:
-            payload["nodes"] = self.nodes
-        if self.noise is not None:
-            payload["noise"] = self.noise
-        if self.points is not None:
-            payload["points"] = self.points
-        if self.pulse_wave is not None:
-            payload["pulseWave"] = self.pulse_wave
-        if self.query_type is not None:
-            payload["queryType"] = self.query_type
-        if self.raw_frame_content is not None:
-            payload["rawFrameContent"] = self.raw_frame_content
-        if self.ref_id is not None:
-            payload["refId"] = self.ref_id
-        if self.result_assertions is not None:
-            payload["resultAssertions"] = self.result_assertions
-        if self.scenario_id is not None:
-            payload["scenarioId"] = self.scenario_id
-        if self.series_count is not None:
-            payload["seriesCount"] = self.series_count
-        if self.sim is not None:
-            payload["sim"] = self.sim
-        if self.span_count is not None:
-            payload["spanCount"] = self.span_count
-        if self.spread is not None:
-            payload["spread"] = self.spread
-        if self.start_value is not None:
-            payload["startValue"] = self.start_value
-        if self.stream is not None:
-            payload["stream"] = self.stream
-        if self.string_input is not None:
-            payload["stringInput"] = self.string_input
-        if self.time_range is not None:
-            payload["timeRange"] = self.time_range
-        if self.usa is not None:
-            payload["usa"] = self.usa
-        if self.with_nil is not None:
-            payload["withNil"] = self.with_nil
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "alias" in data:
-            args["alias"] = data["alias"]
-        if "channel" in data:
-            args["channel"] = data["channel"]
-        if "csvContent" in data:
-            args["csv_content"] = data["csvContent"]
-        if "csvFileName" in data:
-            args["csv_file_name"] = data["csvFileName"]
-        if "csvWave" in data:
-            args["csv_wave"] = data["csvWave"]
-        if "datasource" in data:
-            args["datasource"] = Datasource.from_json(data["datasource"])
-        if "dropPercent" in data:
-            args["drop_percent"] = data["dropPercent"]
-        if "errorType" in data:
-            args["error_type"] = data["errorType"]
-        if "flamegraphDiff" in data:
-            args["flamegraph_diff"] = data["flamegraphDiff"]
-        if "hide" in data:
-            args["hide"] = data["hide"]
-        if "intervalMs" in data:
-            args["interval_ms"] = data["intervalMs"]
-        if "labels" in data:
-            args["labels"] = data["labels"]
-        if "levelColumn" in data:
-            args["level_column"] = data["levelColumn"]
-        if "lines" in data:
-            args["lines"] = data["lines"]
-        if "max" in data:
-            args["max_val"] = data["max"]
-        if "maxDataPoints" in data:
-            args["max_data_points"] = data["maxDataPoints"]
-        if "min" in data:
-            args["min_val"] = data["min"]
-        if "nodes" in data:
-            args["nodes"] = NodesQuery.from_json(data["nodes"])
-        if "noise" in data:
-            args["noise"] = data["noise"]
-        if "points" in data:
-            args["points"] = data["points"]
-        if "pulseWave" in data:
-            args["pulse_wave"] = PulseWaveQuery.from_json(data["pulseWave"])
-        if "queryType" in data:
-            args["query_type"] = data["queryType"]
-        if "rawFrameContent" in data:
-            args["raw_frame_content"] = data["rawFrameContent"]
-        if "refId" in data:
-            args["ref_id"] = data["refId"]
-        if "resultAssertions" in data:
-            args["result_assertions"] = ResultAssertions.from_json(data["resultAssertions"])
-        if "scenarioId" in data:
-            args["scenario_id"] = data["scenarioId"]
-        if "seriesCount" in data:
-            args["series_count"] = data["seriesCount"]
-        if "sim" in data:
-            args["sim"] = SimulationQuery.from_json(data["sim"])
-        if "spanCount" in data:
-            args["span_count"] = data["spanCount"]
-        if "spread" in data:
-            args["spread"] = data["spread"]
-        if "startValue" in data:
-            args["start_value"] = data["startValue"]
-        if "stream" in data:
-            args["stream"] = StreamingQuery.from_json(data["stream"])
-        if "stringInput" in data:
-            args["string_input"] = data["stringInput"]
-        if "timeRange" in data:
-            args["time_range"] = TimeRange.from_json(data["timeRange"])
-        if "usa" in data:
-            args["usa"] = USAQuery.from_json(data["usa"])
-        if "withNil" in data:
-            args["with_nil"] = data["withNil"]        
-
-        return cls(**args)
-
-
-def variant_config() -> cogruntime.DataqueryConfig:
-    return cogruntime.DataqueryConfig(
-        identifier="",
-        from_json_hook=Dataquery.from_json,
-    )
 
 
 class CSVWave:
@@ -710,6 +416,300 @@ class USAQuery:
             args["states"] = data["states"]        
 
         return cls(**args)
+
+
+class Dataquery(cogvariants.Dataquery):
+    alias: typing.Optional[str]
+    # Used for live query
+    channel: typing.Optional[str]
+    csv_content: typing.Optional[str]
+    csv_file_name: typing.Optional[str]
+    csv_wave: typing.Optional[list['CSVWave']]
+    # The datasource
+    datasource: typing.Optional['Datasource']
+    # Drop percentage (the chance we will lose a point 0-100)
+    drop_percent: typing.Optional[float]
+    # Possible enum values:
+    #  - `"frontend_exception"` 
+    #  - `"frontend_observable"` 
+    #  - `"server_panic"` 
+    error_type: typing.Optional[typing.Literal["frontend_exception", "frontend_observable", "server_panic"]]
+    flamegraph_diff: typing.Optional[bool]
+    # true if query is disabled (ie should not be returned to the dashboard)
+    # NOTE: this does not always imply that the query should not be executed since
+    # the results from a hidden query may be used as the input to other queries (SSE etc)
+    hide: typing.Optional[bool]
+    # Interval is the suggested duration between time points in a time series query.
+    # NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+    # from the interval required to fill a pixels in the visualization
+    interval_ms: typing.Optional[float]
+    labels: typing.Optional[str]
+    level_column: typing.Optional[bool]
+    lines: typing.Optional[int]
+    max_val: typing.Optional[float]
+    # MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+    # NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+    # from the number of pixels visible in a visualization
+    max_data_points: typing.Optional[int]
+    min_val: typing.Optional[float]
+    nodes: typing.Optional['NodesQuery']
+    noise: typing.Optional[float]
+    points: typing.Optional[list[list[object]]]
+    pulse_wave: typing.Optional['PulseWaveQuery']
+    # QueryType is an optional identifier for the type of query.
+    # It can be used to distinguish different types of queries.
+    query_type: typing.Optional[str]
+    raw_frame_content: typing.Optional[str]
+    # RefID is the unique identifier of the query, set by the frontend call.
+    ref_id: typing.Optional[str]
+    # Optionally define expected query result behavior
+    result_assertions: typing.Optional['ResultAssertions']
+    # Possible enum values:
+    #  - `"annotations"` 
+    #  - `"arrow"` 
+    #  - `"csv_content"` 
+    #  - `"csv_file"` 
+    #  - `"csv_metric_values"` 
+    #  - `"datapoints_outside_range"` 
+    #  - `"exponential_heatmap_bucket_data"` 
+    #  - `"flame_graph"` 
+    #  - `"grafana_api"` 
+    #  - `"linear_heatmap_bucket_data"` 
+    #  - `"live"` 
+    #  - `"logs"` 
+    #  - `"manual_entry"` 
+    #  - `"no_data_points"` 
+    #  - `"node_graph"` 
+    #  - `"predictable_csv_wave"` 
+    #  - `"predictable_pulse"` 
+    #  - `"random_walk"` 
+    #  - `"random_walk_table"` 
+    #  - `"random_walk_with_error"` 
+    #  - `"raw_frame"` 
+    #  - `"server_error_500"` 
+    #  - `"simulation"` 
+    #  - `"slow_query"` 
+    #  - `"streaming_client"` 
+    #  - `"table_static"` 
+    #  - `"trace"` 
+    #  - `"usa"` 
+    #  - `"variables-query"` 
+    scenario_id: typing.Optional[typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]]
+    series_count: typing.Optional[int]
+    sim: typing.Optional['SimulationQuery']
+    span_count: typing.Optional[int]
+    spread: typing.Optional[float]
+    start_value: typing.Optional[float]
+    stream: typing.Optional['StreamingQuery']
+    # common parameter used by many query types
+    string_input: typing.Optional[str]
+    # TimeRange represents the query range
+    # NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+    # NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+    time_range: typing.Optional['TimeRange']
+    usa: typing.Optional['USAQuery']
+    with_nil: typing.Optional[bool]
+
+    def __init__(self, alias: typing.Optional[str] = None, channel: typing.Optional[str] = None, csv_content: typing.Optional[str] = None, csv_file_name: typing.Optional[str] = None, csv_wave: typing.Optional[list['CSVWave']] = None, datasource: typing.Optional['Datasource'] = None, drop_percent: typing.Optional[float] = None, error_type: typing.Optional[typing.Literal["frontend_exception", "frontend_observable", "server_panic"]] = None, flamegraph_diff: typing.Optional[bool] = None, hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, labels: typing.Optional[str] = None, level_column: typing.Optional[bool] = None, lines: typing.Optional[int] = None, max_val: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, min_val: typing.Optional[float] = None, nodes: typing.Optional['NodesQuery'] = None, noise: typing.Optional[float] = None, points: typing.Optional[list[list[object]]] = None, pulse_wave: typing.Optional['PulseWaveQuery'] = None, query_type: typing.Optional[str] = None, raw_frame_content: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ResultAssertions'] = None, scenario_id: typing.Optional[typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]] = None, series_count: typing.Optional[int] = None, sim: typing.Optional['SimulationQuery'] = None, span_count: typing.Optional[int] = None, spread: typing.Optional[float] = None, start_value: typing.Optional[float] = None, stream: typing.Optional['StreamingQuery'] = None, string_input: typing.Optional[str] = None, time_range: typing.Optional['TimeRange'] = None, usa: typing.Optional['USAQuery'] = None, with_nil: typing.Optional[bool] = None):
+        self.alias = alias
+        self.channel = channel
+        self.csv_content = csv_content
+        self.csv_file_name = csv_file_name
+        self.csv_wave = csv_wave
+        self.datasource = datasource
+        self.drop_percent = drop_percent
+        self.error_type = error_type
+        self.flamegraph_diff = flamegraph_diff
+        self.hide = hide
+        self.interval_ms = interval_ms
+        self.labels = labels
+        self.level_column = level_column
+        self.lines = lines
+        self.max_val = max_val
+        self.max_data_points = max_data_points
+        self.min_val = min_val
+        self.nodes = nodes
+        self.noise = noise
+        self.points = points
+        self.pulse_wave = pulse_wave
+        self.query_type = query_type
+        self.raw_frame_content = raw_frame_content
+        self.ref_id = ref_id
+        self.result_assertions = result_assertions
+        self.scenario_id = scenario_id
+        self.series_count = series_count
+        self.sim = sim
+        self.span_count = span_count
+        self.spread = spread
+        self.start_value = start_value
+        self.stream = stream
+        self.string_input = string_input
+        self.time_range = time_range
+        self.usa = usa
+        self.with_nil = with_nil
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.alias is not None:
+            payload["alias"] = self.alias
+        if self.channel is not None:
+            payload["channel"] = self.channel
+        if self.csv_content is not None:
+            payload["csvContent"] = self.csv_content
+        if self.csv_file_name is not None:
+            payload["csvFileName"] = self.csv_file_name
+        if self.csv_wave is not None:
+            payload["csvWave"] = self.csv_wave
+        if self.datasource is not None:
+            payload["datasource"] = self.datasource
+        if self.drop_percent is not None:
+            payload["dropPercent"] = self.drop_percent
+        if self.error_type is not None:
+            payload["errorType"] = self.error_type
+        if self.flamegraph_diff is not None:
+            payload["flamegraphDiff"] = self.flamegraph_diff
+        if self.hide is not None:
+            payload["hide"] = self.hide
+        if self.interval_ms is not None:
+            payload["intervalMs"] = self.interval_ms
+        if self.labels is not None:
+            payload["labels"] = self.labels
+        if self.level_column is not None:
+            payload["levelColumn"] = self.level_column
+        if self.lines is not None:
+            payload["lines"] = self.lines
+        if self.max_val is not None:
+            payload["max"] = self.max_val
+        if self.max_data_points is not None:
+            payload["maxDataPoints"] = self.max_data_points
+        if self.min_val is not None:
+            payload["min"] = self.min_val
+        if self.nodes is not None:
+            payload["nodes"] = self.nodes
+        if self.noise is not None:
+            payload["noise"] = self.noise
+        if self.points is not None:
+            payload["points"] = self.points
+        if self.pulse_wave is not None:
+            payload["pulseWave"] = self.pulse_wave
+        if self.query_type is not None:
+            payload["queryType"] = self.query_type
+        if self.raw_frame_content is not None:
+            payload["rawFrameContent"] = self.raw_frame_content
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
+        if self.result_assertions is not None:
+            payload["resultAssertions"] = self.result_assertions
+        if self.scenario_id is not None:
+            payload["scenarioId"] = self.scenario_id
+        if self.series_count is not None:
+            payload["seriesCount"] = self.series_count
+        if self.sim is not None:
+            payload["sim"] = self.sim
+        if self.span_count is not None:
+            payload["spanCount"] = self.span_count
+        if self.spread is not None:
+            payload["spread"] = self.spread
+        if self.start_value is not None:
+            payload["startValue"] = self.start_value
+        if self.stream is not None:
+            payload["stream"] = self.stream
+        if self.string_input is not None:
+            payload["stringInput"] = self.string_input
+        if self.time_range is not None:
+            payload["timeRange"] = self.time_range
+        if self.usa is not None:
+            payload["usa"] = self.usa
+        if self.with_nil is not None:
+            payload["withNil"] = self.with_nil
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "alias" in data:
+            args["alias"] = data["alias"]
+        if "channel" in data:
+            args["channel"] = data["channel"]
+        if "csvContent" in data:
+            args["csv_content"] = data["csvContent"]
+        if "csvFileName" in data:
+            args["csv_file_name"] = data["csvFileName"]
+        if "csvWave" in data:
+            args["csv_wave"] = data["csvWave"]
+        if "datasource" in data:
+            args["datasource"] = Datasource.from_json(data["datasource"])
+        if "dropPercent" in data:
+            args["drop_percent"] = data["dropPercent"]
+        if "errorType" in data:
+            args["error_type"] = data["errorType"]
+        if "flamegraphDiff" in data:
+            args["flamegraph_diff"] = data["flamegraphDiff"]
+        if "hide" in data:
+            args["hide"] = data["hide"]
+        if "intervalMs" in data:
+            args["interval_ms"] = data["intervalMs"]
+        if "labels" in data:
+            args["labels"] = data["labels"]
+        if "levelColumn" in data:
+            args["level_column"] = data["levelColumn"]
+        if "lines" in data:
+            args["lines"] = data["lines"]
+        if "max" in data:
+            args["max_val"] = data["max"]
+        if "maxDataPoints" in data:
+            args["max_data_points"] = data["maxDataPoints"]
+        if "min" in data:
+            args["min_val"] = data["min"]
+        if "nodes" in data:
+            args["nodes"] = NodesQuery.from_json(data["nodes"])
+        if "noise" in data:
+            args["noise"] = data["noise"]
+        if "points" in data:
+            args["points"] = data["points"]
+        if "pulseWave" in data:
+            args["pulse_wave"] = PulseWaveQuery.from_json(data["pulseWave"])
+        if "queryType" in data:
+            args["query_type"] = data["queryType"]
+        if "rawFrameContent" in data:
+            args["raw_frame_content"] = data["rawFrameContent"]
+        if "refId" in data:
+            args["ref_id"] = data["refId"]
+        if "resultAssertions" in data:
+            args["result_assertions"] = ResultAssertions.from_json(data["resultAssertions"])
+        if "scenarioId" in data:
+            args["scenario_id"] = data["scenarioId"]
+        if "seriesCount" in data:
+            args["series_count"] = data["seriesCount"]
+        if "sim" in data:
+            args["sim"] = SimulationQuery.from_json(data["sim"])
+        if "spanCount" in data:
+            args["span_count"] = data["spanCount"]
+        if "spread" in data:
+            args["spread"] = data["spread"]
+        if "startValue" in data:
+            args["start_value"] = data["startValue"]
+        if "stream" in data:
+            args["stream"] = StreamingQuery.from_json(data["stream"])
+        if "stringInput" in data:
+            args["string_input"] = data["stringInput"]
+        if "timeRange" in data:
+            args["time_range"] = TimeRange.from_json(data["timeRange"])
+        if "usa" in data:
+            args["usa"] = USAQuery.from_json(data["usa"])
+        if "withNil" in data:
+            args["with_nil"] = data["withNil"]        
+
+        return cls(**args)
+
+
+def variant_config() -> cogruntime.DataqueryConfig:
+    return cogruntime.DataqueryConfig(
+        identifier="",
+        from_json_hook=Dataquery.from_json,
+    )
 
 
 

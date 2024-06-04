@@ -45,6 +45,12 @@ export class AzureLogsQueryBuilder implements cog.Builder<azuremonitor.AzureLogs
         return this;
     }
 
+    // If set to true the query will be run as a basic logs query
+    basicLogsQuery(basicLogsQuery: boolean): this {
+        this.internal.basicLogsQuery = basicLogsQuery;
+        return this;
+    }
+
     // Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
     workspace(workspace: string): this {
         this.internal.workspace = workspace;

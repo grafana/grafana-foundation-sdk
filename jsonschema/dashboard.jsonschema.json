@@ -101,7 +101,7 @@
         "schemaVersion": {
           "type": "integer",
           "description": "Version of the JSON schema, incremented each time a Grafana update brings\nchanges to said schema.",
-          "default": 36
+          "default": 39
         },
         "version": {
           "type": "integer",

@@ -45,8 +45,8 @@ func (builder *TimeIntervalBuilder) Name(name string) *TimeIntervalBuilder {
 	return builder
 }
 
-func (builder *TimeIntervalBuilder) TimeIntervals(timeIntervals []cog.Builder[TimeInterval]) *TimeIntervalBuilder {
-	timeIntervalsResources := make([]TimeInterval, 0, len(timeIntervals))
+func (builder *TimeIntervalBuilder) TimeIntervals(timeIntervals []cog.Builder[TimeIntervalItem]) *TimeIntervalBuilder {
+	timeIntervalsResources := make([]TimeIntervalItem, 0, len(timeIntervals))
 	for _, r1 := range timeIntervals {
 		timeIntervalsDepth1, err := r1.Build()
 		if err != nil {

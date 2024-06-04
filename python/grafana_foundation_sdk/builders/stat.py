@@ -498,6 +498,14 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def show_percent_change(self, show_percent_change: bool) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = stat.Options()
+        assert isinstance(self._internal.options, stat.Options)
+        self._internal.options.show_percent_change = show_percent_change
+    
+        return self
+    
     def reduce_options(self, reduce_options: cogbuilder.Builder[common.ReduceDataOptions]) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = stat.Options()
@@ -516,11 +524,11 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def show_percent_change(self, show_percent_change: bool) -> typing.Self:        
+    def percent_change_color_mode(self, percent_change_color_mode: common.PercentChangeColorMode) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = stat.Options()
         assert isinstance(self._internal.options, stat.Options)
-        self._internal.options.show_percent_change = show_percent_change
+        self._internal.options.percent_change_color_mode = percent_change_color_mode
     
         return self
     

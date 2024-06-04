@@ -73,7 +73,7 @@ export const defaultDashboard = (): Dashboard => ({
 	editable: true,
 	graphTooltip: DashboardCursorSync.Off,
 	fiscalYearStartMonth: 0,
-	schemaVersion: 36,
+	schemaVersion: 39,
 	templating: {
 },
 	annotations: defaultAnnotationContainer(),

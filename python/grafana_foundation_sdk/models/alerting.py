@@ -3,169 +3,52 @@
 import typing
 from ..cog import variants as cogvariants
 from ..cog import runtime as cogruntime
+import enum
 
 
-# Duration in seconds.
-Duration: typing.TypeAlias = int
+class Query:
+    datasource_uid: typing.Optional[str]
+    model: typing.Optional[cogvariants.Dataquery]
+    query_type: typing.Optional[str]
+    ref_id: typing.Optional[str]
+    relative_time_range: typing.Optional['RelativeTimeRange']
 
-
-Json: typing.TypeAlias = object
-
-
-MatchRegexps: typing.TypeAlias = dict[str, str]
-
-
-MatchType: typing.TypeAlias = int
-
-
-class Matcher:
-    name: typing.Optional[str]
-    type: typing.Optional['MatchType']
-    value: typing.Optional[str]
-
-    def __init__(self, name: typing.Optional[str] = None, type: typing.Optional['MatchType'] = None, value: typing.Optional[str] = None):
-        self.name = name
-        self.type = type
-        self.value = value
+    def __init__(self, datasource_uid: typing.Optional[str] = None, model: typing.Optional[cogvariants.Dataquery] = None, query_type: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, relative_time_range: typing.Optional['RelativeTimeRange'] = None):
+        self.datasource_uid = datasource_uid
+        self.model = model
+        self.query_type = query_type
+        self.ref_id = ref_id
+        self.relative_time_range = relative_time_range
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
         }
-        if self.name is not None:
-            payload["Name"] = self.name
-        if self.type is not None:
-            payload["Type"] = self.type
-        if self.value is not None:
-            payload["Value"] = self.value
+        if self.datasource_uid is not None:
+            payload["datasourceUid"] = self.datasource_uid
+        if self.model is not None:
+            payload["model"] = self.model
+        if self.query_type is not None:
+            payload["queryType"] = self.query_type
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
+        if self.relative_time_range is not None:
+            payload["relativeTimeRange"] = self.relative_time_range
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
-        if "Name" in data:
-            args["name"] = data["Name"]
-        if "Type" in data:
-            args["type"] = data["Type"]
-        if "Value" in data:
-            args["value"] = data["Value"]        
-
-        return cls(**args)
-
-
-# Matchers is a slice of Matchers that is sortable, implements Stringer, and
-# provides a Matches method to match a LabelSet against all Matchers in the
-# slice. Note that some users of Matchers might require it to be sorted.
-Matchers: typing.TypeAlias = list['Matcher']
-
-
-class NotificationTemplate:
-    name: typing.Optional[str]
-    provenance: typing.Optional['Provenance']
-    template: typing.Optional[str]
-
-    def __init__(self, name: typing.Optional[str] = None, provenance: typing.Optional['Provenance'] = None, template: typing.Optional[str] = None):
-        self.name = name
-        self.provenance = provenance
-        self.template = template
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.name is not None:
-            payload["name"] = self.name
-        if self.provenance is not None:
-            payload["provenance"] = self.provenance
-        if self.template is not None:
-            payload["template"] = self.template
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "name" in data:
-            args["name"] = data["name"]
-        if "provenance" in data:
-            args["provenance"] = data["provenance"]
-        if "template" in data:
-            args["template"] = data["template"]        
-
-        return cls(**args)
-
-
-ObjectMatcher: typing.TypeAlias = list[str]
-
-
-ObjectMatchers: typing.TypeAlias = list['ObjectMatcher']
-
-
-Provenance: typing.TypeAlias = str
-
-
-class RelativeTimeRange:
-    """
-    RelativeTimeRange is the per query start and end time
-    for requests.
-    """
-
-    # RelativeTimeRange is the per query start and end time
-    # for requests.
-    from_val: typing.Optional['Duration']
-    # RelativeTimeRange is the per query start and end time
-    # for requests.
-    to: typing.Optional['Duration']
-
-    def __init__(self, from_val: typing.Optional['Duration'] = None, to: typing.Optional['Duration'] = None):
-        self.from_val = from_val
-        self.to = to
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.from_val is not None:
-            payload["from"] = self.from_val
-        if self.to is not None:
-            payload["to"] = self.to
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "from" in data:
-            args["from_val"] = data["from"]
-        if "to" in data:
-            args["to"] = data["to"]        
-
-        return cls(**args)
-
-
-class TimeInterval:
-    name: typing.Optional[str]
-    time_intervals: typing.Optional[list['TimeInterval']]
-
-    def __init__(self, name: typing.Optional[str] = None, time_intervals: typing.Optional[list['TimeInterval']] = None):
-        self.name = name
-        self.time_intervals = time_intervals
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.name is not None:
-            payload["name"] = self.name
-        if self.time_intervals is not None:
-            payload["time_intervals"] = self.time_intervals
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "name" in data:
-            args["name"] = data["name"]
-        if "time_intervals" in data:
-            args["time_intervals"] = data["time_intervals"]        
+        if "datasourceUid" in data:
+            args["datasource_uid"] = data["datasourceUid"]
+        if "model" in data:
+            args["model"] = cogruntime.dataquery_from_json(data["model"], "")
+        if "queryType" in data:
+            args["query_type"] = data["queryType"]
+        if "refId" in data:
+            args["ref_id"] = data["refId"]
+        if "relativeTimeRange" in data:
+            args["relative_time_range"] = RelativeTimeRange.from_json(data["relativeTimeRange"])        
 
         return cls(**args)
 
@@ -211,6 +94,257 @@ class RuleGroup:
             args["title"] = data["title"]        
 
         return cls(**args)
+
+
+class NotificationSettings:
+    group_by: typing.Optional[list[str]]
+    group_interval: typing.Optional[str]
+    group_wait: typing.Optional[str]
+    mute_time_intervals: typing.Optional[list[str]]
+    receiver: str
+    repeat_interval: typing.Optional[str]
+
+    def __init__(self, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, mute_time_intervals: typing.Optional[list[str]] = None, receiver: str = "", repeat_interval: typing.Optional[str] = None):
+        self.group_by = group_by if group_by is not None else ["alertname", "grafana_folder"]
+        self.group_interval = group_interval
+        self.group_wait = group_wait
+        self.mute_time_intervals = mute_time_intervals
+        self.receiver = receiver
+        self.repeat_interval = repeat_interval
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "receiver": self.receiver,
+        }
+        if self.group_by is not None:
+            payload["group_by"] = self.group_by
+        if self.group_interval is not None:
+            payload["group_interval"] = self.group_interval
+        if self.group_wait is not None:
+            payload["group_wait"] = self.group_wait
+        if self.mute_time_intervals is not None:
+            payload["mute_time_intervals"] = self.mute_time_intervals
+        if self.repeat_interval is not None:
+            payload["repeat_interval"] = self.repeat_interval
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "group_by" in data:
+            args["group_by"] = data["group_by"]
+        if "group_interval" in data:
+            args["group_interval"] = data["group_interval"]
+        if "group_wait" in data:
+            args["group_wait"] = data["group_wait"]
+        if "mute_time_intervals" in data:
+            args["mute_time_intervals"] = data["mute_time_intervals"]
+        if "receiver" in data:
+            args["receiver"] = data["receiver"]
+        if "repeat_interval" in data:
+            args["repeat_interval"] = data["repeat_interval"]        
+
+        return cls(**args)
+
+
+# Duration in seconds.
+Duration: typing.TypeAlias = int
+
+
+class ContactPoint:
+    """
+    EmbeddedContactPoint is the contact point type that is used
+    by grafanas embedded alertmanager implementation.
+    """
+
+    # EmbeddedContactPoint is the contact point type that is used
+    # by grafanas embedded alertmanager implementation.
+    disable_resolve_message: typing.Optional[bool]
+    # EmbeddedContactPoint is the contact point type that is used
+    # by grafanas embedded alertmanager implementation.
+    name: typing.Optional[str]
+    # EmbeddedContactPoint is the contact point type that is used
+    # by grafanas embedded alertmanager implementation.
+    provenance: typing.Optional[str]
+    # EmbeddedContactPoint is the contact point type that is used
+    # by grafanas embedded alertmanager implementation.
+    settings: 'Json'
+    # EmbeddedContactPoint is the contact point type that is used
+    # by grafanas embedded alertmanager implementation.
+    type_val: typing.Literal["alertmanager", " dingding", " discord", " email", " googlechat", " kafka", " line", " opsgenie", " pagerduty", " pushover", " sensugo", " slack", " teams", " telegram", " threema", " victorops", " webhook", " wecom"]
+    # EmbeddedContactPoint is the contact point type that is used
+    # by grafanas embedded alertmanager implementation.
+    uid: typing.Optional[str]
+
+    def __init__(self, disable_resolve_message: typing.Optional[bool] = None, name: typing.Optional[str] = None, provenance: typing.Optional[str] = None, settings: typing.Optional['Json'] = None, type_val: typing.Optional[typing.Literal["alertmanager", " dingding", " discord", " email", " googlechat", " kafka", " line", " opsgenie", " pagerduty", " pushover", " sensugo", " slack", " teams", " telegram", " threema", " victorops", " webhook", " wecom"]] = None, uid: typing.Optional[str] = None):
+        self.disable_resolve_message = disable_resolve_message
+        self.name = name
+        self.provenance = provenance
+        self.settings = settings if settings is not None else Json()
+        self.type_val = type_val if type_val is not None else "alertmanager"
+        self.uid = uid
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "settings": self.settings,
+            "type": self.type_val,
+        }
+        if self.disable_resolve_message is not None:
+            payload["disableResolveMessage"] = self.disable_resolve_message
+        if self.name is not None:
+            payload["name"] = self.name
+        if self.provenance is not None:
+            payload["provenance"] = self.provenance
+        if self.uid is not None:
+            payload["uid"] = self.uid
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "disableResolveMessage" in data:
+            args["disable_resolve_message"] = data["disableResolveMessage"]
+        if "name" in data:
+            args["name"] = data["name"]
+        if "provenance" in data:
+            args["provenance"] = data["provenance"]
+        if "settings" in data:
+            args["settings"] = data["settings"]
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "uid" in data:
+            args["uid"] = data["uid"]        
+
+        return cls(**args)
+
+
+Json: typing.TypeAlias = object
+
+
+MatchRegexps: typing.TypeAlias = dict[str, str]
+
+
+class MatchType(enum.StrEnum):
+    EQUAL = "="
+    NOT_EQUAL = "!="
+    EQUAL_REGEX = "=~"
+    NOT_EQUAL_REGEX = "!~"
+
+
+class Matcher:
+    name: typing.Optional[str]
+    type: typing.Optional['MatchType']
+    value: typing.Optional[str]
+
+    def __init__(self, name: typing.Optional[str] = None, type: typing.Optional['MatchType'] = None, value: typing.Optional[str] = None):
+        self.name = name
+        self.type = type
+        self.value = value
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.name is not None:
+            payload["Name"] = self.name
+        if self.type is not None:
+            payload["Type"] = self.type
+        if self.value is not None:
+            payload["Value"] = self.value
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "Name" in data:
+            args["name"] = data["Name"]
+        if "Type" in data:
+            args["type"] = data["Type"]
+        if "Value" in data:
+            args["value"] = data["Value"]        
+
+        return cls(**args)
+
+
+# Matchers is a slice of Matchers that is sortable, implements Stringer, and
+# provides a Matches method to match a LabelSet against all Matchers in the
+# slice. Note that some users of Matchers might require it to be sorted.
+Matchers: typing.TypeAlias = list['Matcher']
+
+
+class MuteTiming:
+    name: typing.Optional[str]
+    time_intervals: typing.Optional[list['TimeInterval']]
+
+    def __init__(self, name: typing.Optional[str] = None, time_intervals: typing.Optional[list['TimeInterval']] = None):
+        self.name = name
+        self.time_intervals = time_intervals
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.name is not None:
+            payload["name"] = self.name
+        if self.time_intervals is not None:
+            payload["time_intervals"] = self.time_intervals
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "name" in data:
+            args["name"] = data["name"]
+        if "time_intervals" in data:
+            args["time_intervals"] = data["time_intervals"]        
+
+        return cls(**args)
+
+
+class NotificationTemplate:
+    name: typing.Optional[str]
+    provenance: typing.Optional['Provenance']
+    template: typing.Optional[str]
+
+    def __init__(self, name: typing.Optional[str] = None, provenance: typing.Optional['Provenance'] = None, template: typing.Optional[str] = None):
+        self.name = name
+        self.provenance = provenance
+        self.template = template
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.name is not None:
+            payload["name"] = self.name
+        if self.provenance is not None:
+            payload["provenance"] = self.provenance
+        if self.template is not None:
+            payload["template"] = self.template
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "name" in data:
+            args["name"] = data["name"]
+        if "provenance" in data:
+            args["provenance"] = data["provenance"]
+        if "template" in data:
+            args["template"] = data["template"]        
+
+        return cls(**args)
+
+
+ObjectMatcher: typing.TypeAlias = list[str]
+
+
+ObjectMatchers: typing.TypeAlias = list['ObjectMatcher']
+
+
+Provenance: typing.TypeAlias = str
 
 
 class Rule:
@@ -325,169 +459,40 @@ class Rule:
         return cls(**args)
 
 
-class NotificationSettings:
-    group_by: typing.Optional[list[str]]
-    group_interval: typing.Optional[str]
-    group_wait: typing.Optional[str]
-    mute_time_intervals: typing.Optional[list[str]]
-    receiver: str
-    repeat_interval: typing.Optional[str]
-
-    def __init__(self, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, mute_time_intervals: typing.Optional[list[str]] = None, receiver: str = "", repeat_interval: typing.Optional[str] = None):
-        self.group_by = group_by if group_by is not None else ["alertname", "grafana_folder"]
-        self.group_interval = group_interval
-        self.group_wait = group_wait
-        self.mute_time_intervals = mute_time_intervals
-        self.receiver = receiver
-        self.repeat_interval = repeat_interval
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "receiver": self.receiver,
-        }
-        if self.group_by is not None:
-            payload["group_by"] = self.group_by
-        if self.group_interval is not None:
-            payload["group_interval"] = self.group_interval
-        if self.group_wait is not None:
-            payload["group_wait"] = self.group_wait
-        if self.mute_time_intervals is not None:
-            payload["mute_time_intervals"] = self.mute_time_intervals
-        if self.repeat_interval is not None:
-            payload["repeat_interval"] = self.repeat_interval
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "group_by" in data:
-            args["group_by"] = data["group_by"]
-        if "group_interval" in data:
-            args["group_interval"] = data["group_interval"]
-        if "group_wait" in data:
-            args["group_wait"] = data["group_wait"]
-        if "mute_time_intervals" in data:
-            args["mute_time_intervals"] = data["mute_time_intervals"]
-        if "receiver" in data:
-            args["receiver"] = data["receiver"]
-        if "repeat_interval" in data:
-            args["repeat_interval"] = data["repeat_interval"]        
-
-        return cls(**args)
-
-
-class Query:
-    datasource_uid: typing.Optional[str]
-    model: typing.Optional[cogvariants.Dataquery]
-    query_type: typing.Optional[str]
-    ref_id: typing.Optional[str]
-    relative_time_range: typing.Optional['RelativeTimeRange']
-
-    def __init__(self, datasource_uid: typing.Optional[str] = None, model: typing.Optional[cogvariants.Dataquery] = None, query_type: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, relative_time_range: typing.Optional['RelativeTimeRange'] = None):
-        self.datasource_uid = datasource_uid
-        self.model = model
-        self.query_type = query_type
-        self.ref_id = ref_id
-        self.relative_time_range = relative_time_range
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.datasource_uid is not None:
-            payload["datasourceUid"] = self.datasource_uid
-        if self.model is not None:
-            payload["model"] = self.model
-        if self.query_type is not None:
-            payload["queryType"] = self.query_type
-        if self.ref_id is not None:
-            payload["refId"] = self.ref_id
-        if self.relative_time_range is not None:
-            payload["relativeTimeRange"] = self.relative_time_range
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "datasourceUid" in data:
-            args["datasource_uid"] = data["datasourceUid"]
-        if "model" in data:
-            args["model"] = cogruntime.dataquery_from_json(data["model"], "")
-        if "queryType" in data:
-            args["query_type"] = data["queryType"]
-        if "refId" in data:
-            args["ref_id"] = data["refId"]
-        if "relativeTimeRange" in data:
-            args["relative_time_range"] = RelativeTimeRange.from_json(data["relativeTimeRange"])        
-
-        return cls(**args)
-
-
-class ContactPoint:
+class RelativeTimeRange:
     """
-    EmbeddedContactPoint is the contact point type that is used
-    by grafanas embedded alertmanager implementation.
+    RelativeTimeRange is the per query start and end time
+    for requests.
     """
 
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
-    disable_resolve_message: typing.Optional[bool]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
-    name: typing.Optional[str]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
-    provenance: typing.Optional[str]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
-    settings: 'Json'
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
-    type_val: typing.Literal["alertmanager", " dingding", " discord", " email", " googlechat", " kafka", " line", " opsgenie", " pagerduty", " pushover", " sensugo", " slack", " teams", " telegram", " threema", " victorops", " webhook", " wecom"]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
-    uid: typing.Optional[str]
+    # RelativeTimeRange is the per query start and end time
+    # for requests.
+    from_val: typing.Optional['Duration']
+    # RelativeTimeRange is the per query start and end time
+    # for requests.
+    to: typing.Optional['Duration']
 
-    def __init__(self, disable_resolve_message: typing.Optional[bool] = None, name: typing.Optional[str] = None, provenance: typing.Optional[str] = None, settings: typing.Optional['Json'] = None, type_val: typing.Optional[typing.Literal["alertmanager", " dingding", " discord", " email", " googlechat", " kafka", " line", " opsgenie", " pagerduty", " pushover", " sensugo", " slack", " teams", " telegram", " threema", " victorops", " webhook", " wecom"]] = None, uid: typing.Optional[str] = None):
-        self.disable_resolve_message = disable_resolve_message
-        self.name = name
-        self.provenance = provenance
-        self.settings = settings if settings is not None else Json()
-        self.type_val = type_val if type_val is not None else "alertmanager"
-        self.uid = uid
+    def __init__(self, from_val: typing.Optional['Duration'] = None, to: typing.Optional['Duration'] = None):
+        self.from_val = from_val
+        self.to = to
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
-            "settings": self.settings,
-            "type": self.type_val,
         }
-        if self.disable_resolve_message is not None:
-            payload["disableResolveMessage"] = self.disable_resolve_message
-        if self.name is not None:
-            payload["name"] = self.name
-        if self.provenance is not None:
-            payload["provenance"] = self.provenance
-        if self.uid is not None:
-            payload["uid"] = self.uid
+        if self.from_val is not None:
+            payload["from"] = self.from_val
+        if self.to is not None:
+            payload["to"] = self.to
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
-        if "disableResolveMessage" in data:
-            args["disable_resolve_message"] = data["disableResolveMessage"]
-        if "name" in data:
-            args["name"] = data["name"]
-        if "provenance" in data:
-            args["provenance"] = data["provenance"]
-        if "settings" in data:
-            args["settings"] = data["settings"]
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "uid" in data:
-            args["uid"] = data["uid"]        
+        if "from" in data:
+            args["from_val"] = data["from"]
+        if "to" in data:
+            args["to"] = data["to"]        
 
         return cls(**args)
 
@@ -618,11 +623,11 @@ class NotificationPolicy:
         return cls(**args)
 
 
-class MuteTiming:
+class TimeInterval:
     name: typing.Optional[str]
-    time_intervals: typing.Optional[list['TimeInterval']]
+    time_intervals: typing.Optional[list['TimeIntervalItem']]
 
-    def __init__(self, name: typing.Optional[str] = None, time_intervals: typing.Optional[list['TimeInterval']] = None):
+    def __init__(self, name: typing.Optional[str] = None, time_intervals: typing.Optional[list['TimeIntervalItem']] = None):
         self.name = name
         self.time_intervals = time_intervals
 
@@ -643,6 +648,88 @@ class MuteTiming:
             args["name"] = data["name"]
         if "time_intervals" in data:
             args["time_intervals"] = data["time_intervals"]        
+
+        return cls(**args)
+
+
+class TimeIntervalItem:
+    days_of_month: typing.Optional[list[str]]
+    location: typing.Optional[str]
+    months: typing.Optional[list[str]]
+    times: typing.Optional[list['TimeIntervalTimeRange']]
+    weekdays: typing.Optional[list[str]]
+    years: typing.Optional[list[str]]
+
+    def __init__(self, days_of_month: typing.Optional[list[str]] = None, location: typing.Optional[str] = None, months: typing.Optional[list[str]] = None, times: typing.Optional[list['TimeIntervalTimeRange']] = None, weekdays: typing.Optional[list[str]] = None, years: typing.Optional[list[str]] = None):
+        self.days_of_month = days_of_month
+        self.location = location
+        self.months = months
+        self.times = times
+        self.weekdays = weekdays
+        self.years = years
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.days_of_month is not None:
+            payload["days_of_month"] = self.days_of_month
+        if self.location is not None:
+            payload["location"] = self.location
+        if self.months is not None:
+            payload["months"] = self.months
+        if self.times is not None:
+            payload["times"] = self.times
+        if self.weekdays is not None:
+            payload["weekdays"] = self.weekdays
+        if self.years is not None:
+            payload["years"] = self.years
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "days_of_month" in data:
+            args["days_of_month"] = data["days_of_month"]
+        if "location" in data:
+            args["location"] = data["location"]
+        if "months" in data:
+            args["months"] = data["months"]
+        if "times" in data:
+            args["times"] = data["times"]
+        if "weekdays" in data:
+            args["weekdays"] = data["weekdays"]
+        if "years" in data:
+            args["years"] = data["years"]        
+
+        return cls(**args)
+
+
+class TimeIntervalTimeRange:
+    end_time: typing.Optional[str]
+    start_time: typing.Optional[str]
+
+    def __init__(self, end_time: typing.Optional[str] = None, start_time: typing.Optional[str] = None):
+        self.end_time = end_time
+        self.start_time = start_time
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.end_time is not None:
+            payload["end_time"] = self.end_time
+        if self.start_time is not None:
+            payload["start_time"] = self.start_time
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "end_time" in data:
+            args["end_time"] = data["end_time"]
+        if "start_time" in data:
+            args["start_time"] = data["start_time"]        
 
         return cls(**args)
 

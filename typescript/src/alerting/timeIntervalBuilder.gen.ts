@@ -19,7 +19,7 @@ export class TimeIntervalBuilder implements cog.Builder<alerting.TimeInterval> {
         return this;
     }
 
-    timeIntervals(timeIntervals: cog.Builder<alerting.TimeInterval>[]): this {
+    timeIntervals(timeIntervals: cog.Builder<alerting.TimeIntervalItem>[]): this {
         const timeIntervalsResources = timeIntervals.map(builder1 => builder1.build());
         this.internal.time_intervals = timeIntervalsResources;
         return this;
