@@ -1,0 +1,7 @@
+name: foundation-sdk-go
+runtime: go
+description: A show case of how to use the Go Foundation SDK in Pulumi
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: ""

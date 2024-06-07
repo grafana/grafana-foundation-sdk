@@ -1,0 +1,7 @@
+name: foundation-sdk-typescript
+runtime: nodejs
+description: A show case of how to use the Typescript Foundation SDK in Pulumi
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: ""

@@ -1,0 +1,10 @@
+name: foundation-sdk-python
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: A show case of how to use the Python Foundation SDK in Pulumi
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: ""

@@ -7,20 +7,20 @@ import {
     TimePickerBuilder,
     VariableHide,
 } from '@grafana/grafana-foundation-sdk/dashboard';
-import {queryVariable} from "./common";
+import { queryVariable } from "./common";
 import * as cpu from "./cpu";
 import * as disk from "./disk";
 import * as host from "./host";
 import * as memory from "./memory";
 import * as network from "./network";
 
-const builder = new DashboardBuilder('[Example] Linux node / overview')
+export const builder = new DashboardBuilder('[Example] Linux node / overview')
     .uid('example-integration-linux-node')
     .tags(["generated", "grafana-foundation-sdk", "linux-node-integration"])
     .editable()
     .tooltip(DashboardCursorSync.Off)
     .refresh("30s")
-    .time({from: "now-30m", to: "now"})
+    .time({ from: "now-30m", to: "now" })
     .timezone("browser")
     .timepicker(
         new TimePickerBuilder()
@@ -98,6 +98,6 @@ const builder = new DashboardBuilder('[Example] Linux node / overview')
     .withRow(new RowBuilder("Network"))
     .withPanel(network.trafficTimeseries().height(8))
     .withPanel(network.errorsTimeseries().height(8))
-;
+    ;
 
 console.log(JSON.stringify(builder.build(), null, 2));
