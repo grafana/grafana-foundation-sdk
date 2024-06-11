@@ -75,13 +75,6 @@ func (builder *AzureLogsQueryBuilder) TimeColumn(timeColumn string) *AzureLogsQu
 	return builder
 }
 
-// If set to true the query will be run as a basic logs query
-func (builder *AzureLogsQueryBuilder) BasicLogsQuery(basicLogsQuery bool) *AzureLogsQueryBuilder {
-	builder.internal.BasicLogsQuery = &basicLogsQuery
-
-	return builder
-}
-
 // Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
 func (builder *AzureLogsQueryBuilder) Workspace(workspace string) *AzureLogsQueryBuilder {
 	builder.internal.Workspace = &workspace

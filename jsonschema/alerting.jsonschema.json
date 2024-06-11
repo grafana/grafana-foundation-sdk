@@ -299,6 +299,9 @@
         "provenance": {
           "$ref": "#/definitions/Provenance"
         },
+        "record": {
+          "$ref": "#/definitions/RecordRule"
+        },
         "ruleGroup": {
           "type": "string",
           "minLength": 1,
@@ -317,6 +320,22 @@
         "updated": {
           "type": "string",
           "format": "date-time"
+        }
+      }
+    },
+    "RecordRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "metric"
+      ],
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "metric": {
+          "type": "string"
         }
       }
     },

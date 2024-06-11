@@ -583,15 +583,6 @@ export enum BigValueTextMode {
 
 export const defaultBigValueTextMode = (): BigValueTextMode => (BigValueTextMode.Auto);
 
-// TODO docs
-export enum PercentChangeColorMode {
-	Standard = "standard",
-	Inverted = "inverted",
-	SameAsValue = "same_as_value",
-}
-
-export const defaultPercentChangeColorMode = (): PercentChangeColorMode => (PercentChangeColorMode.Standard);
-
 // TODO -- should not be table specific!
 // TODO docs
 export enum FieldTextAlignment {

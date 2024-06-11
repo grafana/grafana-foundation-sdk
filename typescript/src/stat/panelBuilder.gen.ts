@@ -394,14 +394,6 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    showPercentChange(showPercentChange: boolean): this {
-        if (!this.internal.options) {
-            this.internal.options = stat.defaultOptions();
-        }
-        this.internal.options.showPercentChange = showPercentChange;
-        return this;
-    }
-
     reduceOptions(reduceOptions: cog.Builder<common.ReduceDataOptions>): this {
         if (!this.internal.options) {
             this.internal.options = stat.defaultOptions();
@@ -420,11 +412,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    percentChangeColorMode(percentChangeColorMode: common.PercentChangeColorMode): this {
+    showPercentChange(showPercentChange: boolean): this {
         if (!this.internal.options) {
             this.internal.options = stat.defaultOptions();
         }
-        this.internal.options.percentChangeColorMode = percentChangeColorMode;
+        this.internal.options.showPercentChange = showPercentChange;
         return this;
     }
 

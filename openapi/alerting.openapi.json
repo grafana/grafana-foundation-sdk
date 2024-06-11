@@ -307,6 +307,9 @@
           "provenance": {
             "$ref": "#/components/schemas/Provenance"
           },
+          "record": {
+            "$ref": "#/components/schemas/RecordRule"
+          },
           "ruleGroup": {
             "type": "string",
             "minLength": 1,
@@ -325,6 +328,22 @@
           "updated": {
             "type": "string",
             "format": "date-time"
+          }
+        }
+      },
+      "RecordRule": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "from",
+          "metric"
+        ],
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "metric": {
+            "type": "string"
           }
         }
       },
