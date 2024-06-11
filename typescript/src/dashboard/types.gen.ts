@@ -907,3 +907,53 @@ export const defaultRowPanel = (): RowPanel => ({
 	panels: [],
 });
 
+export interface AnnotationActions {
+	canAdd?: boolean;
+	canDelete?: boolean;
+	canEdit?: boolean;
+}
+
+export const defaultAnnotationActions = (): AnnotationActions => ({
+});
+
+export interface AnnotationPermission {
+	dashboard?: AnnotationActions;
+	organization?: AnnotationActions;
+}
+
+export const defaultAnnotationPermission = (): AnnotationPermission => ({
+});
+
+export interface DashboardMeta {
+	annotationsPermissions?: AnnotationPermission;
+	canAdmin?: boolean;
+	canDelete?: boolean;
+	canEdit?: boolean;
+	canSave?: boolean;
+	canStar?: boolean;
+	created?: string;
+	createdBy?: string;
+	expires?: string;
+	folderId?: number;
+	folderTitle?: string;
+	folderUid?: string;
+	folderUrl?: string;
+	hasAcl?: boolean;
+	isFolder?: boolean;
+	isSnapshot?: boolean;
+	isStarred?: boolean;
+	provisioned?: boolean;
+	provisionedExternalId?: string;
+	publicDashboardEnabled?: boolean;
+	publicDashboardUid?: string;
+	slug?: string;
+	type?: string;
+	updated?: string;
+	updatedBy?: string;
+	url?: string;
+	version?: number;
+}
+
+export const defaultDashboardMeta = (): DashboardMeta => ({
+});
+

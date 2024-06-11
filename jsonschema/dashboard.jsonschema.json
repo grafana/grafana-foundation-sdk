@@ -1367,6 +1367,123 @@
         }
       },
       "description": "Row panel"
+    },
+    "AnnotationActions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "canAdd": {
+          "type": "boolean"
+        },
+        "canDelete": {
+          "type": "boolean"
+        },
+        "canEdit": {
+          "type": "boolean"
+        }
+      }
+    },
+    "AnnotationPermission": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dashboard": {
+          "$ref": "#/definitions/AnnotationActions"
+        },
+        "organization": {
+          "$ref": "#/definitions/AnnotationActions"
+        }
+      }
+    },
+    "DashboardMeta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "annotationsPermissions": {
+          "$ref": "#/definitions/AnnotationPermission"
+        },
+        "canAdmin": {
+          "type": "boolean"
+        },
+        "canDelete": {
+          "type": "boolean"
+        },
+        "canEdit": {
+          "type": "boolean"
+        },
+        "canSave": {
+          "type": "boolean"
+        },
+        "canStar": {
+          "type": "boolean"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "expires": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "folderId": {
+          "type": "integer"
+        },
+        "folderTitle": {
+          "type": "string"
+        },
+        "folderUid": {
+          "type": "string"
+        },
+        "folderUrl": {
+          "type": "string"
+        },
+        "hasAcl": {
+          "type": "boolean"
+        },
+        "isFolder": {
+          "type": "boolean"
+        },
+        "isSnapshot": {
+          "type": "boolean"
+        },
+        "isStarred": {
+          "type": "boolean"
+        },
+        "provisioned": {
+          "type": "boolean"
+        },
+        "provisionedExternalId": {
+          "type": "string"
+        },
+        "publicDashboardEnabled": {
+          "type": "boolean"
+        },
+        "publicDashboardUid": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer"
+        }
+      }
     }
   }
 }
