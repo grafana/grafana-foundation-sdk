@@ -492,15 +492,6 @@ const (
 	BigValueTextModeNone         BigValueTextMode = "none"
 )
 
-// TODO docs
-type PercentChangeColorMode string
-
-const (
-	PercentChangeColorModeStandard    PercentChangeColorMode = "standard"
-	PercentChangeColorModeInverted    PercentChangeColorMode = "inverted"
-	PercentChangeColorModeSameAsValue PercentChangeColorMode = "same_as_value"
-)
-
 // TODO -- should not be table specific!
 // TODO docs
 type FieldTextAlignment string

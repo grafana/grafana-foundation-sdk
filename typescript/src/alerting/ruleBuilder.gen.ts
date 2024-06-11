@@ -99,6 +99,12 @@ export class RuleBuilder implements cog.Builder<alerting.Rule> {
         return this;
     }
 
+    record(record: cog.Builder<alerting.RecordRule>): this {
+        const recordResource = record.build();
+        this.internal.record = recordResource;
+        return this;
+    }
+
     ruleGroup(ruleGroup: string): this {
         if (!(ruleGroup.length >= 1)) {
             throw new Error("ruleGroup.length must be >= 1");

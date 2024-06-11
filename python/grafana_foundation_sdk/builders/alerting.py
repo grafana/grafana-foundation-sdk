@@ -374,6 +374,12 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
         return self
     
+    def record(self, record: cogbuilder.Builder[alerting.RecordRule]) -> typing.Self:        
+        record_resource = record.build()
+        self._internal.record = record_resource
+    
+        return self
+    
     def rule_group(self, rule_group: str) -> typing.Self:        
         if not len(rule_group) >= 1:
             raise ValueError("len(rule_group) must be >= 1")
@@ -403,6 +409,26 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
     def updated(self, updated: str) -> typing.Self:        
         self._internal.updated = updated
+    
+        return self
+    
+
+class RecordRule(cogbuilder.Builder[alerting.RecordRule]):    
+    _internal: alerting.RecordRule
+
+    def __init__(self):
+        self._internal = alerting.RecordRule()
+
+    def build(self) -> alerting.RecordRule:
+        return self._internal    
+    
+    def from_val(self, from_val: str) -> typing.Self:        
+        self._internal.from_val = from_val
+    
+        return self
+    
+    def metric(self, metric: str) -> typing.Self:        
+        self._internal.metric = metric
     
         return self
     

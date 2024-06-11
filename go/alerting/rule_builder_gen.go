@@ -156,6 +156,17 @@ func (builder *RuleBuilder) Provenance(provenance Provenance) *RuleBuilder {
 	return builder
 }
 
+func (builder *RuleBuilder) Record(record cog.Builder[RecordRule]) *RuleBuilder {
+	recordResource, err := record.Build()
+	if err != nil {
+		builder.errors["record"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Record = &recordResource
+
+	return builder
+}
+
 func (builder *RuleBuilder) RuleGroup(ruleGroup string) *RuleBuilder {
 	if !(len([]rune(ruleGroup)) >= 1) {
 		builder.errors["ruleGroup"] = cog.MakeBuildErrors("ruleGroup", errors.New("len([]rune(ruleGroup)) must be >= 1"))

@@ -165,10 +165,16 @@ type Rule struct {
 	NotificationSettings *NotificationSettings `json:"notification_settings,omitempty"`
 	OrgID                int64                 `json:"orgID"`
 	Provenance           *Provenance           `json:"provenance,omitempty"`
+	Record               *RecordRule           `json:"record,omitempty"`
 	RuleGroup            string                `json:"ruleGroup"`
 	Title                string                `json:"title"`
 	Uid                  *string               `json:"uid,omitempty"`
 	Updated              *time.Time            `json:"updated,omitempty"`
+}
+
+type RecordRule struct {
+	From   string `json:"from"`
+	Metric string `json:"metric"`
 }
 
 // RelativeTimeRange is the per query start and end time

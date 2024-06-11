@@ -1528,6 +1528,194 @@ class Row(cogbuilder.Builder[dashboard.RowPanel]):
         return self
     
 
+class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):    
+    _internal: dashboard.AnnotationActions
+
+    def __init__(self):
+        self._internal = dashboard.AnnotationActions()
+
+    def build(self) -> dashboard.AnnotationActions:
+        return self._internal    
+    
+    def can_add(self, can_add: bool) -> typing.Self:        
+        self._internal.can_add = can_add
+    
+        return self
+    
+    def can_delete(self, can_delete: bool) -> typing.Self:        
+        self._internal.can_delete = can_delete
+    
+        return self
+    
+    def can_edit(self, can_edit: bool) -> typing.Self:        
+        self._internal.can_edit = can_edit
+    
+        return self
+    
+
+class AnnotationPermission(cogbuilder.Builder[dashboard.AnnotationPermission]):    
+    _internal: dashboard.AnnotationPermission
+
+    def __init__(self):
+        self._internal = dashboard.AnnotationPermission()
+
+    def build(self) -> dashboard.AnnotationPermission:
+        return self._internal    
+    
+    def dashboard_permissions(self, dashboard: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:        
+        dashboard_resource = dashboard.build()
+        self._internal.dashboard = dashboard_resource
+    
+        return self
+    
+    def organization_permissions(self, organization: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:        
+        organization_resource = organization.build()
+        self._internal.organization = organization_resource
+    
+        return self
+    
+
+class DashboardMeta(cogbuilder.Builder[dashboard.DashboardMeta]):    
+    _internal: dashboard.DashboardMeta
+
+    def __init__(self):
+        self._internal = dashboard.DashboardMeta()
+
+    def build(self) -> dashboard.DashboardMeta:
+        return self._internal    
+    
+    def annotations_permissions(self, annotations_permissions: cogbuilder.Builder[dashboard.AnnotationPermission]) -> typing.Self:        
+        annotations_permissions_resource = annotations_permissions.build()
+        self._internal.annotations_permissions = annotations_permissions_resource
+    
+        return self
+    
+    def can_admin(self, can_admin: bool) -> typing.Self:        
+        self._internal.can_admin = can_admin
+    
+        return self
+    
+    def can_delete(self, can_delete: bool) -> typing.Self:        
+        self._internal.can_delete = can_delete
+    
+        return self
+    
+    def can_edit(self, can_edit: bool) -> typing.Self:        
+        self._internal.can_edit = can_edit
+    
+        return self
+    
+    def can_save(self, can_save: bool) -> typing.Self:        
+        self._internal.can_save = can_save
+    
+        return self
+    
+    def can_star(self, can_star: bool) -> typing.Self:        
+        self._internal.can_star = can_star
+    
+        return self
+    
+    def created(self, created: str) -> typing.Self:        
+        self._internal.created = created
+    
+        return self
+    
+    def created_by(self, created_by: str) -> typing.Self:        
+        self._internal.created_by = created_by
+    
+        return self
+    
+    def expires(self, expires: str) -> typing.Self:        
+        self._internal.expires = expires
+    
+        return self
+    
+    def folder_id(self, folder_id: int) -> typing.Self:        
+        self._internal.folder_id = folder_id
+    
+        return self
+    
+    def folder_title(self, folder_title: str) -> typing.Self:        
+        self._internal.folder_title = folder_title
+    
+        return self
+    
+    def folder_uid(self, folder_uid: str) -> typing.Self:        
+        self._internal.folder_uid = folder_uid
+    
+        return self
+    
+    def folder_url(self, folder_url: str) -> typing.Self:        
+        self._internal.folder_url = folder_url
+    
+        return self
+    
+    def has_acl(self, has_acl: bool) -> typing.Self:        
+        self._internal.has_acl = has_acl
+    
+        return self
+    
+    def is_folder(self, is_folder: bool) -> typing.Self:        
+        self._internal.is_folder = is_folder
+    
+        return self
+    
+    def is_snapshot(self, is_snapshot: bool) -> typing.Self:        
+        self._internal.is_snapshot = is_snapshot
+    
+        return self
+    
+    def is_starred(self, is_starred: bool) -> typing.Self:        
+        self._internal.is_starred = is_starred
+    
+        return self
+    
+    def provisioned(self, provisioned: bool) -> typing.Self:        
+        self._internal.provisioned = provisioned
+    
+        return self
+    
+    def provisioned_external_id(self, provisioned_external_id: str) -> typing.Self:        
+        self._internal.provisioned_external_id = provisioned_external_id
+    
+        return self
+    
+    def public_dashboard_enabled(self, public_dashboard_enabled: bool) -> typing.Self:        
+        self._internal.public_dashboard_enabled = public_dashboard_enabled
+    
+        return self
+    
+    def slug(self, slug: str) -> typing.Self:        
+        self._internal.slug = slug
+    
+        return self
+    
+    def type_val(self, type_val: str) -> typing.Self:        
+        self._internal.type_val = type_val
+    
+        return self
+    
+    def updated(self, updated: str) -> typing.Self:        
+        self._internal.updated = updated
+    
+        return self
+    
+    def updated_by(self, updated_by: str) -> typing.Self:        
+        self._internal.updated_by = updated_by
+    
+        return self
+    
+    def url(self, url: str) -> typing.Self:        
+        self._internal.url = url
+    
+        return self
+    
+    def version(self, version: int) -> typing.Self:        
+        self._internal.version = version
+    
+        return self
+    
+
 class DashboardDashboardTemplating(cogbuilder.Builder[dashboard.DashboardDashboardTemplating]):    
     _internal: dashboard.DashboardDashboardTemplating
 

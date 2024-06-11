@@ -19,9 +19,8 @@
           "justifyMode",
           "textMode",
           "wideLayout",
-          "showPercentChange",
           "reduceOptions",
-          "percentChangeColorMode",
+          "showPercentChange",
           "orientation"
         ],
         "properties": {
@@ -45,19 +44,15 @@
             "type": "boolean",
             "default": true
           },
-          "showPercentChange": {
-            "type": "boolean",
-            "default": false
-          },
           "reduceOptions": {
             "$ref": "#/components/schemas/ReduceDataOptions"
           },
           "text": {
             "$ref": "#/components/schemas/VizTextDisplayOptions"
           },
-          "percentChangeColorMode": {
-            "$ref": "#/components/schemas/PercentChangeColorMode",
-            "default": "standard"
+          "showPercentChange": {
+            "type": "boolean",
+            "default": false
           },
           "orientation": {
             "$ref": "#/components/schemas/VizOrientation"
@@ -140,14 +135,6 @@
             "description": "Explicit value text size"
           }
         },
-        "description": "TODO docs"
-      },
-      "PercentChangeColorMode": {
-        "enum": [
-          "standard",
-          "inverted",
-          "same_as_value"
-        ],
         "description": "TODO docs"
       },
       "VizOrientation": {

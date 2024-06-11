@@ -1333,16 +1333,6 @@ class BigValueTextMode(enum.StrEnum):
     NONE = "none"
 
 
-class PercentChangeColorMode(enum.StrEnum):
-    """
-    TODO docs
-    """
-
-    STANDARD = "standard"
-    INVERTED = "inverted"
-    SAME_AS_VALUE = "same_as_value"
-
-
 class FieldTextAlignment(enum.StrEnum):
     """
     TODO -- should not be table specific!

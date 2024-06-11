@@ -10,9 +10,8 @@
         "justifyMode",
         "textMode",
         "wideLayout",
-        "showPercentChange",
         "reduceOptions",
-        "percentChangeColorMode",
+        "showPercentChange",
         "orientation"
       ],
       "properties": {
@@ -36,19 +35,15 @@
           "type": "boolean",
           "default": true
         },
-        "showPercentChange": {
-          "type": "boolean",
-          "default": false
-        },
         "reduceOptions": {
           "$ref": "#/definitions/ReduceDataOptions"
         },
         "text": {
           "$ref": "#/definitions/VizTextDisplayOptions"
         },
-        "percentChangeColorMode": {
-          "$ref": "#/definitions/PercentChangeColorMode",
-          "default": "standard"
+        "showPercentChange": {
+          "type": "boolean",
+          "default": false
         },
         "orientation": {
           "$ref": "#/definitions/VizOrientation"
@@ -131,14 +126,6 @@
           "description": "Explicit value text size"
         }
       },
-      "description": "TODO docs"
-    },
-    "PercentChangeColorMode": {
-      "enum": [
-        "standard",
-        "inverted",
-        "same_as_value"
-      ],
       "description": "TODO docs"
     },
     "VizOrientation": {

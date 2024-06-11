@@ -18,6 +18,8 @@ export * from './notificationTemplateBuilder.gen';
 export type * from './notificationTemplateBuilder.gen';
 export * from './ruleBuilder.gen';
 export type * from './ruleBuilder.gen';
+export * from './recordRuleBuilder.gen';
+export type * from './recordRuleBuilder.gen';
 export * from './notificationPolicyBuilder.gen';
 export type * from './notificationPolicyBuilder.gen';
 export * from './timeIntervalBuilder.gen';

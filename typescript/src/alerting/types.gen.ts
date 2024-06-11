@@ -154,6 +154,7 @@ export interface Rule {
 	notification_settings?: NotificationSettings;
 	orgID: number;
 	provenance?: Provenance;
+	record?: RecordRule;
 	ruleGroup: string;
 	title: string;
 	uid?: string;
@@ -170,6 +171,16 @@ export const defaultRule = (): Rule => ({
 	orgID: 0,
 	ruleGroup: "",
 	title: "",
+});
+
+export interface RecordRule {
+	from: string;
+	metric: string;
+}
+
+export const defaultRecordRule = (): RecordRule => ({
+	from: "",
+	metric: "",
 });
 
 // RelativeTimeRange is the per query start and end time

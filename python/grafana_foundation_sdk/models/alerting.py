@@ -363,12 +363,13 @@ class Rule:
     notification_settings: typing.Optional['NotificationSettings']
     org_id: int
     provenance: typing.Optional['Provenance']
+    record: typing.Optional['RecordRule']
     rule_group: str
     title: str
     uid: typing.Optional[str]
     updated: typing.Optional[str]
 
-    def __init__(self, annotations: typing.Optional[dict[str, str]] = None, condition: str = "", data: typing.Optional[list['Query']] = None, exec_err_state: typing.Optional[typing.Literal["OK", "Alerting", "Error"]] = None, folder_uid: str = "", for_val: str = "", id_val: typing.Optional[int] = None, is_paused: typing.Optional[bool] = None, labels: typing.Optional[dict[str, str]] = None, no_data_state: typing.Optional[typing.Literal["Alerting", "NoData", "OK"]] = None, notification_settings: typing.Optional['NotificationSettings'] = None, org_id: int = 0, provenance: typing.Optional['Provenance'] = None, rule_group: str = "", title: str = "", uid: typing.Optional[str] = None, updated: typing.Optional[str] = None):
+    def __init__(self, annotations: typing.Optional[dict[str, str]] = None, condition: str = "", data: typing.Optional[list['Query']] = None, exec_err_state: typing.Optional[typing.Literal["OK", "Alerting", "Error"]] = None, folder_uid: str = "", for_val: str = "", id_val: typing.Optional[int] = None, is_paused: typing.Optional[bool] = None, labels: typing.Optional[dict[str, str]] = None, no_data_state: typing.Optional[typing.Literal["Alerting", "NoData", "OK"]] = None, notification_settings: typing.Optional['NotificationSettings'] = None, org_id: int = 0, provenance: typing.Optional['Provenance'] = None, record: typing.Optional['RecordRule'] = None, rule_group: str = "", title: str = "", uid: typing.Optional[str] = None, updated: typing.Optional[str] = None):
         self.annotations = annotations
         self.condition = condition
         self.data = data if data is not None else []
@@ -382,6 +383,7 @@ class Rule:
         self.notification_settings = notification_settings
         self.org_id = org_id
         self.provenance = provenance
+        self.record = record
         self.rule_group = rule_group
         self.title = title
         self.uid = uid
@@ -411,6 +413,8 @@ class Rule:
             payload["notification_settings"] = self.notification_settings
         if self.provenance is not None:
             payload["provenance"] = self.provenance
+        if self.record is not None:
+            payload["record"] = self.record
         if self.uid is not None:
             payload["uid"] = self.uid
         if self.updated is not None:
@@ -447,6 +451,8 @@ class Rule:
             args["org_id"] = data["orgID"]
         if "provenance" in data:
             args["provenance"] = data["provenance"]
+        if "record" in data:
+            args["record"] = RecordRule.from_json(data["record"])
         if "ruleGroup" in data:
             args["rule_group"] = data["ruleGroup"]
         if "title" in data:
@@ -455,6 +461,33 @@ class Rule:
             args["uid"] = data["uid"]
         if "updated" in data:
             args["updated"] = data["updated"]        
+
+        return cls(**args)
+
+
+class RecordRule:
+    from_val: str
+    metric: str
+
+    def __init__(self, from_val: str = "", metric: str = ""):
+        self.from_val = from_val
+        self.metric = metric
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "from": self.from_val,
+            "metric": self.metric,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "from" in data:
+            args["from_val"] = data["from"]
+        if "metric" in data:
+            args["metric"] = data["metric"]        
 
         return cls(**args)
 
