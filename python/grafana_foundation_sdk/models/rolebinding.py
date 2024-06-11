@@ -25,7 +25,7 @@ class RoleBinding:
         args: dict[str, typing.Any] = {}
         
         if "role" in data:
-            decoding_map: dict[str, typing.Union[typing.Type[CustomRoleRef], typing.Type[BuiltinRoleRef]]] = {"Role": CustomRoleRef, "BuiltinRole": BuiltinRoleRef}
+            decoding_map: dict[str, typing.Union[typing.Type[BuiltinRoleRef], typing.Type[CustomRoleRef]]] = {"BuiltinRole": BuiltinRoleRef, "Role": CustomRoleRef}
             args["role"] = decoding_map[data["role"]["kind"]].from_json(data["role"])
         if "subject" in data:
             args["subject"] = RoleBindingSubject.from_json(data["subject"])        
