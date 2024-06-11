@@ -39,8 +39,8 @@ func (builder *StringOrStructBuilder) Build() (StringOrStruct, error) {
 	return *builder.internal, nil
 }
 
-func (builder *StringOrStructBuilder) String(string string) *StringOrStructBuilder {
-	builder.internal.String = &string
+func (builder *StringOrStructBuilder) String(stringArg string) *StringOrStructBuilder {
+	builder.internal.String = &stringArg
 
 	return builder
 }

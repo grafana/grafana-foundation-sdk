@@ -71,11 +71,11 @@ func (builder *DatasourceVariableBuilder) Description(description string) *Datas
 }
 
 // Query used to fetch values for a variable
-func (builder *DatasourceVariableBuilder) Type(string string) *DatasourceVariableBuilder {
+func (builder *DatasourceVariableBuilder) Type(stringArg string) *DatasourceVariableBuilder {
 	if builder.internal.Query == nil {
 		builder.internal.Query = &StringOrMap{}
 	}
-	builder.internal.Query.String = &string
+	builder.internal.Query.String = &stringArg
 
 	return builder
 }

@@ -1977,6 +1977,249 @@ class RowPanel:
         return cls(**args)
 
 
+class AnnotationActions:
+    can_add: typing.Optional[bool]
+    can_delete: typing.Optional[bool]
+    can_edit: typing.Optional[bool]
+
+    def __init__(self, can_add: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None):
+        self.can_add = can_add
+        self.can_delete = can_delete
+        self.can_edit = can_edit
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.can_add is not None:
+            payload["canAdd"] = self.can_add
+        if self.can_delete is not None:
+            payload["canDelete"] = self.can_delete
+        if self.can_edit is not None:
+            payload["canEdit"] = self.can_edit
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "canAdd" in data:
+            args["can_add"] = data["canAdd"]
+        if "canDelete" in data:
+            args["can_delete"] = data["canDelete"]
+        if "canEdit" in data:
+            args["can_edit"] = data["canEdit"]        
+
+        return cls(**args)
+
+
+class AnnotationPermission:
+    dashboard: typing.Optional['AnnotationActions']
+    organization: typing.Optional['AnnotationActions']
+
+    def __init__(self, dashboard: typing.Optional['AnnotationActions'] = None, organization: typing.Optional['AnnotationActions'] = None):
+        self.dashboard = dashboard
+        self.organization = organization
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.dashboard is not None:
+            payload["dashboard"] = self.dashboard
+        if self.organization is not None:
+            payload["organization"] = self.organization
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "dashboard" in data:
+            args["dashboard"] = AnnotationActions.from_json(data["dashboard"])
+        if "organization" in data:
+            args["organization"] = AnnotationActions.from_json(data["organization"])        
+
+        return cls(**args)
+
+
+class DashboardMeta:
+    annotations_permissions: typing.Optional['AnnotationPermission']
+    can_admin: typing.Optional[bool]
+    can_delete: typing.Optional[bool]
+    can_edit: typing.Optional[bool]
+    can_save: typing.Optional[bool]
+    can_star: typing.Optional[bool]
+    created: typing.Optional[str]
+    created_by: typing.Optional[str]
+    expires: typing.Optional[str]
+    folder_id: typing.Optional[int]
+    folder_title: typing.Optional[str]
+    folder_uid: typing.Optional[str]
+    folder_url: typing.Optional[str]
+    has_acl: typing.Optional[bool]
+    is_folder: typing.Optional[bool]
+    is_snapshot: typing.Optional[bool]
+    is_starred: typing.Optional[bool]
+    provisioned: typing.Optional[bool]
+    provisioned_external_id: typing.Optional[str]
+    public_dashboard_enabled: typing.Optional[bool]
+    public_dashboard_uid: typing.Optional[str]
+    slug: typing.Optional[str]
+    type_val: typing.Optional[str]
+    updated: typing.Optional[str]
+    updated_by: typing.Optional[str]
+    url: typing.Optional[str]
+    version: typing.Optional[int]
+
+    def __init__(self, annotations_permissions: typing.Optional['AnnotationPermission'] = None, can_admin: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None, can_save: typing.Optional[bool] = None, can_star: typing.Optional[bool] = None, created: typing.Optional[str] = None, created_by: typing.Optional[str] = None, expires: typing.Optional[str] = None, folder_id: typing.Optional[int] = None, folder_title: typing.Optional[str] = None, folder_uid: typing.Optional[str] = None, folder_url: typing.Optional[str] = None, has_acl: typing.Optional[bool] = None, is_folder: typing.Optional[bool] = None, is_snapshot: typing.Optional[bool] = None, is_starred: typing.Optional[bool] = None, provisioned: typing.Optional[bool] = None, provisioned_external_id: typing.Optional[str] = None, public_dashboard_enabled: typing.Optional[bool] = None, public_dashboard_uid: typing.Optional[str] = None, slug: typing.Optional[str] = None, type_val: typing.Optional[str] = None, updated: typing.Optional[str] = None, updated_by: typing.Optional[str] = None, url: typing.Optional[str] = None, version: typing.Optional[int] = None):
+        self.annotations_permissions = annotations_permissions
+        self.can_admin = can_admin
+        self.can_delete = can_delete
+        self.can_edit = can_edit
+        self.can_save = can_save
+        self.can_star = can_star
+        self.created = created
+        self.created_by = created_by
+        self.expires = expires
+        self.folder_id = folder_id
+        self.folder_title = folder_title
+        self.folder_uid = folder_uid
+        self.folder_url = folder_url
+        self.has_acl = has_acl
+        self.is_folder = is_folder
+        self.is_snapshot = is_snapshot
+        self.is_starred = is_starred
+        self.provisioned = provisioned
+        self.provisioned_external_id = provisioned_external_id
+        self.public_dashboard_enabled = public_dashboard_enabled
+        self.public_dashboard_uid = public_dashboard_uid
+        self.slug = slug
+        self.type_val = type_val
+        self.updated = updated
+        self.updated_by = updated_by
+        self.url = url
+        self.version = version
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.annotations_permissions is not None:
+            payload["annotationsPermissions"] = self.annotations_permissions
+        if self.can_admin is not None:
+            payload["canAdmin"] = self.can_admin
+        if self.can_delete is not None:
+            payload["canDelete"] = self.can_delete
+        if self.can_edit is not None:
+            payload["canEdit"] = self.can_edit
+        if self.can_save is not None:
+            payload["canSave"] = self.can_save
+        if self.can_star is not None:
+            payload["canStar"] = self.can_star
+        if self.created is not None:
+            payload["created"] = self.created
+        if self.created_by is not None:
+            payload["createdBy"] = self.created_by
+        if self.expires is not None:
+            payload["expires"] = self.expires
+        if self.folder_id is not None:
+            payload["folderId"] = self.folder_id
+        if self.folder_title is not None:
+            payload["folderTitle"] = self.folder_title
+        if self.folder_uid is not None:
+            payload["folderUid"] = self.folder_uid
+        if self.folder_url is not None:
+            payload["folderUrl"] = self.folder_url
+        if self.has_acl is not None:
+            payload["hasAcl"] = self.has_acl
+        if self.is_folder is not None:
+            payload["isFolder"] = self.is_folder
+        if self.is_snapshot is not None:
+            payload["isSnapshot"] = self.is_snapshot
+        if self.is_starred is not None:
+            payload["isStarred"] = self.is_starred
+        if self.provisioned is not None:
+            payload["provisioned"] = self.provisioned
+        if self.provisioned_external_id is not None:
+            payload["provisionedExternalId"] = self.provisioned_external_id
+        if self.public_dashboard_enabled is not None:
+            payload["publicDashboardEnabled"] = self.public_dashboard_enabled
+        if self.public_dashboard_uid is not None:
+            payload["publicDashboardUid"] = self.public_dashboard_uid
+        if self.slug is not None:
+            payload["slug"] = self.slug
+        if self.type_val is not None:
+            payload["type"] = self.type_val
+        if self.updated is not None:
+            payload["updated"] = self.updated
+        if self.updated_by is not None:
+            payload["updatedBy"] = self.updated_by
+        if self.url is not None:
+            payload["url"] = self.url
+        if self.version is not None:
+            payload["version"] = self.version
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "annotationsPermissions" in data:
+            args["annotations_permissions"] = AnnotationPermission.from_json(data["annotationsPermissions"])
+        if "canAdmin" in data:
+            args["can_admin"] = data["canAdmin"]
+        if "canDelete" in data:
+            args["can_delete"] = data["canDelete"]
+        if "canEdit" in data:
+            args["can_edit"] = data["canEdit"]
+        if "canSave" in data:
+            args["can_save"] = data["canSave"]
+        if "canStar" in data:
+            args["can_star"] = data["canStar"]
+        if "created" in data:
+            args["created"] = data["created"]
+        if "createdBy" in data:
+            args["created_by"] = data["createdBy"]
+        if "expires" in data:
+            args["expires"] = data["expires"]
+        if "folderId" in data:
+            args["folder_id"] = data["folderId"]
+        if "folderTitle" in data:
+            args["folder_title"] = data["folderTitle"]
+        if "folderUid" in data:
+            args["folder_uid"] = data["folderUid"]
+        if "folderUrl" in data:
+            args["folder_url"] = data["folderUrl"]
+        if "hasAcl" in data:
+            args["has_acl"] = data["hasAcl"]
+        if "isFolder" in data:
+            args["is_folder"] = data["isFolder"]
+        if "isSnapshot" in data:
+            args["is_snapshot"] = data["isSnapshot"]
+        if "isStarred" in data:
+            args["is_starred"] = data["isStarred"]
+        if "provisioned" in data:
+            args["provisioned"] = data["provisioned"]
+        if "provisionedExternalId" in data:
+            args["provisioned_external_id"] = data["provisionedExternalId"]
+        if "publicDashboardEnabled" in data:
+            args["public_dashboard_enabled"] = data["publicDashboardEnabled"]
+        if "publicDashboardUid" in data:
+            args["public_dashboard_uid"] = data["publicDashboardUid"]
+        if "slug" in data:
+            args["slug"] = data["slug"]
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "updated" in data:
+            args["updated"] = data["updated"]
+        if "updatedBy" in data:
+            args["updated_by"] = data["updatedBy"]
+        if "url" in data:
+            args["url"] = data["url"]
+        if "version" in data:
+            args["version"] = data["version"]        
+
+        return cls(**args)
+
+
 class DashboardDashboardTime:
     from_val: str
     to: str
