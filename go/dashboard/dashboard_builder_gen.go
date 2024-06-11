@@ -194,11 +194,11 @@ func (builder *DashboardBuilder) WeekStart(weekStart string) *DashboardBuilder {
 }
 
 // Refresh rate of dashboard. Represented via interval string, e.g. "5s", "1m", "1h", "1d".
-func (builder *DashboardBuilder) Refresh(string string) *DashboardBuilder {
+func (builder *DashboardBuilder) Refresh(stringArg string) *DashboardBuilder {
 	if builder.internal.Refresh == nil {
 		builder.internal.Refresh = &StringOrBool{}
 	}
-	builder.internal.Refresh.String = &string
+	builder.internal.Refresh.String = &stringArg
 
 	return builder
 }

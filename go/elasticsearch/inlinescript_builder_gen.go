@@ -39,8 +39,8 @@ func (builder *InlineScriptBuilder) Build() (InlineScript, error) {
 	return *builder.internal, nil
 }
 
-func (builder *InlineScriptBuilder) String(string string) *InlineScriptBuilder {
-	builder.internal.String = &string
+func (builder *InlineScriptBuilder) String(stringArg string) *InlineScriptBuilder {
+	builder.internal.String = &stringArg
 
 	return builder
 }
