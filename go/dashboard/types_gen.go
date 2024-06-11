@@ -936,6 +936,48 @@ type TimePicker struct {
 	TimeOptions []string `json:"time_options"`
 }
 
+type AnnotationActions struct {
+	CanAdd    *bool `json:"canAdd,omitempty"`
+	CanDelete *bool `json:"canDelete,omitempty"`
+	CanEdit   *bool `json:"canEdit,omitempty"`
+}
+
+type AnnotationPermission struct {
+	Dashboard    *AnnotationActions `json:"dashboard,omitempty"`
+	Organization *AnnotationActions `json:"organization,omitempty"`
+}
+
+type DashboardMeta struct {
+	AnnotationsPermissions     *AnnotationPermission `json:"annotationsPermissions,omitempty"`
+	CanAdmin                   *bool                 `json:"canAdmin,omitempty"`
+	CanDelete                  *bool                 `json:"canDelete,omitempty"`
+	CanEdit                    *bool                 `json:"canEdit,omitempty"`
+	CanSave                    *bool                 `json:"canSave,omitempty"`
+	CanStar                    *bool                 `json:"canStar,omitempty"`
+	Created                    *time.Time            `json:"created,omitempty"`
+	CreatedBy                  *string               `json:"createdBy,omitempty"`
+	Expires                    *time.Time            `json:"expires,omitempty"`
+	FolderId                   *int64                `json:"folderId,omitempty"`
+	FolderTitle                *string               `json:"folderTitle,omitempty"`
+	FolderUid                  *string               `json:"folderUid,omitempty"`
+	FolderUrl                  *string               `json:"folderUrl,omitempty"`
+	HasAcl                     *bool                 `json:"hasAcl,omitempty"`
+	IsFolder                   *bool                 `json:"isFolder,omitempty"`
+	IsSnapshot                 *bool                 `json:"isSnapshot,omitempty"`
+	IsStarred                  *bool                 `json:"isStarred,omitempty"`
+	Provisioned                *bool                 `json:"provisioned,omitempty"`
+	ProvisionedExternalId      *string               `json:"provisionedExternalId,omitempty"`
+	PublicDashboardAccessToken *string               `json:"publicDashboardAccessToken,omitempty"`
+	PublicDashboardEnabled     *bool                 `json:"publicDashboardEnabled,omitempty"`
+	PublicDashboardUid         *string               `json:"publicDashboardUid,omitempty"`
+	Slug                       *string               `json:"slug,omitempty"`
+	Type                       *string               `json:"type,omitempty"`
+	Updated                    *time.Time            `json:"updated,omitempty"`
+	UpdatedBy                  *string               `json:"updatedBy,omitempty"`
+	Url                        *string               `json:"url,omitempty"`
+	Version                    *int64                `json:"version,omitempty"`
+}
+
 type DashboardStyle string
 
 const (
