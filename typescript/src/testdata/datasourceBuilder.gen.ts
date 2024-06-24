@@ -3,14 +3,14 @@
 import * as cog from '../cog';
 import * as testdata from '../testdata';
 
-export class DatasourceBuilder implements cog.Builder<testdata.datasource> {
-    protected readonly internal: testdata.datasource;
+export class DatasourceBuilder implements cog.Builder<testdata.Datasource> {
+    protected readonly internal: testdata.Datasource;
 
     constructor() {
         this.internal = testdata.defaultDatasource();
     }
 
-    build(): testdata.datasource {
+    build(): testdata.Datasource {
         return this.internal;
     }
 
