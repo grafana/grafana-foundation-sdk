@@ -1056,7 +1056,7 @@ export const defaultTableFieldOptions = (): TableFieldOptions => ({
 });
 
 // A specific timezone from https://en.wikipedia.org/wiki/Tz_database
-export type TimeZone = "utc" | "browser" | string;
+export type TimeZone = string;
 
 export const defaultTimeZone = (): TimeZone => ("browser");
 
