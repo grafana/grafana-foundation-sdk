@@ -1333,6 +1333,16 @@ class BigValueTextMode(enum.StrEnum):
     NONE = "none"
 
 
+class PercentChangeColorMode(enum.StrEnum):
+    """
+    TODO docs
+    """
+
+    STANDARD = "standard"
+    INVERTED = "inverted"
+    SAME_AS_VALUE = "same_as_value"
+
+
 class FieldTextAlignment(enum.StrEnum):
     """
     TODO -- should not be table specific!
@@ -1907,19 +1917,27 @@ class TableAutoCellOptions:
     """
 
     type_val: typing.Literal["auto"]
+    wrap_text: typing.Optional[bool]
 
-    def __init__(self, ):
+    def __init__(self, wrap_text: typing.Optional[bool] = None):
         self.type_val = "auto"
+        self.wrap_text = wrap_text
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "type": self.type_val,
         }
+        if self.wrap_text is not None:
+            payload["wrapText"] = self.wrap_text
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
+        
+        if "wrapText" in data:
+            args["wrap_text"] = data["wrapText"]        
+
         return cls(**args)
 
 
@@ -1929,19 +1947,27 @@ class TableColorTextCellOptions:
     """
 
     type_val: typing.Literal["color-text"]
+    wrap_text: typing.Optional[bool]
 
-    def __init__(self, ):
+    def __init__(self, wrap_text: typing.Optional[bool] = None):
         self.type_val = "color-text"
+        self.wrap_text = wrap_text
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "type": self.type_val,
         }
+        if self.wrap_text is not None:
+            payload["wrapText"] = self.wrap_text
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
+        
+        if "wrapText" in data:
+            args["wrap_text"] = data["wrapText"]        
+
         return cls(**args)
 
 
@@ -2280,11 +2306,13 @@ class TableColoredBackgroundCellOptions:
     type_val: typing.Literal["color-background"]
     mode: typing.Optional['TableCellBackgroundDisplayMode']
     apply_to_row: typing.Optional[bool]
+    wrap_text: typing.Optional[bool]
 
-    def __init__(self, mode: typing.Optional['TableCellBackgroundDisplayMode'] = None, apply_to_row: typing.Optional[bool] = None):
+    def __init__(self, mode: typing.Optional['TableCellBackgroundDisplayMode'] = None, apply_to_row: typing.Optional[bool] = None, wrap_text: typing.Optional[bool] = None):
         self.type_val = "color-background"
         self.mode = mode
         self.apply_to_row = apply_to_row
+        self.wrap_text = wrap_text
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -2294,6 +2322,8 @@ class TableColoredBackgroundCellOptions:
             payload["mode"] = self.mode
         if self.apply_to_row is not None:
             payload["applyToRow"] = self.apply_to_row
+        if self.wrap_text is not None:
+            payload["wrapText"] = self.wrap_text
         return payload
 
     @classmethod
@@ -2303,7 +2333,9 @@ class TableColoredBackgroundCellOptions:
         if "mode" in data:
             args["mode"] = data["mode"]
         if "applyToRow" in data:
-            args["apply_to_row"] = data["applyToRow"]        
+            args["apply_to_row"] = data["applyToRow"]
+        if "wrapText" in data:
+            args["wrap_text"] = data["wrapText"]        
 
         return cls(**args)
 
@@ -2316,6 +2348,7 @@ class TableCellHeight(enum.StrEnum):
     SM = "sm"
     MD = "md"
     LG = "lg"
+    AUTO = "auto"
 
 
 # Table cell options. Each cell has a display mode
@@ -2615,7 +2648,7 @@ class TableFieldOptions:
 
 
 # A specific timezone from https://en.wikipedia.org/wiki/Tz_database
-TimeZone: typing.TypeAlias = typing.Union[typing.Literal["utc"], typing.Literal["browser"], str]
+TimeZone: typing.TypeAlias = str
 
 
 

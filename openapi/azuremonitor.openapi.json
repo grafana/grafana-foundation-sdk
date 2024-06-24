@@ -70,14 +70,17 @@
           "resource": {
             "type": "string"
           },
+          "region": {
+            "type": "string"
+          },
           "datasource": {
             "type": "object",
             "additionalProperties": {},
             "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
           },
-          "region": {
+          "query": {
             "type": "string",
-            "description": "Azure Monitor query type.\nqueryType: #AzureQueryType"
+            "description": "Used only for exemplar queries from Prometheus"
           }
         }
       },
@@ -94,7 +97,8 @@
           "Azure Metric Names",
           "Azure Workspaces",
           "Azure Regions",
-          "Grafana Template Variable Function"
+          "Grafana Template Variable Function",
+          "traceql"
         ],
         "description": "Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated"
       },
@@ -211,6 +215,10 @@
           "timeColumn": {
             "type": "string",
             "description": "If dashboardTime is set to true this value dictates which column the time filter will be applied to. Defaults to the first tables timeSpan column, the first datetime column found, or TimeGenerated"
+          },
+          "basicLogsQuery": {
+            "type": "boolean",
+            "description": "If set to true the query will be run as a basic logs query"
           },
           "workspace": {
             "type": "string",

@@ -150,6 +150,15 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
     
         return self
     
+    def table_type(self, table_type: tempo.SearchTableType) -> typing.Self:    
+        """
+        The type of the table that is used to display the search results
+        """
+            
+        self._internal.table_type = table_type
+    
+        return self
+    
     def datasource(self, datasource: object) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
@@ -162,12 +171,12 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
     
         return self
     
-    def table_type(self, table_type: tempo.SearchTableType) -> typing.Self:    
+    def step(self, step: str) -> typing.Self:    
         """
-        The type of the table that is used to display the search results
+        For metric queries, the step size to use
         """
             
-        self._internal.table_type = table_type
+        self._internal.step = step
     
         return self
     

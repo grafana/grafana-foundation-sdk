@@ -19,6 +19,12 @@ type Options struct {
 	EnableLogDetails     bool                     `json:"enableLogDetails"`
 	SortOrder            common.LogsSortOrder     `json:"sortOrder"`
 	DedupStrategy        common.LogsDedupStrategy `json:"dedupStrategy"`
+	// TODO: figure out how to define callbacks
+	OnClickFilterLabel     any `json:"onClickFilterLabel,omitempty"`
+	OnClickFilterOutLabel  any `json:"onClickFilterOutLabel,omitempty"`
+	IsFilterLabelActive    any `json:"isFilterLabelActive,omitempty"`
+	OnClickFilterString    any `json:"onClickFilterString,omitempty"`
+	OnClickFilterOutString any `json:"onClickFilterOutString,omitempty"`
 }
 
 func VariantConfig() cogvariants.PanelcfgConfig {

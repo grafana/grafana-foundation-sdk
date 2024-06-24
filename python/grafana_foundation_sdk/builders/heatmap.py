@@ -717,6 +717,18 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def selection_mode(self, selection_mode: heatmap.HeatmapSelectionMode) -> typing.Self:    
+        """
+        Controls which axis to allow selection on
+        """
+            
+        if self._internal.options is None:
+            self._internal.options = heatmap.Options()
+        assert isinstance(self._internal.options, heatmap.Options)
+        self._internal.options.selection_mode = selection_mode
+    
+        return self
+    
     def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()

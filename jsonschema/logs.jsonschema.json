@@ -42,6 +42,27 @@
         },
         "dedupStrategy": {
           "$ref": "#/definitions/LogsDedupStrategy"
+        },
+        "onClickFilterLabel": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "TODO: figure out how to define callbacks"
+        },
+        "onClickFilterOutLabel": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "isFilterLabelActive": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "onClickFilterString": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "onClickFilterOutString": {
+          "type": "object",
+          "additionalProperties": {}
         }
       }
     },

@@ -583,6 +583,15 @@ export enum BigValueTextMode {
 
 export const defaultBigValueTextMode = (): BigValueTextMode => (BigValueTextMode.Auto);
 
+// TODO docs
+export enum PercentChangeColorMode {
+	Standard = "standard",
+	Inverted = "inverted",
+	SameAsValue = "same_as_value",
+}
+
+export const defaultPercentChangeColorMode = (): PercentChangeColorMode => (PercentChangeColorMode.Standard);
+
 // TODO -- should not be table specific!
 // TODO docs
 export enum FieldTextAlignment {
@@ -810,6 +819,7 @@ export const defaultTableFooterOptions = (): TableFooterOptions => ({
 // Auto mode table cell options
 export interface TableAutoCellOptions {
 	type: "auto";
+	wrapText?: boolean;
 }
 
 export const defaultTableAutoCellOptions = (): TableAutoCellOptions => ({
@@ -819,6 +829,7 @@ export const defaultTableAutoCellOptions = (): TableAutoCellOptions => ({
 // Colored text cell options
 export interface TableColorTextCellOptions {
 	type: "color-text";
+	wrapText?: boolean;
 }
 
 export const defaultTableColorTextCellOptions = (): TableColorTextCellOptions => ({
@@ -913,6 +924,7 @@ export interface TableColoredBackgroundCellOptions {
 	type: "color-background";
 	mode?: TableCellBackgroundDisplayMode;
 	applyToRow?: boolean;
+	wrapText?: boolean;
 }
 
 export const defaultTableColoredBackgroundCellOptions = (): TableColoredBackgroundCellOptions => ({
@@ -924,6 +936,7 @@ export enum TableCellHeight {
 	Sm = "sm",
 	Md = "md",
 	Lg = "lg",
+	Auto = "auto",
 }
 
 export const defaultTableCellHeight = (): TableCellHeight => (TableCellHeight.Sm);
@@ -1056,7 +1069,7 @@ export const defaultTableFieldOptions = (): TableFieldOptions => ({
 });
 
 // A specific timezone from https://en.wikipedia.org/wiki/Tz_database
-export type TimeZone = "utc" | "browser" | string;
+export type TimeZone = string;
 
 export const defaultTimeZone = (): TimeZone => ("browser");
 

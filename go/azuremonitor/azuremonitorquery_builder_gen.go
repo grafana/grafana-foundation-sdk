@@ -152,6 +152,12 @@ func (builder *AzureMonitorQueryBuilder) Resource(resource string) *AzureMonitor
 	return builder
 }
 
+func (builder *AzureMonitorQueryBuilder) Region(region string) *AzureMonitorQueryBuilder {
+	builder.internal.Region = &region
+
+	return builder
+}
+
 // For mixed data sources the selected datasource is on the query level.
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
@@ -162,10 +168,9 @@ func (builder *AzureMonitorQueryBuilder) Datasource(datasource any) *AzureMonito
 	return builder
 }
 
-// Azure Monitor query type.
-// queryType: #AzureQueryType
-func (builder *AzureMonitorQueryBuilder) Region(region string) *AzureMonitorQueryBuilder {
-	builder.internal.Region = &region
+// Used only for exemplar queries from Prometheus
+func (builder *AzureMonitorQueryBuilder) Query(query string) *AzureMonitorQueryBuilder {
+	builder.internal.Query = &query
 
 	return builder
 }

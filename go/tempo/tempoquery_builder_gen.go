@@ -165,6 +165,13 @@ func (builder *TempoQueryBuilder) GroupBy(groupBy []cog.Builder[TraceqlFilter]) 
 	return builder
 }
 
+// The type of the table that is used to display the search results
+func (builder *TempoQueryBuilder) TableType(tableType SearchTableType) *TempoQueryBuilder {
+	builder.internal.TableType = &tableType
+
+	return builder
+}
+
 // For mixed data sources the selected datasource is on the query level.
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
@@ -175,9 +182,9 @@ func (builder *TempoQueryBuilder) Datasource(datasource any) *TempoQueryBuilder 
 	return builder
 }
 
-// The type of the table that is used to display the search results
-func (builder *TempoQueryBuilder) TableType(tableType SearchTableType) *TempoQueryBuilder {
-	builder.internal.TableType = &tableType
+// For metric queries, the step size to use
+func (builder *TempoQueryBuilder) Step(step string) *TempoQueryBuilder {
+	builder.internal.Step = &step
 
 	return builder
 }

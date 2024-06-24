@@ -114,7 +114,8 @@
         "enum": [
           "sm",
           "md",
-          "lg"
+          "lg",
+          "auto"
         ],
         "description": "Height of a table cell"
       },
@@ -227,6 +228,9 @@
           "type": {
             "type": "string",
             "const": "auto"
+          },
+          "wrapText": {
+            "type": "boolean"
           }
         },
         "description": "Auto mode table cell options"
@@ -395,6 +399,9 @@
           },
           "applyToRow": {
             "type": "boolean"
+          },
+          "wrapText": {
+            "type": "boolean"
           }
         },
         "description": "Colored background cell options"
@@ -409,6 +416,9 @@
           "type": {
             "type": "string",
             "const": "color-text"
+          },
+          "wrapText": {
+            "type": "boolean"
           }
         },
         "description": "Colored text cell options"

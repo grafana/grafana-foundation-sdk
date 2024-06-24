@@ -19,7 +19,7 @@
         }
       }
     },
-    "datasource": {
+    "Datasource": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -264,7 +264,7 @@
           }
         },
         "datasource": {
-          "$ref": "#/definitions/datasource",
+          "$ref": "#/definitions/Datasource",
           "description": "The datasource"
         },
         "dropPercent": {

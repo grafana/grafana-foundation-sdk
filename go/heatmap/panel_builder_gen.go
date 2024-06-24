@@ -626,6 +626,16 @@ func (builder *PanelBuilder) ExemplarsColor(color string) *PanelBuilder {
 	return builder
 }
 
+// Controls which axis to allow selection on
+func (builder *PanelBuilder) SelectionMode(selectionMode HeatmapSelectionMode) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).SelectionMode = &selectionMode
+
+	return builder
+}
+
 func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[common.ScaleDistributionConfig]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
 		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
@@ -678,4 +688,5 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.ShowValue("auto")
 	builder.CellGap(1)
 	builder.ExemplarsColor("rgba(255,0,255,0.7)")
+	builder.SelectionMode("x")
 }

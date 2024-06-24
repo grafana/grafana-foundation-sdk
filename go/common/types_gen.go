@@ -492,6 +492,15 @@ const (
 	BigValueTextModeNone         BigValueTextMode = "none"
 )
 
+// TODO docs
+type PercentChangeColorMode string
+
+const (
+	PercentChangeColorModeStandard    PercentChangeColorMode = "standard"
+	PercentChangeColorModeInverted    PercentChangeColorMode = "inverted"
+	PercentChangeColorModeSameAsValue PercentChangeColorMode = "same_as_value"
+)
+
 // TODO -- should not be table specific!
 // TODO docs
 type FieldTextAlignment string
@@ -688,12 +697,14 @@ type TableFooterOptions struct {
 
 // Auto mode table cell options
 type TableAutoCellOptions struct {
-	Type string `json:"type"`
+	Type     string `json:"type"`
+	WrapText *bool  `json:"wrapText,omitempty"`
 }
 
 // Colored text cell options
 type TableColorTextCellOptions struct {
-	Type string `json:"type"`
+	Type     string `json:"type"`
+	WrapText *bool  `json:"wrapText,omitempty"`
 }
 
 // Json view cell options
@@ -764,15 +775,17 @@ type TableColoredBackgroundCellOptions struct {
 	Type       string                          `json:"type"`
 	Mode       *TableCellBackgroundDisplayMode `json:"mode,omitempty"`
 	ApplyToRow *bool                           `json:"applyToRow,omitempty"`
+	WrapText   *bool                           `json:"wrapText,omitempty"`
 }
 
 // Height of a table cell
 type TableCellHeight string
 
 const (
-	TableCellHeightSm TableCellHeight = "sm"
-	TableCellHeightMd TableCellHeight = "md"
-	TableCellHeightLg TableCellHeight = "lg"
+	TableCellHeightSm   TableCellHeight = "sm"
+	TableCellHeightMd   TableCellHeight = "md"
+	TableCellHeightLg   TableCellHeight = "lg"
+	TableCellHeightAuto TableCellHeight = "auto"
 )
 
 // Table cell options. Each cell has a display mode

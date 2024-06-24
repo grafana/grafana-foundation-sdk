@@ -10,15 +10,16 @@ import (
 )
 
 type Options struct {
-	GraphMode         common.BigValueGraphMode      `json:"graphMode"`
-	ColorMode         common.BigValueColorMode      `json:"colorMode"`
-	JustifyMode       common.BigValueJustifyMode    `json:"justifyMode"`
-	TextMode          common.BigValueTextMode       `json:"textMode"`
-	WideLayout        bool                          `json:"wideLayout"`
-	ReduceOptions     common.ReduceDataOptions      `json:"reduceOptions"`
-	Text              *common.VizTextDisplayOptions `json:"text,omitempty"`
-	ShowPercentChange bool                          `json:"showPercentChange"`
-	Orientation       common.VizOrientation         `json:"orientation"`
+	GraphMode              common.BigValueGraphMode      `json:"graphMode"`
+	ColorMode              common.BigValueColorMode      `json:"colorMode"`
+	JustifyMode            common.BigValueJustifyMode    `json:"justifyMode"`
+	TextMode               common.BigValueTextMode       `json:"textMode"`
+	WideLayout             bool                          `json:"wideLayout"`
+	ShowPercentChange      bool                          `json:"showPercentChange"`
+	ReduceOptions          common.ReduceDataOptions      `json:"reduceOptions"`
+	Text                   *common.VizTextDisplayOptions `json:"text,omitempty"`
+	PercentChangeColorMode common.PercentChangeColorMode `json:"percentChangeColorMode"`
+	Orientation            common.VizOrientation         `json:"orientation"`
 }
 
 func VariantConfig() cogvariants.PanelcfgConfig {

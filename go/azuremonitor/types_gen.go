@@ -38,14 +38,14 @@ type AzureMonitorQuery struct {
 	ResourceGroup *string `json:"resourceGroup,omitempty"`
 	Namespace     *string `json:"namespace,omitempty"`
 	Resource      *string `json:"resource,omitempty"`
+	Region        *string `json:"region,omitempty"`
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	Datasource any `json:"datasource,omitempty"`
-	// Azure Monitor query type.
-	// queryType: #AzureQueryType
-	Region *string `json:"region,omitempty"`
+	// Used only for exemplar queries from Prometheus
+	Query *string `json:"query,omitempty"`
 }
 
 func (resource AzureMonitorQuery) ImplementsDataqueryVariant() {}
@@ -81,6 +81,7 @@ const (
 	AzureQueryTypeWorkspacesQuery           AzureQueryType = "Azure Workspaces"
 	AzureQueryTypeLocationsQuery            AzureQueryType = "Azure Regions"
 	AzureQueryTypeGrafanaTemplateVariableFn AzureQueryType = "Grafana Template Variable Function"
+	AzureQueryTypeTraceExemplar             AzureQueryType = "traceql"
 )
 
 type AzureMetricQuery struct {
@@ -136,6 +137,8 @@ type AzureLogsQuery struct {
 	DashboardTime *bool `json:"dashboardTime,omitempty"`
 	// If dashboardTime is set to true this value dictates which column the time filter will be applied to. Defaults to the first tables timeSpan column, the first datetime column found, or TimeGenerated
 	TimeColumn *string `json:"timeColumn,omitempty"`
+	// If set to true the query will be run as a basic logs query
+	BasicLogsQuery *bool `json:"basicLogsQuery,omitempty"`
 	// Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
 	Workspace *string `json:"workspace,omitempty"`
 	// @deprecated Use resources instead

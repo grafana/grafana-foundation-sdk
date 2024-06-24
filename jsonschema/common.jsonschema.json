@@ -757,6 +757,14 @@
       ],
       "description": "TODO docs"
     },
+    "PercentChangeColorMode": {
+      "enum": [
+        "standard",
+        "inverted",
+        "same_as_value"
+      ],
+      "description": "TODO docs"
+    },
     "FieldTextAlignment": {
       "enum": [
         "auto",
@@ -1115,6 +1123,9 @@
         "type": {
           "type": "string",
           "const": "auto"
+        },
+        "wrapText": {
+          "type": "boolean"
         }
       },
       "description": "Auto mode table cell options"
@@ -1129,6 +1140,9 @@
         "type": {
           "type": "string",
           "const": "color-text"
+        },
+        "wrapText": {
+          "type": "boolean"
         }
       },
       "description": "Colored text cell options"
@@ -1339,6 +1353,9 @@
         },
         "applyToRow": {
           "type": "boolean"
+        },
+        "wrapText": {
+          "type": "boolean"
         }
       },
       "description": "Colored background cell options"
@@ -1347,7 +1364,8 @@
       "enum": [
         "sm",
         "md",
-        "lg"
+        "lg",
+        "auto"
       ],
       "description": "Height of a table cell"
     },
@@ -1555,17 +1573,7 @@
       "description": "Field options for each field within a table (e.g 10, \"The String\", 64.20, etc.)\nGenerally defines alignment, filtering capabilties, display options, etc."
     },
     "TimeZone": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/TimeZoneUtc"
-        },
-        {
-          "$ref": "#/definitions/TimeZoneBrowser"
-        },
-        {
-          "type": "string"
-        }
-      ],
+      "type": "string",
       "description": "A specific timezone from https://en.wikipedia.org/wiki/Tz_database"
     }
   }

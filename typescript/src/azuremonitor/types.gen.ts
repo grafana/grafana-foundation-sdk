@@ -28,14 +28,14 @@ export interface AzureMonitorQuery {
 	resourceGroup?: string;
 	namespace?: string;
 	resource?: string;
+	region?: string;
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	datasource?: any;
-	// Azure Monitor query type.
-	// queryType: #AzureQueryType
-	region?: string;
+	// Used only for exemplar queries from Prometheus
+	query?: string;
 	_implementsDataqueryVariant(): void;
 }
 
@@ -58,6 +58,7 @@ export enum AzureQueryType {
 	WorkspacesQuery = "Azure Workspaces",
 	LocationsQuery = "Azure Regions",
 	GrafanaTemplateVariableFn = "Grafana Template Variable Function",
+	TraceExemplar = "traceql",
 }
 
 export const defaultAzureQueryType = (): AzureQueryType => (AzureQueryType.AzureMonitor);
@@ -118,6 +119,8 @@ export interface AzureLogsQuery {
 	dashboardTime?: boolean;
 	// If dashboardTime is set to true this value dictates which column the time filter will be applied to. Defaults to the first tables timeSpan column, the first datetime column found, or TimeGenerated
 	timeColumn?: string;
+	// If set to true the query will be run as a basic logs query
+	basicLogsQuery?: boolean;
 	// Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
 	workspace?: string;
 	// @deprecated Use resources instead

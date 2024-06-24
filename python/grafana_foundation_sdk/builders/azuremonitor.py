@@ -130,6 +130,11 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     
         return self
     
+    def region(self, region: str) -> typing.Self:        
+        self._internal.region = region
+    
+        return self
+    
     def datasource(self, datasource: object) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
@@ -142,13 +147,12 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     
         return self
     
-    def region(self, region: str) -> typing.Self:    
+    def query(self, query: str) -> typing.Self:    
         """
-        Azure Monitor query type.
-        queryType: #AzureQueryType
+        Used only for exemplar queries from Prometheus
         """
             
-        self._internal.region = region
+        self._internal.query = query
     
         return self
     
@@ -384,6 +388,15 @@ class AzureLogsQuery(cogbuilder.Builder[azuremonitor.AzureLogsQuery]):
         """
             
         self._internal.time_column = time_column
+    
+        return self
+    
+    def basic_logs_query(self, basic_logs_query: bool) -> typing.Self:    
+        """
+        If set to true the query will be run as a basic logs query
+        """
+            
+        self._internal.basic_logs_query = basic_logs_query
     
         return self
     

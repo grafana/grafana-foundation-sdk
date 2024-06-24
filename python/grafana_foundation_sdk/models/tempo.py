@@ -39,15 +39,17 @@ class TempoQuery(cogvariants.Dataquery):
     filters: list['TraceqlFilter']
     # Filters that are used to query the metrics summary
     group_by: typing.Optional[list['TraceqlFilter']]
+    # The type of the table that is used to display the search results
+    table_type: typing.Optional['SearchTableType']
     # For mixed data sources the selected datasource is on the query level.
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[object]
-    # The type of the table that is used to display the search results
-    table_type: typing.Optional['SearchTableType']
+    # For metric queries, the step size to use
+    step: typing.Optional[str]
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, datasource: typing.Optional[object] = None, table_type: typing.Optional['SearchTableType'] = None):
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, table_type: typing.Optional['SearchTableType'] = None, datasource: typing.Optional[object] = None, step: typing.Optional[str] = None):
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -63,8 +65,9 @@ class TempoQuery(cogvariants.Dataquery):
         self.spss = spss
         self.filters = filters if filters is not None else []
         self.group_by = group_by
-        self.datasource = datasource
         self.table_type = table_type
+        self.datasource = datasource
+        self.step = step
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -97,10 +100,12 @@ class TempoQuery(cogvariants.Dataquery):
             payload["spss"] = self.spss
         if self.group_by is not None:
             payload["groupBy"] = self.group_by
-        if self.datasource is not None:
-            payload["datasource"] = self.datasource
         if self.table_type is not None:
             payload["tableType"] = self.table_type
+        if self.datasource is not None:
+            payload["datasource"] = self.datasource
+        if self.step is not None:
+            payload["step"] = self.step
         return payload
 
     @classmethod
@@ -137,10 +142,12 @@ class TempoQuery(cogvariants.Dataquery):
             args["filters"] = data["filters"]
         if "groupBy" in data:
             args["group_by"] = data["groupBy"]
+        if "tableType" in data:
+            args["table_type"] = data["tableType"]
         if "datasource" in data:
             args["datasource"] = data["datasource"]
-        if "tableType" in data:
-            args["table_type"] = data["tableType"]        
+        if "step" in data:
+            args["step"] = data["step"]        
 
         return cls(**args)
 

@@ -9,7 +9,7 @@ from ..cog import variants as cogvariants
 class Query(cogbuilder.Builder[alerting.Query]):    
     _internal: alerting.Query
 
-    def __init__(self, ref_id: typing.Optional[str]):
+    def __init__(self, ref_id: str):
         self._internal = alerting.Query()        
         self._internal.ref_id = ref_id
 
@@ -46,7 +46,7 @@ class Query(cogbuilder.Builder[alerting.Query]):
 class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):    
     _internal: alerting.RuleGroup
 
-    def __init__(self, title: typing.Optional[str]):
+    def __init__(self, title: str):
         self._internal = alerting.RuleGroup()        
         self._internal.title = title
 

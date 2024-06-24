@@ -460,6 +460,15 @@ func (builder *PanelBuilder) WideLayout(wideLayout bool) *PanelBuilder {
 	return builder
 }
 
+func (builder *PanelBuilder) ShowPercentChange(showPercentChange bool) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).ShowPercentChange = showPercentChange
+
+	return builder
+}
+
 func (builder *PanelBuilder) ReduceOptions(reduceOptions cog.Builder[common.ReduceDataOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
@@ -488,11 +497,11 @@ func (builder *PanelBuilder) Text(text cog.Builder[common.VizTextDisplayOptions]
 	return builder
 }
 
-func (builder *PanelBuilder) ShowPercentChange(showPercentChange bool) *PanelBuilder {
+func (builder *PanelBuilder) PercentChangeColorMode(percentChangeColorMode common.PercentChangeColorMode) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).ShowPercentChange = showPercentChange
+	builder.internal.Options.(*Options).PercentChangeColorMode = percentChangeColorMode
 
 	return builder
 }
@@ -516,4 +525,5 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.TextMode("auto")
 	builder.WideLayout(true)
 	builder.ShowPercentChange(false)
+	builder.PercentChangeColorMode("standard")
 }

@@ -97,6 +97,11 @@ export class AzureMonitorQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
+    region(region: string): this {
+        this.internal.region = region;
+        return this;
+    }
+
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
@@ -106,10 +111,9 @@ export class AzureMonitorQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
-    // Azure Monitor query type.
-    // queryType: #AzureQueryType
-    region(region: string): this {
-        this.internal.region = region;
+    // Used only for exemplar queries from Prometheus
+    query(query: string): this {
+        this.internal.query = query;
         return this;
     }
 }

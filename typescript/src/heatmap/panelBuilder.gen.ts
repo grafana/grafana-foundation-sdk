@@ -569,6 +569,15 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Controls which axis to allow selection on
+    selectionMode(selectionMode: heatmap.HeatmapSelectionMode): this {
+        if (!this.internal.options) {
+            this.internal.options = heatmap.defaultOptions();
+        }
+        this.internal.options.selectionMode = selectionMode;
+        return this;
+    }
+
     scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>): this {
         if (!this.internal.fieldConfig) {
             this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
