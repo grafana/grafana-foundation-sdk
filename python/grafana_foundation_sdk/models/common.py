@@ -2605,7 +2605,7 @@ class TableFieldOptions:
 
 
 # A specific timezone from https://en.wikipedia.org/wiki/Tz_database
-TimeZone: typing.TypeAlias = typing.Union[typing.Literal["utc"], typing.Literal["browser"], str]
+TimeZone: typing.TypeAlias = str
 
 
 
