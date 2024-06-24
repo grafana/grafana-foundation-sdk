@@ -496,6 +496,52 @@ func (builder *PanelBuilder) DedupStrategy(dedupStrategy common.LogsDedupStrateg
 	return builder
 }
 
+// TODO: figure out how to define callbacks
+func (builder *PanelBuilder) OnClickFilterLabel(onClickFilterLabel any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).OnClickFilterLabel = &onClickFilterLabel
+
+	return builder
+}
+
+func (builder *PanelBuilder) OnClickFilterOutLabel(onClickFilterOutLabel any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).OnClickFilterOutLabel = &onClickFilterOutLabel
+
+	return builder
+}
+
+func (builder *PanelBuilder) IsFilterLabelActive(isFilterLabelActive any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).IsFilterLabelActive = &isFilterLabelActive
+
+	return builder
+}
+
+func (builder *PanelBuilder) OnClickFilterString(onClickFilterString any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).OnClickFilterString = &onClickFilterString
+
+	return builder
+}
+
+func (builder *PanelBuilder) OnClickFilterOutString(onClickFilterOutString any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).OnClickFilterOutString = &onClickFilterOutString
+
+	return builder
+}
+
 func (builder *PanelBuilder) applyDefaults() {
 	builder.Transparent(false)
 	builder.Height(9)

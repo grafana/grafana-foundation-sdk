@@ -34,16 +34,16 @@ class AzureMonitorQuery(cogvariants.Dataquery):
     resource_group: typing.Optional[str]
     namespace: typing.Optional[str]
     resource: typing.Optional[str]
+    region: typing.Optional[str]
     # For mixed data sources the selected datasource is on the query level.
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[object]
-    # Azure Monitor query type.
-    # queryType: #AzureQueryType
-    region: typing.Optional[str]
+    # Used only for exemplar queries from Prometheus
+    query: typing.Optional[str]
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['AzureMetricQuery'] = None, azure_log_analytics: typing.Optional['AzureLogsQuery'] = None, azure_resource_graph: typing.Optional['AzureResourceGraphQuery'] = None, azure_traces: typing.Optional['AzureTracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, datasource: typing.Optional[object] = None, region: typing.Optional[str] = None):
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['AzureMetricQuery'] = None, azure_log_analytics: typing.Optional['AzureLogsQuery'] = None, azure_resource_graph: typing.Optional['AzureResourceGraphQuery'] = None, azure_traces: typing.Optional['AzureTracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, region: typing.Optional[str] = None, datasource: typing.Optional[object] = None, query: typing.Optional[str] = None):
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -57,8 +57,9 @@ class AzureMonitorQuery(cogvariants.Dataquery):
         self.resource_group = resource_group
         self.namespace = namespace
         self.resource = resource
-        self.datasource = datasource
         self.region = region
+        self.datasource = datasource
+        self.query = query
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -88,10 +89,12 @@ class AzureMonitorQuery(cogvariants.Dataquery):
             payload["namespace"] = self.namespace
         if self.resource is not None:
             payload["resource"] = self.resource
-        if self.datasource is not None:
-            payload["datasource"] = self.datasource
         if self.region is not None:
             payload["region"] = self.region
+        if self.datasource is not None:
+            payload["datasource"] = self.datasource
+        if self.query is not None:
+            payload["query"] = self.query
         return payload
 
     @classmethod
@@ -124,10 +127,12 @@ class AzureMonitorQuery(cogvariants.Dataquery):
             args["namespace"] = data["namespace"]
         if "resource" in data:
             args["resource"] = data["resource"]
+        if "region" in data:
+            args["region"] = data["region"]
         if "datasource" in data:
             args["datasource"] = data["datasource"]
-        if "region" in data:
-            args["region"] = data["region"]        
+        if "query" in data:
+            args["query"] = data["query"]        
 
         return cls(**args)
 
@@ -156,6 +161,7 @@ class AzureQueryType(enum.StrEnum):
     WORKSPACES_QUERY = "Azure Workspaces"
     LOCATIONS_QUERY = "Azure Regions"
     GRAFANA_TEMPLATE_VARIABLE_FN = "Grafana Template Variable Function"
+    TRACE_EXEMPLAR = "traceql"
 
 
 class AzureMetricQuery:
@@ -318,6 +324,8 @@ class AzureLogsQuery:
     dashboard_time: typing.Optional[bool]
     # If dashboardTime is set to true this value dictates which column the time filter will be applied to. Defaults to the first tables timeSpan column, the first datetime column found, or TimeGenerated
     time_column: typing.Optional[str]
+    # If set to true the query will be run as a basic logs query
+    basic_logs_query: typing.Optional[bool]
     # Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
     workspace: typing.Optional[str]
     # @deprecated Use resources instead
@@ -325,12 +333,13 @@ class AzureLogsQuery:
     # @deprecated Use dashboardTime instead
     intersect_time: typing.Optional[bool]
 
-    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, dashboard_time: typing.Optional[bool] = None, time_column: typing.Optional[str] = None, workspace: typing.Optional[str] = None, resource: typing.Optional[str] = None, intersect_time: typing.Optional[bool] = None):
+    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, dashboard_time: typing.Optional[bool] = None, time_column: typing.Optional[str] = None, basic_logs_query: typing.Optional[bool] = None, workspace: typing.Optional[str] = None, resource: typing.Optional[str] = None, intersect_time: typing.Optional[bool] = None):
         self.query = query
         self.result_format = result_format
         self.resources = resources
         self.dashboard_time = dashboard_time
         self.time_column = time_column
+        self.basic_logs_query = basic_logs_query
         self.workspace = workspace
         self.resource = resource
         self.intersect_time = intersect_time
@@ -348,6 +357,8 @@ class AzureLogsQuery:
             payload["dashboardTime"] = self.dashboard_time
         if self.time_column is not None:
             payload["timeColumn"] = self.time_column
+        if self.basic_logs_query is not None:
+            payload["basicLogsQuery"] = self.basic_logs_query
         if self.workspace is not None:
             payload["workspace"] = self.workspace
         if self.resource is not None:
@@ -370,6 +381,8 @@ class AzureLogsQuery:
             args["dashboard_time"] = data["dashboardTime"]
         if "timeColumn" in data:
             args["time_column"] = data["timeColumn"]
+        if "basicLogsQuery" in data:
+            args["basic_logs_query"] = data["basicLogsQuery"]
         if "workspace" in data:
             args["workspace"] = data["workspace"]
         if "resource" in data:

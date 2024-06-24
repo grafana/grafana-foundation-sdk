@@ -25,6 +25,15 @@ const (
 	HeatmapColorScaleExponential HeatmapColorScale = "exponential"
 )
 
+// Controls which axis to allow selection on
+type HeatmapSelectionMode string
+
+const (
+	HeatmapSelectionModeX  HeatmapSelectionMode = "x"
+	HeatmapSelectionModeY  HeatmapSelectionMode = "y"
+	HeatmapSelectionModeXy HeatmapSelectionMode = "xy"
+)
+
 // Controls various color options
 type HeatmapColorOptions struct {
 	// Sets the color mode
@@ -152,6 +161,8 @@ type Options struct {
 	Tooltip HeatmapTooltip `json:"tooltip"`
 	// Controls exemplar options
 	Exemplars ExemplarConfig `json:"exemplars"`
+	// Controls which axis to allow selection on
+	SelectionMode *HeatmapSelectionMode `json:"selectionMode,omitempty"`
 }
 
 type FieldConfig struct {

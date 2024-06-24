@@ -15,8 +15,14 @@ class Options:
     enable_log_details: bool
     sort_order: common.LogsSortOrder
     dedup_strategy: common.LogsDedupStrategy
+    # TODO: figure out how to define callbacks
+    on_click_filter_label: typing.Optional[object]
+    on_click_filter_out_label: typing.Optional[object]
+    is_filter_label_active: typing.Optional[object]
+    on_click_filter_string: typing.Optional[object]
+    on_click_filter_out_string: typing.Optional[object]
 
-    def __init__(self, show_labels: bool = False, show_common_labels: bool = False, show_time: bool = False, show_log_context_toggle: bool = False, wrap_log_message: bool = False, prettify_log_message: bool = False, enable_log_details: bool = False, sort_order: typing.Optional[common.LogsSortOrder] = None, dedup_strategy: typing.Optional[common.LogsDedupStrategy] = None):
+    def __init__(self, show_labels: bool = False, show_common_labels: bool = False, show_time: bool = False, show_log_context_toggle: bool = False, wrap_log_message: bool = False, prettify_log_message: bool = False, enable_log_details: bool = False, sort_order: typing.Optional[common.LogsSortOrder] = None, dedup_strategy: typing.Optional[common.LogsDedupStrategy] = None, on_click_filter_label: typing.Optional[object] = None, on_click_filter_out_label: typing.Optional[object] = None, is_filter_label_active: typing.Optional[object] = None, on_click_filter_string: typing.Optional[object] = None, on_click_filter_out_string: typing.Optional[object] = None):
         self.show_labels = show_labels
         self.show_common_labels = show_common_labels
         self.show_time = show_time
@@ -26,6 +32,11 @@ class Options:
         self.enable_log_details = enable_log_details
         self.sort_order = sort_order if sort_order is not None else common.LogsSortOrder.DESCENDING
         self.dedup_strategy = dedup_strategy if dedup_strategy is not None else common.LogsDedupStrategy.NONE
+        self.on_click_filter_label = on_click_filter_label
+        self.on_click_filter_out_label = on_click_filter_out_label
+        self.is_filter_label_active = is_filter_label_active
+        self.on_click_filter_string = on_click_filter_string
+        self.on_click_filter_out_string = on_click_filter_out_string
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -39,6 +50,16 @@ class Options:
             "sortOrder": self.sort_order,
             "dedupStrategy": self.dedup_strategy,
         }
+        if self.on_click_filter_label is not None:
+            payload["onClickFilterLabel"] = self.on_click_filter_label
+        if self.on_click_filter_out_label is not None:
+            payload["onClickFilterOutLabel"] = self.on_click_filter_out_label
+        if self.is_filter_label_active is not None:
+            payload["isFilterLabelActive"] = self.is_filter_label_active
+        if self.on_click_filter_string is not None:
+            payload["onClickFilterString"] = self.on_click_filter_string
+        if self.on_click_filter_out_string is not None:
+            payload["onClickFilterOutString"] = self.on_click_filter_out_string
         return payload
 
     @classmethod
@@ -62,7 +83,17 @@ class Options:
         if "sortOrder" in data:
             args["sort_order"] = data["sortOrder"]
         if "dedupStrategy" in data:
-            args["dedup_strategy"] = data["dedupStrategy"]        
+            args["dedup_strategy"] = data["dedupStrategy"]
+        if "onClickFilterLabel" in data:
+            args["on_click_filter_label"] = data["onClickFilterLabel"]
+        if "onClickFilterOutLabel" in data:
+            args["on_click_filter_out_label"] = data["onClickFilterOutLabel"]
+        if "isFilterLabelActive" in data:
+            args["is_filter_label_active"] = data["isFilterLabelActive"]
+        if "onClickFilterString" in data:
+            args["on_click_filter_string"] = data["onClickFilterString"]
+        if "onClickFilterOutString" in data:
+            args["on_click_filter_out_string"] = data["onClickFilterOutString"]        
 
         return cls(**args)
 

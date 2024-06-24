@@ -84,14 +84,18 @@
           },
           "description": "Filters that are used to query the metrics summary"
         },
+        "tableType": {
+          "$ref": "#/definitions/SearchTableType",
+          "description": "The type of the table that is used to display the search results"
+        },
         "datasource": {
           "type": "object",
           "additionalProperties": {},
           "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
         },
-        "tableType": {
-          "$ref": "#/definitions/SearchTableType",
-          "description": "The type of the table that is used to display the search results"
+        "step": {
+          "type": "string",
+          "description": "For metric queries, the step size to use"
         }
       }
     },

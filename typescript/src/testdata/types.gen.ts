@@ -10,7 +10,7 @@ export interface CSVWave {
 export const defaultCSVWave = (): CSVWave => ({
 });
 
-export interface datasource {
+export interface Datasource {
 	// The apiserver version
 	apiVersion?: string;
 	// The datasource plugin type
@@ -19,7 +19,7 @@ export interface datasource {
 	uid?: string;
 }
 
-export const defaultDatasource = (): datasource => ({
+export const defaultDatasource = (): Datasource => ({
 	type: "",
 });
 
@@ -148,7 +148,7 @@ export interface dataquery {
 	csvFileName?: string;
 	csvWave?: CSVWave[];
 	// The datasource
-	datasource?: datasource;
+	datasource?: Datasource;
 	// Drop percentage (the chance we will lose a point 0-100)
 	dropPercent?: number;
 	// Possible enum values:

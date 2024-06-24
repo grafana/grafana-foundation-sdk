@@ -33,13 +33,15 @@ export interface TempoQuery {
 	filters: TraceqlFilter[];
 	// Filters that are used to query the metrics summary
 	groupBy?: TraceqlFilter[];
+	// The type of the table that is used to display the search results
+	tableType?: SearchTableType;
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	datasource?: any;
-	// The type of the table that is used to display the search results
-	tableType?: SearchTableType;
+	// For metric queries, the step size to use
+	step?: string;
 	_implementsDataqueryVariant(): void;
 }
 

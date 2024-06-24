@@ -19,6 +19,15 @@ export enum HeatmapColorScale {
 
 export const defaultHeatmapColorScale = (): HeatmapColorScale => (HeatmapColorScale.Linear);
 
+// Controls which axis to allow selection on
+export enum HeatmapSelectionMode {
+	X = "x",
+	Y = "y",
+	Xy = "xy",
+}
+
+export const defaultHeatmapSelectionMode = (): HeatmapSelectionMode => (HeatmapSelectionMode.X);
+
 // Controls various color options
 export interface HeatmapColorOptions {
 	// Sets the color mode
@@ -178,6 +187,8 @@ export interface Options {
 	tooltip: HeatmapTooltip;
 	// Controls exemplar options
 	exemplars: ExemplarConfig;
+	// Controls which axis to allow selection on
+	selectionMode?: HeatmapSelectionMode;
 }
 
 export const defaultOptions = (): Options => ({
@@ -190,6 +201,7 @@ export const defaultOptions = (): Options => ({
 	legend: { show: true, },
 	tooltip: defaultHeatmapTooltip(),
 	exemplars: { color: "rgba(255,0,255,0.7)", },
+	selectionMode: HeatmapSelectionMode.X,
 });
 
 export interface FieldConfig {

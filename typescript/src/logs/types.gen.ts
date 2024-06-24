@@ -13,6 +13,12 @@ export interface Options {
 	enableLogDetails: boolean;
 	sortOrder: common.LogsSortOrder;
 	dedupStrategy: common.LogsDedupStrategy;
+	// TODO: figure out how to define callbacks
+	onClickFilterLabel?: any;
+	onClickFilterOutLabel?: any;
+	isFilterLabelActive?: any;
+	onClickFilterString?: any;
+	onClickFilterOutString?: any;
 }
 
 export const defaultOptions = (): Options => ({

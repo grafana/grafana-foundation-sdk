@@ -425,4 +425,45 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         this.internal.options.dedupStrategy = dedupStrategy;
         return this;
     }
+
+    // TODO: figure out how to define callbacks
+    onClickFilterLabel(onClickFilterLabel: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.onClickFilterLabel = onClickFilterLabel;
+        return this;
+    }
+
+    onClickFilterOutLabel(onClickFilterOutLabel: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.onClickFilterOutLabel = onClickFilterOutLabel;
+        return this;
+    }
+
+    isFilterLabelActive(isFilterLabelActive: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.isFilterLabelActive = isFilterLabelActive;
+        return this;
+    }
+
+    onClickFilterString(onClickFilterString: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.onClickFilterString = onClickFilterString;
+        return this;
+    }
+
+    onClickFilterOutString(onClickFilterOutString: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.onClickFilterOutString = onClickFilterOutString;
+        return this;
+    }
 }

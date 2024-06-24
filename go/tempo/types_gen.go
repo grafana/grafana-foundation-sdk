@@ -43,13 +43,15 @@ type TempoQuery struct {
 	Filters []TraceqlFilter `json:"filters"`
 	// Filters that are used to query the metrics summary
 	GroupBy []TraceqlFilter `json:"groupBy,omitempty"`
+	// The type of the table that is used to display the search results
+	TableType *SearchTableType `json:"tableType,omitempty"`
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	Datasource any `json:"datasource,omitempty"`
-	// The type of the table that is used to display the search results
-	TableType *SearchTableType `json:"tableType,omitempty"`
+	// For metric queries, the step size to use
+	Step *string `json:"step,omitempty"`
 }
 
 func (resource TempoQuery) ImplementsDataqueryVariant() {}

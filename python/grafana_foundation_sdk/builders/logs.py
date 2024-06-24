@@ -530,3 +530,47 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def on_click_filter_label(self, on_click_filter_label: object) -> typing.Self:    
+        """
+        TODO: figure out how to define callbacks
+        """
+            
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.on_click_filter_label = on_click_filter_label
+    
+        return self
+    
+    def on_click_filter_out_label(self, on_click_filter_out_label: object) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.on_click_filter_out_label = on_click_filter_out_label
+    
+        return self
+    
+    def is_filter_label_active(self, is_filter_label_active: object) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.is_filter_label_active = is_filter_label_active
+    
+        return self
+    
+    def on_click_filter_string(self, on_click_filter_string: object) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.on_click_filter_string = on_click_filter_string
+    
+        return self
+    
+    def on_click_filter_out_string(self, on_click_filter_out_string: object) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.on_click_filter_out_string = on_click_filter_out_string
+    
+        return self
+    

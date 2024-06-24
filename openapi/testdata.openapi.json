@@ -28,7 +28,7 @@
           }
         }
       },
-      "datasource": {
+      "Datasource": {
         "type": "object",
         "additionalProperties": false,
         "required": [
@@ -273,7 +273,7 @@
             }
           },
           "datasource": {
-            "$ref": "#/components/schemas/datasource",
+            "$ref": "#/components/schemas/Datasource",
             "description": "The datasource"
           },
           "dropPercent": {

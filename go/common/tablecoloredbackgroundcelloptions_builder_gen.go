@@ -53,5 +53,11 @@ func (builder *TableColoredBackgroundCellOptionsBuilder) ApplyToRow(applyToRow b
 	return builder
 }
 
+func (builder *TableColoredBackgroundCellOptionsBuilder) WrapText(wrapText bool) *TableColoredBackgroundCellOptionsBuilder {
+	builder.internal.WrapText = &wrapText
+
+	return builder
+}
+
 func (builder *TableColoredBackgroundCellOptionsBuilder) applyDefaults() {
 }

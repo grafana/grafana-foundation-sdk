@@ -108,6 +108,12 @@ export class TempoQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
+    // The type of the table that is used to display the search results
+    tableType(tableType: tempo.SearchTableType): this {
+        this.internal.tableType = tableType;
+        return this;
+    }
+
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
@@ -117,9 +123,9 @@ export class TempoQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
-    // The type of the table that is used to display the search results
-    tableType(tableType: tempo.SearchTableType): this {
-        this.internal.tableType = tableType;
+    // For metric queries, the step size to use
+    step(step: string): this {
+        this.internal.step = step;
         return this;
     }
 }

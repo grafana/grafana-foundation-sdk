@@ -1283,6 +1283,46 @@ class TableFooterOptions(cogbuilder.Builder[common.TableFooterOptions]):
         return self
     
 
+class TableAutoCellOptions(cogbuilder.Builder[common.TableAutoCellOptions]):    
+    """
+    Auto mode table cell options
+    """
+    
+    _internal: common.TableAutoCellOptions
+
+    def __init__(self):
+        self._internal = common.TableAutoCellOptions()        
+        self._internal.type_val = "auto"
+
+    def build(self) -> common.TableAutoCellOptions:
+        return self._internal    
+    
+    def wrap_text(self, wrap_text: bool) -> typing.Self:        
+        self._internal.wrap_text = wrap_text
+    
+        return self
+    
+
+class TableColorTextCellOptions(cogbuilder.Builder[common.TableColorTextCellOptions]):    
+    """
+    Colored text cell options
+    """
+    
+    _internal: common.TableColorTextCellOptions
+
+    def __init__(self):
+        self._internal = common.TableColorTextCellOptions()        
+        self._internal.type_val = "color-text"
+
+    def build(self) -> common.TableColorTextCellOptions:
+        return self._internal    
+    
+    def wrap_text(self, wrap_text: bool) -> typing.Self:        
+        self._internal.wrap_text = wrap_text
+    
+        return self
+    
+
 class TableBarGaugeCellOptions(cogbuilder.Builder[common.TableBarGaugeCellOptions]):    
     """
     Gauge cell options
@@ -1520,6 +1560,11 @@ class TableColoredBackgroundCellOptions(cogbuilder.Builder[common.TableColoredBa
     
     def apply_to_row(self, apply_to_row: bool) -> typing.Self:        
         self._internal.apply_to_row = apply_to_row
+    
+        return self
+    
+    def wrap_text(self, wrap_text: bool) -> typing.Self:        
+        self._internal.wrap_text = wrap_text
     
         return self
     

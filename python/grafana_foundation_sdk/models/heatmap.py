@@ -24,6 +24,16 @@ class HeatmapColorScale(enum.StrEnum):
     EXPONENTIAL = "exponential"
 
 
+class HeatmapSelectionMode(enum.StrEnum):
+    """
+    Controls which axis to allow selection on
+    """
+
+    X = "x"
+    Y = "y"
+    XY = "xy"
+
+
 class HeatmapColorOptions:
     """
     Controls various color options
@@ -464,8 +474,10 @@ class Options:
     tooltip: 'HeatmapTooltip'
     # Controls exemplar options
     exemplars: 'ExemplarConfig'
+    # Controls which axis to allow selection on
+    selection_mode: typing.Optional['HeatmapSelectionMode']
 
-    def __init__(self, calculate: typing.Optional[bool] = False, calculation: typing.Optional[common.HeatmapCalculationOptions] = None, color: typing.Optional['HeatmapColorOptions'] = None, filter_values: typing.Optional['FilterValueRange'] = None, rows_frame: typing.Optional['RowsHeatmapOptions'] = None, show_value: typing.Optional[common.VisibilityMode] = None, cell_gap: typing.Optional[int] = 1, cell_radius: typing.Optional[float] = None, cell_values: typing.Optional['CellValues'] = None, y_axis: typing.Optional['YAxisConfig'] = None, legend: typing.Optional['HeatmapLegend'] = None, tooltip: typing.Optional['HeatmapTooltip'] = None, exemplars: typing.Optional['ExemplarConfig'] = None):
+    def __init__(self, calculate: typing.Optional[bool] = False, calculation: typing.Optional[common.HeatmapCalculationOptions] = None, color: typing.Optional['HeatmapColorOptions'] = None, filter_values: typing.Optional['FilterValueRange'] = None, rows_frame: typing.Optional['RowsHeatmapOptions'] = None, show_value: typing.Optional[common.VisibilityMode] = None, cell_gap: typing.Optional[int] = 1, cell_radius: typing.Optional[float] = None, cell_values: typing.Optional['CellValues'] = None, y_axis: typing.Optional['YAxisConfig'] = None, legend: typing.Optional['HeatmapLegend'] = None, tooltip: typing.Optional['HeatmapTooltip'] = None, exemplars: typing.Optional['ExemplarConfig'] = None, selection_mode: typing.Optional['HeatmapSelectionMode'] = None):
         self.calculate = calculate
         self.calculation = calculation
         self.color = color if color is not None else HeatmapColorOptions(exponent=0.5, fill="dark-orange", reverse=False, scheme="Oranges", steps=64)
@@ -479,6 +491,7 @@ class Options:
         self.legend = legend if legend is not None else HeatmapLegend(show=True)
         self.tooltip = tooltip if tooltip is not None else HeatmapTooltip()
         self.exemplars = exemplars if exemplars is not None else ExemplarConfig(color="rgba(255,0,255,0.7)")
+        self.selection_mode = selection_mode if selection_mode is not None else HeatmapSelectionMode.X
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -503,6 +516,8 @@ class Options:
             payload["cellRadius"] = self.cell_radius
         if self.cell_values is not None:
             payload["cellValues"] = self.cell_values
+        if self.selection_mode is not None:
+            payload["selectionMode"] = self.selection_mode
         return payload
 
     @classmethod
@@ -534,7 +549,9 @@ class Options:
         if "tooltip" in data:
             args["tooltip"] = HeatmapTooltip.from_json(data["tooltip"])
         if "exemplars" in data:
-            args["exemplars"] = ExemplarConfig.from_json(data["exemplars"])        
+            args["exemplars"] = ExemplarConfig.from_json(data["exemplars"])
+        if "selectionMode" in data:
+            args["selection_mode"] = data["selectionMode"]        
 
         return cls(**args)
 

@@ -25,4 +25,9 @@ export class TableColoredBackgroundCellOptionsBuilder implements cog.Builder<com
         this.internal.applyToRow = applyToRow;
         return this;
     }
+
+    wrapText(wrapText: boolean): this {
+        this.internal.wrapText = wrapText;
+        return this;
+    }
 }

@@ -24,6 +24,14 @@
         ],
         "description": "Controls the color scale of the heatmap"
       },
+      "HeatmapSelectionMode": {
+        "enum": [
+          "x",
+          "y",
+          "xy"
+        ],
+        "description": "Controls which axis to allow selection on"
+      },
       "HeatmapColorOptions": {
         "type": "object",
         "additionalProperties": false,
@@ -317,6 +325,11 @@
             "default": {
               "color": "rgba(255,0,255,0.7)"
             }
+          },
+          "selectionMode": {
+            "$ref": "#/components/schemas/HeatmapSelectionMode",
+            "description": "Controls which axis to allow selection on",
+            "default": "x"
           }
         }
       },
