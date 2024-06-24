@@ -42,7 +42,7 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     }
 
     // The datasource
-    datasource(datasource: cog.Builder<testdata.datasource>): this {
+    datasource(datasource: cog.Builder<testdata.Datasource>): this {
         const datasourceResource = datasource.build();
         this.internal.datasource = datasourceResource;
         return this;
