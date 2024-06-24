@@ -12,7 +12,7 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
     __current_x: int = 0
     __last_panel_height: int = 0
 
-    def __init__(self, title: typing.Optional[str]):
+    def __init__(self, title: str):
         self._internal = dashboard.Dashboard()        
         self._internal.title = title
 
@@ -1416,7 +1416,7 @@ class Row(cogbuilder.Builder[dashboard.RowPanel]):
     
     _internal: dashboard.RowPanel
 
-    def __init__(self, title: typing.Optional[str]):
+    def __init__(self, title: str):
         self._internal = dashboard.RowPanel()        
         self._internal.type_val = "row"        
         self._internal.title = title

@@ -146,17 +146,7 @@
         "description": "TODO docs"
       },
       "TimeZone": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TimeZoneUtc"
-          },
-          {
-            "$ref": "#/components/schemas/TimeZoneBrowser"
-          },
-          {
-            "type": "string"
-          }
-        ],
+        "type": "string",
         "description": "A specific timezone from https://en.wikipedia.org/wiki/Tz_database"
       },
       "TimelineValueAlignment": {
@@ -218,16 +208,6 @@
           "none"
         ],
         "description": "TODO docs"
-      },
-      "TimeZoneUtc": {
-        "type": "string",
-        "const": "utc",
-        "description": "Use UTC/GMT timezone"
-      },
-      "TimeZoneBrowser": {
-        "type": "string",
-        "const": "browser",
-        "description": "Use the timezone defined by end user web browser"
       }
     }
   }
