@@ -9,7 +9,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-python3 -m pip install 'grafana_foundation_sdk==1719238386!10.3.0'
+python3 -m pip install 'grafana_foundation_sdk==1719329155!10.3.0'
 ```
 
 ## Example usage
@@ -294,24 +294,12 @@ if __name__ == '__main__':
 
 ## Maturity
 
-> [!WARNING]
-> The code in this repository should be considered experimental. Documentation is only
-available alongside the code. It comes with no support, but we are keen to receive
-feedback and suggestions on how to improve it, though we cannot commit
-to resolution of any particular issue.
+The code in this repository should be considered as "public preview" and is actively developed and maintained by Engineering teams at Grafana.
 
-Grafana Labs defines experimental features as follows:
+While this repository is stable enough to be used in production environments, occasional breaking changes can be expected.
 
-> Projects and features in the Experimental stage are supported only by the Engineering
-teams; on-call support is not available. Documentation is either limited or not provided
-outside of code comments. No SLA is provided.
->
-> Experimental projects or features are primarily intended for open source engineers who
-want to participate in ensuring systems stability, and to gain consensus and approval
-for open source governance projects.
->
-> Projects and features in the Experimental phase are not meant to be used in production
-environments, and the risks are unknown/high.
+> [!NOTE]
+> Bugs and issues are handled solely by Engineering teams. On-call support or SLAs are not available.
 
 ## License
 
