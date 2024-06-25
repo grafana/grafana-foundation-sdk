@@ -1,0 +1,9 @@
+parameters:
+  level: 9 # https://phpstan.org/user-guide/rule-levels
+  paths:
+    - ../../../php/src
+
+  ignoreErrors:
+    - identifier: identical.alwaysFalse # not a big deal, duplicated enum values come from the schema
+      paths:
+        - ../../../php/src/Common/ScaleDirection.php
