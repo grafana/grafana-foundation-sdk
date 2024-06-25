@@ -1388,20 +1388,6 @@
         },
         "description": "Support for legacy graph panel.\n@deprecated this a deprecated panel type"
       },
-      "HeatmapPanel": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "type"
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "heatmap"
-          }
-        },
-        "description": "Support for legacy heatmap panel.\n@deprecated this a deprecated panel type"
-      },
       "TimePicker": {
         "type": "object",
         "additionalProperties": false,

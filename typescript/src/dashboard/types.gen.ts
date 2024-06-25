@@ -908,16 +908,6 @@ export const defaultGraphPanel = (): GraphPanel => ({
 	type: "graph",
 });
 
-// Support for legacy heatmap panel.
-// @deprecated this a deprecated panel type
-export interface HeatmapPanel {
-	type: "heatmap";
-}
-
-export const defaultHeatmapPanel = (): HeatmapPanel => ({
-	type: "heatmap",
-});
-
 export interface TimePicker {
 	// Whether timepicker is visible or not.
 	hidden: boolean;
