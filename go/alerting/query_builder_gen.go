@@ -75,9 +75,6 @@ func (builder *QueryBuilder) RelativeTimeRange(from Duration, to Duration) *Quer
 		builder.internal.RelativeTimeRange = &RelativeTimeRange{}
 	}
 	builder.internal.RelativeTimeRange.From = &from
-	if builder.internal.RelativeTimeRange == nil {
-		builder.internal.RelativeTimeRange = &RelativeTimeRange{}
-	}
 	builder.internal.RelativeTimeRange.To = &to
 
 	return builder
