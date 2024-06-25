@@ -1,0 +1,16 @@
+{
+    "name": "grafana/foundation-sdk",
+    "type": "library",
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/grafana/grafana-foundation-sdk",
+    "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
+    "keywords": [
+        "observability",
+        "sdk",
+        "grafana",
+        "logs",
+        "traces",
+        "metrics"
+    ],
+    "require": {}
+}
