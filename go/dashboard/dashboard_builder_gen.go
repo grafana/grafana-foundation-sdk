@@ -137,12 +137,6 @@ func (builder *DashboardBuilder) Time(from string, to string) *DashboardBuilder 
 		}{}
 	}
 	builder.internal.Time.From = from
-	if builder.internal.Time == nil {
-		builder.internal.Time = &struct {
-			From string `json:"from"`
-			To   string `json:"to"`
-		}{}
-	}
 	builder.internal.Time.To = to
 
 	return builder
