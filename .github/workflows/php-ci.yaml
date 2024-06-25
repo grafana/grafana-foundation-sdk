@@ -28,9 +28,7 @@ jobs:
           ini-values: opcache.enable_cli=1
 
       - name: Install dependencies
-        run: |
-          cd php
-          composer install
+        run: composer install
 
       - name: Lint generated PHP code with phpstan
         run: phpstan analyze --memory-limit 256M -c .config/ci/php/phpstan.neon
