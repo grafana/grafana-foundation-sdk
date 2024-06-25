@@ -5,6 +5,7 @@ This folder contains a collection of Grafana dashboards written in PHP.
 Each example showcases different aspects of building dashboards as code:
 
 * [`custom-panel`](./custom-panel): definition and usage of a _custom_ Panel type
+* [`custom-query`](./custom-query): definition and usage of a _custom_ Query type
 
 ## Running the examples
 
