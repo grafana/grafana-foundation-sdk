@@ -917,12 +917,6 @@ type GraphPanel struct {
 	} `json:"legend,omitempty"`
 }
 
-// Support for legacy heatmap panel.
-// @deprecated this a deprecated panel type
-type HeatmapPanel struct {
-	Type string `json:"type"`
-}
-
 type TimePicker struct {
 	// Whether timepicker is visible or not.
 	Hidden bool `json:"hidden"`

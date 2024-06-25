@@ -1943,29 +1943,6 @@ class GraphPanel:
         return cls(**args)
 
 
-class HeatmapPanel:
-    """
-    Support for legacy heatmap panel.
-    @deprecated this a deprecated panel type
-    """
-
-    type_val: typing.Literal["heatmap"]
-
-    def __init__(self, ):
-        self.type_val = "heatmap"
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        return cls(**args)
-
-
 class TimePicker:
     # Whether timepicker is visible or not.
     hidden: bool
