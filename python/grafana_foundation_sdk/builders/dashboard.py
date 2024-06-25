@@ -131,9 +131,6 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
             self._internal.time = dashboard.DashboardDashboardTime()
         assert isinstance(self._internal.time, dashboard.DashboardDashboardTime)
         self._internal.time.from_val = from_val    
-        if self._internal.time is None:
-            self._internal.time = dashboard.DashboardDashboardTime()
-        assert isinstance(self._internal.time, dashboard.DashboardDashboardTime)
         self._internal.time.to = to
     
         return self
