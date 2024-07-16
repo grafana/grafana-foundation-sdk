@@ -297,4 +297,10 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
         this.internal.snapshot = snapshotResource;
         return this;
     }
+
+    // When set to true, the dashboard will load all panels in the dashboard when it's loaded.
+    preload(preload: boolean): this {
+        this.internal.preload = preload;
+        return this;
+    }
 }

@@ -364,6 +364,15 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
     
         return self
     
+    def preload(self, preload: bool) -> typing.Self:    
+        """
+        When set to true, the dashboard will load all panels in the dashboard when it's loaded.
+        """
+            
+        self._internal.preload = preload
+    
+        return self
+    
 
 class AnnotationTarget(cogbuilder.Builder[dashboard.AnnotationTarget]):    
     """

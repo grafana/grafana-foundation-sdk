@@ -13,7 +13,7 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
     public \Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode;
 
     /**
-     * Whether to use a metric search or metric query. Metric query is referred to as "Metrics Insights" in the AWS console.
+     * Whether to use a metric search or metric insights query
      */
     public ?\Grafana\Foundation\Cloudwatch\MetricQueryType $metricQueryType;
 
@@ -44,7 +44,7 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
     public ?string $expression;
 
     /**
-     * When the metric query type is `metricQueryType` is set to `Query`, this field is used to specify the query string.
+     * When the metric query type is set to `Insights`, this field is used to specify the query string.
      */
     public ?string $sqlExpression;
 
@@ -108,7 +108,7 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
     public ?string $statistic;
 
     /**
-     * When the metric query type is `metricQueryType` is set to `Query` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
+     * When the metric query type is set to `Insights` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
      */
     public ?\Grafana\Foundation\Cloudwatch\SQLExpression $sql;
 

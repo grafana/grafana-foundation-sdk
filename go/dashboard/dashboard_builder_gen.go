@@ -381,6 +381,13 @@ func (builder *DashboardBuilder) Snapshot(snapshot cog.Builder[Snapshot]) *Dashb
 	return builder
 }
 
+// When set to true, the dashboard will load all panels in the dashboard when it's loaded.
+func (builder *DashboardBuilder) Preload(preload bool) *DashboardBuilder {
+	builder.internal.Preload = &preload
+
+	return builder
+}
+
 func (builder *DashboardBuilder) applyDefaults() {
 	builder.Timezone("browser")
 	builder.Tooltip(0)

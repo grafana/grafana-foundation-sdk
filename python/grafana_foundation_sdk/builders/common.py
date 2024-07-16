@@ -1323,6 +1323,31 @@ class TableColorTextCellOptions(cogbuilder.Builder[common.TableColorTextCellOpti
         return self
     
 
+class TableImageCellOptions(cogbuilder.Builder[common.TableImageCellOptions]):    
+    """
+    Json view cell options
+    """
+    
+    _internal: common.TableImageCellOptions
+
+    def __init__(self):
+        self._internal = common.TableImageCellOptions()        
+        self._internal.type_val = "image"
+
+    def build(self) -> common.TableImageCellOptions:
+        return self._internal    
+    
+    def alt(self, alt: str) -> typing.Self:        
+        self._internal.alt = alt
+    
+        return self
+    
+    def title(self, title: str) -> typing.Self:        
+        self._internal.title = title
+    
+        return self
+    
+
 class TableBarGaugeCellOptions(cogbuilder.Builder[common.TableBarGaugeCellOptions]):    
     """
     Gauge cell options
@@ -1593,6 +1618,15 @@ class DataSourceRef(cogbuilder.Builder[common.DataSourceRef]):
         """
             
         self._internal.uid = uid
+    
+        return self
+    
+    def api_version(self, api_version: str) -> typing.Self:    
+        """
+        Datasource API version
+        """
+            
+        self._internal.api_version = api_version
     
         return self
     

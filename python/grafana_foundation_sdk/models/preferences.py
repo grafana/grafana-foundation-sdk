@@ -24,8 +24,10 @@ class Preferences:
     query_history: typing.Optional['QueryHistoryPreference']
     # Cookie preferences
     cookie_preferences: typing.Optional['CookiePreferences']
+    # Navigation preferences
+    navbar: typing.Optional['NavbarPreference']
 
-    def __init__(self, home_dashboard_uid: typing.Optional[str] = None, timezone: typing.Optional[str] = None, week_start: typing.Optional[str] = None, theme: typing.Optional[str] = None, language: typing.Optional[str] = None, query_history: typing.Optional['QueryHistoryPreference'] = None, cookie_preferences: typing.Optional['CookiePreferences'] = None):
+    def __init__(self, home_dashboard_uid: typing.Optional[str] = None, timezone: typing.Optional[str] = None, week_start: typing.Optional[str] = None, theme: typing.Optional[str] = None, language: typing.Optional[str] = None, query_history: typing.Optional['QueryHistoryPreference'] = None, cookie_preferences: typing.Optional['CookiePreferences'] = None, navbar: typing.Optional['NavbarPreference'] = None):
         self.home_dashboard_uid = home_dashboard_uid
         self.timezone = timezone
         self.week_start = week_start
@@ -33,6 +35,7 @@ class Preferences:
         self.language = language
         self.query_history = query_history
         self.cookie_preferences = cookie_preferences
+        self.navbar = navbar
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -51,6 +54,8 @@ class Preferences:
             payload["queryHistory"] = self.query_history
         if self.cookie_preferences is not None:
             payload["cookiePreferences"] = self.cookie_preferences
+        if self.navbar is not None:
+            payload["navbar"] = self.navbar
         return payload
 
     @classmethod
@@ -70,7 +75,9 @@ class Preferences:
         if "queryHistory" in data:
             args["query_history"] = QueryHistoryPreference.from_json(data["queryHistory"])
         if "cookiePreferences" in data:
-            args["cookie_preferences"] = CookiePreferences.from_json(data["cookiePreferences"])        
+            args["cookie_preferences"] = CookiePreferences.from_json(data["cookiePreferences"])
+        if "navbar" in data:
+            args["navbar"] = NavbarPreference.from_json(data["navbar"])        
 
         return cls(**args)
 
@@ -130,6 +137,28 @@ class CookiePreferences:
             args["performance"] = data["performance"]
         if "functional" in data:
             args["functional"] = data["functional"]        
+
+        return cls(**args)
+
+
+class NavbarPreference:
+    saved_item_ids: list[str]
+
+    def __init__(self, saved_item_ids: typing.Optional[list[str]] = None):
+        self.saved_item_ids = saved_item_ids if saved_item_ids is not None else []
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "savedItemIds": self.saved_item_ids,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "savedItemIds" in data:
+            args["saved_item_ids"] = data["savedItemIds"]        
 
         return cls(**args)
 

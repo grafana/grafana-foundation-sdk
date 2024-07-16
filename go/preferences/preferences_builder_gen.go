@@ -101,5 +101,17 @@ func (builder *PreferencesBuilder) CookiePreferences(cookiePreferences cog.Build
 	return builder
 }
 
+// Navigation preferences
+func (builder *PreferencesBuilder) Navbar(navbar cog.Builder[NavbarPreference]) *PreferencesBuilder {
+	navbarResource, err := navbar.Build()
+	if err != nil {
+		builder.errors["navbar"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Navbar = &navbarResource
+
+	return builder
+}
+
 func (builder *PreferencesBuilder) applyDefaults() {
 }

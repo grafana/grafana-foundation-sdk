@@ -120,7 +120,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
     
     def metric_query_type(self, metric_query_type: cloudwatch.MetricQueryType) -> typing.Self:    
         """
-        Whether to use a metric search or metric query. Metric query is referred to as "Metrics Insights" in the AWS console.
+        Whether to use a metric search or metric insights query
         """
             
         self._internal.metric_query_type = metric_query_type
@@ -175,7 +175,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
     
     def sql_expression(self, sql_expression: str) -> typing.Self:    
         """
-        When the metric query type is `metricQueryType` is set to `Query`, this field is used to specify the query string.
+        When the metric query type is set to `Insights`, this field is used to specify the query string.
         """
             
         self._internal.sql_expression = sql_expression
@@ -286,7 +286,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
     
     def sql(self, sql: cogbuilder.Builder[cloudwatch.SQLExpression]) -> typing.Self:    
         """
-        When the metric query type is `metricQueryType` is set to `Query` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
+        When the metric query type is set to `Insights` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
         """
             
         sql_resource = sql.build()

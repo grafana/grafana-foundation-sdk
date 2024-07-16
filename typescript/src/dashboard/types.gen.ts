@@ -66,6 +66,8 @@ export interface Dashboard {
 	links?: DashboardLink[];
 	// Snapshot options. They are present only if the dashboard is a snapshot.
 	snapshot?: Snapshot;
+	// When set to true, the dashboard will load all panels in the dashboard when it's loaded.
+	preload?: boolean;
 }
 
 export const defaultDashboard = (): Dashboard => ({

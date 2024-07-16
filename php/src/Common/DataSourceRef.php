@@ -15,13 +15,20 @@ class DataSourceRef implements \JsonSerializable
     public ?string $uid;
 
     /**
+     * Datasource API version
+     */
+    public ?string $apiVersion;
+
+    /**
      * @param string|null $type
      * @param string|null $uid
+     * @param string|null $apiVersion
      */
-    public function __construct(?string $type = null, ?string $uid = null)
+    public function __construct(?string $type = null, ?string $uid = null, ?string $apiVersion = null)
     {
         $this->type = $type;
         $this->uid = $uid;
+        $this->apiVersion = $apiVersion;
     }
 
     /**
@@ -29,11 +36,12 @@ class DataSourceRef implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, uid?: string} $inputData */
+        /** @var array{type?: string, uid?: string, apiVersion?: string} $inputData */
         $data = $inputData;
         return new self(
             type: $data["type"] ?? null,
             uid: $data["uid"] ?? null,
+            apiVersion: $data["apiVersion"] ?? null,
         );
     }
 
@@ -49,6 +57,9 @@ class DataSourceRef implements \JsonSerializable
         }
         if (isset($this->uid)) {
             $data["uid"] = $this->uid;
+        }
+        if (isset($this->apiVersion)) {
+            $data["apiVersion"] = $this->apiVersion;
         }
         return $data;
     }

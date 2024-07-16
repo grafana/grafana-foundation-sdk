@@ -402,5 +402,14 @@ class DashboardBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * When set to true, the dashboard will load all panels in the dashboard when it's loaded.
+     */
+    public function preload(bool $preload): static
+    {
+        $this->internal->preload = $preload;
+    
+        return $this;
+    }
 
 }

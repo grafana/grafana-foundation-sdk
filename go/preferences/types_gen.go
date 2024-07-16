@@ -20,6 +20,8 @@ type Preferences struct {
 	QueryHistory *QueryHistoryPreference `json:"queryHistory,omitempty"`
 	// Cookie preferences
 	CookiePreferences *CookiePreferences `json:"cookiePreferences,omitempty"`
+	// Navigation preferences
+	Navbar *NavbarPreference `json:"navbar,omitempty"`
 }
 
 type QueryHistoryPreference struct {
@@ -31,4 +33,8 @@ type CookiePreferences struct {
 	Analytics   any `json:"analytics,omitempty"`
 	Performance any `json:"performance,omitempty"`
 	Functional  any `json:"functional,omitempty"`
+}
+
+type NavbarPreference struct {
+	SavedItemIds []string `json:"savedItemIds"`
 }

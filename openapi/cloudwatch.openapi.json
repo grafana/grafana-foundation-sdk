@@ -94,7 +94,7 @@
           },
           "metricQueryType": {
             "$ref": "#/components/schemas/MetricQueryType",
-            "description": "Whether to use a metric search or metric query. Metric query is referred to as \"Metrics Insights\" in the AWS console."
+            "description": "Whether to use a metric search or metric insights query"
           },
           "metricEditorMode": {
             "$ref": "#/components/schemas/MetricEditorMode",
@@ -118,7 +118,7 @@
           },
           "sqlExpression": {
             "type": "string",
-            "description": "When the metric query type is `metricQueryType` is set to `Query`, this field is used to specify the query string."
+            "description": "When the metric query type is set to `Insights`, this field is used to specify the query string."
           },
           "refId": {
             "type": "string",
@@ -166,7 +166,7 @@
           },
           "sql": {
             "$ref": "#/components/schemas/SQLExpression",
-            "description": "When the metric query type is `metricQueryType` is set to `Query` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query."
+            "description": "When the metric query type is set to `Insights` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query."
           },
           "datasource": {
             "type": "object",

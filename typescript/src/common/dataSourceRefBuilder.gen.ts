@@ -25,4 +25,10 @@ export class DataSourceRefBuilder implements cog.Builder<common.DataSourceRef> {
         this.internal.uid = uid;
         return this;
     }
+
+    // Datasource API version
+    apiVersion(apiVersion: string): this {
+        this.internal.apiVersion = apiVersion;
+        return this;
+    }
 }

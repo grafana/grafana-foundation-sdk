@@ -133,6 +133,11 @@ class Dashboard implements \JsonSerializable
     public ?\Grafana\Foundation\Dashboard\Snapshot $snapshot;
 
     /**
+     * When set to true, the dashboard will load all panels in the dashboard when it's loaded.
+     */
+    public ?bool $preload;
+
+    /**
      * @param int|null $id
      * @param string|null $uid
      * @param string|null $title
@@ -156,8 +161,9 @@ class Dashboard implements \JsonSerializable
      * @param \Grafana\Foundation\Dashboard\AnnotationContainer|null $annotations
      * @param array<\Grafana\Foundation\Dashboard\DashboardLink>|null $links
      * @param \Grafana\Foundation\Dashboard\Snapshot|null $snapshot
+     * @param bool|null $preload
      */
-    public function __construct(?int $id = null, ?string $uid = null, ?string $title = null, ?string $description = null, ?int $revision = null, ?string $gnetId = null, ?array $tags = null, ?string $timezone = null, ?bool $editable = null, ?\Grafana\Foundation\Dashboard\DashboardCursorSync $graphTooltip = null, ?\Grafana\Foundation\Dashboard\DashboardDashboardTime $time = null, ?\Grafana\Foundation\Dashboard\TimePickerConfig $timepicker = null, ?int $fiscalYearStartMonth = null, ?bool $liveNow = null, ?string $weekStart = null, ?string $refresh = null, ?int $schemaVersion = null, ?int $version = null, ?array $panels = null, ?\Grafana\Foundation\Dashboard\DashboardDashboardTemplating $templating = null, ?\Grafana\Foundation\Dashboard\AnnotationContainer $annotations = null, ?array $links = null, ?\Grafana\Foundation\Dashboard\Snapshot $snapshot = null)
+    public function __construct(?int $id = null, ?string $uid = null, ?string $title = null, ?string $description = null, ?int $revision = null, ?string $gnetId = null, ?array $tags = null, ?string $timezone = null, ?bool $editable = null, ?\Grafana\Foundation\Dashboard\DashboardCursorSync $graphTooltip = null, ?\Grafana\Foundation\Dashboard\DashboardDashboardTime $time = null, ?\Grafana\Foundation\Dashboard\TimePickerConfig $timepicker = null, ?int $fiscalYearStartMonth = null, ?bool $liveNow = null, ?string $weekStart = null, ?string $refresh = null, ?int $schemaVersion = null, ?int $version = null, ?array $panels = null, ?\Grafana\Foundation\Dashboard\DashboardDashboardTemplating $templating = null, ?\Grafana\Foundation\Dashboard\AnnotationContainer $annotations = null, ?array $links = null, ?\Grafana\Foundation\Dashboard\Snapshot $snapshot = null, ?bool $preload = null)
     {
         $this->id = $id;
         $this->uid = $uid;
@@ -182,6 +188,7 @@ class Dashboard implements \JsonSerializable
         $this->annotations = $annotations ?: new \Grafana\Foundation\Dashboard\AnnotationContainer();
         $this->links = $links;
         $this->snapshot = $snapshot;
+        $this->preload = $preload;
     }
 
     /**
@@ -189,7 +196,7 @@ class Dashboard implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{id?: int, uid?: string, title?: string, description?: string, revision?: int, gnetId?: string, tags?: array<string>, timezone?: string, editable?: bool, graphTooltip?: int, time?: mixed, timepicker?: mixed, fiscalYearStartMonth?: int, liveNow?: bool, weekStart?: string, refresh?: string, schemaVersion?: int, version?: int, panels?: array<mixed|mixed>, templating?: mixed, annotations?: mixed, links?: array<mixed>, snapshot?: mixed} $inputData */
+        /** @var array{id?: int, uid?: string, title?: string, description?: string, revision?: int, gnetId?: string, tags?: array<string>, timezone?: string, editable?: bool, graphTooltip?: int, time?: mixed, timepicker?: mixed, fiscalYearStartMonth?: int, liveNow?: bool, weekStart?: string, refresh?: string, schemaVersion?: int, version?: int, panels?: array<mixed|mixed>, templating?: mixed, annotations?: mixed, links?: array<mixed>, snapshot?: mixed, preload?: bool} $inputData */
         $data = $inputData;
         return new self(
             id: $data["id"] ?? null,
@@ -248,6 +255,7 @@ class Dashboard implements \JsonSerializable
     $val = $input;
     	return \Grafana\Foundation\Dashboard\Snapshot::fromArray($val);
     })($data["snapshot"]) : null,
+            preload: $data["preload"] ?? null,
         );
     }
 
@@ -320,6 +328,9 @@ class Dashboard implements \JsonSerializable
         }
         if (isset($this->snapshot)) {
             $data["snapshot"] = $this->snapshot;
+        }
+        if (isset($this->preload)) {
+            $data["preload"] = $this->preload;
         }
         return $data;
     }

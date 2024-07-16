@@ -211,6 +211,9 @@
             "items": {
               "$ref": "#/components/schemas/CanvasConnection"
             }
+          },
+          "oneClickLinks": {
+            "type": "boolean"
           }
         }
       },

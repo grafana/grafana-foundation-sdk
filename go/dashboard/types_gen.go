@@ -75,6 +75,8 @@ type Dashboard struct {
 	Links []DashboardLink `json:"links,omitempty"`
 	// Snapshot options. They are present only if the dashboard is a snapshot.
 	Snapshot *Snapshot `json:"snapshot,omitempty"`
+	// When set to true, the dashboard will load all panels in the dashboard when it's loaded.
+	Preload *bool `json:"preload,omitempty"`
 }
 
 // TODO: this should be a regular DataQuery that depends on the selected dashboard
