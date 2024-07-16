@@ -1,0 +1,48 @@
+# Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+name: Java Release
+on:
+  pull_request_target:
+    types: [ closed ]
+    paths:
+      - 'java/src/**'
+
+env:
+  JAVA_VERSION: '17'
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true && github.base_ref == 'v10.4.x+cog-v0.0.x'
+
+    name: Build and release
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./java
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          check-latest: true
+
+      - name: Publish package 📦
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.8'
+          arguments: publishToSonatype closeAndReleaseSonatypeStagingRepository
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+  
