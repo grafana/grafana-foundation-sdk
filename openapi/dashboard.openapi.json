@@ -156,6 +156,10 @@
           "snapshot": {
             "$ref": "#/components/schemas/Snapshot",
             "description": "Snapshot options. They are present only if the dashboard is a snapshot."
+          },
+          "preload": {
+            "type": "boolean",
+            "description": "When set to true, the dashboard will load all panels in the dashboard when it's loaded."
           }
         }
       },

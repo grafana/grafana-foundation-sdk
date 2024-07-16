@@ -63,8 +63,10 @@ class Dashboard:
     links: typing.Optional[list['DashboardLink']]
     # Snapshot options. They are present only if the dashboard is a snapshot.
     snapshot: typing.Optional['Snapshot']
+    # When set to true, the dashboard will load all panels in the dashboard when it's loaded.
+    preload: typing.Optional[bool]
 
-    def __init__(self, id_val: typing.Optional[int] = None, uid: typing.Optional[str] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, revision: typing.Optional[int] = None, gnet_id: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, timezone: typing.Optional[str] = "browser", editable: typing.Optional[bool] = True, graph_tooltip: typing.Optional['DashboardCursorSync'] = None, time: typing.Optional['DashboardDashboardTime'] = None, timepicker: typing.Optional['TimePickerConfig'] = None, fiscal_year_start_month: typing.Optional[int] = 0, live_now: typing.Optional[bool] = None, week_start: typing.Optional[str] = None, refresh: typing.Optional[str] = None, schema_version: int = 39, version: typing.Optional[int] = None, panels: typing.Optional[list[typing.Union['Panel', 'RowPanel']]] = None, templating: typing.Optional['DashboardDashboardTemplating'] = None, annotations: typing.Optional['AnnotationContainer'] = None, links: typing.Optional[list['DashboardLink']] = None, snapshot: typing.Optional['Snapshot'] = None):
+    def __init__(self, id_val: typing.Optional[int] = None, uid: typing.Optional[str] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, revision: typing.Optional[int] = None, gnet_id: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, timezone: typing.Optional[str] = "browser", editable: typing.Optional[bool] = True, graph_tooltip: typing.Optional['DashboardCursorSync'] = None, time: typing.Optional['DashboardDashboardTime'] = None, timepicker: typing.Optional['TimePickerConfig'] = None, fiscal_year_start_month: typing.Optional[int] = 0, live_now: typing.Optional[bool] = None, week_start: typing.Optional[str] = None, refresh: typing.Optional[str] = None, schema_version: int = 39, version: typing.Optional[int] = None, panels: typing.Optional[list[typing.Union['Panel', 'RowPanel']]] = None, templating: typing.Optional['DashboardDashboardTemplating'] = None, annotations: typing.Optional['AnnotationContainer'] = None, links: typing.Optional[list['DashboardLink']] = None, snapshot: typing.Optional['Snapshot'] = None, preload: typing.Optional[bool] = None):
         self.id_val = id_val
         self.uid = uid
         self.title = title
@@ -88,6 +90,7 @@ class Dashboard:
         self.annotations = annotations if annotations is not None else AnnotationContainer()
         self.links = links
         self.snapshot = snapshot
+        self.preload = preload
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -135,6 +138,8 @@ class Dashboard:
             payload["links"] = self.links
         if self.snapshot is not None:
             payload["snapshot"] = self.snapshot
+        if self.preload is not None:
+            payload["preload"] = self.preload
         return payload
 
     @classmethod
@@ -187,7 +192,9 @@ class Dashboard:
         if "links" in data:
             args["links"] = data["links"]
         if "snapshot" in data:
-            args["snapshot"] = Snapshot.from_json(data["snapshot"])        
+            args["snapshot"] = Snapshot.from_json(data["snapshot"])
+        if "preload" in data:
+            args["preload"] = data["preload"]        
 
         return cls(**args)
 

@@ -45,6 +45,11 @@ class Preferences implements \JsonSerializable
     public ?\Grafana\Foundation\Preferences\CookiePreferences $cookiePreferences;
 
     /**
+     * Navigation preferences
+     */
+    public ?\Grafana\Foundation\Preferences\NavbarPreference $navbar;
+
+    /**
      * @param string|null $homeDashboardUID
      * @param string|null $timezone
      * @param string|null $weekStart
@@ -52,8 +57,9 @@ class Preferences implements \JsonSerializable
      * @param string|null $language
      * @param \Grafana\Foundation\Preferences\QueryHistoryPreference|null $queryHistory
      * @param \Grafana\Foundation\Preferences\CookiePreferences|null $cookiePreferences
+     * @param \Grafana\Foundation\Preferences\NavbarPreference|null $navbar
      */
-    public function __construct(?string $homeDashboardUID = null, ?string $timezone = null, ?string $weekStart = null, ?string $theme = null, ?string $language = null, ?\Grafana\Foundation\Preferences\QueryHistoryPreference $queryHistory = null, ?\Grafana\Foundation\Preferences\CookiePreferences $cookiePreferences = null)
+    public function __construct(?string $homeDashboardUID = null, ?string $timezone = null, ?string $weekStart = null, ?string $theme = null, ?string $language = null, ?\Grafana\Foundation\Preferences\QueryHistoryPreference $queryHistory = null, ?\Grafana\Foundation\Preferences\CookiePreferences $cookiePreferences = null, ?\Grafana\Foundation\Preferences\NavbarPreference $navbar = null)
     {
         $this->homeDashboardUID = $homeDashboardUID;
         $this->timezone = $timezone;
@@ -62,6 +68,7 @@ class Preferences implements \JsonSerializable
         $this->language = $language;
         $this->queryHistory = $queryHistory;
         $this->cookiePreferences = $cookiePreferences;
+        $this->navbar = $navbar;
     }
 
     /**
@@ -69,7 +76,7 @@ class Preferences implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{homeDashboardUID?: string, timezone?: string, weekStart?: string, theme?: string, language?: string, queryHistory?: mixed, cookiePreferences?: mixed} $inputData */
+        /** @var array{homeDashboardUID?: string, timezone?: string, weekStart?: string, theme?: string, language?: string, queryHistory?: mixed, cookiePreferences?: mixed, navbar?: mixed} $inputData */
         $data = $inputData;
         return new self(
             homeDashboardUID: $data["homeDashboardUID"] ?? null,
@@ -87,6 +94,11 @@ class Preferences implements \JsonSerializable
     $val = $input;
     	return \Grafana\Foundation\Preferences\CookiePreferences::fromArray($val);
     })($data["cookiePreferences"]) : null,
+            navbar: isset($data["navbar"]) ? (function($input) {
+    	/** @var array{savedItemIds?: array<string>} */
+    $val = $input;
+    	return \Grafana\Foundation\Preferences\NavbarPreference::fromArray($val);
+    })($data["navbar"]) : null,
         );
     }
 
@@ -117,6 +129,9 @@ class Preferences implements \JsonSerializable
         }
         if (isset($this->cookiePreferences)) {
             $data["cookiePreferences"] = $this->cookiePreferences;
+        }
+        if (isset($this->navbar)) {
+            $data["navbar"] = $this->navbar;
         }
         return $data;
     }

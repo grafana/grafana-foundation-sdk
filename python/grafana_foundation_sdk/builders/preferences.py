@@ -85,6 +85,16 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
     
         return self
     
+    def navbar(self, navbar: cogbuilder.Builder[preferences.NavbarPreference]) -> typing.Self:    
+        """
+        Navigation preferences
+        """
+            
+        navbar_resource = navbar.build()
+        self._internal.navbar = navbar_resource
+    
+        return self
+    
 
 class QueryHistoryPreference(cogbuilder.Builder[preferences.QueryHistoryPreference]):    
     _internal: preferences.QueryHistoryPreference
@@ -126,6 +136,21 @@ class CookiePreferences(cogbuilder.Builder[preferences.CookiePreferences]):
     
     def functional(self, functional: object) -> typing.Self:        
         self._internal.functional = functional
+    
+        return self
+    
+
+class NavbarPreference(cogbuilder.Builder[preferences.NavbarPreference]):    
+    _internal: preferences.NavbarPreference
+
+    def __init__(self):
+        self._internal = preferences.NavbarPreference()
+
+    def build(self) -> preferences.NavbarPreference:
+        return self._internal    
+    
+    def saved_item_ids(self, saved_item_ids: list[str]) -> typing.Self:        
+        self._internal.saved_item_ids = saved_item_ids
     
         return self
     

@@ -92,5 +92,16 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * Navigation preferences
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Preferences\NavbarPreference> $navbar
+     */
+    public function navbar(\Grafana\Foundation\Cog\Builder $navbar): static
+    {
+        $navbarResource = $navbar->build();
+        $this->internal->navbar = $navbarResource;
+    
+        return $this;
+    }
 
 }

@@ -117,44 +117,44 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         \assert(is_array($input), 'expected disjunction value to be an array');
     
         switch ($input["type"]) {
-        case "percentiles":
-            return Percentiles::fromArray($input);
-        case "max":
-            return Max::fromArray($input);
-        case "moving_avg":
-            return MovingAverage::fromArray($input);
-        case "logs":
-            return Logs::fromArray($input);
-        case "bucket_script":
-            return BucketScript::fromArray($input);
-        case "min":
-            return Min::fromArray($input);
-        case "top_metrics":
-            return TopMetrics::fromArray($input);
         case "count":
             return Count::fromArray($input);
-        case "derivative":
-            return Derivative::fromArray($input);
-        case "raw_document":
-            return RawDocument::fromArray($input);
-        case "raw_data":
-            return RawData::fromArray($input);
-        case "extended_stats":
-            return ExtendedStats::fromArray($input);
-        case "serial_diff":
-            return SerialDiff::fromArray($input);
-        case "avg":
-            return Average::fromArray($input);
-        case "moving_fn":
-            return MovingFunction::fromArray($input);
-        case "sum":
-            return Sum::fromArray($input);
-        case "cardinality":
-            return UniqueCount::fromArray($input);
         case "cumulative_sum":
             return CumulativeSum::fromArray($input);
         case "rate":
             return Rate::fromArray($input);
+        case "serial_diff":
+            return SerialDiff::fromArray($input);
+        case "min":
+            return Min::fromArray($input);
+        case "percentiles":
+            return Percentiles::fromArray($input);
+        case "sum":
+            return Sum::fromArray($input);
+        case "raw_document":
+            return RawDocument::fromArray($input);
+        case "moving_fn":
+            return MovingFunction::fromArray($input);
+        case "moving_avg":
+            return MovingAverage::fromArray($input);
+        case "max":
+            return Max::fromArray($input);
+        case "bucket_script":
+            return BucketScript::fromArray($input);
+        case "top_metrics":
+            return TopMetrics::fromArray($input);
+        case "logs":
+            return Logs::fromArray($input);
+        case "raw_data":
+            return RawData::fromArray($input);
+        case "derivative":
+            return Derivative::fromArray($input);
+        case "cardinality":
+            return UniqueCount::fromArray($input);
+        case "extended_stats":
+            return ExtendedStats::fromArray($input);
+        case "avg":
+            return Average::fromArray($input);
         default:
             throw new \ValueError('can not parse disjunction from array');
     }

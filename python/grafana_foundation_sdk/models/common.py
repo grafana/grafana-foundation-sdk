@@ -1999,19 +1999,33 @@ class TableImageCellOptions:
     """
 
     type_val: typing.Literal["image"]
+    alt: typing.Optional[str]
+    title: typing.Optional[str]
 
-    def __init__(self, ):
+    def __init__(self, alt: typing.Optional[str] = None, title: typing.Optional[str] = None):
         self.type_val = "image"
+        self.alt = alt
+        self.title = title
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "type": self.type_val,
         }
+        if self.alt is not None:
+            payload["alt"] = self.alt
+        if self.title is not None:
+            payload["title"] = self.title
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
+        
+        if "alt" in data:
+            args["alt"] = data["alt"]
+        if "title" in data:
+            args["title"] = data["title"]        
+
         return cls(**args)
 
 
@@ -2394,10 +2408,13 @@ class DataSourceRef:
     type_val: typing.Optional[str]
     # Specific datasource instance
     uid: typing.Optional[str]
+    # Datasource API version
+    api_version: typing.Optional[str]
 
-    def __init__(self, type_val: typing.Optional[str] = None, uid: typing.Optional[str] = None):
+    def __init__(self, type_val: typing.Optional[str] = None, uid: typing.Optional[str] = None, api_version: typing.Optional[str] = None):
         self.type_val = type_val
         self.uid = uid
+        self.api_version = api_version
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -2406,6 +2423,8 @@ class DataSourceRef:
             payload["type"] = self.type_val
         if self.uid is not None:
             payload["uid"] = self.uid
+        if self.api_version is not None:
+            payload["apiVersion"] = self.api_version
         return payload
 
     @classmethod
@@ -2415,7 +2434,9 @@ class DataSourceRef:
         if "type" in data:
             args["type_val"] = data["type"]
         if "uid" in data:
-            args["uid"] = data["uid"]        
+            args["uid"] = data["uid"]
+        if "apiVersion" in data:
+            args["api_version"] = data["apiVersion"]        
 
         return cls(**args)
 

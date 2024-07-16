@@ -38,7 +38,7 @@ type Dimensions map[string]StringOrArrayOfString
 type CloudWatchMetricsQuery struct {
 	// Whether a query is a Metrics, Logs, or Annotations query
 	QueryMode CloudWatchQueryMode `json:"queryMode"`
-	// Whether to use a metric search or metric query. Metric query is referred to as "Metrics Insights" in the AWS console.
+	// Whether to use a metric search or metric insights query
 	MetricQueryType *MetricQueryType `json:"metricQueryType,omitempty"`
 	// Whether to use the query builder or code editor to create the query
 	MetricEditorMode *MetricEditorMode `json:"metricEditorMode,omitempty"`
@@ -51,7 +51,7 @@ type CloudWatchMetricsQuery struct {
 	Label *string `json:"label,omitempty"`
 	// Math expression query
 	Expression *string `json:"expression,omitempty"`
-	// When the metric query type is `metricQueryType` is set to `Query`, this field is used to specify the query string.
+	// When the metric query type is set to `Insights`, this field is used to specify the query string.
 	SqlExpression *string `json:"sqlExpression,omitempty"`
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
@@ -78,7 +78,7 @@ type CloudWatchMetricsQuery struct {
 	AccountId *string `json:"accountId,omitempty"`
 	// Metric data aggregations over specified periods of time. For detailed definitions of the statistics supported by CloudWatch, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.
 	Statistic *string `json:"statistic,omitempty"`
-	// When the metric query type is `metricQueryType` is set to `Query` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
+	// When the metric query type is set to `Insights` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
 	Sql *SQLExpression `json:"sql,omitempty"`
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
@@ -102,8 +102,8 @@ const (
 type MetricQueryType int64
 
 const (
-	MetricQueryTypeSearch MetricQueryType = 0
-	MetricQueryTypeQuery  MetricQueryType = 1
+	MetricQueryTypeSearch   MetricQueryType = 0
+	MetricQueryTypeInsights MetricQueryType = 1
 )
 
 type MetricEditorMode int64

@@ -424,6 +424,12 @@
         "type": {
           "type": "string",
           "const": "image"
+        },
+        "alt": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
         }
       },
       "description": "Json view cell options"

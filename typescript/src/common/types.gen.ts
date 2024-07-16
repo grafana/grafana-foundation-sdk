@@ -848,6 +848,8 @@ export const defaultTableJsonViewCellOptions = (): TableJsonViewCellOptions => (
 // Json view cell options
 export interface TableImageCellOptions {
 	type: "image";
+	alt?: string;
+	title?: string;
 }
 
 export const defaultTableImageCellOptions = (): TableImageCellOptions => ({
@@ -982,6 +984,8 @@ export interface DataSourceRef {
 	type?: string;
 	// Specific datasource instance
 	uid?: string;
+	// Datasource API version
+	apiVersion?: string;
 }
 
 export const defaultDataSourceRef = (): DataSourceRef => ({

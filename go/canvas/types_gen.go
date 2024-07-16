@@ -101,12 +101,13 @@ type CanvasElementOptions struct {
 	Name string `json:"name"`
 	Type string `json:"type"`
 	// TODO: figure out how to define this (element config(s))
-	Config      any                `json:"config,omitempty"`
-	Constraint  *Constraint        `json:"constraint,omitempty"`
-	Placement   *Placement         `json:"placement,omitempty"`
-	Background  *BackgroundConfig  `json:"background,omitempty"`
-	Border      *LineConfig        `json:"border,omitempty"`
-	Connections []CanvasConnection `json:"connections,omitempty"`
+	Config        any                `json:"config,omitempty"`
+	Constraint    *Constraint        `json:"constraint,omitempty"`
+	Placement     *Placement         `json:"placement,omitempty"`
+	Background    *BackgroundConfig  `json:"background,omitempty"`
+	Border        *LineConfig        `json:"border,omitempty"`
+	Connections   []CanvasConnection `json:"connections,omitempty"`
+	OneClickLinks *bool              `json:"oneClickLinks,omitempty"`
 }
 
 type Options struct {

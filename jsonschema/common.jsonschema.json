@@ -1171,6 +1171,12 @@
         "type": {
           "type": "string",
           "const": "image"
+        },
+        "alt": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
         }
       },
       "description": "Json view cell options"
@@ -1441,6 +1447,10 @@
         "uid": {
           "type": "string",
           "description": "Specific datasource instance"
+        },
+        "apiVersion": {
+          "type": "string",
+          "description": "Datasource API version"
         }
       }
     },

@@ -60,4 +60,11 @@ export class PreferencesBuilder implements cog.Builder<preferences.Preferences> 
         this.internal.cookiePreferences = cookiePreferencesResource;
         return this;
     }
+
+    // Navigation preferences
+    navbar(navbar: cog.Builder<preferences.NavbarPreference>): this {
+        const navbarResource = navbar.build();
+        this.internal.navbar = navbarResource;
+        return this;
+    }
 }

@@ -18,6 +18,8 @@ export interface Preferences {
 	queryHistory?: QueryHistoryPreference;
 	// Cookie preferences
 	cookiePreferences?: CookiePreferences;
+	// Navigation preferences
+	navbar?: NavbarPreference;
 }
 
 export const defaultPreferences = (): Preferences => ({
@@ -38,5 +40,13 @@ export interface CookiePreferences {
 }
 
 export const defaultCookiePreferences = (): CookiePreferences => ({
+});
+
+export interface NavbarPreference {
+	savedItemIds: string[];
+}
+
+export const defaultNavbarPreference = (): NavbarPreference => ({
+	savedItemIds: [],
 });
 

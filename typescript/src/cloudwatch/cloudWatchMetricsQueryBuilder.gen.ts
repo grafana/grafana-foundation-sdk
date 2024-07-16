@@ -21,7 +21,7 @@ export class CloudWatchMetricsQueryBuilder implements cog.Builder<cog.Dataquery>
         return this;
     }
 
-    // Whether to use a metric search or metric query. Metric query is referred to as "Metrics Insights" in the AWS console.
+    // Whether to use a metric search or metric insights query
     metricQueryType(metricQueryType: cloudwatch.MetricQueryType): this {
         this.internal.metricQueryType = metricQueryType;
         return this;
@@ -58,7 +58,7 @@ export class CloudWatchMetricsQueryBuilder implements cog.Builder<cog.Dataquery>
         return this;
     }
 
-    // When the metric query type is `metricQueryType` is set to `Query`, this field is used to specify the query string.
+    // When the metric query type is set to `Insights`, this field is used to specify the query string.
     sqlExpression(sqlExpression: string): this {
         this.internal.sqlExpression = sqlExpression;
         return this;
@@ -133,7 +133,7 @@ export class CloudWatchMetricsQueryBuilder implements cog.Builder<cog.Dataquery>
         return this;
     }
 
-    // When the metric query type is `metricQueryType` is set to `Query` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
+    // When the metric query type is set to `Insights` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
     sql(sql: cog.Builder<cloudwatch.SQLExpression>): this {
         const sqlResource = sql.build();
         this.internal.sql = sqlResource;

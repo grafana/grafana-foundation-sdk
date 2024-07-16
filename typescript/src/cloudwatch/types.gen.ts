@@ -35,7 +35,7 @@ export const defaultDimensions = (): Dimensions => ({});
 export interface CloudWatchMetricsQuery {
 	// Whether a query is a Metrics, Logs, or Annotations query
 	queryMode: CloudWatchQueryMode;
-	// Whether to use a metric search or metric query. Metric query is referred to as "Metrics Insights" in the AWS console.
+	// Whether to use a metric search or metric insights query
 	metricQueryType?: MetricQueryType;
 	// Whether to use the query builder or code editor to create the query
 	metricEditorMode?: MetricEditorMode;
@@ -48,7 +48,7 @@ export interface CloudWatchMetricsQuery {
 	label?: string;
 	// Math expression query
 	expression?: string;
-	// When the metric query type is `metricQueryType` is set to `Query`, this field is used to specify the query string.
+	// When the metric query type is set to `Insights`, this field is used to specify the query string.
 	sqlExpression?: string;
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
@@ -75,7 +75,7 @@ export interface CloudWatchMetricsQuery {
 	accountId?: string;
 	// Metric data aggregations over specified periods of time. For detailed definitions of the statistics supported by CloudWatch, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.
 	statistic?: string;
-	// When the metric query type is `metricQueryType` is set to `Query` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
+	// When the metric query type is set to `Insights` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
 	sql?: SQLExpression;
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
@@ -106,7 +106,7 @@ export const defaultCloudWatchQueryMode = (): CloudWatchQueryMode => (CloudWatch
 
 export enum MetricQueryType {
 	Search = 0,
-	Query = 1,
+	Insights = 1,
 }
 
 export const defaultMetricQueryType = (): MetricQueryType => (MetricQueryType.Search);

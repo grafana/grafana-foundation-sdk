@@ -53,5 +53,12 @@ func (builder *DataSourceRefBuilder) Uid(uid string) *DataSourceRefBuilder {
 	return builder
 }
 
+// Datasource API version
+func (builder *DataSourceRefBuilder) ApiVersion(apiVersion string) *DataSourceRefBuilder {
+	builder.internal.ApiVersion = &apiVersion
+
+	return builder
+}
+
 func (builder *DataSourceRefBuilder) applyDefaults() {
 }

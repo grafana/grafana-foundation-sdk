@@ -72,6 +72,8 @@ export * from './tableAutoCellOptionsBuilder.gen';
 export type * from './tableAutoCellOptionsBuilder.gen';
 export * from './tableColorTextCellOptionsBuilder.gen';
 export type * from './tableColorTextCellOptionsBuilder.gen';
+export * from './tableImageCellOptionsBuilder.gen';
+export type * from './tableImageCellOptionsBuilder.gen';
 export * from './tableBarGaugeCellOptionsBuilder.gen';
 export type * from './tableBarGaugeCellOptionsBuilder.gen';
 export * from './tableSparklineCellOptionsBuilder.gen';
