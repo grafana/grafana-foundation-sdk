@@ -714,7 +714,9 @@ type TableJsonViewCellOptions struct {
 
 // Json view cell options
 type TableImageCellOptions struct {
-	Type string `json:"type"`
+	Type  string  `json:"type"`
+	Alt   *string `json:"alt,omitempty"`
+	Title *string `json:"title,omitempty"`
 }
 
 // Show data links in the cell
@@ -827,6 +829,8 @@ type DataSourceRef struct {
 	Type *string `json:"type,omitempty"`
 	// Specific datasource instance
 	Uid *string `json:"uid,omitempty"`
+	// Datasource API version
+	ApiVersion *string `json:"apiVersion,omitempty"`
 }
 
 // Links to a resource (image/svg path)

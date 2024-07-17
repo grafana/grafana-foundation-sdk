@@ -27,6 +27,8 @@ class CanvasElementOptions implements \JsonSerializable
      */
     public ?array $connections;
 
+    public ?bool $oneClickLinks;
+
     /**
      * @param string|null $name
      * @param string|null $type
@@ -36,8 +38,9 @@ class CanvasElementOptions implements \JsonSerializable
      * @param \Grafana\Foundation\Canvas\BackgroundConfig|null $background
      * @param \Grafana\Foundation\Canvas\LineConfig|null $border
      * @param array<\Grafana\Foundation\Canvas\CanvasConnection>|null $connections
+     * @param bool|null $oneClickLinks
      */
-    public function __construct(?string $name = null, ?string $type = null,  $config = null, ?\Grafana\Foundation\Canvas\Constraint $constraint = null, ?\Grafana\Foundation\Canvas\Placement $placement = null, ?\Grafana\Foundation\Canvas\BackgroundConfig $background = null, ?\Grafana\Foundation\Canvas\LineConfig $border = null, ?array $connections = null)
+    public function __construct(?string $name = null, ?string $type = null,  $config = null, ?\Grafana\Foundation\Canvas\Constraint $constraint = null, ?\Grafana\Foundation\Canvas\Placement $placement = null, ?\Grafana\Foundation\Canvas\BackgroundConfig $background = null, ?\Grafana\Foundation\Canvas\LineConfig $border = null, ?array $connections = null, ?bool $oneClickLinks = null)
     {
         $this->name = $name ?: "";
         $this->type = $type ?: "";
@@ -47,6 +50,7 @@ class CanvasElementOptions implements \JsonSerializable
         $this->background = $background;
         $this->border = $border;
         $this->connections = $connections;
+        $this->oneClickLinks = $oneClickLinks;
     }
 
     /**
@@ -54,7 +58,7 @@ class CanvasElementOptions implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{name?: string, type?: string, config?: mixed, constraint?: mixed, placement?: mixed, background?: mixed, border?: mixed, connections?: array<mixed>} $inputData */
+        /** @var array{name?: string, type?: string, config?: mixed, constraint?: mixed, placement?: mixed, background?: mixed, border?: mixed, connections?: array<mixed>, oneClickLinks?: bool} $inputData */
         $data = $inputData;
         return new self(
             name: $data["name"] ?? null,
@@ -85,6 +89,7 @@ class CanvasElementOptions implements \JsonSerializable
     $val = $input;
     	return \Grafana\Foundation\Canvas\CanvasConnection::fromArray($val);
     }), $data["connections"] ?? [])),
+            oneClickLinks: $data["oneClickLinks"] ?? null,
         );
     }
 
@@ -114,6 +119,9 @@ class CanvasElementOptions implements \JsonSerializable
         }
         if (isset($this->connections)) {
             $data["connections"] = $this->connections;
+        }
+        if (isset($this->oneClickLinks)) {
+            $data["oneClickLinks"] = $this->oneClickLinks;
         }
         return $data;
     }

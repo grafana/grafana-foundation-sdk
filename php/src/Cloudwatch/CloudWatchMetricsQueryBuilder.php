@@ -33,7 +33,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * Whether to use a metric search or metric query. Metric query is referred to as "Metrics Insights" in the AWS console.
+     * Whether to use a metric search or metric insights query
      */
     public function metricQueryType(\Grafana\Foundation\Cloudwatch\MetricQueryType $metricQueryType): static
     {
@@ -88,7 +88,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * When the metric query type is `metricQueryType` is set to `Query`, this field is used to specify the query string.
+     * When the metric query type is set to `Insights`, this field is used to specify the query string.
      */
     public function sqlExpression(string $sqlExpression): static
     {
@@ -200,7 +200,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * When the metric query type is `metricQueryType` is set to `Query` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
+     * When the metric query type is set to `Insights` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\SQLExpression> $sql
      */
     public function sql(\Grafana\Foundation\Cog\Builder $sql): static

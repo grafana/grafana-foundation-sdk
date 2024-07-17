@@ -40,6 +40,10 @@
           "cookiePreferences": {
             "$ref": "#/components/schemas/CookiePreferences",
             "description": "Cookie preferences"
+          },
+          "navbar": {
+            "$ref": "#/components/schemas/NavbarPreference",
+            "description": "Navigation preferences"
           }
         },
         "description": "Spec defines user, team or org Grafana preferences\nswagger:model Preferences"
@@ -69,6 +73,21 @@
           "functional": {
             "type": "object",
             "additionalProperties": {}
+          }
+        }
+      },
+      "NavbarPreference": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "savedItemIds"
+        ],
+        "properties": {
+          "savedItemIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }

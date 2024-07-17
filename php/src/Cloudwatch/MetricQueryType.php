@@ -27,13 +27,13 @@ final class MetricQueryType implements \JsonSerializable, \Stringable {
         return self::$instances["Search"];
     }
 
-    public static function query(): self
+    public static function insights(): self
     {
-        if (!isset(self::$instances["Query"])) {
-            self::$instances["Query"] = new self(1);
+        if (!isset(self::$instances["Insights"])) {
+            self::$instances["Insights"] = new self(1);
         }
 
-        return self::$instances["Query"];
+        return self::$instances["Insights"];
     }
 
     public static function fromValue(int $value): self
@@ -43,7 +43,7 @@ final class MetricQueryType implements \JsonSerializable, \Stringable {
         }
 
         if ($value === 1) {
-            return self::query();
+            return self::insights();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum MetricQueryType");

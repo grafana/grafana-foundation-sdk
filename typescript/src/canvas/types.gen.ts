@@ -124,6 +124,7 @@ export interface CanvasElementOptions {
 	background?: BackgroundConfig;
 	border?: LineConfig;
 	connections?: CanvasConnection[];
+	oneClickLinks?: boolean;
 }
 
 export const defaultCanvasElementOptions = (): CanvasElementOptions => ({

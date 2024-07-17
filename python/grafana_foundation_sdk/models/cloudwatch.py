@@ -95,7 +95,7 @@ class CloudWatchMetricsQuery(cogvariants.Dataquery):
 
     # Whether a query is a Metrics, Logs, or Annotations query
     query_mode: 'CloudWatchQueryMode'
-    # Whether to use a metric search or metric query. Metric query is referred to as "Metrics Insights" in the AWS console.
+    # Whether to use a metric search or metric insights query
     metric_query_type: typing.Optional['MetricQueryType']
     # Whether to use the query builder or code editor to create the query
     metric_editor_mode: typing.Optional['MetricEditorMode']
@@ -108,7 +108,7 @@ class CloudWatchMetricsQuery(cogvariants.Dataquery):
     label: typing.Optional[str]
     # Math expression query
     expression: typing.Optional[str]
-    # When the metric query type is `metricQueryType` is set to `Query`, this field is used to specify the query string.
+    # When the metric query type is set to `Insights`, this field is used to specify the query string.
     sql_expression: typing.Optional[str]
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
@@ -135,7 +135,7 @@ class CloudWatchMetricsQuery(cogvariants.Dataquery):
     account_id: typing.Optional[str]
     # Metric data aggregations over specified periods of time. For detailed definitions of the statistics supported by CloudWatch, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.
     statistic: typing.Optional[str]
-    # When the metric query type is `metricQueryType` is set to `Query` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
+    # When the metric query type is set to `Insights` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
     sql: typing.Optional['SQLExpression']
     # For mixed data sources the selected datasource is on the query level.
     # For non mixed scenarios this is undefined.
@@ -273,7 +273,7 @@ class CloudWatchQueryMode(enum.StrEnum):
 
 class MetricQueryType(enum.IntEnum):
     SEARCH = 0
-    QUERY = 1
+    INSIGHTS = 1
 
 
 class MetricEditorMode(enum.IntEnum):
@@ -332,7 +332,7 @@ class SQLExpression:
         if "select" in data:
             args["select"] = QueryEditorFunctionExpression.from_json(data["select"])
         if "from" in data:
-            decoding_map: dict[str, typing.Union[typing.Type[QueryEditorFunctionExpression], typing.Type[QueryEditorPropertyExpression]]] = {"function": QueryEditorFunctionExpression, "property": QueryEditorPropertyExpression}
+            decoding_map: dict[str, typing.Union[typing.Type[QueryEditorPropertyExpression], typing.Type[QueryEditorFunctionExpression]]] = {"property": QueryEditorPropertyExpression, "function": QueryEditorFunctionExpression}
             args["from_val"] = decoding_map[data["from"]["type"]].from_json(data["from"])
         if "where" in data:
             args["where"] = QueryEditorArrayExpression.from_json(data["where"])

@@ -40,5 +40,14 @@ class DataSourceRefBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * Datasource API version
+     */
+    public function apiVersion(string $apiVersion): static
+    {
+        $this->internal->apiVersion = $apiVersion;
+    
+        return $this;
+    }
 
 }

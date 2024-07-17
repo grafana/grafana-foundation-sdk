@@ -126,7 +126,7 @@ class Snapshot implements \JsonSerializable
             url: $data["url"] ?? null,
             userId: $data["userId"] ?? null,
             dashboard: isset($data["dashboard"]) ? (function($input) {
-    	/** @var array{id?: int, uid?: string, title?: string, description?: string, revision?: int, gnetId?: string, tags?: array<string>, timezone?: string, editable?: bool, graphTooltip?: int, time?: mixed, timepicker?: mixed, fiscalYearStartMonth?: int, liveNow?: bool, weekStart?: string, refresh?: string, schemaVersion?: int, version?: int, panels?: array<mixed|mixed>, templating?: mixed, annotations?: mixed, links?: array<mixed>, snapshot?: mixed} */
+    	/** @var array{id?: int, uid?: string, title?: string, description?: string, revision?: int, gnetId?: string, tags?: array<string>, timezone?: string, editable?: bool, graphTooltip?: int, time?: mixed, timepicker?: mixed, fiscalYearStartMonth?: int, liveNow?: bool, weekStart?: string, refresh?: string, schemaVersion?: int, version?: int, panels?: array<mixed|mixed>, templating?: mixed, annotations?: mixed, links?: array<mixed>, snapshot?: mixed, preload?: bool} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\Dashboard::fromArray($val);
     })($data["dashboard"]) : null,
