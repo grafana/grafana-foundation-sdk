@@ -12,8 +12,6 @@ final class VariantConfig
     \assert(is_array($input), 'expected disjunction value to be an array');
 
     switch ($input["type"]) {
-    case "sql":
-        return TypeSql::fromArray($input);
     case "math":
         return TypeMath::fromArray($input);
     case "reduce":
@@ -24,6 +22,8 @@ final class VariantConfig
         return TypeClassicConditions::fromArray($input);
     case "threshold":
         return TypeThreshold::fromArray($input);
+    case "sql":
+        return TypeSql::fromArray($input);
     default:
         throw new \ValueError('can not parse disjunction from array');
 }
