@@ -185,7 +185,7 @@ class TypeReduce(cogbuilder.Builder[expr.TypeReduce]):
     
         return self
     
-    def reducer(self, reducer: typing.Literal["sum", "mean", "min", "max", "count", "last"]) -> typing.Self:    
+    def reducer(self, reducer: typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]) -> typing.Self:    
         """
         The reducer
         Possible enum values:
@@ -195,6 +195,7 @@ class TypeReduce(cogbuilder.Builder[expr.TypeReduce]):
          - `"max"` 
          - `"count"` 
          - `"last"` 
+         - `"median"` 
         """
             
         self._internal.reducer = reducer
@@ -263,7 +264,7 @@ class TypeResample(cogbuilder.Builder[expr.TypeResample]):
     
         return self
     
-    def downsampler(self, downsampler: typing.Literal["sum", "mean", "min", "max", "count", "last"]) -> typing.Self:    
+    def downsampler(self, downsampler: typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]) -> typing.Self:    
         """
         The downsample function
         Possible enum values:
@@ -273,6 +274,7 @@ class TypeResample(cogbuilder.Builder[expr.TypeResample]):
          - `"max"` 
          - `"count"` 
          - `"last"` 
+         - `"median"` 
         """
             
         self._internal.downsampler = downsampler

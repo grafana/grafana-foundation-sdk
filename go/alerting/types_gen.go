@@ -7,15 +7,15 @@ import (
 	"time"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type Query struct {
-	DatasourceUid     *string               `json:"datasourceUid,omitempty"`
-	Model             cogvariants.Dataquery `json:"model,omitempty"`
-	QueryType         *string               `json:"queryType,omitempty"`
-	RefId             *string               `json:"refId,omitempty"`
-	RelativeTimeRange *RelativeTimeRange    `json:"relativeTimeRange,omitempty"`
+	DatasourceUid     *string            `json:"datasourceUid,omitempty"`
+	Model             variants.Dataquery `json:"model,omitempty"`
+	QueryType         *string            `json:"queryType,omitempty"`
+	RefId             *string            `json:"refId,omitempty"`
+	RelativeTimeRange *RelativeTimeRange `json:"relativeTimeRange,omitempty"`
 }
 
 func (resource *Query) UnmarshalJSON(raw []byte) error {

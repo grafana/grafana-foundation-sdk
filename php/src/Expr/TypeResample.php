@@ -18,6 +18,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
      *  - `"max"` 
      *  - `"count"` 
      *  - `"last"` 
+     *  - `"median"` 
      */
     public \Grafana\Foundation\Expr\TypeResampleDownsampler $downsampler;
 

@@ -5,7 +5,7 @@ package text
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type TextMode string
@@ -43,8 +43,8 @@ type Options struct {
 	Content string       `json:"content"`
 }
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "text",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}
