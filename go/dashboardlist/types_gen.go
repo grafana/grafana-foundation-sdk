@@ -5,7 +5,7 @@ package dashboardlist
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type Options struct {
@@ -23,8 +23,8 @@ type Options struct {
 	FolderUID *string `json:"folderUID,omitempty"`
 }
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "dashlist",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}

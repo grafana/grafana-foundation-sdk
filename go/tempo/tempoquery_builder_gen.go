@@ -4,10 +4,10 @@ package tempo
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
-var _ cog.Builder[cogvariants.Dataquery] = (*TempoQueryBuilder)(nil)
+var _ cog.Builder[variants.Dataquery] = (*TempoQueryBuilder)(nil)
 
 type TempoQueryBuilder struct {
 	internal *TempoQuery
@@ -26,7 +26,7 @@ func NewTempoQueryBuilder() *TempoQueryBuilder {
 	return builder
 }
 
-func (builder *TempoQueryBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *TempoQueryBuilder) Build() (variants.Dataquery, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {

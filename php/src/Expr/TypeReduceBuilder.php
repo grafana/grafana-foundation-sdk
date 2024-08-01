@@ -98,6 +98,7 @@ class TypeReduceBuilder implements \Grafana\Foundation\Cog\Builder
      *  - `"max"` 
      *  - `"count"` 
      *  - `"last"` 
+     *  - `"median"` 
      */
     public function reducer(\Grafana\Foundation\Expr\TypeReduceReducer $reducer): static
     {

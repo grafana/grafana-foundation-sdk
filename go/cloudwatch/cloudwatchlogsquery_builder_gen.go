@@ -4,10 +4,10 @@ package cloudwatch
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
-var _ cog.Builder[cogvariants.Dataquery] = (*CloudWatchLogsQueryBuilder)(nil)
+var _ cog.Builder[variants.Dataquery] = (*CloudWatchLogsQueryBuilder)(nil)
 
 // Shape of a CloudWatch Logs query
 type CloudWatchLogsQueryBuilder struct {
@@ -27,7 +27,7 @@ func NewCloudWatchLogsQueryBuilder() *CloudWatchLogsQueryBuilder {
 	return builder
 }
 
-func (builder *CloudWatchLogsQueryBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *CloudWatchLogsQueryBuilder) Build() (variants.Dataquery, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {

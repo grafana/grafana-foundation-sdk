@@ -5,7 +5,7 @@ package nodegraph
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type ArcOption struct {
@@ -36,8 +36,8 @@ type Options struct {
 	Edges *EdgeOptions `json:"edges,omitempty"`
 }
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "nodegraph",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}

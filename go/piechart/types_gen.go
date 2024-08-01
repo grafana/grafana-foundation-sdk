@@ -5,7 +5,7 @@ package piechart
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -64,8 +64,8 @@ type Options struct {
 
 type FieldConfig = common.HideableFieldConfig
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "piechart",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}

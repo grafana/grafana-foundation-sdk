@@ -5,7 +5,7 @@ package news
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type Options struct {
@@ -14,8 +14,8 @@ type Options struct {
 	ShowImage *bool   `json:"showImage,omitempty"`
 }
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "news",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}

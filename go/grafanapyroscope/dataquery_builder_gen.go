@@ -4,10 +4,10 @@ package grafanapyroscope
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
-var _ cog.Builder[cogvariants.Dataquery] = (*DataqueryBuilder)(nil)
+var _ cog.Builder[variants.Dataquery] = (*DataqueryBuilder)(nil)
 
 type DataqueryBuilder struct {
 	internal *Dataquery
@@ -26,7 +26,7 @@ func NewDataqueryBuilder() *DataqueryBuilder {
 	return builder
 }
 
-func (builder *DataqueryBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *DataqueryBuilder) Build() (variants.Dataquery, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {
