@@ -40,7 +40,8 @@ public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery
     //  - `"min"` 
     //  - `"max"` 
     //  - `"count"` 
-    //  - `"last"`  
+    //  - `"last"` 
+    //  - `"median"`  
     @JsonProperty("reducer")
     public TypeReduceReducer reducer;
     // RefID is the unique identifier of the query, set by the frontend call. 

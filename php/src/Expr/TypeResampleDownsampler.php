@@ -72,6 +72,15 @@ final class TypeResampleDownsampler implements \JsonSerializable, \Stringable {
         return self::$instances["Last"];
     }
 
+    public static function median(): self
+    {
+        if (!isset(self::$instances["Median"])) {
+            self::$instances["Median"] = new self("median");
+        }
+
+        return self::$instances["Median"];
+    }
+
     public static function fromValue(string $value): self
     {
         if ($value === "sum") {
@@ -96,6 +105,10 @@ final class TypeResampleDownsampler implements \JsonSerializable, \Stringable {
 
         if ($value === "last") {
             return self::last();
+        }
+
+        if ($value === "median") {
+            return self::median();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum TypeResampleDownsampler");

@@ -18,7 +18,8 @@ public class TypeResample implements com.grafana.foundation.cog.variants.Dataque
     //  - `"min"` 
     //  - `"max"` 
     //  - `"count"` 
-    //  - `"last"`  
+    //  - `"last"` 
+    //  - `"median"`  
     @JsonProperty("downsampler")
     public TypeResampleDownsampler downsampler;
     // The math expression 
