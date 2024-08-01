@@ -5,14 +5,14 @@ package cog
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	"github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 var runtimeInstance *Runtime
 
 type Runtime struct {
-	panelcfgVariants  map[string]cogvariants.PanelcfgConfig
-	dataqueryVariants map[string]cogvariants.DataqueryConfig
+	panelcfgVariants  map[string]variants.PanelcfgConfig
+	dataqueryVariants map[string]variants.DataqueryConfig
 }
 
 func NewRuntime() *Runtime {
@@ -21,34 +21,34 @@ func NewRuntime() *Runtime {
 	}
 
 	runtimeInstance = &Runtime{
-		panelcfgVariants:  make(map[string]cogvariants.PanelcfgConfig),
-		dataqueryVariants: make(map[string]cogvariants.DataqueryConfig),
+		panelcfgVariants:  make(map[string]variants.PanelcfgConfig),
+		dataqueryVariants: make(map[string]variants.DataqueryConfig),
 	}
 
 	return runtimeInstance
 }
 
-func (runtime *Runtime) RegisterPanelcfgVariant(config cogvariants.PanelcfgConfig) {
+func (runtime *Runtime) RegisterPanelcfgVariant(config variants.PanelcfgConfig) {
 	runtime.panelcfgVariants[config.Identifier] = config
 }
 
-func (runtime *Runtime) ConfigForPanelcfgVariant(identifier string) (cogvariants.PanelcfgConfig, bool) {
+func (runtime *Runtime) ConfigForPanelcfgVariant(identifier string) (variants.PanelcfgConfig, bool) {
 	config, found := runtime.panelcfgVariants[identifier]
 
 	return config, found
 }
 
-func (runtime *Runtime) RegisterDataqueryVariant(config cogvariants.DataqueryConfig) {
+func (runtime *Runtime) RegisterDataqueryVariant(config variants.DataqueryConfig) {
 	runtime.dataqueryVariants[config.Identifier] = config
 }
 
-func (runtime *Runtime) UnmarshalDataqueryArray(raw []byte, dataqueryTypeHint string) ([]cogvariants.Dataquery, error) {
+func (runtime *Runtime) UnmarshalDataqueryArray(raw []byte, dataqueryTypeHint string) ([]variants.Dataquery, error) {
 	rawDataqueries := []json.RawMessage{}
 	if err := json.Unmarshal(raw, &rawDataqueries); err != nil {
 		return nil, err
 	}
 
-	dataqueries := make([]cogvariants.Dataquery, 0, len(rawDataqueries))
+	dataqueries := make([]variants.Dataquery, 0, len(rawDataqueries))
 	for _, rawDataquery := range rawDataqueries {
 		dataquery, err := runtime.UnmarshalDataquery(rawDataquery, dataqueryTypeHint)
 		if err != nil {
@@ -61,7 +61,7 @@ func (runtime *Runtime) UnmarshalDataqueryArray(raw []byte, dataqueryTypeHint st
 	return dataqueries, nil
 }
 
-func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string) (cogvariants.Dataquery, error) {
+func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string) (variants.Dataquery, error) {
 	// A hint tells us the dataquery type: let's use it.
 	if dataqueryTypeHint != "" {
 		config, found := runtime.dataqueryVariants[dataqueryTypeHint]
@@ -71,12 +71,12 @@ func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string)
 				return nil, err
 			}
 
-			return dataquery.(cogvariants.Dataquery), nil
+			return dataquery.(variants.Dataquery), nil
 		}
 	}
 
 	// We have no idea what type the dataquery is: use our `UnknownDataquery` bag to not lose data.
-	dataquery := cogvariants.UnknownDataquery{}
+	dataquery := variants.UnknownDataquery{}
 	if err := json.Unmarshal(raw, &dataquery); err != nil {
 		return nil, err
 	}
@@ -84,14 +84,14 @@ func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string)
 	return dataquery, nil
 }
 
-func UnmarshalDataqueryArray(raw []byte, dataqueryTypeHint string) ([]cogvariants.Dataquery, error) {
+func UnmarshalDataqueryArray(raw []byte, dataqueryTypeHint string) ([]variants.Dataquery, error) {
 	return NewRuntime().UnmarshalDataqueryArray(raw, dataqueryTypeHint)
 }
 
-func UnmarshalDataquery(raw []byte, dataqueryTypeHint string) (cogvariants.Dataquery, error) {
+func UnmarshalDataquery(raw []byte, dataqueryTypeHint string) (variants.Dataquery, error) {
 	return NewRuntime().UnmarshalDataquery(raw, dataqueryTypeHint)
 }
 
-func ConfigForPanelcfgVariant(identifier string) (cogvariants.PanelcfgConfig, bool) {
+func ConfigForPanelcfgVariant(identifier string) (variants.PanelcfgConfig, bool) {
 	return NewRuntime().ConfigForPanelcfgVariant(identifier)
 }

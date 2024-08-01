@@ -4,10 +4,10 @@ package azuremonitor
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
-var _ cog.Builder[cogvariants.Dataquery] = (*AzureMonitorQueryBuilder)(nil)
+var _ cog.Builder[variants.Dataquery] = (*AzureMonitorQueryBuilder)(nil)
 
 type AzureMonitorQueryBuilder struct {
 	internal *AzureMonitorQuery
@@ -26,7 +26,7 @@ func NewAzureMonitorQueryBuilder() *AzureMonitorQueryBuilder {
 	return builder
 }
 
-func (builder *AzureMonitorQueryBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *AzureMonitorQueryBuilder) Build() (variants.Dataquery, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {

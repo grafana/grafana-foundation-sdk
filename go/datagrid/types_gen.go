@@ -5,15 +5,15 @@ package datagrid
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type Options struct {
 	SelectedSeries int32 `json:"selectedSeries"`
 }
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "datagrid",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}
