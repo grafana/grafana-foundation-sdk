@@ -76,7 +76,8 @@ export class TypeReduceBuilder implements cog.Builder<cog.Dataquery> {
     //  - `"max"` 
     //  - `"count"` 
     //  - `"last"` 
-    reducer(reducer: "sum" | "mean" | "min" | "max" | "count" | "last"): this {
+    //  - `"median"` 
+    reducer(reducer: "sum" | "mean" | "min" | "max" | "count" | "last" | "median"): this {
         this.internal.reducer = reducer;
         return this;
     }

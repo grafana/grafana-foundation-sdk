@@ -4,10 +4,10 @@ package cloudwatch
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
-var _ cog.Builder[cogvariants.Dataquery] = (*CloudWatchAnnotationQueryBuilder)(nil)
+var _ cog.Builder[variants.Dataquery] = (*CloudWatchAnnotationQueryBuilder)(nil)
 
 // Shape of a CloudWatch Annotation query
 // TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
@@ -29,7 +29,7 @@ func NewCloudWatchAnnotationQueryBuilder() *CloudWatchAnnotationQueryBuilder {
 	return builder
 }
 
-func (builder *CloudWatchAnnotationQueryBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *CloudWatchAnnotationQueryBuilder) Build() (variants.Dataquery, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {

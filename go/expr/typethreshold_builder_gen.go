@@ -6,10 +6,10 @@ import (
 	"errors"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
-var _ cog.Builder[cogvariants.Dataquery] = (*TypeThresholdBuilder)(nil)
+var _ cog.Builder[variants.Dataquery] = (*TypeThresholdBuilder)(nil)
 
 type TypeThresholdBuilder struct {
 	internal *TypeThreshold
@@ -29,7 +29,7 @@ func NewTypeThresholdBuilder() *TypeThresholdBuilder {
 	return builder
 }
 
-func (builder *TypeThresholdBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *TypeThresholdBuilder) Build() (variants.Dataquery, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {

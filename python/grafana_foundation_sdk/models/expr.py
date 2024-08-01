@@ -9,7 +9,7 @@ Expr: typing.TypeAlias = typing.Union['TypeMath', 'TypeReduce', 'TypeResample', 
 
 
 def variant_config() -> cogruntime.DataqueryConfig:
-    decoding_map: dict[str, typing.Union[typing.Type[TypeReduce], typing.Type[TypeResample], typing.Type[TypeClassicConditions], typing.Type[TypeThreshold], typing.Type[TypeSql], typing.Type[TypeMath]]] = {"reduce": TypeReduce, "resample": TypeResample, "classic_conditions": TypeClassicConditions, "threshold": TypeThreshold, "sql": TypeSql, "math": TypeMath}
+    decoding_map: dict[str, typing.Union[typing.Type[TypeMath], typing.Type[TypeReduce], typing.Type[TypeResample], typing.Type[TypeClassicConditions], typing.Type[TypeThreshold], typing.Type[TypeSql]]] = {"math": TypeMath, "reduce": TypeReduce, "resample": TypeResample, "classic_conditions": TypeClassicConditions, "threshold": TypeThreshold, "sql": TypeSql}
     return cogruntime.DataqueryConfig(
         identifier="__expr__",
         from_json_hook=lambda data: decoding_map[data["type"]].from_json(data),
@@ -134,7 +134,8 @@ class TypeReduce(cogvariants.Dataquery):
     #  - `"max"` 
     #  - `"count"` 
     #  - `"last"` 
-    reducer: typing.Literal["sum", "mean", "min", "max", "count", "last"]
+    #  - `"median"` 
+    reducer: typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]
     # RefID is the unique identifier of the query, set by the frontend call.
     ref_id: str
     # Optionally define expected query result behavior
@@ -147,7 +148,7 @@ class TypeReduce(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeReduceTimeRange']
     type_val: typing.Literal["reduce"]
 
-    def __init__(self, datasource: typing.Optional['ExprTypeReduceDatasource'] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, reducer: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last"]] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeReduceResultAssertions'] = None, settings: typing.Optional['ExprTypeReduceSettings'] = None, time_range: typing.Optional['ExprTypeReduceTimeRange'] = None):
+    def __init__(self, datasource: typing.Optional['ExprTypeReduceDatasource'] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, reducer: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeReduceResultAssertions'] = None, settings: typing.Optional['ExprTypeReduceSettings'] = None, time_range: typing.Optional['ExprTypeReduceTimeRange'] = None):
         self.datasource = datasource
         self.expression = expression
         self.hide = hide
@@ -227,7 +228,8 @@ class TypeResample(cogvariants.Dataquery):
     #  - `"max"` 
     #  - `"count"` 
     #  - `"last"` 
-    downsampler: typing.Literal["sum", "mean", "min", "max", "count", "last"]
+    #  - `"median"` 
+    downsampler: typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]
     # The math expression
     expression: str
     # true if query is disabled (ie should not be returned to the dashboard)
@@ -263,7 +265,7 @@ class TypeResample(cogvariants.Dataquery):
     # The time duration
     window: str
 
-    def __init__(self, datasource: typing.Optional['ExprTypeResampleDatasource'] = None, downsampler: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last"]] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeResampleResultAssertions'] = None, time_range: typing.Optional['ExprTypeResampleTimeRange'] = None, upsampler: typing.Optional[typing.Literal["pad", "backfilling", "fillna"]] = None, window: str = ""):
+    def __init__(self, datasource: typing.Optional['ExprTypeResampleDatasource'] = None, downsampler: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeResampleResultAssertions'] = None, time_range: typing.Optional['ExprTypeResampleTimeRange'] = None, upsampler: typing.Optional[typing.Literal["pad", "backfilling", "fillna"]] = None, window: str = ""):
         self.datasource = datasource
         self.downsampler = downsampler if downsampler is not None else "sum"
         self.expression = expression

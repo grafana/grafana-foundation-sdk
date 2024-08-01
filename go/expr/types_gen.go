@@ -7,17 +7,17 @@ import (
 	"errors"
 	"fmt"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type Expr = TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql
 
 func (resource Expr) ImplementsDataqueryVariant() {}
 
-func VariantConfig() cogvariants.DataqueryConfig {
-	return cogvariants.DataqueryConfig{
+func VariantConfig() variants.DataqueryConfig {
+	return variants.DataqueryConfig{
 		Identifier: "__expr__",
-		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
+		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
 			dataquery := Expr{}
 
 			if err := json.Unmarshal(raw, &dataquery); err != nil {
@@ -129,6 +129,7 @@ type TypeReduce struct {
 	//  - `"max"`
 	//  - `"count"`
 	//  - `"last"`
+	//  - `"median"`
 	Reducer TypeReduceReducer `json:"reducer"`
 	// RefID is the unique identifier of the query, set by the frontend call.
 	RefId string `json:"refId"`
@@ -196,6 +197,7 @@ type TypeResample struct {
 	//  - `"max"`
 	//  - `"count"`
 	//  - `"last"`
+	//  - `"median"`
 	Downsampler TypeResampleDownsampler `json:"downsampler"`
 	// The math expression
 	Expression string `json:"expression"`
@@ -603,12 +605,13 @@ const (
 type TypeReduceReducer string
 
 const (
-	TypeReduceReducerSum   TypeReduceReducer = "sum"
-	TypeReduceReducerMean  TypeReduceReducer = "mean"
-	TypeReduceReducerMin   TypeReduceReducer = "min"
-	TypeReduceReducerMax   TypeReduceReducer = "max"
-	TypeReduceReducerCount TypeReduceReducer = "count"
-	TypeReduceReducerLast  TypeReduceReducer = "last"
+	TypeReduceReducerSum    TypeReduceReducer = "sum"
+	TypeReduceReducerMean   TypeReduceReducer = "mean"
+	TypeReduceReducerMin    TypeReduceReducer = "min"
+	TypeReduceReducerMax    TypeReduceReducer = "max"
+	TypeReduceReducerCount  TypeReduceReducer = "count"
+	TypeReduceReducerLast   TypeReduceReducer = "last"
+	TypeReduceReducerMedian TypeReduceReducer = "median"
 )
 
 type TypeReduceType string
@@ -637,12 +640,13 @@ const (
 type TypeResampleDownsampler string
 
 const (
-	TypeResampleDownsamplerSum   TypeResampleDownsampler = "sum"
-	TypeResampleDownsamplerMean  TypeResampleDownsampler = "mean"
-	TypeResampleDownsamplerMin   TypeResampleDownsampler = "min"
-	TypeResampleDownsamplerMax   TypeResampleDownsampler = "max"
-	TypeResampleDownsamplerCount TypeResampleDownsampler = "count"
-	TypeResampleDownsamplerLast  TypeResampleDownsampler = "last"
+	TypeResampleDownsamplerSum    TypeResampleDownsampler = "sum"
+	TypeResampleDownsamplerMean   TypeResampleDownsampler = "mean"
+	TypeResampleDownsamplerMin    TypeResampleDownsampler = "min"
+	TypeResampleDownsamplerMax    TypeResampleDownsampler = "max"
+	TypeResampleDownsamplerCount  TypeResampleDownsampler = "count"
+	TypeResampleDownsamplerLast   TypeResampleDownsampler = "last"
+	TypeResampleDownsamplerMedian TypeResampleDownsampler = "median"
 )
 
 type TypeResampleType string

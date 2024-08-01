@@ -5,7 +5,7 @@ package histogram
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -40,8 +40,8 @@ type FieldConfig struct {
 	AxisCenteredZero *bool                     `json:"axisCenteredZero,omitempty"`
 }
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "histogram",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}
