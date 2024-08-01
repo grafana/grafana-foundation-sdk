@@ -36,7 +36,8 @@ export class TypeResampleBuilder implements cog.Builder<cog.Dataquery> {
     //  - `"max"` 
     //  - `"count"` 
     //  - `"last"` 
-    downsampler(downsampler: "sum" | "mean" | "min" | "max" | "count" | "last"): this {
+    //  - `"median"` 
+    downsampler(downsampler: "sum" | "mean" | "min" | "max" | "count" | "last" | "median"): this {
         this.internal.downsampler = downsampler;
         return this;
     }

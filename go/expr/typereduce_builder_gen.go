@@ -6,10 +6,10 @@ import (
 	"errors"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
-var _ cog.Builder[cogvariants.Dataquery] = (*TypeReduceBuilder)(nil)
+var _ cog.Builder[variants.Dataquery] = (*TypeReduceBuilder)(nil)
 
 type TypeReduceBuilder struct {
 	internal *TypeReduce
@@ -29,7 +29,7 @@ func NewTypeReduceBuilder() *TypeReduceBuilder {
 	return builder
 }
 
-func (builder *TypeReduceBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *TypeReduceBuilder) Build() (variants.Dataquery, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {
@@ -111,6 +111,7 @@ func (builder *TypeReduceBuilder) QueryType(queryType string) *TypeReduceBuilder
 //   - `"max"`
 //   - `"count"`
 //   - `"last"`
+//   - `"median"`
 func (builder *TypeReduceBuilder) Reducer(reducer TypeReduceReducer) *TypeReduceBuilder {
 	builder.internal.Reducer = reducer
 

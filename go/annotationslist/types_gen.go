@@ -5,7 +5,7 @@ package annotationslist
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type Options struct {
@@ -21,8 +21,8 @@ type Options struct {
 	NavigateAfter         string   `json:"navigateAfter"`
 }
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "annolist",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}
