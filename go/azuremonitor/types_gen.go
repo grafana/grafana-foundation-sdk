@@ -7,7 +7,7 @@ import (
 	"errors"
 	"fmt"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type AzureMonitorQuery struct {
@@ -50,10 +50,10 @@ type AzureMonitorQuery struct {
 
 func (resource AzureMonitorQuery) ImplementsDataqueryVariant() {}
 
-func VariantConfig() cogvariants.DataqueryConfig {
-	return cogvariants.DataqueryConfig{
+func VariantConfig() variants.DataqueryConfig {
+	return variants.DataqueryConfig{
 		Identifier: "grafana-azure-monitor-datasource",
-		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
+		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
 			dataquery := AzureMonitorQuery{}
 
 			if err := json.Unmarshal(raw, &dataquery); err != nil {

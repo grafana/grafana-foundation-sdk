@@ -14,6 +14,7 @@ public enum TypeReduceReducer {
     MAX("max"),
     COUNT("count"),
     LAST("last"),
+    MEDIAN("median"),
     _EMPTY("");
 
     private final String value;

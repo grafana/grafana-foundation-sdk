@@ -110,7 +110,8 @@ export interface TypeReduce {
 	//  - `"max"` 
 	//  - `"count"` 
 	//  - `"last"` 
-	reducer: "sum" | "mean" | "min" | "max" | "count" | "last";
+	//  - `"median"` 
+	reducer: "sum" | "mean" | "min" | "max" | "count" | "last" | "median";
 	// RefID is the unique identifier of the query, set by the frontend call.
 	refId: string;
 	// Optionally define expected query result behavior
@@ -184,7 +185,8 @@ export interface TypeResample {
 	//  - `"max"` 
 	//  - `"count"` 
 	//  - `"last"` 
-	downsampler: "sum" | "mean" | "min" | "max" | "count" | "last";
+	//  - `"median"` 
+	downsampler: "sum" | "mean" | "min" | "max" | "count" | "last" | "median";
 	// The math expression
 	expression: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
