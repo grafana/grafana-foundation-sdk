@@ -6,10 +6,10 @@ import (
 	"errors"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
-var _ cog.Builder[cogvariants.Dataquery] = (*TypeResampleBuilder)(nil)
+var _ cog.Builder[variants.Dataquery] = (*TypeResampleBuilder)(nil)
 
 type TypeResampleBuilder struct {
 	internal *TypeResample
@@ -29,7 +29,7 @@ func NewTypeResampleBuilder() *TypeResampleBuilder {
 	return builder
 }
 
-func (builder *TypeResampleBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *TypeResampleBuilder) Build() (variants.Dataquery, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {
@@ -65,6 +65,7 @@ func (builder *TypeResampleBuilder) Datasource(datasource struct {
 //   - `"max"`
 //   - `"count"`
 //   - `"last"`
+//   - `"median"`
 func (builder *TypeResampleBuilder) Downsampler(downsampler TypeResampleDownsampler) *TypeResampleBuilder {
 	builder.internal.Downsampler = downsampler
 

@@ -6,10 +6,10 @@ import (
 	"errors"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
-var _ cog.Builder[cogvariants.Dataquery] = (*TypeSqlBuilder)(nil)
+var _ cog.Builder[variants.Dataquery] = (*TypeSqlBuilder)(nil)
 
 type TypeSqlBuilder struct {
 	internal *TypeSql
@@ -29,7 +29,7 @@ func NewTypeSqlBuilder() *TypeSqlBuilder {
 	return builder
 }
 
-func (builder *TypeSqlBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *TypeSqlBuilder) Build() (variants.Dataquery, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {

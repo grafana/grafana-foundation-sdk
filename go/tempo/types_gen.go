@@ -7,7 +7,7 @@ import (
 	"errors"
 	"fmt"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type TempoQuery struct {
@@ -56,10 +56,10 @@ type TempoQuery struct {
 
 func (resource TempoQuery) ImplementsDataqueryVariant() {}
 
-func VariantConfig() cogvariants.DataqueryConfig {
-	return cogvariants.DataqueryConfig{
+func VariantConfig() variants.DataqueryConfig {
+	return variants.DataqueryConfig{
 		Identifier: "tempo",
-		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
+		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
 			dataquery := TempoQuery{}
 
 			if err := json.Unmarshal(raw, &dataquery); err != nil {

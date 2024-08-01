@@ -5,7 +5,7 @@ package geomap
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -65,8 +65,8 @@ const (
 	MapCenterIDFit    MapCenterID = "fit"
 )
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "geomap",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}
