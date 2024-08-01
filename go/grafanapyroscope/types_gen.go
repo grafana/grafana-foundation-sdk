@@ -5,7 +5,7 @@ package grafanapyroscope
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type PyroscopeQueryType string
@@ -47,10 +47,10 @@ type Dataquery struct {
 
 func (resource Dataquery) ImplementsDataqueryVariant() {}
 
-func VariantConfig() cogvariants.DataqueryConfig {
-	return cogvariants.DataqueryConfig{
+func VariantConfig() variants.DataqueryConfig {
+	return variants.DataqueryConfig{
 		Identifier: "grafanapyroscope",
-		DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
+		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
 			dataquery := Dataquery{}
 
 			if err := json.Unmarshal(raw, &dataquery); err != nil {

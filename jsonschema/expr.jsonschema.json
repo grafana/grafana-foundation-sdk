@@ -206,9 +206,10 @@
             "min",
             "max",
             "count",
-            "last"
+            "last",
+            "median"
           ],
-          "description": "The reducer\nPossible enum values:\n - `\"sum\"` \n - `\"mean\"` \n - `\"min\"` \n - `\"max\"` \n - `\"count\"` \n - `\"last\"` "
+          "description": "The reducer\nPossible enum values:\n - `\"sum\"` \n - `\"mean\"` \n - `\"min\"` \n - `\"max\"` \n - `\"count\"` \n - `\"last\"` \n - `\"median\"` "
         },
         "refId": {
           "type": "string",
@@ -341,9 +342,10 @@
             "min",
             "max",
             "count",
-            "last"
+            "last",
+            "median"
           ],
-          "description": "The downsample function\nPossible enum values:\n - `\"sum\"` \n - `\"mean\"` \n - `\"min\"` \n - `\"max\"` \n - `\"count\"` \n - `\"last\"` "
+          "description": "The downsample function\nPossible enum values:\n - `\"sum\"` \n - `\"mean\"` \n - `\"min\"` \n - `\"max\"` \n - `\"count\"` \n - `\"last\"` \n - `\"median\"` "
         },
         "expression": {
           "type": "string",

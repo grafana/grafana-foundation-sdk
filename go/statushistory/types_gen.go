@@ -5,7 +5,7 @@ package statushistory
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -27,8 +27,8 @@ type FieldConfig struct {
 	FillOpacity *uint32                  `json:"fillOpacity,omitempty"`
 }
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "status-history",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}

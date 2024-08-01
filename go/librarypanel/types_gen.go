@@ -5,7 +5,7 @@ package librarypanel
 import (
 	"time"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
@@ -34,7 +34,7 @@ type LibraryPanel struct {
 		// Tags for the panel.
 		Tags []string `json:"tags,omitempty"`
 		// Depends on the panel plugin. See the plugin documentation for details.
-		Targets []cogvariants.Dataquery `json:"targets,omitempty"`
+		Targets []variants.Dataquery `json:"targets,omitempty"`
 		// Panel title.
 		Title *string `json:"title,omitempty"`
 		// Panel description.
