@@ -95,7 +95,7 @@ class Preferences implements \JsonSerializable
     	return \Grafana\Foundation\Preferences\CookiePreferences::fromArray($val);
     })($data["cookiePreferences"]) : null,
             navbar: isset($data["navbar"]) ? (function($input) {
-    	/** @var array{savedItemIds?: array<string>} */
+    	/** @var array{bookmarkUrls?: array<string>} */
     $val = $input;
     	return \Grafana\Foundation\Preferences\NavbarPreference::fromArray($val);
     })($data["navbar"]) : null,

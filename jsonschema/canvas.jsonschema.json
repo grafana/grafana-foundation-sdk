@@ -202,9 +202,6 @@
           "items": {
             "$ref": "#/definitions/CanvasConnection"
           }
-        },
-        "oneClickLinks": {
-          "type": "boolean"
         }
       }
     },

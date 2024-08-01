@@ -25,9 +25,7 @@ public class CanvasElementOptions {
     @JsonProperty("border")
     public LineConfig border; 
     @JsonProperty("connections")
-    public List<CanvasConnection> connections; 
-    @JsonProperty("oneClickLinks")
-    public Boolean oneClickLinks;
+    public List<CanvasConnection> connections;
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

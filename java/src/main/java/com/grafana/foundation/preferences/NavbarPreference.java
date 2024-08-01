@@ -9,8 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class NavbarPreference { 
-    @JsonProperty("savedItemIds")
-    public List<String> savedItemIds;
+    @JsonProperty("bookmarkUrls")
+    public List<String> bookmarkUrls;
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -24,8 +24,8 @@ public class NavbarPreference {
         public Builder() {
             this.internal = new NavbarPreference();
         }
-    public Builder savedItemIds(List<String> savedItemIds) {
-    this.internal.savedItemIds = savedItemIds;
+    public Builder bookmarkUrls(List<String> bookmarkUrls) {
+    this.internal.bookmarkUrls = bookmarkUrls;
         return this;
     }
     public NavbarPreference build() {

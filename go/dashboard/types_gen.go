@@ -9,7 +9,7 @@ import (
 	"time"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type Dashboard struct {
@@ -563,7 +563,7 @@ type Panel struct {
 	// The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
 	PluginVersion *string `json:"pluginVersion,omitempty"`
 	// Depends on the panel plugin. See the plugin documentation for details.
-	Targets []cogvariants.Dataquery `json:"targets,omitempty"`
+	Targets []variants.Dataquery `json:"targets,omitempty"`
 	// Panel title.
 	Title *string `json:"title,omitempty"`
 	// Panel description.

@@ -149,8 +149,8 @@ class NavbarPreference(cogbuilder.Builder[preferences.NavbarPreference]):
     def build(self) -> preferences.NavbarPreference:
         return self._internal    
     
-    def saved_item_ids(self, saved_item_ids: list[str]) -> typing.Self:        
-        self._internal.saved_item_ids = saved_item_ids
+    def bookmark_urls(self, bookmark_urls: list[str]) -> typing.Self:        
+        self._internal.bookmark_urls = bookmark_urls
     
         return self
     

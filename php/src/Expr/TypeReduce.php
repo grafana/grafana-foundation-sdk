@@ -50,6 +50,7 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      *  - `"max"` 
      *  - `"count"` 
      *  - `"last"` 
+     *  - `"median"` 
      */
     public \Grafana\Foundation\Expr\TypeReduceReducer $reducer;
 

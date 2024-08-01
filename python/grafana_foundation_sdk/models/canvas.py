@@ -303,9 +303,8 @@ class CanvasElementOptions:
     background: typing.Optional['BackgroundConfig']
     border: typing.Optional['LineConfig']
     connections: typing.Optional[list['CanvasConnection']]
-    one_click_links: typing.Optional[bool]
 
-    def __init__(self, name: str = "", type_val: str = "", config: typing.Optional[object] = None, constraint: typing.Optional['Constraint'] = None, placement: typing.Optional['Placement'] = None, background: typing.Optional['BackgroundConfig'] = None, border: typing.Optional['LineConfig'] = None, connections: typing.Optional[list['CanvasConnection']] = None, one_click_links: typing.Optional[bool] = None):
+    def __init__(self, name: str = "", type_val: str = "", config: typing.Optional[object] = None, constraint: typing.Optional['Constraint'] = None, placement: typing.Optional['Placement'] = None, background: typing.Optional['BackgroundConfig'] = None, border: typing.Optional['LineConfig'] = None, connections: typing.Optional[list['CanvasConnection']] = None):
         self.name = name
         self.type_val = type_val
         self.config = config
@@ -314,7 +313,6 @@ class CanvasElementOptions:
         self.background = background
         self.border = border
         self.connections = connections
-        self.one_click_links = one_click_links
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -333,8 +331,6 @@ class CanvasElementOptions:
             payload["border"] = self.border
         if self.connections is not None:
             payload["connections"] = self.connections
-        if self.one_click_links is not None:
-            payload["oneClickLinks"] = self.one_click_links
         return payload
 
     @classmethod
@@ -356,9 +352,7 @@ class CanvasElementOptions:
         if "border" in data:
             args["border"] = LineConfig.from_json(data["border"])
         if "connections" in data:
-            args["connections"] = data["connections"]
-        if "oneClickLinks" in data:
-            args["one_click_links"] = data["oneClickLinks"]        
+            args["connections"] = data["connections"]        
 
         return cls(**args)
 

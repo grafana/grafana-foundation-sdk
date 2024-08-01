@@ -36,5 +36,5 @@ type CookiePreferences struct {
 }
 
 type NavbarPreference struct {
-	SavedItemIds []string `json:"savedItemIds"`
+	BookmarkUrls []string `json:"bookmarkUrls"`
 }

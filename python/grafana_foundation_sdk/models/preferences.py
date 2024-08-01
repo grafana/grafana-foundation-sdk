@@ -142,14 +142,14 @@ class CookiePreferences:
 
 
 class NavbarPreference:
-    saved_item_ids: list[str]
+    bookmark_urls: list[str]
 
-    def __init__(self, saved_item_ids: typing.Optional[list[str]] = None):
-        self.saved_item_ids = saved_item_ids if saved_item_ids is not None else []
+    def __init__(self, bookmark_urls: typing.Optional[list[str]] = None):
+        self.bookmark_urls = bookmark_urls if bookmark_urls is not None else []
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
-            "savedItemIds": self.saved_item_ids,
+            "bookmarkUrls": self.bookmark_urls,
         }
         return payload
 
@@ -157,8 +157,8 @@ class NavbarPreference:
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
-        if "savedItemIds" in data:
-            args["saved_item_ids"] = data["savedItemIds"]        
+        if "bookmarkUrls" in data:
+            args["bookmark_urls"] = data["bookmarkUrls"]        
 
         return cls(**args)
 

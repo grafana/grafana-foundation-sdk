@@ -14,8 +14,8 @@ export class NavbarPreferenceBuilder implements cog.Builder<preferences.NavbarPr
         return this.internal;
     }
 
-    savedItemIds(savedItemIds: string[]): this {
-        this.internal.savedItemIds = savedItemIds;
+    bookmarkUrls(bookmarkUrls: string[]): this {
+        this.internal.bookmarkUrls = bookmarkUrls;
         return this;
     }
 }

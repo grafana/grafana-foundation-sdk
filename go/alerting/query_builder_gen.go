@@ -4,7 +4,7 @@ package alerting
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 var _ cog.Builder[Query] = (*QueryBuilder)(nil)
@@ -47,7 +47,7 @@ func (builder *QueryBuilder) DatasourceUid(datasourceUid string) *QueryBuilder {
 	return builder
 }
 
-func (builder *QueryBuilder) Model(model cog.Builder[cogvariants.Dataquery]) *QueryBuilder {
+func (builder *QueryBuilder) Model(model cog.Builder[variants.Dataquery]) *QueryBuilder {
 	modelResource, err := model.Build()
 	if err != nil {
 		builder.errors["model"] = err.(cog.BuildErrors)
