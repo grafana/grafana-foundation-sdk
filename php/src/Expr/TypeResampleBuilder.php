@@ -43,6 +43,7 @@ class TypeResampleBuilder implements \Grafana\Foundation\Cog\Builder
      *  - `"max"` 
      *  - `"count"` 
      *  - `"last"` 
+     *  - `"median"` 
      */
     public function downsampler(\Grafana\Foundation\Expr\TypeResampleDownsampler $downsampler): static
     {

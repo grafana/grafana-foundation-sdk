@@ -7,14 +7,14 @@ class NavbarPreference implements \JsonSerializable
     /**
      * @var array<string>
      */
-    public array $savedItemIds;
+    public array $bookmarkUrls;
 
     /**
-     * @param array<string>|null $savedItemIds
+     * @param array<string>|null $bookmarkUrls
      */
-    public function __construct(?array $savedItemIds = null)
+    public function __construct(?array $bookmarkUrls = null)
     {
-        $this->savedItemIds = $savedItemIds ?: [];
+        $this->bookmarkUrls = $bookmarkUrls ?: [];
     }
 
     /**
@@ -22,10 +22,10 @@ class NavbarPreference implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{savedItemIds?: array<string>} $inputData */
+        /** @var array{bookmarkUrls?: array<string>} $inputData */
         $data = $inputData;
         return new self(
-            savedItemIds: $data["savedItemIds"] ?? null,
+            bookmarkUrls: $data["bookmarkUrls"] ?? null,
         );
     }
 
@@ -35,7 +35,7 @@ class NavbarPreference implements \JsonSerializable
     public function jsonSerialize(): array
     {
         $data = [
-            "savedItemIds" => $this->savedItemIds,
+            "bookmarkUrls" => $this->bookmarkUrls,
         ];
         return $data;
     }

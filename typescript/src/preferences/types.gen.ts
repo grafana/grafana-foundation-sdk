@@ -43,10 +43,10 @@ export const defaultCookiePreferences = (): CookiePreferences => ({
 });
 
 export interface NavbarPreference {
-	savedItemIds: string[];
+	bookmarkUrls: string[];
 }
 
 export const defaultNavbarPreference = (): NavbarPreference => ({
-	savedItemIds: [],
+	bookmarkUrls: [],
 });
 

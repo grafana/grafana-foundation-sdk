@@ -110,7 +110,7 @@ import (
     "encoding/json"
 
     "github.com/grafana/grafana-foundation-sdk/go/cog"
-    cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	"github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
 type CustomQuery struct {
@@ -125,10 +125,10 @@ type CustomQuery struct {
 // Let cog know that CustomQuery is a Dataquery variant
 func (resource CustomQuery) ImplementsDataqueryVariant() {}
 
-func CustomQueryVariantConfig() cogvariants.DataqueryConfig {
-    return cogvariants.DataqueryConfig{
+func CustomQueryVariantConfig() variants.DataqueryConfig {
+    return variants.DataqueryConfig{
         Identifier: "custom", // datasource plugin ID
-        DataqueryUnmarshaler: func(raw []byte) (cogvariants.Dataquery, error) {
+        DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
             dataquery := &CustomQuery{}
 
             if err := json.Unmarshal(raw, dataquery); err != nil {
@@ -141,8 +141,8 @@ func CustomQueryVariantConfig() cogvariants.DataqueryConfig {
 }
 
 // Compile-time check to ensure that CustomQueryBuilder indeed is
-// a builder for cogvariants.Dataquery
-var _ cog.Builder[cogvariants.Dataquery] = (*CustomQueryBuilder)(nil)
+// a builder for variants.Dataquery
+var _ cog.Builder[variants.Dataquery] = (*CustomQueryBuilder)(nil)
 
 type CustomQueryBuilder struct {
     internal *CustomQuery
@@ -154,7 +154,7 @@ func NewCustomQueryBuilder(query string) *CustomQueryBuilder {
     }
 }
 
-func (builder *CustomQueryBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *CustomQueryBuilder) Build() (variants.Dataquery, error) {
     return *builder.internal, nil
 }
 
@@ -231,7 +231,7 @@ import (
     "encoding/json"
 
     "github.com/grafana/grafana-foundation-sdk/go/cog"
-    cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	"github.com/grafana/grafana-foundation-sdk/go/cog/variants"
     "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
@@ -239,8 +239,8 @@ type CustomPanelOptions struct {
     MakeBeautiful bool `json:"makeBeautiful"`
 }
 
-func CustomPanelVariantConfig() cogvariants.PanelcfgConfig {
-    return cogvariants.PanelcfgConfig{
+func CustomPanelVariantConfig() variants.PanelcfgConfig {
+    return variants.PanelcfgConfig{
         Identifier: "custom-panel", // plugin ID
         OptionsUnmarshaler: func(raw []byte) (any, error) {
             options := CustomPanelOptions{}
@@ -292,7 +292,7 @@ func (builder *CustomPanelBuilder) Title(title string) *CustomPanelBuilder {
     return builder
 }
 
-func (builder *CustomPanelBuilder) WithTarget(targets cog.Builder[cogvariants.Dataquery]) *CustomPanelBuilder {
+func (builder *CustomPanelBuilder) WithTarget(targets cog.Builder[variants.Dataquery]) *CustomPanelBuilder {
     targetsResource, err := targets.Build()
     if err != nil {
         builder.errors["targets"] = err.(cog.BuildErrors)

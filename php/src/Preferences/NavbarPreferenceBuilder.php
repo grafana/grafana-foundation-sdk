@@ -23,11 +23,11 @@ class NavbarPreferenceBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * @param array<string> $savedItemIds
+     * @param array<string> $bookmarkUrls
      */
-    public function savedItemIds(array $savedItemIds): static
+    public function bookmarkUrls(array $bookmarkUrls): static
     {
-        $this->internal->savedItemIds = $savedItemIds;
+        $this->internal->bookmarkUrls = $bookmarkUrls;
     
         return $this;
     }

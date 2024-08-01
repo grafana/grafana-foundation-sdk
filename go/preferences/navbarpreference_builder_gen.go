@@ -39,8 +39,8 @@ func (builder *NavbarPreferenceBuilder) Build() (NavbarPreference, error) {
 	return *builder.internal, nil
 }
 
-func (builder *NavbarPreferenceBuilder) SavedItemIds(savedItemIds []string) *NavbarPreferenceBuilder {
-	builder.internal.SavedItemIds = savedItemIds
+func (builder *NavbarPreferenceBuilder) BookmarkUrls(bookmarkUrls []string) *NavbarPreferenceBuilder {
+	builder.internal.BookmarkUrls = bookmarkUrls
 
 	return builder
 }

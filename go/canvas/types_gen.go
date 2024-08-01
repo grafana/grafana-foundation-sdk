@@ -5,7 +5,7 @@ package canvas
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -101,13 +101,12 @@ type CanvasElementOptions struct {
 	Name string `json:"name"`
 	Type string `json:"type"`
 	// TODO: figure out how to define this (element config(s))
-	Config        any                `json:"config,omitempty"`
-	Constraint    *Constraint        `json:"constraint,omitempty"`
-	Placement     *Placement         `json:"placement,omitempty"`
-	Background    *BackgroundConfig  `json:"background,omitempty"`
-	Border        *LineConfig        `json:"border,omitempty"`
-	Connections   []CanvasConnection `json:"connections,omitempty"`
-	OneClickLinks *bool              `json:"oneClickLinks,omitempty"`
+	Config      any                `json:"config,omitempty"`
+	Constraint  *Constraint        `json:"constraint,omitempty"`
+	Placement   *Placement         `json:"placement,omitempty"`
+	Background  *BackgroundConfig  `json:"background,omitempty"`
+	Border      *LineConfig        `json:"border,omitempty"`
+	Connections []CanvasConnection `json:"connections,omitempty"`
 }
 
 type Options struct {
@@ -131,8 +130,8 @@ type Options struct {
 	} `json:"root"`
 }
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "canvas",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}

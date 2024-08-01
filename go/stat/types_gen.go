@@ -5,7 +5,7 @@ package stat
 import (
 	"encoding/json"
 
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -22,8 +22,8 @@ type Options struct {
 	Orientation            common.VizOrientation         `json:"orientation"`
 }
 
-func VariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func VariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "stat",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := Options{}

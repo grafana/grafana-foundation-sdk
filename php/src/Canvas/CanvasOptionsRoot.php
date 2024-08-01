@@ -42,7 +42,7 @@ class CanvasOptionsRoot implements \JsonSerializable
         return new self(
             name: $data["name"] ?? null,
             elements: array_filter(array_map((function($input) {
-    	/** @var array{name?: string, type?: string, config?: mixed, constraint?: mixed, placement?: mixed, background?: mixed, border?: mixed, connections?: array<mixed>, oneClickLinks?: bool} */
+    	/** @var array{name?: string, type?: string, config?: mixed, constraint?: mixed, placement?: mixed, background?: mixed, border?: mixed, connections?: array<mixed>} */
     $val = $input;
     	return \Grafana\Foundation\Canvas\CanvasElementOptions::fromArray($val);
     }), $data["elements"] ?? [])),
