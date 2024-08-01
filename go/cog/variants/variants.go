@@ -1,6 +1,6 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-package cogvariants
+package variants
 
 type PanelcfgConfig struct {
 	Identifier             string

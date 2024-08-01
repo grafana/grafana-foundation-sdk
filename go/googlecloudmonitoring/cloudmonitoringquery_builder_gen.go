@@ -4,10 +4,10 @@ package googlecloudmonitoring
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
-var _ cog.Builder[cogvariants.Dataquery] = (*CloudMonitoringQueryBuilder)(nil)
+var _ cog.Builder[variants.Dataquery] = (*CloudMonitoringQueryBuilder)(nil)
 
 type CloudMonitoringQueryBuilder struct {
 	internal *CloudMonitoringQuery
@@ -26,7 +26,7 @@ func NewCloudMonitoringQueryBuilder() *CloudMonitoringQueryBuilder {
 	return builder
 }
 
-func (builder *CloudMonitoringQueryBuilder) Build() (cogvariants.Dataquery, error) {
+func (builder *CloudMonitoringQueryBuilder) Build() (variants.Dataquery, error) {
 	var errs cog.BuildErrors
 
 	for _, err := range builder.errors {

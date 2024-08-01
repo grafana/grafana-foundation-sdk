@@ -6,7 +6,7 @@ import (
 	"errors"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
@@ -54,8 +54,8 @@ func (builder *PanelBuilder) Id(id uint32) *PanelBuilder {
 }
 
 // Depends on the panel plugin. See the plugin documentation for details.
-func (builder *PanelBuilder) Targets(targets []cog.Builder[cogvariants.Dataquery]) *PanelBuilder {
-	targetsResources := make([]cogvariants.Dataquery, 0, len(targets))
+func (builder *PanelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) *PanelBuilder {
+	targetsResources := make([]variants.Dataquery, 0, len(targets))
 	for _, r1 := range targets {
 		targetsDepth1, err := r1.Build()
 		if err != nil {
@@ -70,7 +70,7 @@ func (builder *PanelBuilder) Targets(targets []cog.Builder[cogvariants.Dataquery
 }
 
 // Depends on the panel plugin. See the plugin documentation for details.
-func (builder *PanelBuilder) WithTarget(targets cog.Builder[cogvariants.Dataquery]) *PanelBuilder {
+func (builder *PanelBuilder) WithTarget(targets cog.Builder[variants.Dataquery]) *PanelBuilder {
 	targetsResource, err := targets.Build()
 	if err != nil {
 		builder.errors["targets"] = err.(cog.BuildErrors)
