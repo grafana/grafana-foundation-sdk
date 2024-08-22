@@ -30,6 +30,8 @@ Each example showcases different aspects of building dashboards as code:
 
 ## Running the examples
 
+Note, the Grafana Foundation SDK requires Python 3.11+.
+
 From an example's folder:
 
 ```console
