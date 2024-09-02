@@ -1,17 +1,10 @@
 package red;
 
 import com.grafana.foundation.common.*;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.testdata.Datasource;
 import com.grafana.foundation.timeseries.PanelBuilder;
 
 public class Common {
-
-    static DataSourceRef datasourceRef() {
-        DataSourceRef ref = new DataSourceRef();
-        ref.uid = "grafana";
-        ref.type = "grafana";
-        return ref;
-    }
 
     static PanelBuilder defaultTimeSeries() {
         BoolOrFloat64 spanNulls = new BoolOrFloat64();

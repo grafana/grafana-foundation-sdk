@@ -1,13 +1,13 @@
 package red;
 
 import com.grafana.foundation.testdata.Dataquery;
+import com.grafana.foundation.testdata.Datasource;
 import com.grafana.foundation.timeseries.PanelBuilder;
 import com.grafana.foundation.dashboard.*;
 
 import java.util.List;
 
 import static com.grafana.foundation.common.Constants.TimeZoneBrowser;
-import static red.Common.datasourceRef;
 import static red.Common.defaultTimeSeries;
 
 public class Red {
@@ -47,10 +47,12 @@ public class Red {
         return defaultTimeSeries().
                 title("Request rate").
                 description("Number of requests handled by the service, per second.").
-                datasource(datasourceRef()).
                 unit("reqps").
                 withTarget(new Dataquery.Builder().
-                        queryType("randomWalk")
+                        queryType("randomWalk").
+                        datasource(new Datasource.Builder().
+                                type("grafana").
+                                uid("grafana"))
                 );
     }
 
@@ -58,10 +60,12 @@ public class Red {
         return defaultTimeSeries().
                 title("Error rate").
                 description("Number of failed requests, per second.").
-                datasource(datasourceRef()).
                 unit("reqps").
                 withTarget(new Dataquery.Builder().
-                        queryType("randomWalk")
+                        queryType("randomWalk").
+                        datasource(new Datasource.Builder().
+                                type("grafana").
+                                uid("grafana"))
                 );
     }
 
@@ -69,10 +73,12 @@ public class Red {
         return defaultTimeSeries().
                 title("Duration").
                 description("Time taken to process the requests.").
-                datasource(datasourceRef()).
                 unit("s").
                 withTarget(new Dataquery.Builder().
-                        queryType("randomWalk")
+                        queryType("randomWalk").
+                        datasource(new Datasource.Builder().
+                                type("grafana").
+                                uid("grafana"))
                 );
     }
 }
