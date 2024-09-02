@@ -44,10 +44,10 @@ def request_rate_timeseries() -> timeseries.Panel:
         default_timeseries()
         .title("Request rate")
         .description("Number of requests handled by the service, per second.")
-        .datasource(DataSourceRef(uid="grafana", type_val="grafana"))
         .unit("reqps")
         .with_target(
             testdata.Dataquery().query_type("randomWalk")
+            .datasource(DataSourceRef(uid="grafana", type_val="grafana"))
         )
     )
 
@@ -57,10 +57,10 @@ def error_rate_timeseries() -> timeseries.Panel:
         default_timeseries()
         .title("Error rate")
         .description("Number of failed requests, per second.")
-        .datasource(DataSourceRef(uid="grafana", type_val="grafana"))
         .unit("reqps")
         .with_target(
             testdata.Dataquery().query_type("randomWalk")
+            .datasource(DataSourceRef(uid="grafana", type_val="grafana"))
         )
     )
 
@@ -70,9 +70,9 @@ def duration_timeseries() -> timeseries.Panel:
         default_timeseries()
         .title("Duration")
         .description("Time taken to process the requests.")
-        .datasource(DataSourceRef(uid="grafana", type_val="grafana"))
         .unit("s")
         .with_target(
             testdata.Dataquery().query_type("randomWalk")
+            .datasource(DataSourceRef(uid="grafana", type_val="grafana"))
         )
     )
