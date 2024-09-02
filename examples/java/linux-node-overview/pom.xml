@@ -19,12 +19,6 @@
       <artifactId>grafana-foundation-sdk</artifactId>
       <version>11.0.0-1722522290</version>
     </dependency>
-    <dependency>
-      <groupId>com.grafana</groupId>
-      <artifactId>grafana-foundation-sdk</artifactId>
-      <version>11.0.0-1722522290</version>
-      <scope>compile</scope>
-    </dependency>
   </dependencies>
 
 </project>
