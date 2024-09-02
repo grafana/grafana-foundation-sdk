@@ -1,4 +1,4 @@
-package com.grafana.custompanel;
+package custompanel;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.grafana.foundation.cog.variants.Registry;
@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Dashboard;
 
 public class Main {
     public static void main(String[] args) {
-        Registry.registerPanel("custom-panel", CustomPanelOptions.class, null);
+        Registry.registerPanel("custompanel", CustomPanelOptions.class, null);
 
         Dashboard dashboard = new Dashboard.Builder("[Example] Custom Panel").
                 uid("example-custom-panel").

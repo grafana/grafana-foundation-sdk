@@ -1,18 +1,30 @@
-package com.grafana.custompanel;
-
-import com.grafana.foundation.cog.Builder;
-import com.grafana.foundation.cog.variants.Dataquery;
-import com.grafana.foundation.dashboard.*;
+package custompanel;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import com.grafana.foundation.cog.Builder;
+import com.grafana.foundation.cog.variants.Dataquery;
+import com.grafana.foundation.dashboard.DashboardFieldConfigSourceOverrides;
+import com.grafana.foundation.dashboard.DashboardLink;
+import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.dashboard.DataTransformerConfig;
+import com.grafana.foundation.dashboard.FieldColor;
+import com.grafana.foundation.dashboard.FieldConfig;
+import com.grafana.foundation.dashboard.FieldConfigSource;
+import com.grafana.foundation.dashboard.GridPos;
+import com.grafana.foundation.dashboard.LibraryPanelRef;
+import com.grafana.foundation.dashboard.Panel;
+import com.grafana.foundation.dashboard.PanelRepeatDirection;
+import com.grafana.foundation.dashboard.ThresholdsConfig;
+import com.grafana.foundation.dashboard.ValueMapping;
 
 public class CustomPanelBuilder implements Builder<Panel> {
     private final Panel internal;
 
     public CustomPanelBuilder() {
         this.internal = new Panel();
-        this.internal.type = "custom-panel";
+        this.internal.type = "custompanel";
         this.transparent(true);
         this.height(9);
         this.span(12);
@@ -36,13 +48,13 @@ public class CustomPanelBuilder implements Builder<Panel> {
     }
 
     public CustomPanelBuilder targets(com.grafana.foundation.cog.Builder<List<Dataquery>> targets) {
-        this.internal.targets = (List)targets.build();
+        this.internal.targets = targets.build();
         return this;
     }
 
     public CustomPanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> targets) {
         if (this.internal.targets == null) {
-            this.internal.targets = new LinkedList();
+            this.internal.targets = new LinkedList<>();
         }
 
         this.internal.targets.add((Dataquery)targets.build());
@@ -103,7 +115,7 @@ public class CustomPanelBuilder implements Builder<Panel> {
     }
 
     public CustomPanelBuilder links(com.grafana.foundation.cog.Builder<List<DashboardLink>> links) {
-        this.internal.links = (List)links.build();
+        this.internal.links = links.build();
         return this;
     }
 
@@ -134,7 +146,7 @@ public class CustomPanelBuilder implements Builder<Panel> {
 
     public CustomPanelBuilder withTransformation(DataTransformerConfig transformations) {
         if (this.internal.transformations == null) {
-            this.internal.transformations = new LinkedList();
+            this.internal.transformations = new LinkedList<>();
         }
 
         this.internal.transformations.add(transformations);
@@ -298,7 +310,7 @@ public class CustomPanelBuilder implements Builder<Panel> {
             this.internal.fieldConfig = new FieldConfigSource();
         }
 
-        this.internal.fieldConfig.overrides = (List)overrides.build();
+        this.internal.fieldConfig.overrides = overrides.build();
         return this;
     }
 
@@ -308,7 +320,7 @@ public class CustomPanelBuilder implements Builder<Panel> {
         }
 
         if (this.internal.fieldConfig.overrides == null) {
-            this.internal.fieldConfig.overrides = new LinkedList();
+            this.internal.fieldConfig.overrides = new LinkedList<>();
         }
 
         this.internal.fieldConfig.overrides.add((DashboardFieldConfigSourceOverrides)overrides.build());

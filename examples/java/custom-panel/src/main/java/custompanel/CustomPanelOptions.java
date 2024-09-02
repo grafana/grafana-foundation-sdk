@@ -1,4 +1,4 @@
-package com.grafana.custompanel;
+package custompanel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
