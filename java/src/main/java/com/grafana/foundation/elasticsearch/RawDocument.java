@@ -6,14 +6,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class RawDocument { 
+public class RawDocument {
     @JsonProperty("type")
-    public String type; 
+    public String type;
     @JsonProperty("id")
-    public String id; 
+    public String id;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("settings")
-    public ElasticsearchRawDocumentSettings settings; 
+    public ElasticsearchRawDocumentSettings settings;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     

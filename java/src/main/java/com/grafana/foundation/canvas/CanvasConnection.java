@@ -2,31 +2,38 @@
 
 package com.grafana.foundation.canvas;
 
-import com.grafana.foundation.common.ColorDimensionConfig;
-import com.grafana.foundation.common.ScaleDimensionConfig;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.grafana.foundation.common.ColorDimensionConfig;
+import com.grafana.foundation.common.ScaleDimensionConfig;
+import java.util.List;
 
-public class CanvasConnection { 
+public class CanvasConnection {
     @JsonProperty("source")
-    public ConnectionCoordinates source; 
+    public ConnectionCoordinates source;
     @JsonProperty("target")
-    public ConnectionCoordinates target; 
+    public ConnectionCoordinates target;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("targetName")
-    public String targetName; 
+    public String targetName;
     @JsonProperty("path")
-    public ConnectionPath path; 
+    public ConnectionPath path;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("color")
-    public ColorDimensionConfig color; 
+    public ColorDimensionConfig color;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("size")
-    public ScaleDimensionConfig size; 
+    public ScaleDimensionConfig size;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("vertices")
-    public List<ConnectionCoordinates> vertices; 
+    public List<ConnectionCoordinates> vertices;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("sourceOriginal")
-    public ConnectionCoordinates sourceOriginal; 
+    public ConnectionCoordinates sourceOriginal;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("targetOriginal")
     public ConnectionCoordinates targetOriginal;
     

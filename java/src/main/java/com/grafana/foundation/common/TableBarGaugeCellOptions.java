@@ -6,13 +6,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Gauge cell options
-public class TableBarGaugeCellOptions { 
+public class TableBarGaugeCellOptions {
     @JsonProperty("type")
-    public String type; 
+    public String type;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("mode")
-    public BarGaugeDisplayMode mode; 
+    public BarGaugeDisplayMode mode;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("valueDisplayMode")
     public BarGaugeValueMode valueDisplayMode;
     

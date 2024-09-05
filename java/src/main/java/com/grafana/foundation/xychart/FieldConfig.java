@@ -2,6 +2,11 @@
 
 package com.grafana.foundation.xychart;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.grafana.foundation.common.ScaleDimensionConfig;
 import com.grafana.foundation.common.ColorDimensionConfig;
 import com.grafana.foundation.common.LineStyle;
@@ -11,48 +16,63 @@ import com.grafana.foundation.common.AxisPlacement;
 import com.grafana.foundation.common.AxisColorMode;
 import com.grafana.foundation.common.ScaleDistributionConfig;
 import com.grafana.foundation.common.TextDimensionConfig;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class FieldConfig { 
+public class FieldConfig {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("show")
-    public ScatterShow show; 
+    public ScatterShow show;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pointSize")
-    public ScaleDimensionConfig pointSize; 
+    public ScaleDimensionConfig pointSize;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pointColor")
-    public ColorDimensionConfig pointColor; 
+    public ColorDimensionConfig pointColor;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lineColor")
-    public ColorDimensionConfig lineColor; 
+    public ColorDimensionConfig lineColor;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lineWidth")
-    public Integer lineWidth; 
+    public Integer lineWidth;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lineStyle")
-    public LineStyle lineStyle; 
+    public LineStyle lineStyle;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("label")
-    public VisibilityMode label; 
+    public VisibilityMode label;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hideFrom")
-    public HideSeriesConfig hideFrom; 
+    public HideSeriesConfig hideFrom;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisPlacement")
-    public AxisPlacement axisPlacement; 
+    public AxisPlacement axisPlacement;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisColorMode")
-    public AxisColorMode axisColorMode; 
+    public AxisColorMode axisColorMode;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisLabel")
-    public String axisLabel; 
+    public String axisLabel;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisWidth")
-    public Double axisWidth; 
+    public Double axisWidth;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisSoftMin")
-    public Double axisSoftMin; 
+    public Double axisSoftMin;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisSoftMax")
-    public Double axisSoftMax; 
+    public Double axisSoftMax;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisGridShow")
-    public Boolean axisGridShow; 
+    public Boolean axisGridShow;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("scaleDistribution")
-    public ScaleDistributionConfig scaleDistribution; 
+    public ScaleDistributionConfig scaleDistribution;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisCenteredZero")
-    public Boolean axisCenteredZero; 
+    public Boolean axisCenteredZero;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("labelValue")
-    public TextDimensionConfig labelValue; 
+    public TextDimensionConfig labelValue;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisBorderShow")
     public Boolean axisBorderShow;
     

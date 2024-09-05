@@ -1068,9 +1068,9 @@ class ExprTypeClassicConditionsConditionsEvaluator:
 
 
 class ExprTypeClassicConditionsConditionsOperator:
-    type_val: typing.Literal["and", "or"]
+    type_val: typing.Literal["and", "or", "logic-or"]
 
-    def __init__(self, type_val: typing.Optional[typing.Literal["and", "or"]] = None):
+    def __init__(self, type_val: typing.Optional[typing.Literal["and", "or", "logic-or"]] = None):
         self.type_val = type_val if type_val is not None else "and"
 
     def to_json(self) -> dict[str, object]:

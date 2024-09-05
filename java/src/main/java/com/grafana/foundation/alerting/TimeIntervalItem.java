@@ -2,23 +2,30 @@
 
 package com.grafana.foundation.alerting;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
-public class TimeIntervalItem { 
+public class TimeIntervalItem {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("days_of_month")
-    public List<String> daysOfMonth; 
+    public List<String> daysOfMonth;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("location")
-    public String location; 
+    public String location;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("months")
-    public List<String> months; 
+    public List<String> months;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("times")
-    public List<TimeIntervalTimeRange> times; 
+    public List<TimeIntervalTimeRange> times;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("weekdays")
-    public List<String> weekdays; 
+    public List<String> weekdays;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("years")
     public List<String> years;
     

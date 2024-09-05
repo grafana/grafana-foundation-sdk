@@ -7,21 +7,59 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonDeserialize(using = BucketAggregationDeserializer.class)
-public class BucketAggregation { 
+public class BucketAggregation {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public DateHistogram dateHistogram; 
+    protected DateHistogram dateHistogram;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Histogram histogram; 
+    protected Histogram histogram;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Terms terms; 
+    protected Terms terms;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Filters filters; 
+    protected Filters filters;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public GeoHashGrid geoHashGrid; 
+    protected GeoHashGrid geoHashGrid;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Nested nested;
+    protected Nested nested;
+    protected BucketAggregation() {}
+    public static BucketAggregation createDateHistogram(com.grafana.foundation.cog.Builder<DateHistogram> dateHistogram) {
+        BucketAggregation bucketAggregation = new BucketAggregation();
+        bucketAggregation.dateHistogram = dateHistogram.build();
+        return bucketAggregation;
+    }
+    public static BucketAggregation createHistogram(com.grafana.foundation.cog.Builder<Histogram> histogram) {
+        BucketAggregation bucketAggregation = new BucketAggregation();
+        bucketAggregation.histogram = histogram.build();
+        return bucketAggregation;
+    }
+    public static BucketAggregation createTerms(com.grafana.foundation.cog.Builder<Terms> terms) {
+        BucketAggregation bucketAggregation = new BucketAggregation();
+        bucketAggregation.terms = terms.build();
+        return bucketAggregation;
+    }
+    public static BucketAggregation createFilters(com.grafana.foundation.cog.Builder<Filters> filters) {
+        BucketAggregation bucketAggregation = new BucketAggregation();
+        bucketAggregation.filters = filters.build();
+        return bucketAggregation;
+    }
+    public static BucketAggregation createGeoHashGrid(com.grafana.foundation.cog.Builder<GeoHashGrid> geoHashGrid) {
+        BucketAggregation bucketAggregation = new BucketAggregation();
+        bucketAggregation.geoHashGrid = geoHashGrid.build();
+        return bucketAggregation;
+    }
+    public static BucketAggregation createNested(com.grafana.foundation.cog.Builder<Nested> nested) {
+        BucketAggregation bucketAggregation = new BucketAggregation();
+        bucketAggregation.nested = nested.build();
+        return bucketAggregation;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (dateHistogram != null) {

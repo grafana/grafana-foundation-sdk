@@ -2,21 +2,34 @@
 
 package com.grafana.foundation.dashboard;
 
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.util.Map;
 
 @JsonDeserialize(using = StringOrMapDeserializer.class)
 @JsonSerialize(using = StringOrMapSerializer.class)
-public class StringOrMap { 
+public class StringOrMap {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public String string; 
+    protected String string;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Map<String, Object> map;
+    protected Map<String, Object> map;
+    protected StringOrMap() {}
+    public static StringOrMap createString(String string) {
+        StringOrMap stringOrMap = new StringOrMap();
+        stringOrMap.string = string;
+        return stringOrMap;
+    }
+    public static StringOrMap createMap(Map<String, Object> map) {
+        StringOrMap stringOrMap = new StringOrMap();
+        stringOrMap.map = map;
+        return stringOrMap;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (string != null) {

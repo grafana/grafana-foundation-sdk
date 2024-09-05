@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 // Controls exemplar options
 public class ExemplarConfig {
-    // Sets the color of the exemplar markers 
+    // Sets the color of the exemplar markers
     @JsonProperty("color")
     public String color;
     

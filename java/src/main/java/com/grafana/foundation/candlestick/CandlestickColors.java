@@ -7,11 +7,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class CandlestickColors { 
+public class CandlestickColors {
     @JsonProperty("up")
-    public String up; 
+    public String up;
     @JsonProperty("down")
-    public String down; 
+    public String down;
     @JsonProperty("flat")
     public String flat;
     

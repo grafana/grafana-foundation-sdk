@@ -2,24 +2,29 @@
 
 package com.grafana.foundation.elasticsearch;
 
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.Map;
 
 // #MovingAverage's settings are overridden in types.ts
-public class MovingAverage { 
+public class MovingAverage {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pipelineAgg")
-    public String pipelineAgg; 
+    public String pipelineAgg;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("field")
-    public String field; 
+    public String field;
     @JsonProperty("type")
-    public String type; 
+    public String type;
     @JsonProperty("id")
-    public String id; 
+    public String id;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("settings")
-    public Map<String, Object> settings; 
+    public Map<String, Object> settings;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     
