@@ -7,25 +7,69 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Table cell options. Each cell has a display mode
 // and other potential options for that display.
 @JsonDeserialize(using = TableCellOptionsDeserializer.class)
-public class TableCellOptions { 
+public class TableCellOptions {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TableAutoCellOptions tableAutoCellOptions; 
+    protected TableAutoCellOptions tableAutoCellOptions;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TableSparklineCellOptions tableSparklineCellOptions; 
+    protected TableSparklineCellOptions tableSparklineCellOptions;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TableBarGaugeCellOptions tableBarGaugeCellOptions; 
+    protected TableBarGaugeCellOptions tableBarGaugeCellOptions;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TableColoredBackgroundCellOptions tableColoredBackgroundCellOptions; 
+    protected TableColoredBackgroundCellOptions tableColoredBackgroundCellOptions;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TableColorTextCellOptions tableColorTextCellOptions; 
+    protected TableColorTextCellOptions tableColorTextCellOptions;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TableImageCellOptions tableImageCellOptions; 
+    protected TableImageCellOptions tableImageCellOptions;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TableJsonViewCellOptions tableJsonViewCellOptions;
+    protected TableJsonViewCellOptions tableJsonViewCellOptions;
+    protected TableCellOptions() {}
+    public static TableCellOptions createTableAutoCellOptions(TableAutoCellOptions tableAutoCellOptions) {
+        TableCellOptions tableCellOptions = new TableCellOptions();
+        tableCellOptions.tableAutoCellOptions = tableAutoCellOptions;
+        return tableCellOptions;
+    }
+    public static TableCellOptions createTableSparklineCellOptions(com.grafana.foundation.cog.Builder<TableSparklineCellOptions> tableSparklineCellOptions) {
+        TableCellOptions tableCellOptions = new TableCellOptions();
+        tableCellOptions.tableSparklineCellOptions = tableSparklineCellOptions.build();
+        return tableCellOptions;
+    }
+    public static TableCellOptions createTableBarGaugeCellOptions(com.grafana.foundation.cog.Builder<TableBarGaugeCellOptions> tableBarGaugeCellOptions) {
+        TableCellOptions tableCellOptions = new TableCellOptions();
+        tableCellOptions.tableBarGaugeCellOptions = tableBarGaugeCellOptions.build();
+        return tableCellOptions;
+    }
+    public static TableCellOptions createTableColoredBackgroundCellOptions(com.grafana.foundation.cog.Builder<TableColoredBackgroundCellOptions> tableColoredBackgroundCellOptions) {
+        TableCellOptions tableCellOptions = new TableCellOptions();
+        tableCellOptions.tableColoredBackgroundCellOptions = tableColoredBackgroundCellOptions.build();
+        return tableCellOptions;
+    }
+    public static TableCellOptions createTableColorTextCellOptions(TableColorTextCellOptions tableColorTextCellOptions) {
+        TableCellOptions tableCellOptions = new TableCellOptions();
+        tableCellOptions.tableColorTextCellOptions = tableColorTextCellOptions;
+        return tableCellOptions;
+    }
+    public static TableCellOptions createTableImageCellOptions(TableImageCellOptions tableImageCellOptions) {
+        TableCellOptions tableCellOptions = new TableCellOptions();
+        tableCellOptions.tableImageCellOptions = tableImageCellOptions;
+        return tableCellOptions;
+    }
+    public static TableCellOptions createTableJsonViewCellOptions(TableJsonViewCellOptions tableJsonViewCellOptions) {
+        TableCellOptions tableCellOptions = new TableCellOptions();
+        tableCellOptions.tableJsonViewCellOptions = tableJsonViewCellOptions;
+        return tableCellOptions;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (tableAutoCellOptions != null) {

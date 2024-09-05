@@ -6,17 +6,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // TODO:
 // common metadata will soon support setting the parent folder in the metadata
 public class Folder {
-    // Unique folder id. (will be k8s name) 
+    // Unique folder id. (will be k8s name)
     @JsonProperty("uid")
     public String uid;
-    // Folder title 
+    // Folder title
     @JsonProperty("title")
     public String title;
-    // Description of the folder. 
+    // Description of the folder.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("description")
     public String description;
     

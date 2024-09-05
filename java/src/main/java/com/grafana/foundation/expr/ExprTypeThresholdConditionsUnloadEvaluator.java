@@ -2,16 +2,16 @@
 
 package com.grafana.foundation.expr;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.List;
 
-public class ExprTypeThresholdConditionsUnloadEvaluator { 
+public class ExprTypeThresholdConditionsUnloadEvaluator {
     @JsonProperty("params")
     public List<Double> params;
-    // e.g. "gt" 
+    // e.g. "gt"
     @JsonProperty("type")
     public TypeThresholdType type;
     

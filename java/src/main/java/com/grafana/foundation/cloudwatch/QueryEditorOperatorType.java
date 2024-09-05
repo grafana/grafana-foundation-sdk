@@ -11,13 +11,32 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(using = QueryEditorOperatorTypeDeserializer.class)
 @JsonSerialize(using = QueryEditorOperatorTypeSerializer.class)
-public class QueryEditorOperatorType { 
+public class QueryEditorOperatorType {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public String string; 
+    protected String string;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Boolean bool; 
+    protected Boolean bool;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Long int64;
+    protected Long int64;
+    protected QueryEditorOperatorType() {}
+    public static QueryEditorOperatorType createString(String string) {
+        QueryEditorOperatorType queryEditorOperatorType = new QueryEditorOperatorType();
+        queryEditorOperatorType.string = string;
+        return queryEditorOperatorType;
+    }
+    public static QueryEditorOperatorType createBool(Boolean bool) {
+        QueryEditorOperatorType queryEditorOperatorType = new QueryEditorOperatorType();
+        queryEditorOperatorType.bool = bool;
+        return queryEditorOperatorType;
+    }
+    public static QueryEditorOperatorType createInt64(Long int64) {
+        QueryEditorOperatorType queryEditorOperatorType = new QueryEditorOperatorType();
+        queryEditorOperatorType.int64 = int64;
+        return queryEditorOperatorType;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (string != null) {

@@ -7,21 +7,59 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonDeserialize(using = ExprDeserializer.class)
-public class Expr implements com.grafana.foundation.cog.variants.Dataquery { 
+public class Expr implements com.grafana.foundation.cog.variants.Dataquery {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TypeMath typeMath; 
+    protected TypeMath typeMath;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TypeReduce typeReduce; 
+    protected TypeReduce typeReduce;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TypeResample typeResample; 
+    protected TypeResample typeResample;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TypeClassicConditions typeClassicConditions; 
+    protected TypeClassicConditions typeClassicConditions;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TypeThreshold typeThreshold; 
+    protected TypeThreshold typeThreshold;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TypeSql typeSql;
+    protected TypeSql typeSql;
+    protected Expr() {}
+    public static Expr createTypeMath(com.grafana.foundation.cog.Builder<TypeMath> typeMath) {
+        Expr expr = new Expr();
+        expr.typeMath = typeMath.build();
+        return expr;
+    }
+    public static Expr createTypeReduce(com.grafana.foundation.cog.Builder<TypeReduce> typeReduce) {
+        Expr expr = new Expr();
+        expr.typeReduce = typeReduce.build();
+        return expr;
+    }
+    public static Expr createTypeResample(com.grafana.foundation.cog.Builder<TypeResample> typeResample) {
+        Expr expr = new Expr();
+        expr.typeResample = typeResample.build();
+        return expr;
+    }
+    public static Expr createTypeClassicConditions(com.grafana.foundation.cog.Builder<TypeClassicConditions> typeClassicConditions) {
+        Expr expr = new Expr();
+        expr.typeClassicConditions = typeClassicConditions.build();
+        return expr;
+    }
+    public static Expr createTypeThreshold(com.grafana.foundation.cog.Builder<TypeThreshold> typeThreshold) {
+        Expr expr = new Expr();
+        expr.typeThreshold = typeThreshold.build();
+        return expr;
+    }
+    public static Expr createTypeSql(com.grafana.foundation.cog.Builder<TypeSql> typeSql) {
+        Expr expr = new Expr();
+        expr.typeSql = typeSql.build();
+        return expr;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (typeMath != null) {

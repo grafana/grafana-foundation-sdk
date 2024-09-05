@@ -6,27 +6,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class SQLExpression {
-    // SELECT part of the SQL expression 
+    // SELECT part of the SQL expression
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("select")
     public QueryEditorFunctionExpression select;
-    // FROM part of the SQL expression 
+    // FROM part of the SQL expression
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("from")
     public QueryEditorPropertyExpressionOrQueryEditorFunctionExpression from;
-    // WHERE part of the SQL expression 
+    // WHERE part of the SQL expression
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("where")
     public QueryEditorArrayExpression where;
-    // GROUP BY part of the SQL expression 
+    // GROUP BY part of the SQL expression
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("groupBy")
     public QueryEditorArrayExpression groupBy;
-    // ORDER BY part of the SQL expression 
+    // ORDER BY part of the SQL expression
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("orderBy")
     public QueryEditorFunctionExpression orderBy;
-    // The sort order of the SQL expression, `ASC` or `DESC` 
+    // The sort order of the SQL expression, `ASC` or `DESC`
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("orderByDirection")
     public String orderByDirection;
-    // LIMIT part of the SQL expression 
+    // LIMIT part of the SQL expression
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("limit")
     public Long limit;
     

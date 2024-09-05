@@ -1095,7 +1095,7 @@ class ExprTypeClassicConditionsConditionsOperator(cogbuilder.Builder[expr.ExprTy
     def build(self) -> expr.ExprTypeClassicConditionsConditionsOperator:
         return self._internal    
     
-    def type_val(self, type_val: typing.Literal["and", "or"]) -> typing.Self:        
+    def type_val(self, type_val: typing.Literal["and", "or", "logic-or"]) -> typing.Self:        
         self._internal.type_val = type_val
     
         return self

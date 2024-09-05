@@ -8,9 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 // TODO docs
-public class VizTooltipOptions { 
+public class VizTooltipOptions {
     @JsonProperty("mode")
-    public TooltipDisplayMode mode; 
+    public TooltipDisplayMode mode;
     @JsonProperty("sort")
     public SortOrder sort;
     

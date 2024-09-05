@@ -2,19 +2,22 @@
 
 package com.grafana.foundation.elasticsearch;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
-public class PipelineMetricAggregationWithMultipleBucketPaths { 
+public class PipelineMetricAggregationWithMultipleBucketPaths {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pipelineVariables")
-    public List<PipelineVariable> pipelineVariables; 
+    public List<PipelineVariable> pipelineVariables;
     @JsonProperty("type")
-    public MetricAggregationType type; 
+    public MetricAggregationType type;
     @JsonProperty("id")
-    public String id; 
+    public String id;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     

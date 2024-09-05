@@ -6,12 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class AppInsightsGroupByQuery { 
+public class AppInsightsGroupByQuery {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("rawQuery")
-    public String rawQuery; 
+    public String rawQuery;
     @JsonProperty("kind")
-    public String kind; 
+    public String kind;
     @JsonProperty("metricName")
     public String metricName;
     

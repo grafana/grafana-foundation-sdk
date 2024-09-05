@@ -10,9 +10,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 // Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color.
 // See SpecialValueMatch to see the list of special values.
 // For example, you can configure a special value mapping so that null values appear as N/A.
-public class SpecialValueMap { 
+public class SpecialValueMap {
     @JsonProperty("type")
-    public String type; 
+    public String type;
     @JsonProperty("options")
     public DashboardSpecialValueMapOptions options;
     

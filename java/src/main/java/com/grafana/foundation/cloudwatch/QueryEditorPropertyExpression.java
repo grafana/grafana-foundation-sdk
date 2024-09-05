@@ -7,9 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class QueryEditorPropertyExpression { 
+public class QueryEditorPropertyExpression {
     @JsonProperty("type")
-    public String type; 
+    public String type;
     @JsonProperty("property")
     public QueryEditorProperty property;
     

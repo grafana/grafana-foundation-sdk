@@ -6,32 +6,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // EmbeddedContactPoint is the contact point type that is used
 // by grafanas embedded alertmanager implementation.
 public class ContactPoint {
     // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation. 
+    // by grafanas embedded alertmanager implementation.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("disableResolveMessage")
     public Boolean disableResolveMessage;
     // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation. 
+    // by grafanas embedded alertmanager implementation.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("name")
     public String name;
     // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation. 
+    // by grafanas embedded alertmanager implementation.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("provenance")
     public String provenance;
     // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation. 
+    // by grafanas embedded alertmanager implementation.
     @JsonProperty("settings")
     public Object settings;
     // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation. 
+    // by grafanas embedded alertmanager implementation.
     @JsonProperty("type")
     public ContactPointType type;
     // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation. 
+    // by grafanas embedded alertmanager implementation.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("uid")
     public String uid;
     

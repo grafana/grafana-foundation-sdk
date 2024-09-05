@@ -2,17 +2,21 @@
 
 package com.grafana.foundation.elasticsearch;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
-public class ElasticsearchTopMetricsSettings { 
+public class ElasticsearchTopMetricsSettings {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("order")
-    public String order; 
+    public String order;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("orderBy")
-    public String orderBy; 
+    public String orderBy;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("metrics")
     public List<String> metrics;
     

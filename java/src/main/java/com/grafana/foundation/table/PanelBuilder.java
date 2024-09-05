@@ -2,14 +2,15 @@
 
 package com.grafana.foundation.table;
 
-import java.util.List;
-import com.grafana.foundation.common.TableSortByFieldState;
-import com.grafana.foundation.common.TableFooterOptions;
-import com.grafana.foundation.common.TableCellHeight;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
+import com.grafana.foundation.common.TableSortByFieldState;
+import com.grafana.foundation.common.TableFooterOptions;
+import com.grafana.foundation.common.TableCellHeight;
 import com.grafana.foundation.dashboard.Panel;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;

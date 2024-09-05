@@ -2,22 +2,22 @@
 
 package com.grafana.foundation.geomap;
 
-import com.grafana.foundation.common.MapLayerOptions;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.MapLayerOptions;
+import java.util.List;
 
-public class Options { 
+public class Options {
     @JsonProperty("view")
-    public MapViewConfig view; 
+    public MapViewConfig view;
     @JsonProperty("controls")
-    public ControlsOptions controls; 
+    public ControlsOptions controls;
     @JsonProperty("basemap")
-    public MapLayerOptions basemap; 
+    public MapLayerOptions basemap;
     @JsonProperty("layers")
-    public List<MapLayerOptions> layers; 
+    public List<MapLayerOptions> layers;
     @JsonProperty("tooltip")
     public TooltipOptions tooltip;
     

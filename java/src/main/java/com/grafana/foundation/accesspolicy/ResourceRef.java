@@ -7,9 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class ResourceRef { 
+public class ResourceRef {
     @JsonProperty("kind")
-    public String kind; 
+    public String kind;
     @JsonProperty("name")
     public String name;
     

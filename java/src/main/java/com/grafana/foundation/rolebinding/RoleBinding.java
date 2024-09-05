@@ -8,10 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class RoleBinding {
-    // The role we are discussing 
+    // The role we are discussing
     @JsonProperty("role")
     public BuiltinRoleRefOrCustomRoleRef role;
-    // The team or user that has the specified role 
+    // The team or user that has the specified role
     @JsonProperty("subject")
     public RoleBindingSubject subject;
     
