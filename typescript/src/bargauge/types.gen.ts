@@ -11,6 +11,7 @@ export interface Options {
 	sizing: common.BarGaugeSizing;
 	minVizWidth: number;
 	minVizHeight: number;
+	legend: common.VizLegendOptions;
 	reduceOptions: common.ReduceDataOptions;
 	text?: common.VizTextDisplayOptions;
 	maxVizHeight: number;
@@ -25,6 +26,7 @@ export const defaultOptions = (): Options => ({
 	sizing: common.BarGaugeSizing.Auto,
 	minVizWidth: 8,
 	minVizHeight: 16,
+	legend: common.defaultVizLegendOptions(),
 	reduceOptions: common.defaultReduceDataOptions(),
 	maxVizHeight: 300,
 	orientation: common.VizOrientation.Auto,

@@ -2,39 +2,49 @@
 
 package com.grafana.foundation.azuremonitor;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
 // Azure Monitor Logs sub-query properties
 public class AzureLogsQuery {
-    // KQL query to be executed. 
+    // KQL query to be executed.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("query")
     public String query;
-    // Specifies the format results should be returned as. 
+    // Specifies the format results should be returned as.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("resultFormat")
     public ResultFormat resultFormat;
-    // Array of resource URIs to be queried. 
+    // Array of resource URIs to be queried.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("resources")
     public List<String> resources;
-    // If set to true the dashboard time range will be used as a filter for the query. Otherwise the query time ranges will be used. Defaults to false. 
+    // If set to true the dashboard time range will be used as a filter for the query. Otherwise the query time ranges will be used. Defaults to false.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("dashboardTime")
     public Boolean dashboardTime;
-    // If dashboardTime is set to true this value dictates which column the time filter will be applied to. Defaults to the first tables timeSpan column, the first datetime column found, or TimeGenerated 
+    // If dashboardTime is set to true this value dictates which column the time filter will be applied to. Defaults to the first tables timeSpan column, the first datetime column found, or TimeGenerated
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("timeColumn")
     public String timeColumn;
-    // If set to true the query will be run as a basic logs query 
+    // If set to true the query will be run as a basic logs query
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("basicLogsQuery")
     public Boolean basicLogsQuery;
-    // Workspace ID. This was removed in Grafana 8, but remains for backwards compat. 
+    // Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("workspace")
     public String workspace;
-    // @deprecated Use resources instead 
+    // @deprecated Use resources instead
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("resource")
     public String resource;
-    // @deprecated Use dashboardTime instead 
+    // @deprecated Use dashboardTime instead
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("intersectTime")
     public Boolean intersectTime;
     

@@ -27,6 +27,17 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * A Route is a node that contains definitions of how to handle alerts. This is modified
      * from the upstream alertmanager in that it adds the ObjectMatchers property.
+     * @param array<string> $activeTimeIntervals
+     */
+    public function activeTimeIntervals(array $activeTimeIntervals): static
+    {
+        $this->internal->activeTimeIntervals = $activeTimeIntervals;
+    
+        return $this;
+    }
+    /**
+     * A Route is a node that contains definitions of how to handle alerts. This is modified
+     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      */
     public function continue(bool $continue): static
     {

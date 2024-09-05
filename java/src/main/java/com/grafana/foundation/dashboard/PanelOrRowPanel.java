@@ -7,13 +7,27 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonDeserialize(using = PanelOrRowPanelDeserializer.class)
-public class PanelOrRowPanel { 
+public class PanelOrRowPanel {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Panel panel; 
+    protected Panel panel;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public RowPanel rowPanel;
+    protected RowPanel rowPanel;
+    protected PanelOrRowPanel() {}
+    public static PanelOrRowPanel createPanel(com.grafana.foundation.cog.Builder<Panel> panel) {
+        PanelOrRowPanel panelOrRowPanel = new PanelOrRowPanel();
+        panelOrRowPanel.panel = panel.build();
+        return panelOrRowPanel;
+    }
+    public static PanelOrRowPanel createRowPanel(com.grafana.foundation.cog.Builder<RowPanel> rowPanel) {
+        PanelOrRowPanel panelOrRowPanel = new PanelOrRowPanel();
+        panelOrRowPanel.rowPanel = rowPanel.build();
+        return panelOrRowPanel;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (panel != null) {

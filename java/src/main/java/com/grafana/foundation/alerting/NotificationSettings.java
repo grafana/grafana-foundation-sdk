@@ -2,23 +2,29 @@
 
 package com.grafana.foundation.alerting;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
-public class NotificationSettings { 
+public class NotificationSettings {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("group_by")
-    public List<String> groupBy; 
+    public List<String> groupBy;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("group_interval")
-    public String groupInterval; 
+    public String groupInterval;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("group_wait")
-    public String groupWait; 
+    public String groupWait;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("mute_time_intervals")
-    public List<String> muteTimeIntervals; 
+    public List<String> muteTimeIntervals;
     @JsonProperty("receiver")
-    public String receiver; 
+    public String receiver;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("repeat_interval")
     public String repeatInterval;
     

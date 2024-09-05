@@ -48,6 +48,15 @@ final class BarGaugeNamePlacement implements \JsonSerializable, \Stringable {
         return self::$instances["left"];
     }
 
+    public static function hidden(): self
+    {
+        if (!isset(self::$instances["hidden"])) {
+            self::$instances["hidden"] = new self("hidden");
+        }
+
+        return self::$instances["hidden"];
+    }
+
     public static function fromValue(string $value): self
     {
         if ($value === "auto") {
@@ -60,6 +69,10 @@ final class BarGaugeNamePlacement implements \JsonSerializable, \Stringable {
 
         if ($value === "left") {
             return self::left();
+        }
+
+        if ($value === "hidden") {
+            return self::hidden();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum BarGaugeNamePlacement");

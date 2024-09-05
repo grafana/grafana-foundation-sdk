@@ -20,11 +20,14 @@ type Options struct {
 	SortOrder            common.LogsSortOrder     `json:"sortOrder"`
 	DedupStrategy        common.LogsDedupStrategy `json:"dedupStrategy"`
 	// TODO: figure out how to define callbacks
-	OnClickFilterLabel     any `json:"onClickFilterLabel,omitempty"`
-	OnClickFilterOutLabel  any `json:"onClickFilterOutLabel,omitempty"`
-	IsFilterLabelActive    any `json:"isFilterLabelActive,omitempty"`
-	OnClickFilterString    any `json:"onClickFilterString,omitempty"`
-	OnClickFilterOutString any `json:"onClickFilterOutString,omitempty"`
+	OnClickFilterLabel     any      `json:"onClickFilterLabel,omitempty"`
+	OnClickFilterOutLabel  any      `json:"onClickFilterOutLabel,omitempty"`
+	IsFilterLabelActive    any      `json:"isFilterLabelActive,omitempty"`
+	OnClickFilterString    any      `json:"onClickFilterString,omitempty"`
+	OnClickFilterOutString any      `json:"onClickFilterOutString,omitempty"`
+	OnClickShowField       any      `json:"onClickShowField,omitempty"`
+	OnClickHideField       any      `json:"onClickHideField,omitempty"`
+	DisplayedFields        []string `json:"displayedFields,omitempty"`
 }
 
 func VariantConfig() variants.PanelcfgConfig {

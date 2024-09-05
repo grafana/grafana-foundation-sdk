@@ -18,6 +18,13 @@ export class NotificationPolicyBuilder implements cog.Builder<alerting.Notificat
 
     // A Route is a node that contains definitions of how to handle alerts. This is modified
     // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    activeTimeIntervals(activeTimeIntervals: string[]): this {
+        this.internal.active_time_intervals = activeTimeIntervals;
+        return this;
+    }
+
+    // A Route is a node that contains definitions of how to handle alerts. This is modified
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
     continueVal(continueVal: boolean): this {
         this.internal.continue = continueVal;
         return this;

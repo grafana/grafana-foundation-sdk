@@ -2,66 +2,85 @@
 
 package com.grafana.foundation.alerting;
 
-import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
+import java.util.Map;
 
 // A Route is a node that contains definitions of how to handle alerts. This is modified
 // from the upstream alertmanager in that it adds the ObjectMatchers property.
 public class NotificationPolicy {
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonProperty("active_time_intervals")
+    public List<String> activeTimeIntervals;
+    // A Route is a node that contains definitions of how to handle alerts. This is modified
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("continue")
     public Boolean continueArg;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("group_by")
     public List<String> groupBy;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("group_interval")
     public String groupInterval;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("group_wait")
     public String groupWait;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("match")
     public Map<String, String> match;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("match_re")
     public Map<String, String> matchRe;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("matchers")
     public List<Matcher> matchers;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("mute_time_intervals")
     public List<String> muteTimeIntervals;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("object_matchers")
     public List<List<String>> objectMatchers;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("provenance")
     public String provenance;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("receiver")
     public String receiver;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("repeat_interval")
     public String repeatInterval;
     // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property. 
+    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("routes")
     public List<NotificationPolicy> routes;
     
@@ -77,6 +96,11 @@ public class NotificationPolicy {
         public Builder() {
             this.internal = new NotificationPolicy();
         }
+    public Builder activeTimeIntervals(List<String> activeTimeIntervals) {
+    this.internal.activeTimeIntervals = activeTimeIntervals;
+        return this;
+    }
+    
     public Builder continueArg(Boolean continueArg) {
     this.internal.continueArg = continueArg;
         return this;

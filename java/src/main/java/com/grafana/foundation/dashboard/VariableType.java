@@ -26,6 +26,7 @@ public enum VariableType {
     TEXTBOX("textbox"),
     CUSTOM("custom"),
     SYSTEM("system"),
+    SNAPSHOT("snapshot"),
     _EMPTY("");
 
     private final String value;

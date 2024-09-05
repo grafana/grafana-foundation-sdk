@@ -410,6 +410,15 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    legend(legend: cog.Builder<common.VizLegendOptions>): this {
+        if (!this.internal.options) {
+            this.internal.options = bargauge.defaultOptions();
+        }
+        const legendResource = legend.build();
+        this.internal.options.legend = legendResource;
+        return this;
+    }
+
     reduceOptions(reduceOptions: cog.Builder<common.ReduceDataOptions>): this {
         if (!this.internal.options) {
             this.internal.options = bargauge.defaultOptions();

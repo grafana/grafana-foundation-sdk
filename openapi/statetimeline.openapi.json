@@ -36,6 +36,11 @@
             "description": "Merge equal consecutive values",
             "default": true
           },
+          "alignValue": {
+            "$ref": "#/components/schemas/TimelineValueAlignment",
+            "description": "Controls value alignment on the timelines",
+            "default": "left"
+          },
           "legend": {
             "$ref": "#/components/schemas/VizLegendOptions"
           },
@@ -48,10 +53,11 @@
               "$ref": "#/components/schemas/TimeZone"
             }
           },
-          "alignValue": {
-            "$ref": "#/components/schemas/TimelineValueAlignment",
-            "description": "Controls value alignment on the timelines",
-            "default": "left"
+          "perPage": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Enables pagination when \u003e 0",
+            "default": 20
           }
         }
       },
@@ -81,6 +87,14 @@
           "always"
         ],
         "description": "TODO docs"
+      },
+      "TimelineValueAlignment": {
+        "enum": [
+          "center",
+          "left",
+          "right"
+        ],
+        "description": "Controls the value alignment in the TimelineChart component"
       },
       "VizLegendOptions": {
         "type": "object",
@@ -154,14 +168,6 @@
       "TimeZone": {
         "type": "string",
         "description": "A specific timezone from https://en.wikipedia.org/wiki/Tz_database"
-      },
-      "TimelineValueAlignment": {
-        "enum": [
-          "center",
-          "left",
-          "right"
-        ],
-        "description": "Controls the value alignment in the TimelineChart component"
       },
       "HideSeriesConfig": {
         "type": "object",

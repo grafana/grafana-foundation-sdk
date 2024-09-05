@@ -121,6 +121,7 @@ export interface NotificationTemplate {
 	name?: string;
 	provenance?: Provenance;
 	template?: string;
+	version?: string;
 }
 
 export const defaultNotificationTemplate = (): NotificationTemplate => ({
@@ -200,6 +201,9 @@ export const defaultRelativeTimeRange = (): RelativeTimeRange => ({
 // A Route is a node that contains definitions of how to handle alerts. This is modified
 // from the upstream alertmanager in that it adds the ObjectMatchers property.
 export interface NotificationPolicy {
+	// A Route is a node that contains definitions of how to handle alerts. This is modified
+	// from the upstream alertmanager in that it adds the ObjectMatchers property.
+	active_time_intervals?: string[];
 	// A Route is a node that contains definitions of how to handle alerts. This is modified
 	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	continue?: boolean;

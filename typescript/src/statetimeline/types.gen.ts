@@ -10,20 +10,23 @@ export interface Options {
 	rowHeight: number;
 	// Merge equal consecutive values
 	mergeValues?: boolean;
+	// Controls value alignment on the timelines
+	alignValue?: common.TimelineValueAlignment;
 	legend: common.VizLegendOptions;
 	tooltip: common.VizTooltipOptions;
 	timezone?: common.TimeZone[];
-	// Controls value alignment on the timelines
-	alignValue?: common.TimelineValueAlignment;
+	// Enables pagination when > 0
+	perPage?: number;
 }
 
 export const defaultOptions = (): Options => ({
 	showValue: common.VisibilityMode.Auto,
 	rowHeight: 0.9,
 	mergeValues: true,
+	alignValue: common.TimelineValueAlignment.Left,
 	legend: common.defaultVizLegendOptions(),
 	tooltip: common.defaultVizTooltipOptions(),
-	alignValue: common.TimelineValueAlignment.Left,
+	perPage: 20,
 });
 
 export interface FieldConfig {

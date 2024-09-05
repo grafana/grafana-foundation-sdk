@@ -6,33 +6,42 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Spec defines user, team or org Grafana preferences
 // swagger:model Preferences
 public class Preferences {
-    // UID for the home dashboard 
+    // UID for the home dashboard
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("homeDashboardUID")
     public String homeDashboardUID;
     // The timezone selection
-    // TODO: this should use the timezone defined in common 
+    // TODO: this should use the timezone defined in common
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("timezone")
     public String timezone;
-    // day of the week (sunday, monday, etc) 
+    // day of the week (sunday, monday, etc)
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("weekStart")
     public String weekStart;
-    // light, dark, empty is default 
+    // light, dark, empty is default
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("theme")
     public String theme;
-    // Selected language (beta) 
+    // Selected language (beta)
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("language")
     public String language;
-    // Explore query history preferences 
+    // Explore query history preferences
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("queryHistory")
     public QueryHistoryPreference queryHistory;
-    // Cookie preferences 
+    // Cookie preferences
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("cookiePreferences")
     public CookiePreferences cookiePreferences;
-    // Navigation preferences 
+    // Navigation preferences
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("navbar")
     public NavbarPreference navbar;
     

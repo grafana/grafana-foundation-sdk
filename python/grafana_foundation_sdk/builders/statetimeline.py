@@ -496,6 +496,18 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def align_value(self, align_value: common.TimelineValueAlignment) -> typing.Self:    
+        """
+        Controls value alignment on the timelines
+        """
+            
+        if self._internal.options is None:
+            self._internal.options = statetimeline.Options()
+        assert isinstance(self._internal.options, statetimeline.Options)
+        self._internal.options.align_value = align_value
+    
+        return self
+    
     def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = statetimeline.Options()
@@ -522,15 +534,17 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def align_value(self, align_value: common.TimelineValueAlignment) -> typing.Self:    
+    def per_page(self, per_page: float) -> typing.Self:    
         """
-        Controls value alignment on the timelines
+        Enables pagination when > 0
         """
             
+        if not per_page >= 1:
+            raise ValueError("per_page must be >= 1")
         if self._internal.options is None:
             self._internal.options = statetimeline.Options()
         assert isinstance(self._internal.options, statetimeline.Options)
-        self._internal.options.align_value = align_value
+        self._internal.options.per_page = per_page
     
         return self
     

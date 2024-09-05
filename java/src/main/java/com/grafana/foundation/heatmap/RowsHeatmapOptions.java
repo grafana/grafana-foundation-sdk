@@ -2,18 +2,21 @@
 
 package com.grafana.foundation.heatmap;
 
-import com.grafana.foundation.common.HeatmapCellLayout;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.grafana.foundation.common.HeatmapCellLayout;
 
 // Controls frame rows options
 public class RowsHeatmapOptions {
-    // Sets the name of the cell when not calculating from data 
+    // Sets the name of the cell when not calculating from data
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("value")
     public String value;
-    // Controls tick alignment when not calculating from data 
+    // Controls tick alignment when not calculating from data
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("layout")
     public HeatmapCellLayout layout;
     

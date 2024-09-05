@@ -12,20 +12,23 @@ class Options:
     row_height: float
     # Merge equal consecutive values
     merge_values: typing.Optional[bool]
+    # Controls value alignment on the timelines
+    align_value: typing.Optional[common.TimelineValueAlignment]
     legend: common.VizLegendOptions
     tooltip: common.VizTooltipOptions
     timezone: typing.Optional[list[common.TimeZone]]
-    # Controls value alignment on the timelines
-    align_value: typing.Optional[common.TimelineValueAlignment]
+    # Enables pagination when > 0
+    per_page: typing.Optional[float]
 
-    def __init__(self, show_value: typing.Optional[common.VisibilityMode] = None, row_height: float = 0.9, merge_values: typing.Optional[bool] = True, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, timezone: typing.Optional[list[common.TimeZone]] = None, align_value: typing.Optional[common.TimelineValueAlignment] = None):
+    def __init__(self, show_value: typing.Optional[common.VisibilityMode] = None, row_height: float = 0.9, merge_values: typing.Optional[bool] = True, align_value: typing.Optional[common.TimelineValueAlignment] = None, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, timezone: typing.Optional[list[common.TimeZone]] = None, per_page: typing.Optional[float] = 20):
         self.show_value = show_value if show_value is not None else common.VisibilityMode.AUTO
         self.row_height = row_height
         self.merge_values = merge_values
+        self.align_value = align_value if align_value is not None else common.TimelineValueAlignment.LEFT
         self.legend = legend if legend is not None else common.VizLegendOptions()
         self.tooltip = tooltip if tooltip is not None else common.VizTooltipOptions()
         self.timezone = timezone
-        self.align_value = align_value if align_value is not None else common.TimelineValueAlignment.LEFT
+        self.per_page = per_page
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -36,10 +39,12 @@ class Options:
         }
         if self.merge_values is not None:
             payload["mergeValues"] = self.merge_values
-        if self.timezone is not None:
-            payload["timezone"] = self.timezone
         if self.align_value is not None:
             payload["alignValue"] = self.align_value
+        if self.timezone is not None:
+            payload["timezone"] = self.timezone
+        if self.per_page is not None:
+            payload["perPage"] = self.per_page
         return payload
 
     @classmethod
@@ -52,14 +57,16 @@ class Options:
             args["row_height"] = data["rowHeight"]
         if "mergeValues" in data:
             args["merge_values"] = data["mergeValues"]
+        if "alignValue" in data:
+            args["align_value"] = data["alignValue"]
         if "legend" in data:
             args["legend"] = common.VizLegendOptions.from_json(data["legend"])
         if "tooltip" in data:
             args["tooltip"] = common.VizTooltipOptions.from_json(data["tooltip"])
         if "timezone" in data:
             args["timezone"] = data["timezone"]
-        if "alignValue" in data:
-            args["align_value"] = data["alignValue"]        
+        if "perPage" in data:
+            args["per_page"] = data["perPage"]        
 
         return cls(**args)
 

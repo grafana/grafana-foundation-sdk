@@ -2,52 +2,63 @@
 
 package com.grafana.foundation.googlecloudmonitoring;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
 // @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
 public class MetricQuery {
-    // GCP project to execute the query against. 
+    // GCP project to execute the query against.
     @JsonProperty("projectName")
     public String projectName;
-    // Alignment function to be used. Defaults to ALIGN_MEAN. 
+    // Alignment function to be used. Defaults to ALIGN_MEAN.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("perSeriesAligner")
     public String perSeriesAligner;
-    // Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto. 
+    // Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("alignmentPeriod")
     public String alignmentPeriod;
-    // Aliases can be set to modify the legend labels. e.g. {{metric.label.xxx}}. See docs for more detail. 
+    // Aliases can be set to modify the legend labels. e.g. {{metric.label.xxx}}. See docs for more detail.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("aliasBy")
-    public String aliasBy; 
+    public String aliasBy;
     @JsonProperty("editorMode")
-    public String editorMode; 
+    public String editorMode;
     @JsonProperty("metricType")
     public String metricType;
-    // Reducer applied across a set of time-series values. Defaults to REDUCE_NONE. 
+    // Reducer applied across a set of time-series values. Defaults to REDUCE_NONE.
     @JsonProperty("crossSeriesReducer")
     public String crossSeriesReducer;
-    // Array of labels to group data by. 
+    // Array of labels to group data by.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("groupBys")
     public List<String> groupBys;
-    // Array of filters to query data by. Labels that can be filtered on are defined by the metric. 
+    // Array of filters to query data by. Labels that can be filtered on are defined by the metric.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("filters")
-    public List<String> filters; 
+    public List<String> filters;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("metricKind")
-    public MetricKind metricKind; 
+    public MetricKind metricKind;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("valueType")
-    public String valueType; 
+    public String valueType;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("view")
     public String view;
-    // MQL query to be executed. 
+    // MQL query to be executed.
     @JsonProperty("query")
     public String query;
-    // Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters 
+    // Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("preprocessor")
     public PreprocessorType preprocessor;
-    // To disable the graphPeriod, it should explictly be set to 'disabled'. 
+    // To disable the graphPeriod, it should explictly be set to 'disabled'.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("graphPeriod")
     public String graphPeriod;
     

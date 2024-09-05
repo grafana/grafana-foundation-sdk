@@ -2,18 +2,19 @@
 
 package com.grafana.foundation.stat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.grafana.foundation.common.BigValueGraphMode;
 import com.grafana.foundation.common.BigValueColorMode;
 import com.grafana.foundation.common.BigValueJustifyMode;
 import com.grafana.foundation.common.BigValueTextMode;
 import com.grafana.foundation.common.ReduceDataOptions;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.grafana.foundation.common.VizTextDisplayOptions;
 import com.grafana.foundation.common.PercentChangeColorMode;
 import com.grafana.foundation.common.VizOrientation;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;

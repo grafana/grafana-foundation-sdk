@@ -6,10 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class NodesQuery { 
+public class NodesQuery {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("count")
-    public Long count; 
+    public Long count;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("seed")
     public Long seed;
     // Possible enum values:
@@ -17,7 +20,8 @@ public class NodesQuery {
     //  - `"random edges"` 
     //  - `"response_medium"` 
     //  - `"response_small"` 
-    //  - `"feature_showcase"`  
+    //  - `"feature_showcase"` 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("type")
     public NodesQueryType type;
     

@@ -6,13 +6,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Json view cell options
-public class TableImageCellOptions { 
+public class TableImageCellOptions {
     @JsonProperty("type")
-    public String type; 
+    public String type;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("alt")
-    public String alt; 
+    public String alt;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("title")
     public String title;
     

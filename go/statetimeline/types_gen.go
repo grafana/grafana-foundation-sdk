@@ -15,12 +15,14 @@ type Options struct {
 	// Controls the row height
 	RowHeight float64 `json:"rowHeight"`
 	// Merge equal consecutive values
-	MergeValues *bool                    `json:"mergeValues,omitempty"`
-	Legend      common.VizLegendOptions  `json:"legend"`
-	Tooltip     common.VizTooltipOptions `json:"tooltip"`
-	Timezone    []common.TimeZone        `json:"timezone,omitempty"`
+	MergeValues *bool `json:"mergeValues,omitempty"`
 	// Controls value alignment on the timelines
 	AlignValue *common.TimelineValueAlignment `json:"alignValue,omitempty"`
+	Legend     common.VizLegendOptions        `json:"legend"`
+	Tooltip    common.VizTooltipOptions       `json:"tooltip"`
+	Timezone   []common.TimeZone              `json:"timezone,omitempty"`
+	// Enables pagination when > 0
+	PerPage *float64 `json:"perPage,omitempty"`
 }
 
 type FieldConfig struct {

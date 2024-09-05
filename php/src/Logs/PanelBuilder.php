@@ -626,5 +626,44 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * @param mixed $onClickShowField
+     */
+    public function onClickShowField( $onClickShowField): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Logs\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
+        $this->internal->options->onClickShowField = $onClickShowField;
+    
+        return $this;
+    }
+    /**
+     * @param mixed $onClickHideField
+     */
+    public function onClickHideField( $onClickHideField): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Logs\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
+        $this->internal->options->onClickHideField = $onClickHideField;
+    
+        return $this;
+    }
+    /**
+     * @param array<string> $displayedFields
+     */
+    public function displayedFields(array $displayedFields): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Logs\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
+        $this->internal->options->displayedFields = $displayedFields;
+    
+        return $this;
+    }
 
 }

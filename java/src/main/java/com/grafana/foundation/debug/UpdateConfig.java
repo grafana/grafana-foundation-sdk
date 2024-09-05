@@ -7,11 +7,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class UpdateConfig { 
+public class UpdateConfig {
     @JsonProperty("render")
-    public Boolean render; 
+    public Boolean render;
     @JsonProperty("dataChanged")
-    public Boolean dataChanged; 
+    public Boolean dataChanged;
     @JsonProperty("schemaChanged")
     public Boolean schemaChanged;
     

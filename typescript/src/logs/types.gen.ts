@@ -19,6 +19,9 @@ export interface Options {
 	isFilterLabelActive?: any;
 	onClickFilterString?: any;
 	onClickFilterOutString?: any;
+	onClickShowField?: any;
+	onClickHideField?: any;
+	displayedFields?: string[];
 }
 
 export const defaultOptions = (): Options => ({

@@ -16,6 +16,8 @@ class DashboardBuilder implements \Grafana\Foundation\Cog\Builder
     {
     	$this->internal = new \Grafana\Foundation\Dashboard\Dashboard();
     $this->internal->title = $title;
+    $this->internal->schemaVersion = 39;
+    $this->internal->editable = true;
         $this->currentY = 0;
         $this->currentX = 0;
         $this->lastPanelHeight = 0;

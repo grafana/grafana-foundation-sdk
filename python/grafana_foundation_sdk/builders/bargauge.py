@@ -514,6 +514,15 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = bargauge.Options()
+        assert isinstance(self._internal.options, bargauge.Options)
+        legend_resource = legend.build()
+        self._internal.options.legend = legend_resource
+    
+        return self
+    
     def reduce_options(self, reduce_options: cogbuilder.Builder[common.ReduceDataOptions]) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = bargauge.Options()

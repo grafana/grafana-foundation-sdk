@@ -449,6 +449,16 @@ func (builder *PanelBuilder) MergeValues(mergeValues bool) *PanelBuilder {
 	return builder
 }
 
+// Controls value alignment on the timelines
+func (builder *PanelBuilder) AlignValue(alignValue common.TimelineValueAlignment) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).AlignValue = &alignValue
+
+	return builder
+}
+
 func (builder *PanelBuilder) Legend(legend cog.Builder[common.VizLegendOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
@@ -486,12 +496,16 @@ func (builder *PanelBuilder) Timezone(timezone []common.TimeZone) *PanelBuilder 
 	return builder
 }
 
-// Controls value alignment on the timelines
-func (builder *PanelBuilder) AlignValue(alignValue common.TimelineValueAlignment) *PanelBuilder {
+// Enables pagination when > 0
+func (builder *PanelBuilder) PerPage(perPage float64) *PanelBuilder {
+	if !(perPage >= 1) {
+		builder.errors["perPage"] = cog.MakeBuildErrors("perPage", errors.New("perPage must be >= 1"))
+		return builder
+	}
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).AlignValue = &alignValue
+	builder.internal.Options.(*Options).PerPage = &perPage
 
 	return builder
 }
@@ -553,6 +567,7 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.RowHeight(0.9)
 	builder.MergeValues(true)
 	builder.AlignValue("left")
+	builder.PerPage(20)
 	builder.LineWidth(0)
 	builder.FillOpacity(70)
 }
