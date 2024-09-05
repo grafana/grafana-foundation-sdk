@@ -6,34 +6,39 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class LibraryPanel {
-    // Folder UID 
+    // Folder UID
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("folderUid")
     public String folderUid;
-    // Library element UID 
+    // Library element UID
     @JsonProperty("uid")
     public String uid;
-    // Panel name (also saved in the model) 
+    // Panel name (also saved in the model)
     @JsonProperty("name")
     public String name;
-    // Panel description 
+    // Panel description
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("description")
     public String description;
-    // The panel type (from inside the model) 
+    // The panel type (from inside the model)
     @JsonProperty("type")
     public String type;
-    // Dashboard version when this was saved (zero if unknown) 
+    // Dashboard version when this was saved (zero if unknown)
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("schemaVersion")
     public Short schemaVersion;
-    // panel version, incremented each time the dashboard is updated. 
+    // panel version, incremented each time the dashboard is updated.
     @JsonProperty("version")
     public Long version;
     // TODO: should be the same panel schema defined in dashboard
-    // Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>; 
+    // Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
     @JsonProperty("model")
     public LibrarypanelLibraryPanelModel model;
-    // Object storage metadata 
+    // Object storage metadata
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("meta")
     public LibraryElementDTOMeta meta;
     

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class TooltipOptions { 
+public class TooltipOptions {
     @JsonProperty("mode")
     public TooltipMode mode;
     

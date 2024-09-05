@@ -6,23 +6,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class StreamingQuery { 
+public class StreamingQuery {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("bands")
-    public Long bands; 
+    public Long bands;
     @JsonProperty("noise")
-    public Double noise; 
+    public Double noise;
     @JsonProperty("speed")
-    public Double speed; 
+    public Double speed;
     @JsonProperty("spread")
     public Double spread;
     // Possible enum values:
     //  - `"fetch"` 
     //  - `"logs"` 
     //  - `"signal"` 
-    //  - `"traces"`  
+    //  - `"traces"` 
     @JsonProperty("type")
-    public StreamingQueryType type; 
+    public StreamingQueryType type;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("url")
     public String url;
     

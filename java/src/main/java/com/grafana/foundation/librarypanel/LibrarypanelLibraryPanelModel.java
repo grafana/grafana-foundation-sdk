@@ -2,67 +2,81 @@
 
 package com.grafana.foundation.librarypanel;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import com.grafana.foundation.dashboard.DataSourceRef;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.DataTransformerConfig;
 import com.grafana.foundation.dashboard.FieldConfigSource;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(using = LibrarypanelLibraryPanelModelDeserializer.class)
 public class LibrarypanelLibraryPanelModel {
-    // The panel plugin type id. This is used to find the plugin to display the panel. 
+    // The panel plugin type id. This is used to find the plugin to display the panel.
     @JsonProperty("type")
     public String type;
-    // The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs. 
+    // The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pluginVersion")
     public String pluginVersion;
-    // Depends on the panel plugin. See the plugin documentation for details. 
+    // Depends on the panel plugin. See the plugin documentation for details.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("targets")
     public List<Dataquery> targets;
-    // Panel title. 
+    // Panel title.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("title")
     public String title;
-    // Panel description. 
+    // Panel description.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("description")
     public String description;
-    // Whether to display the panel without a background. 
+    // Whether to display the panel without a background.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("transparent")
     public Boolean transparent;
-    // The datasource used in all targets. 
+    // The datasource used in all targets.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
-    // Panel links. 
+    // Panel links.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("links")
     public List<DashboardLink> links;
-    // Name of template variable to repeat for. 
+    // Name of template variable to repeat for.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("repeat")
     public String repeat;
     // Direction to repeat in if 'repeat' is set.
-    // `h` for horizontal, `v` for vertical. 
+    // `h` for horizontal, `v` for vertical.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("repeatDirection")
     public LibraryPanelRepeatDirection repeatDirection;
     // Option for repeated panels that controls max items per row
-    // Only relevant for horizontally repeated panels 
+    // Only relevant for horizontally repeated panels
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("maxPerRow")
     public Double maxPerRow;
-    // The maximum number of data points that the panel queries are retrieving. 
+    // The maximum number of data points that the panel queries are retrieving.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("maxDataPoints")
     public Double maxDataPoints;
     // List of transformations that are applied to the panel data before rendering.
     // When there are multiple transformations, Grafana applies them in the order they are listed.
-    // Each transformation creates a result set that then passes on to the next transformation in the processing pipeline. 
+    // Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("transformations")
     public List<DataTransformerConfig> transformations;
     // The min time interval setting defines a lower limit for the $__interval and $__interval_ms variables.
     // This value must be formatted as a number followed by a valid time
     // identifier like: "40s", "3d", etc.
-    // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options 
+    // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("interval")
     public String interval;
     // Overrides the relative time range for individual panels,
@@ -72,28 +86,35 @@ public class LibrarypanelLibraryPanelModel {
     // The value is formatted as time operation like: `now-5m` (Last 5 minutes), `now/d` (the day so far),
     // `now-5d/d`(Last 5 days), `now/w` (This week so far), `now-2y/y` (Last 2 years).
     // Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
-    // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options 
+    // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("timeFrom")
     public String timeFrom;
     // Overrides the time range for individual panels by shifting its start and end relative to the time picker.
     // For example, you can shift the time range for the panel to be two hours earlier than the dashboard time picker setting `2h`.
     // Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
-    // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options 
+    // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("timeShift")
     public String timeShift;
-    // Controls if the timeFrom or timeShift overrides are shown in the panel header 
+    // Controls if the timeFrom or timeShift overrides are shown in the panel header
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hideTimeOverride")
     public Boolean hideTimeOverride;
-    // Sets panel queries cache timeout. 
+    // Sets panel queries cache timeout.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("cacheTimeout")
     public String cacheTimeout;
-    // Overrides the data source configured time-to-live for a query cache item in milliseconds 
+    // Overrides the data source configured time-to-live for a query cache item in milliseconds
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("queryCachingTTL")
     public Double queryCachingTTL;
-    // It depends on the panel plugin. They are specified by the Options field in panel plugin schemas. 
+    // It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("options")
     public Object options;
-    // Field options allow you to change how the data is displayed in your visualizations. 
+    // Field options allow you to change how the data is displayed in your visualizations.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("fieldConfig")
     public FieldConfigSource fieldConfig;
     

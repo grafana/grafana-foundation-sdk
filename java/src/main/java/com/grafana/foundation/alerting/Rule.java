@@ -2,49 +2,58 @@
 
 package com.grafana.foundation.alerting;
 
-import java.util.Map;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.Map;
+import java.util.List;
 import java.util.LinkedList;
 
-public class Rule { 
+public class Rule {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("annotations")
-    public Map<String, String> annotations; 
+    public Map<String, String> annotations;
     @JsonProperty("condition")
-    public String condition; 
+    public String condition;
     @JsonProperty("data")
-    public List<Query> data; 
+    public List<Query> data;
     @JsonProperty("execErrState")
-    public RuleExecErrState execErrState; 
+    public RuleExecErrState execErrState;
     @JsonProperty("folderUID")
     public String folderUID;
     // The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.
-    // Before this time has elapsed, the rule is only considered to be Pending. 
+    // Before this time has elapsed, the rule is only considered to be Pending.
     @JsonProperty("for")
-    public String forArg; 
+    public String forArg;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("id")
-    public Long id; 
+    public Long id;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("isPaused")
-    public Boolean isPaused; 
+    public Boolean isPaused;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("labels")
-    public Map<String, String> labels; 
+    public Map<String, String> labels;
     @JsonProperty("noDataState")
-    public RuleNoDataState noDataState; 
+    public RuleNoDataState noDataState;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("notification_settings")
-    public NotificationSettings notificationSettings; 
+    public NotificationSettings notificationSettings;
     @JsonProperty("orgID")
-    public Long orgID; 
+    public Long orgID;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("provenance")
-    public String provenance; 
+    public String provenance;
     @JsonProperty("ruleGroup")
-    public String ruleGroup; 
+    public String ruleGroup;
     @JsonProperty("title")
-    public String title; 
+    public String title;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("uid")
-    public String uid; 
+    public String uid;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("updated")
     public String updated;
     

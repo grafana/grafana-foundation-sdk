@@ -2,22 +2,25 @@
 
 package com.grafana.foundation.timeseries;
 
-import java.util.List;
-import com.grafana.foundation.common.VizLegendOptions;
-import com.grafana.foundation.common.VizTooltipOptions;
-import com.grafana.foundation.common.VizOrientation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
+import com.grafana.foundation.common.VizLegendOptions;
+import com.grafana.foundation.common.VizTooltipOptions;
+import com.grafana.foundation.common.VizOrientation;
 
-public class Options { 
+public class Options {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("timezone")
-    public List<String> timezone; 
+    public List<String> timezone;
     @JsonProperty("legend")
-    public VizLegendOptions legend; 
+    public VizLegendOptions legend;
     @JsonProperty("tooltip")
-    public VizTooltipOptions tooltip; 
+    public VizTooltipOptions tooltip;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("orientation")
     public VizOrientation orientation;
     

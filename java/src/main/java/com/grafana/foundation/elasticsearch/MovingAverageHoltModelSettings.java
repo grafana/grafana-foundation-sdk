@@ -7,15 +7,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class MovingAverageHoltModelSettings { 
+public class MovingAverageHoltModelSettings {
     @JsonProperty("model")
-    public String model; 
+    public String model;
     @JsonProperty("settings")
-    public ElasticsearchMovingAverageHoltModelSettingsSettings settings; 
+    public ElasticsearchMovingAverageHoltModelSettingsSettings settings;
     @JsonProperty("window")
-    public String window; 
+    public String window;
     @JsonProperty("minimize")
-    public Boolean minimize; 
+    public Boolean minimize;
     @JsonProperty("predict")
     public String predict;
     

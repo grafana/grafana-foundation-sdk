@@ -267,7 +267,7 @@ export interface TypeClassicConditions {
 			type: string;
 		};
 		operator: {
-			type: "and" | "or";
+			type: "and" | "or" | "logic-or";
 		};
 		query: {
 			params: string[];

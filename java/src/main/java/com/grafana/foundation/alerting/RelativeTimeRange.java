@@ -6,16 +6,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // RelativeTimeRange is the per query start and end time
 // for requests.
 public class RelativeTimeRange {
     // RelativeTimeRange is the per query start and end time
-    // for requests. 
+    // for requests.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("from")
     public Long from;
     // RelativeTimeRange is the per query start and end time
-    // for requests. 
+    // for requests.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("to")
     public Long to;
     

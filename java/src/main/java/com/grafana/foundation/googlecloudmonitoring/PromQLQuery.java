@@ -9,13 +9,13 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 // PromQL sub-query properties.
 public class PromQLQuery {
-    // GCP project to execute the query against. 
+    // GCP project to execute the query against.
     @JsonProperty("projectName")
     public String projectName;
-    // PromQL expression/query to be executed. 
+    // PromQL expression/query to be executed.
     @JsonProperty("expr")
     public String expr;
-    // PromQL min step 
+    // PromQL min step
     @JsonProperty("step")
     public String step;
     

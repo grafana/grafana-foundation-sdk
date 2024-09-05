@@ -7,12 +7,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class QueryEditorOperatorExpression { 
+public class QueryEditorOperatorExpression {
     @JsonProperty("type")
-    public String type; 
+    public String type;
     @JsonProperty("property")
     public QueryEditorProperty property;
-    // TS type is operator: QueryEditorOperator<QueryEditorOperatorValueType>, extended in veneer 
+    // TS type is operator: QueryEditorOperator<QueryEditorOperatorValueType>, extended in veneer
     @JsonProperty("operator")
     public QueryEditorOperator operator;
     

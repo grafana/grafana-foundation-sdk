@@ -8,10 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class TimeRange {
-    // From is the start time of the query. 
+    // From is the start time of the query.
     @JsonProperty("from")
     public String from;
-    // To is the end time of the query. 
+    // To is the end time of the query.
     @JsonProperty("to")
     public String to;
     

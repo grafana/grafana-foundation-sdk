@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 // Show data links in the cell
-public class TableDataLinksCellOptions { 
+public class TableDataLinksCellOptions {
     @JsonProperty("type")
     public String type;
     
