@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 // TODO docs
-public class OptionsWithTooltip { 
+public class OptionsWithTooltip {
     @JsonProperty("tooltip")
     public VizTooltipOptions tooltip;
     

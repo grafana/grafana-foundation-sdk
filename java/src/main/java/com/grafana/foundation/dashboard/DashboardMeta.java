@@ -6,62 +6,91 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class DashboardMeta { 
+public class DashboardMeta {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("annotationsPermissions")
-    public AnnotationPermission annotationsPermissions; 
+    public AnnotationPermission annotationsPermissions;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("canAdmin")
-    public Boolean canAdmin; 
+    public Boolean canAdmin;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("canDelete")
-    public Boolean canDelete; 
+    public Boolean canDelete;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("canEdit")
-    public Boolean canEdit; 
+    public Boolean canEdit;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("canSave")
-    public Boolean canSave; 
+    public Boolean canSave;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("canStar")
-    public Boolean canStar; 
+    public Boolean canStar;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("created")
-    public String created; 
+    public String created;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("createdBy")
-    public String createdBy; 
+    public String createdBy;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("expires")
-    public String expires; 
+    public String expires;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("folderId")
-    public Long folderId; 
+    public Long folderId;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("folderTitle")
-    public String folderTitle; 
+    public String folderTitle;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("folderUid")
-    public String folderUid; 
+    public String folderUid;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("folderUrl")
-    public String folderUrl; 
+    public String folderUrl;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hasAcl")
-    public Boolean hasAcl; 
+    public Boolean hasAcl;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("isFolder")
-    public Boolean isFolder; 
+    public Boolean isFolder;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("isSnapshot")
-    public Boolean isSnapshot; 
+    public Boolean isSnapshot;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("isStarred")
-    public Boolean isStarred; 
+    public Boolean isStarred;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("provisioned")
-    public Boolean provisioned; 
+    public Boolean provisioned;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("provisionedExternalId")
-    public String provisionedExternalId; 
+    public String provisionedExternalId;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("publicDashboardAccessToken")
-    public String publicDashboardAccessToken; 
+    public String publicDashboardAccessToken;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("publicDashboardEnabled")
-    public Boolean publicDashboardEnabled; 
+    public Boolean publicDashboardEnabled;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("publicDashboardUid")
-    public String publicDashboardUid; 
+    public String publicDashboardUid;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("slug")
-    public String slug; 
+    public String slug;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("type")
-    public String type; 
+    public String type;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("updated")
-    public String updated; 
+    public String updated;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("updatedBy")
-    public String updatedBy; 
+    public String updatedBy;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("url")
-    public String url; 
+    public String url;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("version")
     public Long version;
     

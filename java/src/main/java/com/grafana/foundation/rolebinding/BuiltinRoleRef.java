@@ -7,9 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class BuiltinRoleRef { 
+public class BuiltinRoleRef {
     @JsonProperty("kind")
-    public String kind; 
+    public String kind;
     @JsonProperty("name")
     public BuiltinRoleRefName name;
     

@@ -2,54 +2,67 @@
 
 package com.grafana.foundation.googlecloudmonitoring;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
 // Time Series List sub-query properties.
 public class TimeSeriesList {
-    // GCP project to execute the query against. 
+    // GCP project to execute the query against.
     @JsonProperty("projectName")
     public String projectName;
-    // Reducer applied across a set of time-series values. Defaults to REDUCE_NONE. 
+    // Reducer applied across a set of time-series values. Defaults to REDUCE_NONE.
     @JsonProperty("crossSeriesReducer")
     public String crossSeriesReducer;
-    // Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto. 
+    // Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("alignmentPeriod")
     public String alignmentPeriod;
-    // Alignment function to be used. Defaults to ALIGN_MEAN. 
+    // Alignment function to be used. Defaults to ALIGN_MEAN.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("perSeriesAligner")
     public String perSeriesAligner;
-    // Array of labels to group data by. 
+    // Array of labels to group data by.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("groupBys")
     public List<String> groupBys;
-    // Array of filters to query data by. Labels that can be filtered on are defined by the metric. 
+    // Array of filters to query data by. Labels that can be filtered on are defined by the metric.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("filters")
     public List<String> filters;
-    // Data view, defaults to FULL. 
+    // Data view, defaults to FULL.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("view")
     public String view;
-    // Only present if a preprocessor is selected. Reducer applied across a set of time-series values. Defaults to REDUCE_NONE. 
+    // Only present if a preprocessor is selected. Reducer applied across a set of time-series values. Defaults to REDUCE_NONE.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("secondaryCrossSeriesReducer")
     public String secondaryCrossSeriesReducer;
-    // Only present if a preprocessor is selected. Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto. 
+    // Only present if a preprocessor is selected. Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("secondaryAlignmentPeriod")
     public String secondaryAlignmentPeriod;
-    // Only present if a preprocessor is selected. Alignment function to be used. Defaults to ALIGN_MEAN. 
+    // Only present if a preprocessor is selected. Alignment function to be used. Defaults to ALIGN_MEAN.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("secondaryPerSeriesAligner")
     public String secondaryPerSeriesAligner;
-    // Only present if a preprocessor is selected. Array of labels to group data by. 
+    // Only present if a preprocessor is selected. Array of labels to group data by.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("secondaryGroupBys")
     public List<String> secondaryGroupBys;
-    // Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters 
+    // Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("preprocessor")
     public PreprocessorType preprocessor;
-    // Annotation title. 
+    // Annotation title.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("title")
     public String title;
-    // Annotation text. 
+    // Annotation text.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("text")
     public String text;
     

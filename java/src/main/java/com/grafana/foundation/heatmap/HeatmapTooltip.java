@@ -6,13 +6,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Controls tooltip options
 public class HeatmapTooltip {
-    // Controls if the tooltip is shown 
+    // Controls if the tooltip is shown
     @JsonProperty("show")
     public Boolean show;
-    // Controls if the tooltip shows a histogram of the y-axis values 
+    // Controls if the tooltip shows a histogram of the y-axis values
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("yHistogram")
     public Boolean yHistogram;
     

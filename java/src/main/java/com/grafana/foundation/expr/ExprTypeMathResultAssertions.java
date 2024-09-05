@@ -2,14 +2,16 @@
 
 package com.grafana.foundation.expr;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
 public class ExprTypeMathResultAssertions {
-    // Maximum frame count 
+    // Maximum frame count
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("maxFrames")
     public Long maxFrames;
     // Type asserts that the frame matches a known type structure.
@@ -24,11 +26,12 @@ public class ExprTypeMathResultAssertions {
     //  - `"numeric-wide"` 
     //  - `"numeric-multi"` 
     //  - `"numeric-long"` 
-    //  - `"log-lines"`  
+    //  - `"log-lines"` 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("type")
     public TypeMathType type;
     // TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-    // contract documentation https://grafana.github.io/dataplane/contract/. 
+    // contract documentation https://grafana.github.io/dataplane/contract/.
     @JsonProperty("typeVersion")
     public List<Long> typeVersion;
     

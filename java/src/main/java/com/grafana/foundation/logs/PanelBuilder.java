@@ -2,12 +2,12 @@
 
 package com.grafana.foundation.logs;
 
-import com.grafana.foundation.common.LogsSortOrder;
-import com.grafana.foundation.common.LogsDedupStrategy;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.LogsSortOrder;
+import com.grafana.foundation.common.LogsDedupStrategy;
 import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;

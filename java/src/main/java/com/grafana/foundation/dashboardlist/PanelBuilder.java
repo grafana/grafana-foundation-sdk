@@ -2,11 +2,12 @@
 
 package com.grafana.foundation.dashboardlist;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 import com.grafana.foundation.dashboard.Panel;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;

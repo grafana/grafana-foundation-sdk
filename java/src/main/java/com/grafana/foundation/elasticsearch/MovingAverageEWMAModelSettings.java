@@ -6,16 +6,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class MovingAverageEWMAModelSettings { 
+public class MovingAverageEWMAModelSettings {
     @JsonProperty("model")
-    public String model; 
+    public String model;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("settings")
-    public ElasticsearchMovingAverageEWMAModelSettingsSettings settings; 
+    public ElasticsearchMovingAverageEWMAModelSettingsSettings settings;
     @JsonProperty("window")
-    public String window; 
+    public String window;
     @JsonProperty("minimize")
-    public Boolean minimize; 
+    public Boolean minimize;
     @JsonProperty("predict")
     public String predict;
     

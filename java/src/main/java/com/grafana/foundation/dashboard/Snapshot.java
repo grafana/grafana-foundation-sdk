@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // A dashboard snapshot shares an interactive dashboard publicly.
 // It is a read-only version of a dashboard, and is not editable.
@@ -13,39 +14,41 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 // Grafana strips away all sensitive information from the dashboard.
 // Sensitive information stripped: queries (metric, template,annotation) and panel links.
 public class Snapshot {
-    // Time when the snapshot was created 
+    // Time when the snapshot was created
     @JsonProperty("created")
     public String created;
-    // Time when the snapshot expires, default is never to expire 
+    // Time when the snapshot expires, default is never to expire
     @JsonProperty("expires")
     public String expires;
-    // Is the snapshot saved in an external grafana instance 
+    // Is the snapshot saved in an external grafana instance
     @JsonProperty("external")
     public Boolean external;
-    // external url, if snapshot was shared in external grafana instance 
+    // external url, if snapshot was shared in external grafana instance
     @JsonProperty("externalUrl")
     public String externalUrl;
-    // Unique identifier of the snapshot 
+    // Unique identifier of the snapshot
     @JsonProperty("id")
     public Integer id;
-    // Optional, defined the unique key of the snapshot, required if external is true 
+    // Optional, defined the unique key of the snapshot, required if external is true
     @JsonProperty("key")
     public String key;
-    // Optional, name of the snapshot 
+    // Optional, name of the snapshot
     @JsonProperty("name")
     public String name;
-    // org id of the snapshot 
+    // org id of the snapshot
     @JsonProperty("orgId")
     public Integer orgId;
-    // last time when the snapshot was updated 
+    // last time when the snapshot was updated
     @JsonProperty("updated")
     public String updated;
-    // url of the snapshot, if snapshot was shared internally 
+    // url of the snapshot, if snapshot was shared internally
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("url")
     public String url;
-    // user id of the snapshot creator 
+    // user id of the snapshot creator
     @JsonProperty("userId")
-    public Integer userId; 
+    public Integer userId;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("dashboard")
     public Dashboard dashboard;
     

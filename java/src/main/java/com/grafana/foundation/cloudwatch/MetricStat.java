@@ -2,39 +2,47 @@
 
 package com.grafana.foundation.cloudwatch;
 
-import java.util.Map;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.Map;
+import java.util.List;
 
 public class MetricStat {
-    // AWS region to query for the metric 
+    // AWS region to query for the metric
     @JsonProperty("region")
     public String region;
-    // A namespace is a container for CloudWatch metrics. Metrics in different namespaces are isolated from each other, so that metrics from different applications are not mistakenly aggregated into the same statistics. For example, Amazon EC2 uses the AWS/EC2 namespace. 
+    // A namespace is a container for CloudWatch metrics. Metrics in different namespaces are isolated from each other, so that metrics from different applications are not mistakenly aggregated into the same statistics. For example, Amazon EC2 uses the AWS/EC2 namespace.
     @JsonProperty("namespace")
     public String namespace;
-    // Name of the metric 
+    // Name of the metric
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("metricName")
     public String metricName;
-    // The dimensions of the metric 
+    // The dimensions of the metric
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("dimensions")
     public Map<String, StringOrArrayOfString> dimensions;
-    // Only show metrics that exactly match all defined dimension names. 
+    // Only show metrics that exactly match all defined dimension names.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("matchExact")
     public Boolean matchExact;
-    // The length of time associated with a specific Amazon CloudWatch statistic. Can be specified by a number of seconds, 'auto', or as a duration string e.g. '15m' being 15 minutes 
+    // The length of time associated with a specific Amazon CloudWatch statistic. Can be specified by a number of seconds, 'auto', or as a duration string e.g. '15m' being 15 minutes
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("period")
     public String period;
-    // The ID of the AWS account to query for the metric, specifying `all` will query all accounts that the monitoring account is permitted to query. 
+    // The ID of the AWS account to query for the metric, specifying `all` will query all accounts that the monitoring account is permitted to query.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("accountId")
     public String accountId;
-    // Metric data aggregations over specified periods of time. For detailed definitions of the statistics supported by CloudWatch, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html. 
+    // Metric data aggregations over specified periods of time. For detailed definitions of the statistics supported by CloudWatch, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("statistic")
     public String statistic;
-    // @deprecated use statistic 
+    // @deprecated use statistic
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("statistics")
     public List<String> statistics;
     

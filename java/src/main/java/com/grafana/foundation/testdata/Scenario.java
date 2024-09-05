@@ -6,17 +6,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // TODO: Should this live here given it's not used in the dataquery?
-public class Scenario { 
+public class Scenario {
     @JsonProperty("id")
-    public String id; 
+    public String id;
     @JsonProperty("name")
-    public String name; 
+    public String name;
     @JsonProperty("stringInput")
-    public String stringInput; 
+    public String stringInput;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("description")
-    public String description; 
+    public String description;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hideAliasField")
     public Boolean hideAliasField;
     

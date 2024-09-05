@@ -6,12 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class Team {
-    // Name of the team. 
+    // Name of the team.
     @JsonProperty("name")
     public String name;
-    // Email of the team. 
+    // Email of the team.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("email")
     public String email;
     

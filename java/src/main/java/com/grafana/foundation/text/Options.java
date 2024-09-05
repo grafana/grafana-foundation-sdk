@@ -6,12 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class Options { 
+public class Options {
     @JsonProperty("mode")
-    public TextMode mode; 
+    public TextMode mode;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("code")
-    public CodeOptions code; 
+    public CodeOptions code;
     @JsonProperty("content")
     public String content;
     

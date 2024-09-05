@@ -7,17 +7,43 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonDeserialize(using = PipelineMetricAggregationDeserializer.class)
-public class PipelineMetricAggregation { 
+public class PipelineMetricAggregation {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public MovingAverage movingAverage; 
+    protected MovingAverage movingAverage;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Derivative derivative; 
+    protected Derivative derivative;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public CumulativeSum cumulativeSum; 
+    protected CumulativeSum cumulativeSum;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public BucketScript bucketScript;
+    protected BucketScript bucketScript;
+    protected PipelineMetricAggregation() {}
+    public static PipelineMetricAggregation createMovingAverage(com.grafana.foundation.cog.Builder<MovingAverage> movingAverage) {
+        PipelineMetricAggregation pipelineMetricAggregation = new PipelineMetricAggregation();
+        pipelineMetricAggregation.movingAverage = movingAverage.build();
+        return pipelineMetricAggregation;
+    }
+    public static PipelineMetricAggregation createDerivative(com.grafana.foundation.cog.Builder<Derivative> derivative) {
+        PipelineMetricAggregation pipelineMetricAggregation = new PipelineMetricAggregation();
+        pipelineMetricAggregation.derivative = derivative.build();
+        return pipelineMetricAggregation;
+    }
+    public static PipelineMetricAggregation createCumulativeSum(com.grafana.foundation.cog.Builder<CumulativeSum> cumulativeSum) {
+        PipelineMetricAggregation pipelineMetricAggregation = new PipelineMetricAggregation();
+        pipelineMetricAggregation.cumulativeSum = cumulativeSum.build();
+        return pipelineMetricAggregation;
+    }
+    public static PipelineMetricAggregation createBucketScript(com.grafana.foundation.cog.Builder<BucketScript> bucketScript) {
+        PipelineMetricAggregation pipelineMetricAggregation = new PipelineMetricAggregation();
+        pipelineMetricAggregation.bucketScript = bucketScript.build();
+        return pipelineMetricAggregation;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (movingAverage != null) {

@@ -676,8 +676,9 @@ const (
 type TypeClassicConditionsType string
 
 const (
-	TypeClassicConditionsTypeAnd TypeClassicConditionsType = "and"
-	TypeClassicConditionsTypeOr  TypeClassicConditionsType = "or"
+	TypeClassicConditionsTypeAnd     TypeClassicConditionsType = "and"
+	TypeClassicConditionsTypeOr      TypeClassicConditionsType = "or"
+	TypeClassicConditionsTypeLogicOr TypeClassicConditionsType = "logic-or"
 )
 
 type TypeThresholdType string

@@ -7,29 +7,91 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonDeserialize(using = GrafanaTemplateVariableQueryDeserializer.class)
-public class GrafanaTemplateVariableQuery { 
+public class GrafanaTemplateVariableQuery {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public AppInsightsMetricNameQuery appInsightsMetricNameQuery; 
+    protected AppInsightsMetricNameQuery appInsightsMetricNameQuery;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public AppInsightsGroupByQuery appInsightsGroupByQuery; 
+    protected AppInsightsGroupByQuery appInsightsGroupByQuery;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public SubscriptionsQuery subscriptionsQuery; 
+    protected SubscriptionsQuery subscriptionsQuery;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public ResourceGroupsQuery resourceGroupsQuery; 
+    protected ResourceGroupsQuery resourceGroupsQuery;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public ResourceNamesQuery resourceNamesQuery; 
+    protected ResourceNamesQuery resourceNamesQuery;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public MetricNamespaceQuery metricNamespaceQuery; 
+    protected MetricNamespaceQuery metricNamespaceQuery;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public MetricDefinitionsQuery metricDefinitionsQuery; 
+    protected MetricDefinitionsQuery metricDefinitionsQuery;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public MetricNamesQuery metricNamesQuery; 
+    protected MetricNamesQuery metricNamesQuery;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public WorkspacesQuery workspacesQuery; 
+    protected WorkspacesQuery workspacesQuery;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public UnknownQuery unknownQuery;
+    protected UnknownQuery unknownQuery;
+    protected GrafanaTemplateVariableQuery() {}
+    public static GrafanaTemplateVariableQuery createAppInsightsMetricNameQuery(com.grafana.foundation.cog.Builder<AppInsightsMetricNameQuery> appInsightsMetricNameQuery) {
+        GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
+        grafanaTemplateVariableQuery.appInsightsMetricNameQuery = appInsightsMetricNameQuery.build();
+        return grafanaTemplateVariableQuery;
+    }
+    public static GrafanaTemplateVariableQuery createAppInsightsGroupByQuery(com.grafana.foundation.cog.Builder<AppInsightsGroupByQuery> appInsightsGroupByQuery) {
+        GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
+        grafanaTemplateVariableQuery.appInsightsGroupByQuery = appInsightsGroupByQuery.build();
+        return grafanaTemplateVariableQuery;
+    }
+    public static GrafanaTemplateVariableQuery createSubscriptionsQuery(com.grafana.foundation.cog.Builder<SubscriptionsQuery> subscriptionsQuery) {
+        GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
+        grafanaTemplateVariableQuery.subscriptionsQuery = subscriptionsQuery.build();
+        return grafanaTemplateVariableQuery;
+    }
+    public static GrafanaTemplateVariableQuery createResourceGroupsQuery(com.grafana.foundation.cog.Builder<ResourceGroupsQuery> resourceGroupsQuery) {
+        GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
+        grafanaTemplateVariableQuery.resourceGroupsQuery = resourceGroupsQuery.build();
+        return grafanaTemplateVariableQuery;
+    }
+    public static GrafanaTemplateVariableQuery createResourceNamesQuery(com.grafana.foundation.cog.Builder<ResourceNamesQuery> resourceNamesQuery) {
+        GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
+        grafanaTemplateVariableQuery.resourceNamesQuery = resourceNamesQuery.build();
+        return grafanaTemplateVariableQuery;
+    }
+    public static GrafanaTemplateVariableQuery createMetricNamespaceQuery(com.grafana.foundation.cog.Builder<MetricNamespaceQuery> metricNamespaceQuery) {
+        GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
+        grafanaTemplateVariableQuery.metricNamespaceQuery = metricNamespaceQuery.build();
+        return grafanaTemplateVariableQuery;
+    }
+    public static GrafanaTemplateVariableQuery createMetricDefinitionsQuery(com.grafana.foundation.cog.Builder<MetricDefinitionsQuery> metricDefinitionsQuery) {
+        GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
+        grafanaTemplateVariableQuery.metricDefinitionsQuery = metricDefinitionsQuery.build();
+        return grafanaTemplateVariableQuery;
+    }
+    public static GrafanaTemplateVariableQuery createMetricNamesQuery(com.grafana.foundation.cog.Builder<MetricNamesQuery> metricNamesQuery) {
+        GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
+        grafanaTemplateVariableQuery.metricNamesQuery = metricNamesQuery.build();
+        return grafanaTemplateVariableQuery;
+    }
+    public static GrafanaTemplateVariableQuery createWorkspacesQuery(com.grafana.foundation.cog.Builder<WorkspacesQuery> workspacesQuery) {
+        GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
+        grafanaTemplateVariableQuery.workspacesQuery = workspacesQuery.build();
+        return grafanaTemplateVariableQuery;
+    }
+    public static GrafanaTemplateVariableQuery createUnknownQuery(com.grafana.foundation.cog.Builder<UnknownQuery> unknownQuery) {
+        GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
+        grafanaTemplateVariableQuery.unknownQuery = unknownQuery.build();
+        return grafanaTemplateVariableQuery;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (appInsightsMetricNameQuery != null) {
