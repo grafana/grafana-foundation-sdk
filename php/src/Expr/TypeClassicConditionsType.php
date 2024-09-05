@@ -36,6 +36,15 @@ final class TypeClassicConditionsType implements \JsonSerializable, \Stringable 
         return self::$instances["Or"];
     }
 
+    public static function logicOr(): self
+    {
+        if (!isset(self::$instances["LogicOr"])) {
+            self::$instances["LogicOr"] = new self("logic-or");
+        }
+
+        return self::$instances["LogicOr"];
+    }
+
     public static function fromValue(string $value): self
     {
         if ($value === "and") {
@@ -44,6 +53,10 @@ final class TypeClassicConditionsType implements \JsonSerializable, \Stringable 
 
         if ($value === "or") {
             return self::or();
+        }
+
+        if ($value === "logic-or") {
+            return self::logicOr();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum TypeClassicConditionsType");

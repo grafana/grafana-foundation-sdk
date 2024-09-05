@@ -7,9 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class PipelineVariable { 
+public class PipelineVariable {
     @JsonProperty("name")
-    public String name; 
+    public String name;
     @JsonProperty("pipelineAgg")
     public String pipelineAgg;
     

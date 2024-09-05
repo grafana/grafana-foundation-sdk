@@ -508,7 +508,8 @@
                     "type": {
                       "enum": [
                         "and",
-                        "or"
+                        "or",
+                        "logic-or"
                       ]
                     }
                   }

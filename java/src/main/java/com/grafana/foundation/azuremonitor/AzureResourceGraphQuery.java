@@ -6,12 +6,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class AzureResourceGraphQuery {
-    // Azure Resource Graph KQL query to be executed. 
+    // Azure Resource Graph KQL query to be executed.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("query")
     public String query;
-    // Specifies the format results should be returned as. Defaults to table. 
+    // Specifies the format results should be returned as. Defaults to table.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("resultFormat")
     public String resultFormat;
     

@@ -8,13 +8,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class Options {
-    // Comma-separated list of values used to filter alert results 
+    // Comma-separated list of values used to filter alert results
     @JsonProperty("labels")
     public String labels;
-    // Name of the alertmanager used as a source for alerts 
+    // Name of the alertmanager used as a source for alerts
     @JsonProperty("alertmanager")
     public String alertmanager;
-    // Expand all alert groups by default 
+    // Expand all alert groups by default
     @JsonProperty("expandAll")
     public Boolean expandAll;
     

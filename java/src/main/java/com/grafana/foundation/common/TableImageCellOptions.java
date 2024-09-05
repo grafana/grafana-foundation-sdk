@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 // Json view cell options
-public class TableImageCellOptions { 
+public class TableImageCellOptions {
     @JsonProperty("type")
     public String type;
     

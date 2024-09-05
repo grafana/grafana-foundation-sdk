@@ -8,10 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class DashboardRegexMapOptions {
-    // Regular expression to match against 
+    // Regular expression to match against
     @JsonProperty("pattern")
     public String pattern;
-    // Config to apply when the value matches the regex 
+    // Config to apply when the value matches the regex
     @JsonProperty("result")
     public ValueMappingResult result;
     

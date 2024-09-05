@@ -2,23 +2,29 @@
 
 package com.grafana.foundation.alerting;
 
-import com.grafana.foundation.cog.variants.Dataquery;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.grafana.foundation.cog.variants.Dataquery;
 
 @JsonDeserialize(using = QueryDeserializer.class)
-public class Query { 
+public class Query {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("datasourceUid")
-    public String datasourceUid; 
+    public String datasourceUid;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("model")
-    public Dataquery model; 
+    public Dataquery model;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("queryType")
-    public String queryType; 
+    public String queryType;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("refId")
-    public String refId; 
+    public String refId;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("relativeTimeRange")
     public RelativeTimeRange relativeTimeRange;
     

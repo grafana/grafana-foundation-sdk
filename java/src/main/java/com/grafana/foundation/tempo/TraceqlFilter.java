@@ -6,24 +6,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class TraceqlFilter {
-    // Uniquely identify the filter, will not be used in the query generation 
+    // Uniquely identify the filter, will not be used in the query generation
     @JsonProperty("id")
     public String id;
-    // The tag for the search filter, for example: .http.status_code, .service.name, status 
+    // The tag for the search filter, for example: .http.status_code, .service.name, status
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("tag")
     public String tag;
-    // The operator that connects the tag to the value, for example: =, >, !=, =~ 
+    // The operator that connects the tag to the value, for example: =, >, !=, =~
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("operator")
     public String operator;
-    // The value for the search filter 
+    // The value for the search filter
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("value")
     public StringOrArrayOfString value;
-    // The type of the value, used for example to check whether we need to wrap the value in quotes when generating the query 
+    // The type of the value, used for example to check whether we need to wrap the value in quotes when generating the query
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("valueType")
     public String valueType;
-    // The scope of the filter, can either be unscoped/all scopes, resource or span 
+    // The scope of the filter, can either be unscoped/all scopes, resource or span
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("scope")
     public TraceqlSearchScope scope;
     

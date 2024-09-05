@@ -7,19 +7,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class LibraryElementDTOMeta { 
+public class LibraryElementDTOMeta {
     @JsonProperty("folderName")
-    public String folderName; 
+    public String folderName;
     @JsonProperty("folderUid")
-    public String folderUid; 
+    public String folderUid;
     @JsonProperty("connectedDashboards")
-    public Long connectedDashboards; 
+    public Long connectedDashboards;
     @JsonProperty("created")
-    public String created; 
+    public String created;
     @JsonProperty("updated")
-    public String updated; 
+    public String updated;
     @JsonProperty("createdBy")
-    public LibraryElementDTOMetaUser createdBy; 
+    public LibraryElementDTOMetaUser createdBy;
     @JsonProperty("updatedBy")
     public LibraryElementDTOMetaUser updatedBy;
     

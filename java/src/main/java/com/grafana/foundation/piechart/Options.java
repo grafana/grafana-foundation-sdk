@@ -2,29 +2,31 @@
 
 package com.grafana.foundation.piechart;
 
-import java.util.List;
-import com.grafana.foundation.common.VizTooltipOptions;
-import com.grafana.foundation.common.ReduceDataOptions;
-import com.grafana.foundation.common.VizTextDisplayOptions;
-import com.grafana.foundation.common.VizOrientation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.List;
+import com.grafana.foundation.common.VizTooltipOptions;
+import com.grafana.foundation.common.ReduceDataOptions;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.grafana.foundation.common.VizTextDisplayOptions;
+import com.grafana.foundation.common.VizOrientation;
 
-public class Options { 
+public class Options {
     @JsonProperty("pieType")
-    public PieChartType pieType; 
+    public PieChartType pieType;
     @JsonProperty("displayLabels")
-    public List<PieChartLabels> displayLabels; 
+    public List<PieChartLabels> displayLabels;
     @JsonProperty("tooltip")
-    public VizTooltipOptions tooltip; 
+    public VizTooltipOptions tooltip;
     @JsonProperty("reduceOptions")
-    public ReduceDataOptions reduceOptions; 
+    public ReduceDataOptions reduceOptions;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("text")
-    public VizTextDisplayOptions text; 
+    public VizTextDisplayOptions text;
     @JsonProperty("legend")
-    public PieChartLegendOptions legend; 
+    public PieChartLegendOptions legend;
     @JsonProperty("orientation")
     public VizOrientation orientation;
     

@@ -7,9 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class Filter { 
+public class Filter {
     @JsonProperty("query")
-    public String query; 
+    public String query;
     @JsonProperty("label")
     public String label;
     
