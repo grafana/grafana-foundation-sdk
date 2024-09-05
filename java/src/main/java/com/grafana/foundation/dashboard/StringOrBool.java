@@ -11,11 +11,24 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(using = StringOrBoolDeserializer.class)
 @JsonSerialize(using = StringOrBoolSerializer.class)
-public class StringOrBool { 
+public class StringOrBool {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public String string; 
+    protected String string;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Boolean bool;
+    protected Boolean bool;
+    protected StringOrBool() {}
+    public static StringOrBool createString(String string) {
+        StringOrBool stringOrBool = new StringOrBool();
+        stringOrBool.string = string;
+        return stringOrBool;
+    }
+    public static StringOrBool createBool(Boolean bool) {
+        StringOrBool stringOrBool = new StringOrBool();
+        stringOrBool.bool = bool;
+        return stringOrBool;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (string != null) {

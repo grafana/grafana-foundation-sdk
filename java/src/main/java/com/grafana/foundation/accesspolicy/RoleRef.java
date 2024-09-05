@@ -9,11 +9,11 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class RoleRef {
     // Policies can apply to roles, teams, or users
-    // Applying policies to individual users is supported, but discouraged 
+    // Applying policies to individual users is supported, but discouraged
     @JsonProperty("kind")
-    public RoleRefKind kind; 
+    public RoleRefKind kind;
     @JsonProperty("name")
-    public String name; 
+    public String name;
     @JsonProperty("xname")
     public String xname;
     

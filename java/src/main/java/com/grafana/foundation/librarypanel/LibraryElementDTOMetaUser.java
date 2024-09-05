@@ -7,11 +7,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class LibraryElementDTOMetaUser { 
+public class LibraryElementDTOMetaUser {
     @JsonProperty("id")
-    public Long id; 
+    public Long id;
     @JsonProperty("name")
-    public String name; 
+    public String name;
     @JsonProperty("avatarUrl")
     public String avatarUrl;
     

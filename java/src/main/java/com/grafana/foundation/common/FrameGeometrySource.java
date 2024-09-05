@@ -6,22 +6,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class FrameGeometrySource { 
+public class FrameGeometrySource {
     @JsonProperty("mode")
     public FrameGeometrySourceMode mode;
-    // Field mappings 
+    // Field mappings
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("geohash")
-    public String geohash; 
+    public String geohash;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("latitude")
-    public String latitude; 
+    public String latitude;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("longitude")
-    public String longitude; 
+    public String longitude;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("wkt")
-    public String wkt; 
+    public String wkt;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lookup")
     public String lookup;
-    // Path to Gazetteer 
+    // Path to Gazetteer
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("gazetteer")
     public String gazetteer;
     

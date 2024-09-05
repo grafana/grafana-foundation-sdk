@@ -11,10 +11,10 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 // When you make a change to a library panel, that change propagates to all instances of where the panel is used.
 // Library panels streamline reuse of panels across multiple dashboards.
 public class LibraryPanelRef {
-    // Library panel name 
+    // Library panel name
     @JsonProperty("name")
     public String name;
-    // Library panel uid 
+    // Library panel uid
     @JsonProperty("uid")
     public String uid;
     

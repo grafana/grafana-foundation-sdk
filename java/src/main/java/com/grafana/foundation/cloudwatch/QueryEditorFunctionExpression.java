@@ -2,17 +2,20 @@
 
 package com.grafana.foundation.cloudwatch;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
-public class QueryEditorFunctionExpression { 
+public class QueryEditorFunctionExpression {
     @JsonProperty("type")
-    public String type; 
+    public String type;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("name")
-    public String name; 
+    public String name;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("parameters")
     public List<QueryEditorFunctionParameterExpression> parameters;
     

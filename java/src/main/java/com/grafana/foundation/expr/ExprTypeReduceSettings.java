@@ -6,15 +6,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class ExprTypeReduceSettings {
     // Non-number reduce behavior
     // Possible enum values:
     //  - `"dropNN"` Drop non-numbers
-    //  - `"replaceNN"` Replace non-numbers 
+    //  - `"replaceNN"` Replace non-numbers
     @JsonProperty("mode")
     public TypeReduceMode mode;
-    // Only valid when mode is replace 
+    // Only valid when mode is replace
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("replaceWithValue")
     public Double replaceWithValue;
     

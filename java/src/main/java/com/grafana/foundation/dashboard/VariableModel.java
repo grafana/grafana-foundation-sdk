@@ -2,50 +2,62 @@
 
 package com.grafana.foundation.dashboard;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
 public class VariableModel {
-    // Type of variable 
+    // Type of variable
     @JsonProperty("type")
     public VariableType type;
-    // Name of variable 
+    // Name of variable
     @JsonProperty("name")
     public String name;
-    // Optional display name 
+    // Optional display name
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("label")
     public String label;
-    // Visibility configuration for the variable 
+    // Visibility configuration for the variable
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hide")
     public VariableHide hide;
-    // Whether the variable value should be managed by URL query params or not 
+    // Whether the variable value should be managed by URL query params or not
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("skipUrlSync")
     public Boolean skipUrlSync;
-    // Description of variable. It can be defined but `null`. 
+    // Description of variable. It can be defined but `null`.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("description")
     public String description;
-    // Query used to fetch values for a variable 
+    // Query used to fetch values for a variable
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("query")
     public StringOrMap query;
-    // Data source used to fetch values for a variable. It can be defined but `null`. 
+    // Data source used to fetch values for a variable. It can be defined but `null`.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
-    // Shows current selected variable text/value on the dashboard 
+    // Shows current selected variable text/value on the dashboard
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("current")
     public VariableOption current;
-    // Whether multiple values can be selected or not from variable value list 
+    // Whether multiple values can be selected or not from variable value list
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("multi")
     public Boolean multi;
-    // Options that can be selected for a variable. 
+    // Options that can be selected for a variable.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("options")
-    public List<VariableOption> options; 
+    public List<VariableOption> options;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("refresh")
     public VariableRefresh refresh;
-    // Options sort order 
+    // Options sort order
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("sort")
     public VariableSort sort;
     

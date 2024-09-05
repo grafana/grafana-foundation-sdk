@@ -2,19 +2,23 @@
 
 package com.grafana.foundation.testdata;
 
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.Map;
 
-public class SimulationQuery { 
+public class SimulationQuery {
     @JsonProperty("key")
-    public Key key; 
+    public Key key;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("config")
-    public Map<String, Object> config; 
+    public Map<String, Object> config;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("stream")
-    public Boolean stream; 
+    public Boolean stream;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("last")
     public Boolean last;
     

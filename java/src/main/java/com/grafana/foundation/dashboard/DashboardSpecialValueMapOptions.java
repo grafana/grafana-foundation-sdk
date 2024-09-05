@@ -8,10 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class DashboardSpecialValueMapOptions {
-    // Special value to match against 
+    // Special value to match against
     @JsonProperty("match")
     public SpecialValueMatch match;
-    // Config to apply when the value matches the special value 
+    // Config to apply when the value matches the special value
     @JsonProperty("result")
     public ValueMappingResult result;
     
