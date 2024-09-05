@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 // Controls legend options
 public class HeatmapLegend {
-    // Controls if the legend is shown 
+    // Controls if the legend is shown
     @JsonProperty("show")
     public Boolean show;
     

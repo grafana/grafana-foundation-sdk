@@ -2,22 +2,22 @@
 
 package com.grafana.foundation.dashboard;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.List;
 
 // Time picker configuration
 // It defines the default config for the time picker and the refresh picker for the specific dashboard.
 public class TimePickerConfig {
-    // Whether timepicker is visible or not. 
+    // Whether timepicker is visible or not.
     @JsonProperty("hidden")
     public Boolean hidden;
-    // Interval options available in the refresh picker dropdown. 
+    // Interval options available in the refresh picker dropdown.
     @JsonProperty("refresh_intervals")
     public List<String> refreshIntervals;
-    // Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard. 
+    // Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
     @JsonProperty("time_options")
     public List<String> timeOptions;
     

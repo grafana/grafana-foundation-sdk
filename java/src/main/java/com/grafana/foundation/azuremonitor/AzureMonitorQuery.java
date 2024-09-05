@@ -2,63 +2,78 @@
 
 package com.grafana.foundation.azuremonitor;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
 public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Dataquery {
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
-    // By default, the UI will assign A->Z; however setting meaningful names may be useful. 
+    // By default, the UI will assign A->Z; however setting meaningful names may be useful.
     @JsonProperty("refId")
     public String refId;
     // true if query is disabled (ie should not be returned to the dashboard)
     // Note this does not always imply that the query should not be executed since
-    // the results from a hidden query may be used as the input to other queries (SSE etc) 
+    // the results from a hidden query may be used as the input to other queries (SSE etc)
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     // Specify the query flavor
-    // TODO make this required and give it a default 
+    // TODO make this required and give it a default
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("queryType")
     public String queryType;
-    // Azure subscription containing the resource(s) to be queried. 
+    // Azure subscription containing the resource(s) to be queried.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("subscription")
     public String subscription;
-    // Subscriptions to be queried via Azure Resource Graph. 
+    // Subscriptions to be queried via Azure Resource Graph.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("subscriptions")
     public List<String> subscriptions;
-    // Azure Monitor Metrics sub-query properties. 
+    // Azure Monitor Metrics sub-query properties.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("azureMonitor")
     public AzureMetricQuery azureMonitor;
-    // Azure Monitor Logs sub-query properties. 
+    // Azure Monitor Logs sub-query properties.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("azureLogAnalytics")
     public AzureLogsQuery azureLogAnalytics;
-    // Azure Resource Graph sub-query properties. 
+    // Azure Resource Graph sub-query properties.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("azureResourceGraph")
     public AzureResourceGraphQuery azureResourceGraph;
-    // Application Insights Traces sub-query properties. 
+    // Application Insights Traces sub-query properties.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("azureTraces")
     public AzureTracesQuery azureTraces;
-    // @deprecated Legacy template variable support. 
+    // @deprecated Legacy template variable support.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("grafanaTemplateVariableFn")
     public GrafanaTemplateVariableQuery grafanaTemplateVariableFn;
-    // Template variables params. These exist for backwards compatiblity with legacy template variables. 
+    // Template variables params. These exist for backwards compatiblity with legacy template variables.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("resourceGroup")
-    public String resourceGroup; 
+    public String resourceGroup;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("namespace")
-    public String namespace; 
+    public String namespace;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("resource")
     public String resource;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
-    // TODO this shouldn't be unknown but DataSourceRef | null 
+    // TODO this shouldn't be unknown but DataSourceRef | null
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("datasource")
     public Object datasource;
     // Azure Monitor query type.
-    // queryType: #AzureQueryType 
+    // queryType: #AzureQueryType
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("region")
     public String region;
     

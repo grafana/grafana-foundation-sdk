@@ -6,28 +6,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class MapLayerOptions { 
+public class MapLayerOptions {
     @JsonProperty("type")
     public String type;
-    // configured unique display name 
+    // configured unique display name
     @JsonProperty("name")
     public String name;
-    // Custom options depending on the type 
+    // Custom options depending on the type
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("config")
     public Object config;
-    // Common method to define geometry fields 
+    // Common method to define geometry fields
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("location")
     public FrameGeometrySource location;
-    // Defines a frame MatcherConfig that may filter data for the given layer 
+    // Defines a frame MatcherConfig that may filter data for the given layer
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("filterData")
     public Object filterData;
     // Common properties:
     // https://openlayers.org/en/latest/apidoc/module-ol_layer_Base-BaseLayer.html
-    // Layer opacity (0-1) 
+    // Layer opacity (0-1)
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("opacity")
     public Long opacity;
-    // Check tooltip (defaults to true) 
+    // Check tooltip (defaults to true)
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("tooltip")
     public Boolean tooltip;
     

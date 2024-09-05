@@ -2,21 +2,25 @@
 
 package com.grafana.foundation.elasticsearch;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
-public class BucketScript { 
+public class BucketScript {
     @JsonProperty("type")
-    public String type; 
+    public String type;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pipelineVariables")
-    public List<PipelineVariable> pipelineVariables; 
+    public List<PipelineVariable> pipelineVariables;
     @JsonProperty("id")
-    public String id; 
+    public String id;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("settings")
-    public ElasticsearchBucketScriptSettings settings; 
+    public ElasticsearchBucketScriptSettings settings;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     

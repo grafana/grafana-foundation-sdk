@@ -2,22 +2,27 @@
 
 package com.grafana.foundation.alerting;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 import java.util.LinkedList;
 
-public class RuleGroup { 
+public class RuleGroup {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("folderUid")
     public String folderUid;
     // The interval, in seconds, at which all rules in the group are evaluated.
-    // If a group contains many rules, the rules are evaluated sequentially. 
+    // If a group contains many rules, the rules are evaluated sequentially.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("interval")
-    public Long interval; 
+    public Long interval;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("rules")
-    public List<Rule> rules; 
+    public List<Rule> rules;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("title")
     public String title;
     

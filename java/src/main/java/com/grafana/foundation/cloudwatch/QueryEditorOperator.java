@@ -6,11 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // TS type is QueryEditorOperator<T extends QueryEditorOperatorValueType>, extended in veneer
-public class QueryEditorOperator { 
+public class QueryEditorOperator {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("name")
-    public String name; 
+    public String name;
     @JsonProperty("value")
     public QueryEditorOperatorValueType value;
     

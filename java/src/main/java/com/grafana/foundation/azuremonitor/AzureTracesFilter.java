@@ -2,20 +2,20 @@
 
 package com.grafana.foundation.azuremonitor;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.List;
 
 public class AzureTracesFilter {
-    // Property name, auto-populated based on available traces. 
+    // Property name, auto-populated based on available traces.
     @JsonProperty("property")
     public String property;
-    // Comparison operator to use. Either equals or not equals. 
+    // Comparison operator to use. Either equals or not equals.
     @JsonProperty("operation")
     public String operation;
-    // Values to filter by. 
+    // Values to filter by.
     @JsonProperty("filters")
     public List<String> filters;
     
