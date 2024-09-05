@@ -1736,6 +1736,7 @@ class BarGaugeNamePlacement(enum.StrEnum):
     AUTO = "auto"
     TOP = "top"
     LEFT = "left"
+    HIDDEN = "hidden"
 
 
 class BarGaugeSizing(enum.StrEnum):

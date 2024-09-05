@@ -384,6 +384,15 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Controls value alignment on the timelines
+    alignValue(alignValue: common.TimelineValueAlignment): this {
+        if (!this.internal.options) {
+            this.internal.options = statetimeline.defaultOptions();
+        }
+        this.internal.options.alignValue = alignValue;
+        return this;
+    }
+
     legend(legend: cog.Builder<common.VizLegendOptions>): this {
         if (!this.internal.options) {
             this.internal.options = statetimeline.defaultOptions();
@@ -410,12 +419,15 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // Controls value alignment on the timelines
-    alignValue(alignValue: common.TimelineValueAlignment): this {
+    // Enables pagination when > 0
+    perPage(perPage: number): this {
         if (!this.internal.options) {
             this.internal.options = statetimeline.defaultOptions();
         }
-        this.internal.options.alignValue = alignValue;
+        if (!(perPage >= 1)) {
+            throw new Error("perPage must be >= 1");
+        }
+        this.internal.options.perPage = perPage;
         return this;
     }
 

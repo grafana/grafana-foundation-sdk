@@ -466,4 +466,28 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         this.internal.options.onClickFilterOutString = onClickFilterOutString;
         return this;
     }
+
+    onClickShowField(onClickShowField: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.onClickShowField = onClickShowField;
+        return this;
+    }
+
+    onClickHideField(onClickHideField: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.onClickHideField = onClickHideField;
+        return this;
+    }
+
+    displayedFields(displayedFields: string[]): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.displayedFields = displayedFields;
+        return this;
+    }
 }

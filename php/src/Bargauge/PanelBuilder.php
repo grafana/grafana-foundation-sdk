@@ -541,6 +541,20 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\VizLegendOptions> $legend
+     */
+    public function legend(\Grafana\Foundation\Cog\Builder $legend): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Bargauge\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Bargauge\Options);
+        $legendResource = $legend->build();
+        $this->internal->options->legend = $legendResource;
+    
+        return $this;
+    }
+    /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ReduceDataOptions> $reduceOptions
      */
     public function reduceOptions(\Grafana\Foundation\Cog\Builder $reduceOptions): static

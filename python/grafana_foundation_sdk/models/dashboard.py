@@ -762,6 +762,7 @@ class VariableType(enum.StrEnum):
     TEXTBOX = "textbox"
     CUSTOM = "custom"
     SYSTEM = "system"
+    SNAPSHOT = "snapshot"
 
 
 class FieldColorModeId(enum.StrEnum):

@@ -57,5 +57,11 @@ func (builder *NotificationTemplateBuilder) Template(template string) *Notificat
 	return builder
 }
 
+func (builder *NotificationTemplateBuilder) Version(version string) *NotificationTemplateBuilder {
+	builder.internal.Version = &version
+
+	return builder
+}
+
 func (builder *NotificationTemplateBuilder) applyDefaults() {
 }

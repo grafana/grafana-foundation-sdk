@@ -43,6 +43,14 @@ func (builder *NotificationPolicyBuilder) Build() (NotificationPolicy, error) {
 
 // A Route is a node that contains definitions of how to handle alerts. This is modified
 // from the upstream alertmanager in that it adds the ObjectMatchers property.
+func (builder *NotificationPolicyBuilder) ActiveTimeIntervals(activeTimeIntervals []string) *NotificationPolicyBuilder {
+	builder.internal.ActiveTimeIntervals = activeTimeIntervals
+
+	return builder
+}
+
+// A Route is a node that contains definitions of how to handle alerts. This is modified
+// from the upstream alertmanager in that it adds the ObjectMatchers property.
 func (builder *NotificationPolicyBuilder) Continue(continueArg bool) *NotificationPolicyBuilder {
 	builder.internal.Continue = &continueArg
 

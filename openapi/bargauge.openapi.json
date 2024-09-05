@@ -21,6 +21,7 @@
           "sizing",
           "minVizWidth",
           "minVizHeight",
+          "legend",
           "reduceOptions",
           "maxVizHeight",
           "orientation"
@@ -53,6 +54,9 @@
           "minVizHeight": {
             "type": "integer",
             "default": 16
+          },
+          "legend": {
+            "$ref": "#/components/schemas/VizLegendOptions"
           },
           "reduceOptions": {
             "$ref": "#/components/schemas/ReduceDataOptions"
@@ -89,7 +93,8 @@
         "enum": [
           "auto",
           "top",
-          "left"
+          "left",
+          "hidden"
         ],
         "description": "Allows for the bar gauge name to be placed explicitly"
       },
@@ -99,6 +104,52 @@
           "manual"
         ],
         "description": "Allows for the bar gauge size to be set explicitly"
+      },
+      "VizLegendOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "displayMode",
+          "placement",
+          "showLegend",
+          "calcs"
+        ],
+        "properties": {
+          "displayMode": {
+            "$ref": "#/components/schemas/LegendDisplayMode",
+            "default": "list"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/LegendPlacement",
+            "default": "bottom"
+          },
+          "showLegend": {
+            "type": "boolean"
+          },
+          "asTable": {
+            "type": "boolean"
+          },
+          "isVisible": {
+            "type": "boolean"
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "sortDesc": {
+            "type": "boolean"
+          },
+          "width": {
+            "type": "number"
+          },
+          "calcs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        },
+        "description": "TODO docs"
       },
       "ReduceDataOptions": {
         "type": "object",
@@ -149,6 +200,21 @@
           "auto",
           "vertical",
           "horizontal"
+        ],
+        "description": "TODO docs"
+      },
+      "LegendDisplayMode": {
+        "enum": [
+          "list",
+          "table",
+          "hidden"
+        ],
+        "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
+      },
+      "LegendPlacement": {
+        "enum": [
+          "bottom",
+          "right"
         ],
         "description": "TODO docs"
       }

@@ -6,18 +6,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class LogGroup {
-    // ARN of the log group 
+    // ARN of the log group
     @JsonProperty("arn")
     public String arn;
-    // Name of the log group 
+    // Name of the log group
     @JsonProperty("name")
     public String name;
-    // AccountId of the log group 
+    // AccountId of the log group
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("accountId")
     public String accountId;
-    // Label of the log group 
+    // Label of the log group
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("accountLabel")
     public String accountLabel;
     

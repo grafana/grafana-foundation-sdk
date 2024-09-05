@@ -8,11 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class CodeOptions {
-    // The language passed to monaco code editor 
+    // The language passed to monaco code editor
     @JsonProperty("language")
-    public CodeLanguage language; 
+    public CodeLanguage language;
     @JsonProperty("showLineNumbers")
-    public Boolean showLineNumbers; 
+    public Boolean showLineNumbers;
     @JsonProperty("showMiniMap")
     public Boolean showMiniMap;
     

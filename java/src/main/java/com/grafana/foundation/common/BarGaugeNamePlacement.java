@@ -12,6 +12,7 @@ public enum BarGaugeNamePlacement {
     AUTO("auto"),
     TOP("top"),
     LEFT("left"),
+    HIDDEN("hidden"),
     _EMPTY("");
 
     private final String value;

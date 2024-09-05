@@ -997,7 +997,8 @@
       "enum": [
         "auto",
         "top",
-        "left"
+        "left",
+        "hidden"
       ],
       "description": "Allows for the bar gauge name to be placed explicitly"
     },

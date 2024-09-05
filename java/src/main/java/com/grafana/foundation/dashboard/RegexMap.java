@@ -9,10 +9,10 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 // Maps regular expressions to replacement text and a color.
 // For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
-public class RegexMap { 
+public class RegexMap {
     @JsonProperty("type")
     public String type;
-    // Regular expression to match against and the result to apply when the value matches the regex 
+    // Regular expression to match against and the result to apply when the value matches the regex
     @JsonProperty("options")
     public DashboardRegexMapOptions options;
     

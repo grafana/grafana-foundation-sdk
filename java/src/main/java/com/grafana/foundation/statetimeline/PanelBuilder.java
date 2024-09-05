@@ -2,15 +2,16 @@
 
 package com.grafana.foundation.statetimeline;
 
-import com.grafana.foundation.common.VisibilityMode;
-import com.grafana.foundation.common.VizLegendOptions;
-import com.grafana.foundation.common.VizTooltipOptions;
-import java.util.List;
-import com.grafana.foundation.common.TimelineValueAlignment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.VisibilityMode;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.grafana.foundation.common.TimelineValueAlignment;
+import com.grafana.foundation.common.VizLegendOptions;
+import com.grafana.foundation.common.VizTooltipOptions;
+import java.util.List;
 import com.grafana.foundation.dashboard.Panel;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
@@ -39,6 +40,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         this.rowHeight(0.9);
         this.mergeValues(true);
         this.alignValue(TimelineValueAlignment.LEFT);
+        this.perPage(20.0);
         this.lineWidth(0);
         this.fillOpacity(70);
     }
@@ -296,6 +298,15 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
+    public PanelBuilder alignValue(TimelineValueAlignment alignValue) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.statetimeline.Options();
+		}
+        com.grafana.foundation.statetimeline.Options optionsResource = (com.grafana.foundation.statetimeline.Options) this.internal.options;
+        optionsResource.alignValue = alignValue;
+    this.internal.options = optionsResource;
+        return this;
+    }
     public PanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.statetimeline.Options();
@@ -323,12 +334,15 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder alignValue(TimelineValueAlignment alignValue) {
+    public PanelBuilder perPage(Double perPage) {
+        if (!(perPage >= 1)) {
+            throw new IllegalArgumentException("perPage must be >= 1");
+        }
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.statetimeline.Options();
 		}
         com.grafana.foundation.statetimeline.Options optionsResource = (com.grafana.foundation.statetimeline.Options) this.internal.options;
-        optionsResource.alignValue = alignValue;
+        optionsResource.perPage = perPage;
     this.internal.options = optionsResource;
         return this;
     }

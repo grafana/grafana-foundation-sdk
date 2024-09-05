@@ -49,6 +49,21 @@ class Options implements \JsonSerializable
     public $onClickFilterOutString;
 
     /**
+     * @var mixed|null
+     */
+    public $onClickShowField;
+
+    /**
+     * @var mixed|null
+     */
+    public $onClickHideField;
+
+    /**
+     * @var array<string>|null
+     */
+    public ?array $displayedFields;
+
+    /**
      * @param bool|null $showLabels
      * @param bool|null $showCommonLabels
      * @param bool|null $showTime
@@ -63,8 +78,11 @@ class Options implements \JsonSerializable
      * @param mixed|null $isFilterLabelActive
      * @param mixed|null $onClickFilterString
      * @param mixed|null $onClickFilterOutString
+     * @param mixed|null $onClickShowField
+     * @param mixed|null $onClickHideField
+     * @param array<string>|null $displayedFields
      */
-    public function __construct(?bool $showLabels = null, ?bool $showCommonLabels = null, ?bool $showTime = null, ?bool $showLogContextToggle = null, ?bool $wrapLogMessage = null, ?bool $prettifyLogMessage = null, ?bool $enableLogDetails = null, ?\Grafana\Foundation\Common\LogsSortOrder $sortOrder = null, ?\Grafana\Foundation\Common\LogsDedupStrategy $dedupStrategy = null,  $onClickFilterLabel = null,  $onClickFilterOutLabel = null,  $isFilterLabelActive = null,  $onClickFilterString = null,  $onClickFilterOutString = null)
+    public function __construct(?bool $showLabels = null, ?bool $showCommonLabels = null, ?bool $showTime = null, ?bool $showLogContextToggle = null, ?bool $wrapLogMessage = null, ?bool $prettifyLogMessage = null, ?bool $enableLogDetails = null, ?\Grafana\Foundation\Common\LogsSortOrder $sortOrder = null, ?\Grafana\Foundation\Common\LogsDedupStrategy $dedupStrategy = null,  $onClickFilterLabel = null,  $onClickFilterOutLabel = null,  $isFilterLabelActive = null,  $onClickFilterString = null,  $onClickFilterOutString = null,  $onClickShowField = null,  $onClickHideField = null, ?array $displayedFields = null)
     {
         $this->showLabels = $showLabels ?: false;
         $this->showCommonLabels = $showCommonLabels ?: false;
@@ -80,6 +98,9 @@ class Options implements \JsonSerializable
         $this->isFilterLabelActive = $isFilterLabelActive;
         $this->onClickFilterString = $onClickFilterString;
         $this->onClickFilterOutString = $onClickFilterOutString;
+        $this->onClickShowField = $onClickShowField;
+        $this->onClickHideField = $onClickHideField;
+        $this->displayedFields = $displayedFields;
     }
 
     /**
@@ -87,7 +108,7 @@ class Options implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{showLabels?: bool, showCommonLabels?: bool, showTime?: bool, showLogContextToggle?: bool, wrapLogMessage?: bool, prettifyLogMessage?: bool, enableLogDetails?: bool, sortOrder?: string, dedupStrategy?: string, onClickFilterLabel?: mixed, onClickFilterOutLabel?: mixed, isFilterLabelActive?: mixed, onClickFilterString?: mixed, onClickFilterOutString?: mixed} $inputData */
+        /** @var array{showLabels?: bool, showCommonLabels?: bool, showTime?: bool, showLogContextToggle?: bool, wrapLogMessage?: bool, prettifyLogMessage?: bool, enableLogDetails?: bool, sortOrder?: string, dedupStrategy?: string, onClickFilterLabel?: mixed, onClickFilterOutLabel?: mixed, isFilterLabelActive?: mixed, onClickFilterString?: mixed, onClickFilterOutString?: mixed, onClickShowField?: mixed, onClickHideField?: mixed, displayedFields?: array<string>} $inputData */
         $data = $inputData;
         return new self(
             showLabels: $data["showLabels"] ?? null,
@@ -104,6 +125,9 @@ class Options implements \JsonSerializable
             isFilterLabelActive: $data["isFilterLabelActive"] ?? null,
             onClickFilterString: $data["onClickFilterString"] ?? null,
             onClickFilterOutString: $data["onClickFilterOutString"] ?? null,
+            onClickShowField: $data["onClickShowField"] ?? null,
+            onClickHideField: $data["onClickHideField"] ?? null,
+            displayedFields: $data["displayedFields"] ?? null,
         );
     }
 
@@ -137,6 +161,15 @@ class Options implements \JsonSerializable
         }
         if (isset($this->onClickFilterOutString)) {
             $data["onClickFilterOutString"] = $this->onClickFilterOutString;
+        }
+        if (isset($this->onClickShowField)) {
+            $data["onClickShowField"] = $this->onClickShowField;
+        }
+        if (isset($this->onClickHideField)) {
+            $data["onClickHideField"] = $this->onClickHideField;
+        }
+        if (isset($this->displayedFields)) {
+            $data["displayedFields"] = $this->displayedFields;
         }
         return $data;
     }

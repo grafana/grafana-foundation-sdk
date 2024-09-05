@@ -14,7 +14,9 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
 
     def __init__(self, title: str):
         self._internal = dashboard.Dashboard()        
-        self._internal.title = title
+        self._internal.title = title        
+        self._internal.schema_version = 39        
+        self._internal.editable = True
 
     def build(self) -> dashboard.Dashboard:
         return self._internal    

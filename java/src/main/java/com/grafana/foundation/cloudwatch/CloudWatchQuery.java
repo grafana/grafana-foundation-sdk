@@ -7,15 +7,35 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonDeserialize(using = CloudWatchQueryDeserializer.class)
-public class CloudWatchQuery implements com.grafana.foundation.cog.variants.Dataquery { 
+public class CloudWatchQuery implements com.grafana.foundation.cog.variants.Dataquery {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public CloudWatchMetricsQuery cloudWatchMetricsQuery; 
+    protected CloudWatchMetricsQuery cloudWatchMetricsQuery;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public CloudWatchLogsQuery cloudWatchLogsQuery; 
+    protected CloudWatchLogsQuery cloudWatchLogsQuery;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public CloudWatchAnnotationQuery cloudWatchAnnotationQuery;
+    protected CloudWatchAnnotationQuery cloudWatchAnnotationQuery;
+    protected CloudWatchQuery() {}
+    public static CloudWatchQuery createCloudWatchMetricsQuery(com.grafana.foundation.cog.Builder<CloudWatchMetricsQuery> cloudWatchMetricsQuery) {
+        CloudWatchQuery cloudWatchQuery = new CloudWatchQuery();
+        cloudWatchQuery.cloudWatchMetricsQuery = cloudWatchMetricsQuery.build();
+        return cloudWatchQuery;
+    }
+    public static CloudWatchQuery createCloudWatchLogsQuery(com.grafana.foundation.cog.Builder<CloudWatchLogsQuery> cloudWatchLogsQuery) {
+        CloudWatchQuery cloudWatchQuery = new CloudWatchQuery();
+        cloudWatchQuery.cloudWatchLogsQuery = cloudWatchLogsQuery.build();
+        return cloudWatchQuery;
+    }
+    public static CloudWatchQuery createCloudWatchAnnotationQuery(com.grafana.foundation.cog.Builder<CloudWatchAnnotationQuery> cloudWatchAnnotationQuery) {
+        CloudWatchQuery cloudWatchQuery = new CloudWatchQuery();
+        cloudWatchQuery.cloudWatchAnnotationQuery = cloudWatchAnnotationQuery.build();
+        return cloudWatchQuery;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (cloudWatchMetricsQuery != null) {

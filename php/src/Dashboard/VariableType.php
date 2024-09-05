@@ -110,6 +110,15 @@ final class VariableType implements \JsonSerializable, \Stringable {
         return self::$instances["system"];
     }
 
+    public static function snapshot(): self
+    {
+        if (!isset(self::$instances["snapshot"])) {
+            self::$instances["snapshot"] = new self("snapshot");
+        }
+
+        return self::$instances["snapshot"];
+    }
+
     public static function fromValue(string $value): self
     {
         if ($value === "query") {
@@ -146,6 +155,10 @@ final class VariableType implements \JsonSerializable, \Stringable {
 
         if ($value === "system") {
             return self::system();
+        }
+
+        if ($value === "snapshot") {
+            return self::snapshot();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum VariableType");

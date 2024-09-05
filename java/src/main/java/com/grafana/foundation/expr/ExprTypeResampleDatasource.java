@@ -6,15 +6,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class ExprTypeResampleDatasource {
-    // The apiserver version 
+    // The apiserver version
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("apiVersion")
     public String apiVersion;
-    // The datasource plugin type 
+    // The datasource plugin type
     @JsonProperty("type")
     public String type;
-    // Datasource UID (NOTE: name in k8s) 
+    // Datasource UID (NOTE: name in k8s)
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("uid")
     public String uid;
     

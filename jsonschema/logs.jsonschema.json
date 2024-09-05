@@ -63,6 +63,20 @@
         "onClickFilterOutString": {
           "type": "object",
           "additionalProperties": {}
+        },
+        "onClickShowField": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "onClickHideField": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "displayedFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

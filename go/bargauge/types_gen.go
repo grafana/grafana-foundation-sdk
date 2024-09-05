@@ -17,6 +17,7 @@ type Options struct {
 	Sizing        common.BarGaugeSizing         `json:"sizing"`
 	MinVizWidth   uint32                        `json:"minVizWidth"`
 	MinVizHeight  uint32                        `json:"minVizHeight"`
+	Legend        common.VizLegendOptions       `json:"legend"`
 	ReduceOptions common.ReduceDataOptions      `json:"reduceOptions"`
 	Text          *common.VizTextDisplayOptions `json:"text,omitempty"`
 	MaxVizHeight  uint32                        `json:"maxVizHeight"`

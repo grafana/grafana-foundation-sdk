@@ -40,5 +40,11 @@ class NotificationTemplateBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    public function version(string $version): static
+    {
+        $this->internal->version = $version;
+    
+        return $this;
+    }
 
 }

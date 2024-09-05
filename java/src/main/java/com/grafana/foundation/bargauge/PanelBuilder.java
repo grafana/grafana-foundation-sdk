@@ -2,17 +2,19 @@
 
 package com.grafana.foundation.bargauge;
 
-import com.grafana.foundation.common.BarGaugeDisplayMode;
-import com.grafana.foundation.common.BarGaugeValueMode;
-import com.grafana.foundation.common.BarGaugeNamePlacement;
-import com.grafana.foundation.common.BarGaugeSizing;
-import com.grafana.foundation.common.ReduceDataOptions;
-import com.grafana.foundation.common.VizTextDisplayOptions;
-import com.grafana.foundation.common.VizOrientation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.BarGaugeDisplayMode;
+import com.grafana.foundation.common.BarGaugeValueMode;
+import com.grafana.foundation.common.BarGaugeNamePlacement;
+import com.grafana.foundation.common.BarGaugeSizing;
+import com.grafana.foundation.common.VizLegendOptions;
+import com.grafana.foundation.common.ReduceDataOptions;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.grafana.foundation.common.VizTextDisplayOptions;
+import com.grafana.foundation.common.VizOrientation;
 import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
@@ -330,6 +332,15 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		}
         com.grafana.foundation.bargauge.Options optionsResource = (com.grafana.foundation.bargauge.Options) this.internal.options;
         optionsResource.minVizHeight = minVizHeight;
+    this.internal.options = optionsResource;
+        return this;
+    }
+    public PanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.bargauge.Options();
+		}
+        com.grafana.foundation.bargauge.Options optionsResource = (com.grafana.foundation.bargauge.Options) this.internal.options;
+        optionsResource.legend = legend.build();
     this.internal.options = optionsResource;
         return this;
     }

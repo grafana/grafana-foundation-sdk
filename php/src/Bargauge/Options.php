@@ -18,6 +18,8 @@ class Options implements \JsonSerializable
 
     public int $minVizHeight;
 
+    public \Grafana\Foundation\Common\VizLegendOptions $legend;
+
     public \Grafana\Foundation\Common\ReduceDataOptions $reduceOptions;
 
     public ?\Grafana\Foundation\Common\VizTextDisplayOptions $text;
@@ -34,12 +36,13 @@ class Options implements \JsonSerializable
      * @param \Grafana\Foundation\Common\BarGaugeSizing|null $sizing
      * @param int|null $minVizWidth
      * @param int|null $minVizHeight
+     * @param \Grafana\Foundation\Common\VizLegendOptions|null $legend
      * @param \Grafana\Foundation\Common\ReduceDataOptions|null $reduceOptions
      * @param \Grafana\Foundation\Common\VizTextDisplayOptions|null $text
      * @param int|null $maxVizHeight
      * @param \Grafana\Foundation\Common\VizOrientation|null $orientation
      */
-    public function __construct(?\Grafana\Foundation\Common\BarGaugeDisplayMode $displayMode = null, ?\Grafana\Foundation\Common\BarGaugeValueMode $valueMode = null, ?\Grafana\Foundation\Common\BarGaugeNamePlacement $namePlacement = null, ?bool $showUnfilled = null, ?\Grafana\Foundation\Common\BarGaugeSizing $sizing = null, ?int $minVizWidth = null, ?int $minVizHeight = null, ?\Grafana\Foundation\Common\ReduceDataOptions $reduceOptions = null, ?\Grafana\Foundation\Common\VizTextDisplayOptions $text = null, ?int $maxVizHeight = null, ?\Grafana\Foundation\Common\VizOrientation $orientation = null)
+    public function __construct(?\Grafana\Foundation\Common\BarGaugeDisplayMode $displayMode = null, ?\Grafana\Foundation\Common\BarGaugeValueMode $valueMode = null, ?\Grafana\Foundation\Common\BarGaugeNamePlacement $namePlacement = null, ?bool $showUnfilled = null, ?\Grafana\Foundation\Common\BarGaugeSizing $sizing = null, ?int $minVizWidth = null, ?int $minVizHeight = null, ?\Grafana\Foundation\Common\VizLegendOptions $legend = null, ?\Grafana\Foundation\Common\ReduceDataOptions $reduceOptions = null, ?\Grafana\Foundation\Common\VizTextDisplayOptions $text = null, ?int $maxVizHeight = null, ?\Grafana\Foundation\Common\VizOrientation $orientation = null)
     {
         $this->displayMode = $displayMode ?: \Grafana\Foundation\Common\BarGaugeDisplayMode::gradient();
         $this->valueMode = $valueMode ?: \Grafana\Foundation\Common\BarGaugeValueMode::color();
@@ -48,6 +51,7 @@ class Options implements \JsonSerializable
         $this->sizing = $sizing ?: \Grafana\Foundation\Common\BarGaugeSizing::auto();
         $this->minVizWidth = $minVizWidth ?: 8;
         $this->minVizHeight = $minVizHeight ?: 16;
+        $this->legend = $legend ?: new \Grafana\Foundation\Common\VizLegendOptions();
         $this->reduceOptions = $reduceOptions ?: new \Grafana\Foundation\Common\ReduceDataOptions();
         $this->text = $text;
         $this->maxVizHeight = $maxVizHeight ?: 300;
@@ -59,7 +63,7 @@ class Options implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{displayMode?: string, valueMode?: string, namePlacement?: string, showUnfilled?: bool, sizing?: string, minVizWidth?: int, minVizHeight?: int, reduceOptions?: mixed, text?: mixed, maxVizHeight?: int, orientation?: string} $inputData */
+        /** @var array{displayMode?: string, valueMode?: string, namePlacement?: string, showUnfilled?: bool, sizing?: string, minVizWidth?: int, minVizHeight?: int, legend?: mixed, reduceOptions?: mixed, text?: mixed, maxVizHeight?: int, orientation?: string} $inputData */
         $data = $inputData;
         return new self(
             displayMode: isset($data["displayMode"]) ? (function($input) { return \Grafana\Foundation\Common\BarGaugeDisplayMode::fromValue($input); })($data["displayMode"]) : null,
@@ -69,6 +73,11 @@ class Options implements \JsonSerializable
             sizing: isset($data["sizing"]) ? (function($input) { return \Grafana\Foundation\Common\BarGaugeSizing::fromValue($input); })($data["sizing"]) : null,
             minVizWidth: $data["minVizWidth"] ?? null,
             minVizHeight: $data["minVizHeight"] ?? null,
+            legend: isset($data["legend"]) ? (function($input) {
+    	/** @var array{displayMode?: string, placement?: string, showLegend?: bool, asTable?: bool, isVisible?: bool, sortBy?: string, sortDesc?: bool, width?: float, calcs?: array<string>} */
+    $val = $input;
+    	return \Grafana\Foundation\Common\VizLegendOptions::fromArray($val);
+    })($data["legend"]) : null,
             reduceOptions: isset($data["reduceOptions"]) ? (function($input) {
     	/** @var array{values?: bool, limit?: float, calcs?: array<string>, fields?: string} */
     $val = $input;
@@ -97,6 +106,7 @@ class Options implements \JsonSerializable
             "sizing" => $this->sizing,
             "minVizWidth" => $this->minVizWidth,
             "minVizHeight" => $this->minVizHeight,
+            "legend" => $this->legend,
             "reduceOptions" => $this->reduceOptions,
             "maxVizHeight" => $this->maxVizHeight,
             "orientation" => $this->orientation,

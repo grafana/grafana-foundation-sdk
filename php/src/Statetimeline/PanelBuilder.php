@@ -513,6 +513,19 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * Controls value alignment on the timelines
+     */
+    public function alignValue(\Grafana\Foundation\Common\TimelineValueAlignment $alignValue): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Statetimeline\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Statetimeline\Options);
+        $this->internal->options->alignValue = $alignValue;
+    
+        return $this;
+    }
+    /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\VizLegendOptions> $legend
      */
     public function legend(\Grafana\Foundation\Cog\Builder $legend): static
@@ -554,15 +567,18 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * Controls value alignment on the timelines
+     * Enables pagination when > 0
      */
-    public function alignValue(\Grafana\Foundation\Common\TimelineValueAlignment $alignValue): static
-    {    
+    public function perPage(float $perPage): static
+    {
+        if (!($perPage >= 1)) {
+            throw new \ValueError('$perPage must be >= 1');
+        }    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Statetimeline\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Statetimeline\Options);
-        $this->internal->options->alignValue = $alignValue;
+        $this->internal->options->perPage = $perPage;
     
         return $this;
     }

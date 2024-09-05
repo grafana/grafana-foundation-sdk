@@ -2,17 +2,19 @@
 
 package com.grafana.foundation.dashboard;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
 public class AnnotationPanelFilter {
-    // Should the specified panels be included or excluded 
+    // Should the specified panels be included or excluded
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("exclude")
     public Boolean exclude;
-    // Panel IDs that should be included or excluded 
+    // Panel IDs that should be included or excluded
     @JsonProperty("ids")
     public List<Integer> ids;
     

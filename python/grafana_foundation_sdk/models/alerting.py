@@ -307,11 +307,13 @@ class NotificationTemplate:
     name: typing.Optional[str]
     provenance: typing.Optional['Provenance']
     template: typing.Optional[str]
+    version: typing.Optional[str]
 
-    def __init__(self, name: typing.Optional[str] = None, provenance: typing.Optional['Provenance'] = None, template: typing.Optional[str] = None):
+    def __init__(self, name: typing.Optional[str] = None, provenance: typing.Optional['Provenance'] = None, template: typing.Optional[str] = None, version: typing.Optional[str] = None):
         self.name = name
         self.provenance = provenance
         self.template = template
+        self.version = version
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -322,6 +324,8 @@ class NotificationTemplate:
             payload["provenance"] = self.provenance
         if self.template is not None:
             payload["template"] = self.template
+        if self.version is not None:
+            payload["version"] = self.version
         return payload
 
     @classmethod
@@ -333,7 +337,9 @@ class NotificationTemplate:
         if "provenance" in data:
             args["provenance"] = data["provenance"]
         if "template" in data:
-            args["template"] = data["template"]        
+            args["template"] = data["template"]
+        if "version" in data:
+            args["version"] = data["version"]        
 
         return cls(**args)
 
@@ -538,6 +544,9 @@ class NotificationPolicy:
 
     # A Route is a node that contains definitions of how to handle alerts. This is modified
     # from the upstream alertmanager in that it adds the ObjectMatchers property.
+    active_time_intervals: typing.Optional[list[str]]
+    # A Route is a node that contains definitions of how to handle alerts. This is modified
+    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     continue_val: typing.Optional[bool]
     # A Route is a node that contains definitions of how to handle alerts. This is modified
     # from the upstream alertmanager in that it adds the ObjectMatchers property.
@@ -576,7 +585,8 @@ class NotificationPolicy:
     # from the upstream alertmanager in that it adds the ObjectMatchers property.
     routes: typing.Optional[list['NotificationPolicy']]
 
-    def __init__(self, continue_val: typing.Optional[bool] = None, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, match: typing.Optional[dict[str, str]] = None, match_re: typing.Optional['MatchRegexps'] = None, matchers: typing.Optional['Matchers'] = None, mute_time_intervals: typing.Optional[list[str]] = None, object_matchers: typing.Optional['ObjectMatchers'] = None, provenance: typing.Optional['Provenance'] = None, receiver: typing.Optional[str] = None, repeat_interval: typing.Optional[str] = None, routes: typing.Optional[list['NotificationPolicy']] = None):
+    def __init__(self, active_time_intervals: typing.Optional[list[str]] = None, continue_val: typing.Optional[bool] = None, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, match: typing.Optional[dict[str, str]] = None, match_re: typing.Optional['MatchRegexps'] = None, matchers: typing.Optional['Matchers'] = None, mute_time_intervals: typing.Optional[list[str]] = None, object_matchers: typing.Optional['ObjectMatchers'] = None, provenance: typing.Optional['Provenance'] = None, receiver: typing.Optional[str] = None, repeat_interval: typing.Optional[str] = None, routes: typing.Optional[list['NotificationPolicy']] = None):
+        self.active_time_intervals = active_time_intervals
         self.continue_val = continue_val
         self.group_by = group_by
         self.group_interval = group_interval
@@ -594,6 +604,8 @@ class NotificationPolicy:
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
         }
+        if self.active_time_intervals is not None:
+            payload["active_time_intervals"] = self.active_time_intervals
         if self.continue_val is not None:
             payload["continue"] = self.continue_val
         if self.group_by is not None:
@@ -626,6 +638,8 @@ class NotificationPolicy:
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
+        if "active_time_intervals" in data:
+            args["active_time_intervals"] = data["active_time_intervals"]
         if "continue" in data:
             args["continue_val"] = data["continue"]
         if "group_by" in data:

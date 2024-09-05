@@ -278,6 +278,11 @@ class NotificationTemplate(cogbuilder.Builder[alerting.NotificationTemplate]):
     
         return self
     
+    def version(self, version: str) -> typing.Self:        
+        self._internal.version = version
+    
+        return self
+    
 
 class Rule(cogbuilder.Builder[alerting.Rule]):    
     _internal: alerting.Rule
@@ -446,6 +451,16 @@ class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):
 
     def build(self) -> alerting.NotificationPolicy:
         return self._internal    
+    
+    def active_time_intervals(self, active_time_intervals: list[str]) -> typing.Self:    
+        """
+        A Route is a node that contains definitions of how to handle alerts. This is modified
+        from the upstream alertmanager in that it adds the ObjectMatchers property.
+        """
+            
+        self._internal.active_time_intervals = active_time_intervals
+    
+        return self
     
     def continue_val(self, continue_val: bool) -> typing.Self:    
         """

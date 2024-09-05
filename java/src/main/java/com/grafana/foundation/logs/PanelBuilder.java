@@ -2,14 +2,15 @@
 
 package com.grafana.foundation.logs;
 
-import com.grafana.foundation.common.LogsSortOrder;
-import com.grafana.foundation.common.LogsDedupStrategy;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.grafana.foundation.dashboard.Panel;
+import com.grafana.foundation.common.LogsSortOrder;
+import com.grafana.foundation.common.LogsDedupStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.List;
+import com.grafana.foundation.dashboard.Panel;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
 import com.grafana.foundation.dashboard.DataSourceRef;
@@ -380,6 +381,33 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		}
         com.grafana.foundation.logs.Options optionsResource = (com.grafana.foundation.logs.Options) this.internal.options;
         optionsResource.onClickFilterOutString = onClickFilterOutString;
+    this.internal.options = optionsResource;
+        return this;
+    }
+    public PanelBuilder onClickShowField(Object onClickShowField) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logs.Options();
+		}
+        com.grafana.foundation.logs.Options optionsResource = (com.grafana.foundation.logs.Options) this.internal.options;
+        optionsResource.onClickShowField = onClickShowField;
+    this.internal.options = optionsResource;
+        return this;
+    }
+    public PanelBuilder onClickHideField(Object onClickHideField) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logs.Options();
+		}
+        com.grafana.foundation.logs.Options optionsResource = (com.grafana.foundation.logs.Options) this.internal.options;
+        optionsResource.onClickHideField = onClickHideField;
+    this.internal.options = optionsResource;
+        return this;
+    }
+    public PanelBuilder displayedFields(List<String> displayedFields) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logs.Options();
+		}
+        com.grafana.foundation.logs.Options optionsResource = (com.grafana.foundation.logs.Options) this.internal.options;
+        optionsResource.displayedFields = displayedFields;
     this.internal.options = optionsResource;
         return this;
     }

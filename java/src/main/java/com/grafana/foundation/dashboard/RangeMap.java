@@ -9,10 +9,10 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 // Maps numerical ranges to a display text and color.
 // For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
-public class RangeMap { 
+public class RangeMap {
     @JsonProperty("type")
     public String type;
-    // Range to match against and the result to apply when the value is within the range 
+    // Range to match against and the result to apply when the value is within the range
     @JsonProperty("options")
     public DashboardRangeMapOptions options;
     

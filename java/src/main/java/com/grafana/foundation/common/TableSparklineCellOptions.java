@@ -6,78 +6,112 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Sparkline cell options
-public class TableSparklineCellOptions { 
+public class TableSparklineCellOptions {
     @JsonProperty("type")
-    public String type; 
+    public String type;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("drawStyle")
-    public GraphDrawStyle drawStyle; 
+    public GraphDrawStyle drawStyle;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("gradientMode")
-    public GraphGradientMode gradientMode; 
+    public GraphGradientMode gradientMode;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("thresholdsStyle")
-    public GraphThresholdsStyleConfig thresholdsStyle; 
+    public GraphThresholdsStyleConfig thresholdsStyle;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("transform")
-    public GraphTransform transform; 
+    public GraphTransform transform;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lineColor")
-    public String lineColor; 
+    public String lineColor;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lineWidth")
-    public Double lineWidth; 
+    public Double lineWidth;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lineInterpolation")
-    public LineInterpolation lineInterpolation; 
+    public LineInterpolation lineInterpolation;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lineStyle")
-    public LineStyle lineStyle; 
+    public LineStyle lineStyle;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("fillColor")
-    public String fillColor; 
+    public String fillColor;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("fillOpacity")
-    public Double fillOpacity; 
+    public Double fillOpacity;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("showPoints")
-    public VisibilityMode showPoints; 
+    public VisibilityMode showPoints;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pointSize")
-    public Double pointSize; 
+    public Double pointSize;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pointColor")
-    public String pointColor; 
+    public String pointColor;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisPlacement")
-    public AxisPlacement axisPlacement; 
+    public AxisPlacement axisPlacement;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisColorMode")
-    public AxisColorMode axisColorMode; 
+    public AxisColorMode axisColorMode;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisLabel")
-    public String axisLabel; 
+    public String axisLabel;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisWidth")
-    public Double axisWidth; 
+    public Double axisWidth;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisSoftMin")
-    public Double axisSoftMin; 
+    public Double axisSoftMin;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisSoftMax")
-    public Double axisSoftMax; 
+    public Double axisSoftMax;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisGridShow")
-    public Boolean axisGridShow; 
+    public Boolean axisGridShow;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("scaleDistribution")
-    public ScaleDistributionConfig scaleDistribution; 
+    public ScaleDistributionConfig scaleDistribution;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisCenteredZero")
-    public Boolean axisCenteredZero; 
+    public Boolean axisCenteredZero;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("barAlignment")
-    public BarAlignment barAlignment; 
+    public BarAlignment barAlignment;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("barWidthFactor")
-    public Double barWidthFactor; 
+    public Double barWidthFactor;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("stacking")
-    public StackingConfig stacking; 
+    public StackingConfig stacking;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hideFrom")
-    public HideSeriesConfig hideFrom; 
+    public HideSeriesConfig hideFrom;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hideValue")
-    public Boolean hideValue; 
+    public Boolean hideValue;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("insertNulls")
     public BoolOrFloat64 insertNulls;
     // Indicate if null values should be treated as gaps or connected.
     // When the value is a number, it represents the maximum delta in the
-    // X axis that should be considered connected.  For timeseries, this is milliseconds 
+    // X axis that should be considered connected.  For timeseries, this is milliseconds
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("spanNulls")
-    public BoolOrFloat64 spanNulls; 
+    public BoolOrFloat64 spanNulls;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("fillBelowTo")
-    public String fillBelowTo; 
+    public String fillBelowTo;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pointSymbol")
-    public String pointSymbol; 
+    public String pointSymbol;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisBorderShow")
-    public Boolean axisBorderShow; 
+    public Boolean axisBorderShow;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("barMaxWidth")
     public Double barMaxWidth;
     

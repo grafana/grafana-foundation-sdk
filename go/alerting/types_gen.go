@@ -141,6 +141,7 @@ type NotificationTemplate struct {
 	Name       *string     `json:"name,omitempty"`
 	Provenance *Provenance `json:"provenance,omitempty"`
 	Template   *string     `json:"template,omitempty"`
+	Version    *string     `json:"version,omitempty"`
 }
 
 type ObjectMatcher []string
@@ -191,6 +192,9 @@ type RelativeTimeRange struct {
 // A Route is a node that contains definitions of how to handle alerts. This is modified
 // from the upstream alertmanager in that it adds the ObjectMatchers property.
 type NotificationPolicy struct {
+	// A Route is a node that contains definitions of how to handle alerts. This is modified
+	// from the upstream alertmanager in that it adds the ObjectMatchers property.
+	ActiveTimeIntervals []string `json:"active_time_intervals,omitempty"`
 	// A Route is a node that contains definitions of how to handle alerts. This is modified
 	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	Continue *bool `json:"continue,omitempty"`

@@ -728,6 +728,7 @@ export enum BarGaugeNamePlacement {
 	Auto = "auto",
 	Top = "top",
 	Left = "left",
+	Hidden = "hidden",
 }
 
 export const defaultBarGaugeNamePlacement = (): BarGaugeNamePlacement => (BarGaugeNamePlacement.Auto);

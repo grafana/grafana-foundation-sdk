@@ -28,4 +28,9 @@ export class NotificationTemplateBuilder implements cog.Builder<alerting.Notific
         this.internal.template = template;
         return this;
     }
+
+    version(version: string): this {
+        this.internal.version = version;
+        return this;
+    }
 }

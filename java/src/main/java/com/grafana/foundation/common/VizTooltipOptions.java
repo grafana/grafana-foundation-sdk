@@ -6,15 +6,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // TODO docs
-public class VizTooltipOptions { 
+public class VizTooltipOptions {
     @JsonProperty("mode")
-    public TooltipDisplayMode mode; 
+    public TooltipDisplayMode mode;
     @JsonProperty("sort")
-    public SortOrder sort; 
+    public SortOrder sort;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("maxWidth")
-    public Double maxWidth; 
+    public Double maxWidth;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("maxHeight")
     public Double maxHeight;
     

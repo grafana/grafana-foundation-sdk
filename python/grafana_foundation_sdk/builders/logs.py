@@ -574,3 +574,27 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def on_click_show_field(self, on_click_show_field: object) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.on_click_show_field = on_click_show_field
+    
+        return self
+    
+    def on_click_hide_field(self, on_click_hide_field: object) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.on_click_hide_field = on_click_hide_field
+    
+        return self
+    
+    def displayed_fields(self, displayed_fields: list[str]) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.displayed_fields = displayed_fields
+    
+        return self
+    

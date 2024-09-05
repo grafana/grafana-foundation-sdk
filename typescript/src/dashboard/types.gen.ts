@@ -343,6 +343,7 @@ export enum VariableType {
 	Textbox = "textbox",
 	Custom = "custom",
 	System = "system",
+	Snapshot = "snapshot",
 }
 
 export const defaultVariableType = (): VariableType => (VariableType.Query);

@@ -7,9 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class DashboardDashboardTime { 
+public class DashboardDashboardTime {
     @JsonProperty("from")
-    public String from; 
+    public String from;
     @JsonProperty("to")
     public String to;
     

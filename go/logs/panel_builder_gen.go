@@ -542,6 +542,33 @@ func (builder *PanelBuilder) OnClickFilterOutString(onClickFilterOutString any) 
 	return builder
 }
 
+func (builder *PanelBuilder) OnClickShowField(onClickShowField any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).OnClickShowField = &onClickShowField
+
+	return builder
+}
+
+func (builder *PanelBuilder) OnClickHideField(onClickHideField any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).OnClickHideField = &onClickHideField
+
+	return builder
+}
+
+func (builder *PanelBuilder) DisplayedFields(displayedFields []string) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = &Options{}
+	}
+	builder.internal.Options.(*Options).DisplayedFields = displayedFields
+
+	return builder
+}
+
 func (builder *PanelBuilder) applyDefaults() {
 	builder.Transparent(false)
 	builder.Height(9)
