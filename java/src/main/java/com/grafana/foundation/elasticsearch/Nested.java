@@ -6,14 +6,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class Nested { 
+public class Nested {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("field")
-    public String field; 
+    public String field;
     @JsonProperty("id")
-    public String id; 
+    public String id;
     @JsonProperty("type")
-    public String type; 
+    public String type;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("settings")
     public Object settings;
     

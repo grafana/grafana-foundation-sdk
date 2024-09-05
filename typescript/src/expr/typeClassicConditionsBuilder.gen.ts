@@ -22,7 +22,7 @@ export class TypeClassicConditionsBuilder implements cog.Builder<cog.Dataquery> 
 		type: string;
 	};
 	operator: {
-		type: "and" | "or";
+		type: "and" | "or" | "logic-or";
 	};
 	query: {
 		params: string[];

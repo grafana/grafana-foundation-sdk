@@ -6,19 +6,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Query filter representation.
 public class Filter {
-    // Filter key. 
+    // Filter key.
     @JsonProperty("key")
     public String key;
-    // Filter operator. 
+    // Filter operator.
     @JsonProperty("operator")
     public String operator;
-    // Filter value. 
+    // Filter value.
     @JsonProperty("value")
     public String value;
-    // Filter condition. 
+    // Filter condition.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("condition")
     public String condition;
     

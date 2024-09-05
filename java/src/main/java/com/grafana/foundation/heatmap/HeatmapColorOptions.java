@@ -6,34 +6,39 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Controls various color options
 public class HeatmapColorOptions {
-    // Sets the color mode 
+    // Sets the color mode
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("mode")
     public HeatmapColorMode mode;
-    // Controls the color scheme used 
+    // Controls the color scheme used
     @JsonProperty("scheme")
     public String scheme;
-    // Controls the color fill when in opacity mode 
+    // Controls the color fill when in opacity mode
     @JsonProperty("fill")
     public String fill;
-    // Controls the color scale 
+    // Controls the color scale
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("scale")
     public HeatmapColorScale scale;
-    // Controls the exponent when scale is set to exponential 
+    // Controls the exponent when scale is set to exponential
     @JsonProperty("exponent")
     public Float exponent;
-    // Controls the number of color steps 
+    // Controls the number of color steps
     @JsonProperty("steps")
     public Long steps;
-    // Reverses the color scheme 
+    // Reverses the color scheme
     @JsonProperty("reverse")
     public Boolean reverse;
-    // Sets the minimum value for the color scale 
+    // Sets the minimum value for the color scale
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("min")
     public Float min;
-    // Sets the maximum value for the color scale 
+    // Sets the maximum value for the color scale
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("max")
     public Float max;
     

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum TypeClassicConditionsType {
     AND("and"),
     OR("or"),
+    LOGIC_OR("logic-or"),
     _EMPTY("");
 
     private final String value;

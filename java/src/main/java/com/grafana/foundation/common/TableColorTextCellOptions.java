@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 // Colored text cell options
-public class TableColorTextCellOptions { 
+public class TableColorTextCellOptions {
     @JsonProperty("type")
     public String type;
     

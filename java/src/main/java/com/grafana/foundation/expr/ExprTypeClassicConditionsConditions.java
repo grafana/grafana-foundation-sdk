@@ -7,13 +7,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class ExprTypeClassicConditionsConditions { 
+public class ExprTypeClassicConditionsConditions {
     @JsonProperty("evaluator")
-    public ExprTypeClassicConditionsConditionsEvaluator evaluator; 
+    public ExprTypeClassicConditionsConditionsEvaluator evaluator;
     @JsonProperty("operator")
-    public ExprTypeClassicConditionsConditionsOperator operator; 
+    public ExprTypeClassicConditionsConditionsOperator operator;
     @JsonProperty("query")
-    public ExprTypeClassicConditionsConditionsQuery query; 
+    public ExprTypeClassicConditionsConditionsQuery query;
     @JsonProperty("reducer")
     public ExprTypeClassicConditionsConditionsReducer reducer;
     

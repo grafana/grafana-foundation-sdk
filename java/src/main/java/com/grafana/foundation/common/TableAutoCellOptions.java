@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 // Auto mode table cell options
-public class TableAutoCellOptions { 
+public class TableAutoCellOptions {
     @JsonProperty("type")
     public String type;
     

@@ -7,45 +7,155 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonDeserialize(using = MetricAggregationWithSettingsDeserializer.class)
-public class MetricAggregationWithSettings { 
+public class MetricAggregationWithSettings {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public BucketScript bucketScript; 
+    protected BucketScript bucketScript;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public CumulativeSum cumulativeSum; 
+    protected CumulativeSum cumulativeSum;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Derivative derivative; 
+    protected Derivative derivative;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public SerialDiff serialDiff; 
+    protected SerialDiff serialDiff;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public RawData rawData; 
+    protected RawData rawData;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public RawDocument rawDocument; 
+    protected RawDocument rawDocument;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public UniqueCount uniqueCount; 
+    protected UniqueCount uniqueCount;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Percentiles percentiles; 
+    protected Percentiles percentiles;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public ExtendedStats extendedStats; 
+    protected ExtendedStats extendedStats;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Min min; 
+    protected Min min;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Max max; 
+    protected Max max;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Sum sum; 
+    protected Sum sum;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Average average; 
+    protected Average average;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public MovingAverage movingAverage; 
+    protected MovingAverage movingAverage;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public MovingFunction movingFunction; 
+    protected MovingFunction movingFunction;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Logs logs; 
+    protected Logs logs;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public Rate rate; 
+    protected Rate rate;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public TopMetrics topMetrics;
+    protected TopMetrics topMetrics;
+    protected MetricAggregationWithSettings() {}
+    public static MetricAggregationWithSettings createBucketScript(com.grafana.foundation.cog.Builder<BucketScript> bucketScript) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.bucketScript = bucketScript.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createCumulativeSum(com.grafana.foundation.cog.Builder<CumulativeSum> cumulativeSum) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.cumulativeSum = cumulativeSum.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createDerivative(com.grafana.foundation.cog.Builder<Derivative> derivative) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.derivative = derivative.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createSerialDiff(com.grafana.foundation.cog.Builder<SerialDiff> serialDiff) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.serialDiff = serialDiff.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createRawData(com.grafana.foundation.cog.Builder<RawData> rawData) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.rawData = rawData.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createRawDocument(com.grafana.foundation.cog.Builder<RawDocument> rawDocument) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.rawDocument = rawDocument.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createUniqueCount(com.grafana.foundation.cog.Builder<UniqueCount> uniqueCount) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.uniqueCount = uniqueCount.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createPercentiles(com.grafana.foundation.cog.Builder<Percentiles> percentiles) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.percentiles = percentiles.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createExtendedStats(com.grafana.foundation.cog.Builder<ExtendedStats> extendedStats) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.extendedStats = extendedStats.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createMin(com.grafana.foundation.cog.Builder<Min> min) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.min = min.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createMax(com.grafana.foundation.cog.Builder<Max> max) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.max = max.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createSum(com.grafana.foundation.cog.Builder<Sum> sum) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.sum = sum.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createAverage(com.grafana.foundation.cog.Builder<Average> average) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.average = average.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createMovingAverage(com.grafana.foundation.cog.Builder<MovingAverage> movingAverage) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.movingAverage = movingAverage.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createMovingFunction(com.grafana.foundation.cog.Builder<MovingFunction> movingFunction) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.movingFunction = movingFunction.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createLogs(com.grafana.foundation.cog.Builder<Logs> logs) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.logs = logs.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createRate(com.grafana.foundation.cog.Builder<Rate> rate) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.rate = rate.build();
+        return metricAggregationWithSettings;
+    }
+    public static MetricAggregationWithSettings createTopMetrics(com.grafana.foundation.cog.Builder<TopMetrics> topMetrics) {
+        MetricAggregationWithSettings metricAggregationWithSettings = new MetricAggregationWithSettings();
+        metricAggregationWithSettings.topMetrics = topMetrics.build();
+        return metricAggregationWithSettings;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (bucketScript != null) {

@@ -8,11 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 // TODO docs
-public class HideSeriesConfig { 
+public class HideSeriesConfig {
     @JsonProperty("tooltip")
-    public Boolean tooltip; 
+    public Boolean tooltip;
     @JsonProperty("legend")
-    public Boolean legend; 
+    public Boolean legend;
     @JsonProperty("viz")
     public Boolean viz;
     

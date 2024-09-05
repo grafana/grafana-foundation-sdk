@@ -6,27 +6,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // TODO docs
-public class AxisConfig { 
+public class AxisConfig {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisPlacement")
-    public AxisPlacement axisPlacement; 
+    public AxisPlacement axisPlacement;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisColorMode")
-    public AxisColorMode axisColorMode; 
+    public AxisColorMode axisColorMode;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisLabel")
-    public String axisLabel; 
+    public String axisLabel;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisWidth")
-    public Double axisWidth; 
+    public Double axisWidth;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisSoftMin")
-    public Double axisSoftMin; 
+    public Double axisSoftMin;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisSoftMax")
-    public Double axisSoftMax; 
+    public Double axisSoftMax;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisGridShow")
-    public Boolean axisGridShow; 
+    public Boolean axisGridShow;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("scaleDistribution")
-    public ScaleDistributionConfig scaleDistribution; 
+    public ScaleDistributionConfig scaleDistribution;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisCenteredZero")
-    public Boolean axisCenteredZero; 
+    public Boolean axisCenteredZero;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("axisBorderShow")
     public Boolean axisBorderShow;
     
