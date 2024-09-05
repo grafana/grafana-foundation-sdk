@@ -8,14 +8,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class Options {
-    // Enable inline editing 
+    // Enable inline editing
     @JsonProperty("inlineEditing")
     public Boolean inlineEditing;
-    // Show all available element types 
+    // Show all available element types
     @JsonProperty("showAdvancedTypes")
     public Boolean showAdvancedTypes;
     // The root element of canvas (frame), where all canvas elements are nested
-    // TODO: Figure out how to define a default value for this 
+    // TODO: Figure out how to define a default value for this
     @JsonProperty("root")
     public CanvasOptionsRoot root;
     

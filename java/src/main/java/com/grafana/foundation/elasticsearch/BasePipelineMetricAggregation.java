@@ -6,16 +6,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class BasePipelineMetricAggregation { 
+public class BasePipelineMetricAggregation {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pipelineAgg")
-    public String pipelineAgg; 
+    public String pipelineAgg;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("field")
-    public String field; 
+    public String field;
     @JsonProperty("type")
-    public String type; 
+    public String type;
     @JsonProperty("id")
-    public String id; 
+    public String id;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     

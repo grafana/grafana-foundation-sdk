@@ -6,21 +6,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class Role {
-    // The role identifier `managed:builtins:editor:permissions` 
+    // The role identifier `managed:builtins:editor:permissions`
     @JsonProperty("name")
     public String name;
-    // Optional display 
+    // Optional display
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("displayName")
     public String displayName;
-    // Name of the team. 
+    // Name of the team.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("groupName")
     public String groupName;
-    // Role description 
+    // Role description
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("description")
     public String description;
-    // Do not show this role 
+    // Do not show this role
     @JsonProperty("hidden")
     public Boolean hidden;
     

@@ -27,6 +27,8 @@ func NewDashboardBuilder(title string) *DashboardBuilder {
 
 	builder.applyDefaults()
 	builder.internal.Title = &title
+	builder.internal.SchemaVersion = 36
+	builder.internal.Editable = true
 
 	return builder
 }

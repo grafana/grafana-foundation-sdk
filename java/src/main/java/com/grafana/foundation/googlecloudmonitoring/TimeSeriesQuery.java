@@ -6,16 +6,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Time Series sub-query properties.
 public class TimeSeriesQuery {
-    // GCP project to execute the query against. 
+    // GCP project to execute the query against.
     @JsonProperty("projectName")
     public String projectName;
-    // MQL query to be executed. 
+    // MQL query to be executed.
     @JsonProperty("query")
     public String query;
-    // To disable the graphPeriod, it should explictly be set to 'disabled'. 
+    // To disable the graphPeriod, it should explictly be set to 'disabled'.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("graphPeriod")
     public String graphPeriod;
     

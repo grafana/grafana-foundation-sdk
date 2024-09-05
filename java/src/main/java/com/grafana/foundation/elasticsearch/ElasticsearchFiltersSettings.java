@@ -2,13 +2,15 @@
 
 package com.grafana.foundation.elasticsearch;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
-public class ElasticsearchFiltersSettings { 
+public class ElasticsearchFiltersSettings {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("filters")
     public List<Filter> filters;
     

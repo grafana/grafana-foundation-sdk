@@ -2,31 +2,33 @@
 
 package com.grafana.foundation.bargauge;
 
-import com.grafana.foundation.common.BarGaugeDisplayMode;
-import com.grafana.foundation.common.BarGaugeValueMode;
-import com.grafana.foundation.common.ReduceDataOptions;
-import com.grafana.foundation.common.VizTextDisplayOptions;
-import com.grafana.foundation.common.VizOrientation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.BarGaugeDisplayMode;
+import com.grafana.foundation.common.BarGaugeValueMode;
+import com.grafana.foundation.common.ReduceDataOptions;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.grafana.foundation.common.VizTextDisplayOptions;
+import com.grafana.foundation.common.VizOrientation;
 
-public class Options { 
+public class Options {
     @JsonProperty("displayMode")
-    public BarGaugeDisplayMode displayMode; 
+    public BarGaugeDisplayMode displayMode;
     @JsonProperty("valueMode")
-    public BarGaugeValueMode valueMode; 
+    public BarGaugeValueMode valueMode;
     @JsonProperty("showUnfilled")
-    public Boolean showUnfilled; 
+    public Boolean showUnfilled;
     @JsonProperty("minVizWidth")
-    public Integer minVizWidth; 
+    public Integer minVizWidth;
     @JsonProperty("reduceOptions")
-    public ReduceDataOptions reduceOptions; 
+    public ReduceDataOptions reduceOptions;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("text")
-    public VizTextDisplayOptions text; 
+    public VizTextDisplayOptions text;
     @JsonProperty("minVizHeight")
-    public Integer minVizHeight; 
+    public Integer minVizHeight;
     @JsonProperty("orientation")
     public VizOrientation orientation;
     

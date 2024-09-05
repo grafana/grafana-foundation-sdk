@@ -2,37 +2,44 @@
 
 package com.grafana.foundation.alerting;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
 // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
 // within the interval.
 public class TimeInterval {
     // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval. 
+    // within the interval.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("days_of_month")
     public List<String> daysOfMonth;
     // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval. 
+    // within the interval.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("location")
     public String location;
     // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval. 
+    // within the interval.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("months")
     public List<String> months;
     // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval. 
+    // within the interval.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("times")
     public List<TimeRange> times;
     // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval. 
+    // within the interval.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("weekdays")
     public List<String> weekdays;
     // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval. 
+    // within the interval.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("years")
     public List<String> years;
     

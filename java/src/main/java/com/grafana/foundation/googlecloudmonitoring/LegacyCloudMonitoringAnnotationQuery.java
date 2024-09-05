@@ -2,33 +2,33 @@
 
 package com.grafana.foundation.googlecloudmonitoring;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.List;
 
 // @deprecated Use AnnotationQuery instead. Legacy annotation query properties for migration purposes.
 public class LegacyCloudMonitoringAnnotationQuery {
-    // GCP project to execute the query against. 
+    // GCP project to execute the query against.
     @JsonProperty("projectName")
-    public String projectName; 
+    public String projectName;
     @JsonProperty("metricType")
     public String metricType;
-    // Query refId. 
+    // Query refId.
     @JsonProperty("refId")
     public String refId;
-    // Array of filters to query data by. Labels that can be filtered on are defined by the metric. 
+    // Array of filters to query data by. Labels that can be filtered on are defined by the metric.
     @JsonProperty("filters")
-    public List<String> filters; 
+    public List<String> filters;
     @JsonProperty("metricKind")
-    public MetricKind metricKind; 
+    public MetricKind metricKind;
     @JsonProperty("valueType")
     public String valueType;
-    // Annotation title. 
+    // Annotation title.
     @JsonProperty("title")
     public String title;
-    // Annotation text. 
+    // Annotation text.
     @JsonProperty("text")
     public String text;
     

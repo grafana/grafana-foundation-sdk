@@ -6,9 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class PlaylistItem {
-    // Type of the item. 
+    // Type of the item.
     @JsonProperty("type")
     public PlaylistItemType type;
     // Value depends on type and describes the playlist item.
@@ -18,10 +19,11 @@ public class PlaylistItem {
     //  Will be replaced by dashboard_by_uid in the future. (deprecated)
     //  - dashboard_by_tag: The value is a tag which is set on any number of dashboards. All
     //  dashboards behind the tag will be added to the playlist.
-    //  - dashboard_by_uid: The value is the dashboard UID 
+    //  - dashboard_by_uid: The value is the dashboard UID
     @JsonProperty("value")
     public String value;
-    // Title is an unused property -- it will be removed in the future 
+    // Title is an unused property -- it will be removed in the future
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("title")
     public String title;
     

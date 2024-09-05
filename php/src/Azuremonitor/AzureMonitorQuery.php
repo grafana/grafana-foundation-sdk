@@ -158,26 +158,26 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
         \assert(is_array($input), 'expected disjunction value to be an array');
     
         switch ($input["kind"]) {
-        case "AppInsightsMetricNameQuery":
-            return AppInsightsMetricNameQuery::fromArray($input);
-        case "MetricNamespaceQuery":
-            return MetricNamespaceQuery::fromArray($input);
-        case "UnknownQuery":
-            return UnknownQuery::fromArray($input);
-        case "SubscriptionsQuery":
-            return SubscriptionsQuery::fromArray($input);
-        case "ResourceGroupsQuery":
-            return ResourceGroupsQuery::fromArray($input);
         case "MetricDefinitionsQuery":
             return MetricDefinitionsQuery::fromArray($input);
         case "WorkspacesQuery":
             return WorkspacesQuery::fromArray($input);
+        case "UnknownQuery":
+            return UnknownQuery::fromArray($input);
         case "AppInsightsGroupByQuery":
             return AppInsightsGroupByQuery::fromArray($input);
-        case "ResourceNamesQuery":
-            return ResourceNamesQuery::fromArray($input);
+        case "ResourceGroupsQuery":
+            return ResourceGroupsQuery::fromArray($input);
         case "MetricNamesQuery":
             return MetricNamesQuery::fromArray($input);
+        case "AppInsightsMetricNameQuery":
+            return AppInsightsMetricNameQuery::fromArray($input);
+        case "SubscriptionsQuery":
+            return SubscriptionsQuery::fromArray($input);
+        case "ResourceNamesQuery":
+            return ResourceNamesQuery::fromArray($input);
+        case "MetricNamespaceQuery":
+            return MetricNamespaceQuery::fromArray($input);
         default:
             throw new \ValueError('can not parse disjunction from array');
     }

@@ -6,12 +6,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class EdgeOptions {
-    // Unit for the main stat to override what ever is set in the data frame. 
+    // Unit for the main stat to override what ever is set in the data frame.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("mainStatUnit")
     public String mainStatUnit;
-    // Unit for the secondary stat to override what ever is set in the data frame. 
+    // Unit for the secondary stat to override what ever is set in the data frame.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("secondaryStatUnit")
     public String secondaryStatUnit;
     

@@ -6,19 +6,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Result used as replacement with text and color when the value matches
 public class ValueMappingResult {
-    // Text to display when the value matches 
+    // Text to display when the value matches
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("text")
     public String text;
-    // Text to use when the value matches 
+    // Text to use when the value matches
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("color")
     public String color;
-    // Icon to display when the value matches. Only specific visualizations. 
+    // Icon to display when the value matches. Only specific visualizations.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("icon")
     public String icon;
-    // Position in the mapping array. Only used internally. 
+    // Position in the mapping array. Only used internally.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("index")
     public Integer index;
     

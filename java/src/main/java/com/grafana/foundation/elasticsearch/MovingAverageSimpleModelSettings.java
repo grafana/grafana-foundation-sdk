@@ -7,11 +7,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class MovingAverageSimpleModelSettings { 
+public class MovingAverageSimpleModelSettings {
     @JsonProperty("model")
-    public String model; 
+    public String model;
     @JsonProperty("window")
-    public String window; 
+    public String window;
     @JsonProperty("predict")
     public String predict;
     

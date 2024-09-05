@@ -2,18 +2,18 @@
 
 package com.grafana.foundation.dashboard;
 
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.Map;
 
 // Maps text values to a color or different display text and color.
 // For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
-public class ValueMap { 
+public class ValueMap {
     @JsonProperty("type")
     public String type;
-    // Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } } 
+    // Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
     @JsonProperty("options")
     public Map<String, ValueMappingResult> options;
     

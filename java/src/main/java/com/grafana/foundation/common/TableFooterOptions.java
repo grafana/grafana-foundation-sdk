@@ -2,23 +2,27 @@
 
 package com.grafana.foundation.common;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.List;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Footer options
-public class TableFooterOptions { 
+public class TableFooterOptions {
     @JsonProperty("show")
     public Boolean show;
-    // actually 1 value 
+    // actually 1 value
     @JsonProperty("reducer")
-    public List<String> reducer; 
+    public List<String> reducer;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("fields")
-    public List<String> fields; 
+    public List<String> fields;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("enablePagination")
-    public Boolean enablePagination; 
+    public Boolean enablePagination;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("countRows")
     public Boolean countRows;
     

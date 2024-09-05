@@ -6,20 +6,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // TODO docs
-public class LineConfig { 
+public class LineConfig {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lineColor")
-    public String lineColor; 
+    public String lineColor;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lineWidth")
-    public Double lineWidth; 
+    public Double lineWidth;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lineInterpolation")
-    public LineInterpolation lineInterpolation; 
+    public LineInterpolation lineInterpolation;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lineStyle")
     public LineStyle lineStyle;
     // Indicate if null values should be treated as gaps or connected.
     // When the value is a number, it represents the maximum delta in the
-    // X axis that should be considered connected.  For timeseries, this is milliseconds 
+    // X axis that should be considered connected.  For timeseries, this is milliseconds
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("spanNulls")
     public BoolOrFloat64 spanNulls;
     

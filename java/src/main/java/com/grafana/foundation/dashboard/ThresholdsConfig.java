@@ -2,18 +2,18 @@
 
 package com.grafana.foundation.dashboard;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.List;
 
 // Thresholds configuration for the panel
 public class ThresholdsConfig {
-    // Thresholds mode. 
+    // Thresholds mode.
     @JsonProperty("mode")
     public ThresholdsMode mode;
-    // Must be sorted by 'value', first value is always -Infinity 
+    // Must be sorted by 'value', first value is always -Infinity
     @JsonProperty("steps")
     public List<Threshold> steps;
     

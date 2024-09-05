@@ -6,29 +6,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Field options for each field within a table (e.g 10, "The String", 64.20, etc.)
 // Generally defines alignment, filtering capabilties, display options, etc.
-public class TableFieldOptions { 
+public class TableFieldOptions {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("width")
-    public Double width; 
+    public Double width;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("minWidth")
-    public Double minWidth; 
+    public Double minWidth;
     @JsonProperty("align")
     public FieldTextAlignment align;
-    // This field is deprecated in favor of using cellOptions 
+    // This field is deprecated in favor of using cellOptions
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("displayMode")
-    public TableCellDisplayMode displayMode; 
+    public TableCellDisplayMode displayMode;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("cellOptions")
     public TableCellOptions cellOptions;
-    // ?? default is missing or false ?? 
+    // ?? default is missing or false ??
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hidden")
-    public Boolean hidden; 
+    public Boolean hidden;
     @JsonProperty("inspect")
-    public Boolean inspect; 
+    public Boolean inspect;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("filterable")
     public Boolean filterable;
-    // Hides any header for a column, usefull for columns that show some static content or buttons. 
+    // Hides any header for a column, usefull for columns that show some static content or buttons.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hideHeader")
     public Boolean hideHeader;
     

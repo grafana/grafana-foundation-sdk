@@ -6,24 +6,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class PublicDashboard {
-    // Unique public dashboard identifier 
+    // Unique public dashboard identifier
     @JsonProperty("uid")
     public String uid;
-    // Dashboard unique identifier referenced by this public dashboard 
+    // Dashboard unique identifier referenced by this public dashboard
     @JsonProperty("dashboardUid")
     public String dashboardUid;
-    // Unique public access token 
+    // Unique public access token
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("accessToken")
     public String accessToken;
-    // Flag that indicates if the public dashboard is enabled 
+    // Flag that indicates if the public dashboard is enabled
     @JsonProperty("isEnabled")
     public Boolean isEnabled;
-    // Flag that indicates if annotations are enabled 
+    // Flag that indicates if annotations are enabled
     @JsonProperty("annotationsEnabled")
     public Boolean annotationsEnabled;
-    // Flag that indicates if the time range picker is enabled 
+    // Flag that indicates if the time range picker is enabled
     @JsonProperty("timeSelectionEnabled")
     public Boolean timeSelectionEnabled;
     
