@@ -2,42 +2,44 @@
 
 package com.grafana.foundation.dashboard;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
 // Links with references to other dashboards or external resources
 public class DashboardLink {
-    // Title to display with the link 
+    // Title to display with the link
     @JsonProperty("title")
     public String title;
-    // Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource) 
+    // Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
     @JsonProperty("type")
     public DashboardLinkType type;
-    // Icon name to be displayed with the link 
+    // Icon name to be displayed with the link
     @JsonProperty("icon")
     public String icon;
-    // Tooltip to display when the user hovers their mouse over it 
+    // Tooltip to display when the user hovers their mouse over it
     @JsonProperty("tooltip")
     public String tooltip;
-    // Link URL. Only required/valid if the type is link 
+    // Link URL. Only required/valid if the type is link
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("url")
     public String url;
-    // List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards 
+    // List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
     @JsonProperty("tags")
     public List<String> tags;
-    // If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards 
+    // If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
     @JsonProperty("asDropdown")
     public Boolean asDropdown;
-    // If true, the link will be opened in a new tab 
+    // If true, the link will be opened in a new tab
     @JsonProperty("targetBlank")
     public Boolean targetBlank;
-    // If true, includes current template variables values in the link as query params 
+    // If true, includes current template variables values in the link as query params
     @JsonProperty("includeVars")
     public Boolean includeVars;
-    // If true, includes current time range in the link as query params 
+    // If true, includes current time range in the link as query params
     @JsonProperty("keepTime")
     public Boolean keepTime;
     

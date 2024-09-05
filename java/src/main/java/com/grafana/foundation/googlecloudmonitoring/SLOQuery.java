@@ -6,37 +6,42 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // SLO sub-query properties.
 public class SLOQuery {
-    // GCP project to execute the query against. 
+    // GCP project to execute the query against.
     @JsonProperty("projectName")
     public String projectName;
-    // Alignment function to be used. Defaults to ALIGN_MEAN. 
+    // Alignment function to be used. Defaults to ALIGN_MEAN.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("perSeriesAligner")
     public String perSeriesAligner;
-    // Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto. 
+    // Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("alignmentPeriod")
     public String alignmentPeriod;
-    // SLO selector. 
+    // SLO selector.
     @JsonProperty("selectorName")
     public String selectorName;
-    // ID for the service the SLO is in. 
+    // ID for the service the SLO is in.
     @JsonProperty("serviceId")
     public String serviceId;
-    // Name for the service the SLO is in. 
+    // Name for the service the SLO is in.
     @JsonProperty("serviceName")
     public String serviceName;
-    // ID for the SLO. 
+    // ID for the SLO.
     @JsonProperty("sloId")
     public String sloId;
-    // Name of the SLO. 
+    // Name of the SLO.
     @JsonProperty("sloName")
     public String sloName;
-    // SLO goal value. 
+    // SLO goal value.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("goal")
     public Double goal;
-    // Specific lookback period for the SLO. 
+    // Specific lookback period for the SLO.
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("lookbackPeriod")
     public String lookbackPeriod;
     

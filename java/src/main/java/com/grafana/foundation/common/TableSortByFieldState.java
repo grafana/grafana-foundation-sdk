@@ -6,13 +6,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // Sort by field state
 public class TableSortByFieldState {
-    // Sets the display name of the field to sort by 
+    // Sets the display name of the field to sort by
     @JsonProperty("displayName")
     public String displayName;
-    // Flag used to indicate descending sort order 
+    // Flag used to indicate descending sort order
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("desc")
     public Boolean desc;
     

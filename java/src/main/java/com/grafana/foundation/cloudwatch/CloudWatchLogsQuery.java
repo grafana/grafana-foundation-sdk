@@ -2,52 +2,60 @@
 
 package com.grafana.foundation.cloudwatch;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.List;
 
 // Shape of a CloudWatch Logs query
 public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.Dataquery {
-    // Whether a query is a Metrics, Logs, or Annotations query 
+    // Whether a query is a Metrics, Logs, or Annotations query
     @JsonProperty("queryMode")
-    public CloudWatchQueryMode queryMode; 
+    public CloudWatchQueryMode queryMode;
     @JsonProperty("id")
     public String id;
-    // AWS region to query for the logs 
+    // AWS region to query for the logs
     @JsonProperty("region")
     public String region;
-    // The CloudWatch Logs Insights query to execute 
+    // The CloudWatch Logs Insights query to execute
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("expression")
     public String expression;
-    // Fields to group the results by, this field is automatically populated whenever the query is updated 
+    // Fields to group the results by, this field is automatically populated whenever the query is updated
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("statsGroups")
     public List<String> statsGroups;
-    // Log groups to query 
+    // Log groups to query
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("logGroups")
     public List<LogGroup> logGroups;
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
-    // By default, the UI will assign A->Z; however setting meaningful names may be useful. 
+    // By default, the UI will assign A->Z; however setting meaningful names may be useful.
     @JsonProperty("refId")
     public String refId;
     // true if query is disabled (ie should not be returned to the dashboard)
     // Note this does not always imply that the query should not be executed since
-    // the results from a hidden query may be used as the input to other queries (SSE etc) 
+    // the results from a hidden query may be used as the input to other queries (SSE etc)
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     // Specify the query flavor
-    // TODO make this required and give it a default 
+    // TODO make this required and give it a default
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("queryType")
     public String queryType;
-    // @deprecated use logGroups 
+    // @deprecated use logGroups
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("logGroupNames")
     public List<String> logGroupNames;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
-    // TODO this shouldn't be unknown but DataSourceRef | null 
+    // TODO this shouldn't be unknown but DataSourceRef | null
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("datasource")
     public Object datasource;
     

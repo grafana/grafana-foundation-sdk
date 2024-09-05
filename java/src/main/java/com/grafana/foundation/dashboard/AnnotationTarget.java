@@ -2,29 +2,29 @@
 
 package com.grafana.foundation.dashboard;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.List;
 
 // TODO: this should be a regular DataQuery that depends on the selected dashboard
 // these match the properties of the "grafana" datasouce that is default in most dashboards
 public class AnnotationTarget {
     // Only required/valid for the grafana datasource...
-    // but code+tests is already depending on it so hard to change 
+    // but code+tests is already depending on it so hard to change
     @JsonProperty("limit")
     public Long limit;
     // Only required/valid for the grafana datasource...
-    // but code+tests is already depending on it so hard to change 
+    // but code+tests is already depending on it so hard to change
     @JsonProperty("matchAny")
     public Boolean matchAny;
     // Only required/valid for the grafana datasource...
-    // but code+tests is already depending on it so hard to change 
+    // but code+tests is already depending on it so hard to change
     @JsonProperty("tags")
     public List<String> tags;
     // Only required/valid for the grafana datasource...
-    // but code+tests is already depending on it so hard to change 
+    // but code+tests is already depending on it so hard to change
     @JsonProperty("type")
     public String type;
     

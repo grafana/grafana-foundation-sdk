@@ -2,18 +2,22 @@
 
 package com.grafana.foundation.canvas;
 
-import com.grafana.foundation.common.ColorDimensionConfig;
-import com.grafana.foundation.common.ResourceDimensionConfig;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.grafana.foundation.common.ColorDimensionConfig;
+import com.grafana.foundation.common.ResourceDimensionConfig;
 
-public class BackgroundConfig { 
+public class BackgroundConfig {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("color")
-    public ColorDimensionConfig color; 
+    public ColorDimensionConfig color;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("image")
-    public ResourceDimensionConfig image; 
+    public ResourceDimensionConfig image;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("size")
     public BackgroundImageSize size;
     

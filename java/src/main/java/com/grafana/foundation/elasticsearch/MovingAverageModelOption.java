@@ -7,9 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-public class MovingAverageModelOption { 
+public class MovingAverageModelOption {
     @JsonProperty("label")
-    public String label; 
+    public String label;
     @JsonProperty("value")
     public MovingAverageModel value;
     

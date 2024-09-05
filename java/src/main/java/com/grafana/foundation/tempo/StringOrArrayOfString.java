@@ -2,21 +2,34 @@
 
 package com.grafana.foundation.tempo;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.util.List;
 
 @JsonDeserialize(using = StringOrArrayOfStringDeserializer.class)
 @JsonSerialize(using = StringOrArrayOfStringSerializer.class)
-public class StringOrArrayOfString { 
+public class StringOrArrayOfString {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public String string; 
+    protected String string;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonUnwrapped
-    public List<String> arrayOfString;
+    protected List<String> arrayOfString;
+    protected StringOrArrayOfString() {}
+    public static StringOrArrayOfString createString(String string) {
+        StringOrArrayOfString stringOrArrayOfString = new StringOrArrayOfString();
+        stringOrArrayOfString.string = string;
+        return stringOrArrayOfString;
+    }
+    public static StringOrArrayOfString createArrayOfString(List<String> arrayOfString) {
+        StringOrArrayOfString stringOrArrayOfString = new StringOrArrayOfString();
+        stringOrArrayOfString.arrayOfString = arrayOfString;
+        return stringOrArrayOfString;
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (string != null) {

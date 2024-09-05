@@ -6,15 +6,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 // TODO docs
-public class PointsConfig { 
+public class PointsConfig {
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("showPoints")
-    public VisibilityMode showPoints; 
+    public VisibilityMode showPoints;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pointSize")
-    public Double pointSize; 
+    public Double pointSize;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pointColor")
-    public String pointColor; 
+    public String pointColor;
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("pointSymbol")
     public String pointSymbol;
     
