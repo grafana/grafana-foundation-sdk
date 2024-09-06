@@ -6,19 +6,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 import java.util.LinkedList;
 
 public class Rule {
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("annotations")
     public Map<String, String> annotations;
     @JsonProperty("condition")
     public String condition;
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("data")
     public List<Query> data;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("execErrState")
     public RuleExecErrState execErrState;
     @JsonProperty("folderUID")
@@ -27,30 +31,31 @@ public class Rule {
     // Before this time has elapsed, the rule is only considered to be Pending.
     @JsonProperty("for")
     public String forArg;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("id")
     public Long id;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("isPaused")
     public Boolean isPaused;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("labels")
     public Map<String, String> labels;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("noDataState")
     public RuleNoDataState noDataState;
     @JsonProperty("orgID")
     public Long orgID;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("provenance")
     public String provenance;
     @JsonProperty("ruleGroup")
     public String ruleGroup;
     @JsonProperty("title")
     public String title;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("uid")
     public String uid;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("updated")
     public String updated;
     
