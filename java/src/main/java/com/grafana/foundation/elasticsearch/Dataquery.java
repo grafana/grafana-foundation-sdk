@@ -6,28 +6,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery {
     // Alias pattern
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("alias")
     public String alias;
     // Lucene query
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("query")
     public String query;
     // Name of time field
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("timeField")
     public String timeField;
     // List of bucket aggregations
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("bucketAggs")
     public List<BucketAggregation> bucketAggs;
     // List of metric aggregations
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("metrics")
     public List<MetricAggregation> metrics;
     // A unique identifier for the query within the list of targets.
@@ -36,19 +36,19 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonProperty("refId")
     public String refId;
     // If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     // Specify the query flavor
     // TODO make this required and give it a default
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("queryType")
     public String queryType;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
     // TODO this shouldn't be unknown but DataSourceRef | null
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public Object datasource;
     

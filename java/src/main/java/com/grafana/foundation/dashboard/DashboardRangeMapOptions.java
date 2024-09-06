@@ -6,18 +6,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class DashboardRangeMapOptions {
     // Min value of the range. It can be null which means -Infinity
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("from")
     public Double from;
     // Max value of the range. It can be null which means +Infinity
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("to")
     public Double to;
     // Config to apply when the value is within the range
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("result")
     public ValueMappingResult result;
     

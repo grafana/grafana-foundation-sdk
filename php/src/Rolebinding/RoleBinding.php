@@ -37,10 +37,10 @@ class RoleBinding implements \JsonSerializable
         \assert(is_array($input), 'expected disjunction value to be an array');
     
         switch ($input["kind"]) {
-        case "BuiltinRole":
-            return BuiltinRoleRef::fromArray($input);
         case "Role":
             return CustomRoleRef::fromArray($input);
+        case "BuiltinRole":
+            return BuiltinRoleRef::fromArray($input);
         default:
             throw new \ValueError('can not parse disjunction from array');
     }

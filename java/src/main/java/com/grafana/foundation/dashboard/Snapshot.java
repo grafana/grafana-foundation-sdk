@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 // A dashboard snapshot shares an interactive dashboard publicly.
 // It is a read-only version of a dashboard, and is not editable.
@@ -45,13 +45,13 @@ public class Snapshot {
     @JsonProperty("updated")
     public String updated;
     // url of the snapshot, if snapshot was shared internally
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("url")
     public String url;
     // user id of the snapshot creator
     @JsonProperty("userId")
     public Integer userId;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("dashboard")
     public Dashboard dashboard;
     

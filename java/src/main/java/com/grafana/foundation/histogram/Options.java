@@ -6,29 +6,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.grafana.foundation.common.VizTooltipOptions;
 
 public class Options {
     // Bucket count (approx)
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("bucketCount")
     public Integer bucketCount;
     // Size of each bucket
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("bucketSize")
     public Integer bucketSize;
     // Offset buckets by this amount
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("bucketOffset")
     public Float bucketOffset;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("legend")
     public VizLegendOptions legend;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("tooltip")
     public VizTooltipOptions tooltip;
     // Combines multiple series into a single histogram
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("combine")
     public Boolean combine;
     
