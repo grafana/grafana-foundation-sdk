@@ -99,6 +99,8 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         \assert(is_array($input), 'expected disjunction value to be an array');
     
         switch ($input["type"]) {
+        case "histogram":
+            return Histogram::fromArray($input);
         case "terms":
             return Terms::fromArray($input);
         case "filters":
@@ -109,8 +111,6 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             return Nested::fromArray($input);
         case "date_histogram":
             return DateHistogram::fromArray($input);
-        case "histogram":
-            return Histogram::fromArray($input);
         default:
             throw new \ValueError('can not parse disjunction from array');
     }
@@ -119,44 +119,44 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         \assert(is_array($input), 'expected disjunction value to be an array');
     
         switch ($input["type"]) {
-        case "avg":
-            return Average::fromArray($input);
-        case "moving_avg":
-            return MovingAverage::fromArray($input);
-        case "derivative":
-            return Derivative::fromArray($input);
-        case "percentiles":
-            return Percentiles::fromArray($input);
-        case "cardinality":
-            return UniqueCount::fromArray($input);
-        case "min":
-            return Min::fromArray($input);
         case "extended_stats":
             return ExtendedStats::fromArray($input);
+        case "serial_diff":
+            return SerialDiff::fromArray($input);
         case "moving_fn":
             return MovingFunction::fromArray($input);
-        case "cumulative_sum":
-            return CumulativeSum::fromArray($input);
-        case "rate":
-            return Rate::fromArray($input);
         case "sum":
             return Sum::fromArray($input);
-        case "logs":
-            return Logs::fromArray($input);
         case "raw_document":
             return RawDocument::fromArray($input);
+        case "derivative":
+            return Derivative::fromArray($input);
+        case "max":
+            return Max::fromArray($input);
+        case "logs":
+            return Logs::fromArray($input);
         case "bucket_script":
             return BucketScript::fromArray($input);
         case "raw_data":
             return RawData::fromArray($input);
+        case "cardinality":
+            return UniqueCount::fromArray($input);
+        case "rate":
+            return Rate::fromArray($input);
         case "top_metrics":
             return TopMetrics::fromArray($input);
+        case "percentiles":
+            return Percentiles::fromArray($input);
         case "count":
             return Count::fromArray($input);
-        case "serial_diff":
-            return SerialDiff::fromArray($input);
-        case "max":
-            return Max::fromArray($input);
+        case "cumulative_sum":
+            return CumulativeSum::fromArray($input);
+        case "moving_avg":
+            return MovingAverage::fromArray($input);
+        case "min":
+            return Min::fromArray($input);
+        case "avg":
+            return Average::fromArray($input);
         default:
             throw new \ValueError('can not parse disjunction from array');
     }

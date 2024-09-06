@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
 public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery {
@@ -18,69 +20,70 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     // true if query is disabled (ie should not be returned to the dashboard)
     // Note this does not always imply that the query should not be executed since
     // the results from a hidden query may be used as the input to other queries (SSE etc)
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     // Specify the query flavor
     // TODO make this required and give it a default
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("queryType")
     public String queryType;
     // TraceQL query or trace ID
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("query")
     public String query;
     // @deprecated Logfmt query to filter traces by their tags. Example: http.status_code=200 error=true
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("search")
     public String search;
     // @deprecated Query traces by service name
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("serviceName")
     public String serviceName;
     // @deprecated Query traces by span name
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("spanName")
     public String spanName;
     // @deprecated Define the minimum duration to select traces. Use duration format, for example: 1.2s, 100ms
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("minDuration")
     public String minDuration;
     // @deprecated Define the maximum duration to select traces. Use duration format, for example: 1.2s, 100ms
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("maxDuration")
     public String maxDuration;
     // Filters to be included in a PromQL query to select data for the service graph. Example: {client="app",service="app"}
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("serviceMapQuery")
     public String serviceMapQuery;
     // Use service.namespace in addition to service.name to uniquely identify a service.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("serviceMapIncludeNamespace")
     public Boolean serviceMapIncludeNamespace;
     // Defines the maximum number of traces that are returned from Tempo
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("limit")
     public Long limit;
     // Defines the maximum number of spans per spanset that are returned from Tempo
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("spss")
     public Long spss;
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("filters")
     public List<TraceqlFilter> filters;
     // Filters that are used to query the metrics summary
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("groupBy")
     public List<TraceqlFilter> groupBy;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
     // TODO this shouldn't be unknown but DataSourceRef | null
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public Object datasource;
     // The type of the table that is used to display the search results
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("tableType")
     public SearchTableType tableType;
     

@@ -7,31 +7,31 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 // Table cell options. Each cell has a display mode
 // and other potential options for that display.
 @JsonDeserialize(using = TableCellOptionsDeserializer.class)
 public class TableCellOptions {
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected TableAutoCellOptions tableAutoCellOptions;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected TableSparklineCellOptions tableSparklineCellOptions;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected TableBarGaugeCellOptions tableBarGaugeCellOptions;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected TableColoredBackgroundCellOptions tableColoredBackgroundCellOptions;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected TableColorTextCellOptions tableColorTextCellOptions;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected TableImageCellOptions tableImageCellOptions;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected TableJsonViewCellOptions tableJsonViewCellOptions;
     protected TableCellOptions() {}

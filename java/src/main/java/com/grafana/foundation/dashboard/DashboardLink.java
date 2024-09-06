@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
 // Links with references to other dashboards or external resources
@@ -15,6 +17,7 @@ public class DashboardLink {
     @JsonProperty("title")
     public String title;
     // Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("type")
     public DashboardLinkType type;
     // Icon name to be displayed with the link
@@ -24,10 +27,11 @@ public class DashboardLink {
     @JsonProperty("tooltip")
     public String tooltip;
     // Link URL. Only required/valid if the type is link
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("url")
     public String url;
     // List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("tags")
     public List<String> tags;
     // If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
