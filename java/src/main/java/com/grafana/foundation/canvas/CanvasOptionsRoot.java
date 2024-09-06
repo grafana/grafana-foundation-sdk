@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
 public class CanvasOptionsRoot {
@@ -16,6 +18,7 @@ public class CanvasOptionsRoot {
     @JsonProperty("type")
     public String type;
     // The list of canvas elements attached to the root element
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("elements")
     public List<CanvasElementOptions> elements;
     

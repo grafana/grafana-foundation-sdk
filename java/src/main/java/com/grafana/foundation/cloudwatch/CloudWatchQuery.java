@@ -7,17 +7,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonDeserialize(using = CloudWatchQueryDeserializer.class)
 public class CloudWatchQuery implements com.grafana.foundation.cog.variants.Dataquery {
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected CloudWatchMetricsQuery cloudWatchMetricsQuery;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected CloudWatchLogsQuery cloudWatchLogsQuery;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected CloudWatchAnnotationQuery cloudWatchAnnotationQuery;
     protected CloudWatchQuery() {}

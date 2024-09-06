@@ -6,72 +6,73 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
 public class VariableModel {
     // Type of variable
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("type")
     public VariableType type;
     // Name of variable
     @JsonProperty("name")
     public String name;
     // Optional display name
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("label")
     public String label;
     // Visibility configuration for the variable
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public VariableHide hide;
     // Whether the variable value should be managed by URL query params or not
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("skipUrlSync")
     public Boolean skipUrlSync;
     // Description of variable. It can be defined but `null`.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("description")
     public String description;
     // Query used to fetch values for a variable
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("query")
     public StringOrMap query;
     // Data source used to fetch values for a variable. It can be defined but `null`.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
     // Shows current selected variable text/value on the dashboard
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("current")
     public VariableOption current;
     // Whether multiple values can be selected or not from variable value list
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("multi")
     public Boolean multi;
     // Options that can be selected for a variable.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("options")
     public List<VariableOption> options;
     // Options to config when to refresh a variable
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refresh")
     public VariableRefresh refresh;
     // Options sort order
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("sort")
     public VariableSort sort;
     // Whether all value option is available or not
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("includeAll")
     public Boolean includeAll;
     // Custom all value
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("allValue")
     public String allValue;
     // Optional field, if you want to extract part of a series name or metric node segment.
     // Named capture groups can be used to separate the display text and value.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("regex")
     public String regex;
     

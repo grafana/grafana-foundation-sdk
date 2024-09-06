@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants.Dataquery {
     // A unique identifier for the query within the list of targets.
@@ -15,45 +15,45 @@ public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants
     @JsonProperty("refId")
     public String refId;
     // If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     // Specify the query flavor
     // TODO make this required and give it a default
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("queryType")
     public String queryType;
     // Aliases can be set to modify the legend labels. e.g. {{metric.label.xxx}}. See docs for more detail.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("aliasBy")
     public String aliasBy;
     // GCM query type.
     // queryType: #QueryType
     // Time Series List sub-query properties.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("timeSeriesList")
     public TimeSeriesList timeSeriesList;
     // Time Series sub-query properties.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("timeSeriesQuery")
     public TimeSeriesQuery timeSeriesQuery;
     // SLO sub-query properties.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("sloQuery")
     public SLOQuery sloQuery;
     // PromQL sub-query properties.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("promQLQuery")
     public PromQLQuery promQLQuery;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
     // TODO this shouldn't be unknown but DataSourceRef | null
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public Object datasource;
     // Time interval in milliseconds.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("intervalMs")
     public Double intervalMs;
     
