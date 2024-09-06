@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 // TODO docs
 // FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
@@ -15,6 +15,7 @@ public class AnnotationQuery {
     @JsonProperty("name")
     public String name;
     // Datasource where the annotations data is
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
     // When enabled the annotation query is issued with every dashboard refresh
@@ -22,26 +23,26 @@ public class AnnotationQuery {
     public Boolean enable;
     // Annotation queries can be toggled on or off at the top of the dashboard.
     // When hide is true, the toggle is not shown in the dashboard.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     // Color to use for the annotation event markers
     @JsonProperty("iconColor")
     public String iconColor;
     // Filters to apply when fetching annotations
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("filter")
     public AnnotationPanelFilter filter;
     // TODO.. this should just be a normal query target
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("target")
     public AnnotationTarget target;
     // TODO -- this should not exist here, it is based on the --grafana-- datasource
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("type")
     public String type;
     // Set to 1 for the standard annotation query all dashboards have by default.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("builtIn")
     public Double builtIn;
     

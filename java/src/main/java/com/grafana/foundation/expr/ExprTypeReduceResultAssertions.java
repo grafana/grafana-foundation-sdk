@@ -6,12 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
 public class ExprTypeReduceResultAssertions {
     // Maximum frame count
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("maxFrames")
     public Long maxFrames;
     // Type asserts that the frame matches a known type structure.
@@ -27,11 +29,12 @@ public class ExprTypeReduceResultAssertions {
     //  - `"numeric-multi"` 
     //  - `"numeric-long"` 
     //  - `"log-lines"` 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("type")
     public TypeReduceType type;
     // TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
     // contract documentation https://grafana.github.io/dataplane/contract/.
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("typeVersion")
     public List<Long> typeVersion;
     
