@@ -6,12 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class DashboardRegexMapOptions {
     // Regular expression to match against
     @JsonProperty("pattern")
     public String pattern;
     // Config to apply when the value matches the regex
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("result")
     public ValueMappingResult result;
     

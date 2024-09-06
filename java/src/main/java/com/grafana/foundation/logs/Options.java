@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.LogsSortOrder;
 import com.grafana.foundation.common.LogsDedupStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.List;
 
 public class Options {
@@ -26,33 +26,35 @@ public class Options {
     public Boolean prettifyLogMessage;
     @JsonProperty("enableLogDetails")
     public Boolean enableLogDetails;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("sortOrder")
     public LogsSortOrder sortOrder;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("dedupStrategy")
     public LogsDedupStrategy dedupStrategy;
     // TODO: figure out how to define callbacks
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("onClickFilterLabel")
     public Object onClickFilterLabel;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("onClickFilterOutLabel")
     public Object onClickFilterOutLabel;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("isFilterLabelActive")
     public Object isFilterLabelActive;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("onClickFilterString")
     public Object onClickFilterString;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("onClickFilterOutString")
     public Object onClickFilterOutString;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("onClickShowField")
     public Object onClickShowField;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("onClickHideField")
     public Object onClickHideField;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("displayedFields")
     public List<String> displayedFields;
     

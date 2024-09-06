@@ -6,19 +6,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 // Map a field to a color.
 public class FieldColor {
     // The main color scheme mode.
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("mode")
     public FieldColorModeId mode;
     // The fixed color value for fixed or shades color modes.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("fixedColor")
     public String fixedColor;
     // Some visualizations need to know how to assign a series color from by value color schemes.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("seriesBy")
     public FieldColorSeriesByMode seriesBy;
     

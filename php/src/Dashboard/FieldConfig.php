@@ -170,14 +170,14 @@ class FieldConfig implements \JsonSerializable
         \assert(is_array($input), 'expected disjunction value to be an array');
     
         switch ($input["type"]) {
-        case "range":
-            return RangeMap::fromArray($input);
         case "regex":
             return RegexMap::fromArray($input);
         case "special":
             return SpecialValueMap::fromArray($input);
         case "value":
             return ValueMap::fromArray($input);
+        case "range":
+            return RangeMap::fromArray($input);
         default:
             throw new \ValueError('can not parse disjunction from array');
     }

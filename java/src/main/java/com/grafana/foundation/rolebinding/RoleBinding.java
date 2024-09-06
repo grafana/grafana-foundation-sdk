@@ -6,12 +6,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class RoleBinding {
     // The role we are discussing
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("role")
     public BuiltinRoleRefOrCustomRoleRef role;
     // The team or user that has the specified role
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("subject")
     public RoleBindingSubject subject;
     

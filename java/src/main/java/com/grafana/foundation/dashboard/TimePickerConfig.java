@@ -6,26 +6,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 // Time picker configuration
 // It defines the default config for the time picker and the refresh picker for the specific dashboard.
 public class TimePickerConfig {
     // Whether timepicker is visible or not.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hidden")
     public Boolean hidden;
     // Interval options available in the refresh picker dropdown.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refresh_intervals")
     public List<String> refreshIntervals;
     // Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("time_options")
     public List<String> timeOptions;
     // Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("nowDelay")
     public String nowDelay;
     
