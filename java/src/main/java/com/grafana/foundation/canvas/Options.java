@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Options {
     // Enable inline editing
@@ -22,6 +23,7 @@ public class Options {
     public Boolean infinitePan;
     // The root element of canvas (frame), where all canvas elements are nested
     // TODO: Figure out how to define a default value for this
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("root")
     public CanvasOptionsRoot root;
     

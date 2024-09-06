@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
 public class AzureTracesFilter {
@@ -16,6 +18,7 @@ public class AzureTracesFilter {
     @JsonProperty("operation")
     public String operation;
     // Values to filter by.
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("filters")
     public List<String> filters;
     

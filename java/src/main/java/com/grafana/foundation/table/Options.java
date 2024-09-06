@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 import com.grafana.foundation.common.TableSortByFieldState;
 import com.grafana.foundation.common.TableFooterOptions;
@@ -20,19 +20,19 @@ public class Options {
     @JsonProperty("showHeader")
     public Boolean showHeader;
     // Controls whether the header should show icons for the column types
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("showTypeIcons")
     public Boolean showTypeIcons;
     // Used to control row sorting
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("sortBy")
     public List<TableSortByFieldState> sortBy;
     // Controls footer options
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("footer")
     public TableFooterOptions footer;
     // Controls the height of the rows
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("cellHeight")
     public TableCellHeight cellHeight;
     
