@@ -6,24 +6,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.ColorDimensionConfig;
 import com.grafana.foundation.common.ScaleDimensionConfig;
 
 public class CanvasConnection {
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("source")
     public ConnectionCoordinates source;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("target")
     public ConnectionCoordinates target;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("targetName")
     public String targetName;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("path")
     public ConnectionPath path;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("color")
     public ColorDimensionConfig color;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("size")
     public ScaleDimensionConfig size;
     

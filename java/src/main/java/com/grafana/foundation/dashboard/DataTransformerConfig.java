@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 // Transformations allow to manipulate data returned by a query before the system applies a visualization.
 // Using transformations you can: rename fields, join time series data, perform mathematical operations across queries,
@@ -16,15 +16,16 @@ public class DataTransformerConfig {
     @JsonProperty("id")
     public String id;
     // Disabled transformations are skipped
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("disabled")
     public Boolean disabled;
     // Optional frame matcher. When missing it will be applied to all results
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("filter")
     public MatcherConfig filter;
     // Options to be passed to the transformer
     // Valid options depend on the transformer id
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("options")
     public Object options;
     
