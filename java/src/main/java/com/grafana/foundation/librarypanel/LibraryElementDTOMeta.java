@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class LibraryElementDTOMeta {
     @JsonProperty("folderName")
@@ -18,8 +19,10 @@ public class LibraryElementDTOMeta {
     public String created;
     @JsonProperty("updated")
     public String updated;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("createdBy")
     public LibraryElementDTOMetaUser createdBy;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("updatedBy")
     public LibraryElementDTOMetaUser updatedBy;
     
