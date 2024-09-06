@@ -7,11 +7,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import com.grafana.foundation.dashboard.DataSourceRef;
 import com.grafana.foundation.dashboard.DashboardLink;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.grafana.foundation.dashboard.DataTransformerConfig;
 import com.grafana.foundation.dashboard.FieldConfigSource;
 
@@ -21,63 +23,64 @@ public class LibrarypanelLibraryPanelModel {
     @JsonProperty("type")
     public String type;
     // The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("pluginVersion")
     public String pluginVersion;
     // Tags for the panel.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("tags")
     public List<String> tags;
     // Depends on the panel plugin. See the plugin documentation for details.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("targets")
     public List<Dataquery> targets;
     // Panel title.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("title")
     public String title;
     // Panel description.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("description")
     public String description;
     // Whether to display the panel without a background.
     @JsonProperty("transparent")
     public Boolean transparent;
     // The datasource used in all targets.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
     // Panel links.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("links")
     public List<DashboardLink> links;
     // Name of template variable to repeat for.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("repeat")
     public String repeat;
     // Direction to repeat in if 'repeat' is set.
     // `h` for horizontal, `v` for vertical.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("repeatDirection")
     public LibraryPanelRepeatDirection repeatDirection;
     // Id of the repeating panel.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("repeatPanelId")
     public Long repeatPanelId;
     // The maximum number of data points that the panel queries are retrieving.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("maxDataPoints")
     public Double maxDataPoints;
     // List of transformations that are applied to the panel data before rendering.
     // When there are multiple transformations, Grafana applies them in the order they are listed.
     // Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("transformations")
     public List<DataTransformerConfig> transformations;
     // The min time interval setting defines a lower limit for the $__interval and $__interval_ms variables.
     // This value must be formatted as a number followed by a valid time
     // identifier like: "40s", "3d", etc.
     // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("interval")
     public String interval;
     // Overrides the relative time range for individual panels,
@@ -88,20 +91,22 @@ public class LibrarypanelLibraryPanelModel {
     // `now-5d/d`(Last 5 days), `now/w` (This week so far), `now-2y/y` (Last 2 years).
     // Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
     // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("timeFrom")
     public String timeFrom;
     // Overrides the time range for individual panels by shifting its start and end relative to the time picker.
     // For example, you can shift the time range for the panel to be two hours earlier than the dashboard time picker setting `2h`.
     // Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
     // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("timeShift")
     public String timeShift;
     // It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("options")
     public Object options;
     // Field options allow you to change how the data is displayed in your visualizations.
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("fieldConfig")
     public FieldConfigSource fieldConfig;
     

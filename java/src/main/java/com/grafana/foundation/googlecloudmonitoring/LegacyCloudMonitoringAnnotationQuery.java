@@ -6,7 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 // @deprecated Use AnnotationQuery instead. Legacy annotation query properties for migration purposes.
 public class LegacyCloudMonitoringAnnotationQuery {
@@ -19,8 +22,10 @@ public class LegacyCloudMonitoringAnnotationQuery {
     @JsonProperty("refId")
     public String refId;
     // Array of filters to query data by. Labels that can be filtered on are defined by the metric.
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("filters")
     public List<String> filters;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("metricKind")
     public MetricKind metricKind;
     @JsonProperty("valueType")

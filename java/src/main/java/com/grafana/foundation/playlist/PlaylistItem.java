@@ -6,10 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class PlaylistItem {
     // Type of the item.
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("type")
     public PlaylistItemType type;
     // Value depends on type and describes the playlist item.
@@ -23,7 +24,7 @@ public class PlaylistItem {
     @JsonProperty("value")
     public String value;
     // Title is an unused property -- it will be removed in the future
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("title")
     public String title;
     
