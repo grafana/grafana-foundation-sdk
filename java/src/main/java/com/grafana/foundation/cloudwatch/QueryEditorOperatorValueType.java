@@ -8,21 +8,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 @JsonDeserialize(using = QueryEditorOperatorValueTypeDeserializer.class)
 @JsonSerialize(using = QueryEditorOperatorValueTypeSerializer.class)
 public class QueryEditorOperatorValueType {
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected String string;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected Boolean bool;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected Long int64;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
     protected List<QueryEditorOperatorType> arrayOfQueryEditorOperatorType;
     protected QueryEditorOperatorValueType() {}

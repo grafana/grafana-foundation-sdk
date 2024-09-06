@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 // Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color.
 // See SpecialValueMatch to see the list of special values.
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class SpecialValueMap {
     @JsonProperty("type")
     public String type;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("options")
     public DashboardSpecialValueMapOptions options;
     

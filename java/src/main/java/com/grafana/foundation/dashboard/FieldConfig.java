@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 // The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
@@ -14,16 +14,16 @@ import java.util.List;
 // Field options allow you to change how the data is displayed in your visualizations.
 public class FieldConfig {
     // The display value for this field.  This supports template variables blank is auto
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("displayName")
     public String displayName;
     // This can be used by data sources that return and explicit naming structure for values and labels
     // When this property is configured, this value is used rather than the default naming strategy.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("displayNameFromDS")
     public String displayNameFromDS;
     // Human readable field metadata
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("description")
     public String description;
     // An explicit path to the field in the datasource.  When the frame meta includes a path,
@@ -31,15 +31,15 @@ public class FieldConfig {
     // 
     // When defined, this value can be used as an identifier within the datasource scope, and
     // may be used to update the results
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("path")
     public String path;
     // True if data source can write a value to the path. Auth/authz are supported separately
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("writeable")
     public Boolean writeable;
     // True if data source field supports ad-hoc filters
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("filterable")
     public Boolean filterable;
     // Unit a field should use. The unit you select is applied to all fields except time.
@@ -52,47 +52,47 @@ public class FieldConfig {
     // `si:<base scale><unit characters>` for custom SI units. For example: `si: mF`. This one is a bit more advanced as you can specify both a unit and the source data scale. So if your source data is represented as milli (thousands of) something prefix the unit with that SI scale character.
     // `count:<unit>` for a custom count unit.
     // `currency:<unit>` for custom a currency unit.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("unit")
     public String unit;
     // Specify the number of decimals Grafana includes in the rendered value.
     // If you leave this field blank, Grafana automatically truncates the number of decimals based on the value.
     // For example 1.1234 will display as 1.12 and 100.456 will display as 100.
     // To display all decimals, set the unit to `String`.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("decimals")
     public Double decimals;
     // The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("min")
     public Double min;
     // The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("max")
     public Double max;
     // Convert input values into a display string
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("mappings")
     public List<ValueMapping> mappings;
     // Map numeric values to states
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("thresholds")
     public ThresholdsConfig thresholds;
     // Panel color configuration
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("color")
     public FieldColor color;
     // The behavior when clicking on a result
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("links")
     public List<Object> links;
     // Alternative to empty string
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("noValue")
     public String noValue;
     // custom is specified by the FieldConfig field
     // in panel plugin schemas.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("custom")
     public Object custom;
     
