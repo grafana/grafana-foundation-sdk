@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
 // Time picker configuration
@@ -15,9 +17,11 @@ public class TimePickerConfig {
     @JsonProperty("hidden")
     public Boolean hidden;
     // Interval options available in the refresh picker dropdown.
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("refresh_intervals")
     public List<String> refreshIntervals;
     // Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("time_options")
     public List<String> timeOptions;
     

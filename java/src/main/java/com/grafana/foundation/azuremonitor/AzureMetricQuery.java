@@ -6,82 +6,82 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 public class AzureMetricQuery {
     // Array of resource URIs to be queried.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("resources")
     public List<AzureMonitorResource> resources;
     // metricNamespace is used as the resource type (or resource namespace).
     // It's usually equal to the target metric namespace. e.g. microsoft.storage/storageaccounts
     // Kept the name of the variable as metricNamespace to avoid backward incompatibility issues.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("metricNamespace")
     public String metricNamespace;
     // Used as the value for the metricNamespace property when it's different from the resource namespace.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("customNamespace")
     public String customNamespace;
     // The metric to query data for within the specified metricNamespace. e.g. UsedCapacity
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("metricName")
     public String metricName;
     // The Azure region containing the resource(s).
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("region")
     public String region;
     // The granularity of data points to be queried. Defaults to auto.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("timeGrain")
     public String timeGrain;
     // The aggregation to be used within the query. Defaults to the primaryAggregationType defined by the metric.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("aggregation")
     public String aggregation;
     // Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("dimensionFilters")
     public List<AzureMetricDimension> dimensionFilters;
     // Maximum number of records to return. Defaults to 10.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("top")
     public String top;
     // Time grains that are supported by the metric.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("allowedTimeGrainsMs")
     public List<Long> allowedTimeGrainsMs;
     // Aliases can be set to modify the legend labels. e.g. {{ resourceGroup }}. See docs for more detail.
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("alias")
     public String alias;
     // @deprecated
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("timeGrainUnit")
     public String timeGrainUnit;
     // @deprecated This property was migrated to dimensionFilters and should only be accessed in the migration
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("dimension")
     public String dimension;
     // @deprecated This property was migrated to dimensionFilters and should only be accessed in the migration
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("dimensionFilter")
     public String dimensionFilter;
     // @deprecated Use metricNamespace instead
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("metricDefinition")
     public String metricDefinition;
     // @deprecated Use resourceGroup, resourceName and metricNamespace instead
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("resourceUri")
     public String resourceUri;
     // @deprecated Use resources instead
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("resourceGroup")
     public String resourceGroup;
     // @deprecated Use resources instead
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("resourceName")
     public String resourceName;
     

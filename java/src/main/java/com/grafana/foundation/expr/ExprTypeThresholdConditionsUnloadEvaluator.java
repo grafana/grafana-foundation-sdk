@@ -6,12 +6,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class ExprTypeThresholdConditionsUnloadEvaluator {
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("params")
     public List<Double> params;
     // e.g. "gt"
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("type")
     public TypeThresholdType type;
     

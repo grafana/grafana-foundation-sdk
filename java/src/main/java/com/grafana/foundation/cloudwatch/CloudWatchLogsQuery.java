@@ -6,12 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 // Shape of a CloudWatch Logs query
 public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.Dataquery {
     // Whether a query is a Metrics, Logs, or Annotations query
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("queryMode")
     public CloudWatchQueryMode queryMode;
     @JsonProperty("id")
@@ -20,15 +21,15 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
     @JsonProperty("region")
     public String region;
     // The CloudWatch Logs Insights query to execute
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("expression")
     public String expression;
     // Fields to group the results by, this field is automatically populated whenever the query is updated
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("statsGroups")
     public List<String> statsGroups;
     // Log groups to query
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("logGroups")
     public List<LogGroup> logGroups;
     // A unique identifier for the query within the list of targets.
@@ -39,23 +40,23 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
     // true if query is disabled (ie should not be returned to the dashboard)
     // Note this does not always imply that the query should not be executed since
     // the results from a hidden query may be used as the input to other queries (SSE etc)
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     // Specify the query flavor
     // TODO make this required and give it a default
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("queryType")
     public String queryType;
     // @deprecated use logGroups
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("logGroupNames")
     public List<String> logGroupNames;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
     // TODO this shouldn't be unknown but DataSourceRef | null
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public Object datasource;
     

@@ -6,10 +6,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class RoleRef {
     // Policies can apply to roles, teams, or users
     // Applying policies to individual users is supported, but discouraged
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("kind")
     public RoleRefKind kind;
     @JsonProperty("name")
