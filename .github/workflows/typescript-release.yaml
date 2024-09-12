@@ -5,6 +5,7 @@ on:
   pull_request_target:
     types: [closed]
     paths:
+      - 'typescript/package.json'
       - 'typescript/src/**'
 
 env:
