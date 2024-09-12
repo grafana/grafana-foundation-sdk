@@ -78,20 +78,20 @@ class TableFieldOptions implements \JsonSerializable
         \assert(is_array($input), 'expected disjunction value to be an array');
     
         switch ($input["type"]) {
-        case "json-view":
-            return TableJsonViewCellOptions::fromArray($input);
         case "auto":
             return TableAutoCellOptions::fromArray($input);
-        case "sparkline":
-            return TableSparklineCellOptions::fromArray($input);
-        case "gauge":
-            return TableBarGaugeCellOptions::fromArray($input);
         case "color-background":
             return TableColoredBackgroundCellOptions::fromArray($input);
         case "color-text":
             return TableColorTextCellOptions::fromArray($input);
+        case "gauge":
+            return TableBarGaugeCellOptions::fromArray($input);
         case "image":
             return TableImageCellOptions::fromArray($input);
+        case "json-view":
+            return TableJsonViewCellOptions::fromArray($input);
+        case "sparkline":
+            return TableSparklineCellOptions::fromArray($input);
         default:
             throw new \ValueError('can not parse disjunction from array');
     }
