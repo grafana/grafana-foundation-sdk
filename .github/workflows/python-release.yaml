@@ -5,6 +5,7 @@ on:
   pull_request_target:
     types: [ closed ]
     paths:
+      - 'python/pyproject.toml'
       - 'python/grafana_foundation_sdk/**'
 
 env:
