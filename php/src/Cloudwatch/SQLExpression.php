@@ -77,10 +77,10 @@ class SQLExpression implements \JsonSerializable
         \assert(is_array($input), 'expected disjunction value to be an array');
     
         switch ($input["type"]) {
-        case "property":
-            return QueryEditorPropertyExpression::fromArray($input);
         case "function":
             return QueryEditorFunctionExpression::fromArray($input);
+        case "property":
+            return QueryEditorPropertyExpression::fromArray($input);
         default:
             throw new \ValueError('can not parse disjunction from array');
     }
