@@ -1,0 +1,1580 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "DataTopic": {
+      "enum": [
+        "series",
+        "annotations",
+        "alertStates"
+      ],
+      "description": "A topic is attached to DataFrame metadata in query results.\nThis specifies where the data should be used."
+    },
+    "DataSourceJsonData": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "authType": {
+          "type": "string"
+        },
+        "defaultRegion": {
+          "type": "string"
+        },
+        "profile": {
+          "type": "string"
+        },
+        "manageAlerts": {
+          "type": "boolean"
+        },
+        "alertmanagerUid": {
+          "type": "string"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "DataQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "refId"
+      ],
+      "properties": {
+        "refId": {
+          "type": "string",
+          "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
+        },
+        "hide": {
+          "type": "boolean",
+          "description": "If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel."
+        },
+        "queryType": {
+          "type": "string",
+          "description": "Specify the query flavor\nTODO make this required and give it a default"
+        },
+        "datasource": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+        }
+      },
+      "description": "These are the common properties available to all queries in all datasources.\nSpecific implementations will *extend* this interface, adding the required\nproperties for the given context."
+    },
+    "BaseDimensionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "fixed: T -- will be added by each element"
+        }
+      }
+    },
+    "ScaleDimensionMode": {
+      "enum": [
+        "linear",
+        "quad"
+      ]
+    },
+    "ScaleDimensionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max"
+      ],
+      "properties": {
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "fixed": {
+          "type": "number"
+        },
+        "field": {
+          "type": "string",
+          "description": "fixed: T -- will be added by each element"
+        },
+        "mode": {
+          "$ref": "#/definitions/ScaleDimensionMode",
+          "description": "| *\"linear\""
+        }
+      }
+    },
+    "ColorDimensionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fixed": {
+          "type": "string",
+          "description": "color value"
+        },
+        "field": {
+          "type": "string",
+          "description": "fixed: T -- will be added by each element"
+        }
+      }
+    },
+    "ScalarDimensionMode": {
+      "enum": [
+        "mod",
+        "clamped"
+      ]
+    },
+    "ScalarDimensionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max"
+      ],
+      "properties": {
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "fixed": {
+          "type": "number"
+        },
+        "field": {
+          "type": "string",
+          "description": "fixed: T -- will be added by each element"
+        },
+        "mode": {
+          "$ref": "#/definitions/ScalarDimensionMode"
+        }
+      }
+    },
+    "TextDimensionMode": {
+      "enum": [
+        "fixed",
+        "field",
+        "template"
+      ]
+    },
+    "TextDimensionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/TextDimensionMode"
+        },
+        "field": {
+          "type": "string",
+          "description": "fixed: T -- will be added by each element"
+        },
+        "fixed": {
+          "type": "string"
+        }
+      }
+    },
+    "ResourceDimensionMode": {
+      "enum": [
+        "fixed",
+        "field",
+        "mapping"
+      ]
+    },
+    "MapLayerOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "configured unique display name"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Custom options depending on the type"
+        },
+        "location": {
+          "$ref": "#/definitions/FrameGeometrySource",
+          "description": "Common method to define geometry fields"
+        },
+        "filterData": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Defines a frame MatcherConfig that may filter data for the given layer"
+        },
+        "opacity": {
+          "type": "integer",
+          "description": "Common properties:\nhttps://openlayers.org/en/latest/apidoc/module-ol_layer_Base-BaseLayer.html\nLayer opacity (0-1)"
+        },
+        "tooltip": {
+          "type": "boolean",
+          "description": "Check tooltip (defaults to true)"
+        }
+      }
+    },
+    "FrameGeometrySourceMode": {
+      "enum": [
+        "auto",
+        "geohash",
+        "coords",
+        "lookup"
+      ]
+    },
+    "HeatmapCalculationMode": {
+      "enum": [
+        "size",
+        "count"
+      ]
+    },
+    "HeatmapCellLayout": {
+      "enum": [
+        "le",
+        "ge",
+        "unknown",
+        "auto"
+      ]
+    },
+    "HeatmapCalculationBucketConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/HeatmapCalculationMode",
+          "description": "Sets the bucket calculation mode"
+        },
+        "value": {
+          "type": "string",
+          "description": "The number of buckets to use for the axis in the heatmap"
+        },
+        "scale": {
+          "$ref": "#/definitions/ScaleDistributionConfig",
+          "description": "Controls the scale of the buckets"
+        }
+      }
+    },
+    "LogsSortOrder": {
+      "enum": [
+        "Descending",
+        "Ascending"
+      ]
+    },
+    "AxisPlacement": {
+      "enum": [
+        "auto",
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "hidden"
+      ],
+      "description": "TODO docs"
+    },
+    "AxisColorMode": {
+      "enum": [
+        "text",
+        "series"
+      ],
+      "description": "TODO docs"
+    },
+    "VisibilityMode": {
+      "enum": [
+        "auto",
+        "never",
+        "always"
+      ],
+      "description": "TODO docs"
+    },
+    "GraphDrawStyle": {
+      "enum": [
+        "line",
+        "bars",
+        "points"
+      ],
+      "description": "TODO docs"
+    },
+    "GraphTransform": {
+      "enum": [
+        "constant",
+        "negative-Y"
+      ],
+      "description": "TODO docs"
+    },
+    "LineInterpolation": {
+      "enum": [
+        "linear",
+        "smooth",
+        "stepBefore",
+        "stepAfter"
+      ],
+      "description": "TODO docs"
+    },
+    "ScaleDistribution": {
+      "enum": [
+        "linear",
+        "log",
+        "ordinal",
+        "symlog"
+      ],
+      "description": "TODO docs"
+    },
+    "GraphGradientMode": {
+      "enum": [
+        "none",
+        "opacity",
+        "hue",
+        "scheme"
+      ],
+      "description": "TODO docs"
+    },
+    "StackingMode": {
+      "enum": [
+        "none",
+        "normal",
+        "percent"
+      ],
+      "description": "TODO docs"
+    },
+    "BarAlignment": {
+      "enum": [
+        -1,
+        0,
+        1
+      ],
+      "description": "TODO docs"
+    },
+    "ScaleOrientation": {
+      "enum": [
+        0,
+        1
+      ],
+      "description": "TODO docs"
+    },
+    "ScaleDirection": {
+      "enum": [
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "description": "TODO docs"
+    },
+    "LineStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fill": {
+          "enum": [
+            "solid",
+            "dash",
+            "dot",
+            "square"
+          ]
+        },
+        "dash": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "TODO docs"
+    },
+    "LineConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lineColor": {
+          "type": "string"
+        },
+        "lineWidth": {
+          "type": "number"
+        },
+        "lineInterpolation": {
+          "$ref": "#/definitions/LineInterpolation"
+        },
+        "lineStyle": {
+          "$ref": "#/definitions/LineStyle"
+        },
+        "spanNulls": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "description": "Indicate if null values should be treated as gaps or connected.\nWhen the value is a number, it represents the maximum delta in the\nX axis that should be considered connected.  For timeseries, this is milliseconds"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "BarConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "barAlignment": {
+          "$ref": "#/definitions/BarAlignment"
+        },
+        "barWidthFactor": {
+          "type": "number"
+        },
+        "barMaxWidth": {
+          "type": "number"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "FillConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fillColor": {
+          "type": "string"
+        },
+        "fillOpacity": {
+          "type": "number"
+        },
+        "fillBelowTo": {
+          "type": "string"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "PointsConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "showPoints": {
+          "$ref": "#/definitions/VisibilityMode"
+        },
+        "pointSize": {
+          "type": "number"
+        },
+        "pointColor": {
+          "type": "string"
+        },
+        "pointSymbol": {
+          "type": "string"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "ScaleDistributionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ScaleDistribution"
+        },
+        "log": {
+          "type": "number"
+        },
+        "linearThreshold": {
+          "type": "number"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "AxisConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "axisPlacement": {
+          "$ref": "#/definitions/AxisPlacement"
+        },
+        "axisColorMode": {
+          "$ref": "#/definitions/AxisColorMode"
+        },
+        "axisLabel": {
+          "type": "string"
+        },
+        "axisWidth": {
+          "type": "number"
+        },
+        "axisSoftMin": {
+          "type": "number"
+        },
+        "axisSoftMax": {
+          "type": "number"
+        },
+        "axisGridShow": {
+          "type": "boolean"
+        },
+        "scaleDistribution": {
+          "$ref": "#/definitions/ScaleDistributionConfig"
+        },
+        "axisCenteredZero": {
+          "type": "boolean"
+        },
+        "axisBorderShow": {
+          "type": "boolean"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "HideSeriesConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tooltip",
+        "legend",
+        "viz"
+      ],
+      "properties": {
+        "tooltip": {
+          "type": "boolean"
+        },
+        "legend": {
+          "type": "boolean"
+        },
+        "viz": {
+          "type": "boolean"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "StackingConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/StackingMode"
+        },
+        "group": {
+          "type": "string"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "StackableFieldConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "stacking": {
+          "$ref": "#/definitions/StackingConfig"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "HideableFieldConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hideFrom": {
+          "$ref": "#/definitions/HideSeriesConfig"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "GraphThresholdsStyleMode": {
+      "enum": [
+        "off",
+        "line",
+        "dashed",
+        "area",
+        "line+area",
+        "dashed+area",
+        "series"
+      ],
+      "description": "TODO docs"
+    },
+    "GraphThresholdsStyleConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/GraphThresholdsStyleMode"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "LegendPlacement": {
+      "enum": [
+        "bottom",
+        "right"
+      ],
+      "description": "TODO docs"
+    },
+    "LegendDisplayMode": {
+      "enum": [
+        "list",
+        "table",
+        "hidden"
+      ],
+      "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
+    },
+    "SingleStatBaseOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reduceOptions",
+        "orientation"
+      ],
+      "properties": {
+        "reduceOptions": {
+          "$ref": "#/definitions/ReduceDataOptions"
+        },
+        "text": {
+          "$ref": "#/definitions/VizTextDisplayOptions"
+        },
+        "orientation": {
+          "$ref": "#/definitions/VizOrientation"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "ReduceDataOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calcs"
+      ],
+      "properties": {
+        "values": {
+          "type": "boolean",
+          "description": "If true show each row value"
+        },
+        "limit": {
+          "type": "number",
+          "description": "if showing all values limit"
+        },
+        "calcs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "When !values, pick one value for the whole field"
+        },
+        "fields": {
+          "type": "string",
+          "description": "Which fields to show.  By default this is only numeric fields"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizOrientation": {
+      "enum": [
+        "auto",
+        "vertical",
+        "horizontal"
+      ],
+      "description": "TODO docs"
+    },
+    "OptionsWithTooltip": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tooltip"
+      ],
+      "properties": {
+        "tooltip": {
+          "$ref": "#/definitions/VizTooltipOptions"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "OptionsWithLegend": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "legend"
+      ],
+      "properties": {
+        "legend": {
+          "$ref": "#/definitions/VizLegendOptions"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "OptionsWithTimezones": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "timezone": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimeZone"
+          }
+        }
+      },
+      "description": "TODO docs"
+    },
+    "OptionsWithTextFormatting": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "$ref": "#/definitions/VizTextDisplayOptions"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "BigValueColorMode": {
+      "enum": [
+        "value",
+        "background",
+        "background_solid",
+        "none"
+      ],
+      "description": "TODO docs"
+    },
+    "BigValueGraphMode": {
+      "enum": [
+        "none",
+        "line",
+        "area"
+      ],
+      "description": "TODO docs"
+    },
+    "BigValueJustifyMode": {
+      "enum": [
+        "auto",
+        "center"
+      ],
+      "description": "TODO docs"
+    },
+    "BigValueTextMode": {
+      "enum": [
+        "auto",
+        "value",
+        "value_and_name",
+        "name",
+        "none"
+      ],
+      "description": "TODO docs"
+    },
+    "PercentChangeColorMode": {
+      "enum": [
+        "standard",
+        "inverted",
+        "same_as_value"
+      ],
+      "description": "TODO docs"
+    },
+    "FieldTextAlignment": {
+      "enum": [
+        "auto",
+        "left",
+        "right",
+        "center"
+      ],
+      "description": "TODO -- should not be table specific!\nTODO docs"
+    },
+    "TimelineValueAlignment": {
+      "enum": [
+        "center",
+        "left",
+        "right"
+      ],
+      "description": "Controls the value alignment in the TimelineChart component"
+    },
+    "VizTextDisplayOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "titleSize": {
+          "type": "number",
+          "description": "Explicit title text size"
+        },
+        "valueSize": {
+          "type": "number",
+          "description": "Explicit value text size"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "TooltipDisplayMode": {
+      "enum": [
+        "single",
+        "multi",
+        "none"
+      ],
+      "description": "TODO docs"
+    },
+    "SortOrder": {
+      "enum": [
+        "asc",
+        "desc",
+        "none"
+      ],
+      "description": "TODO docs"
+    },
+    "GraphFieldConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "drawStyle": {
+          "$ref": "#/definitions/GraphDrawStyle"
+        },
+        "gradientMode": {
+          "$ref": "#/definitions/GraphGradientMode"
+        },
+        "thresholdsStyle": {
+          "$ref": "#/definitions/GraphThresholdsStyleConfig"
+        },
+        "transform": {
+          "$ref": "#/definitions/GraphTransform"
+        },
+        "lineColor": {
+          "type": "string"
+        },
+        "lineWidth": {
+          "type": "number"
+        },
+        "lineInterpolation": {
+          "$ref": "#/definitions/LineInterpolation"
+        },
+        "lineStyle": {
+          "$ref": "#/definitions/LineStyle"
+        },
+        "fillColor": {
+          "type": "string"
+        },
+        "fillOpacity": {
+          "type": "number"
+        },
+        "showPoints": {
+          "$ref": "#/definitions/VisibilityMode"
+        },
+        "pointSize": {
+          "type": "number"
+        },
+        "pointColor": {
+          "type": "string"
+        },
+        "axisPlacement": {
+          "$ref": "#/definitions/AxisPlacement"
+        },
+        "axisColorMode": {
+          "$ref": "#/definitions/AxisColorMode"
+        },
+        "axisLabel": {
+          "type": "string"
+        },
+        "axisWidth": {
+          "type": "number"
+        },
+        "axisSoftMin": {
+          "type": "number"
+        },
+        "axisSoftMax": {
+          "type": "number"
+        },
+        "axisGridShow": {
+          "type": "boolean"
+        },
+        "scaleDistribution": {
+          "$ref": "#/definitions/ScaleDistributionConfig"
+        },
+        "axisCenteredZero": {
+          "type": "boolean"
+        },
+        "barAlignment": {
+          "$ref": "#/definitions/BarAlignment"
+        },
+        "barWidthFactor": {
+          "type": "number"
+        },
+        "stacking": {
+          "$ref": "#/definitions/StackingConfig"
+        },
+        "hideFrom": {
+          "$ref": "#/definitions/HideSeriesConfig"
+        },
+        "insertNulls": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "spanNulls": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "description": "Indicate if null values should be treated as gaps or connected.\nWhen the value is a number, it represents the maximum delta in the\nX axis that should be considered connected.  For timeseries, this is milliseconds"
+        },
+        "fillBelowTo": {
+          "type": "string"
+        },
+        "pointSymbol": {
+          "type": "string"
+        },
+        "axisBorderShow": {
+          "type": "boolean"
+        },
+        "barMaxWidth": {
+          "type": "number"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizLegendOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "displayMode",
+        "placement",
+        "showLegend",
+        "calcs"
+      ],
+      "properties": {
+        "displayMode": {
+          "$ref": "#/definitions/LegendDisplayMode",
+          "default": "list"
+        },
+        "placement": {
+          "$ref": "#/definitions/LegendPlacement",
+          "default": "bottom"
+        },
+        "showLegend": {
+          "type": "boolean"
+        },
+        "asTable": {
+          "type": "boolean"
+        },
+        "isVisible": {
+          "type": "boolean"
+        },
+        "sortBy": {
+          "type": "string"
+        },
+        "sortDesc": {
+          "type": "boolean"
+        },
+        "width": {
+          "type": "number"
+        },
+        "calcs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      },
+      "description": "TODO docs"
+    },
+    "BarGaugeDisplayMode": {
+      "enum": [
+        "basic",
+        "lcd",
+        "gradient"
+      ],
+      "description": "Enum expressing the possible display modes\nfor the bar gauge component of Grafana UI"
+    },
+    "BarGaugeValueMode": {
+      "enum": [
+        "color",
+        "text",
+        "hidden"
+      ],
+      "description": "Allows for the table cell gauge display type to set the gauge mode."
+    },
+    "BarGaugeNamePlacement": {
+      "enum": [
+        "auto",
+        "top",
+        "left"
+      ],
+      "description": "Allows for the bar gauge name to be placed explicitly"
+    },
+    "BarGaugeSizing": {
+      "enum": [
+        "auto",
+        "manual"
+      ],
+      "description": "Allows for the bar gauge size to be set explicitly"
+    },
+    "VizTooltipOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "sort"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/TooltipDisplayMode"
+        },
+        "sort": {
+          "$ref": "#/definitions/SortOrder"
+        },
+        "maxWidth": {
+          "type": "number"
+        },
+        "maxHeight": {
+          "type": "number"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "Labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "TableCellDisplayMode": {
+      "enum": [
+        "auto",
+        "color-text",
+        "color-background",
+        "color-background-solid",
+        "gradient-gauge",
+        "lcd-gauge",
+        "json-view",
+        "basic",
+        "image",
+        "gauge",
+        "sparkline",
+        "data-links",
+        "custom"
+      ],
+      "description": "Internally, this is the \"type\" of cell that's being displayed\nin the table such as colored text, JSON, gauge, etc.\nThe color-background-solid, gradient-gauge, and lcd-gauge\nmodes are deprecated in favor of new cell subOptions"
+    },
+    "TableCellBackgroundDisplayMode": {
+      "enum": [
+        "basic",
+        "gradient"
+      ],
+      "description": "Display mode to the \"Colored Background\" display\nmode for table cells. Either displays a solid color (basic mode)\nor a gradient."
+    },
+    "TableSortByFieldState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "displayName"
+      ],
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "Sets the display name of the field to sort by"
+        },
+        "desc": {
+          "type": "boolean",
+          "description": "Flag used to indicate descending sort order"
+        }
+      },
+      "description": "Sort by field state"
+    },
+    "TableFooterOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "show",
+        "reducer"
+      ],
+      "properties": {
+        "show": {
+          "type": "boolean"
+        },
+        "reducer": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "actually 1 value"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enablePagination": {
+          "type": "boolean"
+        },
+        "countRows": {
+          "type": "boolean"
+        }
+      },
+      "description": "Footer options"
+    },
+    "TableAutoCellOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "auto"
+        },
+        "wrapText": {
+          "type": "boolean"
+        }
+      },
+      "description": "Auto mode table cell options"
+    },
+    "TableColorTextCellOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "color-text"
+        },
+        "wrapText": {
+          "type": "boolean"
+        }
+      },
+      "description": "Colored text cell options"
+    },
+    "TableJsonViewCellOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "json-view"
+        }
+      },
+      "description": "Json view cell options"
+    },
+    "TableImageCellOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "image"
+        }
+      },
+      "description": "Json view cell options"
+    },
+    "TableDataLinksCellOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "data-links"
+        }
+      },
+      "description": "Show data links in the cell"
+    },
+    "TableBarGaugeCellOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "gauge"
+        },
+        "mode": {
+          "$ref": "#/definitions/BarGaugeDisplayMode"
+        },
+        "valueDisplayMode": {
+          "$ref": "#/definitions/BarGaugeValueMode"
+        }
+      },
+      "description": "Gauge cell options"
+    },
+    "TableSparklineCellOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "sparkline"
+        },
+        "drawStyle": {
+          "$ref": "#/definitions/GraphDrawStyle"
+        },
+        "gradientMode": {
+          "$ref": "#/definitions/GraphGradientMode"
+        },
+        "thresholdsStyle": {
+          "$ref": "#/definitions/GraphThresholdsStyleConfig"
+        },
+        "transform": {
+          "$ref": "#/definitions/GraphTransform"
+        },
+        "lineColor": {
+          "type": "string"
+        },
+        "lineWidth": {
+          "type": "number"
+        },
+        "lineInterpolation": {
+          "$ref": "#/definitions/LineInterpolation"
+        },
+        "lineStyle": {
+          "$ref": "#/definitions/LineStyle"
+        },
+        "fillColor": {
+          "type": "string"
+        },
+        "fillOpacity": {
+          "type": "number"
+        },
+        "showPoints": {
+          "$ref": "#/definitions/VisibilityMode"
+        },
+        "pointSize": {
+          "type": "number"
+        },
+        "pointColor": {
+          "type": "string"
+        },
+        "axisPlacement": {
+          "$ref": "#/definitions/AxisPlacement"
+        },
+        "axisColorMode": {
+          "$ref": "#/definitions/AxisColorMode"
+        },
+        "axisLabel": {
+          "type": "string"
+        },
+        "axisWidth": {
+          "type": "number"
+        },
+        "axisSoftMin": {
+          "type": "number"
+        },
+        "axisSoftMax": {
+          "type": "number"
+        },
+        "axisGridShow": {
+          "type": "boolean"
+        },
+        "scaleDistribution": {
+          "$ref": "#/definitions/ScaleDistributionConfig"
+        },
+        "axisCenteredZero": {
+          "type": "boolean"
+        },
+        "barAlignment": {
+          "$ref": "#/definitions/BarAlignment"
+        },
+        "barWidthFactor": {
+          "type": "number"
+        },
+        "stacking": {
+          "$ref": "#/definitions/StackingConfig"
+        },
+        "hideFrom": {
+          "$ref": "#/definitions/HideSeriesConfig"
+        },
+        "hideValue": {
+          "type": "boolean"
+        },
+        "insertNulls": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "spanNulls": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "description": "Indicate if null values should be treated as gaps or connected.\nWhen the value is a number, it represents the maximum delta in the\nX axis that should be considered connected.  For timeseries, this is milliseconds"
+        },
+        "fillBelowTo": {
+          "type": "string"
+        },
+        "pointSymbol": {
+          "type": "string"
+        },
+        "axisBorderShow": {
+          "type": "boolean"
+        },
+        "barMaxWidth": {
+          "type": "number"
+        }
+      },
+      "description": "Sparkline cell options"
+    },
+    "TableColoredBackgroundCellOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "color-background"
+        },
+        "mode": {
+          "$ref": "#/definitions/TableCellBackgroundDisplayMode"
+        },
+        "applyToRow": {
+          "type": "boolean"
+        },
+        "wrapText": {
+          "type": "boolean"
+        }
+      },
+      "description": "Colored background cell options"
+    },
+    "TableCellHeight": {
+      "enum": [
+        "sm",
+        "md",
+        "lg",
+        "auto"
+      ],
+      "description": "Height of a table cell"
+    },
+    "TableCellOptions": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/TableAutoCellOptions"
+        },
+        {
+          "$ref": "#/definitions/TableSparklineCellOptions"
+        },
+        {
+          "$ref": "#/definitions/TableBarGaugeCellOptions"
+        },
+        {
+          "$ref": "#/definitions/TableColoredBackgroundCellOptions"
+        },
+        {
+          "$ref": "#/definitions/TableColorTextCellOptions"
+        },
+        {
+          "$ref": "#/definitions/TableImageCellOptions"
+        },
+        {
+          "$ref": "#/definitions/TableDataLinksCellOptions"
+        },
+        {
+          "$ref": "#/definitions/TableJsonViewCellOptions"
+        }
+      ],
+      "description": "Table cell options. Each cell has a display mode\nand other potential options for that display."
+    },
+    "TimeZoneUtc": {
+      "type": "string",
+      "const": "utc",
+      "description": "Use UTC/GMT timezone"
+    },
+    "TimeZoneBrowser": {
+      "type": "string",
+      "const": "browser",
+      "description": "Use the timezone defined by end user web browser"
+    },
+    "VariableFormatID": {
+      "enum": [
+        "lucene",
+        "raw",
+        "regex",
+        "pipe",
+        "distributed",
+        "csv",
+        "html",
+        "json",
+        "percentencode",
+        "uriencode",
+        "singlequote",
+        "doublequote",
+        "sqlstring",
+        "date",
+        "glob",
+        "text",
+        "queryparam"
+      ],
+      "description": "Optional formats for the template variable replace functions\nSee also https://grafana.com/docs/grafana/latest/dashboards/variables/variable-syntax/#advanced-variable-format-options"
+    },
+    "DataSourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The plugin type-id"
+        },
+        "uid": {
+          "type": "string",
+          "description": "Specific datasource instance"
+        }
+      }
+    },
+    "ResourceDimensionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/ResourceDimensionMode"
+        },
+        "field": {
+          "type": "string",
+          "description": "fixed: T -- will be added by each element"
+        },
+        "fixed": {
+          "type": "string"
+        }
+      },
+      "description": "Links to a resource (image/svg path)"
+    },
+    "FrameGeometrySource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/FrameGeometrySourceMode"
+        },
+        "geohash": {
+          "type": "string",
+          "description": "Field mappings"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "wkt": {
+          "type": "string"
+        },
+        "lookup": {
+          "type": "string"
+        },
+        "gazetteer": {
+          "type": "string",
+          "description": "Path to Gazetteer"
+        }
+      }
+    },
+    "HeatmapCalculationOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "xBuckets": {
+          "$ref": "#/definitions/HeatmapCalculationBucketConfig",
+          "description": "The number of buckets to use for the xAxis in the heatmap"
+        },
+        "yBuckets": {
+          "$ref": "#/definitions/HeatmapCalculationBucketConfig",
+          "description": "The number of buckets to use for the yAxis in the heatmap"
+        }
+      }
+    },
+    "LogsDedupStrategy": {
+      "enum": [
+        "none",
+        "exact",
+        "numbers",
+        "signature"
+      ]
+    },
+    "ComparisonOperation": {
+      "enum": [
+        "eq",
+        "neq",
+        "lt",
+        "lte",
+        "gt",
+        "gte"
+      ],
+      "description": "Compare two values"
+    },
+    "TableFieldOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "align",
+        "inspect"
+      ],
+      "properties": {
+        "width": {
+          "type": "number"
+        },
+        "minWidth": {
+          "type": "number"
+        },
+        "align": {
+          "$ref": "#/definitions/FieldTextAlignment",
+          "default": "auto"
+        },
+        "displayMode": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "description": "This field is deprecated in favor of using cellOptions"
+        },
+        "cellOptions": {
+          "$ref": "#/definitions/TableCellOptions"
+        },
+        "hidden": {
+          "type": "boolean",
+          "description": "?? default is missing or false ??"
+        },
+        "inspect": {
+          "type": "boolean",
+          "default": false
+        },
+        "filterable": {
+          "type": "boolean"
+        },
+        "hideHeader": {
+          "type": "boolean",
+          "description": "Hides any header for a column, useful for columns that show some static content or buttons."
+        }
+      },
+      "description": "Field options for each field within a table (e.g 10, \"The String\", 64.20, etc.)\nGenerally defines alignment, filtering capabilties, display options, etc."
+    },
+    "TimeZone": {
+      "type": "string",
+      "description": "A specific timezone from https://en.wikipedia.org/wiki/Tz_database"
+    }
+  }
+}
