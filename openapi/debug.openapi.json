@@ -1,0 +1,59 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "debug",
+    "version": "0.0.0",
+    "x-schema-identifier": "debug",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "UpdateConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "render",
+          "dataChanged",
+          "schemaChanged"
+        ],
+        "properties": {
+          "render": {
+            "type": "boolean"
+          },
+          "dataChanged": {
+            "type": "boolean"
+          },
+          "schemaChanged": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DebugMode": {
+        "enum": [
+          "render",
+          "events",
+          "cursor",
+          "State",
+          "ThrowError"
+        ]
+      },
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/DebugMode"
+          },
+          "counters": {
+            "$ref": "#/components/schemas/UpdateConfig"
+          }
+        }
+      }
+    }
+  }
+}
