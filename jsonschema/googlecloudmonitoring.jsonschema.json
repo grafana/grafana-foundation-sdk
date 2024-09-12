@@ -1,0 +1,465 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CloudMonitoringQuery",
+  "definitions": {
+    "CloudMonitoringQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "refId"
+      ],
+      "properties": {
+        "refId": {
+          "type": "string",
+          "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
+        },
+        "hide": {
+          "type": "boolean",
+          "description": "If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel."
+        },
+        "queryType": {
+          "type": "string",
+          "description": "Specify the query flavor\nTODO make this required and give it a default"
+        },
+        "aliasBy": {
+          "type": "string",
+          "description": "Aliases can be set to modify the legend labels. e.g. {{metric.label.xxx}}. See docs for more detail."
+        },
+        "timeSeriesList": {
+          "$ref": "#/definitions/TimeSeriesList",
+          "description": "GCM query type.\nqueryType: #QueryType\nTime Series List sub-query properties."
+        },
+        "timeSeriesQuery": {
+          "$ref": "#/definitions/TimeSeriesQuery",
+          "description": "Time Series sub-query properties."
+        },
+        "sloQuery": {
+          "$ref": "#/definitions/SLOQuery",
+          "description": "SLO sub-query properties."
+        },
+        "promQLQuery": {
+          "$ref": "#/definitions/PromQLQuery",
+          "description": "PromQL sub-query properties."
+        },
+        "datasource": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+        },
+        "intervalMs": {
+          "type": "number",
+          "description": "Time interval in milliseconds."
+        }
+      }
+    },
+    "QueryType": {
+      "enum": [
+        "timeSeriesList",
+        "timeSeriesQuery",
+        "slo",
+        "annotation",
+        "promQL"
+      ],
+      "description": "Defines the supported queryTypes."
+    },
+    "TimeSeriesList": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projectName",
+        "crossSeriesReducer"
+      ],
+      "properties": {
+        "projectName": {
+          "type": "string",
+          "description": "GCP project to execute the query against."
+        },
+        "crossSeriesReducer": {
+          "type": "string",
+          "description": "Reducer applied across a set of time-series values. Defaults to REDUCE_NONE."
+        },
+        "alignmentPeriod": {
+          "type": "string",
+          "description": "Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto."
+        },
+        "perSeriesAligner": {
+          "type": "string",
+          "description": "Alignment function to be used. Defaults to ALIGN_MEAN."
+        },
+        "groupBys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of labels to group data by."
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of filters to query data by. Labels that can be filtered on are defined by the metric."
+        },
+        "view": {
+          "type": "string",
+          "description": "Data view, defaults to FULL."
+        },
+        "title": {
+          "type": "string",
+          "description": "Annotation title."
+        },
+        "text": {
+          "type": "string",
+          "description": "Annotation text."
+        },
+        "secondaryCrossSeriesReducer": {
+          "type": "string",
+          "description": "Only present if a preprocessor is selected. Reducer applied across a set of time-series values. Defaults to REDUCE_NONE."
+        },
+        "secondaryAlignmentPeriod": {
+          "type": "string",
+          "description": "Only present if a preprocessor is selected. Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto."
+        },
+        "secondaryPerSeriesAligner": {
+          "type": "string",
+          "description": "Only present if a preprocessor is selected. Alignment function to be used. Defaults to ALIGN_MEAN."
+        },
+        "secondaryGroupBys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Only present if a preprocessor is selected. Array of labels to group data by."
+        },
+        "preprocessor": {
+          "$ref": "#/definitions/PreprocessorType",
+          "description": "Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters"
+        }
+      },
+      "description": "Time Series List sub-query properties."
+    },
+    "PreprocessorType": {
+      "enum": [
+        "none",
+        "rate",
+        "delta"
+      ],
+      "description": "Types of pre-processor available. Defined by the metric."
+    },
+    "TimeSeriesQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projectName",
+        "query"
+      ],
+      "properties": {
+        "projectName": {
+          "type": "string",
+          "description": "GCP project to execute the query against."
+        },
+        "query": {
+          "type": "string",
+          "description": "MQL query to be executed."
+        },
+        "graphPeriod": {
+          "type": "string",
+          "description": "To disable the graphPeriod, it should explictly be set to 'disabled'.",
+          "default": "disabled"
+        }
+      },
+      "description": "Time Series sub-query properties."
+    },
+    "SLOQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projectName",
+        "selectorName",
+        "serviceId",
+        "serviceName",
+        "sloId",
+        "sloName"
+      ],
+      "properties": {
+        "projectName": {
+          "type": "string",
+          "description": "GCP project to execute the query against."
+        },
+        "perSeriesAligner": {
+          "type": "string",
+          "description": "Alignment function to be used. Defaults to ALIGN_MEAN."
+        },
+        "alignmentPeriod": {
+          "type": "string",
+          "description": "Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto."
+        },
+        "selectorName": {
+          "type": "string",
+          "description": "SLO selector."
+        },
+        "serviceId": {
+          "type": "string",
+          "description": "ID for the service the SLO is in."
+        },
+        "serviceName": {
+          "type": "string",
+          "description": "Name for the service the SLO is in."
+        },
+        "sloId": {
+          "type": "string",
+          "description": "ID for the SLO."
+        },
+        "sloName": {
+          "type": "string",
+          "description": "Name of the SLO."
+        },
+        "goal": {
+          "type": "number",
+          "description": "SLO goal value."
+        },
+        "lookbackPeriod": {
+          "type": "string",
+          "description": "Specific lookback period for the SLO."
+        }
+      },
+      "description": "SLO sub-query properties."
+    },
+    "PromQLQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projectName",
+        "expr",
+        "step"
+      ],
+      "properties": {
+        "projectName": {
+          "type": "string",
+          "description": "GCP project to execute the query against."
+        },
+        "expr": {
+          "type": "string",
+          "description": "PromQL expression/query to be executed."
+        },
+        "step": {
+          "type": "string",
+          "description": "PromQL min step"
+        }
+      },
+      "description": "PromQL sub-query properties."
+    },
+    "MetricQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projectName",
+        "editorMode",
+        "metricType",
+        "crossSeriesReducer",
+        "query"
+      ],
+      "properties": {
+        "projectName": {
+          "type": "string",
+          "description": "GCP project to execute the query against."
+        },
+        "perSeriesAligner": {
+          "type": "string",
+          "description": "Alignment function to be used. Defaults to ALIGN_MEAN."
+        },
+        "alignmentPeriod": {
+          "type": "string",
+          "description": "Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto."
+        },
+        "aliasBy": {
+          "type": "string",
+          "description": "Aliases can be set to modify the legend labels. e.g. {{metric.label.xxx}}. See docs for more detail."
+        },
+        "editorMode": {
+          "type": "string"
+        },
+        "metricType": {
+          "type": "string"
+        },
+        "crossSeriesReducer": {
+          "type": "string",
+          "description": "Reducer applied across a set of time-series values. Defaults to REDUCE_NONE."
+        },
+        "groupBys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of labels to group data by."
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of filters to query data by. Labels that can be filtered on are defined by the metric."
+        },
+        "metricKind": {
+          "$ref": "#/definitions/MetricKind"
+        },
+        "valueType": {
+          "type": "string"
+        },
+        "view": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string",
+          "description": "MQL query to be executed."
+        },
+        "preprocessor": {
+          "$ref": "#/definitions/PreprocessorType",
+          "description": "Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters"
+        },
+        "graphPeriod": {
+          "type": "string",
+          "description": "To disable the graphPeriod, it should explictly be set to 'disabled'.",
+          "default": "disabled"
+        }
+      },
+      "description": "@deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties."
+    },
+    "MetricKind": {
+      "enum": [
+        "METRIC_KIND_UNSPECIFIED",
+        "GAUGE",
+        "DELTA",
+        "CUMULATIVE"
+      ]
+    },
+    "ValueTypes": {
+      "enum": [
+        "VALUE_TYPE_UNSPECIFIED",
+        "BOOL",
+        "INT64",
+        "DOUBLE",
+        "STRING",
+        "DISTRIBUTION",
+        "MONEY"
+      ]
+    },
+    "AlignmentTypes": {
+      "enum": [
+        "ALIGN_DELTA",
+        "ALIGN_RATE",
+        "ALIGN_INTERPOLATE",
+        "ALIGN_NEXT_OLDER",
+        "ALIGN_MIN",
+        "ALIGN_MAX",
+        "ALIGN_MEAN",
+        "ALIGN_COUNT",
+        "ALIGN_SUM",
+        "ALIGN_STDDEV",
+        "ALIGN_COUNT_TRUE",
+        "ALIGN_COUNT_FALSE",
+        "ALIGN_FRACTION_TRUE",
+        "ALIGN_PERCENTILE_99",
+        "ALIGN_PERCENTILE_95",
+        "ALIGN_PERCENTILE_50",
+        "ALIGN_PERCENTILE_05",
+        "ALIGN_PERCENT_CHANGE",
+        "ALIGN_NONE"
+      ]
+    },
+    "LegacyCloudMonitoringAnnotationQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projectName",
+        "metricType",
+        "refId",
+        "filters",
+        "metricKind",
+        "valueType",
+        "title",
+        "text"
+      ],
+      "properties": {
+        "projectName": {
+          "type": "string",
+          "description": "GCP project to execute the query against."
+        },
+        "metricType": {
+          "type": "string"
+        },
+        "refId": {
+          "type": "string",
+          "description": "Query refId."
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of filters to query data by. Labels that can be filtered on are defined by the metric."
+        },
+        "metricKind": {
+          "$ref": "#/definitions/MetricKind"
+        },
+        "valueType": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "description": "Annotation title."
+        },
+        "text": {
+          "type": "string",
+          "description": "Annotation text."
+        }
+      },
+      "description": "@deprecated Use TimeSeriesList instead. Legacy annotation query properties for migration purposes."
+    },
+    "Filter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "operator",
+        "value"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Filter key."
+        },
+        "operator": {
+          "type": "string",
+          "description": "Filter operator."
+        },
+        "value": {
+          "type": "string",
+          "description": "Filter value."
+        },
+        "condition": {
+          "type": "string",
+          "description": "Filter condition."
+        }
+      },
+      "description": "Query filter representation."
+    },
+    "MetricFindQueryTypes": {
+      "enum": [
+        "projects",
+        "services",
+        "defaultProject",
+        "metricTypes",
+        "labelKeys",
+        "labelValues",
+        "resourceTypes",
+        "aggregations",
+        "aligners",
+        "alignmentPeriods",
+        "selectors",
+        "sloServices",
+        "slo"
+      ]
+    }
+  }
+}
