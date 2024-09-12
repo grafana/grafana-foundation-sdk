@@ -14,16 +14,16 @@ final class VariantConfig
     switch ($input["type"]) {
     case "classic_conditions":
         return TypeClassicConditions::fromArray($input);
-    case "threshold":
-        return TypeThreshold::fromArray($input);
-    case "sql":
-        return TypeSql::fromArray($input);
     case "math":
         return TypeMath::fromArray($input);
     case "reduce":
         return TypeReduce::fromArray($input);
     case "resample":
         return TypeResample::fromArray($input);
+    case "sql":
+        return TypeSql::fromArray($input);
+    case "threshold":
+        return TypeThreshold::fromArray($input);
     default:
         throw new \ValueError('can not parse disjunction from array');
 }
