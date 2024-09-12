@@ -12,10 +12,10 @@ final class VariantConfig
     \assert(is_array($input), 'expected disjunction value to be an array');
 
     switch ($input["queryMode"]) {
-    case "Logs":
-        return CloudWatchLogsQuery::fromArray($input);
     case "Annotations":
         return CloudWatchAnnotationQuery::fromArray($input);
+    case "Logs":
+        return CloudWatchLogsQuery::fromArray($input);
     case "Metrics":
         return CloudWatchMetricsQuery::fromArray($input);
     default:

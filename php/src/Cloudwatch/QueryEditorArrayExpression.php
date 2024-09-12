@@ -34,16 +34,16 @@ class QueryEditorArrayExpression implements \JsonSerializable
         \assert(is_array($input), 'expected disjunction value to be an array');
     
         switch ($input["type"]) {
-        case "groupBy":
-            return QueryEditorGroupByExpression::fromArray($input);
+        case "and":
+            return QueryEditorArrayExpression::fromArray($input);
         case "function":
             return QueryEditorFunctionExpression::fromArray($input);
         case "functionParameter":
             return QueryEditorFunctionParameterExpression::fromArray($input);
+        case "groupBy":
+            return QueryEditorGroupByExpression::fromArray($input);
         case "operator":
             return QueryEditorOperatorExpression::fromArray($input);
-        case "and":
-            return QueryEditorArrayExpression::fromArray($input);
         case "or":
             return QueryEditorArrayExpression::fromArray($input);
         case "property":
