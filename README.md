@@ -16,7 +16,7 @@ of versions of Grafana, in the following languages:
 > [schemas exposed by Grafana][kind-registry].
 
 > [!TIP]
-> This branch contains **types and builders generated for Grafana `v11.1.x`.**
+> This branch contains **types and builders generated for Grafana `v11.2.x`.**
 
 ## Navigating the SDK
 
