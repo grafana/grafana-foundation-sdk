@@ -151,6 +151,7 @@ export interface AnnotationQuery {
 	target?: AnnotationTarget;
 	// TODO -- this should not exist here, it is based on the --grafana-- datasource
 	type?: string;
+	expr?: string;
 }
 
 export const defaultAnnotationQuery = (): AnnotationQuery => ({

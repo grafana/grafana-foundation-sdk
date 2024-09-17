@@ -101,5 +101,11 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    public function expr(string $expr): static
+    {
+        $this->internal->expr = $expr;
+    
+        return $this;
+    }
 
 }

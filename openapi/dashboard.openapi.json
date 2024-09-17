@@ -288,6 +288,9 @@
           "type": {
             "type": "string",
             "description": "TODO -- this should not exist here, it is based on the --grafana-- datasource"
+          },
+          "expr": {
+            "type": "string"
           }
         },
         "description": "TODO docs\nFROM: AnnotationQuery in grafana-data/src/types/annotations.ts"

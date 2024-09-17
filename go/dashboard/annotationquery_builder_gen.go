@@ -108,6 +108,12 @@ func (builder *AnnotationQueryBuilder) Type(typeArg string) *AnnotationQueryBuil
 	return builder
 }
 
+func (builder *AnnotationQueryBuilder) Expr(expr string) *AnnotationQueryBuilder {
+	builder.internal.Expr = &expr
+
+	return builder
+}
+
 func (builder *AnnotationQueryBuilder) applyDefaults() {
 	builder.Enable(true)
 	builder.Hide(false)

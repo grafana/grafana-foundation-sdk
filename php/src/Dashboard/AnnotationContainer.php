@@ -33,7 +33,7 @@ class AnnotationContainer implements \JsonSerializable
         $data = $inputData;
         return new self(
             list: array_filter(array_map((function($input) {
-    	/** @var array{name?: string, datasource?: mixed, enable?: bool, hide?: bool, iconColor?: string, filter?: mixed, target?: mixed, type?: string} */
+    	/** @var array{name?: string, datasource?: mixed, enable?: bool, hide?: bool, iconColor?: string, filter?: mixed, target?: mixed, type?: string, expr?: string} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\AnnotationQuery::fromArray($val);
     }), $data["list"] ?? [])),
