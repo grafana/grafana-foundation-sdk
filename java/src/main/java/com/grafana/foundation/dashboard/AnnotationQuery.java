@@ -45,6 +45,9 @@ public class AnnotationQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("builtIn")
     public Double builtIn;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("expr")
+    public String expr;
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -103,6 +106,11 @@ public class AnnotationQuery {
     
     public Builder builtIn(Double builtIn) {
     this.internal.builtIn = builtIn;
+        return this;
+    }
+    
+    public Builder expr(String expr) {
+    this.internal.expr = expr;
         return this;
     }
     public AnnotationQuery build() {
