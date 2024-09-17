@@ -335,8 +335,9 @@ class AnnotationQuery:
     type_val: typing.Optional[str]
     # Set to 1 for the standard annotation query all dashboards have by default.
     built_in: typing.Optional[float]
+    expr: typing.Optional[str]
 
-    def __init__(self, name: str = "", datasource: typing.Optional['DataSourceRef'] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional['AnnotationTarget'] = None, type_val: typing.Optional[str] = None, built_in: typing.Optional[float] = 0):
+    def __init__(self, name: str = "", datasource: typing.Optional['DataSourceRef'] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional['AnnotationTarget'] = None, type_val: typing.Optional[str] = None, built_in: typing.Optional[float] = 0, expr: typing.Optional[str] = None):
         self.name = name
         self.datasource = datasource if datasource is not None else DataSourceRef()
         self.enable = enable
@@ -346,6 +347,7 @@ class AnnotationQuery:
         self.target = target
         self.type_val = type_val
         self.built_in = built_in
+        self.expr = expr
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -364,6 +366,8 @@ class AnnotationQuery:
             payload["type"] = self.type_val
         if self.built_in is not None:
             payload["builtIn"] = self.built_in
+        if self.expr is not None:
+            payload["expr"] = self.expr
         return payload
 
     @classmethod
@@ -387,7 +391,9 @@ class AnnotationQuery:
         if "type" in data:
             args["type_val"] = data["type"]
         if "builtIn" in data:
-            args["built_in"] = data["builtIn"]        
+            args["built_in"] = data["builtIn"]
+        if "expr" in data:
+            args["expr"] = data["expr"]        
 
         return cls(**args)
 
