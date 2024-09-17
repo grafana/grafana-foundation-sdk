@@ -549,6 +549,11 @@ class AnnotationQuery(cogbuilder.Builder[dashboard.AnnotationQuery]):
     
         return self
     
+    def expr(self, expr: str) -> typing.Self:        
+        self._internal.expr = expr
+    
+        return self
+    
 
 class DashboardLink(cogbuilder.Builder[dashboard.DashboardLink]):    
     """

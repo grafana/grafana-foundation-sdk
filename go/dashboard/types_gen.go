@@ -133,6 +133,7 @@ type AnnotationQuery struct {
 	Target *AnnotationTarget `json:"target,omitempty"`
 	// TODO -- this should not exist here, it is based on the --grafana-- datasource
 	Type *string `json:"type,omitempty"`
+	Expr *string `json:"expr,omitempty"`
 }
 
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.

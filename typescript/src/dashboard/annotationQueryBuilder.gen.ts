@@ -66,4 +66,9 @@ export class AnnotationQueryBuilder implements cog.Builder<dashboard.AnnotationQ
         this.internal.type = type;
         return this;
     }
+
+    expr(expr: string): this {
+        this.internal.expr = expr;
+        return this;
+    }
 }

@@ -331,8 +331,9 @@ class AnnotationQuery:
     target: typing.Optional['AnnotationTarget']
     # TODO -- this should not exist here, it is based on the --grafana-- datasource
     type_val: typing.Optional[str]
+    expr: typing.Optional[str]
 
-    def __init__(self, name: str = "", datasource: typing.Optional['DataSourceRef'] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional['AnnotationTarget'] = None, type_val: typing.Optional[str] = None):
+    def __init__(self, name: str = "", datasource: typing.Optional['DataSourceRef'] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional['AnnotationTarget'] = None, type_val: typing.Optional[str] = None, expr: typing.Optional[str] = None):
         self.name = name
         self.datasource = datasource if datasource is not None else DataSourceRef()
         self.enable = enable
@@ -341,6 +342,7 @@ class AnnotationQuery:
         self.filter_val = filter_val
         self.target = target
         self.type_val = type_val
+        self.expr = expr
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -357,6 +359,8 @@ class AnnotationQuery:
             payload["target"] = self.target
         if self.type_val is not None:
             payload["type"] = self.type_val
+        if self.expr is not None:
+            payload["expr"] = self.expr
         return payload
 
     @classmethod
@@ -378,7 +382,9 @@ class AnnotationQuery:
         if "target" in data:
             args["target"] = AnnotationTarget.from_json(data["target"])
         if "type" in data:
-            args["type_val"] = data["type"]        
+            args["type_val"] = data["type"]
+        if "expr" in data:
+            args["expr"] = data["expr"]        
 
         return cls(**args)
 
