@@ -54,6 +54,8 @@ class AnnotationQuery implements \JsonSerializable
      */
     public ?float $builtIn;
 
+    public ?string $expr;
+
     /**
      * @param string|null $name
      * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
@@ -64,8 +66,9 @@ class AnnotationQuery implements \JsonSerializable
      * @param \Grafana\Foundation\Dashboard\AnnotationTarget|null $target
      * @param string|null $type
      * @param float|null $builtIn
+     * @param string|null $expr
      */
-    public function __construct(?string $name = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?bool $enable = null, ?bool $hide = null, ?string $iconColor = null, ?\Grafana\Foundation\Dashboard\AnnotationPanelFilter $filter = null, ?\Grafana\Foundation\Dashboard\AnnotationTarget $target = null, ?string $type = null, ?float $builtIn = null)
+    public function __construct(?string $name = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?bool $enable = null, ?bool $hide = null, ?string $iconColor = null, ?\Grafana\Foundation\Dashboard\AnnotationPanelFilter $filter = null, ?\Grafana\Foundation\Dashboard\AnnotationTarget $target = null, ?string $type = null, ?float $builtIn = null, ?string $expr = null)
     {
         $this->name = $name ?: "";
         $this->datasource = $datasource ?: new \Grafana\Foundation\Dashboard\DataSourceRef();
@@ -76,6 +79,7 @@ class AnnotationQuery implements \JsonSerializable
         $this->target = $target;
         $this->type = $type;
         $this->builtIn = $builtIn;
+        $this->expr = $expr;
     }
 
     /**
@@ -83,7 +87,7 @@ class AnnotationQuery implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{name?: string, datasource?: mixed, enable?: bool, hide?: bool, iconColor?: string, filter?: mixed, target?: mixed, type?: string, builtIn?: float} $inputData */
+        /** @var array{name?: string, datasource?: mixed, enable?: bool, hide?: bool, iconColor?: string, filter?: mixed, target?: mixed, type?: string, builtIn?: float, expr?: string} $inputData */
         $data = $inputData;
         return new self(
             name: $data["name"] ?? null,
@@ -107,6 +111,7 @@ class AnnotationQuery implements \JsonSerializable
     })($data["target"]) : null,
             type: $data["type"] ?? null,
             builtIn: $data["builtIn"] ?? null,
+            expr: $data["expr"] ?? null,
         );
     }
 
@@ -135,6 +140,9 @@ class AnnotationQuery implements \JsonSerializable
         }
         if (isset($this->builtIn)) {
             $data["builtIn"] = $this->builtIn;
+        }
+        if (isset($this->expr)) {
+            $data["expr"] = $this->expr;
         }
         return $data;
     }
