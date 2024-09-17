@@ -278,6 +278,9 @@
             "type": "number",
             "description": "Set to 1 for the standard annotation query all dashboards have by default.",
             "default": 0
+          },
+          "expr": {
+            "type": "string"
           }
         },
         "description": "TODO docs\nFROM: AnnotationQuery in grafana-data/src/types/annotations.ts"
