@@ -132,6 +132,7 @@ type AnnotationQuery struct {
 	Type *string `json:"type,omitempty"`
 	// Set to 1 for the standard annotation query all dashboards have by default.
 	BuiltIn *float64 `json:"builtIn,omitempty"`
+	Expr    *string  `json:"expr,omitempty"`
 }
 
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
