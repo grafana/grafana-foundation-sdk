@@ -151,6 +151,7 @@ export interface AnnotationQuery {
 	type?: string;
 	// Set to 1 for the standard annotation query all dashboards have by default.
 	builtIn?: number;
+	expr?: string;
 }
 
 export const defaultAnnotationQuery = (): AnnotationQuery => ({
