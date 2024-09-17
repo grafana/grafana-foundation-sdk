@@ -115,6 +115,12 @@ func (builder *AnnotationQueryBuilder) BuiltIn(builtIn float64) *AnnotationQuery
 	return builder
 }
 
+func (builder *AnnotationQueryBuilder) Expr(expr string) *AnnotationQueryBuilder {
+	builder.internal.Expr = &expr
+
+	return builder
+}
+
 func (builder *AnnotationQueryBuilder) applyDefaults() {
 	builder.Enable(true)
 	builder.Hide(false)
