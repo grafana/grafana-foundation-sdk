@@ -49,11 +49,11 @@ func requestRateTimeseries() *timeseries.PanelBuilder {
 	return defaultTimeseries().
 		Title("Request rate").
 		Description("Number of requests handled by the service, per second.").
-		Datasource(grafanaDatasourceRef()).
 		Unit("reqps").
 		WithTarget(
 			testdata.NewDataqueryBuilder().
-				QueryType("randomWalk"),
+				QueryType("randomWalk").
+				Datasource(grafanaDatasourceRef()),
 		)
 }
 
@@ -61,11 +61,11 @@ func errorRateTimeseries() *timeseries.PanelBuilder {
 	return defaultTimeseries().
 		Title("Error rate").
 		Description("Number of failed requests, per second.").
-		Datasource(grafanaDatasourceRef()).
 		Unit("reqps").
 		WithTarget(
 			testdata.NewDataqueryBuilder().
-				QueryType("randomWalk"),
+				QueryType("randomWalk").
+				Datasource(grafanaDatasourceRef()),
 		)
 }
 
@@ -77,6 +77,7 @@ func durationTimeseries() *timeseries.PanelBuilder {
 		Unit("s").
 		WithTarget(
 			testdata.NewDataqueryBuilder().
-				QueryType("randomWalk"),
+				QueryType("randomWalk").
+				Datasource(grafanaDatasourceRef()),
 		)
 }
