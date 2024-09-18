@@ -7,16 +7,13 @@ import com.grafana.foundation.timeseries.PanelBuilder;
 public class Common {
 
     static PanelBuilder defaultTimeSeries() {
-        BoolOrFloat64 spanNulls = new BoolOrFloat64();
-        spanNulls.bool = false;
-
         return new PanelBuilder().
                 lineWidth(1.0).
                 fillOpacity(30.0).
                 showPoints(VisibilityMode.NEVER).
                 drawStyle(GraphDrawStyle.LINE).
                 gradientMode(GraphGradientMode.OPACITY).
-                spanNulls(spanNulls).
+                spanNulls(BoolOrFloat64.createBool(false)).
                 axisBorderShow(false).
                 lineInterpolation(LineInterpolation.SMOOTH).
                 legend(new VizLegendOptions.Builder().

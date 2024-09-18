@@ -17,7 +17,7 @@
     <dependency>
       <groupId>com.grafana</groupId>
       <artifactId>grafana-foundation-sdk</artifactId>
-      <version>11.0.0-1722522290</version>
+      <version>11.2.0-1726580554</version>
     </dependency>
   </dependencies>
 

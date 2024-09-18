@@ -3,6 +3,7 @@ package agent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.grafana.foundation.dashboard.*;
 
+import javax.print.DocFlavor;
 import java.util.List;
 
 import static agent.Common.datasourceRef;
@@ -63,17 +64,14 @@ public class Main {
     }
 
     private static VariableModel.QueryVariableBuilder jobQueryBuilder() {
-        StringOrMap query = new StringOrMap();
-        query.string = "label_values(agent_build_info, job)";
-
         VariableOption option = new VariableOption();
         option.selected = true;
-        option.text = arrayOfString("All");
-        option.value = arrayOfString("$__all");
+        option.text = StringOrArrayOfString.createArrayOfString(List.of("All"));
+        option.value = StringOrArrayOfString.createArrayOfString(List.of("$__all"));
 
         return new VariableModel.QueryVariableBuilder("job").
                 label("Job").
-                query(query).
+                query(StringOrMap.createString("label_values(agent_build_info, job)")).
                 datasource(datasourceRef()).
                 current(option).
                 refresh(VariableRefresh.ON_TIME_RANGE_CHANGED).
@@ -83,28 +81,19 @@ public class Main {
     }
 
     private static VariableModel.QueryVariableBuilder instanceQueryBuilder() {
-        StringOrMap query = new StringOrMap();
-        query.string = "label_values(agent_build_info{job=~\\\"$job\\\"}, instance)";
-
         VariableOption option = new VariableOption();
         option.selected = true;
-        option.text = arrayOfString("All");
-        option.value = arrayOfString("$__all");
+        option.text = StringOrArrayOfString.createArrayOfString(List.of("All"));
+        option.value = StringOrArrayOfString.createArrayOfString(List.of("$__all"));
 
         return new VariableModel.QueryVariableBuilder("instance").
                 label("Instance").
-                query(query).
+                query(StringOrMap.createString("label_values(agent_build_info{job=~\\\"$job\\\"}, instance)")).
                 datasource(datasourceRef()).
                 current(option).
                 refresh(VariableRefresh.ON_TIME_RANGE_CHANGED).
                 sort(VariableSort.ALPHABETICAL_ASC).
                 multi(true).
                 includeAll(true);
-    }
-
-    private static StringOrArrayOfString arrayOfString(String value) {
-        StringOrArrayOfString array = new StringOrArrayOfString();
-        array.arrayOfString = List.of(value);
-        return array;
     }
 }

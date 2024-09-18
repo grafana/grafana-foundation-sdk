@@ -27,9 +27,6 @@ public class Common {
     }
 
     static PanelBuilder defaultTimeSeries() {
-        BoolOrFloat64 spanNulls = new BoolOrFloat64();
-        spanNulls.bool = false;
-
         return new PanelBuilder().
                 height(7).
                 span(12).
@@ -51,7 +48,7 @@ public class Common {
                 thresholdsStyle(new GraphThresholdsStyleConfig.Builder().
                         mode(GraphThresholdsStyleMode.OFF)
                 ).
-                spanNulls(spanNulls)
+                spanNulls(BoolOrFloat64.createBool(false))
                 .axisBorderShow(false);
     }
 }
