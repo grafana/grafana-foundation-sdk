@@ -23,7 +23,7 @@ public class TimeIntervalTimeRange {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TimeIntervalTimeRange> {
-        private final TimeIntervalTimeRange internal;
+        protected final TimeIntervalTimeRange internal;
         
         public Builder() {
             this.internal = new TimeIntervalTimeRange();

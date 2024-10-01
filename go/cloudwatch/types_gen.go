@@ -8,6 +8,7 @@ import (
 	"fmt"
 
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 type MetricStat struct {
@@ -29,6 +30,88 @@ type MetricStat struct {
 	Statistic *string `json:"statistic,omitempty"`
 	// @deprecated use statistic
 	Statistics []string `json:"statistics,omitempty"`
+}
+
+func (resource MetricStat) Equals(other MetricStat) bool {
+	if resource.Region != other.Region {
+		return false
+	}
+	if resource.Namespace != other.Namespace {
+		return false
+	}
+	if resource.MetricName == nil && other.MetricName != nil || resource.MetricName != nil && other.MetricName == nil {
+		return false
+	}
+
+	if resource.MetricName != nil {
+		if *resource.MetricName != *other.MetricName {
+			return false
+		}
+	}
+	if resource.Dimensions == nil && other.Dimensions != nil || resource.Dimensions != nil && other.Dimensions == nil {
+		return false
+	}
+
+	if resource.Dimensions != nil {
+
+		if len(*resource.Dimensions) != len(*other.Dimensions) {
+			return false
+		}
+
+		for key1 := range *resource.Dimensions {
+			if !(*resource.Dimensions)[key1].Equals((*other.Dimensions)[key1]) {
+				return false
+			}
+		}
+	}
+	if resource.MatchExact == nil && other.MatchExact != nil || resource.MatchExact != nil && other.MatchExact == nil {
+		return false
+	}
+
+	if resource.MatchExact != nil {
+		if *resource.MatchExact != *other.MatchExact {
+			return false
+		}
+	}
+	if resource.Period == nil && other.Period != nil || resource.Period != nil && other.Period == nil {
+		return false
+	}
+
+	if resource.Period != nil {
+		if *resource.Period != *other.Period {
+			return false
+		}
+	}
+	if resource.AccountId == nil && other.AccountId != nil || resource.AccountId != nil && other.AccountId == nil {
+		return false
+	}
+
+	if resource.AccountId != nil {
+		if *resource.AccountId != *other.AccountId {
+			return false
+		}
+	}
+	if resource.Statistic == nil && other.Statistic != nil || resource.Statistic != nil && other.Statistic == nil {
+		return false
+	}
+
+	if resource.Statistic != nil {
+		if *resource.Statistic != *other.Statistic {
+			return false
+		}
+	}
+
+	if len(resource.Statistics) != len(other.Statistics) {
+		return false
+	}
+
+	for i1 := range resource.Statistics {
+		if resource.Statistics[i1] != other.Statistics[i1] {
+			return false
+		}
+	}
+
+	return true
 }
 
 // A name/value pair that is part of the identity of a metric. For example, you can get statistics for a specific EC2 instance by specifying the InstanceId dimension when you search for metrics.
@@ -84,12 +167,205 @@ type CloudWatchMetricsQuery struct {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	Datasource any `json:"datasource,omitempty"`
+	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
 	// @deprecated use statistic
 	Statistics []string `json:"statistics,omitempty"`
 }
 
 func (resource CloudWatchMetricsQuery) ImplementsDataqueryVariant() {}
+
+func (resource CloudWatchMetricsQuery) DataqueryType() string {
+	return "cloudwatch"
+}
+
+func (resource CloudWatchMetricsQuery) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(CloudWatchMetricsQuery)
+	if !ok {
+		return false
+	}
+	if resource.QueryMode != other.QueryMode {
+		return false
+	}
+	if resource.MetricQueryType == nil && other.MetricQueryType != nil || resource.MetricQueryType != nil && other.MetricQueryType == nil {
+		return false
+	}
+
+	if resource.MetricQueryType != nil {
+		if *resource.MetricQueryType != *other.MetricQueryType {
+			return false
+		}
+	}
+	if resource.MetricEditorMode == nil && other.MetricEditorMode != nil || resource.MetricEditorMode != nil && other.MetricEditorMode == nil {
+		return false
+	}
+
+	if resource.MetricEditorMode != nil {
+		if *resource.MetricEditorMode != *other.MetricEditorMode {
+			return false
+		}
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Alias == nil && other.Alias != nil || resource.Alias != nil && other.Alias == nil {
+		return false
+	}
+
+	if resource.Alias != nil {
+		if *resource.Alias != *other.Alias {
+			return false
+		}
+	}
+	if resource.Label == nil && other.Label != nil || resource.Label != nil && other.Label == nil {
+		return false
+	}
+
+	if resource.Label != nil {
+		if *resource.Label != *other.Label {
+			return false
+		}
+	}
+	if resource.Expression == nil && other.Expression != nil || resource.Expression != nil && other.Expression == nil {
+		return false
+	}
+
+	if resource.Expression != nil {
+		if *resource.Expression != *other.Expression {
+			return false
+		}
+	}
+	if resource.SqlExpression == nil && other.SqlExpression != nil || resource.SqlExpression != nil && other.SqlExpression == nil {
+		return false
+	}
+
+	if resource.SqlExpression != nil {
+		if *resource.SqlExpression != *other.SqlExpression {
+			return false
+		}
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.QueryType == nil && other.QueryType != nil || resource.QueryType != nil && other.QueryType == nil {
+		return false
+	}
+
+	if resource.QueryType != nil {
+		if *resource.QueryType != *other.QueryType {
+			return false
+		}
+	}
+	if resource.Region != other.Region {
+		return false
+	}
+	if resource.Namespace != other.Namespace {
+		return false
+	}
+	if resource.MetricName == nil && other.MetricName != nil || resource.MetricName != nil && other.MetricName == nil {
+		return false
+	}
+
+	if resource.MetricName != nil {
+		if *resource.MetricName != *other.MetricName {
+			return false
+		}
+	}
+	if resource.Dimensions == nil && other.Dimensions != nil || resource.Dimensions != nil && other.Dimensions == nil {
+		return false
+	}
+
+	if resource.Dimensions != nil {
+
+		if len(*resource.Dimensions) != len(*other.Dimensions) {
+			return false
+		}
+
+		for key1 := range *resource.Dimensions {
+			if !(*resource.Dimensions)[key1].Equals((*other.Dimensions)[key1]) {
+				return false
+			}
+		}
+	}
+	if resource.MatchExact == nil && other.MatchExact != nil || resource.MatchExact != nil && other.MatchExact == nil {
+		return false
+	}
+
+	if resource.MatchExact != nil {
+		if *resource.MatchExact != *other.MatchExact {
+			return false
+		}
+	}
+	if resource.Period == nil && other.Period != nil || resource.Period != nil && other.Period == nil {
+		return false
+	}
+
+	if resource.Period != nil {
+		if *resource.Period != *other.Period {
+			return false
+		}
+	}
+	if resource.AccountId == nil && other.AccountId != nil || resource.AccountId != nil && other.AccountId == nil {
+		return false
+	}
+
+	if resource.AccountId != nil {
+		if *resource.AccountId != *other.AccountId {
+			return false
+		}
+	}
+	if resource.Statistic == nil && other.Statistic != nil || resource.Statistic != nil && other.Statistic == nil {
+		return false
+	}
+
+	if resource.Statistic != nil {
+		if *resource.Statistic != *other.Statistic {
+			return false
+		}
+	}
+	if resource.Sql == nil && other.Sql != nil || resource.Sql != nil && other.Sql == nil {
+		return false
+	}
+
+	if resource.Sql != nil {
+		if !resource.Sql.Equals(*other.Sql) {
+			return false
+		}
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+
+	if len(resource.Statistics) != len(other.Statistics) {
+		return false
+	}
+
+	for i1 := range resource.Statistics {
+		if resource.Statistics[i1] != other.Statistics[i1] {
+			return false
+		}
+	}
+
+	return true
+}
 
 type CloudWatchQueryMode string
 
@@ -130,10 +406,105 @@ type SQLExpression struct {
 	Limit *int64 `json:"limit,omitempty"`
 }
 
+func (resource SQLExpression) Equals(other SQLExpression) bool {
+	if resource.Select == nil && other.Select != nil || resource.Select != nil && other.Select == nil {
+		return false
+	}
+
+	if resource.Select != nil {
+		if !resource.Select.Equals(*other.Select) {
+			return false
+		}
+	}
+	if resource.From == nil && other.From != nil || resource.From != nil && other.From == nil {
+		return false
+	}
+
+	if resource.From != nil {
+		if !resource.From.Equals(*other.From) {
+			return false
+		}
+	}
+	if resource.Where == nil && other.Where != nil || resource.Where != nil && other.Where == nil {
+		return false
+	}
+
+	if resource.Where != nil {
+		if !resource.Where.Equals(*other.Where) {
+			return false
+		}
+	}
+	if resource.GroupBy == nil && other.GroupBy != nil || resource.GroupBy != nil && other.GroupBy == nil {
+		return false
+	}
+
+	if resource.GroupBy != nil {
+		if !resource.GroupBy.Equals(*other.GroupBy) {
+			return false
+		}
+	}
+	if resource.OrderBy == nil && other.OrderBy != nil || resource.OrderBy != nil && other.OrderBy == nil {
+		return false
+	}
+
+	if resource.OrderBy != nil {
+		if !resource.OrderBy.Equals(*other.OrderBy) {
+			return false
+		}
+	}
+	if resource.OrderByDirection == nil && other.OrderByDirection != nil || resource.OrderByDirection != nil && other.OrderByDirection == nil {
+		return false
+	}
+
+	if resource.OrderByDirection != nil {
+		if *resource.OrderByDirection != *other.OrderByDirection {
+			return false
+		}
+	}
+	if resource.Limit == nil && other.Limit != nil || resource.Limit != nil && other.Limit == nil {
+		return false
+	}
+
+	if resource.Limit != nil {
+		if *resource.Limit != *other.Limit {
+			return false
+		}
+	}
+
+	return true
+}
+
 type QueryEditorFunctionExpression struct {
 	Type       string                                   `json:"type"`
 	Name       *string                                  `json:"name,omitempty"`
 	Parameters []QueryEditorFunctionParameterExpression `json:"parameters,omitempty"`
+}
+
+func (resource QueryEditorFunctionExpression) Equals(other QueryEditorFunctionExpression) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
+		return false
+	}
+
+	if resource.Name != nil {
+		if *resource.Name != *other.Name {
+			return false
+		}
+	}
+
+	if len(resource.Parameters) != len(other.Parameters) {
+		return false
+	}
+
+	for i1 := range resource.Parameters {
+		if !resource.Parameters[i1].Equals(other.Parameters[i1]) {
+			return false
+		}
+	}
+
+	return true
 }
 
 type QueryEditorExpressionType string
@@ -153,14 +524,53 @@ type QueryEditorFunctionParameterExpression struct {
 	Name *string `json:"name,omitempty"`
 }
 
+func (resource QueryEditorFunctionParameterExpression) Equals(other QueryEditorFunctionParameterExpression) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
+		return false
+	}
+
+	if resource.Name != nil {
+		if *resource.Name != *other.Name {
+			return false
+		}
+	}
+
+	return true
+}
+
 type QueryEditorPropertyExpression struct {
 	Type     string              `json:"type"`
 	Property QueryEditorProperty `json:"property"`
 }
 
+func (resource QueryEditorPropertyExpression) Equals(other QueryEditorPropertyExpression) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if !resource.Property.Equals(other.Property) {
+		return false
+	}
+
+	return true
+}
+
 type QueryEditorGroupByExpression struct {
 	Type     string              `json:"type"`
 	Property QueryEditorProperty `json:"property"`
+}
+
+func (resource QueryEditorGroupByExpression) Equals(other QueryEditorGroupByExpression) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if !resource.Property.Equals(other.Property) {
+		return false
+	}
+
+	return true
 }
 
 type QueryEditorOperatorExpression struct {
@@ -170,10 +580,47 @@ type QueryEditorOperatorExpression struct {
 	Operator QueryEditorOperator `json:"operator"`
 }
 
+func (resource QueryEditorOperatorExpression) Equals(other QueryEditorOperatorExpression) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if !resource.Property.Equals(other.Property) {
+		return false
+	}
+	if !resource.Operator.Equals(other.Operator) {
+		return false
+	}
+
+	return true
+}
+
 // TS type is QueryEditorOperator<T extends QueryEditorOperatorValueType>, extended in veneer
 type QueryEditorOperator struct {
 	Name  *string                                              `json:"name,omitempty"`
 	Value *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType `json:"value,omitempty"`
+}
+
+func (resource QueryEditorOperator) Equals(other QueryEditorOperator) bool {
+	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
+		return false
+	}
+
+	if resource.Name != nil {
+		if *resource.Name != *other.Name {
+			return false
+		}
+	}
+	if resource.Value == nil && other.Value != nil || resource.Value != nil && other.Value == nil {
+		return false
+	}
+
+	if resource.Value != nil {
+		if !resource.Value.Equals(*other.Value) {
+			return false
+		}
+	}
+
+	return true
 }
 
 type QueryEditorOperatorValueType = StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType
@@ -185,6 +632,23 @@ type QueryEditorProperty struct {
 	Name *string                 `json:"name,omitempty"`
 }
 
+func (resource QueryEditorProperty) Equals(other QueryEditorProperty) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
+		return false
+	}
+
+	if resource.Name != nil {
+		if *resource.Name != *other.Name {
+			return false
+		}
+	}
+
+	return true
+}
+
 type QueryEditorPropertyType string
 
 const (
@@ -194,6 +658,24 @@ const (
 type QueryEditorArrayExpression struct {
 	Type        QueryEditorArrayExpressionType `json:"type"`
 	Expressions []QueryEditorExpression        `json:"expressions"`
+}
+
+func (resource QueryEditorArrayExpression) Equals(other QueryEditorArrayExpression) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+
+	if len(resource.Expressions) != len(other.Expressions) {
+		return false
+	}
+
+	for i1 := range resource.Expressions {
+		if !resource.Expressions[i1].Equals(other.Expressions[i1]) {
+			return false
+		}
+	}
+
+	return true
 }
 
 type QueryEditorExpression = QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
@@ -226,10 +708,105 @@ type CloudWatchLogsQuery struct {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	Datasource any `json:"datasource,omitempty"`
+	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
 }
 
 func (resource CloudWatchLogsQuery) ImplementsDataqueryVariant() {}
+
+func (resource CloudWatchLogsQuery) DataqueryType() string {
+	return "cloudwatch"
+}
+
+func (resource CloudWatchLogsQuery) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(CloudWatchLogsQuery)
+	if !ok {
+		return false
+	}
+	if resource.QueryMode != other.QueryMode {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Region != other.Region {
+		return false
+	}
+	if resource.Expression == nil && other.Expression != nil || resource.Expression != nil && other.Expression == nil {
+		return false
+	}
+
+	if resource.Expression != nil {
+		if *resource.Expression != *other.Expression {
+			return false
+		}
+	}
+
+	if len(resource.StatsGroups) != len(other.StatsGroups) {
+		return false
+	}
+
+	for i1 := range resource.StatsGroups {
+		if resource.StatsGroups[i1] != other.StatsGroups[i1] {
+			return false
+		}
+	}
+
+	if len(resource.LogGroups) != len(other.LogGroups) {
+		return false
+	}
+
+	for i1 := range resource.LogGroups {
+		if !resource.LogGroups[i1].Equals(other.LogGroups[i1]) {
+			return false
+		}
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.QueryType == nil && other.QueryType != nil || resource.QueryType != nil && other.QueryType == nil {
+		return false
+	}
+
+	if resource.QueryType != nil {
+		if *resource.QueryType != *other.QueryType {
+			return false
+		}
+	}
+
+	if len(resource.LogGroupNames) != len(other.LogGroupNames) {
+		return false
+	}
+
+	for i1 := range resource.LogGroupNames {
+		if resource.LogGroupNames[i1] != other.LogGroupNames[i1] {
+			return false
+		}
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+
+	return true
+}
 
 type LogGroup struct {
 	// ARN of the log group
@@ -240,6 +817,35 @@ type LogGroup struct {
 	AccountId *string `json:"accountId,omitempty"`
 	// Label of the log group
 	AccountLabel *string `json:"accountLabel,omitempty"`
+}
+
+func (resource LogGroup) Equals(other LogGroup) bool {
+	if resource.Arn != other.Arn {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.AccountId == nil && other.AccountId != nil || resource.AccountId != nil && other.AccountId == nil {
+		return false
+	}
+
+	if resource.AccountId != nil {
+		if *resource.AccountId != *other.AccountId {
+			return false
+		}
+	}
+	if resource.AccountLabel == nil && other.AccountLabel != nil || resource.AccountLabel != nil && other.AccountLabel == nil {
+		return false
+	}
+
+	if resource.AccountLabel != nil {
+		if *resource.AccountLabel != *other.AccountLabel {
+			return false
+		}
+	}
+
+	return true
 }
 
 // Shape of a CloudWatch Annotation query
@@ -289,24 +895,176 @@ type CloudWatchAnnotationQuery struct {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	Datasource any `json:"datasource,omitempty"`
+	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
 	// @deprecated use statistic
 	Statistics []string `json:"statistics,omitempty"`
 }
 
 func (resource CloudWatchAnnotationQuery) ImplementsDataqueryVariant() {}
 
-type CloudWatchQuery = CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
+func (resource CloudWatchAnnotationQuery) DataqueryType() string {
+	return "cloudwatch"
+}
 
-func (resource CloudWatchQuery) ImplementsDataqueryVariant() {}
+func (resource CloudWatchAnnotationQuery) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(CloudWatchAnnotationQuery)
+	if !ok {
+		return false
+	}
+	if resource.QueryMode != other.QueryMode {
+		return false
+	}
+	if resource.PrefixMatching == nil && other.PrefixMatching != nil || resource.PrefixMatching != nil && other.PrefixMatching == nil {
+		return false
+	}
+
+	if resource.PrefixMatching != nil {
+		if *resource.PrefixMatching != *other.PrefixMatching {
+			return false
+		}
+	}
+	if resource.ActionPrefix == nil && other.ActionPrefix != nil || resource.ActionPrefix != nil && other.ActionPrefix == nil {
+		return false
+	}
+
+	if resource.ActionPrefix != nil {
+		if *resource.ActionPrefix != *other.ActionPrefix {
+			return false
+		}
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.QueryType == nil && other.QueryType != nil || resource.QueryType != nil && other.QueryType == nil {
+		return false
+	}
+
+	if resource.QueryType != nil {
+		if *resource.QueryType != *other.QueryType {
+			return false
+		}
+	}
+	if resource.Region != other.Region {
+		return false
+	}
+	if resource.Namespace != other.Namespace {
+		return false
+	}
+	if resource.MetricName == nil && other.MetricName != nil || resource.MetricName != nil && other.MetricName == nil {
+		return false
+	}
+
+	if resource.MetricName != nil {
+		if *resource.MetricName != *other.MetricName {
+			return false
+		}
+	}
+	if resource.Dimensions == nil && other.Dimensions != nil || resource.Dimensions != nil && other.Dimensions == nil {
+		return false
+	}
+
+	if resource.Dimensions != nil {
+
+		if len(*resource.Dimensions) != len(*other.Dimensions) {
+			return false
+		}
+
+		for key1 := range *resource.Dimensions {
+			if !(*resource.Dimensions)[key1].Equals((*other.Dimensions)[key1]) {
+				return false
+			}
+		}
+	}
+	if resource.MatchExact == nil && other.MatchExact != nil || resource.MatchExact != nil && other.MatchExact == nil {
+		return false
+	}
+
+	if resource.MatchExact != nil {
+		if *resource.MatchExact != *other.MatchExact {
+			return false
+		}
+	}
+	if resource.Period == nil && other.Period != nil || resource.Period != nil && other.Period == nil {
+		return false
+	}
+
+	if resource.Period != nil {
+		if *resource.Period != *other.Period {
+			return false
+		}
+	}
+	if resource.AccountId == nil && other.AccountId != nil || resource.AccountId != nil && other.AccountId == nil {
+		return false
+	}
+
+	if resource.AccountId != nil {
+		if *resource.AccountId != *other.AccountId {
+			return false
+		}
+	}
+	if resource.Statistic == nil && other.Statistic != nil || resource.Statistic != nil && other.Statistic == nil {
+		return false
+	}
+
+	if resource.Statistic != nil {
+		if *resource.Statistic != *other.Statistic {
+			return false
+		}
+	}
+	if resource.AlarmNamePrefix == nil && other.AlarmNamePrefix != nil || resource.AlarmNamePrefix != nil && other.AlarmNamePrefix == nil {
+		return false
+	}
+
+	if resource.AlarmNamePrefix != nil {
+		if *resource.AlarmNamePrefix != *other.AlarmNamePrefix {
+			return false
+		}
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+
+	if len(resource.Statistics) != len(other.Statistics) {
+		return false
+	}
+
+	for i1 := range resource.Statistics {
+		if resource.Statistics[i1] != other.Statistics[i1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+type CloudWatchQuery = CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
 
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "cloudwatch",
 		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := CloudWatchQuery{}
+			dataquery := &CloudWatchQuery{}
 
-			if err := json.Unmarshal(raw, &dataquery); err != nil {
+			if err := json.Unmarshal(raw, dataquery); err != nil {
 				return nil, err
 			}
 
@@ -369,6 +1127,30 @@ func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
+func (resource StringOrArrayOfString) Equals(other StringOrArrayOfString) bool {
+	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
+		return false
+	}
+
+	if resource.String != nil {
+		if *resource.String != *other.String {
+			return false
+		}
+	}
+
+	if len(resource.ArrayOfString) != len(other.ArrayOfString) {
+		return false
+	}
+
+	for i1 := range resource.ArrayOfString {
+		if resource.ArrayOfString[i1] != other.ArrayOfString[i1] {
+			return false
+		}
+	}
+
+	return true
+}
+
 type QueryEditorPropertyExpressionOrQueryEditorFunctionExpression struct {
 	QueryEditorPropertyExpression *QueryEditorPropertyExpression `json:"QueryEditorPropertyExpression,omitempty"`
 	QueryEditorFunctionExpression *QueryEditorFunctionExpression `json:"QueryEditorFunctionExpression,omitempty"`
@@ -421,6 +1203,29 @@ func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Un
 	}
 
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+}
+
+func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Equals(other QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) bool {
+	if resource.QueryEditorPropertyExpression == nil && other.QueryEditorPropertyExpression != nil || resource.QueryEditorPropertyExpression != nil && other.QueryEditorPropertyExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorPropertyExpression != nil {
+		if !resource.QueryEditorPropertyExpression.Equals(*other.QueryEditorPropertyExpression) {
+			return false
+		}
+	}
+	if resource.QueryEditorFunctionExpression == nil && other.QueryEditorFunctionExpression != nil || resource.QueryEditorFunctionExpression != nil && other.QueryEditorFunctionExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorFunctionExpression != nil {
+		if !resource.QueryEditorFunctionExpression.Equals(*other.QueryEditorFunctionExpression) {
+			return false
+		}
+	}
+
+	return true
 }
 
 type StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType struct {
@@ -500,6 +1305,48 @@ func (resource *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) UnmarshalJS
 	return errors.Join(errList...)
 }
 
+func (resource StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) Equals(other StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) bool {
+	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
+		return false
+	}
+
+	if resource.String != nil {
+		if *resource.String != *other.String {
+			return false
+		}
+	}
+	if resource.Bool == nil && other.Bool != nil || resource.Bool != nil && other.Bool == nil {
+		return false
+	}
+
+	if resource.Bool != nil {
+		if *resource.Bool != *other.Bool {
+			return false
+		}
+	}
+	if resource.Int64 == nil && other.Int64 != nil || resource.Int64 != nil && other.Int64 == nil {
+		return false
+	}
+
+	if resource.Int64 != nil {
+		if *resource.Int64 != *other.Int64 {
+			return false
+		}
+	}
+
+	if len(resource.ArrayOfQueryEditorOperatorType) != len(other.ArrayOfQueryEditorOperatorType) {
+		return false
+	}
+
+	for i1 := range resource.ArrayOfQueryEditorOperatorType {
+		if !resource.ArrayOfQueryEditorOperatorType[i1].Equals(other.ArrayOfQueryEditorOperatorType[i1]) {
+			return false
+		}
+	}
+
+	return true
+}
+
 type StringOrBoolOrInt64 struct {
 	String *string `json:"String,omitempty"`
 	Bool   *bool   `json:"Bool,omitempty"`
@@ -560,6 +1407,38 @@ func (resource *StringOrBoolOrInt64) UnmarshalJSON(raw []byte) error {
 	}
 
 	return errors.Join(errList...)
+}
+
+func (resource StringOrBoolOrInt64) Equals(other StringOrBoolOrInt64) bool {
+	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
+		return false
+	}
+
+	if resource.String != nil {
+		if *resource.String != *other.String {
+			return false
+		}
+	}
+	if resource.Bool == nil && other.Bool != nil || resource.Bool != nil && other.Bool == nil {
+		return false
+	}
+
+	if resource.Bool != nil {
+		if *resource.Bool != *other.Bool {
+			return false
+		}
+	}
+	if resource.Int64 == nil && other.Int64 != nil || resource.Int64 != nil && other.Int64 == nil {
+		return false
+	}
+
+	if resource.Int64 != nil {
+		if *resource.Int64 != *other.Int64 {
+			return false
+		}
+	}
+
+	return true
 }
 
 type QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression struct {
@@ -672,10 +1551,76 @@ func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQuery
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
+func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) Equals(other QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) bool {
+	if resource.QueryEditorArrayExpression == nil && other.QueryEditorArrayExpression != nil || resource.QueryEditorArrayExpression != nil && other.QueryEditorArrayExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorArrayExpression != nil {
+		if !resource.QueryEditorArrayExpression.Equals(*other.QueryEditorArrayExpression) {
+			return false
+		}
+	}
+	if resource.QueryEditorPropertyExpression == nil && other.QueryEditorPropertyExpression != nil || resource.QueryEditorPropertyExpression != nil && other.QueryEditorPropertyExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorPropertyExpression != nil {
+		if !resource.QueryEditorPropertyExpression.Equals(*other.QueryEditorPropertyExpression) {
+			return false
+		}
+	}
+	if resource.QueryEditorGroupByExpression == nil && other.QueryEditorGroupByExpression != nil || resource.QueryEditorGroupByExpression != nil && other.QueryEditorGroupByExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorGroupByExpression != nil {
+		if !resource.QueryEditorGroupByExpression.Equals(*other.QueryEditorGroupByExpression) {
+			return false
+		}
+	}
+	if resource.QueryEditorFunctionExpression == nil && other.QueryEditorFunctionExpression != nil || resource.QueryEditorFunctionExpression != nil && other.QueryEditorFunctionExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorFunctionExpression != nil {
+		if !resource.QueryEditorFunctionExpression.Equals(*other.QueryEditorFunctionExpression) {
+			return false
+		}
+	}
+	if resource.QueryEditorFunctionParameterExpression == nil && other.QueryEditorFunctionParameterExpression != nil || resource.QueryEditorFunctionParameterExpression != nil && other.QueryEditorFunctionParameterExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorFunctionParameterExpression != nil {
+		if !resource.QueryEditorFunctionParameterExpression.Equals(*other.QueryEditorFunctionParameterExpression) {
+			return false
+		}
+	}
+	if resource.QueryEditorOperatorExpression == nil && other.QueryEditorOperatorExpression != nil || resource.QueryEditorOperatorExpression != nil && other.QueryEditorOperatorExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorOperatorExpression != nil {
+		if !resource.QueryEditorOperatorExpression.Equals(*other.QueryEditorOperatorExpression) {
+			return false
+		}
+	}
+
+	return true
+}
+
 type CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery struct {
 	CloudWatchMetricsQuery    *CloudWatchMetricsQuery    `json:"CloudWatchMetricsQuery,omitempty"`
 	CloudWatchLogsQuery       *CloudWatchLogsQuery       `json:"CloudWatchLogsQuery,omitempty"`
 	CloudWatchAnnotationQuery *CloudWatchAnnotationQuery `json:"CloudWatchAnnotationQuery,omitempty"`
+}
+
+func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) ImplementsDataqueryVariant() {
+}
+
+func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) DataqueryType() string {
+	return "cloudwatch"
 }
 
 func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) MarshalJSON() ([]byte, error) {
@@ -736,4 +1681,44 @@ func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotatio
 	}
 
 	return fmt.Errorf("could not unmarshal resource with `queryMode = %v`", discriminator)
+}
+
+func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery)
+	if !ok {
+		return false
+	}
+	if resource.CloudWatchMetricsQuery == nil && other.CloudWatchMetricsQuery != nil || resource.CloudWatchMetricsQuery != nil && other.CloudWatchMetricsQuery == nil {
+		return false
+	}
+
+	if resource.CloudWatchMetricsQuery != nil {
+		if !resource.CloudWatchMetricsQuery.Equals(*other.CloudWatchMetricsQuery) {
+			return false
+		}
+	}
+	if resource.CloudWatchLogsQuery == nil && other.CloudWatchLogsQuery != nil || resource.CloudWatchLogsQuery != nil && other.CloudWatchLogsQuery == nil {
+		return false
+	}
+
+	if resource.CloudWatchLogsQuery != nil {
+		if !resource.CloudWatchLogsQuery.Equals(*other.CloudWatchLogsQuery) {
+			return false
+		}
+	}
+	if resource.CloudWatchAnnotationQuery == nil && other.CloudWatchAnnotationQuery != nil || resource.CloudWatchAnnotationQuery != nil && other.CloudWatchAnnotationQuery == nil {
+		return false
+	}
+
+	if resource.CloudWatchAnnotationQuery != nil {
+		if !resource.CloudWatchAnnotationQuery.Equals(*other.CloudWatchAnnotationQuery) {
+			return false
+		}
+	}
+
+	return true
 }

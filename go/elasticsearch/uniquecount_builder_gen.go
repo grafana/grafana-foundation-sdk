@@ -52,11 +52,13 @@ func (builder *UniqueCountBuilder) Id(id string) *UniqueCountBuilder {
 	return builder
 }
 
-func (builder *UniqueCountBuilder) Settings(settings struct {
-	PrecisionThreshold *string `json:"precision_threshold,omitempty"`
-	Missing            *string `json:"missing,omitempty"`
-}) *UniqueCountBuilder {
-	builder.internal.Settings = &settings
+func (builder *UniqueCountBuilder) Settings(settings cog.Builder[ElasticsearchUniqueCountSettings]) *UniqueCountBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

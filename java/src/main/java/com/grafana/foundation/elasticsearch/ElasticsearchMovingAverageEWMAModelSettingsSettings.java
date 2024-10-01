@@ -20,7 +20,7 @@ public class ElasticsearchMovingAverageEWMAModelSettingsSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageEWMAModelSettingsSettings> {
-        private final ElasticsearchMovingAverageEWMAModelSettingsSettings internal;
+        protected final ElasticsearchMovingAverageEWMAModelSettingsSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchMovingAverageEWMAModelSettingsSettings();

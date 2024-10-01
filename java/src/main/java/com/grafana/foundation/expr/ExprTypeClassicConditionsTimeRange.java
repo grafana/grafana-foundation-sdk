@@ -22,7 +22,7 @@ public class ExprTypeClassicConditionsTimeRange {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsTimeRange> {
-        private final ExprTypeClassicConditionsTimeRange internal;
+        protected final ExprTypeClassicConditionsTimeRange internal;
         
         public Builder() {
             this.internal = new ExprTypeClassicConditionsTimeRange();

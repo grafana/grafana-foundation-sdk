@@ -21,7 +21,7 @@ public class OptionsWithTextFormatting {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<OptionsWithTextFormatting> {
-        private final OptionsWithTextFormatting internal;
+        protected final OptionsWithTextFormatting internal;
         
         public Builder() {
             this.internal = new OptionsWithTextFormatting();

@@ -1,19 +1,15 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
+import * as dashboard from '../dashboard';
+
+
 export type expr = TypeMath | TypeReduce | TypeResample | TypeClassicConditions | TypeThreshold | TypeSql;
 
 export const defaultExpr = (): expr => (defaultTypeMath());
 
 export interface TypeMath {
 	// The datasource
-	datasource?: {
-		// The apiserver version
-		apiVersion?: string;
-		// The datasource plugin type
-		type: "__expr__";
-		// Datasource UID (NOTE: name in k8s)
-		uid?: string;
-	};
+	datasource?: dashboard.DataSourceRef;
 	// General math expression
 	expression: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -77,14 +73,7 @@ export const defaultTypeMath = (): TypeMath => ({
 
 export interface TypeReduce {
 	// The datasource
-	datasource?: {
-		// The apiserver version
-		apiVersion?: string;
-		// The datasource plugin type
-		type: "__expr__";
-		// Datasource UID (NOTE: name in k8s)
-		uid?: string;
-	};
+	datasource?: dashboard.DataSourceRef;
 	// Reference to single query result
 	expression: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -169,14 +158,7 @@ export const defaultTypeReduce = (): TypeReduce => ({
 
 export interface TypeResample {
 	// The datasource
-	datasource?: {
-		// The apiserver version
-		apiVersion?: string;
-		// The datasource plugin type
-		type: "__expr__";
-		// Datasource UID (NOTE: name in k8s)
-		uid?: string;
-	};
+	datasource?: dashboard.DataSourceRef;
 	// The downsample function
 	// Possible enum values:
 	//  - `"sum"` 
@@ -277,14 +259,7 @@ export interface TypeClassicConditions {
 		};
 	}[];
 	// The datasource
-	datasource?: {
-		// The apiserver version
-		apiVersion?: string;
-		// The datasource plugin type
-		type: "__expr__";
-		// Datasource UID (NOTE: name in k8s)
-		uid?: string;
-	};
+	datasource?: dashboard.DataSourceRef;
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// NOTE: this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -360,14 +335,7 @@ export interface TypeThreshold {
 		};
 	}[];
 	// The datasource
-	datasource?: {
-		// The apiserver version
-		apiVersion?: string;
-		// The datasource plugin type
-		type: "__expr__";
-		// Datasource UID (NOTE: name in k8s)
-		uid?: string;
-	};
+	datasource?: dashboard.DataSourceRef;
 	// Reference to single query result
 	expression: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -432,14 +400,7 @@ export const defaultTypeThreshold = (): TypeThreshold => ({
 
 export interface TypeSql {
 	// The datasource
-	datasource?: {
-		// The apiserver version
-		apiVersion?: string;
-		// The datasource plugin type
-		type: "__expr__";
-		// Datasource UID (NOTE: name in k8s)
-		uid?: string;
-	};
+	datasource?: dashboard.DataSourceRef;
 	expression: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// NOTE: this does not always imply that the query should not be executed since

@@ -14,6 +14,20 @@ type UpdateConfig struct {
 	SchemaChanged bool `json:"schemaChanged"`
 }
 
+func (resource UpdateConfig) Equals(other UpdateConfig) bool {
+	if resource.Render != other.Render {
+		return false
+	}
+	if resource.DataChanged != other.DataChanged {
+		return false
+	}
+	if resource.SchemaChanged != other.SchemaChanged {
+		return false
+	}
+
+	return true
+}
+
 type DebugMode string
 
 const (
@@ -29,13 +43,30 @@ type Options struct {
 	Counters *UpdateConfig `json:"counters,omitempty"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.Mode != other.Mode {
+		return false
+	}
+	if resource.Counters == nil && other.Counters != nil || resource.Counters != nil && other.Counters == nil {
+		return false
+	}
+
+	if resource.Counters != nil {
+		if !resource.Counters.Equals(*other.Counters) {
+			return false
+		}
+	}
+
+	return true
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "debug",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

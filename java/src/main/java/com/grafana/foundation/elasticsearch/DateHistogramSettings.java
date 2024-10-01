@@ -32,7 +32,7 @@ public class DateHistogramSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DateHistogramSettings> {
-        private final DateHistogramSettings internal;
+        protected final DateHistogramSettings internal;
         
         public Builder() {
             this.internal = new DateHistogramSettings();

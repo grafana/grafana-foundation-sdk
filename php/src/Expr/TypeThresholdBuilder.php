@@ -39,12 +39,10 @@ class TypeThresholdBuilder implements \Grafana\Foundation\Cog\Builder
     }
     /**
      * The datasource
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\ExprTypeThresholdDatasource> $datasource
      */
-    public function datasource(\Grafana\Foundation\Cog\Builder $datasource): static
+    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
     {
-        $datasourceResource = $datasource->build();
-        $this->internal->datasource = $datasourceResource;
+        $this->internal->datasource = $datasource;
     
         return $this;
     }

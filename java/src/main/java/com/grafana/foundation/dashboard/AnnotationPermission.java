@@ -23,7 +23,7 @@ public class AnnotationPermission {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AnnotationPermission> {
-        private final AnnotationPermission internal;
+        protected final AnnotationPermission internal;
         
         public Builder() {
             this.internal = new AnnotationPermission();

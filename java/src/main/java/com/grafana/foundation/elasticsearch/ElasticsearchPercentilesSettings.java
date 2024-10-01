@@ -27,7 +27,7 @@ public class ElasticsearchPercentilesSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchPercentilesSettings> {
-        private final ElasticsearchPercentilesSettings internal;
+        protected final ElasticsearchPercentilesSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchPercentilesSettings();

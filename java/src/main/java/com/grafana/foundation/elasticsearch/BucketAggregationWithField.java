@@ -28,7 +28,7 @@ public class BucketAggregationWithField {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<BucketAggregationWithField> {
-        private final BucketAggregationWithField internal;
+        protected final BucketAggregationWithField internal;
         
         public Builder() {
             this.internal = new BucketAggregationWithField();

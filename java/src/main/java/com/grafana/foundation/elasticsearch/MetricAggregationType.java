@@ -23,7 +23,7 @@ public class MetricAggregationType {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MetricAggregationType> {
-        private final MetricAggregationType internal;
+        protected final MetricAggregationType internal;
         
         public Builder() {
             this.internal = new MetricAggregationType();

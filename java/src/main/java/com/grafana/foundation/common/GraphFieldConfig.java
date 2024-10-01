@@ -117,7 +117,7 @@ public class GraphFieldConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<GraphFieldConfig> {
-        private final GraphFieldConfig internal;
+        protected final GraphFieldConfig internal;
         
         public Builder() {
             this.internal = new GraphFieldConfig();

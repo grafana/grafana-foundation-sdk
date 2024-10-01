@@ -8,3 +8,20 @@ type Team struct {
 	// Email of the team.
 	Email *string `json:"email,omitempty"`
 }
+
+func (resource Team) Equals(other Team) bool {
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.Email == nil && other.Email != nil || resource.Email != nil && other.Email == nil {
+		return false
+	}
+
+	if resource.Email != nil {
+		if *resource.Email != *other.Email {
+			return false
+		}
+	}
+
+	return true
+}

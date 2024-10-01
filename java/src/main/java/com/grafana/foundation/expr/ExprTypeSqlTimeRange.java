@@ -22,7 +22,7 @@ public class ExprTypeSqlTimeRange {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeSqlTimeRange> {
-        private final ExprTypeSqlTimeRange internal;
+        protected final ExprTypeSqlTimeRange internal;
         
         public Builder() {
             this.internal = new ExprTypeSqlTimeRange();

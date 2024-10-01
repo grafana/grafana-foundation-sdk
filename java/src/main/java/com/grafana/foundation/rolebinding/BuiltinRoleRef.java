@@ -22,7 +22,7 @@ public class BuiltinRoleRef {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<BuiltinRoleRef> {
-        private final BuiltinRoleRef internal;
+        protected final BuiltinRoleRef internal;
         
         public Builder() {
             this.internal = new BuiltinRoleRef();

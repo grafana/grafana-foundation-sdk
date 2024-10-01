@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -29,7 +30,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     // The datasource
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public Datasource datasource;
+    public DataSourceRef datasource;
     // Drop percentage (the chance we will lose a point 0-100)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("dropPercent")
@@ -180,7 +181,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        private final Dataquery internal;
+        protected final Dataquery internal;
         
         public Builder() {
             this.internal = new Dataquery();
@@ -210,8 +211,8 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         return this;
     }
     
-    public Builder datasource(com.grafana.foundation.cog.Builder<Datasource> datasource) {
-    this.internal.datasource = datasource.build();
+    public Builder datasource(DataSourceRef datasource) {
+    this.internal.datasource = datasource;
         return this;
     }
     

@@ -15,9 +15,31 @@ type RoleBinding struct {
 	Subject RoleBindingSubject `json:"subject"`
 }
 
+func (resource RoleBinding) Equals(other RoleBinding) bool {
+	if !resource.Role.Equals(other.Role) {
+		return false
+	}
+	if !resource.Subject.Equals(other.Subject) {
+		return false
+	}
+
+	return true
+}
+
 type CustomRoleRef struct {
 	Kind string `json:"kind"`
 	Name string `json:"name"`
+}
+
+func (resource CustomRoleRef) Equals(other CustomRoleRef) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+
+	return true
 }
 
 type BuiltinRoleRef struct {
@@ -25,10 +47,32 @@ type BuiltinRoleRef struct {
 	Name BuiltinRoleRefName `json:"name"`
 }
 
+func (resource BuiltinRoleRef) Equals(other BuiltinRoleRef) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+
+	return true
+}
+
 type RoleBindingSubject struct {
 	Kind RoleBindingSubjectKind `json:"kind"`
 	// The team/user identifier name
 	Name string `json:"name"`
+}
+
+func (resource RoleBindingSubject) Equals(other RoleBindingSubject) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+
+	return true
 }
 
 type BuiltinRoleRefName string
@@ -98,4 +142,27 @@ func (resource *BuiltinRoleRefOrCustomRoleRef) UnmarshalJSON(raw []byte) error {
 	}
 
 	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
+}
+
+func (resource BuiltinRoleRefOrCustomRoleRef) Equals(other BuiltinRoleRefOrCustomRoleRef) bool {
+	if resource.BuiltinRoleRef == nil && other.BuiltinRoleRef != nil || resource.BuiltinRoleRef != nil && other.BuiltinRoleRef == nil {
+		return false
+	}
+
+	if resource.BuiltinRoleRef != nil {
+		if !resource.BuiltinRoleRef.Equals(*other.BuiltinRoleRef) {
+			return false
+		}
+	}
+	if resource.CustomRoleRef == nil && other.CustomRoleRef != nil || resource.CustomRoleRef != nil && other.CustomRoleRef == nil {
+		return false
+	}
+
+	if resource.CustomRoleRef != nil {
+		if !resource.CustomRoleRef.Equals(*other.CustomRoleRef) {
+			return false
+		}
+	}
+
+	return true
 }

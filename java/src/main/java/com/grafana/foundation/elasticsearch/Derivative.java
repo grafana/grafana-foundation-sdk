@@ -33,7 +33,7 @@ public class Derivative {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Derivative> {
-        private final Derivative internal;
+        protected final Derivative internal;
         
         public Builder() {
             this.internal = new Derivative();

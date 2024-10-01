@@ -29,7 +29,7 @@ public class PipelineMetricAggregationWithMultipleBucketPaths {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<PipelineMetricAggregationWithMultipleBucketPaths> {
-        private final PipelineMetricAggregationWithMultipleBucketPaths internal;
+        protected final PipelineMetricAggregationWithMultipleBucketPaths internal;
         
         public Builder() {
             this.internal = new PipelineMetricAggregationWithMultipleBucketPaths();

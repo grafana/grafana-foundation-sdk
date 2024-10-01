@@ -17,24 +17,44 @@ type Options struct {
 	XField *string `json:"xField,omitempty"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if !resource.Legend.Equals(other.Legend) {
+		return false
+	}
+	if !resource.Tooltip.Equals(other.Tooltip) {
+		return false
+	}
+	if resource.XField == nil && other.XField != nil || resource.XField != nil && other.XField == nil {
+		return false
+	}
+
+	if resource.XField != nil {
+		if *resource.XField != *other.XField {
+			return false
+		}
+	}
+
+	return true
+}
+
 type FieldConfig = common.GraphFieldConfig
 
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "trend",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 
 			return options, nil
 		},
 		FieldConfigUnmarshaler: func(raw []byte) (any, error) {
-			fieldConfig := FieldConfig{}
+			fieldConfig := &FieldConfig{}
 
-			if err := json.Unmarshal(raw, &fieldConfig); err != nil {
+			if err := json.Unmarshal(raw, fieldConfig); err != nil {
 				return nil, err
 			}
 
