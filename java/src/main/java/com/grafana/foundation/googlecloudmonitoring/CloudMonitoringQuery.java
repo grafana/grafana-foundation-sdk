@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants.Dataquery {
     // A unique identifier for the query within the list of targets.
@@ -53,7 +54,7 @@ public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants
     // TODO this shouldn't be unknown but DataSourceRef | null
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public Object datasource;
+    public DataSourceRef datasource;
     // Time interval in milliseconds.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("intervalMs")
@@ -66,7 +67,7 @@ public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<CloudMonitoringQuery> {
-        private final CloudMonitoringQuery internal;
+        protected final CloudMonitoringQuery internal;
         
         public Builder() {
             this.internal = new CloudMonitoringQuery();
@@ -111,7 +112,7 @@ public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants
         return this;
     }
     
-    public Builder datasource(Object datasource) {
+    public Builder datasource(DataSourceRef datasource) {
     this.internal.datasource = datasource;
         return this;
     }

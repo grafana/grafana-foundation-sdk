@@ -54,7 +54,7 @@ public class DashboardLink {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DashboardLink> {
-        private final DashboardLink internal;
+        protected final DashboardLink internal;
         
         public Builder(String title) {
             this.internal = new DashboardLink();

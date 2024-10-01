@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as expr from '../expr';
+import * as dashboard from '../dashboard';
 
 export class TypeClassicConditionsBuilder implements cog.Builder<cog.Dataquery> {
     protected readonly internal: expr.TypeClassicConditions;
@@ -36,14 +37,7 @@ export class TypeClassicConditionsBuilder implements cog.Builder<cog.Dataquery> 
     }
 
     // The datasource
-    datasource(datasource: {
-	// The apiserver version
-	apiVersion?: string;
-	// The datasource plugin type
-	type: "__expr__";
-	// Datasource UID (NOTE: name in k8s)
-	uid?: string;
-}): this {
+    datasource(datasource: dashboard.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }

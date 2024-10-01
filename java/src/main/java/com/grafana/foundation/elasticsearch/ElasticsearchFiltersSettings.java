@@ -21,7 +21,7 @@ public class ElasticsearchFiltersSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchFiltersSettings> {
-        private final ElasticsearchFiltersSettings internal;
+        protected final ElasticsearchFiltersSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchFiltersSettings();

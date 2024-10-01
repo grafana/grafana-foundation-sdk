@@ -40,14 +40,13 @@ func (builder *MovingAverageHoltWintersModelSettingsBuilder) Build() (MovingAver
 	return *builder.internal, nil
 }
 
-func (builder *MovingAverageHoltWintersModelSettingsBuilder) Settings(settings struct {
-	Alpha  *string `json:"alpha,omitempty"`
-	Beta   *string `json:"beta,omitempty"`
-	Gamma  *string `json:"gamma,omitempty"`
-	Period *string `json:"period,omitempty"`
-	Pad    *bool   `json:"pad,omitempty"`
-}) *MovingAverageHoltWintersModelSettingsBuilder {
-	builder.internal.Settings = settings
+func (builder *MovingAverageHoltWintersModelSettingsBuilder) Settings(settings cog.Builder[ElasticsearchMovingAverageHoltWintersModelSettingsSettings]) *MovingAverageHoltWintersModelSettingsBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = settingsResource
 
 	return builder
 }

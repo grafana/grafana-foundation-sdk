@@ -52,11 +52,13 @@ func (builder *MaxBuilder) Id(id string) *MaxBuilder {
 	return builder
 }
 
-func (builder *MaxBuilder) Settings(settings struct {
-	Script  *InlineScript `json:"script,omitempty"`
-	Missing *string       `json:"missing,omitempty"`
-}) *MaxBuilder {
-	builder.internal.Settings = &settings
+func (builder *MaxBuilder) Settings(settings cog.Builder[ElasticsearchMaxSettings]) *MaxBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

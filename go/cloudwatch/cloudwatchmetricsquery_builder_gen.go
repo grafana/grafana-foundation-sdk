@@ -5,6 +5,7 @@ package cloudwatch
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*CloudWatchMetricsQueryBuilder)(nil)
@@ -196,7 +197,7 @@ func (builder *CloudWatchMetricsQueryBuilder) Sql(sql cog.Builder[SQLExpression]
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
 // TODO this shouldn't be unknown but DataSourceRef | null
-func (builder *CloudWatchMetricsQueryBuilder) Datasource(datasource any) *CloudWatchMetricsQueryBuilder {
+func (builder *CloudWatchMetricsQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *CloudWatchMetricsQueryBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

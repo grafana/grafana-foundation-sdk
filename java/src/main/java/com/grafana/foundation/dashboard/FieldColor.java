@@ -30,7 +30,7 @@ public class FieldColor {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<FieldColor> {
-        private final FieldColor internal;
+        protected final FieldColor internal;
         
         public Builder() {
             this.internal = new FieldColor();

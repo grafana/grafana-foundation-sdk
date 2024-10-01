@@ -30,7 +30,7 @@ public class Average {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Average> {
-        private final Average internal;
+        protected final Average internal;
         
         public Builder() {
             this.internal = new Average();

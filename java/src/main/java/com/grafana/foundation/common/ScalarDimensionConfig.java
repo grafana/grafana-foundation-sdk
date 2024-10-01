@@ -31,7 +31,7 @@ public class ScalarDimensionConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ScalarDimensionConfig> {
-        private final ScalarDimensionConfig internal;
+        protected final ScalarDimensionConfig internal;
         
         public Builder() {
             this.internal = new ScalarDimensionConfig();

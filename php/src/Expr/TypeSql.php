@@ -7,7 +7,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Expr\ExprTypeSqlDatasource $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     public string $expression;
 
@@ -58,7 +58,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public string $type;
 
     /**
-     * @param \Grafana\Foundation\Expr\ExprTypeSqlDatasource|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param string|null $expression
      * @param bool|null $hide
      * @param float|null $intervalMs
@@ -68,7 +68,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param \Grafana\Foundation\Expr\ExprTypeSqlResultAssertions|null $resultAssertions
      * @param \Grafana\Foundation\Expr\ExprTypeSqlTimeRange|null $timeRange
      */
-    public function __construct(?\Grafana\Foundation\Expr\ExprTypeSqlDatasource $datasource = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeSqlResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeSqlTimeRange $timeRange = null)
+    public function __construct(?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeSqlResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeSqlTimeRange $timeRange = null)
     {
         $this->datasource = $datasource;
         $this->expression = $expression ?: "";
@@ -92,9 +92,9 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $data = $inputData;
         return new self(
             datasource: isset($data["datasource"]) ? (function($input) {
-    	/** @var array{apiVersion?: string, type?: string, uid?: string} */
+    	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Expr\ExprTypeSqlDatasource::fromArray($val);
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             expression: $data["expression"] ?? null,
             hide: $data["hide"] ?? null,

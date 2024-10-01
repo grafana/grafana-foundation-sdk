@@ -26,7 +26,7 @@ public class TableBarGaugeCellOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TableBarGaugeCellOptions> {
-        private final TableBarGaugeCellOptions internal;
+        protected final TableBarGaugeCellOptions internal;
         
         public Builder() {
             this.internal = new TableBarGaugeCellOptions();

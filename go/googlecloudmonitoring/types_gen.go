@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 type CloudMonitoringQuery struct {
@@ -36,26 +37,127 @@ type CloudMonitoringQuery struct {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	Datasource any `json:"datasource,omitempty"`
+	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
 	// Time interval in milliseconds.
 	IntervalMs *float64 `json:"intervalMs,omitempty"`
 }
 
 func (resource CloudMonitoringQuery) ImplementsDataqueryVariant() {}
 
+func (resource CloudMonitoringQuery) DataqueryType() string {
+	return "cloud-monitoring"
+}
+
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "cloud-monitoring",
 		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := CloudMonitoringQuery{}
+			dataquery := &CloudMonitoringQuery{}
 
-			if err := json.Unmarshal(raw, &dataquery); err != nil {
+			if err := json.Unmarshal(raw, dataquery); err != nil {
 				return nil, err
 			}
 
 			return dataquery, nil
 		},
 	}
+}
+
+func (resource CloudMonitoringQuery) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(CloudMonitoringQuery)
+	if !ok {
+		return false
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.QueryType == nil && other.QueryType != nil || resource.QueryType != nil && other.QueryType == nil {
+		return false
+	}
+
+	if resource.QueryType != nil {
+		if *resource.QueryType != *other.QueryType {
+			return false
+		}
+	}
+	if resource.AliasBy == nil && other.AliasBy != nil || resource.AliasBy != nil && other.AliasBy == nil {
+		return false
+	}
+
+	if resource.AliasBy != nil {
+		if *resource.AliasBy != *other.AliasBy {
+			return false
+		}
+	}
+	if resource.TimeSeriesList == nil && other.TimeSeriesList != nil || resource.TimeSeriesList != nil && other.TimeSeriesList == nil {
+		return false
+	}
+
+	if resource.TimeSeriesList != nil {
+		if !resource.TimeSeriesList.Equals(*other.TimeSeriesList) {
+			return false
+		}
+	}
+	if resource.TimeSeriesQuery == nil && other.TimeSeriesQuery != nil || resource.TimeSeriesQuery != nil && other.TimeSeriesQuery == nil {
+		return false
+	}
+
+	if resource.TimeSeriesQuery != nil {
+		if !resource.TimeSeriesQuery.Equals(*other.TimeSeriesQuery) {
+			return false
+		}
+	}
+	if resource.SloQuery == nil && other.SloQuery != nil || resource.SloQuery != nil && other.SloQuery == nil {
+		return false
+	}
+
+	if resource.SloQuery != nil {
+		if !resource.SloQuery.Equals(*other.SloQuery) {
+			return false
+		}
+	}
+	if resource.PromQLQuery == nil && other.PromQLQuery != nil || resource.PromQLQuery != nil && other.PromQLQuery == nil {
+		return false
+	}
+
+	if resource.PromQLQuery != nil {
+		if !resource.PromQLQuery.Equals(*other.PromQLQuery) {
+			return false
+		}
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.IntervalMs == nil && other.IntervalMs != nil || resource.IntervalMs != nil && other.IntervalMs == nil {
+		return false
+	}
+
+	if resource.IntervalMs != nil {
+		if *resource.IntervalMs != *other.IntervalMs {
+			return false
+		}
+	}
+
+	return true
 }
 
 // Defines the supported queryTypes.
@@ -101,6 +203,128 @@ type TimeSeriesList struct {
 	Preprocessor *PreprocessorType `json:"preprocessor,omitempty"`
 }
 
+func (resource TimeSeriesList) Equals(other TimeSeriesList) bool {
+	if resource.ProjectName != other.ProjectName {
+		return false
+	}
+	if resource.CrossSeriesReducer != other.CrossSeriesReducer {
+		return false
+	}
+	if resource.AlignmentPeriod == nil && other.AlignmentPeriod != nil || resource.AlignmentPeriod != nil && other.AlignmentPeriod == nil {
+		return false
+	}
+
+	if resource.AlignmentPeriod != nil {
+		if *resource.AlignmentPeriod != *other.AlignmentPeriod {
+			return false
+		}
+	}
+	if resource.PerSeriesAligner == nil && other.PerSeriesAligner != nil || resource.PerSeriesAligner != nil && other.PerSeriesAligner == nil {
+		return false
+	}
+
+	if resource.PerSeriesAligner != nil {
+		if *resource.PerSeriesAligner != *other.PerSeriesAligner {
+			return false
+		}
+	}
+
+	if len(resource.GroupBys) != len(other.GroupBys) {
+		return false
+	}
+
+	for i1 := range resource.GroupBys {
+		if resource.GroupBys[i1] != other.GroupBys[i1] {
+			return false
+		}
+	}
+
+	if len(resource.Filters) != len(other.Filters) {
+		return false
+	}
+
+	for i1 := range resource.Filters {
+		if resource.Filters[i1] != other.Filters[i1] {
+			return false
+		}
+	}
+	if resource.View == nil && other.View != nil || resource.View != nil && other.View == nil {
+		return false
+	}
+
+	if resource.View != nil {
+		if *resource.View != *other.View {
+			return false
+		}
+	}
+	if resource.Title == nil && other.Title != nil || resource.Title != nil && other.Title == nil {
+		return false
+	}
+
+	if resource.Title != nil {
+		if *resource.Title != *other.Title {
+			return false
+		}
+	}
+	if resource.Text == nil && other.Text != nil || resource.Text != nil && other.Text == nil {
+		return false
+	}
+
+	if resource.Text != nil {
+		if *resource.Text != *other.Text {
+			return false
+		}
+	}
+	if resource.SecondaryCrossSeriesReducer == nil && other.SecondaryCrossSeriesReducer != nil || resource.SecondaryCrossSeriesReducer != nil && other.SecondaryCrossSeriesReducer == nil {
+		return false
+	}
+
+	if resource.SecondaryCrossSeriesReducer != nil {
+		if *resource.SecondaryCrossSeriesReducer != *other.SecondaryCrossSeriesReducer {
+			return false
+		}
+	}
+	if resource.SecondaryAlignmentPeriod == nil && other.SecondaryAlignmentPeriod != nil || resource.SecondaryAlignmentPeriod != nil && other.SecondaryAlignmentPeriod == nil {
+		return false
+	}
+
+	if resource.SecondaryAlignmentPeriod != nil {
+		if *resource.SecondaryAlignmentPeriod != *other.SecondaryAlignmentPeriod {
+			return false
+		}
+	}
+	if resource.SecondaryPerSeriesAligner == nil && other.SecondaryPerSeriesAligner != nil || resource.SecondaryPerSeriesAligner != nil && other.SecondaryPerSeriesAligner == nil {
+		return false
+	}
+
+	if resource.SecondaryPerSeriesAligner != nil {
+		if *resource.SecondaryPerSeriesAligner != *other.SecondaryPerSeriesAligner {
+			return false
+		}
+	}
+
+	if len(resource.SecondaryGroupBys) != len(other.SecondaryGroupBys) {
+		return false
+	}
+
+	for i1 := range resource.SecondaryGroupBys {
+		if resource.SecondaryGroupBys[i1] != other.SecondaryGroupBys[i1] {
+			return false
+		}
+	}
+	if resource.Preprocessor == nil && other.Preprocessor != nil || resource.Preprocessor != nil && other.Preprocessor == nil {
+		return false
+	}
+
+	if resource.Preprocessor != nil {
+		if *resource.Preprocessor != *other.Preprocessor {
+			return false
+		}
+	}
+
+	return true
+}
+
 // Types of pre-processor available. Defined by the metric.
 type PreprocessorType string
 
@@ -118,6 +342,26 @@ type TimeSeriesQuery struct {
 	Query string `json:"query"`
 	// To disable the graphPeriod, it should explictly be set to 'disabled'.
 	GraphPeriod *string `json:"graphPeriod,omitempty"`
+}
+
+func (resource TimeSeriesQuery) Equals(other TimeSeriesQuery) bool {
+	if resource.ProjectName != other.ProjectName {
+		return false
+	}
+	if resource.Query != other.Query {
+		return false
+	}
+	if resource.GraphPeriod == nil && other.GraphPeriod != nil || resource.GraphPeriod != nil && other.GraphPeriod == nil {
+		return false
+	}
+
+	if resource.GraphPeriod != nil {
+		if *resource.GraphPeriod != *other.GraphPeriod {
+			return false
+		}
+	}
+
+	return true
 }
 
 // SLO sub-query properties.
@@ -144,6 +388,65 @@ type SLOQuery struct {
 	LookbackPeriod *string `json:"lookbackPeriod,omitempty"`
 }
 
+func (resource SLOQuery) Equals(other SLOQuery) bool {
+	if resource.ProjectName != other.ProjectName {
+		return false
+	}
+	if resource.PerSeriesAligner == nil && other.PerSeriesAligner != nil || resource.PerSeriesAligner != nil && other.PerSeriesAligner == nil {
+		return false
+	}
+
+	if resource.PerSeriesAligner != nil {
+		if *resource.PerSeriesAligner != *other.PerSeriesAligner {
+			return false
+		}
+	}
+	if resource.AlignmentPeriod == nil && other.AlignmentPeriod != nil || resource.AlignmentPeriod != nil && other.AlignmentPeriod == nil {
+		return false
+	}
+
+	if resource.AlignmentPeriod != nil {
+		if *resource.AlignmentPeriod != *other.AlignmentPeriod {
+			return false
+		}
+	}
+	if resource.SelectorName != other.SelectorName {
+		return false
+	}
+	if resource.ServiceId != other.ServiceId {
+		return false
+	}
+	if resource.ServiceName != other.ServiceName {
+		return false
+	}
+	if resource.SloId != other.SloId {
+		return false
+	}
+	if resource.SloName != other.SloName {
+		return false
+	}
+	if resource.Goal == nil && other.Goal != nil || resource.Goal != nil && other.Goal == nil {
+		return false
+	}
+
+	if resource.Goal != nil {
+		if *resource.Goal != *other.Goal {
+			return false
+		}
+	}
+	if resource.LookbackPeriod == nil && other.LookbackPeriod != nil || resource.LookbackPeriod != nil && other.LookbackPeriod == nil {
+		return false
+	}
+
+	if resource.LookbackPeriod != nil {
+		if *resource.LookbackPeriod != *other.LookbackPeriod {
+			return false
+		}
+	}
+
+	return true
+}
+
 // PromQL sub-query properties.
 type PromQLQuery struct {
 	// GCP project to execute the query against.
@@ -152,6 +455,20 @@ type PromQLQuery struct {
 	Expr string `json:"expr"`
 	// PromQL min step
 	Step string `json:"step"`
+}
+
+func (resource PromQLQuery) Equals(other PromQLQuery) bool {
+	if resource.ProjectName != other.ProjectName {
+		return false
+	}
+	if resource.Expr != other.Expr {
+		return false
+	}
+	if resource.Step != other.Step {
+		return false
+	}
+
+	return true
 }
 
 // @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
@@ -181,6 +498,118 @@ type MetricQuery struct {
 	Preprocessor *PreprocessorType `json:"preprocessor,omitempty"`
 	// To disable the graphPeriod, it should explictly be set to 'disabled'.
 	GraphPeriod *string `json:"graphPeriod,omitempty"`
+}
+
+func (resource MetricQuery) Equals(other MetricQuery) bool {
+	if resource.ProjectName != other.ProjectName {
+		return false
+	}
+	if resource.PerSeriesAligner == nil && other.PerSeriesAligner != nil || resource.PerSeriesAligner != nil && other.PerSeriesAligner == nil {
+		return false
+	}
+
+	if resource.PerSeriesAligner != nil {
+		if *resource.PerSeriesAligner != *other.PerSeriesAligner {
+			return false
+		}
+	}
+	if resource.AlignmentPeriod == nil && other.AlignmentPeriod != nil || resource.AlignmentPeriod != nil && other.AlignmentPeriod == nil {
+		return false
+	}
+
+	if resource.AlignmentPeriod != nil {
+		if *resource.AlignmentPeriod != *other.AlignmentPeriod {
+			return false
+		}
+	}
+	if resource.AliasBy == nil && other.AliasBy != nil || resource.AliasBy != nil && other.AliasBy == nil {
+		return false
+	}
+
+	if resource.AliasBy != nil {
+		if *resource.AliasBy != *other.AliasBy {
+			return false
+		}
+	}
+	if resource.EditorMode != other.EditorMode {
+		return false
+	}
+	if resource.MetricType != other.MetricType {
+		return false
+	}
+	if resource.CrossSeriesReducer != other.CrossSeriesReducer {
+		return false
+	}
+
+	if len(resource.GroupBys) != len(other.GroupBys) {
+		return false
+	}
+
+	for i1 := range resource.GroupBys {
+		if resource.GroupBys[i1] != other.GroupBys[i1] {
+			return false
+		}
+	}
+
+	if len(resource.Filters) != len(other.Filters) {
+		return false
+	}
+
+	for i1 := range resource.Filters {
+		if resource.Filters[i1] != other.Filters[i1] {
+			return false
+		}
+	}
+	if resource.MetricKind == nil && other.MetricKind != nil || resource.MetricKind != nil && other.MetricKind == nil {
+		return false
+	}
+
+	if resource.MetricKind != nil {
+		if *resource.MetricKind != *other.MetricKind {
+			return false
+		}
+	}
+	if resource.ValueType == nil && other.ValueType != nil || resource.ValueType != nil && other.ValueType == nil {
+		return false
+	}
+
+	if resource.ValueType != nil {
+		if *resource.ValueType != *other.ValueType {
+			return false
+		}
+	}
+	if resource.View == nil && other.View != nil || resource.View != nil && other.View == nil {
+		return false
+	}
+
+	if resource.View != nil {
+		if *resource.View != *other.View {
+			return false
+		}
+	}
+	if resource.Query != other.Query {
+		return false
+	}
+	if resource.Preprocessor == nil && other.Preprocessor != nil || resource.Preprocessor != nil && other.Preprocessor == nil {
+		return false
+	}
+
+	if resource.Preprocessor != nil {
+		if *resource.Preprocessor != *other.Preprocessor {
+			return false
+		}
+	}
+	if resource.GraphPeriod == nil && other.GraphPeriod != nil || resource.GraphPeriod != nil && other.GraphPeriod == nil {
+		return false
+	}
+
+	if resource.GraphPeriod != nil {
+		if *resource.GraphPeriod != *other.GraphPeriod {
+			return false
+		}
+	}
+
+	return true
 }
 
 type MetricKind string
@@ -245,6 +674,42 @@ type LegacyCloudMonitoringAnnotationQuery struct {
 	Text string `json:"text"`
 }
 
+func (resource LegacyCloudMonitoringAnnotationQuery) Equals(other LegacyCloudMonitoringAnnotationQuery) bool {
+	if resource.ProjectName != other.ProjectName {
+		return false
+	}
+	if resource.MetricType != other.MetricType {
+		return false
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+
+	if len(resource.Filters) != len(other.Filters) {
+		return false
+	}
+
+	for i1 := range resource.Filters {
+		if resource.Filters[i1] != other.Filters[i1] {
+			return false
+		}
+	}
+	if resource.MetricKind != other.MetricKind {
+		return false
+	}
+	if resource.ValueType != other.ValueType {
+		return false
+	}
+	if resource.Title != other.Title {
+		return false
+	}
+	if resource.Text != other.Text {
+		return false
+	}
+
+	return true
+}
+
 // Query filter representation.
 type Filter struct {
 	// Filter key.
@@ -255,6 +720,29 @@ type Filter struct {
 	Value string `json:"value"`
 	// Filter condition.
 	Condition *string `json:"condition,omitempty"`
+}
+
+func (resource Filter) Equals(other Filter) bool {
+	if resource.Key != other.Key {
+		return false
+	}
+	if resource.Operator != other.Operator {
+		return false
+	}
+	if resource.Value != other.Value {
+		return false
+	}
+	if resource.Condition == nil && other.Condition != nil || resource.Condition != nil && other.Condition == nil {
+		return false
+	}
+
+	if resource.Condition != nil {
+		if *resource.Condition != *other.Condition {
+			return false
+		}
+	}
+
+	return true
 }
 
 type MetricFindQueryTypes string

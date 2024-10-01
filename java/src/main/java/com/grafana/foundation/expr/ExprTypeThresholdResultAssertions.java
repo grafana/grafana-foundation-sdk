@@ -45,7 +45,7 @@ public class ExprTypeThresholdResultAssertions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeThresholdResultAssertions> {
-        private final ExprTypeThresholdResultAssertions internal;
+        protected final ExprTypeThresholdResultAssertions internal;
         
         public Builder() {
             this.internal = new ExprTypeThresholdResultAssertions();

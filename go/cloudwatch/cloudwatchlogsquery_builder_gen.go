@@ -5,6 +5,7 @@ package cloudwatch
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*CloudWatchLogsQueryBuilder)(nil)
@@ -128,7 +129,7 @@ func (builder *CloudWatchLogsQueryBuilder) LogGroupNames(logGroupNames []string)
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
 // TODO this shouldn't be unknown but DataSourceRef | null
-func (builder *CloudWatchLogsQueryBuilder) Datasource(datasource any) *CloudWatchLogsQueryBuilder {
+func (builder *CloudWatchLogsQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *CloudWatchLogsQueryBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

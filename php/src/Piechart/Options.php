@@ -7,9 +7,9 @@ class Options implements \JsonSerializable
     public \Grafana\Foundation\Piechart\PieChartType $pieType;
 
     /**
-     * @var array<\Grafana\Foundation\Piechart\PieChartLabels>
+     * @var array<\Grafana\Foundation\Piechart\PieChartLabels>|null
      */
-    public array $displayLabels;
+    public ?array $displayLabels;
 
     public \Grafana\Foundation\Common\VizTooltipOptions $tooltip;
 
@@ -33,7 +33,7 @@ class Options implements \JsonSerializable
     public function __construct(?\Grafana\Foundation\Piechart\PieChartType $pieType = null, ?array $displayLabels = null, ?\Grafana\Foundation\Common\VizTooltipOptions $tooltip = null, ?\Grafana\Foundation\Common\ReduceDataOptions $reduceOptions = null, ?\Grafana\Foundation\Common\VizTextDisplayOptions $text = null, ?\Grafana\Foundation\Piechart\PieChartLegendOptions $legend = null, ?\Grafana\Foundation\Common\VizOrientation $orientation = null)
     {
         $this->pieType = $pieType ?: \Grafana\Foundation\Piechart\PieChartType::Pie();
-        $this->displayLabels = $displayLabels ?: [];
+        $this->displayLabels = $displayLabels;
         $this->tooltip = $tooltip ?: new \Grafana\Foundation\Common\VizTooltipOptions();
         $this->reduceOptions = $reduceOptions ?: new \Grafana\Foundation\Common\ReduceDataOptions();
         $this->text = $text;
@@ -82,12 +82,14 @@ class Options implements \JsonSerializable
     {
         $data = [
             "pieType" => $this->pieType,
-            "displayLabels" => $this->displayLabels,
             "tooltip" => $this->tooltip,
             "reduceOptions" => $this->reduceOptions,
             "legend" => $this->legend,
             "orientation" => $this->orientation,
         ];
+        if (isset($this->displayLabels)) {
+            $data["displayLabels"] = $this->displayLabels;
+        }
         if (isset($this->text)) {
             $data["text"] = $this->text;
         }

@@ -3,6 +3,7 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import expr
+from ..models import dashboard
 
 
 class TypeMath(cogbuilder.Builder[expr.TypeMath]):    
@@ -15,13 +16,12 @@ class TypeMath(cogbuilder.Builder[expr.TypeMath]):
     def build(self) -> expr.TypeMath:
         return self._internal    
     
-    def datasource(self, datasource: cogbuilder.Builder[expr.ExprTypeMathDatasource]) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         The datasource
         """
             
-        datasource_resource = datasource.build()
-        self._internal.datasource = datasource_resource
+        self._internal.datasource = datasource
     
         return self
     
@@ -121,13 +121,12 @@ class TypeReduce(cogbuilder.Builder[expr.TypeReduce]):
     def build(self) -> expr.TypeReduce:
         return self._internal    
     
-    def datasource(self, datasource: cogbuilder.Builder[expr.ExprTypeReduceDatasource]) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         The datasource
         """
             
-        datasource_resource = datasource.build()
-        self._internal.datasource = datasource_resource
+        self._internal.datasource = datasource
     
         return self
     
@@ -254,13 +253,12 @@ class TypeResample(cogbuilder.Builder[expr.TypeResample]):
     def build(self) -> expr.TypeResample:
         return self._internal    
     
-    def datasource(self, datasource: cogbuilder.Builder[expr.ExprTypeResampleDatasource]) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         The datasource
         """
             
-        datasource_resource = datasource.build()
-        self._internal.datasource = datasource_resource
+        self._internal.datasource = datasource
     
         return self
     
@@ -407,13 +405,12 @@ class TypeClassicConditions(cogbuilder.Builder[expr.TypeClassicConditions]):
     
         return self
     
-    def datasource(self, datasource: cogbuilder.Builder[expr.ExprTypeClassicConditionsDatasource]) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         The datasource
         """
             
-        datasource_resource = datasource.build()
-        self._internal.datasource = datasource_resource
+        self._internal.datasource = datasource
     
         return self
     
@@ -512,13 +509,12 @@ class TypeThreshold(cogbuilder.Builder[expr.TypeThreshold]):
     
         return self
     
-    def datasource(self, datasource: cogbuilder.Builder[expr.ExprTypeThresholdDatasource]) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         The datasource
         """
             
-        datasource_resource = datasource.build()
-        self._internal.datasource = datasource_resource
+        self._internal.datasource = datasource
     
         return self
     
@@ -618,13 +614,12 @@ class TypeSql(cogbuilder.Builder[expr.TypeSql]):
     def build(self) -> expr.TypeSql:
         return self._internal    
     
-    def datasource(self, datasource: cogbuilder.Builder[expr.ExprTypeSqlDatasource]) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         The datasource
         """
             
-        datasource_resource = datasource.build()
-        self._internal.datasource = datasource_resource
+        self._internal.datasource = datasource
     
         return self
     
@@ -710,35 +705,6 @@ class TypeSql(cogbuilder.Builder[expr.TypeSql]):
         return self
     
 
-class ExprTypeMathDatasource(cogbuilder.Builder[expr.ExprTypeMathDatasource]):    
-    _internal: expr.ExprTypeMathDatasource
-
-    def __init__(self):
-        self._internal = expr.ExprTypeMathDatasource()        
-        self._internal.type_val = "__expr__"
-
-    def build(self) -> expr.ExprTypeMathDatasource:
-        return self._internal    
-    
-    def api_version(self, api_version: str) -> typing.Self:    
-        """
-        The apiserver version
-        """
-            
-        self._internal.api_version = api_version
-    
-        return self
-    
-    def uid(self, uid: str) -> typing.Self:    
-        """
-        Datasource UID (NOTE: name in k8s)
-        """
-            
-        self._internal.uid = uid
-    
-        return self
-    
-
 class ExprTypeMathResultAssertions(cogbuilder.Builder[expr.ExprTypeMathResultAssertions]):    
     _internal: expr.ExprTypeMathResultAssertions
 
@@ -813,35 +779,6 @@ class ExprTypeMathTimeRange(cogbuilder.Builder[expr.ExprTypeMathTimeRange]):
         """
             
         self._internal.to = to
-    
-        return self
-    
-
-class ExprTypeReduceDatasource(cogbuilder.Builder[expr.ExprTypeReduceDatasource]):    
-    _internal: expr.ExprTypeReduceDatasource
-
-    def __init__(self):
-        self._internal = expr.ExprTypeReduceDatasource()        
-        self._internal.type_val = "__expr__"
-
-    def build(self) -> expr.ExprTypeReduceDatasource:
-        return self._internal    
-    
-    def api_version(self, api_version: str) -> typing.Self:    
-        """
-        The apiserver version
-        """
-            
-        self._internal.api_version = api_version
-    
-        return self
-    
-    def uid(self, uid: str) -> typing.Self:    
-        """
-        Datasource UID (NOTE: name in k8s)
-        """
-            
-        self._internal.uid = uid
     
         return self
     
@@ -951,35 +888,6 @@ class ExprTypeReduceTimeRange(cogbuilder.Builder[expr.ExprTypeReduceTimeRange]):
         """
             
         self._internal.to = to
-    
-        return self
-    
-
-class ExprTypeResampleDatasource(cogbuilder.Builder[expr.ExprTypeResampleDatasource]):    
-    _internal: expr.ExprTypeResampleDatasource
-
-    def __init__(self):
-        self._internal = expr.ExprTypeResampleDatasource()        
-        self._internal.type_val = "__expr__"
-
-    def build(self) -> expr.ExprTypeResampleDatasource:
-        return self._internal    
-    
-    def api_version(self, api_version: str) -> typing.Self:    
-        """
-        The apiserver version
-        """
-            
-        self._internal.api_version = api_version
-    
-        return self
-    
-    def uid(self, uid: str) -> typing.Self:    
-        """
-        Datasource UID (NOTE: name in k8s)
-        """
-            
-        self._internal.uid = uid
     
         return self
     
@@ -1165,35 +1073,6 @@ class ExprTypeClassicConditionsConditions(cogbuilder.Builder[expr.ExprTypeClassi
         return self
     
 
-class ExprTypeClassicConditionsDatasource(cogbuilder.Builder[expr.ExprTypeClassicConditionsDatasource]):    
-    _internal: expr.ExprTypeClassicConditionsDatasource
-
-    def __init__(self):
-        self._internal = expr.ExprTypeClassicConditionsDatasource()        
-        self._internal.type_val = "__expr__"
-
-    def build(self) -> expr.ExprTypeClassicConditionsDatasource:
-        return self._internal    
-    
-    def api_version(self, api_version: str) -> typing.Self:    
-        """
-        The apiserver version
-        """
-            
-        self._internal.api_version = api_version
-    
-        return self
-    
-    def uid(self, uid: str) -> typing.Self:    
-        """
-        Datasource UID (NOTE: name in k8s)
-        """
-            
-        self._internal.uid = uid
-    
-        return self
-    
-
 class ExprTypeClassicConditionsResultAssertions(cogbuilder.Builder[expr.ExprTypeClassicConditionsResultAssertions]):    
     _internal: expr.ExprTypeClassicConditionsResultAssertions
 
@@ -1347,35 +1226,6 @@ class ExprTypeThresholdConditions(cogbuilder.Builder[expr.ExprTypeThresholdCondi
         return self
     
 
-class ExprTypeThresholdDatasource(cogbuilder.Builder[expr.ExprTypeThresholdDatasource]):    
-    _internal: expr.ExprTypeThresholdDatasource
-
-    def __init__(self):
-        self._internal = expr.ExprTypeThresholdDatasource()        
-        self._internal.type_val = "__expr__"
-
-    def build(self) -> expr.ExprTypeThresholdDatasource:
-        return self._internal    
-    
-    def api_version(self, api_version: str) -> typing.Self:    
-        """
-        The apiserver version
-        """
-            
-        self._internal.api_version = api_version
-    
-        return self
-    
-    def uid(self, uid: str) -> typing.Self:    
-        """
-        Datasource UID (NOTE: name in k8s)
-        """
-            
-        self._internal.uid = uid
-    
-        return self
-    
-
 class ExprTypeThresholdResultAssertions(cogbuilder.Builder[expr.ExprTypeThresholdResultAssertions]):    
     _internal: expr.ExprTypeThresholdResultAssertions
 
@@ -1450,35 +1300,6 @@ class ExprTypeThresholdTimeRange(cogbuilder.Builder[expr.ExprTypeThresholdTimeRa
         """
             
         self._internal.to = to
-    
-        return self
-    
-
-class ExprTypeSqlDatasource(cogbuilder.Builder[expr.ExprTypeSqlDatasource]):    
-    _internal: expr.ExprTypeSqlDatasource
-
-    def __init__(self):
-        self._internal = expr.ExprTypeSqlDatasource()        
-        self._internal.type_val = "__expr__"
-
-    def build(self) -> expr.ExprTypeSqlDatasource:
-        return self._internal    
-    
-    def api_version(self, api_version: str) -> typing.Self:    
-        """
-        The apiserver version
-        """
-            
-        self._internal.api_version = api_version
-    
-        return self
-    
-    def uid(self, uid: str) -> typing.Self:    
-        """
-        Datasource UID (NOTE: name in k8s)
-        """
-            
-        self._internal.uid = uid
     
         return self
     

@@ -7,12 +7,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class TypeMath implements com.grafana.foundation.cog.variants.Dataquery {
     // The datasource
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public ExprTypeMathDatasource datasource;
+    public DataSourceRef datasource;
     // General math expression
     @JsonProperty("expression")
     public String expression;
@@ -62,14 +63,14 @@ public class TypeMath implements com.grafana.foundation.cog.variants.Dataquery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TypeMath> {
-        private final TypeMath internal;
+        protected final TypeMath internal;
         
         public Builder() {
             this.internal = new TypeMath();
     this.internal.type = "math";
         }
-    public Builder datasource(com.grafana.foundation.cog.Builder<ExprTypeMathDatasource> datasource) {
-    this.internal.datasource = datasource.build();
+    public Builder datasource(DataSourceRef datasource) {
+    this.internal.datasource = datasource;
         return this;
     }
     

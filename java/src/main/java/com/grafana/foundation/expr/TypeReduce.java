@@ -7,12 +7,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery {
     // The datasource
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public ExprTypeReduceDatasource datasource;
+    public DataSourceRef datasource;
     // Reference to single query result
     @JsonProperty("expression")
     public String expression;
@@ -78,14 +79,14 @@ public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TypeReduce> {
-        private final TypeReduce internal;
+        protected final TypeReduce internal;
         
         public Builder() {
             this.internal = new TypeReduce();
     this.internal.type = "reduce";
         }
-    public Builder datasource(com.grafana.foundation.cog.Builder<ExprTypeReduceDatasource> datasource) {
-    this.internal.datasource = datasource.build();
+    public Builder datasource(DataSourceRef datasource) {
+    this.internal.datasource = datasource;
         return this;
     }
     

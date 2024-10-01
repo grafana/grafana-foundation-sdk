@@ -39,10 +39,13 @@ func (builder *MetricAggregationWithInlineScriptBuilder) Build() (MetricAggregat
 	return *builder.internal, nil
 }
 
-func (builder *MetricAggregationWithInlineScriptBuilder) Settings(settings struct {
-	Script *InlineScript `json:"script,omitempty"`
-}) *MetricAggregationWithInlineScriptBuilder {
-	builder.internal.Settings = &settings
+func (builder *MetricAggregationWithInlineScriptBuilder) Settings(settings cog.Builder[ElasticsearchMetricAggregationWithInlineScriptSettings]) *MetricAggregationWithInlineScriptBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }
