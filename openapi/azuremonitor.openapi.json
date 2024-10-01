@@ -74,8 +74,7 @@
             "type": "string"
           },
           "datasource": {
-            "type": "object",
-            "additionalProperties": {},
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
           },
           "query": {
@@ -653,6 +652,21 @@
             "$ref": "#/components/schemas/UnknownQuery"
           }
         ]
+      },
+      "DataSourceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The plugin type-id"
+          },
+          "uid": {
+            "type": "string",
+            "description": "Specific datasource instance"
+          }
+        },
+        "description": "Ref to a DataSource instance"
       }
     }
   }

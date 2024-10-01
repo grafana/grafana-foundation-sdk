@@ -26,7 +26,7 @@ public class VizTextDisplayOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<VizTextDisplayOptions> {
-        private final VizTextDisplayOptions internal;
+        protected final VizTextDisplayOptions internal;
         
         public Builder() {
             this.internal = new VizTextDisplayOptions();

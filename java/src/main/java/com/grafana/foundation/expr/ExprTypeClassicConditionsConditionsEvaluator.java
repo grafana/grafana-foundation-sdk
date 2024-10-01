@@ -25,7 +25,7 @@ public class ExprTypeClassicConditionsConditionsEvaluator {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsEvaluator> {
-        private final ExprTypeClassicConditionsConditionsEvaluator internal;
+        protected final ExprTypeClassicConditionsConditionsEvaluator internal;
         
         public Builder() {
             this.internal = new ExprTypeClassicConditionsConditionsEvaluator();

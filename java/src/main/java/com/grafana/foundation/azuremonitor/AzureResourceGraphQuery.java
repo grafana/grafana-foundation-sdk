@@ -25,7 +25,7 @@ public class AzureResourceGraphQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AzureResourceGraphQuery> {
-        private final AzureResourceGraphQuery internal;
+        protected final AzureResourceGraphQuery internal;
         
         public Builder() {
             this.internal = new AzureResourceGraphQuery();

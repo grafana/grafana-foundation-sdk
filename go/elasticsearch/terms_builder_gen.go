@@ -52,14 +52,13 @@ func (builder *TermsBuilder) Id(id string) *TermsBuilder {
 	return builder
 }
 
-func (builder *TermsBuilder) Settings(settings struct {
-	Order       *TermsOrder `json:"order,omitempty"`
-	Size        *string     `json:"size,omitempty"`
-	MinDocCount *string     `json:"min_doc_count,omitempty"`
-	OrderBy     *string     `json:"orderBy,omitempty"`
-	Missing     *string     `json:"missing,omitempty"`
-}) *TermsBuilder {
-	builder.internal.Settings = &settings
+func (builder *TermsBuilder) Settings(settings cog.Builder[ElasticsearchTermsSettings]) *TermsBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

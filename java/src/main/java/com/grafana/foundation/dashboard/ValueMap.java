@@ -27,7 +27,7 @@ public class ValueMap {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ValueMap> {
-        private final ValueMap internal;
+        protected final ValueMap internal;
         
         public Builder() {
             this.internal = new ValueMap();

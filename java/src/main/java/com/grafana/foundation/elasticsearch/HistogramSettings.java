@@ -23,7 +23,7 @@ public class HistogramSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<HistogramSettings> {
-        private final HistogramSettings internal;
+        protected final HistogramSettings internal;
         
         public Builder() {
             this.internal = new HistogramSettings();

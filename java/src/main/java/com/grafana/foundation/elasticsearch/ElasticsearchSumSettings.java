@@ -23,7 +23,7 @@ public class ElasticsearchSumSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchSumSettings> {
-        private final ElasticsearchSumSettings internal;
+        protected final ElasticsearchSumSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchSumSettings();

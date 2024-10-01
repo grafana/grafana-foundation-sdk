@@ -28,7 +28,7 @@ public class AccessRule {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AccessRule> {
-        private final AccessRule internal;
+        protected final AccessRule internal;
         
         public Builder() {
             this.internal = new AccessRule();

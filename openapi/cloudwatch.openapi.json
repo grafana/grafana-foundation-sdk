@@ -169,8 +169,7 @@
             "description": "When the metric query type is set to `Insights` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query."
           },
           "datasource": {
-            "type": "object",
-            "additionalProperties": {},
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
           },
           "statistics": {
@@ -521,8 +520,7 @@
             "description": "@deprecated use logGroups"
           },
           "datasource": {
-            "type": "object",
-            "additionalProperties": {},
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
           }
         },
@@ -626,8 +624,7 @@
             "description": "An alarm name prefix. If you specify this parameter, you receive information\nabout all alarms that have names that start with this prefix.\ne.g. `my-team-service-` would match `my-team-service-high-cpu` but not match `your-team-service-high-cpu`"
           },
           "datasource": {
-            "type": "object",
-            "additionalProperties": {},
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
           },
           "statistics": {
@@ -652,6 +649,21 @@
             "$ref": "#/components/schemas/CloudWatchAnnotationQuery"
           }
         ]
+      },
+      "DataSourceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The plugin type-id"
+          },
+          "uid": {
+            "type": "string",
+            "description": "Specific datasource instance"
+          }
+        },
+        "description": "Ref to a DataSource instance"
       }
     }
   }

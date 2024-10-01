@@ -34,7 +34,7 @@ public class AzureMetricDimension {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AzureMetricDimension> {
-        private final AzureMetricDimension internal;
+        protected final AzureMetricDimension internal;
         
         public Builder() {
             this.internal = new AzureMetricDimension();

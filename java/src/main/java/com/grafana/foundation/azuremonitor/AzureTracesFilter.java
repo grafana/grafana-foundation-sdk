@@ -29,7 +29,7 @@ public class AzureTracesFilter {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AzureTracesFilter> {
-        private final AzureTracesFilter internal;
+        protected final AzureTracesFilter internal;
         
         public Builder() {
             this.internal = new AzureTracesFilter();

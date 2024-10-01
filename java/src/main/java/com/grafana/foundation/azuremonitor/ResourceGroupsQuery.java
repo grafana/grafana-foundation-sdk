@@ -24,7 +24,7 @@ public class ResourceGroupsQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ResourceGroupsQuery> {
-        private final ResourceGroupsQuery internal;
+        protected final ResourceGroupsQuery internal;
         
         public Builder() {
             this.internal = new ResourceGroupsQuery();

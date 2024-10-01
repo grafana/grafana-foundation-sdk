@@ -27,7 +27,7 @@ public class Terms {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Terms> {
-        private final Terms internal;
+        protected final Terms internal;
         
         public Builder() {
             this.internal = new Terms();

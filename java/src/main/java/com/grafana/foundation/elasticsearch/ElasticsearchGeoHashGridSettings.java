@@ -20,7 +20,7 @@ public class ElasticsearchGeoHashGridSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchGeoHashGridSettings> {
-        private final ElasticsearchGeoHashGridSettings internal;
+        protected final ElasticsearchGeoHashGridSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchGeoHashGridSettings();

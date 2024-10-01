@@ -43,13 +43,13 @@ func (builder *RegexMapBuilder) Build() (RegexMap, error) {
 }
 
 // Regular expression to match against and the result to apply when the value matches the regex
-func (builder *RegexMapBuilder) Options(options struct {
-	// Regular expression to match against
-	Pattern string `json:"pattern"`
-	// Config to apply when the value matches the regex
-	Result ValueMappingResult `json:"result"`
-}) *RegexMapBuilder {
-	builder.internal.Options = options
+func (builder *RegexMapBuilder) Options(options cog.Builder[DashboardRegexMapOptions]) *RegexMapBuilder {
+	optionsResource, err := options.Build()
+	if err != nil {
+		builder.errors["options"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options = optionsResource
 
 	return builder
 }

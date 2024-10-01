@@ -26,7 +26,7 @@ public class PromQLQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<PromQLQuery> {
-        private final PromQLQuery internal;
+        protected final PromQLQuery internal;
         
         public Builder() {
             this.internal = new PromQLQuery();

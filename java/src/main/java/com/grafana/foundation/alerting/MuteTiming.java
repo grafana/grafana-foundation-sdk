@@ -24,7 +24,7 @@ public class MuteTiming {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MuteTiming> {
-        private final MuteTiming internal;
+        protected final MuteTiming internal;
         
         public Builder() {
             this.internal = new MuteTiming();

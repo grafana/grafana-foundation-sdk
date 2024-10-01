@@ -35,7 +35,7 @@ public class Role {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Role> {
-        private final Role internal;
+        protected final Role internal;
         
         public Builder() {
             this.internal = new Role();

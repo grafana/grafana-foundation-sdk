@@ -35,7 +35,7 @@ public class NotificationSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<NotificationSettings> {
-        private final NotificationSettings internal;
+        protected final NotificationSettings internal;
         
         public Builder() {
             this.internal = new NotificationSettings();

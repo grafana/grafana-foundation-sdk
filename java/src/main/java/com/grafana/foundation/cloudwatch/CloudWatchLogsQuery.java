@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 // Shape of a CloudWatch Logs query
 public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.Dataquery {
@@ -56,7 +57,7 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
     // TODO this shouldn't be unknown but DataSourceRef | null
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public Object datasource;
+    public DataSourceRef datasource;
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -65,7 +66,7 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<CloudWatchLogsQuery> {
-        private final CloudWatchLogsQuery internal;
+        protected final CloudWatchLogsQuery internal;
         
         public Builder() {
             this.internal = new CloudWatchLogsQuery();
@@ -121,7 +122,7 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
         return this;
     }
     
-    public Builder datasource(Object datasource) {
+    public Builder datasource(DataSourceRef datasource) {
     this.internal.datasource = datasource;
         return this;
     }

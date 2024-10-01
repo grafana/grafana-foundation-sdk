@@ -35,7 +35,7 @@ public class Query {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Query> {
-        private final Query internal;
+        protected final Query internal;
         
         public Builder(String refId) {
             this.internal = new Query();
