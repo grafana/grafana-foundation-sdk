@@ -7,3 +7,6 @@ parameters:
     - identifier: identical.alwaysFalse # not a big deal, duplicated enum values come from the schema
       paths:
         - ../../../php/src/Common/ScaleDirection.php
+    - identifier: offsetAccess.nonOffsetAccessible
+      paths:
+        - ../../../php/src/Cog/Runtime.php
