@@ -22,7 +22,7 @@ public class NavbarPreference {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<NavbarPreference> {
-        private final NavbarPreference internal;
+        protected final NavbarPreference internal;
         
         public Builder() {
             this.internal = new NavbarPreference();

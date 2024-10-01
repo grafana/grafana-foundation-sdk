@@ -26,7 +26,7 @@ public class RoleRef {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<RoleRef> {
-        private final RoleRef internal;
+        protected final RoleRef internal;
         
         public Builder() {
             this.internal = new RoleRef();

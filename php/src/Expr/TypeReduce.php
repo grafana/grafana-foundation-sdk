@@ -7,7 +7,7 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Expr\ExprTypeReduceDatasource $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
      * Reference to single query result
@@ -79,7 +79,7 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public string $type;
 
     /**
-     * @param \Grafana\Foundation\Expr\ExprTypeReduceDatasource|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param string|null $expression
      * @param bool|null $hide
      * @param float|null $intervalMs
@@ -91,7 +91,7 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param \Grafana\Foundation\Expr\ExprTypeReduceSettings|null $settings
      * @param \Grafana\Foundation\Expr\ExprTypeReduceTimeRange|null $timeRange
      */
-    public function __construct(?\Grafana\Foundation\Expr\ExprTypeReduceDatasource $datasource = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?\Grafana\Foundation\Expr\TypeReduceReducer $reducer = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeReduceResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeReduceSettings $settings = null, ?\Grafana\Foundation\Expr\ExprTypeReduceTimeRange $timeRange = null)
+    public function __construct(?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?\Grafana\Foundation\Expr\TypeReduceReducer $reducer = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeReduceResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeReduceSettings $settings = null, ?\Grafana\Foundation\Expr\ExprTypeReduceTimeRange $timeRange = null)
     {
         $this->datasource = $datasource;
         $this->expression = $expression ?: "";
@@ -117,9 +117,9 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $data = $inputData;
         return new self(
             datasource: isset($data["datasource"]) ? (function($input) {
-    	/** @var array{apiVersion?: string, type?: string, uid?: string} */
+    	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Expr\ExprTypeReduceDatasource::fromArray($val);
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             expression: $data["expression"] ?? null,
             hide: $data["hide"] ?? null,

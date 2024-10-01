@@ -46,10 +46,13 @@ func (builder *RawDataBuilder) Id(id string) *RawDataBuilder {
 	return builder
 }
 
-func (builder *RawDataBuilder) Settings(settings struct {
-	Size *string `json:"size,omitempty"`
-}) *RawDataBuilder {
-	builder.internal.Settings = &settings
+func (builder *RawDataBuilder) Settings(settings cog.Builder[ElasticsearchRawDataSettings]) *RawDataBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

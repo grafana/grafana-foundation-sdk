@@ -31,7 +31,7 @@ public class BucketScript {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<BucketScript> {
-        private final BucketScript internal;
+        protected final BucketScript internal;
         
         public Builder() {
             this.internal = new BucketScript();

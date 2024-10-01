@@ -26,7 +26,7 @@ public class CookiePreferences {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<CookiePreferences> {
-        private final CookiePreferences internal;
+        protected final CookiePreferences internal;
         
         public Builder() {
             this.internal = new CookiePreferences();

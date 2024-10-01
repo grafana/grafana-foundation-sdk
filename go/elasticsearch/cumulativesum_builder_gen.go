@@ -58,10 +58,13 @@ func (builder *CumulativeSumBuilder) Id(id string) *CumulativeSumBuilder {
 	return builder
 }
 
-func (builder *CumulativeSumBuilder) Settings(settings struct {
-	Format *string `json:"format,omitempty"`
-}) *CumulativeSumBuilder {
-	builder.internal.Settings = &settings
+func (builder *CumulativeSumBuilder) Settings(settings cog.Builder[ElasticsearchCumulativeSumSettings]) *CumulativeSumBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

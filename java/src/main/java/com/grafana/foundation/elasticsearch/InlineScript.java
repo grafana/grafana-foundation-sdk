@@ -23,7 +23,7 @@ public class InlineScript {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<InlineScript> {
-        private final InlineScript internal;
+        protected final InlineScript internal;
         
         public Builder() {
             this.internal = new InlineScript();

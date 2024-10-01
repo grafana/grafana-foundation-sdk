@@ -28,7 +28,7 @@ public class AnnotationPanelFilter {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AnnotationPanelFilter> {
-        private final AnnotationPanelFilter internal;
+        protected final AnnotationPanelFilter internal;
         
         public Builder() {
             this.internal = new AnnotationPanelFilter();

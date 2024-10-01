@@ -23,7 +23,7 @@ public class TableColorTextCellOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TableColorTextCellOptions> {
-        private final TableColorTextCellOptions internal;
+        protected final TableColorTextCellOptions internal;
         
         public Builder() {
             this.internal = new TableColorTextCellOptions();

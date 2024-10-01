@@ -20,7 +20,7 @@ public class DashboardDashboardTime {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DashboardDashboardTime> {
-        private final DashboardDashboardTime internal;
+        protected final DashboardDashboardTime internal;
         
         public Builder() {
             this.internal = new DashboardDashboardTime();

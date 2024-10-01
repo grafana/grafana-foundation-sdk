@@ -47,7 +47,7 @@ public class VizLegendOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<VizLegendOptions> {
-        private final VizLegendOptions internal;
+        protected final VizLegendOptions internal;
         
         public Builder() {
             this.internal = new VizLegendOptions();

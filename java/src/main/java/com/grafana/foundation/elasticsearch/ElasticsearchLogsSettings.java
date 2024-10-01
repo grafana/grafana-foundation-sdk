@@ -20,7 +20,7 @@ public class ElasticsearchLogsSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchLogsSettings> {
-        private final ElasticsearchLogsSettings internal;
+        protected final ElasticsearchLogsSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchLogsSettings();
