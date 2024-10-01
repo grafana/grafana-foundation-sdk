@@ -32,7 +32,7 @@ public class AzureMonitorResource {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AzureMonitorResource> {
-        private final AzureMonitorResource internal;
+        protected final AzureMonitorResource internal;
         
         public Builder() {
             this.internal = new AzureMonitorResource();

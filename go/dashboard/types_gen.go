@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"reflect"
 	"time"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
@@ -38,10 +39,7 @@ type Dashboard struct {
 	GraphTooltip *DashboardCursorSync `json:"graphTooltip,omitempty"`
 	// Time range for dashboard.
 	// Accepted values are relative time strings like {from: 'now-6h', to: 'now'} or absolute time strings like {from: '2020-07-10T08:00:00.000Z', to: '2020-07-10T14:00:00.000Z'}.
-	Time *struct {
-		From string `json:"from"`
-		To   string `json:"to"`
-	} `json:"time,omitempty"`
+	Time *DashboardDashboardTime `json:"time,omitempty"`
 	// Configuration of the time picker shown at the top of a dashboard.
 	Timepicker *TimePickerConfig `json:"timepicker,omitempty"`
 	// The month that the fiscal year starts on.  0 = January, 11 = December
@@ -62,10 +60,7 @@ type Dashboard struct {
 	// List of dashboard panels
 	Panels []PanelOrRowPanel `json:"panels,omitempty"`
 	// Configured template variables
-	Templating struct {
-		// List of configured template variables with their saved values along with some other metadata
-		List []VariableModel `json:"list,omitempty"`
-	} `json:"templating"`
+	Templating DashboardDashboardTemplating `json:"templating"`
 	// Contains the list of annotations that are associated with the dashboard.
 	// Annotations are used to overlay event markers and overlay event tags on graphs.
 	// Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
@@ -75,6 +70,203 @@ type Dashboard struct {
 	Links []DashboardLink `json:"links,omitempty"`
 	// Snapshot options. They are present only if the dashboard is a snapshot.
 	Snapshot *Snapshot `json:"snapshot,omitempty"`
+}
+
+func (resource Dashboard) Equals(other Dashboard) bool {
+	if resource.Id == nil && other.Id != nil || resource.Id != nil && other.Id == nil {
+		return false
+	}
+
+	if resource.Id != nil {
+		if *resource.Id != *other.Id {
+			return false
+		}
+	}
+	if resource.Uid == nil && other.Uid != nil || resource.Uid != nil && other.Uid == nil {
+		return false
+	}
+
+	if resource.Uid != nil {
+		if *resource.Uid != *other.Uid {
+			return false
+		}
+	}
+	if resource.Title == nil && other.Title != nil || resource.Title != nil && other.Title == nil {
+		return false
+	}
+
+	if resource.Title != nil {
+		if *resource.Title != *other.Title {
+			return false
+		}
+	}
+	if resource.Description == nil && other.Description != nil || resource.Description != nil && other.Description == nil {
+		return false
+	}
+
+	if resource.Description != nil {
+		if *resource.Description != *other.Description {
+			return false
+		}
+	}
+	if resource.Revision == nil && other.Revision != nil || resource.Revision != nil && other.Revision == nil {
+		return false
+	}
+
+	if resource.Revision != nil {
+		if *resource.Revision != *other.Revision {
+			return false
+		}
+	}
+	if resource.GnetId == nil && other.GnetId != nil || resource.GnetId != nil && other.GnetId == nil {
+		return false
+	}
+
+	if resource.GnetId != nil {
+		if *resource.GnetId != *other.GnetId {
+			return false
+		}
+	}
+
+	if len(resource.Tags) != len(other.Tags) {
+		return false
+	}
+
+	for i1 := range resource.Tags {
+		if resource.Tags[i1] != other.Tags[i1] {
+			return false
+		}
+	}
+	if resource.Timezone == nil && other.Timezone != nil || resource.Timezone != nil && other.Timezone == nil {
+		return false
+	}
+
+	if resource.Timezone != nil {
+		if *resource.Timezone != *other.Timezone {
+			return false
+		}
+	}
+	if resource.Editable == nil && other.Editable != nil || resource.Editable != nil && other.Editable == nil {
+		return false
+	}
+
+	if resource.Editable != nil {
+		if *resource.Editable != *other.Editable {
+			return false
+		}
+	}
+	if resource.GraphTooltip == nil && other.GraphTooltip != nil || resource.GraphTooltip != nil && other.GraphTooltip == nil {
+		return false
+	}
+
+	if resource.GraphTooltip != nil {
+		if *resource.GraphTooltip != *other.GraphTooltip {
+			return false
+		}
+	}
+	if resource.Time == nil && other.Time != nil || resource.Time != nil && other.Time == nil {
+		return false
+	}
+
+	if resource.Time != nil {
+		if !resource.Time.Equals(*other.Time) {
+			return false
+		}
+	}
+	if resource.Timepicker == nil && other.Timepicker != nil || resource.Timepicker != nil && other.Timepicker == nil {
+		return false
+	}
+
+	if resource.Timepicker != nil {
+		if !resource.Timepicker.Equals(*other.Timepicker) {
+			return false
+		}
+	}
+	if resource.FiscalYearStartMonth == nil && other.FiscalYearStartMonth != nil || resource.FiscalYearStartMonth != nil && other.FiscalYearStartMonth == nil {
+		return false
+	}
+
+	if resource.FiscalYearStartMonth != nil {
+		if *resource.FiscalYearStartMonth != *other.FiscalYearStartMonth {
+			return false
+		}
+	}
+	if resource.LiveNow == nil && other.LiveNow != nil || resource.LiveNow != nil && other.LiveNow == nil {
+		return false
+	}
+
+	if resource.LiveNow != nil {
+		if *resource.LiveNow != *other.LiveNow {
+			return false
+		}
+	}
+	if resource.WeekStart == nil && other.WeekStart != nil || resource.WeekStart != nil && other.WeekStart == nil {
+		return false
+	}
+
+	if resource.WeekStart != nil {
+		if *resource.WeekStart != *other.WeekStart {
+			return false
+		}
+	}
+	if resource.Refresh == nil && other.Refresh != nil || resource.Refresh != nil && other.Refresh == nil {
+		return false
+	}
+
+	if resource.Refresh != nil {
+		if *resource.Refresh != *other.Refresh {
+			return false
+		}
+	}
+	if resource.SchemaVersion != other.SchemaVersion {
+		return false
+	}
+	if resource.Version == nil && other.Version != nil || resource.Version != nil && other.Version == nil {
+		return false
+	}
+
+	if resource.Version != nil {
+		if *resource.Version != *other.Version {
+			return false
+		}
+	}
+
+	if len(resource.Panels) != len(other.Panels) {
+		return false
+	}
+
+	for i1 := range resource.Panels {
+		if !resource.Panels[i1].Equals(other.Panels[i1]) {
+			return false
+		}
+	}
+	if !resource.Templating.Equals(other.Templating) {
+		return false
+	}
+	if !resource.Annotations.Equals(other.Annotations) {
+		return false
+	}
+
+	if len(resource.Links) != len(other.Links) {
+		return false
+	}
+
+	for i1 := range resource.Links {
+		if !resource.Links[i1].Equals(other.Links[i1]) {
+			return false
+		}
+	}
+	if resource.Snapshot == nil && other.Snapshot != nil || resource.Snapshot != nil && other.Snapshot == nil {
+		return false
+	}
+
+	if resource.Snapshot != nil {
+		if !resource.Snapshot.Equals(*other.Snapshot) {
+			return false
+		}
+	}
+
+	return true
 }
 
 // TODO: this should be a regular DataQuery that depends on the selected dashboard
@@ -94,11 +286,59 @@ type AnnotationTarget struct {
 	Type string `json:"type"`
 }
 
+func (resource AnnotationTarget) Equals(other AnnotationTarget) bool {
+	if resource.Limit != other.Limit {
+		return false
+	}
+	if resource.MatchAny != other.MatchAny {
+		return false
+	}
+
+	if len(resource.Tags) != len(other.Tags) {
+		return false
+	}
+
+	for i1 := range resource.Tags {
+		if resource.Tags[i1] != other.Tags[i1] {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
 type AnnotationPanelFilter struct {
 	// Should the specified panels be included or excluded
 	Exclude *bool `json:"exclude,omitempty"`
 	// Panel IDs that should be included or excluded
 	Ids []uint8 `json:"ids"`
+}
+
+func (resource AnnotationPanelFilter) Equals(other AnnotationPanelFilter) bool {
+	if resource.Exclude == nil && other.Exclude != nil || resource.Exclude != nil && other.Exclude == nil {
+		return false
+	}
+
+	if resource.Exclude != nil {
+		if *resource.Exclude != *other.Exclude {
+			return false
+		}
+	}
+
+	if len(resource.Ids) != len(other.Ids) {
+		return false
+	}
+
+	for i1 := range resource.Ids {
+		if resource.Ids[i1] != other.Ids[i1] {
+			return false
+		}
+	}
+
+	return true
 }
 
 // Contains the list of annotations that are associated with the dashboard.
@@ -108,6 +348,21 @@ type AnnotationPanelFilter struct {
 type AnnotationContainer struct {
 	// List of annotations
 	List []AnnotationQuery `json:"list,omitempty"`
+}
+
+func (resource AnnotationContainer) Equals(other AnnotationContainer) bool {
+
+	if len(resource.List) != len(other.List) {
+		return false
+	}
+
+	for i1 := range resource.List {
+		if !resource.List[i1].Equals(other.List[i1]) {
+			return false
+		}
+	}
+
+	return true
 }
 
 // TODO docs
@@ -133,6 +388,77 @@ type AnnotationQuery struct {
 	// Set to 1 for the standard annotation query all dashboards have by default.
 	BuiltIn *float64 `json:"builtIn,omitempty"`
 	Expr    *string  `json:"expr,omitempty"`
+}
+
+func (resource AnnotationQuery) Equals(other AnnotationQuery) bool {
+	if resource.Name != other.Name {
+		return false
+	}
+	if !resource.Datasource.Equals(other.Datasource) {
+		return false
+	}
+	if resource.Enable != other.Enable {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.IconColor != other.IconColor {
+		return false
+	}
+	if resource.Filter == nil && other.Filter != nil || resource.Filter != nil && other.Filter == nil {
+		return false
+	}
+
+	if resource.Filter != nil {
+		if !resource.Filter.Equals(*other.Filter) {
+			return false
+		}
+	}
+	if resource.Target == nil && other.Target != nil || resource.Target != nil && other.Target == nil {
+		return false
+	}
+
+	if resource.Target != nil {
+		if !resource.Target.Equals(*other.Target) {
+			return false
+		}
+	}
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+	if resource.BuiltIn == nil && other.BuiltIn != nil || resource.BuiltIn != nil && other.BuiltIn == nil {
+		return false
+	}
+
+	if resource.BuiltIn != nil {
+		if *resource.BuiltIn != *other.BuiltIn {
+			return false
+		}
+	}
+	if resource.Expr == nil && other.Expr != nil || resource.Expr != nil && other.Expr == nil {
+		return false
+	}
+
+	if resource.Expr != nil {
+		if *resource.Expr != *other.Expr {
+			return false
+		}
+	}
+
+	return true
 }
 
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
@@ -172,6 +498,144 @@ type VariableModel struct {
 	Regex *string `json:"regex,omitempty"`
 }
 
+func (resource VariableModel) Equals(other VariableModel) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.Label == nil && other.Label != nil || resource.Label != nil && other.Label == nil {
+		return false
+	}
+
+	if resource.Label != nil {
+		if *resource.Label != *other.Label {
+			return false
+		}
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.SkipUrlSync == nil && other.SkipUrlSync != nil || resource.SkipUrlSync != nil && other.SkipUrlSync == nil {
+		return false
+	}
+
+	if resource.SkipUrlSync != nil {
+		if *resource.SkipUrlSync != *other.SkipUrlSync {
+			return false
+		}
+	}
+	if resource.Description == nil && other.Description != nil || resource.Description != nil && other.Description == nil {
+		return false
+	}
+
+	if resource.Description != nil {
+		if *resource.Description != *other.Description {
+			return false
+		}
+	}
+	if resource.Query == nil && other.Query != nil || resource.Query != nil && other.Query == nil {
+		return false
+	}
+
+	if resource.Query != nil {
+		if !resource.Query.Equals(*other.Query) {
+			return false
+		}
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.Current == nil && other.Current != nil || resource.Current != nil && other.Current == nil {
+		return false
+	}
+
+	if resource.Current != nil {
+		if !resource.Current.Equals(*other.Current) {
+			return false
+		}
+	}
+	if resource.Multi == nil && other.Multi != nil || resource.Multi != nil && other.Multi == nil {
+		return false
+	}
+
+	if resource.Multi != nil {
+		if *resource.Multi != *other.Multi {
+			return false
+		}
+	}
+
+	if len(resource.Options) != len(other.Options) {
+		return false
+	}
+
+	for i1 := range resource.Options {
+		if !resource.Options[i1].Equals(other.Options[i1]) {
+			return false
+		}
+	}
+	if resource.Refresh == nil && other.Refresh != nil || resource.Refresh != nil && other.Refresh == nil {
+		return false
+	}
+
+	if resource.Refresh != nil {
+		if *resource.Refresh != *other.Refresh {
+			return false
+		}
+	}
+	if resource.Sort == nil && other.Sort != nil || resource.Sort != nil && other.Sort == nil {
+		return false
+	}
+
+	if resource.Sort != nil {
+		if *resource.Sort != *other.Sort {
+			return false
+		}
+	}
+	if resource.IncludeAll == nil && other.IncludeAll != nil || resource.IncludeAll != nil && other.IncludeAll == nil {
+		return false
+	}
+
+	if resource.IncludeAll != nil {
+		if *resource.IncludeAll != *other.IncludeAll {
+			return false
+		}
+	}
+	if resource.AllValue == nil && other.AllValue != nil || resource.AllValue != nil && other.AllValue == nil {
+		return false
+	}
+
+	if resource.AllValue != nil {
+		if *resource.AllValue != *other.AllValue {
+			return false
+		}
+	}
+	if resource.Regex == nil && other.Regex != nil || resource.Regex != nil && other.Regex == nil {
+		return false
+	}
+
+	if resource.Regex != nil {
+		if *resource.Regex != *other.Regex {
+			return false
+		}
+	}
+
+	return true
+}
+
 // Option to be selected in a variable.
 type VariableOption struct {
 	// Whether the option is selected or not
@@ -180,6 +644,26 @@ type VariableOption struct {
 	Text StringOrArrayOfString `json:"text"`
 	// Value of the option
 	Value StringOrArrayOfString `json:"value"`
+}
+
+func (resource VariableOption) Equals(other VariableOption) bool {
+	if resource.Selected == nil && other.Selected != nil || resource.Selected != nil && other.Selected == nil {
+		return false
+	}
+
+	if resource.Selected != nil {
+		if *resource.Selected != *other.Selected {
+			return false
+		}
+	}
+	if !resource.Text.Equals(other.Text) {
+		return false
+	}
+	if !resource.Value.Equals(other.Value) {
+		return false
+	}
+
+	return true
 }
 
 // Options to config when to refresh a variable
@@ -237,6 +721,29 @@ type DataSourceRef struct {
 	Uid *string `json:"uid,omitempty"`
 }
 
+func (resource DataSourceRef) Equals(other DataSourceRef) bool {
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+	if resource.Uid == nil && other.Uid != nil || resource.Uid != nil && other.Uid == nil {
+		return false
+	}
+
+	if resource.Uid != nil {
+		if *resource.Uid != *other.Uid {
+			return false
+		}
+	}
+
+	return true
+}
+
 // Links with references to other dashboards or external resources
 type DashboardLink struct {
 	// Title to display with the link
@@ -259,6 +766,54 @@ type DashboardLink struct {
 	IncludeVars bool `json:"includeVars"`
 	// If true, includes current time range in the link as query params
 	KeepTime bool `json:"keepTime"`
+}
+
+func (resource DashboardLink) Equals(other DashboardLink) bool {
+	if resource.Title != other.Title {
+		return false
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Icon != other.Icon {
+		return false
+	}
+	if resource.Tooltip != other.Tooltip {
+		return false
+	}
+	if resource.Url == nil && other.Url != nil || resource.Url != nil && other.Url == nil {
+		return false
+	}
+
+	if resource.Url != nil {
+		if *resource.Url != *other.Url {
+			return false
+		}
+	}
+
+	if len(resource.Tags) != len(other.Tags) {
+		return false
+	}
+
+	for i1 := range resource.Tags {
+		if resource.Tags[i1] != other.Tags[i1] {
+			return false
+		}
+	}
+	if resource.AsDropdown != other.AsDropdown {
+		return false
+	}
+	if resource.TargetBlank != other.TargetBlank {
+		return false
+	}
+	if resource.IncludeVars != other.IncludeVars {
+		return false
+	}
+	if resource.KeepTime != other.KeepTime {
+		return false
+	}
+
+	return true
 }
 
 // Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
@@ -349,6 +904,32 @@ type FieldColor struct {
 	SeriesBy *FieldColorSeriesByMode `json:"seriesBy,omitempty"`
 }
 
+func (resource FieldColor) Equals(other FieldColor) bool {
+	if resource.Mode != other.Mode {
+		return false
+	}
+	if resource.FixedColor == nil && other.FixedColor != nil || resource.FixedColor != nil && other.FixedColor == nil {
+		return false
+	}
+
+	if resource.FixedColor != nil {
+		if *resource.FixedColor != *other.FixedColor {
+			return false
+		}
+	}
+	if resource.SeriesBy == nil && other.SeriesBy != nil || resource.SeriesBy != nil && other.SeriesBy == nil {
+		return false
+	}
+
+	if resource.SeriesBy != nil {
+		if *resource.SeriesBy != *other.SeriesBy {
+			return false
+		}
+	}
+
+	return true
+}
+
 // Position and dimensions of a panel in the grid
 type GridPos struct {
 	// Panel height. The height is the number of rows from the top edge of the panel.
@@ -363,6 +944,32 @@ type GridPos struct {
 	Static *bool `json:"static,omitempty"`
 }
 
+func (resource GridPos) Equals(other GridPos) bool {
+	if resource.H != other.H {
+		return false
+	}
+	if resource.W != other.W {
+		return false
+	}
+	if resource.X != other.X {
+		return false
+	}
+	if resource.Y != other.Y {
+		return false
+	}
+	if resource.Static == nil && other.Static != nil || resource.Static != nil && other.Static == nil {
+		return false
+	}
+
+	if resource.Static != nil {
+		if *resource.Static != *other.Static {
+			return false
+		}
+	}
+
+	return true
+}
+
 // User-defined value for a metric that triggers visual changes in a panel when this value is met or exceeded
 // They are used to conditionally style and color visualizations based on query results , and can be applied to most visualizations.
 type Threshold struct {
@@ -371,6 +978,23 @@ type Threshold struct {
 	Value *float64 `json:"value"`
 	// Color represents the color of the visual change that will occur in the dashboard when the threshold value is met or exceeded.
 	Color string `json:"color"`
+}
+
+func (resource Threshold) Equals(other Threshold) bool {
+	if resource.Value == nil && other.Value != nil || resource.Value != nil && other.Value == nil {
+		return false
+	}
+
+	if resource.Value != nil {
+		if *resource.Value != *other.Value {
+			return false
+		}
+	}
+	if resource.Color != other.Color {
+		return false
+	}
+
+	return true
 }
 
 // Thresholds can either be `absolute` (specific number) or `percentage` (relative to min or max, it will be values between 0 and 1).
@@ -387,6 +1011,24 @@ type ThresholdsConfig struct {
 	Mode ThresholdsMode `json:"mode"`
 	// Must be sorted by 'value', first value is always -Infinity
 	Steps []Threshold `json:"steps"`
+}
+
+func (resource ThresholdsConfig) Equals(other ThresholdsConfig) bool {
+	if resource.Mode != other.Mode {
+		return false
+	}
+
+	if len(resource.Steps) != len(other.Steps) {
+		return false
+	}
+
+	for i1 := range resource.Steps {
+		if !resource.Steps[i1].Equals(other.Steps[i1]) {
+			return false
+		}
+	}
+
+	return true
 }
 
 // Allow to transform the visual representation of specific data values in a visualization, irrespective of their original units
@@ -414,19 +1056,41 @@ type ValueMap struct {
 	Options map[string]ValueMappingResult `json:"options"`
 }
 
+func (resource ValueMap) Equals(other ValueMap) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+
+	if len(resource.Options) != len(other.Options) {
+		return false
+	}
+
+	for key1 := range resource.Options {
+		if !resource.Options[key1].Equals(other.Options[key1]) {
+			return false
+		}
+	}
+
+	return true
+}
+
 // Maps numerical ranges to a display text and color.
 // For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
 type RangeMap struct {
 	Type string `json:"type"`
 	// Range to match against and the result to apply when the value is within the range
-	Options struct {
-		// Min value of the range. It can be null which means -Infinity
-		From *float64 `json:"from"`
-		// Max value of the range. It can be null which means +Infinity
-		To *float64 `json:"to"`
-		// Config to apply when the value is within the range
-		Result ValueMappingResult `json:"result"`
-	} `json:"options"`
+	Options DashboardRangeMapOptions `json:"options"`
+}
+
+func (resource RangeMap) Equals(other RangeMap) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if !resource.Options.Equals(other.Options) {
+		return false
+	}
+
+	return true
 }
 
 // Maps regular expressions to replacement text and a color.
@@ -434,25 +1098,37 @@ type RangeMap struct {
 type RegexMap struct {
 	Type string `json:"type"`
 	// Regular expression to match against and the result to apply when the value matches the regex
-	Options struct {
-		// Regular expression to match against
-		Pattern string `json:"pattern"`
-		// Config to apply when the value matches the regex
-		Result ValueMappingResult `json:"result"`
-	} `json:"options"`
+	Options DashboardRegexMapOptions `json:"options"`
+}
+
+func (resource RegexMap) Equals(other RegexMap) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if !resource.Options.Equals(other.Options) {
+		return false
+	}
+
+	return true
 }
 
 // Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color.
 // See SpecialValueMatch to see the list of special values.
 // For example, you can configure a special value mapping so that null values appear as N/A.
 type SpecialValueMap struct {
-	Type    string `json:"type"`
-	Options struct {
-		// Special value to match against
-		Match SpecialValueMatch `json:"match"`
-		// Config to apply when the value matches the special value
-		Result ValueMappingResult `json:"result"`
-	} `json:"options"`
+	Type    string                          `json:"type"`
+	Options DashboardSpecialValueMapOptions `json:"options"`
+}
+
+func (resource SpecialValueMap) Equals(other SpecialValueMap) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if !resource.Options.Equals(other.Options) {
+		return false
+	}
+
+	return true
 }
 
 // Special value types supported by the `SpecialValueMap`
@@ -479,6 +1155,47 @@ type ValueMappingResult struct {
 	Index *int32 `json:"index,omitempty"`
 }
 
+func (resource ValueMappingResult) Equals(other ValueMappingResult) bool {
+	if resource.Text == nil && other.Text != nil || resource.Text != nil && other.Text == nil {
+		return false
+	}
+
+	if resource.Text != nil {
+		if *resource.Text != *other.Text {
+			return false
+		}
+	}
+	if resource.Color == nil && other.Color != nil || resource.Color != nil && other.Color == nil {
+		return false
+	}
+
+	if resource.Color != nil {
+		if *resource.Color != *other.Color {
+			return false
+		}
+	}
+	if resource.Icon == nil && other.Icon != nil || resource.Icon != nil && other.Icon == nil {
+		return false
+	}
+
+	if resource.Icon != nil {
+		if *resource.Icon != *other.Icon {
+			return false
+		}
+	}
+	if resource.Index == nil && other.Index != nil || resource.Index != nil && other.Index == nil {
+		return false
+	}
+
+	if resource.Index != nil {
+		if *resource.Index != *other.Index {
+			return false
+		}
+	}
+
+	return true
+}
+
 // Transformations allow to manipulate data returned by a query before the system applies a visualization.
 // Using transformations you can: rename fields, join time series data, perform mathematical operations across queries,
 // use the output of one transformation as the input to another transformation, etc.
@@ -496,6 +1213,45 @@ type DataTransformerConfig struct {
 	Options any `json:"options"`
 }
 
+func (resource DataTransformerConfig) Equals(other DataTransformerConfig) bool {
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Disabled == nil && other.Disabled != nil || resource.Disabled != nil && other.Disabled == nil {
+		return false
+	}
+
+	if resource.Disabled != nil {
+		if *resource.Disabled != *other.Disabled {
+			return false
+		}
+	}
+	if resource.Filter == nil && other.Filter != nil || resource.Filter != nil && other.Filter == nil {
+		return false
+	}
+
+	if resource.Filter != nil {
+		if !resource.Filter.Equals(*other.Filter) {
+			return false
+		}
+	}
+	if resource.Topic == nil && other.Topic != nil || resource.Topic != nil && other.Topic == nil {
+		return false
+	}
+
+	if resource.Topic != nil {
+		if *resource.Topic != *other.Topic {
+			return false
+		}
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Options, other.Options) {
+		return false
+	}
+
+	return true
+}
+
 // Time picker configuration
 // It defines the default config for the time picker and the refresh picker for the specific dashboard.
 type TimePickerConfig struct {
@@ -507,6 +1263,49 @@ type TimePickerConfig struct {
 	TimeOptions []string `json:"time_options,omitempty"`
 	// Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
 	NowDelay *string `json:"nowDelay,omitempty"`
+}
+
+func (resource TimePickerConfig) Equals(other TimePickerConfig) bool {
+	if resource.Hidden == nil && other.Hidden != nil || resource.Hidden != nil && other.Hidden == nil {
+		return false
+	}
+
+	if resource.Hidden != nil {
+		if *resource.Hidden != *other.Hidden {
+			return false
+		}
+	}
+
+	if len(resource.RefreshIntervals) != len(other.RefreshIntervals) {
+		return false
+	}
+
+	for i1 := range resource.RefreshIntervals {
+		if resource.RefreshIntervals[i1] != other.RefreshIntervals[i1] {
+			return false
+		}
+	}
+
+	if len(resource.TimeOptions) != len(other.TimeOptions) {
+		return false
+	}
+
+	for i1 := range resource.TimeOptions {
+		if resource.TimeOptions[i1] != other.TimeOptions[i1] {
+			return false
+		}
+	}
+	if resource.NowDelay == nil && other.NowDelay != nil || resource.NowDelay != nil && other.NowDelay == nil {
+		return false
+	}
+
+	if resource.NowDelay != nil {
+		if *resource.NowDelay != *other.NowDelay {
+			return false
+		}
+	}
+
+	return true
 }
 
 // 0 for no shared crosshair or tooltip (default).
@@ -551,6 +1350,62 @@ type Snapshot struct {
 	// user id of the snapshot creator
 	UserId    uint32     `json:"userId"`
 	Dashboard *Dashboard `json:"dashboard,omitempty"`
+}
+
+func (resource Snapshot) Equals(other Snapshot) bool {
+	if resource.Created != other.Created {
+		return false
+	}
+	if resource.Expires != other.Expires {
+		return false
+	}
+	if resource.External != other.External {
+		return false
+	}
+	if resource.ExternalUrl != other.ExternalUrl {
+		return false
+	}
+	if resource.OriginalUrl != other.OriginalUrl {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Key != other.Key {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.OrgId != other.OrgId {
+		return false
+	}
+	if resource.Updated != other.Updated {
+		return false
+	}
+	if resource.Url == nil && other.Url != nil || resource.Url != nil && other.Url == nil {
+		return false
+	}
+
+	if resource.Url != nil {
+		if *resource.Url != *other.Url {
+			return false
+		}
+	}
+	if resource.UserId != other.UserId {
+		return false
+	}
+	if resource.Dashboard == nil && other.Dashboard != nil || resource.Dashboard != nil && other.Dashboard == nil {
+		return false
+	}
+
+	if resource.Dashboard != nil {
+		if !resource.Dashboard.Equals(*other.Dashboard) {
+			return false
+		}
+	}
+
+	return true
 }
 
 // Dashboard panels are the basic visualization building blocks.
@@ -815,6 +1670,219 @@ func (resource *Panel) UnmarshalJSON(raw []byte) error {
 	return nil
 }
 
+func (resource Panel) Equals(other Panel) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id == nil && other.Id != nil || resource.Id != nil && other.Id == nil {
+		return false
+	}
+
+	if resource.Id != nil {
+		if *resource.Id != *other.Id {
+			return false
+		}
+	}
+	if resource.PluginVersion == nil && other.PluginVersion != nil || resource.PluginVersion != nil && other.PluginVersion == nil {
+		return false
+	}
+
+	if resource.PluginVersion != nil {
+		if *resource.PluginVersion != *other.PluginVersion {
+			return false
+		}
+	}
+
+	if len(resource.Targets) != len(other.Targets) {
+		return false
+	}
+
+	for i1 := range resource.Targets {
+		if !resource.Targets[i1].Equals(other.Targets[i1]) {
+			return false
+		}
+	}
+	if resource.Title == nil && other.Title != nil || resource.Title != nil && other.Title == nil {
+		return false
+	}
+
+	if resource.Title != nil {
+		if *resource.Title != *other.Title {
+			return false
+		}
+	}
+	if resource.Description == nil && other.Description != nil || resource.Description != nil && other.Description == nil {
+		return false
+	}
+
+	if resource.Description != nil {
+		if *resource.Description != *other.Description {
+			return false
+		}
+	}
+	if resource.Transparent == nil && other.Transparent != nil || resource.Transparent != nil && other.Transparent == nil {
+		return false
+	}
+
+	if resource.Transparent != nil {
+		if *resource.Transparent != *other.Transparent {
+			return false
+		}
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.GridPos == nil && other.GridPos != nil || resource.GridPos != nil && other.GridPos == nil {
+		return false
+	}
+
+	if resource.GridPos != nil {
+		if !resource.GridPos.Equals(*other.GridPos) {
+			return false
+		}
+	}
+
+	if len(resource.Links) != len(other.Links) {
+		return false
+	}
+
+	for i1 := range resource.Links {
+		if !resource.Links[i1].Equals(other.Links[i1]) {
+			return false
+		}
+	}
+	if resource.Repeat == nil && other.Repeat != nil || resource.Repeat != nil && other.Repeat == nil {
+		return false
+	}
+
+	if resource.Repeat != nil {
+		if *resource.Repeat != *other.Repeat {
+			return false
+		}
+	}
+	if resource.RepeatDirection == nil && other.RepeatDirection != nil || resource.RepeatDirection != nil && other.RepeatDirection == nil {
+		return false
+	}
+
+	if resource.RepeatDirection != nil {
+		if *resource.RepeatDirection != *other.RepeatDirection {
+			return false
+		}
+	}
+	if resource.MaxPerRow == nil && other.MaxPerRow != nil || resource.MaxPerRow != nil && other.MaxPerRow == nil {
+		return false
+	}
+
+	if resource.MaxPerRow != nil {
+		if *resource.MaxPerRow != *other.MaxPerRow {
+			return false
+		}
+	}
+	if resource.MaxDataPoints == nil && other.MaxDataPoints != nil || resource.MaxDataPoints != nil && other.MaxDataPoints == nil {
+		return false
+	}
+
+	if resource.MaxDataPoints != nil {
+		if *resource.MaxDataPoints != *other.MaxDataPoints {
+			return false
+		}
+	}
+
+	if len(resource.Transformations) != len(other.Transformations) {
+		return false
+	}
+
+	for i1 := range resource.Transformations {
+		if !resource.Transformations[i1].Equals(other.Transformations[i1]) {
+			return false
+		}
+	}
+	if resource.Interval == nil && other.Interval != nil || resource.Interval != nil && other.Interval == nil {
+		return false
+	}
+
+	if resource.Interval != nil {
+		if *resource.Interval != *other.Interval {
+			return false
+		}
+	}
+	if resource.TimeFrom == nil && other.TimeFrom != nil || resource.TimeFrom != nil && other.TimeFrom == nil {
+		return false
+	}
+
+	if resource.TimeFrom != nil {
+		if *resource.TimeFrom != *other.TimeFrom {
+			return false
+		}
+	}
+	if resource.TimeShift == nil && other.TimeShift != nil || resource.TimeShift != nil && other.TimeShift == nil {
+		return false
+	}
+
+	if resource.TimeShift != nil {
+		if *resource.TimeShift != *other.TimeShift {
+			return false
+		}
+	}
+	if resource.HideTimeOverride == nil && other.HideTimeOverride != nil || resource.HideTimeOverride != nil && other.HideTimeOverride == nil {
+		return false
+	}
+
+	if resource.HideTimeOverride != nil {
+		if *resource.HideTimeOverride != *other.HideTimeOverride {
+			return false
+		}
+	}
+	if resource.LibraryPanel == nil && other.LibraryPanel != nil || resource.LibraryPanel != nil && other.LibraryPanel == nil {
+		return false
+	}
+
+	if resource.LibraryPanel != nil {
+		if !resource.LibraryPanel.Equals(*other.LibraryPanel) {
+			return false
+		}
+	}
+	if resource.CacheTimeout == nil && other.CacheTimeout != nil || resource.CacheTimeout != nil && other.CacheTimeout == nil {
+		return false
+	}
+
+	if resource.CacheTimeout != nil {
+		if *resource.CacheTimeout != *other.CacheTimeout {
+			return false
+		}
+	}
+	if resource.QueryCachingTTL == nil && other.QueryCachingTTL != nil || resource.QueryCachingTTL != nil && other.QueryCachingTTL == nil {
+		return false
+	}
+
+	if resource.QueryCachingTTL != nil {
+		if *resource.QueryCachingTTL != *other.QueryCachingTTL {
+			return false
+		}
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Options, other.Options) {
+		return false
+	}
+	if resource.FieldConfig == nil && other.FieldConfig != nil || resource.FieldConfig != nil && other.FieldConfig == nil {
+		return false
+	}
+
+	if resource.FieldConfig != nil {
+		if !resource.FieldConfig.Equals(*other.FieldConfig) {
+			return false
+		}
+	}
+
+	return true
+}
+
 // The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
 // Each column within this structure is called a field. A field can represent a single time series or table column.
 // Field options allow you to change how the data is displayed in your visualizations.
@@ -822,10 +1890,25 @@ type FieldConfigSource struct {
 	// Defaults are the options applied to all fields.
 	Defaults FieldConfig `json:"defaults"`
 	// Overrides are the options applied to specific fields overriding the defaults.
-	Overrides []struct {
-		Matcher    MatcherConfig        `json:"matcher"`
-		Properties []DynamicConfigValue `json:"properties"`
-	} `json:"overrides"`
+	Overrides []DashboardFieldConfigSourceOverrides `json:"overrides"`
+}
+
+func (resource FieldConfigSource) Equals(other FieldConfigSource) bool {
+	if !resource.Defaults.Equals(other.Defaults) {
+		return false
+	}
+
+	if len(resource.Overrides) != len(other.Overrides) {
+		return false
+	}
+
+	for i1 := range resource.Overrides {
+		if !resource.Overrides[i1].Equals(other.Overrides[i1]) {
+			return false
+		}
+	}
+
+	return true
 }
 
 // A library panel is a reusable panel that you can use in any dashboard.
@@ -838,6 +1921,17 @@ type LibraryPanelRef struct {
 	Uid string `json:"uid"`
 }
 
+func (resource LibraryPanelRef) Equals(other LibraryPanelRef) bool {
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.Uid != other.Uid {
+		return false
+	}
+
+	return true
+}
+
 // Matcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.
 // It comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type.
 type MatcherConfig struct {
@@ -847,9 +1941,33 @@ type MatcherConfig struct {
 	Options any `json:"options,omitempty"`
 }
 
+func (resource MatcherConfig) Equals(other MatcherConfig) bool {
+	if resource.Id != other.Id {
+		return false
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Options, other.Options) {
+		return false
+	}
+
+	return true
+}
+
 type DynamicConfigValue struct {
 	Id    string `json:"id"`
 	Value any    `json:"value,omitempty"`
+}
+
+func (resource DynamicConfigValue) Equals(other DynamicConfigValue) bool {
+	if resource.Id != other.Id {
+		return false
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Value, other.Value) {
+		return false
+	}
+
+	return true
 }
 
 // The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
@@ -908,6 +2026,153 @@ type FieldConfig struct {
 	Custom any `json:"custom,omitempty"`
 }
 
+func (resource FieldConfig) Equals(other FieldConfig) bool {
+	if resource.DisplayName == nil && other.DisplayName != nil || resource.DisplayName != nil && other.DisplayName == nil {
+		return false
+	}
+
+	if resource.DisplayName != nil {
+		if *resource.DisplayName != *other.DisplayName {
+			return false
+		}
+	}
+	if resource.DisplayNameFromDS == nil && other.DisplayNameFromDS != nil || resource.DisplayNameFromDS != nil && other.DisplayNameFromDS == nil {
+		return false
+	}
+
+	if resource.DisplayNameFromDS != nil {
+		if *resource.DisplayNameFromDS != *other.DisplayNameFromDS {
+			return false
+		}
+	}
+	if resource.Description == nil && other.Description != nil || resource.Description != nil && other.Description == nil {
+		return false
+	}
+
+	if resource.Description != nil {
+		if *resource.Description != *other.Description {
+			return false
+		}
+	}
+	if resource.Path == nil && other.Path != nil || resource.Path != nil && other.Path == nil {
+		return false
+	}
+
+	if resource.Path != nil {
+		if *resource.Path != *other.Path {
+			return false
+		}
+	}
+	if resource.Writeable == nil && other.Writeable != nil || resource.Writeable != nil && other.Writeable == nil {
+		return false
+	}
+
+	if resource.Writeable != nil {
+		if *resource.Writeable != *other.Writeable {
+			return false
+		}
+	}
+	if resource.Filterable == nil && other.Filterable != nil || resource.Filterable != nil && other.Filterable == nil {
+		return false
+	}
+
+	if resource.Filterable != nil {
+		if *resource.Filterable != *other.Filterable {
+			return false
+		}
+	}
+	if resource.Unit == nil && other.Unit != nil || resource.Unit != nil && other.Unit == nil {
+		return false
+	}
+
+	if resource.Unit != nil {
+		if *resource.Unit != *other.Unit {
+			return false
+		}
+	}
+	if resource.Decimals == nil && other.Decimals != nil || resource.Decimals != nil && other.Decimals == nil {
+		return false
+	}
+
+	if resource.Decimals != nil {
+		if *resource.Decimals != *other.Decimals {
+			return false
+		}
+	}
+	if resource.Min == nil && other.Min != nil || resource.Min != nil && other.Min == nil {
+		return false
+	}
+
+	if resource.Min != nil {
+		if *resource.Min != *other.Min {
+			return false
+		}
+	}
+	if resource.Max == nil && other.Max != nil || resource.Max != nil && other.Max == nil {
+		return false
+	}
+
+	if resource.Max != nil {
+		if *resource.Max != *other.Max {
+			return false
+		}
+	}
+
+	if len(resource.Mappings) != len(other.Mappings) {
+		return false
+	}
+
+	for i1 := range resource.Mappings {
+		if !resource.Mappings[i1].Equals(other.Mappings[i1]) {
+			return false
+		}
+	}
+	if resource.Thresholds == nil && other.Thresholds != nil || resource.Thresholds != nil && other.Thresholds == nil {
+		return false
+	}
+
+	if resource.Thresholds != nil {
+		if !resource.Thresholds.Equals(*other.Thresholds) {
+			return false
+		}
+	}
+	if resource.Color == nil && other.Color != nil || resource.Color != nil && other.Color == nil {
+		return false
+	}
+
+	if resource.Color != nil {
+		if !resource.Color.Equals(*other.Color) {
+			return false
+		}
+	}
+
+	if len(resource.Links) != len(other.Links) {
+		return false
+	}
+
+	for i1 := range resource.Links {
+		// is DeepEqual good enough here?
+		if !reflect.DeepEqual(resource.Links[i1], other.Links[i1]) {
+			return false
+		}
+	}
+	if resource.NoValue == nil && other.NoValue != nil || resource.NoValue != nil && other.NoValue == nil {
+		return false
+	}
+
+	if resource.NoValue != nil {
+		if *resource.NoValue != *other.NoValue {
+			return false
+		}
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Custom, other.Custom) {
+		return false
+	}
+
+	return true
+}
+
 // Row panel
 type RowPanel struct {
 	// The panel type
@@ -928,15 +2193,130 @@ type RowPanel struct {
 	Repeat *string `json:"repeat,omitempty"`
 }
 
+func (resource RowPanel) Equals(other RowPanel) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Collapsed != other.Collapsed {
+		return false
+	}
+	if resource.Title == nil && other.Title != nil || resource.Title != nil && other.Title == nil {
+		return false
+	}
+
+	if resource.Title != nil {
+		if *resource.Title != *other.Title {
+			return false
+		}
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.GridPos == nil && other.GridPos != nil || resource.GridPos != nil && other.GridPos == nil {
+		return false
+	}
+
+	if resource.GridPos != nil {
+		if !resource.GridPos.Equals(*other.GridPos) {
+			return false
+		}
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+
+	if len(resource.Panels) != len(other.Panels) {
+		return false
+	}
+
+	for i1 := range resource.Panels {
+		if !resource.Panels[i1].Equals(other.Panels[i1]) {
+			return false
+		}
+	}
+	if resource.Repeat == nil && other.Repeat != nil || resource.Repeat != nil && other.Repeat == nil {
+		return false
+	}
+
+	if resource.Repeat != nil {
+		if *resource.Repeat != *other.Repeat {
+			return false
+		}
+	}
+
+	return true
+}
+
 type AnnotationActions struct {
 	CanAdd    *bool `json:"canAdd,omitempty"`
 	CanDelete *bool `json:"canDelete,omitempty"`
 	CanEdit   *bool `json:"canEdit,omitempty"`
 }
 
+func (resource AnnotationActions) Equals(other AnnotationActions) bool {
+	if resource.CanAdd == nil && other.CanAdd != nil || resource.CanAdd != nil && other.CanAdd == nil {
+		return false
+	}
+
+	if resource.CanAdd != nil {
+		if *resource.CanAdd != *other.CanAdd {
+			return false
+		}
+	}
+	if resource.CanDelete == nil && other.CanDelete != nil || resource.CanDelete != nil && other.CanDelete == nil {
+		return false
+	}
+
+	if resource.CanDelete != nil {
+		if *resource.CanDelete != *other.CanDelete {
+			return false
+		}
+	}
+	if resource.CanEdit == nil && other.CanEdit != nil || resource.CanEdit != nil && other.CanEdit == nil {
+		return false
+	}
+
+	if resource.CanEdit != nil {
+		if *resource.CanEdit != *other.CanEdit {
+			return false
+		}
+	}
+
+	return true
+}
+
 type AnnotationPermission struct {
 	Dashboard    *AnnotationActions `json:"dashboard,omitempty"`
 	Organization *AnnotationActions `json:"organization,omitempty"`
+}
+
+func (resource AnnotationPermission) Equals(other AnnotationPermission) bool {
+	if resource.Dashboard == nil && other.Dashboard != nil || resource.Dashboard != nil && other.Dashboard == nil {
+		return false
+	}
+
+	if resource.Dashboard != nil {
+		if !resource.Dashboard.Equals(*other.Dashboard) {
+			return false
+		}
+	}
+	if resource.Organization == nil && other.Organization != nil || resource.Organization != nil && other.Organization == nil {
+		return false
+	}
+
+	if resource.Organization != nil {
+		if !resource.Organization.Equals(*other.Organization) {
+			return false
+		}
+	}
+
+	return true
 }
 
 type DashboardMeta struct {
@@ -969,6 +2349,254 @@ type DashboardMeta struct {
 	Version                *int64                `json:"version,omitempty"`
 }
 
+func (resource DashboardMeta) Equals(other DashboardMeta) bool {
+	if resource.AnnotationsPermissions == nil && other.AnnotationsPermissions != nil || resource.AnnotationsPermissions != nil && other.AnnotationsPermissions == nil {
+		return false
+	}
+
+	if resource.AnnotationsPermissions != nil {
+		if !resource.AnnotationsPermissions.Equals(*other.AnnotationsPermissions) {
+			return false
+		}
+	}
+	if resource.CanAdmin == nil && other.CanAdmin != nil || resource.CanAdmin != nil && other.CanAdmin == nil {
+		return false
+	}
+
+	if resource.CanAdmin != nil {
+		if *resource.CanAdmin != *other.CanAdmin {
+			return false
+		}
+	}
+	if resource.CanDelete == nil && other.CanDelete != nil || resource.CanDelete != nil && other.CanDelete == nil {
+		return false
+	}
+
+	if resource.CanDelete != nil {
+		if *resource.CanDelete != *other.CanDelete {
+			return false
+		}
+	}
+	if resource.CanEdit == nil && other.CanEdit != nil || resource.CanEdit != nil && other.CanEdit == nil {
+		return false
+	}
+
+	if resource.CanEdit != nil {
+		if *resource.CanEdit != *other.CanEdit {
+			return false
+		}
+	}
+	if resource.CanSave == nil && other.CanSave != nil || resource.CanSave != nil && other.CanSave == nil {
+		return false
+	}
+
+	if resource.CanSave != nil {
+		if *resource.CanSave != *other.CanSave {
+			return false
+		}
+	}
+	if resource.CanStar == nil && other.CanStar != nil || resource.CanStar != nil && other.CanStar == nil {
+		return false
+	}
+
+	if resource.CanStar != nil {
+		if *resource.CanStar != *other.CanStar {
+			return false
+		}
+	}
+	if resource.Created == nil && other.Created != nil || resource.Created != nil && other.Created == nil {
+		return false
+	}
+
+	if resource.Created != nil {
+		if *resource.Created != *other.Created {
+			return false
+		}
+	}
+	if resource.CreatedBy == nil && other.CreatedBy != nil || resource.CreatedBy != nil && other.CreatedBy == nil {
+		return false
+	}
+
+	if resource.CreatedBy != nil {
+		if *resource.CreatedBy != *other.CreatedBy {
+			return false
+		}
+	}
+	if resource.Expires == nil && other.Expires != nil || resource.Expires != nil && other.Expires == nil {
+		return false
+	}
+
+	if resource.Expires != nil {
+		if *resource.Expires != *other.Expires {
+			return false
+		}
+	}
+	if resource.FolderId == nil && other.FolderId != nil || resource.FolderId != nil && other.FolderId == nil {
+		return false
+	}
+
+	if resource.FolderId != nil {
+		if *resource.FolderId != *other.FolderId {
+			return false
+		}
+	}
+	if resource.FolderTitle == nil && other.FolderTitle != nil || resource.FolderTitle != nil && other.FolderTitle == nil {
+		return false
+	}
+
+	if resource.FolderTitle != nil {
+		if *resource.FolderTitle != *other.FolderTitle {
+			return false
+		}
+	}
+	if resource.FolderUid == nil && other.FolderUid != nil || resource.FolderUid != nil && other.FolderUid == nil {
+		return false
+	}
+
+	if resource.FolderUid != nil {
+		if *resource.FolderUid != *other.FolderUid {
+			return false
+		}
+	}
+	if resource.FolderUrl == nil && other.FolderUrl != nil || resource.FolderUrl != nil && other.FolderUrl == nil {
+		return false
+	}
+
+	if resource.FolderUrl != nil {
+		if *resource.FolderUrl != *other.FolderUrl {
+			return false
+		}
+	}
+	if resource.HasAcl == nil && other.HasAcl != nil || resource.HasAcl != nil && other.HasAcl == nil {
+		return false
+	}
+
+	if resource.HasAcl != nil {
+		if *resource.HasAcl != *other.HasAcl {
+			return false
+		}
+	}
+	if resource.IsFolder == nil && other.IsFolder != nil || resource.IsFolder != nil && other.IsFolder == nil {
+		return false
+	}
+
+	if resource.IsFolder != nil {
+		if *resource.IsFolder != *other.IsFolder {
+			return false
+		}
+	}
+	if resource.IsSnapshot == nil && other.IsSnapshot != nil || resource.IsSnapshot != nil && other.IsSnapshot == nil {
+		return false
+	}
+
+	if resource.IsSnapshot != nil {
+		if *resource.IsSnapshot != *other.IsSnapshot {
+			return false
+		}
+	}
+	if resource.IsStarred == nil && other.IsStarred != nil || resource.IsStarred != nil && other.IsStarred == nil {
+		return false
+	}
+
+	if resource.IsStarred != nil {
+		if *resource.IsStarred != *other.IsStarred {
+			return false
+		}
+	}
+	if resource.Provisioned == nil && other.Provisioned != nil || resource.Provisioned != nil && other.Provisioned == nil {
+		return false
+	}
+
+	if resource.Provisioned != nil {
+		if *resource.Provisioned != *other.Provisioned {
+			return false
+		}
+	}
+	if resource.ProvisionedExternalId == nil && other.ProvisionedExternalId != nil || resource.ProvisionedExternalId != nil && other.ProvisionedExternalId == nil {
+		return false
+	}
+
+	if resource.ProvisionedExternalId != nil {
+		if *resource.ProvisionedExternalId != *other.ProvisionedExternalId {
+			return false
+		}
+	}
+	if resource.PublicDashboardEnabled == nil && other.PublicDashboardEnabled != nil || resource.PublicDashboardEnabled != nil && other.PublicDashboardEnabled == nil {
+		return false
+	}
+
+	if resource.PublicDashboardEnabled != nil {
+		if *resource.PublicDashboardEnabled != *other.PublicDashboardEnabled {
+			return false
+		}
+	}
+	if resource.PublicDashboardUid == nil && other.PublicDashboardUid != nil || resource.PublicDashboardUid != nil && other.PublicDashboardUid == nil {
+		return false
+	}
+
+	if resource.PublicDashboardUid != nil {
+		if *resource.PublicDashboardUid != *other.PublicDashboardUid {
+			return false
+		}
+	}
+	if resource.Slug == nil && other.Slug != nil || resource.Slug != nil && other.Slug == nil {
+		return false
+	}
+
+	if resource.Slug != nil {
+		if *resource.Slug != *other.Slug {
+			return false
+		}
+	}
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+	if resource.Updated == nil && other.Updated != nil || resource.Updated != nil && other.Updated == nil {
+		return false
+	}
+
+	if resource.Updated != nil {
+		if *resource.Updated != *other.Updated {
+			return false
+		}
+	}
+	if resource.UpdatedBy == nil && other.UpdatedBy != nil || resource.UpdatedBy != nil && other.UpdatedBy == nil {
+		return false
+	}
+
+	if resource.UpdatedBy != nil {
+		if *resource.UpdatedBy != *other.UpdatedBy {
+			return false
+		}
+	}
+	if resource.Url == nil && other.Url != nil || resource.Url != nil && other.Url == nil {
+		return false
+	}
+
+	if resource.Url != nil {
+		if *resource.Url != *other.Url {
+			return false
+		}
+	}
+	if resource.Version == nil && other.Version != nil || resource.Version != nil && other.Version == nil {
+		return false
+	}
+
+	if resource.Version != nil {
+		if *resource.Version != *other.Version {
+			return false
+		}
+	}
+
+	return true
+}
+
 type DataTransformerConfigTopic string
 
 const (
@@ -983,6 +2611,136 @@ const (
 	PanelRepeatDirectionH PanelRepeatDirection = "h"
 	PanelRepeatDirectionV PanelRepeatDirection = "v"
 )
+
+type DashboardDashboardTime struct {
+	From string `json:"from"`
+	To   string `json:"to"`
+}
+
+func (resource DashboardDashboardTime) Equals(other DashboardDashboardTime) bool {
+	if resource.From != other.From {
+		return false
+	}
+	if resource.To != other.To {
+		return false
+	}
+
+	return true
+}
+
+type DashboardDashboardTemplating struct {
+	// List of configured template variables with their saved values along with some other metadata
+	List []VariableModel `json:"list,omitempty"`
+}
+
+func (resource DashboardDashboardTemplating) Equals(other DashboardDashboardTemplating) bool {
+
+	if len(resource.List) != len(other.List) {
+		return false
+	}
+
+	for i1 := range resource.List {
+		if !resource.List[i1].Equals(other.List[i1]) {
+			return false
+		}
+	}
+
+	return true
+}
+
+type DashboardRangeMapOptions struct {
+	// Min value of the range. It can be null which means -Infinity
+	From *float64 `json:"from"`
+	// Max value of the range. It can be null which means +Infinity
+	To *float64 `json:"to"`
+	// Config to apply when the value is within the range
+	Result ValueMappingResult `json:"result"`
+}
+
+func (resource DashboardRangeMapOptions) Equals(other DashboardRangeMapOptions) bool {
+	if resource.From == nil && other.From != nil || resource.From != nil && other.From == nil {
+		return false
+	}
+
+	if resource.From != nil {
+		if *resource.From != *other.From {
+			return false
+		}
+	}
+	if resource.To == nil && other.To != nil || resource.To != nil && other.To == nil {
+		return false
+	}
+
+	if resource.To != nil {
+		if *resource.To != *other.To {
+			return false
+		}
+	}
+	if !resource.Result.Equals(other.Result) {
+		return false
+	}
+
+	return true
+}
+
+type DashboardRegexMapOptions struct {
+	// Regular expression to match against
+	Pattern string `json:"pattern"`
+	// Config to apply when the value matches the regex
+	Result ValueMappingResult `json:"result"`
+}
+
+func (resource DashboardRegexMapOptions) Equals(other DashboardRegexMapOptions) bool {
+	if resource.Pattern != other.Pattern {
+		return false
+	}
+	if !resource.Result.Equals(other.Result) {
+		return false
+	}
+
+	return true
+}
+
+type DashboardSpecialValueMapOptions struct {
+	// Special value to match against
+	Match SpecialValueMatch `json:"match"`
+	// Config to apply when the value matches the special value
+	Result ValueMappingResult `json:"result"`
+}
+
+func (resource DashboardSpecialValueMapOptions) Equals(other DashboardSpecialValueMapOptions) bool {
+	if resource.Match != other.Match {
+		return false
+	}
+	if !resource.Result.Equals(other.Result) {
+		return false
+	}
+
+	return true
+}
+
+type DashboardFieldConfigSourceOverrides struct {
+	Matcher    MatcherConfig        `json:"matcher"`
+	Properties []DynamicConfigValue `json:"properties"`
+}
+
+func (resource DashboardFieldConfigSourceOverrides) Equals(other DashboardFieldConfigSourceOverrides) bool {
+	if !resource.Matcher.Equals(other.Matcher) {
+		return false
+	}
+
+	if len(resource.Properties) != len(other.Properties) {
+		return false
+	}
+
+	for i1 := range resource.Properties {
+		if !resource.Properties[i1].Equals(other.Properties[i1]) {
+			return false
+		}
+	}
+
+	return true
+}
 
 type PanelOrRowPanel struct {
 	Panel    *Panel    `json:"Panel,omitempty"`
@@ -1038,6 +2796,29 @@ func (resource *PanelOrRowPanel) UnmarshalJSON(raw []byte) error {
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
+func (resource PanelOrRowPanel) Equals(other PanelOrRowPanel) bool {
+	if resource.Panel == nil && other.Panel != nil || resource.Panel != nil && other.Panel == nil {
+		return false
+	}
+
+	if resource.Panel != nil {
+		if !resource.Panel.Equals(*other.Panel) {
+			return false
+		}
+	}
+	if resource.RowPanel == nil && other.RowPanel != nil || resource.RowPanel != nil && other.RowPanel == nil {
+		return false
+	}
+
+	if resource.RowPanel != nil {
+		if !resource.RowPanel.Equals(*other.RowPanel) {
+			return false
+		}
+	}
+
+	return true
+}
+
 type StringOrMap struct {
 	String *string        `json:"String,omitempty"`
 	Map    map[string]any `json:"Map,omitempty"`
@@ -1085,6 +2866,31 @@ func (resource *StringOrMap) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
+func (resource StringOrMap) Equals(other StringOrMap) bool {
+	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
+		return false
+	}
+
+	if resource.String != nil {
+		if *resource.String != *other.String {
+			return false
+		}
+	}
+
+	if len(resource.Map) != len(other.Map) {
+		return false
+	}
+
+	for key1 := range resource.Map {
+		// is DeepEqual good enough here?
+		if !reflect.DeepEqual(resource.Map[key1], other.Map[key1]) {
+			return false
+		}
+	}
+
+	return true
+}
+
 type StringOrArrayOfString struct {
 	String        *string  `json:"String,omitempty"`
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
@@ -1130,6 +2936,30 @@ func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 	}
 
 	return errors.Join(errList...)
+}
+
+func (resource StringOrArrayOfString) Equals(other StringOrArrayOfString) bool {
+	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
+		return false
+	}
+
+	if resource.String != nil {
+		if *resource.String != *other.String {
+			return false
+		}
+	}
+
+	if len(resource.ArrayOfString) != len(other.ArrayOfString) {
+		return false
+	}
+
+	for i1 := range resource.ArrayOfString {
+		if resource.ArrayOfString[i1] != other.ArrayOfString[i1] {
+			return false
+		}
+	}
+
+	return true
 }
 
 type ValueMapOrRangeMapOrRegexMapOrSpecialValueMap struct {
@@ -1208,4 +3038,45 @@ func (resource *ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) UnmarshalJSON(raw
 	}
 
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+}
+
+func (resource ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) Equals(other ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) bool {
+	if resource.ValueMap == nil && other.ValueMap != nil || resource.ValueMap != nil && other.ValueMap == nil {
+		return false
+	}
+
+	if resource.ValueMap != nil {
+		if !resource.ValueMap.Equals(*other.ValueMap) {
+			return false
+		}
+	}
+	if resource.RangeMap == nil && other.RangeMap != nil || resource.RangeMap != nil && other.RangeMap == nil {
+		return false
+	}
+
+	if resource.RangeMap != nil {
+		if !resource.RangeMap.Equals(*other.RangeMap) {
+			return false
+		}
+	}
+	if resource.RegexMap == nil && other.RegexMap != nil || resource.RegexMap != nil && other.RegexMap == nil {
+		return false
+	}
+
+	if resource.RegexMap != nil {
+		if !resource.RegexMap.Equals(*other.RegexMap) {
+			return false
+		}
+	}
+	if resource.SpecialValueMap == nil && other.SpecialValueMap != nil || resource.SpecialValueMap != nil && other.SpecialValueMap == nil {
+		return false
+	}
+
+	if resource.SpecialValueMap != nil {
+		if !resource.SpecialValueMap.Equals(*other.SpecialValueMap) {
+			return false
+		}
+	}
+
+	return true
 }

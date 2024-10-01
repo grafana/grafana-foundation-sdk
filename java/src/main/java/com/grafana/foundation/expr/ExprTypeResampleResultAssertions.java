@@ -45,7 +45,7 @@ public class ExprTypeResampleResultAssertions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeResampleResultAssertions> {
-        private final ExprTypeResampleResultAssertions internal;
+        protected final ExprTypeResampleResultAssertions internal;
         
         public Builder() {
             this.internal = new ExprTypeResampleResultAssertions();

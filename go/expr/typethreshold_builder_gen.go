@@ -7,6 +7,7 @@ import (
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*TypeThresholdBuilder)(nil)
@@ -44,33 +45,23 @@ func (builder *TypeThresholdBuilder) Build() (variants.Dataquery, error) {
 }
 
 // Threshold Conditions
-func (builder *TypeThresholdBuilder) Conditions(conditions []struct {
-	Evaluator struct {
-		Params []float64 `json:"params"`
-		// e.g. "gt"
-		Type TypeThresholdType `json:"type"`
-	} `json:"evaluator"`
-	LoadedDimensions any `json:"loadedDimensions,omitempty"`
-	UnloadEvaluator  *struct {
-		Params []float64 `json:"params"`
-		// e.g. "gt"
-		Type TypeThresholdType `json:"type"`
-	} `json:"unloadEvaluator,omitempty"`
-}) *TypeThresholdBuilder {
-	builder.internal.Conditions = conditions
+func (builder *TypeThresholdBuilder) Conditions(conditions []cog.Builder[ExprTypeThresholdConditions]) *TypeThresholdBuilder {
+	conditionsResources := make([]ExprTypeThresholdConditions, 0, len(conditions))
+	for _, r1 := range conditions {
+		conditionsDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["conditions"] = err.(cog.BuildErrors)
+			return builder
+		}
+		conditionsResources = append(conditionsResources, conditionsDepth1)
+	}
+	builder.internal.Conditions = conditionsResources
 
 	return builder
 }
 
 // The datasource
-func (builder *TypeThresholdBuilder) Datasource(datasource struct {
-	// The apiserver version
-	ApiVersion *string `json:"apiVersion,omitempty"`
-	// The datasource plugin type
-	Type string `json:"type"`
-	// Datasource UID (NOTE: name in k8s)
-	Uid *string `json:"uid,omitempty"`
-}) *TypeThresholdBuilder {
+func (builder *TypeThresholdBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeThresholdBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -130,28 +121,13 @@ func (builder *TypeThresholdBuilder) RefId(refId string) *TypeThresholdBuilder {
 }
 
 // Optionally define expected query result behavior
-func (builder *TypeThresholdBuilder) ResultAssertions(resultAssertions struct {
-	// Maximum frame count
-	MaxFrames *int64 `json:"maxFrames,omitempty"`
-	// Type asserts that the frame matches a known type structure.
-	// Possible enum values:
-	//  - `""`
-	//  - `"timeseries-wide"`
-	//  - `"timeseries-long"`
-	//  - `"timeseries-many"`
-	//  - `"timeseries-multi"`
-	//  - `"directory-listing"`
-	//  - `"table"`
-	//  - `"numeric-wide"`
-	//  - `"numeric-multi"`
-	//  - `"numeric-long"`
-	//  - `"log-lines"`
-	Type *TypeThresholdType `json:"type,omitempty"`
-	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-	// contract documentation https://grafana.github.io/dataplane/contract/.
-	TypeVersion []int64 `json:"typeVersion"`
-}) *TypeThresholdBuilder {
-	builder.internal.ResultAssertions = &resultAssertions
+func (builder *TypeThresholdBuilder) ResultAssertions(resultAssertions cog.Builder[ExprTypeThresholdResultAssertions]) *TypeThresholdBuilder {
+	resultAssertionsResource, err := resultAssertions.Build()
+	if err != nil {
+		builder.errors["resultAssertions"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.ResultAssertions = &resultAssertionsResource
 
 	return builder
 }
@@ -159,13 +135,13 @@ func (builder *TypeThresholdBuilder) ResultAssertions(resultAssertions struct {
 // TimeRange represents the query range
 // NOTE: unlike generic /ds/query, we can now send explicit time values in each query
 // NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-func (builder *TypeThresholdBuilder) TimeRange(timeRange struct {
-	// From is the start time of the query.
-	From string `json:"from"`
-	// To is the end time of the query.
-	To string `json:"to"`
-}) *TypeThresholdBuilder {
-	builder.internal.TimeRange = &timeRange
+func (builder *TypeThresholdBuilder) TimeRange(timeRange cog.Builder[ExprTypeThresholdTimeRange]) *TypeThresholdBuilder {
+	timeRangeResource, err := timeRange.Build()
+	if err != nil {
+		builder.errors["timeRange"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.TimeRange = &timeRangeResource
 
 	return builder
 }

@@ -12,13 +12,21 @@ type Options struct {
 	SelectedSeries int32 `json:"selectedSeries"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.SelectedSeries != other.SelectedSeries {
+		return false
+	}
+
+	return true
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "datagrid",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

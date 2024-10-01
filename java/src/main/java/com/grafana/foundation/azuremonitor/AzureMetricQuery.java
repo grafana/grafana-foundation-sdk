@@ -92,7 +92,7 @@ public class AzureMetricQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AzureMetricQuery> {
-        private final AzureMetricQuery internal;
+        protected final AzureMetricQuery internal;
         
         public Builder() {
             this.internal = new AzureMetricQuery();

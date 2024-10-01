@@ -69,7 +69,7 @@ public class Rule {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Rule> {
-        private final Rule internal;
+        protected final Rule internal;
         
         public Builder(String title) {
             this.internal = new Rule();

@@ -1,5 +1,8 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
+import * as dashboard from '../dashboard';
+
+
 export interface AzureMonitorQuery {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
@@ -32,7 +35,7 @@ export interface AzureMonitorQuery {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	datasource?: any;
+	datasource?: dashboard.DataSourceRef;
 	// Azure Monitor query type.
 	// queryType: #AzureQueryType
 	region?: string;

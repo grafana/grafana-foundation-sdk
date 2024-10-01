@@ -22,7 +22,7 @@ public class QueryEditorGroupByExpression {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<QueryEditorGroupByExpression> {
-        private final QueryEditorGroupByExpression internal;
+        protected final QueryEditorGroupByExpression internal;
         
         public Builder() {
             this.internal = new QueryEditorGroupByExpression();

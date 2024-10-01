@@ -29,7 +29,7 @@ public class ThresholdsConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ThresholdsConfig> {
-        private final ThresholdsConfig internal;
+        protected final ThresholdsConfig internal;
         
         public Builder() {
             this.internal = new ThresholdsConfig();

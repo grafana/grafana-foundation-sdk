@@ -62,7 +62,7 @@ public class Snapshot {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Snapshot> {
-        private final Snapshot internal;
+        protected final Snapshot internal;
         
         public Builder() {
             this.internal = new Snapshot();

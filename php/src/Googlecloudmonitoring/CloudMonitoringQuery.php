@@ -54,9 +54,8 @@ class CloudMonitoringQuery implements \JsonSerializable, \Grafana\Foundation\Cog
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
-     * @var mixed|null
      */
-    public $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
      * Time interval in milliseconds.
@@ -72,10 +71,10 @@ class CloudMonitoringQuery implements \JsonSerializable, \Grafana\Foundation\Cog
      * @param \Grafana\Foundation\Googlecloudmonitoring\TimeSeriesQuery|null $timeSeriesQuery
      * @param \Grafana\Foundation\Googlecloudmonitoring\SLOQuery|null $sloQuery
      * @param \Grafana\Foundation\Googlecloudmonitoring\PromQLQuery|null $promQLQuery
-     * @param mixed|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param float|null $intervalMs
      */
-    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $aliasBy = null, ?\Grafana\Foundation\Googlecloudmonitoring\TimeSeriesList $timeSeriesList = null, ?\Grafana\Foundation\Googlecloudmonitoring\TimeSeriesQuery $timeSeriesQuery = null, ?\Grafana\Foundation\Googlecloudmonitoring\SLOQuery $sloQuery = null, ?\Grafana\Foundation\Googlecloudmonitoring\PromQLQuery $promQLQuery = null,  $datasource = null, ?float $intervalMs = null)
+    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $aliasBy = null, ?\Grafana\Foundation\Googlecloudmonitoring\TimeSeriesList $timeSeriesList = null, ?\Grafana\Foundation\Googlecloudmonitoring\TimeSeriesQuery $timeSeriesQuery = null, ?\Grafana\Foundation\Googlecloudmonitoring\SLOQuery $sloQuery = null, ?\Grafana\Foundation\Googlecloudmonitoring\PromQLQuery $promQLQuery = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?float $intervalMs = null)
     {
         $this->refId = $refId ?: "";
         $this->hide = $hide;
@@ -121,7 +120,11 @@ class CloudMonitoringQuery implements \JsonSerializable, \Grafana\Foundation\Cog
     $val = $input;
     	return \Grafana\Foundation\Googlecloudmonitoring\PromQLQuery::fromArray($val);
     })($data["promQLQuery"]) : null,
-            datasource: $data["datasource"] ?? null,
+            datasource: isset($data["datasource"]) ? (function($input) {
+    	/** @var array{type?: string, uid?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    })($data["datasource"]) : null,
             intervalMs: $data["intervalMs"] ?? null,
         );
     }

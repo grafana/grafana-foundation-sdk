@@ -22,7 +22,7 @@ public class ExprTypeResampleTimeRange {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeResampleTimeRange> {
-        private final ExprTypeResampleTimeRange internal;
+        protected final ExprTypeResampleTimeRange internal;
         
         public Builder() {
             this.internal = new ExprTypeResampleTimeRange();

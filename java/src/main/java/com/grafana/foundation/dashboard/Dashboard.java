@@ -120,7 +120,7 @@ public class Dashboard {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Dashboard> {
-        private final Dashboard internal;
+        protected final Dashboard internal;
         private Integer currentY;
         private Integer currentX;
         private Integer lastPanelHeight;

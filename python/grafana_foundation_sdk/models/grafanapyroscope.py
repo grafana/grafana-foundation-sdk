@@ -3,6 +3,7 @@
 import enum
 from ..cog import variants as cogvariants
 import typing
+from ..models import dashboard
 from ..cog import runtime as cogruntime
 
 
@@ -36,9 +37,9 @@ class Dataquery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[object]
+    datasource: typing.Optional[dashboard.DataSourceRef]
 
-    def __init__(self, label_selector: str = "{}", span_selector: typing.Optional[list[str]] = None, profile_type_id: str = "", group_by: typing.Optional[list[str]] = None, max_nodes: typing.Optional[int] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None):
+    def __init__(self, label_selector: str = "{}", span_selector: typing.Optional[list[str]] = None, profile_type_id: str = "", group_by: typing.Optional[list[str]] = None, max_nodes: typing.Optional[int] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
         self.label_selector = label_selector
         self.span_selector = span_selector
         self.profile_type_id = profile_type_id
@@ -89,7 +90,7 @@ class Dataquery(cogvariants.Dataquery):
         if "queryType" in data:
             args["query_type"] = data["queryType"]
         if "datasource" in data:
-            args["datasource"] = data["datasource"]        
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])        
 
         return cls(**args)
 

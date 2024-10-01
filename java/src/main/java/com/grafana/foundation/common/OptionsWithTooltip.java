@@ -21,7 +21,7 @@ public class OptionsWithTooltip {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<OptionsWithTooltip> {
-        private final OptionsWithTooltip internal;
+        protected final OptionsWithTooltip internal;
         
         public Builder() {
             this.internal = new OptionsWithTooltip();

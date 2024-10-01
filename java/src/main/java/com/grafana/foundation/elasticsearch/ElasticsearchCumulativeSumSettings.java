@@ -20,7 +20,7 @@ public class ElasticsearchCumulativeSumSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchCumulativeSumSettings> {
-        private final ElasticsearchCumulativeSumSettings internal;
+        protected final ElasticsearchCumulativeSumSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchCumulativeSumSettings();

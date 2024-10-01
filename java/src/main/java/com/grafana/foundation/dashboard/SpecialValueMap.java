@@ -25,7 +25,7 @@ public class SpecialValueMap {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<SpecialValueMap> {
-        private final SpecialValueMap internal;
+        protected final SpecialValueMap internal;
         
         public Builder() {
             this.internal = new SpecialValueMap();

@@ -30,7 +30,7 @@ public class Min {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Min> {
-        private final Min internal;
+        protected final Min internal;
         
         public Builder() {
             this.internal = new Min();

@@ -20,23 +20,6 @@
         }
       }
     },
-    "Datasource": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "description": "The datasource plugin type"
-        },
-        "uid": {
-          "type": "string",
-          "description": "Datasource UID"
-        }
-      }
-    },
     "NodesQuery": {
       "type": "object",
       "additionalProperties": false,
@@ -261,7 +244,7 @@
           }
         },
         "datasource": {
-          "$ref": "#/definitions/Datasource",
+          "$ref": "#/definitions/DataSourceRef",
           "description": "The datasource"
         },
         "dropPercent": {
@@ -407,6 +390,21 @@
           "type": "boolean"
         }
       }
+    },
+    "DataSourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The plugin type-id"
+        },
+        "uid": {
+          "type": "string",
+          "description": "Specific datasource instance"
+        }
+      },
+      "description": "Ref to a DataSource instance"
     }
   }
 }

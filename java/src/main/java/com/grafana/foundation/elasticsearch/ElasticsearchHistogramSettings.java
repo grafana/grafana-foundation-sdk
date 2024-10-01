@@ -23,7 +23,7 @@ public class ElasticsearchHistogramSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchHistogramSettings> {
-        private final ElasticsearchHistogramSettings internal;
+        protected final ElasticsearchHistogramSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchHistogramSettings();

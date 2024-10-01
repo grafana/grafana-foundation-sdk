@@ -3,6 +3,7 @@
 import typing
 from ..cog import runtime as cogruntime
 from ..cog import variants as cogvariants
+from ..models import dashboard
 
 
 Expr: typing.TypeAlias = typing.Union['TypeMath', 'TypeReduce', 'TypeResample', 'TypeClassicConditions', 'TypeThreshold', 'TypeSql']
@@ -18,7 +19,7 @@ def variant_config() -> cogruntime.DataqueryConfig:
 
 class TypeMath(cogvariants.Dataquery):
     # The datasource
-    datasource: typing.Optional['ExprTypeMathDatasource']
+    datasource: typing.Optional[dashboard.DataSourceRef]
     # General math expression
     expression: str
     # true if query is disabled (ie should not be returned to the dashboard)
@@ -46,7 +47,7 @@ class TypeMath(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeMathTimeRange']
     type_val: typing.Literal["math"]
 
-    def __init__(self, datasource: typing.Optional['ExprTypeMathDatasource'] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeMathResultAssertions'] = None, time_range: typing.Optional['ExprTypeMathTimeRange'] = None):
+    def __init__(self, datasource: typing.Optional[dashboard.DataSourceRef] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeMathResultAssertions'] = None, time_range: typing.Optional['ExprTypeMathTimeRange'] = None):
         self.datasource = datasource
         self.expression = expression
         self.hide = hide
@@ -85,7 +86,7 @@ class TypeMath(cogvariants.Dataquery):
         args: dict[str, typing.Any] = {}
         
         if "datasource" in data:
-            args["datasource"] = ExprTypeMathDatasource.from_json(data["datasource"])
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "expression" in data:
             args["expression"] = data["expression"]
         if "hide" in data:
@@ -108,7 +109,7 @@ class TypeMath(cogvariants.Dataquery):
 
 class TypeReduce(cogvariants.Dataquery):
     # The datasource
-    datasource: typing.Optional['ExprTypeReduceDatasource']
+    datasource: typing.Optional[dashboard.DataSourceRef]
     # Reference to single query result
     expression: str
     # true if query is disabled (ie should not be returned to the dashboard)
@@ -148,7 +149,7 @@ class TypeReduce(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeReduceTimeRange']
     type_val: typing.Literal["reduce"]
 
-    def __init__(self, datasource: typing.Optional['ExprTypeReduceDatasource'] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, reducer: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeReduceResultAssertions'] = None, settings: typing.Optional['ExprTypeReduceSettings'] = None, time_range: typing.Optional['ExprTypeReduceTimeRange'] = None):
+    def __init__(self, datasource: typing.Optional[dashboard.DataSourceRef] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, reducer: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeReduceResultAssertions'] = None, settings: typing.Optional['ExprTypeReduceSettings'] = None, time_range: typing.Optional['ExprTypeReduceTimeRange'] = None):
         self.datasource = datasource
         self.expression = expression
         self.hide = hide
@@ -192,7 +193,7 @@ class TypeReduce(cogvariants.Dataquery):
         args: dict[str, typing.Any] = {}
         
         if "datasource" in data:
-            args["datasource"] = ExprTypeReduceDatasource.from_json(data["datasource"])
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "expression" in data:
             args["expression"] = data["expression"]
         if "hide" in data:
@@ -219,7 +220,7 @@ class TypeReduce(cogvariants.Dataquery):
 
 class TypeResample(cogvariants.Dataquery):
     # The datasource
-    datasource: typing.Optional['ExprTypeResampleDatasource']
+    datasource: typing.Optional[dashboard.DataSourceRef]
     # The downsample function
     # Possible enum values:
     #  - `"sum"` 
@@ -265,7 +266,7 @@ class TypeResample(cogvariants.Dataquery):
     # The time duration
     window: str
 
-    def __init__(self, datasource: typing.Optional['ExprTypeResampleDatasource'] = None, downsampler: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeResampleResultAssertions'] = None, time_range: typing.Optional['ExprTypeResampleTimeRange'] = None, upsampler: typing.Optional[typing.Literal["pad", "backfilling", "fillna"]] = None, window: str = ""):
+    def __init__(self, datasource: typing.Optional[dashboard.DataSourceRef] = None, downsampler: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeResampleResultAssertions'] = None, time_range: typing.Optional['ExprTypeResampleTimeRange'] = None, upsampler: typing.Optional[typing.Literal["pad", "backfilling", "fillna"]] = None, window: str = ""):
         self.datasource = datasource
         self.downsampler = downsampler if downsampler is not None else "sum"
         self.expression = expression
@@ -310,7 +311,7 @@ class TypeResample(cogvariants.Dataquery):
         args: dict[str, typing.Any] = {}
         
         if "datasource" in data:
-            args["datasource"] = ExprTypeResampleDatasource.from_json(data["datasource"])
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "downsampler" in data:
             args["downsampler"] = data["downsampler"]
         if "expression" in data:
@@ -340,7 +341,7 @@ class TypeResample(cogvariants.Dataquery):
 class TypeClassicConditions(cogvariants.Dataquery):
     conditions: list['ExprTypeClassicConditionsConditions']
     # The datasource
-    datasource: typing.Optional['ExprTypeClassicConditionsDatasource']
+    datasource: typing.Optional[dashboard.DataSourceRef]
     # true if query is disabled (ie should not be returned to the dashboard)
     # NOTE: this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -366,7 +367,7 @@ class TypeClassicConditions(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeClassicConditionsTimeRange']
     type_val: typing.Literal["classic_conditions"]
 
-    def __init__(self, conditions: typing.Optional[list['ExprTypeClassicConditionsConditions']] = None, datasource: typing.Optional['ExprTypeClassicConditionsDatasource'] = None, hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeClassicConditionsResultAssertions'] = None, time_range: typing.Optional['ExprTypeClassicConditionsTimeRange'] = None):
+    def __init__(self, conditions: typing.Optional[list['ExprTypeClassicConditionsConditions']] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeClassicConditionsResultAssertions'] = None, time_range: typing.Optional['ExprTypeClassicConditionsTimeRange'] = None):
         self.conditions = conditions if conditions is not None else []
         self.datasource = datasource
         self.hide = hide
@@ -407,7 +408,7 @@ class TypeClassicConditions(cogvariants.Dataquery):
         if "conditions" in data:
             args["conditions"] = data["conditions"]
         if "datasource" in data:
-            args["datasource"] = ExprTypeClassicConditionsDatasource.from_json(data["datasource"])
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "hide" in data:
             args["hide"] = data["hide"]
         if "intervalMs" in data:
@@ -430,7 +431,7 @@ class TypeThreshold(cogvariants.Dataquery):
     # Threshold Conditions
     conditions: list['ExprTypeThresholdConditions']
     # The datasource
-    datasource: typing.Optional['ExprTypeThresholdDatasource']
+    datasource: typing.Optional[dashboard.DataSourceRef]
     # Reference to single query result
     expression: str
     # true if query is disabled (ie should not be returned to the dashboard)
@@ -458,7 +459,7 @@ class TypeThreshold(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeThresholdTimeRange']
     type_val: typing.Literal["threshold"]
 
-    def __init__(self, conditions: typing.Optional[list['ExprTypeThresholdConditions']] = None, datasource: typing.Optional['ExprTypeThresholdDatasource'] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeThresholdResultAssertions'] = None, time_range: typing.Optional['ExprTypeThresholdTimeRange'] = None):
+    def __init__(self, conditions: typing.Optional[list['ExprTypeThresholdConditions']] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeThresholdResultAssertions'] = None, time_range: typing.Optional['ExprTypeThresholdTimeRange'] = None):
         self.conditions = conditions if conditions is not None else []
         self.datasource = datasource
         self.expression = expression
@@ -501,7 +502,7 @@ class TypeThreshold(cogvariants.Dataquery):
         if "conditions" in data:
             args["conditions"] = data["conditions"]
         if "datasource" in data:
-            args["datasource"] = ExprTypeThresholdDatasource.from_json(data["datasource"])
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "expression" in data:
             args["expression"] = data["expression"]
         if "hide" in data:
@@ -524,7 +525,7 @@ class TypeThreshold(cogvariants.Dataquery):
 
 class TypeSql(cogvariants.Dataquery):
     # The datasource
-    datasource: typing.Optional['ExprTypeSqlDatasource']
+    datasource: typing.Optional[dashboard.DataSourceRef]
     expression: str
     # true if query is disabled (ie should not be returned to the dashboard)
     # NOTE: this does not always imply that the query should not be executed since
@@ -551,7 +552,7 @@ class TypeSql(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeSqlTimeRange']
     type_val: typing.Literal["sql"]
 
-    def __init__(self, datasource: typing.Optional['ExprTypeSqlDatasource'] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeSqlResultAssertions'] = None, time_range: typing.Optional['ExprTypeSqlTimeRange'] = None):
+    def __init__(self, datasource: typing.Optional[dashboard.DataSourceRef] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeSqlResultAssertions'] = None, time_range: typing.Optional['ExprTypeSqlTimeRange'] = None):
         self.datasource = datasource
         self.expression = expression
         self.hide = hide
@@ -590,7 +591,7 @@ class TypeSql(cogvariants.Dataquery):
         args: dict[str, typing.Any] = {}
         
         if "datasource" in data:
-            args["datasource"] = ExprTypeSqlDatasource.from_json(data["datasource"])
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "expression" in data:
             args["expression"] = data["expression"]
         if "hide" in data:
@@ -660,41 +661,6 @@ class TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOr
             args["type_threshold"] = TypeThreshold.from_json(data["TypeThreshold"])
         if "TypeSql" in data:
             args["type_sql"] = TypeSql.from_json(data["TypeSql"])        
-
-        return cls(**args)
-
-
-class ExprTypeMathDatasource:
-    # The apiserver version
-    api_version: typing.Optional[str]
-    # The datasource plugin type
-    type_val: typing.Literal["__expr__"]
-    # Datasource UID (NOTE: name in k8s)
-    uid: typing.Optional[str]
-
-    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
-        self.api_version = api_version
-        self.type_val = "__expr__"
-        self.uid = uid
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.api_version is not None:
-            payload["apiVersion"] = self.api_version
-        if self.uid is not None:
-            payload["uid"] = self.uid
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "apiVersion" in data:
-            args["api_version"] = data["apiVersion"]
-        if "uid" in data:
-            args["uid"] = data["uid"]        
 
         return cls(**args)
 
@@ -774,41 +740,6 @@ class ExprTypeMathTimeRange:
             args["from_val"] = data["from"]
         if "to" in data:
             args["to"] = data["to"]        
-
-        return cls(**args)
-
-
-class ExprTypeReduceDatasource:
-    # The apiserver version
-    api_version: typing.Optional[str]
-    # The datasource plugin type
-    type_val: typing.Literal["__expr__"]
-    # Datasource UID (NOTE: name in k8s)
-    uid: typing.Optional[str]
-
-    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
-        self.api_version = api_version
-        self.type_val = "__expr__"
-        self.uid = uid
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.api_version is not None:
-            payload["apiVersion"] = self.api_version
-        if self.uid is not None:
-            payload["uid"] = self.uid
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "apiVersion" in data:
-            args["api_version"] = data["apiVersion"]
-        if "uid" in data:
-            args["uid"] = data["uid"]        
 
         return cls(**args)
 
@@ -921,41 +852,6 @@ class ExprTypeReduceTimeRange:
             args["from_val"] = data["from"]
         if "to" in data:
             args["to"] = data["to"]        
-
-        return cls(**args)
-
-
-class ExprTypeResampleDatasource:
-    # The apiserver version
-    api_version: typing.Optional[str]
-    # The datasource plugin type
-    type_val: typing.Literal["__expr__"]
-    # Datasource UID (NOTE: name in k8s)
-    uid: typing.Optional[str]
-
-    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
-        self.api_version = api_version
-        self.type_val = "__expr__"
-        self.uid = uid
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.api_version is not None:
-            payload["apiVersion"] = self.api_version
-        if self.uid is not None:
-            payload["uid"] = self.uid
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "apiVersion" in data:
-            args["api_version"] = data["apiVersion"]
-        if "uid" in data:
-            args["uid"] = data["uid"]        
 
         return cls(**args)
 
@@ -1170,41 +1066,6 @@ class ExprTypeClassicConditionsConditions:
         return cls(**args)
 
 
-class ExprTypeClassicConditionsDatasource:
-    # The apiserver version
-    api_version: typing.Optional[str]
-    # The datasource plugin type
-    type_val: typing.Literal["__expr__"]
-    # Datasource UID (NOTE: name in k8s)
-    uid: typing.Optional[str]
-
-    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
-        self.api_version = api_version
-        self.type_val = "__expr__"
-        self.uid = uid
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.api_version is not None:
-            payload["apiVersion"] = self.api_version
-        if self.uid is not None:
-            payload["uid"] = self.uid
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "apiVersion" in data:
-            args["api_version"] = data["apiVersion"]
-        if "uid" in data:
-            args["uid"] = data["uid"]        
-
-        return cls(**args)
-
-
 class ExprTypeClassicConditionsResultAssertions:
     # Maximum frame count
     max_frames: typing.Optional[int]
@@ -1374,41 +1235,6 @@ class ExprTypeThresholdConditions:
         return cls(**args)
 
 
-class ExprTypeThresholdDatasource:
-    # The apiserver version
-    api_version: typing.Optional[str]
-    # The datasource plugin type
-    type_val: typing.Literal["__expr__"]
-    # Datasource UID (NOTE: name in k8s)
-    uid: typing.Optional[str]
-
-    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
-        self.api_version = api_version
-        self.type_val = "__expr__"
-        self.uid = uid
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.api_version is not None:
-            payload["apiVersion"] = self.api_version
-        if self.uid is not None:
-            payload["uid"] = self.uid
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "apiVersion" in data:
-            args["api_version"] = data["apiVersion"]
-        if "uid" in data:
-            args["uid"] = data["uid"]        
-
-        return cls(**args)
-
-
 class ExprTypeThresholdResultAssertions:
     # Maximum frame count
     max_frames: typing.Optional[int]
@@ -1484,41 +1310,6 @@ class ExprTypeThresholdTimeRange:
             args["from_val"] = data["from"]
         if "to" in data:
             args["to"] = data["to"]        
-
-        return cls(**args)
-
-
-class ExprTypeSqlDatasource:
-    # The apiserver version
-    api_version: typing.Optional[str]
-    # The datasource plugin type
-    type_val: typing.Literal["__expr__"]
-    # Datasource UID (NOTE: name in k8s)
-    uid: typing.Optional[str]
-
-    def __init__(self, api_version: typing.Optional[str] = None, uid: typing.Optional[str] = None):
-        self.api_version = api_version
-        self.type_val = "__expr__"
-        self.uid = uid
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.api_version is not None:
-            payload["apiVersion"] = self.api_version
-        if self.uid is not None:
-            payload["uid"] = self.uid
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "apiVersion" in data:
-            args["api_version"] = data["apiVersion"]
-        if "uid" in data:
-            args["uid"] = data["uid"]        
 
         return cls(**args)
 

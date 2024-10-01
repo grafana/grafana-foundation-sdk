@@ -6,21 +6,21 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"reflect"
 
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 type Expr = TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql
-
-func (resource Expr) ImplementsDataqueryVariant() {}
 
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "__expr__",
 		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := Expr{}
+			dataquery := &Expr{}
 
-			if err := json.Unmarshal(raw, &dataquery); err != nil {
+			if err := json.Unmarshal(raw, dataquery); err != nil {
 				return nil, err
 			}
 
@@ -31,14 +31,7 @@ func VariantConfig() variants.DataqueryConfig {
 
 type TypeMath struct {
 	// The datasource
-	Datasource *struct {
-		// The apiserver version
-		ApiVersion *string `json:"apiVersion,omitempty"`
-		// The datasource plugin type
-		Type string `json:"type"`
-		// Datasource UID (NOTE: name in k8s)
-		Uid *string `json:"uid,omitempty"`
-	} `json:"datasource,omitempty"`
+	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
 	// General math expression
 	Expression string `json:"expression"`
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -59,51 +52,108 @@ type TypeMath struct {
 	// RefID is the unique identifier of the query, set by the frontend call.
 	RefId string `json:"refId"`
 	// Optionally define expected query result behavior
-	ResultAssertions *struct {
-		// Maximum frame count
-		MaxFrames *int64 `json:"maxFrames,omitempty"`
-		// Type asserts that the frame matches a known type structure.
-		// Possible enum values:
-		//  - `""`
-		//  - `"timeseries-wide"`
-		//  - `"timeseries-long"`
-		//  - `"timeseries-many"`
-		//  - `"timeseries-multi"`
-		//  - `"directory-listing"`
-		//  - `"table"`
-		//  - `"numeric-wide"`
-		//  - `"numeric-multi"`
-		//  - `"numeric-long"`
-		//  - `"log-lines"`
-		Type *TypeMathType `json:"type,omitempty"`
-		// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-		// contract documentation https://grafana.github.io/dataplane/contract/.
-		TypeVersion []int64 `json:"typeVersion"`
-	} `json:"resultAssertions,omitempty"`
+	ResultAssertions *ExprTypeMathResultAssertions `json:"resultAssertions,omitempty"`
 	// TimeRange represents the query range
 	// NOTE: unlike generic /ds/query, we can now send explicit time values in each query
 	// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-	TimeRange *struct {
-		// From is the start time of the query.
-		From string `json:"from"`
-		// To is the end time of the query.
-		To string `json:"to"`
-	} `json:"timeRange,omitempty"`
-	Type string `json:"type"`
+	TimeRange *ExprTypeMathTimeRange `json:"timeRange,omitempty"`
+	Type      string                 `json:"type"`
 }
 
 func (resource TypeMath) ImplementsDataqueryVariant() {}
 
+func (resource TypeMath) DataqueryType() string {
+	return "__expr__"
+}
+
+func (resource TypeMath) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(TypeMath)
+	if !ok {
+		return false
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.Expression != other.Expression {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.IntervalMs == nil && other.IntervalMs != nil || resource.IntervalMs != nil && other.IntervalMs == nil {
+		return false
+	}
+
+	if resource.IntervalMs != nil {
+		if *resource.IntervalMs != *other.IntervalMs {
+			return false
+		}
+	}
+	if resource.MaxDataPoints == nil && other.MaxDataPoints != nil || resource.MaxDataPoints != nil && other.MaxDataPoints == nil {
+		return false
+	}
+
+	if resource.MaxDataPoints != nil {
+		if *resource.MaxDataPoints != *other.MaxDataPoints {
+			return false
+		}
+	}
+	if resource.QueryType == nil && other.QueryType != nil || resource.QueryType != nil && other.QueryType == nil {
+		return false
+	}
+
+	if resource.QueryType != nil {
+		if *resource.QueryType != *other.QueryType {
+			return false
+		}
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
+		return false
+	}
+
+	if resource.ResultAssertions != nil {
+		if !resource.ResultAssertions.Equals(*other.ResultAssertions) {
+			return false
+		}
+	}
+	if resource.TimeRange == nil && other.TimeRange != nil || resource.TimeRange != nil && other.TimeRange == nil {
+		return false
+	}
+
+	if resource.TimeRange != nil {
+		if !resource.TimeRange.Equals(*other.TimeRange) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
 type TypeReduce struct {
 	// The datasource
-	Datasource *struct {
-		// The apiserver version
-		ApiVersion *string `json:"apiVersion,omitempty"`
-		// The datasource plugin type
-		Type string `json:"type"`
-		// Datasource UID (NOTE: name in k8s)
-		Uid *string `json:"uid,omitempty"`
-	} `json:"datasource,omitempty"`
+	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
 	// Reference to single query result
 	Expression string `json:"expression"`
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -134,61 +184,122 @@ type TypeReduce struct {
 	// RefID is the unique identifier of the query, set by the frontend call.
 	RefId string `json:"refId"`
 	// Optionally define expected query result behavior
-	ResultAssertions *struct {
-		// Maximum frame count
-		MaxFrames *int64 `json:"maxFrames,omitempty"`
-		// Type asserts that the frame matches a known type structure.
-		// Possible enum values:
-		//  - `""`
-		//  - `"timeseries-wide"`
-		//  - `"timeseries-long"`
-		//  - `"timeseries-many"`
-		//  - `"timeseries-multi"`
-		//  - `"directory-listing"`
-		//  - `"table"`
-		//  - `"numeric-wide"`
-		//  - `"numeric-multi"`
-		//  - `"numeric-long"`
-		//  - `"log-lines"`
-		Type *TypeReduceType `json:"type,omitempty"`
-		// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-		// contract documentation https://grafana.github.io/dataplane/contract/.
-		TypeVersion []int64 `json:"typeVersion"`
-	} `json:"resultAssertions,omitempty"`
+	ResultAssertions *ExprTypeReduceResultAssertions `json:"resultAssertions,omitempty"`
 	// Reducer Options
-	Settings *struct {
-		// Non-number reduce behavior
-		// Possible enum values:
-		//  - `"dropNN"` Drop non-numbers
-		//  - `"replaceNN"` Replace non-numbers
-		Mode TypeReduceMode `json:"mode"`
-		// Only valid when mode is replace
-		ReplaceWithValue *float64 `json:"replaceWithValue,omitempty"`
-	} `json:"settings,omitempty"`
+	Settings *ExprTypeReduceSettings `json:"settings,omitempty"`
 	// TimeRange represents the query range
 	// NOTE: unlike generic /ds/query, we can now send explicit time values in each query
 	// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-	TimeRange *struct {
-		// From is the start time of the query.
-		From string `json:"from"`
-		// To is the end time of the query.
-		To string `json:"to"`
-	} `json:"timeRange,omitempty"`
-	Type string `json:"type"`
+	TimeRange *ExprTypeReduceTimeRange `json:"timeRange,omitempty"`
+	Type      string                   `json:"type"`
 }
 
 func (resource TypeReduce) ImplementsDataqueryVariant() {}
 
+func (resource TypeReduce) DataqueryType() string {
+	return "__expr__"
+}
+
+func (resource TypeReduce) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(TypeReduce)
+	if !ok {
+		return false
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.Expression != other.Expression {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.IntervalMs == nil && other.IntervalMs != nil || resource.IntervalMs != nil && other.IntervalMs == nil {
+		return false
+	}
+
+	if resource.IntervalMs != nil {
+		if *resource.IntervalMs != *other.IntervalMs {
+			return false
+		}
+	}
+	if resource.MaxDataPoints == nil && other.MaxDataPoints != nil || resource.MaxDataPoints != nil && other.MaxDataPoints == nil {
+		return false
+	}
+
+	if resource.MaxDataPoints != nil {
+		if *resource.MaxDataPoints != *other.MaxDataPoints {
+			return false
+		}
+	}
+	if resource.QueryType == nil && other.QueryType != nil || resource.QueryType != nil && other.QueryType == nil {
+		return false
+	}
+
+	if resource.QueryType != nil {
+		if *resource.QueryType != *other.QueryType {
+			return false
+		}
+	}
+	if resource.Reducer != other.Reducer {
+		return false
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
+		return false
+	}
+
+	if resource.ResultAssertions != nil {
+		if !resource.ResultAssertions.Equals(*other.ResultAssertions) {
+			return false
+		}
+	}
+	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
+		return false
+	}
+
+	if resource.Settings != nil {
+		if !resource.Settings.Equals(*other.Settings) {
+			return false
+		}
+	}
+	if resource.TimeRange == nil && other.TimeRange != nil || resource.TimeRange != nil && other.TimeRange == nil {
+		return false
+	}
+
+	if resource.TimeRange != nil {
+		if !resource.TimeRange.Equals(*other.TimeRange) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
 type TypeResample struct {
 	// The datasource
-	Datasource *struct {
-		// The apiserver version
-		ApiVersion *string `json:"apiVersion,omitempty"`
-		// The datasource plugin type
-		Type string `json:"type"`
-		// Datasource UID (NOTE: name in k8s)
-		Uid *string `json:"uid,omitempty"`
-	} `json:"datasource,omitempty"`
+	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
 	// The downsample function
 	// Possible enum values:
 	//  - `"sum"`
@@ -219,37 +330,12 @@ type TypeResample struct {
 	// RefID is the unique identifier of the query, set by the frontend call.
 	RefId string `json:"refId"`
 	// Optionally define expected query result behavior
-	ResultAssertions *struct {
-		// Maximum frame count
-		MaxFrames *int64 `json:"maxFrames,omitempty"`
-		// Type asserts that the frame matches a known type structure.
-		// Possible enum values:
-		//  - `""`
-		//  - `"timeseries-wide"`
-		//  - `"timeseries-long"`
-		//  - `"timeseries-many"`
-		//  - `"timeseries-multi"`
-		//  - `"directory-listing"`
-		//  - `"table"`
-		//  - `"numeric-wide"`
-		//  - `"numeric-multi"`
-		//  - `"numeric-long"`
-		//  - `"log-lines"`
-		Type *TypeResampleType `json:"type,omitempty"`
-		// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-		// contract documentation https://grafana.github.io/dataplane/contract/.
-		TypeVersion []int64 `json:"typeVersion"`
-	} `json:"resultAssertions,omitempty"`
+	ResultAssertions *ExprTypeResampleResultAssertions `json:"resultAssertions,omitempty"`
 	// TimeRange represents the query range
 	// NOTE: unlike generic /ds/query, we can now send explicit time values in each query
 	// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-	TimeRange *struct {
-		// From is the start time of the query.
-		From string `json:"from"`
-		// To is the end time of the query.
-		To string `json:"to"`
-	} `json:"timeRange,omitempty"`
-	Type string `json:"type"`
+	TimeRange *ExprTypeResampleTimeRange `json:"timeRange,omitempty"`
+	Type      string                     `json:"type"`
 	// The upsample function
 	// Possible enum values:
 	//  - `"pad"` Use the last seen value
@@ -262,32 +348,108 @@ type TypeResample struct {
 
 func (resource TypeResample) ImplementsDataqueryVariant() {}
 
+func (resource TypeResample) DataqueryType() string {
+	return "__expr__"
+}
+
+func (resource TypeResample) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(TypeResample)
+	if !ok {
+		return false
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.Downsampler != other.Downsampler {
+		return false
+	}
+	if resource.Expression != other.Expression {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.IntervalMs == nil && other.IntervalMs != nil || resource.IntervalMs != nil && other.IntervalMs == nil {
+		return false
+	}
+
+	if resource.IntervalMs != nil {
+		if *resource.IntervalMs != *other.IntervalMs {
+			return false
+		}
+	}
+	if resource.MaxDataPoints == nil && other.MaxDataPoints != nil || resource.MaxDataPoints != nil && other.MaxDataPoints == nil {
+		return false
+	}
+
+	if resource.MaxDataPoints != nil {
+		if *resource.MaxDataPoints != *other.MaxDataPoints {
+			return false
+		}
+	}
+	if resource.QueryType == nil && other.QueryType != nil || resource.QueryType != nil && other.QueryType == nil {
+		return false
+	}
+
+	if resource.QueryType != nil {
+		if *resource.QueryType != *other.QueryType {
+			return false
+		}
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
+		return false
+	}
+
+	if resource.ResultAssertions != nil {
+		if !resource.ResultAssertions.Equals(*other.ResultAssertions) {
+			return false
+		}
+	}
+	if resource.TimeRange == nil && other.TimeRange != nil || resource.TimeRange != nil && other.TimeRange == nil {
+		return false
+	}
+
+	if resource.TimeRange != nil {
+		if !resource.TimeRange.Equals(*other.TimeRange) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Upsampler != other.Upsampler {
+		return false
+	}
+	if resource.Window != other.Window {
+		return false
+	}
+
+	return true
+}
+
 type TypeClassicConditions struct {
-	Conditions []struct {
-		Evaluator struct {
-			Params []float64 `json:"params"`
-			// e.g. "gt"
-			Type string `json:"type"`
-		} `json:"evaluator"`
-		Operator struct {
-			Type TypeClassicConditionsType `json:"type"`
-		} `json:"operator"`
-		Query struct {
-			Params []string `json:"params"`
-		} `json:"query"`
-		Reducer struct {
-			Type string `json:"type"`
-		} `json:"reducer"`
-	} `json:"conditions"`
+	Conditions []ExprTypeClassicConditionsConditions `json:"conditions"`
 	// The datasource
-	Datasource *struct {
-		// The apiserver version
-		ApiVersion *string `json:"apiVersion,omitempty"`
-		// The datasource plugin type
-		Type string `json:"type"`
-		// Datasource UID (NOTE: name in k8s)
-		Uid *string `json:"uid,omitempty"`
-	} `json:"datasource,omitempty"`
+	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// NOTE: this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -306,65 +468,117 @@ type TypeClassicConditions struct {
 	// RefID is the unique identifier of the query, set by the frontend call.
 	RefId string `json:"refId"`
 	// Optionally define expected query result behavior
-	ResultAssertions *struct {
-		// Maximum frame count
-		MaxFrames *int64 `json:"maxFrames,omitempty"`
-		// Type asserts that the frame matches a known type structure.
-		// Possible enum values:
-		//  - `""`
-		//  - `"timeseries-wide"`
-		//  - `"timeseries-long"`
-		//  - `"timeseries-many"`
-		//  - `"timeseries-multi"`
-		//  - `"directory-listing"`
-		//  - `"table"`
-		//  - `"numeric-wide"`
-		//  - `"numeric-multi"`
-		//  - `"numeric-long"`
-		//  - `"log-lines"`
-		Type *TypeClassicConditionsType `json:"type,omitempty"`
-		// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-		// contract documentation https://grafana.github.io/dataplane/contract/.
-		TypeVersion []int64 `json:"typeVersion"`
-	} `json:"resultAssertions,omitempty"`
+	ResultAssertions *ExprTypeClassicConditionsResultAssertions `json:"resultAssertions,omitempty"`
 	// TimeRange represents the query range
 	// NOTE: unlike generic /ds/query, we can now send explicit time values in each query
 	// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-	TimeRange *struct {
-		// From is the start time of the query.
-		From string `json:"from"`
-		// To is the end time of the query.
-		To string `json:"to"`
-	} `json:"timeRange,omitempty"`
-	Type string `json:"type"`
+	TimeRange *ExprTypeClassicConditionsTimeRange `json:"timeRange,omitempty"`
+	Type      string                              `json:"type"`
 }
 
 func (resource TypeClassicConditions) ImplementsDataqueryVariant() {}
 
+func (resource TypeClassicConditions) DataqueryType() string {
+	return "__expr__"
+}
+
+func (resource TypeClassicConditions) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(TypeClassicConditions)
+	if !ok {
+		return false
+	}
+
+	if len(resource.Conditions) != len(other.Conditions) {
+		return false
+	}
+
+	for i1 := range resource.Conditions {
+		if !resource.Conditions[i1].Equals(other.Conditions[i1]) {
+			return false
+		}
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.IntervalMs == nil && other.IntervalMs != nil || resource.IntervalMs != nil && other.IntervalMs == nil {
+		return false
+	}
+
+	if resource.IntervalMs != nil {
+		if *resource.IntervalMs != *other.IntervalMs {
+			return false
+		}
+	}
+	if resource.MaxDataPoints == nil && other.MaxDataPoints != nil || resource.MaxDataPoints != nil && other.MaxDataPoints == nil {
+		return false
+	}
+
+	if resource.MaxDataPoints != nil {
+		if *resource.MaxDataPoints != *other.MaxDataPoints {
+			return false
+		}
+	}
+	if resource.QueryType == nil && other.QueryType != nil || resource.QueryType != nil && other.QueryType == nil {
+		return false
+	}
+
+	if resource.QueryType != nil {
+		if *resource.QueryType != *other.QueryType {
+			return false
+		}
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
+		return false
+	}
+
+	if resource.ResultAssertions != nil {
+		if !resource.ResultAssertions.Equals(*other.ResultAssertions) {
+			return false
+		}
+	}
+	if resource.TimeRange == nil && other.TimeRange != nil || resource.TimeRange != nil && other.TimeRange == nil {
+		return false
+	}
+
+	if resource.TimeRange != nil {
+		if !resource.TimeRange.Equals(*other.TimeRange) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
 type TypeThreshold struct {
 	// Threshold Conditions
-	Conditions []struct {
-		Evaluator struct {
-			Params []float64 `json:"params"`
-			// e.g. "gt"
-			Type TypeThresholdType `json:"type"`
-		} `json:"evaluator"`
-		LoadedDimensions any `json:"loadedDimensions,omitempty"`
-		UnloadEvaluator  *struct {
-			Params []float64 `json:"params"`
-			// e.g. "gt"
-			Type TypeThresholdType `json:"type"`
-		} `json:"unloadEvaluator,omitempty"`
-	} `json:"conditions"`
+	Conditions []ExprTypeThresholdConditions `json:"conditions"`
 	// The datasource
-	Datasource *struct {
-		// The apiserver version
-		ApiVersion *string `json:"apiVersion,omitempty"`
-		// The datasource plugin type
-		Type string `json:"type"`
-		// Datasource UID (NOTE: name in k8s)
-		Uid *string `json:"uid,omitempty"`
-	} `json:"datasource,omitempty"`
+	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
 	// Reference to single query result
 	Expression string `json:"expression"`
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -385,52 +599,119 @@ type TypeThreshold struct {
 	// RefID is the unique identifier of the query, set by the frontend call.
 	RefId string `json:"refId"`
 	// Optionally define expected query result behavior
-	ResultAssertions *struct {
-		// Maximum frame count
-		MaxFrames *int64 `json:"maxFrames,omitempty"`
-		// Type asserts that the frame matches a known type structure.
-		// Possible enum values:
-		//  - `""`
-		//  - `"timeseries-wide"`
-		//  - `"timeseries-long"`
-		//  - `"timeseries-many"`
-		//  - `"timeseries-multi"`
-		//  - `"directory-listing"`
-		//  - `"table"`
-		//  - `"numeric-wide"`
-		//  - `"numeric-multi"`
-		//  - `"numeric-long"`
-		//  - `"log-lines"`
-		Type *TypeThresholdType `json:"type,omitempty"`
-		// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-		// contract documentation https://grafana.github.io/dataplane/contract/.
-		TypeVersion []int64 `json:"typeVersion"`
-	} `json:"resultAssertions,omitempty"`
+	ResultAssertions *ExprTypeThresholdResultAssertions `json:"resultAssertions,omitempty"`
 	// TimeRange represents the query range
 	// NOTE: unlike generic /ds/query, we can now send explicit time values in each query
 	// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-	TimeRange *struct {
-		// From is the start time of the query.
-		From string `json:"from"`
-		// To is the end time of the query.
-		To string `json:"to"`
-	} `json:"timeRange,omitempty"`
-	Type string `json:"type"`
+	TimeRange *ExprTypeThresholdTimeRange `json:"timeRange,omitempty"`
+	Type      string                      `json:"type"`
 }
 
 func (resource TypeThreshold) ImplementsDataqueryVariant() {}
 
+func (resource TypeThreshold) DataqueryType() string {
+	return "__expr__"
+}
+
+func (resource TypeThreshold) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(TypeThreshold)
+	if !ok {
+		return false
+	}
+
+	if len(resource.Conditions) != len(other.Conditions) {
+		return false
+	}
+
+	for i1 := range resource.Conditions {
+		if !resource.Conditions[i1].Equals(other.Conditions[i1]) {
+			return false
+		}
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.Expression != other.Expression {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.IntervalMs == nil && other.IntervalMs != nil || resource.IntervalMs != nil && other.IntervalMs == nil {
+		return false
+	}
+
+	if resource.IntervalMs != nil {
+		if *resource.IntervalMs != *other.IntervalMs {
+			return false
+		}
+	}
+	if resource.MaxDataPoints == nil && other.MaxDataPoints != nil || resource.MaxDataPoints != nil && other.MaxDataPoints == nil {
+		return false
+	}
+
+	if resource.MaxDataPoints != nil {
+		if *resource.MaxDataPoints != *other.MaxDataPoints {
+			return false
+		}
+	}
+	if resource.QueryType == nil && other.QueryType != nil || resource.QueryType != nil && other.QueryType == nil {
+		return false
+	}
+
+	if resource.QueryType != nil {
+		if *resource.QueryType != *other.QueryType {
+			return false
+		}
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
+		return false
+	}
+
+	if resource.ResultAssertions != nil {
+		if !resource.ResultAssertions.Equals(*other.ResultAssertions) {
+			return false
+		}
+	}
+	if resource.TimeRange == nil && other.TimeRange != nil || resource.TimeRange != nil && other.TimeRange == nil {
+		return false
+	}
+
+	if resource.TimeRange != nil {
+		if !resource.TimeRange.Equals(*other.TimeRange) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
 type TypeSql struct {
 	// The datasource
-	Datasource *struct {
-		// The apiserver version
-		ApiVersion *string `json:"apiVersion,omitempty"`
-		// The datasource plugin type
-		Type string `json:"type"`
-		// Datasource UID (NOTE: name in k8s)
-		Uid *string `json:"uid,omitempty"`
-	} `json:"datasource,omitempty"`
-	Expression string `json:"expression"`
+	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Expression string                   `json:"expression"`
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// NOTE: this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -449,40 +730,104 @@ type TypeSql struct {
 	// RefID is the unique identifier of the query, set by the frontend call.
 	RefId string `json:"refId"`
 	// Optionally define expected query result behavior
-	ResultAssertions *struct {
-		// Maximum frame count
-		MaxFrames *int64 `json:"maxFrames,omitempty"`
-		// Type asserts that the frame matches a known type structure.
-		// Possible enum values:
-		//  - `""`
-		//  - `"timeseries-wide"`
-		//  - `"timeseries-long"`
-		//  - `"timeseries-many"`
-		//  - `"timeseries-multi"`
-		//  - `"directory-listing"`
-		//  - `"table"`
-		//  - `"numeric-wide"`
-		//  - `"numeric-multi"`
-		//  - `"numeric-long"`
-		//  - `"log-lines"`
-		Type *TypeSqlType `json:"type,omitempty"`
-		// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-		// contract documentation https://grafana.github.io/dataplane/contract/.
-		TypeVersion []int64 `json:"typeVersion"`
-	} `json:"resultAssertions,omitempty"`
+	ResultAssertions *ExprTypeSqlResultAssertions `json:"resultAssertions,omitempty"`
 	// TimeRange represents the query range
 	// NOTE: unlike generic /ds/query, we can now send explicit time values in each query
 	// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-	TimeRange *struct {
-		// From is the start time of the query.
-		From string `json:"from"`
-		// To is the end time of the query.
-		To string `json:"to"`
-	} `json:"timeRange,omitempty"`
-	Type string `json:"type"`
+	TimeRange *ExprTypeSqlTimeRange `json:"timeRange,omitempty"`
+	Type      string                `json:"type"`
 }
 
 func (resource TypeSql) ImplementsDataqueryVariant() {}
+
+func (resource TypeSql) DataqueryType() string {
+	return "__expr__"
+}
+
+func (resource TypeSql) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(TypeSql)
+	if !ok {
+		return false
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.Expression != other.Expression {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.IntervalMs == nil && other.IntervalMs != nil || resource.IntervalMs != nil && other.IntervalMs == nil {
+		return false
+	}
+
+	if resource.IntervalMs != nil {
+		if *resource.IntervalMs != *other.IntervalMs {
+			return false
+		}
+	}
+	if resource.MaxDataPoints == nil && other.MaxDataPoints != nil || resource.MaxDataPoints != nil && other.MaxDataPoints == nil {
+		return false
+	}
+
+	if resource.MaxDataPoints != nil {
+		if *resource.MaxDataPoints != *other.MaxDataPoints {
+			return false
+		}
+	}
+	if resource.QueryType == nil && other.QueryType != nil || resource.QueryType != nil && other.QueryType == nil {
+		return false
+	}
+
+	if resource.QueryType != nil {
+		if *resource.QueryType != *other.QueryType {
+			return false
+		}
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
+		return false
+	}
+
+	if resource.ResultAssertions != nil {
+		if !resource.ResultAssertions.Equals(*other.ResultAssertions) {
+			return false
+		}
+	}
+	if resource.TimeRange == nil && other.TimeRange != nil || resource.TimeRange != nil && other.TimeRange == nil {
+		return false
+	}
+
+	if resource.TimeRange != nil {
+		if !resource.TimeRange.Equals(*other.TimeRange) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
 
 type TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql struct {
 	TypeMath              *TypeMath              `json:"TypeMath,omitempty"`
@@ -491,6 +836,13 @@ type TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrT
 	TypeClassicConditions *TypeClassicConditions `json:"TypeClassicConditions,omitempty"`
 	TypeThreshold         *TypeThreshold         `json:"TypeThreshold,omitempty"`
 	TypeSql               *TypeSql               `json:"TypeSql,omitempty"`
+}
+
+func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) ImplementsDataqueryVariant() {
+}
+
+func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) DataqueryType() string {
+	return "__expr__"
 }
 
 func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) MarshalJSON() ([]byte, error) {
@@ -586,6 +938,73 @@ func (resource *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeT
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
+func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql)
+	if !ok {
+		return false
+	}
+	if resource.TypeMath == nil && other.TypeMath != nil || resource.TypeMath != nil && other.TypeMath == nil {
+		return false
+	}
+
+	if resource.TypeMath != nil {
+		if !resource.TypeMath.Equals(*other.TypeMath) {
+			return false
+		}
+	}
+	if resource.TypeReduce == nil && other.TypeReduce != nil || resource.TypeReduce != nil && other.TypeReduce == nil {
+		return false
+	}
+
+	if resource.TypeReduce != nil {
+		if !resource.TypeReduce.Equals(*other.TypeReduce) {
+			return false
+		}
+	}
+	if resource.TypeResample == nil && other.TypeResample != nil || resource.TypeResample != nil && other.TypeResample == nil {
+		return false
+	}
+
+	if resource.TypeResample != nil {
+		if !resource.TypeResample.Equals(*other.TypeResample) {
+			return false
+		}
+	}
+	if resource.TypeClassicConditions == nil && other.TypeClassicConditions != nil || resource.TypeClassicConditions != nil && other.TypeClassicConditions == nil {
+		return false
+	}
+
+	if resource.TypeClassicConditions != nil {
+		if !resource.TypeClassicConditions.Equals(*other.TypeClassicConditions) {
+			return false
+		}
+	}
+	if resource.TypeThreshold == nil && other.TypeThreshold != nil || resource.TypeThreshold != nil && other.TypeThreshold == nil {
+		return false
+	}
+
+	if resource.TypeThreshold != nil {
+		if !resource.TypeThreshold.Equals(*other.TypeThreshold) {
+			return false
+		}
+	}
+	if resource.TypeSql == nil && other.TypeSql != nil || resource.TypeSql != nil && other.TypeSql == nil {
+		return false
+	}
+
+	if resource.TypeSql != nil {
+		if !resource.TypeSql.Equals(*other.TypeSql) {
+			return false
+		}
+	}
+
+	return true
+}
+
 type TypeMathType string
 
 const (
@@ -676,18 +1095,33 @@ const (
 type TypeClassicConditionsType string
 
 const (
-	TypeClassicConditionsTypeAnd     TypeClassicConditionsType = "and"
-	TypeClassicConditionsTypeOr      TypeClassicConditionsType = "or"
-	TypeClassicConditionsTypeLogicOr TypeClassicConditionsType = "logic-or"
+	TypeClassicConditionsTypeNone             TypeClassicConditionsType = ""
+	TypeClassicConditionsTypeTimeseriesWide   TypeClassicConditionsType = "timeseries-wide"
+	TypeClassicConditionsTypeTimeseriesLong   TypeClassicConditionsType = "timeseries-long"
+	TypeClassicConditionsTypeTimeseriesMany   TypeClassicConditionsType = "timeseries-many"
+	TypeClassicConditionsTypeTimeseriesMulti  TypeClassicConditionsType = "timeseries-multi"
+	TypeClassicConditionsTypeDirectoryListing TypeClassicConditionsType = "directory-listing"
+	TypeClassicConditionsTypeTable            TypeClassicConditionsType = "table"
+	TypeClassicConditionsTypeNumericWide      TypeClassicConditionsType = "numeric-wide"
+	TypeClassicConditionsTypeNumericMulti     TypeClassicConditionsType = "numeric-multi"
+	TypeClassicConditionsTypeNumericLong      TypeClassicConditionsType = "numeric-long"
+	TypeClassicConditionsTypeLogLines         TypeClassicConditionsType = "log-lines"
 )
 
 type TypeThresholdType string
 
 const (
-	TypeThresholdTypeGt           TypeThresholdType = "gt"
-	TypeThresholdTypeLt           TypeThresholdType = "lt"
-	TypeThresholdTypeWithinRange  TypeThresholdType = "within_range"
-	TypeThresholdTypeOutsideRange TypeThresholdType = "outside_range"
+	TypeThresholdTypeNone             TypeThresholdType = ""
+	TypeThresholdTypeTimeseriesWide   TypeThresholdType = "timeseries-wide"
+	TypeThresholdTypeTimeseriesLong   TypeThresholdType = "timeseries-long"
+	TypeThresholdTypeTimeseriesMany   TypeThresholdType = "timeseries-many"
+	TypeThresholdTypeTimeseriesMulti  TypeThresholdType = "timeseries-multi"
+	TypeThresholdTypeDirectoryListing TypeThresholdType = "directory-listing"
+	TypeThresholdTypeTable            TypeThresholdType = "table"
+	TypeThresholdTypeNumericWide      TypeThresholdType = "numeric-wide"
+	TypeThresholdTypeNumericMulti     TypeThresholdType = "numeric-multi"
+	TypeThresholdTypeNumericLong      TypeThresholdType = "numeric-long"
+	TypeThresholdTypeLogLines         TypeThresholdType = "log-lines"
 )
 
 type TypeSqlType string
@@ -705,3 +1139,634 @@ const (
 	TypeSqlTypeNumericLong      TypeSqlType = "numeric-long"
 	TypeSqlTypeLogLines         TypeSqlType = "log-lines"
 )
+
+type ExprTypeMathResultAssertions struct {
+	// Maximum frame count
+	MaxFrames *int64 `json:"maxFrames,omitempty"`
+	// Type asserts that the frame matches a known type structure.
+	// Possible enum values:
+	//  - `""`
+	//  - `"timeseries-wide"`
+	//  - `"timeseries-long"`
+	//  - `"timeseries-many"`
+	//  - `"timeseries-multi"`
+	//  - `"directory-listing"`
+	//  - `"table"`
+	//  - `"numeric-wide"`
+	//  - `"numeric-multi"`
+	//  - `"numeric-long"`
+	//  - `"log-lines"`
+	Type *TypeMathType `json:"type,omitempty"`
+	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
+	// contract documentation https://grafana.github.io/dataplane/contract/.
+	TypeVersion []int64 `json:"typeVersion"`
+}
+
+func (resource ExprTypeMathResultAssertions) Equals(other ExprTypeMathResultAssertions) bool {
+	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
+		return false
+	}
+
+	if resource.MaxFrames != nil {
+		if *resource.MaxFrames != *other.MaxFrames {
+			return false
+		}
+	}
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+
+	if len(resource.TypeVersion) != len(other.TypeVersion) {
+		return false
+	}
+
+	for i1 := range resource.TypeVersion {
+		if resource.TypeVersion[i1] != other.TypeVersion[i1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+type ExprTypeMathTimeRange struct {
+	// From is the start time of the query.
+	From string `json:"from"`
+	// To is the end time of the query.
+	To string `json:"to"`
+}
+
+func (resource ExprTypeMathTimeRange) Equals(other ExprTypeMathTimeRange) bool {
+	if resource.From != other.From {
+		return false
+	}
+	if resource.To != other.To {
+		return false
+	}
+
+	return true
+}
+
+type ExprTypeReduceResultAssertions struct {
+	// Maximum frame count
+	MaxFrames *int64 `json:"maxFrames,omitempty"`
+	// Type asserts that the frame matches a known type structure.
+	// Possible enum values:
+	//  - `""`
+	//  - `"timeseries-wide"`
+	//  - `"timeseries-long"`
+	//  - `"timeseries-many"`
+	//  - `"timeseries-multi"`
+	//  - `"directory-listing"`
+	//  - `"table"`
+	//  - `"numeric-wide"`
+	//  - `"numeric-multi"`
+	//  - `"numeric-long"`
+	//  - `"log-lines"`
+	Type *TypeReduceType `json:"type,omitempty"`
+	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
+	// contract documentation https://grafana.github.io/dataplane/contract/.
+	TypeVersion []int64 `json:"typeVersion"`
+}
+
+func (resource ExprTypeReduceResultAssertions) Equals(other ExprTypeReduceResultAssertions) bool {
+	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
+		return false
+	}
+
+	if resource.MaxFrames != nil {
+		if *resource.MaxFrames != *other.MaxFrames {
+			return false
+		}
+	}
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+
+	if len(resource.TypeVersion) != len(other.TypeVersion) {
+		return false
+	}
+
+	for i1 := range resource.TypeVersion {
+		if resource.TypeVersion[i1] != other.TypeVersion[i1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+type ExprTypeReduceSettings struct {
+	// Non-number reduce behavior
+	// Possible enum values:
+	//  - `"dropNN"` Drop non-numbers
+	//  - `"replaceNN"` Replace non-numbers
+	Mode TypeReduceMode `json:"mode"`
+	// Only valid when mode is replace
+	ReplaceWithValue *float64 `json:"replaceWithValue,omitempty"`
+}
+
+func (resource ExprTypeReduceSettings) Equals(other ExprTypeReduceSettings) bool {
+	if resource.Mode != other.Mode {
+		return false
+	}
+	if resource.ReplaceWithValue == nil && other.ReplaceWithValue != nil || resource.ReplaceWithValue != nil && other.ReplaceWithValue == nil {
+		return false
+	}
+
+	if resource.ReplaceWithValue != nil {
+		if *resource.ReplaceWithValue != *other.ReplaceWithValue {
+			return false
+		}
+	}
+
+	return true
+}
+
+type ExprTypeReduceTimeRange struct {
+	// From is the start time of the query.
+	From string `json:"from"`
+	// To is the end time of the query.
+	To string `json:"to"`
+}
+
+func (resource ExprTypeReduceTimeRange) Equals(other ExprTypeReduceTimeRange) bool {
+	if resource.From != other.From {
+		return false
+	}
+	if resource.To != other.To {
+		return false
+	}
+
+	return true
+}
+
+type ExprTypeResampleResultAssertions struct {
+	// Maximum frame count
+	MaxFrames *int64 `json:"maxFrames,omitempty"`
+	// Type asserts that the frame matches a known type structure.
+	// Possible enum values:
+	//  - `""`
+	//  - `"timeseries-wide"`
+	//  - `"timeseries-long"`
+	//  - `"timeseries-many"`
+	//  - `"timeseries-multi"`
+	//  - `"directory-listing"`
+	//  - `"table"`
+	//  - `"numeric-wide"`
+	//  - `"numeric-multi"`
+	//  - `"numeric-long"`
+	//  - `"log-lines"`
+	Type *TypeResampleType `json:"type,omitempty"`
+	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
+	// contract documentation https://grafana.github.io/dataplane/contract/.
+	TypeVersion []int64 `json:"typeVersion"`
+}
+
+func (resource ExprTypeResampleResultAssertions) Equals(other ExprTypeResampleResultAssertions) bool {
+	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
+		return false
+	}
+
+	if resource.MaxFrames != nil {
+		if *resource.MaxFrames != *other.MaxFrames {
+			return false
+		}
+	}
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+
+	if len(resource.TypeVersion) != len(other.TypeVersion) {
+		return false
+	}
+
+	for i1 := range resource.TypeVersion {
+		if resource.TypeVersion[i1] != other.TypeVersion[i1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+type ExprTypeResampleTimeRange struct {
+	// From is the start time of the query.
+	From string `json:"from"`
+	// To is the end time of the query.
+	To string `json:"to"`
+}
+
+func (resource ExprTypeResampleTimeRange) Equals(other ExprTypeResampleTimeRange) bool {
+	if resource.From != other.From {
+		return false
+	}
+	if resource.To != other.To {
+		return false
+	}
+
+	return true
+}
+
+type ExprTypeClassicConditionsConditionsEvaluator struct {
+	Params []float64 `json:"params"`
+	// e.g. "gt"
+	Type string `json:"type"`
+}
+
+func (resource ExprTypeClassicConditionsConditionsEvaluator) Equals(other ExprTypeClassicConditionsConditionsEvaluator) bool {
+
+	if len(resource.Params) != len(other.Params) {
+		return false
+	}
+
+	for i1 := range resource.Params {
+		if resource.Params[i1] != other.Params[i1] {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+type ExprTypeClassicConditionsConditionsOperator struct {
+	Type TypeClassicConditionsType `json:"type"`
+}
+
+func (resource ExprTypeClassicConditionsConditionsOperator) Equals(other ExprTypeClassicConditionsConditionsOperator) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+type ExprTypeClassicConditionsConditionsQuery struct {
+	Params []string `json:"params"`
+}
+
+func (resource ExprTypeClassicConditionsConditionsQuery) Equals(other ExprTypeClassicConditionsConditionsQuery) bool {
+
+	if len(resource.Params) != len(other.Params) {
+		return false
+	}
+
+	for i1 := range resource.Params {
+		if resource.Params[i1] != other.Params[i1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+type ExprTypeClassicConditionsConditionsReducer struct {
+	Type string `json:"type"`
+}
+
+func (resource ExprTypeClassicConditionsConditionsReducer) Equals(other ExprTypeClassicConditionsConditionsReducer) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+type ExprTypeClassicConditionsConditions struct {
+	Evaluator ExprTypeClassicConditionsConditionsEvaluator `json:"evaluator"`
+	Operator  ExprTypeClassicConditionsConditionsOperator  `json:"operator"`
+	Query     ExprTypeClassicConditionsConditionsQuery     `json:"query"`
+	Reducer   ExprTypeClassicConditionsConditionsReducer   `json:"reducer"`
+}
+
+func (resource ExprTypeClassicConditionsConditions) Equals(other ExprTypeClassicConditionsConditions) bool {
+	if !resource.Evaluator.Equals(other.Evaluator) {
+		return false
+	}
+	if !resource.Operator.Equals(other.Operator) {
+		return false
+	}
+	if !resource.Query.Equals(other.Query) {
+		return false
+	}
+	if !resource.Reducer.Equals(other.Reducer) {
+		return false
+	}
+
+	return true
+}
+
+type ExprTypeClassicConditionsResultAssertions struct {
+	// Maximum frame count
+	MaxFrames *int64 `json:"maxFrames,omitempty"`
+	// Type asserts that the frame matches a known type structure.
+	// Possible enum values:
+	//  - `""`
+	//  - `"timeseries-wide"`
+	//  - `"timeseries-long"`
+	//  - `"timeseries-many"`
+	//  - `"timeseries-multi"`
+	//  - `"directory-listing"`
+	//  - `"table"`
+	//  - `"numeric-wide"`
+	//  - `"numeric-multi"`
+	//  - `"numeric-long"`
+	//  - `"log-lines"`
+	Type *TypeClassicConditionsType `json:"type,omitempty"`
+	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
+	// contract documentation https://grafana.github.io/dataplane/contract/.
+	TypeVersion []int64 `json:"typeVersion"`
+}
+
+func (resource ExprTypeClassicConditionsResultAssertions) Equals(other ExprTypeClassicConditionsResultAssertions) bool {
+	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
+		return false
+	}
+
+	if resource.MaxFrames != nil {
+		if *resource.MaxFrames != *other.MaxFrames {
+			return false
+		}
+	}
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+
+	if len(resource.TypeVersion) != len(other.TypeVersion) {
+		return false
+	}
+
+	for i1 := range resource.TypeVersion {
+		if resource.TypeVersion[i1] != other.TypeVersion[i1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+type ExprTypeClassicConditionsTimeRange struct {
+	// From is the start time of the query.
+	From string `json:"from"`
+	// To is the end time of the query.
+	To string `json:"to"`
+}
+
+func (resource ExprTypeClassicConditionsTimeRange) Equals(other ExprTypeClassicConditionsTimeRange) bool {
+	if resource.From != other.From {
+		return false
+	}
+	if resource.To != other.To {
+		return false
+	}
+
+	return true
+}
+
+type ExprTypeThresholdConditionsEvaluator struct {
+	Params []float64 `json:"params"`
+	// e.g. "gt"
+	Type TypeThresholdType `json:"type"`
+}
+
+func (resource ExprTypeThresholdConditionsEvaluator) Equals(other ExprTypeThresholdConditionsEvaluator) bool {
+
+	if len(resource.Params) != len(other.Params) {
+		return false
+	}
+
+	for i1 := range resource.Params {
+		if resource.Params[i1] != other.Params[i1] {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+type ExprTypeThresholdConditionsUnloadEvaluator struct {
+	Params []float64 `json:"params"`
+	// e.g. "gt"
+	Type TypeThresholdType `json:"type"`
+}
+
+func (resource ExprTypeThresholdConditionsUnloadEvaluator) Equals(other ExprTypeThresholdConditionsUnloadEvaluator) bool {
+
+	if len(resource.Params) != len(other.Params) {
+		return false
+	}
+
+	for i1 := range resource.Params {
+		if resource.Params[i1] != other.Params[i1] {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+type ExprTypeThresholdConditions struct {
+	Evaluator        ExprTypeThresholdConditionsEvaluator        `json:"evaluator"`
+	LoadedDimensions any                                         `json:"loadedDimensions,omitempty"`
+	UnloadEvaluator  *ExprTypeThresholdConditionsUnloadEvaluator `json:"unloadEvaluator,omitempty"`
+}
+
+func (resource ExprTypeThresholdConditions) Equals(other ExprTypeThresholdConditions) bool {
+	if !resource.Evaluator.Equals(other.Evaluator) {
+		return false
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.LoadedDimensions, other.LoadedDimensions) {
+		return false
+	}
+	if resource.UnloadEvaluator == nil && other.UnloadEvaluator != nil || resource.UnloadEvaluator != nil && other.UnloadEvaluator == nil {
+		return false
+	}
+
+	if resource.UnloadEvaluator != nil {
+		if !resource.UnloadEvaluator.Equals(*other.UnloadEvaluator) {
+			return false
+		}
+	}
+
+	return true
+}
+
+type ExprTypeThresholdResultAssertions struct {
+	// Maximum frame count
+	MaxFrames *int64 `json:"maxFrames,omitempty"`
+	// Type asserts that the frame matches a known type structure.
+	// Possible enum values:
+	//  - `""`
+	//  - `"timeseries-wide"`
+	//  - `"timeseries-long"`
+	//  - `"timeseries-many"`
+	//  - `"timeseries-multi"`
+	//  - `"directory-listing"`
+	//  - `"table"`
+	//  - `"numeric-wide"`
+	//  - `"numeric-multi"`
+	//  - `"numeric-long"`
+	//  - `"log-lines"`
+	Type *TypeThresholdType `json:"type,omitempty"`
+	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
+	// contract documentation https://grafana.github.io/dataplane/contract/.
+	TypeVersion []int64 `json:"typeVersion"`
+}
+
+func (resource ExprTypeThresholdResultAssertions) Equals(other ExprTypeThresholdResultAssertions) bool {
+	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
+		return false
+	}
+
+	if resource.MaxFrames != nil {
+		if *resource.MaxFrames != *other.MaxFrames {
+			return false
+		}
+	}
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+
+	if len(resource.TypeVersion) != len(other.TypeVersion) {
+		return false
+	}
+
+	for i1 := range resource.TypeVersion {
+		if resource.TypeVersion[i1] != other.TypeVersion[i1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+type ExprTypeThresholdTimeRange struct {
+	// From is the start time of the query.
+	From string `json:"from"`
+	// To is the end time of the query.
+	To string `json:"to"`
+}
+
+func (resource ExprTypeThresholdTimeRange) Equals(other ExprTypeThresholdTimeRange) bool {
+	if resource.From != other.From {
+		return false
+	}
+	if resource.To != other.To {
+		return false
+	}
+
+	return true
+}
+
+type ExprTypeSqlResultAssertions struct {
+	// Maximum frame count
+	MaxFrames *int64 `json:"maxFrames,omitempty"`
+	// Type asserts that the frame matches a known type structure.
+	// Possible enum values:
+	//  - `""`
+	//  - `"timeseries-wide"`
+	//  - `"timeseries-long"`
+	//  - `"timeseries-many"`
+	//  - `"timeseries-multi"`
+	//  - `"directory-listing"`
+	//  - `"table"`
+	//  - `"numeric-wide"`
+	//  - `"numeric-multi"`
+	//  - `"numeric-long"`
+	//  - `"log-lines"`
+	Type *TypeSqlType `json:"type,omitempty"`
+	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
+	// contract documentation https://grafana.github.io/dataplane/contract/.
+	TypeVersion []int64 `json:"typeVersion"`
+}
+
+func (resource ExprTypeSqlResultAssertions) Equals(other ExprTypeSqlResultAssertions) bool {
+	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
+		return false
+	}
+
+	if resource.MaxFrames != nil {
+		if *resource.MaxFrames != *other.MaxFrames {
+			return false
+		}
+	}
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+
+	if len(resource.TypeVersion) != len(other.TypeVersion) {
+		return false
+	}
+
+	for i1 := range resource.TypeVersion {
+		if resource.TypeVersion[i1] != other.TypeVersion[i1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+type ExprTypeSqlTimeRange struct {
+	// From is the start time of the query.
+	From string `json:"from"`
+	// To is the end time of the query.
+	To string `json:"to"`
+}
+
+func (resource ExprTypeSqlTimeRange) Equals(other ExprTypeSqlTimeRange) bool {
+	if resource.From != other.From {
+		return false
+	}
+	if resource.To != other.To {
+		return false
+	}
+
+	return true
+}

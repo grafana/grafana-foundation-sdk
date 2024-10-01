@@ -52,11 +52,13 @@ func (builder *RateBuilder) Id(id string) *RateBuilder {
 	return builder
 }
 
-func (builder *RateBuilder) Settings(settings struct {
-	Unit *string `json:"unit,omitempty"`
-	Mode *string `json:"mode,omitempty"`
-}) *RateBuilder {
-	builder.internal.Settings = &settings
+func (builder *RateBuilder) Settings(settings cog.Builder[ElasticsearchRateSettings]) *RateBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

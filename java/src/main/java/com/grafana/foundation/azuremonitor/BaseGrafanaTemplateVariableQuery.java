@@ -20,7 +20,7 @@ public class BaseGrafanaTemplateVariableQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<BaseGrafanaTemplateVariableQuery> {
-        private final BaseGrafanaTemplateVariableQuery internal;
+        protected final BaseGrafanaTemplateVariableQuery internal;
         
         public Builder() {
             this.internal = new BaseGrafanaTemplateVariableQuery();

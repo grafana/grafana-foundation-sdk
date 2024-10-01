@@ -21,7 +21,7 @@ public class StackableFieldConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<StackableFieldConfig> {
-        private final StackableFieldConfig internal;
+        protected final StackableFieldConfig internal;
         
         public Builder() {
             this.internal = new StackableFieldConfig();

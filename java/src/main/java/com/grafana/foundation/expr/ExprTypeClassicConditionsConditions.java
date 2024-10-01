@@ -29,7 +29,7 @@ public class ExprTypeClassicConditionsConditions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditions> {
-        private final ExprTypeClassicConditionsConditions internal;
+        protected final ExprTypeClassicConditionsConditions internal;
         
         public Builder() {
             this.internal = new ExprTypeClassicConditionsConditions();

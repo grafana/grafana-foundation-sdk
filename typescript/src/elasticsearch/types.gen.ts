@@ -1,5 +1,8 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
+import * as dashboard from '../dashboard';
+
+
 export type BucketAggregation = DateHistogram | Histogram | Terms | Filters | GeoHashGrid | Nested;
 
 export const defaultBucketAggregation = (): BucketAggregation => (defaultDateHistogram());
@@ -767,7 +770,7 @@ export interface dataquery {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	datasource?: any;
+	datasource?: dashboard.DataSourceRef;
 	_implementsDataqueryVariant(): void;
 }
 

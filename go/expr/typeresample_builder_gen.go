@@ -7,6 +7,7 @@ import (
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*TypeResampleBuilder)(nil)
@@ -44,14 +45,7 @@ func (builder *TypeResampleBuilder) Build() (variants.Dataquery, error) {
 }
 
 // The datasource
-func (builder *TypeResampleBuilder) Datasource(datasource struct {
-	// The apiserver version
-	ApiVersion *string `json:"apiVersion,omitempty"`
-	// The datasource plugin type
-	Type string `json:"type"`
-	// Datasource UID (NOTE: name in k8s)
-	Uid *string `json:"uid,omitempty"`
-}) *TypeResampleBuilder {
+func (builder *TypeResampleBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeResampleBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -126,28 +120,13 @@ func (builder *TypeResampleBuilder) RefId(refId string) *TypeResampleBuilder {
 }
 
 // Optionally define expected query result behavior
-func (builder *TypeResampleBuilder) ResultAssertions(resultAssertions struct {
-	// Maximum frame count
-	MaxFrames *int64 `json:"maxFrames,omitempty"`
-	// Type asserts that the frame matches a known type structure.
-	// Possible enum values:
-	//  - `""`
-	//  - `"timeseries-wide"`
-	//  - `"timeseries-long"`
-	//  - `"timeseries-many"`
-	//  - `"timeseries-multi"`
-	//  - `"directory-listing"`
-	//  - `"table"`
-	//  - `"numeric-wide"`
-	//  - `"numeric-multi"`
-	//  - `"numeric-long"`
-	//  - `"log-lines"`
-	Type *TypeResampleType `json:"type,omitempty"`
-	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-	// contract documentation https://grafana.github.io/dataplane/contract/.
-	TypeVersion []int64 `json:"typeVersion"`
-}) *TypeResampleBuilder {
-	builder.internal.ResultAssertions = &resultAssertions
+func (builder *TypeResampleBuilder) ResultAssertions(resultAssertions cog.Builder[ExprTypeResampleResultAssertions]) *TypeResampleBuilder {
+	resultAssertionsResource, err := resultAssertions.Build()
+	if err != nil {
+		builder.errors["resultAssertions"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.ResultAssertions = &resultAssertionsResource
 
 	return builder
 }
@@ -155,13 +134,13 @@ func (builder *TypeResampleBuilder) ResultAssertions(resultAssertions struct {
 // TimeRange represents the query range
 // NOTE: unlike generic /ds/query, we can now send explicit time values in each query
 // NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-func (builder *TypeResampleBuilder) TimeRange(timeRange struct {
-	// From is the start time of the query.
-	From string `json:"from"`
-	// To is the end time of the query.
-	To string `json:"to"`
-}) *TypeResampleBuilder {
-	builder.internal.TimeRange = &timeRange
+func (builder *TypeResampleBuilder) TimeRange(timeRange cog.Builder[ExprTypeResampleTimeRange]) *TypeResampleBuilder {
+	timeRangeResource, err := timeRange.Build()
+	if err != nil {
+		builder.errors["timeRange"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.TimeRange = &timeRangeResource
 
 	return builder
 }

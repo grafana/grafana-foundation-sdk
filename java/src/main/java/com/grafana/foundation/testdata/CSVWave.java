@@ -29,7 +29,7 @@ public class CSVWave {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<CSVWave> {
-        private final CSVWave internal;
+        protected final CSVWave internal;
         
         public Builder() {
             this.internal = new CSVWave();

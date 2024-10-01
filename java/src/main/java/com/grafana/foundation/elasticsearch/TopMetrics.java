@@ -27,7 +27,7 @@ public class TopMetrics {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TopMetrics> {
-        private final TopMetrics internal;
+        protected final TopMetrics internal;
         
         public Builder() {
             this.internal = new TopMetrics();

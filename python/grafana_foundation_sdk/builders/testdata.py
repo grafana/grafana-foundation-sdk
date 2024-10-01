@@ -3,6 +3,7 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import testdata
+from ..models import dashboard
 
 
 class CSVWave(cogbuilder.Builder[testdata.CSVWave]):    
@@ -31,34 +32,6 @@ class CSVWave(cogbuilder.Builder[testdata.CSVWave]):
     
     def values_csv(self, values_csv: str) -> typing.Self:        
         self._internal.values_csv = values_csv
-    
-        return self
-    
-
-class Datasource(cogbuilder.Builder[testdata.Datasource]):    
-    _internal: testdata.Datasource
-
-    def __init__(self):
-        self._internal = testdata.Datasource()
-
-    def build(self) -> testdata.Datasource:
-        return self._internal    
-    
-    def type_val(self, type_val: str) -> typing.Self:    
-        """
-        The datasource plugin type
-        """
-            
-        self._internal.type_val = type_val
-    
-        return self
-    
-    def uid(self, uid: str) -> typing.Self:    
-        """
-        Datasource UID
-        """
-            
-        self._internal.uid = uid
     
         return self
     
@@ -383,13 +356,12 @@ class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
     
         return self
     
-    def datasource(self, datasource: cogbuilder.Builder[testdata.Datasource]) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         The datasource
         """
             
-        datasource_resource = datasource.build()
-        self._internal.datasource = datasource_resource
+        self._internal.datasource = datasource
     
         return self
     
