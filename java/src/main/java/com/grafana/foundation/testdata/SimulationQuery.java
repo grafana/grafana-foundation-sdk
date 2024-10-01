@@ -30,7 +30,7 @@ public class SimulationQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<SimulationQuery> {
-        private final SimulationQuery internal;
+        protected final SimulationQuery internal;
         
         public Builder() {
             this.internal = new SimulationQuery();

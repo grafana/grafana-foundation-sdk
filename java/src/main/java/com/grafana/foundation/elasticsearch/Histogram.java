@@ -27,7 +27,7 @@ public class Histogram {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Histogram> {
-        private final Histogram internal;
+        protected final Histogram internal;
         
         public Builder() {
             this.internal = new Histogram();

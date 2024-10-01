@@ -18,7 +18,7 @@ public class PrometheusDataqueryScope {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<PrometheusDataqueryScope> {
-        private final PrometheusDataqueryScope internal;
+        protected final PrometheusDataqueryScope internal;
         
         public Builder() {
             this.internal = new PrometheusDataqueryScope();

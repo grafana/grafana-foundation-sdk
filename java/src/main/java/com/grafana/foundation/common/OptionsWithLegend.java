@@ -21,7 +21,7 @@ public class OptionsWithLegend {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<OptionsWithLegend> {
-        private final OptionsWithLegend internal;
+        protected final OptionsWithLegend internal;
         
         public Builder() {
             this.internal = new OptionsWithLegend();

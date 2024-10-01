@@ -25,7 +25,7 @@ public class ColorDimensionConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ColorDimensionConfig> {
-        private final ColorDimensionConfig internal;
+        protected final ColorDimensionConfig internal;
         
         public Builder() {
             this.internal = new ColorDimensionConfig();

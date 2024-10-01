@@ -30,7 +30,7 @@ public class Sum {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Sum> {
-        private final Sum internal;
+        protected final Sum internal;
         
         public Builder() {
             this.internal = new Sum();

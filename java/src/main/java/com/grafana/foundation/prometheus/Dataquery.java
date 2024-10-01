@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery {
     // The actual expression/query that will be evaluated by Prometheus
@@ -66,7 +67,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     // TODO this shouldn't be unknown but DataSourceRef | null
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public Object datasource;
+    public DataSourceRef datasource;
     // An additional lower limit for the step parameter of the Prometheus query and for the
     // `$__interval` and `$__rate_interval` variables.
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -80,7 +81,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        private final Dataquery internal;
+        protected final Dataquery internal;
         
         public Builder() {
             this.internal = new Dataquery();
@@ -147,7 +148,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         return this;
     }
     
-    public Builder datasource(Object datasource) {
+    public Builder datasource(DataSourceRef datasource) {
     this.internal.datasource = datasource;
         return this;
     }

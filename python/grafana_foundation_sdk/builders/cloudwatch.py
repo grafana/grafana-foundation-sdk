@@ -3,6 +3,7 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import cloudwatch
+from ..models import dashboard
 
 
 class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):    
@@ -296,7 +297,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
     
         return self
     
-    def datasource(self, datasource: object) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.
@@ -664,7 +665,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
     
         return self
     
-    def datasource(self, datasource: object) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.
@@ -884,7 +885,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
     
         return self
     
-    def datasource(self, datasource: object) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.

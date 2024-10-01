@@ -32,7 +32,7 @@ public class StreamingQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<StreamingQuery> {
-        private final StreamingQuery internal;
+        protected final StreamingQuery internal;
         
         public Builder() {
             this.internal = new StreamingQuery();

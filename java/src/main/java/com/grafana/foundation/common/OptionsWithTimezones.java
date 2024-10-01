@@ -22,7 +22,7 @@ public class OptionsWithTimezones {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<OptionsWithTimezones> {
-        private final OptionsWithTimezones internal;
+        protected final OptionsWithTimezones internal;
         
         public Builder() {
             this.internal = new OptionsWithTimezones();

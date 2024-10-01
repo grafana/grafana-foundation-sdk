@@ -20,7 +20,7 @@ public class ElasticsearchBucketScriptSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchBucketScriptSettings> {
-        private final ElasticsearchBucketScriptSettings internal;
+        protected final ElasticsearchBucketScriptSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchBucketScriptSettings();

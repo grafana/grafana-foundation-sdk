@@ -30,7 +30,7 @@ public class BasePipelineMetricAggregation {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<BasePipelineMetricAggregation> {
-        private final BasePipelineMetricAggregation internal;
+        protected final BasePipelineMetricAggregation internal;
         
         public Builder() {
             this.internal = new BasePipelineMetricAggregation();

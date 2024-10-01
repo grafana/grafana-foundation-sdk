@@ -28,7 +28,7 @@ public class ResourceDimensionConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ResourceDimensionConfig> {
-        private final ResourceDimensionConfig internal;
+        protected final ResourceDimensionConfig internal;
         
         public Builder() {
             this.internal = new ResourceDimensionConfig();

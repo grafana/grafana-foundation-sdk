@@ -33,7 +33,7 @@ public class CumulativeSum {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<CumulativeSum> {
-        private final CumulativeSum internal;
+        protected final CumulativeSum internal;
         
         public Builder() {
             this.internal = new CumulativeSum();

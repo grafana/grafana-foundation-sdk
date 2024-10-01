@@ -30,7 +30,7 @@ public class Scenario {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Scenario> {
-        private final Scenario internal;
+        protected final Scenario internal;
         
         public Builder() {
             this.internal = new Scenario();

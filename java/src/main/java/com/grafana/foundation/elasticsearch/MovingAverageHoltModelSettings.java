@@ -28,7 +28,7 @@ public class MovingAverageHoltModelSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MovingAverageHoltModelSettings> {
-        private final MovingAverageHoltModelSettings internal;
+        protected final MovingAverageHoltModelSettings internal;
         
         public Builder() {
             this.internal = new MovingAverageHoltModelSettings();

@@ -1516,34 +1516,6 @@ class TableColoredBackgroundCellOptions(cogbuilder.Builder[common.TableColoredBa
         return self
     
 
-class DataSourceRef(cogbuilder.Builder[common.DataSourceRef]):    
-    _internal: common.DataSourceRef
-
-    def __init__(self):
-        self._internal = common.DataSourceRef()
-
-    def build(self) -> common.DataSourceRef:
-        return self._internal    
-    
-    def type_val(self, type_val: str) -> typing.Self:    
-        """
-        The plugin type-id
-        """
-            
-        self._internal.type_val = type_val
-    
-        return self
-    
-    def uid(self, uid: str) -> typing.Self:    
-        """
-        Specific datasource instance
-        """
-            
-        self._internal.uid = uid
-    
-        return self
-    
-
 class ResourceDimensionConfig(cogbuilder.Builder[common.ResourceDimensionConfig]):    
     """
     Links to a resource (image/svg path)

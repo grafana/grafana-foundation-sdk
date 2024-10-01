@@ -38,7 +38,7 @@ public class AnnotationTarget {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AnnotationTarget> {
-        private final AnnotationTarget internal;
+        protected final AnnotationTarget internal;
         
         public Builder() {
             this.internal = new AnnotationTarget();

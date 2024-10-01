@@ -30,7 +30,7 @@ public class UniqueCount {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<UniqueCount> {
-        private final UniqueCount internal;
+        protected final UniqueCount internal;
         
         public Builder() {
             this.internal = new UniqueCount();

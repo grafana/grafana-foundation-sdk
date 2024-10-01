@@ -21,13 +21,45 @@ type Options struct {
 	DedupStrategy        common.LogsDedupStrategy `json:"dedupStrategy"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.ShowLabels != other.ShowLabels {
+		return false
+	}
+	if resource.ShowCommonLabels != other.ShowCommonLabels {
+		return false
+	}
+	if resource.ShowTime != other.ShowTime {
+		return false
+	}
+	if resource.ShowLogContextToggle != other.ShowLogContextToggle {
+		return false
+	}
+	if resource.WrapLogMessage != other.WrapLogMessage {
+		return false
+	}
+	if resource.PrettifyLogMessage != other.PrettifyLogMessage {
+		return false
+	}
+	if resource.EnableLogDetails != other.EnableLogDetails {
+		return false
+	}
+	if resource.SortOrder != other.SortOrder {
+		return false
+	}
+	if resource.DedupStrategy != other.DedupStrategy {
+		return false
+	}
+
+	return true
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "logs",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

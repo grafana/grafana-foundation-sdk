@@ -33,7 +33,7 @@ public class MovingFunction {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MovingFunction> {
-        private final MovingFunction internal;
+        protected final MovingFunction internal;
         
         public Builder() {
             this.internal = new MovingFunction();

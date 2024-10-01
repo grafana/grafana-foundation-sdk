@@ -33,7 +33,7 @@ public class ExtendedStats {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExtendedStats> {
-        private final ExtendedStats internal;
+        protected final ExtendedStats internal;
         
         public Builder() {
             this.internal = new ExtendedStats();

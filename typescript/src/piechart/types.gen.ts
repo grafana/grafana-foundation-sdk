@@ -56,7 +56,7 @@ export const defaultPieChartLegendOptions = (): PieChartLegendOptions => ({
 
 export interface Options {
 	pieType: PieChartType;
-	displayLabels: PieChartLabels[];
+	displayLabels?: PieChartLabels[];
 	tooltip: common.VizTooltipOptions;
 	reduceOptions: common.ReduceDataOptions;
 	text?: common.VizTextDisplayOptions;
@@ -66,7 +66,6 @@ export interface Options {
 
 export const defaultOptions = (): Options => ({
 	pieType: PieChartType.Pie,
-	displayLabels: [],
 	tooltip: common.defaultVizTooltipOptions(),
 	reduceOptions: common.defaultReduceDataOptions(),
 	legend: defaultPieChartLegendOptions(),
