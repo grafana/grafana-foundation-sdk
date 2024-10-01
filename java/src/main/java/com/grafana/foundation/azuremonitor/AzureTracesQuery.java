@@ -43,7 +43,7 @@ public class AzureTracesQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AzureTracesQuery> {
-        private final AzureTracesQuery internal;
+        protected final AzureTracesQuery internal;
         
         public Builder() {
             this.internal = new AzureTracesQuery();

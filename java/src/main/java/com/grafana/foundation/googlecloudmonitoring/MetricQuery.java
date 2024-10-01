@@ -69,7 +69,7 @@ public class MetricQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MetricQuery> {
-        private final MetricQuery internal;
+        protected final MetricQuery internal;
         
         public Builder() {
             this.internal = new MetricQuery();

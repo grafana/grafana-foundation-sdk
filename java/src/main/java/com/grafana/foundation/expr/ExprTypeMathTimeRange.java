@@ -22,7 +22,7 @@ public class ExprTypeMathTimeRange {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeMathTimeRange> {
-        private final ExprTypeMathTimeRange internal;
+        protected final ExprTypeMathTimeRange internal;
         
         public Builder() {
             this.internal = new ExprTypeMathTimeRange();

@@ -33,7 +33,7 @@ public class RuleGroup {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<RuleGroup> {
-        private final RuleGroup internal;
+        protected final RuleGroup internal;
         
         public Builder(String title) {
             this.internal = new RuleGroup();

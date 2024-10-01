@@ -20,7 +20,7 @@ public class ElasticsearchInlineScript {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchInlineScript> {
-        private final ElasticsearchInlineScript internal;
+        protected final ElasticsearchInlineScript internal;
         
         public Builder() {
             this.internal = new ElasticsearchInlineScript();

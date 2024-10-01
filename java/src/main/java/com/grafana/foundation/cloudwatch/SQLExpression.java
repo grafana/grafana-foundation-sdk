@@ -45,7 +45,7 @@ public class SQLExpression {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<SQLExpression> {
-        private final SQLExpression internal;
+        protected final SQLExpression internal;
         
         public Builder() {
             this.internal = new SQLExpression();

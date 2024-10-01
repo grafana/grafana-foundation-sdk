@@ -25,7 +25,7 @@ public class RegexMap {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<RegexMap> {
-        private final RegexMap internal;
+        protected final RegexMap internal;
         
         public Builder() {
             this.internal = new RegexMap();

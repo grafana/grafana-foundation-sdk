@@ -22,7 +22,7 @@ public class LibraryElementDTOMetaUser {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<LibraryElementDTOMetaUser> {
-        private final LibraryElementDTOMetaUser internal;
+        protected final LibraryElementDTOMetaUser internal;
         
         public Builder() {
             this.internal = new LibraryElementDTOMetaUser();

@@ -27,7 +27,7 @@ public class ElasticsearchTopMetricsSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchTopMetricsSettings> {
-        private final ElasticsearchTopMetricsSettings internal;
+        protected final ElasticsearchTopMetricsSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchTopMetricsSettings();

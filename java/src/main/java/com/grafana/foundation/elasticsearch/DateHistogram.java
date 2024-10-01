@@ -27,7 +27,7 @@ public class DateHistogram {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DateHistogram> {
-        private final DateHistogram internal;
+        protected final DateHistogram internal;
         
         public Builder() {
             this.internal = new DateHistogram();

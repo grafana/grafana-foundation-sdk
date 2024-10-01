@@ -26,7 +26,7 @@ public class ElasticsearchMovingFunctionSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchMovingFunctionSettings> {
-        private final ElasticsearchMovingFunctionSettings internal;
+        protected final ElasticsearchMovingFunctionSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchMovingFunctionSettings();

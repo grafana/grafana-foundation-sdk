@@ -20,7 +20,7 @@ public class PipelineVariable {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<PipelineVariable> {
-        private final PipelineVariable internal;
+        protected final PipelineVariable internal;
         
         public Builder() {
             this.internal = new PipelineVariable();

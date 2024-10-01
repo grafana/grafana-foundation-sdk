@@ -45,7 +45,7 @@ public class ExprTypeMathResultAssertions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeMathResultAssertions> {
-        private final ExprTypeMathResultAssertions internal;
+        protected final ExprTypeMathResultAssertions internal;
         
         public Builder() {
             this.internal = new ExprTypeMathResultAssertions();

@@ -33,7 +33,7 @@ public class DataSourceJsonData {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DataSourceJsonData> {
-        private final DataSourceJsonData internal;
+        protected final DataSourceJsonData internal;
         
         public Builder() {
             this.internal = new DataSourceJsonData();

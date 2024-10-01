@@ -1,5 +1,8 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
+import * as dashboard from '../dashboard';
+
+
 export interface CSVWave {
 	labels?: string;
 	name?: string;
@@ -8,19 +11,6 @@ export interface CSVWave {
 }
 
 export const defaultCSVWave = (): CSVWave => ({
-});
-
-export interface Datasource {
-	// The apiserver version
-	apiVersion?: string;
-	// The datasource plugin type
-	type: string;
-	// Datasource UID (NOTE: name in k8s)
-	uid?: string;
-}
-
-export const defaultDatasource = (): Datasource => ({
-	type: "",
 });
 
 export interface NodesQuery {
@@ -148,7 +138,7 @@ export interface dataquery {
 	csvFileName?: string;
 	csvWave?: CSVWave[];
 	// The datasource
-	datasource?: Datasource;
+	datasource?: dashboard.DataSourceRef;
 	// Drop percentage (the chance we will lose a point 0-100)
 	dropPercent?: number;
 	// Possible enum values:

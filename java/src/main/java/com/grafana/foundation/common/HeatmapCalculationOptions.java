@@ -25,7 +25,7 @@ public class HeatmapCalculationOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<HeatmapCalculationOptions> {
-        private final HeatmapCalculationOptions internal;
+        protected final HeatmapCalculationOptions internal;
         
         public Builder() {
             this.internal = new HeatmapCalculationOptions();

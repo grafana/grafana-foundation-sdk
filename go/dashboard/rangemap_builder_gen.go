@@ -43,15 +43,13 @@ func (builder *RangeMapBuilder) Build() (RangeMap, error) {
 }
 
 // Range to match against and the result to apply when the value is within the range
-func (builder *RangeMapBuilder) Options(options struct {
-	// Min value of the range. It can be null which means -Infinity
-	From *float64 `json:"from"`
-	// Max value of the range. It can be null which means +Infinity
-	To *float64 `json:"to"`
-	// Config to apply when the value is within the range
-	Result ValueMappingResult `json:"result"`
-}) *RangeMapBuilder {
-	builder.internal.Options = options
+func (builder *RangeMapBuilder) Options(options cog.Builder[DashboardRangeMapOptions]) *RangeMapBuilder {
+	optionsResource, err := options.Build()
+	if err != nil {
+		builder.errors["options"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options = optionsResource
 
 	return builder
 }

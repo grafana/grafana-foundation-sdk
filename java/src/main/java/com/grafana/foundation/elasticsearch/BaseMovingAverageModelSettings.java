@@ -24,7 +24,7 @@ public class BaseMovingAverageModelSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<BaseMovingAverageModelSettings> {
-        private final BaseMovingAverageModelSettings internal;
+        protected final BaseMovingAverageModelSettings internal;
         
         public Builder() {
             this.internal = new BaseMovingAverageModelSettings();

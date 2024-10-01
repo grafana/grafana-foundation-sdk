@@ -28,27 +28,6 @@
           }
         }
       },
-      "Datasource": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "type"
-        ],
-        "properties": {
-          "apiVersion": {
-            "type": "string",
-            "description": "The apiserver version"
-          },
-          "type": {
-            "type": "string",
-            "description": "The datasource plugin type"
-          },
-          "uid": {
-            "type": "string",
-            "description": "Datasource UID (NOTE: name in k8s)"
-          }
-        }
-      },
       "NodesQuery": {
         "type": "object",
         "additionalProperties": false,
@@ -273,7 +252,7 @@
             }
           },
           "datasource": {
-            "$ref": "#/components/schemas/Datasource",
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "The datasource"
           },
           "dropPercent": {
@@ -419,6 +398,21 @@
             "type": "boolean"
           }
         }
+      },
+      "DataSourceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The plugin type-id"
+          },
+          "uid": {
+            "type": "string",
+            "description": "Specific datasource instance"
+          }
+        },
+        "description": "Ref to a DataSource instance"
       }
     }
   }

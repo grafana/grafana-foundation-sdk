@@ -26,7 +26,7 @@ public class QueryEditorArrayExpression {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<QueryEditorArrayExpression> {
-        private final QueryEditorArrayExpression internal;
+        protected final QueryEditorArrayExpression internal;
         
         public Builder() {
             this.internal = new QueryEditorArrayExpression();

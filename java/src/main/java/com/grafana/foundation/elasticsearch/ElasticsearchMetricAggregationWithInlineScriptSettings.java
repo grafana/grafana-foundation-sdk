@@ -20,7 +20,7 @@ public class ElasticsearchMetricAggregationWithInlineScriptSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchMetricAggregationWithInlineScriptSettings> {
-        private final ElasticsearchMetricAggregationWithInlineScriptSettings internal;
+        protected final ElasticsearchMetricAggregationWithInlineScriptSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchMetricAggregationWithInlineScriptSettings();

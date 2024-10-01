@@ -23,7 +23,7 @@ public class ElasticsearchMinSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchMinSettings> {
-        private final ElasticsearchMinSettings internal;
+        protected final ElasticsearchMinSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchMinSettings();

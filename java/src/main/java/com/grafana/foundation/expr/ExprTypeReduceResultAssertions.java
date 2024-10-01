@@ -45,7 +45,7 @@ public class ExprTypeReduceResultAssertions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeReduceResultAssertions> {
-        private final ExprTypeReduceResultAssertions internal;
+        protected final ExprTypeReduceResultAssertions internal;
         
         public Builder() {
             this.internal = new ExprTypeReduceResultAssertions();

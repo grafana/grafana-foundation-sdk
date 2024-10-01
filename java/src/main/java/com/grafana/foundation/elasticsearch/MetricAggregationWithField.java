@@ -28,7 +28,7 @@ public class MetricAggregationWithField {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MetricAggregationWithField> {
-        private final MetricAggregationWithField internal;
+        protected final MetricAggregationWithField internal;
         
         public Builder() {
             this.internal = new MetricAggregationWithField();

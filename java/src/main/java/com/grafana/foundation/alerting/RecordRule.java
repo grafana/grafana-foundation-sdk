@@ -20,7 +20,7 @@ public class RecordRule {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<RecordRule> {
-        private final RecordRule internal;
+        protected final RecordRule internal;
         
         public Builder() {
             this.internal = new RecordRule();
