@@ -92,6 +92,11 @@ final class Runtime
      */
     public function dataqueryFromArray(array $data, string $dataqueryTypeHint): Dataquery
     {
+        // Dataqueries might reference the datasource to use, and its type. Let's use that.
+        if (empty($dataqueryTypeHint) && !empty($data['datasource']) && !empty($data['datasource']['type'])) {
+            $dataqueryTypeHint = $data['datasource']['type'];
+        }
+
         // A hint tells us the dataquery type: let's use it.
         if (!empty($dataqueryTypeHint) && isset($this->dataqueryVariants[$dataqueryTypeHint])) {
             $fromArray = $this->dataqueryVariants[$dataqueryTypeHint]->fromArray;
