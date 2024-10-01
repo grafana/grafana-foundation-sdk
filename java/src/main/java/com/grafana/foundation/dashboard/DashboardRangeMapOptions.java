@@ -29,7 +29,7 @@ public class DashboardRangeMapOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DashboardRangeMapOptions> {
-        private final DashboardRangeMapOptions internal;
+        protected final DashboardRangeMapOptions internal;
         
         public Builder() {
             this.internal = new DashboardRangeMapOptions();

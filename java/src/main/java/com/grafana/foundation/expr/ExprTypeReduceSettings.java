@@ -28,7 +28,7 @@ public class ExprTypeReduceSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeReduceSettings> {
-        private final ExprTypeReduceSettings internal;
+        protected final ExprTypeReduceSettings internal;
         
         public Builder() {
             this.internal = new ExprTypeReduceSettings();

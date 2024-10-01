@@ -7,12 +7,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class TypeResample implements com.grafana.foundation.cog.variants.Dataquery {
     // The datasource
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public ExprTypeResampleDatasource datasource;
+    public DataSourceRef datasource;
     // The downsample function
     // Possible enum values:
     //  - `"sum"` 
@@ -85,14 +86,14 @@ public class TypeResample implements com.grafana.foundation.cog.variants.Dataque
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TypeResample> {
-        private final TypeResample internal;
+        protected final TypeResample internal;
         
         public Builder() {
             this.internal = new TypeResample();
     this.internal.type = "resample";
         }
-    public Builder datasource(com.grafana.foundation.cog.Builder<ExprTypeResampleDatasource> datasource) {
-    this.internal.datasource = datasource.build();
+    public Builder datasource(DataSourceRef datasource) {
+    this.internal.datasource = datasource;
         return this;
     }
     

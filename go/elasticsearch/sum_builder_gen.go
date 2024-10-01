@@ -52,11 +52,13 @@ func (builder *SumBuilder) Id(id string) *SumBuilder {
 	return builder
 }
 
-func (builder *SumBuilder) Settings(settings struct {
-	Script  *InlineScript `json:"script,omitempty"`
-	Missing *string       `json:"missing,omitempty"`
-}) *SumBuilder {
-	builder.internal.Settings = &settings
+func (builder *SumBuilder) Settings(settings cog.Builder[ElasticsearchSumSettings]) *SumBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

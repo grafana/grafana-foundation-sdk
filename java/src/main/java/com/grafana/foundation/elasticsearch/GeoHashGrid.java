@@ -27,7 +27,7 @@ public class GeoHashGrid {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<GeoHashGrid> {
-        private final GeoHashGrid internal;
+        protected final GeoHashGrid internal;
         
         public Builder() {
             this.internal = new GeoHashGrid();

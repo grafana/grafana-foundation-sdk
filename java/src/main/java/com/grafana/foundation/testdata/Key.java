@@ -24,7 +24,7 @@ public class Key {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Key> {
-        private final Key internal;
+        protected final Key internal;
         
         public Builder() {
             this.internal = new Key();

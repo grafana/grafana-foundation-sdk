@@ -27,7 +27,7 @@ public class Logs {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Logs> {
-        private final Logs internal;
+        protected final Logs internal;
         
         public Builder() {
             this.internal = new Logs();

@@ -20,7 +20,7 @@ public class ElasticsearchDerivativeSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchDerivativeSettings> {
-        private final ElasticsearchDerivativeSettings internal;
+        protected final ElasticsearchDerivativeSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchDerivativeSettings();

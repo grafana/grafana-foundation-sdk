@@ -45,10 +45,13 @@ func (builder *InlineScriptBuilder) String(stringArg string) *InlineScriptBuilde
 	return builder
 }
 
-func (builder *InlineScriptBuilder) Struct(structArg struct {
-	Inline *string `json:"inline,omitempty"`
-}) *InlineScriptBuilder {
-	builder.internal.Struct = &structArg
+func (builder *InlineScriptBuilder) ElasticsearchInlineScript(elasticsearchInlineScript cog.Builder[ElasticsearchInlineScript]) *InlineScriptBuilder {
+	elasticsearchInlineScriptResource, err := elasticsearchInlineScript.Build()
+	if err != nil {
+		builder.errors["ElasticsearchInlineScript"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.ElasticsearchInlineScript = &elasticsearchInlineScriptResource
 
 	return builder
 }

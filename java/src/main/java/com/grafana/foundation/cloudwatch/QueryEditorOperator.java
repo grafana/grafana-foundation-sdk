@@ -24,7 +24,7 @@ public class QueryEditorOperator {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<QueryEditorOperator> {
-        private final QueryEditorOperator internal;
+        protected final QueryEditorOperator internal;
         
         public Builder() {
             this.internal = new QueryEditorOperator();

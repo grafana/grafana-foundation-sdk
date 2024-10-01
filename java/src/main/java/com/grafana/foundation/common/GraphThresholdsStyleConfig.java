@@ -21,7 +21,7 @@ public class GraphThresholdsStyleConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> {
-        private final GraphThresholdsStyleConfig internal;
+        protected final GraphThresholdsStyleConfig internal;
         
         public Builder() {
             this.internal = new GraphThresholdsStyleConfig();

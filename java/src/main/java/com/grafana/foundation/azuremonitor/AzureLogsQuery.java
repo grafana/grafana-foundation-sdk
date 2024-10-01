@@ -51,7 +51,7 @@ public class AzureLogsQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AzureLogsQuery> {
-        private final AzureLogsQuery internal;
+        protected final AzureLogsQuery internal;
         
         public Builder() {
             this.internal = new AzureLogsQuery();

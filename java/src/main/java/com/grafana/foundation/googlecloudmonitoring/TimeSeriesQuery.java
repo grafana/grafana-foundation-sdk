@@ -28,7 +28,7 @@ public class TimeSeriesQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TimeSeriesQuery> {
-        private final TimeSeriesQuery internal;
+        protected final TimeSeriesQuery internal;
         
         public Builder() {
             this.internal = new TimeSeriesQuery();

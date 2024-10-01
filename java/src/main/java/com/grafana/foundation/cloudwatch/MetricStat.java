@@ -53,7 +53,7 @@ public class MetricStat {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MetricStat> {
-        private final MetricStat internal;
+        protected final MetricStat internal;
         
         public Builder() {
             this.internal = new MetricStat();

@@ -90,9 +90,8 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
-     * @var mixed|null
      */
-    public $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
      * The type of the table that is used to display the search results
@@ -115,10 +114,10 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param int|null $spss
      * @param array<\Grafana\Foundation\Tempo\TraceqlFilter>|null $filters
      * @param array<\Grafana\Foundation\Tempo\TraceqlFilter>|null $groupBy
-     * @param mixed|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param \Grafana\Foundation\Tempo\SearchTableType|null $tableType
      */
-    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $query = null, ?string $search = null, ?string $serviceName = null, ?string $spanName = null, ?string $minDuration = null, ?string $maxDuration = null, ?string $serviceMapQuery = null, ?bool $serviceMapIncludeNamespace = null, ?int $limit = null, ?int $spss = null, ?array $filters = null, ?array $groupBy = null,  $datasource = null, ?\Grafana\Foundation\Tempo\SearchTableType $tableType = null)
+    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $query = null, ?string $search = null, ?string $serviceName = null, ?string $spanName = null, ?string $minDuration = null, ?string $maxDuration = null, ?string $serviceMapQuery = null, ?bool $serviceMapIncludeNamespace = null, ?int $limit = null, ?int $spss = null, ?array $filters = null, ?array $groupBy = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?\Grafana\Foundation\Tempo\SearchTableType $tableType = null)
     {
         $this->refId = $refId ?: "";
         $this->hide = $hide;
@@ -170,7 +169,11 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     $val = $input;
     	return \Grafana\Foundation\Tempo\TraceqlFilter::fromArray($val);
     }), $data["groupBy"] ?? [])),
-            datasource: $data["datasource"] ?? null,
+            datasource: isset($data["datasource"]) ? (function($input) {
+    	/** @var array{type?: string, uid?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    })($data["datasource"]) : null,
             tableType: isset($data["tableType"]) ? (function($input) { return \Grafana\Foundation\Tempo\SearchTableType::fromValue($input); })($data["tableType"]) : null,
         );
     }

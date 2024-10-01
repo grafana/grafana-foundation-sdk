@@ -40,12 +40,13 @@ func (builder *ExtendedStatsBuilder) Build() (ExtendedStats, error) {
 	return *builder.internal, nil
 }
 
-func (builder *ExtendedStatsBuilder) Settings(settings struct {
-	Script  *InlineScript `json:"script,omitempty"`
-	Missing *string       `json:"missing,omitempty"`
-	Sigma   *string       `json:"sigma,omitempty"`
-}) *ExtendedStatsBuilder {
-	builder.internal.Settings = &settings
+func (builder *ExtendedStatsBuilder) Settings(settings cog.Builder[ElasticsearchExtendedStatsSettings]) *ExtendedStatsBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }
