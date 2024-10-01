@@ -89,7 +89,7 @@ public class VariableModel {
 
     
     public static class QueryVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
-        private final VariableModel internal;
+        protected final VariableModel internal;
         
         public QueryVariableBuilder(String name) {
             this.internal = new VariableModel();
@@ -181,7 +181,7 @@ public class VariableModel {
     }
     
     public static class AdHocVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
-        private final VariableModel internal;
+        protected final VariableModel internal;
         
         public AdHocVariableBuilder(String name) {
             this.internal = new VariableModel();
@@ -228,7 +228,7 @@ public class VariableModel {
     }
     
     public static class ConstantVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
-        private final VariableModel internal;
+        protected final VariableModel internal;
         
         public ConstantVariableBuilder(String name) {
             this.internal = new VariableModel();
@@ -270,7 +270,7 @@ public class VariableModel {
     }
     
     public static class DatasourceVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
-        private final VariableModel internal;
+        protected final VariableModel internal;
         
         public DatasourceVariableBuilder(String name) {
             this.internal = new VariableModel();
@@ -345,7 +345,7 @@ public class VariableModel {
     }
     
     public static class IntervalVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
-        private final VariableModel internal;
+        protected final VariableModel internal;
         
         public IntervalVariableBuilder(String name) {
             this.internal = new VariableModel();
@@ -402,7 +402,7 @@ public class VariableModel {
     }
     
     public static class TextBoxVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
-        private final VariableModel internal;
+        protected final VariableModel internal;
         
         public TextBoxVariableBuilder(String name) {
             this.internal = new VariableModel();
@@ -459,7 +459,7 @@ public class VariableModel {
     }
     
     public static class CustomVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
-        private final VariableModel internal;
+        protected final VariableModel internal;
         
         public CustomVariableBuilder(String name) {
             this.internal = new VariableModel();

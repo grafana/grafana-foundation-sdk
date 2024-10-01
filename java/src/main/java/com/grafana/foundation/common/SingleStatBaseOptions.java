@@ -27,7 +27,7 @@ public class SingleStatBaseOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<SingleStatBaseOptions> {
-        private final SingleStatBaseOptions internal;
+        protected final SingleStatBaseOptions internal;
         
         public Builder() {
             this.internal = new SingleStatBaseOptions();

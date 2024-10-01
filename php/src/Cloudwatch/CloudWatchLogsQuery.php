@@ -67,9 +67,8 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
-     * @var mixed|null
      */
-    public $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
      * @param \Grafana\Foundation\Cloudwatch\CloudWatchQueryMode|null $queryMode
@@ -82,9 +81,9 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
      * @param bool|null $hide
      * @param string|null $queryType
      * @param array<string>|null $logGroupNames
-     * @param mixed|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      */
-    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?string $id = null, ?string $region = null, ?string $expression = null, ?array $statsGroups = null, ?array $logGroups = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?array $logGroupNames = null,  $datasource = null)
+    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?string $id = null, ?string $region = null, ?string $expression = null, ?array $statsGroups = null, ?array $logGroups = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?array $logGroupNames = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
     {
         $this->queryMode = $queryMode ?: \Grafana\Foundation\Cloudwatch\CloudWatchQueryMode::logs();
         $this->id = $id ?: "";
@@ -121,7 +120,11 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
             hide: $data["hide"] ?? null,
             queryType: $data["queryType"] ?? null,
             logGroupNames: $data["logGroupNames"] ?? null,
-            datasource: $data["datasource"] ?? null,
+            datasource: isset($data["datasource"]) ? (function($input) {
+    	/** @var array{type?: string, uid?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    })($data["datasource"]) : null,
         );
     }
 

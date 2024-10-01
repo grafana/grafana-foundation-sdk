@@ -74,9 +74,8 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
-     * @var mixed|null
      */
-    public $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
      * @var array<\Grafana\Foundation\Tempo\TraceqlFilter>
@@ -96,10 +95,10 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param string|null $serviceMapQuery
      * @param bool|null $serviceMapIncludeNamespace
      * @param int|null $limit
-     * @param mixed|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param array<\Grafana\Foundation\Tempo\TraceqlFilter>|null $filters
      */
-    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $query = null, ?string $search = null, ?string $serviceName = null, ?string $spanName = null, ?string $minDuration = null, ?string $maxDuration = null, ?string $serviceMapQuery = null, ?bool $serviceMapIncludeNamespace = null, ?int $limit = null,  $datasource = null, ?array $filters = null)
+    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $query = null, ?string $search = null, ?string $serviceName = null, ?string $spanName = null, ?string $minDuration = null, ?string $maxDuration = null, ?string $serviceMapQuery = null, ?bool $serviceMapIncludeNamespace = null, ?int $limit = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?array $filters = null)
     {
         $this->refId = $refId ?: "";
         $this->hide = $hide;
@@ -137,7 +136,11 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             serviceMapQuery: $data["serviceMapQuery"] ?? null,
             serviceMapIncludeNamespace: $data["serviceMapIncludeNamespace"] ?? null,
             limit: $data["limit"] ?? null,
-            datasource: $data["datasource"] ?? null,
+            datasource: isset($data["datasource"]) ? (function($input) {
+    	/** @var array{type?: string, uid?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    })($data["datasource"]) : null,
             filters: array_filter(array_map((function($input) {
     	/** @var array{id?: string, tag?: string, operator?: string, value?: string|array<string>, valueType?: string, scope?: string} */
     $val = $input;

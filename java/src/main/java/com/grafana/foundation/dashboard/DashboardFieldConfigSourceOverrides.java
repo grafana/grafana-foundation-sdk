@@ -26,7 +26,7 @@ public class DashboardFieldConfigSourceOverrides {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> {
-        private final DashboardFieldConfigSourceOverrides internal;
+        protected final DashboardFieldConfigSourceOverrides internal;
         
         public Builder() {
             this.internal = new DashboardFieldConfigSourceOverrides();

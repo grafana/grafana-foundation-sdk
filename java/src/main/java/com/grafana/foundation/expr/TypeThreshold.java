@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataquery {
     // Threshold Conditions
@@ -19,7 +20,7 @@ public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataqu
     // The datasource
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public ExprTypeThresholdDatasource datasource;
+    public DataSourceRef datasource;
     // Reference to single query result
     @JsonProperty("expression")
     public String expression;
@@ -69,7 +70,7 @@ public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataqu
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TypeThreshold> {
-        private final TypeThreshold internal;
+        protected final TypeThreshold internal;
         
         public Builder() {
             this.internal = new TypeThreshold();
@@ -80,8 +81,8 @@ public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataqu
         return this;
     }
     
-    public Builder datasource(com.grafana.foundation.cog.Builder<ExprTypeThresholdDatasource> datasource) {
-    this.internal.datasource = datasource.build();
+    public Builder datasource(DataSourceRef datasource) {
+    this.internal.datasource = datasource;
         return this;
     }
     

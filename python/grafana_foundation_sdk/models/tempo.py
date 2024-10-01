@@ -2,6 +2,7 @@
 
 from ..cog import variants as cogvariants
 import typing
+from ..models import dashboard
 from ..cog import runtime as cogruntime
 import enum
 
@@ -40,10 +41,10 @@ class TempoQuery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[object]
+    datasource: typing.Optional[dashboard.DataSourceRef]
     filters: list['TraceqlFilter']
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: str = "", search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[str] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, datasource: typing.Optional[object] = None, filters: typing.Optional[list['TraceqlFilter']] = None):
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: str = "", search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[str] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, filters: typing.Optional[list['TraceqlFilter']] = None):
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -118,7 +119,7 @@ class TempoQuery(cogvariants.Dataquery):
         if "limit" in data:
             args["limit"] = data["limit"]
         if "datasource" in data:
-            args["datasource"] = data["datasource"]
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "filters" in data:
             args["filters"] = data["filters"]        
 

@@ -58,12 +58,13 @@ func (builder *MovingFunctionBuilder) Id(id string) *MovingFunctionBuilder {
 	return builder
 }
 
-func (builder *MovingFunctionBuilder) Settings(settings struct {
-	Window *string       `json:"window,omitempty"`
-	Script *InlineScript `json:"script,omitempty"`
-	Shift  *string       `json:"shift,omitempty"`
-}) *MovingFunctionBuilder {
-	builder.internal.Settings = &settings
+func (builder *MovingFunctionBuilder) Settings(settings cog.Builder[ElasticsearchMovingFunctionSettings]) *MovingFunctionBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

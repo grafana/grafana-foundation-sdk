@@ -52,7 +52,7 @@ public class SLOQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<SLOQuery> {
-        private final SLOQuery internal;
+        protected final SLOQuery internal;
         
         public Builder() {
             this.internal = new SLOQuery();

@@ -52,14 +52,13 @@ func (builder *DateHistogramBuilder) Id(id string) *DateHistogramBuilder {
 	return builder
 }
 
-func (builder *DateHistogramBuilder) Settings(settings struct {
-	Interval    *string `json:"interval,omitempty"`
-	MinDocCount *string `json:"min_doc_count,omitempty"`
-	TrimEdges   *string `json:"trimEdges,omitempty"`
-	Offset      *string `json:"offset,omitempty"`
-	TimeZone    *string `json:"timeZone,omitempty"`
-}) *DateHistogramBuilder {
-	builder.internal.Settings = &settings
+func (builder *DateHistogramBuilder) Settings(settings cog.Builder[ElasticsearchDateHistogramSettings]) *DateHistogramBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

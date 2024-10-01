@@ -5,6 +5,7 @@ package cloudwatch
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*CloudWatchAnnotationQueryBuilder)(nil)
@@ -163,7 +164,7 @@ func (builder *CloudWatchAnnotationQueryBuilder) AlarmNamePrefix(alarmNamePrefix
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
 // TODO this shouldn't be unknown but DataSourceRef | null
-func (builder *CloudWatchAnnotationQueryBuilder) Datasource(datasource any) *CloudWatchAnnotationQueryBuilder {
+func (builder *CloudWatchAnnotationQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *CloudWatchAnnotationQueryBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

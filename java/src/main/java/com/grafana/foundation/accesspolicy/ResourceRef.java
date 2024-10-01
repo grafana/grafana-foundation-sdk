@@ -20,7 +20,7 @@ public class ResourceRef {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ResourceRef> {
-        private final ResourceRef internal;
+        protected final ResourceRef internal;
         
         public Builder() {
             this.internal = new ResourceRef();

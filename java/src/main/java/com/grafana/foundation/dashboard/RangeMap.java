@@ -25,7 +25,7 @@ public class RangeMap {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<RangeMap> {
-        private final RangeMap internal;
+        protected final RangeMap internal;
         
         public Builder() {
             this.internal = new RangeMap();

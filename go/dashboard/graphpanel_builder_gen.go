@@ -43,12 +43,13 @@ func (builder *GraphPanelBuilder) Build() (GraphPanel, error) {
 }
 
 // @deprecated this is part of deprecated graph panel
-func (builder *GraphPanelBuilder) Legend(legend struct {
-	Show     bool    `json:"show"`
-	Sort     *string `json:"sort,omitempty"`
-	SortDesc *bool   `json:"sortDesc,omitempty"`
-}) *GraphPanelBuilder {
-	builder.internal.Legend = &legend
+func (builder *GraphPanelBuilder) Legend(legend cog.Builder[DashboardGraphPanelLegend]) *GraphPanelBuilder {
+	legendResource, err := legend.Build()
+	if err != nil {
+		builder.errors["legend"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Legend = &legendResource
 
 	return builder
 }

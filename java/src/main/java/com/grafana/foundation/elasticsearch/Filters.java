@@ -24,7 +24,7 @@ public class Filters {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Filters> {
-        private final Filters internal;
+        protected final Filters internal;
         
         public Builder() {
             this.internal = new Filters();

@@ -44,7 +44,7 @@ public class LegacyCloudMonitoringAnnotationQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<LegacyCloudMonitoringAnnotationQuery> {
-        private final LegacyCloudMonitoringAnnotationQuery internal;
+        protected final LegacyCloudMonitoringAnnotationQuery internal;
         
         public Builder() {
             this.internal = new LegacyCloudMonitoringAnnotationQuery();

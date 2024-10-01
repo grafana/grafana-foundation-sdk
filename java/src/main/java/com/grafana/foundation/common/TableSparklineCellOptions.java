@@ -113,7 +113,7 @@ public class TableSparklineCellOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TableSparklineCellOptions> {
-        private final TableSparklineCellOptions internal;
+        protected final TableSparklineCellOptions internal;
         
         public Builder() {
             this.internal = new TableSparklineCellOptions();

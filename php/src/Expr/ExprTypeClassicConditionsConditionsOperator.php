@@ -11,7 +11,7 @@ class ExprTypeClassicConditionsConditionsOperator implements \JsonSerializable
      */
     public function __construct(?\Grafana\Foundation\Expr\TypeClassicConditionsType $type = null)
     {
-        $this->type = $type ?: \Grafana\Foundation\Expr\TypeClassicConditionsType::And();
+        $this->type = $type ?: \Grafana\Foundation\Expr\TypeClassicConditionsType::None();
     }
 
     /**

@@ -35,7 +35,7 @@ public class PlaylistItem {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<PlaylistItem> {
-        private final PlaylistItem internal;
+        protected final PlaylistItem internal;
         
         public Builder() {
             this.internal = new PlaylistItem();

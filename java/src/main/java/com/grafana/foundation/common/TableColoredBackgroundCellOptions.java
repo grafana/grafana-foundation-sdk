@@ -23,7 +23,7 @@ public class TableColoredBackgroundCellOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TableColoredBackgroundCellOptions> {
-        private final TableColoredBackgroundCellOptions internal;
+        protected final TableColoredBackgroundCellOptions internal;
         
         public Builder() {
             this.internal = new TableColoredBackgroundCellOptions();

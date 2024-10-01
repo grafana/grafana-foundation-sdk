@@ -30,7 +30,7 @@ public class Rate {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Rate> {
-        private final Rate internal;
+        protected final Rate internal;
         
         public Builder() {
             this.internal = new Rate();

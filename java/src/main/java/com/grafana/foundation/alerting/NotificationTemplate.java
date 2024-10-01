@@ -26,7 +26,7 @@ public class NotificationTemplate {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<NotificationTemplate> {
-        private final NotificationTemplate internal;
+        protected final NotificationTemplate internal;
         
         public Builder() {
             this.internal = new NotificationTemplate();

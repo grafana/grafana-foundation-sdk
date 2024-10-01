@@ -7,7 +7,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Expr\ExprTypeResampleDatasource $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
      * The downsample function
@@ -88,7 +88,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
     public string $window;
 
     /**
-     * @param \Grafana\Foundation\Expr\ExprTypeResampleDatasource|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param \Grafana\Foundation\Expr\TypeResampleDownsampler|null $downsampler
      * @param string|null $expression
      * @param bool|null $hide
@@ -101,7 +101,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
      * @param \Grafana\Foundation\Expr\TypeResampleUpsampler|null $upsampler
      * @param string|null $window
      */
-    public function __construct(?\Grafana\Foundation\Expr\ExprTypeResampleDatasource $datasource = null, ?\Grafana\Foundation\Expr\TypeResampleDownsampler $downsampler = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeResampleResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeResampleTimeRange $timeRange = null, ?\Grafana\Foundation\Expr\TypeResampleUpsampler $upsampler = null, ?string $window = null)
+    public function __construct(?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?\Grafana\Foundation\Expr\TypeResampleDownsampler $downsampler = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeResampleResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeResampleTimeRange $timeRange = null, ?\Grafana\Foundation\Expr\TypeResampleUpsampler $upsampler = null, ?string $window = null)
     {
         $this->datasource = $datasource;
         $this->downsampler = $downsampler ?: \Grafana\Foundation\Expr\TypeResampleDownsampler::Sum();
@@ -128,9 +128,9 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
         $data = $inputData;
         return new self(
             datasource: isset($data["datasource"]) ? (function($input) {
-    	/** @var array{apiVersion?: string, type?: string, uid?: string} */
+    	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Expr\ExprTypeResampleDatasource::fromArray($val);
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             downsampler: isset($data["downsampler"]) ? (function($input) { return \Grafana\Foundation\Expr\TypeResampleDownsampler::fromValue($input); })($data["downsampler"]) : null,
             expression: $data["expression"] ?? null,

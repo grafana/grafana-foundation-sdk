@@ -73,7 +73,7 @@ public class TimeSeriesList {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TimeSeriesList> {
-        private final TimeSeriesList internal;
+        protected final TimeSeriesList internal;
         
         public Builder() {
             this.internal = new TimeSeriesList();

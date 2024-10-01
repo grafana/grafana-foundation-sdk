@@ -119,9 +119,8 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
-     * @var mixed|null
      */
-    public $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
      * @deprecated use statistic
@@ -150,10 +149,10 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
      * @param string|null $accountId
      * @param string|null $statistic
      * @param \Grafana\Foundation\Cloudwatch\SQLExpression|null $sql
-     * @param mixed|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param array<string>|null $statistics
      */
-    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?\Grafana\Foundation\Cloudwatch\MetricQueryType $metricQueryType = null, ?\Grafana\Foundation\Cloudwatch\MetricEditorMode $metricEditorMode = null, ?string $id = null, ?string $alias = null, ?string $label = null, ?string $expression = null, ?string $sqlExpression = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $region = null, ?string $namespace = null, ?string $metricName = null, ?array $dimensions = null, ?bool $matchExact = null, ?string $period = null, ?string $accountId = null, ?string $statistic = null, ?\Grafana\Foundation\Cloudwatch\SQLExpression $sql = null,  $datasource = null, ?array $statistics = null)
+    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?\Grafana\Foundation\Cloudwatch\MetricQueryType $metricQueryType = null, ?\Grafana\Foundation\Cloudwatch\MetricEditorMode $metricEditorMode = null, ?string $id = null, ?string $alias = null, ?string $label = null, ?string $expression = null, ?string $sqlExpression = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $region = null, ?string $namespace = null, ?string $metricName = null, ?array $dimensions = null, ?bool $matchExact = null, ?string $period = null, ?string $accountId = null, ?string $statistic = null, ?\Grafana\Foundation\Cloudwatch\SQLExpression $sql = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?array $statistics = null)
     {
         $this->queryMode = $queryMode ?: \Grafana\Foundation\Cloudwatch\CloudWatchQueryMode::metrics();
         $this->metricQueryType = $metricQueryType;
@@ -211,7 +210,11 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
     $val = $input;
     	return \Grafana\Foundation\Cloudwatch\SQLExpression::fromArray($val);
     })($data["sql"]) : null,
-            datasource: $data["datasource"] ?? null,
+            datasource: isset($data["datasource"]) ? (function($input) {
+    	/** @var array{type?: string, uid?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    })($data["datasource"]) : null,
             statistics: $data["statistics"] ?? null,
         );
     }
