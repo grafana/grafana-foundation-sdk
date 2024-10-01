@@ -28,7 +28,7 @@ public class MetricAggregationWithMissingSupport {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MetricAggregationWithMissingSupport> {
-        private final MetricAggregationWithMissingSupport internal;
+        protected final MetricAggregationWithMissingSupport internal;
         
         public Builder() {
             this.internal = new MetricAggregationWithMissingSupport();

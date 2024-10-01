@@ -2,6 +2,7 @@
 
 from ..cog import variants as cogvariants
 import typing
+from ..models import dashboard
 from ..cog import runtime as cogruntime
 import enum
 
@@ -32,11 +33,11 @@ class CloudMonitoringQuery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[object]
+    datasource: typing.Optional[dashboard.DataSourceRef]
     # Time interval in milliseconds.
     interval_ms: typing.Optional[float]
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, alias_by: typing.Optional[str] = None, time_series_list: typing.Optional['TimeSeriesList'] = None, time_series_query: typing.Optional['TimeSeriesQuery'] = None, slo_query: typing.Optional['SLOQuery'] = None, prom_ql_query: typing.Optional['PromQLQuery'] = None, datasource: typing.Optional[object] = None, interval_ms: typing.Optional[float] = None):
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, alias_by: typing.Optional[str] = None, time_series_list: typing.Optional['TimeSeriesList'] = None, time_series_query: typing.Optional['TimeSeriesQuery'] = None, slo_query: typing.Optional['SLOQuery'] = None, prom_ql_query: typing.Optional['PromQLQuery'] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, interval_ms: typing.Optional[float] = None):
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -93,7 +94,7 @@ class CloudMonitoringQuery(cogvariants.Dataquery):
         if "promQLQuery" in data:
             args["prom_ql_query"] = PromQLQuery.from_json(data["promQLQuery"])
         if "datasource" in data:
-            args["datasource"] = data["datasource"]
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "intervalMs" in data:
             args["interval_ms"] = data["intervalMs"]        
 

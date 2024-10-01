@@ -26,7 +26,7 @@ public class Matcher {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Matcher> {
-        private final Matcher internal;
+        protected final Matcher internal;
         
         public Builder() {
             this.internal = new Matcher();

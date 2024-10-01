@@ -2,6 +2,7 @@
 
 import typing
 from ..cog import variants as cogvariants
+from ..models import dashboard
 from ..cog import runtime as cogruntime
 
 
@@ -42,43 +43,6 @@ class CSVWave:
             args["time_step"] = data["timeStep"]
         if "valuesCSV" in data:
             args["values_csv"] = data["valuesCSV"]        
-
-        return cls(**args)
-
-
-class Datasource:
-    # The apiserver version
-    api_version: typing.Optional[str]
-    # The datasource plugin type
-    type_val: str
-    # Datasource UID (NOTE: name in k8s)
-    uid: typing.Optional[str]
-
-    def __init__(self, api_version: typing.Optional[str] = None, type_val: str = "", uid: typing.Optional[str] = None):
-        self.api_version = api_version
-        self.type_val = type_val
-        self.uid = uid
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.api_version is not None:
-            payload["apiVersion"] = self.api_version
-        if self.uid is not None:
-            payload["uid"] = self.uid
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "apiVersion" in data:
-            args["api_version"] = data["apiVersion"]
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "uid" in data:
-            args["uid"] = data["uid"]        
 
         return cls(**args)
 
@@ -426,7 +390,7 @@ class Dataquery(cogvariants.Dataquery):
     csv_file_name: typing.Optional[str]
     csv_wave: typing.Optional[list['CSVWave']]
     # The datasource
-    datasource: typing.Optional['Datasource']
+    datasource: typing.Optional[dashboard.DataSourceRef]
     # Drop percentage (the chance we will lose a point 0-100)
     drop_percent: typing.Optional[float]
     # Possible enum values:
@@ -510,7 +474,7 @@ class Dataquery(cogvariants.Dataquery):
     usa: typing.Optional['USAQuery']
     with_nil: typing.Optional[bool]
 
-    def __init__(self, alias: typing.Optional[str] = None, channel: typing.Optional[str] = None, csv_content: typing.Optional[str] = None, csv_file_name: typing.Optional[str] = None, csv_wave: typing.Optional[list['CSVWave']] = None, datasource: typing.Optional['Datasource'] = None, drop_percent: typing.Optional[float] = None, error_type: typing.Optional[typing.Literal["frontend_exception", "frontend_observable", "server_panic"]] = None, flamegraph_diff: typing.Optional[bool] = None, hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, labels: typing.Optional[str] = None, level_column: typing.Optional[bool] = None, lines: typing.Optional[int] = None, max_val: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, min_val: typing.Optional[float] = None, nodes: typing.Optional['NodesQuery'] = None, noise: typing.Optional[float] = None, points: typing.Optional[list[list[object]]] = None, pulse_wave: typing.Optional['PulseWaveQuery'] = None, query_type: typing.Optional[str] = None, raw_frame_content: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ResultAssertions'] = None, scenario_id: typing.Optional[typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]] = None, series_count: typing.Optional[int] = None, sim: typing.Optional['SimulationQuery'] = None, span_count: typing.Optional[int] = None, spread: typing.Optional[float] = None, start_value: typing.Optional[float] = None, stream: typing.Optional['StreamingQuery'] = None, string_input: typing.Optional[str] = None, time_range: typing.Optional['TimeRange'] = None, usa: typing.Optional['USAQuery'] = None, with_nil: typing.Optional[bool] = None):
+    def __init__(self, alias: typing.Optional[str] = None, channel: typing.Optional[str] = None, csv_content: typing.Optional[str] = None, csv_file_name: typing.Optional[str] = None, csv_wave: typing.Optional[list['CSVWave']] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, drop_percent: typing.Optional[float] = None, error_type: typing.Optional[typing.Literal["frontend_exception", "frontend_observable", "server_panic"]] = None, flamegraph_diff: typing.Optional[bool] = None, hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, labels: typing.Optional[str] = None, level_column: typing.Optional[bool] = None, lines: typing.Optional[int] = None, max_val: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, min_val: typing.Optional[float] = None, nodes: typing.Optional['NodesQuery'] = None, noise: typing.Optional[float] = None, points: typing.Optional[list[list[object]]] = None, pulse_wave: typing.Optional['PulseWaveQuery'] = None, query_type: typing.Optional[str] = None, raw_frame_content: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ResultAssertions'] = None, scenario_id: typing.Optional[typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]] = None, series_count: typing.Optional[int] = None, sim: typing.Optional['SimulationQuery'] = None, span_count: typing.Optional[int] = None, spread: typing.Optional[float] = None, start_value: typing.Optional[float] = None, stream: typing.Optional['StreamingQuery'] = None, string_input: typing.Optional[str] = None, time_range: typing.Optional['TimeRange'] = None, usa: typing.Optional['USAQuery'] = None, with_nil: typing.Optional[bool] = None):
         self.alias = alias
         self.channel = channel
         self.csv_content = csv_content
@@ -640,7 +604,7 @@ class Dataquery(cogvariants.Dataquery):
         if "csvWave" in data:
             args["csv_wave"] = data["csvWave"]
         if "datasource" in data:
-            args["datasource"] = Datasource.from_json(data["datasource"])
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "dropPercent" in data:
             args["drop_percent"] = data["dropPercent"]
         if "errorType" in data:

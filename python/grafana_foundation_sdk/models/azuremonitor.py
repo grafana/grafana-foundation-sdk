@@ -2,6 +2,7 @@
 
 from ..cog import variants as cogvariants
 import typing
+from ..models import dashboard
 from ..cog import runtime as cogruntime
 import enum
 
@@ -39,11 +40,11 @@ class AzureMonitorQuery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[object]
+    datasource: typing.Optional[dashboard.DataSourceRef]
     # Used only for exemplar queries from Prometheus
     query: typing.Optional[str]
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['AzureMetricQuery'] = None, azure_log_analytics: typing.Optional['AzureLogsQuery'] = None, azure_resource_graph: typing.Optional['AzureResourceGraphQuery'] = None, azure_traces: typing.Optional['AzureTracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, region: typing.Optional[str] = None, datasource: typing.Optional[object] = None, query: typing.Optional[str] = None):
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['AzureMetricQuery'] = None, azure_log_analytics: typing.Optional['AzureLogsQuery'] = None, azure_resource_graph: typing.Optional['AzureResourceGraphQuery'] = None, azure_traces: typing.Optional['AzureTracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, region: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, query: typing.Optional[str] = None):
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -130,7 +131,7 @@ class AzureMonitorQuery(cogvariants.Dataquery):
         if "region" in data:
             args["region"] = data["region"]
         if "datasource" in data:
-            args["datasource"] = data["datasource"]
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "query" in data:
             args["query"] = data["query"]        
 

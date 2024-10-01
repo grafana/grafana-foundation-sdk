@@ -7,12 +7,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class TypeSql implements com.grafana.foundation.cog.variants.Dataquery {
     // The datasource
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public ExprTypeSqlDatasource datasource;
+    public DataSourceRef datasource;
     @JsonProperty("expression")
     public String expression;
     // true if query is disabled (ie should not be returned to the dashboard)
@@ -61,14 +62,14 @@ public class TypeSql implements com.grafana.foundation.cog.variants.Dataquery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TypeSql> {
-        private final TypeSql internal;
+        protected final TypeSql internal;
         
         public Builder() {
             this.internal = new TypeSql();
     this.internal.type = "sql";
         }
-    public Builder datasource(com.grafana.foundation.cog.Builder<ExprTypeSqlDatasource> datasource) {
-    this.internal.datasource = datasource.build();
+    public Builder datasource(DataSourceRef datasource) {
+    this.internal.datasource = datasource;
         return this;
     }
     

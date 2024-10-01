@@ -52,12 +52,13 @@ func (builder *PercentilesBuilder) Id(id string) *PercentilesBuilder {
 	return builder
 }
 
-func (builder *PercentilesBuilder) Settings(settings struct {
-	Script   *InlineScript `json:"script,omitempty"`
-	Missing  *string       `json:"missing,omitempty"`
-	Percents []string      `json:"percents,omitempty"`
-}) *PercentilesBuilder {
-	builder.internal.Settings = &settings
+func (builder *PercentilesBuilder) Settings(settings cog.Builder[ElasticsearchPercentilesSettings]) *PercentilesBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

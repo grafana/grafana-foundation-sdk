@@ -46,12 +46,13 @@ func (builder *TopMetricsBuilder) Id(id string) *TopMetricsBuilder {
 	return builder
 }
 
-func (builder *TopMetricsBuilder) Settings(settings struct {
-	Order   *string  `json:"order,omitempty"`
-	OrderBy *string  `json:"orderBy,omitempty"`
-	Metrics []string `json:"metrics,omitempty"`
-}) *TopMetricsBuilder {
-	builder.internal.Settings = &settings
+func (builder *TopMetricsBuilder) Settings(settings cog.Builder[ElasticsearchTopMetricsSettings]) *TopMetricsBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

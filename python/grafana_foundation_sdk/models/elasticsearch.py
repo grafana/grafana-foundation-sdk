@@ -3,6 +3,7 @@
 import typing
 import enum
 from ..cog import variants as cogvariants
+from ..models import dashboard
 from ..cog import runtime as cogruntime
 
 
@@ -1923,9 +1924,9 @@ class Dataquery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[object]
+    datasource: typing.Optional[dashboard.DataSourceRef]
 
-    def __init__(self, alias: typing.Optional[str] = None, query: typing.Optional[str] = None, time_field: typing.Optional[str] = None, bucket_aggs: typing.Optional[list['BucketAggregation']] = None, metrics: typing.Optional[list['MetricAggregation']] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None):
+    def __init__(self, alias: typing.Optional[str] = None, query: typing.Optional[str] = None, time_field: typing.Optional[str] = None, bucket_aggs: typing.Optional[list['BucketAggregation']] = None, metrics: typing.Optional[list['MetricAggregation']] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
         self.alias = alias
         self.query = query
         self.time_field = time_field
@@ -1979,7 +1980,7 @@ class Dataquery(cogvariants.Dataquery):
         if "queryType" in data:
             args["query_type"] = data["queryType"]
         if "datasource" in data:
-            args["datasource"] = data["datasource"]        
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])        
 
         return cls(**args)
 

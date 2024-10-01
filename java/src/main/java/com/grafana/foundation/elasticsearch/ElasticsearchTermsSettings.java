@@ -32,7 +32,7 @@ public class ElasticsearchTermsSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchTermsSettings> {
-        private final ElasticsearchTermsSettings internal;
+        protected final ElasticsearchTermsSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchTermsSettings();

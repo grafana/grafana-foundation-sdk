@@ -20,7 +20,7 @@ public class ElasticsearchRawDocumentSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchRawDocumentSettings> {
-        private final ElasticsearchRawDocumentSettings internal;
+        protected final ElasticsearchRawDocumentSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchRawDocumentSettings();

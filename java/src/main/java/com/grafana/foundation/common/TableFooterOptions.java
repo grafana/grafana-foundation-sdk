@@ -36,7 +36,7 @@ public class TableFooterOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TableFooterOptions> {
-        private final TableFooterOptions internal;
+        protected final TableFooterOptions internal;
         
         public Builder() {
             this.internal = new TableFooterOptions();

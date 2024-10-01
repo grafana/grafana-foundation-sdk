@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
+import * as dashboard from '../dashboard';
 
 export class AzureMonitorQueryBuilder implements cog.Builder<cog.Dataquery> {
     protected readonly internal: azuremonitor.AzureMonitorQuery;
@@ -106,7 +107,7 @@ export class AzureMonitorQueryBuilder implements cog.Builder<cog.Dataquery> {
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
     // TODO this shouldn't be unknown but DataSourceRef | null
-    datasource(datasource: any): this {
+    datasource(datasource: dashboard.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }

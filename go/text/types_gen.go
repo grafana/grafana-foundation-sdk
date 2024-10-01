@@ -37,19 +37,53 @@ type CodeOptions struct {
 	ShowMiniMap     bool         `json:"showMiniMap"`
 }
 
+func (resource CodeOptions) Equals(other CodeOptions) bool {
+	if resource.Language != other.Language {
+		return false
+	}
+	if resource.ShowLineNumbers != other.ShowLineNumbers {
+		return false
+	}
+	if resource.ShowMiniMap != other.ShowMiniMap {
+		return false
+	}
+
+	return true
+}
+
 type Options struct {
 	Mode    TextMode     `json:"mode"`
 	Code    *CodeOptions `json:"code,omitempty"`
 	Content string       `json:"content"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.Mode != other.Mode {
+		return false
+	}
+	if resource.Code == nil && other.Code != nil || resource.Code != nil && other.Code == nil {
+		return false
+	}
+
+	if resource.Code != nil {
+		if !resource.Code.Equals(*other.Code) {
+			return false
+		}
+	}
+	if resource.Content != other.Content {
+		return false
+	}
+
+	return true
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "text",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

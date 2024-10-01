@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery {
     // A unique identifier for the query within the list of targets.
@@ -79,7 +80,7 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     // TODO this shouldn't be unknown but DataSourceRef | null
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public Object datasource;
+    public DataSourceRef datasource;
     // The type of the table that is used to display the search results
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("tableType")
@@ -92,7 +93,7 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TempoQuery> {
-        private final TempoQuery internal;
+        protected final TempoQuery internal;
         
         public Builder() {
             this.internal = new TempoQuery();
@@ -172,7 +173,7 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
         return this;
     }
     
-    public Builder datasource(Object datasource) {
+    public Builder datasource(DataSourceRef datasource) {
     this.internal.datasource = datasource;
         return this;
     }

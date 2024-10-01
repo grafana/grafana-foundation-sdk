@@ -48,7 +48,7 @@ public class TableFieldOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TableFieldOptions> {
-        private final TableFieldOptions internal;
+        protected final TableFieldOptions internal;
         
         public Builder() {
             this.internal = new TableFieldOptions();
