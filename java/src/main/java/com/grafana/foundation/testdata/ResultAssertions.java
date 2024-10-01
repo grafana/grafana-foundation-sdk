@@ -45,7 +45,7 @@ public class ResultAssertions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ResultAssertions> {
-        private final ResultAssertions internal;
+        protected final ResultAssertions internal;
         
         public Builder() {
             this.internal = new ResultAssertions();

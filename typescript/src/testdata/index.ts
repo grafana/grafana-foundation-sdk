@@ -4,8 +4,6 @@ export * from './types.gen';
 export type * from './types.gen';
 export * from './cSVWaveBuilder.gen';
 export type * from './cSVWaveBuilder.gen';
-export * from './datasourceBuilder.gen';
-export type * from './datasourceBuilder.gen';
 export * from './nodesQueryBuilder.gen';
 export type * from './nodesQueryBuilder.gen';
 export * from './pulseWaveQueryBuilder.gen';

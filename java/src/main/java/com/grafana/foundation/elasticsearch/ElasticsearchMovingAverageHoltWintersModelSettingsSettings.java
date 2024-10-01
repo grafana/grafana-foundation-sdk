@@ -32,7 +32,7 @@ public class ElasticsearchMovingAverageHoltWintersModelSettingsSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageHoltWintersModelSettingsSettings> {
-        private final ElasticsearchMovingAverageHoltWintersModelSettingsSettings internal;
+        protected final ElasticsearchMovingAverageHoltWintersModelSettingsSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchMovingAverageHoltWintersModelSettingsSettings();

@@ -27,7 +27,7 @@ public class TextDimensionConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TextDimensionConfig> {
-        private final TextDimensionConfig internal;
+        protected final TextDimensionConfig internal;
         
         public Builder() {
             this.internal = new TextDimensionConfig();

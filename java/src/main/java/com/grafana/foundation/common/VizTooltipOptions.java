@@ -30,7 +30,7 @@ public class VizTooltipOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<VizTooltipOptions> {
-        private final VizTooltipOptions internal;
+        protected final VizTooltipOptions internal;
         
         public Builder() {
             this.internal = new VizTooltipOptions();

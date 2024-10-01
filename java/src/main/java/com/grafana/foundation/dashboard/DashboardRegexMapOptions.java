@@ -24,7 +24,7 @@ public class DashboardRegexMapOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DashboardRegexMapOptions> {
-        private final DashboardRegexMapOptions internal;
+        protected final DashboardRegexMapOptions internal;
         
         public Builder() {
             this.internal = new DashboardRegexMapOptions();

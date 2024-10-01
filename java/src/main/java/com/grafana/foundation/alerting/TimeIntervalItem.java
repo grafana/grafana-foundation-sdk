@@ -36,7 +36,7 @@ public class TimeIntervalItem {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TimeIntervalItem> {
-        private final TimeIntervalItem internal;
+        protected final TimeIntervalItem internal;
         
         public Builder() {
             this.internal = new TimeIntervalItem();

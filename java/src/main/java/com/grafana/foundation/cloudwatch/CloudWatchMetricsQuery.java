@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Map;
+import com.grafana.foundation.dashboard.DataSourceRef;
 import java.util.List;
 
 // Shape of a CloudWatch Metrics query
@@ -98,7 +99,7 @@ public class CloudWatchMetricsQuery implements com.grafana.foundation.cog.varian
     // TODO this shouldn't be unknown but DataSourceRef | null
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public Object datasource;
+    public DataSourceRef datasource;
     // @deprecated use statistic
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("statistics")
@@ -111,7 +112,7 @@ public class CloudWatchMetricsQuery implements com.grafana.foundation.cog.varian
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<CloudWatchMetricsQuery> {
-        private final CloudWatchMetricsQuery internal;
+        protected final CloudWatchMetricsQuery internal;
         
         public Builder() {
             this.internal = new CloudWatchMetricsQuery();
@@ -217,7 +218,7 @@ public class CloudWatchMetricsQuery implements com.grafana.foundation.cog.varian
         return this;
     }
     
-    public Builder datasource(Object datasource) {
+    public Builder datasource(DataSourceRef datasource) {
     this.internal.datasource = datasource;
         return this;
     }

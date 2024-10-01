@@ -18,7 +18,7 @@ public class ExprTypeClassicConditionsConditionsReducer {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsReducer> {
-        private final ExprTypeClassicConditionsConditionsReducer internal;
+        protected final ExprTypeClassicConditionsConditionsReducer internal;
         
         public Builder() {
             this.internal = new ExprTypeClassicConditionsConditionsReducer();

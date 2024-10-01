@@ -37,7 +37,7 @@ public class ReduceDataOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ReduceDataOptions> {
-        private final ReduceDataOptions internal;
+        protected final ReduceDataOptions internal;
         
         public Builder() {
             this.internal = new ReduceDataOptions();

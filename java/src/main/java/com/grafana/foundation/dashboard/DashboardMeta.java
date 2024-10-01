@@ -98,7 +98,7 @@ public class DashboardMeta {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DashboardMeta> {
-        private final DashboardMeta internal;
+        protected final DashboardMeta internal;
         
         public Builder() {
             this.internal = new DashboardMeta();

@@ -45,7 +45,7 @@ public class ExprTypeSqlResultAssertions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeSqlResultAssertions> {
-        private final ExprTypeSqlResultAssertions internal;
+        protected final ExprTypeSqlResultAssertions internal;
         
         public Builder() {
             this.internal = new ExprTypeSqlResultAssertions();

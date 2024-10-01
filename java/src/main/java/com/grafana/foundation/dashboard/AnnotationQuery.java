@@ -56,7 +56,7 @@ public class AnnotationQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AnnotationQuery> {
-        private final AnnotationQuery internal;
+        protected final AnnotationQuery internal;
         
         public Builder() {
             this.internal = new AnnotationQuery();

@@ -22,7 +22,7 @@ public class AppInsightsMetricNameQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AppInsightsMetricNameQuery> {
-        private final AppInsightsMetricNameQuery internal;
+        protected final AppInsightsMetricNameQuery internal;
         
         public Builder() {
             this.internal = new AppInsightsMetricNameQuery();

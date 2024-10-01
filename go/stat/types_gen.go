@@ -21,13 +21,51 @@ type Options struct {
 	Orientation       common.VizOrientation         `json:"orientation"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.GraphMode != other.GraphMode {
+		return false
+	}
+	if resource.ColorMode != other.ColorMode {
+		return false
+	}
+	if resource.JustifyMode != other.JustifyMode {
+		return false
+	}
+	if resource.TextMode != other.TextMode {
+		return false
+	}
+	if resource.WideLayout != other.WideLayout {
+		return false
+	}
+	if !resource.ReduceOptions.Equals(other.ReduceOptions) {
+		return false
+	}
+	if resource.Text == nil && other.Text != nil || resource.Text != nil && other.Text == nil {
+		return false
+	}
+
+	if resource.Text != nil {
+		if !resource.Text.Equals(*other.Text) {
+			return false
+		}
+	}
+	if resource.ShowPercentChange != other.ShowPercentChange {
+		return false
+	}
+	if resource.Orientation != other.Orientation {
+		return false
+	}
+
+	return true
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "stat",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

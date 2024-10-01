@@ -24,7 +24,7 @@ public class AppInsightsGroupByQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AppInsightsGroupByQuery> {
-        private final AppInsightsGroupByQuery internal;
+        protected final AppInsightsGroupByQuery internal;
         
         public Builder() {
             this.internal = new AppInsightsGroupByQuery();

@@ -5,6 +5,7 @@ package googlecloudmonitoring
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*CloudMonitoringQueryBuilder)(nil)
@@ -125,7 +126,7 @@ func (builder *CloudMonitoringQueryBuilder) PromQLQuery(promQLQuery cog.Builder[
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
 // TODO this shouldn't be unknown but DataSourceRef | null
-func (builder *CloudMonitoringQueryBuilder) Datasource(datasource any) *CloudMonitoringQueryBuilder {
+func (builder *CloudMonitoringQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *CloudMonitoringQueryBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

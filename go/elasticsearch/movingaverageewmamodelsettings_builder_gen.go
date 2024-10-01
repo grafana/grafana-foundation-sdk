@@ -40,10 +40,13 @@ func (builder *MovingAverageEWMAModelSettingsBuilder) Build() (MovingAverageEWMA
 	return *builder.internal, nil
 }
 
-func (builder *MovingAverageEWMAModelSettingsBuilder) Settings(settings struct {
-	Alpha *string `json:"alpha,omitempty"`
-}) *MovingAverageEWMAModelSettingsBuilder {
-	builder.internal.Settings = &settings
+func (builder *MovingAverageEWMAModelSettingsBuilder) Settings(settings cog.Builder[ElasticsearchMovingAverageEWMAModelSettingsSettings]) *MovingAverageEWMAModelSettingsBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }
