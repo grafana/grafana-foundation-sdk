@@ -23,7 +23,7 @@ public class ElasticsearchMovingAverageHoltModelSettingsSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageHoltModelSettingsSettings> {
-        private final ElasticsearchMovingAverageHoltModelSettingsSettings internal;
+        protected final ElasticsearchMovingAverageHoltModelSettingsSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchMovingAverageHoltModelSettingsSettings();

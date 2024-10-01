@@ -5,6 +5,7 @@ package tempo
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*TempoQueryBuilder)(nil)
@@ -171,7 +172,7 @@ func (builder *TempoQueryBuilder) GroupBy(groupBy []cog.Builder[TraceqlFilter]) 
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
 // TODO this shouldn't be unknown but DataSourceRef | null
-func (builder *TempoQueryBuilder) Datasource(datasource any) *TempoQueryBuilder {
+func (builder *TempoQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *TempoQueryBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

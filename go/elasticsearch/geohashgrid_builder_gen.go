@@ -52,10 +52,13 @@ func (builder *GeoHashGridBuilder) Id(id string) *GeoHashGridBuilder {
 	return builder
 }
 
-func (builder *GeoHashGridBuilder) Settings(settings struct {
-	Precision *string `json:"precision,omitempty"`
-}) *GeoHashGridBuilder {
-	builder.internal.Settings = &settings
+func (builder *GeoHashGridBuilder) Settings(settings cog.Builder[ElasticsearchGeoHashGridSettings]) *GeoHashGridBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

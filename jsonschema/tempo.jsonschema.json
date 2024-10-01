@@ -76,8 +76,7 @@
           "description": "Filters that are used to query the metrics summary"
         },
         "datasource": {
-          "type": "object",
-          "additionalProperties": {},
+          "$ref": "#/definitions/DataSourceRef",
           "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
         },
         "tableType": {
@@ -166,6 +165,21 @@
           "description": "The scope of the filter, can either be unscoped/all scopes, resource or span"
         }
       }
+    },
+    "DataSourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The plugin type-id"
+        },
+        "uid": {
+          "type": "string",
+          "description": "Specific datasource instance"
+        }
+      },
+      "description": "Ref to a DataSource instance"
     }
   }
 }

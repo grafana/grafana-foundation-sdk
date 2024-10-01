@@ -12,7 +12,7 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Expr\ExprTypeClassicConditionsDatasource $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
@@ -62,7 +62,7 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
 
     /**
      * @param array<\Grafana\Foundation\Expr\ExprTypeClassicConditionsConditions>|null $conditions
-     * @param \Grafana\Foundation\Expr\ExprTypeClassicConditionsDatasource|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param bool|null $hide
      * @param float|null $intervalMs
      * @param int|null $maxDataPoints
@@ -71,7 +71,7 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
      * @param \Grafana\Foundation\Expr\ExprTypeClassicConditionsResultAssertions|null $resultAssertions
      * @param \Grafana\Foundation\Expr\ExprTypeClassicConditionsTimeRange|null $timeRange
      */
-    public function __construct(?array $conditions = null, ?\Grafana\Foundation\Expr\ExprTypeClassicConditionsDatasource $datasource = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeClassicConditionsResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeClassicConditionsTimeRange $timeRange = null)
+    public function __construct(?array $conditions = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeClassicConditionsResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeClassicConditionsTimeRange $timeRange = null)
     {
         $this->conditions = $conditions ?: [];
         $this->datasource = $datasource;
@@ -100,9 +100,9 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
     	return \Grafana\Foundation\Expr\ExprTypeClassicConditionsConditions::fromArray($val);
     }), $data["conditions"] ?? [])),
             datasource: isset($data["datasource"]) ? (function($input) {
-    	/** @var array{apiVersion?: string, type?: string, uid?: string} */
+    	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Expr\ExprTypeClassicConditionsDatasource::fromArray($val);
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             hide: $data["hide"] ?? null,
             intervalMs: $data["intervalMs"] ?? null,

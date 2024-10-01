@@ -26,7 +26,7 @@ public class TimeRange {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TimeRange> {
-        private final TimeRange internal;
+        protected final TimeRange internal;
         
         public Builder() {
             this.internal = new TimeRange();

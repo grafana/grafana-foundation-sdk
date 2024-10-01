@@ -24,7 +24,7 @@ public class Count {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Count> {
-        private final Count internal;
+        protected final Count internal;
         
         public Builder() {
             this.internal = new Count();

@@ -36,7 +36,7 @@ public class PublicDashboard {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<PublicDashboard> {
-        private final PublicDashboard internal;
+        protected final PublicDashboard internal;
         
         public Builder() {
             this.internal = new PublicDashboard();

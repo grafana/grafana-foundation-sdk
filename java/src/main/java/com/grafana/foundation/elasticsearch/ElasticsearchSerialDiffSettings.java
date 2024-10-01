@@ -20,7 +20,7 @@ public class ElasticsearchSerialDiffSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchSerialDiffSettings> {
-        private final ElasticsearchSerialDiffSettings internal;
+        protected final ElasticsearchSerialDiffSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchSerialDiffSettings();

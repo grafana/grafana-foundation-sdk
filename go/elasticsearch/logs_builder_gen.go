@@ -46,10 +46,13 @@ func (builder *LogsBuilder) Id(id string) *LogsBuilder {
 	return builder
 }
 
-func (builder *LogsBuilder) Settings(settings struct {
-	Limit *string `json:"limit,omitempty"`
-}) *LogsBuilder {
-	builder.internal.Settings = &settings
+func (builder *LogsBuilder) Settings(settings cog.Builder[ElasticsearchLogsSettings]) *LogsBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

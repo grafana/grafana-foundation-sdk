@@ -24,7 +24,7 @@ public class WorkspacesQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<WorkspacesQuery> {
-        private final WorkspacesQuery internal;
+        protected final WorkspacesQuery internal;
         
         public Builder() {
             this.internal = new WorkspacesQuery();

@@ -32,7 +32,7 @@ public class PulseWaveQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<PulseWaveQuery> {
-        private final PulseWaveQuery internal;
+        protected final PulseWaveQuery internal;
         
         public Builder() {
             this.internal = new PulseWaveQuery();

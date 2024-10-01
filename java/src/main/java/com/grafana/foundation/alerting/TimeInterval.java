@@ -50,7 +50,7 @@ public class TimeInterval {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TimeInterval> {
-        private final TimeInterval internal;
+        protected final TimeInterval internal;
         
         public Builder() {
             this.internal = new TimeInterval();

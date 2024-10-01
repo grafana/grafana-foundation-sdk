@@ -22,7 +22,7 @@ public class SubscriptionsQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<SubscriptionsQuery> {
-        private final SubscriptionsQuery internal;
+        protected final SubscriptionsQuery internal;
         
         public Builder() {
             this.internal = new SubscriptionsQuery();

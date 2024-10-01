@@ -27,7 +27,7 @@ public class Nested {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Nested> {
-        private final Nested internal;
+        protected final Nested internal;
         
         public Builder() {
             this.internal = new Nested();

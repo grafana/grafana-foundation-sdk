@@ -23,7 +23,7 @@ public class NodesQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<NodesQuery> {
-        private final NodesQuery internal;
+        protected final NodesQuery internal;
         
         public Builder() {
             this.internal = new NodesQuery();

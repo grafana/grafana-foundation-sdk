@@ -26,7 +26,7 @@ public class ElasticsearchExtendedStatsSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchExtendedStatsSettings> {
-        private final ElasticsearchExtendedStatsSettings internal;
+        protected final ElasticsearchExtendedStatsSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchExtendedStatsSettings();

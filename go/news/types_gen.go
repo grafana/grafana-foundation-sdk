@@ -14,13 +14,36 @@ type Options struct {
 	ShowImage *bool   `json:"showImage,omitempty"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.FeedUrl == nil && other.FeedUrl != nil || resource.FeedUrl != nil && other.FeedUrl == nil {
+		return false
+	}
+
+	if resource.FeedUrl != nil {
+		if *resource.FeedUrl != *other.FeedUrl {
+			return false
+		}
+	}
+	if resource.ShowImage == nil && other.ShowImage != nil || resource.ShowImage != nil && other.ShowImage == nil {
+		return false
+	}
+
+	if resource.ShowImage != nil {
+		if *resource.ShowImage != *other.ShowImage {
+			return false
+		}
+	}
+
+	return true
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "news",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

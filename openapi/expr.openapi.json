@@ -42,26 +42,7 @@
         ],
         "properties": {
           "datasource": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "type"
-            ],
-            "properties": {
-              "apiVersion": {
-                "type": "string",
-                "description": "The apiserver version"
-              },
-              "type": {
-                "type": "string",
-                "const": "__expr__",
-                "description": "The datasource plugin type"
-              },
-              "uid": {
-                "type": "string",
-                "description": "Datasource UID (NOTE: name in k8s)"
-              }
-            },
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "The datasource"
           },
           "expression": {
@@ -164,26 +145,7 @@
         ],
         "properties": {
           "datasource": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "type"
-            ],
-            "properties": {
-              "apiVersion": {
-                "type": "string",
-                "description": "The apiserver version"
-              },
-              "type": {
-                "type": "string",
-                "const": "__expr__",
-                "description": "The datasource plugin type"
-              },
-              "uid": {
-                "type": "string",
-                "description": "Datasource UID (NOTE: name in k8s)"
-              }
-            },
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "The datasource"
           },
           "expression": {
@@ -321,26 +283,7 @@
         ],
         "properties": {
           "datasource": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "type"
-            ],
-            "properties": {
-              "apiVersion": {
-                "type": "string",
-                "description": "The apiserver version"
-              },
-              "type": {
-                "type": "string",
-                "const": "__expr__",
-                "description": "The datasource plugin type"
-              },
-              "uid": {
-                "type": "string",
-                "description": "Datasource UID (NOTE: name in k8s)"
-              }
-            },
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "The datasource"
           },
           "downsampler": {
@@ -545,26 +488,7 @@
             }
           },
           "datasource": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "type"
-            ],
-            "properties": {
-              "apiVersion": {
-                "type": "string",
-                "description": "The apiserver version"
-              },
-              "type": {
-                "type": "string",
-                "const": "__expr__",
-                "description": "The datasource plugin type"
-              },
-              "uid": {
-                "type": "string",
-                "description": "Datasource UID (NOTE: name in k8s)"
-              }
-            },
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "The datasource"
           },
           "hide": {
@@ -729,26 +653,7 @@
             "description": "Threshold Conditions"
           },
           "datasource": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "type"
-            ],
-            "properties": {
-              "apiVersion": {
-                "type": "string",
-                "description": "The apiserver version"
-              },
-              "type": {
-                "type": "string",
-                "const": "__expr__",
-                "description": "The datasource plugin type"
-              },
-              "uid": {
-                "type": "string",
-                "description": "Datasource UID (NOTE: name in k8s)"
-              }
-            },
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "The datasource"
           },
           "expression": {
@@ -850,26 +755,7 @@
         ],
         "properties": {
           "datasource": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "type"
-            ],
-            "properties": {
-              "apiVersion": {
-                "type": "string",
-                "description": "The apiserver version"
-              },
-              "type": {
-                "type": "string",
-                "const": "__expr__",
-                "description": "The datasource plugin type"
-              },
-              "uid": {
-                "type": "string",
-                "description": "Datasource UID (NOTE: name in k8s)"
-              }
-            },
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "The datasource"
           },
           "expression": {
@@ -983,6 +869,21 @@
             "$ref": "#/components/schemas/TypeSql"
           }
         }
+      },
+      "DataSourceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The plugin type-id"
+          },
+          "uid": {
+            "type": "string",
+            "description": "Specific datasource instance"
+          }
+        },
+        "description": "Ref to a DataSource instance"
       }
     }
   }

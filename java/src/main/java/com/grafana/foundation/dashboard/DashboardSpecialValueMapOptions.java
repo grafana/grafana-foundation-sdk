@@ -25,7 +25,7 @@ public class DashboardSpecialValueMapOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DashboardSpecialValueMapOptions> {
-        private final DashboardSpecialValueMapOptions internal;
+        protected final DashboardSpecialValueMapOptions internal;
         
         public Builder() {
             this.internal = new DashboardSpecialValueMapOptions();

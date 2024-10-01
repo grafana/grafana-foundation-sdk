@@ -7,8 +7,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 import com.grafana.foundation.common.VizTooltipOptions;
 import com.grafana.foundation.common.ReduceDataOptions;
@@ -19,7 +17,7 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("pieType")
     public PieChartType pieType;
-    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("displayLabels")
     public List<PieChartLabels> displayLabels;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)

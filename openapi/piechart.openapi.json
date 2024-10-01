@@ -86,7 +86,6 @@
         "additionalProperties": false,
         "required": [
           "pieType",
-          "displayLabels",
           "tooltip",
           "reduceOptions",
           "legend",

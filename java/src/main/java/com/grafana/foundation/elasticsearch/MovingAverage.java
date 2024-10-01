@@ -35,7 +35,7 @@ public class MovingAverage {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MovingAverage> {
-        private final MovingAverage internal;
+        protected final MovingAverage internal;
         
         public Builder() {
             this.internal = new MovingAverage();

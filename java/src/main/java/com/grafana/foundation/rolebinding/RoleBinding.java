@@ -25,7 +25,7 @@ public class RoleBinding {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<RoleBinding> {
-        private final RoleBinding internal;
+        protected final RoleBinding internal;
         
         public Builder() {
             this.internal = new RoleBinding();

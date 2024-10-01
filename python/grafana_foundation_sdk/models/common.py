@@ -2311,37 +2311,6 @@ class VariableFormatID(enum.StrEnum):
     QUERY_PARAM = "queryparam"
 
 
-class DataSourceRef:
-    # The plugin type-id
-    type_val: typing.Optional[str]
-    # Specific datasource instance
-    uid: typing.Optional[str]
-
-    def __init__(self, type_val: typing.Optional[str] = None, uid: typing.Optional[str] = None):
-        self.type_val = type_val
-        self.uid = uid
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.type_val is not None:
-            payload["type"] = self.type_val
-        if self.uid is not None:
-            payload["uid"] = self.uid
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "uid" in data:
-            args["uid"] = data["uid"]        
-
-        return cls(**args)
-
-
 class ResourceDimensionConfig:
     """
     Links to a resource (image/svg path)

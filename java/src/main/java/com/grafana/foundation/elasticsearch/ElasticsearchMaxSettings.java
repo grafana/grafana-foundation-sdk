@@ -23,7 +23,7 @@ public class ElasticsearchMaxSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchMaxSettings> {
-        private final ElasticsearchMaxSettings internal;
+        protected final ElasticsearchMaxSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchMaxSettings();

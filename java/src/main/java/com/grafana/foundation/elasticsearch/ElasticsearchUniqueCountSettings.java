@@ -23,7 +23,7 @@ public class ElasticsearchUniqueCountSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchUniqueCountSettings> {
-        private final ElasticsearchUniqueCountSettings internal;
+        protected final ElasticsearchUniqueCountSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchUniqueCountSettings();

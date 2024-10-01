@@ -52,11 +52,13 @@ func (builder *HistogramBuilder) Id(id string) *HistogramBuilder {
 	return builder
 }
 
-func (builder *HistogramBuilder) Settings(settings struct {
-	Interval    *string `json:"interval,omitempty"`
-	MinDocCount *string `json:"min_doc_count,omitempty"`
-}) *HistogramBuilder {
-	builder.internal.Settings = &settings
+func (builder *HistogramBuilder) Settings(settings cog.Builder[ElasticsearchHistogramSettings]) *HistogramBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

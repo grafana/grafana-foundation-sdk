@@ -24,7 +24,7 @@ public class StackingConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<StackingConfig> {
-        private final StackingConfig internal;
+        protected final StackingConfig internal;
         
         public Builder() {
             this.internal = new StackingConfig();
