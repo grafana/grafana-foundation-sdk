@@ -1,5 +1,8 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
+import * as dashboard from '../dashboard';
+
+
 export interface MetricStat {
 	// AWS region to query for the metric
 	region: string;
@@ -81,7 +84,7 @@ export interface CloudWatchMetricsQuery {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	datasource?: any;
+	datasource?: dashboard.DataSourceRef;
 	// @deprecated use statistic
 	statistics?: string[];
 	_implementsDataqueryVariant(): void;
@@ -276,7 +279,7 @@ export interface CloudWatchLogsQuery {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	datasource?: any;
+	datasource?: dashboard.DataSourceRef;
 	_implementsDataqueryVariant(): void;
 }
 
@@ -351,7 +354,7 @@ export interface CloudWatchAnnotationQuery {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	datasource?: any;
+	datasource?: dashboard.DataSourceRef;
 	// @deprecated use statistic
 	statistics?: string[];
 	_implementsDataqueryVariant(): void;

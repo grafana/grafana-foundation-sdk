@@ -41,7 +41,7 @@ public class DataQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DataQuery> {
-        private final DataQuery internal;
+        protected final DataQuery internal;
         
         public Builder() {
             this.internal = new DataQuery();

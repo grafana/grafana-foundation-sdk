@@ -26,7 +26,7 @@ public class AnnotationActions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AnnotationActions> {
-        private final AnnotationActions internal;
+        protected final AnnotationActions internal;
         
         public Builder() {
             this.internal = new AnnotationActions();

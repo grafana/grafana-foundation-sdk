@@ -24,13 +24,60 @@ type Options struct {
 	Orientation   common.VizOrientation         `json:"orientation"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.DisplayMode != other.DisplayMode {
+		return false
+	}
+	if resource.ValueMode != other.ValueMode {
+		return false
+	}
+	if resource.NamePlacement != other.NamePlacement {
+		return false
+	}
+	if resource.ShowUnfilled != other.ShowUnfilled {
+		return false
+	}
+	if resource.Sizing != other.Sizing {
+		return false
+	}
+	if resource.MinVizWidth != other.MinVizWidth {
+		return false
+	}
+	if resource.MinVizHeight != other.MinVizHeight {
+		return false
+	}
+	if !resource.Legend.Equals(other.Legend) {
+		return false
+	}
+	if !resource.ReduceOptions.Equals(other.ReduceOptions) {
+		return false
+	}
+	if resource.Text == nil && other.Text != nil || resource.Text != nil && other.Text == nil {
+		return false
+	}
+
+	if resource.Text != nil {
+		if !resource.Text.Equals(*other.Text) {
+			return false
+		}
+	}
+	if resource.MaxVizHeight != other.MaxVizHeight {
+		return false
+	}
+	if resource.Orientation != other.Orientation {
+		return false
+	}
+
+	return true
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "bargauge",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

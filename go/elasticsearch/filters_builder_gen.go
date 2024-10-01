@@ -46,10 +46,13 @@ func (builder *FiltersBuilder) Id(id string) *FiltersBuilder {
 	return builder
 }
 
-func (builder *FiltersBuilder) Settings(settings struct {
-	Filters []Filter `json:"filters,omitempty"`
-}) *FiltersBuilder {
-	builder.internal.Settings = &settings
+func (builder *FiltersBuilder) Settings(settings cog.Builder[ElasticsearchFiltersSettings]) *FiltersBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

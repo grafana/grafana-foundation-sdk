@@ -26,7 +26,7 @@ public class TableImageCellOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TableImageCellOptions> {
-        private final TableImageCellOptions internal;
+        protected final TableImageCellOptions internal;
         
         public Builder() {
             this.internal = new TableImageCellOptions();

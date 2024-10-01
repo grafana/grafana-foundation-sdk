@@ -34,7 +34,7 @@ public class AccessPolicy {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AccessPolicy> {
-        private final AccessPolicy internal;
+        protected final AccessPolicy internal;
         
         public Builder() {
             this.internal = new AccessPolicy();

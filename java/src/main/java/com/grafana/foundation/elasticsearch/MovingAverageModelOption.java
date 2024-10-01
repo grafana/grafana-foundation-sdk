@@ -22,7 +22,7 @@ public class MovingAverageModelOption {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MovingAverageModelOption> {
-        private final MovingAverageModelOption internal;
+        protected final MovingAverageModelOption internal;
         
         public Builder() {
             this.internal = new MovingAverageModelOption();

@@ -5,6 +5,7 @@ package azuremonitor
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*AzureMonitorQueryBuilder)(nil)
@@ -162,7 +163,7 @@ func (builder *AzureMonitorQueryBuilder) Region(region string) *AzureMonitorQuer
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
 // TODO this shouldn't be unknown but DataSourceRef | null
-func (builder *AzureMonitorQueryBuilder) Datasource(datasource any) *AzureMonitorQueryBuilder {
+func (builder *AzureMonitorQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *AzureMonitorQueryBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

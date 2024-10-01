@@ -23,7 +23,7 @@ public class TableAutoCellOptions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TableAutoCellOptions> {
-        private final TableAutoCellOptions internal;
+        protected final TableAutoCellOptions internal;
         
         public Builder() {
             this.internal = new TableAutoCellOptions();

@@ -33,7 +33,7 @@ public class LibraryElementDTOMeta {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<LibraryElementDTOMeta> {
-        private final LibraryElementDTOMeta internal;
+        protected final LibraryElementDTOMeta internal;
         
         public Builder() {
             this.internal = new LibraryElementDTOMeta();

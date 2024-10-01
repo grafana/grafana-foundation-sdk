@@ -22,7 +22,7 @@ public class QueryEditorPropertyExpression {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<QueryEditorPropertyExpression> {
-        private final QueryEditorPropertyExpression internal;
+        protected final QueryEditorPropertyExpression internal;
         
         public Builder() {
             this.internal = new QueryEditorPropertyExpression();

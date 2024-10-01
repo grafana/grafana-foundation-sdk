@@ -34,7 +34,7 @@ public class ValueMappingResult {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ValueMappingResult> {
-        private final ValueMappingResult internal;
+        protected final ValueMappingResult internal;
         
         public Builder() {
             this.internal = new ValueMappingResult();

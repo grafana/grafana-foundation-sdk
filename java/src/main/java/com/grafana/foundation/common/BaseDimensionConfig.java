@@ -21,7 +21,7 @@ public class BaseDimensionConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<BaseDimensionConfig> {
-        private final BaseDimensionConfig internal;
+        protected final BaseDimensionConfig internal;
         
         public Builder() {
             this.internal = new BaseDimensionConfig();

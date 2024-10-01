@@ -52,7 +52,7 @@ public class Preferences {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Preferences> {
-        private final Preferences internal;
+        protected final Preferences internal;
         
         public Builder() {
             this.internal = new Preferences();

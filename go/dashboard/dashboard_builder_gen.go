@@ -134,10 +134,7 @@ func (builder *DashboardBuilder) Tooltip(graphTooltip DashboardCursorSync) *Dash
 // Accepted values are relative time strings like {from: 'now-6h', to: 'now'} or absolute time strings like {from: '2020-07-10T08:00:00.000Z', to: '2020-07-10T14:00:00.000Z'}.
 func (builder *DashboardBuilder) Time(from string, to string) *DashboardBuilder {
 	if builder.internal.Time == nil {
-		builder.internal.Time = &struct {
-			From string `json:"from"`
-			To   string `json:"to"`
-		}{}
+		builder.internal.Time = &DashboardDashboardTime{}
 	}
 	builder.internal.Time.From = from
 	builder.internal.Time.To = to

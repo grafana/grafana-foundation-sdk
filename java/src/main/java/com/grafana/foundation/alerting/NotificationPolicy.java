@@ -91,7 +91,7 @@ public class NotificationPolicy {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<NotificationPolicy> {
-        private final NotificationPolicy internal;
+        protected final NotificationPolicy internal;
         
         public Builder() {
             this.internal = new NotificationPolicy();

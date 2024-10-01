@@ -3,6 +3,7 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import googlecloudmonitoring
+from ..models import dashboard
 
 
 class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitoringQuery]):    
@@ -95,7 +96,7 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
     
         return self
     
-    def datasource(self, datasource: object) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.

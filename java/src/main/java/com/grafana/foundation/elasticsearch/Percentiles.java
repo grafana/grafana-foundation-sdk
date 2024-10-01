@@ -30,7 +30,7 @@ public class Percentiles {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Percentiles> {
-        private final Percentiles internal;
+        protected final Percentiles internal;
         
         public Builder() {
             this.internal = new Percentiles();

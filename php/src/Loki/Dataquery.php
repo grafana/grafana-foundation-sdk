@@ -64,9 +64,8 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
-     * @var mixed|null
      */
-    public $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
      * @param string|null $expr
@@ -80,9 +79,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param string|null $refId
      * @param bool|null $hide
      * @param string|null $queryType
-     * @param mixed|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      */
-    public function __construct(?string $expr = null, ?string $legendFormat = null, ?int $maxLines = null, ?int $resolution = null, ?\Grafana\Foundation\Loki\QueryEditorMode $editorMode = null, ?bool $range = null, ?bool $instant = null, ?string $step = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null,  $datasource = null)
+    public function __construct(?string $expr = null, ?string $legendFormat = null, ?int $maxLines = null, ?int $resolution = null, ?\Grafana\Foundation\Loki\QueryEditorMode $editorMode = null, ?bool $range = null, ?bool $instant = null, ?string $step = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
     {
         $this->expr = $expr ?: "";
         $this->legendFormat = $legendFormat;
@@ -117,7 +116,11 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             refId: $data["refId"] ?? null,
             hide: $data["hide"] ?? null,
             queryType: $data["queryType"] ?? null,
-            datasource: $data["datasource"] ?? null,
+            datasource: isset($data["datasource"]) ? (function($input) {
+    	/** @var array{type?: string, uid?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    })($data["datasource"]) : null,
         );
     }
 
