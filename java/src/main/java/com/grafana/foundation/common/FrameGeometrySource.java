@@ -40,7 +40,7 @@ public class FrameGeometrySource {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<FrameGeometrySource> {
-        private final FrameGeometrySource internal;
+        protected final FrameGeometrySource internal;
         
         public Builder() {
             this.internal = new FrameGeometrySource();

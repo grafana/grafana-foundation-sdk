@@ -26,7 +26,7 @@ public class ExprTypeThresholdConditions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeThresholdConditions> {
-        private final ExprTypeThresholdConditions internal;
+        protected final ExprTypeThresholdConditions internal;
         
         public Builder() {
             this.internal = new ExprTypeThresholdConditions();

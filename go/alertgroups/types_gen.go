@@ -17,13 +17,27 @@ type Options struct {
 	ExpandAll bool `json:"expandAll"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.Labels != other.Labels {
+		return false
+	}
+	if resource.Alertmanager != other.Alertmanager {
+		return false
+	}
+	if resource.ExpandAll != other.ExpandAll {
+		return false
+	}
+
+	return true
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "alertgroups",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

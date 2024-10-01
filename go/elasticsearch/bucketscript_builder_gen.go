@@ -61,10 +61,13 @@ func (builder *BucketScriptBuilder) Id(id string) *BucketScriptBuilder {
 	return builder
 }
 
-func (builder *BucketScriptBuilder) Settings(settings struct {
-	Script *InlineScript `json:"script,omitempty"`
-}) *BucketScriptBuilder {
-	builder.internal.Settings = &settings
+func (builder *BucketScriptBuilder) Settings(settings cog.Builder[ElasticsearchBucketScriptSettings]) *BucketScriptBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

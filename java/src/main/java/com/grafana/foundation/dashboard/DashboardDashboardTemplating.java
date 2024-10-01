@@ -22,7 +22,7 @@ public class DashboardDashboardTemplating {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DashboardDashboardTemplating> {
-        private final DashboardDashboardTemplating internal;
+        protected final DashboardDashboardTemplating internal;
         
         public Builder() {
             this.internal = new DashboardDashboardTemplating();

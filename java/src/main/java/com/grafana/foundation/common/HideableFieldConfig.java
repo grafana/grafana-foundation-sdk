@@ -21,7 +21,7 @@ public class HideableFieldConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<HideableFieldConfig> {
-        private final HideableFieldConfig internal;
+        protected final HideableFieldConfig internal;
         
         public Builder() {
             this.internal = new HideableFieldConfig();

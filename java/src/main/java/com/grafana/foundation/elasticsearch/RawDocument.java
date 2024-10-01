@@ -27,7 +27,7 @@ public class RawDocument {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<RawDocument> {
-        private final RawDocument internal;
+        protected final RawDocument internal;
         
         public Builder() {
             this.internal = new RawDocument();

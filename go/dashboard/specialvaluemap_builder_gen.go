@@ -43,13 +43,13 @@ func (builder *SpecialValueMapBuilder) Build() (SpecialValueMap, error) {
 	return *builder.internal, nil
 }
 
-func (builder *SpecialValueMapBuilder) Options(options struct {
-	// Special value to match against
-	Match SpecialValueMatch `json:"match"`
-	// Config to apply when the value matches the special value
-	Result ValueMappingResult `json:"result"`
-}) *SpecialValueMapBuilder {
-	builder.internal.Options = options
+func (builder *SpecialValueMapBuilder) Options(options cog.Builder[DashboardSpecialValueMapOptions]) *SpecialValueMapBuilder {
+	optionsResource, err := options.Build()
+	if err != nil {
+		builder.errors["options"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options = optionsResource
 
 	return builder
 }

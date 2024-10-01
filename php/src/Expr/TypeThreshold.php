@@ -13,7 +13,7 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Expr\ExprTypeThresholdDatasource $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
      * Reference to single query result
@@ -68,7 +68,7 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
 
     /**
      * @param array<\Grafana\Foundation\Expr\ExprTypeThresholdConditions>|null $conditions
-     * @param \Grafana\Foundation\Expr\ExprTypeThresholdDatasource|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param string|null $expression
      * @param bool|null $hide
      * @param float|null $intervalMs
@@ -78,7 +78,7 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
      * @param \Grafana\Foundation\Expr\ExprTypeThresholdResultAssertions|null $resultAssertions
      * @param \Grafana\Foundation\Expr\ExprTypeThresholdTimeRange|null $timeRange
      */
-    public function __construct(?array $conditions = null, ?\Grafana\Foundation\Expr\ExprTypeThresholdDatasource $datasource = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeThresholdResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeThresholdTimeRange $timeRange = null)
+    public function __construct(?array $conditions = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeThresholdResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeThresholdTimeRange $timeRange = null)
     {
         $this->conditions = $conditions ?: [];
         $this->datasource = $datasource;
@@ -108,9 +108,9 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
     	return \Grafana\Foundation\Expr\ExprTypeThresholdConditions::fromArray($val);
     }), $data["conditions"] ?? [])),
             datasource: isset($data["datasource"]) ? (function($input) {
-    	/** @var array{apiVersion?: string, type?: string, uid?: string} */
+    	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Expr\ExprTypeThresholdDatasource::fromArray($val);
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             expression: $data["expression"] ?? null,
             hide: $data["hide"] ?? null,

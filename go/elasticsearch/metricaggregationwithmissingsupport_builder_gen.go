@@ -39,10 +39,13 @@ func (builder *MetricAggregationWithMissingSupportBuilder) Build() (MetricAggreg
 	return *builder.internal, nil
 }
 
-func (builder *MetricAggregationWithMissingSupportBuilder) Settings(settings struct {
-	Missing *string `json:"missing,omitempty"`
-}) *MetricAggregationWithMissingSupportBuilder {
-	builder.internal.Settings = &settings
+func (builder *MetricAggregationWithMissingSupportBuilder) Settings(settings cog.Builder[ElasticsearchMetricAggregationWithMissingSupportSettings]) *MetricAggregationWithMissingSupportBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

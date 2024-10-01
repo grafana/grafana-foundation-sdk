@@ -31,7 +31,7 @@ public class LogGroup {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<LogGroup> {
-        private final LogGroup internal;
+        protected final LogGroup internal;
         
         public Builder() {
             this.internal = new LogGroup();

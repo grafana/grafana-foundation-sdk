@@ -22,7 +22,7 @@ public class ExtendedStat {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExtendedStat> {
-        private final ExtendedStat internal;
+        protected final ExtendedStat internal;
         
         public Builder() {
             this.internal = new ExtendedStat();

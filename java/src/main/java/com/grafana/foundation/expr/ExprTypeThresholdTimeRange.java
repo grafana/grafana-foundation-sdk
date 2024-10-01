@@ -22,7 +22,7 @@ public class ExprTypeThresholdTimeRange {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeThresholdTimeRange> {
-        private final ExprTypeThresholdTimeRange internal;
+        protected final ExprTypeThresholdTimeRange internal;
         
         public Builder() {
             this.internal = new ExprTypeThresholdTimeRange();

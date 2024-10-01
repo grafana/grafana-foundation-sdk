@@ -7,6 +7,7 @@ import (
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*TypeReduceBuilder)(nil)
@@ -44,14 +45,7 @@ func (builder *TypeReduceBuilder) Build() (variants.Dataquery, error) {
 }
 
 // The datasource
-func (builder *TypeReduceBuilder) Datasource(datasource struct {
-	// The apiserver version
-	ApiVersion *string `json:"apiVersion,omitempty"`
-	// The datasource plugin type
-	Type string `json:"type"`
-	// Datasource UID (NOTE: name in k8s)
-	Uid *string `json:"uid,omitempty"`
-}) *TypeReduceBuilder {
+func (builder *TypeReduceBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeReduceBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -126,43 +120,25 @@ func (builder *TypeReduceBuilder) RefId(refId string) *TypeReduceBuilder {
 }
 
 // Optionally define expected query result behavior
-func (builder *TypeReduceBuilder) ResultAssertions(resultAssertions struct {
-	// Maximum frame count
-	MaxFrames *int64 `json:"maxFrames,omitempty"`
-	// Type asserts that the frame matches a known type structure.
-	// Possible enum values:
-	//  - `""`
-	//  - `"timeseries-wide"`
-	//  - `"timeseries-long"`
-	//  - `"timeseries-many"`
-	//  - `"timeseries-multi"`
-	//  - `"directory-listing"`
-	//  - `"table"`
-	//  - `"numeric-wide"`
-	//  - `"numeric-multi"`
-	//  - `"numeric-long"`
-	//  - `"log-lines"`
-	Type *TypeReduceType `json:"type,omitempty"`
-	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-	// contract documentation https://grafana.github.io/dataplane/contract/.
-	TypeVersion []int64 `json:"typeVersion"`
-}) *TypeReduceBuilder {
-	builder.internal.ResultAssertions = &resultAssertions
+func (builder *TypeReduceBuilder) ResultAssertions(resultAssertions cog.Builder[ExprTypeReduceResultAssertions]) *TypeReduceBuilder {
+	resultAssertionsResource, err := resultAssertions.Build()
+	if err != nil {
+		builder.errors["resultAssertions"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.ResultAssertions = &resultAssertionsResource
 
 	return builder
 }
 
 // Reducer Options
-func (builder *TypeReduceBuilder) Settings(settings struct {
-	// Non-number reduce behavior
-	// Possible enum values:
-	//  - `"dropNN"` Drop non-numbers
-	//  - `"replaceNN"` Replace non-numbers
-	Mode TypeReduceMode `json:"mode"`
-	// Only valid when mode is replace
-	ReplaceWithValue *float64 `json:"replaceWithValue,omitempty"`
-}) *TypeReduceBuilder {
-	builder.internal.Settings = &settings
+func (builder *TypeReduceBuilder) Settings(settings cog.Builder[ExprTypeReduceSettings]) *TypeReduceBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }
@@ -170,13 +146,13 @@ func (builder *TypeReduceBuilder) Settings(settings struct {
 // TimeRange represents the query range
 // NOTE: unlike generic /ds/query, we can now send explicit time values in each query
 // NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-func (builder *TypeReduceBuilder) TimeRange(timeRange struct {
-	// From is the start time of the query.
-	From string `json:"from"`
-	// To is the end time of the query.
-	To string `json:"to"`
-}) *TypeReduceBuilder {
-	builder.internal.TimeRange = &timeRange
+func (builder *TypeReduceBuilder) TimeRange(timeRange cog.Builder[ExprTypeReduceTimeRange]) *TypeReduceBuilder {
+	timeRangeResource, err := timeRange.Build()
+	if err != nil {
+		builder.errors["timeRange"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.TimeRange = &timeRangeResource
 
 	return builder
 }

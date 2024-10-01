@@ -21,13 +21,55 @@ type Options struct {
 	NavigateAfter         string   `json:"navigateAfter"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.OnlyFromThisDashboard != other.OnlyFromThisDashboard {
+		return false
+	}
+	if resource.OnlyInTimeRange != other.OnlyInTimeRange {
+		return false
+	}
+
+	if len(resource.Tags) != len(other.Tags) {
+		return false
+	}
+
+	for i1 := range resource.Tags {
+		if resource.Tags[i1] != other.Tags[i1] {
+			return false
+		}
+	}
+	if resource.Limit != other.Limit {
+		return false
+	}
+	if resource.ShowUser != other.ShowUser {
+		return false
+	}
+	if resource.ShowTime != other.ShowTime {
+		return false
+	}
+	if resource.ShowTags != other.ShowTags {
+		return false
+	}
+	if resource.NavigateToPanel != other.NavigateToPanel {
+		return false
+	}
+	if resource.NavigateBefore != other.NavigateBefore {
+		return false
+	}
+	if resource.NavigateAfter != other.NavigateAfter {
+		return false
+	}
+
+	return true
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "annolist",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

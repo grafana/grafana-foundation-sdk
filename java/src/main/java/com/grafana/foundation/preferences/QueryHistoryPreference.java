@@ -21,7 +21,7 @@ public class QueryHistoryPreference {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<QueryHistoryPreference> {
-        private final QueryHistoryPreference internal;
+        protected final QueryHistoryPreference internal;
         
         public Builder() {
             this.internal = new QueryHistoryPreference();

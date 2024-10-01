@@ -51,7 +51,7 @@ public class RowPanel {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<RowPanel> {
-        private final RowPanel internal;
+        protected final RowPanel internal;
         
         public Builder(String title) {
             this.internal = new RowPanel();

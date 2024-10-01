@@ -2,6 +2,7 @@
 
 import typing
 from ..cog import variants as cogvariants
+from ..models import dashboard
 import enum
 from ..cog import runtime as cogruntime
 
@@ -143,11 +144,11 @@ class CloudWatchMetricsQuery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[object]
+    datasource: typing.Optional[dashboard.DataSourceRef]
     # @deprecated use statistic
     statistics: typing.Optional[list[str]]
 
-    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, metric_query_type: typing.Optional['MetricQueryType'] = None, metric_editor_mode: typing.Optional['MetricEditorMode'] = None, id_val: str = "", alias: typing.Optional[str] = None, label: typing.Optional[str] = None, expression: typing.Optional[str] = None, sql_expression: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, sql: typing.Optional['SQLExpression'] = None, datasource: typing.Optional[object] = None, statistics: typing.Optional[list[str]] = None):
+    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, metric_query_type: typing.Optional['MetricQueryType'] = None, metric_editor_mode: typing.Optional['MetricEditorMode'] = None, id_val: str = "", alias: typing.Optional[str] = None, label: typing.Optional[str] = None, expression: typing.Optional[str] = None, sql_expression: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, sql: typing.Optional['SQLExpression'] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, statistics: typing.Optional[list[str]] = None):
         self.query_mode = query_mode if query_mode is not None else CloudWatchQueryMode.METRICS
         self.metric_query_type = metric_query_type
         self.metric_editor_mode = metric_editor_mode
@@ -260,7 +261,7 @@ class CloudWatchMetricsQuery(cogvariants.Dataquery):
         if "sql" in data:
             args["sql"] = SQLExpression.from_json(data["sql"])
         if "datasource" in data:
-            args["datasource"] = data["datasource"]
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "statistics" in data:
             args["statistics"] = data["statistics"]        
 
@@ -633,9 +634,9 @@ class CloudWatchLogsQuery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[object]
+    datasource: typing.Optional[dashboard.DataSourceRef]
 
-    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, id_val: str = "", region: str = "", expression: typing.Optional[str] = None, stats_groups: typing.Optional[list[str]] = None, log_groups: typing.Optional[list['LogGroup']] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, log_group_names: typing.Optional[list[str]] = None, datasource: typing.Optional[object] = None):
+    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, id_val: str = "", region: str = "", expression: typing.Optional[str] = None, stats_groups: typing.Optional[list[str]] = None, log_groups: typing.Optional[list['LogGroup']] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, log_group_names: typing.Optional[list[str]] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
         self.query_mode = query_mode if query_mode is not None else CloudWatchQueryMode.LOGS
         self.id_val = id_val
         self.region = region
@@ -696,7 +697,7 @@ class CloudWatchLogsQuery(cogvariants.Dataquery):
         if "logGroupNames" in data:
             args["log_group_names"] = data["logGroupNames"]
         if "datasource" in data:
-            args["datasource"] = data["datasource"]        
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])        
 
         return cls(**args)
 
@@ -796,11 +797,11 @@ class CloudWatchAnnotationQuery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[object]
+    datasource: typing.Optional[dashboard.DataSourceRef]
     # @deprecated use statistic
     statistics: typing.Optional[list[str]]
 
-    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, prefix_matching: typing.Optional[bool] = None, action_prefix: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, alarm_name_prefix: typing.Optional[str] = None, datasource: typing.Optional[object] = None, statistics: typing.Optional[list[str]] = None):
+    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, prefix_matching: typing.Optional[bool] = None, action_prefix: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, alarm_name_prefix: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, statistics: typing.Optional[list[str]] = None):
         self.query_mode = query_mode if query_mode is not None else CloudWatchQueryMode.ANNOTATIONS
         self.prefix_matching = prefix_matching
         self.action_prefix = action_prefix
@@ -889,7 +890,7 @@ class CloudWatchAnnotationQuery(cogvariants.Dataquery):
         if "alarmNamePrefix" in data:
             args["alarm_name_prefix"] = data["alarmNamePrefix"]
         if "datasource" in data:
-            args["datasource"] = data["datasource"]
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "statistics" in data:
             args["statistics"] = data["statistics"]        
 

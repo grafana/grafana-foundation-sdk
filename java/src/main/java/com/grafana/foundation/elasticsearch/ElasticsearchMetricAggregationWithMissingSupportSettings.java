@@ -20,7 +20,7 @@ public class ElasticsearchMetricAggregationWithMissingSupportSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchMetricAggregationWithMissingSupportSettings> {
-        private final ElasticsearchMetricAggregationWithMissingSupportSettings internal;
+        protected final ElasticsearchMetricAggregationWithMissingSupportSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchMetricAggregationWithMissingSupportSettings();

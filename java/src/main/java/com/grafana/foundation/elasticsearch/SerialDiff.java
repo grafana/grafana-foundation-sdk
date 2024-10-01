@@ -33,7 +33,7 @@ public class SerialDiff {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<SerialDiff> {
-        private final SerialDiff internal;
+        protected final SerialDiff internal;
         
         public Builder() {
             this.internal = new SerialDiff();

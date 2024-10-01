@@ -23,7 +23,7 @@ public class RoleBindingSubject {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<RoleBindingSubject> {
-        private final RoleBindingSubject internal;
+        protected final RoleBindingSubject internal;
         
         public Builder() {
             this.internal = new RoleBindingSubject();
