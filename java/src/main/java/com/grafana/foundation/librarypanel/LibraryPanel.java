@@ -50,7 +50,7 @@ public class LibraryPanel {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<LibraryPanel> {
-        private final LibraryPanel internal;
+        protected final LibraryPanel internal;
         
         public Builder() {
             this.internal = new LibraryPanel();

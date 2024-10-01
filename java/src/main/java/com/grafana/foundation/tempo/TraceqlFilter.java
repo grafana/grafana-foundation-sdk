@@ -40,7 +40,7 @@ public class TraceqlFilter {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TraceqlFilter> {
-        private final TraceqlFilter internal;
+        protected final TraceqlFilter internal;
         
         public Builder() {
             this.internal = new TraceqlFilter();

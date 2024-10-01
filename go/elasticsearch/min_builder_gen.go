@@ -52,11 +52,13 @@ func (builder *MinBuilder) Id(id string) *MinBuilder {
 	return builder
 }
 
-func (builder *MinBuilder) Settings(settings struct {
-	Script  *InlineScript `json:"script,omitempty"`
-	Missing *string       `json:"missing,omitempty"`
-}) *MinBuilder {
-	builder.internal.Settings = &settings
+func (builder *MinBuilder) Settings(settings cog.Builder[ElasticsearchMinSettings]) *MinBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

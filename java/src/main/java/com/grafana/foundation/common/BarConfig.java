@@ -27,7 +27,7 @@ public class BarConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<BarConfig> {
-        private final BarConfig internal;
+        protected final BarConfig internal;
         
         public Builder() {
             this.internal = new BarConfig();

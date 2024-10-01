@@ -45,7 +45,7 @@ public class ExprTypeClassicConditionsResultAssertions {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsResultAssertions> {
-        private final ExprTypeClassicConditionsResultAssertions internal;
+        protected final ExprTypeClassicConditionsResultAssertions internal;
         
         public Builder() {
             this.internal = new ExprTypeClassicConditionsResultAssertions();

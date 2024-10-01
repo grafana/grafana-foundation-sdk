@@ -27,7 +27,7 @@ public class FillConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<FillConfig> {
-        private final FillConfig internal;
+        protected final FillConfig internal;
         
         public Builder() {
             this.internal = new FillConfig();

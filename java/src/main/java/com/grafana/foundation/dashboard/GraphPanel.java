@@ -25,7 +25,7 @@ public class GraphPanel {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<GraphPanel> {
-        private final GraphPanel internal;
+        protected final GraphPanel internal;
         
         public Builder() {
             this.internal = new GraphPanel();

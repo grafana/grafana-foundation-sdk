@@ -117,7 +117,7 @@ public class LibrarypanelLibraryPanelModel {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<LibrarypanelLibraryPanelModel> {
-        private final LibrarypanelLibraryPanelModel internal;
+        protected final LibrarypanelLibraryPanelModel internal;
         
         public Builder() {
             this.internal = new LibrarypanelLibraryPanelModel();

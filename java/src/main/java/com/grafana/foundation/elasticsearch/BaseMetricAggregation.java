@@ -25,7 +25,7 @@ public class BaseMetricAggregation {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<BaseMetricAggregation> {
-        private final BaseMetricAggregation internal;
+        protected final BaseMetricAggregation internal;
         
         public Builder() {
             this.internal = new BaseMetricAggregation();

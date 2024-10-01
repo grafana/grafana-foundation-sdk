@@ -17,13 +17,39 @@ type Options struct {
 	Orientation          common.VizOrientation         `json:"orientation"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.ShowThresholdLabels != other.ShowThresholdLabels {
+		return false
+	}
+	if !resource.ReduceOptions.Equals(other.ReduceOptions) {
+		return false
+	}
+	if resource.Text == nil && other.Text != nil || resource.Text != nil && other.Text == nil {
+		return false
+	}
+
+	if resource.Text != nil {
+		if !resource.Text.Equals(*other.Text) {
+			return false
+		}
+	}
+	if resource.ShowThresholdMarkers != other.ShowThresholdMarkers {
+		return false
+	}
+	if resource.Orientation != other.Orientation {
+		return false
+	}
+
+	return true
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "gauge",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

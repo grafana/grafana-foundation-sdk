@@ -33,7 +33,7 @@ public class MetricDefinitionsQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MetricDefinitionsQuery> {
-        private final MetricDefinitionsQuery internal;
+        protected final MetricDefinitionsQuery internal;
         
         public Builder() {
             this.internal = new MetricDefinitionsQuery();

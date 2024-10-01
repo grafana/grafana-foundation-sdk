@@ -25,7 +25,7 @@ public class TableSortByFieldState {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TableSortByFieldState> {
-        private final TableSortByFieldState internal;
+        protected final TableSortByFieldState internal;
         
         public Builder() {
             this.internal = new TableSortByFieldState();

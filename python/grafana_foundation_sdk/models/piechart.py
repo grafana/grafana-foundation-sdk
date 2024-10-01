@@ -113,7 +113,7 @@ class PieChartLegendOptions:
 
 class Options:
     pie_type: 'PieChartType'
-    display_labels: list['PieChartLabels']
+    display_labels: typing.Optional[list['PieChartLabels']]
     tooltip: common.VizTooltipOptions
     reduce_options: common.ReduceDataOptions
     text: typing.Optional[common.VizTextDisplayOptions]
@@ -122,7 +122,7 @@ class Options:
 
     def __init__(self, pie_type: typing.Optional['PieChartType'] = None, display_labels: typing.Optional[list['PieChartLabels']] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, reduce_options: typing.Optional[common.ReduceDataOptions] = None, text: typing.Optional[common.VizTextDisplayOptions] = None, legend: typing.Optional['PieChartLegendOptions'] = None, orientation: typing.Optional[common.VizOrientation] = None):
         self.pie_type = pie_type if pie_type is not None else PieChartType.PIE
-        self.display_labels = display_labels if display_labels is not None else []
+        self.display_labels = display_labels
         self.tooltip = tooltip if tooltip is not None else common.VizTooltipOptions()
         self.reduce_options = reduce_options if reduce_options is not None else common.ReduceDataOptions()
         self.text = text
@@ -132,12 +132,13 @@ class Options:
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "pieType": self.pie_type,
-            "displayLabels": self.display_labels,
             "tooltip": self.tooltip,
             "reduceOptions": self.reduce_options,
             "legend": self.legend,
             "orientation": self.orientation,
         }
+        if self.display_labels is not None:
+            payload["displayLabels"] = self.display_labels
         if self.text is not None:
             payload["text"] = self.text
         return payload

@@ -4,6 +4,7 @@ package canvas
 
 import (
 	"encoding/json"
+	"reflect"
 
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
@@ -34,6 +35,29 @@ type Constraint struct {
 	Vertical   *VerticalConstraint   `json:"vertical,omitempty"`
 }
 
+func (resource Constraint) Equals(other Constraint) bool {
+	if resource.Horizontal == nil && other.Horizontal != nil || resource.Horizontal != nil && other.Horizontal == nil {
+		return false
+	}
+
+	if resource.Horizontal != nil {
+		if *resource.Horizontal != *other.Horizontal {
+			return false
+		}
+	}
+	if resource.Vertical == nil && other.Vertical != nil || resource.Vertical != nil && other.Vertical == nil {
+		return false
+	}
+
+	if resource.Vertical != nil {
+		if *resource.Vertical != *other.Vertical {
+			return false
+		}
+	}
+
+	return true
+}
+
 type Placement struct {
 	Top    *float64 `json:"top,omitempty"`
 	Left   *float64 `json:"left,omitempty"`
@@ -41,6 +65,65 @@ type Placement struct {
 	Bottom *float64 `json:"bottom,omitempty"`
 	Width  *float64 `json:"width,omitempty"`
 	Height *float64 `json:"height,omitempty"`
+}
+
+func (resource Placement) Equals(other Placement) bool {
+	if resource.Top == nil && other.Top != nil || resource.Top != nil && other.Top == nil {
+		return false
+	}
+
+	if resource.Top != nil {
+		if *resource.Top != *other.Top {
+			return false
+		}
+	}
+	if resource.Left == nil && other.Left != nil || resource.Left != nil && other.Left == nil {
+		return false
+	}
+
+	if resource.Left != nil {
+		if *resource.Left != *other.Left {
+			return false
+		}
+	}
+	if resource.Right == nil && other.Right != nil || resource.Right != nil && other.Right == nil {
+		return false
+	}
+
+	if resource.Right != nil {
+		if *resource.Right != *other.Right {
+			return false
+		}
+	}
+	if resource.Bottom == nil && other.Bottom != nil || resource.Bottom != nil && other.Bottom == nil {
+		return false
+	}
+
+	if resource.Bottom != nil {
+		if *resource.Bottom != *other.Bottom {
+			return false
+		}
+	}
+	if resource.Width == nil && other.Width != nil || resource.Width != nil && other.Width == nil {
+		return false
+	}
+
+	if resource.Width != nil {
+		if *resource.Width != *other.Width {
+			return false
+		}
+	}
+	if resource.Height == nil && other.Height != nil || resource.Height != nil && other.Height == nil {
+		return false
+	}
+
+	if resource.Height != nil {
+		if *resource.Height != *other.Height {
+			return false
+		}
+	}
+
+	return true
 }
 
 type BackgroundImageSize string
@@ -59,14 +142,80 @@ type BackgroundConfig struct {
 	Size  *BackgroundImageSize            `json:"size,omitempty"`
 }
 
+func (resource BackgroundConfig) Equals(other BackgroundConfig) bool {
+	if resource.Color == nil && other.Color != nil || resource.Color != nil && other.Color == nil {
+		return false
+	}
+
+	if resource.Color != nil {
+		if !resource.Color.Equals(*other.Color) {
+			return false
+		}
+	}
+	if resource.Image == nil && other.Image != nil || resource.Image != nil && other.Image == nil {
+		return false
+	}
+
+	if resource.Image != nil {
+		if !resource.Image.Equals(*other.Image) {
+			return false
+		}
+	}
+	if resource.Size == nil && other.Size != nil || resource.Size != nil && other.Size == nil {
+		return false
+	}
+
+	if resource.Size != nil {
+		if *resource.Size != *other.Size {
+			return false
+		}
+	}
+
+	return true
+}
+
 type LineConfig struct {
 	Color *common.ColorDimensionConfig `json:"color,omitempty"`
 	Width *float64                     `json:"width,omitempty"`
 }
 
+func (resource LineConfig) Equals(other LineConfig) bool {
+	if resource.Color == nil && other.Color != nil || resource.Color != nil && other.Color == nil {
+		return false
+	}
+
+	if resource.Color != nil {
+		if !resource.Color.Equals(*other.Color) {
+			return false
+		}
+	}
+	if resource.Width == nil && other.Width != nil || resource.Width != nil && other.Width == nil {
+		return false
+	}
+
+	if resource.Width != nil {
+		if *resource.Width != *other.Width {
+			return false
+		}
+	}
+
+	return true
+}
+
 type ConnectionCoordinates struct {
 	X float64 `json:"x"`
 	Y float64 `json:"y"`
+}
+
+func (resource ConnectionCoordinates) Equals(other ConnectionCoordinates) bool {
+	if resource.X != other.X {
+		return false
+	}
+	if resource.Y != other.Y {
+		return false
+	}
+
+	return true
 }
 
 type ConnectionPath string
@@ -84,6 +233,47 @@ type CanvasConnection struct {
 	Size       *common.ScaleDimensionConfig `json:"size,omitempty"`
 }
 
+func (resource CanvasConnection) Equals(other CanvasConnection) bool {
+	if !resource.Source.Equals(other.Source) {
+		return false
+	}
+	if !resource.Target.Equals(other.Target) {
+		return false
+	}
+	if resource.TargetName == nil && other.TargetName != nil || resource.TargetName != nil && other.TargetName == nil {
+		return false
+	}
+
+	if resource.TargetName != nil {
+		if *resource.TargetName != *other.TargetName {
+			return false
+		}
+	}
+	if resource.Path != other.Path {
+		return false
+	}
+	if resource.Color == nil && other.Color != nil || resource.Color != nil && other.Color == nil {
+		return false
+	}
+
+	if resource.Color != nil {
+		if !resource.Color.Equals(*other.Color) {
+			return false
+		}
+	}
+	if resource.Size == nil && other.Size != nil || resource.Size != nil && other.Size == nil {
+		return false
+	}
+
+	if resource.Size != nil {
+		if !resource.Size.Equals(*other.Size) {
+			return false
+		}
+	}
+
+	return true
+}
+
 type CanvasElementOptions struct {
 	Name string `json:"name"`
 	Type string `json:"type"`
@@ -96,6 +286,67 @@ type CanvasElementOptions struct {
 	Connections []CanvasConnection `json:"connections,omitempty"`
 }
 
+func (resource CanvasElementOptions) Equals(other CanvasElementOptions) bool {
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Config, other.Config) {
+		return false
+	}
+	if resource.Constraint == nil && other.Constraint != nil || resource.Constraint != nil && other.Constraint == nil {
+		return false
+	}
+
+	if resource.Constraint != nil {
+		if !resource.Constraint.Equals(*other.Constraint) {
+			return false
+		}
+	}
+	if resource.Placement == nil && other.Placement != nil || resource.Placement != nil && other.Placement == nil {
+		return false
+	}
+
+	if resource.Placement != nil {
+		if !resource.Placement.Equals(*other.Placement) {
+			return false
+		}
+	}
+	if resource.Background == nil && other.Background != nil || resource.Background != nil && other.Background == nil {
+		return false
+	}
+
+	if resource.Background != nil {
+		if !resource.Background.Equals(*other.Background) {
+			return false
+		}
+	}
+	if resource.Border == nil && other.Border != nil || resource.Border != nil && other.Border == nil {
+		return false
+	}
+
+	if resource.Border != nil {
+		if !resource.Border.Equals(*other.Border) {
+			return false
+		}
+	}
+
+	if len(resource.Connections) != len(other.Connections) {
+		return false
+	}
+
+	for i1 := range resource.Connections {
+		if !resource.Connections[i1].Equals(other.Connections[i1]) {
+			return false
+		}
+	}
+
+	return true
+}
+
 type Options struct {
 	// Enable inline editing
 	InlineEditing bool `json:"inlineEditing"`
@@ -103,23 +354,60 @@ type Options struct {
 	ShowAdvancedTypes bool `json:"showAdvancedTypes"`
 	// The root element of canvas (frame), where all canvas elements are nested
 	// TODO: Figure out how to define a default value for this
-	Root struct {
-		// Name of the root element
-		Name string `json:"name"`
-		// Type of root element (frame)
-		Type string `json:"type"`
-		// The list of canvas elements attached to the root element
-		Elements []CanvasElementOptions `json:"elements"`
-	} `json:"root"`
+	Root CanvasOptionsRoot `json:"root"`
+}
+
+func (resource Options) Equals(other Options) bool {
+	if resource.InlineEditing != other.InlineEditing {
+		return false
+	}
+	if resource.ShowAdvancedTypes != other.ShowAdvancedTypes {
+		return false
+	}
+	if !resource.Root.Equals(other.Root) {
+		return false
+	}
+
+	return true
+}
+
+type CanvasOptionsRoot struct {
+	// Name of the root element
+	Name string `json:"name"`
+	// Type of root element (frame)
+	Type string `json:"type"`
+	// The list of canvas elements attached to the root element
+	Elements []CanvasElementOptions `json:"elements"`
+}
+
+func (resource CanvasOptionsRoot) Equals(other CanvasOptionsRoot) bool {
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	if len(resource.Elements) != len(other.Elements) {
+		return false
+	}
+
+	for i1 := range resource.Elements {
+		if !resource.Elements[i1].Equals(other.Elements[i1]) {
+			return false
+		}
+	}
+
+	return true
 }
 
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "canvas",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

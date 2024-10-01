@@ -30,7 +30,7 @@ public class Max {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Max> {
-        private final Max internal;
+        protected final Max internal;
         
         public Builder() {
             this.internal = new Max();

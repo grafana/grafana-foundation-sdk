@@ -24,7 +24,7 @@ public class Team {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Team> {
-        private final Team internal;
+        protected final Team internal;
         
         public Builder(String name) {
             this.internal = new Team();

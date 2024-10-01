@@ -23,7 +23,7 @@ public class ElasticsearchAverageSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchAverageSettings> {
-        private final ElasticsearchAverageSettings internal;
+        protected final ElasticsearchAverageSettings internal;
         
         public Builder() {
             this.internal = new ElasticsearchAverageSettings();

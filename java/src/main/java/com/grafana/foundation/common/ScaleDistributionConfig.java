@@ -27,7 +27,7 @@ public class ScaleDistributionConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ScaleDistributionConfig> {
-        private final ScaleDistributionConfig internal;
+        protected final ScaleDistributionConfig internal;
         
         public Builder() {
             this.internal = new ScaleDistributionConfig();

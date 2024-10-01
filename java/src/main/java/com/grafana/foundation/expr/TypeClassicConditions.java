@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class TypeClassicConditions implements com.grafana.foundation.cog.variants.Dataquery {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
@@ -18,7 +19,7 @@ public class TypeClassicConditions implements com.grafana.foundation.cog.variant
     // The datasource
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public ExprTypeClassicConditionsDatasource datasource;
+    public DataSourceRef datasource;
     // true if query is disabled (ie should not be returned to the dashboard)
     // NOTE: this does not always imply that the query should not be executed since
     // the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -65,7 +66,7 @@ public class TypeClassicConditions implements com.grafana.foundation.cog.variant
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TypeClassicConditions> {
-        private final TypeClassicConditions internal;
+        protected final TypeClassicConditions internal;
         
         public Builder() {
             this.internal = new TypeClassicConditions();
@@ -76,8 +77,8 @@ public class TypeClassicConditions implements com.grafana.foundation.cog.variant
         return this;
     }
     
-    public Builder datasource(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsDatasource> datasource) {
-    this.internal.datasource = datasource.build();
+    public Builder datasource(DataSourceRef datasource) {
+    this.internal.datasource = datasource;
         return this;
     }
     

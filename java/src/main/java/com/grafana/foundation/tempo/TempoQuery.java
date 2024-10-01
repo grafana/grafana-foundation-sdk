@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grafana.foundation.dashboard.DataSourceRef;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
@@ -69,7 +70,7 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     // TODO this shouldn't be unknown but DataSourceRef | null
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public Object datasource;
+    public DataSourceRef datasource;
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("filters")
     public List<TraceqlFilter> filters;
@@ -81,7 +82,7 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TempoQuery> {
-        private final TempoQuery internal;
+        protected final TempoQuery internal;
         
         public Builder() {
             this.internal = new TempoQuery();
@@ -146,7 +147,7 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
         return this;
     }
     
-    public Builder datasource(Object datasource) {
+    public Builder datasource(DataSourceRef datasource) {
     this.internal.datasource = datasource;
         return this;
     }

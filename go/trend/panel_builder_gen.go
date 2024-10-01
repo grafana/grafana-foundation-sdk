@@ -331,21 +331,24 @@ func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 }
 
 // Overrides are the options applied to specific fields overriding the defaults.
-func (builder *PanelBuilder) Overrides(overrides []struct {
-	Matcher    dashboard.MatcherConfig        `json:"matcher"`
-	Properties []dashboard.DynamicConfigValue `json:"properties"`
-}) *PanelBuilder {
-	builder.internal.FieldConfig.Overrides = overrides
+func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.DashboardFieldConfigSourceOverrides]) *PanelBuilder {
+	overridesResources := make([]dashboard.DashboardFieldConfigSourceOverrides, 0, len(overrides))
+	for _, r1 := range overrides {
+		overridesDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["fieldConfig.overrides"] = err.(cog.BuildErrors)
+			return builder
+		}
+		overridesResources = append(overridesResources, overridesDepth1)
+	}
+	builder.internal.FieldConfig.Overrides = overridesResources
 
 	return builder
 }
 
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, properties []dashboard.DynamicConfigValue) *PanelBuilder {
-	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, struct {
-		Matcher    dashboard.MatcherConfig        `json:"matcher"`
-		Properties []dashboard.DynamicConfigValue `json:"properties"`
-	}{
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
 		Matcher:    matcher,
 		Properties: properties,
 	})

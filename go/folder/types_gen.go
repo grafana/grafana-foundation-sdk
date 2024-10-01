@@ -12,3 +12,23 @@ type Folder struct {
 	// Description of the folder.
 	Description *string `json:"description,omitempty"`
 }
+
+func (resource Folder) Equals(other Folder) bool {
+	if resource.Uid != other.Uid {
+		return false
+	}
+	if resource.Title != other.Title {
+		return false
+	}
+	if resource.Description == nil && other.Description != nil || resource.Description != nil && other.Description == nil {
+		return false
+	}
+
+	if resource.Description != nil {
+		if *resource.Description != *other.Description {
+			return false
+		}
+	}
+
+	return true
+}

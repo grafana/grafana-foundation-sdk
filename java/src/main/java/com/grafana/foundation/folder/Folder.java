@@ -29,7 +29,7 @@ public class Folder {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<Folder> {
-        private final Folder internal;
+        protected final Folder internal;
         
         public Builder() {
             this.internal = new Folder();

@@ -25,7 +25,7 @@ public class DashboardGraphPanelLegend {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<DashboardGraphPanelLegend> {
-        private final DashboardGraphPanelLegend internal;
+        protected final DashboardGraphPanelLegend internal;
         
         public Builder() {
             this.internal = new DashboardGraphPanelLegend();

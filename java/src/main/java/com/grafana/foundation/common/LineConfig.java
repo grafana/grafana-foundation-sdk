@@ -36,7 +36,7 @@ public class LineConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<LineConfig> {
-        private final LineConfig internal;
+        protected final LineConfig internal;
         
         public Builder() {
             this.internal = new LineConfig();

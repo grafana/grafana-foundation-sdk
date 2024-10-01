@@ -45,7 +45,7 @@ public class AxisConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<AxisConfig> {
-        private final AxisConfig internal;
+        protected final AxisConfig internal;
         
         public Builder() {
             this.internal = new AxisConfig();

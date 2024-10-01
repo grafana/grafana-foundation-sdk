@@ -32,7 +32,7 @@ public class TermsSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TermsSettings> {
-        private final TermsSettings internal;
+        protected final TermsSettings internal;
         
         public Builder() {
             this.internal = new TermsSettings();

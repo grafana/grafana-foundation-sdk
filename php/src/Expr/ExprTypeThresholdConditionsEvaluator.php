@@ -21,7 +21,7 @@ class ExprTypeThresholdConditionsEvaluator implements \JsonSerializable
     public function __construct(?array $params = null, ?\Grafana\Foundation\Expr\TypeThresholdType $type = null)
     {
         $this->params = $params ?: [];
-        $this->type = $type ?: \Grafana\Foundation\Expr\TypeThresholdType::Gt();
+        $this->type = $type ?: \Grafana\Foundation\Expr\TypeThresholdType::None();
     }
 
     /**

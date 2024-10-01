@@ -7,6 +7,7 @@ import (
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*TypeMathBuilder)(nil)
@@ -44,14 +45,7 @@ func (builder *TypeMathBuilder) Build() (variants.Dataquery, error) {
 }
 
 // The datasource
-func (builder *TypeMathBuilder) Datasource(datasource struct {
-	// The apiserver version
-	ApiVersion *string `json:"apiVersion,omitempty"`
-	// The datasource plugin type
-	Type string `json:"type"`
-	// Datasource UID (NOTE: name in k8s)
-	Uid *string `json:"uid,omitempty"`
-}) *TypeMathBuilder {
+func (builder *TypeMathBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeMathBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -111,28 +105,13 @@ func (builder *TypeMathBuilder) RefId(refId string) *TypeMathBuilder {
 }
 
 // Optionally define expected query result behavior
-func (builder *TypeMathBuilder) ResultAssertions(resultAssertions struct {
-	// Maximum frame count
-	MaxFrames *int64 `json:"maxFrames,omitempty"`
-	// Type asserts that the frame matches a known type structure.
-	// Possible enum values:
-	//  - `""`
-	//  - `"timeseries-wide"`
-	//  - `"timeseries-long"`
-	//  - `"timeseries-many"`
-	//  - `"timeseries-multi"`
-	//  - `"directory-listing"`
-	//  - `"table"`
-	//  - `"numeric-wide"`
-	//  - `"numeric-multi"`
-	//  - `"numeric-long"`
-	//  - `"log-lines"`
-	Type *TypeMathType `json:"type,omitempty"`
-	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
-	// contract documentation https://grafana.github.io/dataplane/contract/.
-	TypeVersion []int64 `json:"typeVersion"`
-}) *TypeMathBuilder {
-	builder.internal.ResultAssertions = &resultAssertions
+func (builder *TypeMathBuilder) ResultAssertions(resultAssertions cog.Builder[ExprTypeMathResultAssertions]) *TypeMathBuilder {
+	resultAssertionsResource, err := resultAssertions.Build()
+	if err != nil {
+		builder.errors["resultAssertions"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.ResultAssertions = &resultAssertionsResource
 
 	return builder
 }
@@ -140,13 +119,13 @@ func (builder *TypeMathBuilder) ResultAssertions(resultAssertions struct {
 // TimeRange represents the query range
 // NOTE: unlike generic /ds/query, we can now send explicit time values in each query
 // NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
-func (builder *TypeMathBuilder) TimeRange(timeRange struct {
-	// From is the start time of the query.
-	From string `json:"from"`
-	// To is the end time of the query.
-	To string `json:"to"`
-}) *TypeMathBuilder {
-	builder.internal.TimeRange = &timeRange
+func (builder *TypeMathBuilder) TimeRange(timeRange cog.Builder[ExprTypeMathTimeRange]) *TypeMathBuilder {
+	timeRangeResource, err := timeRange.Build()
+	if err != nil {
+		builder.errors["timeRange"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.TimeRange = &timeRangeResource
 
 	return builder
 }

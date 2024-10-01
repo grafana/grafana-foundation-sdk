@@ -22,7 +22,7 @@ public class QueryEditorFunctionParameterExpression {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<QueryEditorFunctionParameterExpression> {
-        private final QueryEditorFunctionParameterExpression internal;
+        protected final QueryEditorFunctionParameterExpression internal;
         
         public Builder() {
             this.internal = new QueryEditorFunctionParameterExpression();

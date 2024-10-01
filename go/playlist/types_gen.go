@@ -16,6 +16,30 @@ type Playlist struct {
 	Items []PlaylistItem `json:"items,omitempty"`
 }
 
+func (resource Playlist) Equals(other Playlist) bool {
+	if resource.Uid != other.Uid {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.Interval != other.Interval {
+		return false
+	}
+
+	if len(resource.Items) != len(other.Items) {
+		return false
+	}
+
+	for i1 := range resource.Items {
+		if !resource.Items[i1].Equals(other.Items[i1]) {
+			return false
+		}
+	}
+
+	return true
+}
+
 type PlaylistItem struct {
 	// Type of the item.
 	Type PlaylistItemType `json:"type"`
@@ -30,6 +54,26 @@ type PlaylistItem struct {
 	Value string `json:"value"`
 	// Title is an unused property -- it will be removed in the future
 	Title *string `json:"title,omitempty"`
+}
+
+func (resource PlaylistItem) Equals(other PlaylistItem) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Value != other.Value {
+		return false
+	}
+	if resource.Title == nil && other.Title != nil || resource.Title != nil && other.Title == nil {
+		return false
+	}
+
+	if resource.Title != nil {
+		if *resource.Title != *other.Title {
+			return false
+		}
+	}
+
+	return true
 }
 
 type PlaylistItemType string

@@ -20,7 +20,7 @@ public class CustomRoleRef {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<CustomRoleRef> {
-        private final CustomRoleRef internal;
+        protected final CustomRoleRef internal;
         
         public Builder() {
             this.internal = new CustomRoleRef();

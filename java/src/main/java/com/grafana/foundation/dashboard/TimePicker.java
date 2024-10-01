@@ -36,7 +36,7 @@ public class TimePicker {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<TimePicker> {
-        private final TimePicker internal;
+        protected final TimePicker internal;
         
         public Builder() {
             this.internal = new TimePicker();

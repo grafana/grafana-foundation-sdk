@@ -24,13 +24,61 @@ type Options struct {
 	CellHeight *common.TableCellHeight `json:"cellHeight,omitempty"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.FrameIndex != other.FrameIndex {
+		return false
+	}
+	if resource.ShowHeader != other.ShowHeader {
+		return false
+	}
+	if resource.ShowTypeIcons == nil && other.ShowTypeIcons != nil || resource.ShowTypeIcons != nil && other.ShowTypeIcons == nil {
+		return false
+	}
+
+	if resource.ShowTypeIcons != nil {
+		if *resource.ShowTypeIcons != *other.ShowTypeIcons {
+			return false
+		}
+	}
+
+	if len(resource.SortBy) != len(other.SortBy) {
+		return false
+	}
+
+	for i1 := range resource.SortBy {
+		if !resource.SortBy[i1].Equals(other.SortBy[i1]) {
+			return false
+		}
+	}
+	if resource.Footer == nil && other.Footer != nil || resource.Footer != nil && other.Footer == nil {
+		return false
+	}
+
+	if resource.Footer != nil {
+		if !resource.Footer.Equals(*other.Footer) {
+			return false
+		}
+	}
+	if resource.CellHeight == nil && other.CellHeight != nil || resource.CellHeight != nil && other.CellHeight == nil {
+		return false
+	}
+
+	if resource.CellHeight != nil {
+		if *resource.CellHeight != *other.CellHeight {
+			return false
+		}
+	}
+
+	return true
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "table",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 

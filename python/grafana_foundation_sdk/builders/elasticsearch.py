@@ -3,6 +3,7 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import elasticsearch
+from ..models import dashboard
 
 
 class BaseBucketAggregation(cogbuilder.Builder[elasticsearch.BaseBucketAggregation]):    
@@ -1460,7 +1461,7 @@ class Dataquery(cogbuilder.Builder[elasticsearch.Dataquery]):
     
         return self
     
-    def datasource(self, datasource: object) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.

@@ -30,7 +30,7 @@ public class USAQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<USAQuery> {
-        private final USAQuery internal;
+        protected final USAQuery internal;
         
         public Builder() {
             this.internal = new USAQuery();
