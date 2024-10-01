@@ -20,7 +20,7 @@ public class GeoHashGridSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<GeoHashGridSettings> {
-        private final GeoHashGridSettings internal;
+        protected final GeoHashGridSettings internal;
         
         public Builder() {
             this.internal = new GeoHashGridSettings();

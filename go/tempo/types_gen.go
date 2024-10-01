@@ -8,6 +8,7 @@ import (
 	"fmt"
 
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 type TempoQuery struct {
@@ -49,26 +50,192 @@ type TempoQuery struct {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	Datasource any `json:"datasource,omitempty"`
+	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
 	// The type of the table that is used to display the search results
 	TableType *SearchTableType `json:"tableType,omitempty"`
 }
 
 func (resource TempoQuery) ImplementsDataqueryVariant() {}
 
+func (resource TempoQuery) DataqueryType() string {
+	return "tempo"
+}
+
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "tempo",
 		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := TempoQuery{}
+			dataquery := &TempoQuery{}
 
-			if err := json.Unmarshal(raw, &dataquery); err != nil {
+			if err := json.Unmarshal(raw, dataquery); err != nil {
 				return nil, err
 			}
 
 			return dataquery, nil
 		},
 	}
+}
+
+func (resource TempoQuery) Equals(otherCandidate variants.Dataquery) bool {
+	if otherCandidate == nil {
+		return false
+	}
+
+	other, ok := otherCandidate.(TempoQuery)
+	if !ok {
+		return false
+	}
+	if resource.RefId != other.RefId {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+	if resource.QueryType == nil && other.QueryType != nil || resource.QueryType != nil && other.QueryType == nil {
+		return false
+	}
+
+	if resource.QueryType != nil {
+		if *resource.QueryType != *other.QueryType {
+			return false
+		}
+	}
+	if resource.Query == nil && other.Query != nil || resource.Query != nil && other.Query == nil {
+		return false
+	}
+
+	if resource.Query != nil {
+		if *resource.Query != *other.Query {
+			return false
+		}
+	}
+	if resource.Search == nil && other.Search != nil || resource.Search != nil && other.Search == nil {
+		return false
+	}
+
+	if resource.Search != nil {
+		if *resource.Search != *other.Search {
+			return false
+		}
+	}
+	if resource.ServiceName == nil && other.ServiceName != nil || resource.ServiceName != nil && other.ServiceName == nil {
+		return false
+	}
+
+	if resource.ServiceName != nil {
+		if *resource.ServiceName != *other.ServiceName {
+			return false
+		}
+	}
+	if resource.SpanName == nil && other.SpanName != nil || resource.SpanName != nil && other.SpanName == nil {
+		return false
+	}
+
+	if resource.SpanName != nil {
+		if *resource.SpanName != *other.SpanName {
+			return false
+		}
+	}
+	if resource.MinDuration == nil && other.MinDuration != nil || resource.MinDuration != nil && other.MinDuration == nil {
+		return false
+	}
+
+	if resource.MinDuration != nil {
+		if *resource.MinDuration != *other.MinDuration {
+			return false
+		}
+	}
+	if resource.MaxDuration == nil && other.MaxDuration != nil || resource.MaxDuration != nil && other.MaxDuration == nil {
+		return false
+	}
+
+	if resource.MaxDuration != nil {
+		if *resource.MaxDuration != *other.MaxDuration {
+			return false
+		}
+	}
+	if resource.ServiceMapQuery == nil && other.ServiceMapQuery != nil || resource.ServiceMapQuery != nil && other.ServiceMapQuery == nil {
+		return false
+	}
+
+	if resource.ServiceMapQuery != nil {
+		if !resource.ServiceMapQuery.Equals(*other.ServiceMapQuery) {
+			return false
+		}
+	}
+	if resource.ServiceMapIncludeNamespace == nil && other.ServiceMapIncludeNamespace != nil || resource.ServiceMapIncludeNamespace != nil && other.ServiceMapIncludeNamespace == nil {
+		return false
+	}
+
+	if resource.ServiceMapIncludeNamespace != nil {
+		if *resource.ServiceMapIncludeNamespace != *other.ServiceMapIncludeNamespace {
+			return false
+		}
+	}
+	if resource.Limit == nil && other.Limit != nil || resource.Limit != nil && other.Limit == nil {
+		return false
+	}
+
+	if resource.Limit != nil {
+		if *resource.Limit != *other.Limit {
+			return false
+		}
+	}
+	if resource.Spss == nil && other.Spss != nil || resource.Spss != nil && other.Spss == nil {
+		return false
+	}
+
+	if resource.Spss != nil {
+		if *resource.Spss != *other.Spss {
+			return false
+		}
+	}
+
+	if len(resource.Filters) != len(other.Filters) {
+		return false
+	}
+
+	for i1 := range resource.Filters {
+		if !resource.Filters[i1].Equals(other.Filters[i1]) {
+			return false
+		}
+	}
+
+	if len(resource.GroupBy) != len(other.GroupBy) {
+		return false
+	}
+
+	for i1 := range resource.GroupBy {
+		if !resource.GroupBy[i1].Equals(other.GroupBy[i1]) {
+			return false
+		}
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.TableType == nil && other.TableType != nil || resource.TableType != nil && other.TableType == nil {
+		return false
+	}
+
+	if resource.TableType != nil {
+		if *resource.TableType != *other.TableType {
+			return false
+		}
+	}
+
+	return true
 }
 
 // search = Loki search, nativeSearch = Tempo search for backwards compatibility
@@ -128,6 +295,59 @@ type TraceqlFilter struct {
 	Scope *TraceqlSearchScope `json:"scope,omitempty"`
 }
 
+func (resource TraceqlFilter) Equals(other TraceqlFilter) bool {
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Tag == nil && other.Tag != nil || resource.Tag != nil && other.Tag == nil {
+		return false
+	}
+
+	if resource.Tag != nil {
+		if *resource.Tag != *other.Tag {
+			return false
+		}
+	}
+	if resource.Operator == nil && other.Operator != nil || resource.Operator != nil && other.Operator == nil {
+		return false
+	}
+
+	if resource.Operator != nil {
+		if *resource.Operator != *other.Operator {
+			return false
+		}
+	}
+	if resource.Value == nil && other.Value != nil || resource.Value != nil && other.Value == nil {
+		return false
+	}
+
+	if resource.Value != nil {
+		if !resource.Value.Equals(*other.Value) {
+			return false
+		}
+	}
+	if resource.ValueType == nil && other.ValueType != nil || resource.ValueType != nil && other.ValueType == nil {
+		return false
+	}
+
+	if resource.ValueType != nil {
+		if *resource.ValueType != *other.ValueType {
+			return false
+		}
+	}
+	if resource.Scope == nil && other.Scope != nil || resource.Scope != nil && other.Scope == nil {
+		return false
+	}
+
+	if resource.Scope != nil {
+		if *resource.Scope != *other.Scope {
+			return false
+		}
+	}
+
+	return true
+}
+
 type StringOrArrayOfString struct {
 	String        *string  `json:"String,omitempty"`
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
@@ -173,4 +393,28 @@ func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 	}
 
 	return errors.Join(errList...)
+}
+
+func (resource StringOrArrayOfString) Equals(other StringOrArrayOfString) bool {
+	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
+		return false
+	}
+
+	if resource.String != nil {
+		if *resource.String != *other.String {
+			return false
+		}
+	}
+
+	if len(resource.ArrayOfString) != len(other.ArrayOfString) {
+		return false
+	}
+
+	for i1 := range resource.ArrayOfString {
+		if resource.ArrayOfString[i1] != other.ArrayOfString[i1] {
+			return false
+		}
+	}
+
+	return true
 }

@@ -58,10 +58,13 @@ func (builder *SerialDiffBuilder) Id(id string) *SerialDiffBuilder {
 	return builder
 }
 
-func (builder *SerialDiffBuilder) Settings(settings struct {
-	Lag *string `json:"lag,omitempty"`
-}) *SerialDiffBuilder {
-	builder.internal.Settings = &settings
+func (builder *SerialDiffBuilder) Settings(settings cog.Builder[ElasticsearchSerialDiffSettings]) *SerialDiffBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

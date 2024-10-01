@@ -3,6 +3,7 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import grafanapyroscope
+from ..models import dashboard
 
 
 class Dataquery(cogbuilder.Builder[grafanapyroscope.Dataquery]):    
@@ -91,7 +92,7 @@ class Dataquery(cogbuilder.Builder[grafanapyroscope.Dataquery]):
     
         return self
     
-    def datasource(self, datasource: object) -> typing.Self:    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.

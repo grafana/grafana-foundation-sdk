@@ -1407,20 +1407,6 @@
         ],
         "description": "Optional formats for the template variable replace functions\nSee also https://grafana.com/docs/grafana/latest/dashboards/variables/variable-syntax/#advanced-variable-format-options"
       },
-      "DataSourceRef": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "The plugin type-id"
-          },
-          "uid": {
-            "type": "string",
-            "description": "Specific datasource instance"
-          }
-        }
-      },
       "ResourceDimensionConfig": {
         "type": "object",
         "additionalProperties": false,

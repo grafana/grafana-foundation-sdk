@@ -32,7 +32,7 @@ public class MetricNamespaceQuery {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MetricNamespaceQuery> {
-        private final MetricNamespaceQuery internal;
+        protected final MetricNamespaceQuery internal;
         
         public Builder() {
             this.internal = new MetricNamespaceQuery();

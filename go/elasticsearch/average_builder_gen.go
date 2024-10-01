@@ -52,11 +52,13 @@ func (builder *AverageBuilder) Id(id string) *AverageBuilder {
 	return builder
 }
 
-func (builder *AverageBuilder) Settings(settings struct {
-	Script  *InlineScript `json:"script,omitempty"`
-	Missing *string       `json:"missing,omitempty"`
-}) *AverageBuilder {
-	builder.internal.Settings = &settings
+func (builder *AverageBuilder) Settings(settings cog.Builder[ElasticsearchAverageSettings]) *AverageBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

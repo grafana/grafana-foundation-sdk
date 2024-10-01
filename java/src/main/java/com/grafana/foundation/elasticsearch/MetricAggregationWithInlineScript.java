@@ -28,7 +28,7 @@ public class MetricAggregationWithInlineScript {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MetricAggregationWithInlineScript> {
-        private final MetricAggregationWithInlineScript internal;
+        protected final MetricAggregationWithInlineScript internal;
         
         public Builder() {
             this.internal = new MetricAggregationWithInlineScript();

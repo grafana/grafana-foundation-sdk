@@ -25,7 +25,7 @@ public class BaseBucketAggregation {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<BaseBucketAggregation> {
-        private final BaseBucketAggregation internal;
+        protected final BaseBucketAggregation internal;
         
         public Builder() {
             this.internal = new BaseBucketAggregation();

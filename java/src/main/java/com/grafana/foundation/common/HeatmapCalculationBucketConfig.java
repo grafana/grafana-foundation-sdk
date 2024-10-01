@@ -29,7 +29,7 @@ public class HeatmapCalculationBucketConfig {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<HeatmapCalculationBucketConfig> {
-        private final HeatmapCalculationBucketConfig internal;
+        protected final HeatmapCalculationBucketConfig internal;
         
         public Builder() {
             this.internal = new HeatmapCalculationBucketConfig();

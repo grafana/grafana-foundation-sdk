@@ -44,10 +44,74 @@ type CandlestickFieldMap struct {
 	Volume *string `json:"volume,omitempty"`
 }
 
+func (resource CandlestickFieldMap) Equals(other CandlestickFieldMap) bool {
+	if resource.Open == nil && other.Open != nil || resource.Open != nil && other.Open == nil {
+		return false
+	}
+
+	if resource.Open != nil {
+		if *resource.Open != *other.Open {
+			return false
+		}
+	}
+	if resource.High == nil && other.High != nil || resource.High != nil && other.High == nil {
+		return false
+	}
+
+	if resource.High != nil {
+		if *resource.High != *other.High {
+			return false
+		}
+	}
+	if resource.Low == nil && other.Low != nil || resource.Low != nil && other.Low == nil {
+		return false
+	}
+
+	if resource.Low != nil {
+		if *resource.Low != *other.Low {
+			return false
+		}
+	}
+	if resource.Close == nil && other.Close != nil || resource.Close != nil && other.Close == nil {
+		return false
+	}
+
+	if resource.Close != nil {
+		if *resource.Close != *other.Close {
+			return false
+		}
+	}
+	if resource.Volume == nil && other.Volume != nil || resource.Volume != nil && other.Volume == nil {
+		return false
+	}
+
+	if resource.Volume != nil {
+		if *resource.Volume != *other.Volume {
+			return false
+		}
+	}
+
+	return true
+}
+
 type CandlestickColors struct {
 	Up   string `json:"up"`
 	Down string `json:"down"`
 	Flat string `json:"flat"`
+}
+
+func (resource CandlestickColors) Equals(other CandlestickColors) bool {
+	if resource.Up != other.Up {
+		return false
+	}
+	if resource.Down != other.Down {
+		return false
+	}
+	if resource.Flat != other.Flat {
+		return false
+	}
+
+	return true
 }
 
 type Options struct {
@@ -67,24 +131,59 @@ type Options struct {
 	IncludeAllFields *bool `json:"includeAllFields,omitempty"`
 }
 
+func (resource Options) Equals(other Options) bool {
+	if resource.Mode != other.Mode {
+		return false
+	}
+	if resource.CandleStyle != other.CandleStyle {
+		return false
+	}
+	if resource.ColorStrategy != other.ColorStrategy {
+		return false
+	}
+	if !resource.Fields.Equals(other.Fields) {
+		return false
+	}
+	if !resource.Colors.Equals(other.Colors) {
+		return false
+	}
+	if !resource.Legend.Equals(other.Legend) {
+		return false
+	}
+	if !resource.Tooltip.Equals(other.Tooltip) {
+		return false
+	}
+	if resource.IncludeAllFields == nil && other.IncludeAllFields != nil || resource.IncludeAllFields != nil && other.IncludeAllFields == nil {
+		return false
+	}
+
+	if resource.IncludeAllFields != nil {
+		if *resource.IncludeAllFields != *other.IncludeAllFields {
+			return false
+		}
+	}
+
+	return true
+}
+
 type FieldConfig = common.GraphFieldConfig
 
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "candlestick",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := Options{}
+			options := &Options{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 
 			return options, nil
 		},
 		FieldConfigUnmarshaler: func(raw []byte) (any, error) {
-			fieldConfig := FieldConfig{}
+			fieldConfig := &FieldConfig{}
 
-			if err := json.Unmarshal(raw, &fieldConfig); err != nil {
+			if err := json.Unmarshal(raw, fieldConfig); err != nil {
 				return nil, err
 			}
 

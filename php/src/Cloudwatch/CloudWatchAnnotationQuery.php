@@ -101,9 +101,8 @@ class CloudWatchAnnotationQuery implements \JsonSerializable, \Grafana\Foundatio
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
-     * @var mixed|null
      */
-    public $datasource;
+    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
      * @deprecated use statistic
@@ -127,10 +126,10 @@ class CloudWatchAnnotationQuery implements \JsonSerializable, \Grafana\Foundatio
      * @param string|null $accountId
      * @param string|null $statistic
      * @param string|null $alarmNamePrefix
-     * @param mixed|null $datasource
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param array<string>|null $statistics
      */
-    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?bool $prefixMatching = null, ?string $actionPrefix = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $region = null, ?string $namespace = null, ?string $metricName = null, ?array $dimensions = null, ?bool $matchExact = null, ?string $period = null, ?string $accountId = null, ?string $statistic = null, ?string $alarmNamePrefix = null,  $datasource = null, ?array $statistics = null)
+    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?bool $prefixMatching = null, ?string $actionPrefix = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $region = null, ?string $namespace = null, ?string $metricName = null, ?array $dimensions = null, ?bool $matchExact = null, ?string $period = null, ?string $accountId = null, ?string $statistic = null, ?string $alarmNamePrefix = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?array $statistics = null)
     {
         $this->queryMode = $queryMode ?: \Grafana\Foundation\Cloudwatch\CloudWatchQueryMode::annotations();
         $this->prefixMatching = $prefixMatching;
@@ -174,7 +173,11 @@ class CloudWatchAnnotationQuery implements \JsonSerializable, \Grafana\Foundatio
             accountId: $data["accountId"] ?? null,
             statistic: $data["statistic"] ?? null,
             alarmNamePrefix: $data["alarmNamePrefix"] ?? null,
-            datasource: $data["datasource"] ?? null,
+            datasource: isset($data["datasource"]) ? (function($input) {
+    	/** @var array{type?: string, uid?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    })($data["datasource"]) : null,
             statistics: $data["statistics"] ?? null,
         );
     }

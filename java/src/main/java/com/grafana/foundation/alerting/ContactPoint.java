@@ -49,7 +49,7 @@ public class ContactPoint {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<ContactPoint> {
-        private final ContactPoint internal;
+        protected final ContactPoint internal;
         
         public Builder() {
             this.internal = new ContactPoint();

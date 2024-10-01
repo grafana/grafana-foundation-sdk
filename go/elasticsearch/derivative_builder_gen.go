@@ -58,10 +58,13 @@ func (builder *DerivativeBuilder) Id(id string) *DerivativeBuilder {
 	return builder
 }
 
-func (builder *DerivativeBuilder) Settings(settings struct {
-	Unit *string `json:"unit,omitempty"`
-}) *DerivativeBuilder {
-	builder.internal.Settings = &settings
+func (builder *DerivativeBuilder) Settings(settings cog.Builder[ElasticsearchDerivativeSettings]) *DerivativeBuilder {
+	settingsResource, err := settings.Build()
+	if err != nil {
+		builder.errors["settings"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Settings = &settingsResource
 
 	return builder
 }

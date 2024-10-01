@@ -74,8 +74,6 @@ export * from './tableSparklineCellOptionsBuilder.gen';
 export type * from './tableSparklineCellOptionsBuilder.gen';
 export * from './tableColoredBackgroundCellOptionsBuilder.gen';
 export type * from './tableColoredBackgroundCellOptionsBuilder.gen';
-export * from './dataSourceRefBuilder.gen';
-export type * from './dataSourceRefBuilder.gen';
 export * from './resourceDimensionConfigBuilder.gen';
 export type * from './resourceDimensionConfigBuilder.gen';
 export * from './frameGeometrySourceBuilder.gen';

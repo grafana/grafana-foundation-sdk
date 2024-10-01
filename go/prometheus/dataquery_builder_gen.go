@@ -5,6 +5,7 @@ package prometheus
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*DataqueryBuilder)(nil)
@@ -103,10 +104,13 @@ func (builder *DataqueryBuilder) IntervalFactor(intervalFactor float64) *Dataque
 	return builder
 }
 
-func (builder *DataqueryBuilder) Scope(scope struct {
-	Matchers string `json:"matchers"`
-}) *DataqueryBuilder {
-	builder.internal.Scope = &scope
+func (builder *DataqueryBuilder) Scope(scope cog.Builder[PrometheusDataqueryScope]) *DataqueryBuilder {
+	scopeResource, err := scope.Build()
+	if err != nil {
+		builder.errors["scope"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Scope = &scopeResource
 
 	return builder
 }
@@ -141,7 +145,7 @@ func (builder *DataqueryBuilder) QueryType(queryType string) *DataqueryBuilder {
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
 // TODO this shouldn't be unknown but DataSourceRef | null
-func (builder *DataqueryBuilder) Datasource(datasource any) *DataqueryBuilder {
+func (builder *DataqueryBuilder) Datasource(datasource dashboard.DataSourceRef) *DataqueryBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

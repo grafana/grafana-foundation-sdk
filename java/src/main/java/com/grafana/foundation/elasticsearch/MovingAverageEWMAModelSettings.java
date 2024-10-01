@@ -28,7 +28,7 @@ public class MovingAverageEWMAModelSettings {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<MovingAverageEWMAModelSettings> {
-        private final MovingAverageEWMAModelSettings internal;
+        protected final MovingAverageEWMAModelSettings internal;
         
         public Builder() {
             this.internal = new MovingAverageEWMAModelSettings();

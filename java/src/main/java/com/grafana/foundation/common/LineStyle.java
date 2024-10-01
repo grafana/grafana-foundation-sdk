@@ -25,7 +25,7 @@ public class LineStyle {
 
     
     public static class Builder implements com.grafana.foundation.cog.Builder<LineStyle> {
-        private final LineStyle internal;
+        protected final LineStyle internal;
         
         public Builder() {
             this.internal = new LineStyle();
