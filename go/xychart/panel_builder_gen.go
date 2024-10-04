@@ -695,11 +695,16 @@ func (builder *PanelBuilder) SeriesMapping(seriesMapping SeriesMapping) *PanelBu
 }
 
 // Table Mode (auto)
-func (builder *PanelBuilder) Dims(dims XYDimensionConfig) *PanelBuilder {
+func (builder *PanelBuilder) Dims(dims cog.Builder[XYDimensionConfig]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Dims = dims
+	dimsResource, err := dims.Build()
+	if err != nil {
+		builder.errors["options.dims"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Dims = dimsResource
 
 	return builder
 }
@@ -733,11 +738,20 @@ func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[common.VizTooltipOption
 }
 
 // Manual Mode
-func (builder *PanelBuilder) Series(series []ScatterSeriesConfig) *PanelBuilder {
+func (builder *PanelBuilder) Series(series []cog.Builder[ScatterSeriesConfig]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Series = series
+	seriesResources := make([]ScatterSeriesConfig, 0, len(series))
+	for _, r1 := range series {
+		seriesDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["options.series"] = err.(cog.BuildErrors)
+			return builder
+		}
+		seriesResources = append(seriesResources, seriesDepth1)
+	}
+	builder.internal.Options.(*Options).Series = seriesResources
 
 	return builder
 }

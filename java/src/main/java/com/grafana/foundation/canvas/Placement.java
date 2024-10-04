@@ -36,4 +36,49 @@ public class Placement {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<Placement> {
+        protected final Placement internal;
+        
+        public Builder() {
+            this.internal = new Placement();
+        }
+    public Builder top(Double top) {
+    this.internal.top = top;
+        return this;
+    }
+    
+    public Builder left(Double left) {
+    this.internal.left = left;
+        return this;
+    }
+    
+    public Builder right(Double right) {
+    this.internal.right = right;
+        return this;
+    }
+    
+    public Builder bottom(Double bottom) {
+    this.internal.bottom = bottom;
+        return this;
+    }
+    
+    public Builder width(Double width) {
+    this.internal.width = width;
+        return this;
+    }
+    
+    public Builder height(Double height) {
+    this.internal.height = height;
+        return this;
+    }
+    
+    public Builder rotation(Double rotation) {
+    this.internal.rotation = rotation;
+        return this;
+    }
+    public Placement build() {
+            return this.internal;
+        }
+    }
 }
