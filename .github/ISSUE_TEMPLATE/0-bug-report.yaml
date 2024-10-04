@@ -1,0 +1,59 @@
+name: New bug report
+description: Report a new bug
+title: "[Bug]: <title>"
+labels: [bug]
+---
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+      
+        This is helpful for us to improve the library and make it better :smile:
+      
+  - type: markdown
+    attributes:
+      values: |
+        #
+  
+  - type: dropdown
+    id: version
+    attributes:
+      label: version
+      description: What's version are you using?
+      options:
+        - 11.2.x
+        - 11.1.x
+        - 11.0.x
+        - 10.4.x
+        - 10.3.x
+        - 10.2.x
+        - 10.1.x
+      default: 11.2.x
+    validations:
+      required: true
+    
+  - type: checkboxes
+    id: language
+    attributes:
+      label: language
+      description: What language(s) are you using?
+      options:
+        - label: Go
+        - label: Java
+        - label: PHP
+        - label: Python
+        - label: Typescript
+  
+  - type: textarea
+    attributes:
+      label: Describe your bug
+      description: Put code examples could be helpful for us.
+    validations:
+      required: true
+        
+  - type: textarea
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true

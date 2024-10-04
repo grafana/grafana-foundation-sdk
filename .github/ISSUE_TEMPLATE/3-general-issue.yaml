@@ -1,0 +1,22 @@
+name: General issue
+description: Ask for information, doubts, etc...
+title: "[Question]: <title>"
+labels: [question, help wanted]
+---
+body:
+  - type: markdown
+    attributes:
+      values: |
+        If you are looking for examples, you should take a look to [this link](https://github.com/grafana/grafana-foundation-sdk/tree/main/examples).
+        Also each language in each branch has extra information about their setup.
+  - type: markdown
+    attributes:
+      values: |
+        #
+
+  - type: textarea
+    attributes:
+      label: What do you need?
+      description: Describe your issue. 
+    validations:
+      required: true

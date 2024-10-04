@@ -1,0 +1,28 @@
+name: Feature/enhancement request
+description: Request for feature or enhancement that are you would like to see.
+title: "[Feature]: <title>"
+labels: [enhancement]
+---
+body:
+  - type: markdown
+    attributes:
+      values: |
+        Grafana-foundation-SDK is open to improvements. We will evaluate your request. 
+  - type: markdown
+    attributes:
+      values: |
+        #
+
+  - type: textarea
+    attributes:
+      label: Why is this needed?
+      description: Describe the problem that you want to solve. 
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: What would you like to be added?
+      description: Add a brief description of the feature o enhancement should do.
+    validations:
+      required: true
