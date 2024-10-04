@@ -18,4 +18,19 @@ public class TooltipOptions {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<TooltipOptions> {
+        protected final TooltipOptions internal;
+        
+        public Builder() {
+            this.internal = new TooltipOptions();
+        }
+    public Builder mode(TooltipMode mode) {
+    this.internal.mode = mode;
+        return this;
+    }
+    public TooltipOptions build() {
+            return this.internal;
+        }
+    }
 }
