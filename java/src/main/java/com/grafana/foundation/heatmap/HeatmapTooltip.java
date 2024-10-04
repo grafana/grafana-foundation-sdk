@@ -35,4 +35,39 @@ public class HeatmapTooltip {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<HeatmapTooltip> {
+        protected final HeatmapTooltip internal;
+        
+        public Builder() {
+            this.internal = new HeatmapTooltip();
+        }
+    public Builder mode(TooltipDisplayMode mode) {
+    this.internal.mode = mode;
+        return this;
+    }
+    
+    public Builder maxHeight(Double maxHeight) {
+    this.internal.maxHeight = maxHeight;
+        return this;
+    }
+    
+    public Builder maxWidth(Double maxWidth) {
+    this.internal.maxWidth = maxWidth;
+        return this;
+    }
+    
+    public Builder yHistogram(Boolean yHistogram) {
+    this.internal.yHistogram = yHistogram;
+        return this;
+    }
+    
+    public Builder showColorScale(Boolean showColorScale) {
+    this.internal.showColorScale = showColorScale;
+        return this;
+    }
+    public HeatmapTooltip build() {
+            return this.internal;
+        }
+    }
 }
