@@ -426,11 +426,16 @@ func (builder *PanelBuilder) Mode(mode DebugMode) *PanelBuilder {
 	return builder
 }
 
-func (builder *PanelBuilder) Counters(counters UpdateConfig) *PanelBuilder {
+func (builder *PanelBuilder) Counters(counters cog.Builder[UpdateConfig]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Counters = &counters
+	countersResource, err := counters.Build()
+	if err != nil {
+		builder.errors["options.counters"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Counters = &countersResource
 
 	return builder
 }

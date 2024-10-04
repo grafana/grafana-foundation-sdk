@@ -264,12 +264,12 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder counters(UpdateConfig counters) {
+    public PanelBuilder counters(com.grafana.foundation.cog.Builder<UpdateConfig> counters) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.debug.Options();
 		}
         com.grafana.foundation.debug.Options optionsResource = (com.grafana.foundation.debug.Options) this.internal.options;
-        optionsResource.counters = counters;
+        optionsResource.counters = counters.build();
     this.internal.options = optionsResource;
         return this;
     }

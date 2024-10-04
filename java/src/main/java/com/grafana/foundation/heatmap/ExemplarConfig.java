@@ -18,4 +18,19 @@ public class ExemplarConfig {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<ExemplarConfig> {
+        protected final ExemplarConfig internal;
+        
+        public Builder() {
+            this.internal = new ExemplarConfig();
+        }
+    public Builder color(String color) {
+    this.internal.color = color;
+        return this;
+    }
+    public ExemplarConfig build() {
+            return this.internal;
+        }
+    }
 }
