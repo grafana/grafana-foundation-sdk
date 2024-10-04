@@ -24,4 +24,32 @@ public class XYDimensionConfig {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<XYDimensionConfig> {
+        protected final XYDimensionConfig internal;
+        
+        public Builder() {
+            this.internal = new XYDimensionConfig();
+        }
+    public Builder frame(Integer frame) {
+        if (!(frame >= 0)) {
+            throw new IllegalArgumentException("frame must be >= 0");
+        }
+    this.internal.frame = frame;
+        return this;
+    }
+    
+    public Builder x(String x) {
+    this.internal.x = x;
+        return this;
+    }
+    
+    public Builder exclude(List<String> exclude) {
+    this.internal.exclude = exclude;
+        return this;
+    }
+    public XYDimensionConfig build() {
+            return this.internal;
+        }
+    }
 }

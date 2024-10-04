@@ -87,4 +87,124 @@ public class ScatterSeriesConfig {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<ScatterSeriesConfig> {
+        protected final ScatterSeriesConfig internal;
+        
+        public Builder() {
+            this.internal = new ScatterSeriesConfig();
+        this.show(ScatterShow.POINTS);
+        this.label(VisibilityMode.AUTO);
+        }
+    public Builder x(String x) {
+    this.internal.x = x;
+        return this;
+    }
+    
+    public Builder y(String y) {
+    this.internal.y = y;
+        return this;
+    }
+    
+    public Builder show(ScatterShow show) {
+    this.internal.show = show;
+        return this;
+    }
+    
+    public Builder pointSize(com.grafana.foundation.cog.Builder<ScaleDimensionConfig> pointSize) {
+    this.internal.pointSize = pointSize.build();
+        return this;
+    }
+    
+    public Builder pointColor(com.grafana.foundation.cog.Builder<ColorDimensionConfig> pointColor) {
+    this.internal.pointColor = pointColor.build();
+        return this;
+    }
+    
+    public Builder lineColor(com.grafana.foundation.cog.Builder<ColorDimensionConfig> lineColor) {
+    this.internal.lineColor = lineColor.build();
+        return this;
+    }
+    
+    public Builder lineWidth(Integer lineWidth) {
+        if (!(lineWidth >= 0)) {
+            throw new IllegalArgumentException("lineWidth must be >= 0");
+        }
+    this.internal.lineWidth = lineWidth;
+        return this;
+    }
+    
+    public Builder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle) {
+    this.internal.lineStyle = lineStyle.build();
+        return this;
+    }
+    
+    public Builder label(VisibilityMode label) {
+    this.internal.label = label;
+        return this;
+    }
+    
+    public Builder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
+    this.internal.hideFrom = hideFrom.build();
+        return this;
+    }
+    
+    public Builder axisPlacement(AxisPlacement axisPlacement) {
+    this.internal.axisPlacement = axisPlacement;
+        return this;
+    }
+    
+    public Builder axisColorMode(AxisColorMode axisColorMode) {
+    this.internal.axisColorMode = axisColorMode;
+        return this;
+    }
+    
+    public Builder axisLabel(String axisLabel) {
+    this.internal.axisLabel = axisLabel;
+        return this;
+    }
+    
+    public Builder axisWidth(Double axisWidth) {
+    this.internal.axisWidth = axisWidth;
+        return this;
+    }
+    
+    public Builder axisSoftMin(Double axisSoftMin) {
+    this.internal.axisSoftMin = axisSoftMin;
+        return this;
+    }
+    
+    public Builder axisSoftMax(Double axisSoftMax) {
+    this.internal.axisSoftMax = axisSoftMax;
+        return this;
+    }
+    
+    public Builder axisGridShow(Boolean axisGridShow) {
+    this.internal.axisGridShow = axisGridShow;
+        return this;
+    }
+    
+    public Builder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
+    this.internal.scaleDistribution = scaleDistribution.build();
+        return this;
+    }
+    
+    public Builder name(String name) {
+    this.internal.name = name;
+        return this;
+    }
+    
+    public Builder labelValue(com.grafana.foundation.cog.Builder<TextDimensionConfig> labelValue) {
+    this.internal.labelValue = labelValue.build();
+        return this;
+    }
+    
+    public Builder axisCenteredZero(Boolean axisCenteredZero) {
+    this.internal.axisCenteredZero = axisCenteredZero;
+        return this;
+    }
+    public ScatterSeriesConfig build() {
+            return this.internal;
+        }
+    }
 }

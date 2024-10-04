@@ -336,11 +336,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    counters(counters: debug.UpdateConfig): this {
+    counters(counters: cog.Builder<debug.UpdateConfig>): this {
         if (!this.internal.options) {
             this.internal.options = debug.defaultOptions();
         }
-        this.internal.options.counters = counters;
+        const countersResource = counters.build();
+        this.internal.options.counters = countersResource;
         return this;
     }
 }

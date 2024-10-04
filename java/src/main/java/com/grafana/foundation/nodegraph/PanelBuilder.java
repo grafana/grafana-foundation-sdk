@@ -240,21 +240,21 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.fieldConfig.overrides.add(overrides.build());
         return this;
     }
-    public PanelBuilder nodes(NodeOptions nodes) {
+    public PanelBuilder nodes(com.grafana.foundation.cog.Builder<NodeOptions> nodes) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.nodegraph.Options();
 		}
         com.grafana.foundation.nodegraph.Options optionsResource = (com.grafana.foundation.nodegraph.Options) this.internal.options;
-        optionsResource.nodes = nodes;
+        optionsResource.nodes = nodes.build();
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder edges(EdgeOptions edges) {
+    public PanelBuilder edges(com.grafana.foundation.cog.Builder<EdgeOptions> edges) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.nodegraph.Options();
 		}
         com.grafana.foundation.nodegraph.Options optionsResource = (com.grafana.foundation.nodegraph.Options) this.internal.options;
-        optionsResource.edges = edges;
+        optionsResource.edges = edges.build();
     this.internal.options = optionsResource;
         return this;
     }

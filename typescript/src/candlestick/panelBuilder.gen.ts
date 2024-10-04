@@ -357,20 +357,22 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // Map fields to appropriate dimension
-    fields(fields: candlestick.CandlestickFieldMap): this {
+    fields(fields: cog.Builder<candlestick.CandlestickFieldMap>): this {
         if (!this.internal.options) {
             this.internal.options = candlestick.defaultOptions();
         }
-        this.internal.options.fields = fields;
+        const fieldsResource = fields.build();
+        this.internal.options.fields = fieldsResource;
         return this;
     }
 
     // Set which colors are used when the price movement is up or down
-    colors(colors: candlestick.CandlestickColors): this {
+    colors(colors: cog.Builder<candlestick.CandlestickColors>): this {
         if (!this.internal.options) {
             this.internal.options = candlestick.defaultOptions();
         }
-        this.internal.options.colors = colors;
+        const colorsResource = colors.build();
+        this.internal.options.colors = colorsResource;
         return this;
     }
 

@@ -2,11 +2,71 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import dashboard
-from ..cog import variants as cogvariants
 from ..models import piechart
 from ..models import common
+from ..models import dashboard
+from ..cog import variants as cogvariants
 
+
+class PieChartLegendOptions(cogbuilder.Builder[piechart.PieChartLegendOptions]):    
+    _internal: piechart.PieChartLegendOptions
+
+    def __init__(self):
+        self._internal = piechart.PieChartLegendOptions()
+
+    def build(self) -> piechart.PieChartLegendOptions:
+        return self._internal    
+    
+    def values(self, values: list[piechart.PieChartLegendValues]) -> typing.Self:        
+        self._internal.values = values
+    
+        return self
+    
+    def display_mode(self, display_mode: common.LegendDisplayMode) -> typing.Self:        
+        self._internal.display_mode = display_mode
+    
+        return self
+    
+    def placement(self, placement: common.LegendPlacement) -> typing.Self:        
+        self._internal.placement = placement
+    
+        return self
+    
+    def show_legend(self, show_legend: bool) -> typing.Self:        
+        self._internal.show_legend = show_legend
+    
+        return self
+    
+    def as_table(self, as_table: bool) -> typing.Self:        
+        self._internal.as_table = as_table
+    
+        return self
+    
+    def is_visible(self, is_visible: bool) -> typing.Self:        
+        self._internal.is_visible = is_visible
+    
+        return self
+    
+    def sort_by(self, sort_by: str) -> typing.Self:        
+        self._internal.sort_by = sort_by
+    
+        return self
+    
+    def sort_desc(self, sort_desc: bool) -> typing.Self:        
+        self._internal.sort_desc = sort_desc
+    
+        return self
+    
+    def width(self, width: float) -> typing.Self:        
+        self._internal.width = width
+    
+        return self
+    
+    def calcs(self, calcs: list[str]) -> typing.Self:        
+        self._internal.calcs = calcs
+    
+        return self
+    
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
     """
@@ -464,11 +524,12 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def legend(self, legend: piechart.PieChartLegendOptions) -> typing.Self:        
+    def legend(self, legend: cogbuilder.Builder[piechart.PieChartLegendOptions]) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = piechart.Options()
         assert isinstance(self._internal.options, piechart.Options)
-        self._internal.options.legend = legend
+        legend_resource = legend.build()
+        self._internal.options.legend = legend_resource
     
         return self
     

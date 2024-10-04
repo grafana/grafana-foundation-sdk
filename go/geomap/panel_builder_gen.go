@@ -356,20 +356,30 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 	return builder
 }
 
-func (builder *PanelBuilder) View(view MapViewConfig) *PanelBuilder {
+func (builder *PanelBuilder) View(view cog.Builder[MapViewConfig]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).View = view
+	viewResource, err := view.Build()
+	if err != nil {
+		builder.errors["options.view"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).View = viewResource
 
 	return builder
 }
 
-func (builder *PanelBuilder) Controls(controls ControlsOptions) *PanelBuilder {
+func (builder *PanelBuilder) Controls(controls cog.Builder[ControlsOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Controls = controls
+	controlsResource, err := controls.Build()
+	if err != nil {
+		builder.errors["options.controls"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Controls = controlsResource
 
 	return builder
 }
@@ -406,11 +416,16 @@ func (builder *PanelBuilder) Layers(layers []cog.Builder[common.MapLayerOptions]
 	return builder
 }
 
-func (builder *PanelBuilder) Tooltip(tooltip TooltipOptions) *PanelBuilder {
+func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[TooltipOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Tooltip = tooltip
+	tooltipResource, err := tooltip.Build()
+	if err != nil {
+		builder.errors["options.tooltip"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Tooltip = tooltipResource
 
 	return builder
 }

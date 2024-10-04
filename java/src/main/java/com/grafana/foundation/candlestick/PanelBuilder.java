@@ -45,10 +45,10 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         this.mode(VizDisplayMode.CANDLES_VOLUME);
         this.candleStyle(CandleStyle.CANDLES);
         this.colorStrategy(ColorStrategy.OPEN_CLOSE);
-        CandlestickColors candlestickColorsResource = new CandlestickColors();
-        candlestickColorsResource.up = "green";
-        candlestickColorsResource.down = "red";
-        candlestickColorsResource.flat = "gray";
+        CandlestickColors.Builder candlestickColorsResource = new CandlestickColors.Builder();
+        candlestickColorsResource.up("green");
+        candlestickColorsResource.down("red");
+        candlestickColorsResource.flat("gray");
         this.colors(candlestickColorsResource);
         this.includeAllFields(false);
     }
@@ -287,21 +287,21 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder fields(CandlestickFieldMap fields) {
+    public PanelBuilder fields(com.grafana.foundation.cog.Builder<CandlestickFieldMap> fields) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.candlestick.Options();
 		}
         com.grafana.foundation.candlestick.Options optionsResource = (com.grafana.foundation.candlestick.Options) this.internal.options;
-        optionsResource.fields = fields;
+        optionsResource.fields = fields.build();
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder colors(CandlestickColors colors) {
+    public PanelBuilder colors(com.grafana.foundation.cog.Builder<CandlestickColors> colors) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.candlestick.Options();
 		}
         com.grafana.foundation.candlestick.Options optionsResource = (com.grafana.foundation.candlestick.Options) this.internal.options;
-        optionsResource.colors = colors;
+        optionsResource.colors = colors.build();
     this.internal.options = optionsResource;
         return this;
     }
