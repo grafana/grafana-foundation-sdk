@@ -11,13 +11,15 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.grafana</groupId>
             <artifactId>grafana-foundation-sdk</artifactId>
-            <version>11.2.0-1726580554</version>
+            <version>11.2.0-1728036865</version>
         </dependency>
     </dependencies>
 
