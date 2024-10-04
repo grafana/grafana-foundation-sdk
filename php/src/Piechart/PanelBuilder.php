@@ -535,13 +535,17 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    public function legend(\Grafana\Foundation\Piechart\PieChartLegendOptions $legend): static
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Piechart\PieChartLegendOptions> $legend
+     */
+    public function legend(\Grafana\Foundation\Cog\Builder $legend): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Piechart\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Piechart\Options);
-        $this->internal->options->legend = $legend;
+        $legendResource = $legend->build();
+        $this->internal->options->legend = $legendResource;
     
         return $this;
     }

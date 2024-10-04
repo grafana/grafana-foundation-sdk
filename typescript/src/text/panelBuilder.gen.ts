@@ -361,11 +361,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    code(code: text.CodeOptions): this {
+    code(code: cog.Builder<text.CodeOptions>): this {
         if (!this.internal.options) {
             this.internal.options = text.defaultOptions();
         }
-        this.internal.options.code = code;
+        const codeResource = code.build();
+        this.internal.options.code = codeResource;
         return this;
     }
 

@@ -24,4 +24,24 @@ public class FilterValueRange {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<FilterValueRange> {
+        protected final FilterValueRange internal;
+        
+        public Builder() {
+            this.internal = new FilterValueRange();
+        }
+    public Builder le(Float le) {
+    this.internal.le = le;
+        return this;
+    }
+    
+    public Builder ge(Float ge) {
+    this.internal.ge = ge;
+        return this;
+    }
+    public FilterValueRange build() {
+            return this.internal;
+        }
+    }
 }

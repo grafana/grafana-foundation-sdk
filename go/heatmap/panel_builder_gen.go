@@ -444,31 +444,46 @@ func (builder *PanelBuilder) Calculation(calculation cog.Builder[common.HeatmapC
 }
 
 // Controls the color options
-func (builder *PanelBuilder) Color(color HeatmapColorOptions) *PanelBuilder {
+func (builder *PanelBuilder) Color(color cog.Builder[HeatmapColorOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Color = color
+	colorResource, err := color.Build()
+	if err != nil {
+		builder.errors["options.color"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Color = colorResource
 
 	return builder
 }
 
 // Filters values between a given range
-func (builder *PanelBuilder) FilterValues(filterValues FilterValueRange) *PanelBuilder {
+func (builder *PanelBuilder) FilterValues(filterValues cog.Builder[FilterValueRange]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).FilterValues = &filterValues
+	filterValuesResource, err := filterValues.Build()
+	if err != nil {
+		builder.errors["options.filterValues"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).FilterValues = &filterValuesResource
 
 	return builder
 }
 
 // Controls tick alignment and value name when not calculating from data
-func (builder *PanelBuilder) RowsFrame(rowsFrame RowsHeatmapOptions) *PanelBuilder {
+func (builder *PanelBuilder) RowsFrame(rowsFrame cog.Builder[RowsHeatmapOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).RowsFrame = &rowsFrame
+	rowsFrameResource, err := rowsFrame.Build()
+	if err != nil {
+		builder.errors["options.rowsFrame"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).RowsFrame = &rowsFrameResource
 
 	return builder
 }
@@ -512,21 +527,31 @@ func (builder *PanelBuilder) CellRadius(cellRadius float32) *PanelBuilder {
 }
 
 // Controls cell value unit
-func (builder *PanelBuilder) CellValues(cellValues CellValues) *PanelBuilder {
+func (builder *PanelBuilder) CellValues(cellValues cog.Builder[CellValues]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).CellValues = &cellValues
+	cellValuesResource, err := cellValues.Build()
+	if err != nil {
+		builder.errors["options.cellValues"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).CellValues = &cellValuesResource
 
 	return builder
 }
 
 // Controls yAxis placement
-func (builder *PanelBuilder) YAxis(yAxis YAxisConfig) *PanelBuilder {
+func (builder *PanelBuilder) YAxis(yAxis cog.Builder[YAxisConfig]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).YAxis = yAxis
+	yAxisResource, err := yAxis.Build()
+	if err != nil {
+		builder.errors["options.yAxis"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).YAxis = yAxisResource
 
 	return builder
 }
@@ -678,16 +703,16 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.Height(9)
 	builder.Span(12)
 	builder.Calculate(false)
-	builder.Color(HeatmapColorOptions{
-		Exponent: 0.5,
-		Fill:     "dark-orange",
-		Reverse:  false,
-		Scheme:   "Oranges",
-		Steps:    64,
-	})
-	builder.FilterValues(FilterValueRange{
-		Le: cog.ToPtr[float32](1e-09),
-	})
+	builder.Color(NewHeatmapColorOptionsBuilder().
+		Exponent(0.5).
+		Fill("dark-orange").
+		Reverse(false).
+		Scheme("Oranges").
+		Steps(64),
+	)
+	builder.FilterValues(NewFilterValueRangeBuilder().
+		Le(1e-09),
+	)
 	builder.ShowValue("auto")
 	builder.CellGap(1)
 	builder.ExemplarsColor("rgba(255,0,255,0.7)")
