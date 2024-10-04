@@ -403,20 +403,30 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 	return builder
 }
 
-func (builder *PanelBuilder) Nodes(nodes NodeOptions) *PanelBuilder {
+func (builder *PanelBuilder) Nodes(nodes cog.Builder[NodeOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Nodes = &nodes
+	nodesResource, err := nodes.Build()
+	if err != nil {
+		builder.errors["options.nodes"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Nodes = &nodesResource
 
 	return builder
 }
 
-func (builder *PanelBuilder) Edges(edges EdgeOptions) *PanelBuilder {
+func (builder *PanelBuilder) Edges(edges cog.Builder[EdgeOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Edges = &edges
+	edgesResource, err := edges.Build()
+	if err != nil {
+		builder.errors["options.edges"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Edges = &edgesResource
 
 	return builder
 }

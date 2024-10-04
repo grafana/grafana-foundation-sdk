@@ -412,11 +412,16 @@ func (builder *PanelBuilder) Mode(mode TextMode) *PanelBuilder {
 	return builder
 }
 
-func (builder *PanelBuilder) Code(code CodeOptions) *PanelBuilder {
+func (builder *PanelBuilder) Code(code cog.Builder[CodeOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Code = &code
+	codeResource, err := code.Build()
+	if err != nil {
+		builder.errors["options.code"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Code = &codeResource
 
 	return builder
 }

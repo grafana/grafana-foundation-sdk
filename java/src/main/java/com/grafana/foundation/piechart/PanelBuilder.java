@@ -293,12 +293,12 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder legend(PieChartLegendOptions legend) {
+    public PanelBuilder legend(com.grafana.foundation.cog.Builder<PieChartLegendOptions> legend) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.piechart.Options();
 		}
         com.grafana.foundation.piechart.Options optionsResource = (com.grafana.foundation.piechart.Options) this.internal.options;
-        optionsResource.legend = legend;
+        optionsResource.legend = legend.build();
     this.internal.options = optionsResource;
         return this;
     }

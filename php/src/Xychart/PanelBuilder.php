@@ -761,14 +761,16 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
     /**
      * Table Mode (auto)
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XYDimensionConfig> $dims
      */
-    public function dims(\Grafana\Foundation\Xychart\XYDimensionConfig $dims): static
+    public function dims(\Grafana\Foundation\Cog\Builder $dims): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Xychart\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Xychart\Options);
-        $this->internal->options->dims = $dims;
+        $dimsResource = $dims->build();
+        $this->internal->options->dims = $dimsResource;
     
         return $this;
     }
@@ -802,7 +804,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
     /**
      * Manual Mode
-     * @param array<\Grafana\Foundation\Xychart\ScatterSeriesConfig> $series
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\ScatterSeriesConfig>> $series
      */
     public function series(array $series): static
     {    
@@ -810,7 +812,11 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
             $this->internal->options = new \Grafana\Foundation\Xychart\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Xychart\Options);
-        $this->internal->options->series = $series;
+            $seriesResources = [];
+            foreach ($series as $r1) {
+                    $seriesResources[] = $r1->build();
+            }
+        $this->internal->options->series = $seriesResources;
     
         return $this;
     }

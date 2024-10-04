@@ -2,10 +2,39 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import text
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import text
 
+
+class CodeOptions(cogbuilder.Builder[text.CodeOptions]):    
+    _internal: text.CodeOptions
+
+    def __init__(self):
+        self._internal = text.CodeOptions()
+
+    def build(self) -> text.CodeOptions:
+        return self._internal    
+    
+    def language(self, language: text.CodeLanguage) -> typing.Self:    
+        """
+        The language passed to monaco code editor
+        """
+            
+        self._internal.language = language
+    
+        return self
+    
+    def show_line_numbers(self, show_line_numbers: bool) -> typing.Self:        
+        self._internal.show_line_numbers = show_line_numbers
+    
+        return self
+    
+    def show_mini_map(self, show_mini_map: bool) -> typing.Self:        
+        self._internal.show_mini_map = show_mini_map
+    
+        return self
+    
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
     """
@@ -447,11 +476,12 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def code(self, code: text.CodeOptions) -> typing.Self:        
+    def code(self, code: cogbuilder.Builder[text.CodeOptions]) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = text.Options()
         assert isinstance(self._internal.options, text.Options)
-        self._internal.options.code = code
+        code_resource = code.build()
+        self._internal.options.code = code_resource
     
         return self
     
