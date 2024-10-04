@@ -480,13 +480,17 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    public function code(\Grafana\Foundation\Text\CodeOptions $code): static
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Text\CodeOptions> $code
+     */
+    public function code(\Grafana\Foundation\Cog\Builder $code): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Text\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Text\Options);
-        $this->internal->options->code = $code;
+        $codeResource = $code->build();
+        $this->internal->options->code = $codeResource;
     
         return $this;
     }
