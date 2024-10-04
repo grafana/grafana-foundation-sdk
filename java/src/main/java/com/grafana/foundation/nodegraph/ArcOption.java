@@ -23,4 +23,24 @@ public class ArcOption {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<ArcOption> {
+        protected final ArcOption internal;
+        
+        public Builder() {
+            this.internal = new ArcOption();
+        }
+    public Builder field(String field) {
+    this.internal.field = field;
+        return this;
+    }
+    
+    public Builder color(String color) {
+    this.internal.color = color;
+        return this;
+    }
+    public ArcOption build() {
+            return this.internal;
+        }
+    }
 }

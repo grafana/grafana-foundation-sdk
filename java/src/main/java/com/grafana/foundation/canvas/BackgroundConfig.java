@@ -26,4 +26,29 @@ public class BackgroundConfig {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<BackgroundConfig> {
+        protected final BackgroundConfig internal;
+        
+        public Builder() {
+            this.internal = new BackgroundConfig();
+        }
+    public Builder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color) {
+    this.internal.color = color.build();
+        return this;
+    }
+    
+    public Builder image(com.grafana.foundation.cog.Builder<ResourceDimensionConfig> image) {
+    this.internal.image = image.build();
+        return this;
+    }
+    
+    public Builder size(BackgroundImageSize size) {
+    this.internal.size = size;
+        return this;
+    }
+    public BackgroundConfig build() {
+            return this.internal;
+        }
+    }
 }

@@ -20,4 +20,29 @@ public class UpdateConfig {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<UpdateConfig> {
+        protected final UpdateConfig internal;
+        
+        public Builder() {
+            this.internal = new UpdateConfig();
+        }
+    public Builder render(Boolean render) {
+    this.internal.render = render;
+        return this;
+    }
+    
+    public Builder dataChanged(Boolean dataChanged) {
+    this.internal.dataChanged = dataChanged;
+        return this;
+    }
+    
+    public Builder schemaChanged(Boolean schemaChanged) {
+    this.internal.schemaChanged = schemaChanged;
+        return this;
+    }
+    public UpdateConfig build() {
+            return this.internal;
+        }
+    }
 }

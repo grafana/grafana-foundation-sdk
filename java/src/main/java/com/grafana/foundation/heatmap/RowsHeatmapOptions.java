@@ -25,4 +25,24 @@ public class RowsHeatmapOptions {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<RowsHeatmapOptions> {
+        protected final RowsHeatmapOptions internal;
+        
+        public Builder() {
+            this.internal = new RowsHeatmapOptions();
+        }
+    public Builder value(String value) {
+    this.internal.value = value;
+        return this;
+    }
+    
+    public Builder layout(HeatmapCellLayout layout) {
+    this.internal.layout = layout;
+        return this;
+    }
+    public RowsHeatmapOptions build() {
+            return this.internal;
+        }
+    }
 }
