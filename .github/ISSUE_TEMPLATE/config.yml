@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Grafana Community
+    url: https://community.grafana.com
+    about: Please ask and answer questions here.
+  - name: Grafana Slack
+    url: https://grafana.slack.com/archives/C024B5R8T60
+    about: Dashboards-as-code related Slack channel.
