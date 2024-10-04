@@ -372,11 +372,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    legend(legend: piechart.PieChartLegendOptions): this {
+    legend(legend: cog.Builder<piechart.PieChartLegendOptions>): this {
         if (!this.internal.options) {
             this.internal.options = piechart.defaultOptions();
         }
-        this.internal.options.legend = legend;
+        const legendResource = legend.build();
+        this.internal.options.legend = legendResource;
         return this;
     }
 

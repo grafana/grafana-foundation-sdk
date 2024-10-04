@@ -530,12 +530,12 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder dims(XYDimensionConfig dims) {
+    public PanelBuilder dims(com.grafana.foundation.cog.Builder<XYDimensionConfig> dims) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.xychart.Options();
 		}
         com.grafana.foundation.xychart.Options optionsResource = (com.grafana.foundation.xychart.Options) this.internal.options;
-        optionsResource.dims = dims;
+        optionsResource.dims = dims.build();
     this.internal.options = optionsResource;
         return this;
     }
@@ -557,12 +557,12 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder series(List<ScatterSeriesConfig> series) {
+    public PanelBuilder series(com.grafana.foundation.cog.Builder<List<ScatterSeriesConfig>> series) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.xychart.Options();
 		}
         com.grafana.foundation.xychart.Options optionsResource = (com.grafana.foundation.xychart.Options) this.internal.options;
-        optionsResource.series = series;
+        optionsResource.series = series.build();
     this.internal.options = optionsResource;
         return this;
     }

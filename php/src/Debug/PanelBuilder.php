@@ -395,13 +395,17 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    public function counters(\Grafana\Foundation\Debug\UpdateConfig $counters): static
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Debug\UpdateConfig> $counters
+     */
+    public function counters(\Grafana\Foundation\Cog\Builder $counters): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Debug\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Debug\Options);
-        $this->internal->options->counters = $counters;
+        $countersResource = $counters->build();
+        $this->internal->options->counters = $countersResource;
     
         return $this;
     }

@@ -328,19 +328,21 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    nodes(nodes: nodegraph.NodeOptions): this {
+    nodes(nodes: cog.Builder<nodegraph.NodeOptions>): this {
         if (!this.internal.options) {
             this.internal.options = nodegraph.defaultOptions();
         }
-        this.internal.options.nodes = nodes;
+        const nodesResource = nodes.build();
+        this.internal.options.nodes = nodesResource;
         return this;
     }
 
-    edges(edges: nodegraph.EdgeOptions): this {
+    edges(edges: cog.Builder<nodegraph.EdgeOptions>): this {
         if (!this.internal.options) {
             this.internal.options = nodegraph.defaultOptions();
         }
-        this.internal.options.edges = edges;
+        const edgesResource = edges.build();
+        this.internal.options.edges = edgesResource;
         return this;
     }
 }

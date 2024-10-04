@@ -329,19 +329,21 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    view(view: geomap.MapViewConfig): this {
+    view(view: cog.Builder<geomap.MapViewConfig>): this {
         if (!this.internal.options) {
             this.internal.options = geomap.defaultOptions();
         }
-        this.internal.options.view = view;
+        const viewResource = view.build();
+        this.internal.options.view = viewResource;
         return this;
     }
 
-    controls(controls: geomap.ControlsOptions): this {
+    controls(controls: cog.Builder<geomap.ControlsOptions>): this {
         if (!this.internal.options) {
             this.internal.options = geomap.defaultOptions();
         }
-        this.internal.options.controls = controls;
+        const controlsResource = controls.build();
+        this.internal.options.controls = controlsResource;
         return this;
     }
 
@@ -363,11 +365,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    tooltip(tooltip: geomap.TooltipOptions): this {
+    tooltip(tooltip: cog.Builder<geomap.TooltipOptions>): this {
         if (!this.internal.options) {
             this.internal.options = geomap.defaultOptions();
         }
-        this.internal.options.tooltip = tooltip;
+        const tooltipResource = tooltip.build();
+        this.internal.options.tooltip = tooltipResource;
         return this;
     }
 }

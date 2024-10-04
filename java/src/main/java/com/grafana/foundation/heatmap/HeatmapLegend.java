@@ -18,4 +18,19 @@ public class HeatmapLegend {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<HeatmapLegend> {
+        protected final HeatmapLegend internal;
+        
+        public Builder() {
+            this.internal = new HeatmapLegend();
+        }
+    public Builder show(Boolean show) {
+    this.internal.show = show;
+        return this;
+    }
+    public HeatmapLegend build() {
+            return this.internal;
+        }
+    }
 }

@@ -426,27 +426,31 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
     /**
      * Map fields to appropriate dimension
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Candlestick\CandlestickFieldMap> $fields
      */
-    public function fields(\Grafana\Foundation\Candlestick\CandlestickFieldMap $fields): static
+    public function fields(\Grafana\Foundation\Cog\Builder $fields): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Candlestick\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Candlestick\Options);
-        $this->internal->options->fields = $fields;
+        $fieldsResource = $fields->build();
+        $this->internal->options->fields = $fieldsResource;
     
         return $this;
     }
     /**
      * Set which colors are used when the price movement is up or down
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Candlestick\CandlestickColors> $colors
      */
-    public function colors(\Grafana\Foundation\Candlestick\CandlestickColors $colors): static
+    public function colors(\Grafana\Foundation\Cog\Builder $colors): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Candlestick\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Candlestick\Options);
-        $this->internal->options->colors = $colors;
+        $colorsResource = $colors->build();
+        $this->internal->options->colors = $colorsResource;
     
         return $this;
     }

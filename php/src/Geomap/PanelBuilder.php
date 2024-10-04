@@ -385,23 +385,31 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    public function view(\Grafana\Foundation\Geomap\MapViewConfig $view): static
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Geomap\MapViewConfig> $view
+     */
+    public function view(\Grafana\Foundation\Cog\Builder $view): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Geomap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Geomap\Options);
-        $this->internal->options->view = $view;
+        $viewResource = $view->build();
+        $this->internal->options->view = $viewResource;
     
         return $this;
     }
-    public function controls(\Grafana\Foundation\Geomap\ControlsOptions $controls): static
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Geomap\ControlsOptions> $controls
+     */
+    public function controls(\Grafana\Foundation\Cog\Builder $controls): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Geomap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Geomap\Options);
-        $this->internal->options->controls = $controls;
+        $controlsResource = $controls->build();
+        $this->internal->options->controls = $controlsResource;
     
         return $this;
     }
@@ -436,13 +444,17 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    public function tooltip(\Grafana\Foundation\Geomap\TooltipOptions $tooltip): static
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Geomap\TooltipOptions> $tooltip
+     */
+    public function tooltip(\Grafana\Foundation\Cog\Builder $tooltip): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Geomap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Geomap\Options);
-        $this->internal->options->tooltip = $tooltip;
+        $tooltipResource = $tooltip->build();
+        $this->internal->options->tooltip = $tooltipResource;
     
         return $this;
     }

@@ -28,4 +28,29 @@ public class NodeOptions {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<NodeOptions> {
+        protected final NodeOptions internal;
+        
+        public Builder() {
+            this.internal = new NodeOptions();
+        }
+    public Builder mainStatUnit(String mainStatUnit) {
+    this.internal.mainStatUnit = mainStatUnit;
+        return this;
+    }
+    
+    public Builder secondaryStatUnit(String secondaryStatUnit) {
+    this.internal.secondaryStatUnit = secondaryStatUnit;
+        return this;
+    }
+    
+    public Builder arcs(com.grafana.foundation.cog.Builder<List<ArcOption>> arcs) {
+    this.internal.arcs = arcs.build();
+        return this;
+    }
+    public NodeOptions build() {
+            return this.internal;
+        }
+    }
 }

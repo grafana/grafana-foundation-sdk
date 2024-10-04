@@ -416,11 +416,16 @@ func (builder *PanelBuilder) Text(text cog.Builder[common.VizTextDisplayOptions]
 	return builder
 }
 
-func (builder *PanelBuilder) Legend(legend PieChartLegendOptions) *PanelBuilder {
+func (builder *PanelBuilder) Legend(legend cog.Builder[PieChartLegendOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Legend = legend
+	legendResource, err := legend.Build()
+	if err != nil {
+		builder.errors["options.legend"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Legend = legendResource
 
 	return builder
 }
