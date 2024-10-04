@@ -449,21 +449,31 @@ func (builder *PanelBuilder) ColorStrategy(colorStrategy ColorStrategy) *PanelBu
 }
 
 // Map fields to appropriate dimension
-func (builder *PanelBuilder) Fields(fields CandlestickFieldMap) *PanelBuilder {
+func (builder *PanelBuilder) Fields(fields cog.Builder[CandlestickFieldMap]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Fields = fields
+	fieldsResource, err := fields.Build()
+	if err != nil {
+		builder.errors["options.fields"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Fields = fieldsResource
 
 	return builder
 }
 
 // Set which colors are used when the price movement is up or down
-func (builder *PanelBuilder) Colors(colors CandlestickColors) *PanelBuilder {
+func (builder *PanelBuilder) Colors(colors cog.Builder[CandlestickColors]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
-	builder.internal.Options.(*Options).Colors = colors
+	colorsResource, err := colors.Build()
+	if err != nil {
+		builder.errors["options.colors"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.Options.(*Options).Colors = colorsResource
 
 	return builder
 }
@@ -925,10 +935,10 @@ func (builder *PanelBuilder) applyDefaults() {
 	builder.Mode("candles+volume")
 	builder.CandleStyle("candles")
 	builder.ColorStrategy("open-close")
-	builder.Colors(CandlestickColors{
-		Down: "red",
-		Flat: "gray",
-		Up:   "green",
-	})
+	builder.Colors(NewCandlestickColorsBuilder().
+		Down("red").
+		Flat("gray").
+		Up("green"),
+	)
 	builder.IncludeAllFields(false)
 }
