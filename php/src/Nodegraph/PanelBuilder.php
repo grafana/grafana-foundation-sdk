@@ -452,23 +452,31 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    public function nodes(\Grafana\Foundation\Nodegraph\NodeOptions $nodes): static
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Nodegraph\NodeOptions> $nodes
+     */
+    public function nodes(\Grafana\Foundation\Cog\Builder $nodes): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Nodegraph\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Nodegraph\Options);
-        $this->internal->options->nodes = $nodes;
+        $nodesResource = $nodes->build();
+        $this->internal->options->nodes = $nodesResource;
     
         return $this;
     }
-    public function edges(\Grafana\Foundation\Nodegraph\EdgeOptions $edges): static
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Nodegraph\EdgeOptions> $edges
+     */
+    public function edges(\Grafana\Foundation\Cog\Builder $edges): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Nodegraph\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Nodegraph\Options);
-        $this->internal->options->edges = $edges;
+        $edgesResource = $edges->build();
+        $this->internal->options->edges = $edgesResource;
     
         return $this;
     }

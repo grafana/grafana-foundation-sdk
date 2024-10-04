@@ -362,29 +362,32 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // Controls the color options
-    color(color: heatmap.HeatmapColorOptions): this {
+    color(color: cog.Builder<heatmap.HeatmapColorOptions>): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        this.internal.options.color = color;
+        const colorResource = color.build();
+        this.internal.options.color = colorResource;
         return this;
     }
 
     // Filters values between a given range
-    filterValues(filterValues: heatmap.FilterValueRange): this {
+    filterValues(filterValues: cog.Builder<heatmap.FilterValueRange>): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        this.internal.options.filterValues = filterValues;
+        const filterValuesResource = filterValues.build();
+        this.internal.options.filterValues = filterValuesResource;
         return this;
     }
 
     // Controls tick alignment and value name when not calculating from data
-    rowsFrame(rowsFrame: heatmap.RowsHeatmapOptions): this {
+    rowsFrame(rowsFrame: cog.Builder<heatmap.RowsHeatmapOptions>): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        this.internal.options.rowsFrame = rowsFrame;
+        const rowsFrameResource = rowsFrame.build();
+        this.internal.options.rowsFrame = rowsFrameResource;
         return this;
     }
 
@@ -422,20 +425,22 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // Controls cell value unit
-    cellValues(cellValues: heatmap.CellValues): this {
+    cellValues(cellValues: cog.Builder<heatmap.CellValues>): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        this.internal.options.cellValues = cellValues;
+        const cellValuesResource = cellValues.build();
+        this.internal.options.cellValues = cellValuesResource;
         return this;
     }
 
     // Controls yAxis placement
-    yAxis(yAxis: heatmap.YAxisConfig): this {
+    yAxis(yAxis: cog.Builder<heatmap.YAxisConfig>): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        this.internal.options.yAxis = yAxis;
+        const yAxisResource = yAxis.build();
+        this.internal.options.yAxis = yAxisResource;
         return this;
     }
 

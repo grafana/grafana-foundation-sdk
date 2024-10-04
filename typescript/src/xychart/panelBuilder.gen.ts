@@ -626,11 +626,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    dims(dims: xychart.XYDimensionConfig): this {
+    dims(dims: cog.Builder<xychart.XYDimensionConfig>): this {
         if (!this.internal.options) {
             this.internal.options = xychart.defaultOptions();
         }
-        this.internal.options.dims = dims;
+        const dimsResource = dims.build();
+        this.internal.options.dims = dimsResource;
         return this;
     }
 
@@ -652,11 +653,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    series(series: xychart.ScatterSeriesConfig[]): this {
+    series(series: cog.Builder<xychart.ScatterSeriesConfig>[]): this {
         if (!this.internal.options) {
             this.internal.options = xychart.defaultOptions();
         }
-        this.internal.options.series = series;
+        const seriesResources = series.map(builder1 => builder1.build());
+        this.internal.options.series = seriesResources;
         return this;
     }
 }

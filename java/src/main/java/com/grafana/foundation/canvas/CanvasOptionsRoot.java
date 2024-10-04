@@ -27,4 +27,25 @@ public class CanvasOptionsRoot {
         return ow.writeValueAsString(this);
     }
 
+    
+    public static class Builder implements com.grafana.foundation.cog.Builder<CanvasOptionsRoot> {
+        protected final CanvasOptionsRoot internal;
+        
+        public Builder() {
+            this.internal = new CanvasOptionsRoot();
+    this.internal.type = "frame";
+        }
+    public Builder name(String name) {
+    this.internal.name = name;
+        return this;
+    }
+    
+    public Builder elements(com.grafana.foundation.cog.Builder<List<CanvasElementOptions>> elements) {
+    this.internal.elements = elements.build();
+        return this;
+    }
+    public CanvasOptionsRoot build() {
+            return this.internal;
+        }
+    }
 }

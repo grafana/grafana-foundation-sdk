@@ -251,21 +251,21 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.fieldConfig.overrides.add(overrides.build());
         return this;
     }
-    public PanelBuilder view(MapViewConfig view) {
+    public PanelBuilder view(com.grafana.foundation.cog.Builder<MapViewConfig> view) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.geomap.Options();
 		}
         com.grafana.foundation.geomap.Options optionsResource = (com.grafana.foundation.geomap.Options) this.internal.options;
-        optionsResource.view = view;
+        optionsResource.view = view.build();
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder controls(ControlsOptions controls) {
+    public PanelBuilder controls(com.grafana.foundation.cog.Builder<ControlsOptions> controls) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.geomap.Options();
 		}
         com.grafana.foundation.geomap.Options optionsResource = (com.grafana.foundation.geomap.Options) this.internal.options;
-        optionsResource.controls = controls;
+        optionsResource.controls = controls.build();
     this.internal.options = optionsResource;
         return this;
     }
@@ -287,12 +287,12 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder tooltip(TooltipOptions tooltip) {
+    public PanelBuilder tooltip(com.grafana.foundation.cog.Builder<TooltipOptions> tooltip) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.geomap.Options();
 		}
         com.grafana.foundation.geomap.Options optionsResource = (com.grafana.foundation.geomap.Options) this.internal.options;
-        optionsResource.tooltip = tooltip;
+        optionsResource.tooltip = tooltip.build();
     this.internal.options = optionsResource;
         return this;
     }

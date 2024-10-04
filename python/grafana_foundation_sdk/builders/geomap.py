@@ -2,11 +2,155 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import geomap
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import geomap
 from ..models import common
 
+
+class MapViewConfig(cogbuilder.Builder[geomap.MapViewConfig]):    
+    _internal: geomap.MapViewConfig
+
+    def __init__(self):
+        self._internal = geomap.MapViewConfig()
+
+    def build(self) -> geomap.MapViewConfig:
+        return self._internal    
+    
+    def id_val(self, id_val: str) -> typing.Self:        
+        self._internal.id_val = id_val
+    
+        return self
+    
+    def lat(self, lat: int) -> typing.Self:        
+        self._internal.lat = lat
+    
+        return self
+    
+    def lon(self, lon: int) -> typing.Self:        
+        self._internal.lon = lon
+    
+        return self
+    
+    def zoom(self, zoom: int) -> typing.Self:        
+        self._internal.zoom = zoom
+    
+        return self
+    
+    def min_zoom(self, min_zoom: int) -> typing.Self:        
+        self._internal.min_zoom = min_zoom
+    
+        return self
+    
+    def max_zoom(self, max_zoom: int) -> typing.Self:        
+        self._internal.max_zoom = max_zoom
+    
+        return self
+    
+    def padding(self, padding: int) -> typing.Self:        
+        self._internal.padding = padding
+    
+        return self
+    
+    def all_layers(self, all_layers: bool) -> typing.Self:        
+        self._internal.all_layers = all_layers
+    
+        return self
+    
+    def last_only(self, last_only: bool) -> typing.Self:        
+        self._internal.last_only = last_only
+    
+        return self
+    
+    def layer(self, layer: str) -> typing.Self:        
+        self._internal.layer = layer
+    
+        return self
+    
+    def shared(self, shared: bool) -> typing.Self:        
+        self._internal.shared = shared
+    
+        return self
+    
+
+class ControlsOptions(cogbuilder.Builder[geomap.ControlsOptions]):    
+    _internal: geomap.ControlsOptions
+
+    def __init__(self):
+        self._internal = geomap.ControlsOptions()
+
+    def build(self) -> geomap.ControlsOptions:
+        return self._internal    
+    
+    def show_zoom(self, show_zoom: bool) -> typing.Self:    
+        """
+        Zoom (upper left)
+        """
+            
+        self._internal.show_zoom = show_zoom
+    
+        return self
+    
+    def mouse_wheel_zoom(self, mouse_wheel_zoom: bool) -> typing.Self:    
+        """
+        let the mouse wheel zoom
+        """
+            
+        self._internal.mouse_wheel_zoom = mouse_wheel_zoom
+    
+        return self
+    
+    def show_attribution(self, show_attribution: bool) -> typing.Self:    
+        """
+        Lower right
+        """
+            
+        self._internal.show_attribution = show_attribution
+    
+        return self
+    
+    def show_scale(self, show_scale: bool) -> typing.Self:    
+        """
+        Scale options
+        """
+            
+        self._internal.show_scale = show_scale
+    
+        return self
+    
+    def show_debug(self, show_debug: bool) -> typing.Self:    
+        """
+        Show debug
+        """
+            
+        self._internal.show_debug = show_debug
+    
+        return self
+    
+    def show_measure(self, show_measure: bool) -> typing.Self:    
+        """
+        Show measure
+        """
+            
+        self._internal.show_measure = show_measure
+    
+        return self
+    
+
+class TooltipOptions(cogbuilder.Builder[geomap.TooltipOptions]):    
+    _internal: geomap.TooltipOptions
+
+    def __init__(self):
+        self._internal = geomap.TooltipOptions()
+
+    def build(self) -> geomap.TooltipOptions:
+        return self._internal    
+    
+    def mode(self, mode: geomap.TooltipMode) -> typing.Self:        
+        self._internal.mode = mode
+    
+        return self
+    
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
     """
@@ -440,19 +584,21 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def view(self, view: geomap.MapViewConfig) -> typing.Self:        
+    def view(self, view: cogbuilder.Builder[geomap.MapViewConfig]) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = geomap.Options()
         assert isinstance(self._internal.options, geomap.Options)
-        self._internal.options.view = view
+        view_resource = view.build()
+        self._internal.options.view = view_resource
     
         return self
     
-    def controls(self, controls: geomap.ControlsOptions) -> typing.Self:        
+    def controls(self, controls: cogbuilder.Builder[geomap.ControlsOptions]) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = geomap.Options()
         assert isinstance(self._internal.options, geomap.Options)
-        self._internal.options.controls = controls
+        controls_resource = controls.build()
+        self._internal.options.controls = controls_resource
     
         return self
     
@@ -474,11 +620,12 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def tooltip(self, tooltip: geomap.TooltipOptions) -> typing.Self:        
+    def tooltip(self, tooltip: cogbuilder.Builder[geomap.TooltipOptions]) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = geomap.Options()
         assert isinstance(self._internal.options, geomap.Options)
-        self._internal.options.tooltip = tooltip
+        tooltip_resource = tooltip.build()
+        self._internal.options.tooltip = tooltip_resource
     
         return self
     

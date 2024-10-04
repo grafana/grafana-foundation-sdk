@@ -254,12 +254,12 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder code(CodeOptions code) {
+    public PanelBuilder code(com.grafana.foundation.cog.Builder<CodeOptions> code) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.text.Options();
 		}
         com.grafana.foundation.text.Options optionsResource = (com.grafana.foundation.text.Options) this.internal.options;
-        optionsResource.code = code;
+        optionsResource.code = code.build();
     this.internal.options = optionsResource;
         return this;
     }
