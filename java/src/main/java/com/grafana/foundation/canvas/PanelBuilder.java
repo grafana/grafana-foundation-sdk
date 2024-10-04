@@ -273,12 +273,12 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
-    public PanelBuilder root(CanvasOptionsRoot root) {
+    public PanelBuilder root(com.grafana.foundation.cog.Builder<CanvasOptionsRoot> root) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.canvas.Options();
 		}
         com.grafana.foundation.canvas.Options optionsResource = (com.grafana.foundation.canvas.Options) this.internal.options;
-        optionsResource.root = root;
+        optionsResource.root = root.build();
     this.internal.options = optionsResource;
         return this;
     }
