@@ -1,0 +1,92 @@
+<?php
+
+namespace Grafana\Foundation\Dashboard;
+
+final class TimePickerConverter
+{
+    public static function convert(\Grafana\Foundation\Dashboard\TimePicker $input): string
+    {
+        
+        $calls = [
+            '(new \Grafana\Foundation\Dashboard\TimePickerBuilder())',
+        ];
+            if ($input->hidden !== false) {
+    
+        
+    $buffer = 'hidden(';
+        $arg0 =\var_export($input->hidden, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if (count($input->refreshIntervals) >= 1) {
+    
+        
+    $buffer = 'refreshIntervals(';
+        $tmparg0 = [];
+        foreach ($input->refreshIntervals as $arg1) {
+        $tmprefresh_intervalsarg1 =\var_export($arg1, true);
+        $tmparg0[] = $tmprefresh_intervalsarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->collapse !== false) {
+    
+        
+    $buffer = 'collapse(';
+        $arg0 =\var_export($input->collapse, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->enable !== true) {
+    
+        
+    $buffer = 'enable(';
+        $arg0 =\var_export($input->enable, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if (count($input->timeOptions) >= 1) {
+    
+        
+    $buffer = 'timeOptions(';
+        $tmparg0 = [];
+        foreach ($input->timeOptions as $arg1) {
+        $tmptime_optionsarg1 =\var_export($arg1, true);
+        $tmparg0[] = $tmptime_optionsarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+
+        return \implode("\n\t->", $calls);
+    }
+}
+

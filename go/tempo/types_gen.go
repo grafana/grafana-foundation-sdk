@@ -67,6 +67,15 @@ func VariantConfig() variants.DataqueryConfig {
 
 			return dataquery, nil
 		},
+		GoConverter: func(input any) string {
+			var dataquery TempoQuery
+			if cast, ok := input.(*TempoQuery); ok {
+				dataquery = *cast
+			} else {
+				dataquery = input.(TempoQuery)
+			}
+			return TempoQueryConverter(dataquery)
+		},
 	}
 }
 

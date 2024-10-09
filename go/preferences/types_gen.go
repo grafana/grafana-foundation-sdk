@@ -2,7 +2,9 @@
 
 package preferences
 
-import "reflect"
+import (
+	"reflect"
+)
 
 type Preferences struct {
 	// UID for the home dashboard

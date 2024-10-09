@@ -26,6 +26,35 @@ func VariantConfig() variants.DataqueryConfig {
 
 			return dataquery, nil
 		},
+		GoConverter: func(input any) string {
+			var dataquery Expr
+			if cast, ok := input.(*Expr); ok {
+				dataquery = *cast
+			} else {
+				dataquery = input.(Expr)
+			}
+
+			if dataquery.TypeMath != nil {
+				return TypeMathConverter(*dataquery.TypeMath)
+			}
+			if dataquery.TypeReduce != nil {
+				return TypeReduceConverter(*dataquery.TypeReduce)
+			}
+			if dataquery.TypeResample != nil {
+				return TypeResampleConverter(*dataquery.TypeResample)
+			}
+			if dataquery.TypeClassicConditions != nil {
+				return TypeClassicConditionsConverter(*dataquery.TypeClassicConditions)
+			}
+			if dataquery.TypeThreshold != nil {
+				return TypeThresholdConverter(*dataquery.TypeThreshold)
+			}
+			if dataquery.TypeSql != nil {
+				return TypeSqlConverter(*dataquery.TypeSql)
+			}
+
+			return ""
+		},
 	}
 }
 

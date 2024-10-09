@@ -9,7 +9,9 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'alertGroups',
             optionsFromArray: [\Grafana\Foundation\Alertgroups\Options::class, 'fromArray'],
-            fieldConfigFromArray: null
+            fieldConfigFromArray: null,
+            convert: [\Grafana\Foundation\Alertgroups\PanelConverter::class, 'convert'],
+
         );
     }
 }
