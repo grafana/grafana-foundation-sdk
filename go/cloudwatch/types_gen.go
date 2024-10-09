@@ -1076,6 +1076,26 @@ func VariantConfig() variants.DataqueryConfig {
 
 			return dataquery, nil
 		},
+		GoConverter: func(input any) string {
+			var dataquery CloudWatchQuery
+			if cast, ok := input.(*CloudWatchQuery); ok {
+				dataquery = *cast
+			} else {
+				dataquery = input.(CloudWatchQuery)
+			}
+
+			if dataquery.CloudWatchMetricsQuery != nil {
+				return CloudWatchMetricsQueryConverter(*dataquery.CloudWatchMetricsQuery)
+			}
+			if dataquery.CloudWatchLogsQuery != nil {
+				return CloudWatchLogsQueryConverter(*dataquery.CloudWatchLogsQuery)
+			}
+			if dataquery.CloudWatchAnnotationQuery != nil {
+				return CloudWatchAnnotationQueryConverter(*dataquery.CloudWatchAnnotationQuery)
+			}
+
+			return ""
+		},
 	}
 }
 

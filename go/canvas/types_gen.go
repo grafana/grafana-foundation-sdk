@@ -8,6 +8,7 @@ import (
 
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 type HorizontalConstraint string
@@ -425,6 +426,13 @@ func VariantConfig() variants.PanelcfgConfig {
 			}
 
 			return options, nil
+		},
+		GoConverter: func(inputPanel any) string {
+			if panel, ok := inputPanel.(*dashboard.Panel); ok {
+				return PanelConverter(*panel)
+			}
+
+			return PanelConverter(inputPanel.(dashboard.Panel))
 		},
 	}
 }
