@@ -2,7 +2,9 @@
 
 package preferences
 
-import "reflect"
+import (
+	"reflect"
+)
 
 // Spec defines user, team or org Grafana preferences
 // swagger:model Preferences

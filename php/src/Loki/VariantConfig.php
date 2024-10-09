@@ -9,6 +9,7 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\DataqueryConfig(
             identifier: "loki",
             fromArray: [\Grafana\Foundation\Loki\Dataquery::class, 'fromArray'],
+            convert: [\Grafana\Foundation\Loki\DataqueryConverter::class, 'convert'],
         );
     }
 }

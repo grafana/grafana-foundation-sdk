@@ -506,6 +506,15 @@ func VariantConfig() variants.DataqueryConfig {
 
 			return dataquery, nil
 		},
+		GoConverter: func(input any) string {
+			var dataquery Dataquery
+			if cast, ok := input.(*Dataquery); ok {
+				dataquery = *cast
+			} else {
+				dataquery = input.(Dataquery)
+			}
+			return DataqueryConverter(dataquery)
+		},
 	}
 }
 
