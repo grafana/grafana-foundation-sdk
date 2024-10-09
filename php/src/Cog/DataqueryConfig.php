@@ -12,11 +12,18 @@ final class DataqueryConfig
     public $fromArray;
 
     /**
-     * @param callable(array<string, mixed>): Dataquery $fromArray
+     * @var (callable(Dataquery): string)|null
      */
-    public function __construct(string $identifier, callable $fromArray)
+    public $convert;
+
+    /**
+     * @param callable(array<string, mixed>): Dataquery $fromArray
+     * @param (callable(Dataquery): string)|null $convert
+     */
+    public function __construct(string $identifier, callable $fromArray, ?callable $convert)
     {
         $this->identifier = $identifier;
         $this->fromArray = $fromArray;
+        $this->convert = $convert;
     }
 }
