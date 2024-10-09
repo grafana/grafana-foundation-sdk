@@ -9,7 +9,9 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'debug',
             optionsFromArray: [\Grafana\Foundation\Debug\Options::class, 'fromArray'],
-            fieldConfigFromArray: null
+            fieldConfigFromArray: null,
+            convert: [\Grafana\Foundation\Debug\PanelConverter::class, 'convert'],
+
         );
     }
 }

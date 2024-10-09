@@ -9,7 +9,9 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'datagrid',
             optionsFromArray: [\Grafana\Foundation\Datagrid\Options::class, 'fromArray'],
-            fieldConfigFromArray: null
+            fieldConfigFromArray: null,
+            convert: [\Grafana\Foundation\Datagrid\PanelConverter::class, 'convert'],
+
         );
     }
 }

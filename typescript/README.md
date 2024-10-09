@@ -9,7 +9,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-yarn add '@grafana/grafana-foundation-sdk@~10.4.0-cogv0.0.x.1728036813'
+yarn add '@grafana/grafana-foundation-sdk@~10.4.0-cogv0.0.x.1728502340'
 ```
 
 ## Example usage
@@ -185,9 +185,7 @@ console.log(JSON.stringify(builder.build(), null, 2));
 
 ## Maturity
 
-The code in this repository should be considered as "public preview" and is actively developed and maintained by Engineering teams at Grafana.
-
-While this repository is stable enough to be used in production environments, occasional breaking changes can be expected.
+The code in this repository should be considered as "public preview". While it is used by Grafana Labs in production, it still is under active development.
 
 > [!NOTE]
 > Bugs and issues are handled solely by Engineering teams. On-call support or SLAs are not available.
