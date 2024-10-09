@@ -10,7 +10,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 
 ### Gradle
 ```kotlin
-implementation("com.grafana:grafana-foundation-sdk:11.2.0-1728036865")
+implementation("com.grafana:grafana-foundation-sdk:11.2.0-1728502257")
 ```
 
 ### Maven
@@ -18,7 +18,7 @@ implementation("com.grafana:grafana-foundation-sdk:11.2.0-1728036865")
 <dependency>
     <groupId>com.grafana</groupId>
     <artifactId>grafana-foundation-sdk</artifactId>
-    <version>11.2.0-1728036865</version>
+    <version>11.2.0-1728502257</version>
 </dependency>
 ```
 
@@ -271,24 +271,10 @@ public class Main {
 
 ## Maturity
 
-> [!WARNING]
-> The code in this repository should be considered experimental. Documentation is only
-available alongside the code. It comes with no support, but we are keen to receive
-feedback and suggestions on how to improve it, though we cannot commit
-to resolution of any particular issue.
+The code in this repository should be considered as "public preview". While it is used by Grafana Labs in production, it still is under active development.
 
-Grafana Labs defines experimental features as follows:
-
-> Projects and features in the Experimental stage are supported only by the Engineering
-teams; on-call support is not available. Documentation is either limited or not provided
-outside of code comments. No SLA is provided.
->
-> Experimental projects or features are primarily intended for open source engineers who
-want to participate in ensuring systems stability, and to gain consensus and approval
-for open source governance projects.
->
-> Projects and features in the Experimental phase are not meant to be used in production
-environments, and the risks are unknown/high.
+> [!NOTE]
+> Bugs and issues are handled solely by Engineering teams. On-call support or SLAs are not available.
 
 ## License
 
