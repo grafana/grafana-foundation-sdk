@@ -120,4 +120,36 @@ final class Runtime
         }
         return $queries;
     }
+
+    public function convertPanelToCode(\Grafana\Foundation\Dashboard\Panel $panel, string $panelType): string
+    {
+        if (!$this->panelcfgVariantExists($panelType)) {
+            return '/* could not convert panel to PHP */';
+        }
+
+        $convert = $this->panelcfgVariants[$panelType]->convert;
+        if ($convert === null) {
+            return '/* could not convert panel to PHP */';
+        }
+
+        return $convert($panel);
+    }
+
+    public function convertDataqueryToCode(Dataquery $dataquery): string
+    {
+        if ($dataquery instanceof UnknownDataquery) {
+            return '(new \Grafana\Foundation\Cog\UnknownDataqueryBuilder(new \Grafana\Foundation\Cog\UnknownDataquery('.var_export($dataquery->toArray(), true).')))';
+        }
+
+        if (!isset($this->dataqueryVariants[$dataquery->dataqueryType()])) {
+            return '/* could not convert dataquery to PHP */';
+        }
+
+        $convert = $this->dataqueryVariants[$dataquery->dataqueryType()]->convert;
+        if ($convert === null) {
+            return '/* could not convert dataquery to PHP */';
+        }
+
+        return $convert($dataquery);
+    }
 }

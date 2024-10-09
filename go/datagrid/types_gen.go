@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 type Options struct {
@@ -31,6 +32,13 @@ func VariantConfig() variants.PanelcfgConfig {
 			}
 
 			return options, nil
+		},
+		GoConverter: func(inputPanel any) string {
+			if panel, ok := inputPanel.(*dashboard.Panel); ok {
+				return PanelConverter(*panel)
+			}
+
+			return PanelConverter(inputPanel.(dashboard.Panel))
 		},
 	}
 }

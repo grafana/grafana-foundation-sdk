@@ -9,6 +9,7 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\DataqueryConfig(
             identifier: "prometheus",
             fromArray: [\Grafana\Foundation\Prometheus\Dataquery::class, 'fromArray'],
+            convert: [\Grafana\Foundation\Prometheus\DataqueryConverter::class, 'convert'],
         );
     }
 }
