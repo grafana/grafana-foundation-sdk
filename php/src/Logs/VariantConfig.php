@@ -9,7 +9,9 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'logs',
             optionsFromArray: [\Grafana\Foundation\Logs\Options::class, 'fromArray'],
-            fieldConfigFromArray: null
+            fieldConfigFromArray: null,
+            convert: [\Grafana\Foundation\Logs\PanelConverter::class, 'convert'],
+
         );
     }
 }

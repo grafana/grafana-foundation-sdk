@@ -9,6 +9,7 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\DataqueryConfig(
             identifier: "grafanapyroscope",
             fromArray: [\Grafana\Foundation\Grafanapyroscope\Dataquery::class, 'fromArray'],
+            convert: [\Grafana\Foundation\Grafanapyroscope\DataqueryConverter::class, 'convert'],
         );
     }
 }
