@@ -60,6 +60,15 @@ func VariantConfig() variants.DataqueryConfig {
 
 			return dataquery, nil
 		},
+		GoConverter: func(input any) string {
+			var dataquery CloudMonitoringQuery
+			if cast, ok := input.(*CloudMonitoringQuery); ok {
+				dataquery = *cast
+			} else {
+				dataquery = input.(CloudMonitoringQuery)
+			}
+			return CloudMonitoringQueryConverter(dataquery)
+		},
 	}
 }
 

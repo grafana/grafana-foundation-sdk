@@ -232,4 +232,9 @@ class CloudWatchAnnotationQuery implements \JsonSerializable, \Grafana\Foundatio
         }
         return $data;
     }
+
+    public function dataqueryType(): string
+    {
+        return "cloudwatch";
+    }
 }
