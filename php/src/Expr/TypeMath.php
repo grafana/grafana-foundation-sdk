@@ -151,4 +151,9 @@ class TypeMath implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         }
         return $data;
     }
+
+    public function dataqueryType(): string
+    {
+        return "__expr__";
+    }
 }

@@ -162,4 +162,9 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
         }
         return $data;
     }
+
+    public function dataqueryType(): string
+    {
+        return "cloudwatch";
+    }
 }

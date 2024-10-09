@@ -9,7 +9,9 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'annolist',
             optionsFromArray: [\Grafana\Foundation\Annotationslist\Options::class, 'fromArray'],
-            fieldConfigFromArray: null
+            fieldConfigFromArray: null,
+            convert: [\Grafana\Foundation\Annotationslist\PanelConverter::class, 'convert'],
+
         );
     }
 }
