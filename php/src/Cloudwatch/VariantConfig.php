@@ -22,6 +22,19 @@ final class VariantConfig
         throw new \ValueError('can not parse disjunction from array');
 }
 }),
+            convert: (function(\Grafana\Foundation\Cog\Dataquery $input) {
+
+    switch (true) {
+    case $input instanceof CloudWatchAnnotationQuery:
+        return CloudWatchAnnotationQueryConverter::convert($input);
+    case $input instanceof CloudWatchLogsQuery:
+        return CloudWatchLogsQueryConverter::convert($input);
+    case $input instanceof CloudWatchMetricsQuery:
+        return CloudWatchMetricsQueryConverter::convert($input);
+    default:
+        throw new \ValueError('can not convert unknown disjunction branch');
+}
+}),
         );
     }
 }

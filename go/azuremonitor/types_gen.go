@@ -67,6 +67,15 @@ func VariantConfig() variants.DataqueryConfig {
 
 			return dataquery, nil
 		},
+		GoConverter: func(input any) string {
+			var dataquery AzureMonitorQuery
+			if cast, ok := input.(*AzureMonitorQuery); ok {
+				dataquery = *cast
+			} else {
+				dataquery = input.(AzureMonitorQuery)
+			}
+			return AzureMonitorQueryConverter(dataquery)
+		},
 	}
 }
 

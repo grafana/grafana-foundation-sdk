@@ -9,6 +9,7 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\DataqueryConfig(
             identifier: "grafana-azure-monitor-datasource",
             fromArray: [\Grafana\Foundation\Azuremonitor\AzureMonitorQuery::class, 'fromArray'],
+            convert: [\Grafana\Foundation\Azuremonitor\AzureMonitorQueryConverter::class, 'convert'],
         );
     }
 }

@@ -4,6 +4,7 @@ package librarypanel
 
 import (
 	"encoding/json"
+	"fmt"
 	"reflect"
 	"time"
 
@@ -226,121 +227,121 @@ func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSON(raw []byte) error {
 
 	if fields["type"] != nil {
 		if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'type': %w", err)
 		}
 	}
 
 	if fields["pluginVersion"] != nil {
 		if err := json.Unmarshal(fields["pluginVersion"], &resource.PluginVersion); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'pluginVersion': %w", err)
 		}
 	}
 
 	if fields["title"] != nil {
 		if err := json.Unmarshal(fields["title"], &resource.Title); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'title': %w", err)
 		}
 	}
 
 	if fields["description"] != nil {
 		if err := json.Unmarshal(fields["description"], &resource.Description); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'description': %w", err)
 		}
 	}
 
 	if fields["transparent"] != nil {
 		if err := json.Unmarshal(fields["transparent"], &resource.Transparent); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'transparent': %w", err)
 		}
 	}
 
 	if fields["datasource"] != nil {
 		if err := json.Unmarshal(fields["datasource"], &resource.Datasource); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'datasource': %w", err)
 		}
 	}
 
 	if fields["links"] != nil {
 		if err := json.Unmarshal(fields["links"], &resource.Links); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'links': %w", err)
 		}
 	}
 
 	if fields["repeat"] != nil {
 		if err := json.Unmarshal(fields["repeat"], &resource.Repeat); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'repeat': %w", err)
 		}
 	}
 
 	if fields["repeatDirection"] != nil {
 		if err := json.Unmarshal(fields["repeatDirection"], &resource.RepeatDirection); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'repeatDirection': %w", err)
 		}
 	}
 
 	if fields["maxPerRow"] != nil {
 		if err := json.Unmarshal(fields["maxPerRow"], &resource.MaxPerRow); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'maxPerRow': %w", err)
 		}
 	}
 
 	if fields["maxDataPoints"] != nil {
 		if err := json.Unmarshal(fields["maxDataPoints"], &resource.MaxDataPoints); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'maxDataPoints': %w", err)
 		}
 	}
 
 	if fields["transformations"] != nil {
 		if err := json.Unmarshal(fields["transformations"], &resource.Transformations); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'transformations': %w", err)
 		}
 	}
 
 	if fields["interval"] != nil {
 		if err := json.Unmarshal(fields["interval"], &resource.Interval); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'interval': %w", err)
 		}
 	}
 
 	if fields["timeFrom"] != nil {
 		if err := json.Unmarshal(fields["timeFrom"], &resource.TimeFrom); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'timeFrom': %w", err)
 		}
 	}
 
 	if fields["timeShift"] != nil {
 		if err := json.Unmarshal(fields["timeShift"], &resource.TimeShift); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'timeShift': %w", err)
 		}
 	}
 
 	if fields["hideTimeOverride"] != nil {
 		if err := json.Unmarshal(fields["hideTimeOverride"], &resource.HideTimeOverride); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'hideTimeOverride': %w", err)
 		}
 	}
 
 	if fields["cacheTimeout"] != nil {
 		if err := json.Unmarshal(fields["cacheTimeout"], &resource.CacheTimeout); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'cacheTimeout': %w", err)
 		}
 	}
 
 	if fields["queryCachingTTL"] != nil {
 		if err := json.Unmarshal(fields["queryCachingTTL"], &resource.QueryCachingTTL); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'queryCachingTTL': %w", err)
 		}
 	}
 
 	if fields["options"] != nil {
 		if err := json.Unmarshal(fields["options"], &resource.Options); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'options': %w", err)
 		}
 	}
 
 	if fields["fieldConfig"] != nil {
 		if err := json.Unmarshal(fields["fieldConfig"], &resource.FieldConfig); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'fieldConfig': %w", err)
 		}
 	}
 
