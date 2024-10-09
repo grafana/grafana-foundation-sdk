@@ -9,7 +9,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-python3 -m pip install 'grafana_foundation_sdk==1728036784!10.2.0'
+python3 -m pip install 'grafana_foundation_sdk==1728502403!10.2.0'
 ```
 
 ## Example usage
@@ -294,9 +294,7 @@ if __name__ == '__main__':
 
 ## Maturity
 
-The code in this repository should be considered as "public preview" and is actively developed and maintained by Engineering teams at Grafana.
-
-While this repository is stable enough to be used in production environments, occasional breaking changes can be expected.
+The code in this repository should be considered as "public preview". While it is used by Grafana Labs in production, it still is under active development.
 
 > [!NOTE]
 > Bugs and issues are handled solely by Engineering teams. On-call support or SLAs are not available.

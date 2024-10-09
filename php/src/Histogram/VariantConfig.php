@@ -9,7 +9,9 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'histogram',
             optionsFromArray: [\Grafana\Foundation\Histogram\Options::class, 'fromArray'],
-            fieldConfigFromArray: [\Grafana\Foundation\Histogram\FieldConfig::class, 'fromArray']
+            fieldConfigFromArray: [\Grafana\Foundation\Histogram\FieldConfig::class, 'fromArray'],
+            convert: [\Grafana\Foundation\Histogram\PanelConverter::class, 'convert'],
+
         );
     }
 }

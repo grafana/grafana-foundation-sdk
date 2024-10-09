@@ -9,6 +9,7 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\DataqueryConfig(
             identifier: "cloud-monitoring",
             fromArray: [\Grafana\Foundation\Googlecloudmonitoring\CloudMonitoringQuery::class, 'fromArray'],
+            convert: [\Grafana\Foundation\Googlecloudmonitoring\CloudMonitoringQueryConverter::class, 'convert'],
         );
     }
 }
