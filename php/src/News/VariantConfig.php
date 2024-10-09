@@ -9,7 +9,9 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'news',
             optionsFromArray: [\Grafana\Foundation\News\Options::class, 'fromArray'],
-            fieldConfigFromArray: null
+            fieldConfigFromArray: null,
+            convert: [\Grafana\Foundation\News\PanelConverter::class, 'convert'],
+
         );
     }
 }

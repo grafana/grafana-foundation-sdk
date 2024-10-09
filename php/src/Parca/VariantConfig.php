@@ -9,6 +9,7 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\DataqueryConfig(
             identifier: "parca",
             fromArray: [\Grafana\Foundation\Parca\Dataquery::class, 'fromArray'],
+            convert: [\Grafana\Foundation\Parca\DataqueryConverter::class, 'convert'],
         );
     }
 }
