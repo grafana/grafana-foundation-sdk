@@ -4,6 +4,7 @@ package alerting
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
@@ -29,25 +30,25 @@ func (resource *Query) UnmarshalJSON(raw []byte) error {
 
 	if fields["datasourceUid"] != nil {
 		if err := json.Unmarshal(fields["datasourceUid"], &resource.DatasourceUid); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'datasourceUid': %w", err)
 		}
 	}
 
 	if fields["queryType"] != nil {
 		if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'queryType': %w", err)
 		}
 	}
 
 	if fields["refId"] != nil {
 		if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'refId': %w", err)
 		}
 	}
 
 	if fields["relativeTimeRange"] != nil {
 		if err := json.Unmarshal(fields["relativeTimeRange"], &resource.RelativeTimeRange); err != nil {
-			return err
+			return fmt.Errorf("error decoding field 'relativeTimeRange': %w", err)
 		}
 	}
 

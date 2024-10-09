@@ -9,7 +9,9 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'nodeGraph',
             optionsFromArray: [\Grafana\Foundation\Nodegraph\Options::class, 'fromArray'],
-            fieldConfigFromArray: null
+            fieldConfigFromArray: null,
+            convert: [\Grafana\Foundation\Nodegraph\PanelConverter::class, 'convert'],
+
         );
     }
 }
