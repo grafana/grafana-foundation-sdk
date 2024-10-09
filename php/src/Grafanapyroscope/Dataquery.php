@@ -123,4 +123,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         }
         return $data;
     }
+
+    public function dataqueryType(): string
+    {
+        return "grafanapyroscope";
+    }
 }
