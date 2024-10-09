@@ -28,6 +28,25 @@ final class VariantConfig
         throw new \ValueError('can not parse disjunction from array');
 }
 }),
+            convert: (function(\Grafana\Foundation\Cog\Dataquery $input) {
+
+    switch (true) {
+    case $input instanceof TypeClassicConditions:
+        return TypeClassicConditionsConverter::convert($input);
+    case $input instanceof TypeMath:
+        return TypeMathConverter::convert($input);
+    case $input instanceof TypeReduce:
+        return TypeReduceConverter::convert($input);
+    case $input instanceof TypeResample:
+        return TypeResampleConverter::convert($input);
+    case $input instanceof TypeSql:
+        return TypeSqlConverter::convert($input);
+    case $input instanceof TypeThreshold:
+        return TypeThresholdConverter::convert($input);
+    default:
+        throw new \ValueError('can not convert unknown disjunction branch');
+}
+}),
         );
     }
 }

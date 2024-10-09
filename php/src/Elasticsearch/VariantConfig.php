@@ -9,6 +9,7 @@ final class VariantConfig
         return new \Grafana\Foundation\Cog\DataqueryConfig(
             identifier: "elasticsearch",
             fromArray: [\Grafana\Foundation\Elasticsearch\Dataquery::class, 'fromArray'],
+            convert: [\Grafana\Foundation\Elasticsearch\DataqueryConverter::class, 'convert'],
         );
     }
 }

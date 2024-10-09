@@ -21,6 +21,19 @@ final class UnknownDataquery implements \ArrayAccess, \JsonSerializable, Dataque
 	}
 
     /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        return $this->data;
+    }
+
+    public function dataqueryType(): string
+    {
+        return 'unknown';
+    }
+
+    /**
      * @param string $offset
      * @param mixed $value
      */
