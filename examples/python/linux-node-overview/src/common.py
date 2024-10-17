@@ -66,6 +66,7 @@ def uname_stat(title: str, description: str, field: str) -> stat.Panel:
 def default_timeseries() -> timeseries.Panel:
     return (
         timeseries.Panel()
+        .datasource(DataSourceRef(uid="$datasource"))
         .line_width(2)
         .fill_opacity(30)
         .line_interpolation(common.LineInterpolation.SMOOTH)

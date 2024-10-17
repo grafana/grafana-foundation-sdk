@@ -68,6 +68,7 @@ func unameStat(panelTitle string, panelDescription string, field string) *stat.P
 
 func defaultTimeseries() *timeseries.PanelBuilder {
 	return timeseries.NewPanelBuilder().
+		Datasource(datasourceRef("$datasource")).
 		LineWidth(2).
 		FillOpacity(30).
 		LineInterpolation(common.LineInterpolationSmooth).
