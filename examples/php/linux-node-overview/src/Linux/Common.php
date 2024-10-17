@@ -46,6 +46,7 @@ class Common
     public static function defaultTimeseries(): Timeseries\PanelBuilder
     {
         return (new Timeseries\PanelBuilder())
+            ->datasource(new SDKDashboard\DataSourceRef(uid: '$datasource'))
             ->lineWidth(2)
             ->fillOpacity(30)
             ->lineInterpolation(SDKCommon\LineInterpolation::smooth())
