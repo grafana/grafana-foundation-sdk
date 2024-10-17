@@ -32,7 +32,11 @@ public class Common {
     }
 
     public static PanelBuilder defaultTimeSeries() {
+        DataSourceRef ref = new DataSourceRef();
+        ref.type = "loki";
+        ref.uid = "grafana-cloud-logs";
         return new PanelBuilder().
+                datasource(ref).
                 lineWidth(1.0).
                 fillOpacity(10.0).
                 drawStyle(GraphDrawStyle.LINE).
