@@ -10,7 +10,7 @@ class Query implements \JsonSerializable, Cog\Dataquery
     public string $refId;
     public ?bool $hide;
 
-    // Query is specific to the Query type
+    // Expr is specific to the Query type
     public string $expr;
 
     /**
@@ -47,5 +47,10 @@ class Query implements \JsonSerializable, Cog\Dataquery
             $data["hide"] = $this->hide;
         }
         return $data;
+    }
+
+    public function dataqueryType(): string
+    {
+        return "custom";
     }
 }
