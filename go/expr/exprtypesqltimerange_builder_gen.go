@@ -26,14 +26,8 @@ func NewExprTypeSqlTimeRangeBuilder() *ExprTypeSqlTimeRangeBuilder {
 }
 
 func (builder *ExprTypeSqlTimeRangeBuilder) Build() (ExprTypeSqlTimeRange, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExprTypeSqlTimeRange", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExprTypeSqlTimeRange{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExprTypeSqlTimeRange{}, err
 	}
 
 	return *builder.internal, nil

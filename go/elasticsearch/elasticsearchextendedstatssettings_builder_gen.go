@@ -26,14 +26,8 @@ func NewElasticsearchExtendedStatsSettingsBuilder() *ElasticsearchExtendedStatsS
 }
 
 func (builder *ElasticsearchExtendedStatsSettingsBuilder) Build() (ElasticsearchExtendedStatsSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchExtendedStatsSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchExtendedStatsSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchExtendedStatsSettings{}, err
 	}
 
 	return *builder.internal, nil

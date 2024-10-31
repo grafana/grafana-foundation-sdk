@@ -29,27 +29,19 @@ func NewTimeRangeBuilder() *TimeRangeBuilder {
 }
 
 func (builder *TimeRangeBuilder) Build() (TimeRange, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TimeRange", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TimeRange{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TimeRange{}, err
 	}
 
 	return *builder.internal, nil
 }
 
-// Redefining this to avoid an import cycle
 func (builder *TimeRangeBuilder) From(from time.Time) *TimeRangeBuilder {
 	builder.internal.From = &from
 
 	return builder
 }
 
-// Redefining this to avoid an import cycle
 func (builder *TimeRangeBuilder) To(to time.Time) *TimeRangeBuilder {
 	builder.internal.To = &to
 

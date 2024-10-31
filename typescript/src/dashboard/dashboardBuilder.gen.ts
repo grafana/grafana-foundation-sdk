@@ -223,18 +223,18 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     }
 
     // Configured template variables
-    variables(list: cog.Builder<dashboard.VariableModel>[]): this {
+    variables(variables: cog.Builder<dashboard.VariableModel>[]): this {
         if (!this.internal.templating) {
             this.internal.templating = {
 };
         }
-        const listResources = list.map(builder1 => builder1.build());
-        this.internal.templating.list = listResources;
+        const variablesResources = variables.map(builder1 => builder1.build());
+        this.internal.templating.list = variablesResources;
         return this;
     }
 
     // Configured template variables
-    withVariable(list: cog.Builder<dashboard.VariableModel>): this {
+    withVariable(variable: cog.Builder<dashboard.VariableModel>): this {
         if (!this.internal.templating) {
             this.internal.templating = {
 };
@@ -242,8 +242,8 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
         if (!this.internal.templating.list) {
             this.internal.templating.list = [];
         }
-        const listResource = list.build();
-        this.internal.templating.list.push(listResource);
+        const variableResource = variable.build();
+        this.internal.templating.list.push(variableResource);
         return this;
     }
 
@@ -251,12 +251,12 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     // Annotations are used to overlay event markers and overlay event tags on graphs.
     // Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
     // See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-    annotations(list: cog.Builder<dashboard.AnnotationQuery>[]): this {
+    annotations(annotations: cog.Builder<dashboard.AnnotationQuery>[]): this {
         if (!this.internal.annotations) {
             this.internal.annotations = dashboard.defaultAnnotationContainer();
         }
-        const listResources = list.map(builder1 => builder1.build());
-        this.internal.annotations.list = listResources;
+        const annotationsResources = annotations.map(builder1 => builder1.build());
+        this.internal.annotations.list = annotationsResources;
         return this;
     }
 
@@ -264,15 +264,15 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     // Annotations are used to overlay event markers and overlay event tags on graphs.
     // Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
     // See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-    annotation(list: cog.Builder<dashboard.AnnotationQuery>): this {
+    annotation(annotation: cog.Builder<dashboard.AnnotationQuery>): this {
         if (!this.internal.annotations) {
             this.internal.annotations = dashboard.defaultAnnotationContainer();
         }
         if (!this.internal.annotations.list) {
             this.internal.annotations.list = [];
         }
-        const listResource = list.build();
-        this.internal.annotations.list.push(listResource);
+        const annotationResource = annotation.build();
+        this.internal.annotations.list.push(annotationResource);
         return this;
     }
 
@@ -284,12 +284,12 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     }
 
     // Links with references to other dashboards or external websites.
-    link(links: cog.Builder<dashboard.DashboardLink>): this {
+    link(link: cog.Builder<dashboard.DashboardLink>): this {
         if (!this.internal.links) {
             this.internal.links = [];
         }
-        const linksResource = links.build();
-        this.internal.links.push(linksResource);
+        const linkResource = link.build();
+        this.internal.links.push(linkResource);
         return this;
     }
 

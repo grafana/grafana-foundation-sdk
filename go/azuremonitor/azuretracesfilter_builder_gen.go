@@ -26,14 +26,8 @@ func NewAzureTracesFilterBuilder() *AzureTracesFilterBuilder {
 }
 
 func (builder *AzureTracesFilterBuilder) Build() (AzureTracesFilter, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AzureTracesFilter", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AzureTracesFilter{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AzureTracesFilter{}, err
 	}
 
 	return *builder.internal, nil

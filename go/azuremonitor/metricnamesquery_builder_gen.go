@@ -27,14 +27,8 @@ func NewMetricNamesQueryBuilder() *MetricNamesQueryBuilder {
 }
 
 func (builder *MetricNamesQueryBuilder) Build() (MetricNamesQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MetricNamesQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MetricNamesQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MetricNamesQuery{}, err
 	}
 
 	return *builder.internal, nil

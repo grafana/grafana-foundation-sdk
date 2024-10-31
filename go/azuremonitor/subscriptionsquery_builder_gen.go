@@ -27,14 +27,8 @@ func NewSubscriptionsQueryBuilder() *SubscriptionsQueryBuilder {
 }
 
 func (builder *SubscriptionsQueryBuilder) Build() (SubscriptionsQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("SubscriptionsQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return SubscriptionsQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return SubscriptionsQuery{}, err
 	}
 
 	return *builder.internal, nil

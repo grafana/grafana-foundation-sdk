@@ -28,14 +28,8 @@ func NewLibraryElementDTOMetaBuilder() *LibraryElementDTOMetaBuilder {
 }
 
 func (builder *LibraryElementDTOMetaBuilder) Build() (LibraryElementDTOMeta, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("LibraryElementDTOMeta", err)...)
-	}
-
-	if len(errs) != 0 {
-		return LibraryElementDTOMeta{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return LibraryElementDTOMeta{}, err
 	}
 
 	return *builder.internal, nil

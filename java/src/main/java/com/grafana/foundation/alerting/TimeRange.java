@@ -10,11 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 // Redefining this to avoid an import cycle
 public class TimeRange {
-    // Redefining this to avoid an import cycle
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("from")
     public String from;
-    // Redefining this to avoid an import cycle
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("to")
     public String to;

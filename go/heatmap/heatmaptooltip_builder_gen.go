@@ -28,14 +28,8 @@ func NewHeatmapTooltipBuilder() *HeatmapTooltipBuilder {
 }
 
 func (builder *HeatmapTooltipBuilder) Build() (HeatmapTooltip, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("HeatmapTooltip", err)...)
-	}
-
-	if len(errs) != 0 {
-		return HeatmapTooltip{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return HeatmapTooltip{}, err
 	}
 
 	return *builder.internal, nil

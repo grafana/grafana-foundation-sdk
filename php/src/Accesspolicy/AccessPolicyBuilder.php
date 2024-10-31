@@ -47,12 +47,12 @@ class AccessPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * The set of rules to apply.  Note that * is required to modify
      * access policy rules, and that "none" will reject all actions
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Accesspolicy\AccessRule> $rules
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Accesspolicy\AccessRule> $rule
      */
-    public function rules(\Grafana\Foundation\Cog\Builder $rules): static
+    public function rules(\Grafana\Foundation\Cog\Builder $rule): static
     {
-        $rulesResource = $rules->build();
-        $this->internal->rules[] = $rulesResource;
+        $ruleResource = $rule->build();
+        $this->internal->rules[] = $ruleResource;
     
         return $this;
     }

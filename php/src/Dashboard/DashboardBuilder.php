@@ -303,30 +303,30 @@ class DashboardBuilder implements \Grafana\Foundation\Cog\Builder
     }
     /**
      * Configured template variables
-     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\VariableModel>> $list
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\VariableModel>> $variables
      */
-    public function variables(array $list): static
+    public function variables(array $variables): static
     {
-            $listResources = [];
-            foreach ($list as $r1) {
-                    $listResources[] = $r1->build();
+            $variablesResources = [];
+            foreach ($variables as $r1) {
+                    $variablesResources[] = $r1->build();
             }
-        $this->internal->templating->list = $listResources;
+        $this->internal->templating->list = $variablesResources;
     
         return $this;
     }
     /**
      * Configured template variables
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\VariableModel> $list
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\VariableModel> $variable
      */
-    public function withVariable(\Grafana\Foundation\Cog\Builder $list): static
+    public function withVariable(\Grafana\Foundation\Cog\Builder $variable): static
     {    
         if ($this->internal->templating->list === null) {
             $this->internal->templating->list = [];
         }
         
-        $listResource = $list->build();
-        $this->internal->templating->list[] = $listResource;
+        $variableResource = $variable->build();
+        $this->internal->templating->list[] = $variableResource;
     
         return $this;
     }
@@ -335,15 +335,15 @@ class DashboardBuilder implements \Grafana\Foundation\Cog\Builder
      * Annotations are used to overlay event markers and overlay event tags on graphs.
      * Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
      * See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationQuery>> $list
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationQuery>> $annotations
      */
-    public function annotations(array $list): static
+    public function annotations(array $annotations): static
     {
-            $listResources = [];
-            foreach ($list as $r1) {
-                    $listResources[] = $r1->build();
+            $annotationsResources = [];
+            foreach ($annotations as $r1) {
+                    $annotationsResources[] = $r1->build();
             }
-        $this->internal->annotations->list = $listResources;
+        $this->internal->annotations->list = $annotationsResources;
     
         return $this;
     }
@@ -352,16 +352,16 @@ class DashboardBuilder implements \Grafana\Foundation\Cog\Builder
      * Annotations are used to overlay event markers and overlay event tags on graphs.
      * Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
      * See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationQuery> $list
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationQuery> $annotation
      */
-    public function annotation(\Grafana\Foundation\Cog\Builder $list): static
+    public function annotation(\Grafana\Foundation\Cog\Builder $annotation): static
     {    
         if ($this->internal->annotations->list === null) {
             $this->internal->annotations->list = [];
         }
         
-        $listResource = $list->build();
-        $this->internal->annotations->list[] = $listResource;
+        $annotationResource = $annotation->build();
+        $this->internal->annotations->list[] = $annotationResource;
     
         return $this;
     }
@@ -381,16 +381,16 @@ class DashboardBuilder implements \Grafana\Foundation\Cog\Builder
     }
     /**
      * Links with references to other dashboards or external websites.
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink> $links
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink> $link
      */
-    public function link(\Grafana\Foundation\Cog\Builder $links): static
+    public function link(\Grafana\Foundation\Cog\Builder $link): static
     {    
         if ($this->internal->links === null) {
             $this->internal->links = [];
         }
         
-        $linksResource = $links->build();
-        $this->internal->links[] = $linksResource;
+        $linkResource = $link->build();
+        $this->internal->links[] = $linkResource;
     
         return $this;
     }

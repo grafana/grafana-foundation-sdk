@@ -27,14 +27,8 @@ func NewRawDataBuilder() *RawDataBuilder {
 }
 
 func (builder *RawDataBuilder) Build() (RawData, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("RawData", err)...)
-	}
-
-	if len(errs) != 0 {
-		return RawData{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return RawData{}, err
 	}
 
 	return *builder.internal, nil

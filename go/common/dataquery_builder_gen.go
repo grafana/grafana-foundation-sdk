@@ -29,14 +29,8 @@ func NewDataQueryBuilder() *DataQueryBuilder {
 }
 
 func (builder *DataQueryBuilder) Build() (DataQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("DataQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return DataQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return DataQuery{}, err
 	}
 
 	return *builder.internal, nil

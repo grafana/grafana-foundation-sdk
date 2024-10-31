@@ -27,14 +27,8 @@ func NewAxisConfigBuilder() *AxisConfigBuilder {
 }
 
 func (builder *AxisConfigBuilder) Build() (AxisConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AxisConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AxisConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AxisConfig{}, err
 	}
 
 	return *builder.internal, nil
