@@ -26,14 +26,8 @@ func NewHeatmapCalculationOptionsBuilder() *HeatmapCalculationOptionsBuilder {
 }
 
 func (builder *HeatmapCalculationOptionsBuilder) Build() (HeatmapCalculationOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("HeatmapCalculationOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return HeatmapCalculationOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return HeatmapCalculationOptions{}, err
 	}
 
 	return *builder.internal, nil

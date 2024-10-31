@@ -26,14 +26,8 @@ func NewExprTypeReduceSettingsBuilder() *ExprTypeReduceSettingsBuilder {
 }
 
 func (builder *ExprTypeReduceSettingsBuilder) Build() (ExprTypeReduceSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExprTypeReduceSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExprTypeReduceSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExprTypeReduceSettings{}, err
 	}
 
 	return *builder.internal, nil

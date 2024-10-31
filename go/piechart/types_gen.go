@@ -4,7 +4,10 @@ package piechart
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
@@ -51,6 +54,155 @@ type PieChartLegendOptions struct {
 	SortDesc    *bool                    `json:"sortDesc,omitempty"`
 	Width       *float64                 `json:"width,omitempty"`
 	Calcs       []string                 `json:"calcs"`
+}
+
+func (resource *PieChartLegendOptions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "values"
+	if fields["values"] != nil {
+		if string(fields["values"]) != "null" {
+
+			if err := json.Unmarshal(fields["values"], &resource.Values); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("values", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("values", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "values")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("values", errors.New("required field is missing from input"))...)
+	}
+	// Field "displayMode"
+	if fields["displayMode"] != nil {
+		if string(fields["displayMode"]) != "null" {
+			if err := json.Unmarshal(fields["displayMode"], &resource.DisplayMode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("displayMode", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("displayMode", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "displayMode")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("displayMode", errors.New("required field is missing from input"))...)
+	}
+	// Field "placement"
+	if fields["placement"] != nil {
+		if string(fields["placement"]) != "null" {
+			if err := json.Unmarshal(fields["placement"], &resource.Placement); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("placement", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("placement", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "placement")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("placement", errors.New("required field is missing from input"))...)
+	}
+	// Field "showLegend"
+	if fields["showLegend"] != nil {
+		if string(fields["showLegend"]) != "null" {
+			if err := json.Unmarshal(fields["showLegend"], &resource.ShowLegend); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showLegend", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("showLegend", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "showLegend")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showLegend", errors.New("required field is missing from input"))...)
+	}
+	// Field "asTable"
+	if fields["asTable"] != nil {
+		if string(fields["asTable"]) != "null" {
+			if err := json.Unmarshal(fields["asTable"], &resource.AsTable); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("asTable", err)...)
+			}
+
+		}
+		delete(fields, "asTable")
+
+	}
+	// Field "isVisible"
+	if fields["isVisible"] != nil {
+		if string(fields["isVisible"]) != "null" {
+			if err := json.Unmarshal(fields["isVisible"], &resource.IsVisible); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("isVisible", err)...)
+			}
+
+		}
+		delete(fields, "isVisible")
+
+	}
+	// Field "sortBy"
+	if fields["sortBy"] != nil {
+		if string(fields["sortBy"]) != "null" {
+			if err := json.Unmarshal(fields["sortBy"], &resource.SortBy); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("sortBy", err)...)
+			}
+
+		}
+		delete(fields, "sortBy")
+
+	}
+	// Field "sortDesc"
+	if fields["sortDesc"] != nil {
+		if string(fields["sortDesc"]) != "null" {
+			if err := json.Unmarshal(fields["sortDesc"], &resource.SortDesc); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("sortDesc", err)...)
+			}
+
+		}
+		delete(fields, "sortDesc")
+
+	}
+	// Field "width"
+	if fields["width"] != nil {
+		if string(fields["width"]) != "null" {
+			if err := json.Unmarshal(fields["width"], &resource.Width); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("width", err)...)
+			}
+
+		}
+		delete(fields, "width")
+
+	}
+	// Field "calcs"
+	if fields["calcs"] != nil {
+		if string(fields["calcs"]) != "null" {
+
+			if err := json.Unmarshal(fields["calcs"], &resource.Calcs); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("calcs", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("calcs", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "calcs")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("calcs", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("PieChartLegendOptions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource PieChartLegendOptions) Equals(other PieChartLegendOptions) bool {
@@ -132,6 +284,12 @@ func (resource PieChartLegendOptions) Equals(other PieChartLegendOptions) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource PieChartLegendOptions) Validate() error {
+	return nil
+}
+
 type Options struct {
 	PieType       PieChartType                  `json:"pieType"`
 	DisplayLabels []PieChartLabels              `json:"displayLabels,omitempty"`
@@ -140,6 +298,129 @@ type Options struct {
 	Text          *common.VizTextDisplayOptions `json:"text,omitempty"`
 	Legend        PieChartLegendOptions         `json:"legend"`
 	Orientation   common.VizOrientation         `json:"orientation"`
+}
+
+func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "pieType"
+	if fields["pieType"] != nil {
+		if string(fields["pieType"]) != "null" {
+			if err := json.Unmarshal(fields["pieType"], &resource.PieType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("pieType", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("pieType", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "pieType")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("pieType", errors.New("required field is missing from input"))...)
+	}
+	// Field "displayLabels"
+	if fields["displayLabels"] != nil {
+		if string(fields["displayLabels"]) != "null" {
+
+			if err := json.Unmarshal(fields["displayLabels"], &resource.DisplayLabels); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("displayLabels", err)...)
+			}
+
+		}
+		delete(fields, "displayLabels")
+
+	}
+	// Field "tooltip"
+	if fields["tooltip"] != nil {
+		if string(fields["tooltip"]) != "null" {
+
+			resource.Tooltip = common.VizTooltipOptions{}
+			if err := resource.Tooltip.UnmarshalJSONStrict(fields["tooltip"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tooltip", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "tooltip")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is missing from input"))...)
+	}
+	// Field "reduceOptions"
+	if fields["reduceOptions"] != nil {
+		if string(fields["reduceOptions"]) != "null" {
+
+			resource.ReduceOptions = common.ReduceDataOptions{}
+			if err := resource.ReduceOptions.UnmarshalJSONStrict(fields["reduceOptions"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("reduceOptions", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("reduceOptions", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "reduceOptions")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("reduceOptions", errors.New("required field is missing from input"))...)
+	}
+	// Field "text"
+	if fields["text"] != nil {
+		if string(fields["text"]) != "null" {
+
+			resource.Text = &common.VizTextDisplayOptions{}
+			if err := resource.Text.UnmarshalJSONStrict(fields["text"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("text", err)...)
+			}
+
+		}
+		delete(fields, "text")
+
+	}
+	// Field "legend"
+	if fields["legend"] != nil {
+		if string(fields["legend"]) != "null" {
+
+			resource.Legend = PieChartLegendOptions{}
+			if err := resource.Legend.UnmarshalJSONStrict(fields["legend"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("legend", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("legend", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "legend")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("legend", errors.New("required field is missing from input"))...)
+	}
+	// Field "orientation"
+	if fields["orientation"] != nil {
+		if string(fields["orientation"]) != "null" {
+			if err := json.Unmarshal(fields["orientation"], &resource.Orientation); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("orientation", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("orientation", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "orientation")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("orientation", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource Options) Equals(other Options) bool {
@@ -181,6 +462,32 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource Options) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Tooltip.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("tooltip", err)...)
+	}
+	if err := resource.ReduceOptions.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("reduceOptions", err)...)
+	}
+	if resource.Text != nil {
+		if err := resource.Text.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("text", err)...)
+		}
+	}
+	if err := resource.Legend.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("legend", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type FieldConfig = common.HideableFieldConfig
 
 func VariantConfig() variants.PanelcfgConfig {
@@ -195,10 +502,28 @@ func VariantConfig() variants.PanelcfgConfig {
 
 			return options, nil
 		},
+		StrictOptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := options.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
 		FieldConfigUnmarshaler: func(raw []byte) (any, error) {
 			fieldConfig := &FieldConfig{}
 
 			if err := json.Unmarshal(raw, fieldConfig); err != nil {
+				return nil, err
+			}
+
+			return fieldConfig, nil
+		},
+		StrictFieldConfigUnmarshaler: func(raw []byte) (any, error) {
+			fieldConfig := &FieldConfig{}
+
+			if err := fieldConfig.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
 			}
 

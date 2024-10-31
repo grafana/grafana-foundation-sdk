@@ -26,14 +26,8 @@ func NewElasticsearchDateHistogramSettingsBuilder() *ElasticsearchDateHistogramS
 }
 
 func (builder *ElasticsearchDateHistogramSettingsBuilder) Build() (ElasticsearchDateHistogramSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchDateHistogramSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchDateHistogramSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchDateHistogramSettings{}, err
 	}
 
 	return *builder.internal, nil

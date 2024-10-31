@@ -27,14 +27,8 @@ func NewOptionsWithTextFormattingBuilder() *OptionsWithTextFormattingBuilder {
 }
 
 func (builder *OptionsWithTextFormattingBuilder) Build() (OptionsWithTextFormatting, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("OptionsWithTextFormatting", err)...)
-	}
-
-	if len(errs) != 0 {
-		return OptionsWithTextFormatting{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return OptionsWithTextFormatting{}, err
 	}
 
 	return *builder.internal, nil

@@ -8,40 +8,26 @@ namespace Grafana\Foundation\Alerting;
  */
 class ContactPoint implements \JsonSerializable
 {
-    /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
-     */
     public ?bool $disableResolveMessage;
 
     /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
+     * Name is used as grouping key in the UI. Contact points with the
+     * same name will be grouped in the UI.
      */
     public ?string $name;
 
-    /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
-     */
     public ?string $provenance;
 
     /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
      * @var mixed
      */
     public $settings;
 
-    /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
-     */
     public \Grafana\Foundation\Alerting\ContactPointType $type;
 
     /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
+     * UID is the unique identifier of the contact point. The UID can be
+     * set by the user.
      */
     public ?string $uid;
 

@@ -26,14 +26,8 @@ func NewPipelineMetricAggregationWithMultipleBucketPathsBuilder() *PipelineMetri
 }
 
 func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) Build() (PipelineMetricAggregationWithMultipleBucketPaths, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("PipelineMetricAggregationWithMultipleBucketPaths", err)...)
-	}
-
-	if len(errs) != 0 {
-		return PipelineMetricAggregationWithMultipleBucketPaths{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return PipelineMetricAggregationWithMultipleBucketPaths{}, err
 	}
 
 	return *builder.internal, nil

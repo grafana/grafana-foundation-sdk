@@ -27,14 +27,8 @@ func NewMetricNamespaceQueryBuilder() *MetricNamespaceQueryBuilder {
 }
 
 func (builder *MetricNamespaceQueryBuilder) Build() (MetricNamespaceQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MetricNamespaceQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MetricNamespaceQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MetricNamespaceQuery{}, err
 	}
 
 	return *builder.internal, nil

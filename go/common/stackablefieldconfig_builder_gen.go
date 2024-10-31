@@ -27,14 +27,8 @@ func NewStackableFieldConfigBuilder() *StackableFieldConfigBuilder {
 }
 
 func (builder *StackableFieldConfigBuilder) Build() (StackableFieldConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("StackableFieldConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return StackableFieldConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return StackableFieldConfig{}, err
 	}
 
 	return *builder.internal, nil

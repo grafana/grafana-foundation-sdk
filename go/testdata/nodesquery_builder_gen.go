@@ -26,14 +26,8 @@ func NewNodesQueryBuilder() *NodesQueryBuilder {
 }
 
 func (builder *NodesQueryBuilder) Build() (NodesQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("NodesQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return NodesQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return NodesQuery{}, err
 	}
 
 	return *builder.internal, nil

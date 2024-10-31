@@ -26,14 +26,8 @@ func NewAccessRuleBuilder() *AccessRuleBuilder {
 }
 
 func (builder *AccessRuleBuilder) Build() (AccessRule, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AccessRule", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AccessRule{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AccessRule{}, err
 	}
 
 	return *builder.internal, nil

@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Registry {
     private static final Map<String, PanelConfig> panelRegistry = new HashMap<>();
-    private static final Map<String, Class<? extends Dataquery>> dataqueryRegistry = new HashMap<>();
+    private static final Map<String, DataqueryConfig> dataqueryRegistry = new HashMap<>();
     
     static {
         registerPanel("alertgroups", com.grafana.foundation.alertgroups.Options.class, null);
@@ -49,11 +49,11 @@ public class Registry {
     }
 
     public static void registerDataquery(String type, Class<? extends Dataquery> clazz) {
-        dataqueryRegistry.put(type, clazz);
+        dataqueryRegistry.put(type, new DataqueryConfig(clazz));
     }
 
     public static Class<? extends Dataquery> getDataquery(String type) {
-        return dataqueryRegistry.get(type);
+        return dataqueryRegistry.get(type).getDataquery();
     }
     
     public static void registerPanel(String type, Class<?> options, Class<?> fieldConfig) {

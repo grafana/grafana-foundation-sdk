@@ -27,14 +27,8 @@ func NewDerivativeBuilder() *DerivativeBuilder {
 }
 
 func (builder *DerivativeBuilder) Build() (Derivative, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Derivative", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Derivative{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Derivative{}, err
 	}
 
 	return *builder.internal, nil

@@ -27,14 +27,8 @@ func NewThresholdsConfigBuilder() *ThresholdsConfigBuilder {
 }
 
 func (builder *ThresholdsConfigBuilder) Build() (ThresholdsConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ThresholdsConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ThresholdsConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ThresholdsConfig{}, err
 	}
 
 	return *builder.internal, nil

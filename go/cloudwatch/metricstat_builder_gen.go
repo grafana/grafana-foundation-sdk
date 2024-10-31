@@ -26,14 +26,8 @@ func NewMetricStatBuilder() *MetricStatBuilder {
 }
 
 func (builder *MetricStatBuilder) Build() (MetricStat, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MetricStat", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MetricStat{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MetricStat{}, err
 	}
 
 	return *builder.internal, nil

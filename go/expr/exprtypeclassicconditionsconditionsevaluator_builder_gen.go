@@ -26,14 +26,8 @@ func NewExprTypeClassicConditionsConditionsEvaluatorBuilder() *ExprTypeClassicCo
 }
 
 func (builder *ExprTypeClassicConditionsConditionsEvaluatorBuilder) Build() (ExprTypeClassicConditionsConditionsEvaluator, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExprTypeClassicConditionsConditionsEvaluator", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExprTypeClassicConditionsConditionsEvaluator{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExprTypeClassicConditionsConditionsEvaluator{}, err
 	}
 
 	return *builder.internal, nil

@@ -28,25 +28,21 @@ func NewQueryBuilder(refId string) *QueryBuilder {
 }
 
 func (builder *QueryBuilder) Build() (Query, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Query", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Query{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Query{}, err
 	}
 
 	return *builder.internal, nil
 }
 
+// Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation.
 func (builder *QueryBuilder) DatasourceUid(datasourceUid string) *QueryBuilder {
 	builder.internal.DatasourceUid = &datasourceUid
 
 	return builder
 }
 
+// JSON is the raw JSON query and includes the above properties as well as custom properties.
 func (builder *QueryBuilder) Model(model cog.Builder[variants.Dataquery]) *QueryBuilder {
 	modelResource, err := model.Build()
 	if err != nil {
@@ -58,18 +54,23 @@ func (builder *QueryBuilder) Model(model cog.Builder[variants.Dataquery]) *Query
 	return builder
 }
 
+// QueryType is an optional identifier for the type of query.
+// It can be used to distinguish different types of queries.
 func (builder *QueryBuilder) QueryType(queryType string) *QueryBuilder {
 	builder.internal.QueryType = &queryType
 
 	return builder
 }
 
+// RefID is the unique identifier of the query, set by the frontend call.
 func (builder *QueryBuilder) RefId(refId string) *QueryBuilder {
 	builder.internal.RefId = &refId
 
 	return builder
 }
 
+// RelativeTimeRange is the per query start and end time
+// for requests.
 func (builder *QueryBuilder) RelativeTimeRange(from Duration, to Duration) *QueryBuilder {
 	if builder.internal.RelativeTimeRange == nil {
 		builder.internal.RelativeTimeRange = &RelativeTimeRange{}

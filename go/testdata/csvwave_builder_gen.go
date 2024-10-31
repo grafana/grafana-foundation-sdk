@@ -26,14 +26,8 @@ func NewCSVWaveBuilder() *CSVWaveBuilder {
 }
 
 func (builder *CSVWaveBuilder) Build() (CSVWave, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CSVWave", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CSVWave{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CSVWave{}, err
 	}
 
 	return *builder.internal, nil

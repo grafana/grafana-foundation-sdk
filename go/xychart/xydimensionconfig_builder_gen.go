@@ -3,8 +3,6 @@
 package xychart
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
@@ -29,24 +27,14 @@ func NewXYDimensionConfigBuilder() *XYDimensionConfigBuilder {
 }
 
 func (builder *XYDimensionConfigBuilder) Build() (XYDimensionConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("XYDimensionConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return XYDimensionConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return XYDimensionConfig{}, err
 	}
 
 	return *builder.internal, nil
 }
 
 func (builder *XYDimensionConfigBuilder) Frame(frame int32) *XYDimensionConfigBuilder {
-	if !(frame >= 0) {
-		builder.errors["frame"] = cog.MakeBuildErrors("frame", errors.New("frame must be >= 0"))
-		return builder
-	}
 	builder.internal.Frame = frame
 
 	return builder

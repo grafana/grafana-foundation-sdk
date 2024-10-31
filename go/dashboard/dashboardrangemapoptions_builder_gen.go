@@ -26,14 +26,8 @@ func NewDashboardRangeMapOptionsBuilder() *DashboardRangeMapOptionsBuilder {
 }
 
 func (builder *DashboardRangeMapOptionsBuilder) Build() (DashboardRangeMapOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("DashboardRangeMapOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return DashboardRangeMapOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return DashboardRangeMapOptions{}, err
 	}
 
 	return *builder.internal, nil

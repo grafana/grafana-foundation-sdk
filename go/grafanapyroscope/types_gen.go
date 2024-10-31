@@ -4,7 +4,10 @@ package grafanapyroscope
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
@@ -64,6 +67,15 @@ func VariantConfig() variants.DataqueryConfig {
 
 			return dataquery, nil
 		},
+		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &Dataquery{}
+
+			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
 		GoConverter: func(input any) string {
 			var dataquery Dataquery
 			if cast, ok := input.(*Dataquery); ok {
@@ -74,6 +86,143 @@ func VariantConfig() variants.DataqueryConfig {
 			return DataqueryConverter(dataquery)
 		},
 	}
+}
+
+func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "labelSelector"
+	if fields["labelSelector"] != nil {
+		if string(fields["labelSelector"]) != "null" {
+			if err := json.Unmarshal(fields["labelSelector"], &resource.LabelSelector); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("labelSelector", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("labelSelector", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "labelSelector")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("labelSelector", errors.New("required field is missing from input"))...)
+	}
+	// Field "spanSelector"
+	if fields["spanSelector"] != nil {
+		if string(fields["spanSelector"]) != "null" {
+
+			if err := json.Unmarshal(fields["spanSelector"], &resource.SpanSelector); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spanSelector", err)...)
+			}
+
+		}
+		delete(fields, "spanSelector")
+
+	}
+	// Field "profileTypeId"
+	if fields["profileTypeId"] != nil {
+		if string(fields["profileTypeId"]) != "null" {
+			if err := json.Unmarshal(fields["profileTypeId"], &resource.ProfileTypeId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("profileTypeId", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("profileTypeId", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "profileTypeId")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("profileTypeId", errors.New("required field is missing from input"))...)
+	}
+	// Field "groupBy"
+	if fields["groupBy"] != nil {
+		if string(fields["groupBy"]) != "null" {
+
+			if err := json.Unmarshal(fields["groupBy"], &resource.GroupBy); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("groupBy", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("groupBy", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "groupBy")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("groupBy", errors.New("required field is missing from input"))...)
+	}
+	// Field "maxNodes"
+	if fields["maxNodes"] != nil {
+		if string(fields["maxNodes"]) != "null" {
+			if err := json.Unmarshal(fields["maxNodes"], &resource.MaxNodes); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxNodes", err)...)
+			}
+
+		}
+		delete(fields, "maxNodes")
+
+	}
+	// Field "refId"
+	if fields["refId"] != nil {
+		if string(fields["refId"]) != "null" {
+			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "refId")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+	// Field "queryType"
+	if fields["queryType"] != nil {
+		if string(fields["queryType"]) != "null" {
+			if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryType", err)...)
+			}
+
+		}
+		delete(fields, "queryType")
+
+	}
+	// Field "datasource"
+	if fields["datasource"] != nil {
+		if string(fields["datasource"]) != "null" {
+
+			resource.Datasource = &dashboard.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+			}
+
+		}
+		delete(fields, "datasource")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Dataquery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
@@ -152,4 +301,21 @@ func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource Dataquery) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }

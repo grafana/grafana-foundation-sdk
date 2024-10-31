@@ -298,41 +298,41 @@ public class Dashboard {
         return this;
     }
     
-    public Builder variables(com.grafana.foundation.cog.Builder<List<VariableModel>> list) {
+    public Builder variables(com.grafana.foundation.cog.Builder<List<VariableModel>> variables) {
 		if (this.internal.templating == null) {
 			this.internal.templating = new com.grafana.foundation.dashboard.DashboardDashboardTemplating.Builder().build();
 		}
-    this.internal.templating.list = list.build();
+    this.internal.templating.list = variables.build();
         return this;
     }
     
-    public Builder withVariable(com.grafana.foundation.cog.Builder<VariableModel> list) {
+    public Builder withVariable(com.grafana.foundation.cog.Builder<VariableModel> variable) {
 		if (this.internal.templating == null) {
 			this.internal.templating = new com.grafana.foundation.dashboard.DashboardDashboardTemplating.Builder().build();
 		}
 		if (this.internal.templating.list == null) {
 			this.internal.templating.list = new LinkedList<>();
 		}
-    this.internal.templating.list.add(list.build());
+    this.internal.templating.list.add(variable.build());
         return this;
     }
     
-    public Builder annotations(com.grafana.foundation.cog.Builder<List<AnnotationQuery>> list) {
+    public Builder annotations(com.grafana.foundation.cog.Builder<List<AnnotationQuery>> annotations) {
 		if (this.internal.annotations == null) {
 			this.internal.annotations = new com.grafana.foundation.dashboard.AnnotationContainer();
 		}
-    this.internal.annotations.list = list.build();
+    this.internal.annotations.list = annotations.build();
         return this;
     }
     
-    public Builder annotation(com.grafana.foundation.cog.Builder<AnnotationQuery> list) {
+    public Builder annotation(com.grafana.foundation.cog.Builder<AnnotationQuery> annotation) {
 		if (this.internal.annotations == null) {
 			this.internal.annotations = new com.grafana.foundation.dashboard.AnnotationContainer();
 		}
 		if (this.internal.annotations.list == null) {
 			this.internal.annotations.list = new LinkedList<>();
 		}
-    this.internal.annotations.list.add(list.build());
+    this.internal.annotations.list.add(annotation.build());
         return this;
     }
     
@@ -341,11 +341,11 @@ public class Dashboard {
         return this;
     }
     
-    public Builder link(com.grafana.foundation.cog.Builder<DashboardLink> links) {
+    public Builder link(com.grafana.foundation.cog.Builder<DashboardLink> link) {
 		if (this.internal.links == null) {
 			this.internal.links = new LinkedList<>();
 		}
-    this.internal.links.add(links.build());
+    this.internal.links.add(link.build());
         return this;
     }
     

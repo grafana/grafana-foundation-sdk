@@ -55,6 +55,9 @@ public class TypeMath implements com.grafana.foundation.cog.variants.Dataquery {
     public ExprTypeMathTimeRange timeRange;
     @JsonProperty("type")
     public String type;
+    public String dataqueryName() {
+        return "__expr__";
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

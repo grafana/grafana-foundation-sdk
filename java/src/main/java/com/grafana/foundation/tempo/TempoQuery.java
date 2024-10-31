@@ -87,6 +87,9 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("tableType")
     public SearchTableType tableType;
+    public String dataqueryName() {
+        return "tempo";
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

@@ -26,14 +26,8 @@ func NewBaseMetricAggregationBuilder() *BaseMetricAggregationBuilder {
 }
 
 func (builder *BaseMetricAggregationBuilder) Build() (BaseMetricAggregation, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("BaseMetricAggregation", err)...)
-	}
-
-	if len(errs) != 0 {
-		return BaseMetricAggregation{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return BaseMetricAggregation{}, err
 	}
 
 	return *builder.internal, nil

@@ -27,14 +27,8 @@ func NewCustomRoleRefBuilder() *CustomRoleRefBuilder {
 }
 
 func (builder *CustomRoleRefBuilder) Build() (CustomRoleRef, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CustomRoleRef", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CustomRoleRef{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CustomRoleRef{}, err
 	}
 
 	return *builder.internal, nil

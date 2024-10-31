@@ -6,20 +6,25 @@
       "additionalProperties": false,
       "properties": {
         "datasourceUid": {
-          "type": "string"
+          "type": "string",
+          "description": "Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation."
         },
         "model": {
           "type": "object",
-          "additionalProperties": {}
+          "additionalProperties": {},
+          "description": "JSON is the raw JSON query and includes the above properties as well as custom properties."
         },
         "queryType": {
-          "type": "string"
+          "type": "string",
+          "description": "QueryType is an optional identifier for the type of query.\nIt can be used to distinguish different types of queries."
         },
         "refId": {
-          "type": "string"
+          "type": "string",
+          "description": "RefID is the unique identifier of the query, set by the frontend call."
         },
         "relativeTimeRange": {
-          "$ref": "#/definitions/RelativeTimeRange"
+          "$ref": "#/definitions/RelativeTimeRange",
+          "description": "RelativeTimeRange is the per query start and end time\nfor requests."
         }
       }
     },
@@ -58,20 +63,17 @@
       ],
       "properties": {
         "disableResolveMessage": {
-          "type": "boolean",
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+          "type": "boolean"
         },
         "name": {
           "type": "string",
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+          "description": "Name is used as grouping key in the UI. Contact points with the\nsame name will be grouped in the UI."
         },
         "provenance": {
-          "type": "string",
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+          "type": "string"
         },
         "settings": {
-          "$ref": "#/definitions/Json",
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+          "$ref": "#/definitions/Json"
         },
         "type": {
           "enum": [
@@ -93,14 +95,13 @@
             " victorops",
             " webhook",
             " wecom"
-          ],
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+          ]
         },
         "uid": {
           "type": "string",
           "minLength": 1,
           "maxLength": 40,
-          "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+          "description": "UID is the unique identifier of the contact point. The UID can be\nset by the user."
         }
       },
       "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
@@ -286,11 +287,11 @@
       "properties": {
         "from": {
           "$ref": "#/definitions/Duration",
-          "description": "RelativeTimeRange is the per query start and end time\nfor requests."
+          "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years."
         },
         "to": {
           "$ref": "#/definitions/Duration",
-          "description": "RelativeTimeRange is the per query start and end time\nfor requests."
+          "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years."
         }
       },
       "description": "RelativeTimeRange is the per query start and end time\nfor requests."
@@ -300,68 +301,57 @@
       "additionalProperties": false,
       "properties": {
         "continue": {
-          "type": "boolean",
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          "type": "boolean"
         },
         "group_by": {
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          }
         },
         "group_interval": {
-          "type": "string",
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          "type": "string"
         },
         "group_wait": {
-          "type": "string",
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          "type": "string"
         },
         "match": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          "description": "Deprecated. Remove before v1.0 release."
         },
         "match_re": {
-          "$ref": "#/definitions/MatchRegexps",
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          "$ref": "#/definitions/MatchRegexps"
         },
         "matchers": {
           "$ref": "#/definitions/Matchers",
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          "description": "Matchers is a slice of Matchers that is sortable, implements Stringer, and\nprovides a Matches method to match a LabelSet against all Matchers in the\nslice. Note that some users of Matchers might require it to be sorted."
         },
         "mute_time_intervals": {
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          }
         },
         "object_matchers": {
-          "$ref": "#/definitions/ObjectMatchers",
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          "$ref": "#/definitions/ObjectMatchers"
         },
         "provenance": {
-          "$ref": "#/definitions/Provenance",
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          "$ref": "#/definitions/Provenance"
         },
         "receiver": {
-          "type": "string",
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          "type": "string"
         },
         "repeat_interval": {
-          "type": "string",
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          "type": "string"
         },
         "routes": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/NotificationPolicy"
-          },
-          "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+          }
         }
       },
       "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
@@ -374,40 +364,34 @@
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+          }
         },
         "location": {
-          "type": "string",
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+          "type": "string"
         },
         "months": {
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+          }
         },
         "times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/TimeRange"
-          },
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+          }
         },
         "weekdays": {
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+          }
         },
         "years": {
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
+          }
         }
       },
       "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
@@ -469,13 +453,11 @@
       "properties": {
         "from": {
           "type": "string",
-          "format": "date-time",
-          "description": "Redefining this to avoid an import cycle"
+          "format": "date-time"
         },
         "to": {
           "type": "string",
-          "format": "date-time",
-          "description": "Redefining this to avoid an import cycle"
+          "format": "date-time"
         }
       },
       "description": "Redefining this to avoid an import cycle"
