@@ -29,7 +29,6 @@ func sampleDashboard() *dashboard.DashboardBuilder {
 						QueryType("randomWalk"),
 				),
 		)
-
 }
 
 func main() {

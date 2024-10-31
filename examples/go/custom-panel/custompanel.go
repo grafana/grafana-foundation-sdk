@@ -5,7 +5,7 @@ import (
 	"errors"
 
 	"github.com/grafana/grafana-foundation-sdk/go/cog"
-	cogvariants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	"github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	"github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
@@ -13,13 +13,13 @@ type CustomPanelOptions struct {
 	MakeBeautiful bool `json:"makeBeautiful"`
 }
 
-func CustomPanelVariantConfig() cogvariants.PanelcfgConfig {
-	return cogvariants.PanelcfgConfig{
+func CustomPanelVariantConfig() variants.PanelcfgConfig {
+	return variants.PanelcfgConfig{
 		Identifier: "custom-panel", // plugin ID
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
-			options := CustomPanelOptions{}
+			options := &CustomPanelOptions{}
 
-			if err := json.Unmarshal(raw, &options); err != nil {
+			if err := json.Unmarshal(raw, options); err != nil {
 				return nil, err
 			}
 
@@ -85,7 +85,7 @@ func (builder *CustomPanelBuilder) Id(id uint32) *CustomPanelBuilder {
 }
 
 // Depends on the panel plugin. See the plugin documentation for details.
-func (builder *CustomPanelBuilder) WithTarget(targets cog.Builder[cogvariants.Dataquery]) *CustomPanelBuilder {
+func (builder *CustomPanelBuilder) WithTarget(targets cog.Builder[variants.Dataquery]) *CustomPanelBuilder {
 	targetsResource, err := targets.Build()
 	if err != nil {
 		builder.errors["targets"] = err.(cog.BuildErrors)

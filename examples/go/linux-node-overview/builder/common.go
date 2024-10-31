@@ -18,7 +18,7 @@ func datasourceRef(uid string) dashboard.DataSourceRef {
 func queryVariable(name string, label string, query string) *dashboard.QueryVariableBuilder {
 	return dashboard.NewQueryVariableBuilder(name).
 		Label(label).
-		Query(dashboard.StringOrAny{String: cog.ToPtr[string](query)}).
+		Query(dashboard.StringOrMap{String: cog.ToPtr[string](query)}).
 		Datasource(datasourceRef("$datasource")).
 		Current(dashboard.VariableOption{
 			Selected: cog.ToPtr[bool](true),

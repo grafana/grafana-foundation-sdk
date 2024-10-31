@@ -28,6 +28,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	dashboardJson, err := json.MarshalIndent(sampleDashboard, "", "  ")
 	if err != nil {
 		panic(err)

@@ -1,2 +1,2 @@
-github.com/grafana/grafana-foundation-sdk/go v0.0.0-20240415154618-2fd5b8b03249 h1:PJM7F5+uK3H/+CGGiubso2hkXQH+Eeev2lhl5qzzdTc=
-github.com/grafana/grafana-foundation-sdk/go v0.0.0-20240415154618-2fd5b8b03249/go.mod h1:WtWosval1KCZP9BGa42b8aVoJmVXSg0EvQXi9LDSVZQ=
+github.com/grafana/grafana-foundation-sdk/go v0.0.0-20241031124839-dd60a15e7a2b h1:5i8aHrYD49CwC4a4Q1sVN6MrhfyeZzPmA9USvuiVoMM=
+github.com/grafana/grafana-foundation-sdk/go v0.0.0-20241031124839-dd60a15e7a2b/go.mod h1:WtWosval1KCZP9BGa42b8aVoJmVXSg0EvQXi9LDSVZQ=
