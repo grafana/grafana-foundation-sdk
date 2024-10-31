@@ -28,6 +28,8 @@ type Preferences struct {
 	CookiePreferences *CookiePreferences `json:"cookiePreferences,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Preferences` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Preferences) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -131,6 +133,7 @@ func (resource *Preferences) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Preferences` objects.
 func (resource Preferences) Equals(other Preferences) bool {
 	if resource.HomeDashboardUID == nil && other.HomeDashboardUID != nil || resource.HomeDashboardUID != nil && other.HomeDashboardUID == nil {
 		return false
@@ -199,8 +202,7 @@ func (resource Preferences) Equals(other Preferences) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Preferences` fields for violations and returns them.
 func (resource Preferences) Validate() error {
 	var errs cog.BuildErrors
 	if resource.QueryHistory != nil {
@@ -226,6 +228,8 @@ type QueryHistoryPreference struct {
 	HomeTab *string `json:"homeTab,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryHistoryPreference` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryHistoryPreference) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -259,6 +263,7 @@ func (resource *QueryHistoryPreference) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `QueryHistoryPreference` objects.
 func (resource QueryHistoryPreference) Equals(other QueryHistoryPreference) bool {
 	if resource.HomeTab == nil && other.HomeTab != nil || resource.HomeTab != nil && other.HomeTab == nil {
 		return false
@@ -273,8 +278,7 @@ func (resource QueryHistoryPreference) Equals(other QueryHistoryPreference) bool
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `QueryHistoryPreference` fields for violations and returns them.
 func (resource QueryHistoryPreference) Validate() error {
 	return nil
 }
@@ -285,6 +289,8 @@ type CookiePreferences struct {
 	Functional  any `json:"functional,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CookiePreferences` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CookiePreferences) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -340,6 +346,7 @@ func (resource *CookiePreferences) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `CookiePreferences` objects.
 func (resource CookiePreferences) Equals(other CookiePreferences) bool {
 	// is DeepEqual good enough here?
 	if !reflect.DeepEqual(resource.Analytics, other.Analytics) {
@@ -357,8 +364,7 @@ func (resource CookiePreferences) Equals(other CookiePreferences) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CookiePreferences` fields for violations and returns them.
 func (resource CookiePreferences) Validate() error {
 	return nil
 }

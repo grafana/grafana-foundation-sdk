@@ -11,6 +11,9 @@ export class BarConfigBuilder implements cog.Builder<common.BarConfig> {
         this.internal = common.defaultBarConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.BarConfig {
         return this.internal;
     }

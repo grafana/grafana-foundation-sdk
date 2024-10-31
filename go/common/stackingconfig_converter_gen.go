@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// StackingConfigConverter accepts a `StackingConfig` object and generates the Go code to build this object using builders.
 func StackingConfigConverter(input StackingConfig) string {
 	calls := []string{
 		`common.NewStackingConfigBuilder()`,

@@ -13,6 +13,9 @@ class Team(cogbuilder.Builder[team.Team]):
         self._internal.name = name
 
     def build(self) -> team.Team:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:    

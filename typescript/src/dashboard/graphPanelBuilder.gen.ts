@@ -13,6 +13,9 @@ export class GraphPanelBuilder implements cog.Builder<dashboard.GraphPanel> {
         this.internal.type = "graph";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.GraphPanel {
         return this.internal;
     }

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
 func PanelConverter(input Panel) string {
 	calls := []string{
 		`dashboard.NewPanelBuilder()`,

@@ -11,6 +11,9 @@ export class CloudMonitoringQueryBuilder implements cog.Builder<cog.Dataquery> {
         this.internal = googlecloudmonitoring.defaultCloudMonitoringQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): googlecloudmonitoring.CloudMonitoringQuery {
         return this.internal;
     }

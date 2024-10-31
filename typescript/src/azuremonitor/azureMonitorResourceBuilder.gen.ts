@@ -10,6 +10,9 @@ export class AzureMonitorResourceBuilder implements cog.Builder<azuremonitor.Azu
         this.internal = azuremonitor.defaultAzureMonitorResource();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.AzureMonitorResource {
         return this.internal;
     }

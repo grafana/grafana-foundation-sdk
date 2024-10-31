@@ -10,6 +10,9 @@ export class PlaylistItemBuilder implements cog.Builder<playlist.PlaylistItem> {
         this.internal = playlist.defaultPlaylistItem();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): playlist.PlaylistItem {
         return this.internal;
     }

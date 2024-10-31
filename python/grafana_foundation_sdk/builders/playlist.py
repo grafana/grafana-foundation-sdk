@@ -12,6 +12,9 @@ class Playlist(cogbuilder.Builder[playlist.Playlist]):
         self._internal = playlist.Playlist()
 
     def build(self) -> playlist.Playlist:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def uid(self, uid: str) -> typing.Self:    
@@ -62,6 +65,9 @@ class PlaylistItem(cogbuilder.Builder[playlist.PlaylistItem]):
         self._internal = playlist.PlaylistItem()
 
     def build(self) -> playlist.PlaylistItem:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def type_val(self, type_val: typing.Literal["dashboard_by_uid", "dashboard_by_id", "dashboard_by_tag"]) -> typing.Self:    

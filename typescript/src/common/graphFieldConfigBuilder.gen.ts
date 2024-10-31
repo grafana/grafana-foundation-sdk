@@ -11,6 +11,9 @@ export class GraphFieldConfigBuilder implements cog.Builder<common.GraphFieldCon
         this.internal = common.defaultGraphFieldConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.GraphFieldConfig {
         return this.internal;
     }

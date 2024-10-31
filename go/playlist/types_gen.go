@@ -25,6 +25,8 @@ type Playlist struct {
 	Items []PlaylistItem `json:"items,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Playlist` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Playlist) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -112,6 +114,7 @@ func (resource *Playlist) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Playlist` objects.
 func (resource Playlist) Equals(other Playlist) bool {
 	if resource.Uid != other.Uid {
 		return false
@@ -136,8 +139,7 @@ func (resource Playlist) Equals(other Playlist) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Playlist` fields for violations and returns them.
 func (resource Playlist) Validate() error {
 	var errs cog.BuildErrors
 
@@ -170,6 +172,8 @@ type PlaylistItem struct {
 	Title *string `json:"title,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PlaylistItem` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *PlaylistItem) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -231,6 +235,7 @@ func (resource *PlaylistItem) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `PlaylistItem` objects.
 func (resource PlaylistItem) Equals(other PlaylistItem) bool {
 	if resource.Type != other.Type {
 		return false
@@ -251,8 +256,7 @@ func (resource PlaylistItem) Equals(other PlaylistItem) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `PlaylistItem` fields for violations and returns them.
 func (resource PlaylistItem) Validate() error {
 	return nil
 }

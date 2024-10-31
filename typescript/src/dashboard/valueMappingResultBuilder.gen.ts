@@ -11,6 +11,9 @@ export class ValueMappingResultBuilder implements cog.Builder<dashboard.ValueMap
         this.internal = dashboard.defaultValueMappingResult();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.ValueMappingResult {
         return this.internal;
     }

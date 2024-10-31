@@ -15,6 +15,7 @@ class AnnotationPanelFilterBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\AnnotationPanelFilter
      */
     public function build()

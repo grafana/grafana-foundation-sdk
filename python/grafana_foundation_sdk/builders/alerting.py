@@ -14,6 +14,9 @@ class Query(cogbuilder.Builder[alerting.Query]):
         self._internal.ref_id = ref_id
 
     def build(self) -> alerting.Query:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def datasource_uid(self, datasource_uid: str) -> typing.Self:    
@@ -73,6 +76,9 @@ class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):
         self._internal.title = title
 
     def build(self) -> alerting.RuleGroup:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def folder_uid(self, folder_uid: str) -> typing.Self:        
@@ -123,6 +129,9 @@ class ContactPoint(cogbuilder.Builder[alerting.ContactPoint]):
         self._internal = alerting.ContactPoint()
 
     def build(self) -> alerting.ContactPoint:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def disable_resolve_message(self, disable_resolve_message: bool) -> typing.Self:        
@@ -173,6 +182,9 @@ class Matcher(cogbuilder.Builder[alerting.Matcher]):
         self._internal = alerting.Matcher()
 
     def build(self) -> alerting.Matcher:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:        
@@ -198,6 +210,9 @@ class MuteTiming(cogbuilder.Builder[alerting.MuteTiming]):
         self._internal = alerting.MuteTiming()
 
     def build(self) -> alerting.MuteTiming:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:        
@@ -219,6 +234,9 @@ class NotificationTemplate(cogbuilder.Builder[alerting.NotificationTemplate]):
         self._internal = alerting.NotificationTemplate()
 
     def build(self) -> alerting.NotificationTemplate:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:        
@@ -249,6 +267,9 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
         self._internal.title = title
 
     def build(self) -> alerting.Rule:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def annotations(self, annotations: dict[str, str]) -> typing.Self:        
@@ -367,6 +388,9 @@ class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):
         self._internal = alerting.NotificationPolicy()
 
     def build(self) -> alerting.NotificationPolicy:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def continue_val(self, continue_val: bool) -> typing.Self:        
@@ -464,6 +488,9 @@ class TimeInterval(cogbuilder.Builder[alerting.TimeInterval]):
         self._internal = alerting.TimeInterval()
 
     def build(self) -> alerting.TimeInterval:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def days_of_month(self, days_of_month: list[str]) -> typing.Self:        
@@ -509,6 +536,9 @@ class TimeRange(cogbuilder.Builder[alerting.TimeRange]):
         self._internal = alerting.TimeRange()
 
     def build(self) -> alerting.TimeRange:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def from_val(self, from_val: str) -> typing.Self:        

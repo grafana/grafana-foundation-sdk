@@ -15,6 +15,7 @@ class ElasticsearchSerialDiffSettingsBuilder implements \Grafana\Foundation\Cog\
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchSerialDiffSettings
      */
     public function build()

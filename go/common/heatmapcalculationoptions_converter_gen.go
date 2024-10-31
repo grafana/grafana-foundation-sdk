@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// HeatmapCalculationOptionsConverter accepts a `HeatmapCalculationOptions` object and generates the Go code to build this object using builders.
 func HeatmapCalculationOptionsConverter(input HeatmapCalculationOptions) string {
 	calls := []string{
 		`common.NewHeatmapCalculationOptionsBuilder()`,

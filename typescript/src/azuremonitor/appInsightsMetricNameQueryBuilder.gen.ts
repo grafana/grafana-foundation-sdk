@@ -11,6 +11,9 @@ export class AppInsightsMetricNameQueryBuilder implements cog.Builder<azuremonit
         this.internal.kind = "AppInsightsMetricNameQuery";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.AppInsightsMetricNameQuery {
         return this.internal;
     }

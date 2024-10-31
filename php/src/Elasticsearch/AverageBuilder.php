@@ -16,6 +16,7 @@ class AverageBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\Average
      */
     public function build()

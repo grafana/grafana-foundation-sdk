@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// RoleBindingSubjectConverter accepts a `RoleBindingSubject` object and generates the Go code to build this object using builders.
 func RoleBindingSubjectConverter(input RoleBindingSubject) string {
 	calls := []string{
 		`rolebinding.NewRoleBindingSubjectBuilder()`,

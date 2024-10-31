@@ -16,6 +16,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Googlecloudmonitoring\AnnotationQuery
      */
     public function build()

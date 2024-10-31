@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// DashboardConverter accepts a `Dashboard` object and generates the Go code to build this object using builders.
 func DashboardConverter(input Dashboard) string {
 	calls := []string{
 		`dashboard.NewDashboardBuilder(` + fmt.Sprintf("%#v", cog.Unptr(input.Title)) + `)`,

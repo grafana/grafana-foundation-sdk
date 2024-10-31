@@ -10,6 +10,9 @@ export class PreferencesBuilder implements cog.Builder<preferences.Preferences> 
         this.internal = preferences.defaultPreferences();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): preferences.Preferences {
         return this.internal;
     }

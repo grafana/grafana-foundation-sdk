@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AzureMetricDimensionConverter accepts a `AzureMetricDimension` object and generates the Go code to build this object using builders.
 func AzureMetricDimensionConverter(input AzureMetricDimension) string {
 	calls := []string{
 		`azuremonitor.NewAzureMetricDimensionBuilder()`,

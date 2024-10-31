@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// RoleConverter accepts a `Role` object and generates the Go code to build this object using builders.
 func RoleConverter(input Role) string {
 	calls := []string{
 		`role.NewRoleBuilder()`,

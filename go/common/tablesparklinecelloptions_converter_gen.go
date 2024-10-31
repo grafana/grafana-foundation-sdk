@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TableSparklineCellOptionsConverter accepts a `TableSparklineCellOptions` object and generates the Go code to build this object using builders.
 func TableSparklineCellOptionsConverter(input TableSparklineCellOptions) string {
 	calls := []string{
 		`common.NewTableSparklineCellOptionsBuilder()`,

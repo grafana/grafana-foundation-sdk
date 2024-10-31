@@ -11,6 +11,9 @@ export class CustomRoleRefBuilder implements cog.Builder<rolebinding.CustomRoleR
         this.internal.kind = "Role";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): rolebinding.CustomRoleRef {
         return this.internal;
     }

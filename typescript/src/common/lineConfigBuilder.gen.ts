@@ -11,6 +11,9 @@ export class LineConfigBuilder implements cog.Builder<common.LineConfig> {
         this.internal = common.defaultLineConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.LineConfig {
         return this.internal;
     }

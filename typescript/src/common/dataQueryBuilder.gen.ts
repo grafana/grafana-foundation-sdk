@@ -13,6 +13,9 @@ export class DataQueryBuilder implements cog.Builder<common.DataQuery> {
         this.internal = common.defaultDataQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.DataQuery {
         return this.internal;
     }

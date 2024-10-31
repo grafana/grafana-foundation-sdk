@@ -19,6 +19,8 @@ type ArcOption struct {
 	Color *string `json:"color,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ArcOption` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ArcOption) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -63,6 +65,7 @@ func (resource *ArcOption) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ArcOption` objects.
 func (resource ArcOption) Equals(other ArcOption) bool {
 	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
 		return false
@@ -86,8 +89,7 @@ func (resource ArcOption) Equals(other ArcOption) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ArcOption` fields for violations and returns them.
 func (resource ArcOption) Validate() error {
 	return nil
 }
@@ -101,6 +103,8 @@ type NodeOptions struct {
 	Arcs []ArcOption `json:"arcs,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NodeOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *NodeOptions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -168,6 +172,7 @@ func (resource *NodeOptions) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `NodeOptions` objects.
 func (resource NodeOptions) Equals(other NodeOptions) bool {
 	if resource.MainStatUnit == nil && other.MainStatUnit != nil || resource.MainStatUnit != nil && other.MainStatUnit == nil {
 		return false
@@ -201,8 +206,7 @@ func (resource NodeOptions) Equals(other NodeOptions) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `NodeOptions` fields for violations and returns them.
 func (resource NodeOptions) Validate() error {
 	var errs cog.BuildErrors
 
@@ -226,6 +230,8 @@ type EdgeOptions struct {
 	SecondaryStatUnit *string `json:"secondaryStatUnit,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `EdgeOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *EdgeOptions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -270,6 +276,7 @@ func (resource *EdgeOptions) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `EdgeOptions` objects.
 func (resource EdgeOptions) Equals(other EdgeOptions) bool {
 	if resource.MainStatUnit == nil && other.MainStatUnit != nil || resource.MainStatUnit != nil && other.MainStatUnit == nil {
 		return false
@@ -293,8 +300,7 @@ func (resource EdgeOptions) Equals(other EdgeOptions) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `EdgeOptions` fields for violations and returns them.
 func (resource EdgeOptions) Validate() error {
 	return nil
 }
@@ -304,6 +310,8 @@ type Options struct {
 	Edges *EdgeOptions `json:"edges,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -352,6 +360,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Options` objects.
 func (resource Options) Equals(other Options) bool {
 	if resource.Nodes == nil && other.Nodes != nil || resource.Nodes != nil && other.Nodes == nil {
 		return false
@@ -375,8 +384,7 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Options` fields for violations and returns them.
 func (resource Options) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Nodes != nil {
@@ -397,6 +405,8 @@ func (resource Options) Validate() error {
 	return errs
 }
 
+// VariantConfig returns the configuration related to nodegraph panels.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "nodegraph",

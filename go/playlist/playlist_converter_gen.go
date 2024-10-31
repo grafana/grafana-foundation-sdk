@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// PlaylistConverter accepts a `Playlist` object and generates the Go code to build this object using builders.
 func PlaylistConverter(input Playlist) string {
 	calls := []string{
 		`playlist.NewPlaylistBuilder()`,

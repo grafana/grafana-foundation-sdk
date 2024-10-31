@@ -28,6 +28,7 @@ type Query struct {
 	RelativeTimeRange *RelativeTimeRange `json:"relativeTimeRange,omitempty"`
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode Query from JSON.
 func (resource *Query) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -74,6 +75,8 @@ func (resource *Query) UnmarshalJSON(raw []byte) error {
 	return nil
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Query` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Query) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -157,6 +160,7 @@ func (resource *Query) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Query` objects.
 func (resource Query) Equals(other Query) bool {
 	if resource.DatasourceUid == nil && other.DatasourceUid != nil || resource.DatasourceUid != nil && other.DatasourceUid == nil {
 		return false
@@ -207,8 +211,7 @@ func (resource Query) Equals(other Query) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Query` fields for violations and returns them.
 func (resource Query) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Model != nil {
@@ -238,6 +241,8 @@ type RuleGroup struct {
 	Title    *string   `json:"title,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RuleGroup` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RuleGroup) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -316,6 +321,7 @@ func (resource *RuleGroup) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `RuleGroup` objects.
 func (resource RuleGroup) Equals(other RuleGroup) bool {
 	if resource.FolderUid == nil && other.FolderUid != nil || resource.FolderUid != nil && other.FolderUid == nil {
 		return false
@@ -358,8 +364,7 @@ func (resource RuleGroup) Equals(other RuleGroup) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `RuleGroup` fields for violations and returns them.
 func (resource RuleGroup) Validate() error {
 	var errs cog.BuildErrors
 
@@ -394,6 +399,8 @@ type ContactPoint struct {
 	Uid *string `json:"uid,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ContactPoint` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ContactPoint) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -488,6 +495,7 @@ func (resource *ContactPoint) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ContactPoint` objects.
 func (resource ContactPoint) Equals(other ContactPoint) bool {
 	if resource.DisableResolveMessage == nil && other.DisableResolveMessage != nil || resource.DisableResolveMessage != nil && other.DisableResolveMessage == nil {
 		return false
@@ -535,8 +543,7 @@ func (resource ContactPoint) Equals(other ContactPoint) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ContactPoint` fields for violations and returns them.
 func (resource ContactPoint) Validate() error {
 	return nil
 }
@@ -560,6 +567,8 @@ type Matcher struct {
 	Value *string    `json:"Value,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Matcher` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Matcher) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -615,6 +624,7 @@ func (resource *Matcher) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Matcher` objects.
 func (resource Matcher) Equals(other Matcher) bool {
 	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
 		return false
@@ -647,8 +657,7 @@ func (resource Matcher) Equals(other Matcher) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Matcher` fields for violations and returns them.
 func (resource Matcher) Validate() error {
 	return nil
 }
@@ -663,6 +672,8 @@ type MuteTiming struct {
 	TimeIntervals []TimeInterval `json:"time_intervals,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MuteTiming` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MuteTiming) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -719,6 +730,7 @@ func (resource *MuteTiming) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `MuteTiming` objects.
 func (resource MuteTiming) Equals(other MuteTiming) bool {
 	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
 		return false
@@ -743,8 +755,7 @@ func (resource MuteTiming) Equals(other MuteTiming) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `MuteTiming` fields for violations and returns them.
 func (resource MuteTiming) Validate() error {
 	var errs cog.BuildErrors
 
@@ -767,6 +778,8 @@ type NotificationTemplate struct {
 	Template   *string     `json:"template,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NotificationTemplate` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *NotificationTemplate) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -822,6 +835,7 @@ func (resource *NotificationTemplate) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `NotificationTemplate` objects.
 func (resource NotificationTemplate) Equals(other NotificationTemplate) bool {
 	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
 		return false
@@ -854,8 +868,7 @@ func (resource NotificationTemplate) Equals(other NotificationTemplate) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `NotificationTemplate` fields for violations and returns them.
 func (resource NotificationTemplate) Validate() error {
 	return nil
 }
@@ -888,6 +901,8 @@ type Rule struct {
 	Updated     *time.Time        `json:"updated,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Rule` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Rule) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1127,6 +1142,7 @@ func (resource *Rule) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Rule` objects.
 func (resource Rule) Equals(other Rule) bool {
 
 	if len(resource.Annotations) != len(other.Annotations) {
@@ -1231,8 +1247,7 @@ func (resource Rule) Equals(other Rule) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Rule` fields for violations and returns them.
 func (resource Rule) Validate() error {
 	var errs cog.BuildErrors
 
@@ -1290,6 +1305,8 @@ type RelativeTimeRange struct {
 	To *Duration `json:"to,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RelativeTimeRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RelativeTimeRange) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1334,6 +1351,7 @@ func (resource *RelativeTimeRange) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `RelativeTimeRange` objects.
 func (resource RelativeTimeRange) Equals(other RelativeTimeRange) bool {
 	if resource.From == nil && other.From != nil || resource.From != nil && other.From == nil {
 		return false
@@ -1357,8 +1375,7 @@ func (resource RelativeTimeRange) Equals(other RelativeTimeRange) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `RelativeTimeRange` fields for violations and returns them.
 func (resource RelativeTimeRange) Validate() error {
 	return nil
 }
@@ -1388,6 +1405,8 @@ type NotificationPolicy struct {
 	Routes         []NotificationPolicy `json:"routes,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NotificationPolicy` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *NotificationPolicy) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1593,6 +1612,7 @@ func (resource *NotificationPolicy) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `NotificationPolicy` objects.
 func (resource NotificationPolicy) Equals(other NotificationPolicy) bool {
 	if resource.Continue == nil && other.Continue != nil || resource.Continue != nil && other.Continue == nil {
 		return false
@@ -1740,8 +1760,7 @@ func (resource NotificationPolicy) Equals(other NotificationPolicy) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `NotificationPolicy` fields for violations and returns them.
 func (resource NotificationPolicy) Validate() error {
 	var errs cog.BuildErrors
 
@@ -1769,6 +1788,8 @@ type TimeInterval struct {
 	Years       []string    `json:"years,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeInterval` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TimeInterval) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1873,6 +1894,7 @@ func (resource *TimeInterval) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `TimeInterval` objects.
 func (resource TimeInterval) Equals(other TimeInterval) bool {
 
 	if len(resource.DaysOfMonth) != len(other.DaysOfMonth) {
@@ -1937,8 +1959,7 @@ func (resource TimeInterval) Equals(other TimeInterval) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TimeInterval` fields for violations and returns them.
 func (resource TimeInterval) Validate() error {
 	var errs cog.BuildErrors
 
@@ -1961,6 +1982,8 @@ type TimeRange struct {
 	To   *time.Time `json:"to,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TimeRange) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2005,6 +2028,7 @@ func (resource *TimeRange) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `TimeRange` objects.
 func (resource TimeRange) Equals(other TimeRange) bool {
 	if resource.From == nil && other.From != nil || resource.From != nil && other.From == nil {
 		return false
@@ -2028,8 +2052,7 @@ func (resource TimeRange) Equals(other TimeRange) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TimeRange` fields for violations and returns them.
 func (resource TimeRange) Validate() error {
 	return nil
 }

@@ -12,6 +12,9 @@ export class ContactPointBuilder implements cog.Builder<alerting.ContactPoint> {
         this.internal = alerting.defaultContactPoint();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.ContactPoint {
         return this.internal;
     }

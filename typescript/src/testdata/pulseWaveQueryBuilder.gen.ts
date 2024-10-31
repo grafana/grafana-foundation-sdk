@@ -10,6 +10,9 @@ export class PulseWaveQueryBuilder implements cog.Builder<testdata.PulseWaveQuer
         this.internal = testdata.defaultPulseWaveQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): testdata.PulseWaveQuery {
         return this.internal;
     }

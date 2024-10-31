@@ -15,6 +15,7 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Preferences\Preferences
      */
     public function build()

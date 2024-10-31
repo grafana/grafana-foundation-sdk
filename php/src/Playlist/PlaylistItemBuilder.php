@@ -15,6 +15,7 @@ class PlaylistItemBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Playlist\PlaylistItem
      */
     public function build()
