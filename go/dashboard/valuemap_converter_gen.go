@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// ValueMapConverter accepts a `ValueMap` object and generates the Go code to build this object using builders.
 func ValueMapConverter(input ValueMap) string {
 	calls := []string{
 		`dashboard.NewValueMapBuilder()`,

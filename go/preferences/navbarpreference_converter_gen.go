@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// NavbarPreferenceConverter accepts a `NavbarPreference` object and generates the Go code to build this object using builders.
 func NavbarPreferenceConverter(input NavbarPreference) string {
 	calls := []string{
 		`preferences.NewNavbarPreferenceBuilder()`,

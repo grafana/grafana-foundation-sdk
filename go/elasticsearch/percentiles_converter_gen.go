@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// PercentilesConverter accepts a `Percentiles` object and generates the Go code to build this object using builders.
 func PercentilesConverter(input Percentiles) string {
 	calls := []string{
 		`elasticsearch.NewPercentilesBuilder()`,

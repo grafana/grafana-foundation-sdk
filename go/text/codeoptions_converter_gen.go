@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// CodeOptionsConverter accepts a `CodeOptions` object and generates the Go code to build this object using builders.
 func CodeOptionsConverter(input CodeOptions) string {
 	calls := []string{
 		`text.NewCodeOptionsBuilder()`,

@@ -15,6 +15,7 @@ class PlacementBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Canvas\Placement
      */
     public function build()

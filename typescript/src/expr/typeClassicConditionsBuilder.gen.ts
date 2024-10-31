@@ -12,6 +12,9 @@ export class TypeClassicConditionsBuilder implements cog.Builder<cog.Dataquery> 
         this.internal.type = "classic_conditions";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): expr.TypeClassicConditions {
         return this.internal;
     }

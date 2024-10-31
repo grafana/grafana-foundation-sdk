@@ -10,6 +10,9 @@ export class ExtendedStatBuilder implements cog.Builder<elasticsearch.ExtendedSt
         this.internal = elasticsearch.defaultExtendedStat();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.ExtendedStat {
         return this.internal;
     }

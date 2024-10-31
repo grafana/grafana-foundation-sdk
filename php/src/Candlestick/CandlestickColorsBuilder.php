@@ -15,6 +15,7 @@ class CandlestickColorsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Candlestick\CandlestickColors
      */
     public function build()

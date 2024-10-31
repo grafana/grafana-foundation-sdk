@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// RegexMapConverter accepts a `RegexMap` object and generates the Go code to build this object using builders.
 func RegexMapConverter(input RegexMap) string {
 	calls := []string{
 		`dashboard.NewRegexMapBuilder()`,

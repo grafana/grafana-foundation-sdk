@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// ExprTypeMathTimeRangeConverter accepts a `ExprTypeMathTimeRange` object and generates the Go code to build this object using builders.
 func ExprTypeMathTimeRangeConverter(input ExprTypeMathTimeRange) string {
 	calls := []string{
 		`expr.NewExprTypeMathTimeRangeBuilder()`,

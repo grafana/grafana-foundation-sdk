@@ -11,6 +11,9 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         this.internal = loki.defaultDataquery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): loki.dataquery {
         return this.internal;
     }

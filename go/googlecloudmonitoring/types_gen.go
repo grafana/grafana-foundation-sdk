@@ -49,6 +49,8 @@ func (resource CloudMonitoringQuery) DataqueryType() string {
 	return "cloud-monitoring"
 }
 
+// VariantConfig returns the configuration related to cloud-monitoring dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "cloud-monitoring",
@@ -82,6 +84,8 @@ func VariantConfig() variants.DataqueryConfig {
 	}
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudMonitoringQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CloudMonitoringQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -227,6 +231,7 @@ func (resource *CloudMonitoringQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource CloudMonitoringQuery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -324,8 +329,7 @@ func (resource CloudMonitoringQuery) Equals(otherCandidate variants.Dataquery) b
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CloudMonitoringQuery` fields for violations and returns them.
 func (resource CloudMonitoringQuery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.TimeSeriesList != nil {
@@ -404,6 +408,8 @@ type TimeSeriesList struct {
 	Preprocessor *PreprocessorType `json:"preprocessor,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeSeriesList` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TimeSeriesList) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -589,6 +595,7 @@ func (resource *TimeSeriesList) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `TimeSeriesList` objects.
 func (resource TimeSeriesList) Equals(other TimeSeriesList) bool {
 	if resource.ProjectName != other.ProjectName {
 		return false
@@ -711,8 +718,7 @@ func (resource TimeSeriesList) Equals(other TimeSeriesList) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TimeSeriesList` fields for violations and returns them.
 func (resource TimeSeriesList) Validate() error {
 	return nil
 }
@@ -736,6 +742,8 @@ type TimeSeriesQuery struct {
 	GraphPeriod *string `json:"graphPeriod,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeSeriesQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TimeSeriesQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -797,6 +805,7 @@ func (resource *TimeSeriesQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `TimeSeriesQuery` objects.
 func (resource TimeSeriesQuery) Equals(other TimeSeriesQuery) bool {
 	if resource.ProjectName != other.ProjectName {
 		return false
@@ -817,8 +826,7 @@ func (resource TimeSeriesQuery) Equals(other TimeSeriesQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TimeSeriesQuery` fields for violations and returns them.
 func (resource TimeSeriesQuery) Validate() error {
 	return nil
 }
@@ -847,6 +855,8 @@ type SLOQuery struct {
 	LookbackPeriod *string `json:"lookbackPeriod,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SLOQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *SLOQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -997,6 +1007,7 @@ func (resource *SLOQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `SLOQuery` objects.
 func (resource SLOQuery) Equals(other SLOQuery) bool {
 	if resource.ProjectName != other.ProjectName {
 		return false
@@ -1056,8 +1067,7 @@ func (resource SLOQuery) Equals(other SLOQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `SLOQuery` fields for violations and returns them.
 func (resource SLOQuery) Validate() error {
 	return nil
 }
@@ -1072,6 +1082,8 @@ type PromQLQuery struct {
 	Step string `json:"step"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PromQLQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *PromQLQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1136,6 +1148,7 @@ func (resource *PromQLQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `PromQLQuery` objects.
 func (resource PromQLQuery) Equals(other PromQLQuery) bool {
 	if resource.ProjectName != other.ProjectName {
 		return false
@@ -1150,8 +1163,7 @@ func (resource PromQLQuery) Equals(other PromQLQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `PromQLQuery` fields for violations and returns them.
 func (resource PromQLQuery) Validate() error {
 	return nil
 }
@@ -1185,6 +1197,8 @@ type MetricQuery struct {
 	GraphPeriod *string `json:"graphPeriod,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MetricQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1389,6 +1403,7 @@ func (resource *MetricQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `MetricQuery` objects.
 func (resource MetricQuery) Equals(other MetricQuery) bool {
 	if resource.ProjectName != other.ProjectName {
 		return false
@@ -1501,8 +1516,7 @@ func (resource MetricQuery) Equals(other MetricQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `MetricQuery` fields for violations and returns them.
 func (resource MetricQuery) Validate() error {
 	return nil
 }
@@ -1569,6 +1583,8 @@ type LegacyCloudMonitoringAnnotationQuery struct {
 	Text string `json:"text"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LegacyCloudMonitoringAnnotationQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LegacyCloudMonitoringAnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1704,6 +1720,7 @@ func (resource *LegacyCloudMonitoringAnnotationQuery) UnmarshalJSONStrict(raw []
 	return errs
 }
 
+// Equals tests the equality of two `LegacyCloudMonitoringAnnotationQuery` objects.
 func (resource LegacyCloudMonitoringAnnotationQuery) Equals(other LegacyCloudMonitoringAnnotationQuery) bool {
 	if resource.ProjectName != other.ProjectName {
 		return false
@@ -1740,8 +1757,7 @@ func (resource LegacyCloudMonitoringAnnotationQuery) Equals(other LegacyCloudMon
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `LegacyCloudMonitoringAnnotationQuery` fields for violations and returns them.
 func (resource LegacyCloudMonitoringAnnotationQuery) Validate() error {
 	return nil
 }
@@ -1758,6 +1774,8 @@ type Filter struct {
 	Condition *string `json:"condition,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Filter` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Filter) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1833,6 +1851,7 @@ func (resource *Filter) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Filter` objects.
 func (resource Filter) Equals(other Filter) bool {
 	if resource.Key != other.Key {
 		return false
@@ -1856,8 +1875,7 @@ func (resource Filter) Equals(other Filter) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Filter` fields for violations and returns them.
 func (resource Filter) Validate() error {
 	return nil
 }

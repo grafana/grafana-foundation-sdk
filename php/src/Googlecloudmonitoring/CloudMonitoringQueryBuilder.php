@@ -15,6 +15,7 @@ class CloudMonitoringQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Googlecloudmonitoring\CloudMonitoringQuery
      */
     public function build()

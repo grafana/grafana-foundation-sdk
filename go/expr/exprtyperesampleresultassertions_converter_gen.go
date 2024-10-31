@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ExprTypeResampleResultAssertionsConverter accepts a `ExprTypeResampleResultAssertions` object and generates the Go code to build this object using builders.
 func ExprTypeResampleResultAssertionsConverter(input ExprTypeResampleResultAssertions) string {
 	calls := []string{
 		`expr.NewExprTypeResampleResultAssertionsBuilder()`,

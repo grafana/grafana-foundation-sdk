@@ -10,6 +10,9 @@ export class MetricAggregationWithInlineScriptBuilder implements cog.Builder<ela
         this.internal = elasticsearch.defaultMetricAggregationWithInlineScript();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.MetricAggregationWithInlineScript {
         return this.internal;
     }

@@ -17,6 +17,7 @@ class MovingAverageBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\MovingAverage
      */
     public function build()

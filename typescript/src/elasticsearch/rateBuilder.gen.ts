@@ -11,6 +11,9 @@ export class RateBuilder implements cog.Builder<elasticsearch.Rate> {
         this.internal.type = "rate";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Rate {
         return this.internal;
     }

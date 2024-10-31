@@ -13,6 +13,9 @@ export class RowBuilder implements cog.Builder<dashboard.RowPanel> {
         this.internal.title = title;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.RowPanel {
         return this.internal;
     }

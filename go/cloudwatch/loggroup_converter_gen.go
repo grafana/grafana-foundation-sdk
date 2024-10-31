@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// LogGroupConverter accepts a `LogGroup` object and generates the Go code to build this object using builders.
 func LogGroupConverter(input LogGroup) string {
 	calls := []string{
 		`cloudwatch.NewLogGroupBuilder()`,

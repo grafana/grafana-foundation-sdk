@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// DashboardDashboardTimeConverter accepts a `DashboardDashboardTime` object and generates the Go code to build this object using builders.
 func DashboardDashboardTimeConverter(input DashboardDashboardTime) string {
 	calls := []string{
 		`dashboard.NewDashboardDashboardTimeBuilder()`,

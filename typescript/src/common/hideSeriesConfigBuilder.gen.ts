@@ -11,6 +11,9 @@ export class HideSeriesConfigBuilder implements cog.Builder<common.HideSeriesCon
         this.internal = common.defaultHideSeriesConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.HideSeriesConfig {
         return this.internal;
     }
