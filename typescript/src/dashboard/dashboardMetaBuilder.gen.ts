@@ -60,6 +60,7 @@ export class DashboardMetaBuilder implements cog.Builder<dashboard.DashboardMeta
         return this;
     }
 
+    // Deprecated: use FolderUID instead
     folderId(folderId: number): this {
         this.internal.folderId = folderId;
         return this;

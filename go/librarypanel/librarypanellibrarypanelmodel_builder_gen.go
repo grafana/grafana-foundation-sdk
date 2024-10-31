@@ -3,8 +3,6 @@
 package librarypanel
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
@@ -30,14 +28,8 @@ func NewLibrarypanelLibraryPanelModelBuilder() *LibrarypanelLibraryPanelModelBui
 }
 
 func (builder *LibrarypanelLibraryPanelModelBuilder) Build() (LibrarypanelLibraryPanelModel, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("LibrarypanelLibraryPanelModel", err)...)
-	}
-
-	if len(errs) != 0 {
-		return LibrarypanelLibraryPanelModel{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return LibrarypanelLibraryPanelModel{}, err
 	}
 
 	return *builder.internal, nil
@@ -45,10 +37,6 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Build() (LibrarypanelLibrar
 
 // The panel plugin type id. This is used to find the plugin to display the panel.
 func (builder *LibrarypanelLibraryPanelModelBuilder) Type(typeArg string) *LibrarypanelLibraryPanelModelBuilder {
-	if !(len([]rune(typeArg)) >= 1) {
-		builder.errors["typeArg"] = cog.MakeBuildErrors("typeArg", errors.New("len([]rune(typeArg)) must be >= 1"))
-		return builder
-	}
 	builder.internal.Type = typeArg
 
 	return builder

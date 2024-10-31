@@ -26,14 +26,8 @@ func NewNavbarPreferenceBuilder() *NavbarPreferenceBuilder {
 }
 
 func (builder *NavbarPreferenceBuilder) Build() (NavbarPreference, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("NavbarPreference", err)...)
-	}
-
-	if len(errs) != 0 {
-		return NavbarPreference{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return NavbarPreference{}, err
 	}
 
 	return *builder.internal, nil

@@ -27,14 +27,8 @@ func NewAzureTracesQueryBuilder() *AzureTracesQueryBuilder {
 }
 
 func (builder *AzureTracesQueryBuilder) Build() (AzureTracesQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AzureTracesQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AzureTracesQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AzureTracesQuery{}, err
 	}
 
 	return *builder.internal, nil

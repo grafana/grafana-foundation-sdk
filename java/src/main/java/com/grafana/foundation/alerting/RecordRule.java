@@ -8,8 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class RecordRule {
+    // Which expression node should be used as the input for the recorded metric.
     @JsonProperty("from")
     public String from;
+    // Name of the recorded metric.
     @JsonProperty("metric")
     public String metric;
     

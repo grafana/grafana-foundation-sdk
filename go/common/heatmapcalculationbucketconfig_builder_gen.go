@@ -26,14 +26,8 @@ func NewHeatmapCalculationBucketConfigBuilder() *HeatmapCalculationBucketConfigB
 }
 
 func (builder *HeatmapCalculationBucketConfigBuilder) Build() (HeatmapCalculationBucketConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("HeatmapCalculationBucketConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return HeatmapCalculationBucketConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return HeatmapCalculationBucketConfig{}, err
 	}
 
 	return *builder.internal, nil

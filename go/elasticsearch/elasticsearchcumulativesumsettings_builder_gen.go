@@ -26,14 +26,8 @@ func NewElasticsearchCumulativeSumSettingsBuilder() *ElasticsearchCumulativeSumS
 }
 
 func (builder *ElasticsearchCumulativeSumSettingsBuilder) Build() (ElasticsearchCumulativeSumSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchCumulativeSumSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchCumulativeSumSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchCumulativeSumSettings{}, err
 	}
 
 	return *builder.internal, nil

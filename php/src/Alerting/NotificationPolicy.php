@@ -8,87 +8,53 @@ namespace Grafana\Foundation\Alerting;
  */
 class NotificationPolicy implements \JsonSerializable
 {
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public ?bool $continue;
 
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      * @var array<string>|null
      */
     public ?array $groupBy;
 
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public ?string $groupInterval;
 
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public ?string $groupWait;
 
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
+     * Deprecated. Remove before v1.0 release.
      * @var array<string, string>|null
      */
     public ?array $match;
 
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      * @var array<string, string>
      */
     public array $matchRe;
 
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
+     * Matchers is a slice of Matchers that is sortable, implements Stringer, and
+     * provides a Matches method to match a LabelSet against all Matchers in the
+     * slice. Note that some users of Matchers might require it to be sorted.
      * @var array<\Grafana\Foundation\Alerting\Matcher>
      */
     public array $matchers;
 
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      * @var array<string>|null
      */
     public ?array $muteTimeIntervals;
 
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      * @var array<array<string>>
      */
     public array $objectMatchers;
 
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public string $provenance;
 
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public ?string $receiver;
 
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public ?string $repeatInterval;
 
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      * @var array<\Grafana\Foundation\Alerting\NotificationPolicy>|null
      */
     public ?array $routes;

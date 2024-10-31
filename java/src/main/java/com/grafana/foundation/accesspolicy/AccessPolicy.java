@@ -49,11 +49,11 @@ public class AccessPolicy {
         return this;
     }
     
-    public Builder rules(com.grafana.foundation.cog.Builder<AccessRule> rules) {
+    public Builder rules(com.grafana.foundation.cog.Builder<AccessRule> rule) {
 		if (this.internal.rules == null) {
 			this.internal.rules = new LinkedList<>();
 		}
-    this.internal.rules.add(rules.build());
+    this.internal.rules.add(rule.build());
         return this;
     }
     public AccessPolicy build() {

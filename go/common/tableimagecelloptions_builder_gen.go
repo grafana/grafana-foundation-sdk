@@ -28,14 +28,8 @@ func NewTableImageCellOptionsBuilder() *TableImageCellOptionsBuilder {
 }
 
 func (builder *TableImageCellOptionsBuilder) Build() (TableImageCellOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TableImageCellOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TableImageCellOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TableImageCellOptions{}, err
 	}
 
 	return *builder.internal, nil

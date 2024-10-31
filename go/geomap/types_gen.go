@@ -4,7 +4,11 @@ package geomap
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
+	"strconv"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
@@ -16,6 +20,118 @@ type Options struct {
 	Basemap  common.MapLayerOptions   `json:"basemap"`
 	Layers   []common.MapLayerOptions `json:"layers"`
 	Tooltip  TooltipOptions           `json:"tooltip"`
+}
+
+func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "view"
+	if fields["view"] != nil {
+		if string(fields["view"]) != "null" {
+
+			resource.View = MapViewConfig{}
+			if err := resource.View.UnmarshalJSONStrict(fields["view"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("view", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("view", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "view")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("view", errors.New("required field is missing from input"))...)
+	}
+	// Field "controls"
+	if fields["controls"] != nil {
+		if string(fields["controls"]) != "null" {
+
+			resource.Controls = ControlsOptions{}
+			if err := resource.Controls.UnmarshalJSONStrict(fields["controls"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("controls", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("controls", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "controls")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("controls", errors.New("required field is missing from input"))...)
+	}
+	// Field "basemap"
+	if fields["basemap"] != nil {
+		if string(fields["basemap"]) != "null" {
+
+			resource.Basemap = common.MapLayerOptions{}
+			if err := resource.Basemap.UnmarshalJSONStrict(fields["basemap"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("basemap", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("basemap", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "basemap")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("basemap", errors.New("required field is missing from input"))...)
+	}
+	// Field "layers"
+	if fields["layers"] != nil {
+		if string(fields["layers"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["layers"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 common.MapLayerOptions
+
+				result1 = common.MapLayerOptions{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("layers["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Layers = append(resource.Layers, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("layers", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "layers")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("layers", errors.New("required field is missing from input"))...)
+	}
+	// Field "tooltip"
+	if fields["tooltip"] != nil {
+		if string(fields["tooltip"]) != "null" {
+
+			resource.Tooltip = TooltipOptions{}
+			if err := resource.Tooltip.UnmarshalJSONStrict(fields["tooltip"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tooltip", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "tooltip")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource Options) Equals(other Options) bool {
@@ -45,6 +161,36 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource Options) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.View.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("view", err)...)
+	}
+	if err := resource.Controls.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("controls", err)...)
+	}
+	if err := resource.Basemap.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("basemap", err)...)
+	}
+
+	for i1 := range resource.Layers {
+		if err := resource.Layers[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("layers["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if err := resource.Tooltip.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("tooltip", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type MapViewConfig struct {
 	Id        string  `json:"id"`
 	Lat       *int64  `json:"lat,omitempty"`
@@ -57,6 +203,152 @@ type MapViewConfig struct {
 	LastOnly  *bool   `json:"lastOnly,omitempty"`
 	Layer     *string `json:"layer,omitempty"`
 	Shared    *bool   `json:"shared,omitempty"`
+}
+
+func (resource *MapViewConfig) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "lat"
+	if fields["lat"] != nil {
+		if string(fields["lat"]) != "null" {
+			if err := json.Unmarshal(fields["lat"], &resource.Lat); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("lat", err)...)
+			}
+
+		}
+		delete(fields, "lat")
+
+	}
+	// Field "lon"
+	if fields["lon"] != nil {
+		if string(fields["lon"]) != "null" {
+			if err := json.Unmarshal(fields["lon"], &resource.Lon); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("lon", err)...)
+			}
+
+		}
+		delete(fields, "lon")
+
+	}
+	// Field "zoom"
+	if fields["zoom"] != nil {
+		if string(fields["zoom"]) != "null" {
+			if err := json.Unmarshal(fields["zoom"], &resource.Zoom); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("zoom", err)...)
+			}
+
+		}
+		delete(fields, "zoom")
+
+	}
+	// Field "minZoom"
+	if fields["minZoom"] != nil {
+		if string(fields["minZoom"]) != "null" {
+			if err := json.Unmarshal(fields["minZoom"], &resource.MinZoom); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("minZoom", err)...)
+			}
+
+		}
+		delete(fields, "minZoom")
+
+	}
+	// Field "maxZoom"
+	if fields["maxZoom"] != nil {
+		if string(fields["maxZoom"]) != "null" {
+			if err := json.Unmarshal(fields["maxZoom"], &resource.MaxZoom); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxZoom", err)...)
+			}
+
+		}
+		delete(fields, "maxZoom")
+
+	}
+	// Field "padding"
+	if fields["padding"] != nil {
+		if string(fields["padding"]) != "null" {
+			if err := json.Unmarshal(fields["padding"], &resource.Padding); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("padding", err)...)
+			}
+
+		}
+		delete(fields, "padding")
+
+	}
+	// Field "allLayers"
+	if fields["allLayers"] != nil {
+		if string(fields["allLayers"]) != "null" {
+			if err := json.Unmarshal(fields["allLayers"], &resource.AllLayers); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("allLayers", err)...)
+			}
+
+		}
+		delete(fields, "allLayers")
+
+	}
+	// Field "lastOnly"
+	if fields["lastOnly"] != nil {
+		if string(fields["lastOnly"]) != "null" {
+			if err := json.Unmarshal(fields["lastOnly"], &resource.LastOnly); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("lastOnly", err)...)
+			}
+
+		}
+		delete(fields, "lastOnly")
+
+	}
+	// Field "layer"
+	if fields["layer"] != nil {
+		if string(fields["layer"]) != "null" {
+			if err := json.Unmarshal(fields["layer"], &resource.Layer); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("layer", err)...)
+			}
+
+		}
+		delete(fields, "layer")
+
+	}
+	// Field "shared"
+	if fields["shared"] != nil {
+		if string(fields["shared"]) != "null" {
+			if err := json.Unmarshal(fields["shared"], &resource.Shared); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("shared", err)...)
+			}
+
+		}
+		delete(fields, "shared")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("MapViewConfig", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource MapViewConfig) Equals(other MapViewConfig) bool {
@@ -157,6 +449,12 @@ func (resource MapViewConfig) Equals(other MapViewConfig) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource MapViewConfig) Validate() error {
+	return nil
+}
+
 type ControlsOptions struct {
 	// Zoom (upper left)
 	ShowZoom *bool `json:"showZoom,omitempty"`
@@ -170,6 +468,94 @@ type ControlsOptions struct {
 	ShowDebug *bool `json:"showDebug,omitempty"`
 	// Show measure
 	ShowMeasure *bool `json:"showMeasure,omitempty"`
+}
+
+func (resource *ControlsOptions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "showZoom"
+	if fields["showZoom"] != nil {
+		if string(fields["showZoom"]) != "null" {
+			if err := json.Unmarshal(fields["showZoom"], &resource.ShowZoom); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showZoom", err)...)
+			}
+
+		}
+		delete(fields, "showZoom")
+
+	}
+	// Field "mouseWheelZoom"
+	if fields["mouseWheelZoom"] != nil {
+		if string(fields["mouseWheelZoom"]) != "null" {
+			if err := json.Unmarshal(fields["mouseWheelZoom"], &resource.MouseWheelZoom); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("mouseWheelZoom", err)...)
+			}
+
+		}
+		delete(fields, "mouseWheelZoom")
+
+	}
+	// Field "showAttribution"
+	if fields["showAttribution"] != nil {
+		if string(fields["showAttribution"]) != "null" {
+			if err := json.Unmarshal(fields["showAttribution"], &resource.ShowAttribution); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showAttribution", err)...)
+			}
+
+		}
+		delete(fields, "showAttribution")
+
+	}
+	// Field "showScale"
+	if fields["showScale"] != nil {
+		if string(fields["showScale"]) != "null" {
+			if err := json.Unmarshal(fields["showScale"], &resource.ShowScale); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showScale", err)...)
+			}
+
+		}
+		delete(fields, "showScale")
+
+	}
+	// Field "showDebug"
+	if fields["showDebug"] != nil {
+		if string(fields["showDebug"]) != "null" {
+			if err := json.Unmarshal(fields["showDebug"], &resource.ShowDebug); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showDebug", err)...)
+			}
+
+		}
+		delete(fields, "showDebug")
+
+	}
+	// Field "showMeasure"
+	if fields["showMeasure"] != nil {
+		if string(fields["showMeasure"]) != "null" {
+			if err := json.Unmarshal(fields["showMeasure"], &resource.ShowMeasure); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showMeasure", err)...)
+			}
+
+		}
+		delete(fields, "showMeasure")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ControlsOptions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ControlsOptions) Equals(other ControlsOptions) bool {
@@ -231,8 +617,50 @@ func (resource ControlsOptions) Equals(other ControlsOptions) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ControlsOptions) Validate() error {
+	return nil
+}
+
 type TooltipOptions struct {
 	Mode TooltipMode `json:"mode"`
+}
+
+func (resource *TooltipOptions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "mode"
+	if fields["mode"] != nil {
+		if string(fields["mode"]) != "null" {
+			if err := json.Unmarshal(fields["mode"], &resource.Mode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("mode", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "mode")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TooltipOptions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource TooltipOptions) Equals(other TooltipOptions) bool {
@@ -241,6 +669,12 @@ func (resource TooltipOptions) Equals(other TooltipOptions) bool {
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource TooltipOptions) Validate() error {
+	return nil
 }
 
 type TooltipMode string
@@ -265,6 +699,15 @@ func VariantConfig() variants.PanelcfgConfig {
 			options := &Options{}
 
 			if err := json.Unmarshal(raw, options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+		StrictOptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := options.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
 			}
 

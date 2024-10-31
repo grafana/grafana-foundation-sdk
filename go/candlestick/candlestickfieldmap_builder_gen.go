@@ -26,14 +26,8 @@ func NewCandlestickFieldMapBuilder() *CandlestickFieldMapBuilder {
 }
 
 func (builder *CandlestickFieldMapBuilder) Build() (CandlestickFieldMap, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CandlestickFieldMap", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CandlestickFieldMap{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CandlestickFieldMap{}, err
 	}
 
 	return *builder.internal, nil

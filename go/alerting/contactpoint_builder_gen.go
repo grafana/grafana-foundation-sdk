@@ -3,8 +3,6 @@
 package alerting
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
@@ -30,70 +28,48 @@ func NewContactPointBuilder() *ContactPointBuilder {
 }
 
 func (builder *ContactPointBuilder) Build() (ContactPoint, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ContactPoint", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ContactPoint{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ContactPoint{}, err
 	}
 
 	return *builder.internal, nil
 }
 
-// EmbeddedContactPoint is the contact point type that is used
-// by grafanas embedded alertmanager implementation.
 func (builder *ContactPointBuilder) DisableResolveMessage(disableResolveMessage bool) *ContactPointBuilder {
 	builder.internal.DisableResolveMessage = &disableResolveMessage
 
 	return builder
 }
 
-// EmbeddedContactPoint is the contact point type that is used
-// by grafanas embedded alertmanager implementation.
+// Name is used as grouping key in the UI. Contact points with the
+// same name will be grouped in the UI.
 func (builder *ContactPointBuilder) Name(name string) *ContactPointBuilder {
 	builder.internal.Name = &name
 
 	return builder
 }
 
-// EmbeddedContactPoint is the contact point type that is used
-// by grafanas embedded alertmanager implementation.
 func (builder *ContactPointBuilder) Provenance(provenance string) *ContactPointBuilder {
 	builder.internal.Provenance = &provenance
 
 	return builder
 }
 
-// EmbeddedContactPoint is the contact point type that is used
-// by grafanas embedded alertmanager implementation.
 func (builder *ContactPointBuilder) Settings(settings Json) *ContactPointBuilder {
 	builder.internal.Settings = settings
 
 	return builder
 }
 
-// EmbeddedContactPoint is the contact point type that is used
-// by grafanas embedded alertmanager implementation.
 func (builder *ContactPointBuilder) Type(typeArg ContactPointType) *ContactPointBuilder {
 	builder.internal.Type = typeArg
 
 	return builder
 }
 
-// EmbeddedContactPoint is the contact point type that is used
-// by grafanas embedded alertmanager implementation.
+// UID is the unique identifier of the contact point. The UID can be
+// set by the user.
 func (builder *ContactPointBuilder) Uid(uid string) *ContactPointBuilder {
-	if !(len([]rune(uid)) >= 1) {
-		builder.errors["uid"] = cog.MakeBuildErrors("uid", errors.New("len([]rune(uid)) must be >= 1"))
-		return builder
-	}
-	if !(len([]rune(uid)) <= 40) {
-		builder.errors["uid"] = cog.MakeBuildErrors("uid", errors.New("len([]rune(uid)) must be <= 40"))
-		return builder
-	}
 	builder.internal.Uid = &uid
 
 	return builder

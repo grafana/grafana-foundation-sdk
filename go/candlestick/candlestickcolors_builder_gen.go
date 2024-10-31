@@ -26,14 +26,8 @@ func NewCandlestickColorsBuilder() *CandlestickColorsBuilder {
 }
 
 func (builder *CandlestickColorsBuilder) Build() (CandlestickColors, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CandlestickColors", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CandlestickColors{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CandlestickColors{}, err
 	}
 
 	return *builder.internal, nil

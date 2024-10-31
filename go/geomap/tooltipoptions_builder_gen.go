@@ -26,14 +26,8 @@ func NewTooltipOptionsBuilder() *TooltipOptionsBuilder {
 }
 
 func (builder *TooltipOptionsBuilder) Build() (TooltipOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TooltipOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TooltipOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TooltipOptions{}, err
 	}
 
 	return *builder.internal, nil

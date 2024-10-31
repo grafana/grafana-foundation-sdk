@@ -27,14 +27,8 @@ func NewDataSourceJsonDataBuilder() *DataSourceJsonDataBuilder {
 }
 
 func (builder *DataSourceJsonDataBuilder) Build() (DataSourceJsonData, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("DataSourceJsonData", err)...)
-	}
-
-	if len(errs) != 0 {
-		return DataSourceJsonData{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return DataSourceJsonData{}, err
 	}
 
 	return *builder.internal, nil

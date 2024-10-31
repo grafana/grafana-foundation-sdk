@@ -26,14 +26,8 @@ func NewAzureResourceGraphQueryBuilder() *AzureResourceGraphQueryBuilder {
 }
 
 func (builder *AzureResourceGraphQueryBuilder) Build() (AzureResourceGraphQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AzureResourceGraphQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AzureResourceGraphQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AzureResourceGraphQuery{}, err
 	}
 
 	return *builder.internal, nil

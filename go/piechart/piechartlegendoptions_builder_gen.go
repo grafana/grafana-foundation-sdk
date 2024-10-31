@@ -27,14 +27,8 @@ func NewPieChartLegendOptionsBuilder() *PieChartLegendOptionsBuilder {
 }
 
 func (builder *PieChartLegendOptionsBuilder) Build() (PieChartLegendOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("PieChartLegendOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return PieChartLegendOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return PieChartLegendOptions{}, err
 	}
 
 	return *builder.internal, nil

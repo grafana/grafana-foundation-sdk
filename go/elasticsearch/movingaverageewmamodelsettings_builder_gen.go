@@ -27,14 +27,8 @@ func NewMovingAverageEWMAModelSettingsBuilder() *MovingAverageEWMAModelSettingsB
 }
 
 func (builder *MovingAverageEWMAModelSettingsBuilder) Build() (MovingAverageEWMAModelSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MovingAverageEWMAModelSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MovingAverageEWMAModelSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MovingAverageEWMAModelSettings{}, err
 	}
 
 	return *builder.internal, nil

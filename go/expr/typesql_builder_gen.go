@@ -3,8 +3,6 @@
 package expr
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
@@ -31,14 +29,8 @@ func NewTypeSqlBuilder() *TypeSqlBuilder {
 }
 
 func (builder *TypeSqlBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TypeSql", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TypeSql{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TypeSql{}, err
 	}
 
 	return *builder.internal, nil
@@ -52,10 +44,6 @@ func (builder *TypeSqlBuilder) Datasource(datasource dashboard.DataSourceRef) *T
 }
 
 func (builder *TypeSqlBuilder) Expression(expression string) *TypeSqlBuilder {
-	if !(len([]rune(expression)) >= 1) {
-		builder.errors["expression"] = cog.MakeBuildErrors("expression", errors.New("len([]rune(expression)) must be >= 1"))
-		return builder
-	}
 	builder.internal.Expression = expression
 
 	return builder

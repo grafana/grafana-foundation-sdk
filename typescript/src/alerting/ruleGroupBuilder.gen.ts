@@ -33,12 +33,12 @@ export class RuleGroupBuilder implements cog.Builder<alerting.RuleGroup> {
         return this;
     }
 
-    withRule(rules: cog.Builder<alerting.Rule>): this {
+    withRule(rule: cog.Builder<alerting.Rule>): this {
         if (!this.internal.rules) {
             this.internal.rules = [];
         }
-        const rulesResource = rules.build();
-        this.internal.rules.push(rulesResource);
+        const ruleResource = rule.build();
+        this.internal.rules.push(ruleResource);
         return this;
     }
 

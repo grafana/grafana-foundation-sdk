@@ -26,14 +26,8 @@ func NewAnnotationActionsBuilder() *AnnotationActionsBuilder {
 }
 
 func (builder *AnnotationActionsBuilder) Build() (AnnotationActions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AnnotationActions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AnnotationActions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AnnotationActions{}, err
 	}
 
 	return *builder.internal, nil

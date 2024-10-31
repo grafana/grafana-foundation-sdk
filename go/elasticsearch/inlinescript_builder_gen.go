@@ -26,14 +26,8 @@ func NewInlineScriptBuilder() *InlineScriptBuilder {
 }
 
 func (builder *InlineScriptBuilder) Build() (InlineScript, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("InlineScript", err)...)
-	}
-
-	if len(errs) != 0 {
-		return InlineScript{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return InlineScript{}, err
 	}
 
 	return *builder.internal, nil
