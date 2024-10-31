@@ -10,7 +10,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 
 ### Gradle
 ```kotlin
-implementation("com.grafana:grafana-foundation-sdk:11.0.0-1730372141")
+implementation("com.grafana:grafana-foundation-sdk:11.0.0-1730373052")
 ```
 
 ### Maven
@@ -18,7 +18,7 @@ implementation("com.grafana:grafana-foundation-sdk:11.0.0-1730372141")
 <dependency>
     <groupId>com.grafana</groupId>
     <artifactId>grafana-foundation-sdk</artifactId>
-    <version>11.0.0-1730372141</version>
+    <version>11.0.0-1730373052</version>
 </dependency>
 ```
 
