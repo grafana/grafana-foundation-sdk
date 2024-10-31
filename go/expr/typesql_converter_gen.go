@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TypeSqlConverter accepts a `TypeSql` object and generates the Go code to build this object using builders.
 func TypeSqlConverter(input TypeSql) string {
 	calls := []string{
 		`expr.NewTypeSqlBuilder()`,

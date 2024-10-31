@@ -12,6 +12,9 @@ class RoleBinding(cogbuilder.Builder[rolebinding.RoleBinding]):
         self._internal = rolebinding.RoleBinding()
 
     def build(self) -> rolebinding.RoleBinding:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def role(self, role: typing.Union[cogbuilder.Builder[rolebinding.BuiltinRoleRef], cogbuilder.Builder[rolebinding.CustomRoleRef]]) -> typing.Self:    
@@ -43,6 +46,9 @@ class CustomRoleRef(cogbuilder.Builder[rolebinding.CustomRoleRef]):
         self._internal.kind = "Role"
 
     def build(self) -> rolebinding.CustomRoleRef:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:        
@@ -59,6 +65,9 @@ class BuiltinRoleRef(cogbuilder.Builder[rolebinding.BuiltinRoleRef]):
         self._internal.kind = "BuiltinRole"
 
     def build(self) -> rolebinding.BuiltinRoleRef:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: typing.Literal["viewer", "editor", "admin"]) -> typing.Self:        
@@ -74,6 +83,9 @@ class RoleBindingSubject(cogbuilder.Builder[rolebinding.RoleBindingSubject]):
         self._internal = rolebinding.RoleBindingSubject()
 
     def build(self) -> rolebinding.RoleBindingSubject:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def kind(self, kind: typing.Literal["Team", "User"]) -> typing.Self:        

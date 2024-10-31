@@ -48,6 +48,8 @@ type CandlestickFieldMap struct {
 	Volume *string `json:"volume,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CandlestickFieldMap` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CandlestickFieldMap) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -125,6 +127,7 @@ func (resource *CandlestickFieldMap) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `CandlestickFieldMap` objects.
 func (resource CandlestickFieldMap) Equals(other CandlestickFieldMap) bool {
 	if resource.Open == nil && other.Open != nil || resource.Open != nil && other.Open == nil {
 		return false
@@ -175,8 +178,7 @@ func (resource CandlestickFieldMap) Equals(other CandlestickFieldMap) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CandlestickFieldMap` fields for violations and returns them.
 func (resource CandlestickFieldMap) Validate() error {
 	return nil
 }
@@ -187,6 +189,8 @@ type CandlestickColors struct {
 	Flat string `json:"flat"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CandlestickColors` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CandlestickColors) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -251,6 +255,7 @@ func (resource *CandlestickColors) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `CandlestickColors` objects.
 func (resource CandlestickColors) Equals(other CandlestickColors) bool {
 	if resource.Up != other.Up {
 		return false
@@ -265,8 +270,7 @@ func (resource CandlestickColors) Equals(other CandlestickColors) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CandlestickColors` fields for violations and returns them.
 func (resource CandlestickColors) Validate() error {
 	return nil
 }
@@ -288,6 +292,8 @@ type Options struct {
 	IncludeAllFields *bool `json:"includeAllFields,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -427,6 +433,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Options` objects.
 func (resource Options) Equals(other Options) bool {
 	if resource.Mode != other.Mode {
 		return false
@@ -462,8 +469,7 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Options` fields for violations and returns them.
 func (resource Options) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.Fields.Validate(); err != nil {
@@ -488,6 +494,8 @@ func (resource Options) Validate() error {
 
 type FieldConfig = common.GraphFieldConfig
 
+// VariantConfig returns the configuration related to candlestick panels.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "candlestick",

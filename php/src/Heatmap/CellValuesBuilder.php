@@ -16,6 +16,7 @@ class CellValuesBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Heatmap\CellValues
      */
     public function build()

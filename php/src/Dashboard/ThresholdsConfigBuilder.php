@@ -16,6 +16,7 @@ class ThresholdsConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\ThresholdsConfig
      */
     public function build()

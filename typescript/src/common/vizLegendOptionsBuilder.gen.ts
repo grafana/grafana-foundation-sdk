@@ -11,6 +11,9 @@ export class VizLegendOptionsBuilder implements cog.Builder<common.VizLegendOpti
         this.internal = common.defaultVizLegendOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.VizLegendOptions {
         return this.internal;
     }

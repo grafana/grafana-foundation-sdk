@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchSumSettingsConverter accepts a `ElasticsearchSumSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchSumSettingsConverter(input ElasticsearchSumSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchSumSettingsBuilder()`,

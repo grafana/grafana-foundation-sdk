@@ -15,6 +15,7 @@ class ControlsOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Geomap\ControlsOptions
      */
     public function build()

@@ -16,6 +16,8 @@ import (
 
 type Expr = TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql
 
+// VariantConfig returns the configuration related to __expr__ dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "__expr__",
@@ -106,6 +108,8 @@ func (resource TypeMath) DataqueryType() string {
 	return "__expr__"
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeMath` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TypeMath) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -253,6 +257,7 @@ func (resource *TypeMath) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource TypeMath) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -338,8 +343,7 @@ func (resource TypeMath) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TypeMath` fields for violations and returns them.
 func (resource TypeMath) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Datasource != nil {
@@ -420,6 +424,8 @@ func (resource TypeReduce) DataqueryType() string {
 	return "__expr__"
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeReduce` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TypeReduce) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -594,6 +600,7 @@ func (resource *TypeReduce) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource TypeReduce) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -691,8 +698,7 @@ func (resource TypeReduce) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TypeReduce` fields for violations and returns them.
 func (resource TypeReduce) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Datasource != nil {
@@ -784,6 +790,8 @@ func (resource TypeResample) DataqueryType() string {
 	return "__expr__"
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeResample` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TypeResample) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -973,6 +981,7 @@ func (resource *TypeResample) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource TypeResample) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -1067,8 +1076,7 @@ func (resource TypeResample) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TypeResample` fields for violations and returns them.
 func (resource TypeResample) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Datasource != nil {
@@ -1142,6 +1150,8 @@ func (resource TypeClassicConditions) DataqueryType() string {
 	return "__expr__"
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeClassicConditions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TypeClassicConditions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1301,6 +1311,7 @@ func (resource *TypeClassicConditions) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource TypeClassicConditions) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -1393,8 +1404,7 @@ func (resource TypeClassicConditions) Equals(otherCandidate variants.Dataquery) 
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TypeClassicConditions` fields for violations and returns them.
 func (resource TypeClassicConditions) Validate() error {
 	var errs cog.BuildErrors
 
@@ -1465,6 +1475,8 @@ func (resource TypeThreshold) DataqueryType() string {
 	return "__expr__"
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeThreshold` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TypeThreshold) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1638,6 +1650,7 @@ func (resource *TypeThreshold) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource TypeThreshold) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -1733,8 +1746,7 @@ func (resource TypeThreshold) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TypeThreshold` fields for violations and returns them.
 func (resource TypeThreshold) Validate() error {
 	var errs cog.BuildErrors
 
@@ -1808,6 +1820,8 @@ func (resource TypeSql) DataqueryType() string {
 	return "__expr__"
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeSql` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TypeSql) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1955,6 +1969,7 @@ func (resource *TypeSql) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource TypeSql) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -2040,8 +2055,7 @@ func (resource TypeSql) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TypeSql` fields for violations and returns them.
 func (resource TypeSql) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Datasource != nil {
@@ -2089,6 +2103,7 @@ func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeTh
 	return "__expr__"
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql` as JSON.
 func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) MarshalJSON() ([]byte, error) {
 	if resource.TypeMath != nil {
 		return json.Marshal(resource.TypeMath)
@@ -2112,6 +2127,7 @@ func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeTh
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql` from JSON.
 func (resource *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2182,6 +2198,8 @@ func (resource *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeT
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2251,6 +2269,7 @@ func (resource *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeT
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -2318,8 +2337,7 @@ func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeTh
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql` fields for violations and returns them.
 func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) Validate() error {
 	var errs cog.BuildErrors
 	if resource.TypeMath != nil {
@@ -2517,6 +2535,8 @@ type ExprTypeMathResultAssertions struct {
 	TypeVersion []int64 `json:"typeVersion"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeMathResultAssertions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeMathResultAssertions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2576,6 +2596,7 @@ func (resource *ExprTypeMathResultAssertions) UnmarshalJSONStrict(raw []byte) er
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeMathResultAssertions` objects.
 func (resource ExprTypeMathResultAssertions) Equals(other ExprTypeMathResultAssertions) bool {
 	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
 		return false
@@ -2609,8 +2630,7 @@ func (resource ExprTypeMathResultAssertions) Equals(other ExprTypeMathResultAsse
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeMathResultAssertions` fields for violations and returns them.
 func (resource ExprTypeMathResultAssertions) Validate() error {
 	return nil
 }
@@ -2622,6 +2642,8 @@ type ExprTypeMathTimeRange struct {
 	To string `json:"to"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeMathTimeRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeMathTimeRange) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2672,6 +2694,7 @@ func (resource *ExprTypeMathTimeRange) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeMathTimeRange` objects.
 func (resource ExprTypeMathTimeRange) Equals(other ExprTypeMathTimeRange) bool {
 	if resource.From != other.From {
 		return false
@@ -2683,8 +2706,7 @@ func (resource ExprTypeMathTimeRange) Equals(other ExprTypeMathTimeRange) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeMathTimeRange` fields for violations and returns them.
 func (resource ExprTypeMathTimeRange) Validate() error {
 	return nil
 }
@@ -2711,6 +2733,8 @@ type ExprTypeReduceResultAssertions struct {
 	TypeVersion []int64 `json:"typeVersion"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeReduceResultAssertions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeReduceResultAssertions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2770,6 +2794,7 @@ func (resource *ExprTypeReduceResultAssertions) UnmarshalJSONStrict(raw []byte) 
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeReduceResultAssertions` objects.
 func (resource ExprTypeReduceResultAssertions) Equals(other ExprTypeReduceResultAssertions) bool {
 	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
 		return false
@@ -2803,8 +2828,7 @@ func (resource ExprTypeReduceResultAssertions) Equals(other ExprTypeReduceResult
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeReduceResultAssertions` fields for violations and returns them.
 func (resource ExprTypeReduceResultAssertions) Validate() error {
 	return nil
 }
@@ -2819,6 +2843,8 @@ type ExprTypeReduceSettings struct {
 	ReplaceWithValue *float64 `json:"replaceWithValue,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeReduceSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeReduceSettings) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2866,6 +2892,7 @@ func (resource *ExprTypeReduceSettings) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeReduceSettings` objects.
 func (resource ExprTypeReduceSettings) Equals(other ExprTypeReduceSettings) bool {
 	if resource.Mode != other.Mode {
 		return false
@@ -2883,8 +2910,7 @@ func (resource ExprTypeReduceSettings) Equals(other ExprTypeReduceSettings) bool
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeReduceSettings` fields for violations and returns them.
 func (resource ExprTypeReduceSettings) Validate() error {
 	return nil
 }
@@ -2896,6 +2922,8 @@ type ExprTypeReduceTimeRange struct {
 	To string `json:"to"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeReduceTimeRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeReduceTimeRange) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2946,6 +2974,7 @@ func (resource *ExprTypeReduceTimeRange) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeReduceTimeRange` objects.
 func (resource ExprTypeReduceTimeRange) Equals(other ExprTypeReduceTimeRange) bool {
 	if resource.From != other.From {
 		return false
@@ -2957,8 +2986,7 @@ func (resource ExprTypeReduceTimeRange) Equals(other ExprTypeReduceTimeRange) bo
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeReduceTimeRange` fields for violations and returns them.
 func (resource ExprTypeReduceTimeRange) Validate() error {
 	return nil
 }
@@ -2985,6 +3013,8 @@ type ExprTypeResampleResultAssertions struct {
 	TypeVersion []int64 `json:"typeVersion"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeResampleResultAssertions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeResampleResultAssertions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3044,6 +3074,7 @@ func (resource *ExprTypeResampleResultAssertions) UnmarshalJSONStrict(raw []byte
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeResampleResultAssertions` objects.
 func (resource ExprTypeResampleResultAssertions) Equals(other ExprTypeResampleResultAssertions) bool {
 	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
 		return false
@@ -3077,8 +3108,7 @@ func (resource ExprTypeResampleResultAssertions) Equals(other ExprTypeResampleRe
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeResampleResultAssertions` fields for violations and returns them.
 func (resource ExprTypeResampleResultAssertions) Validate() error {
 	return nil
 }
@@ -3090,6 +3120,8 @@ type ExprTypeResampleTimeRange struct {
 	To string `json:"to"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeResampleTimeRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeResampleTimeRange) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3140,6 +3172,7 @@ func (resource *ExprTypeResampleTimeRange) UnmarshalJSONStrict(raw []byte) error
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeResampleTimeRange` objects.
 func (resource ExprTypeResampleTimeRange) Equals(other ExprTypeResampleTimeRange) bool {
 	if resource.From != other.From {
 		return false
@@ -3151,8 +3184,7 @@ func (resource ExprTypeResampleTimeRange) Equals(other ExprTypeResampleTimeRange
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeResampleTimeRange` fields for violations and returns them.
 func (resource ExprTypeResampleTimeRange) Validate() error {
 	return nil
 }
@@ -3163,6 +3195,8 @@ type ExprTypeClassicConditionsConditionsEvaluator struct {
 	Type string `json:"type"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditionsEvaluator` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeClassicConditionsConditionsEvaluator) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3214,6 +3248,7 @@ func (resource *ExprTypeClassicConditionsConditionsEvaluator) UnmarshalJSONStric
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeClassicConditionsConditionsEvaluator` objects.
 func (resource ExprTypeClassicConditionsConditionsEvaluator) Equals(other ExprTypeClassicConditionsConditionsEvaluator) bool {
 
 	if len(resource.Params) != len(other.Params) {
@@ -3232,8 +3267,7 @@ func (resource ExprTypeClassicConditionsConditionsEvaluator) Equals(other ExprTy
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeClassicConditionsConditionsEvaluator` fields for violations and returns them.
 func (resource ExprTypeClassicConditionsConditionsEvaluator) Validate() error {
 	return nil
 }
@@ -3242,6 +3276,8 @@ type ExprTypeClassicConditionsConditionsOperator struct {
 	Type TypeClassicConditionsType `json:"type"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditionsOperator` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeClassicConditionsConditionsOperator) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3278,6 +3314,7 @@ func (resource *ExprTypeClassicConditionsConditionsOperator) UnmarshalJSONStrict
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeClassicConditionsConditionsOperator` objects.
 func (resource ExprTypeClassicConditionsConditionsOperator) Equals(other ExprTypeClassicConditionsConditionsOperator) bool {
 	if resource.Type != other.Type {
 		return false
@@ -3286,8 +3323,7 @@ func (resource ExprTypeClassicConditionsConditionsOperator) Equals(other ExprTyp
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeClassicConditionsConditionsOperator` fields for violations and returns them.
 func (resource ExprTypeClassicConditionsConditionsOperator) Validate() error {
 	return nil
 }
@@ -3296,6 +3332,8 @@ type ExprTypeClassicConditionsConditionsQuery struct {
 	Params []string `json:"params"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditionsQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeClassicConditionsConditionsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3333,6 +3371,7 @@ func (resource *ExprTypeClassicConditionsConditionsQuery) UnmarshalJSONStrict(ra
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeClassicConditionsConditionsQuery` objects.
 func (resource ExprTypeClassicConditionsConditionsQuery) Equals(other ExprTypeClassicConditionsConditionsQuery) bool {
 
 	if len(resource.Params) != len(other.Params) {
@@ -3348,8 +3387,7 @@ func (resource ExprTypeClassicConditionsConditionsQuery) Equals(other ExprTypeCl
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeClassicConditionsConditionsQuery` fields for violations and returns them.
 func (resource ExprTypeClassicConditionsConditionsQuery) Validate() error {
 	return nil
 }
@@ -3358,6 +3396,8 @@ type ExprTypeClassicConditionsConditionsReducer struct {
 	Type string `json:"type"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditionsReducer` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeClassicConditionsConditionsReducer) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3394,6 +3434,7 @@ func (resource *ExprTypeClassicConditionsConditionsReducer) UnmarshalJSONStrict(
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeClassicConditionsConditionsReducer` objects.
 func (resource ExprTypeClassicConditionsConditionsReducer) Equals(other ExprTypeClassicConditionsConditionsReducer) bool {
 	if resource.Type != other.Type {
 		return false
@@ -3402,8 +3443,7 @@ func (resource ExprTypeClassicConditionsConditionsReducer) Equals(other ExprType
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeClassicConditionsConditionsReducer` fields for violations and returns them.
 func (resource ExprTypeClassicConditionsConditionsReducer) Validate() error {
 	return nil
 }
@@ -3415,6 +3455,8 @@ type ExprTypeClassicConditionsConditions struct {
 	Reducer   ExprTypeClassicConditionsConditionsReducer   `json:"reducer"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeClassicConditionsConditions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3501,6 +3543,7 @@ func (resource *ExprTypeClassicConditionsConditions) UnmarshalJSONStrict(raw []b
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeClassicConditionsConditions` objects.
 func (resource ExprTypeClassicConditionsConditions) Equals(other ExprTypeClassicConditionsConditions) bool {
 	if !resource.Evaluator.Equals(other.Evaluator) {
 		return false
@@ -3518,8 +3561,7 @@ func (resource ExprTypeClassicConditionsConditions) Equals(other ExprTypeClassic
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeClassicConditionsConditions` fields for violations and returns them.
 func (resource ExprTypeClassicConditionsConditions) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.Evaluator.Validate(); err != nil {
@@ -3564,6 +3606,8 @@ type ExprTypeClassicConditionsResultAssertions struct {
 	TypeVersion []int64 `json:"typeVersion"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsResultAssertions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeClassicConditionsResultAssertions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3623,6 +3667,7 @@ func (resource *ExprTypeClassicConditionsResultAssertions) UnmarshalJSONStrict(r
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeClassicConditionsResultAssertions` objects.
 func (resource ExprTypeClassicConditionsResultAssertions) Equals(other ExprTypeClassicConditionsResultAssertions) bool {
 	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
 		return false
@@ -3656,8 +3701,7 @@ func (resource ExprTypeClassicConditionsResultAssertions) Equals(other ExprTypeC
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeClassicConditionsResultAssertions` fields for violations and returns them.
 func (resource ExprTypeClassicConditionsResultAssertions) Validate() error {
 	return nil
 }
@@ -3669,6 +3713,8 @@ type ExprTypeClassicConditionsTimeRange struct {
 	To string `json:"to"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsTimeRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeClassicConditionsTimeRange) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3719,6 +3765,7 @@ func (resource *ExprTypeClassicConditionsTimeRange) UnmarshalJSONStrict(raw []by
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeClassicConditionsTimeRange` objects.
 func (resource ExprTypeClassicConditionsTimeRange) Equals(other ExprTypeClassicConditionsTimeRange) bool {
 	if resource.From != other.From {
 		return false
@@ -3730,8 +3777,7 @@ func (resource ExprTypeClassicConditionsTimeRange) Equals(other ExprTypeClassicC
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeClassicConditionsTimeRange` fields for violations and returns them.
 func (resource ExprTypeClassicConditionsTimeRange) Validate() error {
 	return nil
 }
@@ -3742,6 +3788,8 @@ type ExprTypeThresholdConditionsEvaluator struct {
 	Type TypeThresholdType `json:"type"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdConditionsEvaluator` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeThresholdConditionsEvaluator) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3793,6 +3841,7 @@ func (resource *ExprTypeThresholdConditionsEvaluator) UnmarshalJSONStrict(raw []
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeThresholdConditionsEvaluator` objects.
 func (resource ExprTypeThresholdConditionsEvaluator) Equals(other ExprTypeThresholdConditionsEvaluator) bool {
 
 	if len(resource.Params) != len(other.Params) {
@@ -3811,8 +3860,7 @@ func (resource ExprTypeThresholdConditionsEvaluator) Equals(other ExprTypeThresh
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeThresholdConditionsEvaluator` fields for violations and returns them.
 func (resource ExprTypeThresholdConditionsEvaluator) Validate() error {
 	return nil
 }
@@ -3823,6 +3871,8 @@ type ExprTypeThresholdConditionsUnloadEvaluator struct {
 	Type TypeThresholdType `json:"type"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdConditionsUnloadEvaluator` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeThresholdConditionsUnloadEvaluator) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3874,6 +3924,7 @@ func (resource *ExprTypeThresholdConditionsUnloadEvaluator) UnmarshalJSONStrict(
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeThresholdConditionsUnloadEvaluator` objects.
 func (resource ExprTypeThresholdConditionsUnloadEvaluator) Equals(other ExprTypeThresholdConditionsUnloadEvaluator) bool {
 
 	if len(resource.Params) != len(other.Params) {
@@ -3892,8 +3943,7 @@ func (resource ExprTypeThresholdConditionsUnloadEvaluator) Equals(other ExprType
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeThresholdConditionsUnloadEvaluator` fields for violations and returns them.
 func (resource ExprTypeThresholdConditionsUnloadEvaluator) Validate() error {
 	return nil
 }
@@ -3904,6 +3954,8 @@ type ExprTypeThresholdConditions struct {
 	UnloadEvaluator  *ExprTypeThresholdConditionsUnloadEvaluator `json:"unloadEvaluator,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdConditions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeThresholdConditions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3966,6 +4018,7 @@ func (resource *ExprTypeThresholdConditions) UnmarshalJSONStrict(raw []byte) err
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeThresholdConditions` objects.
 func (resource ExprTypeThresholdConditions) Equals(other ExprTypeThresholdConditions) bool {
 	if !resource.Evaluator.Equals(other.Evaluator) {
 		return false
@@ -3987,8 +4040,7 @@ func (resource ExprTypeThresholdConditions) Equals(other ExprTypeThresholdCondit
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeThresholdConditions` fields for violations and returns them.
 func (resource ExprTypeThresholdConditions) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.Evaluator.Validate(); err != nil {
@@ -4029,6 +4081,8 @@ type ExprTypeThresholdResultAssertions struct {
 	TypeVersion []int64 `json:"typeVersion"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdResultAssertions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeThresholdResultAssertions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -4088,6 +4142,7 @@ func (resource *ExprTypeThresholdResultAssertions) UnmarshalJSONStrict(raw []byt
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeThresholdResultAssertions` objects.
 func (resource ExprTypeThresholdResultAssertions) Equals(other ExprTypeThresholdResultAssertions) bool {
 	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
 		return false
@@ -4121,8 +4176,7 @@ func (resource ExprTypeThresholdResultAssertions) Equals(other ExprTypeThreshold
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeThresholdResultAssertions` fields for violations and returns them.
 func (resource ExprTypeThresholdResultAssertions) Validate() error {
 	return nil
 }
@@ -4134,6 +4188,8 @@ type ExprTypeThresholdTimeRange struct {
 	To string `json:"to"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdTimeRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeThresholdTimeRange) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -4184,6 +4240,7 @@ func (resource *ExprTypeThresholdTimeRange) UnmarshalJSONStrict(raw []byte) erro
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeThresholdTimeRange` objects.
 func (resource ExprTypeThresholdTimeRange) Equals(other ExprTypeThresholdTimeRange) bool {
 	if resource.From != other.From {
 		return false
@@ -4195,8 +4252,7 @@ func (resource ExprTypeThresholdTimeRange) Equals(other ExprTypeThresholdTimeRan
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeThresholdTimeRange` fields for violations and returns them.
 func (resource ExprTypeThresholdTimeRange) Validate() error {
 	return nil
 }
@@ -4223,6 +4279,8 @@ type ExprTypeSqlResultAssertions struct {
 	TypeVersion []int64 `json:"typeVersion"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeSqlResultAssertions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeSqlResultAssertions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -4282,6 +4340,7 @@ func (resource *ExprTypeSqlResultAssertions) UnmarshalJSONStrict(raw []byte) err
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeSqlResultAssertions` objects.
 func (resource ExprTypeSqlResultAssertions) Equals(other ExprTypeSqlResultAssertions) bool {
 	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
 		return false
@@ -4315,8 +4374,7 @@ func (resource ExprTypeSqlResultAssertions) Equals(other ExprTypeSqlResultAssert
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeSqlResultAssertions` fields for violations and returns them.
 func (resource ExprTypeSqlResultAssertions) Validate() error {
 	return nil
 }
@@ -4328,6 +4386,8 @@ type ExprTypeSqlTimeRange struct {
 	To string `json:"to"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeSqlTimeRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeSqlTimeRange) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -4378,6 +4438,7 @@ func (resource *ExprTypeSqlTimeRange) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ExprTypeSqlTimeRange` objects.
 func (resource ExprTypeSqlTimeRange) Equals(other ExprTypeSqlTimeRange) bool {
 	if resource.From != other.From {
 		return false
@@ -4389,8 +4450,7 @@ func (resource ExprTypeSqlTimeRange) Equals(other ExprTypeSqlTimeRange) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExprTypeSqlTimeRange` fields for violations and returns them.
 func (resource ExprTypeSqlTimeRange) Validate() error {
 	return nil
 }

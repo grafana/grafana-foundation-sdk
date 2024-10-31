@@ -10,6 +10,9 @@ export class CodeOptionsBuilder implements cog.Builder<text.CodeOptions> {
         this.internal = text.defaultCodeOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): text.CodeOptions {
         return this.internal;
     }

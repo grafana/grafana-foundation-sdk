@@ -11,6 +11,9 @@ export class FilterBuilder implements cog.Builder<googlecloudmonitoring.Filter> 
         this.internal = googlecloudmonitoring.defaultFilter();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): googlecloudmonitoring.Filter {
         return this.internal;
     }

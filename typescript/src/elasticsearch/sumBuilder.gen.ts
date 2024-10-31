@@ -11,6 +11,9 @@ export class SumBuilder implements cog.Builder<elasticsearch.Sum> {
         this.internal.type = "sum";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Sum {
         return this.internal;
     }

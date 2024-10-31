@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// FieldColorConverter accepts a `FieldColor` object and generates the Go code to build this object using builders.
 func FieldColorConverter(input FieldColor) string {
 	calls := []string{
 		`dashboard.NewFieldColorBuilder()`,

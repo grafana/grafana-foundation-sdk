@@ -15,6 +15,7 @@ class MetricAggregationWithMissingSupportBuilder implements \Grafana\Foundation\
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\MetricAggregationWithMissingSupport
      */
     public function build()

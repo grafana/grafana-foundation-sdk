@@ -12,6 +12,9 @@ export class TypeThresholdBuilder implements cog.Builder<cog.Dataquery> {
         this.internal.type = "threshold";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): expr.TypeThreshold {
         return this.internal;
     }

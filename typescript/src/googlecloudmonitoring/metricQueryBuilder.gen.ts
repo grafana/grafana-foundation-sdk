@@ -11,6 +11,9 @@ export class MetricQueryBuilder implements cog.Builder<googlecloudmonitoring.Met
         this.internal = googlecloudmonitoring.defaultMetricQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): googlecloudmonitoring.MetricQuery {
         return this.internal;
     }

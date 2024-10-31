@@ -37,6 +37,8 @@ type LibraryPanel struct {
 	Meta *LibraryElementDTOMeta `json:"meta,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibraryPanel` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LibraryPanel) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -177,6 +179,7 @@ func (resource *LibraryPanel) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `LibraryPanel` objects.
 func (resource LibraryPanel) Equals(other LibraryPanel) bool {
 	if resource.FolderUid == nil && other.FolderUid != nil || resource.FolderUid != nil && other.FolderUid == nil {
 		return false
@@ -233,8 +236,7 @@ func (resource LibraryPanel) Equals(other LibraryPanel) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `LibraryPanel` fields for violations and returns them.
 func (resource LibraryPanel) Validate() error {
 	var errs cog.BuildErrors
 	if !(len([]rune(resource.Name)) >= 1) {
@@ -271,6 +273,8 @@ type LibraryElementDTOMetaUser struct {
 	AvatarUrl string `json:"avatarUrl"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibraryElementDTOMetaUser` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LibraryElementDTOMetaUser) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -335,6 +339,7 @@ func (resource *LibraryElementDTOMetaUser) UnmarshalJSONStrict(raw []byte) error
 	return errs
 }
 
+// Equals tests the equality of two `LibraryElementDTOMetaUser` objects.
 func (resource LibraryElementDTOMetaUser) Equals(other LibraryElementDTOMetaUser) bool {
 	if resource.Id != other.Id {
 		return false
@@ -349,8 +354,7 @@ func (resource LibraryElementDTOMetaUser) Equals(other LibraryElementDTOMetaUser
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `LibraryElementDTOMetaUser` fields for violations and returns them.
 func (resource LibraryElementDTOMetaUser) Validate() error {
 	return nil
 }
@@ -365,6 +369,8 @@ type LibraryElementDTOMeta struct {
 	UpdatedBy           LibraryElementDTOMetaUser `json:"updatedBy"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibraryElementDTOMeta` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LibraryElementDTOMeta) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -489,6 +495,7 @@ func (resource *LibraryElementDTOMeta) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `LibraryElementDTOMeta` objects.
 func (resource LibraryElementDTOMeta) Equals(other LibraryElementDTOMeta) bool {
 	if resource.FolderName != other.FolderName {
 		return false
@@ -515,8 +522,7 @@ func (resource LibraryElementDTOMeta) Equals(other LibraryElementDTOMeta) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `LibraryElementDTOMeta` fields for violations and returns them.
 func (resource LibraryElementDTOMeta) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.CreatedBy.Validate(); err != nil {
@@ -602,6 +608,7 @@ type LibrarypanelLibraryPanelModel struct {
 	FieldConfig *dashboard.FieldConfigSource `json:"fieldConfig,omitempty"`
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode LibrarypanelLibraryPanelModel from JSON.
 func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -747,6 +754,8 @@ func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSON(raw []byte) error {
 	return nil
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibrarypanelLibraryPanelModel` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1045,6 +1054,7 @@ func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSONStrict(raw []byte) e
 	return errs
 }
 
+// Equals tests the equality of two `LibrarypanelLibraryPanelModel` objects.
 func (resource LibrarypanelLibraryPanelModel) Equals(other LibrarypanelLibraryPanelModel) bool {
 	if resource.Type != other.Type {
 		return false
@@ -1231,8 +1241,7 @@ func (resource LibrarypanelLibraryPanelModel) Equals(other LibrarypanelLibraryPa
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `LibrarypanelLibraryPanelModel` fields for violations and returns them.
 func (resource LibrarypanelLibraryPanelModel) Validate() error {
 	var errs cog.BuildErrors
 	if !(len([]rune(resource.Type)) >= 1) {

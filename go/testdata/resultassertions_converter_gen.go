@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ResultAssertionsConverter accepts a `ResultAssertions` object and generates the Go code to build this object using builders.
 func ResultAssertionsConverter(input ResultAssertions) string {
 	calls := []string{
 		`testdata.NewResultAssertionsBuilder()`,

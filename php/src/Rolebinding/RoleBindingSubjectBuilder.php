@@ -15,6 +15,7 @@ class RoleBindingSubjectBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Rolebinding\RoleBindingSubject
      */
     public function build()

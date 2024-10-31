@@ -10,6 +10,9 @@ export class AzureMetricDimensionBuilder implements cog.Builder<azuremonitor.Azu
         this.internal = azuremonitor.defaultAzureMetricDimension();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.AzureMetricDimension {
         return this.internal;
     }

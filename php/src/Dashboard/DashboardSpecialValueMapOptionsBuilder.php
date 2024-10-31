@@ -15,6 +15,7 @@ class DashboardSpecialValueMapOptionsBuilder implements \Grafana\Foundation\Cog\
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\DashboardSpecialValueMapOptions
      */
     public function build()

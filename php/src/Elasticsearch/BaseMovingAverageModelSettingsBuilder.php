@@ -15,6 +15,7 @@ class BaseMovingAverageModelSettingsBuilder implements \Grafana\Foundation\Cog\B
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\BaseMovingAverageModelSettings
      */
     public function build()

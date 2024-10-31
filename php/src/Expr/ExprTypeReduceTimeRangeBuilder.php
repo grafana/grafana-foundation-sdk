@@ -15,6 +15,7 @@ class ExprTypeReduceTimeRangeBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeReduceTimeRange
      */
     public function build()

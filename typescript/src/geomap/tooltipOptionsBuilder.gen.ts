@@ -10,6 +10,9 @@ export class TooltipOptionsBuilder implements cog.Builder<geomap.TooltipOptions>
         this.internal = geomap.defaultTooltipOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): geomap.TooltipOptions {
         return this.internal;
     }

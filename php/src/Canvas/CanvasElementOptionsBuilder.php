@@ -15,6 +15,7 @@ class CanvasElementOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Canvas\CanvasElementOptions
      */
     public function build()

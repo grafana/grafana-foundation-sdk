@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// RawDocumentConverter accepts a `RawDocument` object and generates the Go code to build this object using builders.
 func RawDocumentConverter(input RawDocument) string {
 	calls := []string{
 		`elasticsearch.NewRawDocumentBuilder()`,
