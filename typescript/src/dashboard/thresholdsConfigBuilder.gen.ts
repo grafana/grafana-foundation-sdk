@@ -11,6 +11,9 @@ export class ThresholdsConfigBuilder implements cog.Builder<dashboard.Thresholds
         this.internal = dashboard.defaultThresholdsConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.ThresholdsConfig {
         return this.internal;
     }

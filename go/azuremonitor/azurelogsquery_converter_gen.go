@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AzureLogsQueryConverter accepts a `AzureLogsQuery` object and generates the Go code to build this object using builders.
 func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	calls := []string{
 		`azuremonitor.NewAzureLogsQueryBuilder()`,

@@ -15,6 +15,7 @@ class BaseBucketAggregationBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\BaseBucketAggregation
      */
     public function build()

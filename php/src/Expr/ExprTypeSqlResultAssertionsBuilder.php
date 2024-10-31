@@ -15,6 +15,7 @@ class ExprTypeSqlResultAssertionsBuilder implements \Grafana\Foundation\Cog\Buil
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeSqlResultAssertions
      */
     public function build()

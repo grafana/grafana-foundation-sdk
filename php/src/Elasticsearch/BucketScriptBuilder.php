@@ -16,6 +16,7 @@ class BucketScriptBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\BucketScript
      */
     public function build()

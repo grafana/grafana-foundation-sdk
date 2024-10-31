@@ -13,6 +13,9 @@ export class IntervalVariableBuilder implements cog.Builder<dashboard.VariableMo
         this.internal.type = dashboard.VariableType.Interval;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.VariableModel {
         return this.internal;
     }

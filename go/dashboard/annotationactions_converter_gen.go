@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AnnotationActionsConverter accepts a `AnnotationActions` object and generates the Go code to build this object using builders.
 func AnnotationActionsConverter(input AnnotationActions) string {
 	calls := []string{
 		`dashboard.NewAnnotationActionsBuilder()`,

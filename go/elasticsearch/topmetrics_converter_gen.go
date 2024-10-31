@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TopMetricsConverter accepts a `TopMetrics` object and generates the Go code to build this object using builders.
 func TopMetricsConverter(input TopMetrics) string {
 	calls := []string{
 		`elasticsearch.NewTopMetricsBuilder()`,

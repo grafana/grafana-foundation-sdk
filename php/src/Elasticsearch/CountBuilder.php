@@ -16,6 +16,7 @@ class CountBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\Count
      */
     public function build()

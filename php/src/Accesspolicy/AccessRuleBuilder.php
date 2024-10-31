@@ -15,6 +15,7 @@ class AccessRuleBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Accesspolicy\AccessRule
      */
     public function build()

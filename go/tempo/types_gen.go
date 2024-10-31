@@ -61,6 +61,8 @@ func (resource TempoQuery) DataqueryType() string {
 	return "tempo"
 }
 
+// VariantConfig returns the configuration related to tempo dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "tempo",
@@ -94,6 +96,8 @@ func VariantConfig() variants.DataqueryConfig {
 	}
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TempoQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -337,6 +341,7 @@ func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource TempoQuery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -499,8 +504,7 @@ func (resource TempoQuery) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TempoQuery` fields for violations and returns them.
 func (resource TempoQuery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.ServiceMapQuery != nil {
@@ -588,6 +592,8 @@ type TraceqlFilter struct {
 	Scope *TraceqlSearchScope `json:"scope,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TraceqlFilter` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TraceqlFilter) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -681,6 +687,7 @@ func (resource *TraceqlFilter) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `TraceqlFilter` objects.
 func (resource TraceqlFilter) Equals(other TraceqlFilter) bool {
 	if resource.Id != other.Id {
 		return false
@@ -734,8 +741,7 @@ func (resource TraceqlFilter) Equals(other TraceqlFilter) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TraceqlFilter` fields for violations and returns them.
 func (resource TraceqlFilter) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Value != nil {
@@ -756,6 +762,7 @@ type StringOrArrayOfString struct {
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `StringOrArrayOfString` as JSON.
 func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
@@ -768,6 +775,7 @@ func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrArrayOfString` from JSON.
 func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -798,6 +806,8 @@ func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrArrayOfString` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StringOrArrayOfString) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -836,6 +846,7 @@ func (resource *StringOrArrayOfString) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `StringOrArrayOfString` objects.
 func (resource StringOrArrayOfString) Equals(other StringOrArrayOfString) bool {
 	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
 		return false
@@ -860,8 +871,7 @@ func (resource StringOrArrayOfString) Equals(other StringOrArrayOfString) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `StringOrArrayOfString` fields for violations and returns them.
 func (resource StringOrArrayOfString) Validate() error {
 	return nil
 }

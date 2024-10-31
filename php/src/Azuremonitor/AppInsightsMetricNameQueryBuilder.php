@@ -16,6 +16,7 @@ class AppInsightsMetricNameQueryBuilder implements \Grafana\Foundation\Cog\Build
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Azuremonitor\AppInsightsMetricNameQuery
      */
     public function build()

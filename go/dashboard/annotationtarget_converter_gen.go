@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// AnnotationTargetConverter accepts a `AnnotationTarget` object and generates the Go code to build this object using builders.
 func AnnotationTargetConverter(input AnnotationTarget) string {
 	calls := []string{
 		`dashboard.NewAnnotationTargetBuilder()`,

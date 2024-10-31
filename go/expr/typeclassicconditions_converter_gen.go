@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TypeClassicConditionsConverter accepts a `TypeClassicConditions` object and generates the Go code to build this object using builders.
 func TypeClassicConditionsConverter(input TypeClassicConditions) string {
 	calls := []string{
 		`expr.NewTypeClassicConditionsBuilder()`,

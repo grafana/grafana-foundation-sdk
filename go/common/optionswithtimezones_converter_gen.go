@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// OptionsWithTimezonesConverter accepts a `OptionsWithTimezones` object and generates the Go code to build this object using builders.
 func OptionsWithTimezonesConverter(input OptionsWithTimezones) string {
 	calls := []string{
 		`common.NewOptionsWithTimezonesBuilder()`,

@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// ConnectionCoordinatesConverter accepts a `ConnectionCoordinates` object and generates the Go code to build this object using builders.
 func ConnectionCoordinatesConverter(input ConnectionCoordinates) string {
 	calls := []string{
 		`canvas.NewConnectionCoordinatesBuilder()`,

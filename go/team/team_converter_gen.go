@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TeamConverter accepts a `Team` object and generates the Go code to build this object using builders.
 func TeamConverter(input Team) string {
 	calls := []string{
 		`team.NewTeamBuilder(` + fmt.Sprintf("%#v", input.Name) + `)`,

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// SimulationQueryConverter accepts a `SimulationQuery` object and generates the Go code to build this object using builders.
 func SimulationQueryConverter(input SimulationQuery) string {
 	calls := []string{
 		`testdata.NewSimulationQueryBuilder()`,

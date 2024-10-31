@@ -15,6 +15,7 @@ class ElasticsearchUniqueCountSettingsBuilder implements \Grafana\Foundation\Cog
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchUniqueCountSettings
      */
     public function build()

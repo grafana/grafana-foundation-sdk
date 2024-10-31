@@ -15,6 +15,7 @@ class QueryEditorPropertyBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Cloudwatch\QueryEditorProperty
      */
     public function build()

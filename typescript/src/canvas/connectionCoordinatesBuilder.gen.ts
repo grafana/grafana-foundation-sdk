@@ -10,6 +10,9 @@ export class ConnectionCoordinatesBuilder implements cog.Builder<canvas.Connecti
         this.internal = canvas.defaultConnectionCoordinates();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): canvas.ConnectionCoordinates {
         return this.internal;
     }

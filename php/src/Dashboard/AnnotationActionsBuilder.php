@@ -15,6 +15,7 @@ class AnnotationActionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\AnnotationActions
      */
     public function build()

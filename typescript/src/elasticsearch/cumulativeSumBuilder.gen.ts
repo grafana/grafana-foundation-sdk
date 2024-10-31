@@ -11,6 +11,9 @@ export class CumulativeSumBuilder implements cog.Builder<elasticsearch.Cumulativ
         this.internal.type = "cumulative_sum";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.CumulativeSum {
         return this.internal;
     }
