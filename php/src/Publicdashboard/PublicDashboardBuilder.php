@@ -15,6 +15,7 @@ class PublicDashboardBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Publicdashboard\PublicDashboard
      */
     public function build()

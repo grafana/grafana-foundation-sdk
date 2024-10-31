@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TypeThresholdConverter accepts a `TypeThreshold` object and generates the Go code to build this object using builders.
 func TypeThresholdConverter(input TypeThreshold) string {
 	calls := []string{
 		`expr.NewTypeThresholdBuilder()`,

@@ -17,6 +17,7 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Alerting\NotificationPolicy
      */
     public function build()

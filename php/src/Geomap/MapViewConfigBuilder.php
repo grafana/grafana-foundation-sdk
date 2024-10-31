@@ -15,6 +15,7 @@ class MapViewConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Geomap\MapViewConfig
      */
     public function build()

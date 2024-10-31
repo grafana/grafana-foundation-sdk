@@ -13,6 +13,9 @@ class StreamingQuery(cogbuilder.Builder[testdata.StreamingQuery]):
         self._internal = testdata.StreamingQuery()
 
     def build(self) -> testdata.StreamingQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def type_val(self, type_val: typing.Literal["signal", "logs", "fetch", "traces"]) -> typing.Self:        
@@ -53,6 +56,9 @@ class PulseWaveQuery(cogbuilder.Builder[testdata.PulseWaveQuery]):
         self._internal = testdata.PulseWaveQuery()
 
     def build(self) -> testdata.PulseWaveQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def time_step(self, time_step: int) -> typing.Self:        
@@ -88,6 +94,9 @@ class SimulationQuery(cogbuilder.Builder[testdata.SimulationQuery]):
         self._internal = testdata.SimulationQuery()
 
     def build(self) -> testdata.SimulationQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def key(self, key: cogbuilder.Builder[testdata.Key]) -> typing.Self:        
@@ -119,6 +128,9 @@ class NodesQuery(cogbuilder.Builder[testdata.NodesQuery]):
         self._internal = testdata.NodesQuery()
 
     def build(self) -> testdata.NodesQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def type_val(self, type_val: typing.Literal["random", "response_small", "response_medium", "random edges"]) -> typing.Self:        
@@ -144,6 +156,9 @@ class USAQuery(cogbuilder.Builder[testdata.USAQuery]):
         self._internal = testdata.USAQuery()
 
     def build(self) -> testdata.USAQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def mode(self, mode: str) -> typing.Self:        
@@ -174,6 +189,9 @@ class CSVWave(cogbuilder.Builder[testdata.CSVWave]):
         self._internal = testdata.CSVWave()
 
     def build(self) -> testdata.CSVWave:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def time_step(self, time_step: int) -> typing.Self:        
@@ -208,6 +226,9 @@ class Scenario(cogbuilder.Builder[testdata.Scenario]):
         self._internal = testdata.Scenario()
 
     def build(self) -> testdata.Scenario:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: str) -> typing.Self:        
@@ -243,6 +264,9 @@ class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
         self._internal = testdata.Dataquery()
 
     def build(self) -> testdata.Dataquery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def alias(self, alias: str) -> typing.Self:        
@@ -417,6 +441,9 @@ class Key(cogbuilder.Builder[testdata.Key]):
         self._internal = testdata.Key()
 
     def build(self) -> testdata.Key:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def type_val(self, type_val: str) -> typing.Self:        

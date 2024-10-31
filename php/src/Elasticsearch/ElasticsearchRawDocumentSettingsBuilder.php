@@ -15,6 +15,7 @@ class ElasticsearchRawDocumentSettingsBuilder implements \Grafana\Foundation\Cog
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchRawDocumentSettings
      */
     public function build()

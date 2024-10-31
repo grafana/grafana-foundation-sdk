@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// MapLayerOptionsConverter accepts a `MapLayerOptions` object and generates the Go code to build this object using builders.
 func MapLayerOptionsConverter(input MapLayerOptions) string {
 	calls := []string{
 		`common.NewMapLayerOptionsBuilder()`,

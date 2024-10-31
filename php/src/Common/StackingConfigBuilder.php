@@ -16,6 +16,7 @@ class StackingConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\StackingConfig
      */
     public function build()

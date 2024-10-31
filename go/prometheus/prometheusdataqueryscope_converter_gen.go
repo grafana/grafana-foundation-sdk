@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// PrometheusDataqueryScopeConverter accepts a `PrometheusDataqueryScope` object and generates the Go code to build this object using builders.
 func PrometheusDataqueryScopeConverter(input PrometheusDataqueryScope) string {
 	calls := []string{
 		`prometheus.NewPrometheusDataqueryScopeBuilder()`,

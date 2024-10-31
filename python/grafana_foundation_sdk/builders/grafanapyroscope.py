@@ -13,6 +13,9 @@ class Dataquery(cogbuilder.Builder[grafanapyroscope.Dataquery]):
         self._internal = grafanapyroscope.Dataquery()
 
     def build(self) -> grafanapyroscope.Dataquery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def label_selector(self, label_selector: str) -> typing.Self:    

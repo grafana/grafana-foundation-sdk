@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// PipelineVariableConverter accepts a `PipelineVariable` object and generates the Go code to build this object using builders.
 func PipelineVariableConverter(input PipelineVariable) string {
 	calls := []string{
 		`elasticsearch.NewPipelineVariableBuilder()`,

@@ -15,6 +15,7 @@ class NodesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Testdata\NodesQuery
      */
     public function build()

@@ -10,6 +10,9 @@ export class MuteTimingBuilder implements cog.Builder<alerting.MuteTiming> {
         this.internal = alerting.defaultMuteTiming();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.MuteTiming {
         return this.internal;
     }

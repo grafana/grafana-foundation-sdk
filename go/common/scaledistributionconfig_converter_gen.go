@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ScaleDistributionConfigConverter accepts a `ScaleDistributionConfig` object and generates the Go code to build this object using builders.
 func ScaleDistributionConfigConverter(input ScaleDistributionConfig) string {
 	calls := []string{
 		`common.NewScaleDistributionConfigBuilder()`,

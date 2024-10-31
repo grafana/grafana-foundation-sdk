@@ -16,6 +16,7 @@ class MovingAverageLinearModelSettingsBuilder implements \Grafana\Foundation\Cog
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\MovingAverageLinearModelSettings
      */
     public function build()

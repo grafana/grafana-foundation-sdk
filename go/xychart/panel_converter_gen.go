@@ -11,6 +11,7 @@ import (
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
+// PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
 func PanelConverter(input dashboard.Panel) string {
 	calls := []string{
 		`xychart.NewPanelBuilder()`,

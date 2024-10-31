@@ -13,6 +13,9 @@ class Dataquery(cogbuilder.Builder[prometheus.Dataquery]):
         self._internal = prometheus.Dataquery()
 
     def build(self) -> prometheus.Dataquery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def expr(self, expr: str) -> typing.Self:    
@@ -164,6 +167,9 @@ class PrometheusDataqueryScope(cogbuilder.Builder[prometheus.PrometheusDataquery
         self._internal = prometheus.PrometheusDataqueryScope()
 
     def build(self) -> prometheus.PrometheusDataqueryScope:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def matchers(self, matchers: str) -> typing.Self:        

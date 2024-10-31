@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// GeoHashGridSettingsConverter accepts a `GeoHashGridSettings` object and generates the Go code to build this object using builders.
 func GeoHashGridSettingsConverter(input GeoHashGridSettings) string {
 	calls := []string{
 		`elasticsearch.NewGeoHashGridSettingsBuilder()`,

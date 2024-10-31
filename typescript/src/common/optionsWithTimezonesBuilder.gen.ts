@@ -11,6 +11,9 @@ export class OptionsWithTimezonesBuilder implements cog.Builder<common.OptionsWi
         this.internal = common.defaultOptionsWithTimezones();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.OptionsWithTimezones {
         return this.internal;
     }

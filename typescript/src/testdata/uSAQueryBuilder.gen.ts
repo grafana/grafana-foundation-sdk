@@ -10,6 +10,9 @@ export class USAQueryBuilder implements cog.Builder<testdata.USAQuery> {
         this.internal = testdata.defaultUSAQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): testdata.USAQuery {
         return this.internal;
     }

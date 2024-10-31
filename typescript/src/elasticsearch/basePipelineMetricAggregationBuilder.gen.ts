@@ -10,6 +10,9 @@ export class BasePipelineMetricAggregationBuilder implements cog.Builder<elastic
         this.internal = elasticsearch.defaultBasePipelineMetricAggregation();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.BasePipelineMetricAggregation {
         return this.internal;
     }
