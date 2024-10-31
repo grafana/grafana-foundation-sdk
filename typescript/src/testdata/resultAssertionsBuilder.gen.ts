@@ -10,6 +10,9 @@ export class ResultAssertionsBuilder implements cog.Builder<testdata.ResultAsser
         this.internal = testdata.defaultResultAssertions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): testdata.ResultAssertions {
         return this.internal;
     }

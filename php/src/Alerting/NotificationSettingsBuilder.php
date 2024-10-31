@@ -15,6 +15,7 @@ class NotificationSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Alerting\NotificationSettings
      */
     public function build()

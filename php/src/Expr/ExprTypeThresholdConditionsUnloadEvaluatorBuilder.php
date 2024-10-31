@@ -15,6 +15,7 @@ class ExprTypeThresholdConditionsUnloadEvaluatorBuilder implements \Grafana\Foun
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeThresholdConditionsUnloadEvaluator
      */
     public function build()

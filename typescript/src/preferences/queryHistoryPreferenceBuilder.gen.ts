@@ -10,6 +10,9 @@ export class QueryHistoryPreferenceBuilder implements cog.Builder<preferences.Qu
         this.internal = preferences.defaultQueryHistoryPreference();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): preferences.QueryHistoryPreference {
         return this.internal;
     }

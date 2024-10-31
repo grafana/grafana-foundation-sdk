@@ -10,6 +10,9 @@ export class MetricStatBuilder implements cog.Builder<cloudwatch.MetricStat> {
         this.internal = cloudwatch.defaultMetricStat();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): cloudwatch.MetricStat {
         return this.internal;
     }

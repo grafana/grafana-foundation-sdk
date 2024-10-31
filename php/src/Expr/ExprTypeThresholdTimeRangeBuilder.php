@@ -15,6 +15,7 @@ class ExprTypeThresholdTimeRangeBuilder implements \Grafana\Foundation\Cog\Build
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeThresholdTimeRange
      */
     public function build()

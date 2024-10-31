@@ -15,6 +15,7 @@ class ElasticsearchCumulativeSumSettingsBuilder implements \Grafana\Foundation\C
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchCumulativeSumSettings
      */
     public function build()

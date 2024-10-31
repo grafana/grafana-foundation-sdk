@@ -11,6 +11,9 @@ export class TopMetricsBuilder implements cog.Builder<elasticsearch.TopMetrics> 
         this.internal.type = "top_metrics";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.TopMetrics {
         return this.internal;
     }

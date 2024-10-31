@@ -22,6 +22,8 @@ type Options struct {
 	Tooltip  TooltipOptions           `json:"tooltip"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -134,6 +136,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Options` objects.
 func (resource Options) Equals(other Options) bool {
 	if !resource.View.Equals(other.View) {
 		return false
@@ -161,8 +164,7 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Options` fields for violations and returns them.
 func (resource Options) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.View.Validate(); err != nil {
@@ -205,6 +207,8 @@ type MapViewConfig struct {
 	Shared    *bool   `json:"shared,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MapViewConfig` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MapViewConfig) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -351,6 +355,7 @@ func (resource *MapViewConfig) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `MapViewConfig` objects.
 func (resource MapViewConfig) Equals(other MapViewConfig) bool {
 	if resource.Id != other.Id {
 		return false
@@ -449,8 +454,7 @@ func (resource MapViewConfig) Equals(other MapViewConfig) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `MapViewConfig` fields for violations and returns them.
 func (resource MapViewConfig) Validate() error {
 	return nil
 }
@@ -470,6 +474,8 @@ type ControlsOptions struct {
 	ShowMeasure *bool `json:"showMeasure,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ControlsOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ControlsOptions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -558,6 +564,7 @@ func (resource *ControlsOptions) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ControlsOptions` objects.
 func (resource ControlsOptions) Equals(other ControlsOptions) bool {
 	if resource.ShowZoom == nil && other.ShowZoom != nil || resource.ShowZoom != nil && other.ShowZoom == nil {
 		return false
@@ -617,8 +624,7 @@ func (resource ControlsOptions) Equals(other ControlsOptions) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ControlsOptions` fields for violations and returns them.
 func (resource ControlsOptions) Validate() error {
 	return nil
 }
@@ -627,6 +633,8 @@ type TooltipOptions struct {
 	Mode TooltipMode `json:"mode"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TooltipOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TooltipOptions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -663,6 +671,7 @@ func (resource *TooltipOptions) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `TooltipOptions` objects.
 func (resource TooltipOptions) Equals(other TooltipOptions) bool {
 	if resource.Mode != other.Mode {
 		return false
@@ -671,8 +680,7 @@ func (resource TooltipOptions) Equals(other TooltipOptions) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `TooltipOptions` fields for violations and returns them.
 func (resource TooltipOptions) Validate() error {
 	return nil
 }
@@ -692,6 +700,8 @@ const (
 	MapCenterIDFit    MapCenterID = "fit"
 )
 
+// VariantConfig returns the configuration related to geomap panels.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "geomap",

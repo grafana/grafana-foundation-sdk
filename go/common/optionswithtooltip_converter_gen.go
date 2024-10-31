@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// OptionsWithTooltipConverter accepts a `OptionsWithTooltip` object and generates the Go code to build this object using builders.
 func OptionsWithTooltipConverter(input OptionsWithTooltip) string {
 	calls := []string{
 		`common.NewOptionsWithTooltipBuilder()`,

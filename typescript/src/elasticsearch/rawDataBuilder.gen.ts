@@ -11,6 +11,9 @@ export class RawDataBuilder implements cog.Builder<elasticsearch.RawData> {
         this.internal.type = "raw_data";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.RawData {
         return this.internal;
     }

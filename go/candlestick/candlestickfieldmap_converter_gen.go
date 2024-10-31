@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// CandlestickFieldMapConverter accepts a `CandlestickFieldMap` object and generates the Go code to build this object using builders.
 func CandlestickFieldMapConverter(input CandlestickFieldMap) string {
 	calls := []string{
 		`candlestick.NewCandlestickFieldMapBuilder()`,

@@ -13,6 +13,9 @@ export class AdHocVariableBuilder implements cog.Builder<dashboard.VariableModel
         this.internal.type = dashboard.VariableType.Adhoc;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.VariableModel {
         return this.internal;
     }

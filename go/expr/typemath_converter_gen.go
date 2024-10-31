@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TypeMathConverter accepts a `TypeMath` object and generates the Go code to build this object using builders.
 func TypeMathConverter(input TypeMath) string {
 	calls := []string{
 		`expr.NewTypeMathBuilder()`,

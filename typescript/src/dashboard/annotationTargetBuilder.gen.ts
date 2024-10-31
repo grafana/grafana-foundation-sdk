@@ -12,6 +12,9 @@ export class AnnotationTargetBuilder implements cog.Builder<dashboard.Annotation
         this.internal = dashboard.defaultAnnotationTarget();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.AnnotationTarget {
         return this.internal;
     }

@@ -15,6 +15,7 @@ class ResultAssertionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Testdata\ResultAssertions
      */
     public function build()

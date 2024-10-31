@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// DashboardMetaConverter accepts a `DashboardMeta` object and generates the Go code to build this object using builders.
 func DashboardMetaConverter(input DashboardMeta) string {
 	calls := []string{
 		`dashboard.NewDashboardMetaBuilder()`,

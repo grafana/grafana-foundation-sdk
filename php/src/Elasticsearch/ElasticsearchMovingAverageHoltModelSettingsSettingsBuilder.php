@@ -15,6 +15,7 @@ class ElasticsearchMovingAverageHoltModelSettingsSettingsBuilder implements \Gra
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchMovingAverageHoltModelSettingsSettings
      */
     public function build()

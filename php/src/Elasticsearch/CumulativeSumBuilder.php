@@ -16,6 +16,7 @@ class CumulativeSumBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\CumulativeSum
      */
     public function build()

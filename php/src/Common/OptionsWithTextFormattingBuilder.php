@@ -16,6 +16,7 @@ class OptionsWithTextFormattingBuilder implements \Grafana\Foundation\Cog\Builde
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\OptionsWithTextFormatting
      */
     public function build()

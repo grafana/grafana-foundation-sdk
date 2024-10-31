@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ExprTypeClassicConditionsResultAssertionsConverter accepts a `ExprTypeClassicConditionsResultAssertions` object and generates the Go code to build this object using builders.
 func ExprTypeClassicConditionsResultAssertionsConverter(input ExprTypeClassicConditionsResultAssertions) string {
 	calls := []string{
 		`expr.NewExprTypeClassicConditionsResultAssertionsBuilder()`,

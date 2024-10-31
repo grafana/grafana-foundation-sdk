@@ -12,6 +12,9 @@ export class DashboardLinkBuilder implements cog.Builder<dashboard.DashboardLink
         this.internal.title = title;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.DashboardLink {
         return this.internal;
     }

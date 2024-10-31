@@ -9,7 +9,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-yarn add '@grafana/grafana-foundation-sdk@~11.0.0-cogv0.0.x.1730373052'
+yarn add '@grafana/grafana-foundation-sdk@~11.0.0-cogv0.0.x.1730375402'
 ```
 
 ## Example usage
@@ -99,7 +99,6 @@ export class CustomQueryBuilder implements Builder<Dataquery> {
         return this;
     }
 }
-
 ```
 
 The custom query type can now be used as usual to build a dashboard:

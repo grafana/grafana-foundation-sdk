@@ -18,6 +18,7 @@ class RowBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\RowPanel
      */
     public function build()
