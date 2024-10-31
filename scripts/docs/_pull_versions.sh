@@ -14,7 +14,7 @@ source "${__dir}/../versions.sh"
 
 tmp_dir=${1:-"./"}
 
-FOUNDATION_SDK_REPO=${FOUNDATION_SDK_REPO:-'https://github.com/K-Phoen/test-foundation-sdk.git'}
+FOUNDATION_SDK_REPO=${FOUNDATION_SDK_REPO:-'https://github.com/grafana/grafana-foundation-sdk.git'}
 
 # Cleanup potential leftovers from previous runs.
 rm -rf "${tmp_dir}/tmp-foundation-sdk"
