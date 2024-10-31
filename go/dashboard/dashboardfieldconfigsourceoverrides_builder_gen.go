@@ -26,14 +26,8 @@ func NewDashboardFieldConfigSourceOverridesBuilder() *DashboardFieldConfigSource
 }
 
 func (builder *DashboardFieldConfigSourceOverridesBuilder) Build() (DashboardFieldConfigSourceOverrides, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("DashboardFieldConfigSourceOverrides", err)...)
-	}
-
-	if len(errs) != 0 {
-		return DashboardFieldConfigSourceOverrides{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return DashboardFieldConfigSourceOverrides{}, err
 	}
 
 	return *builder.internal, nil

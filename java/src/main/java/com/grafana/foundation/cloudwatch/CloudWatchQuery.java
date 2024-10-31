@@ -36,6 +36,9 @@ public class CloudWatchQuery implements com.grafana.foundation.cog.variants.Data
         cloudWatchQuery.cloudWatchAnnotationQuery = cloudWatchAnnotationQuery.build();
         return cloudWatchQuery;
     }
+    public String dataqueryName() {
+        return "cloudwatch";
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (cloudWatchMetricsQuery != null) {

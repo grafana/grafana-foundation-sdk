@@ -22,12 +22,18 @@ class RecordRuleBuilder implements \Grafana\Foundation\Cog\Builder
         return $this->internal;
     }
 
+    /**
+     * Which expression node should be used as the input for the recorded metric.
+     */
     public function from(string $from): static
     {
         $this->internal->from = $from;
     
         return $this;
     }
+    /**
+     * Name of the recorded metric.
+     */
     public function metric(string $metric): static
     {
         $this->internal->metric = $metric;

@@ -27,14 +27,8 @@ func NewCellValuesBuilder() *CellValuesBuilder {
 }
 
 func (builder *CellValuesBuilder) Build() (CellValues, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CellValues", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CellValues{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CellValues{}, err
 	}
 
 	return *builder.internal, nil

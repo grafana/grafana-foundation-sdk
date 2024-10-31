@@ -84,11 +84,11 @@ public class RowPanel {
         return this;
     }
     
-    public Builder withPanel(com.grafana.foundation.cog.Builder<Panel> panels) {
+    public Builder withPanel(com.grafana.foundation.cog.Builder<Panel> panel) {
 		if (this.internal.panels == null) {
 			this.internal.panels = new LinkedList<>();
 		}
-    this.internal.panels.add(panels.build());
+    this.internal.panels.add(panel.build());
         return this;
     }
     

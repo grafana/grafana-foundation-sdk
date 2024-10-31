@@ -28,14 +28,8 @@ func NewTableAutoCellOptionsBuilder() *TableAutoCellOptionsBuilder {
 }
 
 func (builder *TableAutoCellOptionsBuilder) Build() (TableAutoCellOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TableAutoCellOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TableAutoCellOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TableAutoCellOptions{}, err
 	}
 
 	return *builder.internal, nil

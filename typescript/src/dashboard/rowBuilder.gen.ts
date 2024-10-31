@@ -48,12 +48,12 @@ export class RowBuilder implements cog.Builder<dashboard.RowPanel> {
     }
 
     // List of panels in the row
-    withPanel(panels: cog.Builder<dashboard.Panel>): this {
+    withPanel(panel: cog.Builder<dashboard.Panel>): this {
         if (!this.internal.panels) {
             this.internal.panels = [];
         }
-        const panelsResource = panels.build();
-        this.internal.panels.push(panelsResource);
+        const panelResource = panel.build();
+        this.internal.panels.push(panelResource);
         return this;
     }
 

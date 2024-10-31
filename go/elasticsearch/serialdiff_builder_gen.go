@@ -27,14 +27,8 @@ func NewSerialDiffBuilder() *SerialDiffBuilder {
 }
 
 func (builder *SerialDiffBuilder) Build() (SerialDiff, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("SerialDiff", err)...)
-	}
-
-	if len(errs) != 0 {
-		return SerialDiff{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return SerialDiff{}, err
 	}
 
 	return *builder.internal, nil

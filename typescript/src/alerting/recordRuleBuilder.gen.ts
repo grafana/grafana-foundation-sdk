@@ -14,11 +14,13 @@ export class RecordRuleBuilder implements cog.Builder<alerting.RecordRule> {
         return this.internal;
     }
 
+    // Which expression node should be used as the input for the recorded metric.
     from(from: string): this {
         this.internal.from = from;
         return this;
     }
 
+    // Name of the recorded metric.
     metric(metric: string): this {
         this.internal.metric = metric;
         return this;

@@ -26,14 +26,8 @@ func NewElasticsearchLogsSettingsBuilder() *ElasticsearchLogsSettingsBuilder {
 }
 
 func (builder *ElasticsearchLogsSettingsBuilder) Build() (ElasticsearchLogsSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchLogsSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchLogsSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchLogsSettings{}, err
 	}
 
 	return *builder.internal, nil
