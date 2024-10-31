@@ -27,14 +27,8 @@ func NewWorkspacesQueryBuilder() *WorkspacesQueryBuilder {
 }
 
 func (builder *WorkspacesQueryBuilder) Build() (WorkspacesQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("WorkspacesQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return WorkspacesQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return WorkspacesQuery{}, err
 	}
 
 	return *builder.internal, nil

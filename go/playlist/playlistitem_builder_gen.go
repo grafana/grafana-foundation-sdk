@@ -26,14 +26,8 @@ func NewPlaylistItemBuilder() *PlaylistItemBuilder {
 }
 
 func (builder *PlaylistItemBuilder) Build() (PlaylistItem, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("PlaylistItem", err)...)
-	}
-
-	if len(errs) != 0 {
-		return PlaylistItem{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return PlaylistItem{}, err
 	}
 
 	return *builder.internal, nil

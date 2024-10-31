@@ -279,7 +279,7 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
     
         return self
     
-    def variables(self, list_val: list[cogbuilder.Builder[dashboard.VariableModel]]) -> typing.Self:    
+    def variables(self, variables: list[cogbuilder.Builder[dashboard.VariableModel]]) -> typing.Self:    
         """
         Configured template variables
         """
@@ -287,12 +287,12 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         if self._internal.templating is None:
             self._internal.templating = dashboard.DashboardDashboardTemplating()
         assert isinstance(self._internal.templating, dashboard.DashboardDashboardTemplating)
-        list_val_resources = [r1.build() for r1 in list_val]
-        self._internal.templating.list_val = list_val_resources
+        variables_resources = [r1.build() for r1 in variables]
+        self._internal.templating.list_val = variables_resources
     
         return self
     
-    def with_variable(self, list_val: cogbuilder.Builder[dashboard.VariableModel]) -> typing.Self:    
+    def with_variable(self, variable: cogbuilder.Builder[dashboard.VariableModel]) -> typing.Self:    
         """
         Configured template variables
         """
@@ -303,12 +303,12 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         if self._internal.templating.list_val is None:
             self._internal.templating.list_val = []
         
-        list_val_resource = list_val.build()
-        self._internal.templating.list_val.append(list_val_resource)
+        variable_resource = variable.build()
+        self._internal.templating.list_val.append(variable_resource)
     
         return self
     
-    def annotations(self, list_val: list[cogbuilder.Builder[dashboard.AnnotationQuery]]) -> typing.Self:    
+    def annotations(self, annotations: list[cogbuilder.Builder[dashboard.AnnotationQuery]]) -> typing.Self:    
         """
         Contains the list of annotations that are associated with the dashboard.
         Annotations are used to overlay event markers and overlay event tags on graphs.
@@ -319,12 +319,12 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         if self._internal.annotations is None:
             self._internal.annotations = dashboard.AnnotationContainer()
         assert isinstance(self._internal.annotations, dashboard.AnnotationContainer)
-        list_val_resources = [r1.build() for r1 in list_val]
-        self._internal.annotations.list_val = list_val_resources
+        annotations_resources = [r1.build() for r1 in annotations]
+        self._internal.annotations.list_val = annotations_resources
     
         return self
     
-    def annotation(self, list_val: cogbuilder.Builder[dashboard.AnnotationQuery]) -> typing.Self:    
+    def annotation(self, annotation: cogbuilder.Builder[dashboard.AnnotationQuery]) -> typing.Self:    
         """
         Contains the list of annotations that are associated with the dashboard.
         Annotations are used to overlay event markers and overlay event tags on graphs.
@@ -338,8 +338,8 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         if self._internal.annotations.list_val is None:
             self._internal.annotations.list_val = []
         
-        list_val_resource = list_val.build()
-        self._internal.annotations.list_val.append(list_val_resource)
+        annotation_resource = annotation.build()
+        self._internal.annotations.list_val.append(annotation_resource)
     
         return self
     
@@ -353,7 +353,7 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
     
         return self
     
-    def link(self, links: cogbuilder.Builder[dashboard.DashboardLink]) -> typing.Self:    
+    def link(self, link: cogbuilder.Builder[dashboard.DashboardLink]) -> typing.Self:    
         """
         Links with references to other dashboards or external websites.
         """
@@ -361,8 +361,8 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         if self._internal.links is None:
             self._internal.links = []
         
-        links_resource = links.build()
-        self._internal.links.append(links_resource)
+        link_resource = link.build()
+        self._internal.links.append(link_resource)
     
         return self
     
@@ -972,7 +972,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def with_target(self, targets: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self:    
+    def with_target(self, target: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self:    
         """
         Depends on the panel plugin. See the plugin documentation for details.
         """
@@ -980,8 +980,8 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.targets is None:
             self._internal.targets = []
         
-        targets_resource = targets.build()
-        self._internal.targets.append(targets_resource)
+        target_resource = target.build()
+        self._internal.targets.append(target_resource)
     
         return self
     
@@ -1109,7 +1109,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def with_transformation(self, transformations: dashboard.DataTransformerConfig) -> typing.Self:    
+    def with_transformation(self, transformation: dashboard.DataTransformerConfig) -> typing.Self:    
         """
         List of transformations that are applied to the panel data before rendering.
         When there are multiple transformations, Grafana applies them in the order they are listed.
@@ -1119,7 +1119,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.transformations is None:
             self._internal.transformations = []
         
-        self._internal.transformations.append(transformations)
+        self._internal.transformations.append(transformation)
     
         return self
     
@@ -1413,7 +1413,7 @@ class Row(cogbuilder.Builder[dashboard.RowPanel]):
     
         return self
     
-    def with_panel(self, panels: cogbuilder.Builder[dashboard.Panel]) -> typing.Self:    
+    def with_panel(self, panel: cogbuilder.Builder[dashboard.Panel]) -> typing.Self:    
         """
         List of panels in the row
         """
@@ -1421,8 +1421,8 @@ class Row(cogbuilder.Builder[dashboard.RowPanel]):
         if self._internal.panels is None:
             self._internal.panels = []
         
-        panels_resource = panels.build()
-        self._internal.panels.append(panels_resource)
+        panel_resource = panel.build()
+        self._internal.panels.append(panel_resource)
     
         return self
     

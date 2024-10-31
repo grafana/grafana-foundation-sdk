@@ -26,14 +26,8 @@ func NewElasticsearchMetricAggregationWithMissingSupportSettingsBuilder() *Elast
 }
 
 func (builder *ElasticsearchMetricAggregationWithMissingSupportSettingsBuilder) Build() (ElasticsearchMetricAggregationWithMissingSupportSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMetricAggregationWithMissingSupportSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchMetricAggregationWithMissingSupportSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchMetricAggregationWithMissingSupportSettings{}, err
 	}
 
 	return *builder.internal, nil

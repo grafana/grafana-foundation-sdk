@@ -27,14 +27,8 @@ func NewTimeSeriesListBuilder() *TimeSeriesListBuilder {
 }
 
 func (builder *TimeSeriesListBuilder) Build() (TimeSeriesList, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TimeSeriesList", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TimeSeriesList{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TimeSeriesList{}, err
 	}
 
 	return *builder.internal, nil

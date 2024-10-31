@@ -29,14 +29,8 @@ func NewConstantVariableBuilder(name string) *ConstantVariableBuilder {
 }
 
 func (builder *ConstantVariableBuilder) Build() (VariableModel, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ConstantVariable", err)...)
-	}
-
-	if len(errs) != 0 {
-		return VariableModel{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return VariableModel{}, err
 	}
 
 	return *builder.internal, nil

@@ -3,8 +3,6 @@
 package barchart
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
@@ -33,14 +31,8 @@ func NewPanelBuilder() *PanelBuilder {
 }
 
 func (builder *PanelBuilder) Build() (dashboard.Panel, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Panel", err)...)
-	}
-
-	if len(errs) != 0 {
-		return dashboard.Panel{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return dashboard.Panel{}, err
 	}
 
 	return *builder.internal, nil
@@ -70,13 +62,13 @@ func (builder *PanelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) 
 }
 
 // Depends on the panel plugin. See the plugin documentation for details.
-func (builder *PanelBuilder) WithTarget(targets cog.Builder[variants.Dataquery]) *PanelBuilder {
-	targetsResource, err := targets.Build()
+func (builder *PanelBuilder) WithTarget(target cog.Builder[variants.Dataquery]) *PanelBuilder {
+	targetResource, err := target.Build()
 	if err != nil {
 		builder.errors["targets"] = err.(cog.BuildErrors)
 		return builder
 	}
-	builder.internal.Targets = append(builder.internal.Targets, targetsResource)
+	builder.internal.Targets = append(builder.internal.Targets, targetResource)
 
 	return builder
 }
@@ -118,10 +110,6 @@ func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
 
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
-	if !(h > 0) {
-		builder.errors["h"] = cog.MakeBuildErrors("h", errors.New("h must be > 0"))
-		return builder
-	}
 	if builder.internal.GridPos == nil {
 		builder.internal.GridPos = &dashboard.GridPos{}
 	}
@@ -132,14 +120,6 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
-	if !(w > 0) {
-		builder.errors["w"] = cog.MakeBuildErrors("w", errors.New("w must be > 0"))
-		return builder
-	}
-	if !(w <= 24) {
-		builder.errors["w"] = cog.MakeBuildErrors("w", errors.New("w must be <= 24"))
-		return builder
-	}
 	if builder.internal.GridPos == nil {
 		builder.internal.GridPos = &dashboard.GridPos{}
 	}
@@ -198,8 +178,8 @@ func (builder *PanelBuilder) Transformations(transformations []dashboard.DataTra
 // List of transformations that are applied to the panel data before rendering.
 // When there are multiple transformations, Grafana applies them in the order they are listed.
 // Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
-func (builder *PanelBuilder) WithTransformation(transformations dashboard.DataTransformerConfig) *PanelBuilder {
-	builder.internal.Transformations = append(builder.internal.Transformations, transformations)
+func (builder *PanelBuilder) WithTransformation(transformation dashboard.DataTransformerConfig) *PanelBuilder {
+	builder.internal.Transformations = append(builder.internal.Transformations, transformation)
 
 	return builder
 }
@@ -388,14 +368,6 @@ func (builder *PanelBuilder) Orientation(orientation common.VizOrientation) *Pan
 
 // Controls the radius of each bar.
 func (builder *PanelBuilder) BarRadius(barRadius float64) *PanelBuilder {
-	if !(barRadius >= 0) {
-		builder.errors["barRadius"] = cog.MakeBuildErrors("barRadius", errors.New("barRadius must be >= 0"))
-		return builder
-	}
-	if !(barRadius <= 0.5) {
-		builder.errors["barRadius"] = cog.MakeBuildErrors("barRadius", errors.New("barRadius must be <= 0.5"))
-		return builder
-	}
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
@@ -406,14 +378,6 @@ func (builder *PanelBuilder) BarRadius(barRadius float64) *PanelBuilder {
 
 // Controls the rotation of the x axis labels.
 func (builder *PanelBuilder) XTickLabelRotation(xTickLabelRotation int32) *PanelBuilder {
-	if !(xTickLabelRotation >= -90) {
-		builder.errors["xTickLabelRotation"] = cog.MakeBuildErrors("xTickLabelRotation", errors.New("xTickLabelRotation must be >= -90"))
-		return builder
-	}
-	if !(xTickLabelRotation <= 90) {
-		builder.errors["xTickLabelRotation"] = cog.MakeBuildErrors("xTickLabelRotation", errors.New("xTickLabelRotation must be <= 90"))
-		return builder
-	}
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
@@ -424,10 +388,6 @@ func (builder *PanelBuilder) XTickLabelRotation(xTickLabelRotation int32) *Panel
 
 // Sets the max length that a label can have before it is truncated.
 func (builder *PanelBuilder) XTickLabelMaxLength(xTickLabelMaxLength int32) *PanelBuilder {
-	if !(xTickLabelMaxLength >= 0) {
-		builder.errors["xTickLabelMaxLength"] = cog.MakeBuildErrors("xTickLabelMaxLength", errors.New("xTickLabelMaxLength must be >= 0"))
-		return builder
-	}
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
@@ -469,14 +429,6 @@ func (builder *PanelBuilder) ShowValue(showValue common.VisibilityMode) *PanelBu
 
 // Controls the width of bars. 1 = Max width, 0 = Min width.
 func (builder *PanelBuilder) BarWidth(barWidth float64) *PanelBuilder {
-	if !(barWidth >= 0) {
-		builder.errors["barWidth"] = cog.MakeBuildErrors("barWidth", errors.New("barWidth must be >= 0"))
-		return builder
-	}
-	if !(barWidth <= 1) {
-		builder.errors["barWidth"] = cog.MakeBuildErrors("barWidth", errors.New("barWidth must be <= 1"))
-		return builder
-	}
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
@@ -487,14 +439,6 @@ func (builder *PanelBuilder) BarWidth(barWidth float64) *PanelBuilder {
 
 // Controls the width of groups. 1 = max with, 0 = min width.
 func (builder *PanelBuilder) GroupWidth(groupWidth float64) *PanelBuilder {
-	if !(groupWidth >= 0) {
-		builder.errors["groupWidth"] = cog.MakeBuildErrors("groupWidth", errors.New("groupWidth must be >= 0"))
-		return builder
-	}
-	if !(groupWidth <= 1) {
-		builder.errors["groupWidth"] = cog.MakeBuildErrors("groupWidth", errors.New("groupWidth must be <= 1"))
-		return builder
-	}
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
@@ -558,10 +502,6 @@ func (builder *PanelBuilder) FullHighlight(fullHighlight bool) *PanelBuilder {
 
 // Controls line width of the bars.
 func (builder *PanelBuilder) LineWidth(lineWidth int32) *PanelBuilder {
-	if !(lineWidth <= 10) {
-		builder.errors["lineWidth"] = cog.MakeBuildErrors("lineWidth", errors.New("lineWidth must be <= 10"))
-		return builder
-	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
 		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
 	}
@@ -572,10 +512,6 @@ func (builder *PanelBuilder) LineWidth(lineWidth int32) *PanelBuilder {
 
 // Controls the fill opacity of the bars.
 func (builder *PanelBuilder) FillOpacity(fillOpacity int32) *PanelBuilder {
-	if !(fillOpacity <= 100) {
-		builder.errors["fillOpacity"] = cog.MakeBuildErrors("fillOpacity", errors.New("fillOpacity must be <= 100"))
-		return builder
-	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
 		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
 	}

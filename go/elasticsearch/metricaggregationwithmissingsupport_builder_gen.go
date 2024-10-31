@@ -26,14 +26,8 @@ func NewMetricAggregationWithMissingSupportBuilder() *MetricAggregationWithMissi
 }
 
 func (builder *MetricAggregationWithMissingSupportBuilder) Build() (MetricAggregationWithMissingSupport, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithMissingSupport", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MetricAggregationWithMissingSupport{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MetricAggregationWithMissingSupport{}, err
 	}
 
 	return *builder.internal, nil

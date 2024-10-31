@@ -4,8 +4,10 @@ package librarypanel
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"reflect"
+	"strconv"
 	"time"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
@@ -33,6 +35,146 @@ type LibraryPanel struct {
 	Model LibrarypanelLibraryPanelModel `json:"model"`
 	// Object storage metadata
 	Meta *LibraryElementDTOMeta `json:"meta,omitempty"`
+}
+
+func (resource *LibraryPanel) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "folderUid"
+	if fields["folderUid"] != nil {
+		if string(fields["folderUid"]) != "null" {
+			if err := json.Unmarshal(fields["folderUid"], &resource.FolderUid); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("folderUid", err)...)
+			}
+
+		}
+		delete(fields, "folderUid")
+
+	}
+	// Field "uid"
+	if fields["uid"] != nil {
+		if string(fields["uid"]) != "null" {
+			if err := json.Unmarshal(fields["uid"], &resource.Uid); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("uid", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("uid", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "uid")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("uid", errors.New("required field is missing from input"))...)
+	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "name")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
+	}
+	// Field "description"
+	if fields["description"] != nil {
+		if string(fields["description"]) != "null" {
+			if err := json.Unmarshal(fields["description"], &resource.Description); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("description", err)...)
+			}
+
+		}
+		delete(fields, "description")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "schemaVersion"
+	if fields["schemaVersion"] != nil {
+		if string(fields["schemaVersion"]) != "null" {
+			if err := json.Unmarshal(fields["schemaVersion"], &resource.SchemaVersion); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("schemaVersion", err)...)
+			}
+
+		}
+		delete(fields, "schemaVersion")
+
+	}
+	// Field "version"
+	if fields["version"] != nil {
+		if string(fields["version"]) != "null" {
+			if err := json.Unmarshal(fields["version"], &resource.Version); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("version", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("version", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "version")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("version", errors.New("required field is missing from input"))...)
+	}
+	// Field "model"
+	if fields["model"] != nil {
+		if string(fields["model"]) != "null" {
+
+			resource.Model = LibrarypanelLibraryPanelModel{}
+			if err := resource.Model.UnmarshalJSONStrict(fields["model"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("model", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("model", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "model")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("model", errors.New("required field is missing from input"))...)
+	}
+	// Field "meta"
+	if fields["meta"] != nil {
+		if string(fields["meta"]) != "null" {
+
+			resource.Meta = &LibraryElementDTOMeta{}
+			if err := resource.Meta.UnmarshalJSONStrict(fields["meta"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("meta", err)...)
+			}
+
+		}
+		delete(fields, "meta")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("LibraryPanel", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource LibraryPanel) Equals(other LibraryPanel) bool {
@@ -91,10 +233,106 @@ func (resource LibraryPanel) Equals(other LibraryPanel) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource LibraryPanel) Validate() error {
+	var errs cog.BuildErrors
+	if !(len([]rune(resource.Name)) >= 1) {
+		errs = append(errs, cog.MakeBuildErrors(
+			"name",
+			errors.New("must be >= 1"),
+		)...)
+	}
+	if !(len([]rune(resource.Type)) >= 1) {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be >= 1"),
+		)...)
+	}
+	if err := resource.Model.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("model", err)...)
+	}
+	if resource.Meta != nil {
+		if err := resource.Meta.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("meta", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type LibraryElementDTOMetaUser struct {
 	Id        int64  `json:"id"`
 	Name      string `json:"name"`
 	AvatarUrl string `json:"avatarUrl"`
+}
+
+func (resource *LibraryElementDTOMetaUser) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "name")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
+	}
+	// Field "avatarUrl"
+	if fields["avatarUrl"] != nil {
+		if string(fields["avatarUrl"]) != "null" {
+			if err := json.Unmarshal(fields["avatarUrl"], &resource.AvatarUrl); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("avatarUrl", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("avatarUrl", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "avatarUrl")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("avatarUrl", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("LibraryElementDTOMetaUser", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource LibraryElementDTOMetaUser) Equals(other LibraryElementDTOMetaUser) bool {
@@ -111,6 +349,12 @@ func (resource LibraryElementDTOMetaUser) Equals(other LibraryElementDTOMetaUser
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource LibraryElementDTOMetaUser) Validate() error {
+	return nil
+}
+
 type LibraryElementDTOMeta struct {
 	FolderName          string                    `json:"folderName"`
 	FolderUid           string                    `json:"folderUid"`
@@ -119,6 +363,130 @@ type LibraryElementDTOMeta struct {
 	Updated             time.Time                 `json:"updated"`
 	CreatedBy           LibraryElementDTOMetaUser `json:"createdBy"`
 	UpdatedBy           LibraryElementDTOMetaUser `json:"updatedBy"`
+}
+
+func (resource *LibraryElementDTOMeta) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "folderName"
+	if fields["folderName"] != nil {
+		if string(fields["folderName"]) != "null" {
+			if err := json.Unmarshal(fields["folderName"], &resource.FolderName); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("folderName", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("folderName", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "folderName")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("folderName", errors.New("required field is missing from input"))...)
+	}
+	// Field "folderUid"
+	if fields["folderUid"] != nil {
+		if string(fields["folderUid"]) != "null" {
+			if err := json.Unmarshal(fields["folderUid"], &resource.FolderUid); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("folderUid", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("folderUid", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "folderUid")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("folderUid", errors.New("required field is missing from input"))...)
+	}
+	// Field "connectedDashboards"
+	if fields["connectedDashboards"] != nil {
+		if string(fields["connectedDashboards"]) != "null" {
+			if err := json.Unmarshal(fields["connectedDashboards"], &resource.ConnectedDashboards); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("connectedDashboards", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("connectedDashboards", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "connectedDashboards")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("connectedDashboards", errors.New("required field is missing from input"))...)
+	}
+	// Field "created"
+	if fields["created"] != nil {
+		if string(fields["created"]) != "null" {
+			if err := json.Unmarshal(fields["created"], &resource.Created); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("created", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("created", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "created")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("created", errors.New("required field is missing from input"))...)
+	}
+	// Field "updated"
+	if fields["updated"] != nil {
+		if string(fields["updated"]) != "null" {
+			if err := json.Unmarshal(fields["updated"], &resource.Updated); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("updated", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("updated", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "updated")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("updated", errors.New("required field is missing from input"))...)
+	}
+	// Field "createdBy"
+	if fields["createdBy"] != nil {
+		if string(fields["createdBy"]) != "null" {
+
+			resource.CreatedBy = LibraryElementDTOMetaUser{}
+			if err := resource.CreatedBy.UnmarshalJSONStrict(fields["createdBy"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("createdBy", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("createdBy", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "createdBy")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("createdBy", errors.New("required field is missing from input"))...)
+	}
+	// Field "updatedBy"
+	if fields["updatedBy"] != nil {
+		if string(fields["updatedBy"]) != "null" {
+
+			resource.UpdatedBy = LibraryElementDTOMetaUser{}
+			if err := resource.UpdatedBy.UnmarshalJSONStrict(fields["updatedBy"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("updatedBy", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("updatedBy", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "updatedBy")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("updatedBy", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("LibraryElementDTOMeta", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource LibraryElementDTOMeta) Equals(other LibraryElementDTOMeta) bool {
@@ -145,6 +513,24 @@ func (resource LibraryElementDTOMeta) Equals(other LibraryElementDTOMeta) bool {
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource LibraryElementDTOMeta) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.CreatedBy.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("createdBy", err)...)
+	}
+	if err := resource.UpdatedBy.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("updatedBy", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 type LibraryPanelRepeatDirection string
@@ -344,6 +730,295 @@ func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSON(raw []byte) error {
 	return nil
 }
 
+func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "pluginVersion"
+	if fields["pluginVersion"] != nil {
+		if string(fields["pluginVersion"]) != "null" {
+			if err := json.Unmarshal(fields["pluginVersion"], &resource.PluginVersion); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("pluginVersion", err)...)
+			}
+
+		}
+		delete(fields, "pluginVersion")
+
+	}
+	// Field "tags"
+	if fields["tags"] != nil {
+		if string(fields["tags"]) != "null" {
+
+			if err := json.Unmarshal(fields["tags"], &resource.Tags); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tags", err)...)
+			}
+
+		}
+		delete(fields, "tags")
+
+	}
+	// Field "targets"
+	if fields["targets"] != nil {
+		if string(fields["targets"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["targets"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 variants.Dataquery
+
+				dataquery, err := cog.StrictUnmarshalDataquery(partialArray[i1], "")
+				if err != nil {
+					errs = append(errs, cog.MakeBuildErrors("targets["+strconv.Itoa(i1)+"]", err)...)
+				} else {
+					result1 = dataquery
+				}
+				resource.Targets = append(resource.Targets, result1)
+			}
+
+		}
+		delete(fields, "targets")
+
+	}
+	// Field "title"
+	if fields["title"] != nil {
+		if string(fields["title"]) != "null" {
+			if err := json.Unmarshal(fields["title"], &resource.Title); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("title", err)...)
+			}
+
+		}
+		delete(fields, "title")
+
+	}
+	// Field "description"
+	if fields["description"] != nil {
+		if string(fields["description"]) != "null" {
+			if err := json.Unmarshal(fields["description"], &resource.Description); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("description", err)...)
+			}
+
+		}
+		delete(fields, "description")
+
+	}
+	// Field "transparent"
+	if fields["transparent"] != nil {
+		if string(fields["transparent"]) != "null" {
+			if err := json.Unmarshal(fields["transparent"], &resource.Transparent); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("transparent", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("transparent", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "transparent")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("transparent", errors.New("required field is missing from input"))...)
+	}
+	// Field "datasource"
+	if fields["datasource"] != nil {
+		if string(fields["datasource"]) != "null" {
+
+			resource.Datasource = &dashboard.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+			}
+
+		}
+		delete(fields, "datasource")
+
+	}
+	// Field "links"
+	if fields["links"] != nil {
+		if string(fields["links"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["links"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 dashboard.DashboardLink
+
+				result1 = dashboard.DashboardLink{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("links["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Links = append(resource.Links, result1)
+			}
+
+		}
+		delete(fields, "links")
+
+	}
+	// Field "repeat"
+	if fields["repeat"] != nil {
+		if string(fields["repeat"]) != "null" {
+			if err := json.Unmarshal(fields["repeat"], &resource.Repeat); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("repeat", err)...)
+			}
+
+		}
+		delete(fields, "repeat")
+
+	}
+	// Field "repeatDirection"
+	if fields["repeatDirection"] != nil {
+		if string(fields["repeatDirection"]) != "null" {
+			if err := json.Unmarshal(fields["repeatDirection"], &resource.RepeatDirection); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("repeatDirection", err)...)
+			}
+
+		}
+		delete(fields, "repeatDirection")
+
+	}
+	// Field "repeatPanelId"
+	if fields["repeatPanelId"] != nil {
+		if string(fields["repeatPanelId"]) != "null" {
+			if err := json.Unmarshal(fields["repeatPanelId"], &resource.RepeatPanelId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("repeatPanelId", err)...)
+			}
+
+		}
+		delete(fields, "repeatPanelId")
+
+	}
+	// Field "maxDataPoints"
+	if fields["maxDataPoints"] != nil {
+		if string(fields["maxDataPoints"]) != "null" {
+			if err := json.Unmarshal(fields["maxDataPoints"], &resource.MaxDataPoints); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxDataPoints", err)...)
+			}
+
+		}
+		delete(fields, "maxDataPoints")
+
+	}
+	// Field "transformations"
+	if fields["transformations"] != nil {
+		if string(fields["transformations"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["transformations"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 dashboard.DataTransformerConfig
+
+				result1 = dashboard.DataTransformerConfig{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("transformations["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Transformations = append(resource.Transformations, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("transformations", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "transformations")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("transformations", errors.New("required field is missing from input"))...)
+	}
+	// Field "interval"
+	if fields["interval"] != nil {
+		if string(fields["interval"]) != "null" {
+			if err := json.Unmarshal(fields["interval"], &resource.Interval); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("interval", err)...)
+			}
+
+		}
+		delete(fields, "interval")
+
+	}
+	// Field "timeFrom"
+	if fields["timeFrom"] != nil {
+		if string(fields["timeFrom"]) != "null" {
+			if err := json.Unmarshal(fields["timeFrom"], &resource.TimeFrom); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeFrom", err)...)
+			}
+
+		}
+		delete(fields, "timeFrom")
+
+	}
+	// Field "timeShift"
+	if fields["timeShift"] != nil {
+		if string(fields["timeShift"]) != "null" {
+			if err := json.Unmarshal(fields["timeShift"], &resource.TimeShift); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeShift", err)...)
+			}
+
+		}
+		delete(fields, "timeShift")
+
+	}
+	// Field "options"
+	if fields["options"] != nil {
+		if string(fields["options"]) != "null" {
+			if err := json.Unmarshal(fields["options"], &resource.Options); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("options", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("options", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "options")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("options", errors.New("required field is missing from input"))...)
+	}
+	// Field "fieldConfig"
+	if fields["fieldConfig"] != nil {
+		if string(fields["fieldConfig"]) != "null" {
+
+			resource.FieldConfig = dashboard.FieldConfigSource{}
+			if err := resource.FieldConfig.UnmarshalJSONStrict(fields["fieldConfig"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fieldConfig", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("fieldConfig", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "fieldConfig")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("fieldConfig", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("LibrarypanelLibraryPanelModel", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 func (resource LibrarypanelLibraryPanelModel) Equals(other LibrarypanelLibraryPanelModel) bool {
 	if resource.Type != other.Type {
 		return false
@@ -499,4 +1174,48 @@ func (resource LibrarypanelLibraryPanelModel) Equals(other LibrarypanelLibraryPa
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource LibrarypanelLibraryPanelModel) Validate() error {
+	var errs cog.BuildErrors
+	if !(len([]rune(resource.Type)) >= 1) {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be >= 1"),
+		)...)
+	}
+
+	for i1 := range resource.Targets {
+		if err := resource.Targets[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("targets["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
+	}
+
+	for i1 := range resource.Links {
+		if err := resource.Links[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("links["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	for i1 := range resource.Transformations {
+		if err := resource.Transformations[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("transformations["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if err := resource.FieldConfig.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("fieldConfig", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }

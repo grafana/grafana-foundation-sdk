@@ -27,14 +27,8 @@ func NewVizTextDisplayOptionsBuilder() *VizTextDisplayOptionsBuilder {
 }
 
 func (builder *VizTextDisplayOptionsBuilder) Build() (VizTextDisplayOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("VizTextDisplayOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return VizTextDisplayOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return VizTextDisplayOptions{}, err
 	}
 
 	return *builder.internal, nil

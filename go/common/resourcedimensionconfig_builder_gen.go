@@ -27,14 +27,8 @@ func NewResourceDimensionConfigBuilder() *ResourceDimensionConfigBuilder {
 }
 
 func (builder *ResourceDimensionConfigBuilder) Build() (ResourceDimensionConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ResourceDimensionConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ResourceDimensionConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ResourceDimensionConfig{}, err
 	}
 
 	return *builder.internal, nil

@@ -55,6 +55,9 @@ public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("intervalMs")
     public Double intervalMs;
+    public String dataqueryName() {
+        return "cloud-monitoring";
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

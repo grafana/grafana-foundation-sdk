@@ -28,45 +28,31 @@ func NewTimeIntervalBuilder() *TimeIntervalBuilder {
 }
 
 func (builder *TimeIntervalBuilder) Build() (TimeInterval, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TimeInterval", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TimeInterval{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TimeInterval{}, err
 	}
 
 	return *builder.internal, nil
 }
 
-// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-// within the interval.
 func (builder *TimeIntervalBuilder) DaysOfMonth(daysOfMonth []string) *TimeIntervalBuilder {
 	builder.internal.DaysOfMonth = daysOfMonth
 
 	return builder
 }
 
-// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-// within the interval.
 func (builder *TimeIntervalBuilder) Location(location string) *TimeIntervalBuilder {
 	builder.internal.Location = &location
 
 	return builder
 }
 
-// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-// within the interval.
 func (builder *TimeIntervalBuilder) Months(months []string) *TimeIntervalBuilder {
 	builder.internal.Months = months
 
 	return builder
 }
 
-// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-// within the interval.
 func (builder *TimeIntervalBuilder) Times(times []cog.Builder[TimeRange]) *TimeIntervalBuilder {
 	timesResources := make([]TimeRange, 0, len(times))
 	for _, r1 := range times {
@@ -82,16 +68,12 @@ func (builder *TimeIntervalBuilder) Times(times []cog.Builder[TimeRange]) *TimeI
 	return builder
 }
 
-// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-// within the interval.
 func (builder *TimeIntervalBuilder) Weekdays(weekdays []string) *TimeIntervalBuilder {
 	builder.internal.Weekdays = weekdays
 
 	return builder
 }
 
-// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-// within the interval.
 func (builder *TimeIntervalBuilder) Years(years []string) *TimeIntervalBuilder {
 	builder.internal.Years = years
 

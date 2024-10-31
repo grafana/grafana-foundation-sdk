@@ -27,14 +27,8 @@ func NewCanvasConnectionBuilder() *CanvasConnectionBuilder {
 }
 
 func (builder *CanvasConnectionBuilder) Build() (CanvasConnection, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CanvasConnection", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CanvasConnection{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CanvasConnection{}, err
 	}
 
 	return *builder.internal, nil

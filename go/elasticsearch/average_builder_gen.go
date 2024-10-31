@@ -27,14 +27,8 @@ func NewAverageBuilder() *AverageBuilder {
 }
 
 func (builder *AverageBuilder) Build() (Average, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Average", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Average{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Average{}, err
 	}
 
 	return *builder.internal, nil

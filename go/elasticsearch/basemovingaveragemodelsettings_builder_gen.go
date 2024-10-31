@@ -26,14 +26,8 @@ func NewBaseMovingAverageModelSettingsBuilder() *BaseMovingAverageModelSettingsB
 }
 
 func (builder *BaseMovingAverageModelSettingsBuilder) Build() (BaseMovingAverageModelSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("BaseMovingAverageModelSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return BaseMovingAverageModelSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return BaseMovingAverageModelSettings{}, err
 	}
 
 	return *builder.internal, nil

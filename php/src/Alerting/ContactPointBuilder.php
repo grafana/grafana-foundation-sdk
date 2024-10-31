@@ -24,10 +24,6 @@ class ContactPointBuilder implements \Grafana\Foundation\Cog\Builder
         return $this->internal;
     }
 
-    /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
-     */
     public function disableResolveMessage(bool $disableResolveMessage): static
     {
         $this->internal->disableResolveMessage = $disableResolveMessage;
@@ -35,8 +31,8 @@ class ContactPointBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
+     * Name is used as grouping key in the UI. Contact points with the
+     * same name will be grouped in the UI.
      */
     public function name(string $name): static
     {
@@ -44,10 +40,6 @@ class ContactPointBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
-     */
     public function provenance(string $provenance): static
     {
         $this->internal->provenance = $provenance;
@@ -55,8 +47,6 @@ class ContactPointBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
      * @param mixed $settings
      */
     public function settings( $settings): static
@@ -65,10 +55,6 @@ class ContactPointBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
-     */
     public function type(\Grafana\Foundation\Alerting\ContactPointType $type): static
     {
         $this->internal->type = $type;
@@ -76,8 +62,8 @@ class ContactPointBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * EmbeddedContactPoint is the contact point type that is used
-     * by grafanas embedded alertmanager implementation.
+     * UID is the unique identifier of the contact point. The UID can be
+     * set by the user.
      */
     public function uid(string $uid): static
     {

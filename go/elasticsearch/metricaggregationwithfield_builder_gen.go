@@ -26,14 +26,8 @@ func NewMetricAggregationWithFieldBuilder() *MetricAggregationWithFieldBuilder {
 }
 
 func (builder *MetricAggregationWithFieldBuilder) Build() (MetricAggregationWithField, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithField", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MetricAggregationWithField{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MetricAggregationWithField{}, err
 	}
 
 	return *builder.internal, nil

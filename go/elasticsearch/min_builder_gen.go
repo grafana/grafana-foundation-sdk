@@ -27,14 +27,8 @@ func NewMinBuilder() *MinBuilder {
 }
 
 func (builder *MinBuilder) Build() (Min, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Min", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Min{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Min{}, err
 	}
 
 	return *builder.internal, nil

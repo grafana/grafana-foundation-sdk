@@ -54,11 +54,11 @@ public class RuleGroup {
         return this;
     }
     
-    public Builder withRule(com.grafana.foundation.cog.Builder<Rule> rules) {
+    public Builder withRule(com.grafana.foundation.cog.Builder<Rule> rule) {
 		if (this.internal.rules == null) {
 			this.internal.rules = new LinkedList<>();
 		}
-    this.internal.rules.add(rules.build());
+    this.internal.rules.add(rule.build());
         return this;
     }
     

@@ -26,14 +26,8 @@ func NewTimePickerBuilder() *TimePickerBuilder {
 }
 
 func (builder *TimePickerBuilder) Build() (TimePicker, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TimePicker", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TimePicker{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TimePicker{}, err
 	}
 
 	return *builder.internal, nil

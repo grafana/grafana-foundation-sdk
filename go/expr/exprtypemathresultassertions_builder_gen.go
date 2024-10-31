@@ -26,14 +26,8 @@ func NewExprTypeMathResultAssertionsBuilder() *ExprTypeMathResultAssertionsBuild
 }
 
 func (builder *ExprTypeMathResultAssertionsBuilder) Build() (ExprTypeMathResultAssertions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExprTypeMathResultAssertions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExprTypeMathResultAssertions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExprTypeMathResultAssertions{}, err
 	}
 
 	return *builder.internal, nil

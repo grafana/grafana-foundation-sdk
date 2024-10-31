@@ -26,14 +26,8 @@ func NewDashboardDashboardTemplatingBuilder() *DashboardDashboardTemplatingBuild
 }
 
 func (builder *DashboardDashboardTemplatingBuilder) Build() (DashboardDashboardTemplating, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("DashboardDashboardTemplating", err)...)
-	}
-
-	if len(errs) != 0 {
-		return DashboardDashboardTemplating{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return DashboardDashboardTemplating{}, err
 	}
 
 	return *builder.internal, nil
