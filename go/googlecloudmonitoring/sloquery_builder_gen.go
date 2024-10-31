@@ -27,14 +27,8 @@ func NewSLOQueryBuilder() *SLOQueryBuilder {
 }
 
 func (builder *SLOQueryBuilder) Build() (SLOQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("SLOQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return SLOQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return SLOQuery{}, err
 	}
 
 	return *builder.internal, nil

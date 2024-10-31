@@ -27,14 +27,8 @@ func NewMovingAverageHoltWintersModelSettingsBuilder() *MovingAverageHoltWinters
 }
 
 func (builder *MovingAverageHoltWintersModelSettingsBuilder) Build() (MovingAverageHoltWintersModelSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MovingAverageHoltWintersModelSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MovingAverageHoltWintersModelSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MovingAverageHoltWintersModelSettings{}, err
 	}
 
 	return *builder.internal, nil

@@ -28,14 +28,8 @@ func NewPreferencesBuilder() *PreferencesBuilder {
 }
 
 func (builder *PreferencesBuilder) Build() (Preferences, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Preferences", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Preferences{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Preferences{}, err
 	}
 
 	return *builder.internal, nil

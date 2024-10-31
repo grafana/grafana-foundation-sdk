@@ -62,6 +62,9 @@ public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataqu
     public ExprTypeThresholdTimeRange timeRange;
     @JsonProperty("type")
     public String type;
+    public String dataqueryName() {
+        return "__expr__";
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

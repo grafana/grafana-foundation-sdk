@@ -26,14 +26,8 @@ func NewElasticsearchMetricAggregationWithInlineScriptSettingsBuilder() *Elastic
 }
 
 func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) Build() (ElasticsearchMetricAggregationWithInlineScriptSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMetricAggregationWithInlineScriptSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchMetricAggregationWithInlineScriptSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchMetricAggregationWithInlineScriptSettings{}, err
 	}
 
 	return *builder.internal, nil

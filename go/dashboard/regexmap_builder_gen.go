@@ -29,14 +29,8 @@ func NewRegexMapBuilder() *RegexMapBuilder {
 }
 
 func (builder *RegexMapBuilder) Build() (RegexMap, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("RegexMap", err)...)
-	}
-
-	if len(errs) != 0 {
-		return RegexMap{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return RegexMap{}, err
 	}
 
 	return *builder.internal, nil

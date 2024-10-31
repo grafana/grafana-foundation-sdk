@@ -28,14 +28,8 @@ func NewMetricAggregationTypeBuilder() *MetricAggregationTypeBuilder {
 }
 
 func (builder *MetricAggregationTypeBuilder) Build() (MetricAggregationType, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MetricAggregationType", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MetricAggregationType{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MetricAggregationType{}, err
 	}
 
 	return *builder.internal, nil

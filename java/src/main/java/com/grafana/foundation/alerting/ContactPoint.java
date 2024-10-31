@@ -11,33 +11,25 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 // EmbeddedContactPoint is the contact point type that is used
 // by grafanas embedded alertmanager implementation.
 public class ContactPoint {
-    // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("disableResolveMessage")
     public Boolean disableResolveMessage;
-    // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation.
+    // Name is used as grouping key in the UI. Contact points with the
+    // same name will be grouped in the UI.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("name")
     public String name;
-    // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("provenance")
     public String provenance;
-    // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation.
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("settings")
     public Object settings;
-    // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation.
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("type")
     public ContactPointType type;
-    // EmbeddedContactPoint is the contact point type that is used
-    // by grafanas embedded alertmanager implementation.
+    // UID is the unique identifier of the contact point. The UID can be
+    // set by the user.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("uid")
     public String uid;

@@ -9,14 +9,16 @@ namespace Grafana\Foundation\Alerting;
 class RelativeTimeRange implements \JsonSerializable
 {
     /**
-     * RelativeTimeRange is the per query start and end time
-     * for requests.
+     * A Duration represents the elapsed time between two instants
+     * as an int64 nanosecond count. The representation limits the
+     * largest representable duration to approximately 290 years.
      */
     public int $from;
 
     /**
-     * RelativeTimeRange is the per query start and end time
-     * for requests.
+     * A Duration represents the elapsed time between two instants
+     * as an int64 nanosecond count. The representation limits the
+     * largest representable duration to approximately 290 years.
      */
     public int $to;
 

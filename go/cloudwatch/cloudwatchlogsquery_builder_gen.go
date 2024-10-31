@@ -29,14 +29,8 @@ func NewCloudWatchLogsQueryBuilder() *CloudWatchLogsQueryBuilder {
 }
 
 func (builder *CloudWatchLogsQueryBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CloudWatchLogsQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CloudWatchLogsQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CloudWatchLogsQuery{}, err
 	}
 
 	return *builder.internal, nil

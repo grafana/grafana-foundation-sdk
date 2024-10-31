@@ -26,14 +26,8 @@ func NewBaseDimensionConfigBuilder() *BaseDimensionConfigBuilder {
 }
 
 func (builder *BaseDimensionConfigBuilder) Build() (BaseDimensionConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("BaseDimensionConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return BaseDimensionConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return BaseDimensionConfig{}, err
 	}
 
 	return *builder.internal, nil

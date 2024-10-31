@@ -26,14 +26,8 @@ func NewExprTypeMathTimeRangeBuilder() *ExprTypeMathTimeRangeBuilder {
 }
 
 func (builder *ExprTypeMathTimeRangeBuilder) Build() (ExprTypeMathTimeRange, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExprTypeMathTimeRange", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExprTypeMathTimeRange{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExprTypeMathTimeRange{}, err
 	}
 
 	return *builder.internal, nil

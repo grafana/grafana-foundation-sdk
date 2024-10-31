@@ -26,14 +26,8 @@ func NewExprTypeClassicConditionsTimeRangeBuilder() *ExprTypeClassicConditionsTi
 }
 
 func (builder *ExprTypeClassicConditionsTimeRangeBuilder) Build() (ExprTypeClassicConditionsTimeRange, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExprTypeClassicConditionsTimeRange", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExprTypeClassicConditionsTimeRange{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExprTypeClassicConditionsTimeRange{}, err
 	}
 
 	return *builder.internal, nil

@@ -31,14 +31,8 @@ func NewCloudWatchAnnotationQueryBuilder() *CloudWatchAnnotationQueryBuilder {
 }
 
 func (builder *CloudWatchAnnotationQueryBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CloudWatchAnnotationQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CloudWatchAnnotationQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CloudWatchAnnotationQuery{}, err
 	}
 
 	return *builder.internal, nil

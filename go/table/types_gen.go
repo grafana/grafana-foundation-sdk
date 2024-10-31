@@ -4,7 +4,11 @@ package table
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
+	"strconv"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
@@ -23,6 +27,114 @@ type Options struct {
 	Footer *common.TableFooterOptions `json:"footer,omitempty"`
 	// Controls the height of the rows
 	CellHeight *common.TableCellHeight `json:"cellHeight,omitempty"`
+}
+
+func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "frameIndex"
+	if fields["frameIndex"] != nil {
+		if string(fields["frameIndex"]) != "null" {
+			if err := json.Unmarshal(fields["frameIndex"], &resource.FrameIndex); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("frameIndex", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("frameIndex", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "frameIndex")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("frameIndex", errors.New("required field is missing from input"))...)
+	}
+	// Field "showHeader"
+	if fields["showHeader"] != nil {
+		if string(fields["showHeader"]) != "null" {
+			if err := json.Unmarshal(fields["showHeader"], &resource.ShowHeader); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showHeader", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("showHeader", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "showHeader")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showHeader", errors.New("required field is missing from input"))...)
+	}
+	// Field "showTypeIcons"
+	if fields["showTypeIcons"] != nil {
+		if string(fields["showTypeIcons"]) != "null" {
+			if err := json.Unmarshal(fields["showTypeIcons"], &resource.ShowTypeIcons); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showTypeIcons", err)...)
+			}
+
+		}
+		delete(fields, "showTypeIcons")
+
+	}
+	// Field "sortBy"
+	if fields["sortBy"] != nil {
+		if string(fields["sortBy"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["sortBy"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 common.TableSortByFieldState
+
+				result1 = common.TableSortByFieldState{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("sortBy["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.SortBy = append(resource.SortBy, result1)
+			}
+
+		}
+		delete(fields, "sortBy")
+
+	}
+	// Field "footer"
+	if fields["footer"] != nil {
+		if string(fields["footer"]) != "null" {
+
+			resource.Footer = &common.TableFooterOptions{}
+			if err := resource.Footer.UnmarshalJSONStrict(fields["footer"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("footer", err)...)
+			}
+
+		}
+		delete(fields, "footer")
+
+	}
+	// Field "cellHeight"
+	if fields["cellHeight"] != nil {
+		if string(fields["cellHeight"]) != "null" {
+			if err := json.Unmarshal(fields["cellHeight"], &resource.CellHeight); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("cellHeight", err)...)
+			}
+
+		}
+		delete(fields, "cellHeight")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource Options) Equals(other Options) bool {
@@ -73,6 +185,29 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource Options) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.SortBy {
+		if err := resource.SortBy[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("sortBy["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if resource.Footer != nil {
+		if err := resource.Footer.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("footer", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type FieldConfig = common.TableFieldOptions
 
 func VariantConfig() variants.PanelcfgConfig {
@@ -87,10 +222,28 @@ func VariantConfig() variants.PanelcfgConfig {
 
 			return options, nil
 		},
+		StrictOptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := options.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
 		FieldConfigUnmarshaler: func(raw []byte) (any, error) {
 			fieldConfig := &FieldConfig{}
 
 			if err := json.Unmarshal(raw, fieldConfig); err != nil {
+				return nil, err
+			}
+
+			return fieldConfig, nil
+		},
+		StrictFieldConfigUnmarshaler: func(raw []byte) (any, error) {
+			fieldConfig := &FieldConfig{}
+
+			if err := fieldConfig.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
 			}
 

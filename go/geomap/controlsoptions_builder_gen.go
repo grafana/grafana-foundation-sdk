@@ -26,14 +26,8 @@ func NewControlsOptionsBuilder() *ControlsOptionsBuilder {
 }
 
 func (builder *ControlsOptionsBuilder) Build() (ControlsOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ControlsOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ControlsOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ControlsOptions{}, err
 	}
 
 	return *builder.internal, nil

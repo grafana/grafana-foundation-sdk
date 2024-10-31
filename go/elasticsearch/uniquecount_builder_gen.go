@@ -27,14 +27,8 @@ func NewUniqueCountBuilder() *UniqueCountBuilder {
 }
 
 func (builder *UniqueCountBuilder) Build() (UniqueCount, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("UniqueCount", err)...)
-	}
-
-	if len(errs) != 0 {
-		return UniqueCount{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return UniqueCount{}, err
 	}
 
 	return *builder.internal, nil

@@ -27,14 +27,8 @@ func NewQueryEditorOperatorBuilder() *QueryEditorOperatorBuilder {
 }
 
 func (builder *QueryEditorOperatorBuilder) Build() (QueryEditorOperator, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("QueryEditorOperator", err)...)
-	}
-
-	if len(errs) != 0 {
-		return QueryEditorOperator{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return QueryEditorOperator{}, err
 	}
 
 	return *builder.internal, nil
@@ -46,11 +40,11 @@ func (builder *QueryEditorOperatorBuilder) Name(name string) *QueryEditorOperato
 	return builder
 }
 
-func (builder *QueryEditorOperatorBuilder) Value(arrayOfQueryEditorOperatorType []QueryEditorOperatorType) *QueryEditorOperatorBuilder {
+func (builder *QueryEditorOperatorBuilder) Value(operatorTypes []QueryEditorOperatorType) *QueryEditorOperatorBuilder {
 	if builder.internal.Value == nil {
 		builder.internal.Value = &StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType{}
 	}
-	builder.internal.Value.ArrayOfQueryEditorOperatorType = arrayOfQueryEditorOperatorType
+	builder.internal.Value.ArrayOfQueryEditorOperatorType = operatorTypes
 
 	return builder
 }

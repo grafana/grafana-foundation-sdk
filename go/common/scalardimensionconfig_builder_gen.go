@@ -26,14 +26,8 @@ func NewScalarDimensionConfigBuilder() *ScalarDimensionConfigBuilder {
 }
 
 func (builder *ScalarDimensionConfigBuilder) Build() (ScalarDimensionConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ScalarDimensionConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ScalarDimensionConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ScalarDimensionConfig{}, err
 	}
 
 	return *builder.internal, nil

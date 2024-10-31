@@ -27,14 +27,8 @@ func NewBarConfigBuilder() *BarConfigBuilder {
 }
 
 func (builder *BarConfigBuilder) Build() (BarConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("BarConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return BarConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return BarConfig{}, err
 	}
 
 	return *builder.internal, nil

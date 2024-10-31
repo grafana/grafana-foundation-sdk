@@ -3,8 +3,6 @@
 package expr
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
@@ -31,14 +29,8 @@ func NewTypeMathBuilder() *TypeMathBuilder {
 }
 
 func (builder *TypeMathBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TypeMath", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TypeMath{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TypeMath{}, err
 	}
 
 	return *builder.internal, nil
@@ -53,10 +45,6 @@ func (builder *TypeMathBuilder) Datasource(datasource dashboard.DataSourceRef) *
 
 // General math expression
 func (builder *TypeMathBuilder) Expression(expression string) *TypeMathBuilder {
-	if !(len([]rune(expression)) >= 1) {
-		builder.errors["expression"] = cog.MakeBuildErrors("expression", errors.New("len([]rune(expression)) must be >= 1"))
-		return builder
-	}
 	builder.internal.Expression = expression
 
 	return builder

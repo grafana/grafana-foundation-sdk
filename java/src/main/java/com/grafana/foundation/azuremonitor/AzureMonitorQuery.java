@@ -75,6 +75,9 @@ public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Da
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("region")
     public String region;
+    public String dataqueryName() {
+        return "grafana-azure-monitor-datasource";
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

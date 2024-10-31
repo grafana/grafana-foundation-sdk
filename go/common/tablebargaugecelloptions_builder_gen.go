@@ -28,14 +28,8 @@ func NewTableBarGaugeCellOptionsBuilder() *TableBarGaugeCellOptionsBuilder {
 }
 
 func (builder *TableBarGaugeCellOptionsBuilder) Build() (TableBarGaugeCellOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TableBarGaugeCellOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TableBarGaugeCellOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TableBarGaugeCellOptions{}, err
 	}
 
 	return *builder.internal, nil
