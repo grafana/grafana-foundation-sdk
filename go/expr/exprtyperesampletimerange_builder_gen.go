@@ -26,14 +26,8 @@ func NewExprTypeResampleTimeRangeBuilder() *ExprTypeResampleTimeRangeBuilder {
 }
 
 func (builder *ExprTypeResampleTimeRangeBuilder) Build() (ExprTypeResampleTimeRange, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExprTypeResampleTimeRange", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExprTypeResampleTimeRange{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExprTypeResampleTimeRange{}, err
 	}
 
 	return *builder.internal, nil

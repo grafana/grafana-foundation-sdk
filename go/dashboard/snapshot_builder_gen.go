@@ -31,14 +31,8 @@ func NewSnapshotBuilder() *SnapshotBuilder {
 }
 
 func (builder *SnapshotBuilder) Build() (Snapshot, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Snapshot", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Snapshot{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Snapshot{}, err
 	}
 
 	return *builder.internal, nil

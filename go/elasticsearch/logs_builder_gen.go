@@ -27,14 +27,8 @@ func NewLogsBuilder() *LogsBuilder {
 }
 
 func (builder *LogsBuilder) Build() (Logs, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Logs", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Logs{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Logs{}, err
 	}
 
 	return *builder.internal, nil

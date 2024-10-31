@@ -26,14 +26,8 @@ func NewMuteTimingBuilder() *MuteTimingBuilder {
 }
 
 func (builder *MuteTimingBuilder) Build() (MuteTiming, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MuteTiming", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MuteTiming{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MuteTiming{}, err
 	}
 
 	return *builder.internal, nil

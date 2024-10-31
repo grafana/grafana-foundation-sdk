@@ -3,8 +3,6 @@
 package xychart
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
@@ -29,14 +27,8 @@ func NewScatterSeriesConfigBuilder() *ScatterSeriesConfigBuilder {
 }
 
 func (builder *ScatterSeriesConfigBuilder) Build() (ScatterSeriesConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ScatterSeriesConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ScatterSeriesConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ScatterSeriesConfig{}, err
 	}
 
 	return *builder.internal, nil
@@ -100,10 +92,6 @@ func (builder *ScatterSeriesConfigBuilder) LineColor(lineColor cog.Builder[commo
 }
 
 func (builder *ScatterSeriesConfigBuilder) LineWidth(lineWidth int32) *ScatterSeriesConfigBuilder {
-	if !(lineWidth >= 0) {
-		builder.errors["lineWidth"] = cog.MakeBuildErrors("lineWidth", errors.New("lineWidth must be >= 0"))
-		return builder
-	}
 	builder.internal.LineWidth = &lineWidth
 
 	return builder

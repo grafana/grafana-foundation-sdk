@@ -26,14 +26,8 @@ func NewArcOptionBuilder() *ArcOptionBuilder {
 }
 
 func (builder *ArcOptionBuilder) Build() (ArcOption, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ArcOption", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ArcOption{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ArcOption{}, err
 	}
 
 	return *builder.internal, nil

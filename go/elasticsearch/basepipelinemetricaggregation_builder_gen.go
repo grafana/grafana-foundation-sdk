@@ -26,14 +26,8 @@ func NewBasePipelineMetricAggregationBuilder() *BasePipelineMetricAggregationBui
 }
 
 func (builder *BasePipelineMetricAggregationBuilder) Build() (BasePipelineMetricAggregation, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("BasePipelineMetricAggregation", err)...)
-	}
-
-	if len(errs) != 0 {
-		return BasePipelineMetricAggregation{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return BasePipelineMetricAggregation{}, err
 	}
 
 	return *builder.internal, nil

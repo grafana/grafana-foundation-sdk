@@ -202,6 +202,7 @@ class Panel implements \JsonSerializable
         $this->fieldConfig = $fieldConfig;
     }
 
+    
     /**
      * @param array<string, mixed> $inputData
      */
@@ -214,8 +215,9 @@ class Panel implements \JsonSerializable
             id: $data["id"] ?? null,
             pluginVersion: $data["pluginVersion"] ?? null,
             targets: isset($data["targets"]) ? (function ($in) {
-    	/** @var array{datasource?: array{type?: mixed}} $in */
+        /** @var array{datasource?: array{type?: mixed}} $in */
         $hint = (isset($in["datasource"], $in["datasource"]["type"]) && is_string($in["datasource"]["type"])) ? $in["datasource"]["type"] : "";
+    
         /** @var array<array<string, mixed>> $in */
         return \Grafana\Foundation\Cog\Runtime::get()->dataqueriesFromArray($in, $hint);
     })($data["targets"]): null,
@@ -270,7 +272,7 @@ class Panel implements \JsonSerializable
             return $options;
         }
     
-    	return ($config->optionsFromArray)($options);
+        return ($config->optionsFromArray)($options);
     })($data) : null,
             fieldConfig: isset($data["fieldConfig"]) ? (function($panel) {
         /** @var array{defaults?: mixed, overrides?: array<mixed>} */
@@ -287,19 +289,20 @@ class Panel implements \JsonSerializable
         }
     
         if (!isset($fieldConfigData["defaults"])) {
-    		return $fieldConfig;
-        }
-        /** @var array{custom?: array<string, mixed>}*/
-        $defaults = $fieldConfigData["defaults"];
-        if (!isset($defaults["custom"])) {
-    		return $fieldConfig;
+            return $fieldConfig;
         }
     
-    	$fieldConfig->defaults->custom = ($config->fieldConfigFromArray)($defaults["custom"]);
+        /** @var array{custom?: array<string, mixed>} */
+        $defaults = $fieldConfigData["defaults"];
+        if (!isset($defaults["custom"])) {
+            return $fieldConfig;
+        }
+    
+        $fieldConfig->defaults->custom = ($config->fieldConfigFromArray)($defaults["custom"]);
     
         return $fieldConfig;
     })($data) : null,
-        );
+       );
     }
 
     /**

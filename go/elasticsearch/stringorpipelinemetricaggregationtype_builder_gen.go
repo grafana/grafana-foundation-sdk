@@ -28,14 +28,8 @@ func NewStringOrPipelineMetricAggregationTypeBuilder() *StringOrPipelineMetricAg
 }
 
 func (builder *StringOrPipelineMetricAggregationTypeBuilder) Build() (StringOrPipelineMetricAggregationType, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("StringOrPipelineMetricAggregationType", err)...)
-	}
-
-	if len(errs) != 0 {
-		return StringOrPipelineMetricAggregationType{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return StringOrPipelineMetricAggregationType{}, err
 	}
 
 	return *builder.internal, nil

@@ -9,42 +9,28 @@ namespace Grafana\Foundation\Alerting;
 class TimeInterval implements \JsonSerializable
 {
     /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
      * @var array<string>|null
      */
     public ?array $daysOfMonth;
 
-    /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
-     */
     public ?string $location;
 
     /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
      * @var array<string>|null
      */
     public ?array $months;
 
     /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
      * @var array<\Grafana\Foundation\Alerting\TimeRange>|null
      */
     public ?array $times;
 
     /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
      * @var array<string>|null
      */
     public ?array $weekdays;
 
     /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
      * @var array<string>|null
      */
     public ?array $years;
