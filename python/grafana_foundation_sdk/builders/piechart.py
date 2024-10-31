@@ -15,6 +15,9 @@ class PieChartLegendOptions(cogbuilder.Builder[piechart.PieChartLegendOptions]):
         self._internal = piechart.PieChartLegendOptions()
 
     def build(self) -> piechart.PieChartLegendOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def values(self, values: list[piechart.PieChartLegendValues]) -> typing.Self:        
@@ -80,6 +83,9 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         self._internal.type_val = "piechart"
 
     def build(self) -> dashboard.Panel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:    

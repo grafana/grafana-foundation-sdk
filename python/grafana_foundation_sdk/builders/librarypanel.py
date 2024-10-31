@@ -14,6 +14,9 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
         self._internal = librarypanel.LibraryPanel()
 
     def build(self) -> librarypanel.LibraryPanel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def folder_uid(self, folder_uid: str) -> typing.Self:    
@@ -112,6 +115,9 @@ class LibraryElementDTOMetaUser(cogbuilder.Builder[librarypanel.LibraryElementDT
         self._internal = librarypanel.LibraryElementDTOMetaUser()
 
     def build(self) -> librarypanel.LibraryElementDTOMetaUser:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:        
@@ -137,6 +143,9 @@ class LibraryElementDTOMeta(cogbuilder.Builder[librarypanel.LibraryElementDTOMet
         self._internal = librarypanel.LibraryElementDTOMeta()
 
     def build(self) -> librarypanel.LibraryElementDTOMeta:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def folder_name(self, folder_name: str) -> typing.Self:        
@@ -184,6 +193,9 @@ class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.Librarypanel
         self._internal = librarypanel.LibrarypanelLibraryPanelModel()
 
     def build(self) -> librarypanel.LibrarypanelLibraryPanelModel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def type_val(self, type_val: str) -> typing.Self:    

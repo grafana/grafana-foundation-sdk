@@ -10,6 +10,9 @@ export class StreamingQueryBuilder implements cog.Builder<testdata.StreamingQuer
         this.internal = testdata.defaultStreamingQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): testdata.StreamingQuery {
         return this.internal;
     }

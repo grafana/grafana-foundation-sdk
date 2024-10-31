@@ -10,6 +10,9 @@ export class CandlestickFieldMapBuilder implements cog.Builder<candlestick.Candl
         this.internal = candlestick.defaultCandlestickFieldMap();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): candlestick.CandlestickFieldMap {
         return this.internal;
     }

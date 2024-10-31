@@ -16,6 +16,7 @@ class RawDocumentBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\RawDocument
      */
     public function build()

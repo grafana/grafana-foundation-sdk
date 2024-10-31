@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AxisConfigConverter accepts a `AxisConfig` object and generates the Go code to build this object using builders.
 func AxisConfigConverter(input AxisConfig) string {
 	calls := []string{
 		`common.NewAxisConfigBuilder()`,

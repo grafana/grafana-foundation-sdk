@@ -15,6 +15,7 @@ class ExprTypeClassicConditionsResultAssertionsBuilder implements \Grafana\Found
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeClassicConditionsResultAssertions
      */
     public function build()

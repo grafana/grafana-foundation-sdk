@@ -15,6 +15,7 @@ class TimeIntervalItemBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Alerting\TimeIntervalItem
      */
     public function build()

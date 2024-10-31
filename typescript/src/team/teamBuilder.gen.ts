@@ -11,6 +11,9 @@ export class TeamBuilder implements cog.Builder<team.Team> {
         this.internal.name = name;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): team.Team {
         return this.internal;
     }

@@ -17,6 +17,7 @@ class TableColorTextCellOptionsBuilder implements \Grafana\Foundation\Cog\Builde
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\TableColorTextCellOptions
      */
     public function build()

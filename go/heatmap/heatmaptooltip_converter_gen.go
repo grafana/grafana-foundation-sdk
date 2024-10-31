@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// HeatmapTooltipConverter accepts a `HeatmapTooltip` object and generates the Go code to build this object using builders.
 func HeatmapTooltipConverter(input HeatmapTooltip) string {
 	calls := []string{
 		`heatmap.NewHeatmapTooltipBuilder()`,

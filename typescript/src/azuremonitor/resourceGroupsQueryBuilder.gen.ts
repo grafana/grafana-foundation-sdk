@@ -11,6 +11,9 @@ export class ResourceGroupsQueryBuilder implements cog.Builder<azuremonitor.Reso
         this.internal.kind = "ResourceGroupsQuery";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.ResourceGroupsQuery {
         return this.internal;
     }

@@ -10,6 +10,9 @@ export class NotificationTemplateBuilder implements cog.Builder<alerting.Notific
         this.internal = alerting.defaultNotificationTemplate();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.NotificationTemplate {
         return this.internal;
     }

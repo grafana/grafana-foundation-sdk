@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TermsConverter accepts a `Terms` object and generates the Go code to build this object using builders.
 func TermsConverter(input Terms) string {
 	calls := []string{
 		`elasticsearch.NewTermsBuilder()`,

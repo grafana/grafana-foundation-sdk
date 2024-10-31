@@ -16,6 +16,7 @@ class LogsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\Logs
      */
     public function build()

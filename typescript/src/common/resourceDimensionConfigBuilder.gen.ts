@@ -11,6 +11,9 @@ export class ResourceDimensionConfigBuilder implements cog.Builder<common.Resour
         this.internal = common.defaultResourceDimensionConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.ResourceDimensionConfig {
         return this.internal;
     }

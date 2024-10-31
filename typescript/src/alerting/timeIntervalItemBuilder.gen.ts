@@ -10,6 +10,9 @@ export class TimeIntervalItemBuilder implements cog.Builder<alerting.TimeInterva
         this.internal = alerting.defaultTimeIntervalItem();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.TimeIntervalItem {
         return this.internal;
     }

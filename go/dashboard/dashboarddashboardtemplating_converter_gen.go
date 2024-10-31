@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// DashboardDashboardTemplatingConverter accepts a `DashboardDashboardTemplating` object and generates the Go code to build this object using builders.
 func DashboardDashboardTemplatingConverter(input DashboardDashboardTemplating) string {
 	calls := []string{
 		`dashboard.NewDashboardDashboardTemplatingBuilder()`,

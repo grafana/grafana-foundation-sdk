@@ -11,6 +11,9 @@ export class PieChartLegendOptionsBuilder implements cog.Builder<piechart.PieCha
         this.internal = piechart.defaultPieChartLegendOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): piechart.PieChartLegendOptions {
         return this.internal;
     }

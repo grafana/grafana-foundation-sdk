@@ -11,6 +11,9 @@ export class GeoHashGridBuilder implements cog.Builder<elasticsearch.GeoHashGrid
         this.internal.type = "geohash_grid";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.GeoHashGrid {
         return this.internal;
     }

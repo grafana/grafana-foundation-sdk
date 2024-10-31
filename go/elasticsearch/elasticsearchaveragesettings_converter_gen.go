@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchAverageSettingsConverter accepts a `ElasticsearchAverageSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchAverageSettingsConverter(input ElasticsearchAverageSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchAverageSettingsBuilder()`,

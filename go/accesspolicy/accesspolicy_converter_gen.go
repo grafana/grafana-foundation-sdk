@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// AccessPolicyConverter accepts a `AccessPolicy` object and generates the Go code to build this object using builders.
 func AccessPolicyConverter(input AccessPolicy) string {
 	calls := []string{
 		`accesspolicy.NewAccessPolicyBuilder()`,

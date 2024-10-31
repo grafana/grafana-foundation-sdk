@@ -10,6 +10,9 @@ export class AnnotationActionsBuilder implements cog.Builder<dashboard.Annotatio
         this.internal = dashboard.defaultAnnotationActions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.AnnotationActions {
         return this.internal;
     }

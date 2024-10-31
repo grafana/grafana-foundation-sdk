@@ -11,6 +11,9 @@ export class StackingConfigBuilder implements cog.Builder<common.StackingConfig>
         this.internal = common.defaultStackingConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.StackingConfig {
         return this.internal;
     }

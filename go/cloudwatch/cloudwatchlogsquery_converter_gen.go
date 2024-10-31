@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// CloudWatchLogsQueryConverter accepts a `CloudWatchLogsQuery` object and generates the Go code to build this object using builders.
 func CloudWatchLogsQueryConverter(input CloudWatchLogsQuery) string {
 	calls := []string{
 		`cloudwatch.NewCloudWatchLogsQueryBuilder()`,

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ExprTypeThresholdConditionsEvaluatorConverter accepts a `ExprTypeThresholdConditionsEvaluator` object and generates the Go code to build this object using builders.
 func ExprTypeThresholdConditionsEvaluatorConverter(input ExprTypeThresholdConditionsEvaluator) string {
 	calls := []string{
 		`expr.NewExprTypeThresholdConditionsEvaluatorBuilder()`,

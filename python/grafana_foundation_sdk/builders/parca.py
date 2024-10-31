@@ -13,6 +13,9 @@ class Dataquery(cogbuilder.Builder[parca.Dataquery]):
         self._internal = parca.Dataquery()
 
     def build(self) -> parca.Dataquery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def label_selector(self, label_selector: str) -> typing.Self:    

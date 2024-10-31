@@ -15,6 +15,7 @@ class BucketAggregationWithFieldBuilder implements \Grafana\Foundation\Cog\Build
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\BucketAggregationWithField
      */
     public function build()

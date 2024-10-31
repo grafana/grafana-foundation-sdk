@@ -15,6 +15,7 @@ class ElasticsearchBucketScriptSettingsBuilder implements \Grafana\Foundation\Co
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchBucketScriptSettings
      */
     public function build()

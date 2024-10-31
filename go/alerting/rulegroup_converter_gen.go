@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// RuleGroupConverter accepts a `RuleGroup` object and generates the Go code to build this object using builders.
 func RuleGroupConverter(input RuleGroup) string {
 	calls := []string{
 		`alerting.NewRuleGroupBuilder(` + fmt.Sprintf("%#v", cog.Unptr(input.Title)) + `)`,

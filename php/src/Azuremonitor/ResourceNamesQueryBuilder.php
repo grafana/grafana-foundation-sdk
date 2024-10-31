@@ -16,6 +16,7 @@ class ResourceNamesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Azuremonitor\ResourceNamesQuery
      */
     public function build()

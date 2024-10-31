@@ -10,6 +10,9 @@ export class BucketAggregationWithFieldBuilder implements cog.Builder<elasticsea
         this.internal = elasticsearch.defaultBucketAggregationWithField();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.BucketAggregationWithField {
         return this.internal;
     }

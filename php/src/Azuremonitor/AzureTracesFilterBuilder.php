@@ -15,6 +15,7 @@ class AzureTracesFilterBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Azuremonitor\AzureTracesFilter
      */
     public function build()
