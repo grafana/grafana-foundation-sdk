@@ -11,6 +11,9 @@ export class MinBuilder implements cog.Builder<elasticsearch.Min> {
         this.internal.type = "min";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Min {
         return this.internal;
     }

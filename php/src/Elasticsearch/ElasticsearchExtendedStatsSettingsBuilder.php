@@ -15,6 +15,7 @@ class ElasticsearchExtendedStatsSettingsBuilder implements \Grafana\Foundation\C
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchExtendedStatsSettings
      */
     public function build()

@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// FilterConverter accepts a `Filter` object and generates the Go code to build this object using builders.
 func FilterConverter(input Filter) string {
 	calls := []string{
 		`elasticsearch.NewFilterBuilder()`,

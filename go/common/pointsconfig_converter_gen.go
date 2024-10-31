@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// PointsConfigConverter accepts a `PointsConfig` object and generates the Go code to build this object using builders.
 func PointsConfigConverter(input PointsConfig) string {
 	calls := []string{
 		`common.NewPointsConfigBuilder()`,

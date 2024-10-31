@@ -16,6 +16,7 @@ class TableFooterOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\TableFooterOptions
      */
     public function build()

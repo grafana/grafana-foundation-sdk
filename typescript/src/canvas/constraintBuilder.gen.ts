@@ -10,6 +10,9 @@ export class ConstraintBuilder implements cog.Builder<canvas.Constraint> {
         this.internal = canvas.defaultConstraint();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): canvas.Constraint {
         return this.internal;
     }

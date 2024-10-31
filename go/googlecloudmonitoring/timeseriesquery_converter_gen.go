@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TimeSeriesQueryConverter accepts a `TimeSeriesQuery` object and generates the Go code to build this object using builders.
 func TimeSeriesQueryConverter(input TimeSeriesQuery) string {
 	calls := []string{
 		`googlecloudmonitoring.NewTimeSeriesQueryBuilder()`,

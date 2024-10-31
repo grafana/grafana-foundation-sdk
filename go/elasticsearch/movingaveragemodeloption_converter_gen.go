@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// MovingAverageModelOptionConverter accepts a `MovingAverageModelOption` object and generates the Go code to build this object using builders.
 func MovingAverageModelOptionConverter(input MovingAverageModelOption) string {
 	calls := []string{
 		`elasticsearch.NewMovingAverageModelOptionBuilder()`,

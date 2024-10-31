@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// MovingFunctionConverter accepts a `MovingFunction` object and generates the Go code to build this object using builders.
 func MovingFunctionConverter(input MovingFunction) string {
 	calls := []string{
 		`elasticsearch.NewMovingFunctionBuilder()`,

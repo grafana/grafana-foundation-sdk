@@ -11,6 +11,9 @@ export class HeatmapColorOptionsBuilder implements cog.Builder<heatmap.HeatmapCo
         this.internal = heatmap.defaultHeatmapColorOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): heatmap.HeatmapColorOptions {
         return this.internal;
     }

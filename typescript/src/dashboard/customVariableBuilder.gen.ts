@@ -13,6 +13,9 @@ export class CustomVariableBuilder implements cog.Builder<dashboard.VariableMode
         this.internal.type = dashboard.VariableType.Custom;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.VariableModel {
         return this.internal;
     }

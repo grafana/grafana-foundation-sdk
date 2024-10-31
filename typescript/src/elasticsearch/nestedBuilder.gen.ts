@@ -11,6 +11,9 @@ export class NestedBuilder implements cog.Builder<elasticsearch.Nested> {
         this.internal.type = "nested";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Nested {
         return this.internal;
     }

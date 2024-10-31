@@ -11,6 +11,9 @@ export class SerialDiffBuilder implements cog.Builder<elasticsearch.SerialDiff> 
         this.internal.type = "serial_diff";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.SerialDiff {
         return this.internal;
     }

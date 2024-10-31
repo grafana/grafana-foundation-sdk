@@ -11,6 +11,9 @@ export class MovingAverageEWMAModelSettingsBuilder implements cog.Builder<elasti
         this.internal.model = "ewma";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.MovingAverageEWMAModelSettings {
         return this.internal;
     }

@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// ElasticsearchMetricAggregationWithInlineScriptSettingsConverter accepts a `ElasticsearchMetricAggregationWithInlineScriptSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchMetricAggregationWithInlineScriptSettingsConverter(input ElasticsearchMetricAggregationWithInlineScriptSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchMetricAggregationWithInlineScriptSettingsBuilder()`,

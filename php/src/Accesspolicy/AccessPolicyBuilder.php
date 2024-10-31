@@ -15,6 +15,7 @@ class AccessPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Accesspolicy\AccessPolicy
      */
     public function build()

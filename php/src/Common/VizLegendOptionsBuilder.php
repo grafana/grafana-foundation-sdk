@@ -16,6 +16,7 @@ class VizLegendOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\VizLegendOptions
      */
     public function build()

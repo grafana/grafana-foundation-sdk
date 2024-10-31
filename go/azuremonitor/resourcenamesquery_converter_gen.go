@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ResourceNamesQueryConverter accepts a `ResourceNamesQuery` object and generates the Go code to build this object using builders.
 func ResourceNamesQueryConverter(input ResourceNamesQuery) string {
 	calls := []string{
 		`azuremonitor.NewResourceNamesQueryBuilder()`,

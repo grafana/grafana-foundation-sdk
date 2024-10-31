@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ExprTypeMathResultAssertionsConverter accepts a `ExprTypeMathResultAssertions` object and generates the Go code to build this object using builders.
 func ExprTypeMathResultAssertionsConverter(input ExprTypeMathResultAssertions) string {
 	calls := []string{
 		`expr.NewExprTypeMathResultAssertionsBuilder()`,

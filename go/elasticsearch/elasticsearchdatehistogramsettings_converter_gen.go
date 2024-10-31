@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchDateHistogramSettingsConverter accepts a `ElasticsearchDateHistogramSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchDateHistogramSettingsConverter(input ElasticsearchDateHistogramSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchDateHistogramSettingsBuilder()`,

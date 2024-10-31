@@ -16,6 +16,7 @@ class DataSourceJsonDataBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\DataSourceJsonData
      */
     public function build()

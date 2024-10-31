@@ -11,6 +11,9 @@ export class HideableFieldConfigBuilder implements cog.Builder<common.HideableFi
         this.internal = common.defaultHideableFieldConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.HideableFieldConfig {
         return this.internal;
     }

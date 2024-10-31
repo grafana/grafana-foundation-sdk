@@ -16,6 +16,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Azuremonitor\AzureLogsQuery
      */
     public function build()

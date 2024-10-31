@@ -11,6 +11,9 @@ export class LibraryPanelBuilder implements cog.Builder<librarypanel.LibraryPane
         this.internal = librarypanel.defaultLibraryPanel();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): librarypanel.LibraryPanel {
         return this.internal;
     }
