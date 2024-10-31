@@ -29,14 +29,8 @@ func NewValueMapBuilder() *ValueMapBuilder {
 }
 
 func (builder *ValueMapBuilder) Build() (ValueMap, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ValueMap", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ValueMap{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ValueMap{}, err
 	}
 
 	return *builder.internal, nil

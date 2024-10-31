@@ -34,7 +34,7 @@ class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):
     
         return self
     
-    def rules(self, rules: cogbuilder.Builder[accesspolicy.AccessRule]) -> typing.Self:    
+    def rules(self, rule: cogbuilder.Builder[accesspolicy.AccessRule]) -> typing.Self:    
         """
         The set of rules to apply.  Note that * is required to modify
         access policy rules, and that "none" will reject all actions
@@ -43,8 +43,8 @@ class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):
         if self._internal.rules is None:
             self._internal.rules = []
         
-        rules_resource = rules.build()
-        self._internal.rules.append(rules_resource)
+        rule_resource = rule.build()
+        self._internal.rules.append(rule_resource)
     
         return self
     

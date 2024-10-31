@@ -26,14 +26,8 @@ func NewPublicDashboardBuilder() *PublicDashboardBuilder {
 }
 
 func (builder *PublicDashboardBuilder) Build() (PublicDashboard, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("PublicDashboard", err)...)
-	}
-
-	if len(errs) != 0 {
-		return PublicDashboard{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return PublicDashboard{}, err
 	}
 
 	return *builder.internal, nil

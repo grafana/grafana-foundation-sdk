@@ -954,6 +954,7 @@ export interface DashboardMeta {
 	created?: string;
 	createdBy?: string;
 	expires?: string;
+	// Deprecated: use FolderUID instead
 	folderId?: number;
 	folderTitle?: string;
 	folderUid?: string;

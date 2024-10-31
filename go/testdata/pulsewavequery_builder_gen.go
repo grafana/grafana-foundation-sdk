@@ -26,14 +26,8 @@ func NewPulseWaveQueryBuilder() *PulseWaveQueryBuilder {
 }
 
 func (builder *PulseWaveQueryBuilder) Build() (PulseWaveQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("PulseWaveQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return PulseWaveQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return PulseWaveQuery{}, err
 	}
 
 	return *builder.internal, nil

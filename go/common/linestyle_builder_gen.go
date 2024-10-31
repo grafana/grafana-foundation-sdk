@@ -27,14 +27,8 @@ func NewLineStyleBuilder() *LineStyleBuilder {
 }
 
 func (builder *LineStyleBuilder) Build() (LineStyle, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("LineStyle", err)...)
-	}
-
-	if len(errs) != 0 {
-		return LineStyle{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return LineStyle{}, err
 	}
 
 	return *builder.internal, nil

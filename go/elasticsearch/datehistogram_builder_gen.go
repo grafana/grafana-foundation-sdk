@@ -27,14 +27,8 @@ func NewDateHistogramBuilder() *DateHistogramBuilder {
 }
 
 func (builder *DateHistogramBuilder) Build() (DateHistogram, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("DateHistogram", err)...)
-	}
-
-	if len(errs) != 0 {
-		return DateHistogram{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return DateHistogram{}, err
 	}
 
 	return *builder.internal, nil

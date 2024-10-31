@@ -26,14 +26,8 @@ func NewGeoHashGridSettingsBuilder() *GeoHashGridSettingsBuilder {
 }
 
 func (builder *GeoHashGridSettingsBuilder) Build() (GeoHashGridSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("GeoHashGridSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return GeoHashGridSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return GeoHashGridSettings{}, err
 	}
 
 	return *builder.internal, nil

@@ -26,14 +26,8 @@ func NewSimulationQueryBuilder() *SimulationQueryBuilder {
 }
 
 func (builder *SimulationQueryBuilder) Build() (SimulationQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("SimulationQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return SimulationQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return SimulationQuery{}, err
 	}
 
 	return *builder.internal, nil

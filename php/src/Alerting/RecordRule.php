@@ -4,8 +4,14 @@ namespace Grafana\Foundation\Alerting;
 
 class RecordRule implements \JsonSerializable
 {
+    /**
+     * Which expression node should be used as the input for the recorded metric.
+     */
     public string $from;
 
+    /**
+     * Name of the recorded metric.
+     */
     public string $metric;
 
     /**

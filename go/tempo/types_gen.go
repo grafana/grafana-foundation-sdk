@@ -6,7 +6,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"strconv"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
@@ -73,6 +75,15 @@ func VariantConfig() variants.DataqueryConfig {
 
 			return dataquery, nil
 		},
+		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &TempoQuery{}
+
+			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
 		GoConverter: func(input any) string {
 			var dataquery TempoQuery
 			if cast, ok := input.(*TempoQuery); ok {
@@ -83,6 +94,260 @@ func VariantConfig() variants.DataqueryConfig {
 			return TempoQueryConverter(dataquery)
 		},
 	}
+}
+
+func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "refId"
+	if fields["refId"] != nil {
+		if string(fields["refId"]) != "null" {
+			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "refId")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+	// Field "queryType"
+	if fields["queryType"] != nil {
+		if string(fields["queryType"]) != "null" {
+			if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryType", err)...)
+			}
+
+		}
+		delete(fields, "queryType")
+
+	}
+	// Field "query"
+	if fields["query"] != nil {
+		if string(fields["query"]) != "null" {
+			if err := json.Unmarshal(fields["query"], &resource.Query); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("query", err)...)
+			}
+
+		}
+		delete(fields, "query")
+
+	}
+	// Field "search"
+	if fields["search"] != nil {
+		if string(fields["search"]) != "null" {
+			if err := json.Unmarshal(fields["search"], &resource.Search); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("search", err)...)
+			}
+
+		}
+		delete(fields, "search")
+
+	}
+	// Field "serviceName"
+	if fields["serviceName"] != nil {
+		if string(fields["serviceName"]) != "null" {
+			if err := json.Unmarshal(fields["serviceName"], &resource.ServiceName); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("serviceName", err)...)
+			}
+
+		}
+		delete(fields, "serviceName")
+
+	}
+	// Field "spanName"
+	if fields["spanName"] != nil {
+		if string(fields["spanName"]) != "null" {
+			if err := json.Unmarshal(fields["spanName"], &resource.SpanName); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spanName", err)...)
+			}
+
+		}
+		delete(fields, "spanName")
+
+	}
+	// Field "minDuration"
+	if fields["minDuration"] != nil {
+		if string(fields["minDuration"]) != "null" {
+			if err := json.Unmarshal(fields["minDuration"], &resource.MinDuration); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("minDuration", err)...)
+			}
+
+		}
+		delete(fields, "minDuration")
+
+	}
+	// Field "maxDuration"
+	if fields["maxDuration"] != nil {
+		if string(fields["maxDuration"]) != "null" {
+			if err := json.Unmarshal(fields["maxDuration"], &resource.MaxDuration); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxDuration", err)...)
+			}
+
+		}
+		delete(fields, "maxDuration")
+
+	}
+	// Field "serviceMapQuery"
+	if fields["serviceMapQuery"] != nil {
+		if string(fields["serviceMapQuery"]) != "null" {
+
+			resource.ServiceMapQuery = &StringOrArrayOfString{}
+			if err := resource.ServiceMapQuery.UnmarshalJSONStrict(fields["serviceMapQuery"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("serviceMapQuery", err)...)
+			}
+
+		}
+		delete(fields, "serviceMapQuery")
+
+	}
+	// Field "serviceMapIncludeNamespace"
+	if fields["serviceMapIncludeNamespace"] != nil {
+		if string(fields["serviceMapIncludeNamespace"]) != "null" {
+			if err := json.Unmarshal(fields["serviceMapIncludeNamespace"], &resource.ServiceMapIncludeNamespace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("serviceMapIncludeNamespace", err)...)
+			}
+
+		}
+		delete(fields, "serviceMapIncludeNamespace")
+
+	}
+	// Field "limit"
+	if fields["limit"] != nil {
+		if string(fields["limit"]) != "null" {
+			if err := json.Unmarshal(fields["limit"], &resource.Limit); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("limit", err)...)
+			}
+
+		}
+		delete(fields, "limit")
+
+	}
+	// Field "spss"
+	if fields["spss"] != nil {
+		if string(fields["spss"]) != "null" {
+			if err := json.Unmarshal(fields["spss"], &resource.Spss); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spss", err)...)
+			}
+
+		}
+		delete(fields, "spss")
+
+	}
+	// Field "filters"
+	if fields["filters"] != nil {
+		if string(fields["filters"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["filters"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 TraceqlFilter
+
+				result1 = TraceqlFilter{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("filters["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Filters = append(resource.Filters, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("filters", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "filters")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("filters", errors.New("required field is missing from input"))...)
+	}
+	// Field "groupBy"
+	if fields["groupBy"] != nil {
+		if string(fields["groupBy"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["groupBy"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 TraceqlFilter
+
+				result1 = TraceqlFilter{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("groupBy["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.GroupBy = append(resource.GroupBy, result1)
+			}
+
+		}
+		delete(fields, "groupBy")
+
+	}
+	// Field "tableType"
+	if fields["tableType"] != nil {
+		if string(fields["tableType"]) != "null" {
+			if err := json.Unmarshal(fields["tableType"], &resource.TableType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tableType", err)...)
+			}
+
+		}
+		delete(fields, "tableType")
+
+	}
+	// Field "datasource"
+	if fields["datasource"] != nil {
+		if string(fields["datasource"]) != "null" {
+
+			resource.Datasource = &dashboard.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+			}
+
+		}
+		delete(fields, "datasource")
+
+	}
+	// Field "step"
+	if fields["step"] != nil {
+		if string(fields["step"]) != "null" {
+			if err := json.Unmarshal(fields["step"], &resource.Step); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("step", err)...)
+			}
+
+		}
+		delete(fields, "step")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TempoQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource TempoQuery) Equals(otherCandidate variants.Dataquery) bool {
@@ -256,6 +521,40 @@ func (resource TempoQuery) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource TempoQuery) Validate() error {
+	var errs cog.BuildErrors
+	if resource.ServiceMapQuery != nil {
+		if err := resource.ServiceMapQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("serviceMapQuery", err)...)
+		}
+	}
+
+	for i1 := range resource.Filters {
+		if err := resource.Filters[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("filters["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	for i1 := range resource.GroupBy {
+		if err := resource.GroupBy[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("groupBy["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type TempoQueryType string
 
 const (
@@ -312,6 +611,99 @@ type TraceqlFilter struct {
 	Scope *TraceqlSearchScope `json:"scope,omitempty"`
 }
 
+func (resource *TraceqlFilter) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "tag"
+	if fields["tag"] != nil {
+		if string(fields["tag"]) != "null" {
+			if err := json.Unmarshal(fields["tag"], &resource.Tag); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tag", err)...)
+			}
+
+		}
+		delete(fields, "tag")
+
+	}
+	// Field "operator"
+	if fields["operator"] != nil {
+		if string(fields["operator"]) != "null" {
+			if err := json.Unmarshal(fields["operator"], &resource.Operator); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("operator", err)...)
+			}
+
+		}
+		delete(fields, "operator")
+
+	}
+	// Field "value"
+	if fields["value"] != nil {
+		if string(fields["value"]) != "null" {
+
+			resource.Value = &StringOrArrayOfString{}
+			if err := resource.Value.UnmarshalJSONStrict(fields["value"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("value", err)...)
+			}
+
+		}
+		delete(fields, "value")
+
+	}
+	// Field "valueType"
+	if fields["valueType"] != nil {
+		if string(fields["valueType"]) != "null" {
+			if err := json.Unmarshal(fields["valueType"], &resource.ValueType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("valueType", err)...)
+			}
+
+		}
+		delete(fields, "valueType")
+
+	}
+	// Field "scope"
+	if fields["scope"] != nil {
+		if string(fields["scope"]) != "null" {
+			if err := json.Unmarshal(fields["scope"], &resource.Scope); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("scope", err)...)
+			}
+
+		}
+		delete(fields, "scope")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TraceqlFilter", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 func (resource TraceqlFilter) Equals(other TraceqlFilter) bool {
 	if resource.Id != other.Id {
 		return false
@@ -365,6 +757,23 @@ func (resource TraceqlFilter) Equals(other TraceqlFilter) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource TraceqlFilter) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Value != nil {
+		if err := resource.Value.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("value", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type StringOrArrayOfString struct {
 	String        *string  `json:"String,omitempty"`
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
@@ -412,6 +821,44 @@ func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
+func (resource *StringOrArrayOfString) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+	var errList []error
+
+	// String
+	var String string
+
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+	} else {
+		resource.String = &String
+		return nil
+	}
+
+	// ArrayOfString
+	var ArrayOfString []string
+
+	if err := json.Unmarshal(raw, &ArrayOfString); err != nil {
+		errList = append(errList, err)
+	} else {
+		resource.ArrayOfString = ArrayOfString
+		return nil
+	}
+
+	if len(errList) != 0 {
+		errs = append(errs, cog.MakeBuildErrors("StringOrArrayOfString", errors.Join(errList...))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 func (resource StringOrArrayOfString) Equals(other StringOrArrayOfString) bool {
 	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
 		return false
@@ -434,4 +881,10 @@ func (resource StringOrArrayOfString) Equals(other StringOrArrayOfString) bool {
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource StringOrArrayOfString) Validate() error {
+	return nil
 }

@@ -27,14 +27,8 @@ func NewGeoHashGridBuilder() *GeoHashGridBuilder {
 }
 
 func (builder *GeoHashGridBuilder) Build() (GeoHashGrid, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("GeoHashGrid", err)...)
-	}
-
-	if len(errs) != 0 {
-		return GeoHashGrid{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return GeoHashGrid{}, err
 	}
 
 	return *builder.internal, nil

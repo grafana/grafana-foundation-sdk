@@ -27,14 +27,8 @@ func NewExemplarConfigBuilder() *ExemplarConfigBuilder {
 }
 
 func (builder *ExemplarConfigBuilder) Build() (ExemplarConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExemplarConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExemplarConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExemplarConfig{}, err
 	}
 
 	return *builder.internal, nil

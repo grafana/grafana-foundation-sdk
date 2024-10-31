@@ -26,14 +26,8 @@ func NewTimeIntervalBuilder() *TimeIntervalBuilder {
 }
 
 func (builder *TimeIntervalBuilder) Build() (TimeInterval, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TimeInterval", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TimeInterval{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TimeInterval{}, err
 	}
 
 	return *builder.internal, nil
