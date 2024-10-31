@@ -11,6 +11,9 @@ export class BuiltinRoleRefBuilder implements cog.Builder<rolebinding.BuiltinRol
         this.internal.kind = "BuiltinRole";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): rolebinding.BuiltinRoleRef {
         return this.internal;
     }

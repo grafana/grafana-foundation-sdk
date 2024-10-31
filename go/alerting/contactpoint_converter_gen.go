@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ContactPointConverter accepts a `ContactPoint` object and generates the Go code to build this object using builders.
 func ContactPointConverter(input ContactPoint) string {
 	calls := []string{
 		`alerting.NewContactPointBuilder()`,

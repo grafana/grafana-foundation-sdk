@@ -10,6 +10,7 @@ import (
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
+// LibrarypanelLibraryPanelModelConverter accepts a `LibrarypanelLibraryPanelModel` object and generates the Go code to build this object using builders.
 func LibrarypanelLibraryPanelModelConverter(input LibrarypanelLibraryPanelModel) string {
 	calls := []string{
 		`librarypanel.NewLibrarypanelLibraryPanelModelBuilder()`,

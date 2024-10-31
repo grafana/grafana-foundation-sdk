@@ -10,6 +10,9 @@ export class BaseBucketAggregationBuilder implements cog.Builder<elasticsearch.B
         this.internal = elasticsearch.defaultBaseBucketAggregation();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.BaseBucketAggregation {
         return this.internal;
     }

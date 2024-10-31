@@ -19,6 +19,7 @@ class SpecialValueMapBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\SpecialValueMap
      */
     public function build()

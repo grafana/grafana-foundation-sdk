@@ -10,6 +10,9 @@ export class AccessPolicyBuilder implements cog.Builder<accesspolicy.AccessPolic
         this.internal = accesspolicy.defaultAccessPolicy();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): accesspolicy.AccessPolicy {
         return this.internal;
     }

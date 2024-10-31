@@ -11,6 +11,9 @@ export class VizTooltipOptionsBuilder implements cog.Builder<common.VizTooltipOp
         this.internal = common.defaultVizTooltipOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.VizTooltipOptions {
         return this.internal;
     }

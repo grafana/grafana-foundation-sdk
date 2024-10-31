@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AppInsightsGroupByQueryConverter accepts a `AppInsightsGroupByQuery` object and generates the Go code to build this object using builders.
 func AppInsightsGroupByQueryConverter(input AppInsightsGroupByQuery) string {
 	calls := []string{
 		`azuremonitor.NewAppInsightsGroupByQueryBuilder()`,

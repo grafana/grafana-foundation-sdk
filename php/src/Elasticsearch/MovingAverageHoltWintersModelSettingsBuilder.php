@@ -16,6 +16,7 @@ class MovingAverageHoltWintersModelSettingsBuilder implements \Grafana\Foundatio
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\MovingAverageHoltWintersModelSettings
      */
     public function build()

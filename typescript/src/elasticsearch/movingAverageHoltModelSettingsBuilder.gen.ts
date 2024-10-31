@@ -11,6 +11,9 @@ export class MovingAverageHoltModelSettingsBuilder implements cog.Builder<elasti
         this.internal.model = "holt";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.MovingAverageHoltModelSettings {
         return this.internal;
     }

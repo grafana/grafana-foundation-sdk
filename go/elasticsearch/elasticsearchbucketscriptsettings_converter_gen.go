@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// ElasticsearchBucketScriptSettingsConverter accepts a `ElasticsearchBucketScriptSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchBucketScriptSettingsConverter(input ElasticsearchBucketScriptSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchBucketScriptSettingsBuilder()`,

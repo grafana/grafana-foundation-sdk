@@ -13,6 +13,9 @@ export class DatasourceVariableBuilder implements cog.Builder<dashboard.Variable
         this.internal.type = dashboard.VariableType.Datasource;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.VariableModel {
         return this.internal;
     }

@@ -10,6 +10,9 @@ export class MovingAverageModelOptionBuilder implements cog.Builder<elasticsearc
         this.internal = elasticsearch.defaultMovingAverageModelOption();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.MovingAverageModelOption {
         return this.internal;
     }

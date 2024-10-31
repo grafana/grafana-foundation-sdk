@@ -10,6 +10,9 @@ export class XYDimensionConfigBuilder implements cog.Builder<xychart.XYDimension
         this.internal = xychart.defaultXYDimensionConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): xychart.XYDimensionConfig {
         return this.internal;
     }

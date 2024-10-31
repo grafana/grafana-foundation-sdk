@@ -12,6 +12,9 @@ export class MetricDefinitionsQueryBuilder implements cog.Builder<azuremonitor.M
         this.internal.kind = "MetricDefinitionsQuery";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.MetricDefinitionsQuery {
         return this.internal;
     }

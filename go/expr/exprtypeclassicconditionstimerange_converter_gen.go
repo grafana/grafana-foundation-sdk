@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// ExprTypeClassicConditionsTimeRangeConverter accepts a `ExprTypeClassicConditionsTimeRange` object and generates the Go code to build this object using builders.
 func ExprTypeClassicConditionsTimeRangeConverter(input ExprTypeClassicConditionsTimeRange) string {
 	calls := []string{
 		`expr.NewExprTypeClassicConditionsTimeRangeBuilder()`,

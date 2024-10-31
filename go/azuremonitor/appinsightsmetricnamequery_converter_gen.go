@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AppInsightsMetricNameQueryConverter accepts a `AppInsightsMetricNameQuery` object and generates the Go code to build this object using builders.
 func AppInsightsMetricNameQueryConverter(input AppInsightsMetricNameQuery) string {
 	calls := []string{
 		`azuremonitor.NewAppInsightsMetricNameQueryBuilder()`,

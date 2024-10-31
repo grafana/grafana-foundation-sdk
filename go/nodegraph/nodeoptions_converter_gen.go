@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// NodeOptionsConverter accepts a `NodeOptions` object and generates the Go code to build this object using builders.
 func NodeOptionsConverter(input NodeOptions) string {
 	calls := []string{
 		`nodegraph.NewNodeOptionsBuilder()`,

@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// ExprTypeSqlTimeRangeConverter accepts a `ExprTypeSqlTimeRange` object and generates the Go code to build this object using builders.
 func ExprTypeSqlTimeRangeConverter(input ExprTypeSqlTimeRange) string {
 	calls := []string{
 		`expr.NewExprTypeSqlTimeRangeBuilder()`,

@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// CanvasOptionsRootConverter accepts a `CanvasOptionsRoot` object and generates the Go code to build this object using builders.
 func CanvasOptionsRootConverter(input CanvasOptionsRoot) string {
 	calls := []string{
 		`canvas.NewCanvasOptionsRootBuilder()`,

@@ -11,6 +11,9 @@ export class DateHistogramBuilder implements cog.Builder<elasticsearch.DateHisto
         this.internal.type = "date_histogram";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.DateHistogram {
         return this.internal;
     }

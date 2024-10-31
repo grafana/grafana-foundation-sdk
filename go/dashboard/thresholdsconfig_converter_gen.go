@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ThresholdsConfigConverter accepts a `ThresholdsConfig` object and generates the Go code to build this object using builders.
 func ThresholdsConfigConverter(input ThresholdsConfig) string {
 	calls := []string{
 		`dashboard.NewThresholdsConfigBuilder()`,

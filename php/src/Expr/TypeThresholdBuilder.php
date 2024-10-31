@@ -16,6 +16,7 @@ class TypeThresholdBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\TypeThreshold
      */
     public function build()

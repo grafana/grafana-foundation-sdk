@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// HeatmapCalculationBucketConfigConverter accepts a `HeatmapCalculationBucketConfig` object and generates the Go code to build this object using builders.
 func HeatmapCalculationBucketConfigConverter(input HeatmapCalculationBucketConfig) string {
 	calls := []string{
 		`common.NewHeatmapCalculationBucketConfigBuilder()`,

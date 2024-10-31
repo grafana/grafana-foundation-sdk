@@ -15,6 +15,9 @@ class Constraint(cogbuilder.Builder[canvas.Constraint]):
         self._internal = canvas.Constraint()
 
     def build(self) -> canvas.Constraint:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def horizontal(self, horizontal: canvas.HorizontalConstraint) -> typing.Self:        
@@ -35,6 +38,9 @@ class Placement(cogbuilder.Builder[canvas.Placement]):
         self._internal = canvas.Placement()
 
     def build(self) -> canvas.Placement:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def top(self, top: float) -> typing.Self:        
@@ -75,6 +81,9 @@ class BackgroundConfig(cogbuilder.Builder[canvas.BackgroundConfig]):
         self._internal = canvas.BackgroundConfig()
 
     def build(self) -> canvas.BackgroundConfig:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def color(self, color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:        
@@ -102,6 +111,9 @@ class LineConfig(cogbuilder.Builder[canvas.LineConfig]):
         self._internal = canvas.LineConfig()
 
     def build(self) -> canvas.LineConfig:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def color(self, color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:        
@@ -123,6 +135,9 @@ class ConnectionCoordinates(cogbuilder.Builder[canvas.ConnectionCoordinates]):
         self._internal = canvas.ConnectionCoordinates()
 
     def build(self) -> canvas.ConnectionCoordinates:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def x(self, x: float) -> typing.Self:        
@@ -143,6 +158,9 @@ class CanvasConnection(cogbuilder.Builder[canvas.CanvasConnection]):
         self._internal = canvas.CanvasConnection()
 
     def build(self) -> canvas.CanvasConnection:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def source(self, source: cogbuilder.Builder[canvas.ConnectionCoordinates]) -> typing.Self:        
@@ -187,6 +205,9 @@ class CanvasElementOptions(cogbuilder.Builder[canvas.CanvasElementOptions]):
         self._internal = canvas.CanvasElementOptions()
 
     def build(self) -> canvas.CanvasElementOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:        
@@ -247,6 +268,9 @@ class CanvasOptionsRoot(cogbuilder.Builder[canvas.CanvasOptionsRoot]):
         self._internal.type_val = "frame"
 
     def build(self) -> canvas.CanvasOptionsRoot:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:    
@@ -281,6 +305,9 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         self._internal.type_val = "canvas"
 
     def build(self) -> dashboard.Panel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:    

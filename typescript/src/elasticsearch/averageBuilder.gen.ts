@@ -11,6 +11,9 @@ export class AverageBuilder implements cog.Builder<elasticsearch.Average> {
         this.internal.type = "avg";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Average {
         return this.internal;
     }

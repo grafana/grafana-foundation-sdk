@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// HistogramSettingsConverter accepts a `HistogramSettings` object and generates the Go code to build this object using builders.
 func HistogramSettingsConverter(input HistogramSettings) string {
 	calls := []string{
 		`elasticsearch.NewHistogramSettingsBuilder()`,

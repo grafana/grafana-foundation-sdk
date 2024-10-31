@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// CloudWatchAnnotationQueryConverter accepts a `CloudWatchAnnotationQuery` object and generates the Go code to build this object using builders.
 func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string {
 	calls := []string{
 		`cloudwatch.NewCloudWatchAnnotationQueryBuilder()`,

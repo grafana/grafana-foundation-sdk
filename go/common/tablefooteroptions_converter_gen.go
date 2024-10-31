@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TableFooterOptionsConverter accepts a `TableFooterOptions` object and generates the Go code to build this object using builders.
 func TableFooterOptionsConverter(input TableFooterOptions) string {
 	calls := []string{
 		`common.NewTableFooterOptionsBuilder()`,

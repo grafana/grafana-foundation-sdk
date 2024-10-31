@@ -15,6 +15,7 @@ class PieChartLegendOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Piechart\PieChartLegendOptions
      */
     public function build()

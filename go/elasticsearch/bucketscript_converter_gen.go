@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// BucketScriptConverter accepts a `BucketScript` object and generates the Go code to build this object using builders.
 func BucketScriptConverter(input BucketScript) string {
 	calls := []string{
 		`elasticsearch.NewBucketScriptBuilder()`,

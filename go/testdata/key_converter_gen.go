@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// KeyConverter accepts a `Key` object and generates the Go code to build this object using builders.
 func KeyConverter(input Key) string {
 	calls := []string{
 		`testdata.NewKeyBuilder()`,
