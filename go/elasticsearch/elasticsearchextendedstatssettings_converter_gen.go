@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchExtendedStatsSettingsConverter accepts a `ElasticsearchExtendedStatsSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchExtendedStatsSettingsConverter(input ElasticsearchExtendedStatsSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchExtendedStatsSettingsBuilder()`,

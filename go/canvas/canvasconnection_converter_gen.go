@@ -10,6 +10,7 @@ import (
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
+// CanvasConnectionConverter accepts a `CanvasConnection` object and generates the Go code to build this object using builders.
 func CanvasConnectionConverter(input CanvasConnection) string {
 	calls := []string{
 		`canvas.NewCanvasConnectionBuilder()`,

@@ -15,6 +15,7 @@ class ExprTypeReduceSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeReduceSettings
      */
     public function build()

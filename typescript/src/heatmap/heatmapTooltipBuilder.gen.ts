@@ -12,6 +12,9 @@ export class HeatmapTooltipBuilder implements cog.Builder<heatmap.HeatmapTooltip
         this.internal = heatmap.defaultHeatmapTooltip();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): heatmap.HeatmapTooltip {
         return this.internal;
     }

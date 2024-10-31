@@ -16,6 +16,7 @@ class HeatmapColorOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Heatmap\HeatmapColorOptions
      */
     public function build()

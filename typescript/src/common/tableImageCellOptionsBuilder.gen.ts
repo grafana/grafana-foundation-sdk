@@ -12,6 +12,9 @@ export class TableImageCellOptionsBuilder implements cog.Builder<common.TableIma
         this.internal.type = "image";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.TableImageCellOptions {
         return this.internal;
     }

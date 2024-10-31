@@ -16,6 +16,7 @@ class FiltersBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\Filters
      */
     public function build()

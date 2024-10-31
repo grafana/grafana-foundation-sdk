@@ -11,6 +11,9 @@ export class GraphThresholdsStyleConfigBuilder implements cog.Builder<common.Gra
         this.internal = common.defaultGraphThresholdsStyleConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.GraphThresholdsStyleConfig {
         return this.internal;
     }

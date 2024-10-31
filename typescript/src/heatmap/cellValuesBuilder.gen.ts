@@ -11,6 +11,9 @@ export class CellValuesBuilder implements cog.Builder<heatmap.CellValues> {
         this.internal = heatmap.defaultCellValues();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): heatmap.CellValues {
         return this.internal;
     }

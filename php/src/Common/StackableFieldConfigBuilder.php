@@ -16,6 +16,7 @@ class StackableFieldConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\StackableFieldConfig
      */
     public function build()

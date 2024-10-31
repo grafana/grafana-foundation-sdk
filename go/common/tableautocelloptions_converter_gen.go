@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TableAutoCellOptionsConverter accepts a `TableAutoCellOptions` object and generates the Go code to build this object using builders.
 func TableAutoCellOptionsConverter(input TableAutoCellOptions) string {
 	calls := []string{
 		`common.NewTableAutoCellOptionsBuilder()`,

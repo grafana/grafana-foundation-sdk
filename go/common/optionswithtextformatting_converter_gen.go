@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// OptionsWithTextFormattingConverter accepts a `OptionsWithTextFormatting` object and generates the Go code to build this object using builders.
 func OptionsWithTextFormattingConverter(input OptionsWithTextFormatting) string {
 	calls := []string{
 		`common.NewOptionsWithTextFormattingBuilder()`,

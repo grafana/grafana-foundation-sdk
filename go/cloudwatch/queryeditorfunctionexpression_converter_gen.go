@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// QueryEditorFunctionExpressionConverter accepts a `QueryEditorFunctionExpression` object and generates the Go code to build this object using builders.
 func QueryEditorFunctionExpressionConverter(input QueryEditorFunctionExpression) string {
 	calls := []string{
 		`cloudwatch.NewQueryEditorFunctionExpressionBuilder()`,

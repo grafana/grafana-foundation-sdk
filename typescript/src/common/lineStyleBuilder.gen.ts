@@ -11,6 +11,9 @@ export class LineStyleBuilder implements cog.Builder<common.LineStyle> {
         this.internal = common.defaultLineStyle();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.LineStyle {
         return this.internal;
     }

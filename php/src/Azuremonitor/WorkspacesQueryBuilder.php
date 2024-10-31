@@ -16,6 +16,7 @@ class WorkspacesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Azuremonitor\WorkspacesQuery
      */
     public function build()

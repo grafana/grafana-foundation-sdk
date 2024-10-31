@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// TimeRangeConverter accepts a `TimeRange` object and generates the Go code to build this object using builders.
 func TimeRangeConverter(input TimeRange) string {
 	calls := []string{
 		`testdata.NewTimeRangeBuilder()`,

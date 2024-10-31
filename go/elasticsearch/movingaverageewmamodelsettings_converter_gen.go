@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// MovingAverageEWMAModelSettingsConverter accepts a `MovingAverageEWMAModelSettings` object and generates the Go code to build this object using builders.
 func MovingAverageEWMAModelSettingsConverter(input MovingAverageEWMAModelSettings) string {
 	calls := []string{
 		`elasticsearch.NewMovingAverageEWMAModelSettingsBuilder()`,

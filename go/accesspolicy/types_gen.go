@@ -21,6 +21,8 @@ type AccessPolicy struct {
 	Rules []AccessRule `json:"rules"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AccessPolicy` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AccessPolicy) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -101,6 +103,7 @@ func (resource *AccessPolicy) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `AccessPolicy` objects.
 func (resource AccessPolicy) Equals(other AccessPolicy) bool {
 	if !resource.Scope.Equals(other.Scope) {
 		return false
@@ -122,8 +125,7 @@ func (resource AccessPolicy) Equals(other AccessPolicy) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AccessPolicy` fields for violations and returns them.
 func (resource AccessPolicy) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.Scope.Validate(); err != nil {
@@ -154,6 +156,8 @@ type RoleRef struct {
 	Xname string      `json:"xname"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RoleRef` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RoleRef) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -218,6 +222,7 @@ func (resource *RoleRef) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `RoleRef` objects.
 func (resource RoleRef) Equals(other RoleRef) bool {
 	if resource.Kind != other.Kind {
 		return false
@@ -232,8 +237,7 @@ func (resource RoleRef) Equals(other RoleRef) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `RoleRef` fields for violations and returns them.
 func (resource RoleRef) Validate() error {
 	return nil
 }
@@ -243,6 +247,8 @@ type ResourceRef struct {
 	Name string `json:"name"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResourceRef` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ResourceRef) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -293,6 +299,7 @@ func (resource *ResourceRef) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ResourceRef` objects.
 func (resource ResourceRef) Equals(other ResourceRef) bool {
 	if resource.Kind != other.Kind {
 		return false
@@ -304,8 +311,7 @@ func (resource ResourceRef) Equals(other ResourceRef) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ResourceRef` fields for violations and returns them.
 func (resource ResourceRef) Validate() error {
 	return nil
 }
@@ -320,6 +326,8 @@ type AccessRule struct {
 	Target *string `json:"target,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AccessRule` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AccessRule) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -381,6 +389,7 @@ func (resource *AccessRule) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `AccessRule` objects.
 func (resource AccessRule) Equals(other AccessRule) bool {
 	if resource.Kind != other.Kind {
 		return false
@@ -401,8 +410,7 @@ func (resource AccessRule) Equals(other AccessRule) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AccessRule` fields for violations and returns them.
 func (resource AccessRule) Validate() error {
 	return nil
 }

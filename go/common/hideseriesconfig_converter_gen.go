@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// HideSeriesConfigConverter accepts a `HideSeriesConfig` object and generates the Go code to build this object using builders.
 func HideSeriesConfigConverter(input HideSeriesConfig) string {
 	calls := []string{
 		`common.NewHideSeriesConfigBuilder()`,
