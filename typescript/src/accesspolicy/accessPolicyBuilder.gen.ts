@@ -30,12 +30,12 @@ export class AccessPolicyBuilder implements cog.Builder<accesspolicy.AccessPolic
 
     // The set of rules to apply.  Note that * is required to modify
     // access policy rules, and that "none" will reject all actions
-    rules(rules: cog.Builder<accesspolicy.AccessRule>): this {
+    rules(rule: cog.Builder<accesspolicy.AccessRule>): this {
         if (!this.internal.rules) {
             this.internal.rules = [];
         }
-        const rulesResource = rules.build();
-        this.internal.rules.push(rulesResource);
+        const ruleResource = rule.build();
+        this.internal.rules.push(ruleResource);
         return this;
     }
 }

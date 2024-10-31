@@ -26,14 +26,8 @@ func NewExprTypeReduceResultAssertionsBuilder() *ExprTypeReduceResultAssertionsB
 }
 
 func (builder *ExprTypeReduceResultAssertionsBuilder) Build() (ExprTypeReduceResultAssertions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExprTypeReduceResultAssertions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExprTypeReduceResultAssertions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExprTypeReduceResultAssertions{}, err
 	}
 
 	return *builder.internal, nil

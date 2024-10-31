@@ -72,12 +72,12 @@ class RowBuilder implements \Grafana\Foundation\Cog\Builder
     }
     /**
      * List of panels in the row
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\Panel> $panels
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\Panel> $panel
      */
-    public function withPanel(\Grafana\Foundation\Cog\Builder $panels): static
+    public function withPanel(\Grafana\Foundation\Cog\Builder $panel): static
     {
-        $panelsResource = $panels->build();
-        $this->internal->panels[] = $panelsResource;
+        $panelResource = $panel->build();
+        $this->internal->panels[] = $panelResource;
     
         return $this;
     }

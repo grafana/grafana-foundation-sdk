@@ -26,14 +26,8 @@ func NewDashboardRegexMapOptionsBuilder() *DashboardRegexMapOptionsBuilder {
 }
 
 func (builder *DashboardRegexMapOptionsBuilder) Build() (DashboardRegexMapOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("DashboardRegexMapOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return DashboardRegexMapOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return DashboardRegexMapOptions{}, err
 	}
 
 	return *builder.internal, nil

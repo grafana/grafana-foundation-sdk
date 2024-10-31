@@ -78,6 +78,9 @@ public class TypeResample implements com.grafana.foundation.cog.variants.Dataque
     // The time duration
     @JsonProperty("window")
     public String window;
+    public String dataqueryName() {
+        return "__expr__";
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

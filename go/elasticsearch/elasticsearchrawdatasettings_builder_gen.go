@@ -26,14 +26,8 @@ func NewElasticsearchRawDataSettingsBuilder() *ElasticsearchRawDataSettingsBuild
 }
 
 func (builder *ElasticsearchRawDataSettingsBuilder) Build() (ElasticsearchRawDataSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchRawDataSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchRawDataSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchRawDataSettings{}, err
 	}
 
 	return *builder.internal, nil

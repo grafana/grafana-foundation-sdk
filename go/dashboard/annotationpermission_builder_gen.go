@@ -26,14 +26,8 @@ func NewAnnotationPermissionBuilder() *AnnotationPermissionBuilder {
 }
 
 func (builder *AnnotationPermissionBuilder) Build() (AnnotationPermission, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AnnotationPermission", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AnnotationPermission{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AnnotationPermission{}, err
 	}
 
 	return *builder.internal, nil

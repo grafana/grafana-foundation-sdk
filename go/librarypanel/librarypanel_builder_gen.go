@@ -3,8 +3,6 @@
 package librarypanel
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
@@ -28,14 +26,8 @@ func NewLibraryPanelBuilder() *LibraryPanelBuilder {
 }
 
 func (builder *LibraryPanelBuilder) Build() (LibraryPanel, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("LibraryPanel", err)...)
-	}
-
-	if len(errs) != 0 {
-		return LibraryPanel{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return LibraryPanel{}, err
 	}
 
 	return *builder.internal, nil
@@ -57,10 +49,6 @@ func (builder *LibraryPanelBuilder) Uid(uid string) *LibraryPanelBuilder {
 
 // Panel name (also saved in the model)
 func (builder *LibraryPanelBuilder) Name(name string) *LibraryPanelBuilder {
-	if !(len([]rune(name)) >= 1) {
-		builder.errors["name"] = cog.MakeBuildErrors("name", errors.New("len([]rune(name)) must be >= 1"))
-		return builder
-	}
 	builder.internal.Name = name
 
 	return builder
@@ -75,10 +63,6 @@ func (builder *LibraryPanelBuilder) Description(description string) *LibraryPane
 
 // The panel type (from inside the model)
 func (builder *LibraryPanelBuilder) Type(typeArg string) *LibraryPanelBuilder {
-	if !(len([]rune(typeArg)) >= 1) {
-		builder.errors["typeArg"] = cog.MakeBuildErrors("typeArg", errors.New("len([]rune(typeArg)) must be >= 1"))
-		return builder
-	}
 	builder.internal.Type = typeArg
 
 	return builder

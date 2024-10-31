@@ -26,14 +26,8 @@ func NewElasticsearchDerivativeSettingsBuilder() *ElasticsearchDerivativeSetting
 }
 
 func (builder *ElasticsearchDerivativeSettingsBuilder) Build() (ElasticsearchDerivativeSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchDerivativeSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchDerivativeSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchDerivativeSettings{}, err
 	}
 
 	return *builder.internal, nil

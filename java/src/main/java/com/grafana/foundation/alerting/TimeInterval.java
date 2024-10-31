@@ -12,33 +12,21 @@ import java.util.List;
 // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
 // within the interval.
 public class TimeInterval {
-    // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("days_of_month")
     public List<String> daysOfMonth;
-    // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("location")
     public String location;
-    // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("months")
     public List<String> months;
-    // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("times")
     public List<TimeRange> times;
-    // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("weekdays")
     public List<String> weekdays;
-    // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    // within the interval.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("years")
     public List<String> years;

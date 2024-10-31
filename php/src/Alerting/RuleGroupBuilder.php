@@ -53,16 +53,16 @@ class RuleGroupBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\Rule> $rules
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\Rule> $rule
      */
-    public function withRule(\Grafana\Foundation\Cog\Builder $rules): static
+    public function withRule(\Grafana\Foundation\Cog\Builder $rule): static
     {    
         if ($this->internal->rules === null) {
             $this->internal->rules = [];
         }
         
-        $rulesResource = $rules->build();
-        $this->internal->rules[] = $rulesResource;
+        $ruleResource = $rule->build();
+        $this->internal->rules[] = $ruleResource;
     
         return $this;
     }

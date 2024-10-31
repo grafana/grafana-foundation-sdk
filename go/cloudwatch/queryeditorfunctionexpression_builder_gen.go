@@ -27,14 +27,8 @@ func NewQueryEditorFunctionExpressionBuilder() *QueryEditorFunctionExpressionBui
 }
 
 func (builder *QueryEditorFunctionExpressionBuilder) Build() (QueryEditorFunctionExpression, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("QueryEditorFunctionExpression", err)...)
-	}
-
-	if len(errs) != 0 {
-		return QueryEditorFunctionExpression{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return QueryEditorFunctionExpression{}, err
 	}
 
 	return *builder.internal, nil

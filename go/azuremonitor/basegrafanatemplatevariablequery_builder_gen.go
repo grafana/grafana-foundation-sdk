@@ -26,14 +26,8 @@ func NewBaseGrafanaTemplateVariableQueryBuilder() *BaseGrafanaTemplateVariableQu
 }
 
 func (builder *BaseGrafanaTemplateVariableQueryBuilder) Build() (BaseGrafanaTemplateVariableQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("BaseGrafanaTemplateVariableQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return BaseGrafanaTemplateVariableQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return BaseGrafanaTemplateVariableQuery{}, err
 	}
 
 	return *builder.internal, nil

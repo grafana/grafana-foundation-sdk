@@ -26,14 +26,8 @@ func NewElasticsearchInlineScriptBuilder() *ElasticsearchInlineScriptBuilder {
 }
 
 func (builder *ElasticsearchInlineScriptBuilder) Build() (ElasticsearchInlineScript, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchInlineScript", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchInlineScript{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchInlineScript{}, err
 	}
 
 	return *builder.internal, nil

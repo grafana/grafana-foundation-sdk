@@ -27,14 +27,8 @@ func NewHideableFieldConfigBuilder() *HideableFieldConfigBuilder {
 }
 
 func (builder *HideableFieldConfigBuilder) Build() (HideableFieldConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("HideableFieldConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return HideableFieldConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return HideableFieldConfig{}, err
 	}
 
 	return *builder.internal, nil

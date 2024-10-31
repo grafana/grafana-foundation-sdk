@@ -27,14 +27,8 @@ func NewGraphThresholdsStyleConfigBuilder() *GraphThresholdsStyleConfigBuilder {
 }
 
 func (builder *GraphThresholdsStyleConfigBuilder) Build() (GraphThresholdsStyleConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("GraphThresholdsStyleConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return GraphThresholdsStyleConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return GraphThresholdsStyleConfig{}, err
 	}
 
 	return *builder.internal, nil

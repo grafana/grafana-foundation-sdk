@@ -26,14 +26,8 @@ func NewAzureMetricQueryBuilder() *AzureMetricQueryBuilder {
 }
 
 func (builder *AzureMetricQueryBuilder) Build() (AzureMetricQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AzureMetricQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AzureMetricQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AzureMetricQuery{}, err
 	}
 
 	return *builder.internal, nil

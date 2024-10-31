@@ -28,14 +28,8 @@ func NewFolderBuilder() *FolderBuilder {
 }
 
 func (builder *FolderBuilder) Build() (Folder, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Folder", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Folder{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Folder{}, err
 	}
 
 	return *builder.internal, nil

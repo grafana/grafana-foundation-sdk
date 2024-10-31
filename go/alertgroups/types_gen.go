@@ -4,7 +4,10 @@ package alertgroups
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
@@ -16,6 +19,70 @@ type Options struct {
 	Alertmanager string `json:"alertmanager"`
 	// Expand all alert groups by default
 	ExpandAll bool `json:"expandAll"`
+}
+
+func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "labels"
+	if fields["labels"] != nil {
+		if string(fields["labels"]) != "null" {
+			if err := json.Unmarshal(fields["labels"], &resource.Labels); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("labels", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("labels", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "labels")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("labels", errors.New("required field is missing from input"))...)
+	}
+	// Field "alertmanager"
+	if fields["alertmanager"] != nil {
+		if string(fields["alertmanager"]) != "null" {
+			if err := json.Unmarshal(fields["alertmanager"], &resource.Alertmanager); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("alertmanager", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("alertmanager", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "alertmanager")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("alertmanager", errors.New("required field is missing from input"))...)
+	}
+	// Field "expandAll"
+	if fields["expandAll"] != nil {
+		if string(fields["expandAll"]) != "null" {
+			if err := json.Unmarshal(fields["expandAll"], &resource.ExpandAll); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("expandAll", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expandAll", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expandAll")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expandAll", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource Options) Equals(other Options) bool {
@@ -32,6 +99,12 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource Options) Validate() error {
+	return nil
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "alertgroups",
@@ -39,6 +112,15 @@ func VariantConfig() variants.PanelcfgConfig {
 			options := &Options{}
 
 			if err := json.Unmarshal(raw, options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+		StrictOptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := options.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
 			}
 

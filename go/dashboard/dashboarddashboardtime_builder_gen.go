@@ -26,14 +26,8 @@ func NewDashboardDashboardTimeBuilder() *DashboardDashboardTimeBuilder {
 }
 
 func (builder *DashboardDashboardTimeBuilder) Build() (DashboardDashboardTime, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("DashboardDashboardTime", err)...)
-	}
-
-	if len(errs) != 0 {
-		return DashboardDashboardTime{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return DashboardDashboardTime{}, err
 	}
 
 	return *builder.internal, nil
