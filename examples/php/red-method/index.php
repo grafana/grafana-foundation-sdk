@@ -9,4 +9,4 @@ $redDashboard = Red\Dashboard::generate(
     serviceIDs: ['sample-service', 'payments', 'front-gateway'],
 );
 
-echo json_encode($redDashboard, JSON_PRETTY_PRINT).PHP_EOL;
+echo json_encode($redDashboard, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES).PHP_EOL;
