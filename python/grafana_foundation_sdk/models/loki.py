@@ -28,6 +28,7 @@ class SupportingQueryType(enum.StrEnum):
 class LokiQueryDirection(enum.StrEnum):
     FORWARD = "forward"
     BACKWARD = "backward"
+    SCAN = "scan"
 
 
 class Dataquery(cogvariants.Dataquery):

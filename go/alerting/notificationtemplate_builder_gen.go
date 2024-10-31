@@ -26,14 +26,8 @@ func NewNotificationTemplateBuilder() *NotificationTemplateBuilder {
 }
 
 func (builder *NotificationTemplateBuilder) Build() (NotificationTemplate, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("NotificationTemplate", err)...)
-	}
-
-	if len(errs) != 0 {
-		return NotificationTemplate{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return NotificationTemplate{}, err
 	}
 
 	return *builder.internal, nil

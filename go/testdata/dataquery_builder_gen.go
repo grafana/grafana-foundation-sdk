@@ -28,14 +28,8 @@ func NewDataqueryBuilder() *DataqueryBuilder {
 }
 
 func (builder *DataqueryBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Dataquery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Dataquery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Dataquery{}, err
 	}
 
 	return *builder.internal, nil
@@ -91,6 +85,15 @@ func (builder *DataqueryBuilder) Datasource(datasource dashboard.DataSourceRef) 
 // Drop percentage (the chance we will lose a point 0-100)
 func (builder *DataqueryBuilder) DropPercent(dropPercent float64) *DataqueryBuilder {
 	builder.internal.DropPercent = &dropPercent
+
+	return builder
+}
+
+// Possible enum values:
+//   - `"plugin"`
+//   - `"downstream"`
+func (builder *DataqueryBuilder) ErrorSource(errorSource DataqueryErrorSource) *DataqueryBuilder {
+	builder.internal.ErrorSource = &errorSource
 
 	return builder
 }
@@ -242,6 +245,7 @@ func (builder *DataqueryBuilder) ResultAssertions(resultAssertions cog.Builder[R
 //   - `"csv_file"`
 //   - `"csv_metric_values"`
 //   - `"datapoints_outside_range"`
+//   - `"error_with_source"`
 //   - `"exponential_heatmap_bucket_data"`
 //   - `"flame_graph"`
 //   - `"grafana_api"`

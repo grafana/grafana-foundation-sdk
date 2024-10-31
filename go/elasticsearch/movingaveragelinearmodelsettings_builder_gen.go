@@ -27,14 +27,8 @@ func NewMovingAverageLinearModelSettingsBuilder() *MovingAverageLinearModelSetti
 }
 
 func (builder *MovingAverageLinearModelSettingsBuilder) Build() (MovingAverageLinearModelSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MovingAverageLinearModelSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MovingAverageLinearModelSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MovingAverageLinearModelSettings{}, err
 	}
 
 	return *builder.internal, nil

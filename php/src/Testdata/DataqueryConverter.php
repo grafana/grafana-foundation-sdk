@@ -106,6 +106,19 @@ final class DataqueryConverter
     
     
     }
+            if ($input->errorSource !== null) {
+    
+        
+    $buffer = 'errorSource(';
+        $arg0 ='\Grafana\Foundation\Testdata\DataqueryErrorSource::fromValue("'.$input->errorSource.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->errorType !== null) {
     
         

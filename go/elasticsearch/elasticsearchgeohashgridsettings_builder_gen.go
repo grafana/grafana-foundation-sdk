@@ -26,14 +26,8 @@ func NewElasticsearchGeoHashGridSettingsBuilder() *ElasticsearchGeoHashGridSetti
 }
 
 func (builder *ElasticsearchGeoHashGridSettingsBuilder) Build() (ElasticsearchGeoHashGridSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchGeoHashGridSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchGeoHashGridSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchGeoHashGridSettings{}, err
 	}
 
 	return *builder.internal, nil

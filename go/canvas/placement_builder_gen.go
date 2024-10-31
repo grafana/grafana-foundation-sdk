@@ -26,14 +26,8 @@ func NewPlacementBuilder() *PlacementBuilder {
 }
 
 func (builder *PlacementBuilder) Build() (Placement, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Placement", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Placement{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Placement{}, err
 	}
 
 	return *builder.internal, nil

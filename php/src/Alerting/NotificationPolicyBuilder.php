@@ -25,8 +25,6 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      * @param array<string> $activeTimeIntervals
      */
     public function activeTimeIntervals(array $activeTimeIntervals): static
@@ -35,10 +33,6 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public function continue(bool $continue): static
     {
         $this->internal->continue = $continue;
@@ -46,8 +40,6 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      * @param array<string> $groupBy
      */
     public function groupBy(array $groupBy): static
@@ -56,20 +48,12 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public function groupInterval(string $groupInterval): static
     {
         $this->internal->groupInterval = $groupInterval;
     
         return $this;
     }
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public function groupWait(string $groupWait): static
     {
         $this->internal->groupWait = $groupWait;
@@ -77,8 +61,7 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
+     * Deprecated. Remove before v1.0 release.
      * @param array<string, string> $match
      */
     public function match(array $match): static
@@ -88,8 +71,6 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      * @param array<string, string> $matchRe
      */
     public function matchRe(array $matchRe): static
@@ -99,8 +80,9 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
+     * Matchers is a slice of Matchers that is sortable, implements Stringer, and
+     * provides a Matches method to match a LabelSet against all Matchers in the
+     * slice. Note that some users of Matchers might require it to be sorted.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\Matcher>> $matchers
      */
     public function matchers(array $matchers): static
@@ -114,8 +96,6 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      * @param array<string> $muteTimeIntervals
      */
     public function muteTimeIntervals(array $muteTimeIntervals): static
@@ -125,8 +105,6 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      * @param array<array<string>> $objectMatchers
      */
     public function objectMatchers(array $objectMatchers): static
@@ -135,30 +113,18 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public function provenance(string $provenance): static
     {
         $this->internal->provenance = $provenance;
     
         return $this;
     }
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public function receiver(string $receiver): static
     {
         $this->internal->receiver = $receiver;
     
         return $this;
     }
-    /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
-     */
     public function repeatInterval(string $repeatInterval): static
     {
         $this->internal->repeatInterval = $repeatInterval;
@@ -166,8 +132,6 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * A Route is a node that contains definitions of how to handle alerts. This is modified
-     * from the upstream alertmanager in that it adds the ObjectMatchers property.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\NotificationPolicy>> $routes
      */
     public function routes(array $routes): static

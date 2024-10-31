@@ -26,14 +26,8 @@ func NewElasticsearchRawDocumentSettingsBuilder() *ElasticsearchRawDocumentSetti
 }
 
 func (builder *ElasticsearchRawDocumentSettingsBuilder) Build() (ElasticsearchRawDocumentSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchRawDocumentSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchRawDocumentSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchRawDocumentSettings{}, err
 	}
 
 	return *builder.internal, nil

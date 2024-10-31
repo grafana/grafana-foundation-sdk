@@ -21,6 +21,8 @@ export interface Options {
 	onClickFilterOutString?: any;
 	onClickShowField?: any;
 	onClickHideField?: any;
+	logRowMenuIconsBefore?: any;
+	logRowMenuIconsAfter?: any;
 	displayedFields?: string[];
 }
 

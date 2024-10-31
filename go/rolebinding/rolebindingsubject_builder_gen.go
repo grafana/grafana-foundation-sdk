@@ -26,14 +26,8 @@ func NewRoleBindingSubjectBuilder() *RoleBindingSubjectBuilder {
 }
 
 func (builder *RoleBindingSubjectBuilder) Build() (RoleBindingSubject, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("RoleBindingSubject", err)...)
-	}
-
-	if len(errs) != 0 {
-		return RoleBindingSubject{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return RoleBindingSubject{}, err
 	}
 
 	return *builder.internal, nil

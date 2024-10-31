@@ -59,6 +59,16 @@ class Options implements \JsonSerializable
     public $onClickHideField;
 
     /**
+     * @var mixed|null
+     */
+    public $logRowMenuIconsBefore;
+
+    /**
+     * @var mixed|null
+     */
+    public $logRowMenuIconsAfter;
+
+    /**
      * @var array<string>|null
      */
     public ?array $displayedFields;
@@ -80,9 +90,11 @@ class Options implements \JsonSerializable
      * @param mixed|null $onClickFilterOutString
      * @param mixed|null $onClickShowField
      * @param mixed|null $onClickHideField
+     * @param mixed|null $logRowMenuIconsBefore
+     * @param mixed|null $logRowMenuIconsAfter
      * @param array<string>|null $displayedFields
      */
-    public function __construct(?bool $showLabels = null, ?bool $showCommonLabels = null, ?bool $showTime = null, ?bool $showLogContextToggle = null, ?bool $wrapLogMessage = null, ?bool $prettifyLogMessage = null, ?bool $enableLogDetails = null, ?\Grafana\Foundation\Common\LogsSortOrder $sortOrder = null, ?\Grafana\Foundation\Common\LogsDedupStrategy $dedupStrategy = null,  $onClickFilterLabel = null,  $onClickFilterOutLabel = null,  $isFilterLabelActive = null,  $onClickFilterString = null,  $onClickFilterOutString = null,  $onClickShowField = null,  $onClickHideField = null, ?array $displayedFields = null)
+    public function __construct(?bool $showLabels = null, ?bool $showCommonLabels = null, ?bool $showTime = null, ?bool $showLogContextToggle = null, ?bool $wrapLogMessage = null, ?bool $prettifyLogMessage = null, ?bool $enableLogDetails = null, ?\Grafana\Foundation\Common\LogsSortOrder $sortOrder = null, ?\Grafana\Foundation\Common\LogsDedupStrategy $dedupStrategy = null,  $onClickFilterLabel = null,  $onClickFilterOutLabel = null,  $isFilterLabelActive = null,  $onClickFilterString = null,  $onClickFilterOutString = null,  $onClickShowField = null,  $onClickHideField = null,  $logRowMenuIconsBefore = null,  $logRowMenuIconsAfter = null, ?array $displayedFields = null)
     {
         $this->showLabels = $showLabels ?: false;
         $this->showCommonLabels = $showCommonLabels ?: false;
@@ -100,6 +112,8 @@ class Options implements \JsonSerializable
         $this->onClickFilterOutString = $onClickFilterOutString;
         $this->onClickShowField = $onClickShowField;
         $this->onClickHideField = $onClickHideField;
+        $this->logRowMenuIconsBefore = $logRowMenuIconsBefore;
+        $this->logRowMenuIconsAfter = $logRowMenuIconsAfter;
         $this->displayedFields = $displayedFields;
     }
 
@@ -108,7 +122,7 @@ class Options implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{showLabels?: bool, showCommonLabels?: bool, showTime?: bool, showLogContextToggle?: bool, wrapLogMessage?: bool, prettifyLogMessage?: bool, enableLogDetails?: bool, sortOrder?: string, dedupStrategy?: string, onClickFilterLabel?: mixed, onClickFilterOutLabel?: mixed, isFilterLabelActive?: mixed, onClickFilterString?: mixed, onClickFilterOutString?: mixed, onClickShowField?: mixed, onClickHideField?: mixed, displayedFields?: array<string>} $inputData */
+        /** @var array{showLabels?: bool, showCommonLabels?: bool, showTime?: bool, showLogContextToggle?: bool, wrapLogMessage?: bool, prettifyLogMessage?: bool, enableLogDetails?: bool, sortOrder?: string, dedupStrategy?: string, onClickFilterLabel?: mixed, onClickFilterOutLabel?: mixed, isFilterLabelActive?: mixed, onClickFilterString?: mixed, onClickFilterOutString?: mixed, onClickShowField?: mixed, onClickHideField?: mixed, logRowMenuIconsBefore?: mixed, logRowMenuIconsAfter?: mixed, displayedFields?: array<string>} $inputData */
         $data = $inputData;
         return new self(
             showLabels: $data["showLabels"] ?? null,
@@ -127,6 +141,8 @@ class Options implements \JsonSerializable
             onClickFilterOutString: $data["onClickFilterOutString"] ?? null,
             onClickShowField: $data["onClickShowField"] ?? null,
             onClickHideField: $data["onClickHideField"] ?? null,
+            logRowMenuIconsBefore: $data["logRowMenuIconsBefore"] ?? null,
+            logRowMenuIconsAfter: $data["logRowMenuIconsAfter"] ?? null,
             displayedFields: $data["displayedFields"] ?? null,
         );
     }
@@ -167,6 +183,12 @@ class Options implements \JsonSerializable
         }
         if (isset($this->onClickHideField)) {
             $data["onClickHideField"] = $this->onClickHideField;
+        }
+        if (isset($this->logRowMenuIconsBefore)) {
+            $data["logRowMenuIconsBefore"] = $this->logRowMenuIconsBefore;
+        }
+        if (isset($this->logRowMenuIconsAfter)) {
+            $data["logRowMenuIconsAfter"] = $this->logRowMenuIconsAfter;
         }
         if (isset($this->displayedFields)) {
             $data["displayedFields"] = $this->displayedFields;

@@ -26,14 +26,8 @@ func NewExprTypeThresholdConditionsBuilder() *ExprTypeThresholdConditionsBuilder
 }
 
 func (builder *ExprTypeThresholdConditionsBuilder) Build() (ExprTypeThresholdConditions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExprTypeThresholdConditions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExprTypeThresholdConditions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExprTypeThresholdConditions{}, err
 	}
 
 	return *builder.internal, nil

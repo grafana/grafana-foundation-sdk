@@ -27,14 +27,8 @@ func NewResourceGroupsQueryBuilder() *ResourceGroupsQueryBuilder {
 }
 
 func (builder *ResourceGroupsQueryBuilder) Build() (ResourceGroupsQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ResourceGroupsQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ResourceGroupsQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ResourceGroupsQuery{}, err
 	}
 
 	return *builder.internal, nil

@@ -1570,13 +1570,13 @@ class Panel:
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
-        
         if "type" in data:
             args["type_val"] = data["type"]
         if "id" in data:
             args["id_val"] = data["id"]
         if "pluginVersion" in data:
             args["plugin_version"] = data["pluginVersion"]
+        
         if "targets" in data:
             args["targets"] = [cogruntime.dataquery_from_json(dataquery_json, data["datasource"]["type"] if data.get("datasource") is not None and data["datasource"].get("type", "") != "" else "") for dataquery_json in data["targets"]]
         if "title" in data:
@@ -1615,12 +1615,14 @@ class Panel:
             args["cache_timeout"] = data["cacheTimeout"]
         if "queryCachingTTL" in data:
             args["query_caching_ttl"] = data["queryCachingTTL"]
+        
         if "options" in data:
             config = cogruntime.panelcfg_config(data.get("type", ""))
             if config is not None and config.options_from_json_hook is not None:
                 args["options"] = config.options_from_json_hook(data["options"])
             else:
                 args["options"] = data["options"]
+        
         if "fieldConfig" in data:
             config = cogruntime.panelcfg_config(data.get("type", ""))
             field_config = FieldConfigSource.from_json(data["fieldConfig"])
@@ -1629,7 +1631,7 @@ class Panel:
                 custom_field_config = data["fieldConfig"].get("defaults", {}).get("custom", {})
                 field_config.defaults.custom = config.field_config_from_json_hook(custom_field_config)
 
-            args["field_config"] = field_config        
+            args["field_config"] = field_config
 
         return cls(**args)
 
@@ -2065,6 +2067,7 @@ class DashboardMeta:
     created: typing.Optional[str]
     created_by: typing.Optional[str]
     expires: typing.Optional[str]
+    # Deprecated: use FolderUID instead
     folder_id: typing.Optional[int]
     folder_title: typing.Optional[str]
     folder_uid: typing.Optional[str]

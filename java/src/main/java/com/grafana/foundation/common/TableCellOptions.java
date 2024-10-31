@@ -36,6 +36,9 @@ public class TableCellOptions {
     protected TableDataLinksCellOptions tableDataLinksCellOptions;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonUnwrapped
+    protected TableActionsCellOptions tableActionsCellOptions;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonUnwrapped
     protected TableJsonViewCellOptions tableJsonViewCellOptions;
     protected TableCellOptions() {}
     public static TableCellOptions createTableAutoCellOptions(com.grafana.foundation.cog.Builder<TableAutoCellOptions> tableAutoCellOptions) {
@@ -73,6 +76,11 @@ public class TableCellOptions {
         tableCellOptions.tableDataLinksCellOptions = tableDataLinksCellOptions;
         return tableCellOptions;
     }
+    public static TableCellOptions createTableActionsCellOptions(TableActionsCellOptions tableActionsCellOptions) {
+        TableCellOptions tableCellOptions = new TableCellOptions();
+        tableCellOptions.tableActionsCellOptions = tableActionsCellOptions;
+        return tableCellOptions;
+    }
     public static TableCellOptions createTableJsonViewCellOptions(TableJsonViewCellOptions tableJsonViewCellOptions) {
         TableCellOptions tableCellOptions = new TableCellOptions();
         tableCellOptions.tableJsonViewCellOptions = tableJsonViewCellOptions;
@@ -107,6 +115,10 @@ public class TableCellOptions {
         if (tableDataLinksCellOptions != null) {
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             return ow.writeValueAsString(tableDataLinksCellOptions);
+        }
+        if (tableActionsCellOptions != null) {
+            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            return ow.writeValueAsString(tableActionsCellOptions);
         }
         if (tableJsonViewCellOptions != null) {
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

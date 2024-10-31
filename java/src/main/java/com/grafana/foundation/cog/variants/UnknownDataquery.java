@@ -10,4 +10,8 @@ import java.util.Map;
 @JsonSerialize(using = UnknownDataquerySerializer.class)
 public class UnknownDataquery implements Dataquery {
     public final Map<String, Object> genericFields = new HashMap<>();
+    
+    public String dataqueryName() {
+        return "unknown";
+    }
 }

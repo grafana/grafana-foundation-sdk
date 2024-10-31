@@ -14,6 +14,7 @@ public enum DataqueryScenarioId {
     CSV_FILE("csv_file"),
     CSV_METRIC_VALUES("csv_metric_values"),
     DATAPOINTS_OUTSIDE_RANGE("datapoints_outside_range"),
+    ERROR_WITH_SOURCE("error_with_source"),
     EXPONENTIAL_HEATMAP_BUCKET_DATA("exponential_heatmap_bucket_data"),
     FLAME_GRAPH("flame_graph"),
     GRAFANA_API("grafana_api"),

@@ -72,6 +72,15 @@ final class DataqueryScenarioId implements \JsonSerializable, \Stringable {
         return self::$instances["DatapointsOutsideRange"];
     }
 
+    public static function errorWithSource(): self
+    {
+        if (!isset(self::$instances["ErrorWithSource"])) {
+            self::$instances["ErrorWithSource"] = new self("error_with_source");
+        }
+
+        return self::$instances["ErrorWithSource"];
+    }
+
     public static function exponentialHeatmapBucketData(): self
     {
         if (!isset(self::$instances["ExponentialHeatmapBucketData"])) {
@@ -303,6 +312,10 @@ final class DataqueryScenarioId implements \JsonSerializable, \Stringable {
 
         if ($value === "datapoints_outside_range") {
             return self::datapointsOutsideRange();
+        }
+
+        if ($value === "error_with_source") {
+            return self::errorWithSource();
         }
 
         if ($value === "exponential_heatmap_bucket_data") {

@@ -25,6 +25,9 @@ public class TableCellOptionsDeserializer extends JsonDeserializer<TableCellOpti
         String discriminator = root.get("type").asText();  
         
         switch (discriminator) {
+        case "actions":
+            tableCellOptions.tableActionsCellOptions = mapper.convertValue(root, TableActionsCellOptions.class);
+            break;
         case "auto":
             tableCellOptions.tableAutoCellOptions = mapper.convertValue(root, TableAutoCellOptions.class);
             break;

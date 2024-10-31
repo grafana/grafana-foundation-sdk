@@ -34,7 +34,8 @@
       "LokiQueryDirection": {
         "enum": [
           "forward",
-          "backward"
+          "backward",
+          "scan"
         ]
       },
       "dataquery": {

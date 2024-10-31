@@ -141,6 +141,15 @@ final class TableCellDisplayMode implements \JsonSerializable, \Stringable {
         return self::$instances["Custom"];
     }
 
+    public static function actions(): self
+    {
+        if (!isset(self::$instances["Actions"])) {
+            self::$instances["Actions"] = new self("actions");
+        }
+
+        return self::$instances["Actions"];
+    }
+
     public static function fromValue(string $value): self
     {
         if ($value === "auto") {
@@ -193,6 +202,10 @@ final class TableCellDisplayMode implements \JsonSerializable, \Stringable {
 
         if ($value === "custom") {
             return self::custom();
+        }
+
+        if ($value === "actions") {
+            return self::actions();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum TableCellDisplayMode");

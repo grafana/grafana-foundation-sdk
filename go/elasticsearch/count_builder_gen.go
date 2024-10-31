@@ -27,14 +27,8 @@ func NewCountBuilder() *CountBuilder {
 }
 
 func (builder *CountBuilder) Build() (Count, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Count", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Count{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Count{}, err
 	}
 
 	return *builder.internal, nil

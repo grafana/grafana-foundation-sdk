@@ -60,6 +60,9 @@ public class Expr implements com.grafana.foundation.cog.variants.Dataquery {
         expr.typeSql = typeSql.build();
         return expr;
     }
+    public String dataqueryName() {
+        return "__expr__";
+    }
     
     public String toJSON() throws JsonProcessingException {
         if (typeMath != null) {

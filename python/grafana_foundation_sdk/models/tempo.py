@@ -198,6 +198,9 @@ class TraceqlSearchScope(enum.StrEnum):
 
     INTRINSIC = "intrinsic"
     UNSCOPED = "unscoped"
+    EVENT = "event"
+    INSTRUMENTATION = "instrumentation"
+    LINK = "link"
     RESOURCE = "resource"
     SPAN = "span"
 

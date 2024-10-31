@@ -27,14 +27,8 @@ func NewTimeSeriesQueryBuilder() *TimeSeriesQueryBuilder {
 }
 
 func (builder *TimeSeriesQueryBuilder) Build() (TimeSeriesQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TimeSeriesQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TimeSeriesQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TimeSeriesQuery{}, err
 	}
 
 	return *builder.internal, nil

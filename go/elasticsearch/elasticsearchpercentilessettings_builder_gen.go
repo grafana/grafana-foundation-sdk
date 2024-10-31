@@ -26,14 +26,8 @@ func NewElasticsearchPercentilesSettingsBuilder() *ElasticsearchPercentilesSetti
 }
 
 func (builder *ElasticsearchPercentilesSettingsBuilder) Build() (ElasticsearchPercentilesSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchPercentilesSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchPercentilesSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchPercentilesSettings{}, err
 	}
 
 	return *builder.internal, nil

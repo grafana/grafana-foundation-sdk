@@ -3,8 +3,6 @@
 package statetimeline
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
@@ -33,14 +31,8 @@ func NewPanelBuilder() *PanelBuilder {
 }
 
 func (builder *PanelBuilder) Build() (dashboard.Panel, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Panel", err)...)
-	}
-
-	if len(errs) != 0 {
-		return dashboard.Panel{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return dashboard.Panel{}, err
 	}
 
 	return *builder.internal, nil
@@ -70,13 +62,13 @@ func (builder *PanelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) 
 }
 
 // Depends on the panel plugin. See the plugin documentation for details.
-func (builder *PanelBuilder) WithTarget(targets cog.Builder[variants.Dataquery]) *PanelBuilder {
-	targetsResource, err := targets.Build()
+func (builder *PanelBuilder) WithTarget(target cog.Builder[variants.Dataquery]) *PanelBuilder {
+	targetResource, err := target.Build()
 	if err != nil {
 		builder.errors["targets"] = err.(cog.BuildErrors)
 		return builder
 	}
-	builder.internal.Targets = append(builder.internal.Targets, targetsResource)
+	builder.internal.Targets = append(builder.internal.Targets, targetResource)
 
 	return builder
 }
@@ -118,10 +110,6 @@ func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
 
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
-	if !(h > 0) {
-		builder.errors["h"] = cog.MakeBuildErrors("h", errors.New("h must be > 0"))
-		return builder
-	}
 	if builder.internal.GridPos == nil {
 		builder.internal.GridPos = &dashboard.GridPos{}
 	}
@@ -132,14 +120,6 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
-	if !(w > 0) {
-		builder.errors["w"] = cog.MakeBuildErrors("w", errors.New("w must be > 0"))
-		return builder
-	}
-	if !(w <= 24) {
-		builder.errors["w"] = cog.MakeBuildErrors("w", errors.New("w must be <= 24"))
-		return builder
-	}
 	if builder.internal.GridPos == nil {
 		builder.internal.GridPos = &dashboard.GridPos{}
 	}
@@ -206,8 +186,8 @@ func (builder *PanelBuilder) Transformations(transformations []dashboard.DataTra
 // List of transformations that are applied to the panel data before rendering.
 // When there are multiple transformations, Grafana applies them in the order they are listed.
 // Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
-func (builder *PanelBuilder) WithTransformation(transformations dashboard.DataTransformerConfig) *PanelBuilder {
-	builder.internal.Transformations = append(builder.internal.Transformations, transformations)
+func (builder *PanelBuilder) WithTransformation(transformation dashboard.DataTransformerConfig) *PanelBuilder {
+	builder.internal.Transformations = append(builder.internal.Transformations, transformation)
 
 	return builder
 }
@@ -430,10 +410,6 @@ func (builder *PanelBuilder) ShowValue(showValue common.VisibilityMode) *PanelBu
 
 // Controls the row height
 func (builder *PanelBuilder) RowHeight(rowHeight float64) *PanelBuilder {
-	if !(rowHeight <= 1) {
-		builder.errors["rowHeight"] = cog.MakeBuildErrors("rowHeight", errors.New("rowHeight must be <= 1"))
-		return builder
-	}
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
@@ -501,10 +477,6 @@ func (builder *PanelBuilder) Timezone(timezone []common.TimeZone) *PanelBuilder 
 
 // Enables pagination when > 0
 func (builder *PanelBuilder) PerPage(perPage float64) *PanelBuilder {
-	if !(perPage >= 1) {
-		builder.errors["perPage"] = cog.MakeBuildErrors("perPage", errors.New("perPage must be >= 1"))
-		return builder
-	}
 	if builder.internal.Options == nil {
 		builder.internal.Options = &Options{}
 	}
@@ -514,10 +486,6 @@ func (builder *PanelBuilder) PerPage(perPage float64) *PanelBuilder {
 }
 
 func (builder *PanelBuilder) LineWidth(lineWidth uint32) *PanelBuilder {
-	if !(lineWidth <= 10) {
-		builder.errors["lineWidth"] = cog.MakeBuildErrors("lineWidth", errors.New("lineWidth must be <= 10"))
-		return builder
-	}
 	if builder.internal.FieldConfig == nil {
 		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
 	}
@@ -547,10 +515,6 @@ func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConf
 }
 
 func (builder *PanelBuilder) FillOpacity(fillOpacity uint32) *PanelBuilder {
-	if !(fillOpacity <= 100) {
-		builder.errors["fillOpacity"] = cog.MakeBuildErrors("fillOpacity", errors.New("fillOpacity must be <= 100"))
-		return builder
-	}
 	if builder.internal.FieldConfig == nil {
 		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
 	}

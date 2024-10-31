@@ -41,7 +41,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def with_target(self, targets: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self:    
+    def with_target(self, target: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self:    
         """
         Depends on the panel plugin. See the plugin documentation for details.
         """
@@ -49,8 +49,8 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.targets is None:
             self._internal.targets = []
         
-        targets_resource = targets.build()
-        self._internal.targets.append(targets_resource)
+        target_resource = target.build()
+        self._internal.targets.append(target_resource)
     
         return self
     
@@ -188,7 +188,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def with_transformation(self, transformations: dashboard.DataTransformerConfig) -> typing.Self:    
+    def with_transformation(self, transformation: dashboard.DataTransformerConfig) -> typing.Self:    
         """
         List of transformations that are applied to the panel data before rendering.
         When there are multiple transformations, Grafana applies them in the order they are listed.
@@ -198,7 +198,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.transformations is None:
             self._internal.transformations = []
         
-        self._internal.transformations.append(transformations)
+        self._internal.transformations.append(transformation)
     
         return self
     
@@ -587,6 +587,22 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             self._internal.options = logs.Options()
         assert isinstance(self._internal.options, logs.Options)
         self._internal.options.on_click_hide_field = on_click_hide_field
+    
+        return self
+    
+    def log_row_menu_icons_before(self, log_row_menu_icons_before: object) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.log_row_menu_icons_before = log_row_menu_icons_before
+    
+        return self
+    
+    def log_row_menu_icons_after(self, log_row_menu_icons_after: object) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.log_row_menu_icons_after = log_row_menu_icons_after
     
         return self
     

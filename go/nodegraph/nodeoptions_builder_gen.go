@@ -26,14 +26,8 @@ func NewNodeOptionsBuilder() *NodeOptionsBuilder {
 }
 
 func (builder *NodeOptionsBuilder) Build() (NodeOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("NodeOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return NodeOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return NodeOptions{}, err
 	}
 
 	return *builder.internal, nil

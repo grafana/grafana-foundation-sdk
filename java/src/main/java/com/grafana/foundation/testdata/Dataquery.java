@@ -36,6 +36,12 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonProperty("dropPercent")
     public Double dropPercent;
     // Possible enum values:
+    //  - `"plugin"` 
+    //  - `"downstream"` 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("errorSource")
+    public DataqueryErrorSource errorSource;
+    // Possible enum values:
     //  - `"frontend_exception"` 
     //  - `"frontend_observable"` 
     //  - `"server_panic"` 
@@ -113,6 +119,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     //  - `"csv_file"` 
     //  - `"csv_metric_values"` 
     //  - `"datapoints_outside_range"` 
+    //  - `"error_with_source"` 
     //  - `"exponential_heatmap_bucket_data"` 
     //  - `"flame_graph"` 
     //  - `"grafana_api"` 
@@ -173,6 +180,9 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("withNil")
     public Boolean withNil;
+    public String dataqueryName() {
+        return "";
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -218,6 +228,11 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     
     public Builder dropPercent(Double dropPercent) {
     this.internal.dropPercent = dropPercent;
+        return this;
+    }
+    
+    public Builder errorSource(DataqueryErrorSource errorSource) {
+    this.internal.errorSource = errorSource;
         return this;
     }
     

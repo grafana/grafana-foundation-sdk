@@ -55,6 +55,12 @@ public class Options {
     @JsonProperty("onClickHideField")
     public Object onClickHideField;
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("logRowMenuIconsBefore")
+    public Object logRowMenuIconsBefore;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("logRowMenuIconsAfter")
+    public Object logRowMenuIconsAfter;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("displayedFields")
     public List<String> displayedFields;
     

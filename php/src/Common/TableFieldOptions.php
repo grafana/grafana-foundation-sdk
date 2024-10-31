@@ -20,7 +20,7 @@ class TableFieldOptions implements \JsonSerializable
     public ?\Grafana\Foundation\Common\TableCellDisplayMode $displayMode;
 
     /**
-     * @var \Grafana\Foundation\Common\TableAutoCellOptions|\Grafana\Foundation\Common\TableSparklineCellOptions|\Grafana\Foundation\Common\TableBarGaugeCellOptions|\Grafana\Foundation\Common\TableColoredBackgroundCellOptions|\Grafana\Foundation\Common\TableColorTextCellOptions|\Grafana\Foundation\Common\TableImageCellOptions|\Grafana\Foundation\Common\TableDataLinksCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions
+     * @var \Grafana\Foundation\Common\TableAutoCellOptions|\Grafana\Foundation\Common\TableSparklineCellOptions|\Grafana\Foundation\Common\TableBarGaugeCellOptions|\Grafana\Foundation\Common\TableColoredBackgroundCellOptions|\Grafana\Foundation\Common\TableColorTextCellOptions|\Grafana\Foundation\Common\TableImageCellOptions|\Grafana\Foundation\Common\TableDataLinksCellOptions|\Grafana\Foundation\Common\TableActionsCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions
      */
     public $cellOptions;
 
@@ -43,7 +43,7 @@ class TableFieldOptions implements \JsonSerializable
      * @param float|null $minWidth
      * @param \Grafana\Foundation\Common\FieldTextAlignment|null $align
      * @param \Grafana\Foundation\Common\TableCellDisplayMode|null $displayMode
-     * @param \Grafana\Foundation\Common\TableAutoCellOptions|\Grafana\Foundation\Common\TableSparklineCellOptions|\Grafana\Foundation\Common\TableBarGaugeCellOptions|\Grafana\Foundation\Common\TableColoredBackgroundCellOptions|\Grafana\Foundation\Common\TableColorTextCellOptions|\Grafana\Foundation\Common\TableImageCellOptions|\Grafana\Foundation\Common\TableDataLinksCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions|null $cellOptions
+     * @param \Grafana\Foundation\Common\TableAutoCellOptions|\Grafana\Foundation\Common\TableSparklineCellOptions|\Grafana\Foundation\Common\TableBarGaugeCellOptions|\Grafana\Foundation\Common\TableColoredBackgroundCellOptions|\Grafana\Foundation\Common\TableColorTextCellOptions|\Grafana\Foundation\Common\TableImageCellOptions|\Grafana\Foundation\Common\TableDataLinksCellOptions|\Grafana\Foundation\Common\TableActionsCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions|null $cellOptions
      * @param bool|null $hidden
      * @param bool|null $inspect
      * @param bool|null $filterable
@@ -67,7 +67,7 @@ class TableFieldOptions implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{width?: float, minWidth?: float, align?: string, displayMode?: string, cellOptions?: mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed, hidden?: bool, inspect?: bool, filterable?: bool, hideHeader?: bool} $inputData */
+        /** @var array{width?: float, minWidth?: float, align?: string, displayMode?: string, cellOptions?: mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed, hidden?: bool, inspect?: bool, filterable?: bool, hideHeader?: bool} $inputData */
         $data = $inputData;
         return new self(
             width: $data["width"] ?? null,
@@ -78,6 +78,8 @@ class TableFieldOptions implements \JsonSerializable
         \assert(is_array($input), 'expected disjunction value to be an array');
     
         switch ($input["type"]) {
+        case "actions":
+            return TableActionsCellOptions::fromArray($input);
         case "auto":
             return TableAutoCellOptions::fromArray($input);
         case "color-background":

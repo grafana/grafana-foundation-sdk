@@ -1060,7 +1060,8 @@
           "gauge",
           "sparkline",
           "data-links",
-          "custom"
+          "custom",
+          "actions"
         ],
         "description": "Internally, this is the \"type\" of cell that's being displayed\nin the table such as colored text, JSON, gauge, etc.\nThe color-background-solid, gradient-gauge, and lcd-gauge\nmodes are deprecated in favor of new cell subOptions"
       },
@@ -1203,6 +1204,20 @@
           }
         },
         "description": "Show data links in the cell"
+      },
+      "TableActionsCellOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "actions"
+          }
+        },
+        "description": "Show actions in the cell"
       },
       "TableBarGaugeCellOptions": {
         "type": "object",
@@ -1406,6 +1421,9 @@
           },
           {
             "$ref": "#/components/schemas/TableDataLinksCellOptions"
+          },
+          {
+            "$ref": "#/components/schemas/TableActionsCellOptions"
           },
           {
             "$ref": "#/components/schemas/TableJsonViewCellOptions"

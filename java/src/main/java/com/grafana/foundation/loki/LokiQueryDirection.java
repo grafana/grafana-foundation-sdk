@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum LokiQueryDirection {
     FORWARD("forward"),
     BACKWARD("backward"),
+    SCAN("scan"),
     _EMPTY("");
 
     private final String value;

@@ -3,8 +3,6 @@
 package expr
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
@@ -31,14 +29,8 @@ func NewTypeResampleBuilder() *TypeResampleBuilder {
 }
 
 func (builder *TypeResampleBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TypeResample", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TypeResample{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TypeResample{}, err
 	}
 
 	return *builder.internal, nil
@@ -68,10 +60,6 @@ func (builder *TypeResampleBuilder) Downsampler(downsampler TypeResampleDownsamp
 
 // The math expression
 func (builder *TypeResampleBuilder) Expression(expression string) *TypeResampleBuilder {
-	if !(len([]rune(expression)) >= 1) {
-		builder.errors["expression"] = cog.MakeBuildErrors("expression", errors.New("len([]rune(expression)) must be >= 1"))
-		return builder
-	}
 	builder.internal.Expression = expression
 
 	return builder
@@ -158,10 +146,6 @@ func (builder *TypeResampleBuilder) Upsampler(upsampler TypeResampleUpsampler) *
 
 // The time duration
 func (builder *TypeResampleBuilder) Window(window string) *TypeResampleBuilder {
-	if !(len([]rune(window)) >= 1) {
-		builder.errors["window"] = cog.MakeBuildErrors("window", errors.New("len([]rune(window)) must be >= 1"))
-		return builder
-	}
 	builder.internal.Window = window
 
 	return builder

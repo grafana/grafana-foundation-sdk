@@ -11,6 +11,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum TraceqlSearchScope {
     INTRINSIC("intrinsic"),
     UNSCOPED("unscoped"),
+    EVENT("event"),
+    INSTRUMENTATION("instrumentation"),
+    LINK("link"),
     RESOURCE("resource"),
     SPAN("span"),
     _EMPTY("");

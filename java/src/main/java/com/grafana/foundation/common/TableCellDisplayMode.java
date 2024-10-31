@@ -25,6 +25,7 @@ public enum TableCellDisplayMode {
     SPARKLINE("sparkline"),
     DATA_LINKS("data-links"),
     CUSTOM("custom"),
+    ACTIONS("actions"),
     _EMPTY("");
 
     private final String value;

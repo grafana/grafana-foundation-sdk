@@ -27,14 +27,8 @@ func NewTopMetricsBuilder() *TopMetricsBuilder {
 }
 
 func (builder *TopMetricsBuilder) Build() (TopMetrics, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TopMetrics", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TopMetrics{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TopMetrics{}, err
 	}
 
 	return *builder.internal, nil

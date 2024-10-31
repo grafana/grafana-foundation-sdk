@@ -29,14 +29,8 @@ func NewRowBuilder(title string) *RowBuilder {
 }
 
 func (builder *RowBuilder) Build() (RowPanel, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Row", err)...)
-	}
-
-	if len(errs) != 0 {
-		return RowPanel{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return RowPanel{}, err
 	}
 
 	return *builder.internal, nil
@@ -78,13 +72,13 @@ func (builder *RowBuilder) Id(id uint32) *RowBuilder {
 }
 
 // List of panels in the row
-func (builder *RowBuilder) WithPanel(panels cog.Builder[Panel]) *RowBuilder {
-	panelsResource, err := panels.Build()
+func (builder *RowBuilder) WithPanel(panel cog.Builder[Panel]) *RowBuilder {
+	panelResource, err := panel.Build()
 	if err != nil {
 		builder.errors["panels"] = err.(cog.BuildErrors)
 		return builder
 	}
-	builder.internal.Panels = append(builder.internal.Panels, panelsResource)
+	builder.internal.Panels = append(builder.internal.Panels, panelResource)
 
 	return builder
 }

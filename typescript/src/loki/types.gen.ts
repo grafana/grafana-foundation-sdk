@@ -30,6 +30,7 @@ export const defaultSupportingQueryType = (): SupportingQueryType => (Supporting
 export enum LokiQueryDirection {
 	Forward = "forward",
 	Backward = "backward",
+	Scan = "scan",
 }
 
 export const defaultLokiQueryDirection = (): LokiQueryDirection => (LokiQueryDirection.Forward);

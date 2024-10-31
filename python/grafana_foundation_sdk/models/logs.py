@@ -23,9 +23,11 @@ class Options:
     on_click_filter_out_string: typing.Optional[object]
     on_click_show_field: typing.Optional[object]
     on_click_hide_field: typing.Optional[object]
+    log_row_menu_icons_before: typing.Optional[object]
+    log_row_menu_icons_after: typing.Optional[object]
     displayed_fields: typing.Optional[list[str]]
 
-    def __init__(self, show_labels: bool = False, show_common_labels: bool = False, show_time: bool = False, show_log_context_toggle: bool = False, wrap_log_message: bool = False, prettify_log_message: bool = False, enable_log_details: bool = False, sort_order: typing.Optional[common.LogsSortOrder] = None, dedup_strategy: typing.Optional[common.LogsDedupStrategy] = None, on_click_filter_label: typing.Optional[object] = None, on_click_filter_out_label: typing.Optional[object] = None, is_filter_label_active: typing.Optional[object] = None, on_click_filter_string: typing.Optional[object] = None, on_click_filter_out_string: typing.Optional[object] = None, on_click_show_field: typing.Optional[object] = None, on_click_hide_field: typing.Optional[object] = None, displayed_fields: typing.Optional[list[str]] = None):
+    def __init__(self, show_labels: bool = False, show_common_labels: bool = False, show_time: bool = False, show_log_context_toggle: bool = False, wrap_log_message: bool = False, prettify_log_message: bool = False, enable_log_details: bool = False, sort_order: typing.Optional[common.LogsSortOrder] = None, dedup_strategy: typing.Optional[common.LogsDedupStrategy] = None, on_click_filter_label: typing.Optional[object] = None, on_click_filter_out_label: typing.Optional[object] = None, is_filter_label_active: typing.Optional[object] = None, on_click_filter_string: typing.Optional[object] = None, on_click_filter_out_string: typing.Optional[object] = None, on_click_show_field: typing.Optional[object] = None, on_click_hide_field: typing.Optional[object] = None, log_row_menu_icons_before: typing.Optional[object] = None, log_row_menu_icons_after: typing.Optional[object] = None, displayed_fields: typing.Optional[list[str]] = None):
         self.show_labels = show_labels
         self.show_common_labels = show_common_labels
         self.show_time = show_time
@@ -42,6 +44,8 @@ class Options:
         self.on_click_filter_out_string = on_click_filter_out_string
         self.on_click_show_field = on_click_show_field
         self.on_click_hide_field = on_click_hide_field
+        self.log_row_menu_icons_before = log_row_menu_icons_before
+        self.log_row_menu_icons_after = log_row_menu_icons_after
         self.displayed_fields = displayed_fields
 
     def to_json(self) -> dict[str, object]:
@@ -70,6 +74,10 @@ class Options:
             payload["onClickShowField"] = self.on_click_show_field
         if self.on_click_hide_field is not None:
             payload["onClickHideField"] = self.on_click_hide_field
+        if self.log_row_menu_icons_before is not None:
+            payload["logRowMenuIconsBefore"] = self.log_row_menu_icons_before
+        if self.log_row_menu_icons_after is not None:
+            payload["logRowMenuIconsAfter"] = self.log_row_menu_icons_after
         if self.displayed_fields is not None:
             payload["displayedFields"] = self.displayed_fields
         return payload
@@ -110,6 +118,10 @@ class Options:
             args["on_click_show_field"] = data["onClickShowField"]
         if "onClickHideField" in data:
             args["on_click_hide_field"] = data["onClickHideField"]
+        if "logRowMenuIconsBefore" in data:
+            args["log_row_menu_icons_before"] = data["logRowMenuIconsBefore"]
+        if "logRowMenuIconsAfter" in data:
+            args["log_row_menu_icons_after"] = data["logRowMenuIconsAfter"]
         if "displayedFields" in data:
             args["displayed_fields"] = data["displayedFields"]        
 
