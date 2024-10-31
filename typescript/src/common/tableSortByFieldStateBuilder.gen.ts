@@ -11,6 +11,9 @@ export class TableSortByFieldStateBuilder implements cog.Builder<common.TableSor
         this.internal = common.defaultTableSortByFieldState();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.TableSortByFieldState {
         return this.internal;
     }

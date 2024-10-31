@@ -15,6 +15,7 @@ class MuteTimingBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Alerting\MuteTiming
      */
     public function build()

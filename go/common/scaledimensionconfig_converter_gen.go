@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ScaleDimensionConfigConverter accepts a `ScaleDimensionConfig` object and generates the Go code to build this object using builders.
 func ScaleDimensionConfigConverter(input ScaleDimensionConfig) string {
 	calls := []string{
 		`common.NewScaleDimensionConfigBuilder()`,

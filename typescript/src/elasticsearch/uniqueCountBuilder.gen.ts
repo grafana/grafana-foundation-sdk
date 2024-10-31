@@ -11,6 +11,9 @@ export class UniqueCountBuilder implements cog.Builder<elasticsearch.UniqueCount
         this.internal.type = "cardinality";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.UniqueCount {
         return this.internal;
     }

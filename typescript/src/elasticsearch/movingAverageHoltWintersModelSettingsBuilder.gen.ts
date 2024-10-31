@@ -11,6 +11,9 @@ export class MovingAverageHoltWintersModelSettingsBuilder implements cog.Builder
         this.internal.model = "holt_winters";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.MovingAverageHoltWintersModelSettings {
         return this.internal;
     }

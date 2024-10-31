@@ -10,6 +10,9 @@ export class TimeRangeBuilder implements cog.Builder<testdata.TimeRange> {
         this.internal = testdata.defaultTimeRange();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): testdata.TimeRange {
         return this.internal;
     }

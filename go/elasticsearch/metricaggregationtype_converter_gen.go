@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// MetricAggregationTypeConverter accepts a `MetricAggregationType` object and generates the Go code to build this object using builders.
 func MetricAggregationTypeConverter(input MetricAggregationType) string {
 	calls := []string{
 		`elasticsearch.NewMetricAggregationTypeBuilder()`,

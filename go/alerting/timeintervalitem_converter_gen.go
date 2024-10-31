@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TimeIntervalItemConverter accepts a `TimeIntervalItem` object and generates the Go code to build this object using builders.
 func TimeIntervalItemConverter(input TimeIntervalItem) string {
 	calls := []string{
 		`alerting.NewTimeIntervalItemBuilder()`,

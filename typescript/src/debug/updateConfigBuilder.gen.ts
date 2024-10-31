@@ -10,6 +10,9 @@ export class UpdateConfigBuilder implements cog.Builder<debug.UpdateConfig> {
         this.internal = debug.defaultUpdateConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): debug.UpdateConfig {
         return this.internal;
     }

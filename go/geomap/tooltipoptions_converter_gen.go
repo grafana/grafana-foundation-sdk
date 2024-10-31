@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TooltipOptionsConverter accepts a `TooltipOptions` object and generates the Go code to build this object using builders.
 func TooltipOptionsConverter(input TooltipOptions) string {
 	calls := []string{
 		`geomap.NewTooltipOptionsBuilder()`,

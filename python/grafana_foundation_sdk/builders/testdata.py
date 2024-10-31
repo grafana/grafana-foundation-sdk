@@ -13,6 +13,9 @@ class CSVWave(cogbuilder.Builder[testdata.CSVWave]):
         self._internal = testdata.CSVWave()
 
     def build(self) -> testdata.CSVWave:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def labels(self, labels: str) -> typing.Self:        
@@ -43,6 +46,9 @@ class NodesQuery(cogbuilder.Builder[testdata.NodesQuery]):
         self._internal = testdata.NodesQuery()
 
     def build(self) -> testdata.NodesQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def count(self, count: int) -> typing.Self:        
@@ -77,6 +83,9 @@ class PulseWaveQuery(cogbuilder.Builder[testdata.PulseWaveQuery]):
         self._internal = testdata.PulseWaveQuery()
 
     def build(self) -> testdata.PulseWaveQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def off_count(self, off_count: int) -> typing.Self:        
@@ -112,6 +121,9 @@ class ResultAssertions(cogbuilder.Builder[testdata.ResultAssertions]):
         self._internal = testdata.ResultAssertions()
 
     def build(self) -> testdata.ResultAssertions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def max_frames(self, max_frames: int) -> typing.Self:    
@@ -162,6 +174,9 @@ class Key(cogbuilder.Builder[testdata.Key]):
         self._internal = testdata.Key()
 
     def build(self) -> testdata.Key:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def tick(self, tick: float) -> typing.Self:        
@@ -187,6 +202,9 @@ class SimulationQuery(cogbuilder.Builder[testdata.SimulationQuery]):
         self._internal = testdata.SimulationQuery()
 
     def build(self) -> testdata.SimulationQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def config(self, config: object) -> typing.Self:        
@@ -218,6 +236,9 @@ class StreamingQuery(cogbuilder.Builder[testdata.StreamingQuery]):
         self._internal = testdata.StreamingQuery()
 
     def build(self) -> testdata.StreamingQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def bands(self, bands: int) -> typing.Self:        
@@ -266,6 +287,9 @@ class TimeRange(cogbuilder.Builder[testdata.TimeRange]):
         self._internal = testdata.TimeRange()
 
     def build(self) -> testdata.TimeRange:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def from_val(self, from_val: str) -> typing.Self:    
@@ -294,6 +318,9 @@ class USAQuery(cogbuilder.Builder[testdata.USAQuery]):
         self._internal = testdata.USAQuery()
 
     def build(self) -> testdata.USAQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def fields(self, fields: list[str]) -> typing.Self:        
@@ -324,6 +351,9 @@ class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
         self._internal = testdata.Dataquery()
 
     def build(self) -> testdata.Dataquery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def alias(self, alias: str) -> typing.Self:        

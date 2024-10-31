@@ -13,6 +13,9 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         self._internal = tempo.TempoQuery()
 
     def build(self) -> tempo.TempoQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def ref_id(self, ref_id: str) -> typing.Self:    
@@ -189,6 +192,9 @@ class TraceqlFilter(cogbuilder.Builder[tempo.TraceqlFilter]):
         self._internal = tempo.TraceqlFilter()
 
     def build(self) -> tempo.TraceqlFilter:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: str) -> typing.Self:    

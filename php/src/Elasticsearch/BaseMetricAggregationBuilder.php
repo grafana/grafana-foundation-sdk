@@ -15,6 +15,7 @@ class BaseMetricAggregationBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\BaseMetricAggregation
      */
     public function build()

@@ -11,6 +11,9 @@ export class OptionsWithTooltipBuilder implements cog.Builder<common.OptionsWith
         this.internal = common.defaultOptionsWithTooltip();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.OptionsWithTooltip {
         return this.internal;
     }

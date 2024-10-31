@@ -16,6 +16,7 @@ class MovingFunctionBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\MovingFunction
      */
     public function build()

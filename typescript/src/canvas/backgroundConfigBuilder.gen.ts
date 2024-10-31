@@ -11,6 +11,9 @@ export class BackgroundConfigBuilder implements cog.Builder<canvas.BackgroundCon
         this.internal = canvas.defaultBackgroundConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): canvas.BackgroundConfig {
         return this.internal;
     }

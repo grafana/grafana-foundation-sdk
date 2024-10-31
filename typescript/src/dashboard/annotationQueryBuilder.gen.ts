@@ -12,6 +12,9 @@ export class AnnotationQueryBuilder implements cog.Builder<dashboard.AnnotationQ
         this.internal = dashboard.defaultAnnotationQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.AnnotationQuery {
         return this.internal;
     }

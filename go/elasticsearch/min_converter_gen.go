@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// MinConverter accepts a `Min` object and generates the Go code to build this object using builders.
 func MinConverter(input Min) string {
 	calls := []string{
 		`elasticsearch.NewMinBuilder()`,

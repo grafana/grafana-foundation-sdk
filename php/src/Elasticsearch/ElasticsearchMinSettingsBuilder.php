@@ -15,6 +15,7 @@ class ElasticsearchMinSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchMinSettings
      */
     public function build()

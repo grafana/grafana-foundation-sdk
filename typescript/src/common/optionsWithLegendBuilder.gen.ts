@@ -11,6 +11,9 @@ export class OptionsWithLegendBuilder implements cog.Builder<common.OptionsWithL
         this.internal = common.defaultOptionsWithLegend();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.OptionsWithLegend {
         return this.internal;
     }

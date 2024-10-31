@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// FiltersSettingsConverter accepts a `FiltersSettings` object and generates the Go code to build this object using builders.
 func FiltersSettingsConverter(input FiltersSettings) string {
 	calls := []string{
 		`elasticsearch.NewFiltersSettingsBuilder()`,

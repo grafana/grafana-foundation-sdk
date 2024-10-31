@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// MetricQueryConverter accepts a `MetricQuery` object and generates the Go code to build this object using builders.
 func MetricQueryConverter(input MetricQuery) string {
 	calls := []string{
 		`googlecloudmonitoring.NewMetricQueryBuilder()`,

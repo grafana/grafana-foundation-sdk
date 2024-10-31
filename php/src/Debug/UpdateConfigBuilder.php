@@ -15,6 +15,7 @@ class UpdateConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Debug\UpdateConfig
      */
     public function build()

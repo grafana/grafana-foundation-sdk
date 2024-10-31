@@ -19,6 +19,9 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         self._internal.editable = True
 
     def build(self) -> dashboard.Dashboard:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:    
@@ -388,6 +391,9 @@ class AnnotationTarget(cogbuilder.Builder[dashboard.AnnotationTarget]):
         self._internal = dashboard.AnnotationTarget()
 
     def build(self) -> dashboard.AnnotationTarget:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def limit(self, limit: int) -> typing.Self:    
@@ -438,6 +444,9 @@ class AnnotationPanelFilter(cogbuilder.Builder[dashboard.AnnotationPanelFilter])
         self._internal = dashboard.AnnotationPanelFilter()
 
     def build(self) -> dashboard.AnnotationPanelFilter:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def exclude(self, exclude: bool) -> typing.Self:    
@@ -471,6 +480,9 @@ class AnnotationQuery(cogbuilder.Builder[dashboard.AnnotationQuery]):
         self._internal = dashboard.AnnotationQuery()
 
     def build(self) -> dashboard.AnnotationQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:    
@@ -575,6 +587,9 @@ class DashboardLink(cogbuilder.Builder[dashboard.DashboardLink]):
         self._internal.title = title
 
     def build(self) -> dashboard.DashboardLink:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def title(self, title: str) -> typing.Self:    
@@ -679,6 +694,9 @@ class FieldColor(cogbuilder.Builder[dashboard.FieldColor]):
         self._internal = dashboard.FieldColor()
 
     def build(self) -> dashboard.FieldColor:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def mode(self, mode: dashboard.FieldColorModeId) -> typing.Self:    
@@ -720,6 +738,9 @@ class ThresholdsConfig(cogbuilder.Builder[dashboard.ThresholdsConfig]):
         self._internal = dashboard.ThresholdsConfig()
 
     def build(self) -> dashboard.ThresholdsConfig:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def mode(self, mode: dashboard.ThresholdsMode) -> typing.Self:    
@@ -754,6 +775,9 @@ class ValueMap(cogbuilder.Builder[dashboard.ValueMap]):
         self._internal.type_val = "value"
 
     def build(self) -> dashboard.ValueMap:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def options(self, options: dict[str, dashboard.ValueMappingResult]) -> typing.Self:    
@@ -779,6 +803,9 @@ class RangeMap(cogbuilder.Builder[dashboard.RangeMap]):
         self._internal.type_val = "range"
 
     def build(self) -> dashboard.RangeMap:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def options(self, options: cogbuilder.Builder[dashboard.DashboardRangeMapOptions]) -> typing.Self:    
@@ -805,6 +832,9 @@ class RegexMap(cogbuilder.Builder[dashboard.RegexMap]):
         self._internal.type_val = "regex"
 
     def build(self) -> dashboard.RegexMap:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def options(self, options: cogbuilder.Builder[dashboard.DashboardRegexMapOptions]) -> typing.Self:    
@@ -832,6 +862,9 @@ class SpecialValueMap(cogbuilder.Builder[dashboard.SpecialValueMap]):
         self._internal.type_val = "special"
 
     def build(self) -> dashboard.SpecialValueMap:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def options(self, options: cogbuilder.Builder[dashboard.DashboardSpecialValueMapOptions]) -> typing.Self:        
@@ -853,6 +886,9 @@ class TimePicker(cogbuilder.Builder[dashboard.TimePickerConfig]):
         self._internal = dashboard.TimePickerConfig()
 
     def build(self) -> dashboard.TimePickerConfig:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def hidden(self, hidden: bool) -> typing.Self:    
@@ -907,6 +943,9 @@ class Snapshot(cogbuilder.Builder[dashboard.Snapshot]):
         self._internal = dashboard.Snapshot()
 
     def build(self) -> dashboard.Snapshot:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def expires(self, expires: str) -> typing.Self:    
@@ -1008,6 +1047,9 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         self._internal = dashboard.Panel()
 
     def build(self) -> dashboard.Panel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def type_val(self, type_val: str) -> typing.Self:    
@@ -1471,6 +1513,9 @@ class Row(cogbuilder.Builder[dashboard.RowPanel]):
         self._internal.title = title
 
     def build(self) -> dashboard.RowPanel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def collapsed(self, collapsed: bool) -> typing.Self:    
@@ -1548,6 +1593,9 @@ class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):
         self._internal = dashboard.AnnotationActions()
 
     def build(self) -> dashboard.AnnotationActions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def can_add(self, can_add: bool) -> typing.Self:        
@@ -1573,6 +1621,9 @@ class AnnotationPermission(cogbuilder.Builder[dashboard.AnnotationPermission]):
         self._internal = dashboard.AnnotationPermission()
 
     def build(self) -> dashboard.AnnotationPermission:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def dashboard_permissions(self, dashboard: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:        
@@ -1595,6 +1646,9 @@ class DashboardMeta(cogbuilder.Builder[dashboard.DashboardMeta]):
         self._internal = dashboard.DashboardMeta()
 
     def build(self) -> dashboard.DashboardMeta:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def annotations_permissions(self, annotations_permissions: cogbuilder.Builder[dashboard.AnnotationPermission]) -> typing.Self:        
@@ -1740,6 +1794,9 @@ class DashboardDashboardTemplating(cogbuilder.Builder[dashboard.DashboardDashboa
         self._internal = dashboard.DashboardDashboardTemplating()
 
     def build(self) -> dashboard.DashboardDashboardTemplating:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def list_val(self, list_val: list[cogbuilder.Builder[dashboard.VariableModel]]) -> typing.Self:    
@@ -1760,6 +1817,9 @@ class DashboardRangeMapOptions(cogbuilder.Builder[dashboard.DashboardRangeMapOpt
         self._internal = dashboard.DashboardRangeMapOptions()
 
     def build(self) -> dashboard.DashboardRangeMapOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def from_val(self, from_val: float) -> typing.Self:    
@@ -1797,6 +1857,9 @@ class DashboardRegexMapOptions(cogbuilder.Builder[dashboard.DashboardRegexMapOpt
         self._internal = dashboard.DashboardRegexMapOptions()
 
     def build(self) -> dashboard.DashboardRegexMapOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def pattern(self, pattern: str) -> typing.Self:    
@@ -1825,6 +1888,9 @@ class DashboardSpecialValueMapOptions(cogbuilder.Builder[dashboard.DashboardSpec
         self._internal = dashboard.DashboardSpecialValueMapOptions()
 
     def build(self) -> dashboard.DashboardSpecialValueMapOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def match(self, match: dashboard.SpecialValueMatch) -> typing.Self:    
@@ -1853,6 +1919,9 @@ class DashboardFieldConfigSourceOverrides(cogbuilder.Builder[dashboard.Dashboard
         self._internal = dashboard.DashboardFieldConfigSourceOverrides()
 
     def build(self) -> dashboard.DashboardFieldConfigSourceOverrides:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def matcher(self, matcher: dashboard.MatcherConfig) -> typing.Self:        
@@ -1879,6 +1948,9 @@ class QueryVariable(cogbuilder.Builder[dashboard.VariableModel]):
         self._internal.type_val = dashboard.VariableType.QUERY
 
     def build(self) -> dashboard.VariableModel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:    
@@ -2022,6 +2094,9 @@ class AdHocVariable(cogbuilder.Builder[dashboard.VariableModel]):
         self._internal.type_val = dashboard.VariableType.ADHOC
 
     def build(self) -> dashboard.VariableModel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:    
@@ -2083,6 +2158,9 @@ class ConstantVariable(cogbuilder.Builder[dashboard.VariableModel]):
         self._internal.type_val = dashboard.VariableType.CONSTANT
 
     def build(self) -> dashboard.VariableModel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:    
@@ -2135,6 +2213,9 @@ class DatasourceVariable(cogbuilder.Builder[dashboard.VariableModel]):
         self._internal.type_val = dashboard.VariableType.DATASOURCE
 
     def build(self) -> dashboard.VariableModel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:    
@@ -2242,6 +2323,9 @@ class IntervalVariable(cogbuilder.Builder[dashboard.VariableModel]):
         self._internal.type_val = dashboard.VariableType.INTERVAL
 
     def build(self) -> dashboard.VariableModel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:    
@@ -2321,6 +2405,9 @@ class TextBoxVariable(cogbuilder.Builder[dashboard.VariableModel]):
         self._internal.type_val = dashboard.VariableType.TEXTBOX
 
     def build(self) -> dashboard.VariableModel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:    
@@ -2400,6 +2487,9 @@ class CustomVariable(cogbuilder.Builder[dashboard.VariableModel]):
         self._internal.type_val = dashboard.VariableType.CUSTOM
 
     def build(self) -> dashboard.VariableModel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:    

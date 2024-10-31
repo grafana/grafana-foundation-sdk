@@ -15,6 +15,7 @@ class ElasticsearchTermsSettingsBuilder implements \Grafana\Foundation\Cog\Build
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchTermsSettings
      */
     public function build()

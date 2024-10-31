@@ -11,6 +11,9 @@ export class RuleGroupBuilder implements cog.Builder<alerting.RuleGroup> {
         this.internal.title = title;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.RuleGroup {
         return this.internal;
     }

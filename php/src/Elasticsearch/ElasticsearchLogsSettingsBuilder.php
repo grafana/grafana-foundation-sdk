@@ -15,6 +15,7 @@ class ElasticsearchLogsSettingsBuilder implements \Grafana\Foundation\Cog\Builde
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchLogsSettings
      */
     public function build()

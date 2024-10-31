@@ -10,6 +10,9 @@ export class BaseGrafanaTemplateVariableQueryBuilder implements cog.Builder<azur
         this.internal = azuremonitor.defaultBaseGrafanaTemplateVariableQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.BaseGrafanaTemplateVariableQuery {
         return this.internal;
     }

@@ -15,6 +15,7 @@ class BasePipelineMetricAggregationBuilder implements \Grafana\Foundation\Cog\Bu
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\BasePipelineMetricAggregation
      */
     public function build()

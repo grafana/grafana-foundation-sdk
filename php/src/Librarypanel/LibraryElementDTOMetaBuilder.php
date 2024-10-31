@@ -15,6 +15,7 @@ class LibraryElementDTOMetaBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Librarypanel\LibraryElementDTOMeta
      */
     public function build()

@@ -57,6 +57,8 @@ func (resource AzureMonitorQuery) DataqueryType() string {
 	return "grafana-azure-monitor-datasource"
 }
 
+// VariantConfig returns the configuration related to grafana-azure-monitor-datasource dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "grafana-azure-monitor-datasource",
@@ -90,6 +92,8 @@ func VariantConfig() variants.DataqueryConfig {
 	}
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMonitorQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -304,6 +308,7 @@ func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource AzureMonitorQuery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -456,8 +461,7 @@ func (resource AzureMonitorQuery) Equals(otherCandidate variants.Dataquery) bool
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AzureMonitorQuery` fields for violations and returns them.
 func (resource AzureMonitorQuery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.AzureMonitor != nil {
@@ -558,6 +562,8 @@ type AzureMetricQuery struct {
 	ResourceName *string `json:"resourceName,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMetricQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureMetricQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -803,6 +809,7 @@ func (resource *AzureMetricQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `AzureMetricQuery` objects.
 func (resource AzureMetricQuery) Equals(other AzureMetricQuery) bool {
 
 	if len(resource.Resources) != len(other.Resources) {
@@ -973,8 +980,7 @@ func (resource AzureMetricQuery) Equals(other AzureMetricQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AzureMetricQuery` fields for violations and returns them.
 func (resource AzureMetricQuery) Validate() error {
 	var errs cog.BuildErrors
 
@@ -1019,6 +1025,8 @@ type AzureLogsQuery struct {
 	IntersectTime *bool `json:"intersectTime,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureLogsQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1141,6 +1149,7 @@ func (resource *AzureLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `AzureLogsQuery` objects.
 func (resource AzureLogsQuery) Equals(other AzureLogsQuery) bool {
 	if resource.Query == nil && other.Query != nil || resource.Query != nil && other.Query == nil {
 		return false
@@ -1228,8 +1237,7 @@ func (resource AzureLogsQuery) Equals(other AzureLogsQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AzureLogsQuery` fields for violations and returns them.
 func (resource AzureLogsQuery) Validate() error {
 	return nil
 }
@@ -1250,6 +1258,8 @@ type AzureTracesQuery struct {
 	Query *string `json:"query,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureTracesQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureTracesQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1352,6 +1362,7 @@ func (resource *AzureTracesQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `AzureTracesQuery` objects.
 func (resource AzureTracesQuery) Equals(other AzureTracesQuery) bool {
 	if resource.ResultFormat == nil && other.ResultFormat != nil || resource.ResultFormat != nil && other.ResultFormat == nil {
 		return false
@@ -1414,8 +1425,7 @@ func (resource AzureTracesQuery) Equals(other AzureTracesQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AzureTracesQuery` fields for violations and returns them.
 func (resource AzureTracesQuery) Validate() error {
 	var errs cog.BuildErrors
 
@@ -1441,6 +1451,8 @@ type AzureTracesFilter struct {
 	Filters []string `json:"filters"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureTracesFilter` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureTracesFilter) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1506,6 +1518,7 @@ func (resource *AzureTracesFilter) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `AzureTracesFilter` objects.
 func (resource AzureTracesFilter) Equals(other AzureTracesFilter) bool {
 	if resource.Property != other.Property {
 		return false
@@ -1527,8 +1540,7 @@ func (resource AzureTracesFilter) Equals(other AzureTracesFilter) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AzureTracesFilter` fields for violations and returns them.
 func (resource AzureTracesFilter) Validate() error {
 	return nil
 }
@@ -1549,6 +1561,8 @@ type AzureResourceGraphQuery struct {
 	ResultFormat *string `json:"resultFormat,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureResourceGraphQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureResourceGraphQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1593,6 +1607,7 @@ func (resource *AzureResourceGraphQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `AzureResourceGraphQuery` objects.
 func (resource AzureResourceGraphQuery) Equals(other AzureResourceGraphQuery) bool {
 	if resource.Query == nil && other.Query != nil || resource.Query != nil && other.Query == nil {
 		return false
@@ -1616,8 +1631,7 @@ func (resource AzureResourceGraphQuery) Equals(other AzureResourceGraphQuery) bo
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AzureResourceGraphQuery` fields for violations and returns them.
 func (resource AzureResourceGraphQuery) Validate() error {
 	return nil
 }
@@ -1630,6 +1644,8 @@ type AzureMonitorResource struct {
 	Region          *string `json:"region,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMonitorResource` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureMonitorResource) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1707,6 +1723,7 @@ func (resource *AzureMonitorResource) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `AzureMonitorResource` objects.
 func (resource AzureMonitorResource) Equals(other AzureMonitorResource) bool {
 	if resource.Subscription == nil && other.Subscription != nil || resource.Subscription != nil && other.Subscription == nil {
 		return false
@@ -1757,8 +1774,7 @@ func (resource AzureMonitorResource) Equals(other AzureMonitorResource) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AzureMonitorResource` fields for violations and returns them.
 func (resource AzureMonitorResource) Validate() error {
 	return nil
 }
@@ -1774,6 +1790,8 @@ type AzureMetricDimension struct {
 	Filter *string `json:"filter,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMetricDimension` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureMetricDimension) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1841,6 +1859,7 @@ func (resource *AzureMetricDimension) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `AzureMetricDimension` objects.
 func (resource AzureMetricDimension) Equals(other AzureMetricDimension) bool {
 	if resource.Dimension == nil && other.Dimension != nil || resource.Dimension != nil && other.Dimension == nil {
 		return false
@@ -1883,8 +1902,7 @@ func (resource AzureMetricDimension) Equals(other AzureMetricDimension) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AzureMetricDimension` fields for violations and returns them.
 func (resource AzureMetricDimension) Validate() error {
 	return nil
 }
@@ -1907,6 +1925,8 @@ type BaseGrafanaTemplateVariableQuery struct {
 	RawQuery *string `json:"rawQuery,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseGrafanaTemplateVariableQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *BaseGrafanaTemplateVariableQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1940,6 +1960,7 @@ func (resource *BaseGrafanaTemplateVariableQuery) UnmarshalJSONStrict(raw []byte
 	return errs
 }
 
+// Equals tests the equality of two `BaseGrafanaTemplateVariableQuery` objects.
 func (resource BaseGrafanaTemplateVariableQuery) Equals(other BaseGrafanaTemplateVariableQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -1954,8 +1975,7 @@ func (resource BaseGrafanaTemplateVariableQuery) Equals(other BaseGrafanaTemplat
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `BaseGrafanaTemplateVariableQuery` fields for violations and returns them.
 func (resource BaseGrafanaTemplateVariableQuery) Validate() error {
 	return nil
 }
@@ -1965,6 +1985,8 @@ type UnknownQuery struct {
 	Kind     string  `json:"kind"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `UnknownQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *UnknownQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2012,6 +2034,7 @@ func (resource *UnknownQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `UnknownQuery` objects.
 func (resource UnknownQuery) Equals(other UnknownQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -2029,8 +2052,7 @@ func (resource UnknownQuery) Equals(other UnknownQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `UnknownQuery` fields for violations and returns them.
 func (resource UnknownQuery) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Kind == "UnknownQuery") {
@@ -2052,6 +2074,8 @@ type AppInsightsMetricNameQuery struct {
 	Kind     string  `json:"kind"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AppInsightsMetricNameQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AppInsightsMetricNameQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2099,6 +2123,7 @@ func (resource *AppInsightsMetricNameQuery) UnmarshalJSONStrict(raw []byte) erro
 	return errs
 }
 
+// Equals tests the equality of two `AppInsightsMetricNameQuery` objects.
 func (resource AppInsightsMetricNameQuery) Equals(other AppInsightsMetricNameQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -2116,8 +2141,7 @@ func (resource AppInsightsMetricNameQuery) Equals(other AppInsightsMetricNameQue
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AppInsightsMetricNameQuery` fields for violations and returns them.
 func (resource AppInsightsMetricNameQuery) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Kind == "AppInsightsMetricNameQuery") {
@@ -2140,6 +2164,8 @@ type AppInsightsGroupByQuery struct {
 	MetricName string  `json:"metricName"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AppInsightsGroupByQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AppInsightsGroupByQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2201,6 +2227,7 @@ func (resource *AppInsightsGroupByQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `AppInsightsGroupByQuery` objects.
 func (resource AppInsightsGroupByQuery) Equals(other AppInsightsGroupByQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -2221,8 +2248,7 @@ func (resource AppInsightsGroupByQuery) Equals(other AppInsightsGroupByQuery) bo
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AppInsightsGroupByQuery` fields for violations and returns them.
 func (resource AppInsightsGroupByQuery) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Kind == "AppInsightsGroupByQuery") {
@@ -2244,6 +2270,8 @@ type SubscriptionsQuery struct {
 	Kind     string  `json:"kind"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SubscriptionsQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *SubscriptionsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2291,6 +2319,7 @@ func (resource *SubscriptionsQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `SubscriptionsQuery` objects.
 func (resource SubscriptionsQuery) Equals(other SubscriptionsQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -2308,8 +2337,7 @@ func (resource SubscriptionsQuery) Equals(other SubscriptionsQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `SubscriptionsQuery` fields for violations and returns them.
 func (resource SubscriptionsQuery) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Kind == "SubscriptionsQuery") {
@@ -2332,6 +2360,8 @@ type ResourceGroupsQuery struct {
 	Subscription string  `json:"subscription"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResourceGroupsQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ResourceGroupsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2393,6 +2423,7 @@ func (resource *ResourceGroupsQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ResourceGroupsQuery` objects.
 func (resource ResourceGroupsQuery) Equals(other ResourceGroupsQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -2413,8 +2444,7 @@ func (resource ResourceGroupsQuery) Equals(other ResourceGroupsQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ResourceGroupsQuery` fields for violations and returns them.
 func (resource ResourceGroupsQuery) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Kind == "ResourceGroupsQuery") {
@@ -2439,6 +2469,8 @@ type ResourceNamesQuery struct {
 	MetricNamespace string  `json:"metricNamespace"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResourceNamesQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ResourceNamesQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2528,6 +2560,7 @@ func (resource *ResourceNamesQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ResourceNamesQuery` objects.
 func (resource ResourceNamesQuery) Equals(other ResourceNamesQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -2554,8 +2587,7 @@ func (resource ResourceNamesQuery) Equals(other ResourceNamesQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ResourceNamesQuery` fields for violations and returns them.
 func (resource ResourceNamesQuery) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Kind == "ResourceNamesQuery") {
@@ -2581,6 +2613,8 @@ type MetricNamespaceQuery struct {
 	ResourceName    *string `json:"resourceName,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricNamespaceQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MetricNamespaceQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2678,6 +2712,7 @@ func (resource *MetricNamespaceQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `MetricNamespaceQuery` objects.
 func (resource MetricNamespaceQuery) Equals(other MetricNamespaceQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -2719,8 +2754,7 @@ func (resource MetricNamespaceQuery) Equals(other MetricNamespaceQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `MetricNamespaceQuery` fields for violations and returns them.
 func (resource MetricNamespaceQuery) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Kind == "MetricNamespaceQuery") {
@@ -2747,6 +2781,8 @@ type MetricDefinitionsQuery struct {
 	ResourceName    *string `json:"resourceName,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricDefinitionsQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MetricDefinitionsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2844,6 +2880,7 @@ func (resource *MetricDefinitionsQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `MetricDefinitionsQuery` objects.
 func (resource MetricDefinitionsQuery) Equals(other MetricDefinitionsQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -2885,8 +2922,7 @@ func (resource MetricDefinitionsQuery) Equals(other MetricDefinitionsQuery) bool
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `MetricDefinitionsQuery` fields for violations and returns them.
 func (resource MetricDefinitionsQuery) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Kind == "MetricDefinitionsQuery") {
@@ -2912,6 +2948,8 @@ type MetricNamesQuery struct {
 	MetricNamespace string  `json:"metricNamespace"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricNamesQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MetricNamesQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3015,6 +3053,7 @@ func (resource *MetricNamesQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `MetricNamesQuery` objects.
 func (resource MetricNamesQuery) Equals(other MetricNamesQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -3044,8 +3083,7 @@ func (resource MetricNamesQuery) Equals(other MetricNamesQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `MetricNamesQuery` fields for violations and returns them.
 func (resource MetricNamesQuery) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Kind == "MetricNamesQuery") {
@@ -3068,6 +3106,8 @@ type WorkspacesQuery struct {
 	Subscription string  `json:"subscription"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `WorkspacesQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *WorkspacesQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3129,6 +3169,7 @@ func (resource *WorkspacesQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `WorkspacesQuery` objects.
 func (resource WorkspacesQuery) Equals(other WorkspacesQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -3149,8 +3190,7 @@ func (resource WorkspacesQuery) Equals(other WorkspacesQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `WorkspacesQuery` fields for violations and returns them.
 func (resource WorkspacesQuery) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Kind == "WorkspacesQuery") {
@@ -3182,6 +3222,7 @@ type AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrRe
 	UnknownQuery               *UnknownQuery               `json:"UnknownQuery,omitempty"`
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery` as JSON.
 func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery) MarshalJSON() ([]byte, error) {
 	if resource.AppInsightsMetricNameQuery != nil {
 		return json.Marshal(resource.AppInsightsMetricNameQuery)
@@ -3217,6 +3258,7 @@ func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscription
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery` from JSON.
 func (resource *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3319,6 +3361,8 @@ func (resource *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptio
 	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3420,6 +3464,7 @@ func (resource *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptio
 	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
 }
 
+// Equals tests the equality of two `AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery` objects.
 func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery) Equals(other AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery) bool {
 	if resource.AppInsightsMetricNameQuery == nil && other.AppInsightsMetricNameQuery != nil || resource.AppInsightsMetricNameQuery != nil && other.AppInsightsMetricNameQuery == nil {
 		return false
@@ -3515,8 +3560,7 @@ func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscription
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery` fields for violations and returns them.
 func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.AppInsightsMetricNameQuery != nil {

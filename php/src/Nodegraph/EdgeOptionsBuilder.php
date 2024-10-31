@@ -15,6 +15,7 @@ class EdgeOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Nodegraph\EdgeOptions
      */
     public function build()

@@ -15,6 +15,7 @@ class ElasticsearchInlineScriptBuilder implements \Grafana\Foundation\Cog\Builde
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchInlineScript
      */
     public function build()
