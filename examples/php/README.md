@@ -36,3 +36,8 @@ From an example's folder:
 $ composer install
 $ php index.php
 ```
+
+> [!NOTE]
+> [Grizzly](https://github.com/grafana/grizzly/) can be used to preview the examples locally:
+>
+> `grr serve -w -S 'php index.php' .`
