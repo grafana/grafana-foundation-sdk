@@ -29,14 +29,8 @@ func NewGraphPanelBuilder() *GraphPanelBuilder {
 }
 
 func (builder *GraphPanelBuilder) Build() (GraphPanel, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("GraphPanel", err)...)
-	}
-
-	if len(errs) != 0 {
-		return GraphPanel{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return GraphPanel{}, err
 	}
 
 	return *builder.internal, nil

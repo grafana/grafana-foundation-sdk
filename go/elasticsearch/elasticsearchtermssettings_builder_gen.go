@@ -26,14 +26,8 @@ func NewElasticsearchTermsSettingsBuilder() *ElasticsearchTermsSettingsBuilder {
 }
 
 func (builder *ElasticsearchTermsSettingsBuilder) Build() (ElasticsearchTermsSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchTermsSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchTermsSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchTermsSettings{}, err
 	}
 
 	return *builder.internal, nil

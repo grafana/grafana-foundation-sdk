@@ -26,14 +26,8 @@ func NewDashboardSpecialValueMapOptionsBuilder() *DashboardSpecialValueMapOption
 }
 
 func (builder *DashboardSpecialValueMapOptionsBuilder) Build() (DashboardSpecialValueMapOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("DashboardSpecialValueMapOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return DashboardSpecialValueMapOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return DashboardSpecialValueMapOptions{}, err
 	}
 
 	return *builder.internal, nil

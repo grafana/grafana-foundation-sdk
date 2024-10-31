@@ -15,13 +15,11 @@ export class TimeRangeBuilder implements cog.Builder<alerting.TimeRange> {
         return this.internal;
     }
 
-    // Redefining this to avoid an import cycle
     from(from: string): this {
         this.internal.from = from;
         return this;
     }
 
-    // Redefining this to avoid an import cycle
     to(to: string): this {
         this.internal.to = to;
         return this;

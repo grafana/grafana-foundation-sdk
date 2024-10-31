@@ -4,7 +4,10 @@ package dashboardlist
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
@@ -20,6 +23,166 @@ type Options struct {
 	Query              string   `json:"query"`
 	FolderId           *int64   `json:"folderId,omitempty"`
 	Tags               []string `json:"tags"`
+}
+
+func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "keepTime"
+	if fields["keepTime"] != nil {
+		if string(fields["keepTime"]) != "null" {
+			if err := json.Unmarshal(fields["keepTime"], &resource.KeepTime); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("keepTime", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("keepTime", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "keepTime")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("keepTime", errors.New("required field is missing from input"))...)
+	}
+	// Field "includeVars"
+	if fields["includeVars"] != nil {
+		if string(fields["includeVars"]) != "null" {
+			if err := json.Unmarshal(fields["includeVars"], &resource.IncludeVars); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("includeVars", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("includeVars", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "includeVars")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("includeVars", errors.New("required field is missing from input"))...)
+	}
+	// Field "showStarred"
+	if fields["showStarred"] != nil {
+		if string(fields["showStarred"]) != "null" {
+			if err := json.Unmarshal(fields["showStarred"], &resource.ShowStarred); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showStarred", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("showStarred", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "showStarred")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showStarred", errors.New("required field is missing from input"))...)
+	}
+	// Field "showRecentlyViewed"
+	if fields["showRecentlyViewed"] != nil {
+		if string(fields["showRecentlyViewed"]) != "null" {
+			if err := json.Unmarshal(fields["showRecentlyViewed"], &resource.ShowRecentlyViewed); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showRecentlyViewed", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("showRecentlyViewed", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "showRecentlyViewed")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showRecentlyViewed", errors.New("required field is missing from input"))...)
+	}
+	// Field "showSearch"
+	if fields["showSearch"] != nil {
+		if string(fields["showSearch"]) != "null" {
+			if err := json.Unmarshal(fields["showSearch"], &resource.ShowSearch); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showSearch", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("showSearch", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "showSearch")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showSearch", errors.New("required field is missing from input"))...)
+	}
+	// Field "showHeadings"
+	if fields["showHeadings"] != nil {
+		if string(fields["showHeadings"]) != "null" {
+			if err := json.Unmarshal(fields["showHeadings"], &resource.ShowHeadings); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showHeadings", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("showHeadings", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "showHeadings")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showHeadings", errors.New("required field is missing from input"))...)
+	}
+	// Field "maxItems"
+	if fields["maxItems"] != nil {
+		if string(fields["maxItems"]) != "null" {
+			if err := json.Unmarshal(fields["maxItems"], &resource.MaxItems); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxItems", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("maxItems", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "maxItems")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("maxItems", errors.New("required field is missing from input"))...)
+	}
+	// Field "query"
+	if fields["query"] != nil {
+		if string(fields["query"]) != "null" {
+			if err := json.Unmarshal(fields["query"], &resource.Query); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("query", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("query", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "query")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("query", errors.New("required field is missing from input"))...)
+	}
+	// Field "folderId"
+	if fields["folderId"] != nil {
+		if string(fields["folderId"]) != "null" {
+			if err := json.Unmarshal(fields["folderId"], &resource.FolderId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("folderId", err)...)
+			}
+
+		}
+		delete(fields, "folderId")
+
+	}
+	// Field "tags"
+	if fields["tags"] != nil {
+		if string(fields["tags"]) != "null" {
+
+			if err := json.Unmarshal(fields["tags"], &resource.Tags); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tags", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("tags", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "tags")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("tags", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource Options) Equals(other Options) bool {
@@ -70,6 +233,12 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource Options) Validate() error {
+	return nil
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "dashlist",
@@ -77,6 +246,15 @@ func VariantConfig() variants.PanelcfgConfig {
 			options := &Options{}
 
 			if err := json.Unmarshal(raw, options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+		StrictOptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := options.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
 			}
 

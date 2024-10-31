@@ -74,6 +74,9 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("filters")
     public List<TraceqlFilter> filters;
+    public String dataqueryName() {
+        return "tempo";
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

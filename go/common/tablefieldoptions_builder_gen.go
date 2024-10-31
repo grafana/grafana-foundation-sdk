@@ -28,14 +28,8 @@ func NewTableFieldOptionsBuilder() *TableFieldOptionsBuilder {
 }
 
 func (builder *TableFieldOptionsBuilder) Build() (TableFieldOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TableFieldOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TableFieldOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TableFieldOptions{}, err
 	}
 
 	return *builder.internal, nil

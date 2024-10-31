@@ -27,14 +27,8 @@ func NewSingleStatBaseOptionsBuilder() *SingleStatBaseOptionsBuilder {
 }
 
 func (builder *SingleStatBaseOptionsBuilder) Build() (SingleStatBaseOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("SingleStatBaseOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return SingleStatBaseOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return SingleStatBaseOptions{}, err
 	}
 
 	return *builder.internal, nil

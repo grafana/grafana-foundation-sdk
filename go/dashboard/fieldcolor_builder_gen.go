@@ -27,14 +27,8 @@ func NewFieldColorBuilder() *FieldColorBuilder {
 }
 
 func (builder *FieldColorBuilder) Build() (FieldColor, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("FieldColor", err)...)
-	}
-
-	if len(errs) != 0 {
-		return FieldColor{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return FieldColor{}, err
 	}
 
 	return *builder.internal, nil

@@ -7,10 +7,17 @@ import enum
 
 
 class Query:
+    # Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation.
     datasource_uid: typing.Optional[str]
+    # JSON is the raw JSON query and includes the above properties as well as custom properties.
     model: typing.Optional[cogvariants.Dataquery]
+    # QueryType is an optional identifier for the type of query.
+    # It can be used to distinguish different types of queries.
     query_type: typing.Optional[str]
+    # RefID is the unique identifier of the query, set by the frontend call.
     ref_id: typing.Optional[str]
+    # RelativeTimeRange is the per query start and end time
+    # for requests.
     relative_time_range: typing.Optional['RelativeTimeRange']
 
     def __init__(self, datasource_uid: typing.Optional[str] = None, model: typing.Optional[cogvariants.Dataquery] = None, query_type: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, relative_time_range: typing.Optional['RelativeTimeRange'] = None):
@@ -106,23 +113,15 @@ class ContactPoint:
     by grafanas embedded alertmanager implementation.
     """
 
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
     disable_resolve_message: typing.Optional[bool]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
+    # Name is used as grouping key in the UI. Contact points with the
+    # same name will be grouped in the UI.
     name: typing.Optional[str]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
     provenance: typing.Optional[str]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
     settings: 'Json'
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
     type_val: typing.Literal["alertmanager", " dingding", " discord", " email", " googlechat", " kafka", " line", " opsgenie", " pagerduty", " pushover", " sensugo", " slack", " teams", " telegram", " threema", " victorops", " webhook", " wecom"]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
+    # UID is the unique identifier of the contact point. The UID can be
+    # set by the user.
     uid: typing.Optional[str]
 
     def __init__(self, disable_resolve_message: typing.Optional[bool] = None, name: typing.Optional[str] = None, provenance: typing.Optional[str] = None, settings: typing.Optional['Json'] = None, type_val: typing.Optional[typing.Literal["alertmanager", " dingding", " discord", " email", " googlechat", " kafka", " line", " opsgenie", " pagerduty", " pushover", " sensugo", " slack", " teams", " telegram", " threema", " victorops", " webhook", " wecom"]] = None, uid: typing.Optional[str] = None):
@@ -412,11 +411,13 @@ class RelativeTimeRange:
     for requests.
     """
 
-    # RelativeTimeRange is the per query start and end time
-    # for requests.
+    # A Duration represents the elapsed time between two instants
+    # as an int64 nanosecond count. The representation limits the
+    # largest representable duration to approximately 290 years.
     from_val: typing.Optional['Duration']
-    # RelativeTimeRange is the per query start and end time
-    # for requests.
+    # A Duration represents the elapsed time between two instants
+    # as an int64 nanosecond count. The representation limits the
+    # largest representable duration to approximately 290 years.
     to: typing.Optional['Duration']
 
     def __init__(self, from_val: typing.Optional['Duration'] = None, to: typing.Optional['Duration'] = None):
@@ -450,44 +451,25 @@ class NotificationPolicy:
     from the upstream alertmanager in that it adds the ObjectMatchers property.
     """
 
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     continue_val: typing.Optional[bool]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     group_by: typing.Optional[list[str]]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     group_interval: typing.Optional[str]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     group_wait: typing.Optional[str]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
+    # Deprecated. Remove before v1.0 release.
     match: typing.Optional[dict[str, str]]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     match_re: typing.Optional['MatchRegexps']
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
+    # Matchers is a slice of Matchers that is sortable, implements Stringer, and
+    # provides a Matches method to match a LabelSet against all Matchers in the
+    # slice. Note that some users of Matchers might require it to be sorted.
     matchers: typing.Optional['Matchers']
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     mute_time_intervals: typing.Optional[list[str]]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
+    # Matchers is a slice of Matchers that is sortable, implements Stringer, and
+    # provides a Matches method to match a LabelSet against all Matchers in the
+    # slice. Note that some users of Matchers might require it to be sorted.
     object_matchers: typing.Optional['ObjectMatchers']
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     provenance: typing.Optional['Provenance']
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     receiver: typing.Optional[str]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     repeat_interval: typing.Optional[str]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     routes: typing.Optional[list['NotificationPolicy']]
 
     def __init__(self, continue_val: typing.Optional[bool] = None, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, match: typing.Optional[dict[str, str]] = None, match_re: typing.Optional['MatchRegexps'] = None, matchers: typing.Optional['Matchers'] = None, mute_time_intervals: typing.Optional[list[str]] = None, object_matchers: typing.Optional['ObjectMatchers'] = None, provenance: typing.Optional['Provenance'] = None, receiver: typing.Optional[str] = None, repeat_interval: typing.Optional[str] = None, routes: typing.Optional[list['NotificationPolicy']] = None):
@@ -576,23 +558,11 @@ class TimeInterval:
     within the interval.
     """
 
-    # TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    # within the interval.
     days_of_month: typing.Optional[list[str]]
-    # TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    # within the interval.
     location: typing.Optional[str]
-    # TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    # within the interval.
     months: typing.Optional[list[str]]
-    # TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    # within the interval.
     times: typing.Optional[list['TimeRange']]
-    # TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    # within the interval.
     weekdays: typing.Optional[list[str]]
-    # TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    # within the interval.
     years: typing.Optional[list[str]]
 
     def __init__(self, days_of_month: typing.Optional[list[str]] = None, location: typing.Optional[str] = None, months: typing.Optional[list[str]] = None, times: typing.Optional[list['TimeRange']] = None, weekdays: typing.Optional[list[str]] = None, years: typing.Optional[list[str]] = None):
@@ -645,9 +615,7 @@ class TimeRange:
     Redefining this to avoid an import cycle
     """
 
-    # Redefining this to avoid an import cycle
     from_val: typing.Optional[str]
-    # Redefining this to avoid an import cycle
     to: typing.Optional[str]
 
     def __init__(self, from_val: typing.Optional[str] = None, to: typing.Optional[str] = None):

@@ -25,8 +25,6 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
      * @param array<string> $daysOfMonth
      */
     public function daysOfMonth(array $daysOfMonth): static
@@ -35,10 +33,6 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
-     */
     public function location(string $location): static
     {
         $this->internal->location = $location;
@@ -46,8 +40,6 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
      * @param array<string> $months
      */
     public function months(array $months): static
@@ -57,8 +49,6 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\TimeRange>> $times
      */
     public function times(array $times): static
@@ -72,8 +62,6 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
      * @param array<string> $weekdays
      */
     public function weekdays(array $weekdays): static
@@ -83,8 +71,6 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-     * within the interval.
      * @param array<string> $years
      */
     public function years(array $years): static

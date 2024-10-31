@@ -28,14 +28,8 @@ func NewDashboardMetaBuilder() *DashboardMetaBuilder {
 }
 
 func (builder *DashboardMetaBuilder) Build() (DashboardMeta, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("DashboardMeta", err)...)
-	}
-
-	if len(errs) != 0 {
-		return DashboardMeta{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return DashboardMeta{}, err
 	}
 
 	return *builder.internal, nil

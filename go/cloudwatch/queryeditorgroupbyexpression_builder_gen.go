@@ -27,14 +27,8 @@ func NewQueryEditorGroupByExpressionBuilder() *QueryEditorGroupByExpressionBuild
 }
 
 func (builder *QueryEditorGroupByExpressionBuilder) Build() (QueryEditorGroupByExpression, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("QueryEditorGroupByExpression", err)...)
-	}
-
-	if len(errs) != 0 {
-		return QueryEditorGroupByExpression{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return QueryEditorGroupByExpression{}, err
 	}
 
 	return *builder.internal, nil

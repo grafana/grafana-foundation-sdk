@@ -3,8 +3,6 @@
 package dashboard
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
@@ -34,14 +32,8 @@ func NewDashboardBuilder(title string) *DashboardBuilder {
 }
 
 func (builder *DashboardBuilder) Build() (Dashboard, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Dashboard", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Dashboard{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Dashboard{}, err
 	}
 
 	return *builder.internal, nil
@@ -161,10 +153,6 @@ func (builder *DashboardBuilder) Timepicker(timepicker cog.Builder[TimePicker]) 
 
 // The month that the fiscal year starts on.  0 = January, 11 = December
 func (builder *DashboardBuilder) FiscalYearStartMonth(fiscalYearStartMonth uint8) *DashboardBuilder {
-	if !(fiscalYearStartMonth < 12) {
-		builder.errors["fiscalYearStartMonth"] = cog.MakeBuildErrors("fiscalYearStartMonth", errors.New("fiscalYearStartMonth must be < 12"))
-		return builder
-	}
 	builder.internal.FiscalYearStartMonth = &fiscalYearStartMonth
 
 	return builder
@@ -288,29 +276,29 @@ func (builder *DashboardBuilder) WithRow(rowPanel cog.Builder[RowPanel]) *Dashbo
 }
 
 // Configured template variables
-func (builder *DashboardBuilder) Variables(list []cog.Builder[VariableModel]) *DashboardBuilder {
-	listResources := make([]VariableModel, 0, len(list))
-	for _, r1 := range list {
-		listDepth1, err := r1.Build()
+func (builder *DashboardBuilder) Variables(variables []cog.Builder[VariableModel]) *DashboardBuilder {
+	variablesResources := make([]VariableModel, 0, len(variables))
+	for _, r1 := range variables {
+		variablesDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["templating.list"] = err.(cog.BuildErrors)
 			return builder
 		}
-		listResources = append(listResources, listDepth1)
+		variablesResources = append(variablesResources, variablesDepth1)
 	}
-	builder.internal.Templating.List = listResources
+	builder.internal.Templating.List = variablesResources
 
 	return builder
 }
 
 // Configured template variables
-func (builder *DashboardBuilder) WithVariable(list cog.Builder[VariableModel]) *DashboardBuilder {
-	listResource, err := list.Build()
+func (builder *DashboardBuilder) WithVariable(variable cog.Builder[VariableModel]) *DashboardBuilder {
+	variableResource, err := variable.Build()
 	if err != nil {
 		builder.errors["templating.list"] = err.(cog.BuildErrors)
 		return builder
 	}
-	builder.internal.Templating.List = append(builder.internal.Templating.List, listResource)
+	builder.internal.Templating.List = append(builder.internal.Templating.List, variableResource)
 
 	return builder
 }
@@ -319,17 +307,17 @@ func (builder *DashboardBuilder) WithVariable(list cog.Builder[VariableModel]) *
 // Annotations are used to overlay event markers and overlay event tags on graphs.
 // Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
 // See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-func (builder *DashboardBuilder) Annotations(list []cog.Builder[AnnotationQuery]) *DashboardBuilder {
-	listResources := make([]AnnotationQuery, 0, len(list))
-	for _, r1 := range list {
-		listDepth1, err := r1.Build()
+func (builder *DashboardBuilder) Annotations(annotations []cog.Builder[AnnotationQuery]) *DashboardBuilder {
+	annotationsResources := make([]AnnotationQuery, 0, len(annotations))
+	for _, r1 := range annotations {
+		annotationsDepth1, err := r1.Build()
 		if err != nil {
 			builder.errors["annotations.list"] = err.(cog.BuildErrors)
 			return builder
 		}
-		listResources = append(listResources, listDepth1)
+		annotationsResources = append(annotationsResources, annotationsDepth1)
 	}
-	builder.internal.Annotations.List = listResources
+	builder.internal.Annotations.List = annotationsResources
 
 	return builder
 }
@@ -338,13 +326,13 @@ func (builder *DashboardBuilder) Annotations(list []cog.Builder[AnnotationQuery]
 // Annotations are used to overlay event markers and overlay event tags on graphs.
 // Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
 // See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
-func (builder *DashboardBuilder) Annotation(list cog.Builder[AnnotationQuery]) *DashboardBuilder {
-	listResource, err := list.Build()
+func (builder *DashboardBuilder) Annotation(annotation cog.Builder[AnnotationQuery]) *DashboardBuilder {
+	annotationResource, err := annotation.Build()
 	if err != nil {
 		builder.errors["annotations.list"] = err.(cog.BuildErrors)
 		return builder
 	}
-	builder.internal.Annotations.List = append(builder.internal.Annotations.List, listResource)
+	builder.internal.Annotations.List = append(builder.internal.Annotations.List, annotationResource)
 
 	return builder
 }
@@ -366,13 +354,13 @@ func (builder *DashboardBuilder) Links(links []cog.Builder[DashboardLink]) *Dash
 }
 
 // Links with references to other dashboards or external websites.
-func (builder *DashboardBuilder) Link(links cog.Builder[DashboardLink]) *DashboardBuilder {
-	linksResource, err := links.Build()
+func (builder *DashboardBuilder) Link(link cog.Builder[DashboardLink]) *DashboardBuilder {
+	linkResource, err := link.Build()
 	if err != nil {
 		builder.errors["links"] = err.(cog.BuildErrors)
 		return builder
 	}
-	builder.internal.Links = append(builder.internal.Links, linksResource)
+	builder.internal.Links = append(builder.internal.Links, linkResource)
 
 	return builder
 }

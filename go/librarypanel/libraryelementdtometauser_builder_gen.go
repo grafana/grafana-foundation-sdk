@@ -26,14 +26,8 @@ func NewLibraryElementDTOMetaUserBuilder() *LibraryElementDTOMetaUserBuilder {
 }
 
 func (builder *LibraryElementDTOMetaUserBuilder) Build() (LibraryElementDTOMetaUser, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("LibraryElementDTOMetaUser", err)...)
-	}
-
-	if len(errs) != 0 {
-		return LibraryElementDTOMetaUser{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return LibraryElementDTOMetaUser{}, err
 	}
 
 	return *builder.internal, nil

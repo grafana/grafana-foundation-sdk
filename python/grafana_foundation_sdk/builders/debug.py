@@ -65,7 +65,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def with_target(self, targets: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self:    
+    def with_target(self, target: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self:    
         """
         Depends on the panel plugin. See the plugin documentation for details.
         """
@@ -73,8 +73,8 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.targets is None:
             self._internal.targets = []
         
-        targets_resource = targets.build()
-        self._internal.targets.append(targets_resource)
+        target_resource = target.build()
+        self._internal.targets.append(target_resource)
     
         return self
     
@@ -202,7 +202,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def with_transformation(self, transformations: dashboard.DataTransformerConfig) -> typing.Self:    
+    def with_transformation(self, transformation: dashboard.DataTransformerConfig) -> typing.Self:    
         """
         List of transformations that are applied to the panel data before rendering.
         When there are multiple transformations, Grafana applies them in the order they are listed.
@@ -212,7 +212,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.transformations is None:
             self._internal.transformations = []
         
-        self._internal.transformations.append(transformations)
+        self._internal.transformations.append(transformation)
     
         return self
     

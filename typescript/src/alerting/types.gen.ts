@@ -4,10 +4,17 @@ import * as cog from '../cog';
 
 
 export interface Query {
+	// Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation.
 	datasourceUid?: string;
+	// JSON is the raw JSON query and includes the above properties as well as custom properties.
 	model?: cog.Dataquery;
+	// QueryType is an optional identifier for the type of query.
+	// It can be used to distinguish different types of queries.
 	queryType?: string;
+	// RefID is the unique identifier of the query, set by the frontend call.
 	refId?: string;
+	// RelativeTimeRange is the per query start and end time
+	// for requests.
 	relativeTimeRange?: RelativeTimeRange;
 }
 
@@ -34,23 +41,15 @@ export const defaultDuration = (): Duration => (0);
 // EmbeddedContactPoint is the contact point type that is used
 // by grafanas embedded alertmanager implementation.
 export interface ContactPoint {
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
 	disableResolveMessage?: boolean;
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
+	// Name is used as grouping key in the UI. Contact points with the
+	// same name will be grouped in the UI.
 	name?: string;
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
 	provenance?: string;
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
 	settings: Json;
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
 	type: "alertmanager" | " dingding" | " discord" | " email" | " googlechat" | " kafka" | " line" | " opsgenie" | " pagerduty" | " pushover" | " sensugo" | " slack" | " teams" | " telegram" | " threema" | " victorops" | " webhook" | " wecom";
-	// EmbeddedContactPoint is the contact point type that is used
-	// by grafanas embedded alertmanager implementation.
+	// UID is the unique identifier of the contact point. The UID can be
+	// set by the user.
 	uid?: string;
 }
 
@@ -162,11 +161,13 @@ export const defaultRegexp = (): Regexp => ({});
 // RelativeTimeRange is the per query start and end time
 // for requests.
 export interface RelativeTimeRange {
-	// RelativeTimeRange is the per query start and end time
-	// for requests.
+	// A Duration represents the elapsed time between two instants
+	// as an int64 nanosecond count. The representation limits the
+	// largest representable duration to approximately 290 years.
 	from?: Duration;
-	// RelativeTimeRange is the per query start and end time
-	// for requests.
+	// A Duration represents the elapsed time between two instants
+	// as an int64 nanosecond count. The representation limits the
+	// largest representable duration to approximately 290 years.
 	to?: Duration;
 }
 
@@ -176,44 +177,25 @@ export const defaultRelativeTimeRange = (): RelativeTimeRange => ({
 // A Route is a node that contains definitions of how to handle alerts. This is modified
 // from the upstream alertmanager in that it adds the ObjectMatchers property.
 export interface NotificationPolicy {
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	continue?: boolean;
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	group_by?: string[];
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	group_interval?: string;
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	group_wait?: string;
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
+	// Deprecated. Remove before v1.0 release.
 	match?: Record<string, string>;
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	match_re?: MatchRegexps;
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
+	// Matchers is a slice of Matchers that is sortable, implements Stringer, and
+	// provides a Matches method to match a LabelSet against all Matchers in the
+	// slice. Note that some users of Matchers might require it to be sorted.
 	matchers?: Matchers;
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	mute_time_intervals?: string[];
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
+	// Matchers is a slice of Matchers that is sortable, implements Stringer, and
+	// provides a Matches method to match a LabelSet against all Matchers in the
+	// slice. Note that some users of Matchers might require it to be sorted.
 	object_matchers?: ObjectMatchers;
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	provenance?: Provenance;
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	receiver?: string;
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	repeat_interval?: string;
-	// A Route is a node that contains definitions of how to handle alerts. This is modified
-	// from the upstream alertmanager in that it adds the ObjectMatchers property.
 	routes?: NotificationPolicy[];
 }
 
@@ -223,23 +205,11 @@ export const defaultNotificationPolicy = (): NotificationPolicy => ({
 // TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
 // within the interval.
 export interface TimeInterval {
-	// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-	// within the interval.
 	days_of_month?: string[];
-	// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-	// within the interval.
 	location?: string;
-	// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-	// within the interval.
 	months?: string[];
-	// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-	// within the interval.
 	times?: TimeRange[];
-	// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-	// within the interval.
 	weekdays?: string[];
-	// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-	// within the interval.
 	years?: string[];
 }
 
@@ -248,9 +218,7 @@ export const defaultTimeInterval = (): TimeInterval => ({
 
 // Redefining this to avoid an import cycle
 export interface TimeRange {
-	// Redefining this to avoid an import cycle
 	from?: string;
-	// Redefining this to avoid an import cycle
 	to?: string;
 }
 

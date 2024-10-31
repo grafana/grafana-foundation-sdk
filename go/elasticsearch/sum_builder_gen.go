@@ -27,14 +27,8 @@ func NewSumBuilder() *SumBuilder {
 }
 
 func (builder *SumBuilder) Build() (Sum, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Sum", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Sum{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Sum{}, err
 	}
 
 	return *builder.internal, nil

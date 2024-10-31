@@ -7,7 +7,9 @@ import (
 	"errors"
 	"fmt"
 	"reflect"
+	"strconv"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
@@ -21,6 +23,15 @@ func VariantConfig() variants.DataqueryConfig {
 			dataquery := &Expr{}
 
 			if err := json.Unmarshal(raw, dataquery); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &Expr{}
+
+			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
 			}
 
@@ -93,6 +104,153 @@ func (resource TypeMath) ImplementsDataqueryVariant() {}
 
 func (resource TypeMath) DataqueryType() string {
 	return "__expr__"
+}
+
+func (resource *TypeMath) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "datasource"
+	if fields["datasource"] != nil {
+		if string(fields["datasource"]) != "null" {
+
+			resource.Datasource = &dashboard.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+			}
+
+		}
+		delete(fields, "datasource")
+
+	}
+	// Field "expression"
+	if fields["expression"] != nil {
+		if string(fields["expression"]) != "null" {
+			if err := json.Unmarshal(fields["expression"], &resource.Expression); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("expression", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expression", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expression")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expression", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+	// Field "intervalMs"
+	if fields["intervalMs"] != nil {
+		if string(fields["intervalMs"]) != "null" {
+			if err := json.Unmarshal(fields["intervalMs"], &resource.IntervalMs); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("intervalMs", err)...)
+			}
+
+		}
+		delete(fields, "intervalMs")
+
+	}
+	// Field "maxDataPoints"
+	if fields["maxDataPoints"] != nil {
+		if string(fields["maxDataPoints"]) != "null" {
+			if err := json.Unmarshal(fields["maxDataPoints"], &resource.MaxDataPoints); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxDataPoints", err)...)
+			}
+
+		}
+		delete(fields, "maxDataPoints")
+
+	}
+	// Field "queryType"
+	if fields["queryType"] != nil {
+		if string(fields["queryType"]) != "null" {
+			if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryType", err)...)
+			}
+
+		}
+		delete(fields, "queryType")
+
+	}
+	// Field "refId"
+	if fields["refId"] != nil {
+		if string(fields["refId"]) != "null" {
+			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "refId")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+	}
+	// Field "resultAssertions"
+	if fields["resultAssertions"] != nil {
+		if string(fields["resultAssertions"]) != "null" {
+
+			resource.ResultAssertions = &ExprTypeMathResultAssertions{}
+			if err := resource.ResultAssertions.UnmarshalJSONStrict(fields["resultAssertions"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+			}
+
+		}
+		delete(fields, "resultAssertions")
+
+	}
+	// Field "timeRange"
+	if fields["timeRange"] != nil {
+		if string(fields["timeRange"]) != "null" {
+
+			resource.TimeRange = &ExprTypeMathTimeRange{}
+			if err := resource.TimeRange.UnmarshalJSONStrict(fields["timeRange"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+			}
+
+		}
+		delete(fields, "timeRange")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TypeMath", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource TypeMath) Equals(otherCandidate variants.Dataquery) bool {
@@ -180,6 +338,39 @@ func (resource TypeMath) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource TypeMath) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
+	}
+	if !(len([]rune(resource.Expression)) >= 1) {
+		errs = append(errs, cog.MakeBuildErrors(
+			"expression",
+			errors.New("must be >= 1"),
+		)...)
+	}
+	if resource.ResultAssertions != nil {
+		if err := resource.ResultAssertions.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+		}
+	}
+	if resource.TimeRange != nil {
+		if err := resource.TimeRange.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type TypeReduce struct {
 	// The datasource
 	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
@@ -227,6 +418,180 @@ func (resource TypeReduce) ImplementsDataqueryVariant() {}
 
 func (resource TypeReduce) DataqueryType() string {
 	return "__expr__"
+}
+
+func (resource *TypeReduce) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "datasource"
+	if fields["datasource"] != nil {
+		if string(fields["datasource"]) != "null" {
+
+			resource.Datasource = &dashboard.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+			}
+
+		}
+		delete(fields, "datasource")
+
+	}
+	// Field "expression"
+	if fields["expression"] != nil {
+		if string(fields["expression"]) != "null" {
+			if err := json.Unmarshal(fields["expression"], &resource.Expression); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("expression", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expression", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expression")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expression", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+	// Field "intervalMs"
+	if fields["intervalMs"] != nil {
+		if string(fields["intervalMs"]) != "null" {
+			if err := json.Unmarshal(fields["intervalMs"], &resource.IntervalMs); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("intervalMs", err)...)
+			}
+
+		}
+		delete(fields, "intervalMs")
+
+	}
+	// Field "maxDataPoints"
+	if fields["maxDataPoints"] != nil {
+		if string(fields["maxDataPoints"]) != "null" {
+			if err := json.Unmarshal(fields["maxDataPoints"], &resource.MaxDataPoints); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxDataPoints", err)...)
+			}
+
+		}
+		delete(fields, "maxDataPoints")
+
+	}
+	// Field "queryType"
+	if fields["queryType"] != nil {
+		if string(fields["queryType"]) != "null" {
+			if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryType", err)...)
+			}
+
+		}
+		delete(fields, "queryType")
+
+	}
+	// Field "reducer"
+	if fields["reducer"] != nil {
+		if string(fields["reducer"]) != "null" {
+			if err := json.Unmarshal(fields["reducer"], &resource.Reducer); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("reducer", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("reducer", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "reducer")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("reducer", errors.New("required field is missing from input"))...)
+	}
+	// Field "refId"
+	if fields["refId"] != nil {
+		if string(fields["refId"]) != "null" {
+			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "refId")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+	}
+	// Field "resultAssertions"
+	if fields["resultAssertions"] != nil {
+		if string(fields["resultAssertions"]) != "null" {
+
+			resource.ResultAssertions = &ExprTypeReduceResultAssertions{}
+			if err := resource.ResultAssertions.UnmarshalJSONStrict(fields["resultAssertions"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+			}
+
+		}
+		delete(fields, "resultAssertions")
+
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			resource.Settings = &ExprTypeReduceSettings{}
+			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "timeRange"
+	if fields["timeRange"] != nil {
+		if string(fields["timeRange"]) != "null" {
+
+			resource.TimeRange = &ExprTypeReduceTimeRange{}
+			if err := resource.TimeRange.UnmarshalJSONStrict(fields["timeRange"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+			}
+
+		}
+		delete(fields, "timeRange")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TypeReduce", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource TypeReduce) Equals(otherCandidate variants.Dataquery) bool {
@@ -326,6 +691,44 @@ func (resource TypeReduce) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource TypeReduce) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
+	}
+	if !(len([]rune(resource.Expression)) >= 1) {
+		errs = append(errs, cog.MakeBuildErrors(
+			"expression",
+			errors.New("must be >= 1"),
+		)...)
+	}
+	if resource.ResultAssertions != nil {
+		if err := resource.ResultAssertions.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+		}
+	}
+	if resource.Settings != nil {
+		if err := resource.Settings.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+		}
+	}
+	if resource.TimeRange != nil {
+		if err := resource.TimeRange.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type TypeResample struct {
 	// The datasource
 	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
@@ -379,6 +782,195 @@ func (resource TypeResample) ImplementsDataqueryVariant() {}
 
 func (resource TypeResample) DataqueryType() string {
 	return "__expr__"
+}
+
+func (resource *TypeResample) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "datasource"
+	if fields["datasource"] != nil {
+		if string(fields["datasource"]) != "null" {
+
+			resource.Datasource = &dashboard.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+			}
+
+		}
+		delete(fields, "datasource")
+
+	}
+	// Field "downsampler"
+	if fields["downsampler"] != nil {
+		if string(fields["downsampler"]) != "null" {
+			if err := json.Unmarshal(fields["downsampler"], &resource.Downsampler); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("downsampler", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("downsampler", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "downsampler")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("downsampler", errors.New("required field is missing from input"))...)
+	}
+	// Field "expression"
+	if fields["expression"] != nil {
+		if string(fields["expression"]) != "null" {
+			if err := json.Unmarshal(fields["expression"], &resource.Expression); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("expression", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expression", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expression")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expression", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+	// Field "intervalMs"
+	if fields["intervalMs"] != nil {
+		if string(fields["intervalMs"]) != "null" {
+			if err := json.Unmarshal(fields["intervalMs"], &resource.IntervalMs); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("intervalMs", err)...)
+			}
+
+		}
+		delete(fields, "intervalMs")
+
+	}
+	// Field "maxDataPoints"
+	if fields["maxDataPoints"] != nil {
+		if string(fields["maxDataPoints"]) != "null" {
+			if err := json.Unmarshal(fields["maxDataPoints"], &resource.MaxDataPoints); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxDataPoints", err)...)
+			}
+
+		}
+		delete(fields, "maxDataPoints")
+
+	}
+	// Field "queryType"
+	if fields["queryType"] != nil {
+		if string(fields["queryType"]) != "null" {
+			if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryType", err)...)
+			}
+
+		}
+		delete(fields, "queryType")
+
+	}
+	// Field "refId"
+	if fields["refId"] != nil {
+		if string(fields["refId"]) != "null" {
+			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "refId")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+	}
+	// Field "resultAssertions"
+	if fields["resultAssertions"] != nil {
+		if string(fields["resultAssertions"]) != "null" {
+
+			resource.ResultAssertions = &ExprTypeResampleResultAssertions{}
+			if err := resource.ResultAssertions.UnmarshalJSONStrict(fields["resultAssertions"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+			}
+
+		}
+		delete(fields, "resultAssertions")
+
+	}
+	// Field "timeRange"
+	if fields["timeRange"] != nil {
+		if string(fields["timeRange"]) != "null" {
+
+			resource.TimeRange = &ExprTypeResampleTimeRange{}
+			if err := resource.TimeRange.UnmarshalJSONStrict(fields["timeRange"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+			}
+
+		}
+		delete(fields, "timeRange")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "upsampler"
+	if fields["upsampler"] != nil {
+		if string(fields["upsampler"]) != "null" {
+			if err := json.Unmarshal(fields["upsampler"], &resource.Upsampler); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("upsampler", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("upsampler", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "upsampler")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("upsampler", errors.New("required field is missing from input"))...)
+	}
+	// Field "window"
+	if fields["window"] != nil {
+		if string(fields["window"]) != "null" {
+			if err := json.Unmarshal(fields["window"], &resource.Window); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("window", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("window", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "window")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("window", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TypeResample", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource TypeResample) Equals(otherCandidate variants.Dataquery) bool {
@@ -475,6 +1067,45 @@ func (resource TypeResample) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource TypeResample) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
+	}
+	if !(len([]rune(resource.Expression)) >= 1) {
+		errs = append(errs, cog.MakeBuildErrors(
+			"expression",
+			errors.New("must be >= 1"),
+		)...)
+	}
+	if resource.ResultAssertions != nil {
+		if err := resource.ResultAssertions.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+		}
+	}
+	if resource.TimeRange != nil {
+		if err := resource.TimeRange.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+		}
+	}
+	if !(len([]rune(resource.Window)) >= 1) {
+		errs = append(errs, cog.MakeBuildErrors(
+			"window",
+			errors.New("must be >= 1"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type TypeClassicConditions struct {
 	Conditions []ExprTypeClassicConditionsConditions `json:"conditions"`
 	// The datasource
@@ -509,6 +1140,165 @@ func (resource TypeClassicConditions) ImplementsDataqueryVariant() {}
 
 func (resource TypeClassicConditions) DataqueryType() string {
 	return "__expr__"
+}
+
+func (resource *TypeClassicConditions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "conditions"
+	if fields["conditions"] != nil {
+		if string(fields["conditions"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["conditions"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 ExprTypeClassicConditionsConditions
+
+				result1 = ExprTypeClassicConditionsConditions{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("conditions["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Conditions = append(resource.Conditions, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("conditions", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "conditions")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("conditions", errors.New("required field is missing from input"))...)
+	}
+	// Field "datasource"
+	if fields["datasource"] != nil {
+		if string(fields["datasource"]) != "null" {
+
+			resource.Datasource = &dashboard.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+			}
+
+		}
+		delete(fields, "datasource")
+
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+	// Field "intervalMs"
+	if fields["intervalMs"] != nil {
+		if string(fields["intervalMs"]) != "null" {
+			if err := json.Unmarshal(fields["intervalMs"], &resource.IntervalMs); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("intervalMs", err)...)
+			}
+
+		}
+		delete(fields, "intervalMs")
+
+	}
+	// Field "maxDataPoints"
+	if fields["maxDataPoints"] != nil {
+		if string(fields["maxDataPoints"]) != "null" {
+			if err := json.Unmarshal(fields["maxDataPoints"], &resource.MaxDataPoints); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxDataPoints", err)...)
+			}
+
+		}
+		delete(fields, "maxDataPoints")
+
+	}
+	// Field "queryType"
+	if fields["queryType"] != nil {
+		if string(fields["queryType"]) != "null" {
+			if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryType", err)...)
+			}
+
+		}
+		delete(fields, "queryType")
+
+	}
+	// Field "refId"
+	if fields["refId"] != nil {
+		if string(fields["refId"]) != "null" {
+			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "refId")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+	}
+	// Field "resultAssertions"
+	if fields["resultAssertions"] != nil {
+		if string(fields["resultAssertions"]) != "null" {
+
+			resource.ResultAssertions = &ExprTypeClassicConditionsResultAssertions{}
+			if err := resource.ResultAssertions.UnmarshalJSONStrict(fields["resultAssertions"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+			}
+
+		}
+		delete(fields, "resultAssertions")
+
+	}
+	// Field "timeRange"
+	if fields["timeRange"] != nil {
+		if string(fields["timeRange"]) != "null" {
+
+			resource.TimeRange = &ExprTypeClassicConditionsTimeRange{}
+			if err := resource.TimeRange.UnmarshalJSONStrict(fields["timeRange"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+			}
+
+		}
+		delete(fields, "timeRange")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TypeClassicConditions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource TypeClassicConditions) Equals(otherCandidate variants.Dataquery) bool {
@@ -603,6 +1393,39 @@ func (resource TypeClassicConditions) Equals(otherCandidate variants.Dataquery) 
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource TypeClassicConditions) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Conditions {
+		if err := resource.Conditions[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("conditions["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
+	}
+	if resource.ResultAssertions != nil {
+		if err := resource.ResultAssertions.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+		}
+	}
+	if resource.TimeRange != nil {
+		if err := resource.TimeRange.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type TypeThreshold struct {
 	// Threshold Conditions
 	Conditions []ExprTypeThresholdConditions `json:"conditions"`
@@ -640,6 +1463,179 @@ func (resource TypeThreshold) ImplementsDataqueryVariant() {}
 
 func (resource TypeThreshold) DataqueryType() string {
 	return "__expr__"
+}
+
+func (resource *TypeThreshold) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "conditions"
+	if fields["conditions"] != nil {
+		if string(fields["conditions"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["conditions"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 ExprTypeThresholdConditions
+
+				result1 = ExprTypeThresholdConditions{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("conditions["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Conditions = append(resource.Conditions, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("conditions", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "conditions")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("conditions", errors.New("required field is missing from input"))...)
+	}
+	// Field "datasource"
+	if fields["datasource"] != nil {
+		if string(fields["datasource"]) != "null" {
+
+			resource.Datasource = &dashboard.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+			}
+
+		}
+		delete(fields, "datasource")
+
+	}
+	// Field "expression"
+	if fields["expression"] != nil {
+		if string(fields["expression"]) != "null" {
+			if err := json.Unmarshal(fields["expression"], &resource.Expression); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("expression", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expression", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expression")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expression", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+	// Field "intervalMs"
+	if fields["intervalMs"] != nil {
+		if string(fields["intervalMs"]) != "null" {
+			if err := json.Unmarshal(fields["intervalMs"], &resource.IntervalMs); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("intervalMs", err)...)
+			}
+
+		}
+		delete(fields, "intervalMs")
+
+	}
+	// Field "maxDataPoints"
+	if fields["maxDataPoints"] != nil {
+		if string(fields["maxDataPoints"]) != "null" {
+			if err := json.Unmarshal(fields["maxDataPoints"], &resource.MaxDataPoints); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxDataPoints", err)...)
+			}
+
+		}
+		delete(fields, "maxDataPoints")
+
+	}
+	// Field "queryType"
+	if fields["queryType"] != nil {
+		if string(fields["queryType"]) != "null" {
+			if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryType", err)...)
+			}
+
+		}
+		delete(fields, "queryType")
+
+	}
+	// Field "refId"
+	if fields["refId"] != nil {
+		if string(fields["refId"]) != "null" {
+			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "refId")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+	}
+	// Field "resultAssertions"
+	if fields["resultAssertions"] != nil {
+		if string(fields["resultAssertions"]) != "null" {
+
+			resource.ResultAssertions = &ExprTypeThresholdResultAssertions{}
+			if err := resource.ResultAssertions.UnmarshalJSONStrict(fields["resultAssertions"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+			}
+
+		}
+		delete(fields, "resultAssertions")
+
+	}
+	// Field "timeRange"
+	if fields["timeRange"] != nil {
+		if string(fields["timeRange"]) != "null" {
+
+			resource.TimeRange = &ExprTypeThresholdTimeRange{}
+			if err := resource.TimeRange.UnmarshalJSONStrict(fields["timeRange"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+			}
+
+		}
+		delete(fields, "timeRange")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TypeThreshold", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource TypeThreshold) Equals(otherCandidate variants.Dataquery) bool {
@@ -737,6 +1733,45 @@ func (resource TypeThreshold) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource TypeThreshold) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Conditions {
+		if err := resource.Conditions[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("conditions["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
+	}
+	if !(len([]rune(resource.Expression)) >= 1) {
+		errs = append(errs, cog.MakeBuildErrors(
+			"expression",
+			errors.New("must be >= 1"),
+		)...)
+	}
+	if resource.ResultAssertions != nil {
+		if err := resource.ResultAssertions.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+		}
+	}
+	if resource.TimeRange != nil {
+		if err := resource.TimeRange.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type TypeSql struct {
 	// The datasource
 	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
@@ -771,6 +1806,153 @@ func (resource TypeSql) ImplementsDataqueryVariant() {}
 
 func (resource TypeSql) DataqueryType() string {
 	return "__expr__"
+}
+
+func (resource *TypeSql) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "datasource"
+	if fields["datasource"] != nil {
+		if string(fields["datasource"]) != "null" {
+
+			resource.Datasource = &dashboard.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+			}
+
+		}
+		delete(fields, "datasource")
+
+	}
+	// Field "expression"
+	if fields["expression"] != nil {
+		if string(fields["expression"]) != "null" {
+			if err := json.Unmarshal(fields["expression"], &resource.Expression); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("expression", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expression", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expression")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expression", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+	// Field "intervalMs"
+	if fields["intervalMs"] != nil {
+		if string(fields["intervalMs"]) != "null" {
+			if err := json.Unmarshal(fields["intervalMs"], &resource.IntervalMs); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("intervalMs", err)...)
+			}
+
+		}
+		delete(fields, "intervalMs")
+
+	}
+	// Field "maxDataPoints"
+	if fields["maxDataPoints"] != nil {
+		if string(fields["maxDataPoints"]) != "null" {
+			if err := json.Unmarshal(fields["maxDataPoints"], &resource.MaxDataPoints); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxDataPoints", err)...)
+			}
+
+		}
+		delete(fields, "maxDataPoints")
+
+	}
+	// Field "queryType"
+	if fields["queryType"] != nil {
+		if string(fields["queryType"]) != "null" {
+			if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryType", err)...)
+			}
+
+		}
+		delete(fields, "queryType")
+
+	}
+	// Field "refId"
+	if fields["refId"] != nil {
+		if string(fields["refId"]) != "null" {
+			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "refId")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+	}
+	// Field "resultAssertions"
+	if fields["resultAssertions"] != nil {
+		if string(fields["resultAssertions"]) != "null" {
+
+			resource.ResultAssertions = &ExprTypeSqlResultAssertions{}
+			if err := resource.ResultAssertions.UnmarshalJSONStrict(fields["resultAssertions"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+			}
+
+		}
+		delete(fields, "resultAssertions")
+
+	}
+	// Field "timeRange"
+	if fields["timeRange"] != nil {
+		if string(fields["timeRange"]) != "null" {
+
+			resource.TimeRange = &ExprTypeSqlTimeRange{}
+			if err := resource.TimeRange.UnmarshalJSONStrict(fields["timeRange"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+			}
+
+		}
+		delete(fields, "timeRange")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TypeSql", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource TypeSql) Equals(otherCandidate variants.Dataquery) bool {
@@ -856,6 +2038,39 @@ func (resource TypeSql) Equals(otherCandidate variants.Dataquery) bool {
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource TypeSql) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
+	}
+	if !(len([]rune(resource.Expression)) >= 1) {
+		errs = append(errs, cog.MakeBuildErrors(
+			"expression",
+			errors.New("must be >= 1"),
+		)...)
+	}
+	if resource.ResultAssertions != nil {
+		if err := resource.ResultAssertions.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("resultAssertions", err)...)
+		}
+	}
+	if resource.TimeRange != nil {
+		if err := resource.TimeRange.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("timeRange", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 type TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql struct {
@@ -967,6 +2182,75 @@ func (resource *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeT
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
+func (resource *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
+	parsedAsMap := make(map[string]any)
+	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
+		return err
+	}
+
+	discriminator, found := parsedAsMap["type"]
+	if !found {
+		return fmt.Errorf("discriminator field 'type' not found in payload")
+	}
+
+	switch discriminator {
+	case "classic_conditions":
+		typeClassicConditions := &TypeClassicConditions{}
+		if err := typeClassicConditions.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.TypeClassicConditions = typeClassicConditions
+		return nil
+	case "math":
+		typeMath := &TypeMath{}
+		if err := typeMath.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.TypeMath = typeMath
+		return nil
+	case "reduce":
+		typeReduce := &TypeReduce{}
+		if err := typeReduce.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.TypeReduce = typeReduce
+		return nil
+	case "resample":
+		typeResample := &TypeResample{}
+		if err := typeResample.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.TypeResample = typeResample
+		return nil
+	case "sql":
+		typeSql := &TypeSql{}
+		if err := typeSql.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.TypeSql = typeSql
+		return nil
+	case "threshold":
+		typeThreshold := &TypeThreshold{}
+		if err := typeThreshold.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.TypeThreshold = typeThreshold
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+}
+
 func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -1032,6 +2316,48 @@ func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeTh
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) Validate() error {
+	var errs cog.BuildErrors
+	if resource.TypeMath != nil {
+		if err := resource.TypeMath.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("TypeMath", err)...)
+		}
+	}
+	if resource.TypeReduce != nil {
+		if err := resource.TypeReduce.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("TypeReduce", err)...)
+		}
+	}
+	if resource.TypeResample != nil {
+		if err := resource.TypeResample.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("TypeResample", err)...)
+		}
+	}
+	if resource.TypeClassicConditions != nil {
+		if err := resource.TypeClassicConditions.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("TypeClassicConditions", err)...)
+		}
+	}
+	if resource.TypeThreshold != nil {
+		if err := resource.TypeThreshold.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("TypeThreshold", err)...)
+		}
+	}
+	if resource.TypeSql != nil {
+		if err := resource.TypeSql.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("TypeSql", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 type TypeMathType string
@@ -1191,6 +2517,65 @@ type ExprTypeMathResultAssertions struct {
 	TypeVersion []int64 `json:"typeVersion"`
 }
 
+func (resource *ExprTypeMathResultAssertions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "maxFrames"
+	if fields["maxFrames"] != nil {
+		if string(fields["maxFrames"]) != "null" {
+			if err := json.Unmarshal(fields["maxFrames"], &resource.MaxFrames); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxFrames", err)...)
+			}
+
+		}
+		delete(fields, "maxFrames")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+
+		}
+		delete(fields, "type")
+
+	}
+	// Field "typeVersion"
+	if fields["typeVersion"] != nil {
+		if string(fields["typeVersion"]) != "null" {
+
+			if err := json.Unmarshal(fields["typeVersion"], &resource.TypeVersion); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("typeVersion", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "typeVersion")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeMathResultAssertions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 func (resource ExprTypeMathResultAssertions) Equals(other ExprTypeMathResultAssertions) bool {
 	if resource.MaxFrames == nil && other.MaxFrames != nil || resource.MaxFrames != nil && other.MaxFrames == nil {
 		return false
@@ -1224,11 +2609,67 @@ func (resource ExprTypeMathResultAssertions) Equals(other ExprTypeMathResultAsse
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeMathResultAssertions) Validate() error {
+	return nil
+}
+
 type ExprTypeMathTimeRange struct {
 	// From is the start time of the query.
 	From string `json:"from"`
 	// To is the end time of the query.
 	To string `json:"to"`
+}
+
+func (resource *ExprTypeMathTimeRange) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "from"
+	if fields["from"] != nil {
+		if string(fields["from"]) != "null" {
+			if err := json.Unmarshal(fields["from"], &resource.From); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("from", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "from")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+	}
+	// Field "to"
+	if fields["to"] != nil {
+		if string(fields["to"]) != "null" {
+			if err := json.Unmarshal(fields["to"], &resource.To); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("to", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "to")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeMathTimeRange", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeMathTimeRange) Equals(other ExprTypeMathTimeRange) bool {
@@ -1240,6 +2681,12 @@ func (resource ExprTypeMathTimeRange) Equals(other ExprTypeMathTimeRange) bool {
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeMathTimeRange) Validate() error {
+	return nil
 }
 
 type ExprTypeReduceResultAssertions struct {
@@ -1262,6 +2709,65 @@ type ExprTypeReduceResultAssertions struct {
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
+}
+
+func (resource *ExprTypeReduceResultAssertions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "maxFrames"
+	if fields["maxFrames"] != nil {
+		if string(fields["maxFrames"]) != "null" {
+			if err := json.Unmarshal(fields["maxFrames"], &resource.MaxFrames); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxFrames", err)...)
+			}
+
+		}
+		delete(fields, "maxFrames")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+
+		}
+		delete(fields, "type")
+
+	}
+	// Field "typeVersion"
+	if fields["typeVersion"] != nil {
+		if string(fields["typeVersion"]) != "null" {
+
+			if err := json.Unmarshal(fields["typeVersion"], &resource.TypeVersion); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("typeVersion", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "typeVersion")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeReduceResultAssertions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeReduceResultAssertions) Equals(other ExprTypeReduceResultAssertions) bool {
@@ -1297,6 +2803,12 @@ func (resource ExprTypeReduceResultAssertions) Equals(other ExprTypeReduceResult
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeReduceResultAssertions) Validate() error {
+	return nil
+}
+
 type ExprTypeReduceSettings struct {
 	// Non-number reduce behavior
 	// Possible enum values:
@@ -1305,6 +2817,53 @@ type ExprTypeReduceSettings struct {
 	Mode TypeReduceMode `json:"mode"`
 	// Only valid when mode is replace
 	ReplaceWithValue *float64 `json:"replaceWithValue,omitempty"`
+}
+
+func (resource *ExprTypeReduceSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "mode"
+	if fields["mode"] != nil {
+		if string(fields["mode"]) != "null" {
+			if err := json.Unmarshal(fields["mode"], &resource.Mode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("mode", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "mode")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is missing from input"))...)
+	}
+	// Field "replaceWithValue"
+	if fields["replaceWithValue"] != nil {
+		if string(fields["replaceWithValue"]) != "null" {
+			if err := json.Unmarshal(fields["replaceWithValue"], &resource.ReplaceWithValue); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("replaceWithValue", err)...)
+			}
+
+		}
+		delete(fields, "replaceWithValue")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeReduceSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeReduceSettings) Equals(other ExprTypeReduceSettings) bool {
@@ -1324,11 +2883,67 @@ func (resource ExprTypeReduceSettings) Equals(other ExprTypeReduceSettings) bool
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeReduceSettings) Validate() error {
+	return nil
+}
+
 type ExprTypeReduceTimeRange struct {
 	// From is the start time of the query.
 	From string `json:"from"`
 	// To is the end time of the query.
 	To string `json:"to"`
+}
+
+func (resource *ExprTypeReduceTimeRange) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "from"
+	if fields["from"] != nil {
+		if string(fields["from"]) != "null" {
+			if err := json.Unmarshal(fields["from"], &resource.From); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("from", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "from")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+	}
+	// Field "to"
+	if fields["to"] != nil {
+		if string(fields["to"]) != "null" {
+			if err := json.Unmarshal(fields["to"], &resource.To); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("to", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "to")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeReduceTimeRange", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeReduceTimeRange) Equals(other ExprTypeReduceTimeRange) bool {
@@ -1340,6 +2955,12 @@ func (resource ExprTypeReduceTimeRange) Equals(other ExprTypeReduceTimeRange) bo
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeReduceTimeRange) Validate() error {
+	return nil
 }
 
 type ExprTypeResampleResultAssertions struct {
@@ -1362,6 +2983,65 @@ type ExprTypeResampleResultAssertions struct {
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
+}
+
+func (resource *ExprTypeResampleResultAssertions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "maxFrames"
+	if fields["maxFrames"] != nil {
+		if string(fields["maxFrames"]) != "null" {
+			if err := json.Unmarshal(fields["maxFrames"], &resource.MaxFrames); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxFrames", err)...)
+			}
+
+		}
+		delete(fields, "maxFrames")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+
+		}
+		delete(fields, "type")
+
+	}
+	// Field "typeVersion"
+	if fields["typeVersion"] != nil {
+		if string(fields["typeVersion"]) != "null" {
+
+			if err := json.Unmarshal(fields["typeVersion"], &resource.TypeVersion); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("typeVersion", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "typeVersion")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeResampleResultAssertions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeResampleResultAssertions) Equals(other ExprTypeResampleResultAssertions) bool {
@@ -1397,11 +3077,67 @@ func (resource ExprTypeResampleResultAssertions) Equals(other ExprTypeResampleRe
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeResampleResultAssertions) Validate() error {
+	return nil
+}
+
 type ExprTypeResampleTimeRange struct {
 	// From is the start time of the query.
 	From string `json:"from"`
 	// To is the end time of the query.
 	To string `json:"to"`
+}
+
+func (resource *ExprTypeResampleTimeRange) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "from"
+	if fields["from"] != nil {
+		if string(fields["from"]) != "null" {
+			if err := json.Unmarshal(fields["from"], &resource.From); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("from", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "from")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+	}
+	// Field "to"
+	if fields["to"] != nil {
+		if string(fields["to"]) != "null" {
+			if err := json.Unmarshal(fields["to"], &resource.To); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("to", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "to")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeResampleTimeRange", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeResampleTimeRange) Equals(other ExprTypeResampleTimeRange) bool {
@@ -1415,10 +3151,67 @@ func (resource ExprTypeResampleTimeRange) Equals(other ExprTypeResampleTimeRange
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeResampleTimeRange) Validate() error {
+	return nil
+}
+
 type ExprTypeClassicConditionsConditionsEvaluator struct {
 	Params []float64 `json:"params"`
 	// e.g. "gt"
 	Type string `json:"type"`
+}
+
+func (resource *ExprTypeClassicConditionsConditionsEvaluator) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "params"
+	if fields["params"] != nil {
+		if string(fields["params"]) != "null" {
+
+			if err := json.Unmarshal(fields["params"], &resource.Params); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("params", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("params", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "params")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("params", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeClassicConditionsConditionsEvaluator", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeClassicConditionsConditionsEvaluator) Equals(other ExprTypeClassicConditionsConditionsEvaluator) bool {
@@ -1439,8 +3232,50 @@ func (resource ExprTypeClassicConditionsConditionsEvaluator) Equals(other ExprTy
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeClassicConditionsConditionsEvaluator) Validate() error {
+	return nil
+}
+
 type ExprTypeClassicConditionsConditionsOperator struct {
 	Type TypeClassicConditionsType `json:"type"`
+}
+
+func (resource *ExprTypeClassicConditionsConditionsOperator) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeClassicConditionsConditionsOperator", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeClassicConditionsConditionsOperator) Equals(other ExprTypeClassicConditionsConditionsOperator) bool {
@@ -1451,8 +3286,51 @@ func (resource ExprTypeClassicConditionsConditionsOperator) Equals(other ExprTyp
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeClassicConditionsConditionsOperator) Validate() error {
+	return nil
+}
+
 type ExprTypeClassicConditionsConditionsQuery struct {
 	Params []string `json:"params"`
+}
+
+func (resource *ExprTypeClassicConditionsConditionsQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "params"
+	if fields["params"] != nil {
+		if string(fields["params"]) != "null" {
+
+			if err := json.Unmarshal(fields["params"], &resource.Params); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("params", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("params", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "params")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("params", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeClassicConditionsConditionsQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeClassicConditionsConditionsQuery) Equals(other ExprTypeClassicConditionsConditionsQuery) bool {
@@ -1470,8 +3348,50 @@ func (resource ExprTypeClassicConditionsConditionsQuery) Equals(other ExprTypeCl
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeClassicConditionsConditionsQuery) Validate() error {
+	return nil
+}
+
 type ExprTypeClassicConditionsConditionsReducer struct {
 	Type string `json:"type"`
+}
+
+func (resource *ExprTypeClassicConditionsConditionsReducer) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeClassicConditionsConditionsReducer", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeClassicConditionsConditionsReducer) Equals(other ExprTypeClassicConditionsConditionsReducer) bool {
@@ -1482,11 +3402,103 @@ func (resource ExprTypeClassicConditionsConditionsReducer) Equals(other ExprType
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeClassicConditionsConditionsReducer) Validate() error {
+	return nil
+}
+
 type ExprTypeClassicConditionsConditions struct {
 	Evaluator ExprTypeClassicConditionsConditionsEvaluator `json:"evaluator"`
 	Operator  ExprTypeClassicConditionsConditionsOperator  `json:"operator"`
 	Query     ExprTypeClassicConditionsConditionsQuery     `json:"query"`
 	Reducer   ExprTypeClassicConditionsConditionsReducer   `json:"reducer"`
+}
+
+func (resource *ExprTypeClassicConditionsConditions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "evaluator"
+	if fields["evaluator"] != nil {
+		if string(fields["evaluator"]) != "null" {
+
+			resource.Evaluator = ExprTypeClassicConditionsConditionsEvaluator{}
+			if err := resource.Evaluator.UnmarshalJSONStrict(fields["evaluator"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("evaluator", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("evaluator", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "evaluator")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("evaluator", errors.New("required field is missing from input"))...)
+	}
+	// Field "operator"
+	if fields["operator"] != nil {
+		if string(fields["operator"]) != "null" {
+
+			resource.Operator = ExprTypeClassicConditionsConditionsOperator{}
+			if err := resource.Operator.UnmarshalJSONStrict(fields["operator"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("operator", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("operator", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "operator")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("operator", errors.New("required field is missing from input"))...)
+	}
+	// Field "query"
+	if fields["query"] != nil {
+		if string(fields["query"]) != "null" {
+
+			resource.Query = ExprTypeClassicConditionsConditionsQuery{}
+			if err := resource.Query.UnmarshalJSONStrict(fields["query"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("query", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("query", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "query")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("query", errors.New("required field is missing from input"))...)
+	}
+	// Field "reducer"
+	if fields["reducer"] != nil {
+		if string(fields["reducer"]) != "null" {
+
+			resource.Reducer = ExprTypeClassicConditionsConditionsReducer{}
+			if err := resource.Reducer.UnmarshalJSONStrict(fields["reducer"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("reducer", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("reducer", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "reducer")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("reducer", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeClassicConditionsConditions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeClassicConditionsConditions) Equals(other ExprTypeClassicConditionsConditions) bool {
@@ -1504,6 +3516,30 @@ func (resource ExprTypeClassicConditionsConditions) Equals(other ExprTypeClassic
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeClassicConditionsConditions) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Evaluator.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("evaluator", err)...)
+	}
+	if err := resource.Operator.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("operator", err)...)
+	}
+	if err := resource.Query.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("query", err)...)
+	}
+	if err := resource.Reducer.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("reducer", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 type ExprTypeClassicConditionsResultAssertions struct {
@@ -1526,6 +3562,65 @@ type ExprTypeClassicConditionsResultAssertions struct {
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
+}
+
+func (resource *ExprTypeClassicConditionsResultAssertions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "maxFrames"
+	if fields["maxFrames"] != nil {
+		if string(fields["maxFrames"]) != "null" {
+			if err := json.Unmarshal(fields["maxFrames"], &resource.MaxFrames); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxFrames", err)...)
+			}
+
+		}
+		delete(fields, "maxFrames")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+
+		}
+		delete(fields, "type")
+
+	}
+	// Field "typeVersion"
+	if fields["typeVersion"] != nil {
+		if string(fields["typeVersion"]) != "null" {
+
+			if err := json.Unmarshal(fields["typeVersion"], &resource.TypeVersion); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("typeVersion", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "typeVersion")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeClassicConditionsResultAssertions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeClassicConditionsResultAssertions) Equals(other ExprTypeClassicConditionsResultAssertions) bool {
@@ -1561,11 +3656,67 @@ func (resource ExprTypeClassicConditionsResultAssertions) Equals(other ExprTypeC
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeClassicConditionsResultAssertions) Validate() error {
+	return nil
+}
+
 type ExprTypeClassicConditionsTimeRange struct {
 	// From is the start time of the query.
 	From string `json:"from"`
 	// To is the end time of the query.
 	To string `json:"to"`
+}
+
+func (resource *ExprTypeClassicConditionsTimeRange) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "from"
+	if fields["from"] != nil {
+		if string(fields["from"]) != "null" {
+			if err := json.Unmarshal(fields["from"], &resource.From); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("from", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "from")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+	}
+	// Field "to"
+	if fields["to"] != nil {
+		if string(fields["to"]) != "null" {
+			if err := json.Unmarshal(fields["to"], &resource.To); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("to", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "to")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeClassicConditionsTimeRange", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeClassicConditionsTimeRange) Equals(other ExprTypeClassicConditionsTimeRange) bool {
@@ -1579,10 +3730,67 @@ func (resource ExprTypeClassicConditionsTimeRange) Equals(other ExprTypeClassicC
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeClassicConditionsTimeRange) Validate() error {
+	return nil
+}
+
 type ExprTypeThresholdConditionsEvaluator struct {
 	Params []float64 `json:"params"`
 	// e.g. "gt"
 	Type TypeThresholdType `json:"type"`
+}
+
+func (resource *ExprTypeThresholdConditionsEvaluator) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "params"
+	if fields["params"] != nil {
+		if string(fields["params"]) != "null" {
+
+			if err := json.Unmarshal(fields["params"], &resource.Params); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("params", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("params", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "params")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("params", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeThresholdConditionsEvaluator", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeThresholdConditionsEvaluator) Equals(other ExprTypeThresholdConditionsEvaluator) bool {
@@ -1603,10 +3811,67 @@ func (resource ExprTypeThresholdConditionsEvaluator) Equals(other ExprTypeThresh
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeThresholdConditionsEvaluator) Validate() error {
+	return nil
+}
+
 type ExprTypeThresholdConditionsUnloadEvaluator struct {
 	Params []float64 `json:"params"`
 	// e.g. "gt"
 	Type TypeThresholdType `json:"type"`
+}
+
+func (resource *ExprTypeThresholdConditionsUnloadEvaluator) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "params"
+	if fields["params"] != nil {
+		if string(fields["params"]) != "null" {
+
+			if err := json.Unmarshal(fields["params"], &resource.Params); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("params", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("params", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "params")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("params", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeThresholdConditionsUnloadEvaluator", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeThresholdConditionsUnloadEvaluator) Equals(other ExprTypeThresholdConditionsUnloadEvaluator) bool {
@@ -1627,10 +3892,78 @@ func (resource ExprTypeThresholdConditionsUnloadEvaluator) Equals(other ExprType
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeThresholdConditionsUnloadEvaluator) Validate() error {
+	return nil
+}
+
 type ExprTypeThresholdConditions struct {
 	Evaluator        ExprTypeThresholdConditionsEvaluator        `json:"evaluator"`
 	LoadedDimensions any                                         `json:"loadedDimensions,omitempty"`
 	UnloadEvaluator  *ExprTypeThresholdConditionsUnloadEvaluator `json:"unloadEvaluator,omitempty"`
+}
+
+func (resource *ExprTypeThresholdConditions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "evaluator"
+	if fields["evaluator"] != nil {
+		if string(fields["evaluator"]) != "null" {
+
+			resource.Evaluator = ExprTypeThresholdConditionsEvaluator{}
+			if err := resource.Evaluator.UnmarshalJSONStrict(fields["evaluator"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("evaluator", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("evaluator", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "evaluator")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("evaluator", errors.New("required field is missing from input"))...)
+	}
+	// Field "loadedDimensions"
+	if fields["loadedDimensions"] != nil {
+		if string(fields["loadedDimensions"]) != "null" {
+			if err := json.Unmarshal(fields["loadedDimensions"], &resource.LoadedDimensions); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("loadedDimensions", err)...)
+			}
+
+		}
+		delete(fields, "loadedDimensions")
+
+	}
+	// Field "unloadEvaluator"
+	if fields["unloadEvaluator"] != nil {
+		if string(fields["unloadEvaluator"]) != "null" {
+
+			resource.UnloadEvaluator = &ExprTypeThresholdConditionsUnloadEvaluator{}
+			if err := resource.UnloadEvaluator.UnmarshalJSONStrict(fields["unloadEvaluator"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("unloadEvaluator", err)...)
+			}
+
+		}
+		delete(fields, "unloadEvaluator")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeThresholdConditions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeThresholdConditions) Equals(other ExprTypeThresholdConditions) bool {
@@ -1654,6 +3987,26 @@ func (resource ExprTypeThresholdConditions) Equals(other ExprTypeThresholdCondit
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeThresholdConditions) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Evaluator.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("evaluator", err)...)
+	}
+	if resource.UnloadEvaluator != nil {
+		if err := resource.UnloadEvaluator.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("unloadEvaluator", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type ExprTypeThresholdResultAssertions struct {
 	// Maximum frame count
 	MaxFrames *int64 `json:"maxFrames,omitempty"`
@@ -1674,6 +4027,65 @@ type ExprTypeThresholdResultAssertions struct {
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
+}
+
+func (resource *ExprTypeThresholdResultAssertions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "maxFrames"
+	if fields["maxFrames"] != nil {
+		if string(fields["maxFrames"]) != "null" {
+			if err := json.Unmarshal(fields["maxFrames"], &resource.MaxFrames); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxFrames", err)...)
+			}
+
+		}
+		delete(fields, "maxFrames")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+
+		}
+		delete(fields, "type")
+
+	}
+	// Field "typeVersion"
+	if fields["typeVersion"] != nil {
+		if string(fields["typeVersion"]) != "null" {
+
+			if err := json.Unmarshal(fields["typeVersion"], &resource.TypeVersion); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("typeVersion", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "typeVersion")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeThresholdResultAssertions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeThresholdResultAssertions) Equals(other ExprTypeThresholdResultAssertions) bool {
@@ -1709,11 +4121,67 @@ func (resource ExprTypeThresholdResultAssertions) Equals(other ExprTypeThreshold
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeThresholdResultAssertions) Validate() error {
+	return nil
+}
+
 type ExprTypeThresholdTimeRange struct {
 	// From is the start time of the query.
 	From string `json:"from"`
 	// To is the end time of the query.
 	To string `json:"to"`
+}
+
+func (resource *ExprTypeThresholdTimeRange) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "from"
+	if fields["from"] != nil {
+		if string(fields["from"]) != "null" {
+			if err := json.Unmarshal(fields["from"], &resource.From); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("from", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "from")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+	}
+	// Field "to"
+	if fields["to"] != nil {
+		if string(fields["to"]) != "null" {
+			if err := json.Unmarshal(fields["to"], &resource.To); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("to", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "to")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeThresholdTimeRange", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeThresholdTimeRange) Equals(other ExprTypeThresholdTimeRange) bool {
@@ -1725,6 +4193,12 @@ func (resource ExprTypeThresholdTimeRange) Equals(other ExprTypeThresholdTimeRan
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeThresholdTimeRange) Validate() error {
+	return nil
 }
 
 type ExprTypeSqlResultAssertions struct {
@@ -1747,6 +4221,65 @@ type ExprTypeSqlResultAssertions struct {
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
+}
+
+func (resource *ExprTypeSqlResultAssertions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "maxFrames"
+	if fields["maxFrames"] != nil {
+		if string(fields["maxFrames"]) != "null" {
+			if err := json.Unmarshal(fields["maxFrames"], &resource.MaxFrames); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxFrames", err)...)
+			}
+
+		}
+		delete(fields, "maxFrames")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+
+		}
+		delete(fields, "type")
+
+	}
+	// Field "typeVersion"
+	if fields["typeVersion"] != nil {
+		if string(fields["typeVersion"]) != "null" {
+
+			if err := json.Unmarshal(fields["typeVersion"], &resource.TypeVersion); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("typeVersion", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "typeVersion")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("typeVersion", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeSqlResultAssertions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeSqlResultAssertions) Equals(other ExprTypeSqlResultAssertions) bool {
@@ -1782,11 +4315,67 @@ func (resource ExprTypeSqlResultAssertions) Equals(other ExprTypeSqlResultAssert
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeSqlResultAssertions) Validate() error {
+	return nil
+}
+
 type ExprTypeSqlTimeRange struct {
 	// From is the start time of the query.
 	From string `json:"from"`
 	// To is the end time of the query.
 	To string `json:"to"`
+}
+
+func (resource *ExprTypeSqlTimeRange) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "from"
+	if fields["from"] != nil {
+		if string(fields["from"]) != "null" {
+			if err := json.Unmarshal(fields["from"], &resource.From); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("from", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "from")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+	}
+	// Field "to"
+	if fields["to"] != nil {
+		if string(fields["to"]) != "null" {
+			if err := json.Unmarshal(fields["to"], &resource.To); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("to", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "to")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExprTypeSqlTimeRange", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ExprTypeSqlTimeRange) Equals(other ExprTypeSqlTimeRange) bool {
@@ -1798,4 +4387,10 @@ func (resource ExprTypeSqlTimeRange) Equals(other ExprTypeSqlTimeRange) bool {
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ExprTypeSqlTimeRange) Validate() error {
+	return nil
 }

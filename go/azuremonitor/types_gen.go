@@ -6,7 +6,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"strconv"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
@@ -69,6 +71,15 @@ func VariantConfig() variants.DataqueryConfig {
 
 			return dataquery, nil
 		},
+		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &AzureMonitorQuery{}
+
+			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
 		GoConverter: func(input any) string {
 			var dataquery AzureMonitorQuery
 			if cast, ok := input.(*AzureMonitorQuery); ok {
@@ -79,6 +90,209 @@ func VariantConfig() variants.DataqueryConfig {
 			return AzureMonitorQueryConverter(dataquery)
 		},
 	}
+}
+
+func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "refId"
+	if fields["refId"] != nil {
+		if string(fields["refId"]) != "null" {
+			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "refId")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+	// Field "queryType"
+	if fields["queryType"] != nil {
+		if string(fields["queryType"]) != "null" {
+			if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryType", err)...)
+			}
+
+		}
+		delete(fields, "queryType")
+
+	}
+	// Field "subscription"
+	if fields["subscription"] != nil {
+		if string(fields["subscription"]) != "null" {
+			if err := json.Unmarshal(fields["subscription"], &resource.Subscription); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subscription", err)...)
+			}
+
+		}
+		delete(fields, "subscription")
+
+	}
+	// Field "subscriptions"
+	if fields["subscriptions"] != nil {
+		if string(fields["subscriptions"]) != "null" {
+
+			if err := json.Unmarshal(fields["subscriptions"], &resource.Subscriptions); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subscriptions", err)...)
+			}
+
+		}
+		delete(fields, "subscriptions")
+
+	}
+	// Field "azureMonitor"
+	if fields["azureMonitor"] != nil {
+		if string(fields["azureMonitor"]) != "null" {
+
+			resource.AzureMonitor = &AzureMetricQuery{}
+			if err := resource.AzureMonitor.UnmarshalJSONStrict(fields["azureMonitor"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("azureMonitor", err)...)
+			}
+
+		}
+		delete(fields, "azureMonitor")
+
+	}
+	// Field "azureLogAnalytics"
+	if fields["azureLogAnalytics"] != nil {
+		if string(fields["azureLogAnalytics"]) != "null" {
+
+			resource.AzureLogAnalytics = &AzureLogsQuery{}
+			if err := resource.AzureLogAnalytics.UnmarshalJSONStrict(fields["azureLogAnalytics"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("azureLogAnalytics", err)...)
+			}
+
+		}
+		delete(fields, "azureLogAnalytics")
+
+	}
+	// Field "azureResourceGraph"
+	if fields["azureResourceGraph"] != nil {
+		if string(fields["azureResourceGraph"]) != "null" {
+
+			resource.AzureResourceGraph = &AzureResourceGraphQuery{}
+			if err := resource.AzureResourceGraph.UnmarshalJSONStrict(fields["azureResourceGraph"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("azureResourceGraph", err)...)
+			}
+
+		}
+		delete(fields, "azureResourceGraph")
+
+	}
+	// Field "azureTraces"
+	if fields["azureTraces"] != nil {
+		if string(fields["azureTraces"]) != "null" {
+
+			resource.AzureTraces = &AzureTracesQuery{}
+			if err := resource.AzureTraces.UnmarshalJSONStrict(fields["azureTraces"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("azureTraces", err)...)
+			}
+
+		}
+		delete(fields, "azureTraces")
+
+	}
+	// Field "grafanaTemplateVariableFn"
+	if fields["grafanaTemplateVariableFn"] != nil {
+		if string(fields["grafanaTemplateVariableFn"]) != "null" {
+
+			resource.GrafanaTemplateVariableFn = &GrafanaTemplateVariableQuery{}
+			if err := resource.GrafanaTemplateVariableFn.UnmarshalJSONStrict(fields["grafanaTemplateVariableFn"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("grafanaTemplateVariableFn", err)...)
+			}
+
+		}
+		delete(fields, "grafanaTemplateVariableFn")
+
+	}
+	// Field "resourceGroup"
+	if fields["resourceGroup"] != nil {
+		if string(fields["resourceGroup"]) != "null" {
+			if err := json.Unmarshal(fields["resourceGroup"], &resource.ResourceGroup); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceGroup", err)...)
+			}
+
+		}
+		delete(fields, "resourceGroup")
+
+	}
+	// Field "namespace"
+	if fields["namespace"] != nil {
+		if string(fields["namespace"]) != "null" {
+			if err := json.Unmarshal(fields["namespace"], &resource.Namespace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("namespace", err)...)
+			}
+
+		}
+		delete(fields, "namespace")
+
+	}
+	// Field "resource"
+	if fields["resource"] != nil {
+		if string(fields["resource"]) != "null" {
+			if err := json.Unmarshal(fields["resource"], &resource.Resource); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resource", err)...)
+			}
+
+		}
+		delete(fields, "resource")
+
+	}
+	// Field "datasource"
+	if fields["datasource"] != nil {
+		if string(fields["datasource"]) != "null" {
+
+			resource.Datasource = &dashboard.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+			}
+
+		}
+		delete(fields, "datasource")
+
+	}
+	// Field "region"
+	if fields["region"] != nil {
+		if string(fields["region"]) != "null" {
+			if err := json.Unmarshal(fields["region"], &resource.Region); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("region", err)...)
+			}
+
+		}
+		delete(fields, "region")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AzureMonitorQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource AzureMonitorQuery) Equals(otherCandidate variants.Dataquery) bool {
@@ -224,6 +438,48 @@ func (resource AzureMonitorQuery) Equals(otherCandidate variants.Dataquery) bool
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource AzureMonitorQuery) Validate() error {
+	var errs cog.BuildErrors
+	if resource.AzureMonitor != nil {
+		if err := resource.AzureMonitor.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("azureMonitor", err)...)
+		}
+	}
+	if resource.AzureLogAnalytics != nil {
+		if err := resource.AzureLogAnalytics.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("azureLogAnalytics", err)...)
+		}
+	}
+	if resource.AzureResourceGraph != nil {
+		if err := resource.AzureResourceGraph.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("azureResourceGraph", err)...)
+		}
+	}
+	if resource.AzureTraces != nil {
+		if err := resource.AzureTraces.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("azureTraces", err)...)
+		}
+	}
+	if resource.GrafanaTemplateVariableFn != nil {
+		if err := resource.GrafanaTemplateVariableFn.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("grafanaTemplateVariableFn", err)...)
+		}
+	}
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 // Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
 type AzureQueryType string
 
@@ -281,6 +537,251 @@ type AzureMetricQuery struct {
 	ResourceGroup *string `json:"resourceGroup,omitempty"`
 	// @deprecated Use resources instead
 	ResourceName *string `json:"resourceName,omitempty"`
+}
+
+func (resource *AzureMetricQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "resources"
+	if fields["resources"] != nil {
+		if string(fields["resources"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["resources"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 AzureMonitorResource
+
+				result1 = AzureMonitorResource{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("resources["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Resources = append(resource.Resources, result1)
+			}
+
+		}
+		delete(fields, "resources")
+
+	}
+	// Field "metricNamespace"
+	if fields["metricNamespace"] != nil {
+		if string(fields["metricNamespace"]) != "null" {
+			if err := json.Unmarshal(fields["metricNamespace"], &resource.MetricNamespace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metricNamespace", err)...)
+			}
+
+		}
+		delete(fields, "metricNamespace")
+
+	}
+	// Field "customNamespace"
+	if fields["customNamespace"] != nil {
+		if string(fields["customNamespace"]) != "null" {
+			if err := json.Unmarshal(fields["customNamespace"], &resource.CustomNamespace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("customNamespace", err)...)
+			}
+
+		}
+		delete(fields, "customNamespace")
+
+	}
+	// Field "metricName"
+	if fields["metricName"] != nil {
+		if string(fields["metricName"]) != "null" {
+			if err := json.Unmarshal(fields["metricName"], &resource.MetricName); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metricName", err)...)
+			}
+
+		}
+		delete(fields, "metricName")
+
+	}
+	// Field "region"
+	if fields["region"] != nil {
+		if string(fields["region"]) != "null" {
+			if err := json.Unmarshal(fields["region"], &resource.Region); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("region", err)...)
+			}
+
+		}
+		delete(fields, "region")
+
+	}
+	// Field "timeGrain"
+	if fields["timeGrain"] != nil {
+		if string(fields["timeGrain"]) != "null" {
+			if err := json.Unmarshal(fields["timeGrain"], &resource.TimeGrain); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeGrain", err)...)
+			}
+
+		}
+		delete(fields, "timeGrain")
+
+	}
+	// Field "aggregation"
+	if fields["aggregation"] != nil {
+		if string(fields["aggregation"]) != "null" {
+			if err := json.Unmarshal(fields["aggregation"], &resource.Aggregation); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("aggregation", err)...)
+			}
+
+		}
+		delete(fields, "aggregation")
+
+	}
+	// Field "dimensionFilters"
+	if fields["dimensionFilters"] != nil {
+		if string(fields["dimensionFilters"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["dimensionFilters"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 AzureMetricDimension
+
+				result1 = AzureMetricDimension{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("dimensionFilters["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.DimensionFilters = append(resource.DimensionFilters, result1)
+			}
+
+		}
+		delete(fields, "dimensionFilters")
+
+	}
+	// Field "top"
+	if fields["top"] != nil {
+		if string(fields["top"]) != "null" {
+			if err := json.Unmarshal(fields["top"], &resource.Top); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("top", err)...)
+			}
+
+		}
+		delete(fields, "top")
+
+	}
+	// Field "allowedTimeGrainsMs"
+	if fields["allowedTimeGrainsMs"] != nil {
+		if string(fields["allowedTimeGrainsMs"]) != "null" {
+
+			if err := json.Unmarshal(fields["allowedTimeGrainsMs"], &resource.AllowedTimeGrainsMs); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("allowedTimeGrainsMs", err)...)
+			}
+
+		}
+		delete(fields, "allowedTimeGrainsMs")
+
+	}
+	// Field "alias"
+	if fields["alias"] != nil {
+		if string(fields["alias"]) != "null" {
+			if err := json.Unmarshal(fields["alias"], &resource.Alias); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("alias", err)...)
+			}
+
+		}
+		delete(fields, "alias")
+
+	}
+	// Field "timeGrainUnit"
+	if fields["timeGrainUnit"] != nil {
+		if string(fields["timeGrainUnit"]) != "null" {
+			if err := json.Unmarshal(fields["timeGrainUnit"], &resource.TimeGrainUnit); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeGrainUnit", err)...)
+			}
+
+		}
+		delete(fields, "timeGrainUnit")
+
+	}
+	// Field "dimension"
+	if fields["dimension"] != nil {
+		if string(fields["dimension"]) != "null" {
+			if err := json.Unmarshal(fields["dimension"], &resource.Dimension); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("dimension", err)...)
+			}
+
+		}
+		delete(fields, "dimension")
+
+	}
+	// Field "dimensionFilter"
+	if fields["dimensionFilter"] != nil {
+		if string(fields["dimensionFilter"]) != "null" {
+			if err := json.Unmarshal(fields["dimensionFilter"], &resource.DimensionFilter); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("dimensionFilter", err)...)
+			}
+
+		}
+		delete(fields, "dimensionFilter")
+
+	}
+	// Field "metricDefinition"
+	if fields["metricDefinition"] != nil {
+		if string(fields["metricDefinition"]) != "null" {
+			if err := json.Unmarshal(fields["metricDefinition"], &resource.MetricDefinition); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metricDefinition", err)...)
+			}
+
+		}
+		delete(fields, "metricDefinition")
+
+	}
+	// Field "resourceUri"
+	if fields["resourceUri"] != nil {
+		if string(fields["resourceUri"]) != "null" {
+			if err := json.Unmarshal(fields["resourceUri"], &resource.ResourceUri); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceUri", err)...)
+			}
+
+		}
+		delete(fields, "resourceUri")
+
+	}
+	// Field "resourceGroup"
+	if fields["resourceGroup"] != nil {
+		if string(fields["resourceGroup"]) != "null" {
+			if err := json.Unmarshal(fields["resourceGroup"], &resource.ResourceGroup); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceGroup", err)...)
+			}
+
+		}
+		delete(fields, "resourceGroup")
+
+	}
+	// Field "resourceName"
+	if fields["resourceName"] != nil {
+		if string(fields["resourceName"]) != "null" {
+			if err := json.Unmarshal(fields["resourceName"], &resource.ResourceName); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceName", err)...)
+			}
+
+		}
+		delete(fields, "resourceName")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AzureMetricQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource AzureMetricQuery) Equals(other AzureMetricQuery) bool {
@@ -453,6 +954,30 @@ func (resource AzureMetricQuery) Equals(other AzureMetricQuery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource AzureMetricQuery) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Resources {
+		if err := resource.Resources[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("resources["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	for i1 := range resource.DimensionFilters {
+		if err := resource.DimensionFilters[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("dimensionFilters["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 // Azure Monitor Logs sub-query properties
 type AzureLogsQuery struct {
 	// KQL query to be executed.
@@ -467,6 +992,95 @@ type AzureLogsQuery struct {
 	Workspace *string `json:"workspace,omitempty"`
 	// @deprecated Use resources instead
 	Resource *string `json:"resource,omitempty"`
+}
+
+func (resource *AzureLogsQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "query"
+	if fields["query"] != nil {
+		if string(fields["query"]) != "null" {
+			if err := json.Unmarshal(fields["query"], &resource.Query); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("query", err)...)
+			}
+
+		}
+		delete(fields, "query")
+
+	}
+	// Field "resultFormat"
+	if fields["resultFormat"] != nil {
+		if string(fields["resultFormat"]) != "null" {
+			if err := json.Unmarshal(fields["resultFormat"], &resource.ResultFormat); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resultFormat", err)...)
+			}
+
+		}
+		delete(fields, "resultFormat")
+
+	}
+	// Field "resources"
+	if fields["resources"] != nil {
+		if string(fields["resources"]) != "null" {
+
+			if err := json.Unmarshal(fields["resources"], &resource.Resources); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resources", err)...)
+			}
+
+		}
+		delete(fields, "resources")
+
+	}
+	// Field "intersectTime"
+	if fields["intersectTime"] != nil {
+		if string(fields["intersectTime"]) != "null" {
+			if err := json.Unmarshal(fields["intersectTime"], &resource.IntersectTime); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("intersectTime", err)...)
+			}
+
+		}
+		delete(fields, "intersectTime")
+
+	}
+	// Field "workspace"
+	if fields["workspace"] != nil {
+		if string(fields["workspace"]) != "null" {
+			if err := json.Unmarshal(fields["workspace"], &resource.Workspace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("workspace", err)...)
+			}
+
+		}
+		delete(fields, "workspace")
+
+	}
+	// Field "resource"
+	if fields["resource"] != nil {
+		if string(fields["resource"]) != "null" {
+			if err := json.Unmarshal(fields["resource"], &resource.Resource); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resource", err)...)
+			}
+
+		}
+		delete(fields, "resource")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AzureLogsQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource AzureLogsQuery) Equals(other AzureLogsQuery) bool {
@@ -529,6 +1143,12 @@ func (resource AzureLogsQuery) Equals(other AzureLogsQuery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource AzureLogsQuery) Validate() error {
+	return nil
+}
+
 // Application Insights Traces sub-query properties
 type AzureTracesQuery struct {
 	// Specifies the format results should be returned as.
@@ -543,6 +1163,108 @@ type AzureTracesQuery struct {
 	Filters []AzureTracesFilter `json:"filters,omitempty"`
 	// KQL query to be executed.
 	Query *string `json:"query,omitempty"`
+}
+
+func (resource *AzureTracesQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "resultFormat"
+	if fields["resultFormat"] != nil {
+		if string(fields["resultFormat"]) != "null" {
+			if err := json.Unmarshal(fields["resultFormat"], &resource.ResultFormat); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resultFormat", err)...)
+			}
+
+		}
+		delete(fields, "resultFormat")
+
+	}
+	// Field "resources"
+	if fields["resources"] != nil {
+		if string(fields["resources"]) != "null" {
+
+			if err := json.Unmarshal(fields["resources"], &resource.Resources); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resources", err)...)
+			}
+
+		}
+		delete(fields, "resources")
+
+	}
+	// Field "operationId"
+	if fields["operationId"] != nil {
+		if string(fields["operationId"]) != "null" {
+			if err := json.Unmarshal(fields["operationId"], &resource.OperationId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("operationId", err)...)
+			}
+
+		}
+		delete(fields, "operationId")
+
+	}
+	// Field "traceTypes"
+	if fields["traceTypes"] != nil {
+		if string(fields["traceTypes"]) != "null" {
+
+			if err := json.Unmarshal(fields["traceTypes"], &resource.TraceTypes); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("traceTypes", err)...)
+			}
+
+		}
+		delete(fields, "traceTypes")
+
+	}
+	// Field "filters"
+	if fields["filters"] != nil {
+		if string(fields["filters"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["filters"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 AzureTracesFilter
+
+				result1 = AzureTracesFilter{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("filters["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Filters = append(resource.Filters, result1)
+			}
+
+		}
+		delete(fields, "filters")
+
+	}
+	// Field "query"
+	if fields["query"] != nil {
+		if string(fields["query"]) != "null" {
+			if err := json.Unmarshal(fields["query"], &resource.Query); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("query", err)...)
+			}
+
+		}
+		delete(fields, "query")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AzureTracesQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource AzureTracesQuery) Equals(other AzureTracesQuery) bool {
@@ -607,6 +1329,24 @@ func (resource AzureTracesQuery) Equals(other AzureTracesQuery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource AzureTracesQuery) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Filters {
+		if err := resource.Filters[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("filters["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type AzureTracesFilter struct {
 	// Property name, auto-populated based on available traces.
 	Property string `json:"property"`
@@ -614,6 +1354,71 @@ type AzureTracesFilter struct {
 	Operation string `json:"operation"`
 	// Values to filter by.
 	Filters []string `json:"filters"`
+}
+
+func (resource *AzureTracesFilter) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "property"
+	if fields["property"] != nil {
+		if string(fields["property"]) != "null" {
+			if err := json.Unmarshal(fields["property"], &resource.Property); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("property", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("property", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "property")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("property", errors.New("required field is missing from input"))...)
+	}
+	// Field "operation"
+	if fields["operation"] != nil {
+		if string(fields["operation"]) != "null" {
+			if err := json.Unmarshal(fields["operation"], &resource.Operation); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("operation", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("operation", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "operation")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("operation", errors.New("required field is missing from input"))...)
+	}
+	// Field "filters"
+	if fields["filters"] != nil {
+		if string(fields["filters"]) != "null" {
+
+			if err := json.Unmarshal(fields["filters"], &resource.Filters); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("filters", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("filters", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "filters")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("filters", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AzureTracesFilter", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource AzureTracesFilter) Equals(other AzureTracesFilter) bool {
@@ -637,6 +1442,12 @@ func (resource AzureTracesFilter) Equals(other AzureTracesFilter) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource AzureTracesFilter) Validate() error {
+	return nil
+}
+
 type ResultFormat string
 
 const (
@@ -650,6 +1461,50 @@ type AzureResourceGraphQuery struct {
 	Query *string `json:"query,omitempty"`
 	// Specifies the format results should be returned as. Defaults to table.
 	ResultFormat *string `json:"resultFormat,omitempty"`
+}
+
+func (resource *AzureResourceGraphQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "query"
+	if fields["query"] != nil {
+		if string(fields["query"]) != "null" {
+			if err := json.Unmarshal(fields["query"], &resource.Query); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("query", err)...)
+			}
+
+		}
+		delete(fields, "query")
+
+	}
+	// Field "resultFormat"
+	if fields["resultFormat"] != nil {
+		if string(fields["resultFormat"]) != "null" {
+			if err := json.Unmarshal(fields["resultFormat"], &resource.ResultFormat); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resultFormat", err)...)
+			}
+
+		}
+		delete(fields, "resultFormat")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AzureResourceGraphQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource AzureResourceGraphQuery) Equals(other AzureResourceGraphQuery) bool {
@@ -675,12 +1530,95 @@ func (resource AzureResourceGraphQuery) Equals(other AzureResourceGraphQuery) bo
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource AzureResourceGraphQuery) Validate() error {
+	return nil
+}
+
 type AzureMonitorResource struct {
 	Subscription    *string `json:"subscription,omitempty"`
 	ResourceGroup   *string `json:"resourceGroup,omitempty"`
 	ResourceName    *string `json:"resourceName,omitempty"`
 	MetricNamespace *string `json:"metricNamespace,omitempty"`
 	Region          *string `json:"region,omitempty"`
+}
+
+func (resource *AzureMonitorResource) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "subscription"
+	if fields["subscription"] != nil {
+		if string(fields["subscription"]) != "null" {
+			if err := json.Unmarshal(fields["subscription"], &resource.Subscription); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subscription", err)...)
+			}
+
+		}
+		delete(fields, "subscription")
+
+	}
+	// Field "resourceGroup"
+	if fields["resourceGroup"] != nil {
+		if string(fields["resourceGroup"]) != "null" {
+			if err := json.Unmarshal(fields["resourceGroup"], &resource.ResourceGroup); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceGroup", err)...)
+			}
+
+		}
+		delete(fields, "resourceGroup")
+
+	}
+	// Field "resourceName"
+	if fields["resourceName"] != nil {
+		if string(fields["resourceName"]) != "null" {
+			if err := json.Unmarshal(fields["resourceName"], &resource.ResourceName); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceName", err)...)
+			}
+
+		}
+		delete(fields, "resourceName")
+
+	}
+	// Field "metricNamespace"
+	if fields["metricNamespace"] != nil {
+		if string(fields["metricNamespace"]) != "null" {
+			if err := json.Unmarshal(fields["metricNamespace"], &resource.MetricNamespace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metricNamespace", err)...)
+			}
+
+		}
+		delete(fields, "metricNamespace")
+
+	}
+	// Field "region"
+	if fields["region"] != nil {
+		if string(fields["region"]) != "null" {
+			if err := json.Unmarshal(fields["region"], &resource.Region); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("region", err)...)
+			}
+
+		}
+		delete(fields, "region")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AzureMonitorResource", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource AzureMonitorResource) Equals(other AzureMonitorResource) bool {
@@ -733,6 +1671,12 @@ func (resource AzureMonitorResource) Equals(other AzureMonitorResource) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource AzureMonitorResource) Validate() error {
+	return nil
+}
+
 type AzureMetricDimension struct {
 	// Name of Dimension to be filtered on.
 	Dimension *string `json:"dimension,omitempty"`
@@ -742,6 +1686,73 @@ type AzureMetricDimension struct {
 	Filters []string `json:"filters,omitempty"`
 	// @deprecated filter is deprecated in favour of filters to support multiselect.
 	Filter *string `json:"filter,omitempty"`
+}
+
+func (resource *AzureMetricDimension) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "dimension"
+	if fields["dimension"] != nil {
+		if string(fields["dimension"]) != "null" {
+			if err := json.Unmarshal(fields["dimension"], &resource.Dimension); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("dimension", err)...)
+			}
+
+		}
+		delete(fields, "dimension")
+
+	}
+	// Field "operator"
+	if fields["operator"] != nil {
+		if string(fields["operator"]) != "null" {
+			if err := json.Unmarshal(fields["operator"], &resource.Operator); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("operator", err)...)
+			}
+
+		}
+		delete(fields, "operator")
+
+	}
+	// Field "filters"
+	if fields["filters"] != nil {
+		if string(fields["filters"]) != "null" {
+
+			if err := json.Unmarshal(fields["filters"], &resource.Filters); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("filters", err)...)
+			}
+
+		}
+		delete(fields, "filters")
+
+	}
+	// Field "filter"
+	if fields["filter"] != nil {
+		if string(fields["filter"]) != "null" {
+			if err := json.Unmarshal(fields["filter"], &resource.Filter); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("filter", err)...)
+			}
+
+		}
+		delete(fields, "filter")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AzureMetricDimension", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource AzureMetricDimension) Equals(other AzureMetricDimension) bool {
@@ -786,6 +1797,12 @@ func (resource AzureMetricDimension) Equals(other AzureMetricDimension) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource AzureMetricDimension) Validate() error {
+	return nil
+}
+
 type GrafanaTemplateVariableQueryType string
 
 const (
@@ -804,6 +1821,39 @@ type BaseGrafanaTemplateVariableQuery struct {
 	RawQuery *string `json:"rawQuery,omitempty"`
 }
 
+func (resource *BaseGrafanaTemplateVariableQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BaseGrafanaTemplateVariableQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 func (resource BaseGrafanaTemplateVariableQuery) Equals(other BaseGrafanaTemplateVariableQuery) bool {
 	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
 		return false
@@ -818,9 +1868,62 @@ func (resource BaseGrafanaTemplateVariableQuery) Equals(other BaseGrafanaTemplat
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource BaseGrafanaTemplateVariableQuery) Validate() error {
+	return nil
+}
+
 type UnknownQuery struct {
 	RawQuery *string `json:"rawQuery,omitempty"`
 	Kind     string  `json:"kind"`
+}
+
+func (resource *UnknownQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("UnknownQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource UnknownQuery) Equals(other UnknownQuery) bool {
@@ -840,9 +1943,74 @@ func (resource UnknownQuery) Equals(other UnknownQuery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource UnknownQuery) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Kind == "UnknownQuery") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"kind",
+			errors.New("must be == UnknownQuery"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type AppInsightsMetricNameQuery struct {
 	RawQuery *string `json:"rawQuery,omitempty"`
 	Kind     string  `json:"kind"`
+}
+
+func (resource *AppInsightsMetricNameQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AppInsightsMetricNameQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource AppInsightsMetricNameQuery) Equals(other AppInsightsMetricNameQuery) bool {
@@ -862,10 +2030,89 @@ func (resource AppInsightsMetricNameQuery) Equals(other AppInsightsMetricNameQue
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource AppInsightsMetricNameQuery) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Kind == "AppInsightsMetricNameQuery") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"kind",
+			errors.New("must be == AppInsightsMetricNameQuery"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type AppInsightsGroupByQuery struct {
 	RawQuery   *string `json:"rawQuery,omitempty"`
 	Kind       string  `json:"kind"`
 	MetricName string  `json:"metricName"`
+}
+
+func (resource *AppInsightsGroupByQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "metricName"
+	if fields["metricName"] != nil {
+		if string(fields["metricName"]) != "null" {
+			if err := json.Unmarshal(fields["metricName"], &resource.MetricName); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metricName", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("metricName", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "metricName")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("metricName", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AppInsightsGroupByQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource AppInsightsGroupByQuery) Equals(other AppInsightsGroupByQuery) bool {
@@ -888,9 +2135,74 @@ func (resource AppInsightsGroupByQuery) Equals(other AppInsightsGroupByQuery) bo
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource AppInsightsGroupByQuery) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Kind == "AppInsightsGroupByQuery") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"kind",
+			errors.New("must be == AppInsightsGroupByQuery"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type SubscriptionsQuery struct {
 	RawQuery *string `json:"rawQuery,omitempty"`
 	Kind     string  `json:"kind"`
+}
+
+func (resource *SubscriptionsQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("SubscriptionsQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource SubscriptionsQuery) Equals(other SubscriptionsQuery) bool {
@@ -910,10 +2222,89 @@ func (resource SubscriptionsQuery) Equals(other SubscriptionsQuery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource SubscriptionsQuery) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Kind == "SubscriptionsQuery") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"kind",
+			errors.New("must be == SubscriptionsQuery"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type ResourceGroupsQuery struct {
 	RawQuery     *string `json:"rawQuery,omitempty"`
 	Kind         string  `json:"kind"`
 	Subscription string  `json:"subscription"`
+}
+
+func (resource *ResourceGroupsQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "subscription"
+	if fields["subscription"] != nil {
+		if string(fields["subscription"]) != "null" {
+			if err := json.Unmarshal(fields["subscription"], &resource.Subscription); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subscription", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "subscription")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ResourceGroupsQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ResourceGroupsQuery) Equals(other ResourceGroupsQuery) bool {
@@ -936,12 +2327,119 @@ func (resource ResourceGroupsQuery) Equals(other ResourceGroupsQuery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ResourceGroupsQuery) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Kind == "ResourceGroupsQuery") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"kind",
+			errors.New("must be == ResourceGroupsQuery"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type ResourceNamesQuery struct {
 	RawQuery        *string `json:"rawQuery,omitempty"`
 	Kind            string  `json:"kind"`
 	Subscription    string  `json:"subscription"`
 	ResourceGroup   string  `json:"resourceGroup"`
 	MetricNamespace string  `json:"metricNamespace"`
+}
+
+func (resource *ResourceNamesQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "subscription"
+	if fields["subscription"] != nil {
+		if string(fields["subscription"]) != "null" {
+			if err := json.Unmarshal(fields["subscription"], &resource.Subscription); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subscription", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "subscription")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is missing from input"))...)
+	}
+	// Field "resourceGroup"
+	if fields["resourceGroup"] != nil {
+		if string(fields["resourceGroup"]) != "null" {
+			if err := json.Unmarshal(fields["resourceGroup"], &resource.ResourceGroup); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceGroup", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("resourceGroup", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "resourceGroup")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("resourceGroup", errors.New("required field is missing from input"))...)
+	}
+	// Field "metricNamespace"
+	if fields["metricNamespace"] != nil {
+		if string(fields["metricNamespace"]) != "null" {
+			if err := json.Unmarshal(fields["metricNamespace"], &resource.MetricNamespace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metricNamespace", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("metricNamespace", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "metricNamespace")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("metricNamespace", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ResourceNamesQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource ResourceNamesQuery) Equals(other ResourceNamesQuery) bool {
@@ -970,6 +2468,24 @@ func (resource ResourceNamesQuery) Equals(other ResourceNamesQuery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource ResourceNamesQuery) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Kind == "ResourceNamesQuery") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"kind",
+			errors.New("must be == ResourceNamesQuery"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type MetricNamespaceQuery struct {
 	RawQuery        *string `json:"rawQuery,omitempty"`
 	Kind            string  `json:"kind"`
@@ -977,6 +2493,103 @@ type MetricNamespaceQuery struct {
 	ResourceGroup   string  `json:"resourceGroup"`
 	MetricNamespace *string `json:"metricNamespace,omitempty"`
 	ResourceName    *string `json:"resourceName,omitempty"`
+}
+
+func (resource *MetricNamespaceQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "subscription"
+	if fields["subscription"] != nil {
+		if string(fields["subscription"]) != "null" {
+			if err := json.Unmarshal(fields["subscription"], &resource.Subscription); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subscription", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "subscription")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is missing from input"))...)
+	}
+	// Field "resourceGroup"
+	if fields["resourceGroup"] != nil {
+		if string(fields["resourceGroup"]) != "null" {
+			if err := json.Unmarshal(fields["resourceGroup"], &resource.ResourceGroup); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceGroup", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("resourceGroup", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "resourceGroup")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("resourceGroup", errors.New("required field is missing from input"))...)
+	}
+	// Field "metricNamespace"
+	if fields["metricNamespace"] != nil {
+		if string(fields["metricNamespace"]) != "null" {
+			if err := json.Unmarshal(fields["metricNamespace"], &resource.MetricNamespace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metricNamespace", err)...)
+			}
+
+		}
+		delete(fields, "metricNamespace")
+
+	}
+	// Field "resourceName"
+	if fields["resourceName"] != nil {
+		if string(fields["resourceName"]) != "null" {
+			if err := json.Unmarshal(fields["resourceName"], &resource.ResourceName); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceName", err)...)
+			}
+
+		}
+		delete(fields, "resourceName")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("MetricNamespaceQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource MetricNamespaceQuery) Equals(other MetricNamespaceQuery) bool {
@@ -1020,6 +2633,24 @@ func (resource MetricNamespaceQuery) Equals(other MetricNamespaceQuery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource MetricNamespaceQuery) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Kind == "MetricNamespaceQuery") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"kind",
+			errors.New("must be == MetricNamespaceQuery"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 // @deprecated Use MetricNamespaceQuery instead
 type MetricDefinitionsQuery struct {
 	RawQuery        *string `json:"rawQuery,omitempty"`
@@ -1028,6 +2659,103 @@ type MetricDefinitionsQuery struct {
 	ResourceGroup   string  `json:"resourceGroup"`
 	MetricNamespace *string `json:"metricNamespace,omitempty"`
 	ResourceName    *string `json:"resourceName,omitempty"`
+}
+
+func (resource *MetricDefinitionsQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "subscription"
+	if fields["subscription"] != nil {
+		if string(fields["subscription"]) != "null" {
+			if err := json.Unmarshal(fields["subscription"], &resource.Subscription); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subscription", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "subscription")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is missing from input"))...)
+	}
+	// Field "resourceGroup"
+	if fields["resourceGroup"] != nil {
+		if string(fields["resourceGroup"]) != "null" {
+			if err := json.Unmarshal(fields["resourceGroup"], &resource.ResourceGroup); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceGroup", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("resourceGroup", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "resourceGroup")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("resourceGroup", errors.New("required field is missing from input"))...)
+	}
+	// Field "metricNamespace"
+	if fields["metricNamespace"] != nil {
+		if string(fields["metricNamespace"]) != "null" {
+			if err := json.Unmarshal(fields["metricNamespace"], &resource.MetricNamespace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metricNamespace", err)...)
+			}
+
+		}
+		delete(fields, "metricNamespace")
+
+	}
+	// Field "resourceName"
+	if fields["resourceName"] != nil {
+		if string(fields["resourceName"]) != "null" {
+			if err := json.Unmarshal(fields["resourceName"], &resource.ResourceName); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceName", err)...)
+			}
+
+		}
+		delete(fields, "resourceName")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("MetricDefinitionsQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource MetricDefinitionsQuery) Equals(other MetricDefinitionsQuery) bool {
@@ -1071,6 +2799,24 @@ func (resource MetricDefinitionsQuery) Equals(other MetricDefinitionsQuery) bool
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource MetricDefinitionsQuery) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Kind == "MetricDefinitionsQuery") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"kind",
+			errors.New("must be == MetricDefinitionsQuery"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type MetricNamesQuery struct {
 	RawQuery        *string `json:"rawQuery,omitempty"`
 	Kind            string  `json:"kind"`
@@ -1078,6 +2824,109 @@ type MetricNamesQuery struct {
 	ResourceGroup   string  `json:"resourceGroup"`
 	ResourceName    string  `json:"resourceName"`
 	MetricNamespace string  `json:"metricNamespace"`
+}
+
+func (resource *MetricNamesQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "subscription"
+	if fields["subscription"] != nil {
+		if string(fields["subscription"]) != "null" {
+			if err := json.Unmarshal(fields["subscription"], &resource.Subscription); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subscription", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "subscription")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is missing from input"))...)
+	}
+	// Field "resourceGroup"
+	if fields["resourceGroup"] != nil {
+		if string(fields["resourceGroup"]) != "null" {
+			if err := json.Unmarshal(fields["resourceGroup"], &resource.ResourceGroup); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceGroup", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("resourceGroup", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "resourceGroup")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("resourceGroup", errors.New("required field is missing from input"))...)
+	}
+	// Field "resourceName"
+	if fields["resourceName"] != nil {
+		if string(fields["resourceName"]) != "null" {
+			if err := json.Unmarshal(fields["resourceName"], &resource.ResourceName); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceName", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("resourceName", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "resourceName")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("resourceName", errors.New("required field is missing from input"))...)
+	}
+	// Field "metricNamespace"
+	if fields["metricNamespace"] != nil {
+		if string(fields["metricNamespace"]) != "null" {
+			if err := json.Unmarshal(fields["metricNamespace"], &resource.MetricNamespace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metricNamespace", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("metricNamespace", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "metricNamespace")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("metricNamespace", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("MetricNamesQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource MetricNamesQuery) Equals(other MetricNamesQuery) bool {
@@ -1109,10 +2958,89 @@ func (resource MetricNamesQuery) Equals(other MetricNamesQuery) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource MetricNamesQuery) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Kind == "MetricNamesQuery") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"kind",
+			errors.New("must be == MetricNamesQuery"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type WorkspacesQuery struct {
 	RawQuery     *string `json:"rawQuery,omitempty"`
 	Kind         string  `json:"kind"`
 	Subscription string  `json:"subscription"`
+}
+
+func (resource *WorkspacesQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "subscription"
+	if fields["subscription"] != nil {
+		if string(fields["subscription"]) != "null" {
+			if err := json.Unmarshal(fields["subscription"], &resource.Subscription); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subscription", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "subscription")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("subscription", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("WorkspacesQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource WorkspacesQuery) Equals(other WorkspacesQuery) bool {
@@ -1133,6 +3061,24 @@ func (resource WorkspacesQuery) Equals(other WorkspacesQuery) bool {
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource WorkspacesQuery) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Kind == "WorkspacesQuery") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"kind",
+			errors.New("must be == WorkspacesQuery"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 type GrafanaTemplateVariableQuery = AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery
@@ -1287,6 +3233,107 @@ func (resource *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptio
 	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
 }
 
+func (resource *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
+	parsedAsMap := make(map[string]any)
+	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
+		return err
+	}
+
+	discriminator, found := parsedAsMap["kind"]
+	if !found {
+		return fmt.Errorf("discriminator field 'kind' not found in payload")
+	}
+
+	switch discriminator {
+	case "AppInsightsGroupByQuery":
+		appInsightsGroupByQuery := &AppInsightsGroupByQuery{}
+		if err := appInsightsGroupByQuery.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.AppInsightsGroupByQuery = appInsightsGroupByQuery
+		return nil
+	case "AppInsightsMetricNameQuery":
+		appInsightsMetricNameQuery := &AppInsightsMetricNameQuery{}
+		if err := appInsightsMetricNameQuery.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.AppInsightsMetricNameQuery = appInsightsMetricNameQuery
+		return nil
+	case "MetricDefinitionsQuery":
+		metricDefinitionsQuery := &MetricDefinitionsQuery{}
+		if err := metricDefinitionsQuery.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.MetricDefinitionsQuery = metricDefinitionsQuery
+		return nil
+	case "MetricNamesQuery":
+		metricNamesQuery := &MetricNamesQuery{}
+		if err := metricNamesQuery.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.MetricNamesQuery = metricNamesQuery
+		return nil
+	case "MetricNamespaceQuery":
+		metricNamespaceQuery := &MetricNamespaceQuery{}
+		if err := metricNamespaceQuery.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.MetricNamespaceQuery = metricNamespaceQuery
+		return nil
+	case "ResourceGroupsQuery":
+		resourceGroupsQuery := &ResourceGroupsQuery{}
+		if err := resourceGroupsQuery.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.ResourceGroupsQuery = resourceGroupsQuery
+		return nil
+	case "ResourceNamesQuery":
+		resourceNamesQuery := &ResourceNamesQuery{}
+		if err := resourceNamesQuery.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.ResourceNamesQuery = resourceNamesQuery
+		return nil
+	case "SubscriptionsQuery":
+		subscriptionsQuery := &SubscriptionsQuery{}
+		if err := subscriptionsQuery.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.SubscriptionsQuery = subscriptionsQuery
+		return nil
+	case "UnknownQuery":
+		unknownQuery := &UnknownQuery{}
+		if err := unknownQuery.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.UnknownQuery = unknownQuery
+		return nil
+	case "WorkspacesQuery":
+		workspacesQuery := &WorkspacesQuery{}
+		if err := workspacesQuery.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.WorkspacesQuery = workspacesQuery
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
+}
+
 func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery) Equals(other AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery) bool {
 	if resource.AppInsightsMetricNameQuery == nil && other.AppInsightsMetricNameQuery != nil || resource.AppInsightsMetricNameQuery != nil && other.AppInsightsMetricNameQuery == nil {
 		return false
@@ -1380,4 +3427,66 @@ func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscription
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery) Validate() error {
+	var errs cog.BuildErrors
+	if resource.AppInsightsMetricNameQuery != nil {
+		if err := resource.AppInsightsMetricNameQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("AppInsightsMetricNameQuery", err)...)
+		}
+	}
+	if resource.AppInsightsGroupByQuery != nil {
+		if err := resource.AppInsightsGroupByQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("AppInsightsGroupByQuery", err)...)
+		}
+	}
+	if resource.SubscriptionsQuery != nil {
+		if err := resource.SubscriptionsQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("SubscriptionsQuery", err)...)
+		}
+	}
+	if resource.ResourceGroupsQuery != nil {
+		if err := resource.ResourceGroupsQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("ResourceGroupsQuery", err)...)
+		}
+	}
+	if resource.ResourceNamesQuery != nil {
+		if err := resource.ResourceNamesQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("ResourceNamesQuery", err)...)
+		}
+	}
+	if resource.MetricNamespaceQuery != nil {
+		if err := resource.MetricNamespaceQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("MetricNamespaceQuery", err)...)
+		}
+	}
+	if resource.MetricDefinitionsQuery != nil {
+		if err := resource.MetricDefinitionsQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("MetricDefinitionsQuery", err)...)
+		}
+	}
+	if resource.MetricNamesQuery != nil {
+		if err := resource.MetricNamesQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("MetricNamesQuery", err)...)
+		}
+	}
+	if resource.WorkspacesQuery != nil {
+		if err := resource.WorkspacesQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("WorkspacesQuery", err)...)
+		}
+	}
+	if resource.UnknownQuery != nil {
+		if err := resource.UnknownQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("UnknownQuery", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }

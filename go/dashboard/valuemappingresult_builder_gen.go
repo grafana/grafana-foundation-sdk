@@ -27,14 +27,8 @@ func NewValueMappingResultBuilder() *ValueMappingResultBuilder {
 }
 
 func (builder *ValueMappingResultBuilder) Build() (ValueMappingResult, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ValueMappingResult", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ValueMappingResult{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ValueMappingResult{}, err
 	}
 
 	return *builder.internal, nil

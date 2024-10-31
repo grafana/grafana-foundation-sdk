@@ -60,16 +60,16 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
     /**
      * Depends on the panel plugin. See the plugin documentation for details.
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cog\Dataquery> $targets
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cog\Dataquery> $target
      */
-    public function withTarget(\Grafana\Foundation\Cog\Builder $targets): static
+    public function withTarget(\Grafana\Foundation\Cog\Builder $target): static
     {    
         if ($this->internal->targets === null) {
             $this->internal->targets = [];
         }
         
-        $targetsResource = $targets->build();
-        $this->internal->targets[] = $targetsResource;
+        $targetResource = $target->build();
+        $this->internal->targets[] = $targetResource;
     
         return $this;
     }
@@ -212,9 +212,9 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
      * When there are multiple transformations, Grafana applies them in the order they are listed.
      * Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
      */
-    public function withTransformation(\Grafana\Foundation\Dashboard\DataTransformerConfig $transformations): static
+    public function withTransformation(\Grafana\Foundation\Dashboard\DataTransformerConfig $transformation): static
     {
-        $this->internal->transformations[] = $transformations;
+        $this->internal->transformations[] = $transformation;
     
         return $this;
     }

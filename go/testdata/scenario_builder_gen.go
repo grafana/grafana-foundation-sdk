@@ -27,14 +27,8 @@ func NewScenarioBuilder() *ScenarioBuilder {
 }
 
 func (builder *ScenarioBuilder) Build() (Scenario, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Scenario", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Scenario{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Scenario{}, err
 	}
 
 	return *builder.internal, nil

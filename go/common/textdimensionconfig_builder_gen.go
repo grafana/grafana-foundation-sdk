@@ -26,14 +26,8 @@ func NewTextDimensionConfigBuilder() *TextDimensionConfigBuilder {
 }
 
 func (builder *TextDimensionConfigBuilder) Build() (TextDimensionConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TextDimensionConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TextDimensionConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TextDimensionConfig{}, err
 	}
 
 	return *builder.internal, nil

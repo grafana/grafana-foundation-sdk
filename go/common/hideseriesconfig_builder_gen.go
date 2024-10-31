@@ -27,14 +27,8 @@ func NewHideSeriesConfigBuilder() *HideSeriesConfigBuilder {
 }
 
 func (builder *HideSeriesConfigBuilder) Build() (HideSeriesConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("HideSeriesConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return HideSeriesConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return HideSeriesConfig{}, err
 	}
 
 	return *builder.internal, nil

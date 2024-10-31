@@ -7,14 +7,8 @@ namespace Grafana\Foundation\Alerting;
  */
 class TimeRange implements \JsonSerializable
 {
-    /**
-     * Redefining this to avoid an import cycle
-     */
     public ?string $from;
 
-    /**
-     * Redefining this to avoid an import cycle
-     */
     public ?string $to;
 
     /**

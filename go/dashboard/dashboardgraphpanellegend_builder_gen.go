@@ -26,14 +26,8 @@ func NewDashboardGraphPanelLegendBuilder() *DashboardGraphPanelLegendBuilder {
 }
 
 func (builder *DashboardGraphPanelLegendBuilder) Build() (DashboardGraphPanelLegend, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("DashboardGraphPanelLegend", err)...)
-	}
-
-	if len(errs) != 0 {
-		return DashboardGraphPanelLegend{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return DashboardGraphPanelLegend{}, err
 	}
 
 	return *builder.internal, nil

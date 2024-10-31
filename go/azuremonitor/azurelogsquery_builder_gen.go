@@ -27,14 +27,8 @@ func NewAzureLogsQueryBuilder() *AzureLogsQueryBuilder {
 }
 
 func (builder *AzureLogsQueryBuilder) Build() (AzureLogsQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AzureLogsQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AzureLogsQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AzureLogsQuery{}, err
 	}
 
 	return *builder.internal, nil

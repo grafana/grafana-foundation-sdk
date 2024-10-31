@@ -27,14 +27,8 @@ func NewFilterValueRangeBuilder() *FilterValueRangeBuilder {
 }
 
 func (builder *FilterValueRangeBuilder) Build() (FilterValueRange, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("FilterValueRange", err)...)
-	}
-
-	if len(errs) != 0 {
-		return FilterValueRange{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return FilterValueRange{}, err
 	}
 
 	return *builder.internal, nil

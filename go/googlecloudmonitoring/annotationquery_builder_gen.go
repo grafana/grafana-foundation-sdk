@@ -27,14 +27,8 @@ func NewAnnotationQueryBuilder() *AnnotationQueryBuilder {
 }
 
 func (builder *AnnotationQueryBuilder) Build() (AnnotationQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AnnotationQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AnnotationQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AnnotationQuery{}, err
 	}
 
 	return *builder.internal, nil

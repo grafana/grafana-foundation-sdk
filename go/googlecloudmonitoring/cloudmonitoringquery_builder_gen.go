@@ -28,14 +28,8 @@ func NewCloudMonitoringQueryBuilder() *CloudMonitoringQueryBuilder {
 }
 
 func (builder *CloudMonitoringQueryBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CloudMonitoringQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CloudMonitoringQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CloudMonitoringQuery{}, err
 	}
 
 	return *builder.internal, nil
