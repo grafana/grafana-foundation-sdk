@@ -10,6 +10,9 @@ export class MetricAggregationWithFieldBuilder implements cog.Builder<elasticsea
         this.internal = elasticsearch.defaultMetricAggregationWithField();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.MetricAggregationWithField {
         return this.internal;
     }

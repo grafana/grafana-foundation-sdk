@@ -15,6 +15,7 @@ class ExprTypeClassicConditionsConditionsEvaluatorBuilder implements \Grafana\Fo
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsEvaluator
      */
     public function build()

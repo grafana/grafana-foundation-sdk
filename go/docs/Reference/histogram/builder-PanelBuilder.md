@@ -1,0 +1,501 @@
+---
+title: <span class="badge builder"></span> PanelBuilder
+---
+# <span class="badge builder"></span> PanelBuilder
+
+## Constructor
+
+```go
+func NewPanelBuilder() *PanelBuilder
+```
+## Methods
+
+### <span class="badge object-method"></span> Build
+
+Builds the object.
+
+```go
+func (builder *PanelBuilder) Build() (dashboard.Panel, error)
+```
+
+### <span class="badge object-method"></span> AxisBorderShow
+
+```go
+func (builder *PanelBuilder) AxisBorderShow(axisBorderShow bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisCenteredZero
+
+```go
+func (builder *PanelBuilder) AxisCenteredZero(axisCenteredZero bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisColorMode
+
+```go
+func (builder *PanelBuilder) AxisColorMode(axisColorMode common.AxisColorMode) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisGridShow
+
+```go
+func (builder *PanelBuilder) AxisGridShow(axisGridShow bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisLabel
+
+```go
+func (builder *PanelBuilder) AxisLabel(axisLabel string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisPlacement
+
+```go
+func (builder *PanelBuilder) AxisPlacement(axisPlacement common.AxisPlacement) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisSoftMax
+
+```go
+func (builder *PanelBuilder) AxisSoftMax(axisSoftMax float64) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisSoftMin
+
+```go
+func (builder *PanelBuilder) AxisSoftMin(axisSoftMin float64) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisWidth
+
+```go
+func (builder *PanelBuilder) AxisWidth(axisWidth float64) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> BucketCount
+
+Bucket count (approx)
+
+```go
+func (builder *PanelBuilder) BucketCount(bucketCount int32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> BucketOffset
+
+Offset buckets by this amount
+
+```go
+func (builder *PanelBuilder) BucketOffset(bucketOffset float32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> BucketSize
+
+Size of each bucket
+
+```go
+func (builder *PanelBuilder) BucketSize(bucketSize int32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> CacheTimeout
+
+Sets panel queries cache timeout.
+
+```go
+func (builder *PanelBuilder) CacheTimeout(cacheTimeout string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> ColorScheme
+
+Panel color configuration
+
+```go
+func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Combine
+
+Combines multiple series into a single histogram
+
+```go
+func (builder *PanelBuilder) Combine(combine bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Datasource
+
+The datasource used in all targets.
+
+```go
+func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Decimals
+
+Specify the number of decimals Grafana includes in the rendered value.
+
+If you leave this field blank, Grafana automatically truncates the number of decimals based on the value.
+
+For example 1.1234 will display as 1.12 and 100.456 will display as 100.
+
+To display all decimals, set the unit to `String`.
+
+```go
+func (builder *PanelBuilder) Decimals(decimals float64) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Description
+
+Panel description.
+
+```go
+func (builder *PanelBuilder) Description(description string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> DisplayName
+
+The display value for this field.  This supports template variables blank is auto
+
+```go
+func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> FillOpacity
+
+Controls the fill opacity of the bars.
+
+```go
+func (builder *PanelBuilder) FillOpacity(fillOpacity uint32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> GradientMode
+
+Set the mode of the gradient fill. Fill gradient is based on the line color. To change the color, use the standard color scheme field option.
+
+Gradient appearance is influenced by the Fill opacity setting.
+
+```go
+func (builder *PanelBuilder) GradientMode(gradientMode common.GraphGradientMode) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> GridPos
+
+Grid position.
+
+```go
+func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Height
+
+Panel height. The height is the number of rows from the top edge of the panel.
+
+```go
+func (builder *PanelBuilder) Height(h uint32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> HideFrom
+
+```go
+func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConfig]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> HideTimeOverride
+
+Controls if the timeFrom or timeShift overrides are shown in the panel header
+
+```go
+func (builder *PanelBuilder) HideTimeOverride(hideTimeOverride bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Id
+
+Unique identifier of the panel. Generated by Grafana when creating a new panel. It must be unique within a dashboard, but not globally.
+
+```go
+func (builder *PanelBuilder) Id(id uint32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Interval
+
+The min time interval setting defines a lower limit for the $__interval and $__interval_ms variables.
+
+This value must be formatted as a number followed by a valid time
+
+identifier like: "40s", "3d", etc.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```go
+func (builder *PanelBuilder) Interval(interval string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Legend
+
+```go
+func (builder *PanelBuilder) Legend(legend cog.Builder[common.VizLegendOptions]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> LibraryPanel
+
+Dynamically load the panel
+
+```go
+func (builder *PanelBuilder) LibraryPanel(libraryPanel dashboard.LibraryPanelRef) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> LineWidth
+
+Controls line width of the bars.
+
+```go
+func (builder *PanelBuilder) LineWidth(lineWidth uint32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Links
+
+Panel links.
+
+```go
+func (builder *PanelBuilder) Links(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Mappings
+
+Convert input values into a display string
+
+```go
+func (builder *PanelBuilder) Mappings(mappings []dashboard.ValueMapping) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Max
+
+The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+
+```go
+func (builder *PanelBuilder) Max(max float64) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> MaxDataPoints
+
+The maximum number of data points that the panel queries are retrieving.
+
+```go
+func (builder *PanelBuilder) MaxDataPoints(maxDataPoints float64) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> MaxPerRow
+
+Option for repeated panels that controls max items per row
+
+Only relevant for horizontally repeated panels
+
+```go
+func (builder *PanelBuilder) MaxPerRow(maxPerRow float64) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Min
+
+The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+
+```go
+func (builder *PanelBuilder) Min(min float64) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> NoValue
+
+Alternative to empty string
+
+```go
+func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Overrides
+
+Overrides are the options applied to specific fields overriding the defaults.
+
+```go
+func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.DashboardFieldConfigSourceOverrides]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> QueryCachingTTL
+
+Overrides the data source configured time-to-live for a query cache item in milliseconds
+
+```go
+func (builder *PanelBuilder) QueryCachingTTL(queryCachingTTL float64) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Repeat
+
+Name of template variable to repeat for.
+
+```go
+func (builder *PanelBuilder) Repeat(repeat string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> RepeatDirection
+
+Direction to repeat in if 'repeat' is set.
+
+`h` for horizontal, `v` for vertical.
+
+```go
+func (builder *PanelBuilder) RepeatDirection(repeatDirection dashboard.PanelRepeatDirection) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> ScaleDistribution
+
+```go
+func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[common.ScaleDistributionConfig]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Span
+
+Panel width. The width is the number of columns from the left edge of the panel.
+
+```go
+func (builder *PanelBuilder) Span(w uint32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Targets
+
+Depends on the panel plugin. See the plugin documentation for details.
+
+```go
+func (builder *PanelBuilder) Targets(targets []cog.Builder[cog/variants.Dataquery]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Thresholds
+
+Map numeric values to states
+
+```go
+func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.ThresholdsConfig]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> TimeFrom
+
+Overrides the relative time range for individual panels,
+
+which causes them to be different than what is selected in
+
+the dashboard time picker in the top-right corner of the dashboard. You can use this to show metrics from different
+
+time periods or days on the same dashboard.
+
+The value is formatted as time operation like: `now-5m` (Last 5 minutes), `now/d` (the day so far),
+
+`now-5d/d`(Last 5 days), `now/w` (This week so far), `now-2y/y` (Last 2 years).
+
+Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```go
+func (builder *PanelBuilder) TimeFrom(timeFrom string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> TimeShift
+
+Overrides the time range for individual panels by shifting its start and end relative to the time picker.
+
+For example, you can shift the time range for the panel to be two hours earlier than the dashboard time picker setting `2h`.
+
+Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```go
+func (builder *PanelBuilder) TimeShift(timeShift string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Title
+
+Panel title.
+
+```go
+func (builder *PanelBuilder) Title(title string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Tooltip
+
+```go
+func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[common.VizTooltipOptions]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Transformations
+
+List of transformations that are applied to the panel data before rendering.
+
+When there are multiple transformations, Grafana applies them in the order they are listed.
+
+Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+
+```go
+func (builder *PanelBuilder) Transformations(transformations []dashboard.DataTransformerConfig) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Transparent
+
+Whether to display the panel without a background.
+
+```go
+func (builder *PanelBuilder) Transparent(transparent bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Unit
+
+Unit a field should use. The unit you select is applied to all fields except time.
+
+You can use the units ID availables in Grafana or a custom unit.
+
+Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
+
+As custom unit, you can use the following formats:
+
+`suffix:<suffix>` for custom unit that should go after value.
+
+`prefix:<prefix>` for custom unit that should go before value.
+
+`time:<format>` For custom date time formats type for example `time:YYYY-MM-DD`.
+
+`si:<base scale><unit characters>` for custom SI units. For example: `si: mF`. This one is a bit more advanced as you can specify both a unit and the source data scale. So if your source data is represented as milli (thousands of) something prefix the unit with that SI scale character.
+
+`count:<unit>` for a custom count unit.
+
+`currency:<unit>` for custom a currency unit.
+
+```go
+func (builder *PanelBuilder) Unit(unit string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> WithOverride
+
+Overrides are the options applied to specific fields overriding the defaults.
+
+```go
+func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, properties []dashboard.DynamicConfigValue) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> WithTarget
+
+Depends on the panel plugin. See the plugin documentation for details.
+
+```go
+func (builder *PanelBuilder) WithTarget(target cog.Builder[cog/variants.Dataquery]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> WithTransformation
+
+List of transformations that are applied to the panel data before rendering.
+
+When there are multiple transformations, Grafana applies them in the order they are listed.
+
+Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+
+```go
+func (builder *PanelBuilder) WithTransformation(transformation dashboard.DataTransformerConfig) *PanelBuilder
+```
+
+## See also
+
+ * <span class="badge object-type-struct"></span> [dashboard.Panel](../dashboard/object-Panel.md)

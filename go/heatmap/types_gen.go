@@ -51,6 +51,8 @@ type HeatmapColorOptions struct {
 	Max *float32 `json:"max,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HeatmapColorOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *HeatmapColorOptions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -187,6 +189,7 @@ func (resource *HeatmapColorOptions) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `HeatmapColorOptions` objects.
 func (resource HeatmapColorOptions) Equals(other HeatmapColorOptions) bool {
 	if resource.Mode == nil && other.Mode != nil || resource.Mode != nil && other.Mode == nil {
 		return false
@@ -243,8 +246,7 @@ func (resource HeatmapColorOptions) Equals(other HeatmapColorOptions) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `HeatmapColorOptions` fields for violations and returns them.
 func (resource HeatmapColorOptions) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Steps >= 2) {
@@ -291,6 +293,8 @@ type YAxisConfig struct {
 	AxisBorderShow *bool    `json:"axisBorderShow,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `YAxisConfig` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *YAxisConfig) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -480,6 +484,7 @@ func (resource *YAxisConfig) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `YAxisConfig` objects.
 func (resource YAxisConfig) Equals(other YAxisConfig) bool {
 	if resource.Unit == nil && other.Unit != nil || resource.Unit != nil && other.Unit == nil {
 		return false
@@ -620,8 +625,7 @@ func (resource YAxisConfig) Equals(other YAxisConfig) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `YAxisConfig` fields for violations and returns them.
 func (resource YAxisConfig) Validate() error {
 	var errs cog.BuildErrors
 	if resource.ScaleDistribution != nil {
@@ -645,6 +649,8 @@ type CellValues struct {
 	Decimals *float32 `json:"decimals,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CellValues` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CellValues) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -689,6 +695,7 @@ func (resource *CellValues) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `CellValues` objects.
 func (resource CellValues) Equals(other CellValues) bool {
 	if resource.Unit == nil && other.Unit != nil || resource.Unit != nil && other.Unit == nil {
 		return false
@@ -712,8 +719,7 @@ func (resource CellValues) Equals(other CellValues) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CellValues` fields for violations and returns them.
 func (resource CellValues) Validate() error {
 	return nil
 }
@@ -726,6 +732,8 @@ type FilterValueRange struct {
 	Ge *float32 `json:"ge,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FilterValueRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *FilterValueRange) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -770,6 +778,7 @@ func (resource *FilterValueRange) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `FilterValueRange` objects.
 func (resource FilterValueRange) Equals(other FilterValueRange) bool {
 	if resource.Le == nil && other.Le != nil || resource.Le != nil && other.Le == nil {
 		return false
@@ -793,8 +802,7 @@ func (resource FilterValueRange) Equals(other FilterValueRange) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `FilterValueRange` fields for violations and returns them.
 func (resource FilterValueRange) Validate() error {
 	return nil
 }
@@ -811,6 +819,8 @@ type HeatmapTooltip struct {
 	ShowColorScale *bool `json:"showColorScale,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HeatmapTooltip` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *HeatmapTooltip) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -891,6 +901,7 @@ func (resource *HeatmapTooltip) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `HeatmapTooltip` objects.
 func (resource HeatmapTooltip) Equals(other HeatmapTooltip) bool {
 	if resource.Mode != other.Mode {
 		return false
@@ -935,8 +946,7 @@ func (resource HeatmapTooltip) Equals(other HeatmapTooltip) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `HeatmapTooltip` fields for violations and returns them.
 func (resource HeatmapTooltip) Validate() error {
 	return nil
 }
@@ -947,6 +957,8 @@ type HeatmapLegend struct {
 	Show bool `json:"show"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HeatmapLegend` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *HeatmapLegend) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -983,6 +995,7 @@ func (resource *HeatmapLegend) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `HeatmapLegend` objects.
 func (resource HeatmapLegend) Equals(other HeatmapLegend) bool {
 	if resource.Show != other.Show {
 		return false
@@ -991,8 +1004,7 @@ func (resource HeatmapLegend) Equals(other HeatmapLegend) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `HeatmapLegend` fields for violations and returns them.
 func (resource HeatmapLegend) Validate() error {
 	return nil
 }
@@ -1003,6 +1015,8 @@ type ExemplarConfig struct {
 	Color string `json:"color"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExemplarConfig` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExemplarConfig) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1039,6 +1053,7 @@ func (resource *ExemplarConfig) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ExemplarConfig` objects.
 func (resource ExemplarConfig) Equals(other ExemplarConfig) bool {
 	if resource.Color != other.Color {
 		return false
@@ -1047,8 +1062,7 @@ func (resource ExemplarConfig) Equals(other ExemplarConfig) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ExemplarConfig` fields for violations and returns them.
 func (resource ExemplarConfig) Validate() error {
 	return nil
 }
@@ -1061,6 +1075,8 @@ type RowsHeatmapOptions struct {
 	Layout *common.HeatmapCellLayout `json:"layout,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RowsHeatmapOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RowsHeatmapOptions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1105,6 +1121,7 @@ func (resource *RowsHeatmapOptions) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `RowsHeatmapOptions` objects.
 func (resource RowsHeatmapOptions) Equals(other RowsHeatmapOptions) bool {
 	if resource.Value == nil && other.Value != nil || resource.Value != nil && other.Value == nil {
 		return false
@@ -1128,8 +1145,7 @@ func (resource RowsHeatmapOptions) Equals(other RowsHeatmapOptions) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `RowsHeatmapOptions` fields for violations and returns them.
 func (resource RowsHeatmapOptions) Validate() error {
 	return nil
 }
@@ -1169,6 +1185,8 @@ type Options struct {
 	Exemplars ExemplarConfig `json:"exemplars"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1370,6 +1388,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Options` objects.
 func (resource Options) Equals(other Options) bool {
 	if resource.Calculate == nil && other.Calculate != nil || resource.Calculate != nil && other.Calculate == nil {
 		return false
@@ -1456,8 +1475,7 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Options` fields for violations and returns them.
 func (resource Options) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Calculation != nil {
@@ -1516,6 +1534,8 @@ type FieldConfig struct {
 	HideFrom          *common.HideSeriesConfig        `json:"hideFrom,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FieldConfig` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1564,6 +1584,7 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `FieldConfig` objects.
 func (resource FieldConfig) Equals(other FieldConfig) bool {
 	if resource.ScaleDistribution == nil && other.ScaleDistribution != nil || resource.ScaleDistribution != nil && other.ScaleDistribution == nil {
 		return false
@@ -1587,8 +1608,7 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `FieldConfig` fields for violations and returns them.
 func (resource FieldConfig) Validate() error {
 	var errs cog.BuildErrors
 	if resource.ScaleDistribution != nil {
@@ -1609,6 +1629,8 @@ func (resource FieldConfig) Validate() error {
 	return errs
 }
 
+// VariantConfig returns the configuration related to heatmap panels.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "heatmap",

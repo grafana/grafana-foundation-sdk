@@ -15,6 +15,7 @@ class MapLayerOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\MapLayerOptions
      */
     public function build()

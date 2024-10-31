@@ -10,6 +10,9 @@ export class QueryEditorArrayExpressionBuilder implements cog.Builder<cloudwatch
         this.internal = cloudwatch.defaultQueryEditorArrayExpression();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): cloudwatch.QueryEditorArrayExpression {
         return this.internal;
     }

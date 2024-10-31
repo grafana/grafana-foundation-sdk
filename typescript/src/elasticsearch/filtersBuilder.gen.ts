@@ -11,6 +11,9 @@ export class FiltersBuilder implements cog.Builder<elasticsearch.Filters> {
         this.internal.type = "filters";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Filters {
         return this.internal;
     }

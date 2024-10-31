@@ -11,6 +11,9 @@ export class TempoQueryBuilder implements cog.Builder<cog.Dataquery> {
         this.internal = tempo.defaultTempoQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): tempo.TempoQuery {
         return this.internal;
     }

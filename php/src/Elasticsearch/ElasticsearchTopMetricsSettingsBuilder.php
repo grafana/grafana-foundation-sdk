@@ -15,6 +15,7 @@ class ElasticsearchTopMetricsSettingsBuilder implements \Grafana\Foundation\Cog\
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchTopMetricsSettings
      */
     public function build()

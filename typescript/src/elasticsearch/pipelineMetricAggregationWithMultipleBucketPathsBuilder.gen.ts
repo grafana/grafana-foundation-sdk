@@ -10,6 +10,9 @@ export class PipelineMetricAggregationWithMultipleBucketPathsBuilder implements 
         this.internal = elasticsearch.defaultPipelineMetricAggregationWithMultipleBucketPaths();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths {
         return this.internal;
     }

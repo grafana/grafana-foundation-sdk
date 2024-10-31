@@ -12,6 +12,9 @@ export class TableSparklineCellOptionsBuilder implements cog.Builder<common.Tabl
         this.internal.type = "sparkline";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.TableSparklineCellOptions {
         return this.internal;
     }

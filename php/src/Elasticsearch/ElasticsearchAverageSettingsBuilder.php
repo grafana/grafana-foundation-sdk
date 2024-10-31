@@ -15,6 +15,7 @@ class ElasticsearchAverageSettingsBuilder implements \Grafana\Foundation\Cog\Bui
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchAverageSettings
      */
     public function build()

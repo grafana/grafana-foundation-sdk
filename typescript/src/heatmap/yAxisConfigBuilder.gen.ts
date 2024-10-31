@@ -12,6 +12,9 @@ export class YAxisConfigBuilder implements cog.Builder<heatmap.YAxisConfig> {
         this.internal = heatmap.defaultYAxisConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): heatmap.YAxisConfig {
         return this.internal;
     }
