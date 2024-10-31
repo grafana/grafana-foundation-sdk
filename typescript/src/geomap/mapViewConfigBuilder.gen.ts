@@ -10,6 +10,9 @@ export class MapViewConfigBuilder implements cog.Builder<geomap.MapViewConfig> {
         this.internal = geomap.defaultMapViewConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): geomap.MapViewConfig {
         return this.internal;
     }

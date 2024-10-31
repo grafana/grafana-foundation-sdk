@@ -16,6 +16,7 @@ class RateBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\Rate
      */
     public function build()

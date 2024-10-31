@@ -10,6 +10,9 @@ export class ColorDimensionConfigBuilder implements cog.Builder<common.ColorDime
         this.internal = common.defaultColorDimensionConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.ColorDimensionConfig {
         return this.internal;
     }

@@ -12,6 +12,9 @@ export class TableColoredBackgroundCellOptionsBuilder implements cog.Builder<com
         this.internal.type = "color-background";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.TableColoredBackgroundCellOptions {
         return this.internal;
     }

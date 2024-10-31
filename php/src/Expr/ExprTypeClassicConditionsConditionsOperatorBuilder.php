@@ -15,6 +15,7 @@ class ExprTypeClassicConditionsConditionsOperatorBuilder implements \Grafana\Fou
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsOperator
      */
     public function build()

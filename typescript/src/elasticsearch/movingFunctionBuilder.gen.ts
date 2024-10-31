@@ -11,6 +11,9 @@ export class MovingFunctionBuilder implements cog.Builder<elasticsearch.MovingFu
         this.internal.type = "moving_fn";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.MovingFunction {
         return this.internal;
     }

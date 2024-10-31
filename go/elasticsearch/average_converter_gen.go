@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AverageConverter accepts a `Average` object and generates the Go code to build this object using builders.
 func AverageConverter(input Average) string {
 	calls := []string{
 		`elasticsearch.NewAverageBuilder()`,

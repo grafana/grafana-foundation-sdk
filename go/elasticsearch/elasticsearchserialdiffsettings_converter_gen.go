@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchSerialDiffSettingsConverter accepts a `ElasticsearchSerialDiffSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchSerialDiffSettingsConverter(input ElasticsearchSerialDiffSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchSerialDiffSettingsBuilder()`,

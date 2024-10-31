@@ -15,6 +15,7 @@ class SQLExpressionBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Cloudwatch\SQLExpression
      */
     public function build()

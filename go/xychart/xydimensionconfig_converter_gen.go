@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// XYDimensionConfigConverter accepts a `XYDimensionConfig` object and generates the Go code to build this object using builders.
 func XYDimensionConfigConverter(input XYDimensionConfig) string {
 	calls := []string{
 		`xychart.NewXYDimensionConfigBuilder()`,

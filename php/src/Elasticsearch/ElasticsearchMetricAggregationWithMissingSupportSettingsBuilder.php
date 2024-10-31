@@ -15,6 +15,7 @@ class ElasticsearchMetricAggregationWithMissingSupportSettingsBuilder implements
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchMetricAggregationWithMissingSupportSettings
      */
     public function build()

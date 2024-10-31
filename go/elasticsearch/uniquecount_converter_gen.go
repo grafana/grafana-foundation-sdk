@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// UniqueCountConverter accepts a `UniqueCount` object and generates the Go code to build this object using builders.
 func UniqueCountConverter(input UniqueCount) string {
 	calls := []string{
 		`elasticsearch.NewUniqueCountBuilder()`,

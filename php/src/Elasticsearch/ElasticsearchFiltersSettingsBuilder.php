@@ -15,6 +15,7 @@ class ElasticsearchFiltersSettingsBuilder implements \Grafana\Foundation\Cog\Bui
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchFiltersSettings
      */
     public function build()

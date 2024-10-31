@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// LineStyleConverter accepts a `LineStyle` object and generates the Go code to build this object using builders.
 func LineStyleConverter(input LineStyle) string {
 	calls := []string{
 		`common.NewLineStyleBuilder()`,

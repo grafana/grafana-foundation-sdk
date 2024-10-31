@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// HistogramConverter accepts a `Histogram` object and generates the Go code to build this object using builders.
 func HistogramConverter(input Histogram) string {
 	calls := []string{
 		`elasticsearch.NewHistogramBuilder()`,

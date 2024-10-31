@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// RangeMapConverter accepts a `RangeMap` object and generates the Go code to build this object using builders.
 func RangeMapConverter(input RangeMap) string {
 	calls := []string{
 		`dashboard.NewRangeMapBuilder()`,

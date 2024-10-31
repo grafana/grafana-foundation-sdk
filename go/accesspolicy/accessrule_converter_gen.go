@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AccessRuleConverter accepts a `AccessRule` object and generates the Go code to build this object using builders.
 func AccessRuleConverter(input AccessRule) string {
 	calls := []string{
 		`accesspolicy.NewAccessRuleBuilder()`,

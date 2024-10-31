@@ -12,6 +12,9 @@ class Role(cogbuilder.Builder[role.Role]):
         self._internal = role.Role()
 
     def build(self) -> role.Role:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:    
