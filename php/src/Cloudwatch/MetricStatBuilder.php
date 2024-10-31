@@ -15,6 +15,7 @@ class MetricStatBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Cloudwatch\MetricStat
      */
     public function build()

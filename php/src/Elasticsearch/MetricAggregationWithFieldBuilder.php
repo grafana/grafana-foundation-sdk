@@ -15,6 +15,7 @@ class MetricAggregationWithFieldBuilder implements \Grafana\Foundation\Cog\Build
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\MetricAggregationWithField
      */
     public function build()

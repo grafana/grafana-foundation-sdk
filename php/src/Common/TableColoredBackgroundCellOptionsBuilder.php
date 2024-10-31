@@ -17,6 +17,7 @@ class TableColoredBackgroundCellOptionsBuilder implements \Grafana\Foundation\Co
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\TableColoredBackgroundCellOptions
      */
     public function build()

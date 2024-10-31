@@ -15,6 +15,7 @@ class CSVWaveBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Testdata\CSVWave
      */
     public function build()

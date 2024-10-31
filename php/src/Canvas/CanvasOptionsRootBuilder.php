@@ -16,6 +16,7 @@ class CanvasOptionsRootBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Canvas\CanvasOptionsRoot
      */
     public function build()

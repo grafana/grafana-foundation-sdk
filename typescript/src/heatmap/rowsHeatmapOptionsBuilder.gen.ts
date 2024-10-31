@@ -12,6 +12,9 @@ export class RowsHeatmapOptionsBuilder implements cog.Builder<heatmap.RowsHeatma
         this.internal = heatmap.defaultRowsHeatmapOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): heatmap.RowsHeatmapOptions {
         return this.internal;
     }

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
 func QueryConverter(input Query) string {
 	calls := []string{
 		`alerting.NewQueryBuilder(` + fmt.Sprintf("%#v", cog.Unptr(input.RefId)) + `)`,

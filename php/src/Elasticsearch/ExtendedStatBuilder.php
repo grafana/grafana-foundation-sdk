@@ -15,6 +15,7 @@ class ExtendedStatBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ExtendedStat
      */
     public function build()

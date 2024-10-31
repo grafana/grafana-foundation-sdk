@@ -11,6 +11,9 @@ export class RawDocumentBuilder implements cog.Builder<elasticsearch.RawDocument
         this.internal.type = "raw_document";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.RawDocument {
         return this.internal;
     }

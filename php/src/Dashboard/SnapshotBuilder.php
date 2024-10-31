@@ -20,6 +20,7 @@ class SnapshotBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\Snapshot
      */
     public function build()

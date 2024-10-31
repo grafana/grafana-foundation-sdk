@@ -15,6 +15,7 @@ class ExprTypeClassicConditionsConditionsQueryBuilder implements \Grafana\Founda
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsQuery
      */
     public function build()

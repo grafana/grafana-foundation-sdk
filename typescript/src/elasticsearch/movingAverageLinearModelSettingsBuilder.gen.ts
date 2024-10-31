@@ -11,6 +11,9 @@ export class MovingAverageLinearModelSettingsBuilder implements cog.Builder<elas
         this.internal.model = "linear";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.MovingAverageLinearModelSettings {
         return this.internal;
     }

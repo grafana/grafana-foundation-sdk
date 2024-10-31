@@ -11,6 +11,9 @@ export class PercentilesBuilder implements cog.Builder<elasticsearch.Percentiles
         this.internal.type = "percentiles";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Percentiles {
         return this.internal;
     }

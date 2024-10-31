@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// TimePickerConverter accepts a `TimePicker` object and generates the Go code to build this object using builders.
 func TimePickerConverter(input TimePickerConfig) string {
 	calls := []string{
 		`dashboard.NewTimePickerBuilder()`,
