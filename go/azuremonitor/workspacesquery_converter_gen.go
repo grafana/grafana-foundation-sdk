@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// WorkspacesQueryConverter accepts a `WorkspacesQuery` object and generates the Go code to build this object using builders.
 func WorkspacesQueryConverter(input WorkspacesQuery) string {
 	calls := []string{
 		`azuremonitor.NewWorkspacesQueryBuilder()`,

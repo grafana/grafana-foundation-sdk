@@ -15,6 +15,7 @@ class NavbarPreferenceBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Preferences\NavbarPreference
      */
     public function build()

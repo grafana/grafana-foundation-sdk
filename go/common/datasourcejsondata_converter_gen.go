@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// DataSourceJsonDataConverter accepts a `DataSourceJsonData` object and generates the Go code to build this object using builders.
 func DataSourceJsonDataConverter(input DataSourceJsonData) string {
 	calls := []string{
 		`common.NewDataSourceJsonDataBuilder()`,

@@ -15,6 +15,7 @@ class ElasticsearchRateSettingsBuilder implements \Grafana\Foundation\Cog\Builde
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchRateSettings
      */
     public function build()

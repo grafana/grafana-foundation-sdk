@@ -16,6 +16,9 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
         this.internal.editable = true;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.Dashboard {
         return this.internal;
     }

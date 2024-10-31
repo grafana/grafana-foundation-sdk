@@ -11,6 +11,9 @@ export class PromQLQueryBuilder implements cog.Builder<googlecloudmonitoring.Pro
         this.internal = googlecloudmonitoring.defaultPromQLQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): googlecloudmonitoring.PromQLQuery {
         return this.internal;
     }

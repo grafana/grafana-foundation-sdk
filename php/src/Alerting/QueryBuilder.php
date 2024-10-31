@@ -16,6 +16,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Alerting\Query
      */
     public function build()

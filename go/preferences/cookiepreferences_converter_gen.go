@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// CookiePreferencesConverter accepts a `CookiePreferences` object and generates the Go code to build this object using builders.
 func CookiePreferencesConverter(input CookiePreferences) string {
 	calls := []string{
 		`preferences.NewCookiePreferencesBuilder()`,

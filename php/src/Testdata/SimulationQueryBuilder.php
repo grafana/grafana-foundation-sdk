@@ -15,6 +15,7 @@ class SimulationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Testdata\SimulationQuery
      */
     public function build()

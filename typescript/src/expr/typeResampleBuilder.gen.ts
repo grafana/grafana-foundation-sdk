@@ -12,6 +12,9 @@ export class TypeResampleBuilder implements cog.Builder<cog.Dataquery> {
         this.internal.type = "resample";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): expr.TypeResample {
         return this.internal;
     }

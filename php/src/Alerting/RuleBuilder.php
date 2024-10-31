@@ -22,6 +22,7 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Alerting\Rule
      */
     public function build()

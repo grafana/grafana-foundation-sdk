@@ -81,6 +81,8 @@ func (resource Dataquery) DataqueryType() string {
 	return "loki"
 }
 
+// VariantConfig returns the configuration related to loki dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "loki",
@@ -114,6 +116,8 @@ func VariantConfig() variants.DataqueryConfig {
 	}
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Dataquery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -276,6 +280,7 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -385,8 +390,7 @@ func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Dataquery` fields for violations and returns them.
 func (resource Dataquery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Datasource != nil {

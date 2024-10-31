@@ -16,6 +16,7 @@ class SerialDiffBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\SerialDiff
      */
     public function build()

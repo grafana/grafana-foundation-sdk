@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// OptionsWithLegendConverter accepts a `OptionsWithLegend` object and generates the Go code to build this object using builders.
 func OptionsWithLegendConverter(input OptionsWithLegend) string {
 	calls := []string{
 		`common.NewOptionsWithLegendBuilder()`,

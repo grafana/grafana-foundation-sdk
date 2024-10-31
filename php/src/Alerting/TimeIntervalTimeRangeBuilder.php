@@ -15,6 +15,7 @@ class TimeIntervalTimeRangeBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Alerting\TimeIntervalTimeRange
      */
     public function build()

@@ -11,6 +11,9 @@ export class ExemplarConfigBuilder implements cog.Builder<heatmap.ExemplarConfig
         this.internal = heatmap.defaultExemplarConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): heatmap.ExemplarConfig {
         return this.internal;
     }

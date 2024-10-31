@@ -11,6 +11,9 @@ export class HeatmapLegendBuilder implements cog.Builder<heatmap.HeatmapLegend> 
         this.internal = heatmap.defaultHeatmapLegend();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): heatmap.HeatmapLegend {
         return this.internal;
     }

@@ -11,6 +11,9 @@ export class LineConfigBuilder implements cog.Builder<canvas.LineConfig> {
         this.internal = canvas.defaultLineConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): canvas.LineConfig {
         return this.internal;
     }

@@ -15,6 +15,7 @@ class TooltipOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Geomap\TooltipOptions
      */
     public function build()
