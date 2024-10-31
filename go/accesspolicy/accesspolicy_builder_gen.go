@@ -26,14 +26,8 @@ func NewAccessPolicyBuilder() *AccessPolicyBuilder {
 }
 
 func (builder *AccessPolicyBuilder) Build() (AccessPolicy, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AccessPolicy", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AccessPolicy{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AccessPolicy{}, err
 	}
 
 	return *builder.internal, nil
@@ -65,13 +59,13 @@ func (builder *AccessPolicyBuilder) Role(role cog.Builder[RoleRef]) *AccessPolic
 
 // The set of rules to apply.  Note that * is required to modify
 // access policy rules, and that "none" will reject all actions
-func (builder *AccessPolicyBuilder) Rules(rules cog.Builder[AccessRule]) *AccessPolicyBuilder {
-	rulesResource, err := rules.Build()
+func (builder *AccessPolicyBuilder) Rules(rule cog.Builder[AccessRule]) *AccessPolicyBuilder {
+	ruleResource, err := rule.Build()
 	if err != nil {
 		builder.errors["rules"] = err.(cog.BuildErrors)
 		return builder
 	}
-	builder.internal.Rules = append(builder.internal.Rules, rulesResource)
+	builder.internal.Rules = append(builder.internal.Rules, ruleResource)
 
 	return builder
 }

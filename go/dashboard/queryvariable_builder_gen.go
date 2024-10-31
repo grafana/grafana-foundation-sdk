@@ -29,14 +29,8 @@ func NewQueryVariableBuilder(name string) *QueryVariableBuilder {
 }
 
 func (builder *QueryVariableBuilder) Build() (VariableModel, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("QueryVariable", err)...)
-	}
-
-	if len(errs) != 0 {
-		return VariableModel{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return VariableModel{}, err
 	}
 
 	return *builder.internal, nil

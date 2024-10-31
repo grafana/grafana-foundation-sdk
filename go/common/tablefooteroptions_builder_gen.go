@@ -27,14 +27,8 @@ func NewTableFooterOptionsBuilder() *TableFooterOptionsBuilder {
 }
 
 func (builder *TableFooterOptionsBuilder) Build() (TableFooterOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TableFooterOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TableFooterOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TableFooterOptions{}, err
 	}
 
 	return *builder.internal, nil

@@ -26,14 +26,8 @@ func NewExtendedStatBuilder() *ExtendedStatBuilder {
 }
 
 func (builder *ExtendedStatBuilder) Build() (ExtendedStat, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExtendedStat", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExtendedStat{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExtendedStat{}, err
 	}
 
 	return *builder.internal, nil

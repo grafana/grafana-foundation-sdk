@@ -26,14 +26,8 @@ func NewElasticsearchFiltersSettingsBuilder() *ElasticsearchFiltersSettingsBuild
 }
 
 func (builder *ElasticsearchFiltersSettingsBuilder) Build() (ElasticsearchFiltersSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchFiltersSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchFiltersSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchFiltersSettings{}, err
 	}
 
 	return *builder.internal, nil

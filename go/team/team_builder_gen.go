@@ -27,14 +27,8 @@ func NewTeamBuilder(name string) *TeamBuilder {
 }
 
 func (builder *TeamBuilder) Build() (Team, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Team", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Team{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Team{}, err
 	}
 
 	return *builder.internal, nil

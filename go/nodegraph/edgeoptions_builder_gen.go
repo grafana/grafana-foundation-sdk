@@ -26,14 +26,8 @@ func NewEdgeOptionsBuilder() *EdgeOptionsBuilder {
 }
 
 func (builder *EdgeOptionsBuilder) Build() (EdgeOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("EdgeOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return EdgeOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return EdgeOptions{}, err
 	}
 
 	return *builder.internal, nil

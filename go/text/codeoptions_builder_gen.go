@@ -26,14 +26,8 @@ func NewCodeOptionsBuilder() *CodeOptionsBuilder {
 }
 
 func (builder *CodeOptionsBuilder) Build() (CodeOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CodeOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CodeOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CodeOptions{}, err
 	}
 
 	return *builder.internal, nil

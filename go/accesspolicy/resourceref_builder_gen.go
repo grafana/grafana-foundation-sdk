@@ -26,14 +26,8 @@ func NewResourceRefBuilder() *ResourceRefBuilder {
 }
 
 func (builder *ResourceRefBuilder) Build() (ResourceRef, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ResourceRef", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ResourceRef{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ResourceRef{}, err
 	}
 
 	return *builder.internal, nil

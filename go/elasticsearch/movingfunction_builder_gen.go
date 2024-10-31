@@ -27,14 +27,8 @@ func NewMovingFunctionBuilder() *MovingFunctionBuilder {
 }
 
 func (builder *MovingFunctionBuilder) Build() (MovingFunction, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MovingFunction", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MovingFunction{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MovingFunction{}, err
 	}
 
 	return *builder.internal, nil

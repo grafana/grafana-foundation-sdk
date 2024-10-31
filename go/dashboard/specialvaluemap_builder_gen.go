@@ -30,14 +30,8 @@ func NewSpecialValueMapBuilder() *SpecialValueMapBuilder {
 }
 
 func (builder *SpecialValueMapBuilder) Build() (SpecialValueMap, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("SpecialValueMap", err)...)
-	}
-
-	if len(errs) != 0 {
-		return SpecialValueMap{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return SpecialValueMap{}, err
 	}
 
 	return *builder.internal, nil

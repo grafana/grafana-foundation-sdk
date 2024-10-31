@@ -36,6 +36,7 @@ public class DashboardMeta {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("expires")
     public String expires;
+    // Deprecated: use FolderUID instead
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("folderId")
     public Long folderId;

@@ -27,14 +27,8 @@ func NewBackgroundConfigBuilder() *BackgroundConfigBuilder {
 }
 
 func (builder *BackgroundConfigBuilder) Build() (BackgroundConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("BackgroundConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return BackgroundConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return BackgroundConfig{}, err
 	}
 
 	return *builder.internal, nil

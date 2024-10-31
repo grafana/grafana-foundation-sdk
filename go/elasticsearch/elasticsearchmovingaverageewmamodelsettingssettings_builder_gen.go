@@ -26,14 +26,8 @@ func NewElasticsearchMovingAverageEWMAModelSettingsSettingsBuilder() *Elasticsea
 }
 
 func (builder *ElasticsearchMovingAverageEWMAModelSettingsSettingsBuilder) Build() (ElasticsearchMovingAverageEWMAModelSettingsSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMovingAverageEWMAModelSettingsSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchMovingAverageEWMAModelSettingsSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchMovingAverageEWMAModelSettingsSettings{}, err
 	}
 
 	return *builder.internal, nil

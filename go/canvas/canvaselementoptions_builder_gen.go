@@ -26,14 +26,8 @@ func NewCanvasElementOptionsBuilder() *CanvasElementOptionsBuilder {
 }
 
 func (builder *CanvasElementOptionsBuilder) Build() (CanvasElementOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CanvasElementOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CanvasElementOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CanvasElementOptions{}, err
 	}
 
 	return *builder.internal, nil
