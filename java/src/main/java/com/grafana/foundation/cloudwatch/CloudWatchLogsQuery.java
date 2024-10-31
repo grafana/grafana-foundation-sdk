@@ -60,6 +60,9 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
+    public String dataqueryName() {
+        return "cloudwatch";
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

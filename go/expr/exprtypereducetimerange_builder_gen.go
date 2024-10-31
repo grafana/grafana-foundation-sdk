@@ -26,14 +26,8 @@ func NewExprTypeReduceTimeRangeBuilder() *ExprTypeReduceTimeRangeBuilder {
 }
 
 func (builder *ExprTypeReduceTimeRangeBuilder) Build() (ExprTypeReduceTimeRange, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExprTypeReduceTimeRange", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExprTypeReduceTimeRange{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExprTypeReduceTimeRange{}, err
 	}
 
 	return *builder.internal, nil

@@ -3,8 +3,6 @@
 package heatmap
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
@@ -29,14 +27,8 @@ func NewHeatmapColorOptionsBuilder() *HeatmapColorOptionsBuilder {
 }
 
 func (builder *HeatmapColorOptionsBuilder) Build() (HeatmapColorOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("HeatmapColorOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return HeatmapColorOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return HeatmapColorOptions{}, err
 	}
 
 	return *builder.internal, nil
@@ -79,14 +71,6 @@ func (builder *HeatmapColorOptionsBuilder) Exponent(exponent float32) *HeatmapCo
 
 // Controls the number of color steps
 func (builder *HeatmapColorOptionsBuilder) Steps(steps uint64) *HeatmapColorOptionsBuilder {
-	if !(steps >= 2) {
-		builder.errors["steps"] = cog.MakeBuildErrors("steps", errors.New("steps must be >= 2"))
-		return builder
-	}
-	if !(steps <= 128) {
-		builder.errors["steps"] = cog.MakeBuildErrors("steps", errors.New("steps must be <= 128"))
-		return builder
-	}
 	builder.internal.Steps = steps
 
 	return builder

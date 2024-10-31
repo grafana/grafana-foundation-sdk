@@ -157,11 +157,11 @@ public class Panel {
         return (T) this;
     }
     
-    public T withTarget(com.grafana.foundation.cog.Builder<Dataquery> targets) {
+    public T withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
 		if (this.internal.targets == null) {
 			this.internal.targets = new LinkedList<>();
 		}
-    this.internal.targets.add(targets.build());
+    this.internal.targets.add(target.build());
         return (T) this;
     }
     
@@ -245,11 +245,11 @@ public class Panel {
         return (T) this;
     }
     
-    public T withTransformation(DataTransformerConfig transformations) {
+    public T withTransformation(DataTransformerConfig transformation) {
 		if (this.internal.transformations == null) {
 			this.internal.transformations = new LinkedList<>();
 		}
-    this.internal.transformations.add(transformations);
+    this.internal.transformations.add(transformation);
         return (T) this;
     }
     
@@ -385,14 +385,14 @@ public class Panel {
         return (T) this;
     }
     
-    public T withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> overrides) {
+    public T withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
 		if (this.internal.fieldConfig.overrides == null) {
 			this.internal.fieldConfig.overrides = new LinkedList<>();
 		}
-    this.internal.fieldConfig.overrides.add(overrides.build());
+    this.internal.fieldConfig.overrides.add(override.build());
         return (T) this;
     }
     public Panel build() {

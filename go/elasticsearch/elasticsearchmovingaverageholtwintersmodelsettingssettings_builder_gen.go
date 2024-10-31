@@ -26,14 +26,8 @@ func NewElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder() *Ela
 }
 
 func (builder *ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder) Build() (ElasticsearchMovingAverageHoltWintersModelSettingsSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMovingAverageHoltWintersModelSettingsSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchMovingAverageHoltWintersModelSettingsSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchMovingAverageHoltWintersModelSettingsSettings{}, err
 	}
 
 	return *builder.internal, nil

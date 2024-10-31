@@ -27,14 +27,8 @@ func NewStackingConfigBuilder() *StackingConfigBuilder {
 }
 
 func (builder *StackingConfigBuilder) Build() (StackingConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("StackingConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return StackingConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return StackingConfig{}, err
 	}
 
 	return *builder.internal, nil

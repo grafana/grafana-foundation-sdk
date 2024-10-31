@@ -4,7 +4,10 @@ package loki
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
@@ -91,6 +94,15 @@ func VariantConfig() variants.DataqueryConfig {
 
 			return dataquery, nil
 		},
+		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &Dataquery{}
+
+			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
 		GoConverter: func(input any) string {
 			var dataquery Dataquery
 			if cast, ok := input.(*Dataquery); ok {
@@ -101,6 +113,168 @@ func VariantConfig() variants.DataqueryConfig {
 			return DataqueryConverter(dataquery)
 		},
 	}
+}
+
+func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "expr"
+	if fields["expr"] != nil {
+		if string(fields["expr"]) != "null" {
+			if err := json.Unmarshal(fields["expr"], &resource.Expr); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("expr", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expr", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expr")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expr", errors.New("required field is missing from input"))...)
+	}
+	// Field "legendFormat"
+	if fields["legendFormat"] != nil {
+		if string(fields["legendFormat"]) != "null" {
+			if err := json.Unmarshal(fields["legendFormat"], &resource.LegendFormat); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("legendFormat", err)...)
+			}
+
+		}
+		delete(fields, "legendFormat")
+
+	}
+	// Field "maxLines"
+	if fields["maxLines"] != nil {
+		if string(fields["maxLines"]) != "null" {
+			if err := json.Unmarshal(fields["maxLines"], &resource.MaxLines); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxLines", err)...)
+			}
+
+		}
+		delete(fields, "maxLines")
+
+	}
+	// Field "resolution"
+	if fields["resolution"] != nil {
+		if string(fields["resolution"]) != "null" {
+			if err := json.Unmarshal(fields["resolution"], &resource.Resolution); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resolution", err)...)
+			}
+
+		}
+		delete(fields, "resolution")
+
+	}
+	// Field "editorMode"
+	if fields["editorMode"] != nil {
+		if string(fields["editorMode"]) != "null" {
+			if err := json.Unmarshal(fields["editorMode"], &resource.EditorMode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("editorMode", err)...)
+			}
+
+		}
+		delete(fields, "editorMode")
+
+	}
+	// Field "range"
+	if fields["range"] != nil {
+		if string(fields["range"]) != "null" {
+			if err := json.Unmarshal(fields["range"], &resource.Range); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("range", err)...)
+			}
+
+		}
+		delete(fields, "range")
+
+	}
+	// Field "instant"
+	if fields["instant"] != nil {
+		if string(fields["instant"]) != "null" {
+			if err := json.Unmarshal(fields["instant"], &resource.Instant); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("instant", err)...)
+			}
+
+		}
+		delete(fields, "instant")
+
+	}
+	// Field "step"
+	if fields["step"] != nil {
+		if string(fields["step"]) != "null" {
+			if err := json.Unmarshal(fields["step"], &resource.Step); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("step", err)...)
+			}
+
+		}
+		delete(fields, "step")
+
+	}
+	// Field "refId"
+	if fields["refId"] != nil {
+		if string(fields["refId"]) != "null" {
+			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "refId")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+	// Field "queryType"
+	if fields["queryType"] != nil {
+		if string(fields["queryType"]) != "null" {
+			if err := json.Unmarshal(fields["queryType"], &resource.QueryType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryType", err)...)
+			}
+
+		}
+		delete(fields, "queryType")
+
+	}
+	// Field "datasource"
+	if fields["datasource"] != nil {
+		if string(fields["datasource"]) != "null" {
+
+			resource.Datasource = &dashboard.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+			}
+
+		}
+		delete(fields, "datasource")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Dataquery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
@@ -210,4 +384,21 @@ func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource Dataquery) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }

@@ -28,14 +28,8 @@ func NewTempoQueryBuilder() *TempoQueryBuilder {
 }
 
 func (builder *TempoQueryBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TempoQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TempoQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TempoQuery{}, err
 	}
 
 	return *builder.internal, nil

@@ -27,14 +27,8 @@ func NewResourceNamesQueryBuilder() *ResourceNamesQueryBuilder {
 }
 
 func (builder *ResourceNamesQueryBuilder) Build() (ResourceNamesQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ResourceNamesQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ResourceNamesQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ResourceNamesQuery{}, err
 	}
 
 	return *builder.internal, nil

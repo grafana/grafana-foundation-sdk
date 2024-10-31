@@ -1445,7 +1445,8 @@
             "format": "date-time"
           },
           "folderId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Deprecated: use FolderUID instead"
           },
           "folderTitle": {
             "type": "string"

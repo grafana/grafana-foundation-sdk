@@ -26,14 +26,8 @@ func NewAnnotationPanelFilterBuilder() *AnnotationPanelFilterBuilder {
 }
 
 func (builder *AnnotationPanelFilterBuilder) Build() (AnnotationPanelFilter, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AnnotationPanelFilter", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AnnotationPanelFilter{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AnnotationPanelFilter{}, err
 	}
 
 	return *builder.internal, nil

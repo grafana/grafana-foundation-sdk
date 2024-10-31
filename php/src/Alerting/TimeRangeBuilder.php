@@ -23,18 +23,12 @@ class TimeRangeBuilder implements \Grafana\Foundation\Cog\Builder
         return $this->internal;
     }
 
-    /**
-     * Redefining this to avoid an import cycle
-     */
     public function from(string $from): static
     {
         $this->internal->from = $from;
     
         return $this;
     }
-    /**
-     * Redefining this to avoid an import cycle
-     */
     public function to(string $to): static
     {
         $this->internal->to = $to;

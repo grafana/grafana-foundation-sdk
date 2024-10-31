@@ -27,14 +27,8 @@ func NewOptionsWithTimezonesBuilder() *OptionsWithTimezonesBuilder {
 }
 
 func (builder *OptionsWithTimezonesBuilder) Build() (OptionsWithTimezones, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("OptionsWithTimezones", err)...)
-	}
-
-	if len(errs) != 0 {
-		return OptionsWithTimezones{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return OptionsWithTimezones{}, err
 	}
 
 	return *builder.internal, nil

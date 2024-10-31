@@ -27,14 +27,8 @@ func NewLineConfigBuilder() *LineConfigBuilder {
 }
 
 func (builder *LineConfigBuilder) Build() (LineConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("LineConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return LineConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return LineConfig{}, err
 	}
 
 	return *builder.internal, nil

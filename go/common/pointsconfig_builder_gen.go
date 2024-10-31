@@ -27,14 +27,8 @@ func NewPointsConfigBuilder() *PointsConfigBuilder {
 }
 
 func (builder *PointsConfigBuilder) Build() (PointsConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("PointsConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return PointsConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return PointsConfig{}, err
 	}
 
 	return *builder.internal, nil

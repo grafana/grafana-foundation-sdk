@@ -27,14 +27,8 @@ func NewVizTooltipOptionsBuilder() *VizTooltipOptionsBuilder {
 }
 
 func (builder *VizTooltipOptionsBuilder) Build() (VizTooltipOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("VizTooltipOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return VizTooltipOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return VizTooltipOptions{}, err
 	}
 
 	return *builder.internal, nil

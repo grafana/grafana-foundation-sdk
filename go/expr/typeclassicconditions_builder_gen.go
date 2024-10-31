@@ -29,14 +29,8 @@ func NewTypeClassicConditionsBuilder() *TypeClassicConditionsBuilder {
 }
 
 func (builder *TypeClassicConditionsBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TypeClassicConditions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TypeClassicConditions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TypeClassicConditions{}, err
 	}
 
 	return *builder.internal, nil

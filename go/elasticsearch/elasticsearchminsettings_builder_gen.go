@@ -26,14 +26,8 @@ func NewElasticsearchMinSettingsBuilder() *ElasticsearchMinSettingsBuilder {
 }
 
 func (builder *ElasticsearchMinSettingsBuilder) Build() (ElasticsearchMinSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMinSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchMinSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchMinSettings{}, err
 	}
 
 	return *builder.internal, nil

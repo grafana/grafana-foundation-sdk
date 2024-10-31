@@ -27,14 +27,8 @@ func NewTermsBuilder() *TermsBuilder {
 }
 
 func (builder *TermsBuilder) Build() (Terms, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Terms", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Terms{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Terms{}, err
 	}
 
 	return *builder.internal, nil

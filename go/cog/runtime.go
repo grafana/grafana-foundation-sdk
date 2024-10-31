@@ -108,12 +108,60 @@ func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string)
 	return dataquery, nil
 }
 
+func (runtime *Runtime) StrictUnmarshalDataquery(raw []byte, dataqueryTypeHint string) (variants.Dataquery, error) {
+	// A hint tells us the dataquery type: let's use it.
+	if dataqueryTypeHint != "" {
+		config, found := runtime.dataqueryVariants[dataqueryTypeHint]
+		if found {
+			dataquery, err := config.StrictDataqueryUnmarshaler(raw)
+			if err != nil {
+				return nil, err
+			}
+
+			return dataquery.(variants.Dataquery), nil
+		}
+	}
+
+	// Dataqueries might reference the datasource to use, and its type. Let's use that.
+	partialDataquery := struct {
+		Datasource struct {
+			Type string `json:"type"`
+		} `json:"datasource"`
+	}{}
+	if err := json.Unmarshal(raw, &partialDataquery); err != nil {
+		return nil, err
+	}
+	if partialDataquery.Datasource.Type != "" {
+		config, found := runtime.dataqueryVariants[partialDataquery.Datasource.Type]
+		if found {
+			dataquery, err := config.StrictDataqueryUnmarshaler(raw)
+			if err != nil {
+				return nil, err
+			}
+
+			return dataquery.(variants.Dataquery), nil
+		}
+	}
+
+	// We have no idea what type the dataquery is: use our `UnknownDataquery` bag to not lose data.
+	dataquery := variants.UnknownDataquery{}
+	if err := json.Unmarshal(raw, &dataquery); err != nil {
+		return nil, err
+	}
+
+	return dataquery, nil
+}
+
 func UnmarshalDataqueryArray(raw []byte, dataqueryTypeHint string) ([]variants.Dataquery, error) {
 	return NewRuntime().UnmarshalDataqueryArray(raw, dataqueryTypeHint)
 }
 
 func UnmarshalDataquery(raw []byte, dataqueryTypeHint string) (variants.Dataquery, error) {
 	return NewRuntime().UnmarshalDataquery(raw, dataqueryTypeHint)
+}
+
+func StrictUnmarshalDataquery(raw []byte, dataqueryTypeHint string) (variants.Dataquery, error) {
+	return NewRuntime().StrictUnmarshalDataquery(raw, dataqueryTypeHint)
 }
 
 func ConfigForPanelcfgVariant(identifier string) (variants.PanelcfgConfig, bool) {
