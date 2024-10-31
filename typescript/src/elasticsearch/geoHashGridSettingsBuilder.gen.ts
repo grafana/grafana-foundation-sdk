@@ -10,6 +10,9 @@ export class GeoHashGridSettingsBuilder implements cog.Builder<elasticsearch.Geo
         this.internal = elasticsearch.defaultGeoHashGridSettings();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.GeoHashGridSettings {
         return this.internal;
     }

@@ -10,6 +10,9 @@ export class AzureTracesFilterBuilder implements cog.Builder<azuremonitor.AzureT
         this.internal = azuremonitor.defaultAzureTracesFilter();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.AzureTracesFilter {
         return this.internal;
     }

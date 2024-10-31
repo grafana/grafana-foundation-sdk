@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ArcOptionConverter accepts a `ArcOption` object and generates the Go code to build this object using builders.
 func ArcOptionConverter(input ArcOption) string {
 	calls := []string{
 		`nodegraph.NewArcOptionBuilder()`,

@@ -15,6 +15,7 @@ class ExprTypeThresholdConditionsBuilder implements \Grafana\Foundation\Cog\Buil
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeThresholdConditions
      */
     public function build()

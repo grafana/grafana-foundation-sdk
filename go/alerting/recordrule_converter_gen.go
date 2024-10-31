@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// RecordRuleConverter accepts a `RecordRule` object and generates the Go code to build this object using builders.
 func RecordRuleConverter(input RecordRule) string {
 	calls := []string{
 		`alerting.NewRecordRuleBuilder()`,

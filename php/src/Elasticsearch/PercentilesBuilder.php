@@ -16,6 +16,7 @@ class PercentilesBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\Percentiles
      */
     public function build()

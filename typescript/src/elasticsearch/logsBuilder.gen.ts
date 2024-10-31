@@ -11,6 +11,9 @@ export class LogsBuilder implements cog.Builder<elasticsearch.Logs> {
         this.internal.type = "logs";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Logs {
         return this.internal;
     }

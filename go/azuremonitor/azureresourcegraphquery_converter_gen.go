@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AzureResourceGraphQueryConverter accepts a `AzureResourceGraphQuery` object and generates the Go code to build this object using builders.
 func AzureResourceGraphQueryConverter(input AzureResourceGraphQuery) string {
 	calls := []string{
 		`azuremonitor.NewAzureResourceGraphQueryBuilder()`,

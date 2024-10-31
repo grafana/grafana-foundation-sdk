@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// LegacyCloudMonitoringAnnotationQueryConverter accepts a `LegacyCloudMonitoringAnnotationQuery` object and generates the Go code to build this object using builders.
 func LegacyCloudMonitoringAnnotationQueryConverter(input LegacyCloudMonitoringAnnotationQuery) string {
 	calls := []string{
 		`googlecloudmonitoring.NewLegacyCloudMonitoringAnnotationQueryBuilder()`,

@@ -15,6 +15,7 @@ class ScatterSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Xychart\ScatterSeriesConfig
      */
     public function build()

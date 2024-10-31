@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// PromQLQueryConverter accepts a `PromQLQuery` object and generates the Go code to build this object using builders.
 func PromQLQueryConverter(input PromQLQuery) string {
 	calls := []string{
 		`googlecloudmonitoring.NewPromQLQueryBuilder()`,

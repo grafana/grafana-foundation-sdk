@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// LineConfigConverter accepts a `LineConfig` object and generates the Go code to build this object using builders.
 func LineConfigConverter(input LineConfig) string {
 	calls := []string{
 		`common.NewLineConfigBuilder()`,

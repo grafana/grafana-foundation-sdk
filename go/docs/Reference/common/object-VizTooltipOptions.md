@@ -1,0 +1,48 @@
+---
+title: <span class="badge object-type-struct"></span> VizTooltipOptions
+---
+# <span class="badge object-type-struct"></span> VizTooltipOptions
+
+TODO docs
+
+## Definition
+
+```go
+type VizTooltipOptions struct {
+    Mode common.TooltipDisplayMode `json:"mode"`
+    Sort common.SortOrder `json:"sort"`
+    MaxWidth *float64 `json:"maxWidth,omitempty"`
+    MaxHeight *float64 `json:"maxHeight,omitempty"`
+}
+```
+## Methods
+
+### <span class="badge object-method"></span> UnmarshalJSONStrict
+
+UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VizTooltipOptions` from JSON.
+
+Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+
+```go
+func (vizTooltipOptions *VizTooltipOptions) UnmarshalJSONStrict(raw []byte) error
+```
+
+### <span class="badge object-method"></span> Equals
+
+Equals tests the equality of two `VizTooltipOptions` objects.
+
+```go
+func (vizTooltipOptions *VizTooltipOptions) Equals(other VizTooltipOptions) bool
+```
+
+### <span class="badge object-method"></span> Validate
+
+Validate checks all the validation constraints that may be defined on `VizTooltipOptions` fields for violations and returns them.
+
+```go
+func (vizTooltipOptions *VizTooltipOptions) Validate() error
+```
+
+## See also
+
+ * <span class="badge builder"></span> [VizTooltipOptionsBuilder](./builder-VizTooltipOptionsBuilder.md)

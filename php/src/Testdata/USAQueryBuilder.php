@@ -15,6 +15,7 @@ class USAQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Testdata\USAQuery
      */
     public function build()

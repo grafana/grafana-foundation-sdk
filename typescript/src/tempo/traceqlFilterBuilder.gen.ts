@@ -10,6 +10,9 @@ export class TraceqlFilterBuilder implements cog.Builder<tempo.TraceqlFilter> {
         this.internal = tempo.defaultTraceqlFilter();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): tempo.TraceqlFilter {
         return this.internal;
     }

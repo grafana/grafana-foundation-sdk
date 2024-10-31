@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// PulseWaveQueryConverter accepts a `PulseWaveQuery` object and generates the Go code to build this object using builders.
 func PulseWaveQueryConverter(input PulseWaveQuery) string {
 	calls := []string{
 		`testdata.NewPulseWaveQueryBuilder()`,

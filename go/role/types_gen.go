@@ -23,6 +23,8 @@ type Role struct {
 	Hidden bool `json:"hidden"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Role` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Role) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -106,6 +108,7 @@ func (resource *Role) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Role` objects.
 func (resource Role) Equals(other Role) bool {
 	if resource.Name != other.Name {
 		return false
@@ -144,8 +147,7 @@ func (resource Role) Equals(other Role) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Role` fields for violations and returns them.
 func (resource Role) Validate() error {
 	return nil
 }

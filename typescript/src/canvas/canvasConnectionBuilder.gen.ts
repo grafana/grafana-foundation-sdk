@@ -11,6 +11,9 @@ export class CanvasConnectionBuilder implements cog.Builder<canvas.CanvasConnect
         this.internal = canvas.defaultCanvasConnection();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): canvas.CanvasConnection {
         return this.internal;
     }

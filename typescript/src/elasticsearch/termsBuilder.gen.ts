@@ -11,6 +11,9 @@ export class TermsBuilder implements cog.Builder<elasticsearch.Terms> {
         this.internal.type = "terms";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Terms {
         return this.internal;
     }

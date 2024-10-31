@@ -11,6 +11,9 @@ export class PointsConfigBuilder implements cog.Builder<common.PointsConfig> {
         this.internal = common.defaultPointsConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.PointsConfig {
         return this.internal;
     }

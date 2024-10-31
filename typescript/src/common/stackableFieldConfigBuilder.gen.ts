@@ -11,6 +11,9 @@ export class StackableFieldConfigBuilder implements cog.Builder<common.Stackable
         this.internal = common.defaultStackableFieldConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.StackableFieldConfig {
         return this.internal;
     }

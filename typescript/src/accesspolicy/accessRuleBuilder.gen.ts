@@ -10,6 +10,9 @@ export class AccessRuleBuilder implements cog.Builder<accesspolicy.AccessRule> {
         this.internal = accesspolicy.defaultAccessRule();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): accesspolicy.AccessRule {
         return this.internal;
     }
