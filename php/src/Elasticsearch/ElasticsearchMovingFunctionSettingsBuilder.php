@@ -15,6 +15,7 @@ class ElasticsearchMovingFunctionSettingsBuilder implements \Grafana\Foundation\
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchMovingFunctionSettings
      */
     public function build()

@@ -11,6 +11,9 @@ export class CountBuilder implements cog.Builder<elasticsearch.Count> {
         this.internal.type = "count";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Count {
         return this.internal;
     }

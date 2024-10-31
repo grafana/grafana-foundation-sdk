@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// QueryVariableConverter accepts a `QueryVariable` object and generates the Go code to build this object using builders.
 func QueryVariableConverter(input VariableModel) string {
 	calls := []string{
 		`dashboard.NewQueryVariableBuilder(` + fmt.Sprintf("%#v", input.Name) + `)`,

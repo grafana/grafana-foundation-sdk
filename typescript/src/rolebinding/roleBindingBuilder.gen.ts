@@ -10,6 +10,9 @@ export class RoleBindingBuilder implements cog.Builder<rolebinding.RoleBinding> 
         this.internal = rolebinding.defaultRoleBinding();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): rolebinding.RoleBinding {
         return this.internal;
     }

@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// ExprTypeThresholdTimeRangeConverter accepts a `ExprTypeThresholdTimeRange` object and generates the Go code to build this object using builders.
 func ExprTypeThresholdTimeRangeConverter(input ExprTypeThresholdTimeRange) string {
 	calls := []string{
 		`expr.NewExprTypeThresholdTimeRangeBuilder()`,

@@ -17,6 +17,8 @@ type RoleBinding struct {
 	Subject RoleBindingSubject `json:"subject"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RoleBinding` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RoleBinding) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -71,6 +73,7 @@ func (resource *RoleBinding) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `RoleBinding` objects.
 func (resource RoleBinding) Equals(other RoleBinding) bool {
 	if !resource.Role.Equals(other.Role) {
 		return false
@@ -82,8 +85,7 @@ func (resource RoleBinding) Equals(other RoleBinding) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `RoleBinding` fields for violations and returns them.
 func (resource RoleBinding) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.Role.Validate(); err != nil {
@@ -105,6 +107,8 @@ type CustomRoleRef struct {
 	Name string `json:"name"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CustomRoleRef` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CustomRoleRef) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -155,6 +159,7 @@ func (resource *CustomRoleRef) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `CustomRoleRef` objects.
 func (resource CustomRoleRef) Equals(other CustomRoleRef) bool {
 	if resource.Kind != other.Kind {
 		return false
@@ -166,8 +171,7 @@ func (resource CustomRoleRef) Equals(other CustomRoleRef) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CustomRoleRef` fields for violations and returns them.
 func (resource CustomRoleRef) Validate() error {
 	return nil
 }
@@ -177,6 +181,8 @@ type BuiltinRoleRef struct {
 	Name BuiltinRoleRefName `json:"name"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuiltinRoleRef` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *BuiltinRoleRef) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -227,6 +233,7 @@ func (resource *BuiltinRoleRef) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `BuiltinRoleRef` objects.
 func (resource BuiltinRoleRef) Equals(other BuiltinRoleRef) bool {
 	if resource.Kind != other.Kind {
 		return false
@@ -238,8 +245,7 @@ func (resource BuiltinRoleRef) Equals(other BuiltinRoleRef) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `BuiltinRoleRef` fields for violations and returns them.
 func (resource BuiltinRoleRef) Validate() error {
 	return nil
 }
@@ -250,6 +256,8 @@ type RoleBindingSubject struct {
 	Name string `json:"name"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RoleBindingSubject` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RoleBindingSubject) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -300,6 +308,7 @@ func (resource *RoleBindingSubject) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `RoleBindingSubject` objects.
 func (resource RoleBindingSubject) Equals(other RoleBindingSubject) bool {
 	if resource.Kind != other.Kind {
 		return false
@@ -311,8 +320,7 @@ func (resource RoleBindingSubject) Equals(other RoleBindingSubject) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `RoleBindingSubject` fields for violations and returns them.
 func (resource RoleBindingSubject) Validate() error {
 	return nil
 }
@@ -337,6 +345,7 @@ type BuiltinRoleRefOrCustomRoleRef struct {
 	CustomRoleRef  *CustomRoleRef  `json:"CustomRoleRef,omitempty"`
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `BuiltinRoleRefOrCustomRoleRef` as JSON.
 func (resource BuiltinRoleRefOrCustomRoleRef) MarshalJSON() ([]byte, error) {
 	if resource.BuiltinRoleRef != nil {
 		return json.Marshal(resource.BuiltinRoleRef)
@@ -348,6 +357,7 @@ func (resource BuiltinRoleRefOrCustomRoleRef) MarshalJSON() ([]byte, error) {
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `BuiltinRoleRefOrCustomRoleRef` from JSON.
 func (resource *BuiltinRoleRefOrCustomRoleRef) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -386,6 +396,8 @@ func (resource *BuiltinRoleRefOrCustomRoleRef) UnmarshalJSON(raw []byte) error {
 	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuiltinRoleRefOrCustomRoleRef` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *BuiltinRoleRefOrCustomRoleRef) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -423,6 +435,7 @@ func (resource *BuiltinRoleRefOrCustomRoleRef) UnmarshalJSONStrict(raw []byte) e
 	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
 }
 
+// Equals tests the equality of two `BuiltinRoleRefOrCustomRoleRef` objects.
 func (resource BuiltinRoleRefOrCustomRoleRef) Equals(other BuiltinRoleRefOrCustomRoleRef) bool {
 	if resource.BuiltinRoleRef == nil && other.BuiltinRoleRef != nil || resource.BuiltinRoleRef != nil && other.BuiltinRoleRef == nil {
 		return false
@@ -446,8 +459,7 @@ func (resource BuiltinRoleRefOrCustomRoleRef) Equals(other BuiltinRoleRefOrCusto
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `BuiltinRoleRefOrCustomRoleRef` fields for violations and returns them.
 func (resource BuiltinRoleRefOrCustomRoleRef) Validate() error {
 	var errs cog.BuildErrors
 	if resource.BuiltinRoleRef != nil {

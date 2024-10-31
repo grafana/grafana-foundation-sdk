@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// FolderConverter accepts a `Folder` object and generates the Go code to build this object using builders.
 func FolderConverter(input Folder) string {
 	calls := []string{
 		`folder.NewFolderBuilder()`,

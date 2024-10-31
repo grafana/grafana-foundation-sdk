@@ -34,6 +34,8 @@ type MetricStat struct {
 	Statistics []string `json:"statistics,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricStat` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MetricStat) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -175,6 +177,7 @@ func (resource *MetricStat) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `MetricStat` objects.
 func (resource MetricStat) Equals(other MetricStat) bool {
 	if resource.Region != other.Region {
 		return false
@@ -257,8 +260,7 @@ func (resource MetricStat) Equals(other MetricStat) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `MetricStat` fields for violations and returns them.
 func (resource MetricStat) Validate() error {
 	return nil
 }
@@ -329,6 +331,8 @@ func (resource CloudWatchMetricsQuery) DataqueryType() string {
 	return "cloudwatch"
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchMetricsQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CloudWatchMetricsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -626,6 +630,7 @@ func (resource *CloudWatchMetricsQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource CloudWatchMetricsQuery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -815,8 +820,7 @@ func (resource CloudWatchMetricsQuery) Equals(otherCandidate variants.Dataquery)
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CloudWatchMetricsQuery` fields for violations and returns them.
 func (resource CloudWatchMetricsQuery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Sql != nil {
@@ -876,6 +880,8 @@ type SQLExpression struct {
 	Limit *int64 `json:"limit,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SQLExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *SQLExpression) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -985,6 +991,7 @@ func (resource *SQLExpression) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `SQLExpression` objects.
 func (resource SQLExpression) Equals(other SQLExpression) bool {
 	if resource.Select == nil && other.Select != nil || resource.Select != nil && other.Select == nil {
 		return false
@@ -1053,8 +1060,7 @@ func (resource SQLExpression) Equals(other SQLExpression) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `SQLExpression` fields for violations and returns them.
 func (resource SQLExpression) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Select != nil {
@@ -1096,6 +1102,8 @@ type QueryEditorFunctionExpression struct {
 	Parameters []QueryEditorFunctionParameterExpression `json:"parameters,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorFunctionExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorFunctionExpression) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1166,6 +1174,7 @@ func (resource *QueryEditorFunctionExpression) UnmarshalJSONStrict(raw []byte) e
 	return errs
 }
 
+// Equals tests the equality of two `QueryEditorFunctionExpression` objects.
 func (resource QueryEditorFunctionExpression) Equals(other QueryEditorFunctionExpression) bool {
 	if resource.Type != other.Type {
 		return false
@@ -1193,8 +1202,7 @@ func (resource QueryEditorFunctionExpression) Equals(other QueryEditorFunctionEx
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `QueryEditorFunctionExpression` fields for violations and returns them.
 func (resource QueryEditorFunctionExpression) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Type == "function") {
@@ -1234,6 +1242,8 @@ type QueryEditorFunctionParameterExpression struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorFunctionParameterExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorFunctionParameterExpression) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1281,6 +1291,7 @@ func (resource *QueryEditorFunctionParameterExpression) UnmarshalJSONStrict(raw 
 	return errs
 }
 
+// Equals tests the equality of two `QueryEditorFunctionParameterExpression` objects.
 func (resource QueryEditorFunctionParameterExpression) Equals(other QueryEditorFunctionParameterExpression) bool {
 	if resource.Type != other.Type {
 		return false
@@ -1298,8 +1309,7 @@ func (resource QueryEditorFunctionParameterExpression) Equals(other QueryEditorF
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `QueryEditorFunctionParameterExpression` fields for violations and returns them.
 func (resource QueryEditorFunctionParameterExpression) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Type == "functionParameter") {
@@ -1321,6 +1331,8 @@ type QueryEditorPropertyExpression struct {
 	Property QueryEditorProperty `json:"property"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorPropertyExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorPropertyExpression) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1373,6 +1385,7 @@ func (resource *QueryEditorPropertyExpression) UnmarshalJSONStrict(raw []byte) e
 	return errs
 }
 
+// Equals tests the equality of two `QueryEditorPropertyExpression` objects.
 func (resource QueryEditorPropertyExpression) Equals(other QueryEditorPropertyExpression) bool {
 	if resource.Type != other.Type {
 		return false
@@ -1384,8 +1397,7 @@ func (resource QueryEditorPropertyExpression) Equals(other QueryEditorPropertyEx
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `QueryEditorPropertyExpression` fields for violations and returns them.
 func (resource QueryEditorPropertyExpression) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Type == "property") {
@@ -1410,6 +1422,8 @@ type QueryEditorGroupByExpression struct {
 	Property QueryEditorProperty `json:"property"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorGroupByExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorGroupByExpression) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1462,6 +1476,7 @@ func (resource *QueryEditorGroupByExpression) UnmarshalJSONStrict(raw []byte) er
 	return errs
 }
 
+// Equals tests the equality of two `QueryEditorGroupByExpression` objects.
 func (resource QueryEditorGroupByExpression) Equals(other QueryEditorGroupByExpression) bool {
 	if resource.Type != other.Type {
 		return false
@@ -1473,8 +1488,7 @@ func (resource QueryEditorGroupByExpression) Equals(other QueryEditorGroupByExpr
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `QueryEditorGroupByExpression` fields for violations and returns them.
 func (resource QueryEditorGroupByExpression) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Type == "groupBy") {
@@ -1501,6 +1515,8 @@ type QueryEditorOperatorExpression struct {
 	Operator QueryEditorOperator `json:"operator"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorOperatorExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorOperatorExpression) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1569,6 +1585,7 @@ func (resource *QueryEditorOperatorExpression) UnmarshalJSONStrict(raw []byte) e
 	return errs
 }
 
+// Equals tests the equality of two `QueryEditorOperatorExpression` objects.
 func (resource QueryEditorOperatorExpression) Equals(other QueryEditorOperatorExpression) bool {
 	if resource.Type != other.Type {
 		return false
@@ -1583,8 +1600,7 @@ func (resource QueryEditorOperatorExpression) Equals(other QueryEditorOperatorEx
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `QueryEditorOperatorExpression` fields for violations and returns them.
 func (resource QueryEditorOperatorExpression) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Type == "operator") {
@@ -1613,6 +1629,8 @@ type QueryEditorOperator struct {
 	Value *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType `json:"value,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorOperator` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorOperator) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1659,6 +1677,7 @@ func (resource *QueryEditorOperator) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `QueryEditorOperator` objects.
 func (resource QueryEditorOperator) Equals(other QueryEditorOperator) bool {
 	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
 		return false
@@ -1682,8 +1701,7 @@ func (resource QueryEditorOperator) Equals(other QueryEditorOperator) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `QueryEditorOperator` fields for violations and returns them.
 func (resource QueryEditorOperator) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Value != nil {
@@ -1708,6 +1726,8 @@ type QueryEditorProperty struct {
 	Name *string                 `json:"name,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorProperty` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorProperty) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1755,6 +1775,7 @@ func (resource *QueryEditorProperty) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `QueryEditorProperty` objects.
 func (resource QueryEditorProperty) Equals(other QueryEditorProperty) bool {
 	if resource.Type != other.Type {
 		return false
@@ -1772,8 +1793,7 @@ func (resource QueryEditorProperty) Equals(other QueryEditorProperty) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `QueryEditorProperty` fields for violations and returns them.
 func (resource QueryEditorProperty) Validate() error {
 	return nil
 }
@@ -1789,6 +1809,8 @@ type QueryEditorArrayExpression struct {
 	Expressions []QueryEditorExpression        `json:"expressions"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorArrayExpression) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1851,6 +1873,7 @@ func (resource *QueryEditorArrayExpression) UnmarshalJSONStrict(raw []byte) erro
 	return errs
 }
 
+// Equals tests the equality of two `QueryEditorArrayExpression` objects.
 func (resource QueryEditorArrayExpression) Equals(other QueryEditorArrayExpression) bool {
 	if resource.Type != other.Type {
 		return false
@@ -1869,8 +1892,7 @@ func (resource QueryEditorArrayExpression) Equals(other QueryEditorArrayExpressi
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `QueryEditorArrayExpression` fields for violations and returns them.
 func (resource QueryEditorArrayExpression) Validate() error {
 	var errs cog.BuildErrors
 
@@ -1928,6 +1950,8 @@ func (resource CloudWatchLogsQuery) DataqueryType() string {
 	return "cloudwatch"
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchLogsQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2099,6 +2123,7 @@ func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource CloudWatchLogsQuery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -2190,8 +2215,7 @@ func (resource CloudWatchLogsQuery) Equals(otherCandidate variants.Dataquery) bo
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CloudWatchLogsQuery` fields for violations and returns them.
 func (resource CloudWatchLogsQuery) Validate() error {
 	var errs cog.BuildErrors
 
@@ -2224,6 +2248,8 @@ type LogGroup struct {
 	AccountLabel *string `json:"accountLabel,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LogGroup` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LogGroup) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2296,6 +2322,7 @@ func (resource *LogGroup) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `LogGroup` objects.
 func (resource LogGroup) Equals(other LogGroup) bool {
 	if resource.Arn != other.Arn {
 		return false
@@ -2325,8 +2352,7 @@ func (resource LogGroup) Equals(other LogGroup) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `LogGroup` fields for violations and returns them.
 func (resource LogGroup) Validate() error {
 	return nil
 }
@@ -2391,6 +2417,8 @@ func (resource CloudWatchAnnotationQuery) DataqueryType() string {
 	return "cloudwatch"
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchAnnotationQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2628,6 +2656,7 @@ func (resource *CloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource CloudWatchAnnotationQuery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -2778,8 +2807,7 @@ func (resource CloudWatchAnnotationQuery) Equals(otherCandidate variants.Dataque
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CloudWatchAnnotationQuery` fields for violations and returns them.
 func (resource CloudWatchAnnotationQuery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Datasource != nil {
@@ -2797,6 +2825,8 @@ func (resource CloudWatchAnnotationQuery) Validate() error {
 
 type CloudWatchQuery = CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
 
+// VariantConfig returns the configuration related to cloudwatch dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "cloudwatch",
@@ -2853,6 +2883,7 @@ type StringOrArrayOfString struct {
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `StringOrArrayOfString` as JSON.
 func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
@@ -2865,6 +2896,7 @@ func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrArrayOfString` from JSON.
 func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2895,6 +2927,8 @@ func (resource *StringOrArrayOfString) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrArrayOfString` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StringOrArrayOfString) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -2933,6 +2967,7 @@ func (resource *StringOrArrayOfString) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `StringOrArrayOfString` objects.
 func (resource StringOrArrayOfString) Equals(other StringOrArrayOfString) bool {
 	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
 		return false
@@ -2957,8 +2992,7 @@ func (resource StringOrArrayOfString) Equals(other StringOrArrayOfString) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `StringOrArrayOfString` fields for violations and returns them.
 func (resource StringOrArrayOfString) Validate() error {
 	return nil
 }
@@ -2968,6 +3002,7 @@ type QueryEditorPropertyExpressionOrQueryEditorFunctionExpression struct {
 	QueryEditorFunctionExpression *QueryEditorFunctionExpression `json:"QueryEditorFunctionExpression,omitempty"`
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `QueryEditorPropertyExpressionOrQueryEditorFunctionExpression` as JSON.
 func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) MarshalJSON() ([]byte, error) {
 	if resource.QueryEditorPropertyExpression != nil {
 		return json.Marshal(resource.QueryEditorPropertyExpression)
@@ -2979,6 +3014,7 @@ func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Mar
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `QueryEditorPropertyExpressionOrQueryEditorFunctionExpression` from JSON.
 func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3017,6 +3053,8 @@ func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Un
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorPropertyExpressionOrQueryEditorFunctionExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3054,6 +3092,7 @@ func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Un
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
+// Equals tests the equality of two `QueryEditorPropertyExpressionOrQueryEditorFunctionExpression` objects.
 func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Equals(other QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) bool {
 	if resource.QueryEditorPropertyExpression == nil && other.QueryEditorPropertyExpression != nil || resource.QueryEditorPropertyExpression != nil && other.QueryEditorPropertyExpression == nil {
 		return false
@@ -3077,8 +3116,7 @@ func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Equ
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `QueryEditorPropertyExpressionOrQueryEditorFunctionExpression` fields for violations and returns them.
 func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Validate() error {
 	var errs cog.BuildErrors
 	if resource.QueryEditorPropertyExpression != nil {
@@ -3106,6 +3144,7 @@ type StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType struct {
 	ArrayOfQueryEditorOperatorType []QueryEditorOperatorType `json:"ArrayOfQueryEditorOperatorType,omitempty"`
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType` as JSON.
 func (resource StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
@@ -3126,6 +3165,7 @@ func (resource StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) MarshalJSON(
 	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType` from JSON.
 func (resource *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3176,6 +3216,8 @@ func (resource *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) UnmarshalJS
 	return errors.Join(errList...)
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3234,6 +3276,7 @@ func (resource *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) UnmarshalJS
 	return errs
 }
 
+// Equals tests the equality of two `StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType` objects.
 func (resource StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) Equals(other StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) bool {
 	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
 		return false
@@ -3276,8 +3319,7 @@ func (resource StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) Equals(other
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType` fields for violations and returns them.
 func (resource StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) Validate() error {
 	var errs cog.BuildErrors
 
@@ -3300,6 +3342,7 @@ type StringOrBoolOrInt64 struct {
 	Int64  *int64  `json:"Int64,omitempty"`
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `StringOrBoolOrInt64` as JSON.
 func (resource StringOrBoolOrInt64) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
@@ -3316,6 +3359,7 @@ func (resource StringOrBoolOrInt64) MarshalJSON() ([]byte, error) {
 	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrBoolOrInt64` from JSON.
 func (resource *StringOrBoolOrInt64) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3356,6 +3400,8 @@ func (resource *StringOrBoolOrInt64) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrBoolOrInt64` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StringOrBoolOrInt64) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3404,6 +3450,7 @@ func (resource *StringOrBoolOrInt64) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `StringOrBoolOrInt64` objects.
 func (resource StringOrBoolOrInt64) Equals(other StringOrBoolOrInt64) bool {
 	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
 		return false
@@ -3436,8 +3483,7 @@ func (resource StringOrBoolOrInt64) Equals(other StringOrBoolOrInt64) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `StringOrBoolOrInt64` fields for violations and returns them.
 func (resource StringOrBoolOrInt64) Validate() error {
 	return nil
 }
@@ -3451,6 +3497,7 @@ type QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroup
 	QueryEditorOperatorExpression          *QueryEditorOperatorExpression          `json:"QueryEditorOperatorExpression,omitempty"`
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` as JSON.
 func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) MarshalJSON() ([]byte, error) {
 	if resource.QueryEditorArrayExpression != nil {
 		return json.Marshal(resource.QueryEditorArrayExpression)
@@ -3474,6 +3521,7 @@ func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryE
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` from JSON.
 func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3552,6 +3600,8 @@ func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQuery
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3629,6 +3679,7 @@ func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQuery
 	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
 }
 
+// Equals tests the equality of two `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` objects.
 func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) Equals(other QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) bool {
 	if resource.QueryEditorArrayExpression == nil && other.QueryEditorArrayExpression != nil || resource.QueryEditorArrayExpression != nil && other.QueryEditorArrayExpression == nil {
 		return false
@@ -3688,8 +3739,7 @@ func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryE
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` fields for violations and returns them.
 func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) Validate() error {
 	var errs cog.BuildErrors
 	if resource.QueryEditorArrayExpression != nil {
@@ -3743,6 +3793,7 @@ func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotation
 	return "cloudwatch"
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery` as JSON.
 func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) MarshalJSON() ([]byte, error) {
 	if resource.CloudWatchMetricsQuery != nil {
 		return json.Marshal(resource.CloudWatchMetricsQuery)
@@ -3757,6 +3808,7 @@ func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotation
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery` from JSON.
 func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3803,6 +3855,8 @@ func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotatio
 	return fmt.Errorf("could not unmarshal resource with `queryMode = %v`", discriminator)
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -3848,6 +3902,7 @@ func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotatio
 	return fmt.Errorf("could not unmarshal resource with `queryMode = %v`", discriminator)
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -3888,8 +3943,7 @@ func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotation
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery` fields for violations and returns them.
 func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.CloudWatchMetricsQuery != nil {

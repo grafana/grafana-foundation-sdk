@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// BarConfigConverter accepts a `BarConfig` object and generates the Go code to build this object using builders.
 func BarConfigConverter(input BarConfig) string {
 	calls := []string{
 		`common.NewBarConfigBuilder()`,

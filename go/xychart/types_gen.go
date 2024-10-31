@@ -35,6 +35,8 @@ type XYDimensionConfig struct {
 	Exclude []string `json:"exclude,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `XYDimensionConfig` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *XYDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -94,6 +96,7 @@ func (resource *XYDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `XYDimensionConfig` objects.
 func (resource XYDimensionConfig) Equals(other XYDimensionConfig) bool {
 	if resource.Frame != other.Frame {
 		return false
@@ -121,8 +124,7 @@ func (resource XYDimensionConfig) Equals(other XYDimensionConfig) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `XYDimensionConfig` fields for violations and returns them.
 func (resource XYDimensionConfig) Validate() error {
 	var errs cog.BuildErrors
 	if !(resource.Frame >= 0) {
@@ -161,6 +163,8 @@ type FieldConfig struct {
 	AxisBorderShow    *bool                           `json:"axisBorderShow,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FieldConfig` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -406,6 +410,7 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `FieldConfig` objects.
 func (resource FieldConfig) Equals(other FieldConfig) bool {
 	if resource.Show == nil && other.Show != nil || resource.Show != nil && other.Show == nil {
 		return false
@@ -582,8 +587,7 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `FieldConfig` fields for violations and returns them.
 func (resource FieldConfig) Validate() error {
 	var errs cog.BuildErrors
 	if resource.PointSize != nil {
@@ -662,6 +666,8 @@ type ScatterSeriesConfig struct {
 	AxisBorderShow    *bool                           `json:"axisBorderShow,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ScatterSeriesConfig` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ScatterSeriesConfig) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -940,6 +946,7 @@ func (resource *ScatterSeriesConfig) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ScatterSeriesConfig` objects.
 func (resource ScatterSeriesConfig) Equals(other ScatterSeriesConfig) bool {
 	if resource.X == nil && other.X != nil || resource.X != nil && other.X == nil {
 		return false
@@ -1143,8 +1150,7 @@ func (resource ScatterSeriesConfig) Equals(other ScatterSeriesConfig) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ScatterSeriesConfig` fields for violations and returns them.
 func (resource ScatterSeriesConfig) Validate() error {
 	var errs cog.BuildErrors
 	if resource.PointSize != nil {
@@ -1206,6 +1212,8 @@ type Options struct {
 	Series        []ScatterSeriesConfig    `json:"series"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1313,6 +1321,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Options` objects.
 func (resource Options) Equals(other Options) bool {
 	if resource.SeriesMapping == nil && other.SeriesMapping != nil || resource.SeriesMapping != nil && other.SeriesMapping == nil {
 		return false
@@ -1346,8 +1355,7 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Options` fields for violations and returns them.
 func (resource Options) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.Dims.Validate(); err != nil {
@@ -1373,6 +1381,8 @@ func (resource Options) Validate() error {
 	return errs
 }
 
+// VariantConfig returns the configuration related to xychart panels.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "xychart",

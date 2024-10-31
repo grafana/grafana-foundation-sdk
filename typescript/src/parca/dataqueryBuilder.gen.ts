@@ -11,6 +11,9 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         this.internal = parca.defaultDataquery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): parca.dataquery {
         return this.internal;
     }

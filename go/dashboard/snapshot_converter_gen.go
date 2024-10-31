@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// SnapshotConverter accepts a `Snapshot` object and generates the Go code to build this object using builders.
 func SnapshotConverter(input Snapshot) string {
 	calls := []string{
 		`dashboard.NewSnapshotBuilder()`,

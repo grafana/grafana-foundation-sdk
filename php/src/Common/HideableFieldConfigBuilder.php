@@ -16,6 +16,7 @@ class HideableFieldConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\HideableFieldConfig
      */
     public function build()

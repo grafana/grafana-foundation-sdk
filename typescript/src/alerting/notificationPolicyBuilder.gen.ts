@@ -12,6 +12,9 @@ export class NotificationPolicyBuilder implements cog.Builder<alerting.Notificat
         this.internal = alerting.defaultNotificationPolicy();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.NotificationPolicy {
         return this.internal;
     }

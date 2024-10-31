@@ -15,6 +15,7 @@ class CanvasConnectionBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Canvas\CanvasConnection
      */
     public function build()

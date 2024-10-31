@@ -15,6 +15,7 @@ class BaseGrafanaTemplateVariableQueryBuilder implements \Grafana\Foundation\Cog
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Azuremonitor\BaseGrafanaTemplateVariableQuery
      */
     public function build()

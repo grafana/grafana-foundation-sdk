@@ -10,6 +10,9 @@ export class ArcOptionBuilder implements cog.Builder<nodegraph.ArcOption> {
         this.internal = nodegraph.defaultArcOption();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): nodegraph.ArcOption {
         return this.internal;
     }

@@ -16,6 +16,7 @@ class CustomRoleRefBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Rolebinding\CustomRoleRef
      */
     public function build()

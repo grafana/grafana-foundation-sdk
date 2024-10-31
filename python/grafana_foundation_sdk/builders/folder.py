@@ -17,6 +17,9 @@ class Folder(cogbuilder.Builder[folder.Folder]):
         self._internal = folder.Folder()
 
     def build(self) -> folder.Folder:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def uid(self, uid: str) -> typing.Self:    

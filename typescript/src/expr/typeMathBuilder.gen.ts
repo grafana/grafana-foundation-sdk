@@ -12,6 +12,9 @@ export class TypeMathBuilder implements cog.Builder<cog.Dataquery> {
         this.internal.type = "math";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): expr.TypeMath {
         return this.internal;
     }

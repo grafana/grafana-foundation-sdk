@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// QueryEditorOperatorConverter accepts a `QueryEditorOperator` object and generates the Go code to build this object using builders.
 func QueryEditorOperatorConverter(input QueryEditorOperator) string {
 	calls := []string{
 		`cloudwatch.NewQueryEditorOperatorBuilder()`,

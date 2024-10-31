@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// RateConverter accepts a `Rate` object and generates the Go code to build this object using builders.
 func RateConverter(input Rate) string {
 	calls := []string{
 		`elasticsearch.NewRateBuilder()`,

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ResourceGroupsQueryConverter accepts a `ResourceGroupsQuery` object and generates the Go code to build this object using builders.
 func ResourceGroupsQueryConverter(input ResourceGroupsQuery) string {
 	calls := []string{
 		`azuremonitor.NewResourceGroupsQueryBuilder()`,

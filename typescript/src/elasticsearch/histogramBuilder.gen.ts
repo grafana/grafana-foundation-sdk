@@ -11,6 +11,9 @@ export class HistogramBuilder implements cog.Builder<elasticsearch.Histogram> {
         this.internal.type = "histogram";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Histogram {
         return this.internal;
     }

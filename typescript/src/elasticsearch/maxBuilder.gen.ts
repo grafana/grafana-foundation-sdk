@@ -11,6 +11,9 @@ export class MaxBuilder implements cog.Builder<elasticsearch.Max> {
         this.internal.type = "max";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Max {
         return this.internal;
     }

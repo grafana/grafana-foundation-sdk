@@ -11,6 +11,9 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         this.internal = grafanapyroscope.defaultDataquery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): grafanapyroscope.dataquery {
         return this.internal;
     }

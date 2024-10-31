@@ -15,6 +15,7 @@ class DashboardFieldConfigSourceOverridesBuilder implements \Grafana\Foundation\
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides
      */
     public function build()

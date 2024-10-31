@@ -14,6 +14,9 @@ class TypeMath(cogbuilder.Builder[expr.TypeMath]):
         self._internal.type_val = "math"
 
     def build(self) -> expr.TypeMath:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
@@ -119,6 +122,9 @@ class TypeReduce(cogbuilder.Builder[expr.TypeReduce]):
         self._internal.type_val = "reduce"
 
     def build(self) -> expr.TypeReduce:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
@@ -251,6 +257,9 @@ class TypeResample(cogbuilder.Builder[expr.TypeResample]):
         self._internal.type_val = "resample"
 
     def build(self) -> expr.TypeResample:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
@@ -397,6 +406,9 @@ class TypeClassicConditions(cogbuilder.Builder[expr.TypeClassicConditions]):
         self._internal.type_val = "classic_conditions"
 
     def build(self) -> expr.TypeClassicConditions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def conditions(self, conditions: list[cogbuilder.Builder[expr.ExprTypeClassicConditionsConditions]]) -> typing.Self:        
@@ -497,6 +509,9 @@ class TypeThreshold(cogbuilder.Builder[expr.TypeThreshold]):
         self._internal.type_val = "threshold"
 
     def build(self) -> expr.TypeThreshold:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def conditions(self, conditions: list[cogbuilder.Builder[expr.ExprTypeThresholdConditions]]) -> typing.Self:    
@@ -612,6 +627,9 @@ class TypeSql(cogbuilder.Builder[expr.TypeSql]):
         self._internal.type_val = "sql"
 
     def build(self) -> expr.TypeSql:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
@@ -712,6 +730,9 @@ class ExprTypeMathResultAssertions(cogbuilder.Builder[expr.ExprTypeMathResultAss
         self._internal = expr.ExprTypeMathResultAssertions()
 
     def build(self) -> expr.ExprTypeMathResultAssertions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def max_frames(self, max_frames: int) -> typing.Self:    
@@ -762,6 +783,9 @@ class ExprTypeMathTimeRange(cogbuilder.Builder[expr.ExprTypeMathTimeRange]):
         self._internal = expr.ExprTypeMathTimeRange()
 
     def build(self) -> expr.ExprTypeMathTimeRange:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def from_val(self, from_val: str) -> typing.Self:    
@@ -790,6 +814,9 @@ class ExprTypeReduceResultAssertions(cogbuilder.Builder[expr.ExprTypeReduceResul
         self._internal = expr.ExprTypeReduceResultAssertions()
 
     def build(self) -> expr.ExprTypeReduceResultAssertions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def max_frames(self, max_frames: int) -> typing.Self:    
@@ -840,6 +867,9 @@ class ExprTypeReduceSettings(cogbuilder.Builder[expr.ExprTypeReduceSettings]):
         self._internal = expr.ExprTypeReduceSettings()
 
     def build(self) -> expr.ExprTypeReduceSettings:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def mode(self, mode: typing.Literal["dropNN", "replaceNN"]) -> typing.Self:    
@@ -871,6 +901,9 @@ class ExprTypeReduceTimeRange(cogbuilder.Builder[expr.ExprTypeReduceTimeRange]):
         self._internal = expr.ExprTypeReduceTimeRange()
 
     def build(self) -> expr.ExprTypeReduceTimeRange:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def from_val(self, from_val: str) -> typing.Self:    
@@ -899,6 +932,9 @@ class ExprTypeResampleResultAssertions(cogbuilder.Builder[expr.ExprTypeResampleR
         self._internal = expr.ExprTypeResampleResultAssertions()
 
     def build(self) -> expr.ExprTypeResampleResultAssertions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def max_frames(self, max_frames: int) -> typing.Self:    
@@ -949,6 +985,9 @@ class ExprTypeResampleTimeRange(cogbuilder.Builder[expr.ExprTypeResampleTimeRang
         self._internal = expr.ExprTypeResampleTimeRange()
 
     def build(self) -> expr.ExprTypeResampleTimeRange:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def from_val(self, from_val: str) -> typing.Self:    
@@ -977,6 +1016,9 @@ class ExprTypeClassicConditionsConditionsEvaluator(cogbuilder.Builder[expr.ExprT
         self._internal = expr.ExprTypeClassicConditionsConditionsEvaluator()
 
     def build(self) -> expr.ExprTypeClassicConditionsConditionsEvaluator:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def params(self, params: list[float]) -> typing.Self:        
@@ -1001,6 +1043,9 @@ class ExprTypeClassicConditionsConditionsOperator(cogbuilder.Builder[expr.ExprTy
         self._internal = expr.ExprTypeClassicConditionsConditionsOperator()
 
     def build(self) -> expr.ExprTypeClassicConditionsConditionsOperator:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def type_val(self, type_val: typing.Literal["and", "or", "logic-or"]) -> typing.Self:        
@@ -1016,6 +1061,9 @@ class ExprTypeClassicConditionsConditionsQuery(cogbuilder.Builder[expr.ExprTypeC
         self._internal = expr.ExprTypeClassicConditionsConditionsQuery()
 
     def build(self) -> expr.ExprTypeClassicConditionsConditionsQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def params(self, params: list[str]) -> typing.Self:        
@@ -1031,6 +1079,9 @@ class ExprTypeClassicConditionsConditionsReducer(cogbuilder.Builder[expr.ExprTyp
         self._internal = expr.ExprTypeClassicConditionsConditionsReducer()
 
     def build(self) -> expr.ExprTypeClassicConditionsConditionsReducer:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def type_val(self, type_val: str) -> typing.Self:        
@@ -1046,6 +1097,9 @@ class ExprTypeClassicConditionsConditions(cogbuilder.Builder[expr.ExprTypeClassi
         self._internal = expr.ExprTypeClassicConditionsConditions()
 
     def build(self) -> expr.ExprTypeClassicConditionsConditions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def evaluator(self, evaluator: cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsEvaluator]) -> typing.Self:        
@@ -1080,6 +1134,9 @@ class ExprTypeClassicConditionsResultAssertions(cogbuilder.Builder[expr.ExprType
         self._internal = expr.ExprTypeClassicConditionsResultAssertions()
 
     def build(self) -> expr.ExprTypeClassicConditionsResultAssertions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def max_frames(self, max_frames: int) -> typing.Self:    
@@ -1130,6 +1187,9 @@ class ExprTypeClassicConditionsTimeRange(cogbuilder.Builder[expr.ExprTypeClassic
         self._internal = expr.ExprTypeClassicConditionsTimeRange()
 
     def build(self) -> expr.ExprTypeClassicConditionsTimeRange:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def from_val(self, from_val: str) -> typing.Self:    
@@ -1158,6 +1218,9 @@ class ExprTypeThresholdConditionsEvaluator(cogbuilder.Builder[expr.ExprTypeThres
         self._internal = expr.ExprTypeThresholdConditionsEvaluator()
 
     def build(self) -> expr.ExprTypeThresholdConditionsEvaluator:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def params(self, params: list[float]) -> typing.Self:        
@@ -1182,6 +1245,9 @@ class ExprTypeThresholdConditionsUnloadEvaluator(cogbuilder.Builder[expr.ExprTyp
         self._internal = expr.ExprTypeThresholdConditionsUnloadEvaluator()
 
     def build(self) -> expr.ExprTypeThresholdConditionsUnloadEvaluator:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def params(self, params: list[float]) -> typing.Self:        
@@ -1206,6 +1272,9 @@ class ExprTypeThresholdConditions(cogbuilder.Builder[expr.ExprTypeThresholdCondi
         self._internal = expr.ExprTypeThresholdConditions()
 
     def build(self) -> expr.ExprTypeThresholdConditions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def evaluator(self, evaluator: cogbuilder.Builder[expr.ExprTypeThresholdConditionsEvaluator]) -> typing.Self:        
@@ -1233,6 +1302,9 @@ class ExprTypeThresholdResultAssertions(cogbuilder.Builder[expr.ExprTypeThreshol
         self._internal = expr.ExprTypeThresholdResultAssertions()
 
     def build(self) -> expr.ExprTypeThresholdResultAssertions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def max_frames(self, max_frames: int) -> typing.Self:    
@@ -1283,6 +1355,9 @@ class ExprTypeThresholdTimeRange(cogbuilder.Builder[expr.ExprTypeThresholdTimeRa
         self._internal = expr.ExprTypeThresholdTimeRange()
 
     def build(self) -> expr.ExprTypeThresholdTimeRange:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def from_val(self, from_val: str) -> typing.Self:    
@@ -1311,6 +1386,9 @@ class ExprTypeSqlResultAssertions(cogbuilder.Builder[expr.ExprTypeSqlResultAsser
         self._internal = expr.ExprTypeSqlResultAssertions()
 
     def build(self) -> expr.ExprTypeSqlResultAssertions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def max_frames(self, max_frames: int) -> typing.Self:    
@@ -1361,6 +1439,9 @@ class ExprTypeSqlTimeRange(cogbuilder.Builder[expr.ExprTypeSqlTimeRange]):
         self._internal = expr.ExprTypeSqlTimeRange()
 
     def build(self) -> expr.ExprTypeSqlTimeRange:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def from_val(self, from_val: str) -> typing.Self:    

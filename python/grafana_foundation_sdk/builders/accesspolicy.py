@@ -12,6 +12,9 @@ class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):
         self._internal = accesspolicy.AccessPolicy()
 
     def build(self) -> accesspolicy.AccessPolicy:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def scope(self, scope: cogbuilder.Builder[accesspolicy.ResourceRef]) -> typing.Self:    
@@ -56,6 +59,9 @@ class RoleRef(cogbuilder.Builder[accesspolicy.RoleRef]):
         self._internal = accesspolicy.RoleRef()
 
     def build(self) -> accesspolicy.RoleRef:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def kind(self, kind: typing.Literal["Role", "BuiltinRole", "Team", "User"]) -> typing.Self:    
@@ -86,6 +92,9 @@ class ResourceRef(cogbuilder.Builder[accesspolicy.ResourceRef]):
         self._internal = accesspolicy.ResourceRef()
 
     def build(self) -> accesspolicy.ResourceRef:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def kind(self, kind: str) -> typing.Self:        
@@ -106,6 +115,9 @@ class AccessRule(cogbuilder.Builder[accesspolicy.AccessRule]):
         self._internal = accesspolicy.AccessRule()
 
     def build(self) -> accesspolicy.AccessRule:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def kind(self, kind: str) -> typing.Self:    
