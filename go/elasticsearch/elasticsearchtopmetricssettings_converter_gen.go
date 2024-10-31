@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchTopMetricsSettingsConverter accepts a `ElasticsearchTopMetricsSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchTopMetricsSettingsConverter(input ElasticsearchTopMetricsSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchTopMetricsSettingsBuilder()`,

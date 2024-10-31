@@ -15,6 +15,7 @@ class TraceqlFilterBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Tempo\TraceqlFilter
      */
     public function build()

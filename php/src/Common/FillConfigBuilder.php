@@ -16,6 +16,7 @@ class FillConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\FillConfig
      */
     public function build()

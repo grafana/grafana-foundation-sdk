@@ -16,6 +16,7 @@ class TimeSeriesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Googlecloudmonitoring\TimeSeriesQuery
      */
     public function build()

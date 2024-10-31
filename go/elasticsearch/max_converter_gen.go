@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// MaxConverter accepts a `Max` object and generates the Go code to build this object using builders.
 func MaxConverter(input Max) string {
 	calls := []string{
 		`elasticsearch.NewMaxBuilder()`,

@@ -11,6 +11,9 @@ export class QueryBuilder implements cog.Builder<alerting.Query> {
         this.internal.refId = refId;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.Query {
         return this.internal;
     }

@@ -17,6 +17,7 @@ class TimePickerBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\TimePickerConfig
      */
     public function build()

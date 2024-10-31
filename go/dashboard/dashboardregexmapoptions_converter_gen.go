@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// DashboardRegexMapOptionsConverter accepts a `DashboardRegexMapOptions` object and generates the Go code to build this object using builders.
 func DashboardRegexMapOptionsConverter(input DashboardRegexMapOptions) string {
 	calls := []string{
 		`dashboard.NewDashboardRegexMapOptionsBuilder()`,

@@ -10,6 +10,9 @@ export class NavbarPreferenceBuilder implements cog.Builder<preferences.NavbarPr
         this.internal = preferences.defaultNavbarPreference();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): preferences.NavbarPreference {
         return this.internal;
     }

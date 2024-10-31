@@ -15,6 +15,7 @@ class NotificationTemplateBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Alerting\NotificationTemplate
      */
     public function build()

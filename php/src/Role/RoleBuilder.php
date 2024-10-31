@@ -15,6 +15,7 @@ class RoleBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Role\Role
      */
     public function build()

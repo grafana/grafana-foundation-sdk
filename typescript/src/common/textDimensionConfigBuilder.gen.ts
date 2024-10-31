@@ -10,6 +10,9 @@ export class TextDimensionConfigBuilder implements cog.Builder<common.TextDimens
         this.internal = common.defaultTextDimensionConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.TextDimensionConfig {
         return this.internal;
     }

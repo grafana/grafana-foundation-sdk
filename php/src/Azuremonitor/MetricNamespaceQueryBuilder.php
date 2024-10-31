@@ -16,6 +16,7 @@ class MetricNamespaceQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Azuremonitor\MetricNamespaceQuery
      */
     public function build()

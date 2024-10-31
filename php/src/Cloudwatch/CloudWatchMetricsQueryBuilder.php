@@ -16,6 +16,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Cloudwatch\CloudWatchMetricsQuery
      */
     public function build()

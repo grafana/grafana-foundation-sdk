@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// StringOrPipelineMetricAggregationTypeConverter accepts a `StringOrPipelineMetricAggregationType` object and generates the Go code to build this object using builders.
 func StringOrPipelineMetricAggregationTypeConverter(input StringOrPipelineMetricAggregationType) string {
 	calls := []string{
 		`elasticsearch.NewStringOrPipelineMetricAggregationTypeBuilder()`,

@@ -11,6 +11,9 @@ export class WorkspacesQueryBuilder implements cog.Builder<azuremonitor.Workspac
         this.internal.kind = "WorkspacesQuery";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.WorkspacesQuery {
         return this.internal;
     }

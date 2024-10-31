@@ -15,6 +15,7 @@ class CookiePreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Preferences\CookiePreferences
      */
     public function build()

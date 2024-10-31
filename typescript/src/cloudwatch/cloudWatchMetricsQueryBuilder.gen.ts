@@ -12,6 +12,9 @@ export class CloudWatchMetricsQueryBuilder implements cog.Builder<cog.Dataquery>
         this.internal = cloudwatch.defaultCloudWatchMetricsQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): cloudwatch.CloudWatchMetricsQuery {
         return this.internal;
     }

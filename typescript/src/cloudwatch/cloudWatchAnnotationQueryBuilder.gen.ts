@@ -14,6 +14,9 @@ export class CloudWatchAnnotationQueryBuilder implements cog.Builder<cog.Dataque
         this.internal = cloudwatch.defaultCloudWatchAnnotationQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): cloudwatch.CloudWatchAnnotationQuery {
         return this.internal;
     }

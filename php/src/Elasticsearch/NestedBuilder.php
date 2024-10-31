@@ -16,6 +16,7 @@ class NestedBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\Nested
      */
     public function build()

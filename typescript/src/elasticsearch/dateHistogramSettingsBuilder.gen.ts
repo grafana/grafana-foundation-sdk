@@ -10,6 +10,9 @@ export class DateHistogramSettingsBuilder implements cog.Builder<elasticsearch.D
         this.internal = elasticsearch.defaultDateHistogramSettings();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.DateHistogramSettings {
         return this.internal;
     }

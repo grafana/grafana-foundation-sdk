@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TypeResampleConverter accepts a `TypeResample` object and generates the Go code to build this object using builders.
 func TypeResampleConverter(input TypeResample) string {
 	calls := []string{
 		`expr.NewTypeResampleBuilder()`,

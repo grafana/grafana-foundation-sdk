@@ -15,6 +15,7 @@ class ExprTypeMathResultAssertionsBuilder implements \Grafana\Foundation\Cog\Bui
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeMathResultAssertions
      */
     public function build()

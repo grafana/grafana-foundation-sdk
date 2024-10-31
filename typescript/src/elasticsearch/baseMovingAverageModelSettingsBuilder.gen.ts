@@ -10,6 +10,9 @@ export class BaseMovingAverageModelSettingsBuilder implements cog.Builder<elasti
         this.internal = elasticsearch.defaultBaseMovingAverageModelSettings();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.BaseMovingAverageModelSettings {
         return this.internal;
     }

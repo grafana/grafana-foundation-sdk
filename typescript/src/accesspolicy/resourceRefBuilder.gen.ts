@@ -10,6 +10,9 @@ export class ResourceRefBuilder implements cog.Builder<accesspolicy.ResourceRef>
         this.internal = accesspolicy.defaultResourceRef();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): accesspolicy.ResourceRef {
         return this.internal;
     }

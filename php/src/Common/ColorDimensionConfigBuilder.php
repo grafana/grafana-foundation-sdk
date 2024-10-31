@@ -15,6 +15,7 @@ class ColorDimensionConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\ColorDimensionConfig
      */
     public function build()

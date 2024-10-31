@@ -10,6 +10,9 @@ export class LibraryElementDTOMetaBuilder implements cog.Builder<librarypanel.Li
         this.internal = librarypanel.defaultLibraryElementDTOMeta();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): librarypanel.LibraryElementDTOMeta {
         return this.internal;
     }
