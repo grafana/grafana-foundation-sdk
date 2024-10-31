@@ -15,7 +15,7 @@ def table_prometheus_query(query: str, ref_id: str) -> prometheus.Dataquery:
         prometheus.Dataquery()
         .expr(query)
         .format_val(prom.PromQueryFormat.TABLE)
-        .instant(True)
+        .instant()
         .interval_factor(2)
         .ref_id(ref_id)
     )

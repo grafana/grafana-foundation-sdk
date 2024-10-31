@@ -38,3 +38,7 @@ From an example's folder:
 $ python -m pip install -r requirements.txt
 $ python main.py
 ```
+
+> [!NOTE]
+> [Grizzly](https://github.com/grafana/grizzly/) can be used to preview the examples locally:
+> `grr serve -w -S 'python main.py' .`

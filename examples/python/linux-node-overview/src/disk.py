@@ -63,11 +63,11 @@ def space_usage_table() -> table.Panel:
         .with_target(table_prometheus_query(
             'node_filesystem_size_bytes{fstype!="", mountpoint!="", job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}',
             "TOTAL",
-        ).instant(True))
+        ).instant())
         .with_target(table_prometheus_query(
             'node_filesystem_avail_bytes{fstype!="", mountpoint!="", job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}',
             "FREE",
-        ).instant(True).legend_format("{{ mountpoint }} free"))
+        ).instant().legend_format("{{ mountpoint }} free"))
         .unit("bytes")
         .thresholds(
             dashboard.ThresholdsConfig()

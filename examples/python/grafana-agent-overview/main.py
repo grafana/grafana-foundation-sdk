@@ -10,6 +10,7 @@ from src import overview, discovery, retrieval
 if __name__ == '__main__':
     builder = (
         dashboard.Dashboard("[Example] Grafana Agent Overview")
+        .uid('example-grafana-agent-overview')
         .tags(["generated", "grafana-foundation-sdk", "grafana-agent-integration"])
         .editable()
         .tooltip(DashboardCursorSync.CROSSHAIR)
