@@ -10,6 +10,9 @@ export class PlacementBuilder implements cog.Builder<canvas.Placement> {
         this.internal = canvas.defaultPlacement();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): canvas.Placement {
         return this.internal;
     }

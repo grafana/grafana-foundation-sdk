@@ -15,6 +15,7 @@ class HeatmapCalculationOptionsBuilder implements \Grafana\Foundation\Cog\Builde
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\HeatmapCalculationOptions
      */
     public function build()

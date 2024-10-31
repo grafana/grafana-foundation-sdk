@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchDerivativeSettingsConverter accepts a `ElasticsearchDerivativeSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchDerivativeSettingsConverter(input ElasticsearchDerivativeSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchDerivativeSettingsBuilder()`,

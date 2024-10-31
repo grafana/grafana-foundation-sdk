@@ -11,6 +11,9 @@ export class SingleStatBaseOptionsBuilder implements cog.Builder<common.SingleSt
         this.internal = common.defaultSingleStatBaseOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.SingleStatBaseOptions {
         return this.internal;
     }

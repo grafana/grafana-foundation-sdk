@@ -15,6 +15,7 @@ class ConnectionCoordinatesBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Canvas\ConnectionCoordinates
      */
     public function build()

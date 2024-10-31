@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// LibraryElementDTOMetaUserConverter accepts a `LibraryElementDTOMetaUser` object and generates the Go code to build this object using builders.
 func LibraryElementDTOMetaUserConverter(input LibraryElementDTOMetaUser) string {
 	calls := []string{
 		`librarypanel.NewLibraryElementDTOMetaUserBuilder()`,

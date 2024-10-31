@@ -10,6 +10,9 @@ export class CanvasElementOptionsBuilder implements cog.Builder<canvas.CanvasEle
         this.internal = canvas.defaultCanvasElementOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): canvas.CanvasElementOptions {
         return this.internal;
     }

@@ -10,6 +10,9 @@ export class FrameGeometrySourceBuilder implements cog.Builder<common.FrameGeome
         this.internal = common.defaultFrameGeometrySource();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.FrameGeometrySource {
         return this.internal;
     }

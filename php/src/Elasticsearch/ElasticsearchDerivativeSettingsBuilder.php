@@ -15,6 +15,7 @@ class ElasticsearchDerivativeSettingsBuilder implements \Grafana\Foundation\Cog\
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchDerivativeSettings
      */
     public function build()

@@ -16,6 +16,7 @@ class ResourceGroupsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Azuremonitor\ResourceGroupsQuery
      */
     public function build()

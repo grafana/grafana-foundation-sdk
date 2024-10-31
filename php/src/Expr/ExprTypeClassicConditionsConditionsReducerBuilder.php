@@ -15,6 +15,7 @@ class ExprTypeClassicConditionsConditionsReducerBuilder implements \Grafana\Foun
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsReducer
      */
     public function build()

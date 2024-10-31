@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchPercentilesSettingsConverter accepts a `ElasticsearchPercentilesSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchPercentilesSettingsConverter(input ElasticsearchPercentilesSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchPercentilesSettingsBuilder()`,

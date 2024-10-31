@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// CumulativeSumConverter accepts a `CumulativeSum` object and generates the Go code to build this object using builders.
 func CumulativeSumConverter(input CumulativeSum) string {
 	calls := []string{
 		`elasticsearch.NewCumulativeSumBuilder()`,

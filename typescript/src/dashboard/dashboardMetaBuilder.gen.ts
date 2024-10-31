@@ -10,6 +10,9 @@ export class DashboardMetaBuilder implements cog.Builder<dashboard.DashboardMeta
         this.internal = dashboard.defaultDashboardMeta();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.DashboardMeta {
         return this.internal;
     }

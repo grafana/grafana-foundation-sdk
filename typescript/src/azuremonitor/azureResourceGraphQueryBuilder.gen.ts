@@ -10,6 +10,9 @@ export class AzureResourceGraphQueryBuilder implements cog.Builder<azuremonitor.
         this.internal = azuremonitor.defaultAzureResourceGraphQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.AzureResourceGraphQuery {
         return this.internal;
     }

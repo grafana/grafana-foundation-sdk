@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// DashboardSpecialValueMapOptionsConverter accepts a `DashboardSpecialValueMapOptions` object and generates the Go code to build this object using builders.
 func DashboardSpecialValueMapOptionsConverter(input DashboardSpecialValueMapOptions) string {
 	calls := []string{
 		`dashboard.NewDashboardSpecialValueMapOptionsBuilder()`,

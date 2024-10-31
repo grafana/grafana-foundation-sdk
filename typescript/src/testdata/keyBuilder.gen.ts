@@ -10,6 +10,9 @@ export class KeyBuilder implements cog.Builder<testdata.Key> {
         this.internal = testdata.defaultKey();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): testdata.Key {
         return this.internal;
     }

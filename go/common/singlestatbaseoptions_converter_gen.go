@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// SingleStatBaseOptionsConverter accepts a `SingleStatBaseOptions` object and generates the Go code to build this object using builders.
 func SingleStatBaseOptionsConverter(input SingleStatBaseOptions) string {
 	calls := []string{
 		`common.NewSingleStatBaseOptionsBuilder()`,

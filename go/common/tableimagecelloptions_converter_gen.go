@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TableImageCellOptionsConverter accepts a `TableImageCellOptions` object and generates the Go code to build this object using builders.
 func TableImageCellOptionsConverter(input TableImageCellOptions) string {
 	calls := []string{
 		`common.NewTableImageCellOptionsBuilder()`,

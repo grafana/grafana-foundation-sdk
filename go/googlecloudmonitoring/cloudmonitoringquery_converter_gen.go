@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// CloudMonitoringQueryConverter accepts a `CloudMonitoringQuery` object and generates the Go code to build this object using builders.
 func CloudMonitoringQueryConverter(input CloudMonitoringQuery) string {
 	calls := []string{
 		`googlecloudmonitoring.NewCloudMonitoringQueryBuilder()`,

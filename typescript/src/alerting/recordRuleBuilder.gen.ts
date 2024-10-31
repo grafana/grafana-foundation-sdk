@@ -10,6 +10,9 @@ export class RecordRuleBuilder implements cog.Builder<alerting.RecordRule> {
         this.internal = alerting.defaultRecordRule();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.RecordRule {
         return this.internal;
     }

@@ -15,6 +15,7 @@ class ElasticsearchMovingAverageEWMAModelSettingsSettingsBuilder implements \Gra
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchMovingAverageEWMAModelSettingsSettings
      */
     public function build()

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// LogsConverter accepts a `Logs` object and generates the Go code to build this object using builders.
 func LogsConverter(input Logs) string {
 	calls := []string{
 		`elasticsearch.NewLogsBuilder()`,

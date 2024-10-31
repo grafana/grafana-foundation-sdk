@@ -11,6 +11,9 @@ export class BucketScriptBuilder implements cog.Builder<elasticsearch.BucketScri
         this.internal.type = "bucket_script";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.BucketScript {
         return this.internal;
     }

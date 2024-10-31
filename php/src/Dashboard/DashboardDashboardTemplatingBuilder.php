@@ -15,6 +15,7 @@ class DashboardDashboardTemplatingBuilder implements \Grafana\Foundation\Cog\Bui
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\DashboardDashboardTemplating
      */
     public function build()

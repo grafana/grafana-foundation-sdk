@@ -11,6 +11,9 @@ export class SLOQueryBuilder implements cog.Builder<googlecloudmonitoring.SLOQue
         this.internal = googlecloudmonitoring.defaultSLOQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): googlecloudmonitoring.SLOQuery {
         return this.internal;
     }

@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// HeatmapLegendConverter accepts a `HeatmapLegend` object and generates the Go code to build this object using builders.
 func HeatmapLegendConverter(input HeatmapLegend) string {
 	calls := []string{
 		`heatmap.NewHeatmapLegendBuilder()`,

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ResourceDimensionConfigConverter accepts a `ResourceDimensionConfig` object and generates the Go code to build this object using builders.
 func ResourceDimensionConfigConverter(input ResourceDimensionConfig) string {
 	calls := []string{
 		`common.NewResourceDimensionConfigBuilder()`,

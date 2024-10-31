@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// NestedConverter accepts a `Nested` object and generates the Go code to build this object using builders.
 func NestedConverter(input Nested) string {
 	calls := []string{
 		`elasticsearch.NewNestedBuilder()`,

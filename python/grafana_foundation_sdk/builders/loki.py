@@ -13,6 +13,9 @@ class Dataquery(cogbuilder.Builder[loki.Dataquery]):
         self._internal = loki.Dataquery()
 
     def build(self) -> loki.Dataquery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def expr(self, expr: str) -> typing.Self:    

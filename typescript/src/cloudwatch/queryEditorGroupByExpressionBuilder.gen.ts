@@ -11,6 +11,9 @@ export class QueryEditorGroupByExpressionBuilder implements cog.Builder<cloudwat
         this.internal.type = "groupBy";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): cloudwatch.QueryEditorGroupByExpression {
         return this.internal;
     }
