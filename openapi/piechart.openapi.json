@@ -1,0 +1,263 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "piechart",
+    "version": "0.0.0",
+    "x-schema-identifier": "piechart",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "PieChartType": {
+        "enum": [
+          "pie",
+          "donut"
+        ],
+        "description": "Select the pie chart display style."
+      },
+      "PieChartLabels": {
+        "enum": [
+          "name",
+          "value",
+          "percent"
+        ],
+        "description": "Select labels to display on the pie chart.\n - Name - The series or field name.\n - Percent - The percentage of the whole.\n - Value - The raw numerical value."
+      },
+      "PieChartLegendValues": {
+        "enum": [
+          "value",
+          "percent"
+        ],
+        "description": "Select values to display in the legend.\n - Percent: The percentage of the whole.\n - Value: The raw numerical value."
+      },
+      "PieChartLegendOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "values",
+          "displayMode",
+          "placement",
+          "showLegend",
+          "calcs"
+        ],
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PieChartLegendValues"
+            }
+          },
+          "displayMode": {
+            "$ref": "#/components/schemas/LegendDisplayMode"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/LegendPlacement"
+          },
+          "showLegend": {
+            "type": "boolean"
+          },
+          "asTable": {
+            "type": "boolean"
+          },
+          "isVisible": {
+            "type": "boolean"
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "sortDesc": {
+            "type": "boolean"
+          },
+          "width": {
+            "type": "number"
+          },
+          "calcs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pieType",
+          "tooltip",
+          "reduceOptions",
+          "legend",
+          "orientation"
+        ],
+        "properties": {
+          "pieType": {
+            "$ref": "#/components/schemas/PieChartType"
+          },
+          "displayLabels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PieChartLabels"
+            }
+          },
+          "tooltip": {
+            "$ref": "#/components/schemas/VizTooltipOptions"
+          },
+          "reduceOptions": {
+            "$ref": "#/components/schemas/ReduceDataOptions"
+          },
+          "text": {
+            "$ref": "#/components/schemas/VizTextDisplayOptions"
+          },
+          "legend": {
+            "$ref": "#/components/schemas/PieChartLegendOptions"
+          },
+          "orientation": {
+            "$ref": "#/components/schemas/VizOrientation"
+          }
+        }
+      },
+      "FieldConfig": {
+        "$ref": "#/components/schemas/HideableFieldConfig"
+      },
+      "LegendDisplayMode": {
+        "enum": [
+          "list",
+          "table",
+          "hidden"
+        ],
+        "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
+      },
+      "LegendPlacement": {
+        "enum": [
+          "bottom",
+          "right"
+        ],
+        "description": "TODO docs"
+      },
+      "VizTooltipOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode",
+          "sort"
+        ],
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/TooltipDisplayMode"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortOrder"
+          },
+          "maxWidth": {
+            "type": "number"
+          },
+          "maxHeight": {
+            "type": "number"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "ReduceDataOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "calcs"
+        ],
+        "properties": {
+          "values": {
+            "type": "boolean",
+            "description": "If true show each row value"
+          },
+          "limit": {
+            "type": "number",
+            "description": "if showing all values limit"
+          },
+          "calcs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "When !values, pick one value for the whole field"
+          },
+          "fields": {
+            "type": "string",
+            "description": "Which fields to show.  By default this is only numeric fields"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "VizTextDisplayOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "titleSize": {
+            "type": "number",
+            "description": "Explicit title text size"
+          },
+          "valueSize": {
+            "type": "number",
+            "description": "Explicit value text size"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "VizOrientation": {
+        "enum": [
+          "auto",
+          "vertical",
+          "horizontal"
+        ],
+        "description": "TODO docs"
+      },
+      "HideableFieldConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "hideFrom": {
+            "$ref": "#/components/schemas/HideSeriesConfig"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "TooltipDisplayMode": {
+        "enum": [
+          "single",
+          "multi",
+          "none"
+        ],
+        "description": "TODO docs"
+      },
+      "SortOrder": {
+        "enum": [
+          "asc",
+          "desc",
+          "none"
+        ],
+        "description": "TODO docs"
+      },
+      "HideSeriesConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tooltip",
+          "legend",
+          "viz"
+        ],
+        "properties": {
+          "tooltip": {
+            "type": "boolean"
+          },
+          "legend": {
+            "type": "boolean"
+          },
+          "viz": {
+            "type": "boolean"
+          }
+        },
+        "description": "TODO docs"
+      }
+    }
+  }
+}

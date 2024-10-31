@@ -1,0 +1,75 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "annotationslist",
+    "version": "0.0.0",
+    "x-schema-identifier": "annolist",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "onlyFromThisDashboard",
+          "onlyInTimeRange",
+          "tags",
+          "limit",
+          "showUser",
+          "showTime",
+          "showTags",
+          "navigateToPanel",
+          "navigateBefore",
+          "navigateAfter"
+        ],
+        "properties": {
+          "onlyFromThisDashboard": {
+            "type": "boolean",
+            "default": false
+          },
+          "onlyInTimeRange": {
+            "type": "boolean",
+            "default": false
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "default": 10
+          },
+          "showUser": {
+            "type": "boolean",
+            "default": true
+          },
+          "showTime": {
+            "type": "boolean",
+            "default": true
+          },
+          "showTags": {
+            "type": "boolean",
+            "default": true
+          },
+          "navigateToPanel": {
+            "type": "boolean",
+            "default": true
+          },
+          "navigateBefore": {
+            "type": "string",
+            "default": "10m"
+          },
+          "navigateAfter": {
+            "type": "string",
+            "default": "10m"
+          }
+        }
+      }
+    }
+  }
+}
