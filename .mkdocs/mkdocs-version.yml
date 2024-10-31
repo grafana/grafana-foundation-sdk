@@ -1,0 +1,20 @@
+INHERIT: ./mkdocs.yml
+
+docs_dir: !ENV SOURCE_VERSION_FOLDER
+
+nav: ~
+
+plugins:
+  - search
+
+theme:
+  logo: "../assets/logo.svg"
+
+extra:
+  homepage: ../
+
+extra_css:
+  - "../assets/custom.css"
+
+extra_javascript:
+  - "../assets/versions.js"

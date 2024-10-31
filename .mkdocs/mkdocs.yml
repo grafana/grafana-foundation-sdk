@@ -1,0 +1,75 @@
+site_name: Grafana Foundation SDK
+site_author: 'Grafana Labs'
+
+repo_name: "grafana/grafana-foundation-sdk"
+repo_url: "https://github.com/grafana/grafana-foundation-sdk"
+
+nav:
+  - "Go": "./next+cog-v0.0.x/go/Installing/"
+  - "Java": "./next+cog-v0.0.x/java/Installing/"
+  - "PHP": "./next+cog-v0.0.x/php/Installing/"
+  - "Python": "./next+cog-v0.0.x/python/Installing/"
+  - "Typescript": "./next+cog-v0.0.x/typescript/Installing/"
+
+plugins: []
+
+markdown_extensions:
+  - admonition
+  - pymdownx.magiclink
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      extend_pygments_lang:
+        - name: php
+          lang: php
+          options:
+            startinline: true
+        - name: go
+          lang: go
+          options:
+            startinline: true
+        - name: typescript
+          lang: typescript
+          options:
+            startinline: true
+        - name: python
+          lang: python
+          options:
+            startinline: true
+  - pymdownx.superfences
+  - toc:
+      permalink: 🔗
+
+theme:
+  name: "material"
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.top
+    - navigation.prune
+    - search.highlight
+
+  custom_dir: overrides
+
+  logo: "assets/logo.svg"
+
+  palette:
+    - accent: "deep orange"
+      media: "(prefers-color-scheme: light)"
+      primary: "black"
+      scheme: "default"
+      toggle:
+        icon: "material/weather-night"
+        name: "Switch to dark mode"
+    - accent: "deep orange"
+      media: "(prefers-color-scheme: dark)"
+      primary: "black"
+      scheme: "slate"
+      toggle:
+        icon: "material/weather-sunny"
+        name: "Switch to light mode"
+
+extra_css:
+  - "assets/custom.css"
+
