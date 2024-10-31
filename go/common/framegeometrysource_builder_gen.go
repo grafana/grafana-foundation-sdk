@@ -26,14 +26,8 @@ func NewFrameGeometrySourceBuilder() *FrameGeometrySourceBuilder {
 }
 
 func (builder *FrameGeometrySourceBuilder) Build() (FrameGeometrySource, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("FrameGeometrySource", err)...)
-	}
-
-	if len(errs) != 0 {
-		return FrameGeometrySource{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return FrameGeometrySource{}, err
 	}
 
 	return *builder.internal, nil

@@ -27,14 +27,8 @@ func NewRuleGroupBuilder(title string) *RuleGroupBuilder {
 }
 
 func (builder *RuleGroupBuilder) Build() (RuleGroup, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("RuleGroup", err)...)
-	}
-
-	if len(errs) != 0 {
-		return RuleGroup{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return RuleGroup{}, err
 	}
 
 	return *builder.internal, nil
@@ -69,13 +63,13 @@ func (builder *RuleGroupBuilder) Rules(rules []cog.Builder[Rule]) *RuleGroupBuil
 	return builder
 }
 
-func (builder *RuleGroupBuilder) WithRule(rules cog.Builder[Rule]) *RuleGroupBuilder {
-	rulesResource, err := rules.Build()
+func (builder *RuleGroupBuilder) WithRule(rule cog.Builder[Rule]) *RuleGroupBuilder {
+	ruleResource, err := rule.Build()
 	if err != nil {
 		builder.errors["rules"] = err.(cog.BuildErrors)
 		return builder
 	}
-	builder.internal.Rules = append(builder.internal.Rules, rulesResource)
+	builder.internal.Rules = append(builder.internal.Rules, ruleResource)
 
 	return builder
 }

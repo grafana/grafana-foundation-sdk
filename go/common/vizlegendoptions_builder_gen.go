@@ -27,14 +27,8 @@ func NewVizLegendOptionsBuilder() *VizLegendOptionsBuilder {
 }
 
 func (builder *VizLegendOptionsBuilder) Build() (VizLegendOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("VizLegendOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return VizLegendOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return VizLegendOptions{}, err
 	}
 
 	return *builder.internal, nil

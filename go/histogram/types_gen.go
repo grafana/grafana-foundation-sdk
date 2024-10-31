@@ -4,7 +4,10 @@ package histogram
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
@@ -19,6 +22,93 @@ type Options struct {
 	Tooltip      common.VizTooltipOptions `json:"tooltip"`
 	// Combines multiple series into a single histogram
 	Combine *bool `json:"combine,omitempty"`
+}
+
+func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "bucketSize"
+	if fields["bucketSize"] != nil {
+		if string(fields["bucketSize"]) != "null" {
+			if err := json.Unmarshal(fields["bucketSize"], &resource.BucketSize); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("bucketSize", err)...)
+			}
+
+		}
+		delete(fields, "bucketSize")
+
+	}
+	// Field "bucketOffset"
+	if fields["bucketOffset"] != nil {
+		if string(fields["bucketOffset"]) != "null" {
+			if err := json.Unmarshal(fields["bucketOffset"], &resource.BucketOffset); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("bucketOffset", err)...)
+			}
+
+		}
+		delete(fields, "bucketOffset")
+
+	}
+	// Field "legend"
+	if fields["legend"] != nil {
+		if string(fields["legend"]) != "null" {
+
+			resource.Legend = common.VizLegendOptions{}
+			if err := resource.Legend.UnmarshalJSONStrict(fields["legend"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("legend", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("legend", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "legend")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("legend", errors.New("required field is missing from input"))...)
+	}
+	// Field "tooltip"
+	if fields["tooltip"] != nil {
+		if string(fields["tooltip"]) != "null" {
+
+			resource.Tooltip = common.VizTooltipOptions{}
+			if err := resource.Tooltip.UnmarshalJSONStrict(fields["tooltip"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tooltip", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "tooltip")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is missing from input"))...)
+	}
+	// Field "combine"
+	if fields["combine"] != nil {
+		if string(fields["combine"]) != "null" {
+			if err := json.Unmarshal(fields["combine"], &resource.Combine); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("combine", err)...)
+			}
+
+		}
+		delete(fields, "combine")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource Options) Equals(other Options) bool {
@@ -59,6 +149,24 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource Options) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Legend.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("legend", err)...)
+	}
+	if err := resource.Tooltip.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("tooltip", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type FieldConfig struct {
 	// Controls line width of the bars.
 	LineWidth *uint32 `json:"lineWidth,omitempty"`
@@ -78,6 +186,186 @@ type FieldConfig struct {
 	// Gradient appearance is influenced by the Fill opacity setting.
 	GradientMode   *common.GraphGradientMode `json:"gradientMode,omitempty"`
 	AxisBorderShow *bool                     `json:"axisBorderShow,omitempty"`
+}
+
+func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "lineWidth"
+	if fields["lineWidth"] != nil {
+		if string(fields["lineWidth"]) != "null" {
+			if err := json.Unmarshal(fields["lineWidth"], &resource.LineWidth); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("lineWidth", err)...)
+			}
+
+		}
+		delete(fields, "lineWidth")
+
+	}
+	// Field "fillOpacity"
+	if fields["fillOpacity"] != nil {
+		if string(fields["fillOpacity"]) != "null" {
+			if err := json.Unmarshal(fields["fillOpacity"], &resource.FillOpacity); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fillOpacity", err)...)
+			}
+
+		}
+		delete(fields, "fillOpacity")
+
+	}
+	// Field "axisPlacement"
+	if fields["axisPlacement"] != nil {
+		if string(fields["axisPlacement"]) != "null" {
+			if err := json.Unmarshal(fields["axisPlacement"], &resource.AxisPlacement); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisPlacement", err)...)
+			}
+
+		}
+		delete(fields, "axisPlacement")
+
+	}
+	// Field "axisColorMode"
+	if fields["axisColorMode"] != nil {
+		if string(fields["axisColorMode"]) != "null" {
+			if err := json.Unmarshal(fields["axisColorMode"], &resource.AxisColorMode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisColorMode", err)...)
+			}
+
+		}
+		delete(fields, "axisColorMode")
+
+	}
+	// Field "axisLabel"
+	if fields["axisLabel"] != nil {
+		if string(fields["axisLabel"]) != "null" {
+			if err := json.Unmarshal(fields["axisLabel"], &resource.AxisLabel); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisLabel", err)...)
+			}
+
+		}
+		delete(fields, "axisLabel")
+
+	}
+	// Field "axisWidth"
+	if fields["axisWidth"] != nil {
+		if string(fields["axisWidth"]) != "null" {
+			if err := json.Unmarshal(fields["axisWidth"], &resource.AxisWidth); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisWidth", err)...)
+			}
+
+		}
+		delete(fields, "axisWidth")
+
+	}
+	// Field "axisSoftMin"
+	if fields["axisSoftMin"] != nil {
+		if string(fields["axisSoftMin"]) != "null" {
+			if err := json.Unmarshal(fields["axisSoftMin"], &resource.AxisSoftMin); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisSoftMin", err)...)
+			}
+
+		}
+		delete(fields, "axisSoftMin")
+
+	}
+	// Field "axisSoftMax"
+	if fields["axisSoftMax"] != nil {
+		if string(fields["axisSoftMax"]) != "null" {
+			if err := json.Unmarshal(fields["axisSoftMax"], &resource.AxisSoftMax); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisSoftMax", err)...)
+			}
+
+		}
+		delete(fields, "axisSoftMax")
+
+	}
+	// Field "axisGridShow"
+	if fields["axisGridShow"] != nil {
+		if string(fields["axisGridShow"]) != "null" {
+			if err := json.Unmarshal(fields["axisGridShow"], &resource.AxisGridShow); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisGridShow", err)...)
+			}
+
+		}
+		delete(fields, "axisGridShow")
+
+	}
+	// Field "scaleDistribution"
+	if fields["scaleDistribution"] != nil {
+		if string(fields["scaleDistribution"]) != "null" {
+
+			resource.ScaleDistribution = &common.ScaleDistributionConfig{}
+			if err := resource.ScaleDistribution.UnmarshalJSONStrict(fields["scaleDistribution"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("scaleDistribution", err)...)
+			}
+
+		}
+		delete(fields, "scaleDistribution")
+
+	}
+	// Field "axisCenteredZero"
+	if fields["axisCenteredZero"] != nil {
+		if string(fields["axisCenteredZero"]) != "null" {
+			if err := json.Unmarshal(fields["axisCenteredZero"], &resource.AxisCenteredZero); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisCenteredZero", err)...)
+			}
+
+		}
+		delete(fields, "axisCenteredZero")
+
+	}
+	// Field "hideFrom"
+	if fields["hideFrom"] != nil {
+		if string(fields["hideFrom"]) != "null" {
+
+			resource.HideFrom = &common.HideSeriesConfig{}
+			if err := resource.HideFrom.UnmarshalJSONStrict(fields["hideFrom"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hideFrom", err)...)
+			}
+
+		}
+		delete(fields, "hideFrom")
+
+	}
+	// Field "gradientMode"
+	if fields["gradientMode"] != nil {
+		if string(fields["gradientMode"]) != "null" {
+			if err := json.Unmarshal(fields["gradientMode"], &resource.GradientMode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("gradientMode", err)...)
+			}
+
+		}
+		delete(fields, "gradientMode")
+
+	}
+	// Field "axisBorderShow"
+	if fields["axisBorderShow"] != nil {
+		if string(fields["axisBorderShow"]) != "null" {
+			if err := json.Unmarshal(fields["axisBorderShow"], &resource.AxisBorderShow); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisBorderShow", err)...)
+			}
+
+		}
+		delete(fields, "axisBorderShow")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("FieldConfig", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource FieldConfig) Equals(other FieldConfig) bool {
@@ -211,6 +499,44 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource FieldConfig) Validate() error {
+	var errs cog.BuildErrors
+	if resource.LineWidth != nil {
+		if !(*resource.LineWidth <= 10) {
+			errs = append(errs, cog.MakeBuildErrors(
+				"lineWidth",
+				errors.New("must be <= 10"),
+			)...)
+		}
+	}
+	if resource.FillOpacity != nil {
+		if !(*resource.FillOpacity <= 100) {
+			errs = append(errs, cog.MakeBuildErrors(
+				"fillOpacity",
+				errors.New("must be <= 100"),
+			)...)
+		}
+	}
+	if resource.ScaleDistribution != nil {
+		if err := resource.ScaleDistribution.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("scaleDistribution", err)...)
+		}
+	}
+	if resource.HideFrom != nil {
+		if err := resource.HideFrom.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("hideFrom", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "histogram",
@@ -223,10 +549,28 @@ func VariantConfig() variants.PanelcfgConfig {
 
 			return options, nil
 		},
+		StrictOptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := options.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
 		FieldConfigUnmarshaler: func(raw []byte) (any, error) {
 			fieldConfig := &FieldConfig{}
 
 			if err := json.Unmarshal(raw, fieldConfig); err != nil {
+				return nil, err
+			}
+
+			return fieldConfig, nil
+		},
+		StrictFieldConfigUnmarshaler: func(raw []byte) (any, error) {
+			fieldConfig := &FieldConfig{}
+
+			if err := fieldConfig.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
 			}
 

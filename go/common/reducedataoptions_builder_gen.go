@@ -27,14 +27,8 @@ func NewReduceDataOptionsBuilder() *ReduceDataOptionsBuilder {
 }
 
 func (builder *ReduceDataOptionsBuilder) Build() (ReduceDataOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ReduceDataOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ReduceDataOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ReduceDataOptions{}, err
 	}
 
 	return *builder.internal, nil

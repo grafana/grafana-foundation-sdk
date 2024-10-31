@@ -26,14 +26,8 @@ func NewQueryHistoryPreferenceBuilder() *QueryHistoryPreferenceBuilder {
 }
 
 func (builder *QueryHistoryPreferenceBuilder) Build() (QueryHistoryPreference, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("QueryHistoryPreference", err)...)
-	}
-
-	if len(errs) != 0 {
-		return QueryHistoryPreference{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return QueryHistoryPreference{}, err
 	}
 
 	return *builder.internal, nil

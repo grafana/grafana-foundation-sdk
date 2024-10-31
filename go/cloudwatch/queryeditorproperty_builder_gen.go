@@ -26,14 +26,8 @@ func NewQueryEditorPropertyBuilder() *QueryEditorPropertyBuilder {
 }
 
 func (builder *QueryEditorPropertyBuilder) Build() (QueryEditorProperty, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("QueryEditorProperty", err)...)
-	}
-
-	if len(errs) != 0 {
-		return QueryEditorProperty{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return QueryEditorProperty{}, err
 	}
 
 	return *builder.internal, nil

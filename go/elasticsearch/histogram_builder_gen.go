@@ -27,14 +27,8 @@ func NewHistogramBuilder() *HistogramBuilder {
 }
 
 func (builder *HistogramBuilder) Build() (Histogram, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Histogram", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Histogram{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Histogram{}, err
 	}
 
 	return *builder.internal, nil

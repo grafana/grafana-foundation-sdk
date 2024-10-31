@@ -26,14 +26,8 @@ func NewExprTypeThresholdConditionsUnloadEvaluatorBuilder() *ExprTypeThresholdCo
 }
 
 func (builder *ExprTypeThresholdConditionsUnloadEvaluatorBuilder) Build() (ExprTypeThresholdConditionsUnloadEvaluator, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ExprTypeThresholdConditionsUnloadEvaluator", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ExprTypeThresholdConditionsUnloadEvaluator{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ExprTypeThresholdConditionsUnloadEvaluator{}, err
 	}
 
 	return *builder.internal, nil

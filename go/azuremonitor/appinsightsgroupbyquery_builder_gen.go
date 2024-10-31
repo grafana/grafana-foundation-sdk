@@ -27,14 +27,8 @@ func NewAppInsightsGroupByQueryBuilder() *AppInsightsGroupByQueryBuilder {
 }
 
 func (builder *AppInsightsGroupByQueryBuilder) Build() (AppInsightsGroupByQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AppInsightsGroupByQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AppInsightsGroupByQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AppInsightsGroupByQuery{}, err
 	}
 
 	return *builder.internal, nil

@@ -15,43 +15,31 @@ import com.fasterxml.jackson.annotation.Nulls;
 // A Route is a node that contains definitions of how to handle alerts. This is modified
 // from the upstream alertmanager in that it adds the ObjectMatchers property.
 public class NotificationPolicy {
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("continue")
     public Boolean continueArg;
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("group_by")
     public List<String> groupBy;
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("group_interval")
     public String groupInterval;
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("group_wait")
     public String groupWait;
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    // Deprecated. Remove before v1.0 release.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("match")
     public Map<String, String> match;
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("match_re")
     public Map<String, String> matchRe;
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
+    // Matchers is a slice of Matchers that is sortable, implements Stringer, and
+    // provides a Matches method to match a LabelSet against all Matchers in the
+    // slice. Note that some users of Matchers might require it to be sorted.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("matchers")
     public List<Matcher> matchers;
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("mute_time_intervals")
     public List<String> muteTimeIntervals;
@@ -61,23 +49,15 @@ public class NotificationPolicy {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("object_matchers")
     public List<Matcher> objectMatchers;
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("provenance")
     public String provenance;
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("receiver")
     public String receiver;
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("repeat_interval")
     public String repeatInterval;
-    // A Route is a node that contains definitions of how to handle alerts. This is modified
-    // from the upstream alertmanager in that it adds the ObjectMatchers property.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("routes")
     public List<NotificationPolicy> routes;

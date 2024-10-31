@@ -26,14 +26,8 @@ func NewElasticsearchSerialDiffSettingsBuilder() *ElasticsearchSerialDiffSetting
 }
 
 func (builder *ElasticsearchSerialDiffSettingsBuilder) Build() (ElasticsearchSerialDiffSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchSerialDiffSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchSerialDiffSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchSerialDiffSettings{}, err
 	}
 
 	return *builder.internal, nil

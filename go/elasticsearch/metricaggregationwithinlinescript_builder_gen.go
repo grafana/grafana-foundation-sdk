@@ -26,14 +26,8 @@ func NewMetricAggregationWithInlineScriptBuilder() *MetricAggregationWithInlineS
 }
 
 func (builder *MetricAggregationWithInlineScriptBuilder) Build() (MetricAggregationWithInlineScript, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithInlineScript", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MetricAggregationWithInlineScript{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MetricAggregationWithInlineScript{}, err
 	}
 
 	return *builder.internal, nil

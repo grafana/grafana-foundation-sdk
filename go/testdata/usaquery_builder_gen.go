@@ -26,14 +26,8 @@ func NewUSAQueryBuilder() *USAQueryBuilder {
 }
 
 func (builder *USAQueryBuilder) Build() (USAQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("USAQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return USAQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return USAQuery{}, err
 	}
 
 	return *builder.internal, nil

@@ -26,14 +26,8 @@ func NewMatcherBuilder() *MatcherBuilder {
 }
 
 func (builder *MatcherBuilder) Build() (Matcher, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Matcher", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Matcher{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Matcher{}, err
 	}
 
 	return *builder.internal, nil
