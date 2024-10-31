@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// PublicDashboardConverter accepts a `PublicDashboard` object and generates the Go code to build this object using builders.
 func PublicDashboardConverter(input PublicDashboard) string {
 	calls := []string{
 		`publicdashboard.NewPublicDashboardBuilder()`,

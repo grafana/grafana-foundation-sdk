@@ -17,6 +17,7 @@ class TableAutoCellOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\TableAutoCellOptions
      */
     public function build()

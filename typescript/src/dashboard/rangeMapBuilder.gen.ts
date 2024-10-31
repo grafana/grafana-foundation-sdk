@@ -13,6 +13,9 @@ export class RangeMapBuilder implements cog.Builder<dashboard.RangeMap> {
         this.internal.type = "range";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.RangeMap {
         return this.internal;
     }

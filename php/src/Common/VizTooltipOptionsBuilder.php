@@ -16,6 +16,7 @@ class VizTooltipOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\VizTooltipOptions
      */
     public function build()

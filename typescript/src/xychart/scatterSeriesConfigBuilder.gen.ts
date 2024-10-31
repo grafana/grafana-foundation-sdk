@@ -11,6 +11,9 @@ export class ScatterSeriesConfigBuilder implements cog.Builder<xychart.ScatterSe
         this.internal = xychart.defaultScatterSeriesConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): xychart.ScatterSeriesConfig {
         return this.internal;
     }

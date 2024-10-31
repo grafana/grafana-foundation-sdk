@@ -13,6 +13,9 @@ export class ConstantVariableBuilder implements cog.Builder<dashboard.VariableMo
         this.internal.type = dashboard.VariableType.Constant;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.VariableModel {
         return this.internal;
     }

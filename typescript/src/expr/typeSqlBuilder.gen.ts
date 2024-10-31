@@ -12,6 +12,9 @@ export class TypeSqlBuilder implements cog.Builder<cog.Dataquery> {
         this.internal.type = "sql";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): expr.TypeSql {
         return this.internal;
     }

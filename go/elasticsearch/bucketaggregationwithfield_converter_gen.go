@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// BucketAggregationWithFieldConverter accepts a `BucketAggregationWithField` object and generates the Go code to build this object using builders.
 func BucketAggregationWithFieldConverter(input BucketAggregationWithField) string {
 	calls := []string{
 		`elasticsearch.NewBucketAggregationWithFieldBuilder()`,

@@ -15,6 +15,7 @@ class ElasticsearchRawDataSettingsBuilder implements \Grafana\Foundation\Cog\Bui
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchRawDataSettings
      */
     public function build()

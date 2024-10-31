@@ -16,6 +16,7 @@ class SubscriptionsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Azuremonitor\SubscriptionsQuery
      */
     public function build()

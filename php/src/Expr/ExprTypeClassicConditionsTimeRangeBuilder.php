@@ -15,6 +15,7 @@ class ExprTypeClassicConditionsTimeRangeBuilder implements \Grafana\Foundation\C
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeClassicConditionsTimeRange
      */
     public function build()

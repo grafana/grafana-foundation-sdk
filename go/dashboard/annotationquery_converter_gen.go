@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AnnotationQueryConverter accepts a `AnnotationQuery` object and generates the Go code to build this object using builders.
 func AnnotationQueryConverter(input AnnotationQuery) string {
 	calls := []string{
 		`dashboard.NewAnnotationQueryBuilder()`,

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TableColoredBackgroundCellOptionsConverter accepts a `TableColoredBackgroundCellOptions` object and generates the Go code to build this object using builders.
 func TableColoredBackgroundCellOptionsConverter(input TableColoredBackgroundCellOptions) string {
 	calls := []string{
 		`common.NewTableColoredBackgroundCellOptionsBuilder()`,

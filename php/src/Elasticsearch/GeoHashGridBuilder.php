@@ -16,6 +16,7 @@ class GeoHashGridBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\GeoHashGrid
      */
     public function build()

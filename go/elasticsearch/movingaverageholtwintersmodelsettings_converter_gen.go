@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// MovingAverageHoltWintersModelSettingsConverter accepts a `MovingAverageHoltWintersModelSettings` object and generates the Go code to build this object using builders.
 func MovingAverageHoltWintersModelSettingsConverter(input MovingAverageHoltWintersModelSettings) string {
 	calls := []string{
 		`elasticsearch.NewMovingAverageHoltWintersModelSettingsBuilder()`,

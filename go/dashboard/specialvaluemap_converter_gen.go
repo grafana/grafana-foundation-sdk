@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// SpecialValueMapConverter accepts a `SpecialValueMap` object and generates the Go code to build this object using builders.
 func SpecialValueMapConverter(input SpecialValueMap) string {
 	calls := []string{
 		`dashboard.NewSpecialValueMapBuilder()`,

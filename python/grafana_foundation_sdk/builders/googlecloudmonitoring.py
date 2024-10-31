@@ -13,6 +13,9 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
         self._internal = googlecloudmonitoring.CloudMonitoringQuery()
 
     def build(self) -> googlecloudmonitoring.CloudMonitoringQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def ref_id(self, ref_id: str) -> typing.Self:    
@@ -129,6 +132,9 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         self._internal = googlecloudmonitoring.TimeSeriesList()
 
     def build(self) -> googlecloudmonitoring.TimeSeriesList:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
@@ -269,6 +275,9 @@ class TimeSeriesQuery(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesQuery])
         self._internal = googlecloudmonitoring.TimeSeriesQuery()
 
     def build(self) -> googlecloudmonitoring.TimeSeriesQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
@@ -310,6 +319,9 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
         self._internal = googlecloudmonitoring.SLOQuery()
 
     def build(self) -> googlecloudmonitoring.SLOQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
@@ -414,6 +426,9 @@ class PromQLQuery(cogbuilder.Builder[googlecloudmonitoring.PromQLQuery]):
         self._internal = googlecloudmonitoring.PromQLQuery()
 
     def build(self) -> googlecloudmonitoring.PromQLQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
@@ -455,6 +470,9 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
         self._internal = googlecloudmonitoring.MetricQuery()
 
     def build(self) -> googlecloudmonitoring.MetricQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
@@ -584,6 +602,9 @@ class LegacyCloudMonitoringAnnotationQuery(cogbuilder.Builder[googlecloudmonitor
         self._internal = googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery()
 
     def build(self) -> googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def project_name(self, project_name: str) -> typing.Self:    
@@ -658,6 +679,9 @@ class Filter(cogbuilder.Builder[googlecloudmonitoring.Filter]):
         self._internal = googlecloudmonitoring.Filter()
 
     def build(self) -> googlecloudmonitoring.Filter:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def key(self, key: str) -> typing.Self:    

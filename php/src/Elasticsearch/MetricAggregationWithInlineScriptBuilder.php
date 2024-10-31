@@ -15,6 +15,7 @@ class MetricAggregationWithInlineScriptBuilder implements \Grafana\Foundation\Co
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\MetricAggregationWithInlineScript
      */
     public function build()

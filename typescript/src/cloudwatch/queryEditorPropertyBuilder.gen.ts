@@ -10,6 +10,9 @@ export class QueryEditorPropertyBuilder implements cog.Builder<cloudwatch.QueryE
         this.internal = cloudwatch.defaultQueryEditorProperty();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): cloudwatch.QueryEditorProperty {
         return this.internal;
     }

@@ -16,6 +16,7 @@ class DateHistogramBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\DateHistogram
      */
     public function build()

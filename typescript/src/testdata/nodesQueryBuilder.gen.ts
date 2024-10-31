@@ -10,6 +10,9 @@ export class NodesQueryBuilder implements cog.Builder<testdata.NodesQuery> {
         this.internal = testdata.defaultNodesQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): testdata.NodesQuery {
         return this.internal;
     }

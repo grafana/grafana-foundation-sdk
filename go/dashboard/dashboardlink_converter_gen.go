@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// DashboardLinkConverter accepts a `DashboardLink` object and generates the Go code to build this object using builders.
 func DashboardLinkConverter(input DashboardLink) string {
 	calls := []string{
 		`dashboard.NewDashboardLinkBuilder(` + fmt.Sprintf("%#v", input.Title) + `)`,

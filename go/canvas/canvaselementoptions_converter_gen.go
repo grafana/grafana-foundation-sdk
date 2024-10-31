@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// CanvasElementOptionsConverter accepts a `CanvasElementOptions` object and generates the Go code to build this object using builders.
 func CanvasElementOptionsConverter(input CanvasElementOptions) string {
 	calls := []string{
 		`canvas.NewCanvasElementOptionsBuilder()`,

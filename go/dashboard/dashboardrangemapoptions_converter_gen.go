@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// DashboardRangeMapOptionsConverter accepts a `DashboardRangeMapOptions` object and generates the Go code to build this object using builders.
 func DashboardRangeMapOptionsConverter(input DashboardRangeMapOptions) string {
 	calls := []string{
 		`dashboard.NewDashboardRangeMapOptionsBuilder()`,

@@ -10,6 +10,9 @@ export class BaseDimensionConfigBuilder implements cog.Builder<common.BaseDimens
         this.internal = common.defaultBaseDimensionConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.BaseDimensionConfig {
         return this.internal;
     }

@@ -11,6 +11,9 @@ export class AzureMonitorQueryBuilder implements cog.Builder<cog.Dataquery> {
         this.internal = azuremonitor.defaultAzureMonitorQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.AzureMonitorQuery {
         return this.internal;
     }

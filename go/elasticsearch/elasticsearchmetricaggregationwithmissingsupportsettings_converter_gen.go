@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchMetricAggregationWithMissingSupportSettingsConverter accepts a `ElasticsearchMetricAggregationWithMissingSupportSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchMetricAggregationWithMissingSupportSettingsConverter(input ElasticsearchMetricAggregationWithMissingSupportSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchMetricAggregationWithMissingSupportSettingsBuilder()`,

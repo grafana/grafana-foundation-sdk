@@ -11,6 +11,9 @@ export class OptionsWithTextFormattingBuilder implements cog.Builder<common.Opti
         this.internal = common.defaultOptionsWithTextFormatting();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.OptionsWithTextFormatting {
         return this.internal;
     }

@@ -11,6 +11,9 @@ export class QueryEditorFunctionParameterExpressionBuilder implements cog.Builde
         this.internal.type = "functionParameter";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): cloudwatch.QueryEditorFunctionParameterExpression {
         return this.internal;
     }

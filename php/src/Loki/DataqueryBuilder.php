@@ -15,6 +15,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Loki\Dataquery
      */
     public function build()

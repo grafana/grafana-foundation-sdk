@@ -15,6 +15,7 @@ class ExprTypeThresholdResultAssertionsBuilder implements \Grafana\Foundation\Co
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeThresholdResultAssertions
      */
     public function build()

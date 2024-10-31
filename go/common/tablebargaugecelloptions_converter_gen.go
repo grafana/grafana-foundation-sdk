@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TableBarGaugeCellOptionsConverter accepts a `TableBarGaugeCellOptions` object and generates the Go code to build this object using builders.
 func TableBarGaugeCellOptionsConverter(input TableBarGaugeCellOptions) string {
 	calls := []string{
 		`common.NewTableBarGaugeCellOptionsBuilder()`,

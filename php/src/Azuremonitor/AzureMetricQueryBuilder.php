@@ -15,6 +15,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Azuremonitor\AzureMetricQuery
      */
     public function build()

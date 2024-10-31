@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// ExprTypeClassicConditionsConditionsConverter accepts a `ExprTypeClassicConditionsConditions` object and generates the Go code to build this object using builders.
 func ExprTypeClassicConditionsConditionsConverter(input ExprTypeClassicConditionsConditions) string {
 	calls := []string{
 		`expr.NewExprTypeClassicConditionsConditionsBuilder()`,
