@@ -40,7 +40,7 @@ func main() {
 		// "Job" variable
 		WithVariable(dashboard.NewQueryVariableBuilder("job").
 			Label("Job").
-			Query(dashboard.StringOrAny{String: cog.ToPtr[string]("label_values(agent_build_info, job)")}).
+			Query(dashboard.StringOrMap{String: cog.ToPtr[string]("label_values(agent_build_info, job)")}).
 			Datasource(datasourceRef("$prometheus_datasource")).
 			Current(dashboard.VariableOption{
 				Selected: cog.ToPtr[bool](true),
@@ -55,7 +55,7 @@ func main() {
 		// "Instance" variable
 		WithVariable(dashboard.NewQueryVariableBuilder("instance").
 			Label("Instance").
-			Query(dashboard.StringOrAny{String: cog.ToPtr[string]("label_values(agent_build_info{job=~\"$job\"}, instance)")}).
+			Query(dashboard.StringOrMap{String: cog.ToPtr[string]("label_values(agent_build_info{job=~\"$job\"}, instance)")}).
 			Datasource(datasourceRef("$prometheus_datasource")).
 			Current(dashboard.VariableOption{
 				Selected: cog.ToPtr[bool](true),

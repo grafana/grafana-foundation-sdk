@@ -49,12 +49,12 @@ func diskSpaceUsageTable() *table.PanelBuilder {
 		Datasource(datasourceRef("$datasource")).
 		WithTarget(
 			tablePrometheusQuery(`node_filesystem_size_bytes{fstype!="", mountpoint!="", job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}`, "TOTAL").
-				Instant(true),
+				Instant(),
 		).
 		WithTarget(
 			tablePrometheusQuery(`node_filesystem_avail_bytes{fstype!="", mountpoint!="", job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}`, "FREE").
 				LegendFormat("{{ mountpoint }} free").
-				Instant(true),
+				Instant(),
 		).
 		Unit("bytes").
 		Thresholds(

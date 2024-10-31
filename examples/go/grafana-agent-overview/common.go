@@ -22,7 +22,7 @@ func tablePrometheusQuery(query string, refID string) *prometheus.DataqueryBuild
 	return prometheus.NewDataqueryBuilder().
 		Expr(query).
 		Format(prometheus.PromQueryFormatTable).
-		Instant(true).
+		Instant().
 		IntervalFactor(2).
 		RefId(refID)
 }
