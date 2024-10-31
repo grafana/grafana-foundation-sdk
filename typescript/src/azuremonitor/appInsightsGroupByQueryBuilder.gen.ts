@@ -11,6 +11,9 @@ export class AppInsightsGroupByQueryBuilder implements cog.Builder<azuremonitor.
         this.internal.kind = "AppInsightsGroupByQuery";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.AppInsightsGroupByQuery {
         return this.internal;
     }

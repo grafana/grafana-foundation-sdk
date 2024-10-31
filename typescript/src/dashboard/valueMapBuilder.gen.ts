@@ -13,6 +13,9 @@ export class ValueMapBuilder implements cog.Builder<dashboard.ValueMap> {
         this.internal.type = "value";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.ValueMap {
         return this.internal;
     }

@@ -10,6 +10,9 @@ export class AzureMetricQueryBuilder implements cog.Builder<azuremonitor.AzureMe
         this.internal = azuremonitor.defaultAzureMetricQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.AzureMetricQuery {
         return this.internal;
     }

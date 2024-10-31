@@ -10,6 +10,9 @@ export class SQLExpressionBuilder implements cog.Builder<cloudwatch.SQLExpressio
         this.internal = cloudwatch.defaultSQLExpression();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): cloudwatch.SQLExpression {
         return this.internal;
     }

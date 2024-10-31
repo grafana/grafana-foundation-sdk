@@ -15,6 +15,7 @@ class ConstraintBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Canvas\Constraint
      */
     public function build()

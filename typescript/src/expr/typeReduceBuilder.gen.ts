@@ -12,6 +12,9 @@ export class TypeReduceBuilder implements cog.Builder<cog.Dataquery> {
         this.internal.type = "reduce";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): expr.TypeReduce {
         return this.internal;
     }

@@ -15,6 +15,7 @@ class AnnotationPermissionBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\AnnotationPermission
      */
     public function build()

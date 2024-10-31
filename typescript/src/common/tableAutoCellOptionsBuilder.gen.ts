@@ -12,6 +12,9 @@ export class TableAutoCellOptionsBuilder implements cog.Builder<common.TableAuto
         this.internal.type = "auto";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.TableAutoCellOptions {
         return this.internal;
     }

@@ -10,6 +10,9 @@ export class AnnotationPermissionBuilder implements cog.Builder<dashboard.Annota
         this.internal = dashboard.defaultAnnotationPermission();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.AnnotationPermission {
         return this.internal;
     }

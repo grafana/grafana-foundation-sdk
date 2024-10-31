@@ -10,6 +10,9 @@ export class HeatmapCalculationOptionsBuilder implements cog.Builder<common.Heat
         this.internal = common.defaultHeatmapCalculationOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.HeatmapCalculationOptions {
         return this.internal;
     }

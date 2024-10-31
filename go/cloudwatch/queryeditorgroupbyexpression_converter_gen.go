@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// QueryEditorGroupByExpressionConverter accepts a `QueryEditorGroupByExpression` object and generates the Go code to build this object using builders.
 func QueryEditorGroupByExpressionConverter(input QueryEditorGroupByExpression) string {
 	calls := []string{
 		`cloudwatch.NewQueryEditorGroupByExpressionBuilder()`,

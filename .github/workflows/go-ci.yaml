@@ -31,6 +31,5 @@ jobs:
       - name: Go build
         run: |
           for d in */ ; do
-            echo "Building $d"
-            go build "./$d"
+            [[ "$d" != "docs/" ]] && (echo "Building $d"; go build "./$d")
           done

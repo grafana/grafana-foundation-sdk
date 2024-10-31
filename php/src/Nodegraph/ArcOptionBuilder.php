@@ -15,6 +15,7 @@ class ArcOptionBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Nodegraph\ArcOption
      */
     public function build()

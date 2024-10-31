@@ -15,6 +15,7 @@ class HistogramSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\HistogramSettings
      */
     public function build()

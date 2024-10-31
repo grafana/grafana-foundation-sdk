@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AdHocVariableConverter accepts a `AdHocVariable` object and generates the Go code to build this object using builders.
 func AdHocVariableConverter(input VariableModel) string {
 	calls := []string{
 		`dashboard.NewAdHocVariableBuilder(` + fmt.Sprintf("%#v", input.Name) + `)`,

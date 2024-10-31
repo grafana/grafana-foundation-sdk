@@ -12,6 +12,9 @@ export class TableColorTextCellOptionsBuilder implements cog.Builder<common.Tabl
         this.internal.type = "color-text";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.TableColorTextCellOptions {
         return this.internal;
     }

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// MetricNamespaceQueryConverter accepts a `MetricNamespaceQuery` object and generates the Go code to build this object using builders.
 func MetricNamespaceQueryConverter(input MetricNamespaceQuery) string {
 	calls := []string{
 		`azuremonitor.NewMetricNamespaceQueryBuilder()`,

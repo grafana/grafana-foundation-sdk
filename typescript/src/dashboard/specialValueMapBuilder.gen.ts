@@ -14,6 +14,9 @@ export class SpecialValueMapBuilder implements cog.Builder<dashboard.SpecialValu
         this.internal.type = "special";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.SpecialValueMap {
         return this.internal;
     }

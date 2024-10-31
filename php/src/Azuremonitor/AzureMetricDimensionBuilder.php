@@ -15,6 +15,7 @@ class AzureMetricDimensionBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Azuremonitor\AzureMetricDimension
      */
     public function build()
