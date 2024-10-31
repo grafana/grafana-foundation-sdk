@@ -26,14 +26,8 @@ func NewElasticsearchTopMetricsSettingsBuilder() *ElasticsearchTopMetricsSetting
 }
 
 func (builder *ElasticsearchTopMetricsSettingsBuilder) Build() (ElasticsearchTopMetricsSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchTopMetricsSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchTopMetricsSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchTopMetricsSettings{}, err
 	}
 
 	return *builder.internal, nil

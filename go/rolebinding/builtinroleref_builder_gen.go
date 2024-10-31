@@ -27,14 +27,8 @@ func NewBuiltinRoleRefBuilder() *BuiltinRoleRefBuilder {
 }
 
 func (builder *BuiltinRoleRefBuilder) Build() (BuiltinRoleRef, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("BuiltinRoleRef", err)...)
-	}
-
-	if len(errs) != 0 {
-		return BuiltinRoleRef{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return BuiltinRoleRef{}, err
 	}
 
 	return *builder.internal, nil

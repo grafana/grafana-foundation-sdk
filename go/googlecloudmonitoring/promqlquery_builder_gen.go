@@ -27,14 +27,8 @@ func NewPromQLQueryBuilder() *PromQLQueryBuilder {
 }
 
 func (builder *PromQLQueryBuilder) Build() (PromQLQuery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("PromQLQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return PromQLQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return PromQLQuery{}, err
 	}
 
 	return *builder.internal, nil

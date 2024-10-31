@@ -26,14 +26,8 @@ func NewMapLayerOptionsBuilder() *MapLayerOptionsBuilder {
 }
 
 func (builder *MapLayerOptionsBuilder) Build() (MapLayerOptions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("MapLayerOptions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return MapLayerOptions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return MapLayerOptions{}, err
 	}
 
 	return *builder.internal, nil

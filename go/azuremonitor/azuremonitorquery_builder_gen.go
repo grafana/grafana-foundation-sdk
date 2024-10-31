@@ -28,14 +28,8 @@ func NewAzureMonitorQueryBuilder() *AzureMonitorQueryBuilder {
 }
 
 func (builder *AzureMonitorQueryBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("AzureMonitorQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return AzureMonitorQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return AzureMonitorQuery{}, err
 	}
 
 	return *builder.internal, nil

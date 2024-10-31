@@ -27,14 +27,8 @@ func NewPercentilesBuilder() *PercentilesBuilder {
 }
 
 func (builder *PercentilesBuilder) Build() (Percentiles, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Percentiles", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Percentiles{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Percentiles{}, err
 	}
 
 	return *builder.internal, nil

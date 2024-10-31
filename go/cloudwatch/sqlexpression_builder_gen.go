@@ -26,14 +26,8 @@ func NewSQLExpressionBuilder() *SQLExpressionBuilder {
 }
 
 func (builder *SQLExpressionBuilder) Build() (SQLExpression, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("SQLExpression", err)...)
-	}
-
-	if len(errs) != 0 {
-		return SQLExpression{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return SQLExpression{}, err
 	}
 
 	return *builder.internal, nil

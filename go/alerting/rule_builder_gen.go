@@ -3,7 +3,6 @@
 package alerting
 
 import (
-	"errors"
 	"time"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
@@ -24,28 +23,14 @@ func NewRuleBuilder(title string) *RuleBuilder {
 	}
 
 	builder.applyDefaults()
-	if !(len([]rune(title)) >= 1) {
-		builder.errors["title"] = cog.MakeBuildErrors("title", errors.New("len([]rune(title)) must be >= 1"))
-		return builder
-	}
-	if !(len([]rune(title)) <= 190) {
-		builder.errors["title"] = cog.MakeBuildErrors("title", errors.New("len([]rune(title)) must be <= 190"))
-		return builder
-	}
 	builder.internal.Title = title
 
 	return builder
 }
 
 func (builder *RuleBuilder) Build() (Rule, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Rule", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Rule{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Rule{}, err
 	}
 
 	return *builder.internal, nil
@@ -157,42 +142,18 @@ func (builder *RuleBuilder) Provenance(provenance Provenance) *RuleBuilder {
 }
 
 func (builder *RuleBuilder) RuleGroup(ruleGroup string) *RuleBuilder {
-	if !(len([]rune(ruleGroup)) >= 1) {
-		builder.errors["ruleGroup"] = cog.MakeBuildErrors("ruleGroup", errors.New("len([]rune(ruleGroup)) must be >= 1"))
-		return builder
-	}
-	if !(len([]rune(ruleGroup)) <= 190) {
-		builder.errors["ruleGroup"] = cog.MakeBuildErrors("ruleGroup", errors.New("len([]rune(ruleGroup)) must be <= 190"))
-		return builder
-	}
 	builder.internal.RuleGroup = ruleGroup
 
 	return builder
 }
 
 func (builder *RuleBuilder) Title(title string) *RuleBuilder {
-	if !(len([]rune(title)) >= 1) {
-		builder.errors["title"] = cog.MakeBuildErrors("title", errors.New("len([]rune(title)) must be >= 1"))
-		return builder
-	}
-	if !(len([]rune(title)) <= 190) {
-		builder.errors["title"] = cog.MakeBuildErrors("title", errors.New("len([]rune(title)) must be <= 190"))
-		return builder
-	}
 	builder.internal.Title = title
 
 	return builder
 }
 
 func (builder *RuleBuilder) Uid(uid string) *RuleBuilder {
-	if !(len([]rune(uid)) >= 1) {
-		builder.errors["uid"] = cog.MakeBuildErrors("uid", errors.New("len([]rune(uid)) must be >= 1"))
-		return builder
-	}
-	if !(len([]rune(uid)) <= 40) {
-		builder.errors["uid"] = cog.MakeBuildErrors("uid", errors.New("len([]rune(uid)) must be <= 40"))
-		return builder
-	}
 	builder.internal.Uid = &uid
 
 	return builder

@@ -27,14 +27,8 @@ func NewFillConfigBuilder() *FillConfigBuilder {
 }
 
 func (builder *FillConfigBuilder) Build() (FillConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("FillConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return FillConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return FillConfig{}, err
 	}
 
 	return *builder.internal, nil

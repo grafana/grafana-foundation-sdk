@@ -22,6 +22,9 @@ class DashboardMeta implements \JsonSerializable
 
     public ?string $expires;
 
+    /**
+     * Deprecated: use FolderUID instead
+     */
     public ?int $folderId;
 
     public ?string $folderTitle;

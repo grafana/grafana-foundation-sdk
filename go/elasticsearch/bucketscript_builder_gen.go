@@ -27,14 +27,8 @@ func NewBucketScriptBuilder() *BucketScriptBuilder {
 }
 
 func (builder *BucketScriptBuilder) Build() (BucketScript, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("BucketScript", err)...)
-	}
-
-	if len(errs) != 0 {
-		return BucketScript{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return BucketScript{}, err
 	}
 
 	return *builder.internal, nil

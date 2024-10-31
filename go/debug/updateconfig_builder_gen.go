@@ -26,14 +26,8 @@ func NewUpdateConfigBuilder() *UpdateConfigBuilder {
 }
 
 func (builder *UpdateConfigBuilder) Build() (UpdateConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("UpdateConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return UpdateConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return UpdateConfig{}, err
 	}
 
 	return *builder.internal, nil

@@ -27,14 +27,8 @@ func NewTableSortByFieldStateBuilder() *TableSortByFieldStateBuilder {
 }
 
 func (builder *TableSortByFieldStateBuilder) Build() (TableSortByFieldState, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TableSortByFieldState", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TableSortByFieldState{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TableSortByFieldState{}, err
 	}
 
 	return *builder.internal, nil

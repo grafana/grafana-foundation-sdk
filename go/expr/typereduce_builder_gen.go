@@ -3,8 +3,6 @@
 package expr
 
 import (
-	"errors"
-
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
@@ -31,14 +29,8 @@ func NewTypeReduceBuilder() *TypeReduceBuilder {
 }
 
 func (builder *TypeReduceBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("TypeReduce", err)...)
-	}
-
-	if len(errs) != 0 {
-		return TypeReduce{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return TypeReduce{}, err
 	}
 
 	return *builder.internal, nil
@@ -53,10 +45,6 @@ func (builder *TypeReduceBuilder) Datasource(datasource dashboard.DataSourceRef)
 
 // Reference to single query result
 func (builder *TypeReduceBuilder) Expression(expression string) *TypeReduceBuilder {
-	if !(len([]rune(expression)) >= 1) {
-		builder.errors["expression"] = cog.MakeBuildErrors("expression", errors.New("len([]rune(expression)) must be >= 1"))
-		return builder
-	}
 	builder.internal.Expression = expression
 
 	return builder
