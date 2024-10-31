@@ -699,6 +699,32 @@ final class PanelConverter
     
     
     }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->logRowMenuIconsBefore !== null) {
+    
+        
+    $buffer = 'logRowMenuIconsBefore(';
+        $arg0 =\var_export($input->options->logRowMenuIconsBefore, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->logRowMenuIconsAfter !== null) {
+    
+        
+    $buffer = 'logRowMenuIconsAfter(';
+        $arg0 =\var_export($input->options->logRowMenuIconsAfter, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->displayedFields !== null && count($input->options->displayedFields) >= 1) {
     
         

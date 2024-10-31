@@ -26,25 +26,21 @@ func NewRecordRuleBuilder() *RecordRuleBuilder {
 }
 
 func (builder *RecordRuleBuilder) Build() (RecordRule, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("RecordRule", err)...)
-	}
-
-	if len(errs) != 0 {
-		return RecordRule{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return RecordRule{}, err
 	}
 
 	return *builder.internal, nil
 }
 
+// Which expression node should be used as the input for the recorded metric.
 func (builder *RecordRuleBuilder) From(from string) *RecordRuleBuilder {
 	builder.internal.From = from
 
 	return builder
 }
 
+// Name of the recorded metric.
 func (builder *RecordRuleBuilder) Metric(metric string) *RecordRuleBuilder {
 	builder.internal.Metric = metric
 

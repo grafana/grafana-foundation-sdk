@@ -142,6 +142,10 @@ export interface dataquery {
 	// Drop percentage (the chance we will lose a point 0-100)
 	dropPercent?: number;
 	// Possible enum values:
+	//  - `"plugin"` 
+	//  - `"downstream"` 
+	errorSource?: "plugin" | "downstream";
+	// Possible enum values:
 	//  - `"frontend_exception"` 
 	//  - `"frontend_observable"` 
 	//  - `"server_panic"` 
@@ -183,6 +187,7 @@ export interface dataquery {
 	//  - `"csv_file"` 
 	//  - `"csv_metric_values"` 
 	//  - `"datapoints_outside_range"` 
+	//  - `"error_with_source"` 
 	//  - `"exponential_heatmap_bucket_data"` 
 	//  - `"flame_graph"` 
 	//  - `"grafana_api"` 
@@ -206,7 +211,7 @@ export interface dataquery {
 	//  - `"trace"` 
 	//  - `"usa"` 
 	//  - `"variables-query"` 
-	scenarioId?: "annotations" | "arrow" | "csv_content" | "csv_file" | "csv_metric_values" | "datapoints_outside_range" | "exponential_heatmap_bucket_data" | "flame_graph" | "grafana_api" | "linear_heatmap_bucket_data" | "live" | "logs" | "manual_entry" | "no_data_points" | "node_graph" | "predictable_csv_wave" | "predictable_pulse" | "random_walk" | "random_walk_table" | "random_walk_with_error" | "raw_frame" | "server_error_500" | "simulation" | "slow_query" | "streaming_client" | "table_static" | "trace" | "usa" | "variables-query";
+	scenarioId?: "annotations" | "arrow" | "csv_content" | "csv_file" | "csv_metric_values" | "datapoints_outside_range" | "error_with_source" | "exponential_heatmap_bucket_data" | "flame_graph" | "grafana_api" | "linear_heatmap_bucket_data" | "live" | "logs" | "manual_entry" | "no_data_points" | "node_graph" | "predictable_csv_wave" | "predictable_pulse" | "random_walk" | "random_walk_table" | "random_walk_with_error" | "raw_frame" | "server_error_500" | "simulation" | "slow_query" | "streaming_client" | "table_static" | "trace" | "usa" | "variables-query";
 	seriesCount?: number;
 	sim?: SimulationQuery;
 	spanCount?: number;

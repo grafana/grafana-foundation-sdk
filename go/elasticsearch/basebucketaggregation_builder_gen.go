@@ -26,14 +26,8 @@ func NewBaseBucketAggregationBuilder() *BaseBucketAggregationBuilder {
 }
 
 func (builder *BaseBucketAggregationBuilder) Build() (BaseBucketAggregation, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("BaseBucketAggregation", err)...)
-	}
-
-	if len(errs) != 0 {
-		return BaseBucketAggregation{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return BaseBucketAggregation{}, err
 	}
 
 	return *builder.internal, nil

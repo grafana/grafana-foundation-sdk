@@ -32,12 +32,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // Depends on the panel plugin. See the plugin documentation for details.
-    withTarget(targets: cog.Builder<cog.Dataquery>): this {
+    withTarget(target: cog.Builder<cog.Dataquery>): this {
         if (!this.internal.targets) {
             this.internal.targets = [];
         }
-        const targetsResource = targets.build();
-        this.internal.targets.push(targetsResource);
+        const targetResource = target.build();
+        this.internal.targets.push(targetResource);
         return this;
     }
 
@@ -142,11 +142,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     // List of transformations that are applied to the panel data before rendering.
     // When there are multiple transformations, Grafana applies them in the order they are listed.
     // Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
-    withTransformation(transformations: dashboard.DataTransformerConfig): this {
+    withTransformation(transformation: dashboard.DataTransformerConfig): this {
         if (!this.internal.transformations) {
             this.internal.transformations = [];
         }
-        this.internal.transformations.push(transformations);
+        this.internal.transformations.push(transformation);
         return this;
     }
 
@@ -340,7 +340,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // Overrides are the options applied to specific fields overriding the defaults.
-    withOverride(overrides: {
+    withOverride(override: {
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 }): this {
@@ -350,7 +350,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         if (!this.internal.fieldConfig.overrides) {
             this.internal.fieldConfig.overrides = [];
         }
-        this.internal.fieldConfig.overrides.push(overrides);
+        this.internal.fieldConfig.overrides.push(override);
         return this;
     }
 
@@ -480,6 +480,22 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
             this.internal.options = logs.defaultOptions();
         }
         this.internal.options.onClickHideField = onClickHideField;
+        return this;
+    }
+
+    logRowMenuIconsBefore(logRowMenuIconsBefore: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.logRowMenuIconsBefore = logRowMenuIconsBefore;
+        return this;
+    }
+
+    logRowMenuIconsAfter(logRowMenuIconsAfter: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.logRowMenuIconsAfter = logRowMenuIconsAfter;
         return this;
     }
 

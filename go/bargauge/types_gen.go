@@ -4,7 +4,10 @@ package bargauge
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
@@ -23,6 +26,199 @@ type Options struct {
 	Text          *common.VizTextDisplayOptions `json:"text,omitempty"`
 	MaxVizHeight  uint32                        `json:"maxVizHeight"`
 	Orientation   common.VizOrientation         `json:"orientation"`
+}
+
+func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "displayMode"
+	if fields["displayMode"] != nil {
+		if string(fields["displayMode"]) != "null" {
+			if err := json.Unmarshal(fields["displayMode"], &resource.DisplayMode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("displayMode", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("displayMode", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "displayMode")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("displayMode", errors.New("required field is missing from input"))...)
+	}
+	// Field "valueMode"
+	if fields["valueMode"] != nil {
+		if string(fields["valueMode"]) != "null" {
+			if err := json.Unmarshal(fields["valueMode"], &resource.ValueMode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("valueMode", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("valueMode", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "valueMode")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("valueMode", errors.New("required field is missing from input"))...)
+	}
+	// Field "namePlacement"
+	if fields["namePlacement"] != nil {
+		if string(fields["namePlacement"]) != "null" {
+			if err := json.Unmarshal(fields["namePlacement"], &resource.NamePlacement); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("namePlacement", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("namePlacement", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "namePlacement")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("namePlacement", errors.New("required field is missing from input"))...)
+	}
+	// Field "showUnfilled"
+	if fields["showUnfilled"] != nil {
+		if string(fields["showUnfilled"]) != "null" {
+			if err := json.Unmarshal(fields["showUnfilled"], &resource.ShowUnfilled); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showUnfilled", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("showUnfilled", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "showUnfilled")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showUnfilled", errors.New("required field is missing from input"))...)
+	}
+	// Field "sizing"
+	if fields["sizing"] != nil {
+		if string(fields["sizing"]) != "null" {
+			if err := json.Unmarshal(fields["sizing"], &resource.Sizing); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("sizing", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("sizing", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "sizing")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("sizing", errors.New("required field is missing from input"))...)
+	}
+	// Field "minVizWidth"
+	if fields["minVizWidth"] != nil {
+		if string(fields["minVizWidth"]) != "null" {
+			if err := json.Unmarshal(fields["minVizWidth"], &resource.MinVizWidth); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("minVizWidth", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("minVizWidth", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "minVizWidth")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("minVizWidth", errors.New("required field is missing from input"))...)
+	}
+	// Field "minVizHeight"
+	if fields["minVizHeight"] != nil {
+		if string(fields["minVizHeight"]) != "null" {
+			if err := json.Unmarshal(fields["minVizHeight"], &resource.MinVizHeight); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("minVizHeight", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("minVizHeight", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "minVizHeight")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("minVizHeight", errors.New("required field is missing from input"))...)
+	}
+	// Field "legend"
+	if fields["legend"] != nil {
+		if string(fields["legend"]) != "null" {
+
+			resource.Legend = common.VizLegendOptions{}
+			if err := resource.Legend.UnmarshalJSONStrict(fields["legend"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("legend", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("legend", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "legend")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("legend", errors.New("required field is missing from input"))...)
+	}
+	// Field "reduceOptions"
+	if fields["reduceOptions"] != nil {
+		if string(fields["reduceOptions"]) != "null" {
+
+			resource.ReduceOptions = common.ReduceDataOptions{}
+			if err := resource.ReduceOptions.UnmarshalJSONStrict(fields["reduceOptions"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("reduceOptions", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("reduceOptions", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "reduceOptions")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("reduceOptions", errors.New("required field is missing from input"))...)
+	}
+	// Field "text"
+	if fields["text"] != nil {
+		if string(fields["text"]) != "null" {
+
+			resource.Text = &common.VizTextDisplayOptions{}
+			if err := resource.Text.UnmarshalJSONStrict(fields["text"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("text", err)...)
+			}
+
+		}
+		delete(fields, "text")
+
+	}
+	// Field "maxVizHeight"
+	if fields["maxVizHeight"] != nil {
+		if string(fields["maxVizHeight"]) != "null" {
+			if err := json.Unmarshal(fields["maxVizHeight"], &resource.MaxVizHeight); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("maxVizHeight", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("maxVizHeight", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "maxVizHeight")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("maxVizHeight", errors.New("required field is missing from input"))...)
+	}
+	// Field "orientation"
+	if fields["orientation"] != nil {
+		if string(fields["orientation"]) != "null" {
+			if err := json.Unmarshal(fields["orientation"], &resource.Orientation); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("orientation", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("orientation", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "orientation")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("orientation", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource Options) Equals(other Options) bool {
@@ -72,6 +268,29 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource Options) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Legend.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("legend", err)...)
+	}
+	if err := resource.ReduceOptions.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("reduceOptions", err)...)
+	}
+	if resource.Text != nil {
+		if err := resource.Text.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("text", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "bargauge",
@@ -79,6 +298,15 @@ func VariantConfig() variants.PanelcfgConfig {
 			options := &Options{}
 
 			if err := json.Unmarshal(raw, options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+		StrictOptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := options.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
 			}
 

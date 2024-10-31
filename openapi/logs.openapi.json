@@ -81,6 +81,14 @@
             "type": "object",
             "additionalProperties": {}
           },
+          "logRowMenuIconsBefore": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "logRowMenuIconsAfter": {
+            "type": "object",
+            "additionalProperties": {}
+          },
           "displayedFields": {
             "type": "array",
             "items": {

@@ -776,6 +776,7 @@ export enum TableCellDisplayMode {
 	Sparkline = "sparkline",
 	DataLinks = "data-links",
 	Custom = "custom",
+	Actions = "actions",
 }
 
 export const defaultTableCellDisplayMode = (): TableCellDisplayMode => (TableCellDisplayMode.Auto);
@@ -866,6 +867,15 @@ export const defaultTableDataLinksCellOptions = (): TableDataLinksCellOptions =>
 	type: "data-links",
 });
 
+// Show actions in the cell
+export interface TableActionsCellOptions {
+	type: "actions";
+}
+
+export const defaultTableActionsCellOptions = (): TableActionsCellOptions => ({
+	type: "actions",
+});
+
 // Gauge cell options
 export interface TableBarGaugeCellOptions {
 	type: "gauge";
@@ -946,7 +956,7 @@ export const defaultTableCellHeight = (): TableCellHeight => (TableCellHeight.Sm
 
 // Table cell options. Each cell has a display mode
 // and other potential options for that display.
-export type TableCellOptions = TableAutoCellOptions | TableSparklineCellOptions | TableBarGaugeCellOptions | TableColoredBackgroundCellOptions | TableColorTextCellOptions | TableImageCellOptions | TableDataLinksCellOptions | TableJsonViewCellOptions;
+export type TableCellOptions = TableAutoCellOptions | TableSparklineCellOptions | TableBarGaugeCellOptions | TableColoredBackgroundCellOptions | TableColorTextCellOptions | TableImageCellOptions | TableDataLinksCellOptions | TableActionsCellOptions | TableJsonViewCellOptions;
 
 export const defaultTableCellOptions = (): TableCellOptions => (defaultTableAutoCellOptions());
 

@@ -36,6 +36,15 @@ final class LokiQueryDirection implements \JsonSerializable, \Stringable {
         return self::$instances["backward"];
     }
 
+    public static function scan(): self
+    {
+        if (!isset(self::$instances["scan"])) {
+            self::$instances["scan"] = new self("scan");
+        }
+
+        return self::$instances["scan"];
+    }
+
     public static function fromValue(string $value): self
     {
         if ($value === "forward") {
@@ -44,6 +53,10 @@ final class LokiQueryDirection implements \JsonSerializable, \Stringable {
 
         if ($value === "backward") {
             return self::backward();
+        }
+
+        if ($value === "scan") {
+            return self::scan();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum LokiQueryDirection");

@@ -27,14 +27,8 @@ func NewHeatmapLegendBuilder() *HeatmapLegendBuilder {
 }
 
 func (builder *HeatmapLegendBuilder) Build() (HeatmapLegend, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("HeatmapLegend", err)...)
-	}
-
-	if len(errs) != 0 {
-		return HeatmapLegend{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return HeatmapLegend{}, err
 	}
 
 	return *builder.internal, nil

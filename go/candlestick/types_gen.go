@@ -4,7 +4,10 @@ package candlestick
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
@@ -43,6 +46,83 @@ type CandlestickFieldMap struct {
 	Close *string `json:"close,omitempty"`
 	// Corresponds to the sample count in the given period. (e.g. number of trades)
 	Volume *string `json:"volume,omitempty"`
+}
+
+func (resource *CandlestickFieldMap) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "open"
+	if fields["open"] != nil {
+		if string(fields["open"]) != "null" {
+			if err := json.Unmarshal(fields["open"], &resource.Open); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("open", err)...)
+			}
+
+		}
+		delete(fields, "open")
+
+	}
+	// Field "high"
+	if fields["high"] != nil {
+		if string(fields["high"]) != "null" {
+			if err := json.Unmarshal(fields["high"], &resource.High); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("high", err)...)
+			}
+
+		}
+		delete(fields, "high")
+
+	}
+	// Field "low"
+	if fields["low"] != nil {
+		if string(fields["low"]) != "null" {
+			if err := json.Unmarshal(fields["low"], &resource.Low); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("low", err)...)
+			}
+
+		}
+		delete(fields, "low")
+
+	}
+	// Field "close"
+	if fields["close"] != nil {
+		if string(fields["close"]) != "null" {
+			if err := json.Unmarshal(fields["close"], &resource.Close); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("close", err)...)
+			}
+
+		}
+		delete(fields, "close")
+
+	}
+	// Field "volume"
+	if fields["volume"] != nil {
+		if string(fields["volume"]) != "null" {
+			if err := json.Unmarshal(fields["volume"], &resource.Volume); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("volume", err)...)
+			}
+
+		}
+		delete(fields, "volume")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("CandlestickFieldMap", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource CandlestickFieldMap) Equals(other CandlestickFieldMap) bool {
@@ -95,10 +175,80 @@ func (resource CandlestickFieldMap) Equals(other CandlestickFieldMap) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource CandlestickFieldMap) Validate() error {
+	return nil
+}
+
 type CandlestickColors struct {
 	Up   string `json:"up"`
 	Down string `json:"down"`
 	Flat string `json:"flat"`
+}
+
+func (resource *CandlestickColors) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "up"
+	if fields["up"] != nil {
+		if string(fields["up"]) != "null" {
+			if err := json.Unmarshal(fields["up"], &resource.Up); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("up", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("up", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "up")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("up", errors.New("required field is missing from input"))...)
+	}
+	// Field "down"
+	if fields["down"] != nil {
+		if string(fields["down"]) != "null" {
+			if err := json.Unmarshal(fields["down"], &resource.Down); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("down", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("down", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "down")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("down", errors.New("required field is missing from input"))...)
+	}
+	// Field "flat"
+	if fields["flat"] != nil {
+		if string(fields["flat"]) != "null" {
+			if err := json.Unmarshal(fields["flat"], &resource.Flat); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("flat", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("flat", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "flat")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("flat", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("CandlestickColors", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource CandlestickColors) Equals(other CandlestickColors) bool {
@@ -113,6 +263,12 @@ func (resource CandlestickColors) Equals(other CandlestickColors) bool {
 	}
 
 	return true
+}
+
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource CandlestickColors) Validate() error {
+	return nil
 }
 
 type Options struct {
@@ -130,6 +286,145 @@ type Options struct {
 	Tooltip common.VizTooltipOptions `json:"tooltip"`
 	// When enabled, all fields will be sent to the graph
 	IncludeAllFields *bool `json:"includeAllFields,omitempty"`
+}
+
+func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "mode"
+	if fields["mode"] != nil {
+		if string(fields["mode"]) != "null" {
+			if err := json.Unmarshal(fields["mode"], &resource.Mode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("mode", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "mode")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is missing from input"))...)
+	}
+	// Field "candleStyle"
+	if fields["candleStyle"] != nil {
+		if string(fields["candleStyle"]) != "null" {
+			if err := json.Unmarshal(fields["candleStyle"], &resource.CandleStyle); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("candleStyle", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("candleStyle", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "candleStyle")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("candleStyle", errors.New("required field is missing from input"))...)
+	}
+	// Field "colorStrategy"
+	if fields["colorStrategy"] != nil {
+		if string(fields["colorStrategy"]) != "null" {
+			if err := json.Unmarshal(fields["colorStrategy"], &resource.ColorStrategy); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("colorStrategy", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("colorStrategy", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "colorStrategy")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("colorStrategy", errors.New("required field is missing from input"))...)
+	}
+	// Field "fields"
+	if fields["fields"] != nil {
+		if string(fields["fields"]) != "null" {
+
+			resource.Fields = CandlestickFieldMap{}
+			if err := resource.Fields.UnmarshalJSONStrict(fields["fields"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fields", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("fields", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "fields")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("fields", errors.New("required field is missing from input"))...)
+	}
+	// Field "colors"
+	if fields["colors"] != nil {
+		if string(fields["colors"]) != "null" {
+
+			resource.Colors = CandlestickColors{}
+			if err := resource.Colors.UnmarshalJSONStrict(fields["colors"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("colors", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("colors", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "colors")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("colors", errors.New("required field is missing from input"))...)
+	}
+	// Field "legend"
+	if fields["legend"] != nil {
+		if string(fields["legend"]) != "null" {
+
+			resource.Legend = common.VizLegendOptions{}
+			if err := resource.Legend.UnmarshalJSONStrict(fields["legend"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("legend", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("legend", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "legend")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("legend", errors.New("required field is missing from input"))...)
+	}
+	// Field "tooltip"
+	if fields["tooltip"] != nil {
+		if string(fields["tooltip"]) != "null" {
+
+			resource.Tooltip = common.VizTooltipOptions{}
+			if err := resource.Tooltip.UnmarshalJSONStrict(fields["tooltip"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tooltip", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "tooltip")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is missing from input"))...)
+	}
+	// Field "includeAllFields"
+	if fields["includeAllFields"] != nil {
+		if string(fields["includeAllFields"]) != "null" {
+			if err := json.Unmarshal(fields["includeAllFields"], &resource.IncludeAllFields); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("includeAllFields", err)...)
+			}
+
+		}
+		delete(fields, "includeAllFields")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource Options) Equals(other Options) bool {
@@ -167,6 +462,30 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource Options) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Fields.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("fields", err)...)
+	}
+	if err := resource.Colors.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("colors", err)...)
+	}
+	if err := resource.Legend.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("legend", err)...)
+	}
+	if err := resource.Tooltip.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("tooltip", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type FieldConfig = common.GraphFieldConfig
 
 func VariantConfig() variants.PanelcfgConfig {
@@ -181,10 +500,28 @@ func VariantConfig() variants.PanelcfgConfig {
 
 			return options, nil
 		},
+		StrictOptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := options.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
 		FieldConfigUnmarshaler: func(raw []byte) (any, error) {
 			fieldConfig := &FieldConfig{}
 
 			if err := json.Unmarshal(raw, fieldConfig); err != nil {
+				return nil, err
+			}
+
+			return fieldConfig, nil
+		},
+		StrictFieldConfigUnmarshaler: func(raw []byte) (any, error) {
+			fieldConfig := &FieldConfig{}
+
+			if err := fieldConfig.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
 			}
 

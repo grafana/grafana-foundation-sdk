@@ -26,14 +26,8 @@ func NewElasticsearchUniqueCountSettingsBuilder() *ElasticsearchUniqueCountSetti
 }
 
 func (builder *ElasticsearchUniqueCountSettingsBuilder) Build() (ElasticsearchUniqueCountSettings, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchUniqueCountSettings", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ElasticsearchUniqueCountSettings{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ElasticsearchUniqueCountSettings{}, err
 	}
 
 	return *builder.internal, nil

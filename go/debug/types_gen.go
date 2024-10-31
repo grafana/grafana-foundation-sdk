@@ -4,7 +4,10 @@ package debug
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
@@ -13,6 +16,70 @@ type UpdateConfig struct {
 	Render        bool `json:"render"`
 	DataChanged   bool `json:"dataChanged"`
 	SchemaChanged bool `json:"schemaChanged"`
+}
+
+func (resource *UpdateConfig) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "render"
+	if fields["render"] != nil {
+		if string(fields["render"]) != "null" {
+			if err := json.Unmarshal(fields["render"], &resource.Render); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("render", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("render", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "render")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("render", errors.New("required field is missing from input"))...)
+	}
+	// Field "dataChanged"
+	if fields["dataChanged"] != nil {
+		if string(fields["dataChanged"]) != "null" {
+			if err := json.Unmarshal(fields["dataChanged"], &resource.DataChanged); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("dataChanged", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("dataChanged", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "dataChanged")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("dataChanged", errors.New("required field is missing from input"))...)
+	}
+	// Field "schemaChanged"
+	if fields["schemaChanged"] != nil {
+		if string(fields["schemaChanged"]) != "null" {
+			if err := json.Unmarshal(fields["schemaChanged"], &resource.SchemaChanged); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("schemaChanged", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("schemaChanged", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "schemaChanged")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("schemaChanged", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("UpdateConfig", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource UpdateConfig) Equals(other UpdateConfig) bool {
@@ -29,6 +96,12 @@ func (resource UpdateConfig) Equals(other UpdateConfig) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource UpdateConfig) Validate() error {
+	return nil
+}
+
 type DebugMode string
 
 const (
@@ -42,6 +115,55 @@ const (
 type Options struct {
 	Mode     DebugMode     `json:"mode"`
 	Counters *UpdateConfig `json:"counters,omitempty"`
+}
+
+func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "mode"
+	if fields["mode"] != nil {
+		if string(fields["mode"]) != "null" {
+			if err := json.Unmarshal(fields["mode"], &resource.Mode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("mode", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "mode")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is missing from input"))...)
+	}
+	// Field "counters"
+	if fields["counters"] != nil {
+		if string(fields["counters"]) != "null" {
+
+			resource.Counters = &UpdateConfig{}
+			if err := resource.Counters.UnmarshalJSONStrict(fields["counters"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("counters", err)...)
+			}
+
+		}
+		delete(fields, "counters")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 func (resource Options) Equals(other Options) bool {
@@ -61,6 +183,23 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
+// Validate checks any constraint that may be defined for this type
+// and returns all violations.
+func (resource Options) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Counters != nil {
+		if err := resource.Counters.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("counters", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "debug",
@@ -68,6 +207,15 @@ func VariantConfig() variants.PanelcfgConfig {
 			options := &Options{}
 
 			if err := json.Unmarshal(raw, options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+		StrictOptionsUnmarshaler: func(raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := options.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
 			}
 

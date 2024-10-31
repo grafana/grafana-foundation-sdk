@@ -26,14 +26,8 @@ func NewResultAssertionsBuilder() *ResultAssertionsBuilder {
 }
 
 func (builder *ResultAssertionsBuilder) Build() (ResultAssertions, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("ResultAssertions", err)...)
-	}
-
-	if len(errs) != 0 {
-		return ResultAssertions{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return ResultAssertions{}, err
 	}
 
 	return *builder.internal, nil

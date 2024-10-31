@@ -29,14 +29,8 @@ func NewCloudWatchMetricsQueryBuilder() *CloudWatchMetricsQueryBuilder {
 }
 
 func (builder *CloudWatchMetricsQueryBuilder) Build() (variants.Dataquery, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("CloudWatchMetricsQuery", err)...)
-	}
-
-	if len(errs) != 0 {
-		return CloudWatchMetricsQuery{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return CloudWatchMetricsQuery{}, err
 	}
 
 	return *builder.internal, nil

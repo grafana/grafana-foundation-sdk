@@ -7,10 +7,17 @@ import enum
 
 
 class Query:
+    # Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation.
     datasource_uid: typing.Optional[str]
+    # JSON is the raw JSON query and includes the above properties as well as custom properties.
     model: typing.Optional[cogvariants.Dataquery]
+    # QueryType is an optional identifier for the type of query.
+    # It can be used to distinguish different types of queries.
     query_type: typing.Optional[str]
+    # RefID is the unique identifier of the query, set by the frontend call.
     ref_id: typing.Optional[str]
+    # RelativeTimeRange is the per query start and end time
+    # for requests.
     relative_time_range: typing.Optional['RelativeTimeRange']
 
     def __init__(self, datasource_uid: typing.Optional[str] = None, model: typing.Optional[cogvariants.Dataquery] = None, query_type: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, relative_time_range: typing.Optional['RelativeTimeRange'] = None):
@@ -97,11 +104,30 @@ class RuleGroup:
 
 
 class NotificationSettings:
+    # Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
+    # cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
+    # use the special value '...' as the sole label name.
+    # This effectively disables aggregation entirely, passing through all alerts as-is. This is unlikely to be what
+    # you want, unless you have a very low alert volume or your upstream notification system performs its own grouping.
+    # Must include 'alertname' and 'grafana_folder' if not using '...'.
     group_by: typing.Optional[list[str]]
+    # Override how long to wait before sending a notification about new alerts that are added to a group of alerts for
+    # which an initial notification has already been sent. (Usually ~5m or more.)
     group_interval: typing.Optional[str]
+    # Override how long to initially wait to send a notification for a group of alerts. Allows to wait for an
+    # inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.)
     group_wait: typing.Optional[str]
+    # Override the times when notifications should be muted. These must match the name of a mute time interval defined
+    # in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+    # otherwise acts normally.
     mute_time_intervals: typing.Optional[list[str]]
+    # Name of the receiver to send notifications to.
     receiver: str
+    # Override how long to wait before sending a notification again if it has already been sent successfully for an
+    # alert. (Usually ~3h or more).
+    # Note that this parameter is implicitly bound by Alertmanager's `--data.retention` configuration flag.
+    # Notifications will be resent after either repeat_interval or the data retention period have passed, whichever
+    # occurs first. `repeat_interval` should not be less than `group_interval`.
     repeat_interval: typing.Optional[str]
 
     def __init__(self, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, mute_time_intervals: typing.Optional[list[str]] = None, receiver: str = "", repeat_interval: typing.Optional[str] = None):
@@ -158,23 +184,15 @@ class ContactPoint:
     by grafanas embedded alertmanager implementation.
     """
 
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
     disable_resolve_message: typing.Optional[bool]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
+    # Name is used as grouping key in the UI. Contact points with the
+    # same name will be grouped in the UI.
     name: typing.Optional[str]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
     provenance: typing.Optional[str]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
     settings: 'Json'
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
     type_val: typing.Literal["alertmanager", " dingding", " discord", " email", " googlechat", " kafka", " line", " opsgenie", " pagerduty", " pushover", " sensugo", " slack", " teams", " telegram", " threema", " victorops", " webhook", " wecom"]
-    # EmbeddedContactPoint is the contact point type that is used
-    # by grafanas embedded alertmanager implementation.
+    # UID is the unique identifier of the contact point. The UID can be
+    # set by the user.
     uid: typing.Optional[str]
 
     def __init__(self, disable_resolve_message: typing.Optional[bool] = None, name: typing.Optional[str] = None, provenance: typing.Optional[str] = None, settings: typing.Optional['Json'] = None, type_val: typing.Optional[typing.Literal["alertmanager", " dingding", " discord", " email", " googlechat", " kafka", " line", " opsgenie", " pagerduty", " pushover", " sensugo", " slack", " teams", " telegram", " threema", " victorops", " webhook", " wecom"]] = None, uid: typing.Optional[str] = None):
@@ -472,7 +490,9 @@ class Rule:
 
 
 class RecordRule:
+    # Which expression node should be used as the input for the recorded metric.
     from_val: str
+    # Name of the recorded metric.
     metric: str
 
     def __init__(self, from_val: str = "", metric: str = ""):
@@ -504,11 +524,13 @@ class RelativeTimeRange:
     for requests.
     """
 
-    # RelativeTimeRange is the per query start and end time
-    # for requests.
+    # A Duration represents the elapsed time between two instants
+    # as an int64 nanosecond count. The representation limits the
+    # largest representable duration to approximately 290 years.
     from_val: typing.Optional['Duration']
-    # RelativeTimeRange is the per query start and end time
-    # for requests.
+    # A Duration represents the elapsed time between two instants
+    # as an int64 nanosecond count. The representation limits the
+    # largest representable duration to approximately 290 years.
     to: typing.Optional['Duration']
 
     def __init__(self, from_val: typing.Optional['Duration'] = None, to: typing.Optional['Duration'] = None):
@@ -542,47 +564,23 @@ class NotificationPolicy:
     from the upstream alertmanager in that it adds the ObjectMatchers property.
     """
 
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     active_time_intervals: typing.Optional[list[str]]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     continue_val: typing.Optional[bool]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     group_by: typing.Optional[list[str]]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     group_interval: typing.Optional[str]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     group_wait: typing.Optional[str]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
+    # Deprecated. Remove before v1.0 release.
     match: typing.Optional[dict[str, str]]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     match_re: typing.Optional['MatchRegexps']
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
+    # Matchers is a slice of Matchers that is sortable, implements Stringer, and
+    # provides a Matches method to match a LabelSet against all Matchers in the
+    # slice. Note that some users of Matchers might require it to be sorted.
     matchers: typing.Optional['Matchers']
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     mute_time_intervals: typing.Optional[list[str]]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     object_matchers: typing.Optional['ObjectMatchers']
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     provenance: typing.Optional['Provenance']
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     receiver: typing.Optional[str]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     repeat_interval: typing.Optional[str]
-    # A Route is a node that contains definitions of how to handle alerts. This is modified
-    # from the upstream alertmanager in that it adds the ObjectMatchers property.
     routes: typing.Optional[list['NotificationPolicy']]
 
     def __init__(self, active_time_intervals: typing.Optional[list[str]] = None, continue_val: typing.Optional[bool] = None, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, match: typing.Optional[dict[str, str]] = None, match_re: typing.Optional['MatchRegexps'] = None, matchers: typing.Optional['Matchers'] = None, mute_time_intervals: typing.Optional[list[str]] = None, object_matchers: typing.Optional['ObjectMatchers'] = None, provenance: typing.Optional['Provenance'] = None, receiver: typing.Optional[str] = None, repeat_interval: typing.Optional[str] = None, routes: typing.Optional[list['NotificationPolicy']] = None):

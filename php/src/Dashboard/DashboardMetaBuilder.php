@@ -80,6 +80,9 @@ class DashboardMetaBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * Deprecated: use FolderUID instead
+     */
     public function folderId(int $folderId): static
     {
         $this->internal->folderId = $folderId;

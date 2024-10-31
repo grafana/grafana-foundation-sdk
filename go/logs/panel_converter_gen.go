@@ -638,6 +638,30 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
+	if input.Options != nil && input.Options.(*Options).LogRowMenuIconsBefore != nil {
+
+		buffer.WriteString(`LogRowMenuIconsBefore(`)
+		arg0 := cog.Dump(input.Options.(*Options).LogRowMenuIconsBefore)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Options != nil && input.Options.(*Options).LogRowMenuIconsAfter != nil {
+
+		buffer.WriteString(`LogRowMenuIconsAfter(`)
+		arg0 := cog.Dump(input.Options.(*Options).LogRowMenuIconsAfter)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Options != nil && input.Options.(*Options).DisplayedFields != nil && len(input.Options.(*Options).DisplayedFields) >= 1 {
 
 		buffer.WriteString(`DisplayedFields(`)

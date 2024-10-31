@@ -1815,6 +1815,7 @@ class TableCellDisplayMode(enum.StrEnum):
     SPARKLINE = "sparkline"
     DATA_LINKS = "data-links"
     CUSTOM = "custom"
+    ACTIONS = "actions"
 
 
 class TableCellBackgroundDisplayMode(enum.StrEnum):
@@ -2039,6 +2040,28 @@ class TableDataLinksCellOptions:
 
     def __init__(self, ):
         self.type_val = "data-links"
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        return cls(**args)
+
+
+class TableActionsCellOptions:
+    """
+    Show actions in the cell
+    """
+
+    type_val: typing.Literal["actions"]
+
+    def __init__(self, ):
+        self.type_val = "actions"
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -2368,7 +2391,7 @@ class TableCellHeight(enum.StrEnum):
 
 # Table cell options. Each cell has a display mode
 # and other potential options for that display.
-TableCellOptions: typing.TypeAlias = typing.Union['TableAutoCellOptions', 'TableSparklineCellOptions', 'TableBarGaugeCellOptions', 'TableColoredBackgroundCellOptions', 'TableColorTextCellOptions', 'TableImageCellOptions', 'TableDataLinksCellOptions', 'TableJsonViewCellOptions']
+TableCellOptions: typing.TypeAlias = typing.Union['TableAutoCellOptions', 'TableSparklineCellOptions', 'TableBarGaugeCellOptions', 'TableColoredBackgroundCellOptions', 'TableColorTextCellOptions', 'TableImageCellOptions', 'TableDataLinksCellOptions', 'TableActionsCellOptions', 'TableJsonViewCellOptions']
 
 
 # Use UTC/GMT timezone

@@ -103,6 +103,18 @@ func DataqueryConverter(input Dataquery) string {
 		buffer.Reset()
 
 	}
+	if input.ErrorSource != nil {
+
+		buffer.WriteString(`ErrorSource(`)
+		arg0 := cog.Dump(*input.ErrorSource)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.ErrorType != nil {
 
 		buffer.WriteString(`ErrorType(`)

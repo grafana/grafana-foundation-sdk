@@ -26,14 +26,8 @@ func NewKeyBuilder() *KeyBuilder {
 }
 
 func (builder *KeyBuilder) Build() (Key, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("Key", err)...)
-	}
-
-	if len(errs) != 0 {
-		return Key{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return Key{}, err
 	}
 
 	return *builder.internal, nil

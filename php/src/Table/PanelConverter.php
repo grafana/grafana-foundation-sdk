@@ -659,6 +659,10 @@ final class PanelConverter
                 $disjunctioncellOptions ='(new \Grafana\Foundation\Common\TableDataLinksCellOptions(type: '.\var_export($input->fieldConfig->defaults->custom->cellOptions->type, true).',))';
                 $arg0 = $disjunctioncellOptions;
                 break;
+            case $input->fieldConfig->defaults->custom->cellOptions instanceof \Grafana\Foundation\Common\TableActionsCellOptions:
+                $disjunctioncellOptions ='(new \Grafana\Foundation\Common\TableActionsCellOptions(type: '.\var_export($input->fieldConfig->defaults->custom->cellOptions->type, true).',))';
+                $arg0 = $disjunctioncellOptions;
+                break;
             case $input->fieldConfig->defaults->custom->cellOptions instanceof \Grafana\Foundation\Common\TableJsonViewCellOptions:
                 $disjunctioncellOptions ='(new \Grafana\Foundation\Common\TableJsonViewCellOptions(type: '.\var_export($input->fieldConfig->defaults->custom->cellOptions->type, true).',))';
                 $arg0 = $disjunctioncellOptions;

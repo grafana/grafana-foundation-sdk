@@ -26,14 +26,8 @@ func NewBucketAggregationWithFieldBuilder() *BucketAggregationWithFieldBuilder {
 }
 
 func (builder *BucketAggregationWithFieldBuilder) Build() (BucketAggregationWithField, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("BucketAggregationWithField", err)...)
-	}
-
-	if len(errs) != 0 {
-		return BucketAggregationWithField{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return BucketAggregationWithField{}, err
 	}
 
 	return *builder.internal, nil

@@ -89,6 +89,9 @@ export const defaultSearchTableType = (): SearchTableType => (SearchTableType.Tr
 export enum TraceqlSearchScope {
 	Intrinsic = "intrinsic",
 	Unscoped = "unscoped",
+	Event = "event",
+	Instrumentation = "instrumentation",
+	Link = "link",
 	Resource = "resource",
 	Span = "span",
 }

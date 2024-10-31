@@ -28,14 +28,8 @@ func NewYAxisConfigBuilder() *YAxisConfigBuilder {
 }
 
 func (builder *YAxisConfigBuilder) Build() (YAxisConfig, error) {
-	var errs cog.BuildErrors
-
-	for _, err := range builder.errors {
-		errs = append(errs, cog.MakeBuildErrors("YAxisConfig", err)...)
-	}
-
-	if len(errs) != 0 {
-		return YAxisConfig{}, errs
+	if err := builder.internal.Validate(); err != nil {
+		return YAxisConfig{}, err
 	}
 
 	return *builder.internal, nil
