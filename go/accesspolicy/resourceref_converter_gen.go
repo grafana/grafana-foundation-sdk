@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// ResourceRefConverter accepts a `ResourceRef` object and generates the Go code to build this object using builders.
 func ResourceRefConverter(input ResourceRef) string {
 	calls := []string{
 		`accesspolicy.NewResourceRefBuilder()`,

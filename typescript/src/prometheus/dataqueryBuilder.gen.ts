@@ -11,6 +11,9 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         this.internal = prometheus.defaultDataquery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): prometheus.dataquery {
         return this.internal;
     }

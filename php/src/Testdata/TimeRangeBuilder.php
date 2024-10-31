@@ -15,6 +15,7 @@ class TimeRangeBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Testdata\TimeRange
      */
     public function build()

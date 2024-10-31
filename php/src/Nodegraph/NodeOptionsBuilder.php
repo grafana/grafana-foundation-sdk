@@ -15,6 +15,7 @@ class NodeOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Nodegraph\NodeOptions
      */
     public function build()

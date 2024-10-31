@@ -15,6 +15,9 @@ class CandlestickFieldMap(cogbuilder.Builder[candlestick.CandlestickFieldMap]):
         self._internal = candlestick.CandlestickFieldMap()
 
     def build(self) -> candlestick.CandlestickFieldMap:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def open_val(self, open_val: str) -> typing.Self:    
@@ -70,6 +73,9 @@ class CandlestickColors(cogbuilder.Builder[candlestick.CandlestickColors]):
         self._internal = candlestick.CandlestickColors()
 
     def build(self) -> candlestick.CandlestickColors:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def up(self, up: str) -> typing.Self:        
@@ -100,6 +106,9 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         self._internal.type_val = "candlestick"
 
     def build(self) -> dashboard.Panel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:    

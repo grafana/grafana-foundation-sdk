@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// NotificationTemplateConverter accepts a `NotificationTemplate` object and generates the Go code to build this object using builders.
 func NotificationTemplateConverter(input NotificationTemplate) string {
 	calls := []string{
 		`alerting.NewNotificationTemplateBuilder()`,

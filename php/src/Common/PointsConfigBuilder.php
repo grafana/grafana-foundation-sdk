@@ -16,6 +16,7 @@ class PointsConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\PointsConfig
      */
     public function build()

@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// AnnotationPermissionConverter accepts a `AnnotationPermission` object and generates the Go code to build this object using builders.
 func AnnotationPermissionConverter(input AnnotationPermission) string {
 	calls := []string{
 		`dashboard.NewAnnotationPermissionBuilder()`,

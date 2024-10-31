@@ -16,6 +16,7 @@ class LegacyCloudMonitoringAnnotationQueryBuilder implements \Grafana\Foundation
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Googlecloudmonitoring\LegacyCloudMonitoringAnnotationQuery
      */
     public function build()

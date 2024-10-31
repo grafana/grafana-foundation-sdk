@@ -17,6 +17,9 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
         self._internal = preferences.Preferences()
 
     def build(self) -> preferences.Preferences:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def home_dashboard_uid(self, home_dashboard_uid: str) -> typing.Self:    
@@ -103,6 +106,9 @@ class QueryHistoryPreference(cogbuilder.Builder[preferences.QueryHistoryPreferen
         self._internal = preferences.QueryHistoryPreference()
 
     def build(self) -> preferences.QueryHistoryPreference:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def home_tab(self, home_tab: str) -> typing.Self:    
@@ -122,6 +128,9 @@ class CookiePreferences(cogbuilder.Builder[preferences.CookiePreferences]):
         self._internal = preferences.CookiePreferences()
 
     def build(self) -> preferences.CookiePreferences:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def analytics(self, analytics: object) -> typing.Self:        
@@ -147,6 +156,9 @@ class NavbarPreference(cogbuilder.Builder[preferences.NavbarPreference]):
         self._internal = preferences.NavbarPreference()
 
     def build(self) -> preferences.NavbarPreference:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def bookmark_urls(self, bookmark_urls: list[str]) -> typing.Self:        

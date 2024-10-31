@@ -10,6 +10,9 @@ export class NotificationSettingsBuilder implements cog.Builder<alerting.Notific
         this.internal = alerting.defaultNotificationSettings();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.NotificationSettings {
         return this.internal;
     }

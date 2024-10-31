@@ -10,6 +10,9 @@ export class TimeIntervalTimeRangeBuilder implements cog.Builder<alerting.TimeIn
         this.internal = alerting.defaultTimeIntervalTimeRange();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.TimeIntervalTimeRange {
         return this.internal;
     }

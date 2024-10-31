@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// QueryHistoryPreferenceConverter accepts a `QueryHistoryPreference` object and generates the Go code to build this object using builders.
 func QueryHistoryPreferenceConverter(input QueryHistoryPreference) string {
 	calls := []string{
 		`preferences.NewQueryHistoryPreferenceBuilder()`,

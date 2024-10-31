@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TimePickerConverter accepts a `TimePicker` object and generates the Go code to build this object using builders.
 func TimePickerConverter(input TimePickerConfig) string {
 	calls := []string{
 		`dashboard.NewTimePickerBuilder()`,

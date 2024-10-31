@@ -10,6 +10,9 @@ export class CandlestickColorsBuilder implements cog.Builder<candlestick.Candles
         this.internal = candlestick.defaultCandlestickColors();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): candlestick.CandlestickColors {
         return this.internal;
     }

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ColorDimensionConfigConverter accepts a `ColorDimensionConfig` object and generates the Go code to build this object using builders.
 func ColorDimensionConfigConverter(input ColorDimensionConfig) string {
 	calls := []string{
 		`common.NewColorDimensionConfigBuilder()`,

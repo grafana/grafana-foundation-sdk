@@ -11,6 +11,9 @@ export class TableFooterOptionsBuilder implements cog.Builder<common.TableFooter
         this.internal = common.defaultTableFooterOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.TableFooterOptions {
         return this.internal;
     }

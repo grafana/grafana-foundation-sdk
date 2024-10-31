@@ -12,6 +12,9 @@ class PublicDashboard(cogbuilder.Builder[publicdashboard.PublicDashboard]):
         self._internal = publicdashboard.PublicDashboard()
 
     def build(self) -> publicdashboard.PublicDashboard:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def uid(self, uid: str) -> typing.Self:    

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// CountConverter accepts a `Count` object and generates the Go code to build this object using builders.
 func CountConverter(input Count) string {
 	calls := []string{
 		`elasticsearch.NewCountBuilder()`,

@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// HideableFieldConfigConverter accepts a `HideableFieldConfig` object and generates the Go code to build this object using builders.
 func HideableFieldConfigConverter(input HideableFieldConfig) string {
 	calls := []string{
 		`common.NewHideableFieldConfigBuilder()`,

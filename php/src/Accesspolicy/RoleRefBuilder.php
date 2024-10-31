@@ -15,6 +15,7 @@ class RoleRefBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Accesspolicy\RoleRef
      */
     public function build()

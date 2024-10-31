@@ -11,6 +11,9 @@ export class AzureTracesQueryBuilder implements cog.Builder<azuremonitor.AzureTr
         this.internal = azuremonitor.defaultAzureTracesQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.AzureTracesQuery {
         return this.internal;
     }

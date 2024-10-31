@@ -10,6 +10,9 @@ export class FilterBuilder implements cog.Builder<elasticsearch.Filter> {
         this.internal = elasticsearch.defaultFilter();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Filter {
         return this.internal;
     }

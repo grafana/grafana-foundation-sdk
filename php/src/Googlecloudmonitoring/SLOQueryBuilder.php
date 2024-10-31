@@ -16,6 +16,7 @@ class SLOQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Googlecloudmonitoring\SLOQuery
      */
     public function build()

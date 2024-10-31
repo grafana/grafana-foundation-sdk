@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TableColorTextCellOptionsConverter accepts a `TableColorTextCellOptions` object and generates the Go code to build this object using builders.
 func TableColorTextCellOptionsConverter(input TableColorTextCellOptions) string {
 	calls := []string{
 		`common.NewTableColorTextCellOptionsBuilder()`,
