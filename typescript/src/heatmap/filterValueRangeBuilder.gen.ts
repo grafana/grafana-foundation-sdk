@@ -11,6 +11,9 @@ export class FilterValueRangeBuilder implements cog.Builder<heatmap.FilterValueR
         this.internal = heatmap.defaultFilterValueRange();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): heatmap.FilterValueRange {
         return this.internal;
     }

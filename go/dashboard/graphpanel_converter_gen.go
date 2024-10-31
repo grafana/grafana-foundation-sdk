@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// GraphPanelConverter accepts a `GraphPanel` object and generates the Go code to build this object using builders.
 func GraphPanelConverter(input GraphPanel) string {
 	calls := []string{
 		`dashboard.NewGraphPanelBuilder()`,

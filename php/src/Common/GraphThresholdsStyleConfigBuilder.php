@@ -16,6 +16,7 @@ class GraphThresholdsStyleConfigBuilder implements \Grafana\Foundation\Cog\Build
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\GraphThresholdsStyleConfig
      */
     public function build()

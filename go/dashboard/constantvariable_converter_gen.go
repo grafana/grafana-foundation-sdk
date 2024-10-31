@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ConstantVariableConverter accepts a `ConstantVariable` object and generates the Go code to build this object using builders.
 func ConstantVariableConverter(input VariableModel) string {
 	calls := []string{
 		`dashboard.NewConstantVariableBuilder(` + fmt.Sprintf("%#v", input.Name) + `)`,

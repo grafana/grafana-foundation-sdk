@@ -12,6 +12,9 @@ export class MovingAverageBuilder implements cog.Builder<elasticsearch.MovingAve
         this.internal.type = "moving_avg";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.MovingAverage {
         return this.internal;
     }

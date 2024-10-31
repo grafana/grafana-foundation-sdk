@@ -11,6 +11,9 @@ export class UnknownQueryBuilder implements cog.Builder<azuremonitor.UnknownQuer
         this.internal.kind = "UnknownQuery";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.UnknownQuery {
         return this.internal;
     }

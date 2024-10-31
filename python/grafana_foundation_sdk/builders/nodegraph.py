@@ -14,6 +14,9 @@ class ArcOption(cogbuilder.Builder[nodegraph.ArcOption]):
         self._internal = nodegraph.ArcOption()
 
     def build(self) -> nodegraph.ArcOption:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def field(self, field: str) -> typing.Self:    
@@ -42,6 +45,9 @@ class NodeOptions(cogbuilder.Builder[nodegraph.NodeOptions]):
         self._internal = nodegraph.NodeOptions()
 
     def build(self) -> nodegraph.NodeOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def main_stat_unit(self, main_stat_unit: str) -> typing.Self:    
@@ -80,6 +86,9 @@ class EdgeOptions(cogbuilder.Builder[nodegraph.EdgeOptions]):
         self._internal = nodegraph.EdgeOptions()
 
     def build(self) -> nodegraph.EdgeOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def main_stat_unit(self, main_stat_unit: str) -> typing.Self:    
@@ -113,6 +122,9 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         self._internal.type_val = "nodeGraph"
 
     def build(self) -> dashboard.Panel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:    

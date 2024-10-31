@@ -57,6 +57,8 @@ type StreamingQuery struct {
 	Url    *string            `json:"url,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StreamingQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StreamingQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -157,6 +159,7 @@ func (resource *StreamingQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `StreamingQuery` objects.
 func (resource StreamingQuery) Equals(other StreamingQuery) bool {
 	if resource.Type != other.Type {
 		return false
@@ -192,8 +195,7 @@ func (resource StreamingQuery) Equals(other StreamingQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `StreamingQuery` fields for violations and returns them.
 func (resource StreamingQuery) Validate() error {
 	return nil
 }
@@ -206,6 +208,8 @@ type PulseWaveQuery struct {
 	OffValue *float64 `json:"offValue,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PulseWaveQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *PulseWaveQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -283,6 +287,7 @@ func (resource *PulseWaveQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `PulseWaveQuery` objects.
 func (resource PulseWaveQuery) Equals(other PulseWaveQuery) bool {
 	if resource.TimeStep == nil && other.TimeStep != nil || resource.TimeStep != nil && other.TimeStep == nil {
 		return false
@@ -333,8 +338,7 @@ func (resource PulseWaveQuery) Equals(other PulseWaveQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `PulseWaveQuery` fields for violations and returns them.
 func (resource PulseWaveQuery) Validate() error {
 	return nil
 }
@@ -346,6 +350,8 @@ type SimulationQuery struct {
 	Last   *bool          `json:"last,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SimulationQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *SimulationQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -418,6 +424,7 @@ func (resource *SimulationQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `SimulationQuery` objects.
 func (resource SimulationQuery) Equals(other SimulationQuery) bool {
 	if !resource.Key.Equals(other.Key) {
 		return false
@@ -455,8 +462,7 @@ func (resource SimulationQuery) Equals(other SimulationQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `SimulationQuery` fields for violations and returns them.
 func (resource SimulationQuery) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.Key.Validate(); err != nil {
@@ -475,6 +481,8 @@ type NodesQuery struct {
 	Count *int64          `json:"count,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NodesQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *NodesQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -519,6 +527,7 @@ func (resource *NodesQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `NodesQuery` objects.
 func (resource NodesQuery) Equals(other NodesQuery) bool {
 	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
 		return false
@@ -542,8 +551,7 @@ func (resource NodesQuery) Equals(other NodesQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `NodesQuery` fields for violations and returns them.
 func (resource NodesQuery) Validate() error {
 	return nil
 }
@@ -555,6 +563,8 @@ type USAQuery struct {
 	States []string `json:"states,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `USAQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *USAQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -623,6 +633,7 @@ func (resource *USAQuery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `USAQuery` objects.
 func (resource USAQuery) Equals(other USAQuery) bool {
 	if resource.Mode == nil && other.Mode != nil || resource.Mode != nil && other.Mode == nil {
 		return false
@@ -666,8 +677,7 @@ func (resource USAQuery) Equals(other USAQuery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `USAQuery` fields for violations and returns them.
 func (resource USAQuery) Validate() error {
 	return nil
 }
@@ -679,6 +689,8 @@ type CSVWave struct {
 	Labels    *string `json:"labels,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CSVWave` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CSVWave) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -745,6 +757,7 @@ func (resource *CSVWave) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `CSVWave` objects.
 func (resource CSVWave) Equals(other CSVWave) bool {
 	if resource.TimeStep == nil && other.TimeStep != nil || resource.TimeStep != nil && other.TimeStep == nil {
 		return false
@@ -786,8 +799,7 @@ func (resource CSVWave) Equals(other CSVWave) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CSVWave` fields for violations and returns them.
 func (resource CSVWave) Validate() error {
 	return nil
 }
@@ -801,6 +813,8 @@ type Scenario struct {
 	HideAliasField *bool   `json:"hideAliasField,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Scenario` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Scenario) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -887,6 +901,7 @@ func (resource *Scenario) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Scenario` objects.
 func (resource Scenario) Equals(other Scenario) bool {
 	if resource.Id != other.Id {
 		return false
@@ -919,8 +934,7 @@ func (resource Scenario) Equals(other Scenario) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Scenario` fields for violations and returns them.
 func (resource Scenario) Validate() error {
 	return nil
 }
@@ -972,6 +986,8 @@ func (resource Dataquery) DataqueryType() string {
 	return "testdata"
 }
 
+// VariantConfig returns the configuration related to testdata dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "testdata",
@@ -1005,6 +1021,8 @@ func VariantConfig() variants.DataqueryConfig {
 	}
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Dataquery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1351,6 +1369,7 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two dataqueries.
 func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
@@ -1592,8 +1611,7 @@ func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Dataquery` fields for violations and returns them.
 func (resource Dataquery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Stream != nil {
@@ -1655,6 +1673,8 @@ type Key struct {
 	Uid  *string `json:"uid,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Key` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Key) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1716,6 +1736,7 @@ func (resource *Key) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Key` objects.
 func (resource Key) Equals(other Key) bool {
 	if resource.Type != other.Type {
 		return false
@@ -1736,8 +1757,7 @@ func (resource Key) Equals(other Key) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Key` fields for violations and returns them.
 func (resource Key) Validate() error {
 	return nil
 }
@@ -1771,6 +1791,7 @@ type StringOrInt64 struct {
 	Int64  *int64  `json:"Int64,omitempty"`
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `StringOrInt64` as JSON.
 func (resource StringOrInt64) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
 		return json.Marshal(resource.String)
@@ -1783,6 +1804,7 @@ func (resource StringOrInt64) MarshalJSON() ([]byte, error) {
 	return nil, fmt.Errorf("no value for disjunction of scalars")
 }
 
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrInt64` from JSON.
 func (resource *StringOrInt64) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1813,6 +1835,8 @@ func (resource *StringOrInt64) UnmarshalJSON(raw []byte) error {
 	return errors.Join(errList...)
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrInt64` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StringOrInt64) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1851,6 +1875,7 @@ func (resource *StringOrInt64) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `StringOrInt64` objects.
 func (resource StringOrInt64) Equals(other StringOrInt64) bool {
 	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
 		return false
@@ -1874,8 +1899,7 @@ func (resource StringOrInt64) Equals(other StringOrInt64) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `StringOrInt64` fields for violations and returns them.
 func (resource StringOrInt64) Validate() error {
 	return nil
 }

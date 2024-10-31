@@ -15,6 +15,7 @@ class ElasticsearchGeoHashGridSettingsBuilder implements \Grafana\Foundation\Cog
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchGeoHashGridSettings
      */
     public function build()

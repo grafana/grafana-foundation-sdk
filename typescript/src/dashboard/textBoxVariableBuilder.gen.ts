@@ -13,6 +13,9 @@ export class TextBoxVariableBuilder implements cog.Builder<dashboard.VariableMod
         this.internal.type = dashboard.VariableType.Textbox;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.VariableModel {
         return this.internal;
     }

@@ -11,6 +11,9 @@ export class FillConfigBuilder implements cog.Builder<common.FillConfig> {
         this.internal = common.defaultFillConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.FillConfig {
         return this.internal;
     }

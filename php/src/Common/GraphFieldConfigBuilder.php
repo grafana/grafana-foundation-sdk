@@ -16,6 +16,7 @@ class GraphFieldConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\GraphFieldConfig
      */
     public function build()

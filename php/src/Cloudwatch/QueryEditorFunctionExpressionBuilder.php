@@ -16,6 +16,7 @@ class QueryEditorFunctionExpressionBuilder implements \Grafana\Foundation\Cog\Bu
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Cloudwatch\QueryEditorFunctionExpression
      */
     public function build()

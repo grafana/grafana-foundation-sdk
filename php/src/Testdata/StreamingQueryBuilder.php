@@ -15,6 +15,7 @@ class StreamingQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Testdata\StreamingQuery
      */
     public function build()

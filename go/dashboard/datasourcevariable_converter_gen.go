@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// DatasourceVariableConverter accepts a `DatasourceVariable` object and generates the Go code to build this object using builders.
 func DatasourceVariableConverter(input VariableModel) string {
 	calls := []string{
 		`dashboard.NewDatasourceVariableBuilder(` + fmt.Sprintf("%#v", input.Name) + `)`,

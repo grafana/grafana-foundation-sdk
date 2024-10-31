@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// RowConverter accepts a `Row` object and generates the Go code to build this object using builders.
 func RowConverter(input RowPanel) string {
 	calls := []string{
 		`dashboard.NewRowBuilder(` + fmt.Sprintf("%#v", cog.Unptr(input.Title)) + `)`,

@@ -12,6 +12,9 @@ export class TableFieldOptionsBuilder implements cog.Builder<common.TableFieldOp
         this.internal = common.defaultTableFieldOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.TableFieldOptions {
         return this.internal;
     }

@@ -18,6 +18,7 @@ class GraphPanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\GraphPanel
      */
     public function build()

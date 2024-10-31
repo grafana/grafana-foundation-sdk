@@ -13,6 +13,9 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         this.internal.type = "datagrid";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.Panel {
         return this.internal;
     }

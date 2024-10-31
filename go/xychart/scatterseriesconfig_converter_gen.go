@@ -10,6 +10,7 @@ import (
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
+// ScatterSeriesConfigConverter accepts a `ScatterSeriesConfig` object and generates the Go code to build this object using builders.
 func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string {
 	calls := []string{
 		`xychart.NewScatterSeriesConfigBuilder()`,

@@ -20,6 +20,9 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         self._internal.type_val = "bargauge"
 
     def build(self) -> dashboard.Panel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:    

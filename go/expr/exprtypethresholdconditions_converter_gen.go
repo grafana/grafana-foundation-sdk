@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ExprTypeThresholdConditionsConverter accepts a `ExprTypeThresholdConditions` object and generates the Go code to build this object using builders.
 func ExprTypeThresholdConditionsConverter(input ExprTypeThresholdConditions) string {
 	calls := []string{
 		`expr.NewExprTypeThresholdConditionsBuilder()`,

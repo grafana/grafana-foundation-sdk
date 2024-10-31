@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TextBoxVariableConverter accepts a `TextBoxVariable` object and generates the Go code to build this object using builders.
 func TextBoxVariableConverter(input VariableModel) string {
 	calls := []string{
 		`dashboard.NewTextBoxVariableBuilder(` + fmt.Sprintf("%#v", input.Name) + `)`,

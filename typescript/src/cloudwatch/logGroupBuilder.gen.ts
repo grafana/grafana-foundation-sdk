@@ -10,6 +10,9 @@ export class LogGroupBuilder implements cog.Builder<cloudwatch.LogGroup> {
         this.internal = cloudwatch.defaultLogGroup();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): cloudwatch.LogGroup {
         return this.internal;
     }

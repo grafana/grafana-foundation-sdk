@@ -11,6 +11,9 @@ export class MetricNamespaceQueryBuilder implements cog.Builder<azuremonitor.Met
         this.internal.kind = "MetricNamespaceQuery";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.MetricNamespaceQuery {
         return this.internal;
     }

@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// QueryEditorOperatorExpressionConverter accepts a `QueryEditorOperatorExpression` object and generates the Go code to build this object using builders.
 func QueryEditorOperatorExpressionConverter(input QueryEditorOperatorExpression) string {
 	calls := []string{
 		`cloudwatch.NewQueryEditorOperatorExpressionBuilder()`,

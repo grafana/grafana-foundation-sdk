@@ -15,6 +15,9 @@ export class SnapshotBuilder implements cog.Builder<dashboard.Snapshot> {
         this.internal = dashboard.defaultSnapshot();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.Snapshot {
         return this.internal;
     }

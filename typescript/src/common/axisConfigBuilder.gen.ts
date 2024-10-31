@@ -11,6 +11,9 @@ export class AxisConfigBuilder implements cog.Builder<common.AxisConfig> {
         this.internal = common.defaultAxisConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.AxisConfig {
         return this.internal;
     }

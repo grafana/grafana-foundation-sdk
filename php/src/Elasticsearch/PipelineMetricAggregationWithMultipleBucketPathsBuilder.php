@@ -15,6 +15,7 @@ class PipelineMetricAggregationWithMultipleBucketPathsBuilder implements \Grafan
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\PipelineMetricAggregationWithMultipleBucketPaths
      */
     public function build()

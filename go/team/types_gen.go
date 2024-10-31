@@ -17,6 +17,8 @@ type Team struct {
 	Email *string `json:"email,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Team` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Team) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -64,6 +66,7 @@ func (resource *Team) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Team` objects.
 func (resource Team) Equals(other Team) bool {
 	if resource.Name != other.Name {
 		return false
@@ -81,8 +84,7 @@ func (resource Team) Equals(other Team) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Team` fields for violations and returns them.
 func (resource Team) Validate() error {
 	return nil
 }

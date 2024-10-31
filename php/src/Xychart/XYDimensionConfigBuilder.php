@@ -15,6 +15,7 @@ class XYDimensionConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Xychart\XYDimensionConfig
      */
     public function build()

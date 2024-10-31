@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// UpdateConfigConverter accepts a `UpdateConfig` object and generates the Go code to build this object using builders.
 func UpdateConfigConverter(input UpdateConfig) string {
 	calls := []string{
 		`debug.NewUpdateConfigBuilder()`,

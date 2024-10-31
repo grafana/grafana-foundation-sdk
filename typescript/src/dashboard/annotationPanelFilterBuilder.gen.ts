@@ -10,6 +10,9 @@ export class AnnotationPanelFilterBuilder implements cog.Builder<dashboard.Annot
         this.internal = dashboard.defaultAnnotationPanelFilter();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.AnnotationPanelFilter {
         return this.internal;
     }

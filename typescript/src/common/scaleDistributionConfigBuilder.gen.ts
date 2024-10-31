@@ -11,6 +11,9 @@ export class ScaleDistributionConfigBuilder implements cog.Builder<common.ScaleD
         this.internal = common.defaultScaleDistributionConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.ScaleDistributionConfig {
         return this.internal;
     }

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// IntervalVariableConverter accepts a `IntervalVariable` object and generates the Go code to build this object using builders.
 func IntervalVariableConverter(input VariableModel) string {
 	calls := []string{
 		`dashboard.NewIntervalVariableBuilder(` + fmt.Sprintf("%#v", input.Name) + `)`,

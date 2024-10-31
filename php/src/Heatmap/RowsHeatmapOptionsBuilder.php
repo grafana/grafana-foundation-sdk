@@ -16,6 +16,7 @@ class RowsHeatmapOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Heatmap\RowsHeatmapOptions
      */
     public function build()

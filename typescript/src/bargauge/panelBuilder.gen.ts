@@ -14,6 +14,9 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         this.internal.type = "bargauge";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.Panel {
         return this.internal;
     }
