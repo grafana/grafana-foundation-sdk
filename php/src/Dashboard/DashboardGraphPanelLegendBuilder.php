@@ -15,6 +15,7 @@ class DashboardGraphPanelLegendBuilder implements \Grafana\Foundation\Cog\Builde
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\DashboardGraphPanelLegend
      */
     public function build()

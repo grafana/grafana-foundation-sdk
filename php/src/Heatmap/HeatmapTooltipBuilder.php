@@ -16,6 +16,7 @@ class HeatmapTooltipBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Heatmap\HeatmapTooltip
      */
     public function build()

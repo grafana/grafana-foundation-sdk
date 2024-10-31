@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// BasePipelineMetricAggregationConverter accepts a `BasePipelineMetricAggregation` object and generates the Go code to build this object using builders.
 func BasePipelineMetricAggregationConverter(input BasePipelineMetricAggregation) string {
 	calls := []string{
 		`elasticsearch.NewBasePipelineMetricAggregationBuilder()`,

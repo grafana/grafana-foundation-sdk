@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// DashboardGraphPanelLegendConverter accepts a `DashboardGraphPanelLegend` object and generates the Go code to build this object using builders.
 func DashboardGraphPanelLegendConverter(input DashboardGraphPanelLegend) string {
 	calls := []string{
 		`dashboard.NewDashboardGraphPanelLegendBuilder()`,

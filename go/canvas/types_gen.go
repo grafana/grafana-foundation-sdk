@@ -40,6 +40,8 @@ type Constraint struct {
 	Vertical   *VerticalConstraint   `json:"vertical,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Constraint` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Constraint) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -84,6 +86,7 @@ func (resource *Constraint) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Constraint` objects.
 func (resource Constraint) Equals(other Constraint) bool {
 	if resource.Horizontal == nil && other.Horizontal != nil || resource.Horizontal != nil && other.Horizontal == nil {
 		return false
@@ -107,8 +110,7 @@ func (resource Constraint) Equals(other Constraint) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Constraint` fields for violations and returns them.
 func (resource Constraint) Validate() error {
 	return nil
 }
@@ -122,6 +124,8 @@ type Placement struct {
 	Height *float64 `json:"height,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Placement` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Placement) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -210,6 +214,7 @@ func (resource *Placement) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Placement` objects.
 func (resource Placement) Equals(other Placement) bool {
 	if resource.Top == nil && other.Top != nil || resource.Top != nil && other.Top == nil {
 		return false
@@ -269,8 +274,7 @@ func (resource Placement) Equals(other Placement) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Placement` fields for violations and returns them.
 func (resource Placement) Validate() error {
 	return nil
 }
@@ -291,6 +295,8 @@ type BackgroundConfig struct {
 	Size  *BackgroundImageSize            `json:"size,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BackgroundConfig` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *BackgroundConfig) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -350,6 +356,7 @@ func (resource *BackgroundConfig) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `BackgroundConfig` objects.
 func (resource BackgroundConfig) Equals(other BackgroundConfig) bool {
 	if resource.Color == nil && other.Color != nil || resource.Color != nil && other.Color == nil {
 		return false
@@ -382,8 +389,7 @@ func (resource BackgroundConfig) Equals(other BackgroundConfig) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `BackgroundConfig` fields for violations and returns them.
 func (resource BackgroundConfig) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Color != nil {
@@ -409,6 +415,8 @@ type LineConfig struct {
 	Width *float64                     `json:"width,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LineConfig` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LineConfig) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -455,6 +463,7 @@ func (resource *LineConfig) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `LineConfig` objects.
 func (resource LineConfig) Equals(other LineConfig) bool {
 	if resource.Color == nil && other.Color != nil || resource.Color != nil && other.Color == nil {
 		return false
@@ -478,8 +487,7 @@ func (resource LineConfig) Equals(other LineConfig) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `LineConfig` fields for violations and returns them.
 func (resource LineConfig) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Color != nil {
@@ -500,6 +508,8 @@ type ConnectionCoordinates struct {
 	Y float64 `json:"y"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ConnectionCoordinates` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ConnectionCoordinates) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -550,6 +560,7 @@ func (resource *ConnectionCoordinates) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `ConnectionCoordinates` objects.
 func (resource ConnectionCoordinates) Equals(other ConnectionCoordinates) bool {
 	if resource.X != other.X {
 		return false
@@ -561,8 +572,7 @@ func (resource ConnectionCoordinates) Equals(other ConnectionCoordinates) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `ConnectionCoordinates` fields for violations and returns them.
 func (resource ConnectionCoordinates) Validate() error {
 	return nil
 }
@@ -582,6 +592,8 @@ type CanvasConnection struct {
 	Size       *common.ScaleDimensionConfig `json:"size,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CanvasConnection` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CanvasConnection) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -687,6 +699,7 @@ func (resource *CanvasConnection) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `CanvasConnection` objects.
 func (resource CanvasConnection) Equals(other CanvasConnection) bool {
 	if !resource.Source.Equals(other.Source) {
 		return false
@@ -728,8 +741,7 @@ func (resource CanvasConnection) Equals(other CanvasConnection) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CanvasConnection` fields for violations and returns them.
 func (resource CanvasConnection) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.Source.Validate(); err != nil {
@@ -768,6 +780,8 @@ type CanvasElementOptions struct {
 	Connections []CanvasConnection `json:"connections,omitempty"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CanvasElementOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CanvasElementOptions) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -904,6 +918,7 @@ func (resource *CanvasElementOptions) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `CanvasElementOptions` objects.
 func (resource CanvasElementOptions) Equals(other CanvasElementOptions) bool {
 	if resource.Name != other.Name {
 		return false
@@ -965,8 +980,7 @@ func (resource CanvasElementOptions) Equals(other CanvasElementOptions) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CanvasElementOptions` fields for violations and returns them.
 func (resource CanvasElementOptions) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Constraint != nil {
@@ -1013,6 +1027,8 @@ type Options struct {
 	Root CanvasOptionsRoot `json:"root"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1079,6 +1095,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `Options` objects.
 func (resource Options) Equals(other Options) bool {
 	if resource.InlineEditing != other.InlineEditing {
 		return false
@@ -1093,8 +1110,7 @@ func (resource Options) Equals(other Options) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `Options` fields for violations and returns them.
 func (resource Options) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.Root.Validate(); err != nil {
@@ -1117,6 +1133,8 @@ type CanvasOptionsRoot struct {
 	Elements []CanvasElementOptions `json:"elements"`
 }
 
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CanvasOptionsRoot` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CanvasOptionsRoot) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1193,6 +1211,7 @@ func (resource *CanvasOptionsRoot) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
+// Equals tests the equality of two `CanvasOptionsRoot` objects.
 func (resource CanvasOptionsRoot) Equals(other CanvasOptionsRoot) bool {
 	if resource.Name != other.Name {
 		return false
@@ -1214,8 +1233,7 @@ func (resource CanvasOptionsRoot) Equals(other CanvasOptionsRoot) bool {
 	return true
 }
 
-// Validate checks any constraint that may be defined for this type
-// and returns all violations.
+// Validate checks all the validation constraints that may be defined on `CanvasOptionsRoot` fields for violations and returns them.
 func (resource CanvasOptionsRoot) Validate() error {
 	var errs cog.BuildErrors
 
@@ -1232,6 +1250,8 @@ func (resource CanvasOptionsRoot) Validate() error {
 	return errs
 }
 
+// VariantConfig returns the configuration related to canvas panels.
+// This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
 		Identifier: "canvas",

@@ -15,6 +15,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Grafanapyroscope\Dataquery
      */
     public function build()

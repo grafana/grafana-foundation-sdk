@@ -15,6 +15,7 @@ class DashboardMetaBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\DashboardMeta
      */
     public function build()

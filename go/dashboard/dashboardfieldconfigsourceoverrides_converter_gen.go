@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// DashboardFieldConfigSourceOverridesConverter accepts a `DashboardFieldConfigSourceOverrides` object and generates the Go code to build this object using builders.
 func DashboardFieldConfigSourceOverridesConverter(input DashboardFieldConfigSourceOverrides) string {
 	calls := []string{
 		`dashboard.NewDashboardFieldConfigSourceOverridesBuilder()`,

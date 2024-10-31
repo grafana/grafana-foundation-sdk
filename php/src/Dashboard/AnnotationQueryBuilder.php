@@ -17,6 +17,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\AnnotationQuery
      */
     public function build()

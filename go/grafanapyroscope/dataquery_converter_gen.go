@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// DataqueryConverter accepts a `Dataquery` object and generates the Go code to build this object using builders.
 func DataqueryConverter(input Dataquery) string {
 	calls := []string{
 		`grafanapyroscope.NewDataqueryBuilder()`,

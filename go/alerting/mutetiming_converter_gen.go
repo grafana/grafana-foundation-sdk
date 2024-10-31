@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// MuteTimingConverter accepts a `MuteTiming` object and generates the Go code to build this object using builders.
 func MuteTimingConverter(input MuteTiming) string {
 	calls := []string{
 		`alerting.NewMuteTimingBuilder()`,

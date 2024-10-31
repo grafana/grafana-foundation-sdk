@@ -10,6 +10,9 @@ export class ControlsOptionsBuilder implements cog.Builder<geomap.ControlsOption
         this.internal = geomap.defaultControlsOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): geomap.ControlsOptions {
         return this.internal;
     }

@@ -11,6 +11,9 @@ export class LegacyCloudMonitoringAnnotationQueryBuilder implements cog.Builder<
         this.internal = googlecloudmonitoring.defaultLegacyCloudMonitoringAnnotationQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery {
         return this.internal;
     }

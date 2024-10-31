@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchMinSettingsConverter accepts a `ElasticsearchMinSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchMinSettingsConverter(input ElasticsearchMinSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchMinSettingsBuilder()`,

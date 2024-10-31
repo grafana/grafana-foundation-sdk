@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// InlineScriptConverter accepts a `InlineScript` object and generates the Go code to build this object using builders.
 func InlineScriptConverter(input InlineScript) string {
 	calls := []string{
 		`elasticsearch.NewInlineScriptBuilder()`,

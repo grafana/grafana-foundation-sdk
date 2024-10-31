@@ -11,6 +11,9 @@ export class AnnotationQueryBuilder implements cog.Builder<googlecloudmonitoring
         this.internal = googlecloudmonitoring.defaultAnnotationQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): googlecloudmonitoring.AnnotationQuery {
         return this.internal;
     }

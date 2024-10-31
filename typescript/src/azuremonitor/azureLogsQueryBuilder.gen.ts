@@ -11,6 +11,9 @@ export class AzureLogsQueryBuilder implements cog.Builder<azuremonitor.AzureLogs
         this.internal = azuremonitor.defaultAzureLogsQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.AzureLogsQuery {
         return this.internal;
     }

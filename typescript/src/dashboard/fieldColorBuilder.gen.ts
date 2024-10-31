@@ -11,6 +11,9 @@ export class FieldColorBuilder implements cog.Builder<dashboard.FieldColor> {
         this.internal = dashboard.defaultFieldColor();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.FieldColor {
         return this.internal;
     }

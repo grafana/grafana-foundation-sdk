@@ -10,6 +10,9 @@ export class PipelineVariableBuilder implements cog.Builder<elasticsearch.Pipeli
         this.internal = elasticsearch.defaultPipelineVariable();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.PipelineVariable {
         return this.internal;
     }

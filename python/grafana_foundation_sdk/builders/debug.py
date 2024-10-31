@@ -14,6 +14,9 @@ class UpdateConfig(cogbuilder.Builder[debug.UpdateConfig]):
         self._internal = debug.UpdateConfig()
 
     def build(self) -> debug.UpdateConfig:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def render(self, render: bool) -> typing.Self:        
@@ -44,6 +47,9 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         self._internal.type_val = "debug"
 
     def build(self) -> dashboard.Panel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:    

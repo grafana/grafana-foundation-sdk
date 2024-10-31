@@ -19,6 +19,9 @@ class HeatmapColorOptions(cogbuilder.Builder[heatmap.HeatmapColorOptions]):
         self._internal = heatmap.HeatmapColorOptions()
 
     def build(self) -> heatmap.HeatmapColorOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def mode(self, mode: heatmap.HeatmapColorMode) -> typing.Self:    
@@ -118,6 +121,9 @@ class YAxisConfig(cogbuilder.Builder[heatmap.YAxisConfig]):
         self._internal = heatmap.YAxisConfig()
 
     def build(self) -> heatmap.YAxisConfig:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def unit(self, unit: str) -> typing.Self:    
@@ -223,6 +229,9 @@ class CellValues(cogbuilder.Builder[heatmap.CellValues]):
         self._internal = heatmap.CellValues()
 
     def build(self) -> heatmap.CellValues:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def unit(self, unit: str) -> typing.Self:    
@@ -255,6 +264,9 @@ class FilterValueRange(cogbuilder.Builder[heatmap.FilterValueRange]):
         self._internal = heatmap.FilterValueRange()
 
     def build(self) -> heatmap.FilterValueRange:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def le(self, le: float) -> typing.Self:    
@@ -287,6 +299,9 @@ class HeatmapTooltip(cogbuilder.Builder[heatmap.HeatmapTooltip]):
         self._internal = heatmap.HeatmapTooltip()
 
     def build(self) -> heatmap.HeatmapTooltip:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def show(self, show: bool) -> typing.Self:    
@@ -319,6 +334,9 @@ class HeatmapLegend(cogbuilder.Builder[heatmap.HeatmapLegend]):
         self._internal = heatmap.HeatmapLegend()
 
     def build(self) -> heatmap.HeatmapLegend:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def show(self, show: bool) -> typing.Self:    
@@ -342,6 +360,9 @@ class ExemplarConfig(cogbuilder.Builder[heatmap.ExemplarConfig]):
         self._internal = heatmap.ExemplarConfig()
 
     def build(self) -> heatmap.ExemplarConfig:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def color(self, color: str) -> typing.Self:    
@@ -365,6 +386,9 @@ class RowsHeatmapOptions(cogbuilder.Builder[heatmap.RowsHeatmapOptions]):
         self._internal = heatmap.RowsHeatmapOptions()
 
     def build(self) -> heatmap.RowsHeatmapOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def value(self, value: str) -> typing.Self:    
@@ -398,6 +422,9 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         self._internal.type_val = "heatmap"
 
     def build(self) -> dashboard.Panel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:    

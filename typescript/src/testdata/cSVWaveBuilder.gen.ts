@@ -10,6 +10,9 @@ export class CSVWaveBuilder implements cog.Builder<testdata.CSVWave> {
         this.internal = testdata.defaultCSVWave();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): testdata.CSVWave {
         return this.internal;
     }

@@ -11,6 +11,9 @@ export class ReduceDataOptionsBuilder implements cog.Builder<common.ReduceDataOp
         this.internal = common.defaultReduceDataOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.ReduceDataOptions {
         return this.internal;
     }

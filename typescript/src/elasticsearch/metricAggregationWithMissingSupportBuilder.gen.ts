@@ -10,6 +10,9 @@ export class MetricAggregationWithMissingSupportBuilder implements cog.Builder<e
         this.internal = elasticsearch.defaultMetricAggregationWithMissingSupport();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.MetricAggregationWithMissingSupport {
         return this.internal;
     }

@@ -16,6 +16,7 @@ class TypeClassicConditionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\TypeClassicConditions
      */
     public function build()

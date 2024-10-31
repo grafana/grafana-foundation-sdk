@@ -11,6 +11,9 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         this.internal = elasticsearch.defaultDataquery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.dataquery {
         return this.internal;
     }

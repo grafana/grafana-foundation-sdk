@@ -16,6 +16,7 @@ class QueryEditorFunctionParameterExpressionBuilder implements \Grafana\Foundati
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Cloudwatch\QueryEditorFunctionParameterExpression
      */
     public function build()

@@ -16,6 +16,7 @@ class TeamBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Team\Team
      */
     public function build()

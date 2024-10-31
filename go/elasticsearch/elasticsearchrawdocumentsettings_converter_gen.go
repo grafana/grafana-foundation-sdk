@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchRawDocumentSettingsConverter accepts a `ElasticsearchRawDocumentSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchRawDocumentSettingsConverter(input ElasticsearchRawDocumentSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchRawDocumentSettingsBuilder()`,

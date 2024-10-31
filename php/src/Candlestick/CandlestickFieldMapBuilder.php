@@ -15,6 +15,7 @@ class CandlestickFieldMapBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Candlestick\CandlestickFieldMap
      */
     public function build()

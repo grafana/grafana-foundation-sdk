@@ -10,6 +10,9 @@ export class NodeOptionsBuilder implements cog.Builder<nodegraph.NodeOptions> {
         this.internal = nodegraph.defaultNodeOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): nodegraph.NodeOptions {
         return this.internal;
     }

@@ -17,6 +17,7 @@ class FolderBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Folder\Folder
      */
     public function build()

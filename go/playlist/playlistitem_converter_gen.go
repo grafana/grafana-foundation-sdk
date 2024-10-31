@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// PlaylistItemConverter accepts a `PlaylistItem` object and generates the Go code to build this object using builders.
 func PlaylistItemConverter(input PlaylistItem) string {
 	calls := []string{
 		`playlist.NewPlaylistItemBuilder()`,

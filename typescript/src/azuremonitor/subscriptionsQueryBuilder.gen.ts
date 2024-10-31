@@ -11,6 +11,9 @@ export class SubscriptionsQueryBuilder implements cog.Builder<azuremonitor.Subsc
         this.internal.kind = "SubscriptionsQuery";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): azuremonitor.SubscriptionsQuery {
         return this.internal;
     }

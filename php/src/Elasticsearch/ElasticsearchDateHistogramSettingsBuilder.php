@@ -15,6 +15,7 @@ class ElasticsearchDateHistogramSettingsBuilder implements \Grafana\Foundation\C
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchDateHistogramSettings
      */
     public function build()

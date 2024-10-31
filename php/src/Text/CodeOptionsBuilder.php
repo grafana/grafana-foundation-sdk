@@ -15,6 +15,7 @@ class CodeOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Text\CodeOptions
      */
     public function build()

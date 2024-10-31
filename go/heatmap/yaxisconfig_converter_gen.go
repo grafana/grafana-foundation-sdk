@@ -10,6 +10,7 @@ import (
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
+// YAxisConfigConverter accepts a `YAxisConfig` object and generates the Go code to build this object using builders.
 func YAxisConfigConverter(input YAxisConfig) string {
 	calls := []string{
 		`heatmap.NewYAxisConfigBuilder()`,

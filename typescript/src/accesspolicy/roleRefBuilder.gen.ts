@@ -10,6 +10,9 @@ export class RoleRefBuilder implements cog.Builder<accesspolicy.RoleRef> {
         this.internal = accesspolicy.defaultRoleRef();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): accesspolicy.RoleRef {
         return this.internal;
     }

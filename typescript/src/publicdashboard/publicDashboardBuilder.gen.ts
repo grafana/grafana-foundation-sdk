@@ -10,6 +10,9 @@ export class PublicDashboardBuilder implements cog.Builder<publicdashboard.Publi
         this.internal = publicdashboard.defaultPublicDashboard();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): publicdashboard.PublicDashboard {
         return this.internal;
     }

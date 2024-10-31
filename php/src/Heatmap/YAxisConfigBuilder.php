@@ -16,6 +16,7 @@ class YAxisConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Heatmap\YAxisConfig
      */
     public function build()
