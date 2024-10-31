@@ -10,6 +10,9 @@ export class HistogramSettingsBuilder implements cog.Builder<elasticsearch.Histo
         this.internal = elasticsearch.defaultHistogramSettings();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.HistogramSettings {
         return this.internal;
     }

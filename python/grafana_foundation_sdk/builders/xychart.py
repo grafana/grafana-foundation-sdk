@@ -15,6 +15,9 @@ class XYDimensionConfig(cogbuilder.Builder[xychart.XYDimensionConfig]):
         self._internal = xychart.XYDimensionConfig()
 
     def build(self) -> xychart.XYDimensionConfig:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def frame(self, frame: int) -> typing.Self:        
@@ -42,6 +45,9 @@ class ScatterSeriesConfig(cogbuilder.Builder[xychart.ScatterSeriesConfig]):
         self._internal = xychart.ScatterSeriesConfig()
 
     def build(self) -> xychart.ScatterSeriesConfig:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def x(self, x: str) -> typing.Self:        
@@ -176,6 +182,9 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         self._internal.type_val = "xychart"
 
     def build(self) -> dashboard.Panel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:    

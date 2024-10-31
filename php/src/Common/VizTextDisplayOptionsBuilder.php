@@ -16,6 +16,7 @@ class VizTextDisplayOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\VizTextDisplayOptions
      */
     public function build()

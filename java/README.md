@@ -10,7 +10,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 
 ### Gradle
 ```kotlin
-implementation("com.grafana:grafana-foundation-sdk:10.2.0-1730373093")
+implementation("com.grafana:grafana-foundation-sdk:10.2.0-1730374894")
 ```
 
 ### Maven
@@ -18,7 +18,7 @@ implementation("com.grafana:grafana-foundation-sdk:10.2.0-1730373093")
 <dependency>
     <groupId>com.grafana</groupId>
     <artifactId>grafana-foundation-sdk</artifactId>
-    <version>10.2.0-1730373093</version>
+    <version>10.2.0-1730374894</version>
 </dependency>
 ```
 
@@ -28,7 +28,6 @@ implementation("com.grafana:grafana-foundation-sdk:10.2.0-1730373093")
 
 ```java
 public class Main {
-
     public static void main(String[] args) {
         Dashboard dashboard = new Dashboard.Builder("Sample Dashboard").
                 Uid("generated-from-java").
@@ -62,7 +61,6 @@ public class Main {
 
 ```java
 public class Main {
-
     public static void main(String[] args) {
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -85,7 +83,6 @@ To do so, define a type and a builder for the custom query:
 
 ```java
 public class CustomQuery implements Dataquery {
-    
     @JsonProperty("refId")
     private String refId;
     @JsonProperty("hide")
@@ -123,7 +120,6 @@ Register the type with cog, and use it as usual to build a dashboard:
 
 ```java
 public class Main {
-
     public static void main(String[] args) {
         Registry.registerDataquery("custom", CustomQuery.class);
 
@@ -244,7 +240,6 @@ Register the type with cog, and use it as usual to build a dashboard:
 
 ```java
 public class Main {
-
     public static void main(String[] args) {
         Registry.registerPanel("custom-panel", CustomOptions.class, CustomFieldConfig.class);
 

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ScenarioConverter accepts a `Scenario` object and generates the Go code to build this object using builders.
 func ScenarioConverter(input Scenario) string {
 	calls := []string{
 		`testdata.NewScenarioBuilder()`,

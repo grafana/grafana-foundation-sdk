@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// EdgeOptionsConverter accepts a `EdgeOptions` object and generates the Go code to build this object using builders.
 func EdgeOptionsConverter(input EdgeOptions) string {
 	calls := []string{
 		`nodegraph.NewEdgeOptionsBuilder()`,

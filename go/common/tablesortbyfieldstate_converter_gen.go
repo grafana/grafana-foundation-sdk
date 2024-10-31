@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TableSortByFieldStateConverter accepts a `TableSortByFieldState` object and generates the Go code to build this object using builders.
 func TableSortByFieldStateConverter(input TableSortByFieldState) string {
 	calls := []string{
 		`common.NewTableSortByFieldStateBuilder()`,

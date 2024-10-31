@@ -10,6 +10,9 @@ export class SimulationQueryBuilder implements cog.Builder<testdata.SimulationQu
         this.internal = testdata.defaultSimulationQuery();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): testdata.SimulationQuery {
         return this.internal;
     }

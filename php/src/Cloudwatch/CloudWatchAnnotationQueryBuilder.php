@@ -18,6 +18,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Cloudwatch\CloudWatchAnnotationQuery
      */
     public function build()

@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// MetricAggregationWithMissingSupportConverter accepts a `MetricAggregationWithMissingSupport` object and generates the Go code to build this object using builders.
 func MetricAggregationWithMissingSupportConverter(input MetricAggregationWithMissingSupport) string {
 	calls := []string{
 		`elasticsearch.NewMetricAggregationWithMissingSupportBuilder()`,

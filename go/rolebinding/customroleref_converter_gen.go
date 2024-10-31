@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// CustomRoleRefConverter accepts a `CustomRoleRef` object and generates the Go code to build this object using builders.
 func CustomRoleRefConverter(input CustomRoleRef) string {
 	calls := []string{
 		`rolebinding.NewCustomRoleRefBuilder()`,

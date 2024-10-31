@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// ExprTypeResampleTimeRangeConverter accepts a `ExprTypeResampleTimeRange` object and generates the Go code to build this object using builders.
 func ExprTypeResampleTimeRangeConverter(input ExprTypeResampleTimeRange) string {
 	calls := []string{
 		`expr.NewExprTypeResampleTimeRangeBuilder()`,

@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// GraphThresholdsStyleConfigConverter accepts a `GraphThresholdsStyleConfig` object and generates the Go code to build this object using builders.
 func GraphThresholdsStyleConfigConverter(input GraphThresholdsStyleConfig) string {
 	calls := []string{
 		`common.NewGraphThresholdsStyleConfigBuilder()`,

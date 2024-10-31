@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// BuiltinRoleRefConverter accepts a `BuiltinRoleRef` object and generates the Go code to build this object using builders.
 func BuiltinRoleRefConverter(input BuiltinRoleRef) string {
 	calls := []string{
 		`rolebinding.NewBuiltinRoleRefBuilder()`,

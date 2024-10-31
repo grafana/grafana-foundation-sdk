@@ -16,6 +16,7 @@ class ValueMappingResultBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\ValueMappingResult
      */
     public function build()

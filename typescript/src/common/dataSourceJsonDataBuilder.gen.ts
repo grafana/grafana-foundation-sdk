@@ -11,6 +11,9 @@ export class DataSourceJsonDataBuilder implements cog.Builder<common.DataSourceJ
         this.internal = common.defaultDataSourceJsonData();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.DataSourceJsonData {
         return this.internal;
     }

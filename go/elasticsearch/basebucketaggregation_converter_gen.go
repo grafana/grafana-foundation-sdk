@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// BaseBucketAggregationConverter accepts a `BaseBucketAggregation` object and generates the Go code to build this object using builders.
 func BaseBucketAggregationConverter(input BaseBucketAggregation) string {
 	calls := []string{
 		`elasticsearch.NewBaseBucketAggregationBuilder()`,

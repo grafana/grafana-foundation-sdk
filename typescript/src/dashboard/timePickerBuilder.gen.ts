@@ -12,6 +12,9 @@ export class TimePickerBuilder implements cog.Builder<dashboard.TimePickerConfig
         this.internal = dashboard.defaultTimePickerConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.TimePickerConfig {
         return this.internal;
     }

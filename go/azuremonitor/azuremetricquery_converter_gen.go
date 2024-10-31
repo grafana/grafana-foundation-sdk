@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AzureMetricQueryConverter accepts a `AzureMetricQuery` object and generates the Go code to build this object using builders.
 func AzureMetricQueryConverter(input AzureMetricQuery) string {
 	calls := []string{
 		`azuremonitor.NewAzureMetricQueryBuilder()`,

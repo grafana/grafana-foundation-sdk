@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// NodesQueryConverter accepts a `NodesQuery` object and generates the Go code to build this object using builders.
 func NodesQueryConverter(input NodesQuery) string {
 	calls := []string{
 		`testdata.NewNodesQueryBuilder()`,

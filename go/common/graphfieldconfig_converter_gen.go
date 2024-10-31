@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// GraphFieldConfigConverter accepts a `GraphFieldConfig` object and generates the Go code to build this object using builders.
 func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	calls := []string{
 		`common.NewGraphFieldConfigBuilder()`,

@@ -12,6 +12,9 @@ export class FolderBuilder implements cog.Builder<folder.Folder> {
         this.internal = folder.defaultFolder();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): folder.Folder {
         return this.internal;
     }

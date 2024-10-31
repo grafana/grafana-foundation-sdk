@@ -15,6 +15,7 @@ class ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder implements \
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchMetricAggregationWithInlineScriptSettings
      */
     public function build()

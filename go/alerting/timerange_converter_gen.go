@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// TimeRangeConverter accepts a `TimeRange` object and generates the Go code to build this object using builders.
 func TimeRangeConverter(input TimeRange) string {
 	calls := []string{
 		`alerting.NewTimeRangeBuilder()`,

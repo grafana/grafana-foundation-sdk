@@ -9,6 +9,7 @@ import (
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
+// BackgroundConfigConverter accepts a `BackgroundConfig` object and generates the Go code to build this object using builders.
 func BackgroundConfigConverter(input BackgroundConfig) string {
 	calls := []string{
 		`canvas.NewBackgroundConfigBuilder()`,

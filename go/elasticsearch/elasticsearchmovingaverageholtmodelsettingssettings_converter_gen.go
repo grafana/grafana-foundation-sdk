@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchMovingAverageHoltModelSettingsSettingsConverter accepts a `ElasticsearchMovingAverageHoltModelSettingsSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchMovingAverageHoltModelSettingsSettingsConverter(input ElasticsearchMovingAverageHoltModelSettingsSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchMovingAverageHoltModelSettingsSettingsBuilder()`,
