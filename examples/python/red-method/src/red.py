@@ -7,6 +7,7 @@ from .common import default_timeseries
 def red(dashboard_title: str, service_ids: list[str]) -> dashboard.Dashboard:
     builder = (
         dashboard.Dashboard("[Example] %s" % dashboard_title)
+        .uid('example-red-method')
         .tags(["generated", "red"])
         .editable()
         .tooltip(DashboardCursorSync.CROSSHAIR)

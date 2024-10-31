@@ -1,1 +1,1 @@
-grafana_foundation_sdk==1713437340!10.4.0
+grafana-foundation-sdk==1730378377!11.3.0
