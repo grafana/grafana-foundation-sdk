@@ -10,6 +10,9 @@ export class ScaleDimensionConfigBuilder implements cog.Builder<common.ScaleDime
         this.internal = common.defaultScaleDimensionConfig();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.ScaleDimensionConfig {
         return this.internal;
     }

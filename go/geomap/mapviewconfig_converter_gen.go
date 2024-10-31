@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// MapViewConfigConverter accepts a `MapViewConfig` object and generates the Go code to build this object using builders.
 func MapViewConfigConverter(input MapViewConfig) string {
 	calls := []string{
 		`geomap.NewMapViewConfigBuilder()`,

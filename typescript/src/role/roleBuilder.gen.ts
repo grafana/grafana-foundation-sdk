@@ -10,6 +10,9 @@ export class RoleBuilder implements cog.Builder<role.Role> {
         this.internal = role.defaultRole();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): role.Role {
         return this.internal;
     }

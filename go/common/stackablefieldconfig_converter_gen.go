@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// StackableFieldConfigConverter accepts a `StackableFieldConfig` object and generates the Go code to build this object using builders.
 func StackableFieldConfigConverter(input StackableFieldConfig) string {
 	calls := []string{
 		`common.NewStackableFieldConfigBuilder()`,

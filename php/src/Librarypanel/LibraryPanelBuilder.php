@@ -15,6 +15,7 @@ class LibraryPanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Librarypanel\LibraryPanel
      */
     public function build()

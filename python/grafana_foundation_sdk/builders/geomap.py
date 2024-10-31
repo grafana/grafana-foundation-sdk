@@ -15,6 +15,9 @@ class MapViewConfig(cogbuilder.Builder[geomap.MapViewConfig]):
         self._internal = geomap.MapViewConfig()
 
     def build(self) -> geomap.MapViewConfig:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: str) -> typing.Self:        
@@ -80,6 +83,9 @@ class ControlsOptions(cogbuilder.Builder[geomap.ControlsOptions]):
         self._internal = geomap.ControlsOptions()
 
     def build(self) -> geomap.ControlsOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def show_zoom(self, show_zoom: bool) -> typing.Self:    
@@ -144,6 +150,9 @@ class TooltipOptions(cogbuilder.Builder[geomap.TooltipOptions]):
         self._internal = geomap.TooltipOptions()
 
     def build(self) -> geomap.TooltipOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def mode(self, mode: geomap.TooltipMode) -> typing.Self:        
@@ -164,6 +173,9 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         self._internal.type_val = "geomap"
 
     def build(self) -> dashboard.Panel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:    

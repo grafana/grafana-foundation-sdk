@@ -16,6 +16,7 @@ class RawDataBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\RawData
      */
     public function build()

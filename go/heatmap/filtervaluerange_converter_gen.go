@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// FilterValueRangeConverter accepts a `FilterValueRange` object and generates the Go code to build this object using builders.
 func FilterValueRangeConverter(input FilterValueRange) string {
 	calls := []string{
 		`heatmap.NewFilterValueRangeBuilder()`,

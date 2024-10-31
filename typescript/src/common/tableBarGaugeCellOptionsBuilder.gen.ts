@@ -12,6 +12,9 @@ export class TableBarGaugeCellOptionsBuilder implements cog.Builder<common.Table
         this.internal.type = "gauge";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.TableBarGaugeCellOptions {
         return this.internal;
     }

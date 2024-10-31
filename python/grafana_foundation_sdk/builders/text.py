@@ -14,6 +14,9 @@ class CodeOptions(cogbuilder.Builder[text.CodeOptions]):
         self._internal = text.CodeOptions()
 
     def build(self) -> text.CodeOptions:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def language(self, language: text.CodeLanguage) -> typing.Self:    
@@ -48,6 +51,9 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         self._internal.type_val = "text"
 
     def build(self) -> dashboard.Panel:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def id_val(self, id_val: int) -> typing.Self:    

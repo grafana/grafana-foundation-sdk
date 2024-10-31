@@ -13,6 +13,9 @@ class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
         self._internal = cloudwatch.MetricStat()
 
     def build(self) -> cloudwatch.MetricStat:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def region(self, region: str) -> typing.Self:    
@@ -108,6 +111,9 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         self._internal = cloudwatch.CloudWatchMetricsQuery()
 
     def build(self) -> cloudwatch.CloudWatchMetricsQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def query_mode(self, query_mode: cloudwatch.CloudWatchQueryMode) -> typing.Self:    
@@ -326,6 +332,9 @@ class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
         self._internal = cloudwatch.SQLExpression()
 
     def build(self) -> cloudwatch.SQLExpression:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def select(self, select: cogbuilder.Builder[cloudwatch.QueryEditorFunctionExpression]) -> typing.Self:    
@@ -405,6 +414,9 @@ class QueryEditorFunctionExpression(cogbuilder.Builder[cloudwatch.QueryEditorFun
         self._internal.type_val = "function"
 
     def build(self) -> cloudwatch.QueryEditorFunctionExpression:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:        
@@ -427,6 +439,9 @@ class QueryEditorFunctionParameterExpression(cogbuilder.Builder[cloudwatch.Query
         self._internal.type_val = "functionParameter"
 
     def build(self) -> cloudwatch.QueryEditorFunctionParameterExpression:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:        
@@ -443,6 +458,9 @@ class QueryEditorPropertyExpression(cogbuilder.Builder[cloudwatch.QueryEditorPro
         self._internal.type_val = "property"
 
     def build(self) -> cloudwatch.QueryEditorPropertyExpression:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def property_val(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:        
@@ -460,6 +478,9 @@ class QueryEditorGroupByExpression(cogbuilder.Builder[cloudwatch.QueryEditorGrou
         self._internal.type_val = "groupBy"
 
     def build(self) -> cloudwatch.QueryEditorGroupByExpression:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def property_val(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:        
@@ -477,6 +498,9 @@ class QueryEditorOperatorExpression(cogbuilder.Builder[cloudwatch.QueryEditorOpe
         self._internal.type_val = "operator"
 
     def build(self) -> cloudwatch.QueryEditorOperatorExpression:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def property_val(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:        
@@ -507,6 +531,9 @@ class QueryEditorOperator(cogbuilder.Builder[cloudwatch.QueryEditorOperator]):
         self._internal = cloudwatch.QueryEditorOperator()
 
     def build(self) -> cloudwatch.QueryEditorOperator:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def name(self, name: str) -> typing.Self:        
@@ -527,6 +554,9 @@ class QueryEditorProperty(cogbuilder.Builder[cloudwatch.QueryEditorProperty]):
         self._internal = cloudwatch.QueryEditorProperty()
 
     def build(self) -> cloudwatch.QueryEditorProperty:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def type_val(self, type_val: cloudwatch.QueryEditorPropertyType) -> typing.Self:        
@@ -547,6 +577,9 @@ class QueryEditorArrayExpression(cogbuilder.Builder[cloudwatch.QueryEditorArrayE
         self._internal = cloudwatch.QueryEditorArrayExpression()
 
     def build(self) -> cloudwatch.QueryEditorArrayExpression:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def type_val(self, type_val: typing.Literal["and", "or"]) -> typing.Self:        
@@ -571,6 +604,9 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
         self._internal = cloudwatch.CloudWatchLogsQuery()
 
     def build(self) -> cloudwatch.CloudWatchLogsQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def query_mode(self, query_mode: cloudwatch.CloudWatchQueryMode) -> typing.Self:    
@@ -685,6 +721,9 @@ class LogGroup(cogbuilder.Builder[cloudwatch.LogGroup]):
         self._internal = cloudwatch.LogGroup()
 
     def build(self) -> cloudwatch.LogGroup:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def arn(self, arn: str) -> typing.Self:    
@@ -737,6 +776,9 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
         self._internal = cloudwatch.CloudWatchAnnotationQuery()
 
     def build(self) -> cloudwatch.CloudWatchAnnotationQuery:
+        """
+        Builds the object.
+        """
         return self._internal    
     
     def query_mode(self, query_mode: cloudwatch.CloudWatchQueryMode) -> typing.Self:    

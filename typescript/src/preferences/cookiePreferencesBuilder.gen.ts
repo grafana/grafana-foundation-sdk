@@ -10,6 +10,9 @@ export class CookiePreferencesBuilder implements cog.Builder<preferences.CookieP
         this.internal = preferences.defaultCookiePreferences();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): preferences.CookiePreferences {
         return this.internal;
     }

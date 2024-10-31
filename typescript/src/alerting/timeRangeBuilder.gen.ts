@@ -11,6 +11,9 @@ export class TimeRangeBuilder implements cog.Builder<alerting.TimeRange> {
         this.internal = alerting.defaultTimeRange();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.TimeRange {
         return this.internal;
     }

@@ -11,6 +11,9 @@ export class VizTextDisplayOptionsBuilder implements cog.Builder<common.VizTextD
         this.internal = common.defaultVizTextDisplayOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.VizTextDisplayOptions {
         return this.internal;
     }

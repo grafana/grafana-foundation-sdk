@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// FillConfigConverter accepts a `FillConfig` object and generates the Go code to build this object using builders.
 func FillConfigConverter(input FillConfig) string {
 	calls := []string{
 		`common.NewFillConfigBuilder()`,

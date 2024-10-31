@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ExprTypeClassicConditionsConditionsOperatorConverter accepts a `ExprTypeClassicConditionsConditionsOperator` object and generates the Go code to build this object using builders.
 func ExprTypeClassicConditionsConditionsOperatorConverter(input ExprTypeClassicConditionsConditionsOperator) string {
 	calls := []string{
 		`expr.NewExprTypeClassicConditionsConditionsOperatorBuilder()`,

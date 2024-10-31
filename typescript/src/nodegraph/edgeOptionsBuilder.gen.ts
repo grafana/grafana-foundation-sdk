@@ -10,6 +10,9 @@ export class EdgeOptionsBuilder implements cog.Builder<nodegraph.EdgeOptions> {
         this.internal = nodegraph.defaultEdgeOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): nodegraph.EdgeOptions {
         return this.internal;
     }

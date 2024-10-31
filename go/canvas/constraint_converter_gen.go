@@ -8,6 +8,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ConstraintConverter accepts a `Constraint` object and generates the Go code to build this object using builders.
 func ConstraintConverter(input Constraint) string {
 	calls := []string{
 		`canvas.NewConstraintBuilder()`,

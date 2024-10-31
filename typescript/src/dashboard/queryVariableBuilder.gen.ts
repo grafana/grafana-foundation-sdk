@@ -13,6 +13,9 @@ export class QueryVariableBuilder implements cog.Builder<dashboard.VariableModel
         this.internal.type = dashboard.VariableType.Query;
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.VariableModel {
         return this.internal;
     }

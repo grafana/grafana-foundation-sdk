@@ -15,6 +15,7 @@ class BackgroundConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Canvas\BackgroundConfig
      */
     public function build()

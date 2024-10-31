@@ -11,6 +11,9 @@ export class TimeSeriesListBuilder implements cog.Builder<googlecloudmonitoring.
         this.internal = googlecloudmonitoring.defaultTimeSeriesList();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): googlecloudmonitoring.TimeSeriesList {
         return this.internal;
     }

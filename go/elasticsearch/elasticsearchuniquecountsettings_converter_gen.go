@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchUniqueCountSettingsConverter accepts a `ElasticsearchUniqueCountSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchUniqueCountSettingsConverter(input ElasticsearchUniqueCountSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchUniqueCountSettingsBuilder()`,

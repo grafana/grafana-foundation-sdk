@@ -10,6 +10,9 @@ export class TermsSettingsBuilder implements cog.Builder<elasticsearch.TermsSett
         this.internal = elasticsearch.defaultTermsSettings();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.TermsSettings {
         return this.internal;
     }

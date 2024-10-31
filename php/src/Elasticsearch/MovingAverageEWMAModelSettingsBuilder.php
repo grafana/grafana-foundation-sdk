@@ -16,6 +16,7 @@ class MovingAverageEWMAModelSettingsBuilder implements \Grafana\Foundation\Cog\B
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\MovingAverageEWMAModelSettings
      */
     public function build()

@@ -10,6 +10,9 @@ export class MatcherBuilder implements cog.Builder<alerting.Matcher> {
         this.internal = alerting.defaultMatcher();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): alerting.Matcher {
         return this.internal;
     }

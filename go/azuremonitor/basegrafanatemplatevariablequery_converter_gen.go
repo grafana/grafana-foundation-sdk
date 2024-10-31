@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// BaseGrafanaTemplateVariableQueryConverter accepts a `BaseGrafanaTemplateVariableQuery` object and generates the Go code to build this object using builders.
 func BaseGrafanaTemplateVariableQueryConverter(input BaseGrafanaTemplateVariableQuery) string {
 	calls := []string{
 		`azuremonitor.NewBaseGrafanaTemplateVariableQueryBuilder()`,
