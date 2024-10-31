@@ -36,3 +36,8 @@ From an example's folder:
 $ go mod vendor
 $ go run *.go
 ```
+
+> [!NOTE]
+> [Grizzly](https://github.com/grafana/grizzly/) can be used to preview the examples locally:
+>
+> `grr serve -w -S 'go run *.go' .`
