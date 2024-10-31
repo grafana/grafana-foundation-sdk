@@ -11,6 +11,9 @@ export class ScenarioBuilder implements cog.Builder<testdata.Scenario> {
         this.internal = testdata.defaultScenario();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): testdata.Scenario {
         return this.internal;
     }

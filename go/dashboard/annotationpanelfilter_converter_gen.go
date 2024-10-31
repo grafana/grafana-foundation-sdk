@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AnnotationPanelFilterConverter accepts a `AnnotationPanelFilter` object and generates the Go code to build this object using builders.
 func AnnotationPanelFilterConverter(input AnnotationPanelFilter) string {
 	calls := []string{
 		`dashboard.NewAnnotationPanelFilterBuilder()`,

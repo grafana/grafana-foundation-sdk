@@ -16,6 +16,7 @@ class LineStyleBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\LineStyle
      */
     public function build()

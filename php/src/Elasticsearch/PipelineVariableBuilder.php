@@ -15,6 +15,7 @@ class PipelineVariableBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\PipelineVariable
      */
     public function build()

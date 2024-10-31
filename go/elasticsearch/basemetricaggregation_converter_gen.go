@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// BaseMetricAggregationConverter accepts a `BaseMetricAggregation` object and generates the Go code to build this object using builders.
 func BaseMetricAggregationConverter(input BaseMetricAggregation) string {
 	calls := []string{
 		`elasticsearch.NewBaseMetricAggregationBuilder()`,

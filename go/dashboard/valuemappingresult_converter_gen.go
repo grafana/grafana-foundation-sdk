@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ValueMappingResultConverter accepts a `ValueMappingResult` object and generates the Go code to build this object using builders.
 func ValueMappingResultConverter(input ValueMappingResult) string {
 	calls := []string{
 		`dashboard.NewValueMappingResultBuilder()`,

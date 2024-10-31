@@ -15,6 +15,7 @@ class ElasticsearchPercentilesSettingsBuilder implements \Grafana\Foundation\Cog
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchPercentilesSettings
      */
     public function build()

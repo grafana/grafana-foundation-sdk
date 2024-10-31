@@ -10,6 +10,9 @@ export class MapLayerOptionsBuilder implements cog.Builder<common.MapLayerOption
         this.internal = common.defaultMapLayerOptions();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): common.MapLayerOptions {
         return this.internal;
     }

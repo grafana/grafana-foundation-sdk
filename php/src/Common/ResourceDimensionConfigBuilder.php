@@ -16,6 +16,7 @@ class ResourceDimensionConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\ResourceDimensionConfig
      */
     public function build()

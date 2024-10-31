@@ -15,6 +15,7 @@ class ElasticsearchHistogramSettingsBuilder implements \Grafana\Foundation\Cog\B
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\ElasticsearchHistogramSettings
      */
     public function build()

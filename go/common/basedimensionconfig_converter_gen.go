@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// BaseDimensionConfigConverter accepts a `BaseDimensionConfig` object and generates the Go code to build this object using builders.
 func BaseDimensionConfigConverter(input BaseDimensionConfig) string {
 	calls := []string{
 		`common.NewBaseDimensionConfigBuilder()`,

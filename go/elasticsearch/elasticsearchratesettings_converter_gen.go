@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ElasticsearchRateSettingsConverter accepts a `ElasticsearchRateSettings` object and generates the Go code to build this object using builders.
 func ElasticsearchRateSettingsConverter(input ElasticsearchRateSettings) string {
 	calls := []string{
 		`elasticsearch.NewElasticsearchRateSettingsBuilder()`,

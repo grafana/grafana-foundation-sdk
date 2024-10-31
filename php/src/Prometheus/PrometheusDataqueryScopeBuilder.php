@@ -15,6 +15,7 @@ class PrometheusDataqueryScopeBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Prometheus\PrometheusDataqueryScope
      */
     public function build()

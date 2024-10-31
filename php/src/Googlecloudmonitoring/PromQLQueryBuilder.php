@@ -16,6 +16,7 @@ class PromQLQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Googlecloudmonitoring\PromQLQuery
      */
     public function build()

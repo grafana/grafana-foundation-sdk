@@ -15,6 +15,7 @@ class DashboardRangeMapOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Dashboard\DashboardRangeMapOptions
      */
     public function build()

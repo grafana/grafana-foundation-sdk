@@ -11,6 +11,9 @@ export class QueryEditorOperatorBuilder implements cog.Builder<cloudwatch.QueryE
         this.internal = cloudwatch.defaultQueryEditorOperator();
     }
 
+    /**
+     * Builds the object.
+     */
     build(): cloudwatch.QueryEditorOperator {
         return this.internal;
     }

@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// ExprTypeReduceTimeRangeConverter accepts a `ExprTypeReduceTimeRange` object and generates the Go code to build this object using builders.
 func ExprTypeReduceTimeRangeConverter(input ExprTypeReduceTimeRange) string {
 	calls := []string{
 		`expr.NewExprTypeReduceTimeRangeBuilder()`,

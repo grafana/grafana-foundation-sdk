@@ -11,6 +11,9 @@ export class DerivativeBuilder implements cog.Builder<elasticsearch.Derivative> 
         this.internal.type = "derivative";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): elasticsearch.Derivative {
         return this.internal;
     }

@@ -13,6 +13,9 @@ export class RegexMapBuilder implements cog.Builder<dashboard.RegexMap> {
         this.internal.type = "regex";
     }
 
+    /**
+     * Builds the object.
+     */
     build(): dashboard.RegexMap {
         return this.internal;
     }

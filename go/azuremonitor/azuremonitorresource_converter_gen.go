@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// AzureMonitorResourceConverter accepts a `AzureMonitorResource` object and generates the Go code to build this object using builders.
 func AzureMonitorResourceConverter(input AzureMonitorResource) string {
 	calls := []string{
 		`azuremonitor.NewAzureMonitorResourceBuilder()`,

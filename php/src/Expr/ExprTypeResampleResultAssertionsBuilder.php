@@ -15,6 +15,7 @@ class ExprTypeResampleResultAssertionsBuilder implements \Grafana\Foundation\Cog
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Expr\ExprTypeResampleResultAssertions
      */
     public function build()

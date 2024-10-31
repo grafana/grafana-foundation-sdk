@@ -16,6 +16,7 @@ class ExemplarConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Heatmap\ExemplarConfig
      */
     public function build()

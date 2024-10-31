@@ -9,6 +9,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// ReduceDataOptionsConverter accepts a `ReduceDataOptions` object and generates the Go code to build this object using builders.
 func ReduceDataOptionsConverter(input ReduceDataOptions) string {
 	calls := []string{
 		`common.NewReduceDataOptionsBuilder()`,

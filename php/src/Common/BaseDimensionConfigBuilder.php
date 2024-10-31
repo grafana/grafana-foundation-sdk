@@ -15,6 +15,7 @@ class BaseDimensionConfigBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Common\BaseDimensionConfig
      */
     public function build()

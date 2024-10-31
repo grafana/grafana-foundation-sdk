@@ -16,6 +16,7 @@ class SumBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Builds the object.
      * @return \Grafana\Foundation\Elasticsearch\Sum
      */
     public function build()
