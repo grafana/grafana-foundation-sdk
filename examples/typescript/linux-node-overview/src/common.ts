@@ -22,12 +22,14 @@ export const queryVariable = (name: string, label: string, query: string): dashb
 
 export const prometheusQuery = (query: string, legend: string): prometheus.DataqueryBuilder => {
     return new prometheus.DataqueryBuilder()
+        .datasource({uid: "$datasource"})
         .expr(query)
         .legendFormat(legend);
 };
 
 export const tablePrometheusQuery = (query: string, ref: string): prometheus.DataqueryBuilder => {
     return new prometheus.DataqueryBuilder()
+        .datasource({uid: "$datasource"})
         .expr(query)
         .format(prometheus.PromQueryFormat.Table)
         .refId(ref);

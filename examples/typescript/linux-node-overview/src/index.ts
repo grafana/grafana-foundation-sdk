@@ -24,8 +24,8 @@ export const builder = new DashboardBuilder('[Example] Linux node / overview')
     .timezone("browser")
     .timepicker(
         new TimePickerBuilder()
-            .refresh_intervals(["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"])
-            .time_options(["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]),
+            .refreshIntervals(["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"])
+            .timeOptions(["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]),
     )
     // "Back to fleet" link
     .link(

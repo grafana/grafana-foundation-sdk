@@ -11,7 +11,7 @@ export const prometheusQuery = (query: string, legend: string): prometheus.Dataq
 export const tablePrometheusQuery = (query: string, ref: string): prometheus.DataqueryBuilder => {
     return new prometheus.DataqueryBuilder()
         .expr(query)
-        .instant(true)
+        .instant()
         .format(prometheus.PromQueryFormat.Table)
         .refId(ref);
 };
