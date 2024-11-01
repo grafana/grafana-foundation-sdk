@@ -20,7 +20,6 @@ type CustomPanelOptions struct {
     MakeBeautiful bool `json:"makeBeautiful"`
 }
 
-
 // Validate checks all the validation constraints that may be defined on `CustomPanelOptions` fields for violations and returns them.
 func (resource CustomPanelOptions) Validate() error {
 	return nil
@@ -30,9 +29,9 @@ func CustomPanelVariantConfig() variants.PanelcfgConfig {
     return variants.PanelcfgConfig{
         Identifier: "custom-panel", // plugin ID
         OptionsUnmarshaler: func(raw []byte) (any, error) {
-            options := CustomPanelOptions{}
+            options := &CustomPanelOptions{}
 
-            if err := json.Unmarshal(raw, &options); err != nil {
+            if err := json.Unmarshal(raw, options); err != nil {
                 return nil, err
             }
 
