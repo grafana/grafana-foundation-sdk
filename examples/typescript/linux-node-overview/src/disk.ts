@@ -57,11 +57,11 @@ export const usageTable = (): TableBuilder => {
         .withTarget(tablePrometheusQuery(
             'node_filesystem_size_bytes{fstype!="", mountpoint!="", job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}',
             'TOTAL',
-        ).instant(true))
+        ).instant())
         .withTarget(tablePrometheusQuery(
             'node_filesystem_avail_bytes{fstype!="", mountpoint!="", job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}',
             'FREE',
-        ).instant(true).legendFormat("{{ mountpoint }} free"))
+        ).instant().legendFormat("{{ mountpoint }} free"))
         .unit("bytes")
         // Transformations
         .withTransformation({
