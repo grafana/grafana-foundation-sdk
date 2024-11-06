@@ -47,8 +47,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showThresholdLabels")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showThresholdLabels", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "showThresholdMarkers"
 	if fields["showThresholdMarkers"] != nil {
@@ -61,8 +60,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showThresholdMarkers")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showThresholdMarkers", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "sizing"
 	if fields["sizing"] != nil {
@@ -75,8 +73,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "sizing")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("sizing", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "minVizWidth"
 	if fields["minVizWidth"] != nil {
@@ -89,8 +86,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "minVizWidth")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("minVizWidth", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "reduceOptions"
 	if fields["reduceOptions"] != nil {
@@ -132,8 +128,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "minVizHeight")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("minVizHeight", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "orientation"
 	if fields["orientation"] != nil {

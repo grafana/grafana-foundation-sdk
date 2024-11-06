@@ -48,8 +48,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "rowHeight")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("rowHeight", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "showValue"
 	if fields["showValue"] != nil {
@@ -62,8 +61,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showValue")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showValue", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "legend"
 	if fields["legend"] != nil {

@@ -11,6 +11,11 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class TableActionsCellOptions {
     @JsonProperty("type")
     public String type;
+    public TableActionsCellOptions() {}
+    
+    public TableActionsCellOptions(String type) {
+        this.type = type;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
