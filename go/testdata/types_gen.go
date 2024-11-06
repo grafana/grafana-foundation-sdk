@@ -915,8 +915,7 @@ func (resource *TimeRange) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "from")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "to"
 	if fields["to"] != nil {
@@ -929,8 +928,7 @@ func (resource *TimeRange) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "to")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
