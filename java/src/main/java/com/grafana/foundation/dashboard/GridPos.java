@@ -26,6 +26,15 @@ public class GridPos {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("static")
     public Boolean staticArg;
+    public GridPos() {}
+    
+    public GridPos(Integer h,Integer w,Integer x,Integer y,Boolean staticArg) {
+        this.h = h;
+        this.w = w;
+        this.x = x;
+        this.y = y;
+        this.staticArg = staticArg;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

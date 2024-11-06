@@ -48,8 +48,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "keepTime")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("keepTime", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "includeVars"
 	if fields["includeVars"] != nil {
@@ -62,8 +61,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "includeVars")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("includeVars", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "showStarred"
 	if fields["showStarred"] != nil {
@@ -76,8 +74,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showStarred")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showStarred", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "showRecentlyViewed"
 	if fields["showRecentlyViewed"] != nil {
@@ -90,8 +87,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showRecentlyViewed")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showRecentlyViewed", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "showSearch"
 	if fields["showSearch"] != nil {
@@ -104,8 +100,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showSearch")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showSearch", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "showHeadings"
 	if fields["showHeadings"] != nil {
@@ -118,8 +113,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showHeadings")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showHeadings", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "maxItems"
 	if fields["maxItems"] != nil {
@@ -132,8 +126,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "maxItems")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("maxItems", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "query"
 	if fields["query"] != nil {
@@ -146,8 +139,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "query")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("query", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "folderId"
 	if fields["folderId"] != nil {

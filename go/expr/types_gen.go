@@ -2665,8 +2665,7 @@ func (resource *ExprTypeMathTimeRange) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "from")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "to"
 	if fields["to"] != nil {
@@ -2679,8 +2678,7 @@ func (resource *ExprTypeMathTimeRange) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "to")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
@@ -2945,8 +2943,7 @@ func (resource *ExprTypeReduceTimeRange) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "from")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "to"
 	if fields["to"] != nil {
@@ -2959,8 +2956,7 @@ func (resource *ExprTypeReduceTimeRange) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "to")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
@@ -3143,8 +3139,7 @@ func (resource *ExprTypeResampleTimeRange) UnmarshalJSONStrict(raw []byte) error
 
 		}
 		delete(fields, "from")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "to"
 	if fields["to"] != nil {
@@ -3157,8 +3152,7 @@ func (resource *ExprTypeResampleTimeRange) UnmarshalJSONStrict(raw []byte) error
 
 		}
 		delete(fields, "to")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
@@ -3736,8 +3730,7 @@ func (resource *ExprTypeClassicConditionsTimeRange) UnmarshalJSONStrict(raw []by
 
 		}
 		delete(fields, "from")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "to"
 	if fields["to"] != nil {
@@ -3750,8 +3743,7 @@ func (resource *ExprTypeClassicConditionsTimeRange) UnmarshalJSONStrict(raw []by
 
 		}
 		delete(fields, "to")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
@@ -4211,8 +4203,7 @@ func (resource *ExprTypeThresholdTimeRange) UnmarshalJSONStrict(raw []byte) erro
 
 		}
 		delete(fields, "from")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "to"
 	if fields["to"] != nil {
@@ -4225,8 +4216,7 @@ func (resource *ExprTypeThresholdTimeRange) UnmarshalJSONStrict(raw []byte) erro
 
 		}
 		delete(fields, "to")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
@@ -4409,8 +4399,7 @@ func (resource *ExprTypeSqlTimeRange) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "from")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "to"
 	if fields["to"] != nil {
@@ -4423,8 +4412,7 @@ func (resource *ExprTypeSqlTimeRange) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "to")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {

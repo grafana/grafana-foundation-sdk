@@ -76,8 +76,7 @@ func (resource *Playlist) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "interval")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("interval", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "items"
 	if fields["items"] != nil {

@@ -44,8 +44,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showThresholdLabels")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showThresholdLabels", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "reduceOptions"
 	if fields["reduceOptions"] != nil {
@@ -87,8 +86,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showThresholdMarkers")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showThresholdMarkers", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "orientation"
 	if fields["orientation"] != nil {
