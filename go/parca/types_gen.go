@@ -107,8 +107,7 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "labelSelector")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("labelSelector", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "profileTypeId"
 	if fields["profileTypeId"] != nil {

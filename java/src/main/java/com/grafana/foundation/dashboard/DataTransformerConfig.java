@@ -28,6 +28,14 @@ public class DataTransformerConfig {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("options")
     public Object options;
+    public DataTransformerConfig() {}
+    
+    public DataTransformerConfig(String id,Boolean disabled,MatcherConfig filter,Object options) {
+        this.id = id;
+        this.disabled = disabled;
+        this.filter = filter;
+        this.options = options;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
