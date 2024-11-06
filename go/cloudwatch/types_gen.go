@@ -354,8 +354,7 @@ func (resource *CloudWatchMetricsQuery) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "queryMode")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("queryMode", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "metricQueryType"
 	if fields["metricQueryType"] != nil {
@@ -1973,8 +1972,7 @@ func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "queryMode")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("queryMode", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "id"
 	if fields["id"] != nil {
@@ -2440,8 +2438,7 @@ func (resource *CloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error
 
 		}
 		delete(fields, "queryMode")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("queryMode", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "prefixMatching"
 	if fields["prefixMatching"] != nil {
