@@ -17,6 +17,12 @@ public class LibraryPanelRef {
     // Library panel uid
     @JsonProperty("uid")
     public String uid;
+    public LibraryPanelRef() {}
+    
+    public LibraryPanelRef(String name,String uid) {
+        this.name = name;
+        this.uid = uid;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

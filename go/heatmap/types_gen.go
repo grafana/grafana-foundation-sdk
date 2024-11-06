@@ -1245,8 +1245,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "color")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("color", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "filterValues"
 	if fields["filterValues"] != nil {
@@ -1285,8 +1284,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showValue")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showValue", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "cellGap"
 	if fields["cellGap"] != nil {
@@ -1352,8 +1350,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "legend")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("legend", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "tooltip"
 	if fields["tooltip"] != nil {
@@ -1384,8 +1381,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "exemplars")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("exemplars", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "selectionMode"
 	if fields["selectionMode"] != nil {
