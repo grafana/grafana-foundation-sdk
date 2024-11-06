@@ -52,8 +52,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "frameIndex")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("frameIndex", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "showHeader"
 	if fields["showHeader"] != nil {
@@ -66,8 +65,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showHeader")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showHeader", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "showTypeIcons"
 	if fields["showTypeIcons"] != nil {
