@@ -93,8 +93,7 @@ func (resource *Role) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "hidden")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("hidden", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
