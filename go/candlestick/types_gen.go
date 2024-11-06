@@ -212,8 +212,7 @@ func (resource *CandlestickColors) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "up")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("up", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "down"
 	if fields["down"] != nil {
@@ -226,8 +225,7 @@ func (resource *CandlestickColors) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "down")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("down", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "flat"
 	if fields["flat"] != nil {
@@ -240,8 +238,7 @@ func (resource *CandlestickColors) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "flat")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("flat", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
@@ -314,8 +311,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "mode")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "candleStyle"
 	if fields["candleStyle"] != nil {
@@ -328,8 +324,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "candleStyle")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("candleStyle", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "colorStrategy"
 	if fields["colorStrategy"] != nil {
@@ -342,8 +337,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "colorStrategy")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("colorStrategy", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "fields"
 	if fields["fields"] != nil {
@@ -374,8 +368,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "colors")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("colors", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "legend"
 	if fields["legend"] != nil {
