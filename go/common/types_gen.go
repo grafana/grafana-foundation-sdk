@@ -4136,8 +4136,7 @@ func (resource *VizLegendOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "displayMode")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("displayMode", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "placement"
 	if fields["placement"] != nil {
@@ -4150,8 +4149,7 @@ func (resource *VizLegendOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "placement")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("placement", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "showLegend"
 	if fields["showLegend"] != nil {
@@ -4234,8 +4232,7 @@ func (resource *VizLegendOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "calcs")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("calcs", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
@@ -6740,8 +6737,7 @@ func (resource *TableFieldOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "align")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("align", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "displayMode"
 	if fields["displayMode"] != nil {
@@ -6789,8 +6785,7 @@ func (resource *TableFieldOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "inspect")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("inspect", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "filterable"
 	if fields["filterable"] != nil {
