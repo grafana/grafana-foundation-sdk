@@ -57,8 +57,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "legend")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("legend", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "tooltip"
 	if fields["tooltip"] != nil {

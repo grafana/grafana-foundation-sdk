@@ -1200,8 +1200,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "inlineEditing")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("inlineEditing", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "showAdvancedTypes"
 	if fields["showAdvancedTypes"] != nil {
@@ -1214,8 +1213,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showAdvancedTypes")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showAdvancedTypes", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "panZoom"
 	if fields["panZoom"] != nil {
@@ -1228,8 +1226,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "panZoom")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("panZoom", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "infinitePan"
 	if fields["infinitePan"] != nil {
@@ -1242,8 +1239,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "infinitePan")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("infinitePan", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "root"
 	if fields["root"] != nil {
