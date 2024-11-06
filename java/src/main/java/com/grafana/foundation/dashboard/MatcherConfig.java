@@ -18,6 +18,12 @@ public class MatcherConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("options")
     public Object options;
+    public MatcherConfig() {}
+    
+    public MatcherConfig(String id,Object options) {
+        this.id = id;
+        this.options = options;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
