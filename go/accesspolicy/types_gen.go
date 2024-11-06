@@ -349,8 +349,7 @@ func (resource *AccessRule) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "kind")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "verb"
 	if fields["verb"] != nil {

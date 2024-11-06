@@ -844,8 +844,7 @@ func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSONStrict(raw []byte) e
 
 		}
 		delete(fields, "transparent")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("transparent", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "datasource"
 	if fields["datasource"] != nil {

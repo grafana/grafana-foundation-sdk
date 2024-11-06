@@ -202,8 +202,7 @@ func (resource *Dashboard) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "editable")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("editable", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "graphTooltip"
 	if fields["graphTooltip"] != nil {
@@ -216,8 +215,7 @@ func (resource *Dashboard) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "graphTooltip")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("graphTooltip", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "time"
 	if fields["time"] != nil {
@@ -302,8 +300,7 @@ func (resource *Dashboard) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "schemaVersion")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("schemaVersion", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "version"
 	if fields["version"] != nil {
@@ -1045,8 +1042,7 @@ func (resource *AnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "enable")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("enable", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -1284,8 +1280,7 @@ func (resource *VariableModel) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "type"
 	if fields["type"] != nil {
@@ -1351,8 +1346,7 @@ func (resource *VariableModel) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "skipUrlSync")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("skipUrlSync", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "description"
 	if fields["description"] != nil {
@@ -2094,8 +2088,7 @@ func (resource *DashboardLink) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "asDropdown")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("asDropdown", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "targetBlank"
 	if fields["targetBlank"] != nil {
@@ -2108,8 +2101,7 @@ func (resource *DashboardLink) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "targetBlank")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("targetBlank", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "includeVars"
 	if fields["includeVars"] != nil {
@@ -2122,8 +2114,7 @@ func (resource *DashboardLink) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "includeVars")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("includeVars", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "keepTime"
 	if fields["keepTime"] != nil {
@@ -2136,8 +2127,7 @@ func (resource *DashboardLink) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "keepTime")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("keepTime", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
@@ -2415,8 +2405,7 @@ func (resource *GridPos) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "h")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("h", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "w"
 	if fields["w"] != nil {
@@ -2429,8 +2418,7 @@ func (resource *GridPos) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "w")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("w", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "x"
 	if fields["x"] != nil {
@@ -2443,8 +2431,7 @@ func (resource *GridPos) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "x")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("x", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "y"
 	if fields["y"] != nil {
@@ -2457,8 +2444,7 @@ func (resource *GridPos) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "y")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("y", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "static"
 	if fields["static"] != nil {
@@ -4082,8 +4068,7 @@ func (resource *Panel) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "transparent")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("transparent", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "datasource"
 	if fields["datasource"] != nil {
@@ -4789,8 +4774,7 @@ func (resource *MatcherConfig) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "options"
 	if fields["options"] != nil {
@@ -4861,8 +4845,7 @@ func (resource *DynamicConfigValue) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "value"
 	if fields["value"] != nil {
@@ -5410,8 +5393,7 @@ func (resource *RowPanel) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "collapsed")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("collapsed", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "title"
 	if fields["title"] != nil {
@@ -5730,8 +5712,7 @@ func (resource *TimePicker) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "hidden")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("hidden", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "refresh_intervals"
 	if fields["refresh_intervals"] != nil {
@@ -5745,8 +5726,7 @@ func (resource *TimePicker) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "refresh_intervals")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("refresh_intervals", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "collapse"
 	if fields["collapse"] != nil {
@@ -5759,8 +5739,7 @@ func (resource *TimePicker) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "collapse")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("collapse", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "enable"
 	if fields["enable"] != nil {
@@ -5773,8 +5752,7 @@ func (resource *TimePicker) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "enable")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("enable", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "time_options"
 	if fields["time_options"] != nil {
@@ -5788,8 +5766,7 @@ func (resource *TimePicker) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "time_options")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("time_options", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
@@ -6725,8 +6702,7 @@ func (resource *DashboardDashboardTime) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "from")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "to"
 	if fields["to"] != nil {
@@ -6739,8 +6715,7 @@ func (resource *DashboardDashboardTime) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "to")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
+
 	}
 
 	for field := range fields {
@@ -7283,8 +7258,7 @@ func (resource *DashboardGraphPanelLegend) UnmarshalJSONStrict(raw []byte) error
 
 		}
 		delete(fields, "show")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("show", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "sort"
 	if fields["sort"] != nil {
