@@ -23,6 +23,12 @@ public class RelativeTimeRange {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("to")
     public Long to;
+    public RelativeTimeRange() {}
+    
+    public RelativeTimeRange(Long from,Long to) {
+        this.from = from;
+        this.to = to;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

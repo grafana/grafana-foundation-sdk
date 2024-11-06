@@ -230,8 +230,7 @@ func (resource *MapViewConfig) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "lat"
 	if fields["lat"] != nil {

@@ -14,6 +14,12 @@ public class DynamicConfigValue {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("value")
     public Object value;
+    public DynamicConfigValue() {}
+    
+    public DynamicConfigValue(String id,Object value) {
+        this.id = id;
+        this.value = value;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
