@@ -6,12 +6,12 @@ labels: [question, help wanted]
 body:
   - type: markdown
     attributes:
-      values: |
+      value: |
         If you are looking for examples, you should take a look to [this link](https://github.com/grafana/grafana-foundation-sdk/tree/main/examples).
         Also each language in each branch has extra information about their setup.
   - type: markdown
     attributes:
-      values: |
+      value: |
         #
 
   - type: textarea

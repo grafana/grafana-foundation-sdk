@@ -13,7 +13,7 @@ body:
       
   - type: markdown
     attributes:
-      values: |
+      value: |
         #
   
   - type: dropdown
@@ -22,6 +22,7 @@ body:
       label: version
       description: What's version are you using?
       options:
+        - 11.3.x
         - 11.2.x
         - 11.1.x
         - 11.0.x
@@ -29,7 +30,7 @@ body:
         - 10.3.x
         - 10.2.x
         - 10.1.x
-      default: 11.2.x
+      default: 0
     validations:
       required: true
     
