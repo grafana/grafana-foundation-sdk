@@ -2,7 +2,7 @@ name: Feature/enhancement request
 description: Request for feature or enhancement that are you would like to see.
 title: "[Feature]: <title>"
 labels: [enhancement]
----
+
 body:
   - type: markdown
     attributes:

@@ -2,7 +2,7 @@ name: General issue
 description: Ask for information, doubts, etc...
 title: "[Question]: <title>"
 labels: [question, help wanted]
----
+
 body:
   - type: markdown
     attributes:

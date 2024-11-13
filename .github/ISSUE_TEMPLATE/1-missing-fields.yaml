@@ -1,7 +1,7 @@
 name: Missing fields
 description: Report a missing field/builder in any model.
 title: "[Schemas]: Missing <field> field for <model>"
----
+
 body:
   - type: markdown
     attributes:

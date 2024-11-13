@@ -2,7 +2,7 @@ name: New bug report
 description: Report a new bug
 title: "[Bug]: <title>"
 labels: [bug]
----
+
 body:
   - type: markdown
     attributes:
