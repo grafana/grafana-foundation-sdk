@@ -6,11 +6,11 @@ labels: [enhancement]
 body:
   - type: markdown
     attributes:
-      values: |
+      value: |
         Grafana-foundation-SDK is open to improvements. We will evaluate your request. 
   - type: markdown
     attributes:
-      values: |
+      value: |
         #
 
   - type: textarea
