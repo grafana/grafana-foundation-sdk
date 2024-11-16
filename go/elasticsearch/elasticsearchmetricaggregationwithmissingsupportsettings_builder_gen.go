@@ -14,13 +14,11 @@ type ElasticsearchMetricAggregationWithMissingSupportSettingsBuilder struct {
 }
 
 func NewElasticsearchMetricAggregationWithMissingSupportSettingsBuilder() *ElasticsearchMetricAggregationWithMissingSupportSettingsBuilder {
-	resource := &ElasticsearchMetricAggregationWithMissingSupportSettings{}
+	resource := NewElasticsearchMetricAggregationWithMissingSupportSettings()
 	builder := &ElasticsearchMetricAggregationWithMissingSupportSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *ElasticsearchMetricAggregationWithMissingSupportSettingsBuilder) 
 	builder.internal.Missing = &missing
 
 	return builder
-}
-
-func (builder *ElasticsearchMetricAggregationWithMissingSupportSettingsBuilder) applyDefaults() {
 }

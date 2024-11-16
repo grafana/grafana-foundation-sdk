@@ -14,13 +14,11 @@ type DashboardDashboardTemplatingBuilder struct {
 }
 
 func NewDashboardDashboardTemplatingBuilder() *DashboardDashboardTemplatingBuilder {
-	resource := &DashboardDashboardTemplating{}
+	resource := NewDashboardDashboardTemplating()
 	builder := &DashboardDashboardTemplatingBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -47,7 +45,4 @@ func (builder *DashboardDashboardTemplatingBuilder) List(list []cog.Builder[Vari
 	builder.internal.List = listResources
 
 	return builder
-}
-
-func (builder *DashboardDashboardTemplatingBuilder) applyDefaults() {
 }

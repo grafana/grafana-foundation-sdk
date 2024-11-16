@@ -56,6 +56,11 @@ type PieChartLegendOptions struct {
 	Calcs       []string                 `json:"calcs"`
 }
 
+// NewPieChartLegendOptions creates a new PieChartLegendOptions object.
+func NewPieChartLegendOptions() *PieChartLegendOptions {
+	return &PieChartLegendOptions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PieChartLegendOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *PieChartLegendOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -302,6 +307,15 @@ type Options struct {
 	Orientation   common.VizOrientation         `json:"orientation"`
 }
 
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		Tooltip:       *common.NewVizTooltipOptions(),
+		ReduceOptions: *common.NewReduceDataOptions(),
+		Legend:        *NewPieChartLegendOptions(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
@@ -493,6 +507,11 @@ func (resource Options) Validate() error {
 }
 
 type FieldConfig = common.HideableFieldConfig
+
+// NewFieldConfig creates a new FieldConfig object.
+func NewFieldConfig() *FieldConfig {
+	return common.NewHideableFieldConfig()
+}
 
 // VariantConfig returns the configuration related to piechart panels.
 // This configuration describes how to unmarshal it, convert it to code, …

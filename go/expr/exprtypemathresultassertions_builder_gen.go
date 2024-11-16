@@ -14,13 +14,11 @@ type ExprTypeMathResultAssertionsBuilder struct {
 }
 
 func NewExprTypeMathResultAssertionsBuilder() *ExprTypeMathResultAssertionsBuilder {
-	resource := &ExprTypeMathResultAssertions{}
+	resource := NewExprTypeMathResultAssertions()
 	builder := &ExprTypeMathResultAssertionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -65,7 +63,4 @@ func (builder *ExprTypeMathResultAssertionsBuilder) TypeVersion(typeVersion []in
 	builder.internal.TypeVersion = typeVersion
 
 	return builder
-}
-
-func (builder *ExprTypeMathResultAssertionsBuilder) applyDefaults() {
 }

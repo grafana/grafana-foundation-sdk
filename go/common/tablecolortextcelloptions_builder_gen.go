@@ -15,13 +15,11 @@ type TableColorTextCellOptionsBuilder struct {
 }
 
 func NewTableColorTextCellOptionsBuilder() *TableColorTextCellOptionsBuilder {
-	resource := &TableColorTextCellOptions{}
+	resource := NewTableColorTextCellOptions()
 	builder := &TableColorTextCellOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "color-text"
 
 	return builder
@@ -39,7 +37,4 @@ func (builder *TableColorTextCellOptionsBuilder) WrapText(wrapText bool) *TableC
 	builder.internal.WrapText = &wrapText
 
 	return builder
-}
-
-func (builder *TableColorTextCellOptionsBuilder) applyDefaults() {
 }

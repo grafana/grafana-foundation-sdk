@@ -14,13 +14,11 @@ type CandlestickColorsBuilder struct {
 }
 
 func NewCandlestickColorsBuilder() *CandlestickColorsBuilder {
-	resource := &CandlestickColors{}
+	resource := NewCandlestickColors()
 	builder := &CandlestickColorsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,10 +47,4 @@ func (builder *CandlestickColorsBuilder) Flat(flat string) *CandlestickColorsBui
 	builder.internal.Flat = flat
 
 	return builder
-}
-
-func (builder *CandlestickColorsBuilder) applyDefaults() {
-	builder.Up("green")
-	builder.Down("red")
-	builder.Flat("gray")
 }

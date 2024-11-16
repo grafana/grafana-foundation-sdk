@@ -14,13 +14,11 @@ type RateBuilder struct {
 }
 
 func NewRateBuilder() *RateBuilder {
-	resource := &Rate{}
+	resource := NewRate()
 	builder := &RateBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "rate"
 
 	return builder
@@ -61,7 +59,4 @@ func (builder *RateBuilder) Hide(hide bool) *RateBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *RateBuilder) applyDefaults() {
 }

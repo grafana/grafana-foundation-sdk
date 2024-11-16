@@ -9,6 +9,14 @@
  * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewDataquery
+
+NewDataquery creates a new Dataquery object.
+
+```go
+func NewDataquery() *Dataquery
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to parca dataqueries.

@@ -15,13 +15,11 @@ type LineConfigBuilder struct {
 }
 
 func NewLineConfigBuilder() *LineConfigBuilder {
-	resource := &LineConfig{}
+	resource := NewLineConfig()
 	builder := &LineConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -55,7 +53,4 @@ func (builder *LineConfigBuilder) Radius(radius float64) *LineConfigBuilder {
 	builder.internal.Radius = &radius
 
 	return builder
-}
-
-func (builder *LineConfigBuilder) applyDefaults() {
 }

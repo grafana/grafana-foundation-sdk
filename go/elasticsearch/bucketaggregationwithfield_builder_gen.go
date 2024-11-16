@@ -14,13 +14,11 @@ type BucketAggregationWithFieldBuilder struct {
 }
 
 func NewBucketAggregationWithFieldBuilder() *BucketAggregationWithFieldBuilder {
-	resource := &BucketAggregationWithField{}
+	resource := NewBucketAggregationWithField()
 	builder := &BucketAggregationWithFieldBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -55,7 +53,4 @@ func (builder *BucketAggregationWithFieldBuilder) Settings(settings any) *Bucket
 	builder.internal.Settings = &settings
 
 	return builder
-}
-
-func (builder *BucketAggregationWithFieldBuilder) applyDefaults() {
 }

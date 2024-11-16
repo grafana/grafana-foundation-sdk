@@ -14,13 +14,11 @@ type LogsBuilder struct {
 }
 
 func NewLogsBuilder() *LogsBuilder {
-	resource := &Logs{}
+	resource := NewLogs()
 	builder := &LogsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "logs"
 
 	return builder
@@ -55,7 +53,4 @@ func (builder *LogsBuilder) Hide(hide bool) *LogsBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *LogsBuilder) applyDefaults() {
 }

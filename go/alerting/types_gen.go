@@ -28,6 +28,11 @@ type Query struct {
 	RelativeTimeRange *RelativeTimeRange `json:"relativeTimeRange,omitempty"`
 }
 
+// NewQuery creates a new Query object.
+func NewQuery() *Query {
+	return &Query{}
+}
+
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode Query from JSON.
 func (resource *Query) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
@@ -241,6 +246,11 @@ type RuleGroup struct {
 	Title    *string   `json:"title,omitempty"`
 }
 
+// NewRuleGroup creates a new RuleGroup object.
+func NewRuleGroup() *RuleGroup {
+	return &RuleGroup{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RuleGroup` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RuleGroup) UnmarshalJSONStrict(raw []byte) error {
@@ -407,6 +417,13 @@ type NotificationSettings struct {
 	// Notifications will be resent after either repeat_interval or the data retention period have passed, whichever
 	// occurs first. `repeat_interval` should not be less than `group_interval`.
 	RepeatInterval *string `json:"repeat_interval,omitempty"`
+}
+
+// NewNotificationSettings creates a new NotificationSettings object.
+func NewNotificationSettings() *NotificationSettings {
+	return &NotificationSettings{
+		GroupBy: []string{"alertname", "grafana_folder"},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NotificationSettings` from JSON.
@@ -581,6 +598,11 @@ type ContactPoint struct {
 	// UID is the unique identifier of the contact point. The UID can be
 	// set by the user.
 	Uid *string `json:"uid,omitempty"`
+}
+
+// NewContactPoint creates a new ContactPoint object.
+func NewContactPoint() *ContactPoint {
+	return &ContactPoint{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ContactPoint` from JSON.
@@ -771,6 +793,11 @@ type Matcher struct {
 	Value *string    `json:"Value,omitempty"`
 }
 
+// NewMatcher creates a new Matcher object.
+func NewMatcher() *Matcher {
+	return &Matcher{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Matcher` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Matcher) UnmarshalJSONStrict(raw []byte) error {
@@ -874,6 +901,11 @@ type Matchers []Matcher
 type MuteTiming struct {
 	Name          *string        `json:"name,omitempty"`
 	TimeIntervals []TimeInterval `json:"time_intervals,omitempty"`
+}
+
+// NewMuteTiming creates a new MuteTiming object.
+func NewMuteTiming() *MuteTiming {
+	return &MuteTiming{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MuteTiming` from JSON.
@@ -981,6 +1013,11 @@ type NotificationTemplate struct {
 	Provenance *Provenance `json:"provenance,omitempty"`
 	Template   *string     `json:"template,omitempty"`
 	Version    *string     `json:"version,omitempty"`
+}
+
+// NewNotificationTemplate creates a new NotificationTemplate object.
+func NewNotificationTemplate() *NotificationTemplate {
+	return &NotificationTemplate{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NotificationTemplate` from JSON.
@@ -1125,6 +1162,11 @@ type Rule struct {
 	Title                string                `json:"title"`
 	Uid                  *string               `json:"uid,omitempty"`
 	Updated              *time.Time            `json:"updated,omitempty"`
+}
+
+// NewRule creates a new Rule object.
+func NewRule() *Rule {
+	return &Rule{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Rule` from JSON.
@@ -1589,6 +1631,11 @@ type RecordRule struct {
 	Metric string `json:"metric"`
 }
 
+// NewRecordRule creates a new RecordRule object.
+func NewRecordRule() *RecordRule {
+	return &RecordRule{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RecordRule` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RecordRule) UnmarshalJSONStrict(raw []byte) error {
@@ -1669,6 +1716,11 @@ type RelativeTimeRange struct {
 	// as an int64 nanosecond count. The representation limits the
 	// largest representable duration to approximately 290 years.
 	To *Duration `json:"to,omitempty"`
+}
+
+// NewRelativeTimeRange creates a new RelativeTimeRange object.
+func NewRelativeTimeRange() *RelativeTimeRange {
+	return &RelativeTimeRange{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RelativeTimeRange` from JSON.
@@ -1766,6 +1818,11 @@ type NotificationPolicy struct {
 	Receiver          *string              `json:"receiver,omitempty"`
 	RepeatInterval    *string              `json:"repeat_interval,omitempty"`
 	Routes            []NotificationPolicy `json:"routes,omitempty"`
+}
+
+// NewNotificationPolicy creates a new NotificationPolicy object.
+func NewNotificationPolicy() *NotificationPolicy {
+	return &NotificationPolicy{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NotificationPolicy` from JSON.
@@ -2141,6 +2198,11 @@ type TimeInterval struct {
 	TimeIntervals []TimeIntervalItem `json:"time_intervals,omitempty"`
 }
 
+// NewTimeInterval creates a new TimeInterval object.
+func NewTimeInterval() *TimeInterval {
+	return &TimeInterval{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeInterval` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TimeInterval) UnmarshalJSONStrict(raw []byte) error {
@@ -2248,6 +2310,11 @@ type TimeIntervalItem struct {
 	Times       []TimeIntervalTimeRange `json:"times,omitempty"`
 	Weekdays    []string                `json:"weekdays,omitempty"`
 	Years       []string                `json:"years,omitempty"`
+}
+
+// NewTimeIntervalItem creates a new TimeIntervalItem object.
+func NewTimeIntervalItem() *TimeIntervalItem {
+	return &TimeIntervalItem{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeIntervalItem` from JSON.
@@ -2441,6 +2508,11 @@ func (resource TimeIntervalItem) Validate() error {
 type TimeIntervalTimeRange struct {
 	EndTime   *string `json:"end_time,omitempty"`
 	StartTime *string `json:"start_time,omitempty"`
+}
+
+// NewTimeIntervalTimeRange creates a new TimeIntervalTimeRange object.
+func NewTimeIntervalTimeRange() *TimeIntervalTimeRange {
+	return &TimeIntervalTimeRange{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeIntervalTimeRange` from JSON.

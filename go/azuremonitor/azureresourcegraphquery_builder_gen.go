@@ -14,13 +14,11 @@ type AzureResourceGraphQueryBuilder struct {
 }
 
 func NewAzureResourceGraphQueryBuilder() *AzureResourceGraphQueryBuilder {
-	resource := &AzureResourceGraphQuery{}
+	resource := NewAzureResourceGraphQuery()
 	builder := &AzureResourceGraphQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,7 +43,4 @@ func (builder *AzureResourceGraphQueryBuilder) ResultFormat(resultFormat string)
 	builder.internal.ResultFormat = &resultFormat
 
 	return builder
-}
-
-func (builder *AzureResourceGraphQueryBuilder) applyDefaults() {
 }

@@ -49,6 +49,14 @@
  * <span class="badge builder"></span> [WorkspacesQueryBuilder](./builder-WorkspacesQueryBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewAzureMonitorQuery
+
+NewAzureMonitorQuery creates a new AzureMonitorQuery object.
+
+```go
+func NewAzureMonitorQuery() *AzureMonitorQuery
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to grafana-azure-monitor-datasource dataqueries.
@@ -57,6 +65,166 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> NewAzureMetricQuery
+
+NewAzureMetricQuery creates a new AzureMetricQuery object.
+
+```go
+func NewAzureMetricQuery() *AzureMetricQuery
+```
+
+### <span class="badge function"></span> NewAzureLogsQuery
+
+NewAzureLogsQuery creates a new AzureLogsQuery object.
+
+```go
+func NewAzureLogsQuery() *AzureLogsQuery
+```
+
+### <span class="badge function"></span> NewAzureTracesQuery
+
+NewAzureTracesQuery creates a new AzureTracesQuery object.
+
+```go
+func NewAzureTracesQuery() *AzureTracesQuery
+```
+
+### <span class="badge function"></span> NewAzureTracesFilter
+
+NewAzureTracesFilter creates a new AzureTracesFilter object.
+
+```go
+func NewAzureTracesFilter() *AzureTracesFilter
+```
+
+### <span class="badge function"></span> NewAzureResourceGraphQuery
+
+NewAzureResourceGraphQuery creates a new AzureResourceGraphQuery object.
+
+```go
+func NewAzureResourceGraphQuery() *AzureResourceGraphQuery
+```
+
+### <span class="badge function"></span> NewAzureMonitorResource
+
+NewAzureMonitorResource creates a new AzureMonitorResource object.
+
+```go
+func NewAzureMonitorResource() *AzureMonitorResource
+```
+
+### <span class="badge function"></span> NewAzureMetricDimension
+
+NewAzureMetricDimension creates a new AzureMetricDimension object.
+
+```go
+func NewAzureMetricDimension() *AzureMetricDimension
+```
+
+### <span class="badge function"></span> NewBaseGrafanaTemplateVariableQuery
+
+NewBaseGrafanaTemplateVariableQuery creates a new BaseGrafanaTemplateVariableQuery object.
+
+```go
+func NewBaseGrafanaTemplateVariableQuery() *BaseGrafanaTemplateVariableQuery
+```
+
+### <span class="badge function"></span> NewUnknownQuery
+
+NewUnknownQuery creates a new UnknownQuery object.
+
+```go
+func NewUnknownQuery() *UnknownQuery
+```
+
+### <span class="badge function"></span> NewAppInsightsMetricNameQuery
+
+NewAppInsightsMetricNameQuery creates a new AppInsightsMetricNameQuery object.
+
+```go
+func NewAppInsightsMetricNameQuery() *AppInsightsMetricNameQuery
+```
+
+### <span class="badge function"></span> NewAppInsightsGroupByQuery
+
+NewAppInsightsGroupByQuery creates a new AppInsightsGroupByQuery object.
+
+```go
+func NewAppInsightsGroupByQuery() *AppInsightsGroupByQuery
+```
+
+### <span class="badge function"></span> NewSubscriptionsQuery
+
+NewSubscriptionsQuery creates a new SubscriptionsQuery object.
+
+```go
+func NewSubscriptionsQuery() *SubscriptionsQuery
+```
+
+### <span class="badge function"></span> NewResourceGroupsQuery
+
+NewResourceGroupsQuery creates a new ResourceGroupsQuery object.
+
+```go
+func NewResourceGroupsQuery() *ResourceGroupsQuery
+```
+
+### <span class="badge function"></span> NewResourceNamesQuery
+
+NewResourceNamesQuery creates a new ResourceNamesQuery object.
+
+```go
+func NewResourceNamesQuery() *ResourceNamesQuery
+```
+
+### <span class="badge function"></span> NewMetricNamespaceQuery
+
+NewMetricNamespaceQuery creates a new MetricNamespaceQuery object.
+
+```go
+func NewMetricNamespaceQuery() *MetricNamespaceQuery
+```
+
+### <span class="badge function"></span> NewMetricDefinitionsQuery
+
+NewMetricDefinitionsQuery creates a new MetricDefinitionsQuery object.
+
+```go
+func NewMetricDefinitionsQuery() *MetricDefinitionsQuery
+```
+
+### <span class="badge function"></span> NewMetricNamesQuery
+
+NewMetricNamesQuery creates a new MetricNamesQuery object.
+
+```go
+func NewMetricNamesQuery() *MetricNamesQuery
+```
+
+### <span class="badge function"></span> NewWorkspacesQuery
+
+NewWorkspacesQuery creates a new WorkspacesQuery object.
+
+```go
+func NewWorkspacesQuery() *WorkspacesQuery
+```
+
+### <span class="badge function"></span> NewGrafanaTemplateVariableQuery
+
+NewGrafanaTemplateVariableQuery creates a new GrafanaTemplateVariableQuery object.
+
+```go
+func NewGrafanaTemplateVariableQuery() *GrafanaTemplateVariableQuery
+```
+
+### <span class="badge function"></span> NewAppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery
+
+NewAppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery creates a new AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery object.
+
+```go
+func NewAppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery() *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery
 ```
 
 ### <span class="badge function"></span> AzureMonitorQueryConverter

@@ -14,13 +14,11 @@ type MovingAverageModelOptionBuilder struct {
 }
 
 func NewMovingAverageModelOptionBuilder() *MovingAverageModelOptionBuilder {
-	resource := &MovingAverageModelOption{}
+	resource := NewMovingAverageModelOption()
 	builder := &MovingAverageModelOptionBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *MovingAverageModelOptionBuilder) Value(value MovingAverageModel) 
 	builder.internal.Value = value
 
 	return builder
-}
-
-func (builder *MovingAverageModelOptionBuilder) applyDefaults() {
 }

@@ -16,13 +16,11 @@ type TableFieldOptionsBuilder struct {
 }
 
 func NewTableFieldOptionsBuilder() *TableFieldOptionsBuilder {
-	resource := &TableFieldOptions{}
+	resource := NewTableFieldOptions()
 	builder := &TableFieldOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -90,9 +88,4 @@ func (builder *TableFieldOptionsBuilder) HideHeader(hideHeader bool) *TableField
 	builder.internal.HideHeader = &hideHeader
 
 	return builder
-}
-
-func (builder *TableFieldOptionsBuilder) applyDefaults() {
-	builder.Align("auto")
-	builder.Inspect(false)
 }

@@ -14,13 +14,11 @@ type AnnotationPanelFilterBuilder struct {
 }
 
 func NewAnnotationPanelFilterBuilder() *AnnotationPanelFilterBuilder {
-	resource := &AnnotationPanelFilter{}
+	resource := NewAnnotationPanelFilter()
 	builder := &AnnotationPanelFilterBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,8 +43,4 @@ func (builder *AnnotationPanelFilterBuilder) Ids(ids []uint8) *AnnotationPanelFi
 	builder.internal.Ids = ids
 
 	return builder
-}
-
-func (builder *AnnotationPanelFilterBuilder) applyDefaults() {
-	builder.Exclude(false)
 }

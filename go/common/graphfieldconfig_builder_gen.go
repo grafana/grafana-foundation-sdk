@@ -15,13 +15,11 @@ type GraphFieldConfigBuilder struct {
 }
 
 func NewGraphFieldConfigBuilder() *GraphFieldConfigBuilder {
-	resource := &GraphFieldConfig{}
+	resource := NewGraphFieldConfig()
 	builder := &GraphFieldConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -252,7 +250,4 @@ func (builder *GraphFieldConfigBuilder) BarMaxWidth(barMaxWidth float64) *GraphF
 	builder.internal.BarMaxWidth = &barMaxWidth
 
 	return builder
-}
-
-func (builder *GraphFieldConfigBuilder) applyDefaults() {
 }

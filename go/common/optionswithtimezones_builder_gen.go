@@ -15,13 +15,11 @@ type OptionsWithTimezonesBuilder struct {
 }
 
 func NewOptionsWithTimezonesBuilder() *OptionsWithTimezonesBuilder {
-	resource := &OptionsWithTimezones{}
+	resource := NewOptionsWithTimezones()
 	builder := &OptionsWithTimezonesBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -38,7 +36,4 @@ func (builder *OptionsWithTimezonesBuilder) Timezone(timezone []TimeZone) *Optio
 	builder.internal.Timezone = timezone
 
 	return builder
-}
-
-func (builder *OptionsWithTimezonesBuilder) applyDefaults() {
 }
