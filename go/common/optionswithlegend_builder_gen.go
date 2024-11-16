@@ -15,13 +15,11 @@ type OptionsWithLegendBuilder struct {
 }
 
 func NewOptionsWithLegendBuilder() *OptionsWithLegendBuilder {
-	resource := &OptionsWithLegend{}
+	resource := NewOptionsWithLegend()
 	builder := &OptionsWithLegendBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *OptionsWithLegendBuilder) Legend(legend cog.Builder[VizLegendOpti
 	builder.internal.Legend = legendResource
 
 	return builder
-}
-
-func (builder *OptionsWithLegendBuilder) applyDefaults() {
 }

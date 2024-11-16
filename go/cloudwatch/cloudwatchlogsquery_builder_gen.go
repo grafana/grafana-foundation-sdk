@@ -17,13 +17,11 @@ type CloudWatchLogsQueryBuilder struct {
 }
 
 func NewCloudWatchLogsQueryBuilder() *CloudWatchLogsQueryBuilder {
-	resource := &CloudWatchLogsQuery{}
+	resource := NewCloudWatchLogsQuery()
 	builder := &CloudWatchLogsQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -127,8 +125,4 @@ func (builder *CloudWatchLogsQueryBuilder) Datasource(datasource dashboard.DataS
 	builder.internal.Datasource = &datasource
 
 	return builder
-}
-
-func (builder *CloudWatchLogsQueryBuilder) applyDefaults() {
-	builder.QueryMode("Logs")
 }

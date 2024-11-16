@@ -14,13 +14,11 @@ type TeamBuilder struct {
 }
 
 func NewTeamBuilder(name string) *TeamBuilder {
-	resource := &Team{}
+	resource := NewTeam()
 	builder := &TeamBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Name = name
 
 	return builder
@@ -46,7 +44,4 @@ func (builder *TeamBuilder) Email(email string) *TeamBuilder {
 	builder.internal.Email = &email
 
 	return builder
-}
-
-func (builder *TeamBuilder) applyDefaults() {
 }

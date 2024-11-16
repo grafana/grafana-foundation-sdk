@@ -44,6 +44,16 @@ colorScheme(\Grafana\Foundation\Cog\Builder $color)
 controls(\Grafana\Foundation\Cog\Builder $controls)
 ```
 
+### <span class="badge object-method"></span> dataLinks
+
+The behavior when clicking on a result
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink>> $links
+
+```php
+dataLinks(array $links)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.

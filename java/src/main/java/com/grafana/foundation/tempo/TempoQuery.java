@@ -97,7 +97,7 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<TempoQuery> {
+    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
         protected final TempoQuery internal;
         
         public Builder() {

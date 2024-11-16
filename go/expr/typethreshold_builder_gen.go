@@ -16,13 +16,11 @@ type TypeThresholdBuilder struct {
 }
 
 func NewTypeThresholdBuilder() *TypeThresholdBuilder {
-	resource := &TypeThreshold{}
+	resource := NewTypeThreshold()
 	builder := &TypeThresholdBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "threshold"
 
 	return builder
@@ -132,7 +130,4 @@ func (builder *TypeThresholdBuilder) TimeRange(timeRange cog.Builder[ExprTypeThr
 	builder.internal.TimeRange = &timeRangeResource
 
 	return builder
-}
-
-func (builder *TypeThresholdBuilder) applyDefaults() {
 }

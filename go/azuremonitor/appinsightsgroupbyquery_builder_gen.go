@@ -14,13 +14,11 @@ type AppInsightsGroupByQueryBuilder struct {
 }
 
 func NewAppInsightsGroupByQueryBuilder() *AppInsightsGroupByQueryBuilder {
-	resource := &AppInsightsGroupByQuery{}
+	resource := NewAppInsightsGroupByQuery()
 	builder := &AppInsightsGroupByQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Kind = "AppInsightsGroupByQuery"
 
 	return builder
@@ -44,7 +42,4 @@ func (builder *AppInsightsGroupByQueryBuilder) MetricName(metricName string) *Ap
 	builder.internal.MetricName = metricName
 
 	return builder
-}
-
-func (builder *AppInsightsGroupByQueryBuilder) applyDefaults() {
 }

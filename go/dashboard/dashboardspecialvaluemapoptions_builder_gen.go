@@ -14,13 +14,11 @@ type DashboardSpecialValueMapOptionsBuilder struct {
 }
 
 func NewDashboardSpecialValueMapOptionsBuilder() *DashboardSpecialValueMapOptionsBuilder {
-	resource := &DashboardSpecialValueMapOptions{}
+	resource := NewDashboardSpecialValueMapOptions()
 	builder := &DashboardSpecialValueMapOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -50,7 +48,4 @@ func (builder *DashboardSpecialValueMapOptionsBuilder) Result(result cog.Builder
 	builder.internal.Result = resultResource
 
 	return builder
-}
-
-func (builder *DashboardSpecialValueMapOptionsBuilder) applyDefaults() {
 }

@@ -15,13 +15,11 @@ type VizTextDisplayOptionsBuilder struct {
 }
 
 func NewVizTextDisplayOptionsBuilder() *VizTextDisplayOptionsBuilder {
-	resource := &VizTextDisplayOptions{}
+	resource := NewVizTextDisplayOptions()
 	builder := &VizTextDisplayOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -46,7 +44,4 @@ func (builder *VizTextDisplayOptionsBuilder) ValueSize(valueSize float64) *VizTe
 	builder.internal.ValueSize = &valueSize
 
 	return builder
-}
-
-func (builder *VizTextDisplayOptionsBuilder) applyDefaults() {
 }

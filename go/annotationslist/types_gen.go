@@ -25,6 +25,21 @@ type Options struct {
 	NavigateAfter         string   `json:"navigateAfter"`
 }
 
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		OnlyFromThisDashboard: false,
+		OnlyInTimeRange:       false,
+		Limit:                 10,
+		ShowUser:              true,
+		ShowTime:              true,
+		ShowTags:              true,
+		NavigateToPanel:       true,
+		NavigateBefore:        "10m",
+		NavigateAfter:         "10m",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {

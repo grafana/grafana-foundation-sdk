@@ -15,13 +15,11 @@ type MetricQueryBuilder struct {
 }
 
 func NewMetricQueryBuilder() *MetricQueryBuilder {
-	resource := &MetricQuery{}
+	resource := NewMetricQuery()
 	builder := &MetricQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -132,8 +130,4 @@ func (builder *MetricQueryBuilder) GraphPeriod(graphPeriod string) *MetricQueryB
 	builder.internal.GraphPeriod = &graphPeriod
 
 	return builder
-}
-
-func (builder *MetricQueryBuilder) applyDefaults() {
-	builder.GraphPeriod("disabled")
 }

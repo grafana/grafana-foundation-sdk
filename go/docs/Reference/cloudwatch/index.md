@@ -51,6 +51,150 @@
  * <span class="badge builder"></span> [SQLExpressionBuilder](./builder-SQLExpressionBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewMetricStat
+
+NewMetricStat creates a new MetricStat object.
+
+```go
+func NewMetricStat() *MetricStat
+```
+
+### <span class="badge function"></span> NewCloudWatchMetricsQuery
+
+NewCloudWatchMetricsQuery creates a new CloudWatchMetricsQuery object.
+
+```go
+func NewCloudWatchMetricsQuery() *CloudWatchMetricsQuery
+```
+
+### <span class="badge function"></span> NewSQLExpression
+
+NewSQLExpression creates a new SQLExpression object.
+
+```go
+func NewSQLExpression() *SQLExpression
+```
+
+### <span class="badge function"></span> NewQueryEditorFunctionExpression
+
+NewQueryEditorFunctionExpression creates a new QueryEditorFunctionExpression object.
+
+```go
+func NewQueryEditorFunctionExpression() *QueryEditorFunctionExpression
+```
+
+### <span class="badge function"></span> NewQueryEditorFunctionParameterExpression
+
+NewQueryEditorFunctionParameterExpression creates a new QueryEditorFunctionParameterExpression object.
+
+```go
+func NewQueryEditorFunctionParameterExpression() *QueryEditorFunctionParameterExpression
+```
+
+### <span class="badge function"></span> NewQueryEditorPropertyExpression
+
+NewQueryEditorPropertyExpression creates a new QueryEditorPropertyExpression object.
+
+```go
+func NewQueryEditorPropertyExpression() *QueryEditorPropertyExpression
+```
+
+### <span class="badge function"></span> NewQueryEditorGroupByExpression
+
+NewQueryEditorGroupByExpression creates a new QueryEditorGroupByExpression object.
+
+```go
+func NewQueryEditorGroupByExpression() *QueryEditorGroupByExpression
+```
+
+### <span class="badge function"></span> NewQueryEditorOperatorExpression
+
+NewQueryEditorOperatorExpression creates a new QueryEditorOperatorExpression object.
+
+```go
+func NewQueryEditorOperatorExpression() *QueryEditorOperatorExpression
+```
+
+### <span class="badge function"></span> NewQueryEditorOperator
+
+NewQueryEditorOperator creates a new QueryEditorOperator object.
+
+```go
+func NewQueryEditorOperator() *QueryEditorOperator
+```
+
+### <span class="badge function"></span> NewQueryEditorOperatorValueType
+
+NewQueryEditorOperatorValueType creates a new QueryEditorOperatorValueType object.
+
+```go
+func NewQueryEditorOperatorValueType() *QueryEditorOperatorValueType
+```
+
+### <span class="badge function"></span> NewQueryEditorOperatorType
+
+NewQueryEditorOperatorType creates a new QueryEditorOperatorType object.
+
+```go
+func NewQueryEditorOperatorType() *QueryEditorOperatorType
+```
+
+### <span class="badge function"></span> NewQueryEditorProperty
+
+NewQueryEditorProperty creates a new QueryEditorProperty object.
+
+```go
+func NewQueryEditorProperty() *QueryEditorProperty
+```
+
+### <span class="badge function"></span> NewQueryEditorArrayExpression
+
+NewQueryEditorArrayExpression creates a new QueryEditorArrayExpression object.
+
+```go
+func NewQueryEditorArrayExpression() *QueryEditorArrayExpression
+```
+
+### <span class="badge function"></span> NewQueryEditorExpression
+
+NewQueryEditorExpression creates a new QueryEditorExpression object.
+
+```go
+func NewQueryEditorExpression() *QueryEditorExpression
+```
+
+### <span class="badge function"></span> NewCloudWatchLogsQuery
+
+NewCloudWatchLogsQuery creates a new CloudWatchLogsQuery object.
+
+```go
+func NewCloudWatchLogsQuery() *CloudWatchLogsQuery
+```
+
+### <span class="badge function"></span> NewLogGroup
+
+NewLogGroup creates a new LogGroup object.
+
+```go
+func NewLogGroup() *LogGroup
+```
+
+### <span class="badge function"></span> NewCloudWatchAnnotationQuery
+
+NewCloudWatchAnnotationQuery creates a new CloudWatchAnnotationQuery object.
+
+```go
+func NewCloudWatchAnnotationQuery() *CloudWatchAnnotationQuery
+```
+
+### <span class="badge function"></span> NewCloudWatchQuery
+
+NewCloudWatchQuery creates a new CloudWatchQuery object.
+
+```go
+func NewCloudWatchQuery() *CloudWatchQuery
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to cloudwatch dataqueries.
@@ -59,6 +203,54 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> NewStringOrArrayOfString
+
+NewStringOrArrayOfString creates a new StringOrArrayOfString object.
+
+```go
+func NewStringOrArrayOfString() *StringOrArrayOfString
+```
+
+### <span class="badge function"></span> NewQueryEditorPropertyExpressionOrQueryEditorFunctionExpression
+
+NewQueryEditorPropertyExpressionOrQueryEditorFunctionExpression creates a new QueryEditorPropertyExpressionOrQueryEditorFunctionExpression object.
+
+```go
+func NewQueryEditorPropertyExpressionOrQueryEditorFunctionExpression() *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression
+```
+
+### <span class="badge function"></span> NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType
+
+NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType creates a new StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType object.
+
+```go
+func NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType() *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType
+```
+
+### <span class="badge function"></span> NewStringOrBoolOrInt64
+
+NewStringOrBoolOrInt64 creates a new StringOrBoolOrInt64 object.
+
+```go
+func NewStringOrBoolOrInt64() *StringOrBoolOrInt64
+```
+
+### <span class="badge function"></span> NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
+
+NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression creates a new QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression object.
+
+```go
+func NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression() *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
+```
+
+### <span class="badge function"></span> NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
+
+NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery creates a new CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery object.
+
+```go
+func NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery() *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
 ```
 
 ### <span class="badge function"></span> MetricStatConverter

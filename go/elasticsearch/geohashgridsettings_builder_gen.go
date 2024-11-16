@@ -14,13 +14,11 @@ type GeoHashGridSettingsBuilder struct {
 }
 
 func NewGeoHashGridSettingsBuilder() *GeoHashGridSettingsBuilder {
-	resource := &GeoHashGridSettings{}
+	resource := NewGeoHashGridSettings()
 	builder := &GeoHashGridSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *GeoHashGridSettingsBuilder) Precision(precision string) *GeoHashG
 	builder.internal.Precision = &precision
 
 	return builder
-}
-
-func (builder *GeoHashGridSettingsBuilder) applyDefaults() {
 }

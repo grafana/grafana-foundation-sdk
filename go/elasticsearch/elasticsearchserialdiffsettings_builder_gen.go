@@ -14,13 +14,11 @@ type ElasticsearchSerialDiffSettingsBuilder struct {
 }
 
 func NewElasticsearchSerialDiffSettingsBuilder() *ElasticsearchSerialDiffSettingsBuilder {
-	resource := &ElasticsearchSerialDiffSettings{}
+	resource := NewElasticsearchSerialDiffSettings()
 	builder := &ElasticsearchSerialDiffSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *ElasticsearchSerialDiffSettingsBuilder) Lag(lag string) *Elastics
 	builder.internal.Lag = &lag
 
 	return builder
-}
-
-func (builder *ElasticsearchSerialDiffSettingsBuilder) applyDefaults() {
 }

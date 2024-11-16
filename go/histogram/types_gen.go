@@ -24,6 +24,15 @@ type Options struct {
 	Combine *bool `json:"combine,omitempty"`
 }
 
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		BucketOffset: cog.ToPtr[int32](0),
+		Legend:       *common.NewVizLegendOptions(),
+		Tooltip:      *common.NewVizTooltipOptions(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
@@ -188,6 +197,15 @@ type FieldConfig struct {
 	// Gradient appearance is influenced by the Fill opacity setting.
 	GradientMode   *common.GraphGradientMode `json:"gradientMode,omitempty"`
 	AxisBorderShow *bool                     `json:"axisBorderShow,omitempty"`
+}
+
+// NewFieldConfig creates a new FieldConfig object.
+func NewFieldConfig() *FieldConfig {
+	return &FieldConfig{
+		LineWidth:    cog.ToPtr[uint32](1),
+		FillOpacity:  cog.ToPtr[uint32](80),
+		GradientMode: cog.ToPtr(common.GraphGradientModeNone),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FieldConfig` from JSON.

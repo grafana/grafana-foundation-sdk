@@ -14,13 +14,11 @@ type DashboardRegexMapOptionsBuilder struct {
 }
 
 func NewDashboardRegexMapOptionsBuilder() *DashboardRegexMapOptionsBuilder {
-	resource := &DashboardRegexMapOptions{}
+	resource := NewDashboardRegexMapOptions()
 	builder := &DashboardRegexMapOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -50,7 +48,4 @@ func (builder *DashboardRegexMapOptionsBuilder) Result(result cog.Builder[ValueM
 	builder.internal.Result = resultResource
 
 	return builder
-}
-
-func (builder *DashboardRegexMapOptionsBuilder) applyDefaults() {
 }

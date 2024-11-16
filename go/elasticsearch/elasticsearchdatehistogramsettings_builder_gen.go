@@ -14,13 +14,11 @@ type ElasticsearchDateHistogramSettingsBuilder struct {
 }
 
 func NewElasticsearchDateHistogramSettingsBuilder() *ElasticsearchDateHistogramSettingsBuilder {
-	resource := &ElasticsearchDateHistogramSettings{}
+	resource := NewElasticsearchDateHistogramSettings()
 	builder := &ElasticsearchDateHistogramSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -61,7 +59,4 @@ func (builder *ElasticsearchDateHistogramSettingsBuilder) TimeZone(timeZone stri
 	builder.internal.TimeZone = &timeZone
 
 	return builder
-}
-
-func (builder *ElasticsearchDateHistogramSettingsBuilder) applyDefaults() {
 }

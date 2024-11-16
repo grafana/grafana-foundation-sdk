@@ -14,13 +14,11 @@ type AzureMonitorResourceBuilder struct {
 }
 
 func NewAzureMonitorResourceBuilder() *AzureMonitorResourceBuilder {
-	resource := &AzureMonitorResource{}
+	resource := NewAzureMonitorResource()
 	builder := &AzureMonitorResourceBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -61,7 +59,4 @@ func (builder *AzureMonitorResourceBuilder) Region(region string) *AzureMonitorR
 	builder.internal.Region = &region
 
 	return builder
-}
-
-func (builder *AzureMonitorResourceBuilder) applyDefaults() {
 }

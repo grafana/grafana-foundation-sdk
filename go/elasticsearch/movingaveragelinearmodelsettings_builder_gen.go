@@ -14,13 +14,11 @@ type MovingAverageLinearModelSettingsBuilder struct {
 }
 
 func NewMovingAverageLinearModelSettingsBuilder() *MovingAverageLinearModelSettingsBuilder {
-	resource := &MovingAverageLinearModelSettings{}
+	resource := NewMovingAverageLinearModelSettings()
 	builder := &MovingAverageLinearModelSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Model = "linear"
 
 	return builder
@@ -44,7 +42,4 @@ func (builder *MovingAverageLinearModelSettingsBuilder) Predict(predict string) 
 	builder.internal.Predict = predict
 
 	return builder
-}
-
-func (builder *MovingAverageLinearModelSettingsBuilder) applyDefaults() {
 }

@@ -116,7 +116,7 @@ public class CloudWatchMetricsQuery implements com.grafana.foundation.cog.varian
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<CloudWatchMetricsQuery> {
+    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
         protected final CloudWatchMetricsQuery internal;
         
         public Builder() {

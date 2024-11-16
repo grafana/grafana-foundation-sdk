@@ -14,13 +14,11 @@ type ResourceNamesQueryBuilder struct {
 }
 
 func NewResourceNamesQueryBuilder() *ResourceNamesQueryBuilder {
-	resource := &ResourceNamesQuery{}
+	resource := NewResourceNamesQuery()
 	builder := &ResourceNamesQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Kind = "ResourceNamesQuery"
 
 	return builder
@@ -56,7 +54,4 @@ func (builder *ResourceNamesQueryBuilder) MetricNamespace(metricNamespace string
 	builder.internal.MetricNamespace = metricNamespace
 
 	return builder
-}
-
-func (builder *ResourceNamesQueryBuilder) applyDefaults() {
 }

@@ -15,13 +15,11 @@ type ThresholdsConfigBuilder struct {
 }
 
 func NewThresholdsConfigBuilder() *ThresholdsConfigBuilder {
-	resource := &ThresholdsConfig{}
+	resource := NewThresholdsConfig()
 	builder := &ThresholdsConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -46,7 +44,4 @@ func (builder *ThresholdsConfigBuilder) Steps(steps []Threshold) *ThresholdsConf
 	builder.internal.Steps = steps
 
 	return builder
-}
-
-func (builder *ThresholdsConfigBuilder) applyDefaults() {
 }

@@ -11,6 +11,22 @@
  * <span class="badge builder"></span> [UpdateConfigBuilder](./builder-UpdateConfigBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewUpdateConfig
+
+NewUpdateConfig creates a new UpdateConfig object.
+
+```go
+func NewUpdateConfig() *UpdateConfig
+```
+
+### <span class="badge function"></span> NewOptions
+
+NewOptions creates a new Options object.
+
+```go
+func NewOptions() *Options
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to debug panels.
