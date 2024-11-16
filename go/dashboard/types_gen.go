@@ -73,6 +73,19 @@ type Dashboard struct {
 	Snapshot *Snapshot `json:"snapshot,omitempty"`
 }
 
+// NewDashboard creates a new Dashboard object.
+func NewDashboard() *Dashboard {
+	return &Dashboard{
+		Timezone:             cog.ToPtr[string]("browser"),
+		Editable:             cog.ToPtr[bool](true),
+		GraphTooltip:         cog.ToPtr(DashboardCursorSyncOff),
+		FiscalYearStartMonth: cog.ToPtr[uint8](0),
+		SchemaVersion:        36,
+		Templating:           *NewDashboardDashboardTemplating(),
+		Annotations:          *NewAnnotationContainer(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Dashboard` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Dashboard) UnmarshalJSONStrict(raw []byte) error {
@@ -667,6 +680,11 @@ type AnnotationTarget struct {
 	Type string `json:"type"`
 }
 
+// NewAnnotationTarget creates a new AnnotationTarget object.
+func NewAnnotationTarget() *AnnotationTarget {
+	return &AnnotationTarget{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationTarget` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AnnotationTarget) UnmarshalJSONStrict(raw []byte) error {
@@ -785,6 +803,13 @@ type AnnotationPanelFilter struct {
 	Ids []uint8 `json:"ids"`
 }
 
+// NewAnnotationPanelFilter creates a new AnnotationPanelFilter object.
+func NewAnnotationPanelFilter() *AnnotationPanelFilter {
+	return &AnnotationPanelFilter{
+		Exclude: cog.ToPtr[bool](false),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationPanelFilter` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AnnotationPanelFilter) UnmarshalJSONStrict(raw []byte) error {
@@ -872,6 +897,11 @@ func (resource AnnotationPanelFilter) Validate() error {
 type AnnotationContainer struct {
 	// List of annotations
 	List []AnnotationQuery `json:"list,omitempty"`
+}
+
+// NewAnnotationContainer creates a new AnnotationContainer object.
+func NewAnnotationContainer() *AnnotationContainer {
+	return &AnnotationContainer{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationContainer` from JSON.
@@ -977,6 +1007,16 @@ type AnnotationQuery struct {
 	// Set to 1 for the standard annotation query all dashboards have by default.
 	BuiltIn *float64 `json:"builtIn,omitempty"`
 	Expr    *string  `json:"expr,omitempty"`
+}
+
+// NewAnnotationQuery creates a new AnnotationQuery object.
+func NewAnnotationQuery() *AnnotationQuery {
+	return &AnnotationQuery{
+		Datasource: *NewDataSourceRef(),
+		Enable:     true,
+		Hide:       cog.ToPtr[bool](false),
+		BuiltIn:    cog.ToPtr[float64](0),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationQuery` from JSON.
@@ -1253,6 +1293,14 @@ type VariableModel struct {
 	Refresh *VariableRefresh `json:"refresh,omitempty"`
 	// Options sort order
 	Sort *VariableSort `json:"sort,omitempty"`
+}
+
+// NewVariableModel creates a new VariableModel object.
+func NewVariableModel() *VariableModel {
+	return &VariableModel{
+		SkipUrlSync: cog.ToPtr[bool](false),
+		Multi:       cog.ToPtr[bool](false),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VariableModel` from JSON.
@@ -1600,6 +1648,14 @@ type VariableOption struct {
 	Value StringOrArrayOfString `json:"value"`
 }
 
+// NewVariableOption creates a new VariableOption object.
+func NewVariableOption() *VariableOption {
+	return &VariableOption{
+		Text:  *NewStringOrArrayOfString(),
+		Value: *NewStringOrArrayOfString(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VariableOption` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *VariableOption) UnmarshalJSONStrict(raw []byte) error {
@@ -1760,6 +1816,10 @@ type DataSourceRef struct {
 	Uid *string `json:"uid,omitempty"`
 }
 
+// NewDataSourceRef creates a new DataSourceRef object.
+func NewDataSourceRef() *DataSourceRef {
+	return &DataSourceRef{}
+}
 func (resource *DataSourceRef) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
@@ -1879,6 +1939,16 @@ type DashboardLink struct {
 	IncludeVars bool `json:"includeVars"`
 	// If true, includes current time range in the link as query params
 	KeepTime bool `json:"keepTime"`
+}
+
+// NewDashboardLink creates a new DashboardLink object.
+func NewDashboardLink() *DashboardLink {
+	return &DashboardLink{
+		AsDropdown:  false,
+		TargetBlank: false,
+		IncludeVars: false,
+		KeepTime:    false,
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardLink` from JSON.
@@ -2180,6 +2250,11 @@ type FieldColor struct {
 	SeriesBy *FieldColorSeriesByMode `json:"seriesBy,omitempty"`
 }
 
+// NewFieldColor creates a new FieldColor object.
+func NewFieldColor() *FieldColor {
+	return &FieldColor{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FieldColor` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *FieldColor) UnmarshalJSONStrict(raw []byte) error {
@@ -2284,6 +2359,16 @@ type GridPos struct {
 	Y uint32 `json:"y"`
 	// Whether the panel is fixed within the grid. If true, the panel will not be affected by other panels' interactions
 	Static *bool `json:"static,omitempty"`
+}
+
+// NewGridPos creates a new GridPos object.
+func NewGridPos() *GridPos {
+	return &GridPos{
+		H: 9,
+		W: 12,
+		X: 0,
+		Y: 0,
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `GridPos` from JSON.
@@ -2445,6 +2530,11 @@ type Threshold struct {
 	Color string `json:"color"`
 }
 
+// NewThreshold creates a new Threshold object.
+func NewThreshold() *Threshold {
+	return &Threshold{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Threshold` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Threshold) UnmarshalJSONStrict(raw []byte) error {
@@ -2532,6 +2622,11 @@ type ThresholdsConfig struct {
 	Mode ThresholdsMode `json:"mode"`
 	// Must be sorted by 'value', first value is always -Infinity
 	Steps []Threshold `json:"steps"`
+}
+
+// NewThresholdsConfig creates a new ThresholdsConfig object.
+func NewThresholdsConfig() *ThresholdsConfig {
+	return &ThresholdsConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ThresholdsConfig` from JSON.
@@ -2637,6 +2732,11 @@ func (resource ThresholdsConfig) Validate() error {
 // Allow to transform the visual representation of specific data values in a visualization, irrespective of their original units
 type ValueMapping = ValueMapOrRangeMapOrRegexMapOrSpecialValueMap
 
+// NewValueMapping creates a new ValueMapping object.
+func NewValueMapping() *ValueMapping {
+	return NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap()
+}
+
 // Supported value mapping types
 // `value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
 // `range`: Maps numerical ranges to a display text and color. For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
@@ -2657,6 +2757,13 @@ type ValueMap struct {
 	Type string `json:"type"`
 	// Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
 	Options map[string]ValueMappingResult `json:"options"`
+}
+
+// NewValueMap creates a new ValueMap object.
+func NewValueMap() *ValueMap {
+	return &ValueMap{
+		Type: "value",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ValueMap` from JSON.
@@ -2774,6 +2881,14 @@ type RangeMap struct {
 	Options DashboardRangeMapOptions `json:"options"`
 }
 
+// NewRangeMap creates a new RangeMap object.
+func NewRangeMap() *RangeMap {
+	return &RangeMap{
+		Type:    "range",
+		Options: *NewDashboardRangeMapOptions(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RangeMap` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RangeMap) UnmarshalJSONStrict(raw []byte) error {
@@ -2868,6 +2983,14 @@ type RegexMap struct {
 	Options DashboardRegexMapOptions `json:"options"`
 }
 
+// NewRegexMap creates a new RegexMap object.
+func NewRegexMap() *RegexMap {
+	return &RegexMap{
+		Type:    "regex",
+		Options: *NewDashboardRegexMapOptions(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RegexMap` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RegexMap) UnmarshalJSONStrict(raw []byte) error {
@@ -2960,6 +3083,14 @@ func (resource RegexMap) Validate() error {
 type SpecialValueMap struct {
 	Type    string                          `json:"type"`
 	Options DashboardSpecialValueMapOptions `json:"options"`
+}
+
+// NewSpecialValueMap creates a new SpecialValueMap object.
+func NewSpecialValueMap() *SpecialValueMap {
+	return &SpecialValueMap{
+		Type:    "special",
+		Options: *NewDashboardSpecialValueMapOptions(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SpecialValueMap` from JSON.
@@ -3070,6 +3201,11 @@ type ValueMappingResult struct {
 	Icon *string `json:"icon,omitempty"`
 	// Position in the mapping array. Only used internally.
 	Index *int32 `json:"index,omitempty"`
+}
+
+// NewValueMappingResult creates a new ValueMappingResult object.
+func NewValueMappingResult() *ValueMappingResult {
+	return &ValueMappingResult{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ValueMappingResult` from JSON.
@@ -3202,6 +3338,11 @@ type DataTransformerConfig struct {
 	// Options to be passed to the transformer
 	// Valid options depend on the transformer id
 	Options any `json:"options"`
+}
+
+// NewDataTransformerConfig creates a new DataTransformerConfig object.
+func NewDataTransformerConfig() *DataTransformerConfig {
+	return &DataTransformerConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DataTransformerConfig` from JSON.
@@ -3358,6 +3499,15 @@ type TimePickerConfig struct {
 	TimeOptions []string `json:"time_options"`
 }
 
+// NewTimePickerConfig creates a new TimePickerConfig object.
+func NewTimePickerConfig() *TimePickerConfig {
+	return &TimePickerConfig{
+		Hidden:           false,
+		RefreshIntervals: []string{"5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"},
+		TimeOptions:      []string{"5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"},
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimePickerConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TimePickerConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -3497,6 +3647,11 @@ type Snapshot struct {
 	// user id of the snapshot creator
 	UserId    uint32     `json:"userId"`
 	Dashboard *Dashboard `json:"dashboard,omitempty"`
+}
+
+// NewSnapshot creates a new Snapshot object.
+func NewSnapshot() *Snapshot {
+	return &Snapshot{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Snapshot` from JSON.
@@ -3822,6 +3977,13 @@ type Panel struct {
 	Options any `json:"options,omitempty"`
 	// Field options allow you to change how the data is displayed in your visualizations.
 	FieldConfig *FieldConfigSource `json:"fieldConfig,omitempty"`
+}
+
+// NewPanel creates a new Panel object.
+func NewPanel() *Panel {
+	return &Panel{
+		Transparent: cog.ToPtr[bool](false),
+	}
 }
 
 func (resource *Panel) UnmarshalJSON(raw []byte) error {
@@ -4623,6 +4785,13 @@ type FieldConfigSource struct {
 	Overrides []DashboardFieldConfigSourceOverrides `json:"overrides"`
 }
 
+// NewFieldConfigSource creates a new FieldConfigSource object.
+func NewFieldConfigSource() *FieldConfigSource {
+	return &FieldConfigSource{
+		Defaults: *NewFieldConfig(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FieldConfigSource` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *FieldConfigSource) UnmarshalJSONStrict(raw []byte) error {
@@ -4738,6 +4907,11 @@ type LibraryPanelRef struct {
 	Uid string `json:"uid"`
 }
 
+// NewLibraryPanelRef creates a new LibraryPanelRef object.
+func NewLibraryPanelRef() *LibraryPanelRef {
+	return &LibraryPanelRef{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibraryPanelRef` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LibraryPanelRef) UnmarshalJSONStrict(raw []byte) error {
@@ -4816,6 +4990,13 @@ type MatcherConfig struct {
 	Options any `json:"options,omitempty"`
 }
 
+// NewMatcherConfig creates a new MatcherConfig object.
+func NewMatcherConfig() *MatcherConfig {
+	return &MatcherConfig{
+		Id: "",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MatcherConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MatcherConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -4885,6 +5066,13 @@ func (resource MatcherConfig) Validate() error {
 type DynamicConfigValue struct {
 	Id    string `json:"id"`
 	Value any    `json:"value,omitempty"`
+}
+
+// NewDynamicConfigValue creates a new DynamicConfigValue object.
+func NewDynamicConfigValue() *DynamicConfigValue {
+	return &DynamicConfigValue{
+		Id: "",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DynamicConfigValue` from JSON.
@@ -5001,12 +5189,17 @@ type FieldConfig struct {
 	// Panel color configuration
 	Color *FieldColor `json:"color,omitempty"`
 	// The behavior when clicking on a result
-	Links []any `json:"links,omitempty"`
+	Links []DashboardLink `json:"links,omitempty"`
 	// Alternative to empty string
 	NoValue *string `json:"noValue,omitempty"`
 	// custom is specified by the FieldConfig field
 	// in panel plugin schemas.
 	Custom any `json:"custom,omitempty"`
+}
+
+// NewFieldConfig creates a new FieldConfig object.
+func NewFieldConfig() *FieldConfig {
+	return &FieldConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FieldConfig` from JSON.
@@ -5184,8 +5377,19 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 	if fields["links"] != nil {
 		if string(fields["links"]) != "null" {
 
-			if err := json.Unmarshal(fields["links"], &resource.Links); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("links", err)...)
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["links"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 DashboardLink
+
+				result1 = DashboardLink{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("links["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Links = append(resource.Links, result1)
 			}
 
 		}
@@ -5352,8 +5556,7 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 	}
 
 	for i1 := range resource.Links {
-		// is DeepEqual good enough here?
-		if !reflect.DeepEqual(resource.Links[i1], other.Links[i1]) {
+		if !resource.Links[i1].Equals(other.Links[i1]) {
 			return false
 		}
 	}
@@ -5394,6 +5597,12 @@ func (resource FieldConfig) Validate() error {
 		}
 	}
 
+	for i1 := range resource.Links {
+		if err := resource.Links[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("links["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
 	if len(errs) == 0 {
 		return nil
 	}
@@ -5419,6 +5628,14 @@ type RowPanel struct {
 	Panels []Panel `json:"panels"`
 	// Name of template variable to repeat for.
 	Repeat *string `json:"repeat,omitempty"`
+}
+
+// NewRowPanel creates a new RowPanel object.
+func NewRowPanel() *RowPanel {
+	return &RowPanel{
+		Type:      "row",
+		Collapsed: false,
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RowPanel` from JSON.
@@ -5654,6 +5871,11 @@ type AnnotationActions struct {
 	CanEdit   *bool `json:"canEdit,omitempty"`
 }
 
+// NewAnnotationActions creates a new AnnotationActions object.
+func NewAnnotationActions() *AnnotationActions {
+	return &AnnotationActions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationActions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AnnotationActions) UnmarshalJSONStrict(raw []byte) error {
@@ -5752,6 +5974,11 @@ func (resource AnnotationActions) Validate() error {
 type AnnotationPermission struct {
 	Dashboard    *AnnotationActions `json:"dashboard,omitempty"`
 	Organization *AnnotationActions `json:"organization,omitempty"`
+}
+
+// NewAnnotationPermission creates a new AnnotationPermission object.
+func NewAnnotationPermission() *AnnotationPermission {
+	return &AnnotationPermission{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationPermission` from JSON.
@@ -5878,6 +6105,11 @@ type DashboardMeta struct {
 	UpdatedBy              *string    `json:"updatedBy,omitempty"`
 	Url                    *string    `json:"url,omitempty"`
 	Version                *int64     `json:"version,omitempty"`
+}
+
+// NewDashboardMeta creates a new DashboardMeta object.
+func NewDashboardMeta() *DashboardMeta {
+	return &DashboardMeta{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardMeta` from JSON.
@@ -6488,6 +6720,14 @@ type DashboardDashboardTime struct {
 	To   string `json:"to"`
 }
 
+// NewDashboardDashboardTime creates a new DashboardDashboardTime object.
+func NewDashboardDashboardTime() *DashboardDashboardTime {
+	return &DashboardDashboardTime{
+		From: "now-6h",
+		To:   "now",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardDashboardTime` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *DashboardDashboardTime) UnmarshalJSONStrict(raw []byte) error {
@@ -6558,6 +6798,11 @@ func (resource DashboardDashboardTime) Validate() error {
 type DashboardDashboardTemplating struct {
 	// List of configured template variables with their saved values along with some other metadata
 	List []VariableModel `json:"list,omitempty"`
+}
+
+// NewDashboardDashboardTemplating creates a new DashboardDashboardTemplating object.
+func NewDashboardDashboardTemplating() *DashboardDashboardTemplating {
+	return &DashboardDashboardTemplating{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardDashboardTemplating` from JSON.
@@ -6647,6 +6892,13 @@ type DashboardRangeMapOptions struct {
 	To *float64 `json:"to"`
 	// Config to apply when the value is within the range
 	Result ValueMappingResult `json:"result"`
+}
+
+// NewDashboardRangeMapOptions creates a new DashboardRangeMapOptions object.
+func NewDashboardRangeMapOptions() *DashboardRangeMapOptions {
+	return &DashboardRangeMapOptions{
+		Result: *NewValueMappingResult(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardRangeMapOptions` from JSON.
@@ -6761,6 +7013,13 @@ type DashboardRegexMapOptions struct {
 	Result ValueMappingResult `json:"result"`
 }
 
+// NewDashboardRegexMapOptions creates a new DashboardRegexMapOptions object.
+func NewDashboardRegexMapOptions() *DashboardRegexMapOptions {
+	return &DashboardRegexMapOptions{
+		Result: *NewValueMappingResult(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardRegexMapOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *DashboardRegexMapOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -6848,6 +7107,13 @@ type DashboardSpecialValueMapOptions struct {
 	Result ValueMappingResult `json:"result"`
 }
 
+// NewDashboardSpecialValueMapOptions creates a new DashboardSpecialValueMapOptions object.
+func NewDashboardSpecialValueMapOptions() *DashboardSpecialValueMapOptions {
+	return &DashboardSpecialValueMapOptions{
+		Result: *NewValueMappingResult(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardSpecialValueMapOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *DashboardSpecialValueMapOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -6931,6 +7197,13 @@ func (resource DashboardSpecialValueMapOptions) Validate() error {
 type DashboardFieldConfigSourceOverrides struct {
 	Matcher    MatcherConfig        `json:"matcher"`
 	Properties []DynamicConfigValue `json:"properties"`
+}
+
+// NewDashboardFieldConfigSourceOverrides creates a new DashboardFieldConfigSourceOverrides object.
+func NewDashboardFieldConfigSourceOverrides() *DashboardFieldConfigSourceOverrides {
+	return &DashboardFieldConfigSourceOverrides{
+		Matcher: *NewMatcherConfig(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardFieldConfigSourceOverrides` from JSON.
@@ -7041,6 +7314,13 @@ func (resource DashboardFieldConfigSourceOverrides) Validate() error {
 type StringOrBool struct {
 	String *string `json:"String,omitempty"`
 	Bool   *bool   `json:"Bool,omitempty"`
+}
+
+// NewStringOrBool creates a new StringOrBool object.
+func NewStringOrBool() *StringOrBool {
+	return &StringOrBool{
+		Bool: cog.ToPtr[bool](false),
+	}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `StringOrBool` as JSON.
@@ -7159,6 +7439,11 @@ func (resource StringOrBool) Validate() error {
 type PanelOrRowPanel struct {
 	Panel    *Panel    `json:"Panel,omitempty"`
 	RowPanel *RowPanel `json:"RowPanel,omitempty"`
+}
+
+// NewPanelOrRowPanel creates a new PanelOrRowPanel object.
+func NewPanelOrRowPanel() *PanelOrRowPanel {
+	return &PanelOrRowPanel{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `PanelOrRowPanel` as JSON.
@@ -7301,6 +7586,11 @@ type StringOrMap struct {
 	Map    map[string]any `json:"Map,omitempty"`
 }
 
+// NewStringOrMap creates a new StringOrMap object.
+func NewStringOrMap() *StringOrMap {
+	return &StringOrMap{}
+}
+
 // MarshalJSON implements a custom JSON marshalling logic to encode `StringOrMap` as JSON.
 func (resource StringOrMap) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
@@ -7419,6 +7709,11 @@ func (resource StringOrMap) Validate() error {
 type StringOrArrayOfString struct {
 	String        *string  `json:"String,omitempty"`
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
+}
+
+// NewStringOrArrayOfString creates a new StringOrArrayOfString object.
+func NewStringOrArrayOfString() *StringOrArrayOfString {
+	return &StringOrArrayOfString{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `StringOrArrayOfString` as JSON.
@@ -7540,6 +7835,11 @@ type ValueMapOrRangeMapOrRegexMapOrSpecialValueMap struct {
 	RangeMap        *RangeMap        `json:"RangeMap,omitempty"`
 	RegexMap        *RegexMap        `json:"RegexMap,omitempty"`
 	SpecialValueMap *SpecialValueMap `json:"SpecialValueMap,omitempty"`
+}
+
+// NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap creates a new ValueMapOrRangeMapOrRegexMapOrSpecialValueMap object.
+func NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap() *ValueMapOrRangeMapOrRegexMapOrSpecialValueMap {
+	return &ValueMapOrRangeMapOrRegexMapOrSpecialValueMap{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `ValueMapOrRangeMapOrRegexMapOrSpecialValueMap` as JSON.

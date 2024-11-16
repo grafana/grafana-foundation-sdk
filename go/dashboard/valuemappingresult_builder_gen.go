@@ -15,13 +15,11 @@ type ValueMappingResultBuilder struct {
 }
 
 func NewValueMappingResultBuilder() *ValueMappingResultBuilder {
-	resource := &ValueMappingResult{}
+	resource := NewValueMappingResult()
 	builder := &ValueMappingResultBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -60,7 +58,4 @@ func (builder *ValueMappingResultBuilder) Index(index int32) *ValueMappingResult
 	builder.internal.Index = &index
 
 	return builder
-}
-
-func (builder *ValueMappingResultBuilder) applyDefaults() {
 }

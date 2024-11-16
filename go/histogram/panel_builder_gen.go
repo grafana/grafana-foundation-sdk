@@ -18,13 +18,11 @@ type PanelBuilder struct {
 }
 
 func NewPanelBuilder() *PanelBuilder {
-	resource := &dashboard.Panel{}
+	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "histogram"
 
 	return builder
@@ -111,7 +109,7 @@ func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.H = h
 
@@ -121,7 +119,7 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.W = w
 
@@ -243,7 +241,7 @@ func (builder *PanelBuilder) LibraryPanel(libraryPanel dashboard.LibraryPanelRef
 // The display value for this field.  This supports template variables blank is auto
 func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.DisplayName = &displayName
 
@@ -262,7 +260,7 @@ func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder {
 // `currency:<unit>` for custom a currency unit.
 func (builder *PanelBuilder) Unit(unit string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Unit = &unit
 
@@ -275,7 +273,7 @@ func (builder *PanelBuilder) Unit(unit string) *PanelBuilder {
 // To display all decimals, set the unit to `String`.
 func (builder *PanelBuilder) Decimals(decimals float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Decimals = &decimals
 
@@ -285,7 +283,7 @@ func (builder *PanelBuilder) Decimals(decimals float64) *PanelBuilder {
 // The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
 func (builder *PanelBuilder) Min(min float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Min = &min
 
@@ -295,7 +293,7 @@ func (builder *PanelBuilder) Min(min float64) *PanelBuilder {
 // The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
 func (builder *PanelBuilder) Max(max float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Max = &max
 
@@ -305,7 +303,7 @@ func (builder *PanelBuilder) Max(max float64) *PanelBuilder {
 // Convert input values into a display string
 func (builder *PanelBuilder) Mappings(mappings []dashboard.ValueMapping) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Mappings = mappings
 
@@ -315,7 +313,7 @@ func (builder *PanelBuilder) Mappings(mappings []dashboard.ValueMapping) *PanelB
 // Map numeric values to states
 func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.ThresholdsConfig]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	thresholdsResource, err := thresholds.Build()
 	if err != nil {
@@ -330,7 +328,7 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 // Panel color configuration
 func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	colorResource, err := color.Build()
 	if err != nil {
@@ -342,10 +340,29 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 	return builder
 }
 
+// The behavior when clicking on a result
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	linksResources := make([]dashboard.DashboardLink, 0, len(links))
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			return builder
+		}
+		linksResources = append(linksResources, linksDepth1)
+	}
+	builder.internal.FieldConfig.Defaults.Links = linksResources
+
+	return builder
+}
+
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
 
@@ -355,7 +372,7 @@ func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.DashboardFieldConfigSourceOverrides]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	overridesResources := make([]dashboard.DashboardFieldConfigSourceOverrides, 0, len(overrides))
 	for _, r1 := range overrides {
@@ -374,7 +391,7 @@ func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.Dashboa
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, properties []dashboard.DynamicConfigValue) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
 		Matcher:    matcher,
@@ -387,7 +404,7 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 // Size of each bucket
 func (builder *PanelBuilder) BucketSize(bucketSize int32) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).BucketSize = &bucketSize
 
@@ -397,7 +414,7 @@ func (builder *PanelBuilder) BucketSize(bucketSize int32) *PanelBuilder {
 // Offset buckets by this amount
 func (builder *PanelBuilder) BucketOffset(bucketOffset int32) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).BucketOffset = &bucketOffset
 
@@ -406,7 +423,7 @@ func (builder *PanelBuilder) BucketOffset(bucketOffset int32) *PanelBuilder {
 
 func (builder *PanelBuilder) Legend(legend cog.Builder[common.VizLegendOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	legendResource, err := legend.Build()
 	if err != nil {
@@ -420,7 +437,7 @@ func (builder *PanelBuilder) Legend(legend cog.Builder[common.VizLegendOptions])
 
 func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[common.VizTooltipOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	tooltipResource, err := tooltip.Build()
 	if err != nil {
@@ -435,7 +452,7 @@ func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[common.VizTooltipOption
 // Combines multiple series into a single histogram
 func (builder *PanelBuilder) Combine(combine bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Combine = &combine
 
@@ -445,10 +462,10 @@ func (builder *PanelBuilder) Combine(combine bool) *PanelBuilder {
 // Controls line width of the bars.
 func (builder *PanelBuilder) LineWidth(lineWidth uint32) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).LineWidth = &lineWidth
 
@@ -458,10 +475,10 @@ func (builder *PanelBuilder) LineWidth(lineWidth uint32) *PanelBuilder {
 // Controls the fill opacity of the bars.
 func (builder *PanelBuilder) FillOpacity(fillOpacity uint32) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).FillOpacity = &fillOpacity
 
@@ -470,10 +487,10 @@ func (builder *PanelBuilder) FillOpacity(fillOpacity uint32) *PanelBuilder {
 
 func (builder *PanelBuilder) AxisPlacement(axisPlacement common.AxisPlacement) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisPlacement = &axisPlacement
 
@@ -482,10 +499,10 @@ func (builder *PanelBuilder) AxisPlacement(axisPlacement common.AxisPlacement) *
 
 func (builder *PanelBuilder) AxisColorMode(axisColorMode common.AxisColorMode) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisColorMode = &axisColorMode
 
@@ -494,10 +511,10 @@ func (builder *PanelBuilder) AxisColorMode(axisColorMode common.AxisColorMode) *
 
 func (builder *PanelBuilder) AxisLabel(axisLabel string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisLabel = &axisLabel
 
@@ -506,10 +523,10 @@ func (builder *PanelBuilder) AxisLabel(axisLabel string) *PanelBuilder {
 
 func (builder *PanelBuilder) AxisWidth(axisWidth float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisWidth = &axisWidth
 
@@ -518,10 +535,10 @@ func (builder *PanelBuilder) AxisWidth(axisWidth float64) *PanelBuilder {
 
 func (builder *PanelBuilder) AxisSoftMin(axisSoftMin float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisSoftMin = &axisSoftMin
 
@@ -530,10 +547,10 @@ func (builder *PanelBuilder) AxisSoftMin(axisSoftMin float64) *PanelBuilder {
 
 func (builder *PanelBuilder) AxisSoftMax(axisSoftMax float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisSoftMax = &axisSoftMax
 
@@ -542,10 +559,10 @@ func (builder *PanelBuilder) AxisSoftMax(axisSoftMax float64) *PanelBuilder {
 
 func (builder *PanelBuilder) AxisGridShow(axisGridShow bool) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisGridShow = &axisGridShow
 
@@ -554,10 +571,10 @@ func (builder *PanelBuilder) AxisGridShow(axisGridShow bool) *PanelBuilder {
 
 func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[common.ScaleDistributionConfig]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	scaleDistributionResource, err := scaleDistribution.Build()
 	if err != nil {
@@ -571,10 +588,10 @@ func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[com
 
 func (builder *PanelBuilder) AxisCenteredZero(axisCenteredZero bool) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisCenteredZero = &axisCenteredZero
 
@@ -583,10 +600,10 @@ func (builder *PanelBuilder) AxisCenteredZero(axisCenteredZero bool) *PanelBuild
 
 func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConfig]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	hideFromResource, err := hideFrom.Build()
 	if err != nil {
@@ -602,10 +619,10 @@ func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConf
 // Gradient appearance is influenced by the Fill opacity setting.
 func (builder *PanelBuilder) GradientMode(gradientMode common.GraphGradientMode) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).GradientMode = &gradientMode
 
@@ -614,22 +631,12 @@ func (builder *PanelBuilder) GradientMode(gradientMode common.GraphGradientMode)
 
 func (builder *PanelBuilder) AxisBorderShow(axisBorderShow bool) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisBorderShow = &axisBorderShow
 
 	return builder
-}
-
-func (builder *PanelBuilder) applyDefaults() {
-	builder.Transparent(false)
-	builder.Height(9)
-	builder.Span(12)
-	builder.BucketOffset(0)
-	builder.LineWidth(1)
-	builder.FillOpacity(80)
-	builder.GradientMode("none")
 }

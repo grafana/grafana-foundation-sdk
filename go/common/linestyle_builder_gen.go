@@ -15,13 +15,11 @@ type LineStyleBuilder struct {
 }
 
 func NewLineStyleBuilder() *LineStyleBuilder {
-	resource := &LineStyle{}
+	resource := NewLineStyle()
 	builder := &LineStyleBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -44,7 +42,4 @@ func (builder *LineStyleBuilder) Dash(dash []float64) *LineStyleBuilder {
 	builder.internal.Dash = dash
 
 	return builder
-}
-
-func (builder *LineStyleBuilder) applyDefaults() {
 }

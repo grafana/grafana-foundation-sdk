@@ -15,13 +15,11 @@ type QueryVariableBuilder struct {
 }
 
 func NewQueryVariableBuilder(name string) *QueryVariableBuilder {
-	resource := &VariableModel{}
+	resource := NewVariableModel()
 	builder := &QueryVariableBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Name = name
 	builder.internal.Type = "query"
 
@@ -110,7 +108,4 @@ func (builder *QueryVariableBuilder) Sort(sort VariableSort) *QueryVariableBuild
 	builder.internal.Sort = &sort
 
 	return builder
-}
-
-func (builder *QueryVariableBuilder) applyDefaults() {
 }

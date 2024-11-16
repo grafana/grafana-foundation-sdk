@@ -14,13 +14,11 @@ type AccessRuleBuilder struct {
 }
 
 func NewAccessRuleBuilder() *AccessRuleBuilder {
-	resource := &AccessRule{}
+	resource := NewAccessRule()
 	builder := &AccessRuleBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -53,8 +51,4 @@ func (builder *AccessRuleBuilder) Target(target string) *AccessRuleBuilder {
 	builder.internal.Target = &target
 
 	return builder
-}
-
-func (builder *AccessRuleBuilder) applyDefaults() {
-	builder.Kind("*")
 }

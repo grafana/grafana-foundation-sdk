@@ -127,20 +127,22 @@ public class PanelDeserializer extends JsonDeserializer<Panel> {
             datasourceType = panel.datasource.type;
        }
        List<Dataquery> targets = new ArrayList<>();
-       for (JsonNode node : root.get("targets")) {
-            Class<? extends Dataquery> clazz = Registry.getDataquery(datasourceType);
-            if (clazz != null) {
-                Dataquery dataquery = mapper.treeToValue(node, clazz);
-                targets.add(dataquery);
-            } else {
-              UnknownDataquery unknownDataquery = new UnknownDataquery();
-              Iterator<Map.Entry<String, JsonNode>> fieldsIterator = node.fields();
-              while (fieldsIterator.hasNext()) {
-                  Map.Entry<String, JsonNode> field = fieldsIterator.next();
-                  unknownDataquery.genericFields.put(field.getKey(), mapper.treeToValue(field.getValue(), Object.class));
-              }
-              targets.add(unknownDataquery);
-            }
+       if (root.has("targets")) {
+           for (JsonNode node : root.get("targets")) {
+                Class<? extends Dataquery> clazz = Registry.getDataquery(datasourceType);
+                if (clazz != null) {
+                    Dataquery dataquery = mapper.treeToValue(node, clazz);
+                    targets.add(dataquery);
+                } else {
+                  UnknownDataquery unknownDataquery = new UnknownDataquery();
+                  Iterator<Map.Entry<String, JsonNode>> fieldsIterator = node.fields();
+                  while (fieldsIterator.hasNext()) {
+                      Map.Entry<String, JsonNode> field = fieldsIterator.next();
+                      unknownDataquery.genericFields.put(field.getKey(), mapper.treeToValue(field.getValue(), Object.class));
+                  }
+                  targets.add(unknownDataquery);
+                }
+          }
       }
       panel.targets = targets;
         

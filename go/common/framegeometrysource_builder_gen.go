@@ -14,13 +14,11 @@ type FrameGeometrySourceBuilder struct {
 }
 
 func NewFrameGeometrySourceBuilder() *FrameGeometrySourceBuilder {
-	resource := &FrameGeometrySource{}
+	resource := NewFrameGeometrySource()
 	builder := &FrameGeometrySourceBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -75,7 +73,4 @@ func (builder *FrameGeometrySourceBuilder) Gazetteer(gazetteer string) *FrameGeo
 	builder.internal.Gazetteer = &gazetteer
 
 	return builder
-}
-
-func (builder *FrameGeometrySourceBuilder) applyDefaults() {
 }

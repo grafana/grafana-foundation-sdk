@@ -15,13 +15,11 @@ type ScatterSeriesConfigBuilder struct {
 }
 
 func NewScatterSeriesConfigBuilder() *ScatterSeriesConfigBuilder {
-	resource := &ScatterSeriesConfig{}
+	resource := NewScatterSeriesConfig()
 	builder := &ScatterSeriesConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -199,9 +197,4 @@ func (builder *ScatterSeriesConfigBuilder) AxisBorderShow(axisBorderShow bool) *
 	builder.internal.AxisBorderShow = &axisBorderShow
 
 	return builder
-}
-
-func (builder *ScatterSeriesConfigBuilder) applyDefaults() {
-	builder.Show("points")
-	builder.Label("auto")
 }

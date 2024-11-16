@@ -38,6 +38,14 @@ def color_scheme(color: cogbuilder.Builder[dashboard.FieldColor]) -> typing.Self
 def controls(controls: cogbuilder.Builder[geomap.ControlsOptions]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> data_links
+
+The behavior when clicking on a result
+
+```python
+def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.

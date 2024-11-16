@@ -14,13 +14,11 @@ type PipelineVariableBuilder struct {
 }
 
 func NewPipelineVariableBuilder() *PipelineVariableBuilder {
-	resource := &PipelineVariable{}
+	resource := NewPipelineVariable()
 	builder := &PipelineVariableBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *PipelineVariableBuilder) PipelineAgg(pipelineAgg string) *Pipelin
 	builder.internal.PipelineAgg = pipelineAgg
 
 	return builder
-}
-
-func (builder *PipelineVariableBuilder) applyDefaults() {
 }

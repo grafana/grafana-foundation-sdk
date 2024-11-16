@@ -17,13 +17,11 @@ type DashboardBuilder struct {
 }
 
 func NewDashboardBuilder(title string) *DashboardBuilder {
-	resource := &Dashboard{}
+	resource := NewDashboard()
 	builder := &DashboardBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Title = &title
 	builder.internal.SchemaVersion = 36
 	valEditable := true
@@ -126,7 +124,7 @@ func (builder *DashboardBuilder) Tooltip(graphTooltip DashboardCursorSync) *Dash
 // Accepted values are relative time strings like {from: 'now-6h', to: 'now'} or absolute time strings like {from: '2020-07-10T08:00:00.000Z', to: '2020-07-10T14:00:00.000Z'}.
 func (builder *DashboardBuilder) Time(from string, to string) *DashboardBuilder {
 	if builder.internal.Time == nil {
-		builder.internal.Time = &DashboardDashboardTime{}
+		builder.internal.Time = NewDashboardDashboardTime()
 	}
 	builder.internal.Time.From = from
 	builder.internal.Time.To = to
@@ -172,7 +170,7 @@ func (builder *DashboardBuilder) WeekStart(weekStart string) *DashboardBuilder {
 // Refresh rate of dashboard. Represented via interval string, e.g. "5s", "1m", "1h", "1d".
 func (builder *DashboardBuilder) Refresh(stringArg string) *DashboardBuilder {
 	if builder.internal.Refresh == nil {
-		builder.internal.Refresh = &StringOrBool{}
+		builder.internal.Refresh = NewStringOrBool()
 	}
 	builder.internal.Refresh.String = &stringArg
 
@@ -194,7 +192,7 @@ func (builder *DashboardBuilder) WithPanel(panel cog.Builder[Panel]) *DashboardB
 	}
 
 	if panelResource.GridPos == nil {
-		panelResource.GridPos = &GridPos{}
+		panelResource.GridPos = NewGridPos()
 	}
 	// The panel either has no position set, or it is the first panel of the dashboard.
 	// In that case, we position it on the grid
@@ -370,10 +368,4 @@ func (builder *DashboardBuilder) Snapshot(snapshot cog.Builder[Snapshot]) *Dashb
 	builder.internal.Snapshot = &snapshotResource
 
 	return builder
-}
-
-func (builder *DashboardBuilder) applyDefaults() {
-	builder.Timezone("browser")
-	builder.Tooltip(0)
-	builder.FiscalYearStartMonth(0)
 }

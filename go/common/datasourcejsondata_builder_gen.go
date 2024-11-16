@@ -15,13 +15,11 @@ type DataSourceJsonDataBuilder struct {
 }
 
 func NewDataSourceJsonDataBuilder() *DataSourceJsonDataBuilder {
-	resource := &DataSourceJsonData{}
+	resource := NewDataSourceJsonData()
 	builder := &DataSourceJsonDataBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -62,7 +60,4 @@ func (builder *DataSourceJsonDataBuilder) AlertmanagerUid(alertmanagerUid string
 	builder.internal.AlertmanagerUid = &alertmanagerUid
 
 	return builder
-}
-
-func (builder *DataSourceJsonDataBuilder) applyDefaults() {
 }

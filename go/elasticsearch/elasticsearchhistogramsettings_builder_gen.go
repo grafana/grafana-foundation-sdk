@@ -14,13 +14,11 @@ type ElasticsearchHistogramSettingsBuilder struct {
 }
 
 func NewElasticsearchHistogramSettingsBuilder() *ElasticsearchHistogramSettingsBuilder {
-	resource := &ElasticsearchHistogramSettings{}
+	resource := NewElasticsearchHistogramSettings()
 	builder := &ElasticsearchHistogramSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *ElasticsearchHistogramSettingsBuilder) MinDocCount(minDocCount st
 	builder.internal.MinDocCount = &minDocCount
 
 	return builder
-}
-
-func (builder *ElasticsearchHistogramSettingsBuilder) applyDefaults() {
 }

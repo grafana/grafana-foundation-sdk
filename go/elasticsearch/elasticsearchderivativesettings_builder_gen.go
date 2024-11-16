@@ -14,13 +14,11 @@ type ElasticsearchDerivativeSettingsBuilder struct {
 }
 
 func NewElasticsearchDerivativeSettingsBuilder() *ElasticsearchDerivativeSettingsBuilder {
-	resource := &ElasticsearchDerivativeSettings{}
+	resource := NewElasticsearchDerivativeSettings()
 	builder := &ElasticsearchDerivativeSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *ElasticsearchDerivativeSettingsBuilder) Unit(unit string) *Elasti
 	builder.internal.Unit = &unit
 
 	return builder
-}
-
-func (builder *ElasticsearchDerivativeSettingsBuilder) applyDefaults() {
 }

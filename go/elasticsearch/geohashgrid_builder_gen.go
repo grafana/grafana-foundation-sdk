@@ -14,13 +14,11 @@ type GeoHashGridBuilder struct {
 }
 
 func NewGeoHashGridBuilder() *GeoHashGridBuilder {
-	resource := &GeoHashGrid{}
+	resource := NewGeoHashGrid()
 	builder := &GeoHashGridBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "geohash_grid"
 
 	return builder
@@ -55,7 +53,4 @@ func (builder *GeoHashGridBuilder) Settings(settings cog.Builder[ElasticsearchGe
 	builder.internal.Settings = &settingsResource
 
 	return builder
-}
-
-func (builder *GeoHashGridBuilder) applyDefaults() {
 }

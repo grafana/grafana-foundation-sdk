@@ -14,13 +14,11 @@ type LogGroupBuilder struct {
 }
 
 func NewLogGroupBuilder() *LogGroupBuilder {
-	resource := &LogGroup{}
+	resource := NewLogGroup()
 	builder := &LogGroupBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -59,7 +57,4 @@ func (builder *LogGroupBuilder) AccountLabel(accountLabel string) *LogGroupBuild
 	builder.internal.AccountLabel = &accountLabel
 
 	return builder
-}
-
-func (builder *LogGroupBuilder) applyDefaults() {
 }

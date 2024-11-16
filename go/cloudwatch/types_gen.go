@@ -34,6 +34,11 @@ type MetricStat struct {
 	Statistics []string `json:"statistics,omitempty"`
 }
 
+// NewMetricStat creates a new MetricStat object.
+func NewMetricStat() *MetricStat {
+	return &MetricStat{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricStat` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MetricStat) UnmarshalJSONStrict(raw []byte) error {
@@ -329,6 +334,13 @@ func (resource CloudWatchMetricsQuery) ImplementsDataqueryVariant() {}
 
 func (resource CloudWatchMetricsQuery) DataqueryType() string {
 	return "cloudwatch"
+}
+
+// NewCloudWatchMetricsQuery creates a new CloudWatchMetricsQuery object.
+func NewCloudWatchMetricsQuery() *CloudWatchMetricsQuery {
+	return &CloudWatchMetricsQuery{
+		QueryMode: CloudWatchQueryModeMetrics,
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchMetricsQuery` from JSON.
@@ -879,6 +891,11 @@ type SQLExpression struct {
 	Limit *int64 `json:"limit,omitempty"`
 }
 
+// NewSQLExpression creates a new SQLExpression object.
+func NewSQLExpression() *SQLExpression {
+	return &SQLExpression{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SQLExpression` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *SQLExpression) UnmarshalJSONStrict(raw []byte) error {
@@ -1101,6 +1118,13 @@ type QueryEditorFunctionExpression struct {
 	Parameters []QueryEditorFunctionParameterExpression `json:"parameters,omitempty"`
 }
 
+// NewQueryEditorFunctionExpression creates a new QueryEditorFunctionExpression object.
+func NewQueryEditorFunctionExpression() *QueryEditorFunctionExpression {
+	return &QueryEditorFunctionExpression{
+		Type: "function",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorFunctionExpression` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorFunctionExpression) UnmarshalJSONStrict(raw []byte) error {
@@ -1241,6 +1265,13 @@ type QueryEditorFunctionParameterExpression struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// NewQueryEditorFunctionParameterExpression creates a new QueryEditorFunctionParameterExpression object.
+func NewQueryEditorFunctionParameterExpression() *QueryEditorFunctionParameterExpression {
+	return &QueryEditorFunctionParameterExpression{
+		Type: "functionParameter",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorFunctionParameterExpression` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorFunctionParameterExpression) UnmarshalJSONStrict(raw []byte) error {
@@ -1328,6 +1359,14 @@ func (resource QueryEditorFunctionParameterExpression) Validate() error {
 type QueryEditorPropertyExpression struct {
 	Type     string              `json:"type"`
 	Property QueryEditorProperty `json:"property"`
+}
+
+// NewQueryEditorPropertyExpression creates a new QueryEditorPropertyExpression object.
+func NewQueryEditorPropertyExpression() *QueryEditorPropertyExpression {
+	return &QueryEditorPropertyExpression{
+		Type:     "property",
+		Property: *NewQueryEditorProperty(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorPropertyExpression` from JSON.
@@ -1421,6 +1460,14 @@ type QueryEditorGroupByExpression struct {
 	Property QueryEditorProperty `json:"property"`
 }
 
+// NewQueryEditorGroupByExpression creates a new QueryEditorGroupByExpression object.
+func NewQueryEditorGroupByExpression() *QueryEditorGroupByExpression {
+	return &QueryEditorGroupByExpression{
+		Type:     "groupBy",
+		Property: *NewQueryEditorProperty(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorGroupByExpression` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorGroupByExpression) UnmarshalJSONStrict(raw []byte) error {
@@ -1512,6 +1559,15 @@ type QueryEditorOperatorExpression struct {
 	Property QueryEditorProperty `json:"property"`
 	// TS type is operator: QueryEditorOperator<QueryEditorOperatorValueType>, extended in veneer
 	Operator QueryEditorOperator `json:"operator"`
+}
+
+// NewQueryEditorOperatorExpression creates a new QueryEditorOperatorExpression object.
+func NewQueryEditorOperatorExpression() *QueryEditorOperatorExpression {
+	return &QueryEditorOperatorExpression{
+		Type:     "operator",
+		Property: *NewQueryEditorProperty(),
+		Operator: *NewQueryEditorOperator(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorOperatorExpression` from JSON.
@@ -1628,6 +1684,11 @@ type QueryEditorOperator struct {
 	Value *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType `json:"value,omitempty"`
 }
 
+// NewQueryEditorOperator creates a new QueryEditorOperator object.
+func NewQueryEditorOperator() *QueryEditorOperator {
+	return &QueryEditorOperator{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorOperator` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryEditorOperator) UnmarshalJSONStrict(raw []byte) error {
@@ -1718,11 +1779,26 @@ func (resource QueryEditorOperator) Validate() error {
 
 type QueryEditorOperatorValueType = StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType
 
+// NewQueryEditorOperatorValueType creates a new QueryEditorOperatorValueType object.
+func NewQueryEditorOperatorValueType() *QueryEditorOperatorValueType {
+	return NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType()
+}
+
 type QueryEditorOperatorType = StringOrBoolOrInt64
+
+// NewQueryEditorOperatorType creates a new QueryEditorOperatorType object.
+func NewQueryEditorOperatorType() *QueryEditorOperatorType {
+	return NewStringOrBoolOrInt64()
+}
 
 type QueryEditorProperty struct {
 	Type QueryEditorPropertyType `json:"type"`
 	Name *string                 `json:"name,omitempty"`
+}
+
+// NewQueryEditorProperty creates a new QueryEditorProperty object.
+func NewQueryEditorProperty() *QueryEditorProperty {
+	return &QueryEditorProperty{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorProperty` from JSON.
@@ -1806,6 +1882,11 @@ const (
 type QueryEditorArrayExpression struct {
 	Type        QueryEditorArrayExpressionType `json:"type"`
 	Expressions []QueryEditorExpression        `json:"expressions"`
+}
+
+// NewQueryEditorArrayExpression creates a new QueryEditorArrayExpression object.
+func NewQueryEditorArrayExpression() *QueryEditorArrayExpression {
+	return &QueryEditorArrayExpression{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpression` from JSON.
@@ -1910,6 +1991,11 @@ func (resource QueryEditorArrayExpression) Validate() error {
 
 type QueryEditorExpression = QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
 
+// NewQueryEditorExpression creates a new QueryEditorExpression object.
+func NewQueryEditorExpression() *QueryEditorExpression {
+	return NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression()
+}
+
 // Shape of a CloudWatch Logs query
 type CloudWatchLogsQuery struct {
 	// Whether a query is a Metrics, Logs, or Annotations query
@@ -1947,6 +2033,13 @@ func (resource CloudWatchLogsQuery) ImplementsDataqueryVariant() {}
 
 func (resource CloudWatchLogsQuery) DataqueryType() string {
 	return "cloudwatch"
+}
+
+// NewCloudWatchLogsQuery creates a new CloudWatchLogsQuery object.
+func NewCloudWatchLogsQuery() *CloudWatchLogsQuery {
+	return &CloudWatchLogsQuery{
+		QueryMode: CloudWatchQueryModeLogs,
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchLogsQuery` from JSON.
@@ -2246,6 +2339,11 @@ type LogGroup struct {
 	AccountLabel *string `json:"accountLabel,omitempty"`
 }
 
+// NewLogGroup creates a new LogGroup object.
+func NewLogGroup() *LogGroup {
+	return &LogGroup{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LogGroup` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LogGroup) UnmarshalJSONStrict(raw []byte) error {
@@ -2413,6 +2511,13 @@ func (resource CloudWatchAnnotationQuery) ImplementsDataqueryVariant() {}
 
 func (resource CloudWatchAnnotationQuery) DataqueryType() string {
 	return "cloudwatch"
+}
+
+// NewCloudWatchAnnotationQuery creates a new CloudWatchAnnotationQuery object.
+func NewCloudWatchAnnotationQuery() *CloudWatchAnnotationQuery {
+	return &CloudWatchAnnotationQuery{
+		QueryMode: CloudWatchQueryModeAnnotations,
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchAnnotationQuery` from JSON.
@@ -2822,6 +2927,11 @@ func (resource CloudWatchAnnotationQuery) Validate() error {
 
 type CloudWatchQuery = CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
 
+// NewCloudWatchQuery creates a new CloudWatchQuery object.
+func NewCloudWatchQuery() *CloudWatchQuery {
+	return NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery()
+}
+
 // VariantConfig returns the configuration related to cloudwatch dataqueries.
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
@@ -2878,6 +2988,11 @@ const (
 type StringOrArrayOfString struct {
 	String        *string  `json:"String,omitempty"`
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
+}
+
+// NewStringOrArrayOfString creates a new StringOrArrayOfString object.
+func NewStringOrArrayOfString() *StringOrArrayOfString {
+	return &StringOrArrayOfString{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `StringOrArrayOfString` as JSON.
@@ -2997,6 +3112,11 @@ func (resource StringOrArrayOfString) Validate() error {
 type QueryEditorPropertyExpressionOrQueryEditorFunctionExpression struct {
 	QueryEditorPropertyExpression *QueryEditorPropertyExpression `json:"QueryEditorPropertyExpression,omitempty"`
 	QueryEditorFunctionExpression *QueryEditorFunctionExpression `json:"QueryEditorFunctionExpression,omitempty"`
+}
+
+// NewQueryEditorPropertyExpressionOrQueryEditorFunctionExpression creates a new QueryEditorPropertyExpressionOrQueryEditorFunctionExpression object.
+func NewQueryEditorPropertyExpressionOrQueryEditorFunctionExpression() *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression {
+	return &QueryEditorPropertyExpressionOrQueryEditorFunctionExpression{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `QueryEditorPropertyExpressionOrQueryEditorFunctionExpression` as JSON.
@@ -3139,6 +3259,11 @@ type StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType struct {
 	Bool                           *bool                     `json:"Bool,omitempty"`
 	Int64                          *int64                    `json:"Int64,omitempty"`
 	ArrayOfQueryEditorOperatorType []QueryEditorOperatorType `json:"ArrayOfQueryEditorOperatorType,omitempty"`
+}
+
+// NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType creates a new StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType object.
+func NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType() *StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType {
+	return &StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType` as JSON.
@@ -3339,6 +3464,11 @@ type StringOrBoolOrInt64 struct {
 	Int64  *int64  `json:"Int64,omitempty"`
 }
 
+// NewStringOrBoolOrInt64 creates a new StringOrBoolOrInt64 object.
+func NewStringOrBoolOrInt64() *StringOrBoolOrInt64 {
+	return &StringOrBoolOrInt64{}
+}
+
 // MarshalJSON implements a custom JSON marshalling logic to encode `StringOrBoolOrInt64` as JSON.
 func (resource StringOrBoolOrInt64) MarshalJSON() ([]byte, error) {
 	if resource.String != nil {
@@ -3492,6 +3622,11 @@ type QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroup
 	QueryEditorFunctionExpression          *QueryEditorFunctionExpression          `json:"QueryEditorFunctionExpression,omitempty"`
 	QueryEditorFunctionParameterExpression *QueryEditorFunctionParameterExpression `json:"QueryEditorFunctionParameterExpression,omitempty"`
 	QueryEditorOperatorExpression          *QueryEditorOperatorExpression          `json:"QueryEditorOperatorExpression,omitempty"`
+}
+
+// NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression creates a new QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression object.
+func NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression() *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression {
+	return &QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` as JSON.
@@ -3788,6 +3923,11 @@ func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotation
 
 func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) DataqueryType() string {
 	return "cloudwatch"
+}
+
+// NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery creates a new CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery object.
+func NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery() *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery {
+	return &CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery` as JSON.

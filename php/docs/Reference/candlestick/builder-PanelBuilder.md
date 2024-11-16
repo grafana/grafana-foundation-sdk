@@ -126,6 +126,16 @@ Set which colors are used when the price movement is up or down
 colors(\Grafana\Foundation\Cog\Builder $colors)
 ```
 
+### <span class="badge object-method"></span> dataLinks
+
+The behavior when clicking on a result
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink>> $links
+
+```php
+dataLinks(array $links)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.

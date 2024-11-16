@@ -14,13 +14,11 @@ type DashboardDashboardTimeBuilder struct {
 }
 
 func NewDashboardDashboardTimeBuilder() *DashboardDashboardTimeBuilder {
-	resource := &DashboardDashboardTime{}
+	resource := NewDashboardDashboardTime()
 	builder := &DashboardDashboardTimeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,9 +41,4 @@ func (builder *DashboardDashboardTimeBuilder) To(to string) *DashboardDashboardT
 	builder.internal.To = to
 
 	return builder
-}
-
-func (builder *DashboardDashboardTimeBuilder) applyDefaults() {
-	builder.From("now-6h")
-	builder.To("now")
 }
