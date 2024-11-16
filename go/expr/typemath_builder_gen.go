@@ -16,13 +16,11 @@ type TypeMathBuilder struct {
 }
 
 func NewTypeMathBuilder() *TypeMathBuilder {
-	resource := &TypeMath{}
+	resource := NewTypeMath()
 	builder := &TypeMathBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "math"
 
 	return builder
@@ -116,7 +114,4 @@ func (builder *TypeMathBuilder) TimeRange(timeRange cog.Builder[ExprTypeMathTime
 	builder.internal.TimeRange = &timeRangeResource
 
 	return builder
-}
-
-func (builder *TypeMathBuilder) applyDefaults() {
 }

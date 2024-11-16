@@ -14,13 +14,11 @@ type ExprTypeThresholdConditionsEvaluatorBuilder struct {
 }
 
 func NewExprTypeThresholdConditionsEvaluatorBuilder() *ExprTypeThresholdConditionsEvaluatorBuilder {
-	resource := &ExprTypeThresholdConditionsEvaluator{}
+	resource := NewExprTypeThresholdConditionsEvaluator()
 	builder := &ExprTypeThresholdConditionsEvaluatorBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -44,7 +42,4 @@ func (builder *ExprTypeThresholdConditionsEvaluatorBuilder) Type(typeArg TypeThr
 	builder.internal.Type = typeArg
 
 	return builder
-}
-
-func (builder *ExprTypeThresholdConditionsEvaluatorBuilder) applyDefaults() {
 }

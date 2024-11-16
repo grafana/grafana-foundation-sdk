@@ -14,13 +14,11 @@ type CandlestickFieldMapBuilder struct {
 }
 
 func NewCandlestickFieldMapBuilder() *CandlestickFieldMapBuilder {
-	resource := &CandlestickFieldMap{}
+	resource := NewCandlestickFieldMap()
 	builder := &CandlestickFieldMapBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -66,7 +64,4 @@ func (builder *CandlestickFieldMapBuilder) Volume(volume string) *CandlestickFie
 	builder.internal.Volume = &volume
 
 	return builder
-}
-
-func (builder *CandlestickFieldMapBuilder) applyDefaults() {
 }

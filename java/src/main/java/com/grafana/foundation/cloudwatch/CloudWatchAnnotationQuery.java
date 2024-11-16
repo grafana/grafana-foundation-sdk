@@ -104,7 +104,7 @@ public class CloudWatchAnnotationQuery implements com.grafana.foundation.cog.var
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<CloudWatchAnnotationQuery> {
+    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
         protected final CloudWatchAnnotationQuery internal;
         
         public Builder() {

@@ -14,13 +14,11 @@ type ExprTypeThresholdTimeRangeBuilder struct {
 }
 
 func NewExprTypeThresholdTimeRangeBuilder() *ExprTypeThresholdTimeRangeBuilder {
-	resource := &ExprTypeThresholdTimeRange{}
+	resource := NewExprTypeThresholdTimeRange()
 	builder := &ExprTypeThresholdTimeRangeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,9 +43,4 @@ func (builder *ExprTypeThresholdTimeRangeBuilder) To(to string) *ExprTypeThresho
 	builder.internal.To = to
 
 	return builder
-}
-
-func (builder *ExprTypeThresholdTimeRangeBuilder) applyDefaults() {
-	builder.From("now-6h")
-	builder.To("now")
 }

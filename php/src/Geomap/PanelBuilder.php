@@ -351,6 +351,20 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * The behavior when clicking on a result
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink>> $links
+     */
+    public function dataLinks(array $links): static
+    {
+            $linksResources = [];
+            foreach ($links as $r1) {
+                    $linksResources[] = $r1->build();
+            }
+        $this->internal->fieldConfig->defaults->links = $linksResources;
+    
+        return $this;
+    }
+    /**
      * Alternative to empty string
      */
     public function noValue(string $noValue): static

@@ -15,13 +15,11 @@ type GraphThresholdsStyleConfigBuilder struct {
 }
 
 func NewGraphThresholdsStyleConfigBuilder() *GraphThresholdsStyleConfigBuilder {
-	resource := &GraphThresholdsStyleConfig{}
+	resource := NewGraphThresholdsStyleConfig()
 	builder := &GraphThresholdsStyleConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -38,7 +36,4 @@ func (builder *GraphThresholdsStyleConfigBuilder) Mode(mode GraphTresholdsStyleM
 	builder.internal.Mode = mode
 
 	return builder
-}
-
-func (builder *GraphThresholdsStyleConfigBuilder) applyDefaults() {
 }

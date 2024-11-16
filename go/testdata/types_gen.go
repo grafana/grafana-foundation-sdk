@@ -57,6 +57,11 @@ type StreamingQuery struct {
 	Url    *string            `json:"url,omitempty"`
 }
 
+// NewStreamingQuery creates a new StreamingQuery object.
+func NewStreamingQuery() *StreamingQuery {
+	return &StreamingQuery{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StreamingQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StreamingQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -208,6 +213,11 @@ type PulseWaveQuery struct {
 	OffValue *float64 `json:"offValue,omitempty"`
 }
 
+// NewPulseWaveQuery creates a new PulseWaveQuery object.
+func NewPulseWaveQuery() *PulseWaveQuery {
+	return &PulseWaveQuery{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PulseWaveQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *PulseWaveQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -350,6 +360,13 @@ type SimulationQuery struct {
 	Last   *bool          `json:"last,omitempty"`
 }
 
+// NewSimulationQuery creates a new SimulationQuery object.
+func NewSimulationQuery() *SimulationQuery {
+	return &SimulationQuery{
+		Key: *NewKey(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SimulationQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *SimulationQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -481,6 +498,11 @@ type NodesQuery struct {
 	Count *int64          `json:"count,omitempty"`
 }
 
+// NewNodesQuery creates a new NodesQuery object.
+func NewNodesQuery() *NodesQuery {
+	return &NodesQuery{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NodesQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *NodesQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -561,6 +583,11 @@ type USAQuery struct {
 	Period *string  `json:"period,omitempty"`
 	Fields []string `json:"fields,omitempty"`
 	States []string `json:"states,omitempty"`
+}
+
+// NewUSAQuery creates a new USAQuery object.
+func NewUSAQuery() *USAQuery {
+	return &USAQuery{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `USAQuery` from JSON.
@@ -689,6 +716,11 @@ type CSVWave struct {
 	Labels    *string `json:"labels,omitempty"`
 }
 
+// NewCSVWave creates a new CSVWave object.
+func NewCSVWave() *CSVWave {
+	return &CSVWave{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CSVWave` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CSVWave) UnmarshalJSONStrict(raw []byte) error {
@@ -811,6 +843,11 @@ type Scenario struct {
 	StringInput    string  `json:"stringInput"`
 	Description    *string `json:"description,omitempty"`
 	HideAliasField *bool   `json:"hideAliasField,omitempty"`
+}
+
+// NewScenario creates a new Scenario object.
+func NewScenario() *Scenario {
+	return &Scenario{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Scenario` from JSON.
@@ -984,6 +1021,13 @@ func (resource Dataquery) ImplementsDataqueryVariant() {}
 
 func (resource Dataquery) DataqueryType() string {
 	return "testdata"
+}
+
+// NewDataquery creates a new Dataquery object.
+func NewDataquery() *Dataquery {
+	return &Dataquery{
+		ScenarioId: cog.ToPtr(TestDataQueryTypeRandomWalk),
+	}
 }
 
 // VariantConfig returns the configuration related to testdata dataqueries.
@@ -1673,6 +1717,11 @@ type Key struct {
 	Uid  *string `json:"uid,omitempty"`
 }
 
+// NewKey creates a new Key object.
+func NewKey() *Key {
+	return &Key{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Key` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Key) UnmarshalJSONStrict(raw []byte) error {
@@ -1789,6 +1838,11 @@ const (
 type StringOrInt64 struct {
 	String *string `json:"String,omitempty"`
 	Int64  *int64  `json:"Int64,omitempty"`
+}
+
+// NewStringOrInt64 creates a new StringOrInt64 object.
+func NewStringOrInt64() *StringOrInt64 {
+	return &StringOrInt64{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `StringOrInt64` as JSON.

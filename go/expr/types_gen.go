@@ -16,6 +16,11 @@ import (
 
 type Expr = TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql
 
+// NewExpr creates a new Expr object.
+func NewExpr() *Expr {
+	return NewTypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql()
+}
+
 // VariantConfig returns the configuration related to __expr__ dataqueries.
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
@@ -106,6 +111,13 @@ func (resource TypeMath) ImplementsDataqueryVariant() {}
 
 func (resource TypeMath) DataqueryType() string {
 	return "__expr__"
+}
+
+// NewTypeMath creates a new TypeMath object.
+func NewTypeMath() *TypeMath {
+	return &TypeMath{
+		Type: "math",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeMath` from JSON.
@@ -422,6 +434,13 @@ func (resource TypeReduce) ImplementsDataqueryVariant() {}
 
 func (resource TypeReduce) DataqueryType() string {
 	return "__expr__"
+}
+
+// NewTypeReduce creates a new TypeReduce object.
+func NewTypeReduce() *TypeReduce {
+	return &TypeReduce{
+		Type: "reduce",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeReduce` from JSON.
@@ -790,6 +809,13 @@ func (resource TypeResample) DataqueryType() string {
 	return "__expr__"
 }
 
+// NewTypeResample creates a new TypeResample object.
+func NewTypeResample() *TypeResample {
+	return &TypeResample{
+		Type: "resample",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeResample` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TypeResample) UnmarshalJSONStrict(raw []byte) error {
@@ -1150,6 +1176,13 @@ func (resource TypeClassicConditions) DataqueryType() string {
 	return "__expr__"
 }
 
+// NewTypeClassicConditions creates a new TypeClassicConditions object.
+func NewTypeClassicConditions() *TypeClassicConditions {
+	return &TypeClassicConditions{
+		Type: "classic_conditions",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeClassicConditions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TypeClassicConditions) UnmarshalJSONStrict(raw []byte) error {
@@ -1473,6 +1506,13 @@ func (resource TypeThreshold) ImplementsDataqueryVariant() {}
 
 func (resource TypeThreshold) DataqueryType() string {
 	return "__expr__"
+}
+
+// NewTypeThreshold creates a new TypeThreshold object.
+func NewTypeThreshold() *TypeThreshold {
+	return &TypeThreshold{
+		Type: "threshold",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeThreshold` from JSON.
@@ -1820,6 +1860,13 @@ func (resource TypeSql) DataqueryType() string {
 	return "__expr__"
 }
 
+// NewTypeSql creates a new TypeSql object.
+func NewTypeSql() *TypeSql {
+	return &TypeSql{
+		Type: "sql",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeSql` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TypeSql) UnmarshalJSONStrict(raw []byte) error {
@@ -2101,6 +2148,11 @@ func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeTh
 
 func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) DataqueryType() string {
 	return "__expr__"
+}
+
+// NewTypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql creates a new TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql object.
+func NewTypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql() *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql {
+	return &TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql` as JSON.
@@ -2535,6 +2587,11 @@ type ExprTypeMathResultAssertions struct {
 	TypeVersion []int64 `json:"typeVersion"`
 }
 
+// NewExprTypeMathResultAssertions creates a new ExprTypeMathResultAssertions object.
+func NewExprTypeMathResultAssertions() *ExprTypeMathResultAssertions {
+	return &ExprTypeMathResultAssertions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeMathResultAssertions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeMathResultAssertions) UnmarshalJSONStrict(raw []byte) error {
@@ -2642,6 +2699,14 @@ type ExprTypeMathTimeRange struct {
 	To string `json:"to"`
 }
 
+// NewExprTypeMathTimeRange creates a new ExprTypeMathTimeRange object.
+func NewExprTypeMathTimeRange() *ExprTypeMathTimeRange {
+	return &ExprTypeMathTimeRange{
+		From: "now-6h",
+		To:   "now",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeMathTimeRange` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeMathTimeRange) UnmarshalJSONStrict(raw []byte) error {
@@ -2729,6 +2794,11 @@ type ExprTypeReduceResultAssertions struct {
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
+}
+
+// NewExprTypeReduceResultAssertions creates a new ExprTypeReduceResultAssertions object.
+func NewExprTypeReduceResultAssertions() *ExprTypeReduceResultAssertions {
+	return &ExprTypeReduceResultAssertions{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeReduceResultAssertions` from JSON.
@@ -2841,6 +2911,11 @@ type ExprTypeReduceSettings struct {
 	ReplaceWithValue *float64 `json:"replaceWithValue,omitempty"`
 }
 
+// NewExprTypeReduceSettings creates a new ExprTypeReduceSettings object.
+func NewExprTypeReduceSettings() *ExprTypeReduceSettings {
+	return &ExprTypeReduceSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeReduceSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeReduceSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -2918,6 +2993,14 @@ type ExprTypeReduceTimeRange struct {
 	From string `json:"from"`
 	// To is the end time of the query.
 	To string `json:"to"`
+}
+
+// NewExprTypeReduceTimeRange creates a new ExprTypeReduceTimeRange object.
+func NewExprTypeReduceTimeRange() *ExprTypeReduceTimeRange {
+	return &ExprTypeReduceTimeRange{
+		From: "now-6h",
+		To:   "now",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeReduceTimeRange` from JSON.
@@ -3007,6 +3090,11 @@ type ExprTypeResampleResultAssertions struct {
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
+}
+
+// NewExprTypeResampleResultAssertions creates a new ExprTypeResampleResultAssertions object.
+func NewExprTypeResampleResultAssertions() *ExprTypeResampleResultAssertions {
+	return &ExprTypeResampleResultAssertions{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeResampleResultAssertions` from JSON.
@@ -3116,6 +3204,14 @@ type ExprTypeResampleTimeRange struct {
 	To string `json:"to"`
 }
 
+// NewExprTypeResampleTimeRange creates a new ExprTypeResampleTimeRange object.
+func NewExprTypeResampleTimeRange() *ExprTypeResampleTimeRange {
+	return &ExprTypeResampleTimeRange{
+		From: "now-6h",
+		To:   "now",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeResampleTimeRange` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeResampleTimeRange) UnmarshalJSONStrict(raw []byte) error {
@@ -3187,6 +3283,11 @@ type ExprTypeClassicConditionsConditionsEvaluator struct {
 	Params []float64 `json:"params"`
 	// e.g. "gt"
 	Type string `json:"type"`
+}
+
+// NewExprTypeClassicConditionsConditionsEvaluator creates a new ExprTypeClassicConditionsConditionsEvaluator object.
+func NewExprTypeClassicConditionsConditionsEvaluator() *ExprTypeClassicConditionsConditionsEvaluator {
+	return &ExprTypeClassicConditionsConditionsEvaluator{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditionsEvaluator` from JSON.
@@ -3270,6 +3371,11 @@ type ExprTypeClassicConditionsConditionsOperator struct {
 	Type TypeClassicConditionsType `json:"type"`
 }
 
+// NewExprTypeClassicConditionsConditionsOperator creates a new ExprTypeClassicConditionsConditionsOperator object.
+func NewExprTypeClassicConditionsConditionsOperator() *ExprTypeClassicConditionsConditionsOperator {
+	return &ExprTypeClassicConditionsConditionsOperator{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditionsOperator` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeClassicConditionsConditionsOperator) UnmarshalJSONStrict(raw []byte) error {
@@ -3324,6 +3430,11 @@ func (resource ExprTypeClassicConditionsConditionsOperator) Validate() error {
 
 type ExprTypeClassicConditionsConditionsQuery struct {
 	Params []string `json:"params"`
+}
+
+// NewExprTypeClassicConditionsConditionsQuery creates a new ExprTypeClassicConditionsConditionsQuery object.
+func NewExprTypeClassicConditionsConditionsQuery() *ExprTypeClassicConditionsConditionsQuery {
+	return &ExprTypeClassicConditionsConditionsQuery{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditionsQuery` from JSON.
@@ -3390,6 +3501,11 @@ type ExprTypeClassicConditionsConditionsReducer struct {
 	Type string `json:"type"`
 }
 
+// NewExprTypeClassicConditionsConditionsReducer creates a new ExprTypeClassicConditionsConditionsReducer object.
+func NewExprTypeClassicConditionsConditionsReducer() *ExprTypeClassicConditionsConditionsReducer {
+	return &ExprTypeClassicConditionsConditionsReducer{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditionsReducer` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeClassicConditionsConditionsReducer) UnmarshalJSONStrict(raw []byte) error {
@@ -3447,6 +3563,16 @@ type ExprTypeClassicConditionsConditions struct {
 	Operator  ExprTypeClassicConditionsConditionsOperator  `json:"operator"`
 	Query     ExprTypeClassicConditionsConditionsQuery     `json:"query"`
 	Reducer   ExprTypeClassicConditionsConditionsReducer   `json:"reducer"`
+}
+
+// NewExprTypeClassicConditionsConditions creates a new ExprTypeClassicConditionsConditions object.
+func NewExprTypeClassicConditionsConditions() *ExprTypeClassicConditionsConditions {
+	return &ExprTypeClassicConditionsConditions{
+		Evaluator: *NewExprTypeClassicConditionsConditionsEvaluator(),
+		Operator:  *NewExprTypeClassicConditionsConditionsOperator(),
+		Query:     *NewExprTypeClassicConditionsConditionsQuery(),
+		Reducer:   *NewExprTypeClassicConditionsConditionsReducer(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditions` from JSON.
@@ -3600,6 +3726,11 @@ type ExprTypeClassicConditionsResultAssertions struct {
 	TypeVersion []int64 `json:"typeVersion"`
 }
 
+// NewExprTypeClassicConditionsResultAssertions creates a new ExprTypeClassicConditionsResultAssertions object.
+func NewExprTypeClassicConditionsResultAssertions() *ExprTypeClassicConditionsResultAssertions {
+	return &ExprTypeClassicConditionsResultAssertions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsResultAssertions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeClassicConditionsResultAssertions) UnmarshalJSONStrict(raw []byte) error {
@@ -3707,6 +3838,14 @@ type ExprTypeClassicConditionsTimeRange struct {
 	To string `json:"to"`
 }
 
+// NewExprTypeClassicConditionsTimeRange creates a new ExprTypeClassicConditionsTimeRange object.
+func NewExprTypeClassicConditionsTimeRange() *ExprTypeClassicConditionsTimeRange {
+	return &ExprTypeClassicConditionsTimeRange{
+		From: "now-6h",
+		To:   "now",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsTimeRange` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeClassicConditionsTimeRange) UnmarshalJSONStrict(raw []byte) error {
@@ -3778,6 +3917,11 @@ type ExprTypeThresholdConditionsEvaluator struct {
 	Params []float64 `json:"params"`
 	// e.g. "gt"
 	Type TypeThresholdType `json:"type"`
+}
+
+// NewExprTypeThresholdConditionsEvaluator creates a new ExprTypeThresholdConditionsEvaluator object.
+func NewExprTypeThresholdConditionsEvaluator() *ExprTypeThresholdConditionsEvaluator {
+	return &ExprTypeThresholdConditionsEvaluator{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdConditionsEvaluator` from JSON.
@@ -3863,6 +4007,11 @@ type ExprTypeThresholdConditionsUnloadEvaluator struct {
 	Type TypeThresholdType `json:"type"`
 }
 
+// NewExprTypeThresholdConditionsUnloadEvaluator creates a new ExprTypeThresholdConditionsUnloadEvaluator object.
+func NewExprTypeThresholdConditionsUnloadEvaluator() *ExprTypeThresholdConditionsUnloadEvaluator {
+	return &ExprTypeThresholdConditionsUnloadEvaluator{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdConditionsUnloadEvaluator` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeThresholdConditionsUnloadEvaluator) UnmarshalJSONStrict(raw []byte) error {
@@ -3944,6 +4093,13 @@ type ExprTypeThresholdConditions struct {
 	Evaluator        ExprTypeThresholdConditionsEvaluator        `json:"evaluator"`
 	LoadedDimensions any                                         `json:"loadedDimensions,omitempty"`
 	UnloadEvaluator  *ExprTypeThresholdConditionsUnloadEvaluator `json:"unloadEvaluator,omitempty"`
+}
+
+// NewExprTypeThresholdConditions creates a new ExprTypeThresholdConditions object.
+func NewExprTypeThresholdConditions() *ExprTypeThresholdConditions {
+	return &ExprTypeThresholdConditions{
+		Evaluator: *NewExprTypeThresholdConditionsEvaluator(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdConditions` from JSON.
@@ -4073,6 +4229,11 @@ type ExprTypeThresholdResultAssertions struct {
 	TypeVersion []int64 `json:"typeVersion"`
 }
 
+// NewExprTypeThresholdResultAssertions creates a new ExprTypeThresholdResultAssertions object.
+func NewExprTypeThresholdResultAssertions() *ExprTypeThresholdResultAssertions {
+	return &ExprTypeThresholdResultAssertions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdResultAssertions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeThresholdResultAssertions) UnmarshalJSONStrict(raw []byte) error {
@@ -4180,6 +4341,14 @@ type ExprTypeThresholdTimeRange struct {
 	To string `json:"to"`
 }
 
+// NewExprTypeThresholdTimeRange creates a new ExprTypeThresholdTimeRange object.
+func NewExprTypeThresholdTimeRange() *ExprTypeThresholdTimeRange {
+	return &ExprTypeThresholdTimeRange{
+		From: "now-6h",
+		To:   "now",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdTimeRange` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExprTypeThresholdTimeRange) UnmarshalJSONStrict(raw []byte) error {
@@ -4267,6 +4436,11 @@ type ExprTypeSqlResultAssertions struct {
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
+}
+
+// NewExprTypeSqlResultAssertions creates a new ExprTypeSqlResultAssertions object.
+func NewExprTypeSqlResultAssertions() *ExprTypeSqlResultAssertions {
+	return &ExprTypeSqlResultAssertions{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeSqlResultAssertions` from JSON.
@@ -4374,6 +4548,14 @@ type ExprTypeSqlTimeRange struct {
 	From string `json:"from"`
 	// To is the end time of the query.
 	To string `json:"to"`
+}
+
+// NewExprTypeSqlTimeRange creates a new ExprTypeSqlTimeRange object.
+func NewExprTypeSqlTimeRange() *ExprTypeSqlTimeRange {
+	return &ExprTypeSqlTimeRange{
+		From: "now-6h",
+		To:   "now",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeSqlTimeRange` from JSON.

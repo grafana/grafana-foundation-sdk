@@ -8,6 +8,14 @@
  * <span class="badge builder"></span> [RoleBuilder](./builder-RoleBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewRole
+
+NewRole creates a new Role object.
+
+```go
+func NewRole() *Role
+```
+
 ### <span class="badge function"></span> RoleConverter
 
 RoleConverter accepts a `Role` object and generates the Go code to build this object using builders.

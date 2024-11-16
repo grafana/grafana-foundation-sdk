@@ -15,13 +15,11 @@ type IntervalVariableBuilder struct {
 }
 
 func NewIntervalVariableBuilder(name string) *IntervalVariableBuilder {
-	resource := &VariableModel{}
+	resource := NewVariableModel()
 	builder := &IntervalVariableBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Name = name
 	builder.internal.Type = "interval"
 
@@ -97,7 +95,4 @@ func (builder *IntervalVariableBuilder) Options(options []VariableOption) *Inter
 	builder.internal.Options = options
 
 	return builder
-}
-
-func (builder *IntervalVariableBuilder) applyDefaults() {
 }

@@ -23,6 +23,13 @@ type Role struct {
 	Hidden bool `json:"hidden"`
 }
 
+// NewRole creates a new Role object.
+func NewRole() *Role {
+	return &Role{
+		Hidden: false,
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Role` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Role) UnmarshalJSONStrict(raw []byte) error {

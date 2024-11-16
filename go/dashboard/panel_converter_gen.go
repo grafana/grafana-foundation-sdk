@@ -359,6 +359,23 @@ func PanelConverter(input Panel) string {
 		buffer.Reset()
 
 	}
+	if input.FieldConfig.Defaults.Links != nil && len(input.FieldConfig.Defaults.Links) >= 1 {
+
+		buffer.WriteString(`DataLinks(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.FieldConfig.Defaults.Links {
+			tmplinksarg1 := DashboardLinkConverter(arg1)
+			tmparg0 = append(tmparg0, tmplinksarg1)
+		}
+		arg0 := "[]cog.Builder[dashboard.DashboardLink]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.FieldConfig.Defaults.NoValue != nil && *input.FieldConfig.Defaults.NoValue != "" {
 
 		buffer.WriteString(`NoValue(`)

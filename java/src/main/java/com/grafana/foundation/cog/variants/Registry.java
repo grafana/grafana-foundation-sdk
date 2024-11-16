@@ -53,7 +53,12 @@ public class Registry {
     }
 
     public static Class<? extends Dataquery> getDataquery(String type) {
-        return dataqueryRegistry.get(type).getDataquery();
+        DataqueryConfig config = dataqueryRegistry.get(type);
+        if (config != null) {
+            return config.getDataquery();
+        }
+
+        return null;
     }
     
     public static void registerPanel(String type, Class<?> options, Class<?> fieldConfig) {

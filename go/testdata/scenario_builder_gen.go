@@ -15,13 +15,11 @@ type ScenarioBuilder struct {
 }
 
 func NewScenarioBuilder() *ScenarioBuilder {
-	resource := &Scenario{}
+	resource := NewScenario()
 	builder := &ScenarioBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -62,7 +60,4 @@ func (builder *ScenarioBuilder) HideAliasField(hideAliasField bool) *ScenarioBui
 	builder.internal.HideAliasField = &hideAliasField
 
 	return builder
-}
-
-func (builder *ScenarioBuilder) applyDefaults() {
 }

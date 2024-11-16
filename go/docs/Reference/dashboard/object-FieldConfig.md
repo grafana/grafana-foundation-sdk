@@ -57,7 +57,7 @@ type FieldConfig struct {
     // Panel color configuration
     Color *dashboard.FieldColor `json:"color,omitempty"`
     // The behavior when clicking on a result
-    Links []any `json:"links,omitempty"`
+    Links []dashboard.DashboardLink `json:"links,omitempty"`
     // Alternative to empty string
     NoValue *string `json:"noValue,omitempty"`
     // custom is specified by the FieldConfig field

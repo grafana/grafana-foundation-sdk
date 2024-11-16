@@ -14,13 +14,11 @@ type SQLExpressionBuilder struct {
 }
 
 func NewSQLExpressionBuilder() *SQLExpressionBuilder {
-	resource := &SQLExpression{}
+	resource := NewSQLExpression()
 	builder := &SQLExpressionBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -100,7 +98,4 @@ func (builder *SQLExpressionBuilder) Limit(limit int64) *SQLExpressionBuilder {
 	builder.internal.Limit = &limit
 
 	return builder
-}
-
-func (builder *SQLExpressionBuilder) applyDefaults() {
 }

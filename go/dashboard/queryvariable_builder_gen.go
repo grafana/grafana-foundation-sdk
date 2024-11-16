@@ -15,13 +15,11 @@ type QueryVariableBuilder struct {
 }
 
 func NewQueryVariableBuilder(name string) *QueryVariableBuilder {
-	resource := &VariableModel{}
+	resource := NewVariableModel()
 	builder := &QueryVariableBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Name = name
 	builder.internal.Type = "query"
 
@@ -147,7 +145,4 @@ func (builder *QueryVariableBuilder) Regex(regex string) *QueryVariableBuilder {
 	builder.internal.Regex = &regex
 
 	return builder
-}
-
-func (builder *QueryVariableBuilder) applyDefaults() {
 }

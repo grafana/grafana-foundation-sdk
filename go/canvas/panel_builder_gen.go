@@ -17,13 +17,11 @@ type PanelBuilder struct {
 }
 
 func NewPanelBuilder() *PanelBuilder {
-	resource := &dashboard.Panel{}
+	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "canvas"
 
 	return builder
@@ -110,7 +108,7 @@ func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.H = h
 
@@ -120,7 +118,7 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.W = w
 
@@ -302,6 +300,22 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 	return builder
 }
 
+// The behavior when clicking on a result
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder {
+	linksResources := make([]dashboard.DashboardLink, 0, len(links))
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			return builder
+		}
+		linksResources = append(linksResources, linksDepth1)
+	}
+	builder.internal.FieldConfig.Defaults.Links = linksResources
+
+	return builder
+}
+
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
@@ -338,7 +352,7 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 // Enable inline editing
 func (builder *PanelBuilder) InlineEditing(inlineEditing bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).InlineEditing = inlineEditing
 
@@ -348,7 +362,7 @@ func (builder *PanelBuilder) InlineEditing(inlineEditing bool) *PanelBuilder {
 // Show all available element types
 func (builder *PanelBuilder) ShowAdvancedTypes(showAdvancedTypes bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowAdvancedTypes = showAdvancedTypes
 
@@ -359,7 +373,7 @@ func (builder *PanelBuilder) ShowAdvancedTypes(showAdvancedTypes bool) *PanelBui
 // TODO: Figure out how to define a default value for this
 func (builder *PanelBuilder) Root(root cog.Builder[CanvasOptionsRoot]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	rootResource, err := root.Build()
 	if err != nil {
@@ -369,12 +383,4 @@ func (builder *PanelBuilder) Root(root cog.Builder[CanvasOptionsRoot]) *PanelBui
 	builder.internal.Options.(*Options).Root = rootResource
 
 	return builder
-}
-
-func (builder *PanelBuilder) applyDefaults() {
-	builder.Transparent(false)
-	builder.Height(9)
-	builder.Span(12)
-	builder.InlineEditing(true)
-	builder.ShowAdvancedTypes(true)
 }

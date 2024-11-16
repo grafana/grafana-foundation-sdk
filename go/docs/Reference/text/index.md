@@ -12,6 +12,22 @@
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewCodeOptions
+
+NewCodeOptions creates a new CodeOptions object.
+
+```go
+func NewCodeOptions() *CodeOptions
+```
+
+### <span class="badge function"></span> NewOptions
+
+NewOptions creates a new Options object.
+
+```go
+func NewOptions() *Options
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to text panels.

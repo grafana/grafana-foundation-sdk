@@ -14,13 +14,11 @@ type PulseWaveQueryBuilder struct {
 }
 
 func NewPulseWaveQueryBuilder() *PulseWaveQueryBuilder {
-	resource := &PulseWaveQuery{}
+	resource := NewPulseWaveQuery()
 	builder := &PulseWaveQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -61,7 +59,4 @@ func (builder *PulseWaveQueryBuilder) OffValue(offValue float64) *PulseWaveQuery
 	builder.internal.OffValue = &offValue
 
 	return builder
-}
-
-func (builder *PulseWaveQueryBuilder) applyDefaults() {
 }

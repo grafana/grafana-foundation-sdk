@@ -64,7 +64,7 @@ public class TypeSql implements com.grafana.foundation.cog.variants.Dataquery {
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<TypeSql> {
+    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
         protected final TypeSql internal;
         
         public Builder() {

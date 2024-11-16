@@ -11,6 +11,22 @@
  * <span class="badge builder"></span> [PlaylistItemBuilder](./builder-PlaylistItemBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewPlaylist
+
+NewPlaylist creates a new Playlist object.
+
+```go
+func NewPlaylist() *Playlist
+```
+
+### <span class="badge function"></span> NewPlaylistItem
+
+NewPlaylistItem creates a new PlaylistItem object.
+
+```go
+func NewPlaylistItem() *PlaylistItem
+```
+
 ### <span class="badge function"></span> PlaylistConverter
 
 PlaylistConverter accepts a `Playlist` object and generates the Go code to build this object using builders.

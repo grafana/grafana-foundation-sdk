@@ -15,13 +15,11 @@ type ScaleDistributionConfigBuilder struct {
 }
 
 func NewScaleDistributionConfigBuilder() *ScaleDistributionConfigBuilder {
-	resource := &ScaleDistributionConfig{}
+	resource := NewScaleDistributionConfig()
 	builder := &ScaleDistributionConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -50,7 +48,4 @@ func (builder *ScaleDistributionConfigBuilder) LinearThreshold(linearThreshold f
 	builder.internal.LinearThreshold = &linearThreshold
 
 	return builder
-}
-
-func (builder *ScaleDistributionConfigBuilder) applyDefaults() {
 }

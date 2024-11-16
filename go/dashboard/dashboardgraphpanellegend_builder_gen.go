@@ -14,13 +14,11 @@ type DashboardGraphPanelLegendBuilder struct {
 }
 
 func NewDashboardGraphPanelLegendBuilder() *DashboardGraphPanelLegendBuilder {
-	resource := &DashboardGraphPanelLegend{}
+	resource := NewDashboardGraphPanelLegend()
 	builder := &DashboardGraphPanelLegendBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,8 +47,4 @@ func (builder *DashboardGraphPanelLegendBuilder) SortDesc(sortDesc bool) *Dashbo
 	builder.internal.SortDesc = &sortDesc
 
 	return builder
-}
-
-func (builder *DashboardGraphPanelLegendBuilder) applyDefaults() {
-	builder.Show(true)
 }

@@ -18,13 +18,11 @@ type PanelBuilder struct {
 }
 
 func NewPanelBuilder() *PanelBuilder {
-	resource := &dashboard.Panel{}
+	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "status-history"
 
 	return builder
@@ -111,7 +109,7 @@ func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.H = h
 
@@ -121,7 +119,7 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.W = w
 
@@ -303,6 +301,22 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 	return builder
 }
 
+// The behavior when clicking on a result
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder {
+	linksResources := make([]dashboard.DashboardLink, 0, len(links))
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			return builder
+		}
+		linksResources = append(linksResources, linksDepth1)
+	}
+	builder.internal.FieldConfig.Defaults.Links = linksResources
+
+	return builder
+}
+
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
@@ -339,7 +353,7 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 // Set the height of the rows
 func (builder *PanelBuilder) RowHeight(rowHeight float32) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).RowHeight = rowHeight
 
@@ -349,7 +363,7 @@ func (builder *PanelBuilder) RowHeight(rowHeight float32) *PanelBuilder {
 // Show values on the columns
 func (builder *PanelBuilder) ShowValue(showValue common.VisibilityMode) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowValue = showValue
 
@@ -358,7 +372,7 @@ func (builder *PanelBuilder) ShowValue(showValue common.VisibilityMode) *PanelBu
 
 func (builder *PanelBuilder) Legend(legend cog.Builder[common.VizLegendOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	legendResource, err := legend.Build()
 	if err != nil {
@@ -372,7 +386,7 @@ func (builder *PanelBuilder) Legend(legend cog.Builder[common.VizLegendOptions])
 
 func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[common.VizTooltipOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	tooltipResource, err := tooltip.Build()
 	if err != nil {
@@ -386,7 +400,7 @@ func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[common.VizTooltipOption
 
 func (builder *PanelBuilder) Timezone(timezone []common.TimeZone) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Timezone = timezone
 
@@ -396,7 +410,7 @@ func (builder *PanelBuilder) Timezone(timezone []common.TimeZone) *PanelBuilder 
 // Controls the column width
 func (builder *PanelBuilder) ColWidth(colWidth float64) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ColWidth = &colWidth
 
@@ -405,7 +419,7 @@ func (builder *PanelBuilder) ColWidth(colWidth float64) *PanelBuilder {
 
 func (builder *PanelBuilder) LineWidth(lineWidth uint32) *PanelBuilder {
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).LineWidth = &lineWidth
 
@@ -414,7 +428,7 @@ func (builder *PanelBuilder) LineWidth(lineWidth uint32) *PanelBuilder {
 
 func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConfig]) *PanelBuilder {
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	hideFromResource, err := hideFrom.Build()
 	if err != nil {
@@ -428,20 +442,9 @@ func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConf
 
 func (builder *PanelBuilder) FillOpacity(fillOpacity uint32) *PanelBuilder {
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).FillOpacity = &fillOpacity
 
 	return builder
-}
-
-func (builder *PanelBuilder) applyDefaults() {
-	builder.Transparent(false)
-	builder.Height(9)
-	builder.Span(12)
-	builder.RowHeight(0.9)
-	builder.ShowValue("auto")
-	builder.ColWidth(0.9)
-	builder.LineWidth(1)
-	builder.FillOpacity(70)
 }

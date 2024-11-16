@@ -51,6 +51,11 @@ type HeatmapColorOptions struct {
 	Max *float32 `json:"max,omitempty"`
 }
 
+// NewHeatmapColorOptions creates a new HeatmapColorOptions object.
+func NewHeatmapColorOptions() *HeatmapColorOptions {
+	return &HeatmapColorOptions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HeatmapColorOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *HeatmapColorOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -290,6 +295,11 @@ type YAxisConfig struct {
 	// Sets the maximum value for the yAxis
 	Max              *float32 `json:"max,omitempty"`
 	AxisCenteredZero *bool    `json:"axisCenteredZero,omitempty"`
+}
+
+// NewYAxisConfig creates a new YAxisConfig object.
+func NewYAxisConfig() *YAxisConfig {
+	return &YAxisConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `YAxisConfig` from JSON.
@@ -628,6 +638,11 @@ type CellValues struct {
 	Decimals *float32 `json:"decimals,omitempty"`
 }
 
+// NewCellValues creates a new CellValues object.
+func NewCellValues() *CellValues {
+	return &CellValues{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CellValues` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CellValues) UnmarshalJSONStrict(raw []byte) error {
@@ -709,6 +724,11 @@ type FilterValueRange struct {
 	Le *float32 `json:"le,omitempty"`
 	// Sets the filter range to values greater than or equal to the given value
 	Ge *float32 `json:"ge,omitempty"`
+}
+
+// NewFilterValueRange creates a new FilterValueRange object.
+func NewFilterValueRange() *FilterValueRange {
+	return &FilterValueRange{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FilterValueRange` from JSON.
@@ -794,6 +814,11 @@ type HeatmapTooltip struct {
 	YHistogram *bool `json:"yHistogram,omitempty"`
 }
 
+// NewHeatmapTooltip creates a new HeatmapTooltip object.
+func NewHeatmapTooltip() *HeatmapTooltip {
+	return &HeatmapTooltip{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HeatmapTooltip` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *HeatmapTooltip) UnmarshalJSONStrict(raw []byte) error {
@@ -872,6 +897,11 @@ type HeatmapLegend struct {
 	Show bool `json:"show"`
 }
 
+// NewHeatmapLegend creates a new HeatmapLegend object.
+func NewHeatmapLegend() *HeatmapLegend {
+	return &HeatmapLegend{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HeatmapLegend` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *HeatmapLegend) UnmarshalJSONStrict(raw []byte) error {
@@ -928,6 +958,11 @@ func (resource HeatmapLegend) Validate() error {
 type ExemplarConfig struct {
 	// Sets the color of the exemplar markers
 	Color string `json:"color"`
+}
+
+// NewExemplarConfig creates a new ExemplarConfig object.
+func NewExemplarConfig() *ExemplarConfig {
+	return &ExemplarConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExemplarConfig` from JSON.
@@ -988,6 +1023,11 @@ type RowsHeatmapOptions struct {
 	Value *string `json:"value,omitempty"`
 	// Controls tick alignment when not calculating from data
 	Layout *common.HeatmapCellLayout `json:"layout,omitempty"`
+}
+
+// NewRowsHeatmapOptions creates a new RowsHeatmapOptions object.
+func NewRowsHeatmapOptions() *RowsHeatmapOptions {
+	return &RowsHeatmapOptions{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RowsHeatmapOptions` from JSON.
@@ -1098,6 +1138,33 @@ type Options struct {
 	Tooltip HeatmapTooltip `json:"tooltip"`
 	// Controls exemplar options
 	Exemplars ExemplarConfig `json:"exemplars"`
+}
+
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		Calculate: cog.ToPtr[bool](false),
+		Color: HeatmapColorOptions{
+			Scheme:   "Oranges",
+			Fill:     "dark-orange",
+			Exponent: 0.5,
+			Steps:    64,
+			Reverse:  false,
+		},
+		FilterValues: &FilterValueRange{
+			Le: cog.ToPtr[float32](1e-09),
+		},
+		ShowValue: common.VisibilityModeAuto,
+		CellGap:   cog.ToPtr[uint8](1),
+		YAxis:     *NewYAxisConfig(),
+		Legend: HeatmapLegend{
+			Show: true,
+		},
+		Tooltip: *NewHeatmapTooltip(),
+		Exemplars: ExemplarConfig{
+			Color: "rgba(255,0,255,0.7)",
+		},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
@@ -1443,6 +1510,11 @@ func (resource Options) Validate() error {
 type FieldConfig struct {
 	ScaleDistribution *common.ScaleDistributionConfig `json:"scaleDistribution,omitempty"`
 	HideFrom          *common.HideSeriesConfig        `json:"hideFrom,omitempty"`
+}
+
+// NewFieldConfig creates a new FieldConfig object.
+func NewFieldConfig() *FieldConfig {
+	return &FieldConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FieldConfig` from JSON.

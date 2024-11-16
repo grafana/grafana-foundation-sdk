@@ -16,13 +16,11 @@ type RegexMapBuilder struct {
 }
 
 func NewRegexMapBuilder() *RegexMapBuilder {
-	resource := &RegexMap{}
+	resource := NewRegexMap()
 	builder := &RegexMapBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "regex"
 
 	return builder
@@ -46,7 +44,4 @@ func (builder *RegexMapBuilder) Options(options cog.Builder[DashboardRegexMapOpt
 	builder.internal.Options = optionsResource
 
 	return builder
-}
-
-func (builder *RegexMapBuilder) applyDefaults() {
 }

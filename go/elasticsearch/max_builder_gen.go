@@ -14,13 +14,11 @@ type MaxBuilder struct {
 }
 
 func NewMaxBuilder() *MaxBuilder {
-	resource := &Max{}
+	resource := NewMax()
 	builder := &MaxBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "max"
 
 	return builder
@@ -61,7 +59,4 @@ func (builder *MaxBuilder) Hide(hide bool) *MaxBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *MaxBuilder) applyDefaults() {
 }

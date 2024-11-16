@@ -15,13 +15,11 @@ type ConstantVariableBuilder struct {
 }
 
 func NewConstantVariableBuilder(name string) *ConstantVariableBuilder {
-	resource := &VariableModel{}
+	resource := NewVariableModel()
 	builder := &ConstantVariableBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Name = name
 	builder.internal.Type = "constant"
 
@@ -76,7 +74,4 @@ func (builder *ConstantVariableBuilder) AllFormat(allFormat string) *ConstantVar
 	builder.internal.AllFormat = &allFormat
 
 	return builder
-}
-
-func (builder *ConstantVariableBuilder) applyDefaults() {
 }

@@ -59,6 +59,11 @@ func (resource AzureMonitorQuery) DataqueryType() string {
 	return "grafana-azure-monitor-datasource"
 }
 
+// NewAzureMonitorQuery creates a new AzureMonitorQuery object.
+func NewAzureMonitorQuery() *AzureMonitorQuery {
+	return &AzureMonitorQuery{}
+}
+
 // VariantConfig returns the configuration related to grafana-azure-monitor-datasource dataqueries.
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
@@ -543,6 +548,11 @@ type AzureMetricQuery struct {
 	ResourceName *string `json:"resourceName,omitempty"`
 }
 
+// NewAzureMetricQuery creates a new AzureMetricQuery object.
+func NewAzureMetricQuery() *AzureMetricQuery {
+	return &AzureMetricQuery{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMetricQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureMetricQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -1000,6 +1010,11 @@ type AzureLogsQuery struct {
 	Resource *string `json:"resource,omitempty"`
 }
 
+// NewAzureLogsQuery creates a new AzureLogsQuery object.
+func NewAzureLogsQuery() *AzureLogsQuery {
+	return &AzureLogsQuery{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureLogsQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureLogsQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -1171,6 +1186,11 @@ type AzureTracesQuery struct {
 	Filters []AzureTracesFilter `json:"filters,omitempty"`
 	// KQL query to be executed.
 	Query *string `json:"query,omitempty"`
+}
+
+// NewAzureTracesQuery creates a new AzureTracesQuery object.
+func NewAzureTracesQuery() *AzureTracesQuery {
+	return &AzureTracesQuery{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureTracesQuery` from JSON.
@@ -1366,6 +1386,11 @@ type AzureTracesFilter struct {
 	Filters []string `json:"filters"`
 }
 
+// NewAzureTracesFilter creates a new AzureTracesFilter object.
+func NewAzureTracesFilter() *AzureTracesFilter {
+	return &AzureTracesFilter{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureTracesFilter` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureTracesFilter) UnmarshalJSONStrict(raw []byte) error {
@@ -1475,6 +1500,11 @@ type AzureResourceGraphQuery struct {
 	ResultFormat *string `json:"resultFormat,omitempty"`
 }
 
+// NewAzureResourceGraphQuery creates a new AzureResourceGraphQuery object.
+func NewAzureResourceGraphQuery() *AzureResourceGraphQuery {
+	return &AzureResourceGraphQuery{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureResourceGraphQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureResourceGraphQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -1556,6 +1586,11 @@ type AzureMonitorResource struct {
 	ResourceName    *string `json:"resourceName,omitempty"`
 	MetricNamespace *string `json:"metricNamespace,omitempty"`
 	Region          *string `json:"region,omitempty"`
+}
+
+// NewAzureMonitorResource creates a new AzureMonitorResource object.
+func NewAzureMonitorResource() *AzureMonitorResource {
+	return &AzureMonitorResource{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMonitorResource` from JSON.
@@ -1704,6 +1739,11 @@ type AzureMetricDimension struct {
 	Filter *string `json:"filter,omitempty"`
 }
 
+// NewAzureMetricDimension creates a new AzureMetricDimension object.
+func NewAzureMetricDimension() *AzureMetricDimension {
+	return &AzureMetricDimension{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMetricDimension` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureMetricDimension) UnmarshalJSONStrict(raw []byte) error {
@@ -1839,6 +1879,11 @@ type BaseGrafanaTemplateVariableQuery struct {
 	RawQuery *string `json:"rawQuery,omitempty"`
 }
 
+// NewBaseGrafanaTemplateVariableQuery creates a new BaseGrafanaTemplateVariableQuery object.
+func NewBaseGrafanaTemplateVariableQuery() *BaseGrafanaTemplateVariableQuery {
+	return &BaseGrafanaTemplateVariableQuery{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseGrafanaTemplateVariableQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *BaseGrafanaTemplateVariableQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -1897,6 +1942,13 @@ func (resource BaseGrafanaTemplateVariableQuery) Validate() error {
 type UnknownQuery struct {
 	RawQuery *string `json:"rawQuery,omitempty"`
 	Kind     string  `json:"kind"`
+}
+
+// NewUnknownQuery creates a new UnknownQuery object.
+func NewUnknownQuery() *UnknownQuery {
+	return &UnknownQuery{
+		Kind: "UnknownQuery",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `UnknownQuery` from JSON.
@@ -1988,6 +2040,13 @@ type AppInsightsMetricNameQuery struct {
 	Kind     string  `json:"kind"`
 }
 
+// NewAppInsightsMetricNameQuery creates a new AppInsightsMetricNameQuery object.
+func NewAppInsightsMetricNameQuery() *AppInsightsMetricNameQuery {
+	return &AppInsightsMetricNameQuery{
+		Kind: "AppInsightsMetricNameQuery",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AppInsightsMetricNameQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AppInsightsMetricNameQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -2076,6 +2135,13 @@ type AppInsightsGroupByQuery struct {
 	RawQuery   *string `json:"rawQuery,omitempty"`
 	Kind       string  `json:"kind"`
 	MetricName string  `json:"metricName"`
+}
+
+// NewAppInsightsGroupByQuery creates a new AppInsightsGroupByQuery object.
+func NewAppInsightsGroupByQuery() *AppInsightsGroupByQuery {
+	return &AppInsightsGroupByQuery{
+		Kind: "AppInsightsGroupByQuery",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AppInsightsGroupByQuery` from JSON.
@@ -2184,6 +2250,13 @@ type SubscriptionsQuery struct {
 	Kind     string  `json:"kind"`
 }
 
+// NewSubscriptionsQuery creates a new SubscriptionsQuery object.
+func NewSubscriptionsQuery() *SubscriptionsQuery {
+	return &SubscriptionsQuery{
+		Kind: "SubscriptionsQuery",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SubscriptionsQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *SubscriptionsQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -2272,6 +2345,13 @@ type ResourceGroupsQuery struct {
 	RawQuery     *string `json:"rawQuery,omitempty"`
 	Kind         string  `json:"kind"`
 	Subscription string  `json:"subscription"`
+}
+
+// NewResourceGroupsQuery creates a new ResourceGroupsQuery object.
+func NewResourceGroupsQuery() *ResourceGroupsQuery {
+	return &ResourceGroupsQuery{
+		Kind: "ResourceGroupsQuery",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResourceGroupsQuery` from JSON.
@@ -2381,6 +2461,13 @@ type ResourceNamesQuery struct {
 	Subscription    string  `json:"subscription"`
 	ResourceGroup   string  `json:"resourceGroup"`
 	MetricNamespace string  `json:"metricNamespace"`
+}
+
+// NewResourceNamesQuery creates a new ResourceNamesQuery object.
+func NewResourceNamesQuery() *ResourceNamesQuery {
+	return &ResourceNamesQuery{
+		Kind: "ResourceNamesQuery",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResourceNamesQuery` from JSON.
@@ -2525,6 +2612,13 @@ type MetricNamespaceQuery struct {
 	ResourceGroup   string  `json:"resourceGroup"`
 	MetricNamespace *string `json:"metricNamespace,omitempty"`
 	ResourceName    *string `json:"resourceName,omitempty"`
+}
+
+// NewMetricNamespaceQuery creates a new MetricNamespaceQuery object.
+func NewMetricNamespaceQuery() *MetricNamespaceQuery {
+	return &MetricNamespaceQuery{
+		Kind: "MetricNamespaceQuery",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricNamespaceQuery` from JSON.
@@ -2695,6 +2789,13 @@ type MetricDefinitionsQuery struct {
 	ResourceName    *string `json:"resourceName,omitempty"`
 }
 
+// NewMetricDefinitionsQuery creates a new MetricDefinitionsQuery object.
+func NewMetricDefinitionsQuery() *MetricDefinitionsQuery {
+	return &MetricDefinitionsQuery{
+		Kind: "MetricDefinitionsQuery",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricDefinitionsQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MetricDefinitionsQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -2862,6 +2963,13 @@ type MetricNamesQuery struct {
 	MetricNamespace string  `json:"metricNamespace"`
 }
 
+// NewMetricNamesQuery creates a new MetricNamesQuery object.
+func NewMetricNamesQuery() *MetricNamesQuery {
+	return &MetricNamesQuery{
+		Kind: "MetricNamesQuery",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricNamesQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MetricNamesQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -3020,6 +3128,13 @@ type WorkspacesQuery struct {
 	Subscription string  `json:"subscription"`
 }
 
+// NewWorkspacesQuery creates a new WorkspacesQuery object.
+func NewWorkspacesQuery() *WorkspacesQuery {
+	return &WorkspacesQuery{
+		Kind: "WorkspacesQuery",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `WorkspacesQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *WorkspacesQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -3123,6 +3238,11 @@ func (resource WorkspacesQuery) Validate() error {
 
 type GrafanaTemplateVariableQuery = AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery
 
+// NewGrafanaTemplateVariableQuery creates a new GrafanaTemplateVariableQuery object.
+func NewGrafanaTemplateVariableQuery() *GrafanaTemplateVariableQuery {
+	return NewAppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery()
+}
+
 type AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery struct {
 	AppInsightsMetricNameQuery *AppInsightsMetricNameQuery `json:"AppInsightsMetricNameQuery,omitempty"`
 	AppInsightsGroupByQuery    *AppInsightsGroupByQuery    `json:"AppInsightsGroupByQuery,omitempty"`
@@ -3134,6 +3254,11 @@ type AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrRe
 	MetricNamesQuery           *MetricNamesQuery           `json:"MetricNamesQuery,omitempty"`
 	WorkspacesQuery            *WorkspacesQuery            `json:"WorkspacesQuery,omitempty"`
 	UnknownQuery               *UnknownQuery               `json:"UnknownQuery,omitempty"`
+}
+
+// NewAppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery creates a new AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery object.
+func NewAppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery() *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery {
+	return &AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery` as JSON.

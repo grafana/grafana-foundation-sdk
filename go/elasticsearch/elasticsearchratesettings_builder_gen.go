@@ -14,13 +14,11 @@ type ElasticsearchRateSettingsBuilder struct {
 }
 
 func NewElasticsearchRateSettingsBuilder() *ElasticsearchRateSettingsBuilder {
-	resource := &ElasticsearchRateSettings{}
+	resource := NewElasticsearchRateSettings()
 	builder := &ElasticsearchRateSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *ElasticsearchRateSettingsBuilder) Mode(mode string) *Elasticsearc
 	builder.internal.Mode = &mode
 
 	return builder
-}
-
-func (builder *ElasticsearchRateSettingsBuilder) applyDefaults() {
 }

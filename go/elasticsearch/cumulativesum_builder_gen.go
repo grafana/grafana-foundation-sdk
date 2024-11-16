@@ -14,13 +14,11 @@ type CumulativeSumBuilder struct {
 }
 
 func NewCumulativeSumBuilder() *CumulativeSumBuilder {
-	resource := &CumulativeSum{}
+	resource := NewCumulativeSum()
 	builder := &CumulativeSumBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "cumulative_sum"
 
 	return builder
@@ -67,7 +65,4 @@ func (builder *CumulativeSumBuilder) Hide(hide bool) *CumulativeSumBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *CumulativeSumBuilder) applyDefaults() {
 }

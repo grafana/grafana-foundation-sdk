@@ -16,13 +16,11 @@ type LibraryElementDTOMetaBuilder struct {
 }
 
 func NewLibraryElementDTOMetaBuilder() *LibraryElementDTOMetaBuilder {
-	resource := &LibraryElementDTOMeta{}
+	resource := NewLibraryElementDTOMeta()
 	builder := &LibraryElementDTOMetaBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -85,7 +83,4 @@ func (builder *LibraryElementDTOMetaBuilder) UpdatedBy(updatedBy cog.Builder[Lib
 	builder.internal.UpdatedBy = updatedByResource
 
 	return builder
-}
-
-func (builder *LibraryElementDTOMetaBuilder) applyDefaults() {
 }

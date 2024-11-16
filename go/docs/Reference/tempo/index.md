@@ -14,6 +14,14 @@
  * <span class="badge builder"></span> [TraceqlFilterBuilder](./builder-TraceqlFilterBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewTempoQuery
+
+NewTempoQuery creates a new TempoQuery object.
+
+```go
+func NewTempoQuery() *TempoQuery
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to tempo dataqueries.
@@ -22,6 +30,22 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> NewTraceqlFilter
+
+NewTraceqlFilter creates a new TraceqlFilter object.
+
+```go
+func NewTraceqlFilter() *TraceqlFilter
+```
+
+### <span class="badge function"></span> NewStringOrArrayOfString
+
+NewStringOrArrayOfString creates a new StringOrArrayOfString object.
+
+```go
+func NewStringOrArrayOfString() *StringOrArrayOfString
 ```
 
 ### <span class="badge function"></span> TempoQueryConverter

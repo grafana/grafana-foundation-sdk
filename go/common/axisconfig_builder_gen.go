@@ -15,13 +15,11 @@ type AxisConfigBuilder struct {
 }
 
 func NewAxisConfigBuilder() *AxisConfigBuilder {
-	resource := &AxisConfig{}
+	resource := NewAxisConfig()
 	builder := &AxisConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -91,7 +89,4 @@ func (builder *AxisConfigBuilder) AxisCenteredZero(axisCenteredZero bool) *AxisC
 	builder.internal.AxisCenteredZero = &axisCenteredZero
 
 	return builder
-}
-
-func (builder *AxisConfigBuilder) applyDefaults() {
 }

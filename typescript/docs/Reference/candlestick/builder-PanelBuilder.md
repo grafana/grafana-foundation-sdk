@@ -116,6 +116,14 @@ Set which colors are used when the price movement is up or down
 colors(colors: cog.Builder<candlestick.CandlestickColors>)
 ```
 
+### <span class="badge object-method"></span> dataLinks
+
+The behavior when clicking on a result
+
+```typescript
+dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
+```
+
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.

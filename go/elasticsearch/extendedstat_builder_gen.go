@@ -14,13 +14,11 @@ type ExtendedStatBuilder struct {
 }
 
 func NewExtendedStatBuilder() *ExtendedStatBuilder {
-	resource := &ExtendedStat{}
+	resource := NewExtendedStat()
 	builder := &ExtendedStatBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *ExtendedStatBuilder) Value(value ExtendedStatMetaType) *ExtendedS
 	builder.internal.Value = value
 
 	return builder
-}
-
-func (builder *ExtendedStatBuilder) applyDefaults() {
 }

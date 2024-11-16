@@ -16,13 +16,11 @@ type TypeClassicConditionsBuilder struct {
 }
 
 func NewTypeClassicConditionsBuilder() *TypeClassicConditionsBuilder {
-	resource := &TypeClassicConditions{}
+	resource := NewTypeClassicConditions()
 	builder := &TypeClassicConditionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "classic_conditions"
 
 	return builder
@@ -124,7 +122,4 @@ func (builder *TypeClassicConditionsBuilder) TimeRange(timeRange cog.Builder[Exp
 	builder.internal.TimeRange = &timeRangeResource
 
 	return builder
-}
-
-func (builder *TypeClassicConditionsBuilder) applyDefaults() {
 }

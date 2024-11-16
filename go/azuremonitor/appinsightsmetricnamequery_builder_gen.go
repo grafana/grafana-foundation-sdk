@@ -14,13 +14,11 @@ type AppInsightsMetricNameQueryBuilder struct {
 }
 
 func NewAppInsightsMetricNameQueryBuilder() *AppInsightsMetricNameQueryBuilder {
-	resource := &AppInsightsMetricNameQuery{}
+	resource := NewAppInsightsMetricNameQuery()
 	builder := &AppInsightsMetricNameQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Kind = "AppInsightsMetricNameQuery"
 
 	return builder
@@ -38,7 +36,4 @@ func (builder *AppInsightsMetricNameQueryBuilder) RawQuery(rawQuery string) *App
 	builder.internal.RawQuery = &rawQuery
 
 	return builder
-}
-
-func (builder *AppInsightsMetricNameQueryBuilder) applyDefaults() {
 }

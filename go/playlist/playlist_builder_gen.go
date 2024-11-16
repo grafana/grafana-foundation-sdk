@@ -14,13 +14,11 @@ type PlaylistBuilder struct {
 }
 
 func NewPlaylistBuilder() *PlaylistBuilder {
-	resource := &Playlist{}
+	resource := NewPlaylist()
 	builder := &PlaylistBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -71,8 +69,4 @@ func (builder *PlaylistBuilder) Items(items []cog.Builder[PlaylistItem]) *Playli
 	builder.internal.Items = itemsResources
 
 	return builder
-}
-
-func (builder *PlaylistBuilder) applyDefaults() {
-	builder.Interval("5m")
 }

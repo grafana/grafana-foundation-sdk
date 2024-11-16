@@ -14,13 +14,11 @@ type ElasticsearchTopMetricsSettingsBuilder struct {
 }
 
 func NewElasticsearchTopMetricsSettingsBuilder() *ElasticsearchTopMetricsSettingsBuilder {
-	resource := &ElasticsearchTopMetricsSettings{}
+	resource := NewElasticsearchTopMetricsSettings()
 	builder := &ElasticsearchTopMetricsSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,7 +47,4 @@ func (builder *ElasticsearchTopMetricsSettingsBuilder) Metrics(metrics []string)
 	builder.internal.Metrics = metrics
 
 	return builder
-}
-
-func (builder *ElasticsearchTopMetricsSettingsBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type PublicDashboardBuilder struct {
 }
 
 func NewPublicDashboardBuilder() *PublicDashboardBuilder {
-	resource := &PublicDashboard{}
+	resource := NewPublicDashboard()
 	builder := &PublicDashboardBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -73,7 +71,4 @@ func (builder *PublicDashboardBuilder) TimeSelectionEnabled(timeSelectionEnabled
 	builder.internal.TimeSelectionEnabled = timeSelectionEnabled
 
 	return builder
-}
-
-func (builder *PublicDashboardBuilder) applyDefaults() {
 }
