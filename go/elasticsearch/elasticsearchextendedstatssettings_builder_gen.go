@@ -14,13 +14,11 @@ type ElasticsearchExtendedStatsSettingsBuilder struct {
 }
 
 func NewElasticsearchExtendedStatsSettingsBuilder() *ElasticsearchExtendedStatsSettingsBuilder {
-	resource := &ElasticsearchExtendedStatsSettings{}
+	resource := NewElasticsearchExtendedStatsSettings()
 	builder := &ElasticsearchExtendedStatsSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -54,7 +52,4 @@ func (builder *ElasticsearchExtendedStatsSettingsBuilder) Sigma(sigma string) *E
 	builder.internal.Sigma = &sigma
 
 	return builder
-}
-
-func (builder *ElasticsearchExtendedStatsSettingsBuilder) applyDefaults() {
 }

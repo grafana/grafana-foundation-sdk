@@ -21,6 +21,14 @@ type AccessPolicy struct {
 	Rules []AccessRule `json:"rules"`
 }
 
+// NewAccessPolicy creates a new AccessPolicy object.
+func NewAccessPolicy() *AccessPolicy {
+	return &AccessPolicy{
+		Scope: *NewResourceRef(),
+		Role:  *NewRoleRef(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AccessPolicy` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AccessPolicy) UnmarshalJSONStrict(raw []byte) error {
@@ -156,6 +164,11 @@ type RoleRef struct {
 	Xname string      `json:"xname"`
 }
 
+// NewRoleRef creates a new RoleRef object.
+func NewRoleRef() *RoleRef {
+	return &RoleRef{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RoleRef` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RoleRef) UnmarshalJSONStrict(raw []byte) error {
@@ -247,6 +260,11 @@ type ResourceRef struct {
 	Name string `json:"name"`
 }
 
+// NewResourceRef creates a new ResourceRef object.
+func NewResourceRef() *ResourceRef {
+	return &ResourceRef{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResourceRef` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ResourceRef) UnmarshalJSONStrict(raw []byte) error {
@@ -324,6 +342,13 @@ type AccessRule struct {
 	Verb string `json:"verb"`
 	// Specific sub-elements like "alert.rules" or "dashboard.permissions"????
 	Target *string `json:"target,omitempty"`
+}
+
+// NewAccessRule creates a new AccessRule object.
+func NewAccessRule() *AccessRule {
+	return &AccessRule{
+		Kind: "*",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AccessRule` from JSON.

@@ -14,13 +14,11 @@ type ColorDimensionConfigBuilder struct {
 }
 
 func NewColorDimensionConfigBuilder() *ColorDimensionConfigBuilder {
-	resource := &ColorDimensionConfig{}
+	resource := NewColorDimensionConfig()
 	builder := &ColorDimensionConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,7 +43,4 @@ func (builder *ColorDimensionConfigBuilder) Field(field string) *ColorDimensionC
 	builder.internal.Field = &field
 
 	return builder
-}
-
-func (builder *ColorDimensionConfigBuilder) applyDefaults() {
 }

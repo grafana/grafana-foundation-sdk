@@ -14,13 +14,11 @@ type AccessPolicyBuilder struct {
 }
 
 func NewAccessPolicyBuilder() *AccessPolicyBuilder {
-	resource := &AccessPolicy{}
+	resource := NewAccessPolicy()
 	builder := &AccessPolicyBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -68,7 +66,4 @@ func (builder *AccessPolicyBuilder) Rules(rule cog.Builder[AccessRule]) *AccessP
 	builder.internal.Rules = append(builder.internal.Rules, ruleResource)
 
 	return builder
-}
-
-func (builder *AccessPolicyBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type NotificationSettingsBuilder struct {
 }
 
 func NewNotificationSettingsBuilder() *NotificationSettingsBuilder {
-	resource := &NotificationSettings{}
+	resource := NewNotificationSettings()
 	builder := &NotificationSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -86,8 +84,4 @@ func (builder *NotificationSettingsBuilder) RepeatInterval(repeatInterval string
 	builder.internal.RepeatInterval = &repeatInterval
 
 	return builder
-}
-
-func (builder *NotificationSettingsBuilder) applyDefaults() {
-	builder.GroupBy([]string{"alertname", "grafana_folder"})
 }

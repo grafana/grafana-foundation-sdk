@@ -14,13 +14,11 @@ type QueryEditorPropertyExpressionBuilder struct {
 }
 
 func NewQueryEditorPropertyExpressionBuilder() *QueryEditorPropertyExpressionBuilder {
-	resource := &QueryEditorPropertyExpression{}
+	resource := NewQueryEditorPropertyExpression()
 	builder := &QueryEditorPropertyExpressionBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "property"
 
 	return builder
@@ -43,7 +41,4 @@ func (builder *QueryEditorPropertyExpressionBuilder) Property(property cog.Build
 	builder.internal.Property = propertyResource
 
 	return builder
-}
-
-func (builder *QueryEditorPropertyExpressionBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type TopMetricsBuilder struct {
 }
 
 func NewTopMetricsBuilder() *TopMetricsBuilder {
-	resource := &TopMetrics{}
+	resource := NewTopMetrics()
 	builder := &TopMetricsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "top_metrics"
 
 	return builder
@@ -55,7 +53,4 @@ func (builder *TopMetricsBuilder) Hide(hide bool) *TopMetricsBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *TopMetricsBuilder) applyDefaults() {
 }

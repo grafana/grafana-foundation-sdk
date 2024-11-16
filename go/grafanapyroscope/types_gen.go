@@ -53,6 +53,13 @@ func (resource Dataquery) DataqueryType() string {
 	return "grafanapyroscope"
 }
 
+// NewDataquery creates a new Dataquery object.
+func NewDataquery() *Dataquery {
+	return &Dataquery{
+		LabelSelector: "{}",
+	}
+}
+
 // VariantConfig returns the configuration related to grafanapyroscope dataqueries.
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {

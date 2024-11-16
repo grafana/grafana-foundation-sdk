@@ -568,6 +568,22 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def data_links(self, links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typing.Self:    
+        """
+        The behavior when clicking on a result
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        links_resources = [r1.build() for r1 in links]
+        self._internal.field_config.defaults.links = links_resources
+    
+        return self
+    
     def no_value(self, no_value: str) -> typing.Self:    
         """
         Alternative to empty string
