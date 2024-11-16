@@ -14,13 +14,11 @@ type ExprTypeClassicConditionsConditionsBuilder struct {
 }
 
 func NewExprTypeClassicConditionsConditionsBuilder() *ExprTypeClassicConditionsConditionsBuilder {
-	resource := &ExprTypeClassicConditionsConditions{}
+	resource := NewExprTypeClassicConditionsConditions()
 	builder := &ExprTypeClassicConditionsConditionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -75,7 +73,4 @@ func (builder *ExprTypeClassicConditionsConditionsBuilder) Reducer(reducer cog.B
 	builder.internal.Reducer = reducerResource
 
 	return builder
-}
-
-func (builder *ExprTypeClassicConditionsConditionsBuilder) applyDefaults() {
 }

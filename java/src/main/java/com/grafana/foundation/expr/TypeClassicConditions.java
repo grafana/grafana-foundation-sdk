@@ -68,7 +68,7 @@ public class TypeClassicConditions implements com.grafana.foundation.cog.variant
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<TypeClassicConditions> {
+    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
         protected final TypeClassicConditions internal;
         
         public Builder() {

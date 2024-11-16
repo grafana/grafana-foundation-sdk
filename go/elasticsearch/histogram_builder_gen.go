@@ -14,13 +14,11 @@ type HistogramBuilder struct {
 }
 
 func NewHistogramBuilder() *HistogramBuilder {
-	resource := &Histogram{}
+	resource := NewHistogram()
 	builder := &HistogramBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "histogram"
 
 	return builder
@@ -55,7 +53,4 @@ func (builder *HistogramBuilder) Settings(settings cog.Builder[ElasticsearchHist
 	builder.internal.Settings = &settingsResource
 
 	return builder
-}
-
-func (builder *HistogramBuilder) applyDefaults() {
 }

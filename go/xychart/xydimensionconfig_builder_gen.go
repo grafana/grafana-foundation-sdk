@@ -14,13 +14,11 @@ type XYDimensionConfigBuilder struct {
 }
 
 func NewXYDimensionConfigBuilder() *XYDimensionConfigBuilder {
-	resource := &XYDimensionConfig{}
+	resource := NewXYDimensionConfig()
 	builder := &XYDimensionConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,7 +47,4 @@ func (builder *XYDimensionConfigBuilder) Exclude(exclude []string) *XYDimensionC
 	builder.internal.Exclude = exclude
 
 	return builder
-}
-
-func (builder *XYDimensionConfigBuilder) applyDefaults() {
 }

@@ -15,13 +15,11 @@ type AzureTracesQueryBuilder struct {
 }
 
 func NewAzureTracesQueryBuilder() *AzureTracesQueryBuilder {
-	resource := &AzureTracesQuery{}
+	resource := NewAzureTracesQuery()
 	builder := &AzureTracesQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -83,7 +81,4 @@ func (builder *AzureTracesQueryBuilder) Query(query string) *AzureTracesQueryBui
 	builder.internal.Query = &query
 
 	return builder
-}
-
-func (builder *AzureTracesQueryBuilder) applyDefaults() {
 }

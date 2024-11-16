@@ -14,13 +14,11 @@ type AzureMetricQueryBuilder struct {
 }
 
 func NewAzureMetricQueryBuilder() *AzureMetricQueryBuilder {
-	resource := &AzureMetricQuery{}
+	resource := NewAzureMetricQuery()
 	builder := &AzureMetricQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -177,7 +175,4 @@ func (builder *AzureMetricQueryBuilder) ResourceName(resourceName string) *Azure
 	builder.internal.ResourceName = &resourceName
 
 	return builder
-}
-
-func (builder *AzureMetricQueryBuilder) applyDefaults() {
 }

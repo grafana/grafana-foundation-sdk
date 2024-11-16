@@ -8,6 +8,14 @@
  * <span class="badge builder"></span> [FolderBuilder](./builder-FolderBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewFolder
+
+NewFolder creates a new Folder object.
+
+```go
+func NewFolder() *Folder
+```
+
 ### <span class="badge function"></span> FolderConverter
 
 FolderConverter accepts a `Folder` object and generates the Go code to build this object using builders.

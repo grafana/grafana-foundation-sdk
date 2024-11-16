@@ -1781,14 +1781,14 @@ class FieldConfig:
     # Panel color configuration
     color: typing.Optional['FieldColor']
     # The behavior when clicking on a result
-    links: typing.Optional[list[object]]
+    links: typing.Optional[list['DashboardLink']]
     # Alternative to empty string
     no_value: typing.Optional[str]
     # custom is specified by the FieldConfig field
     # in panel plugin schemas.
     custom: typing.Optional[object]
 
-    def __init__(self, display_name: typing.Optional[str] = None, display_name_from_ds: typing.Optional[str] = None, description: typing.Optional[str] = None, path: typing.Optional[str] = None, writeable: typing.Optional[bool] = None, filterable: typing.Optional[bool] = None, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None, mappings: typing.Optional[list['ValueMapping']] = None, thresholds: typing.Optional['ThresholdsConfig'] = None, color: typing.Optional['FieldColor'] = None, links: typing.Optional[list[object]] = None, no_value: typing.Optional[str] = None, custom: typing.Optional[object] = None):
+    def __init__(self, display_name: typing.Optional[str] = None, display_name_from_ds: typing.Optional[str] = None, description: typing.Optional[str] = None, path: typing.Optional[str] = None, writeable: typing.Optional[bool] = None, filterable: typing.Optional[bool] = None, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None, mappings: typing.Optional[list['ValueMapping']] = None, thresholds: typing.Optional['ThresholdsConfig'] = None, color: typing.Optional['FieldColor'] = None, links: typing.Optional[list['DashboardLink']] = None, no_value: typing.Optional[str] = None, custom: typing.Optional[object] = None):
         self.display_name = display_name
         self.display_name_from_ds = display_name_from_ds
         self.description = description

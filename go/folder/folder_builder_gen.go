@@ -16,13 +16,11 @@ type FolderBuilder struct {
 }
 
 func NewFolderBuilder() *FolderBuilder {
-	resource := &Folder{}
+	resource := NewFolder()
 	builder := &FolderBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -54,7 +52,4 @@ func (builder *FolderBuilder) Description(description string) *FolderBuilder {
 	builder.internal.Description = &description
 
 	return builder
-}
-
-func (builder *FolderBuilder) applyDefaults() {
 }

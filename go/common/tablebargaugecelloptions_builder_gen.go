@@ -15,13 +15,11 @@ type TableBarGaugeCellOptionsBuilder struct {
 }
 
 func NewTableBarGaugeCellOptionsBuilder() *TableBarGaugeCellOptionsBuilder {
-	resource := &TableBarGaugeCellOptions{}
+	resource := NewTableBarGaugeCellOptions()
 	builder := &TableBarGaugeCellOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "gauge"
 
 	return builder
@@ -45,7 +43,4 @@ func (builder *TableBarGaugeCellOptionsBuilder) ValueDisplayMode(valueDisplayMod
 	builder.internal.ValueDisplayMode = &valueDisplayMode
 
 	return builder
-}
-
-func (builder *TableBarGaugeCellOptionsBuilder) applyDefaults() {
 }

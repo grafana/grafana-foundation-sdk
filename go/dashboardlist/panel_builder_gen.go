@@ -17,13 +17,11 @@ type PanelBuilder struct {
 }
 
 func NewPanelBuilder() *PanelBuilder {
-	resource := &dashboard.Panel{}
+	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "dashlist"
 
 	return builder
@@ -110,7 +108,7 @@ func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.H = h
 
@@ -120,7 +118,7 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.W = w
 
@@ -242,7 +240,7 @@ func (builder *PanelBuilder) LibraryPanel(libraryPanel dashboard.LibraryPanelRef
 // The display value for this field.  This supports template variables blank is auto
 func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.DisplayName = &displayName
 
@@ -261,7 +259,7 @@ func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder {
 // `currency:<unit>` for custom a currency unit.
 func (builder *PanelBuilder) Unit(unit string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Unit = &unit
 
@@ -274,7 +272,7 @@ func (builder *PanelBuilder) Unit(unit string) *PanelBuilder {
 // To display all decimals, set the unit to `String`.
 func (builder *PanelBuilder) Decimals(decimals float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Decimals = &decimals
 
@@ -284,7 +282,7 @@ func (builder *PanelBuilder) Decimals(decimals float64) *PanelBuilder {
 // The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
 func (builder *PanelBuilder) Min(min float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Min = &min
 
@@ -294,7 +292,7 @@ func (builder *PanelBuilder) Min(min float64) *PanelBuilder {
 // The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
 func (builder *PanelBuilder) Max(max float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Max = &max
 
@@ -304,7 +302,7 @@ func (builder *PanelBuilder) Max(max float64) *PanelBuilder {
 // Convert input values into a display string
 func (builder *PanelBuilder) Mappings(mappings []dashboard.ValueMapping) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Mappings = mappings
 
@@ -314,7 +312,7 @@ func (builder *PanelBuilder) Mappings(mappings []dashboard.ValueMapping) *PanelB
 // Map numeric values to states
 func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.ThresholdsConfig]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	thresholdsResource, err := thresholds.Build()
 	if err != nil {
@@ -329,7 +327,7 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 // Panel color configuration
 func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	colorResource, err := color.Build()
 	if err != nil {
@@ -341,10 +339,29 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 	return builder
 }
 
+// The behavior when clicking on a result
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	linksResources := make([]dashboard.DashboardLink, 0, len(links))
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			return builder
+		}
+		linksResources = append(linksResources, linksDepth1)
+	}
+	builder.internal.FieldConfig.Defaults.Links = linksResources
+
+	return builder
+}
+
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
 
@@ -354,7 +371,7 @@ func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.DashboardFieldConfigSourceOverrides]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	overridesResources := make([]dashboard.DashboardFieldConfigSourceOverrides, 0, len(overrides))
 	for _, r1 := range overrides {
@@ -373,7 +390,7 @@ func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.Dashboa
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, properties []dashboard.DynamicConfigValue) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
 		Matcher:    matcher,
@@ -385,7 +402,7 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 
 func (builder *PanelBuilder) KeepTime(keepTime bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).KeepTime = keepTime
 
@@ -394,7 +411,7 @@ func (builder *PanelBuilder) KeepTime(keepTime bool) *PanelBuilder {
 
 func (builder *PanelBuilder) IncludeVars(includeVars bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).IncludeVars = includeVars
 
@@ -403,7 +420,7 @@ func (builder *PanelBuilder) IncludeVars(includeVars bool) *PanelBuilder {
 
 func (builder *PanelBuilder) ShowStarred(showStarred bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowStarred = showStarred
 
@@ -412,7 +429,7 @@ func (builder *PanelBuilder) ShowStarred(showStarred bool) *PanelBuilder {
 
 func (builder *PanelBuilder) ShowRecentlyViewed(showRecentlyViewed bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowRecentlyViewed = showRecentlyViewed
 
@@ -421,7 +438,7 @@ func (builder *PanelBuilder) ShowRecentlyViewed(showRecentlyViewed bool) *PanelB
 
 func (builder *PanelBuilder) ShowSearch(showSearch bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowSearch = showSearch
 
@@ -430,7 +447,7 @@ func (builder *PanelBuilder) ShowSearch(showSearch bool) *PanelBuilder {
 
 func (builder *PanelBuilder) ShowHeadings(showHeadings bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowHeadings = showHeadings
 
@@ -439,7 +456,7 @@ func (builder *PanelBuilder) ShowHeadings(showHeadings bool) *PanelBuilder {
 
 func (builder *PanelBuilder) MaxItems(maxItems int64) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).MaxItems = maxItems
 
@@ -448,7 +465,7 @@ func (builder *PanelBuilder) MaxItems(maxItems int64) *PanelBuilder {
 
 func (builder *PanelBuilder) Query(query string) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Query = query
 
@@ -458,7 +475,7 @@ func (builder *PanelBuilder) Query(query string) *PanelBuilder {
 // folderId is deprecated, and migrated to folderUid on panel init
 func (builder *PanelBuilder) FolderId(folderId int64) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).FolderId = &folderId
 
@@ -467,23 +484,9 @@ func (builder *PanelBuilder) FolderId(folderId int64) *PanelBuilder {
 
 func (builder *PanelBuilder) FolderUID(folderUID string) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).FolderUID = &folderUID
 
 	return builder
-}
-
-func (builder *PanelBuilder) applyDefaults() {
-	builder.Transparent(false)
-	builder.Height(9)
-	builder.Span(12)
-	builder.KeepTime(false)
-	builder.IncludeVars(false)
-	builder.ShowStarred(true)
-	builder.ShowRecentlyViewed(false)
-	builder.ShowSearch(false)
-	builder.ShowHeadings(true)
-	builder.MaxItems(10)
-	builder.Query("")
 }

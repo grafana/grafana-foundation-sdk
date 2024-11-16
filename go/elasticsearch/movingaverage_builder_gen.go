@@ -15,13 +15,11 @@ type MovingAverageBuilder struct {
 }
 
 func NewMovingAverageBuilder() *MovingAverageBuilder {
-	resource := &MovingAverage{}
+	resource := NewMovingAverage()
 	builder := &MovingAverageBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "moving_avg"
 
 	return builder
@@ -63,7 +61,4 @@ func (builder *MovingAverageBuilder) Hide(hide bool) *MovingAverageBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *MovingAverageBuilder) applyDefaults() {
 }

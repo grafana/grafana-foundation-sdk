@@ -37,6 +37,13 @@ type LibraryPanel struct {
 	Meta *LibraryElementDTOMeta `json:"meta,omitempty"`
 }
 
+// NewLibraryPanel creates a new LibraryPanel object.
+func NewLibraryPanel() *LibraryPanel {
+	return &LibraryPanel{
+		Model: *NewLibrarypanelLibraryPanelModel(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibraryPanel` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LibraryPanel) UnmarshalJSONStrict(raw []byte) error {
@@ -273,6 +280,11 @@ type LibraryElementDTOMetaUser struct {
 	AvatarUrl string `json:"avatarUrl"`
 }
 
+// NewLibraryElementDTOMetaUser creates a new LibraryElementDTOMetaUser object.
+func NewLibraryElementDTOMetaUser() *LibraryElementDTOMetaUser {
+	return &LibraryElementDTOMetaUser{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibraryElementDTOMetaUser` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LibraryElementDTOMetaUser) UnmarshalJSONStrict(raw []byte) error {
@@ -367,6 +379,14 @@ type LibraryElementDTOMeta struct {
 	Updated             time.Time                 `json:"updated"`
 	CreatedBy           LibraryElementDTOMetaUser `json:"createdBy"`
 	UpdatedBy           LibraryElementDTOMetaUser `json:"updatedBy"`
+}
+
+// NewLibraryElementDTOMeta creates a new LibraryElementDTOMeta object.
+func NewLibraryElementDTOMeta() *LibraryElementDTOMeta {
+	return &LibraryElementDTOMeta{
+		CreatedBy: *NewLibraryElementDTOMetaUser(),
+		UpdatedBy: *NewLibraryElementDTOMetaUser(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibraryElementDTOMeta` from JSON.
@@ -604,6 +624,13 @@ type LibrarypanelLibraryPanelModel struct {
 	Options any `json:"options,omitempty"`
 	// Field options allow you to change how the data is displayed in your visualizations.
 	FieldConfig *dashboard.FieldConfigSource `json:"fieldConfig,omitempty"`
+}
+
+// NewLibrarypanelLibraryPanelModel creates a new LibrarypanelLibraryPanelModel object.
+func NewLibrarypanelLibraryPanelModel() *LibrarypanelLibraryPanelModel {
+	return &LibrarypanelLibraryPanelModel{
+		Transparent: cog.ToPtr[bool](false),
+	}
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode LibrarypanelLibraryPanelModel from JSON.

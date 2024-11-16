@@ -18,13 +18,11 @@ type PanelBuilder struct {
 }
 
 func NewPanelBuilder() *PanelBuilder {
-	resource := &dashboard.Panel{}
+	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "heatmap"
 
 	return builder
@@ -111,7 +109,7 @@ func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.H = h
 
@@ -121,7 +119,7 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.W = w
 
@@ -243,7 +241,7 @@ func (builder *PanelBuilder) LibraryPanel(libraryPanel dashboard.LibraryPanelRef
 // The display value for this field.  This supports template variables blank is auto
 func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.DisplayName = &displayName
 
@@ -262,7 +260,7 @@ func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder {
 // `currency:<unit>` for custom a currency unit.
 func (builder *PanelBuilder) Unit(unit string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Unit = &unit
 
@@ -275,7 +273,7 @@ func (builder *PanelBuilder) Unit(unit string) *PanelBuilder {
 // To display all decimals, set the unit to `String`.
 func (builder *PanelBuilder) Decimals(decimals float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Decimals = &decimals
 
@@ -285,7 +283,7 @@ func (builder *PanelBuilder) Decimals(decimals float64) *PanelBuilder {
 // The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
 func (builder *PanelBuilder) Min(min float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Min = &min
 
@@ -295,7 +293,7 @@ func (builder *PanelBuilder) Min(min float64) *PanelBuilder {
 // The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
 func (builder *PanelBuilder) Max(max float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Max = &max
 
@@ -305,7 +303,7 @@ func (builder *PanelBuilder) Max(max float64) *PanelBuilder {
 // Convert input values into a display string
 func (builder *PanelBuilder) Mappings(mappings []dashboard.ValueMapping) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Mappings = mappings
 
@@ -315,7 +313,7 @@ func (builder *PanelBuilder) Mappings(mappings []dashboard.ValueMapping) *PanelB
 // Map numeric values to states
 func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.ThresholdsConfig]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	thresholdsResource, err := thresholds.Build()
 	if err != nil {
@@ -330,7 +328,7 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 // Panel color configuration
 func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	colorResource, err := color.Build()
 	if err != nil {
@@ -342,10 +340,29 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 	return builder
 }
 
+// The behavior when clicking on a result
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	linksResources := make([]dashboard.DashboardLink, 0, len(links))
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			return builder
+		}
+		linksResources = append(linksResources, linksDepth1)
+	}
+	builder.internal.FieldConfig.Defaults.Links = linksResources
+
+	return builder
+}
+
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
 
@@ -355,7 +372,7 @@ func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.DashboardFieldConfigSourceOverrides]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	overridesResources := make([]dashboard.DashboardFieldConfigSourceOverrides, 0, len(overrides))
 	for _, r1 := range overrides {
@@ -374,7 +391,7 @@ func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.Dashboa
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, properties []dashboard.DynamicConfigValue) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
 		Matcher:    matcher,
@@ -387,7 +404,7 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 // Controls if the heatmap should be calculated from data
 func (builder *PanelBuilder) Calculate(calculate bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Calculate = &calculate
 
@@ -397,7 +414,7 @@ func (builder *PanelBuilder) Calculate(calculate bool) *PanelBuilder {
 // Calculation options for the heatmap
 func (builder *PanelBuilder) Calculation(calculation cog.Builder[common.HeatmapCalculationOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	calculationResource, err := calculation.Build()
 	if err != nil {
@@ -412,7 +429,7 @@ func (builder *PanelBuilder) Calculation(calculation cog.Builder[common.HeatmapC
 // Controls the color options
 func (builder *PanelBuilder) Color(color cog.Builder[HeatmapColorOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	colorResource, err := color.Build()
 	if err != nil {
@@ -427,7 +444,7 @@ func (builder *PanelBuilder) Color(color cog.Builder[HeatmapColorOptions]) *Pane
 // Filters values between a given range
 func (builder *PanelBuilder) FilterValues(filterValues cog.Builder[FilterValueRange]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	filterValuesResource, err := filterValues.Build()
 	if err != nil {
@@ -442,7 +459,7 @@ func (builder *PanelBuilder) FilterValues(filterValues cog.Builder[FilterValueRa
 // Controls tick alignment and value name when not calculating from data
 func (builder *PanelBuilder) RowsFrame(rowsFrame cog.Builder[RowsHeatmapOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	rowsFrameResource, err := rowsFrame.Build()
 	if err != nil {
@@ -461,7 +478,7 @@ func (builder *PanelBuilder) RowsFrame(rowsFrame cog.Builder[RowsHeatmapOptions]
 // Controls the display of the value in the cell
 func (builder *PanelBuilder) ShowValue(showValue common.VisibilityMode) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowValue = showValue
 
@@ -471,7 +488,7 @@ func (builder *PanelBuilder) ShowValue(showValue common.VisibilityMode) *PanelBu
 // Controls gap between cells
 func (builder *PanelBuilder) CellGap(cellGap uint8) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).CellGap = &cellGap
 
@@ -481,7 +498,7 @@ func (builder *PanelBuilder) CellGap(cellGap uint8) *PanelBuilder {
 // Controls cell radius
 func (builder *PanelBuilder) CellRadius(cellRadius float32) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).CellRadius = &cellRadius
 
@@ -491,7 +508,7 @@ func (builder *PanelBuilder) CellRadius(cellRadius float32) *PanelBuilder {
 // Controls cell value unit
 func (builder *PanelBuilder) CellValues(cellValues cog.Builder[CellValues]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	cellValuesResource, err := cellValues.Build()
 	if err != nil {
@@ -506,7 +523,7 @@ func (builder *PanelBuilder) CellValues(cellValues cog.Builder[CellValues]) *Pan
 // Controls yAxis placement
 func (builder *PanelBuilder) YAxis(yAxis cog.Builder[YAxisConfig]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	yAxisResource, err := yAxis.Build()
 	if err != nil {
@@ -525,7 +542,7 @@ func (builder *PanelBuilder) YAxis(yAxis cog.Builder[YAxisConfig]) *PanelBuilder
 // Controls legend options
 func (builder *PanelBuilder) ShowLegend() *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Legend.Show = true
 
@@ -539,7 +556,7 @@ func (builder *PanelBuilder) ShowLegend() *PanelBuilder {
 // Controls legend options
 func (builder *PanelBuilder) HideLegend() *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Legend.Show = false
 
@@ -549,7 +566,7 @@ func (builder *PanelBuilder) HideLegend() *PanelBuilder {
 // Controls if the tooltip is shown
 func (builder *PanelBuilder) ShowTooltip() *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Tooltip.Show = true
 
@@ -559,7 +576,7 @@ func (builder *PanelBuilder) ShowTooltip() *PanelBuilder {
 // Controls if the tooltip is shown
 func (builder *PanelBuilder) HideTooltip() *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Tooltip.Show = false
 
@@ -569,7 +586,7 @@ func (builder *PanelBuilder) HideTooltip() *PanelBuilder {
 // Controls if the tooltip shows a histogram of the y-axis values
 func (builder *PanelBuilder) ShowYHistogram() *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	valYHistogram := true
 	builder.internal.Options.(*Options).Tooltip.YHistogram = &valYHistogram
@@ -580,7 +597,7 @@ func (builder *PanelBuilder) ShowYHistogram() *PanelBuilder {
 // Controls if the tooltip shows a histogram of the y-axis values
 func (builder *PanelBuilder) HideYHistogram() *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	valYHistogram := false
 	builder.internal.Options.(*Options).Tooltip.YHistogram = &valYHistogram
@@ -591,7 +608,7 @@ func (builder *PanelBuilder) HideYHistogram() *PanelBuilder {
 // Controls if the tooltip shows a color scale in header
 func (builder *PanelBuilder) ShowColorScale(showColorScale bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Tooltip.ShowColorScale = &showColorScale
 
@@ -601,7 +618,7 @@ func (builder *PanelBuilder) ShowColorScale(showColorScale bool) *PanelBuilder {
 // Controls exemplar options
 func (builder *PanelBuilder) ExemplarsColor(color string) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Exemplars.Color = color
 
@@ -610,10 +627,10 @@ func (builder *PanelBuilder) ExemplarsColor(color string) *PanelBuilder {
 
 func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[common.ScaleDistributionConfig]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	scaleDistributionResource, err := scaleDistribution.Build()
 	if err != nil {
@@ -627,10 +644,10 @@ func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[com
 
 func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConfig]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
-		builder.internal.FieldConfig.Defaults.Custom = &FieldConfig{}
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	hideFromResource, err := hideFrom.Build()
 	if err != nil {
@@ -640,24 +657,4 @@ func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConf
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).HideFrom = &hideFromResource
 
 	return builder
-}
-
-func (builder *PanelBuilder) applyDefaults() {
-	builder.Transparent(false)
-	builder.Height(9)
-	builder.Span(12)
-	builder.Calculate(false)
-	builder.Color(NewHeatmapColorOptionsBuilder().
-		Exponent(0.5).
-		Fill("dark-orange").
-		Reverse(false).
-		Scheme("Oranges").
-		Steps(64),
-	)
-	builder.FilterValues(NewFilterValueRangeBuilder().
-		Le(1e-09),
-	)
-	builder.ShowValue("auto")
-	builder.CellGap(1)
-	builder.ExemplarsColor("rgba(255,0,255,0.7)")
 }

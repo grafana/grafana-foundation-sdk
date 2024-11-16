@@ -16,6 +16,38 @@
  * <span class="badge builder"></span> [TooltipOptionsBuilder](./builder-TooltipOptionsBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewOptions
+
+NewOptions creates a new Options object.
+
+```go
+func NewOptions() *Options
+```
+
+### <span class="badge function"></span> NewMapViewConfig
+
+NewMapViewConfig creates a new MapViewConfig object.
+
+```go
+func NewMapViewConfig() *MapViewConfig
+```
+
+### <span class="badge function"></span> NewControlsOptions
+
+NewControlsOptions creates a new ControlsOptions object.
+
+```go
+func NewControlsOptions() *ControlsOptions
+```
+
+### <span class="badge function"></span> NewTooltipOptions
+
+NewTooltipOptions creates a new TooltipOptions object.
+
+```go
+func NewTooltipOptions() *TooltipOptions
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to geomap panels.

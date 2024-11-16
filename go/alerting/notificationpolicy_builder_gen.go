@@ -16,13 +16,11 @@ type NotificationPolicyBuilder struct {
 }
 
 func NewNotificationPolicyBuilder() *NotificationPolicyBuilder {
-	resource := &NotificationPolicy{}
+	resource := NewNotificationPolicy()
 	builder := &NotificationPolicyBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -127,7 +125,4 @@ func (builder *NotificationPolicyBuilder) Routes(routes []cog.Builder[Notificati
 	builder.internal.Routes = routesResources
 
 	return builder
-}
-
-func (builder *NotificationPolicyBuilder) applyDefaults() {
 }

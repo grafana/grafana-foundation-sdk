@@ -452,8 +452,7 @@
         "links": {
           "type": "array",
           "items": {
-            "type": "object",
-            "additionalProperties": {}
+            "$ref": "#/definitions/DashboardLink"
           },
           "description": "The behavior when clicking on a result"
         },

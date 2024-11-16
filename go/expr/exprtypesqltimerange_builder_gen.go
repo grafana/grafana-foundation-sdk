@@ -14,13 +14,11 @@ type ExprTypeSqlTimeRangeBuilder struct {
 }
 
 func NewExprTypeSqlTimeRangeBuilder() *ExprTypeSqlTimeRangeBuilder {
-	resource := &ExprTypeSqlTimeRange{}
+	resource := NewExprTypeSqlTimeRange()
 	builder := &ExprTypeSqlTimeRangeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,9 +43,4 @@ func (builder *ExprTypeSqlTimeRangeBuilder) To(to string) *ExprTypeSqlTimeRangeB
 	builder.internal.To = to
 
 	return builder
-}
-
-func (builder *ExprTypeSqlTimeRangeBuilder) applyDefaults() {
-	builder.From("now-6h")
-	builder.To("now")
 }

@@ -14,13 +14,11 @@ type LibraryElementDTOMetaUserBuilder struct {
 }
 
 func NewLibraryElementDTOMetaUserBuilder() *LibraryElementDTOMetaUserBuilder {
-	resource := &LibraryElementDTOMetaUser{}
+	resource := NewLibraryElementDTOMetaUser()
 	builder := &LibraryElementDTOMetaUserBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,7 +47,4 @@ func (builder *LibraryElementDTOMetaUserBuilder) AvatarUrl(avatarUrl string) *Li
 	builder.internal.AvatarUrl = avatarUrl
 
 	return builder
-}
-
-func (builder *LibraryElementDTOMetaUserBuilder) applyDefaults() {
 }

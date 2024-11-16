@@ -35,6 +35,11 @@ type XYDimensionConfig struct {
 	Exclude []string `json:"exclude,omitempty"`
 }
 
+// NewXYDimensionConfig creates a new XYDimensionConfig object.
+func NewXYDimensionConfig() *XYDimensionConfig {
+	return &XYDimensionConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `XYDimensionConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *XYDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -161,6 +166,14 @@ type FieldConfig struct {
 	AxisCenteredZero  *bool                           `json:"axisCenteredZero,omitempty"`
 	LabelValue        *common.TextDimensionConfig     `json:"labelValue,omitempty"`
 	AxisBorderShow    *bool                           `json:"axisBorderShow,omitempty"`
+}
+
+// NewFieldConfig creates a new FieldConfig object.
+func NewFieldConfig() *FieldConfig {
+	return &FieldConfig{
+		Show:  cog.ToPtr(ScatterShowPoints),
+		Label: cog.ToPtr(common.VisibilityModeAuto),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FieldConfig` from JSON.
@@ -664,6 +677,14 @@ type ScatterSeriesConfig struct {
 	Name              *string                         `json:"name,omitempty"`
 	LabelValue        *common.TextDimensionConfig     `json:"labelValue,omitempty"`
 	AxisBorderShow    *bool                           `json:"axisBorderShow,omitempty"`
+}
+
+// NewScatterSeriesConfig creates a new ScatterSeriesConfig object.
+func NewScatterSeriesConfig() *ScatterSeriesConfig {
+	return &ScatterSeriesConfig{
+		Show:  cog.ToPtr(ScatterShowPoints),
+		Label: cog.ToPtr(common.VisibilityModeAuto),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ScatterSeriesConfig` from JSON.
@@ -1210,6 +1231,15 @@ type Options struct {
 	Legend        common.VizLegendOptions  `json:"legend"`
 	Tooltip       common.VizTooltipOptions `json:"tooltip"`
 	Series        []ScatterSeriesConfig    `json:"series"`
+}
+
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		Dims:    *NewXYDimensionConfig(),
+		Legend:  *common.NewVizLegendOptions(),
+		Tooltip: *common.NewVizTooltipOptions(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.

@@ -16,7 +16,17 @@ import (
 
 type BucketAggregation = DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested
 
+// NewBucketAggregation creates a new BucketAggregation object.
+func NewBucketAggregation() *BucketAggregation {
+	return NewDateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested()
+}
+
 type MetricAggregation = CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
+
+// NewMetricAggregation creates a new MetricAggregation object.
+func NewMetricAggregation() *MetricAggregation {
+	return NewCountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics()
+}
 
 type BucketAggregationType string
 
@@ -33,6 +43,11 @@ type BaseBucketAggregation struct {
 	Id       string                `json:"id"`
 	Type     BucketAggregationType `json:"type"`
 	Settings any                   `json:"settings,omitempty"`
+}
+
+// NewBaseBucketAggregation creates a new BaseBucketAggregation object.
+func NewBaseBucketAggregation() *BaseBucketAggregation {
+	return &BaseBucketAggregation{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseBucketAggregation` from JSON.
@@ -124,6 +139,11 @@ type BucketAggregationWithField struct {
 	Id       string                `json:"id"`
 	Type     BucketAggregationType `json:"type"`
 	Settings any                   `json:"settings,omitempty"`
+}
+
+// NewBucketAggregationWithField creates a new BucketAggregationWithField object.
+func NewBucketAggregationWithField() *BucketAggregationWithField {
+	return &BucketAggregationWithField{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BucketAggregationWithField` from JSON.
@@ -235,6 +255,13 @@ type DateHistogram struct {
 	Id       string                              `json:"id"`
 	Type     string                              `json:"type"`
 	Settings *ElasticsearchDateHistogramSettings `json:"settings,omitempty"`
+}
+
+// NewDateHistogram creates a new DateHistogram object.
+func NewDateHistogram() *DateHistogram {
+	return &DateHistogram{
+		Type: "date_histogram",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DateHistogram` from JSON.
@@ -371,6 +398,11 @@ type DateHistogramSettings struct {
 	TrimEdges   *string `json:"trimEdges,omitempty"`
 	Offset      *string `json:"offset,omitempty"`
 	TimeZone    *string `json:"timeZone,omitempty"`
+}
+
+// NewDateHistogramSettings creates a new DateHistogramSettings object.
+func NewDateHistogramSettings() *DateHistogramSettings {
+	return &DateHistogramSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DateHistogramSettings` from JSON.
@@ -515,6 +547,13 @@ type Histogram struct {
 	Settings *ElasticsearchHistogramSettings `json:"settings,omitempty"`
 }
 
+// NewHistogram creates a new Histogram object.
+func NewHistogram() *Histogram {
+	return &Histogram{
+		Type: "histogram",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Histogram` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Histogram) UnmarshalJSONStrict(raw []byte) error {
@@ -648,6 +687,11 @@ type HistogramSettings struct {
 	MinDocCount *string `json:"min_doc_count,omitempty"`
 }
 
+// NewHistogramSettings creates a new HistogramSettings object.
+func NewHistogramSettings() *HistogramSettings {
+	return &HistogramSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HistogramSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *HistogramSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -735,6 +779,13 @@ type Nested struct {
 	Id       string  `json:"id"`
 	Type     string  `json:"type"`
 	Settings any     `json:"settings,omitempty"`
+}
+
+// NewNested creates a new Nested object.
+func NewNested() *Nested {
+	return &Nested{
+		Type: "nested",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Nested` from JSON.
@@ -858,6 +909,13 @@ type Terms struct {
 	Id       string                      `json:"id"`
 	Type     string                      `json:"type"`
 	Settings *ElasticsearchTermsSettings `json:"settings,omitempty"`
+}
+
+// NewTerms creates a new Terms object.
+func NewTerms() *Terms {
+	return &Terms{
+		Type: "terms",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Terms` from JSON.
@@ -994,6 +1052,11 @@ type TermsSettings struct {
 	MinDocCount *string     `json:"min_doc_count,omitempty"`
 	OrderBy     *string     `json:"orderBy,omitempty"`
 	Missing     *string     `json:"missing,omitempty"`
+}
+
+// NewTermsSettings creates a new TermsSettings object.
+func NewTermsSettings() *TermsSettings {
+	return &TermsSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TermsSettings` from JSON.
@@ -1137,6 +1200,13 @@ type Filters struct {
 	Settings *ElasticsearchFiltersSettings `json:"settings,omitempty"`
 }
 
+// NewFilters creates a new Filters object.
+func NewFilters() *Filters {
+	return &Filters{
+		Type: "filters",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Filters` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Filters) UnmarshalJSONStrict(raw []byte) error {
@@ -1250,6 +1320,11 @@ type Filter struct {
 	Label string `json:"label"`
 }
 
+// NewFilter creates a new Filter object.
+func NewFilter() *Filter {
+	return &Filter{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Filter` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Filter) UnmarshalJSONStrict(raw []byte) error {
@@ -1321,6 +1396,11 @@ func (resource Filter) Validate() error {
 
 type FiltersSettings struct {
 	Filters []Filter `json:"filters,omitempty"`
+}
+
+// NewFiltersSettings creates a new FiltersSettings object.
+func NewFiltersSettings() *FiltersSettings {
+	return &FiltersSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FiltersSettings` from JSON.
@@ -1408,6 +1488,13 @@ type GeoHashGrid struct {
 	Id       string                            `json:"id"`
 	Type     string                            `json:"type"`
 	Settings *ElasticsearchGeoHashGridSettings `json:"settings,omitempty"`
+}
+
+// NewGeoHashGrid creates a new GeoHashGrid object.
+func NewGeoHashGrid() *GeoHashGrid {
+	return &GeoHashGrid{
+		Type: "geohash_grid",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `GeoHashGrid` from JSON.
@@ -1542,6 +1629,11 @@ type GeoHashGridSettings struct {
 	Precision *string `json:"precision,omitempty"`
 }
 
+// NewGeoHashGridSettings creates a new GeoHashGridSettings object.
+func NewGeoHashGridSettings() *GeoHashGridSettings {
+	return &GeoHashGridSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `GeoHashGridSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *GeoHashGridSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -1610,10 +1702,22 @@ const (
 
 type MetricAggregationType = StringOrPipelineMetricAggregationType
 
+// NewMetricAggregationType creates a new MetricAggregationType object.
+func NewMetricAggregationType() *MetricAggregationType {
+	return NewStringOrPipelineMetricAggregationType()
+}
+
 type BaseMetricAggregation struct {
 	Type MetricAggregationType `json:"type"`
 	Id   string                `json:"id"`
 	Hide *bool                 `json:"hide,omitempty"`
+}
+
+// NewBaseMetricAggregation creates a new BaseMetricAggregation object.
+func NewBaseMetricAggregation() *BaseMetricAggregation {
+	return &BaseMetricAggregation{
+		Type: *NewMetricAggregationType(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseMetricAggregation` from JSON.
@@ -1721,6 +1825,11 @@ type PipelineVariable struct {
 	PipelineAgg string `json:"pipelineAgg"`
 }
 
+// NewPipelineVariable creates a new PipelineVariable object.
+func NewPipelineVariable() *PipelineVariable {
+	return &PipelineVariable{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PipelineVariable` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *PipelineVariable) UnmarshalJSONStrict(raw []byte) error {
@@ -1795,6 +1904,13 @@ type MetricAggregationWithField struct {
 	Type  MetricAggregationType `json:"type"`
 	Id    string                `json:"id"`
 	Hide  *bool                 `json:"hide,omitempty"`
+}
+
+// NewMetricAggregationWithField creates a new MetricAggregationWithField object.
+func NewMetricAggregationWithField() *MetricAggregationWithField {
+	return &MetricAggregationWithField{
+		Type: *NewMetricAggregationType(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricAggregationWithField` from JSON.
@@ -1922,6 +2038,13 @@ type MetricAggregationWithMissingSupport struct {
 	Type     MetricAggregationType                                     `json:"type"`
 	Id       string                                                    `json:"id"`
 	Hide     *bool                                                     `json:"hide,omitempty"`
+}
+
+// NewMetricAggregationWithMissingSupport creates a new MetricAggregationWithMissingSupport object.
+func NewMetricAggregationWithMissingSupport() *MetricAggregationWithMissingSupport {
+	return &MetricAggregationWithMissingSupport{
+		Type: *NewMetricAggregationType(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricAggregationWithMissingSupport` from JSON.
@@ -2053,11 +2176,23 @@ func (resource MetricAggregationWithMissingSupport) Validate() error {
 
 type InlineScript = StringOrElasticsearchInlineScript
 
+// NewInlineScript creates a new InlineScript object.
+func NewInlineScript() *InlineScript {
+	return NewStringOrElasticsearchInlineScript()
+}
+
 type MetricAggregationWithInlineScript struct {
 	Settings *ElasticsearchMetricAggregationWithInlineScriptSettings `json:"settings,omitempty"`
 	Type     MetricAggregationType                                   `json:"type"`
 	Id       string                                                  `json:"id"`
 	Hide     *bool                                                   `json:"hide,omitempty"`
+}
+
+// NewMetricAggregationWithInlineScript creates a new MetricAggregationWithInlineScript object.
+func NewMetricAggregationWithInlineScript() *MetricAggregationWithInlineScript {
+	return &MetricAggregationWithInlineScript{
+		Type: *NewMetricAggregationType(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricAggregationWithInlineScript` from JSON.
@@ -2193,6 +2328,13 @@ type Count struct {
 	Hide *bool  `json:"hide,omitempty"`
 }
 
+// NewCount creates a new Count object.
+func NewCount() *Count {
+	return &Count{
+		Type: "count",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Count` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Count) UnmarshalJSONStrict(raw []byte) error {
@@ -2300,6 +2442,13 @@ type Average struct {
 	Id       string                        `json:"id"`
 	Settings *ElasticsearchAverageSettings `json:"settings,omitempty"`
 	Hide     *bool                         `json:"hide,omitempty"`
+}
+
+// NewAverage creates a new Average object.
+func NewAverage() *Average {
+	return &Average{
+		Type: "avg",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Average` from JSON.
@@ -2458,6 +2607,13 @@ type Sum struct {
 	Hide     *bool                     `json:"hide,omitempty"`
 }
 
+// NewSum creates a new Sum object.
+func NewSum() *Sum {
+	return &Sum{
+		Type: "sum",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Sum` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Sum) UnmarshalJSONStrict(raw []byte) error {
@@ -2614,6 +2770,13 @@ type Max struct {
 	Hide     *bool                     `json:"hide,omitempty"`
 }
 
+// NewMax creates a new Max object.
+func NewMax() *Max {
+	return &Max{
+		Type: "max",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Max` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Max) UnmarshalJSONStrict(raw []byte) error {
@@ -2768,6 +2931,13 @@ type Min struct {
 	Id       string                    `json:"id"`
 	Settings *ElasticsearchMinSettings `json:"settings,omitempty"`
 	Hide     *bool                     `json:"hide,omitempty"`
+}
+
+// NewMin creates a new Min object.
+func NewMin() *Min {
+	return &Min{
+		Type: "min",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Min` from JSON.
@@ -2936,6 +3106,11 @@ type ExtendedStat struct {
 	Value ExtendedStatMetaType `json:"value"`
 }
 
+// NewExtendedStat creates a new ExtendedStat object.
+func NewExtendedStat() *ExtendedStat {
+	return &ExtendedStat{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExtendedStat` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ExtendedStat) UnmarshalJSONStrict(raw []byte) error {
@@ -3012,6 +3187,13 @@ type ExtendedStats struct {
 	Id       string                              `json:"id"`
 	Meta     any                                 `json:"meta,omitempty"`
 	Hide     *bool                               `json:"hide,omitempty"`
+}
+
+// NewExtendedStats creates a new ExtendedStats object.
+func NewExtendedStats() *ExtendedStats {
+	return &ExtendedStats{
+		Type: "extended_stats",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExtendedStats` from JSON.
@@ -3185,6 +3367,13 @@ type Percentiles struct {
 	Hide     *bool                             `json:"hide,omitempty"`
 }
 
+// NewPercentiles creates a new Percentiles object.
+func NewPercentiles() *Percentiles {
+	return &Percentiles{
+		Type: "percentiles",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Percentiles` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Percentiles) UnmarshalJSONStrict(raw []byte) error {
@@ -3339,6 +3528,13 @@ type UniqueCount struct {
 	Id       string                            `json:"id"`
 	Settings *ElasticsearchUniqueCountSettings `json:"settings,omitempty"`
 	Hide     *bool                             `json:"hide,omitempty"`
+}
+
+// NewUniqueCount creates a new UniqueCount object.
+func NewUniqueCount() *UniqueCount {
+	return &UniqueCount{
+		Type: "cardinality",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `UniqueCount` from JSON.
@@ -3496,6 +3692,13 @@ type RawDocument struct {
 	Hide     *bool                             `json:"hide,omitempty"`
 }
 
+// NewRawDocument creates a new RawDocument object.
+func NewRawDocument() *RawDocument {
+	return &RawDocument{
+		Type: "raw_document",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RawDocument` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RawDocument) UnmarshalJSONStrict(raw []byte) error {
@@ -3629,6 +3832,13 @@ type RawData struct {
 	Id       string                        `json:"id"`
 	Settings *ElasticsearchRawDataSettings `json:"settings,omitempty"`
 	Hide     *bool                         `json:"hide,omitempty"`
+}
+
+// NewRawData creates a new RawData object.
+func NewRawData() *RawData {
+	return &RawData{
+		Type: "raw_data",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RawData` from JSON.
@@ -3766,6 +3976,13 @@ type Logs struct {
 	Hide     *bool                      `json:"hide,omitempty"`
 }
 
+// NewLogs creates a new Logs object.
+func NewLogs() *Logs {
+	return &Logs{
+		Type: "logs",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Logs` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Logs) UnmarshalJSONStrict(raw []byte) error {
@@ -3900,6 +4117,13 @@ type Rate struct {
 	Id       string                     `json:"id"`
 	Settings *ElasticsearchRateSettings `json:"settings,omitempty"`
 	Hide     *bool                      `json:"hide,omitempty"`
+}
+
+// NewRate creates a new Rate object.
+func NewRate() *Rate {
+	return &Rate{
+		Type: "rate",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Rate` from JSON.
@@ -4058,6 +4282,11 @@ type BasePipelineMetricAggregation struct {
 	Hide        *bool   `json:"hide,omitempty"`
 }
 
+// NewBasePipelineMetricAggregation creates a new BasePipelineMetricAggregation object.
+func NewBasePipelineMetricAggregation() *BasePipelineMetricAggregation {
+	return &BasePipelineMetricAggregation{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BasePipelineMetricAggregation` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *BasePipelineMetricAggregation) UnmarshalJSONStrict(raw []byte) error {
@@ -4192,6 +4421,13 @@ type PipelineMetricAggregationWithMultipleBucketPaths struct {
 	Type              MetricAggregationType `json:"type"`
 	Id                string                `json:"id"`
 	Hide              *bool                 `json:"hide,omitempty"`
+}
+
+// NewPipelineMetricAggregationWithMultipleBucketPaths creates a new PipelineMetricAggregationWithMultipleBucketPaths object.
+func NewPipelineMetricAggregationWithMultipleBucketPaths() *PipelineMetricAggregationWithMultipleBucketPaths {
+	return &PipelineMetricAggregationWithMultipleBucketPaths{
+		Type: *NewMetricAggregationType(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PipelineMetricAggregationWithMultipleBucketPaths` from JSON.
@@ -4348,6 +4584,11 @@ type MovingAverageModelOption struct {
 	Value MovingAverageModel `json:"value"`
 }
 
+// NewMovingAverageModelOption creates a new MovingAverageModelOption object.
+func NewMovingAverageModelOption() *MovingAverageModelOption {
+	return &MovingAverageModelOption{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingAverageModelOption` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MovingAverageModelOption) UnmarshalJSONStrict(raw []byte) error {
@@ -4421,6 +4662,11 @@ type BaseMovingAverageModelSettings struct {
 	Model   MovingAverageModel `json:"model"`
 	Window  string             `json:"window"`
 	Predict string             `json:"predict"`
+}
+
+// NewBaseMovingAverageModelSettings creates a new BaseMovingAverageModelSettings object.
+func NewBaseMovingAverageModelSettings() *BaseMovingAverageModelSettings {
+	return &BaseMovingAverageModelSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseMovingAverageModelSettings` from JSON.
@@ -4513,6 +4759,13 @@ type MovingAverageSimpleModelSettings struct {
 	Model   string `json:"model"`
 	Window  string `json:"window"`
 	Predict string `json:"predict"`
+}
+
+// NewMovingAverageSimpleModelSettings creates a new MovingAverageSimpleModelSettings object.
+func NewMovingAverageSimpleModelSettings() *MovingAverageSimpleModelSettings {
+	return &MovingAverageSimpleModelSettings{
+		Model: "simple",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingAverageSimpleModelSettings` from JSON.
@@ -4619,6 +4872,13 @@ type MovingAverageLinearModelSettings struct {
 	Predict string `json:"predict"`
 }
 
+// NewMovingAverageLinearModelSettings creates a new MovingAverageLinearModelSettings object.
+func NewMovingAverageLinearModelSettings() *MovingAverageLinearModelSettings {
+	return &MovingAverageLinearModelSettings{
+		Model: "linear",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingAverageLinearModelSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MovingAverageLinearModelSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -4723,6 +4983,13 @@ type MovingAverageEWMAModelSettings struct {
 	Window   string                                               `json:"window"`
 	Minimize bool                                                 `json:"minimize"`
 	Predict  string                                               `json:"predict"`
+}
+
+// NewMovingAverageEWMAModelSettings creates a new MovingAverageEWMAModelSettings object.
+func NewMovingAverageEWMAModelSettings() *MovingAverageEWMAModelSettings {
+	return &MovingAverageEWMAModelSettings{
+		Model: "ewma",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingAverageEWMAModelSettings` from JSON.
@@ -4875,6 +5142,14 @@ type MovingAverageHoltModelSettings struct {
 	Predict  string                                              `json:"predict"`
 }
 
+// NewMovingAverageHoltModelSettings creates a new MovingAverageHoltModelSettings object.
+func NewMovingAverageHoltModelSettings() *MovingAverageHoltModelSettings {
+	return &MovingAverageHoltModelSettings{
+		Model:    "holt",
+		Settings: *NewElasticsearchMovingAverageHoltModelSettingsSettings(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingAverageHoltModelSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *MovingAverageHoltModelSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -5018,6 +5293,14 @@ type MovingAverageHoltWintersModelSettings struct {
 	Window   string                                                     `json:"window"`
 	Minimize bool                                                       `json:"minimize"`
 	Predict  string                                                     `json:"predict"`
+}
+
+// NewMovingAverageHoltWintersModelSettings creates a new MovingAverageHoltWintersModelSettings object.
+func NewMovingAverageHoltWintersModelSettings() *MovingAverageHoltWintersModelSettings {
+	return &MovingAverageHoltWintersModelSettings{
+		Model:    "holt_winters",
+		Settings: *NewElasticsearchMovingAverageHoltWintersModelSettingsSettings(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingAverageHoltWintersModelSettings` from JSON.
@@ -5165,6 +5448,13 @@ type MovingAverage struct {
 	Id          string         `json:"id"`
 	Settings    map[string]any `json:"settings,omitempty"`
 	Hide        *bool          `json:"hide,omitempty"`
+}
+
+// NewMovingAverage creates a new MovingAverage object.
+func NewMovingAverage() *MovingAverage {
+	return &MovingAverage{
+		Type: "moving_avg",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingAverage` from JSON.
@@ -5338,6 +5628,13 @@ type MovingFunction struct {
 	Id          string                               `json:"id"`
 	Settings    *ElasticsearchMovingFunctionSettings `json:"settings,omitempty"`
 	Hide        *bool                                `json:"hide,omitempty"`
+}
+
+// NewMovingFunction creates a new MovingFunction object.
+func NewMovingFunction() *MovingFunction {
+	return &MovingFunction{
+		Type: "moving_fn",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingFunction` from JSON.
@@ -5517,6 +5814,13 @@ type Derivative struct {
 	Hide        *bool                            `json:"hide,omitempty"`
 }
 
+// NewDerivative creates a new Derivative object.
+func NewDerivative() *Derivative {
+	return &Derivative{
+		Type: "derivative",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Derivative` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Derivative) UnmarshalJSONStrict(raw []byte) error {
@@ -5692,6 +5996,13 @@ type SerialDiff struct {
 	Id          string                           `json:"id"`
 	Settings    *ElasticsearchSerialDiffSettings `json:"settings,omitempty"`
 	Hide        *bool                            `json:"hide,omitempty"`
+}
+
+// NewSerialDiff creates a new SerialDiff object.
+func NewSerialDiff() *SerialDiff {
+	return &SerialDiff{
+		Type: "serial_diff",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SerialDiff` from JSON.
@@ -5871,6 +6182,13 @@ type CumulativeSum struct {
 	Hide        *bool                               `json:"hide,omitempty"`
 }
 
+// NewCumulativeSum creates a new CumulativeSum object.
+func NewCumulativeSum() *CumulativeSum {
+	return &CumulativeSum{
+		Type: "cumulative_sum",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CumulativeSum` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CumulativeSum) UnmarshalJSONStrict(raw []byte) error {
@@ -6047,6 +6365,13 @@ type BucketScript struct {
 	Hide              *bool                              `json:"hide,omitempty"`
 }
 
+// NewBucketScript creates a new BucketScript object.
+func NewBucketScript() *BucketScript {
+	return &BucketScript{
+		Type: "bucket_script",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BucketScript` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *BucketScript) UnmarshalJSONStrict(raw []byte) error {
@@ -6221,6 +6546,13 @@ type TopMetrics struct {
 	Hide     *bool                            `json:"hide,omitempty"`
 }
 
+// NewTopMetrics creates a new TopMetrics object.
+func NewTopMetrics() *TopMetrics {
+	return &TopMetrics{
+		Type: "top_metrics",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TopMetrics` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TopMetrics) UnmarshalJSONStrict(raw []byte) error {
@@ -6351,7 +6683,17 @@ func (resource TopMetrics) Validate() error {
 
 type PipelineMetricAggregation = MovingAverageOrDerivativeOrCumulativeSumOrBucketScript
 
+// NewPipelineMetricAggregation creates a new PipelineMetricAggregation object.
+func NewPipelineMetricAggregation() *PipelineMetricAggregation {
+	return NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript()
+}
+
 type MetricAggregationWithSettings = BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
+
+// NewMetricAggregationWithSettings creates a new MetricAggregationWithSettings object.
+func NewMetricAggregationWithSettings() *MetricAggregationWithSettings {
+	return NewBucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics()
+}
 
 type Dataquery struct {
 	// Alias pattern
@@ -6386,6 +6728,11 @@ func (resource Dataquery) ImplementsDataqueryVariant() {}
 
 func (resource Dataquery) DataqueryType() string {
 	return "elasticsearch"
+}
+
+// NewDataquery creates a new Dataquery object.
+func NewDataquery() *Dataquery {
+	return &Dataquery{}
 }
 
 // VariantConfig returns the configuration related to elasticsearch dataqueries.
@@ -6702,6 +7049,11 @@ type ElasticsearchDateHistogramSettings struct {
 	TimeZone    *string `json:"timeZone,omitempty"`
 }
 
+// NewElasticsearchDateHistogramSettings creates a new ElasticsearchDateHistogramSettings object.
+func NewElasticsearchDateHistogramSettings() *ElasticsearchDateHistogramSettings {
+	return &ElasticsearchDateHistogramSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchDateHistogramSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchDateHistogramSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -6842,6 +7194,11 @@ type ElasticsearchHistogramSettings struct {
 	MinDocCount *string `json:"min_doc_count,omitempty"`
 }
 
+// NewElasticsearchHistogramSettings creates a new ElasticsearchHistogramSettings object.
+func NewElasticsearchHistogramSettings() *ElasticsearchHistogramSettings {
+	return &ElasticsearchHistogramSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchHistogramSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchHistogramSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -6923,6 +7280,11 @@ type ElasticsearchTermsSettings struct {
 	MinDocCount *string     `json:"min_doc_count,omitempty"`
 	OrderBy     *string     `json:"orderBy,omitempty"`
 	Missing     *string     `json:"missing,omitempty"`
+}
+
+// NewElasticsearchTermsSettings creates a new ElasticsearchTermsSettings object.
+func NewElasticsearchTermsSettings() *ElasticsearchTermsSettings {
+	return &ElasticsearchTermsSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchTermsSettings` from JSON.
@@ -7064,6 +7426,11 @@ type ElasticsearchFiltersSettings struct {
 	Filters []Filter `json:"filters,omitempty"`
 }
 
+// NewElasticsearchFiltersSettings creates a new ElasticsearchFiltersSettings object.
+func NewElasticsearchFiltersSettings() *ElasticsearchFiltersSettings {
+	return &ElasticsearchFiltersSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchFiltersSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchFiltersSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -7148,6 +7515,11 @@ type ElasticsearchGeoHashGridSettings struct {
 	Precision *string `json:"precision,omitempty"`
 }
 
+// NewElasticsearchGeoHashGridSettings creates a new ElasticsearchGeoHashGridSettings object.
+func NewElasticsearchGeoHashGridSettings() *ElasticsearchGeoHashGridSettings {
+	return &ElasticsearchGeoHashGridSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchGeoHashGridSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchGeoHashGridSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -7205,6 +7577,11 @@ func (resource ElasticsearchGeoHashGridSettings) Validate() error {
 
 type ElasticsearchMetricAggregationWithMissingSupportSettings struct {
 	Missing *string `json:"missing,omitempty"`
+}
+
+// NewElasticsearchMetricAggregationWithMissingSupportSettings creates a new ElasticsearchMetricAggregationWithMissingSupportSettings object.
+func NewElasticsearchMetricAggregationWithMissingSupportSettings() *ElasticsearchMetricAggregationWithMissingSupportSettings {
+	return &ElasticsearchMetricAggregationWithMissingSupportSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMetricAggregationWithMissingSupportSettings` from JSON.
@@ -7266,6 +7643,11 @@ type ElasticsearchInlineScript struct {
 	Inline *string `json:"inline,omitempty"`
 }
 
+// NewElasticsearchInlineScript creates a new ElasticsearchInlineScript object.
+func NewElasticsearchInlineScript() *ElasticsearchInlineScript {
+	return &ElasticsearchInlineScript{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchInlineScript` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchInlineScript) UnmarshalJSONStrict(raw []byte) error {
@@ -7323,6 +7705,11 @@ func (resource ElasticsearchInlineScript) Validate() error {
 
 type ElasticsearchMetricAggregationWithInlineScriptSettings struct {
 	Script *InlineScript `json:"script,omitempty"`
+}
+
+// NewElasticsearchMetricAggregationWithInlineScriptSettings creates a new ElasticsearchMetricAggregationWithInlineScriptSettings object.
+func NewElasticsearchMetricAggregationWithInlineScriptSettings() *ElasticsearchMetricAggregationWithInlineScriptSettings {
+	return &ElasticsearchMetricAggregationWithInlineScriptSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMetricAggregationWithInlineScriptSettings` from JSON.
@@ -7396,6 +7783,11 @@ func (resource ElasticsearchMetricAggregationWithInlineScriptSettings) Validate(
 type ElasticsearchAverageSettings struct {
 	Script  *InlineScript `json:"script,omitempty"`
 	Missing *string       `json:"missing,omitempty"`
+}
+
+// NewElasticsearchAverageSettings creates a new ElasticsearchAverageSettings object.
+func NewElasticsearchAverageSettings() *ElasticsearchAverageSettings {
+	return &ElasticsearchAverageSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchAverageSettings` from JSON.
@@ -7491,6 +7883,11 @@ type ElasticsearchSumSettings struct {
 	Missing *string       `json:"missing,omitempty"`
 }
 
+// NewElasticsearchSumSettings creates a new ElasticsearchSumSettings object.
+func NewElasticsearchSumSettings() *ElasticsearchSumSettings {
+	return &ElasticsearchSumSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchSumSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchSumSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -7582,6 +7979,11 @@ func (resource ElasticsearchSumSettings) Validate() error {
 type ElasticsearchMaxSettings struct {
 	Script  *InlineScript `json:"script,omitempty"`
 	Missing *string       `json:"missing,omitempty"`
+}
+
+// NewElasticsearchMaxSettings creates a new ElasticsearchMaxSettings object.
+func NewElasticsearchMaxSettings() *ElasticsearchMaxSettings {
+	return &ElasticsearchMaxSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMaxSettings` from JSON.
@@ -7677,6 +8079,11 @@ type ElasticsearchMinSettings struct {
 	Missing *string       `json:"missing,omitempty"`
 }
 
+// NewElasticsearchMinSettings creates a new ElasticsearchMinSettings object.
+func NewElasticsearchMinSettings() *ElasticsearchMinSettings {
+	return &ElasticsearchMinSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMinSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchMinSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -7769,6 +8176,11 @@ type ElasticsearchExtendedStatsSettings struct {
 	Script  *InlineScript `json:"script,omitempty"`
 	Missing *string       `json:"missing,omitempty"`
 	Sigma   *string       `json:"sigma,omitempty"`
+}
+
+// NewElasticsearchExtendedStatsSettings creates a new ElasticsearchExtendedStatsSettings object.
+func NewElasticsearchExtendedStatsSettings() *ElasticsearchExtendedStatsSettings {
+	return &ElasticsearchExtendedStatsSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchExtendedStatsSettings` from JSON.
@@ -7883,6 +8295,11 @@ type ElasticsearchPercentilesSettings struct {
 	Script   *InlineScript `json:"script,omitempty"`
 	Missing  *string       `json:"missing,omitempty"`
 	Percents []string      `json:"percents,omitempty"`
+}
+
+// NewElasticsearchPercentilesSettings creates a new ElasticsearchPercentilesSettings object.
+func NewElasticsearchPercentilesSettings() *ElasticsearchPercentilesSettings {
+	return &ElasticsearchPercentilesSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchPercentilesSettings` from JSON.
@@ -8000,6 +8417,11 @@ type ElasticsearchUniqueCountSettings struct {
 	Missing            *string `json:"missing,omitempty"`
 }
 
+// NewElasticsearchUniqueCountSettings creates a new ElasticsearchUniqueCountSettings object.
+func NewElasticsearchUniqueCountSettings() *ElasticsearchUniqueCountSettings {
+	return &ElasticsearchUniqueCountSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchUniqueCountSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchUniqueCountSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -8079,6 +8501,11 @@ type ElasticsearchRawDocumentSettings struct {
 	Size *string `json:"size,omitempty"`
 }
 
+// NewElasticsearchRawDocumentSettings creates a new ElasticsearchRawDocumentSettings object.
+func NewElasticsearchRawDocumentSettings() *ElasticsearchRawDocumentSettings {
+	return &ElasticsearchRawDocumentSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchRawDocumentSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchRawDocumentSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -8136,6 +8563,11 @@ func (resource ElasticsearchRawDocumentSettings) Validate() error {
 
 type ElasticsearchRawDataSettings struct {
 	Size *string `json:"size,omitempty"`
+}
+
+// NewElasticsearchRawDataSettings creates a new ElasticsearchRawDataSettings object.
+func NewElasticsearchRawDataSettings() *ElasticsearchRawDataSettings {
+	return &ElasticsearchRawDataSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchRawDataSettings` from JSON.
@@ -8197,6 +8629,11 @@ type ElasticsearchLogsSettings struct {
 	Limit *string `json:"limit,omitempty"`
 }
 
+// NewElasticsearchLogsSettings creates a new ElasticsearchLogsSettings object.
+func NewElasticsearchLogsSettings() *ElasticsearchLogsSettings {
+	return &ElasticsearchLogsSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchLogsSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchLogsSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -8255,6 +8692,11 @@ func (resource ElasticsearchLogsSettings) Validate() error {
 type ElasticsearchRateSettings struct {
 	Unit *string `json:"unit,omitempty"`
 	Mode *string `json:"mode,omitempty"`
+}
+
+// NewElasticsearchRateSettings creates a new ElasticsearchRateSettings object.
+func NewElasticsearchRateSettings() *ElasticsearchRateSettings {
+	return &ElasticsearchRateSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchRateSettings` from JSON.
@@ -8336,6 +8778,11 @@ type ElasticsearchMovingAverageEWMAModelSettingsSettings struct {
 	Alpha *string `json:"alpha,omitempty"`
 }
 
+// NewElasticsearchMovingAverageEWMAModelSettingsSettings creates a new ElasticsearchMovingAverageEWMAModelSettingsSettings object.
+func NewElasticsearchMovingAverageEWMAModelSettingsSettings() *ElasticsearchMovingAverageEWMAModelSettingsSettings {
+	return &ElasticsearchMovingAverageEWMAModelSettingsSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMovingAverageEWMAModelSettingsSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchMovingAverageEWMAModelSettingsSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -8394,6 +8841,11 @@ func (resource ElasticsearchMovingAverageEWMAModelSettingsSettings) Validate() e
 type ElasticsearchMovingAverageHoltModelSettingsSettings struct {
 	Alpha *string `json:"alpha,omitempty"`
 	Beta  *string `json:"beta,omitempty"`
+}
+
+// NewElasticsearchMovingAverageHoltModelSettingsSettings creates a new ElasticsearchMovingAverageHoltModelSettingsSettings object.
+func NewElasticsearchMovingAverageHoltModelSettingsSettings() *ElasticsearchMovingAverageHoltModelSettingsSettings {
+	return &ElasticsearchMovingAverageHoltModelSettingsSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMovingAverageHoltModelSettingsSettings` from JSON.
@@ -8477,6 +8929,11 @@ type ElasticsearchMovingAverageHoltWintersModelSettingsSettings struct {
 	Gamma  *string `json:"gamma,omitempty"`
 	Period *string `json:"period,omitempty"`
 	Pad    *bool   `json:"pad,omitempty"`
+}
+
+// NewElasticsearchMovingAverageHoltWintersModelSettingsSettings creates a new ElasticsearchMovingAverageHoltWintersModelSettingsSettings object.
+func NewElasticsearchMovingAverageHoltWintersModelSettingsSettings() *ElasticsearchMovingAverageHoltWintersModelSettingsSettings {
+	return &ElasticsearchMovingAverageHoltWintersModelSettingsSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMovingAverageHoltWintersModelSettingsSettings` from JSON.
@@ -8620,6 +9077,11 @@ type ElasticsearchMovingFunctionSettings struct {
 	Shift  *string       `json:"shift,omitempty"`
 }
 
+// NewElasticsearchMovingFunctionSettings creates a new ElasticsearchMovingFunctionSettings object.
+func NewElasticsearchMovingFunctionSettings() *ElasticsearchMovingFunctionSettings {
+	return &ElasticsearchMovingFunctionSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMovingFunctionSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchMovingFunctionSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -8732,6 +9194,11 @@ type ElasticsearchDerivativeSettings struct {
 	Unit *string `json:"unit,omitempty"`
 }
 
+// NewElasticsearchDerivativeSettings creates a new ElasticsearchDerivativeSettings object.
+func NewElasticsearchDerivativeSettings() *ElasticsearchDerivativeSettings {
+	return &ElasticsearchDerivativeSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchDerivativeSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchDerivativeSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -8789,6 +9256,11 @@ func (resource ElasticsearchDerivativeSettings) Validate() error {
 
 type ElasticsearchSerialDiffSettings struct {
 	Lag *string `json:"lag,omitempty"`
+}
+
+// NewElasticsearchSerialDiffSettings creates a new ElasticsearchSerialDiffSettings object.
+func NewElasticsearchSerialDiffSettings() *ElasticsearchSerialDiffSettings {
+	return &ElasticsearchSerialDiffSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchSerialDiffSettings` from JSON.
@@ -8850,6 +9322,11 @@ type ElasticsearchCumulativeSumSettings struct {
 	Format *string `json:"format,omitempty"`
 }
 
+// NewElasticsearchCumulativeSumSettings creates a new ElasticsearchCumulativeSumSettings object.
+func NewElasticsearchCumulativeSumSettings() *ElasticsearchCumulativeSumSettings {
+	return &ElasticsearchCumulativeSumSettings{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchCumulativeSumSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ElasticsearchCumulativeSumSettings) UnmarshalJSONStrict(raw []byte) error {
@@ -8907,6 +9384,11 @@ func (resource ElasticsearchCumulativeSumSettings) Validate() error {
 
 type ElasticsearchBucketScriptSettings struct {
 	Script *InlineScript `json:"script,omitempty"`
+}
+
+// NewElasticsearchBucketScriptSettings creates a new ElasticsearchBucketScriptSettings object.
+func NewElasticsearchBucketScriptSettings() *ElasticsearchBucketScriptSettings {
+	return &ElasticsearchBucketScriptSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchBucketScriptSettings` from JSON.
@@ -8981,6 +9463,11 @@ type ElasticsearchTopMetricsSettings struct {
 	Order   *string  `json:"order,omitempty"`
 	OrderBy *string  `json:"orderBy,omitempty"`
 	Metrics []string `json:"metrics,omitempty"`
+}
+
+// NewElasticsearchTopMetricsSettings creates a new ElasticsearchTopMetricsSettings object.
+func NewElasticsearchTopMetricsSettings() *ElasticsearchTopMetricsSettings {
+	return &ElasticsearchTopMetricsSettings{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchTopMetricsSettings` from JSON.
@@ -9087,6 +9574,11 @@ type DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested struct {
 	Filters       *Filters       `json:"Filters,omitempty"`
 	GeoHashGrid   *GeoHashGrid   `json:"GeoHashGrid,omitempty"`
 	Nested        *Nested        `json:"Nested,omitempty"`
+}
+
+// NewDateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested creates a new DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested object.
+func NewDateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested() *DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested {
+	return &DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested` as JSON.
@@ -9376,6 +9868,11 @@ type CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOr
 	Logs           *Logs           `json:"Logs,omitempty"`
 	Rate           *Rate           `json:"Rate,omitempty"`
 	TopMetrics     *TopMetrics     `json:"TopMetrics,omitempty"`
+}
+
+// NewCountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics creates a new CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics object.
+func NewCountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics() *CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics {
+	return &CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics` as JSON.
@@ -10079,6 +10576,13 @@ type StringOrPipelineMetricAggregationType struct {
 	PipelineMetricAggregationType *PipelineMetricAggregationType `json:"PipelineMetricAggregationType,omitempty"`
 }
 
+// NewStringOrPipelineMetricAggregationType creates a new StringOrPipelineMetricAggregationType object.
+func NewStringOrPipelineMetricAggregationType() *StringOrPipelineMetricAggregationType {
+	return &StringOrPipelineMetricAggregationType{
+		String: cog.ToPtr[string]("count"),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrPipelineMetricAggregationType` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StringOrPipelineMetricAggregationType) UnmarshalJSONStrict(raw []byte) error {
@@ -10157,6 +10661,11 @@ func (resource StringOrPipelineMetricAggregationType) Validate() error {
 type StringOrElasticsearchInlineScript struct {
 	String                    *string                    `json:"String,omitempty"`
 	ElasticsearchInlineScript *ElasticsearchInlineScript `json:"ElasticsearchInlineScript,omitempty"`
+}
+
+// NewStringOrElasticsearchInlineScript creates a new StringOrElasticsearchInlineScript object.
+func NewStringOrElasticsearchInlineScript() *StringOrElasticsearchInlineScript {
+	return &StringOrElasticsearchInlineScript{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrElasticsearchInlineScript` from JSON.
@@ -10252,6 +10761,11 @@ type MovingAverageOrDerivativeOrCumulativeSumOrBucketScript struct {
 	Derivative    *Derivative    `json:"Derivative,omitempty"`
 	CumulativeSum *CumulativeSum `json:"CumulativeSum,omitempty"`
 	BucketScript  *BucketScript  `json:"BucketScript,omitempty"`
+}
+
+// NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript creates a new MovingAverageOrDerivativeOrCumulativeSumOrBucketScript object.
+func NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript() *MovingAverageOrDerivativeOrCumulativeSumOrBucketScript {
+	return &MovingAverageOrDerivativeOrCumulativeSumOrBucketScript{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `MovingAverageOrDerivativeOrCumulativeSumOrBucketScript` as JSON.
@@ -10474,6 +10988,11 @@ type BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOr
 	Logs           *Logs           `json:"Logs,omitempty"`
 	Rate           *Rate           `json:"Rate,omitempty"`
 	TopMetrics     *TopMetrics     `json:"TopMetrics,omitempty"`
+}
+
+// NewBucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics creates a new BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics object.
+func NewBucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics() *BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics {
+	return &BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics` as JSON.
