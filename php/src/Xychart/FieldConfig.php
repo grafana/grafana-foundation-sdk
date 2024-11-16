@@ -4,19 +4,17 @@ namespace Grafana\Foundation\Xychart;
 
 class FieldConfig implements \JsonSerializable
 {
-    public ?\Grafana\Foundation\Xychart\ScatterShow $show;
+    public ?\Grafana\Foundation\Xychart\XYShowMode $show;
 
-    public ?\Grafana\Foundation\Common\ScaleDimensionConfig $pointSize;
+    public ?\Grafana\Foundation\Xychart\XychartFieldConfigPointSize $pointSize;
 
-    public ?\Grafana\Foundation\Common\ColorDimensionConfig $pointColor;
+    public ?\Grafana\Foundation\Xychart\PointShape $pointShape;
 
-    public ?\Grafana\Foundation\Common\ColorDimensionConfig $lineColor;
+    public ?int $pointStrokeWidth;
+
+    public ?int $fillOpacity;
 
     public ?int $lineWidth;
-
-    public ?\Grafana\Foundation\Common\LineStyle $lineStyle;
-
-    public ?\Grafana\Foundation\Common\VisibilityMode $label;
 
     public ?\Grafana\Foundation\Common\HideSeriesConfig $hideFrom;
 
@@ -38,18 +36,17 @@ class FieldConfig implements \JsonSerializable
 
     public ?bool $axisCenteredZero;
 
-    public ?\Grafana\Foundation\Common\TextDimensionConfig $labelValue;
+    public ?\Grafana\Foundation\Common\LineStyle $lineStyle;
 
     public ?bool $axisBorderShow;
 
     /**
-     * @param \Grafana\Foundation\Xychart\ScatterShow|null $show
-     * @param \Grafana\Foundation\Common\ScaleDimensionConfig|null $pointSize
-     * @param \Grafana\Foundation\Common\ColorDimensionConfig|null $pointColor
-     * @param \Grafana\Foundation\Common\ColorDimensionConfig|null $lineColor
+     * @param \Grafana\Foundation\Xychart\XYShowMode|null $show
+     * @param \Grafana\Foundation\Xychart\XychartFieldConfigPointSize|null $pointSize
+     * @param \Grafana\Foundation\Xychart\PointShape|null $pointShape
+     * @param int|null $pointStrokeWidth
+     * @param int|null $fillOpacity
      * @param int|null $lineWidth
-     * @param \Grafana\Foundation\Common\LineStyle|null $lineStyle
-     * @param \Grafana\Foundation\Common\VisibilityMode|null $label
      * @param \Grafana\Foundation\Common\HideSeriesConfig|null $hideFrom
      * @param \Grafana\Foundation\Common\AxisPlacement|null $axisPlacement
      * @param \Grafana\Foundation\Common\AxisColorMode|null $axisColorMode
@@ -60,18 +57,17 @@ class FieldConfig implements \JsonSerializable
      * @param bool|null $axisGridShow
      * @param \Grafana\Foundation\Common\ScaleDistributionConfig|null $scaleDistribution
      * @param bool|null $axisCenteredZero
-     * @param \Grafana\Foundation\Common\TextDimensionConfig|null $labelValue
+     * @param \Grafana\Foundation\Common\LineStyle|null $lineStyle
      * @param bool|null $axisBorderShow
      */
-    public function __construct(?\Grafana\Foundation\Xychart\ScatterShow $show = null, ?\Grafana\Foundation\Common\ScaleDimensionConfig $pointSize = null, ?\Grafana\Foundation\Common\ColorDimensionConfig $pointColor = null, ?\Grafana\Foundation\Common\ColorDimensionConfig $lineColor = null, ?int $lineWidth = null, ?\Grafana\Foundation\Common\LineStyle $lineStyle = null, ?\Grafana\Foundation\Common\VisibilityMode $label = null, ?\Grafana\Foundation\Common\HideSeriesConfig $hideFrom = null, ?\Grafana\Foundation\Common\AxisPlacement $axisPlacement = null, ?\Grafana\Foundation\Common\AxisColorMode $axisColorMode = null, ?string $axisLabel = null, ?float $axisWidth = null, ?float $axisSoftMin = null, ?float $axisSoftMax = null, ?bool $axisGridShow = null, ?\Grafana\Foundation\Common\ScaleDistributionConfig $scaleDistribution = null, ?bool $axisCenteredZero = null, ?\Grafana\Foundation\Common\TextDimensionConfig $labelValue = null, ?bool $axisBorderShow = null)
+    public function __construct(?\Grafana\Foundation\Xychart\XYShowMode $show = null, ?\Grafana\Foundation\Xychart\XychartFieldConfigPointSize $pointSize = null, ?\Grafana\Foundation\Xychart\PointShape $pointShape = null, ?int $pointStrokeWidth = null, ?int $fillOpacity = null, ?int $lineWidth = null, ?\Grafana\Foundation\Common\HideSeriesConfig $hideFrom = null, ?\Grafana\Foundation\Common\AxisPlacement $axisPlacement = null, ?\Grafana\Foundation\Common\AxisColorMode $axisColorMode = null, ?string $axisLabel = null, ?float $axisWidth = null, ?float $axisSoftMin = null, ?float $axisSoftMax = null, ?bool $axisGridShow = null, ?\Grafana\Foundation\Common\ScaleDistributionConfig $scaleDistribution = null, ?bool $axisCenteredZero = null, ?\Grafana\Foundation\Common\LineStyle $lineStyle = null, ?bool $axisBorderShow = null)
     {
         $this->show = $show;
         $this->pointSize = $pointSize;
-        $this->pointColor = $pointColor;
-        $this->lineColor = $lineColor;
+        $this->pointShape = $pointShape;
+        $this->pointStrokeWidth = $pointStrokeWidth;
+        $this->fillOpacity = $fillOpacity;
         $this->lineWidth = $lineWidth;
-        $this->lineStyle = $lineStyle;
-        $this->label = $label;
         $this->hideFrom = $hideFrom;
         $this->axisPlacement = $axisPlacement;
         $this->axisColorMode = $axisColorMode;
@@ -82,7 +78,7 @@ class FieldConfig implements \JsonSerializable
         $this->axisGridShow = $axisGridShow;
         $this->scaleDistribution = $scaleDistribution;
         $this->axisCenteredZero = $axisCenteredZero;
-        $this->labelValue = $labelValue;
+        $this->lineStyle = $lineStyle;
         $this->axisBorderShow = $axisBorderShow;
     }
 
@@ -91,32 +87,19 @@ class FieldConfig implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{show?: string, pointSize?: mixed, pointColor?: mixed, lineColor?: mixed, lineWidth?: int, lineStyle?: mixed, label?: string, hideFrom?: mixed, axisPlacement?: string, axisColorMode?: string, axisLabel?: string, axisWidth?: float, axisSoftMin?: float, axisSoftMax?: float, axisGridShow?: bool, scaleDistribution?: mixed, axisCenteredZero?: bool, labelValue?: mixed, axisBorderShow?: bool} $inputData */
+        /** @var array{show?: string, pointSize?: mixed, pointShape?: string, pointStrokeWidth?: int, fillOpacity?: int, lineWidth?: int, hideFrom?: mixed, axisPlacement?: string, axisColorMode?: string, axisLabel?: string, axisWidth?: float, axisSoftMin?: float, axisSoftMax?: float, axisGridShow?: bool, scaleDistribution?: mixed, axisCenteredZero?: bool, lineStyle?: mixed, axisBorderShow?: bool} $inputData */
         $data = $inputData;
         return new self(
-            show: isset($data["show"]) ? (function($input) { return \Grafana\Foundation\Xychart\ScatterShow::fromValue($input); })($data["show"]) : null,
+            show: isset($data["show"]) ? (function($input) { return \Grafana\Foundation\Xychart\XYShowMode::fromValue($input); })($data["show"]) : null,
             pointSize: isset($data["pointSize"]) ? (function($input) {
-    	/** @var array{min?: float, max?: float, fixed?: float, field?: string, mode?: string} */
+    	/** @var array{fixed?: int, min?: int, max?: int} */
     $val = $input;
-    	return \Grafana\Foundation\Common\ScaleDimensionConfig::fromArray($val);
+    	return \Grafana\Foundation\Xychart\XychartFieldConfigPointSize::fromArray($val);
     })($data["pointSize"]) : null,
-            pointColor: isset($data["pointColor"]) ? (function($input) {
-    	/** @var array{fixed?: string, field?: string} */
-    $val = $input;
-    	return \Grafana\Foundation\Common\ColorDimensionConfig::fromArray($val);
-    })($data["pointColor"]) : null,
-            lineColor: isset($data["lineColor"]) ? (function($input) {
-    	/** @var array{fixed?: string, field?: string} */
-    $val = $input;
-    	return \Grafana\Foundation\Common\ColorDimensionConfig::fromArray($val);
-    })($data["lineColor"]) : null,
+            pointShape: isset($data["pointShape"]) ? (function($input) { return \Grafana\Foundation\Xychart\PointShape::fromValue($input); })($data["pointShape"]) : null,
+            pointStrokeWidth: $data["pointStrokeWidth"] ?? null,
+            fillOpacity: $data["fillOpacity"] ?? null,
             lineWidth: $data["lineWidth"] ?? null,
-            lineStyle: isset($data["lineStyle"]) ? (function($input) {
-    	/** @var array{fill?: string, dash?: array<float>} */
-    $val = $input;
-    	return \Grafana\Foundation\Common\LineStyle::fromArray($val);
-    })($data["lineStyle"]) : null,
-            label: isset($data["label"]) ? (function($input) { return \Grafana\Foundation\Common\VisibilityMode::fromValue($input); })($data["label"]) : null,
             hideFrom: isset($data["hideFrom"]) ? (function($input) {
     	/** @var array{tooltip?: bool, legend?: bool, viz?: bool} */
     $val = $input;
@@ -135,11 +118,11 @@ class FieldConfig implements \JsonSerializable
     	return \Grafana\Foundation\Common\ScaleDistributionConfig::fromArray($val);
     })($data["scaleDistribution"]) : null,
             axisCenteredZero: $data["axisCenteredZero"] ?? null,
-            labelValue: isset($data["labelValue"]) ? (function($input) {
-    	/** @var array{mode?: string, field?: string, fixed?: string} */
+            lineStyle: isset($data["lineStyle"]) ? (function($input) {
+    	/** @var array{fill?: string, dash?: array<float>} */
     $val = $input;
-    	return \Grafana\Foundation\Common\TextDimensionConfig::fromArray($val);
-    })($data["labelValue"]) : null,
+    	return \Grafana\Foundation\Common\LineStyle::fromArray($val);
+    })($data["lineStyle"]) : null,
             axisBorderShow: $data["axisBorderShow"] ?? null,
         );
     }
@@ -157,20 +140,17 @@ class FieldConfig implements \JsonSerializable
         if (isset($this->pointSize)) {
             $data["pointSize"] = $this->pointSize;
         }
-        if (isset($this->pointColor)) {
-            $data["pointColor"] = $this->pointColor;
+        if (isset($this->pointShape)) {
+            $data["pointShape"] = $this->pointShape;
         }
-        if (isset($this->lineColor)) {
-            $data["lineColor"] = $this->lineColor;
+        if (isset($this->pointStrokeWidth)) {
+            $data["pointStrokeWidth"] = $this->pointStrokeWidth;
+        }
+        if (isset($this->fillOpacity)) {
+            $data["fillOpacity"] = $this->fillOpacity;
         }
         if (isset($this->lineWidth)) {
             $data["lineWidth"] = $this->lineWidth;
-        }
-        if (isset($this->lineStyle)) {
-            $data["lineStyle"] = $this->lineStyle;
-        }
-        if (isset($this->label)) {
-            $data["label"] = $this->label;
         }
         if (isset($this->hideFrom)) {
             $data["hideFrom"] = $this->hideFrom;
@@ -202,8 +182,8 @@ class FieldConfig implements \JsonSerializable
         if (isset($this->axisCenteredZero)) {
             $data["axisCenteredZero"] = $this->axisCenteredZero;
         }
-        if (isset($this->labelValue)) {
-            $data["labelValue"] = $this->labelValue;
+        if (isset($this->lineStyle)) {
+            $data["lineStyle"] = $this->lineStyle;
         }
         if (isset($this->axisBorderShow)) {
             $data["axisBorderShow"] = $this->axisBorderShow;

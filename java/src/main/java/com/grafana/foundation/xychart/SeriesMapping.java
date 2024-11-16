@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 
-// Auto is "table" in the UI
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum SeriesMapping {
     AUTO("auto"),

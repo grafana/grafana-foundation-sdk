@@ -42,6 +42,12 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
+    // Sets the maximum number of time series.
+    limit(limit: number): this {
+        this.internal.limit = limit;
+        return this;
+    }
+
     // Sets the maximum number of nodes in the flamegraph.
     maxNodes(maxNodes: number): this {
         this.internal.maxNodes = maxNodes;

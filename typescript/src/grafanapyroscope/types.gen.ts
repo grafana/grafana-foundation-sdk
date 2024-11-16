@@ -20,6 +20,8 @@ export interface dataquery {
 	profileTypeId: string;
 	// Allows to group the results.
 	groupBy: string[];
+	// Sets the maximum number of time series.
+	limit?: number;
 	// Sets the maximum number of nodes in the flamegraph.
 	maxNodes?: number;
 	// A unique identifier for the query within the list of targets.

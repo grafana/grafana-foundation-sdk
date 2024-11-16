@@ -16,13 +16,11 @@ type AzureMonitorQueryBuilder struct {
 }
 
 func NewAzureMonitorQueryBuilder() *AzureMonitorQueryBuilder {
-	resource := &AzureMonitorQuery{}
+	resource := NewAzureMonitorQuery()
 	builder := &AzureMonitorQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -168,7 +166,4 @@ func (builder *AzureMonitorQueryBuilder) Query(query string) *AzureMonitorQueryB
 	builder.internal.Query = &query
 
 	return builder
-}
-
-func (builder *AzureMonitorQueryBuilder) applyDefaults() {
 }

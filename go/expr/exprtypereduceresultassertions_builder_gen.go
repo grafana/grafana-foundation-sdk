@@ -14,13 +14,11 @@ type ExprTypeReduceResultAssertionsBuilder struct {
 }
 
 func NewExprTypeReduceResultAssertionsBuilder() *ExprTypeReduceResultAssertionsBuilder {
-	resource := &ExprTypeReduceResultAssertions{}
+	resource := NewExprTypeReduceResultAssertions()
 	builder := &ExprTypeReduceResultAssertionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -65,7 +63,4 @@ func (builder *ExprTypeReduceResultAssertionsBuilder) TypeVersion(typeVersion []
 	builder.internal.TypeVersion = typeVersion
 
 	return builder
-}
-
-func (builder *ExprTypeReduceResultAssertionsBuilder) applyDefaults() {
 }

@@ -15,13 +15,11 @@ type FilterBuilder struct {
 }
 
 func NewFilterBuilder() *FilterBuilder {
-	resource := &Filter{}
+	resource := NewFilter()
 	builder := &FilterBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -60,7 +58,4 @@ func (builder *FilterBuilder) Condition(condition string) *FilterBuilder {
 	builder.internal.Condition = &condition
 
 	return builder
-}
-
-func (builder *FilterBuilder) applyDefaults() {
 }

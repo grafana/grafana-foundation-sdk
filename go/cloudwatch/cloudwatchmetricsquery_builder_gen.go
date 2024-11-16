@@ -17,13 +17,11 @@ type CloudWatchMetricsQueryBuilder struct {
 }
 
 func NewCloudWatchMetricsQueryBuilder() *CloudWatchMetricsQueryBuilder {
-	resource := &CloudWatchMetricsQuery{}
+	resource := NewCloudWatchMetricsQuery()
 	builder := &CloudWatchMetricsQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -200,8 +198,4 @@ func (builder *CloudWatchMetricsQueryBuilder) Statistics(statistics []string) *C
 	builder.internal.Statistics = statistics
 
 	return builder
-}
-
-func (builder *CloudWatchMetricsQueryBuilder) applyDefaults() {
-	builder.QueryMode("Metrics")
 }

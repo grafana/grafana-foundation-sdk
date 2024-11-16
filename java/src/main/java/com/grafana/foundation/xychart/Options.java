@@ -14,23 +14,18 @@ import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
 public class Options {
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("seriesMapping")
-    public SeriesMapping seriesMapping;
-    // Table Mode (auto)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @JsonProperty("dims")
-    public XYDimensionConfig dims;
+    @JsonProperty("mapping")
+    public SeriesMapping mapping;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("legend")
     public VizLegendOptions legend;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("tooltip")
     public VizTooltipOptions tooltip;
-    // Manual Mode
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("series")
-    public List<ScatterSeriesConfig> series;
+    public List<XYSeriesConfig> series;
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

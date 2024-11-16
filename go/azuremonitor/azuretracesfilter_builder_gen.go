@@ -14,13 +14,11 @@ type AzureTracesFilterBuilder struct {
 }
 
 func NewAzureTracesFilterBuilder() *AzureTracesFilterBuilder {
-	resource := &AzureTracesFilter{}
+	resource := NewAzureTracesFilter()
 	builder := &AzureTracesFilterBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -52,7 +50,4 @@ func (builder *AzureTracesFilterBuilder) Filters(filters []string) *AzureTracesF
 	builder.internal.Filters = filters
 
 	return builder
-}
-
-func (builder *AzureTracesFilterBuilder) applyDefaults() {
 }

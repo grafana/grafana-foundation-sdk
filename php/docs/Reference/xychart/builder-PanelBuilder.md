@@ -90,6 +90,16 @@ Panel color configuration
 colorScheme(\Grafana\Foundation\Cog\Builder $color)
 ```
 
+### <span class="badge object-method"></span> dataLinks
+
+The behavior when clicking on a result
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink>> $links
+
+```php
+dataLinks(array $links)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.
@@ -120,22 +130,18 @@ Panel description.
 description(string $description)
 ```
 
-### <span class="badge object-method"></span> dims
-
-Table Mode (auto)
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XYDimensionConfig> $dims
-
-```php
-dims(\Grafana\Foundation\Cog\Builder $dims)
-```
-
 ### <span class="badge object-method"></span> displayName
 
 The display value for this field.  This supports template variables blank is auto
 
 ```php
 displayName(string $displayName)
+```
+
+### <span class="badge object-method"></span> fillOpacity
+
+```php
+fillOpacity(int $fillOpacity)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -192,20 +198,6 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 interval(string $interval)
 ```
 
-### <span class="badge object-method"></span> label
-
-```php
-label(\Grafana\Foundation\Common\VisibilityMode $label)
-```
-
-### <span class="badge object-method"></span> labelValue
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TextDimensionConfig> $labelValue
-
-```php
-labelValue(\Grafana\Foundation\Cog\Builder $labelValue)
-```
-
 ### <span class="badge object-method"></span> legend
 
 @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\VizLegendOptions> $legend
@@ -220,14 +212,6 @@ Dynamically load the panel
 
 ```php
 libraryPanel(\Grafana\Foundation\Dashboard\LibraryPanelRef $libraryPanel)
-```
-
-### <span class="badge object-method"></span> lineColor
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ColorDimensionConfig> $lineColor
-
-```php
-lineColor(\Grafana\Foundation\Cog\Builder $lineColor)
 ```
 
 ### <span class="badge object-method"></span> lineStyle
@@ -252,6 +236,12 @@ Panel links.
 
 ```php
 links(array $links)
+```
+
+### <span class="badge object-method"></span> mapping
+
+```php
+mapping(\Grafana\Foundation\Xychart\SeriesMapping $mapping)
 ```
 
 ### <span class="badge object-method"></span> mappings
@@ -316,20 +306,24 @@ Overrides are the options applied to specific fields overriding the defaults.
 overrides(array $overrides)
 ```
 
-### <span class="badge object-method"></span> pointColor
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ColorDimensionConfig> $pointColor
+### <span class="badge object-method"></span> pointShape
 
 ```php
-pointColor(\Grafana\Foundation\Cog\Builder $pointColor)
+pointShape(\Grafana\Foundation\Xychart\PointShape $pointShape)
 ```
 
 ### <span class="badge object-method"></span> pointSize
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDimensionConfig> $pointSize
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XychartFieldConfigPointSize> $pointSize
 
 ```php
 pointSize(\Grafana\Foundation\Cog\Builder $pointSize)
+```
+
+### <span class="badge object-method"></span> pointStrokeWidth
+
+```php
+pointStrokeWidth(int $pointStrokeWidth)
 ```
 
 ### <span class="badge object-method"></span> queryCachingTTL
@@ -368,24 +362,16 @@ scaleDistribution(\Grafana\Foundation\Cog\Builder $scaleDistribution)
 
 ### <span class="badge object-method"></span> series
 
-Manual Mode
-
-@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\ScatterSeriesConfig>> $series
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XYSeriesConfig>> $series
 
 ```php
 series(array $series)
 ```
 
-### <span class="badge object-method"></span> seriesMapping
-
-```php
-seriesMapping(\Grafana\Foundation\Xychart\SeriesMapping $seriesMapping)
-```
-
 ### <span class="badge object-method"></span> show
 
 ```php
-show(\Grafana\Foundation\Xychart\ScatterShow $show)
+show(\Grafana\Foundation\Xychart\XYShowMode $show)
 ```
 
 ### <span class="badge object-method"></span> span

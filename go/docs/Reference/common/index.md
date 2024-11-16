@@ -147,6 +147,398 @@
  * <span class="badge builder"></span> [VizTooltipOptionsBuilder](./builder-VizTooltipOptionsBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewDataSourceJsonData
+
+NewDataSourceJsonData creates a new DataSourceJsonData object.
+
+```go
+func NewDataSourceJsonData() *DataSourceJsonData
+```
+
+### <span class="badge function"></span> NewDataQuery
+
+NewDataQuery creates a new DataQuery object.
+
+```go
+func NewDataQuery() *DataQuery
+```
+
+### <span class="badge function"></span> NewBaseDimensionConfig
+
+NewBaseDimensionConfig creates a new BaseDimensionConfig object.
+
+```go
+func NewBaseDimensionConfig() *BaseDimensionConfig
+```
+
+### <span class="badge function"></span> NewScaleDimensionConfig
+
+NewScaleDimensionConfig creates a new ScaleDimensionConfig object.
+
+```go
+func NewScaleDimensionConfig() *ScaleDimensionConfig
+```
+
+### <span class="badge function"></span> NewColorDimensionConfig
+
+NewColorDimensionConfig creates a new ColorDimensionConfig object.
+
+```go
+func NewColorDimensionConfig() *ColorDimensionConfig
+```
+
+### <span class="badge function"></span> NewScalarDimensionConfig
+
+NewScalarDimensionConfig creates a new ScalarDimensionConfig object.
+
+```go
+func NewScalarDimensionConfig() *ScalarDimensionConfig
+```
+
+### <span class="badge function"></span> NewTextDimensionConfig
+
+NewTextDimensionConfig creates a new TextDimensionConfig object.
+
+```go
+func NewTextDimensionConfig() *TextDimensionConfig
+```
+
+### <span class="badge function"></span> NewMapLayerOptions
+
+NewMapLayerOptions creates a new MapLayerOptions object.
+
+```go
+func NewMapLayerOptions() *MapLayerOptions
+```
+
+### <span class="badge function"></span> NewHeatmapCalculationBucketConfig
+
+NewHeatmapCalculationBucketConfig creates a new HeatmapCalculationBucketConfig object.
+
+```go
+func NewHeatmapCalculationBucketConfig() *HeatmapCalculationBucketConfig
+```
+
+### <span class="badge function"></span> NewLineStyle
+
+NewLineStyle creates a new LineStyle object.
+
+```go
+func NewLineStyle() *LineStyle
+```
+
+### <span class="badge function"></span> NewLineConfig
+
+NewLineConfig creates a new LineConfig object.
+
+```go
+func NewLineConfig() *LineConfig
+```
+
+### <span class="badge function"></span> NewBarConfig
+
+NewBarConfig creates a new BarConfig object.
+
+```go
+func NewBarConfig() *BarConfig
+```
+
+### <span class="badge function"></span> NewFillConfig
+
+NewFillConfig creates a new FillConfig object.
+
+```go
+func NewFillConfig() *FillConfig
+```
+
+### <span class="badge function"></span> NewPointsConfig
+
+NewPointsConfig creates a new PointsConfig object.
+
+```go
+func NewPointsConfig() *PointsConfig
+```
+
+### <span class="badge function"></span> NewScaleDistributionConfig
+
+NewScaleDistributionConfig creates a new ScaleDistributionConfig object.
+
+```go
+func NewScaleDistributionConfig() *ScaleDistributionConfig
+```
+
+### <span class="badge function"></span> NewAxisConfig
+
+NewAxisConfig creates a new AxisConfig object.
+
+```go
+func NewAxisConfig() *AxisConfig
+```
+
+### <span class="badge function"></span> NewHideSeriesConfig
+
+NewHideSeriesConfig creates a new HideSeriesConfig object.
+
+```go
+func NewHideSeriesConfig() *HideSeriesConfig
+```
+
+### <span class="badge function"></span> NewStackingConfig
+
+NewStackingConfig creates a new StackingConfig object.
+
+```go
+func NewStackingConfig() *StackingConfig
+```
+
+### <span class="badge function"></span> NewStackableFieldConfig
+
+NewStackableFieldConfig creates a new StackableFieldConfig object.
+
+```go
+func NewStackableFieldConfig() *StackableFieldConfig
+```
+
+### <span class="badge function"></span> NewHideableFieldConfig
+
+NewHideableFieldConfig creates a new HideableFieldConfig object.
+
+```go
+func NewHideableFieldConfig() *HideableFieldConfig
+```
+
+### <span class="badge function"></span> NewGraphThresholdsStyleConfig
+
+NewGraphThresholdsStyleConfig creates a new GraphThresholdsStyleConfig object.
+
+```go
+func NewGraphThresholdsStyleConfig() *GraphThresholdsStyleConfig
+```
+
+### <span class="badge function"></span> NewSingleStatBaseOptions
+
+NewSingleStatBaseOptions creates a new SingleStatBaseOptions object.
+
+```go
+func NewSingleStatBaseOptions() *SingleStatBaseOptions
+```
+
+### <span class="badge function"></span> NewReduceDataOptions
+
+NewReduceDataOptions creates a new ReduceDataOptions object.
+
+```go
+func NewReduceDataOptions() *ReduceDataOptions
+```
+
+### <span class="badge function"></span> NewOptionsWithTooltip
+
+NewOptionsWithTooltip creates a new OptionsWithTooltip object.
+
+```go
+func NewOptionsWithTooltip() *OptionsWithTooltip
+```
+
+### <span class="badge function"></span> NewOptionsWithLegend
+
+NewOptionsWithLegend creates a new OptionsWithLegend object.
+
+```go
+func NewOptionsWithLegend() *OptionsWithLegend
+```
+
+### <span class="badge function"></span> NewOptionsWithTimezones
+
+NewOptionsWithTimezones creates a new OptionsWithTimezones object.
+
+```go
+func NewOptionsWithTimezones() *OptionsWithTimezones
+```
+
+### <span class="badge function"></span> NewOptionsWithTextFormatting
+
+NewOptionsWithTextFormatting creates a new OptionsWithTextFormatting object.
+
+```go
+func NewOptionsWithTextFormatting() *OptionsWithTextFormatting
+```
+
+### <span class="badge function"></span> NewVizTextDisplayOptions
+
+NewVizTextDisplayOptions creates a new VizTextDisplayOptions object.
+
+```go
+func NewVizTextDisplayOptions() *VizTextDisplayOptions
+```
+
+### <span class="badge function"></span> NewGraphFieldConfig
+
+NewGraphFieldConfig creates a new GraphFieldConfig object.
+
+```go
+func NewGraphFieldConfig() *GraphFieldConfig
+```
+
+### <span class="badge function"></span> NewVizLegendOptions
+
+NewVizLegendOptions creates a new VizLegendOptions object.
+
+```go
+func NewVizLegendOptions() *VizLegendOptions
+```
+
+### <span class="badge function"></span> NewVizTooltipOptions
+
+NewVizTooltipOptions creates a new VizTooltipOptions object.
+
+```go
+func NewVizTooltipOptions() *VizTooltipOptions
+```
+
+### <span class="badge function"></span> NewTableSortByFieldState
+
+NewTableSortByFieldState creates a new TableSortByFieldState object.
+
+```go
+func NewTableSortByFieldState() *TableSortByFieldState
+```
+
+### <span class="badge function"></span> NewTableFooterOptions
+
+NewTableFooterOptions creates a new TableFooterOptions object.
+
+```go
+func NewTableFooterOptions() *TableFooterOptions
+```
+
+### <span class="badge function"></span> NewTableAutoCellOptions
+
+NewTableAutoCellOptions creates a new TableAutoCellOptions object.
+
+```go
+func NewTableAutoCellOptions() *TableAutoCellOptions
+```
+
+### <span class="badge function"></span> NewTableColorTextCellOptions
+
+NewTableColorTextCellOptions creates a new TableColorTextCellOptions object.
+
+```go
+func NewTableColorTextCellOptions() *TableColorTextCellOptions
+```
+
+### <span class="badge function"></span> NewTableJsonViewCellOptions
+
+NewTableJsonViewCellOptions creates a new TableJsonViewCellOptions object.
+
+```go
+func NewTableJsonViewCellOptions() *TableJsonViewCellOptions
+```
+
+### <span class="badge function"></span> NewTableImageCellOptions
+
+NewTableImageCellOptions creates a new TableImageCellOptions object.
+
+```go
+func NewTableImageCellOptions() *TableImageCellOptions
+```
+
+### <span class="badge function"></span> NewTableDataLinksCellOptions
+
+NewTableDataLinksCellOptions creates a new TableDataLinksCellOptions object.
+
+```go
+func NewTableDataLinksCellOptions() *TableDataLinksCellOptions
+```
+
+### <span class="badge function"></span> NewTableActionsCellOptions
+
+NewTableActionsCellOptions creates a new TableActionsCellOptions object.
+
+```go
+func NewTableActionsCellOptions() *TableActionsCellOptions
+```
+
+### <span class="badge function"></span> NewTableBarGaugeCellOptions
+
+NewTableBarGaugeCellOptions creates a new TableBarGaugeCellOptions object.
+
+```go
+func NewTableBarGaugeCellOptions() *TableBarGaugeCellOptions
+```
+
+### <span class="badge function"></span> NewTableSparklineCellOptions
+
+NewTableSparklineCellOptions creates a new TableSparklineCellOptions object.
+
+```go
+func NewTableSparklineCellOptions() *TableSparklineCellOptions
+```
+
+### <span class="badge function"></span> NewTableColoredBackgroundCellOptions
+
+NewTableColoredBackgroundCellOptions creates a new TableColoredBackgroundCellOptions object.
+
+```go
+func NewTableColoredBackgroundCellOptions() *TableColoredBackgroundCellOptions
+```
+
+### <span class="badge function"></span> NewTableCellOptions
+
+NewTableCellOptions creates a new TableCellOptions object.
+
+```go
+func NewTableCellOptions() *TableCellOptions
+```
+
+### <span class="badge function"></span> NewResourceDimensionConfig
+
+NewResourceDimensionConfig creates a new ResourceDimensionConfig object.
+
+```go
+func NewResourceDimensionConfig() *ResourceDimensionConfig
+```
+
+### <span class="badge function"></span> NewFrameGeometrySource
+
+NewFrameGeometrySource creates a new FrameGeometrySource object.
+
+```go
+func NewFrameGeometrySource() *FrameGeometrySource
+```
+
+### <span class="badge function"></span> NewHeatmapCalculationOptions
+
+NewHeatmapCalculationOptions creates a new HeatmapCalculationOptions object.
+
+```go
+func NewHeatmapCalculationOptions() *HeatmapCalculationOptions
+```
+
+### <span class="badge function"></span> NewTableFieldOptions
+
+NewTableFieldOptions creates a new TableFieldOptions object.
+
+```go
+func NewTableFieldOptions() *TableFieldOptions
+```
+
+### <span class="badge function"></span> NewBoolOrFloat64
+
+NewBoolOrFloat64 creates a new BoolOrFloat64 object.
+
+```go
+func NewBoolOrFloat64() *BoolOrFloat64
+```
+
+### <span class="badge function"></span> NewTableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableActionsCellOptionsOrTableJsonViewCellOptions
+
+NewTableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableActionsCellOptionsOrTableJsonViewCellOptions creates a new TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableActionsCellOptionsOrTableJsonViewCellOptions object.
+
+```go
+func NewTableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableActionsCellOptionsOrTableJsonViewCellOptions() *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableActionsCellOptionsOrTableJsonViewCellOptions
+```
+
 ### <span class="badge function"></span> DataSourceJsonDataConverter
 
 DataSourceJsonDataConverter accepts a `DataSourceJsonData` object and generates the Go code to build this object using builders.

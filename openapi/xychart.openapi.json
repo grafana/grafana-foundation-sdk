@@ -10,70 +10,86 @@
   "paths": {},
   "components": {
     "schemas": {
+      "PointShape": {
+        "enum": [
+          "circle",
+          "square"
+        ]
+      },
       "SeriesMapping": {
         "enum": [
           "auto",
           "manual"
-        ],
-        "description": "Auto is \"table\" in the UI"
+        ]
       },
-      "ScatterShow": {
+      "XYShowMode": {
         "enum": [
           "points",
           "lines",
           "points+lines"
         ]
       },
-      "XYDimensionConfig": {
+      "MatcherConfig": {
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "frame"
+          "id"
         ],
         "properties": {
-          "frame": {
-            "type": "integer",
-            "minimum": 0
+          "id": {
+            "type": "string",
+            "description": "The matcher id. This is used to find the matcher implementation from registry.",
+            "default": ""
           },
-          "x": {
-            "type": "string"
-          },
-          "exclude": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "options": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "The matcher options. This is specific to the matcher implementation."
           }
         },
-        "description": "Configuration for the Table/Auto mode"
+        "description": "NOTE: (copied from dashboard_kind.cue, since not exported)\nMatcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.\nIt comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type."
       },
       "FieldConfig": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
           "show": {
-            "$ref": "#/components/schemas/ScatterShow",
+            "$ref": "#/components/schemas/XYShowMode",
             "default": "points"
           },
           "pointSize": {
-            "$ref": "#/components/schemas/ScaleDimensionConfig"
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "fixed": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "min": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "max": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
           },
-          "pointColor": {
-            "$ref": "#/components/schemas/ColorDimensionConfig"
+          "pointShape": {
+            "$ref": "#/components/schemas/PointShape"
           },
-          "lineColor": {
-            "$ref": "#/components/schemas/ColorDimensionConfig"
+          "pointStrokeWidth": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "fillOpacity": {
+            "type": "integer",
+            "maximum": 100,
+            "default": 50
           },
           "lineWidth": {
             "type": "integer",
             "minimum": 0
-          },
-          "lineStyle": {
-            "$ref": "#/components/schemas/LineStyle"
-          },
-          "label": {
-            "$ref": "#/components/schemas/VisibilityMode",
-            "default": "auto"
           },
           "hideFrom": {
             "$ref": "#/components/schemas/HideSeriesConfig"
@@ -105,89 +121,86 @@
           "axisCenteredZero": {
             "type": "boolean"
           },
-          "labelValue": {
-            "$ref": "#/components/schemas/TextDimensionConfig"
+          "lineStyle": {
+            "$ref": "#/components/schemas/LineStyle"
           },
           "axisBorderShow": {
             "type": "boolean"
           }
         }
       },
-      "ScatterSeriesConfig": {
+      "XYSeriesConfig": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "x": {
-            "type": "string"
-          },
-          "y": {
-            "type": "string"
-          },
           "name": {
-            "type": "string"
-          },
-          "show": {
-            "$ref": "#/components/schemas/ScatterShow",
-            "default": "points"
-          },
-          "pointSize": {
-            "$ref": "#/components/schemas/ScaleDimensionConfig"
-          },
-          "pointColor": {
-            "$ref": "#/components/schemas/ColorDimensionConfig"
-          },
-          "lineColor": {
-            "$ref": "#/components/schemas/ColorDimensionConfig"
-          },
-          "lineWidth": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "lineStyle": {
-            "$ref": "#/components/schemas/LineStyle"
-          },
-          "label": {
-            "$ref": "#/components/schemas/VisibilityMode",
-            "default": "auto"
-          },
-          "hideFrom": {
-            "$ref": "#/components/schemas/HideSeriesConfig"
-          },
-          "axisPlacement": {
-            "$ref": "#/components/schemas/AxisPlacement"
-          },
-          "axisColorMode": {
-            "$ref": "#/components/schemas/AxisColorMode"
-          },
-          "axisLabel": {
-            "type": "string"
-          },
-          "axisWidth": {
-            "type": "number"
-          },
-          "axisSoftMin": {
-            "type": "number"
-          },
-          "axisSoftMax": {
-            "type": "number"
-          },
-          "axisGridShow": {
-            "type": "boolean"
-          },
-          "scaleDistribution": {
-            "$ref": "#/components/schemas/ScaleDistributionConfig"
-          },
-          "axisCenteredZero": {
-            "type": "boolean"
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "fixed": {
+                "type": "string"
+              }
+            }
           },
           "frame": {
-            "type": "number"
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "matcher"
+            ],
+            "properties": {
+              "matcher": {
+                "$ref": "#/components/schemas/MatcherConfig"
+              }
+            }
           },
-          "labelValue": {
-            "$ref": "#/components/schemas/TextDimensionConfig"
+          "x": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "matcher"
+            ],
+            "properties": {
+              "matcher": {
+                "$ref": "#/components/schemas/MatcherConfig"
+              }
+            }
           },
-          "axisBorderShow": {
-            "type": "boolean"
+          "y": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "matcher"
+            ],
+            "properties": {
+              "matcher": {
+                "$ref": "#/components/schemas/MatcherConfig"
+              }
+            }
+          },
+          "color": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "matcher"
+            ],
+            "properties": {
+              "matcher": {
+                "$ref": "#/components/schemas/MatcherConfig"
+              }
+            }
+          },
+          "size": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "matcher"
+            ],
+            "properties": {
+              "matcher": {
+                "$ref": "#/components/schemas/MatcherConfig"
+              }
+            }
           }
         }
       },
@@ -195,18 +208,14 @@
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "dims",
+          "mapping",
           "legend",
           "tooltip",
           "series"
         ],
         "properties": {
-          "seriesMapping": {
+          "mapping": {
             "$ref": "#/components/schemas/SeriesMapping"
-          },
-          "dims": {
-            "$ref": "#/components/schemas/XYDimensionConfig",
-            "description": "Table Mode (auto)"
           },
           "legend": {
             "$ref": "#/components/schemas/VizLegendOptions"
@@ -217,81 +226,10 @@
           "series": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ScatterSeriesConfig"
-            },
-            "description": "Manual Mode"
-          }
-        }
-      },
-      "ScaleDimensionConfig": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "min",
-          "max"
-        ],
-        "properties": {
-          "min": {
-            "type": "number"
-          },
-          "max": {
-            "type": "number"
-          },
-          "fixed": {
-            "type": "number"
-          },
-          "field": {
-            "type": "string",
-            "description": "fixed: T -- will be added by each element"
-          },
-          "mode": {
-            "$ref": "#/components/schemas/ScaleDimensionMode",
-            "description": "| *\"linear\""
-          }
-        }
-      },
-      "ColorDimensionConfig": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "fixed": {
-            "type": "string",
-            "description": "color value"
-          },
-          "field": {
-            "type": "string",
-            "description": "fixed: T -- will be added by each element"
-          }
-        }
-      },
-      "LineStyle": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "fill": {
-            "enum": [
-              "solid",
-              "dash",
-              "dot",
-              "square"
-            ]
-          },
-          "dash": {
-            "type": "array",
-            "items": {
-              "type": "number"
+              "$ref": "#/components/schemas/XYSeriesConfig"
             }
           }
-        },
-        "description": "TODO docs"
-      },
-      "VisibilityMode": {
-        "enum": [
-          "auto",
-          "never",
-          "always"
-        ],
-        "description": "TODO docs"
+        }
       },
       "HideSeriesConfig": {
         "type": "object",
@@ -351,24 +289,26 @@
         },
         "description": "TODO docs"
       },
-      "TextDimensionConfig": {
+      "LineStyle": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "mode"
-        ],
         "properties": {
-          "mode": {
-            "$ref": "#/components/schemas/TextDimensionMode"
+          "fill": {
+            "enum": [
+              "solid",
+              "dash",
+              "dot",
+              "square"
+            ]
           },
-          "field": {
-            "type": "string",
-            "description": "fixed: T -- will be added by each element"
-          },
-          "fixed": {
-            "type": "string"
+          "dash": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
           }
-        }
+        },
+        "description": "TODO docs"
       },
       "VizLegendOptions": {
         "type": "object",
@@ -439,12 +379,6 @@
         },
         "description": "TODO docs"
       },
-      "ScaleDimensionMode": {
-        "enum": [
-          "linear",
-          "quad"
-        ]
-      },
       "ScaleDistribution": {
         "enum": [
           "linear",
@@ -453,13 +387,6 @@
           "symlog"
         ],
         "description": "TODO docs"
-      },
-      "TextDimensionMode": {
-        "enum": [
-          "fixed",
-          "field",
-          "template"
-        ]
       },
       "LegendDisplayMode": {
         "enum": [

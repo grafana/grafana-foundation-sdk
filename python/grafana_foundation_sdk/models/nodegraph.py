@@ -1,6 +1,7 @@
 # Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
 import typing
+import enum
 from ..cog import runtime as cogruntime
 
 
@@ -104,13 +105,21 @@ class EdgeOptions:
         return cls(**args)
 
 
+class ZoomMode(enum.StrEnum):
+    COOPERATIVE = "cooperative"
+    GREEDY = "greedy"
+
+
 class Options:
     nodes: typing.Optional['NodeOptions']
     edges: typing.Optional['EdgeOptions']
+    # How to handle zoom/scroll events in the node graph
+    zoom_mode: typing.Optional['ZoomMode']
 
-    def __init__(self, nodes: typing.Optional['NodeOptions'] = None, edges: typing.Optional['EdgeOptions'] = None):
+    def __init__(self, nodes: typing.Optional['NodeOptions'] = None, edges: typing.Optional['EdgeOptions'] = None, zoom_mode: typing.Optional['ZoomMode'] = None):
         self.nodes = nodes
         self.edges = edges
+        self.zoom_mode = zoom_mode
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -119,6 +128,8 @@ class Options:
             payload["nodes"] = self.nodes
         if self.edges is not None:
             payload["edges"] = self.edges
+        if self.zoom_mode is not None:
+            payload["zoomMode"] = self.zoom_mode
         return payload
 
     @classmethod
@@ -128,7 +139,9 @@ class Options:
         if "nodes" in data:
             args["nodes"] = NodeOptions.from_json(data["nodes"])
         if "edges" in data:
-            args["edges"] = EdgeOptions.from_json(data["edges"])        
+            args["edges"] = EdgeOptions.from_json(data["edges"])
+        if "zoomMode" in data:
+            args["zoom_mode"] = data["zoomMode"]        
 
         return cls(**args)
 

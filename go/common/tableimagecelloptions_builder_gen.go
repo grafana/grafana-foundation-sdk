@@ -15,13 +15,11 @@ type TableImageCellOptionsBuilder struct {
 }
 
 func NewTableImageCellOptionsBuilder() *TableImageCellOptionsBuilder {
-	resource := &TableImageCellOptions{}
+	resource := NewTableImageCellOptions()
 	builder := &TableImageCellOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "image"
 
 	return builder
@@ -45,7 +43,4 @@ func (builder *TableImageCellOptionsBuilder) Title(title string) *TableImageCell
 	builder.internal.Title = &title
 
 	return builder
-}
-
-func (builder *TableImageCellOptionsBuilder) applyDefaults() {
 }

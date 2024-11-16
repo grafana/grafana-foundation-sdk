@@ -16,13 +16,11 @@ type TempoQueryBuilder struct {
 }
 
 func NewTempoQueryBuilder() *TempoQueryBuilder {
-	resource := &TempoQuery{}
+	resource := NewTempoQuery()
 	builder := &TempoQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -182,7 +180,4 @@ func (builder *TempoQueryBuilder) Step(step string) *TempoQueryBuilder {
 	builder.internal.Step = &step
 
 	return builder
-}
-
-func (builder *TempoQueryBuilder) applyDefaults() {
 }

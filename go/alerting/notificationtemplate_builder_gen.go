@@ -14,13 +14,11 @@ type NotificationTemplateBuilder struct {
 }
 
 func NewNotificationTemplateBuilder() *NotificationTemplateBuilder {
-	resource := &NotificationTemplate{}
+	resource := NewNotificationTemplate()
 	builder := &NotificationTemplateBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -55,7 +53,4 @@ func (builder *NotificationTemplateBuilder) Version(version string) *Notificatio
 	builder.internal.Version = &version
 
 	return builder
-}
-
-func (builder *NotificationTemplateBuilder) applyDefaults() {
 }

@@ -2,9 +2,6 @@
 
 namespace Grafana\Foundation\Xychart;
 
-/**
- * Auto is "table" in the UI
- */
 final class SeriesMapping implements \JsonSerializable, \Stringable {
     /**
      * @var string

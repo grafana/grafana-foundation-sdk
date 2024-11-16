@@ -9,6 +9,8 @@ title: <span class="badge object-type-class"></span> Options
 class Options:
     nodes: typing.Optional[nodegraph.NodeOptions]
     edges: typing.Optional[nodegraph.EdgeOptions]
+    # How to handle zoom/scroll events in the node graph
+    zoom_mode: typing.Optional[nodegraph.ZoomMode]
 ```
 ## Methods
 

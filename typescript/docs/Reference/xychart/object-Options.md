@@ -7,13 +7,10 @@ title: <span class="badge object-type-interface"></span> Options
 
 ```typescript
 export interface Options {
-	seriesMapping?: xychart.SeriesMapping;
-	// Table Mode (auto)
-	dims: xychart.XYDimensionConfig;
+	mapping: xychart.SeriesMapping;
 	legend: common.VizLegendOptions;
 	tooltip: common.VizTooltipOptions;
-	// Manual Mode
-	series: xychart.ScatterSeriesConfig[];
+	series: xychart.XYSeriesConfig[];
 }
 
 ```

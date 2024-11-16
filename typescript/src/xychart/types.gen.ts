@@ -3,7 +3,13 @@
 import * as common from '../common';
 
 
-// Auto is "table" in the UI
+export enum PointShape {
+	Circle = "circle",
+	Square = "square",
+}
+
+export const defaultPointShape = (): PointShape => (PointShape.Circle);
+
 export enum SeriesMapping {
 	Auto = "auto",
 	Manual = "manual",
@@ -11,33 +17,39 @@ export enum SeriesMapping {
 
 export const defaultSeriesMapping = (): SeriesMapping => (SeriesMapping.Auto);
 
-export enum ScatterShow {
+export enum XYShowMode {
 	Points = "points",
 	Lines = "lines",
 	PointsAndLines = "points+lines",
 }
 
-export const defaultScatterShow = (): ScatterShow => (ScatterShow.Points);
+export const defaultXYShowMode = (): XYShowMode => (XYShowMode.Points);
 
-// Configuration for the Table/Auto mode
-export interface XYDimensionConfig {
-	frame: number;
-	x?: string;
-	exclude?: string[];
+// NOTE: (copied from dashboard_kind.cue, since not exported)
+// Matcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.
+// It comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type.
+export interface MatcherConfig {
+	// The matcher id. This is used to find the matcher implementation from registry.
+	id: string;
+	// The matcher options. This is specific to the matcher implementation.
+	options?: any;
 }
 
-export const defaultXYDimensionConfig = (): XYDimensionConfig => ({
-	frame: 0,
+export const defaultMatcherConfig = (): MatcherConfig => ({
+	id: "",
 });
 
 export interface FieldConfig {
-	show?: ScatterShow;
-	pointSize?: common.ScaleDimensionConfig;
-	pointColor?: common.ColorDimensionConfig;
-	lineColor?: common.ColorDimensionConfig;
+	show?: XYShowMode;
+	pointSize?: {
+		fixed?: number;
+		min?: number;
+		max?: number;
+	};
+	pointShape?: PointShape;
+	pointStrokeWidth?: number;
+	fillOpacity?: number;
 	lineWidth?: number;
-	lineStyle?: common.LineStyle;
-	label?: common.VisibilityMode;
 	hideFrom?: common.HideSeriesConfig;
 	axisPlacement?: common.AxisPlacement;
 	axisColorMode?: common.AxisColorMode;
@@ -48,58 +60,48 @@ export interface FieldConfig {
 	axisGridShow?: boolean;
 	scaleDistribution?: common.ScaleDistributionConfig;
 	axisCenteredZero?: boolean;
-	labelValue?: common.TextDimensionConfig;
+	lineStyle?: common.LineStyle;
 	axisBorderShow?: boolean;
 }
 
 export const defaultFieldConfig = (): FieldConfig => ({
-	show: ScatterShow.Points,
-	label: common.VisibilityMode.Auto,
+	show: XYShowMode.Points,
+	fillOpacity: 50,
 });
 
-export interface ScatterSeriesConfig {
-	x?: string;
-	y?: string;
-	name?: string;
-	show?: ScatterShow;
-	pointSize?: common.ScaleDimensionConfig;
-	pointColor?: common.ColorDimensionConfig;
-	lineColor?: common.ColorDimensionConfig;
-	lineWidth?: number;
-	lineStyle?: common.LineStyle;
-	label?: common.VisibilityMode;
-	hideFrom?: common.HideSeriesConfig;
-	axisPlacement?: common.AxisPlacement;
-	axisColorMode?: common.AxisColorMode;
-	axisLabel?: string;
-	axisWidth?: number;
-	axisSoftMin?: number;
-	axisSoftMax?: number;
-	axisGridShow?: boolean;
-	scaleDistribution?: common.ScaleDistributionConfig;
-	axisCenteredZero?: boolean;
-	frame?: number;
-	labelValue?: common.TextDimensionConfig;
-	axisBorderShow?: boolean;
+export interface XYSeriesConfig {
+	name?: {
+		fixed?: string;
+	};
+	frame?: {
+		matcher: MatcherConfig;
+	};
+	x?: {
+		matcher: MatcherConfig;
+	};
+	y?: {
+		matcher: MatcherConfig;
+	};
+	color?: {
+		matcher: MatcherConfig;
+	};
+	size?: {
+		matcher: MatcherConfig;
+	};
 }
 
-export const defaultScatterSeriesConfig = (): ScatterSeriesConfig => ({
-	show: ScatterShow.Points,
-	label: common.VisibilityMode.Auto,
+export const defaultXYSeriesConfig = (): XYSeriesConfig => ({
 });
 
 export interface Options {
-	seriesMapping?: SeriesMapping;
-	// Table Mode (auto)
-	dims: XYDimensionConfig;
+	mapping: SeriesMapping;
 	legend: common.VizLegendOptions;
 	tooltip: common.VizTooltipOptions;
-	// Manual Mode
-	series: ScatterSeriesConfig[];
+	series: XYSeriesConfig[];
 }
 
 export const defaultOptions = (): Options => ({
-	dims: defaultXYDimensionConfig(),
+	mapping: SeriesMapping.Auto,
 	legend: common.defaultVizLegendOptions(),
 	tooltip: common.defaultVizTooltipOptions(),
 	series: [],

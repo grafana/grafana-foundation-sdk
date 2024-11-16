@@ -317,6 +317,19 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // The behavior when clicking on a result
+    dataLinks(links: cog.Builder<dashboard.DashboardLink>[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        const linksResources = links.map(builder1 => builder1.build());
+        this.internal.fieldConfig.defaults.links = linksResources;
+        return this;
+    }
+
     // Alternative to empty string
     noValue(noValue: string): this {
         if (!this.internal.fieldConfig) {
@@ -371,6 +384,15 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         }
         const edgesResource = edges.build();
         this.internal.options.edges = edgesResource;
+        return this;
+    }
+
+    // How to handle zoom/scroll events in the node graph
+    zoomMode(zoomMode: nodegraph.ZoomMode): this {
+        if (!this.internal.options) {
+            this.internal.options = nodegraph.defaultOptions();
+        }
+        this.internal.options.zoomMode = zoomMode;
         return this;
     }
 }

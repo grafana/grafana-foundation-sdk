@@ -54,6 +54,15 @@ class Dataquery(cogbuilder.Builder[grafanapyroscope.Dataquery]):
     
         return self
     
+    def limit(self, limit: int) -> typing.Self:    
+        """
+        Sets the maximum number of time series.
+        """
+            
+        self._internal.limit = limit
+    
+        return self
+    
     def max_nodes(self, max_nodes: int) -> typing.Self:    
         """
         Sets the maximum number of nodes in the flamegraph.

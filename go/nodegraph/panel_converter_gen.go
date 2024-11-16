@@ -396,6 +396,23 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Links != nil && len(input.FieldConfig.Defaults.Links) >= 1 {
+
+		buffer.WriteString(`DataLinks(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.FieldConfig.Defaults.Links {
+			tmplinksarg1 := dashboard.DashboardLinkConverter(arg1)
+			tmparg0 = append(tmparg0, tmplinksarg1)
+		}
+		arg0 := "[]cog.Builder[dashboard.DashboardLink]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.FieldConfig != nil && input.FieldConfig.Defaults.NoValue != nil && *input.FieldConfig.Defaults.NoValue != "" {
 
 		buffer.WriteString(`NoValue(`)
@@ -463,6 +480,18 @@ func PanelConverter(input dashboard.Panel) string {
 
 		buffer.WriteString(`Edges(`)
 		arg0 := EdgeOptionsConverter(*input.Options.(*Options).Edges)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Options != nil && input.Options.(*Options).ZoomMode != nil {
+
+		buffer.WriteString(`ZoomMode(`)
+		arg0 := cog.Dump(*input.Options.(*Options).ZoomMode)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -16,13 +16,11 @@ type TypeReduceBuilder struct {
 }
 
 func NewTypeReduceBuilder() *TypeReduceBuilder {
-	resource := &TypeReduce{}
+	resource := NewTypeReduce()
 	builder := &TypeReduceBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "reduce"
 
 	return builder
@@ -143,7 +141,4 @@ func (builder *TypeReduceBuilder) TimeRange(timeRange cog.Builder[ExprTypeReduce
 	builder.internal.TimeRange = &timeRangeResource
 
 	return builder
-}
-
-func (builder *TypeReduceBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type ConstraintBuilder struct {
 }
 
 func NewConstraintBuilder() *ConstraintBuilder {
-	resource := &Constraint{}
+	resource := NewConstraint()
 	builder := &ConstraintBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *ConstraintBuilder) Vertical(vertical VerticalConstraint) *Constra
 	builder.internal.Vertical = &vertical
 
 	return builder
-}
-
-func (builder *ConstraintBuilder) applyDefaults() {
 }

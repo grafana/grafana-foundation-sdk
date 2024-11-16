@@ -27,6 +27,10 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("groupBy")
     public List<String> groupBy;
+    // Sets the maximum number of time series.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("limit")
+    public Long limit;
     // Sets the maximum number of nodes in the flamegraph.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("maxNodes")
@@ -86,6 +90,11 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     
     public Builder groupBy(List<String> groupBy) {
     this.internal.groupBy = groupBy;
+        return this;
+    }
+    
+    public Builder limit(Long limit) {
+    this.internal.limit = limit;
         return this;
     }
     

@@ -16,6 +16,38 @@
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewCandlestickFieldMap
+
+NewCandlestickFieldMap creates a new CandlestickFieldMap object.
+
+```go
+func NewCandlestickFieldMap() *CandlestickFieldMap
+```
+
+### <span class="badge function"></span> NewCandlestickColors
+
+NewCandlestickColors creates a new CandlestickColors object.
+
+```go
+func NewCandlestickColors() *CandlestickColors
+```
+
+### <span class="badge function"></span> NewOptions
+
+NewOptions creates a new Options object.
+
+```go
+func NewOptions() *Options
+```
+
+### <span class="badge function"></span> NewFieldConfig
+
+NewFieldConfig creates a new FieldConfig object.
+
+```go
+func NewFieldConfig() *FieldConfig
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to candlestick panels.

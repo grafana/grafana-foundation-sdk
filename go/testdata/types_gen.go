@@ -21,6 +21,11 @@ type CSVWave struct {
 	ValuesCSV *string `json:"valuesCSV,omitempty"`
 }
 
+// NewCSVWave creates a new CSVWave object.
+func NewCSVWave() *CSVWave {
+	return &CSVWave{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CSVWave` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CSVWave) UnmarshalJSONStrict(raw []byte) error {
@@ -148,6 +153,11 @@ type NodesQuery struct {
 	Type *NodesQueryType `json:"type,omitempty"`
 }
 
+// NewNodesQuery creates a new NodesQuery object.
+func NewNodesQuery() *NodesQuery {
+	return &NodesQuery{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NodesQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *NodesQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -249,6 +259,11 @@ type PulseWaveQuery struct {
 	OnCount  *int64   `json:"onCount,omitempty"`
 	OnValue  *float64 `json:"onValue,omitempty"`
 	TimeStep *int64   `json:"timeStep,omitempty"`
+}
+
+// NewPulseWaveQuery creates a new PulseWaveQuery object.
+func NewPulseWaveQuery() *PulseWaveQuery {
+	return &PulseWaveQuery{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PulseWaveQuery` from JSON.
@@ -408,6 +423,11 @@ type ResultAssertions struct {
 	TypeVersion []int64 `json:"typeVersion"`
 }
 
+// NewResultAssertions creates a new ResultAssertions object.
+func NewResultAssertions() *ResultAssertions {
+	return &ResultAssertions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResultAssertions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ResultAssertions) UnmarshalJSONStrict(raw []byte) error {
@@ -514,6 +534,11 @@ type Key struct {
 	Uid  *string `json:"uid,omitempty"`
 }
 
+// NewKey creates a new Key object.
+func NewKey() *Key {
+	return &Key{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Key` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Key) UnmarshalJSONStrict(raw []byte) error {
@@ -608,6 +633,13 @@ type SimulationQuery struct {
 	Key    Key   `json:"key"`
 	Last   *bool `json:"last,omitempty"`
 	Stream *bool `json:"stream,omitempty"`
+}
+
+// NewSimulationQuery creates a new SimulationQuery object.
+func NewSimulationQuery() *SimulationQuery {
+	return &SimulationQuery{
+		Key: *NewKey(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SimulationQuery` from JSON.
@@ -740,6 +772,11 @@ type StreamingQuery struct {
 	//  - `"traces"`
 	Type StreamingQueryType `json:"type"`
 	Url  *string            `json:"url,omitempty"`
+}
+
+// NewStreamingQuery creates a new StreamingQuery object.
+func NewStreamingQuery() *StreamingQuery {
+	return &StreamingQuery{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StreamingQuery` from JSON.
@@ -892,6 +929,14 @@ type TimeRange struct {
 	To string `json:"to"`
 }
 
+// NewTimeRange creates a new TimeRange object.
+func NewTimeRange() *TimeRange {
+	return &TimeRange{
+		From: "now-6h",
+		To:   "now",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeRange` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TimeRange) UnmarshalJSONStrict(raw []byte) error {
@@ -964,6 +1009,11 @@ type USAQuery struct {
 	Mode   *string  `json:"mode,omitempty"`
 	Period *string  `json:"period,omitempty"`
 	States []string `json:"states,omitempty"`
+}
+
+// NewUSAQuery creates a new USAQuery object.
+func NewUSAQuery() *USAQuery {
+	return &USAQuery{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `USAQuery` from JSON.
@@ -1187,6 +1237,11 @@ func (resource Dataquery) ImplementsDataqueryVariant() {}
 
 func (resource Dataquery) DataqueryType() string {
 	return ""
+}
+
+// NewDataquery creates a new Dataquery object.
+func NewDataquery() *Dataquery {
+	return &Dataquery{}
 }
 
 // VariantConfig returns the configuration related to  dataqueries.

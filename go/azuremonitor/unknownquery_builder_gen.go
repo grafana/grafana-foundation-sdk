@@ -14,13 +14,11 @@ type UnknownQueryBuilder struct {
 }
 
 func NewUnknownQueryBuilder() *UnknownQueryBuilder {
-	resource := &UnknownQuery{}
+	resource := NewUnknownQuery()
 	builder := &UnknownQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Kind = "UnknownQuery"
 
 	return builder
@@ -38,7 +36,4 @@ func (builder *UnknownQueryBuilder) RawQuery(rawQuery string) *UnknownQueryBuild
 	builder.internal.RawQuery = &rawQuery
 
 	return builder
-}
-
-func (builder *UnknownQueryBuilder) applyDefaults() {
 }

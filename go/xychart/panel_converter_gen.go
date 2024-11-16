@@ -397,6 +397,23 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Links != nil && len(input.FieldConfig.Defaults.Links) >= 1 {
+
+		buffer.WriteString(`DataLinks(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.FieldConfig.Defaults.Links {
+			tmplinksarg1 := dashboard.DashboardLinkConverter(arg1)
+			tmparg0 = append(tmparg0, tmplinksarg1)
+		}
+		arg0 := "[]cog.Builder[dashboard.DashboardLink]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.FieldConfig != nil && input.FieldConfig.Defaults.NoValue != nil && *input.FieldConfig.Defaults.NoValue != "" {
 
 		buffer.WriteString(`NoValue(`)
@@ -463,7 +480,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).PointSize != nil {
 
 		buffer.WriteString(`PointSize(`)
-		arg0 := common.ScaleDimensionConfigConverter(*input.FieldConfig.Defaults.Custom.(*FieldConfig).PointSize)
+		arg0 := XychartFieldConfigPointSizeConverter(*input.FieldConfig.Defaults.Custom.(*FieldConfig).PointSize)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -472,10 +489,10 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
-	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).PointColor != nil {
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).PointShape != nil {
 
-		buffer.WriteString(`PointColor(`)
-		arg0 := common.ColorDimensionConfigConverter(*input.FieldConfig.Defaults.Custom.(*FieldConfig).PointColor)
+		buffer.WriteString(`PointShape(`)
+		arg0 := cog.Dump(*input.FieldConfig.Defaults.Custom.(*FieldConfig).PointShape)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -484,10 +501,22 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
-	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).LineColor != nil {
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).PointStrokeWidth != nil {
 
-		buffer.WriteString(`LineColor(`)
-		arg0 := common.ColorDimensionConfigConverter(*input.FieldConfig.Defaults.Custom.(*FieldConfig).LineColor)
+		buffer.WriteString(`PointStrokeWidth(`)
+		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FieldConfig.Defaults.Custom.(*FieldConfig).PointStrokeWidth))
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).FillOpacity != nil && *input.FieldConfig.Defaults.Custom.(*FieldConfig).FillOpacity != 50 {
+
+		buffer.WriteString(`FillOpacity(`)
+		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FieldConfig.Defaults.Custom.(*FieldConfig).FillOpacity))
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -500,30 +529,6 @@ func PanelConverter(input dashboard.Panel) string {
 
 		buffer.WriteString(`LineWidth(`)
 		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FieldConfig.Defaults.Custom.(*FieldConfig).LineWidth))
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).LineStyle != nil {
-
-		buffer.WriteString(`LineStyle(`)
-		arg0 := common.LineStyleConverter(*input.FieldConfig.Defaults.Custom.(*FieldConfig).LineStyle)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).Label != nil {
-
-		buffer.WriteString(`Label(`)
-		arg0 := cog.Dump(*input.FieldConfig.Defaults.Custom.(*FieldConfig).Label)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -652,10 +657,10 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
-	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).LabelValue != nil {
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).LineStyle != nil {
 
-		buffer.WriteString(`LabelValue(`)
-		arg0 := common.TextDimensionConfigConverter(*input.FieldConfig.Defaults.Custom.(*FieldConfig).LabelValue)
+		buffer.WriteString(`LineStyle(`)
+		arg0 := common.LineStyleConverter(*input.FieldConfig.Defaults.Custom.(*FieldConfig).LineStyle)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -676,22 +681,10 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
-	if input.Options != nil && input.Options.(*Options).SeriesMapping != nil {
-
-		buffer.WriteString(`SeriesMapping(`)
-		arg0 := cog.Dump(*input.Options.(*Options).SeriesMapping)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
 	if input.Options != nil {
 
-		buffer.WriteString(`Dims(`)
-		arg0 := XYDimensionConfigConverter(input.Options.(*Options).Dims)
+		buffer.WriteString(`Mapping(`)
+		arg0 := cog.Dump(input.Options.(*Options).Mapping)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -729,10 +722,10 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.WriteString(`Series(`)
 		tmparg0 := []string{}
 		for _, arg1 := range input.Options.(*Options).Series {
-			tmpseriesarg1 := ScatterSeriesConfigConverter(arg1)
+			tmpseriesarg1 := XYSeriesConfigConverter(arg1)
 			tmparg0 = append(tmparg0, tmpseriesarg1)
 		}
-		arg0 := "[]cog.Builder[xychart.ScatterSeriesConfig]{" + strings.Join(tmparg0, ",\n") + "}"
+		arg0 := "[]cog.Builder[xychart.XYSeriesConfig]{" + strings.Join(tmparg0, ",\n") + "}"
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

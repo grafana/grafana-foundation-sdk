@@ -50,6 +50,10 @@
             },
             "description": "Allows to group the results."
           },
+          "limit": {
+            "type": "integer",
+            "description": "Sets the maximum number of time series."
+          },
           "maxNodes": {
             "type": "integer",
             "description": "Sets the maximum number of nodes in the flamegraph."

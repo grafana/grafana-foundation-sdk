@@ -88,6 +88,14 @@ Panel color configuration
 colorScheme(color: cog.Builder<dashboard.FieldColor>)
 ```
 
+### <span class="badge object-method"></span> dataLinks
+
+The behavior when clicking on a result
+
+```typescript
+dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
+```
+
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.
@@ -118,20 +126,18 @@ Panel description.
 description(description: string)
 ```
 
-### <span class="badge object-method"></span> dims
-
-Table Mode (auto)
-
-```typescript
-dims(dims: cog.Builder<xychart.XYDimensionConfig>)
-```
-
 ### <span class="badge object-method"></span> displayName
 
 The display value for this field.  This supports template variables blank is auto
 
 ```typescript
 displayName(displayName: string)
+```
+
+### <span class="badge object-method"></span> fillOpacity
+
+```typescript
+fillOpacity(fillOpacity: number)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -186,18 +192,6 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 interval(interval: string)
 ```
 
-### <span class="badge object-method"></span> label
-
-```typescript
-label(label: common.VisibilityMode)
-```
-
-### <span class="badge object-method"></span> labelValue
-
-```typescript
-labelValue(labelValue: cog.Builder<common.TextDimensionConfig>)
-```
-
 ### <span class="badge object-method"></span> legend
 
 ```typescript
@@ -210,12 +204,6 @@ Dynamically load the panel
 
 ```typescript
 libraryPanel(libraryPanel: dashboard.LibraryPanelRef)
-```
-
-### <span class="badge object-method"></span> lineColor
-
-```typescript
-lineColor(lineColor: cog.Builder<common.ColorDimensionConfig>)
 ```
 
 ### <span class="badge object-method"></span> lineStyle
@@ -236,6 +224,12 @@ Panel links.
 
 ```typescript
 links(links: cog.Builder<dashboard.DashboardLink>[])
+```
+
+### <span class="badge object-method"></span> mapping
+
+```typescript
+mapping(mapping: xychart.SeriesMapping)
 ```
 
 ### <span class="badge object-method"></span> mappings
@@ -299,16 +293,26 @@ overrides(overrides: {
 }[])
 ```
 
-### <span class="badge object-method"></span> pointColor
+### <span class="badge object-method"></span> pointShape
 
 ```typescript
-pointColor(pointColor: cog.Builder<common.ColorDimensionConfig>)
+pointShape(pointShape: xychart.PointShape)
 ```
 
 ### <span class="badge object-method"></span> pointSize
 
 ```typescript
-pointSize(pointSize: cog.Builder<common.ScaleDimensionConfig>)
+pointSize(pointSize: {
+	fixed?: number;
+	min?: number;
+	max?: number;
+})
+```
+
+### <span class="badge object-method"></span> pointStrokeWidth
+
+```typescript
+pointStrokeWidth(pointStrokeWidth: number)
 ```
 
 ### <span class="badge object-method"></span> queryCachingTTL
@@ -345,22 +349,14 @@ scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>
 
 ### <span class="badge object-method"></span> series
 
-Manual Mode
-
 ```typescript
-series(series: cog.Builder<xychart.ScatterSeriesConfig>[])
-```
-
-### <span class="badge object-method"></span> seriesMapping
-
-```typescript
-seriesMapping(seriesMapping: xychart.SeriesMapping)
+series(series: cog.Builder<xychart.XYSeriesConfig>[])
 ```
 
 ### <span class="badge object-method"></span> show
 
 ```typescript
-show(show: xychart.ScatterShow)
+show(show: xychart.XYShowMode)
 ```
 
 ### <span class="badge object-method"></span> span

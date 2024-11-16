@@ -14,13 +14,11 @@ type RecordRuleBuilder struct {
 }
 
 func NewRecordRuleBuilder() *RecordRuleBuilder {
-	resource := &RecordRule{}
+	resource := NewRecordRule()
 	builder := &RecordRuleBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,7 +43,4 @@ func (builder *RecordRuleBuilder) Metric(metric string) *RecordRuleBuilder {
 	builder.internal.Metric = metric
 
 	return builder
-}
-
-func (builder *RecordRuleBuilder) applyDefaults() {
 }

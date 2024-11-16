@@ -3,178 +3,240 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import xychart
-from ..models import common
 from ..models import dashboard
 from ..cog import variants as cogvariants
+from ..models import common
 
 
-class XYDimensionConfig(cogbuilder.Builder[xychart.XYDimensionConfig]):    
+class MatcherConfig(cogbuilder.Builder[xychart.MatcherConfig]):    
     """
-    Configuration for the Table/Auto mode
+    NOTE: (copied from dashboard_kind.cue, since not exported)
+    Matcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.
+    It comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type.
     """
     
-    _internal: xychart.XYDimensionConfig
+    _internal: xychart.MatcherConfig
 
     def __init__(self):
-        self._internal = xychart.XYDimensionConfig()
+        self._internal = xychart.MatcherConfig()
 
-    def build(self) -> xychart.XYDimensionConfig:
+    def build(self) -> xychart.MatcherConfig:
         """
         Builds the object.
         """
         return self._internal    
     
-    def frame(self, frame: int) -> typing.Self:        
-        if not frame >= 0:
-            raise ValueError("frame must be >= 0")
-        self._internal.frame = frame
+    def id_val(self, id_val: str) -> typing.Self:    
+        """
+        The matcher id. This is used to find the matcher implementation from registry.
+        """
+            
+        self._internal.id_val = id_val
     
         return self
     
-    def x(self, x: str) -> typing.Self:        
-        self._internal.x = x
-    
-        return self
-    
-    def exclude(self, exclude: list[str]) -> typing.Self:        
-        self._internal.exclude = exclude
+    def options(self, options: object) -> typing.Self:    
+        """
+        The matcher options. This is specific to the matcher implementation.
+        """
+            
+        self._internal.options = options
     
         return self
     
 
-class ScatterSeriesConfig(cogbuilder.Builder[xychart.ScatterSeriesConfig]):    
-    _internal: xychart.ScatterSeriesConfig
+class XYSeriesConfig(cogbuilder.Builder[xychart.XYSeriesConfig]):    
+    _internal: xychart.XYSeriesConfig
 
     def __init__(self):
-        self._internal = xychart.ScatterSeriesConfig()
+        self._internal = xychart.XYSeriesConfig()
 
-    def build(self) -> xychart.ScatterSeriesConfig:
+    def build(self) -> xychart.XYSeriesConfig:
         """
         Builds the object.
         """
         return self._internal    
     
-    def x(self, x: str) -> typing.Self:        
-        self._internal.x = x
+    def name(self, name: cogbuilder.Builder[xychart.XychartXYSeriesConfigName]) -> typing.Self:        
+        name_resource = name.build()
+        self._internal.name = name_resource
     
         return self
     
-    def y(self, y: str) -> typing.Self:        
-        self._internal.y = y
+    def frame(self, frame: cogbuilder.Builder[xychart.XychartXYSeriesConfigFrame]) -> typing.Self:        
+        frame_resource = frame.build()
+        self._internal.frame = frame_resource
     
         return self
     
-    def name(self, name: str) -> typing.Self:        
-        self._internal.name = name
+    def x(self, x: cogbuilder.Builder[xychart.XychartXYSeriesConfigX]) -> typing.Self:        
+        x_resource = x.build()
+        self._internal.x = x_resource
     
         return self
     
-    def show(self, show: xychart.ScatterShow) -> typing.Self:        
-        self._internal.show = show
+    def y(self, y: cogbuilder.Builder[xychart.XychartXYSeriesConfigY]) -> typing.Self:        
+        y_resource = y.build()
+        self._internal.y = y_resource
     
         return self
     
-    def point_size(self, point_size: cogbuilder.Builder[common.ScaleDimensionConfig]) -> typing.Self:        
-        point_size_resource = point_size.build()
-        self._internal.point_size = point_size_resource
+    def color(self, color: cogbuilder.Builder[xychart.XychartXYSeriesConfigColor]) -> typing.Self:        
+        color_resource = color.build()
+        self._internal.color = color_resource
     
         return self
     
-    def point_color(self, point_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:        
-        point_color_resource = point_color.build()
-        self._internal.point_color = point_color_resource
+    def size(self, size: cogbuilder.Builder[xychart.XychartXYSeriesConfigSize]) -> typing.Self:        
+        size_resource = size.build()
+        self._internal.size = size_resource
     
         return self
     
-    def line_color(self, line_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:        
-        line_color_resource = line_color.build()
-        self._internal.line_color = line_color_resource
+
+class XychartFieldConfigPointSize(cogbuilder.Builder[xychart.XychartFieldConfigPointSize]):    
+    _internal: xychart.XychartFieldConfigPointSize
+
+    def __init__(self):
+        self._internal = xychart.XychartFieldConfigPointSize()
+
+    def build(self) -> xychart.XychartFieldConfigPointSize:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def fixed(self, fixed: int) -> typing.Self:        
+        if not fixed >= 0:
+            raise ValueError("fixed must be >= 0")
+        self._internal.fixed = fixed
     
         return self
     
-    def line_width(self, line_width: int) -> typing.Self:        
-        if not line_width >= 0:
-            raise ValueError("line_width must be >= 0")
-        self._internal.line_width = line_width
+    def min_val(self, min_val: int) -> typing.Self:        
+        if not min_val >= 0:
+            raise ValueError("min_val must be >= 0")
+        self._internal.min_val = min_val
     
         return self
     
-    def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:        
-        line_style_resource = line_style.build()
-        self._internal.line_style = line_style_resource
+    def max_val(self, max_val: int) -> typing.Self:        
+        if not max_val >= 0:
+            raise ValueError("max_val must be >= 0")
+        self._internal.max_val = max_val
     
         return self
     
-    def label(self, label: common.VisibilityMode) -> typing.Self:        
-        self._internal.label = label
+
+class XychartXYSeriesConfigName(cogbuilder.Builder[xychart.XychartXYSeriesConfigName]):    
+    _internal: xychart.XychartXYSeriesConfigName
+
+    def __init__(self):
+        self._internal = xychart.XychartXYSeriesConfigName()
+
+    def build(self) -> xychart.XychartXYSeriesConfigName:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def fixed(self, fixed: str) -> typing.Self:        
+        self._internal.fixed = fixed
     
         return self
     
-    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:        
-        hide_from_resource = hide_from.build()
-        self._internal.hide_from = hide_from_resource
+
+class XychartXYSeriesConfigFrame(cogbuilder.Builder[xychart.XychartXYSeriesConfigFrame]):    
+    _internal: xychart.XychartXYSeriesConfigFrame
+
+    def __init__(self):
+        self._internal = xychart.XychartXYSeriesConfigFrame()
+
+    def build(self) -> xychart.XychartXYSeriesConfigFrame:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def matcher(self, matcher: cogbuilder.Builder[xychart.MatcherConfig]) -> typing.Self:        
+        matcher_resource = matcher.build()
+        self._internal.matcher = matcher_resource
     
         return self
     
-    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:        
-        self._internal.axis_placement = axis_placement
+
+class XychartXYSeriesConfigX(cogbuilder.Builder[xychart.XychartXYSeriesConfigX]):    
+    _internal: xychart.XychartXYSeriesConfigX
+
+    def __init__(self):
+        self._internal = xychart.XychartXYSeriesConfigX()
+
+    def build(self) -> xychart.XychartXYSeriesConfigX:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def matcher(self, matcher: cogbuilder.Builder[xychart.MatcherConfig]) -> typing.Self:        
+        matcher_resource = matcher.build()
+        self._internal.matcher = matcher_resource
     
         return self
     
-    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:        
-        self._internal.axis_color_mode = axis_color_mode
+
+class XychartXYSeriesConfigY(cogbuilder.Builder[xychart.XychartXYSeriesConfigY]):    
+    _internal: xychart.XychartXYSeriesConfigY
+
+    def __init__(self):
+        self._internal = xychart.XychartXYSeriesConfigY()
+
+    def build(self) -> xychart.XychartXYSeriesConfigY:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def matcher(self, matcher: cogbuilder.Builder[xychart.MatcherConfig]) -> typing.Self:        
+        matcher_resource = matcher.build()
+        self._internal.matcher = matcher_resource
     
         return self
     
-    def axis_label(self, axis_label: str) -> typing.Self:        
-        self._internal.axis_label = axis_label
+
+class XychartXYSeriesConfigColor(cogbuilder.Builder[xychart.XychartXYSeriesConfigColor]):    
+    _internal: xychart.XychartXYSeriesConfigColor
+
+    def __init__(self):
+        self._internal = xychart.XychartXYSeriesConfigColor()
+
+    def build(self) -> xychart.XychartXYSeriesConfigColor:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def matcher(self, matcher: cogbuilder.Builder[xychart.MatcherConfig]) -> typing.Self:        
+        matcher_resource = matcher.build()
+        self._internal.matcher = matcher_resource
     
         return self
     
-    def axis_width(self, axis_width: float) -> typing.Self:        
-        self._internal.axis_width = axis_width
+
+class XychartXYSeriesConfigSize(cogbuilder.Builder[xychart.XychartXYSeriesConfigSize]):    
+    _internal: xychart.XychartXYSeriesConfigSize
+
+    def __init__(self):
+        self._internal = xychart.XychartXYSeriesConfigSize()
+
+    def build(self) -> xychart.XychartXYSeriesConfigSize:
+        """
+        Builds the object.
+        """
+        return self._internal    
     
-        return self
-    
-    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:        
-        self._internal.axis_soft_min = axis_soft_min
-    
-        return self
-    
-    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:        
-        self._internal.axis_soft_max = axis_soft_max
-    
-        return self
-    
-    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:        
-        self._internal.axis_grid_show = axis_grid_show
-    
-        return self
-    
-    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:        
-        scale_distribution_resource = scale_distribution.build()
-        self._internal.scale_distribution = scale_distribution_resource
-    
-        return self
-    
-    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:        
-        self._internal.axis_centered_zero = axis_centered_zero
-    
-        return self
-    
-    def frame(self, frame: float) -> typing.Self:        
-        self._internal.frame = frame
-    
-        return self
-    
-    def label_value(self, label_value: cogbuilder.Builder[common.TextDimensionConfig]) -> typing.Self:        
-        label_value_resource = label_value.build()
-        self._internal.label_value = label_value_resource
-    
-        return self
-    
-    def axis_border_show(self, axis_border_show: bool) -> typing.Self:        
-        self._internal.axis_border_show = axis_border_show
+    def matcher(self, matcher: cogbuilder.Builder[xychart.MatcherConfig]) -> typing.Self:        
+        matcher_resource = matcher.build()
+        self._internal.matcher = matcher_resource
     
         return self
     
@@ -586,6 +648,22 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def data_links(self, links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typing.Self:    
+        """
+        The behavior when clicking on a result
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        links_resources = [r1.build() for r1 in links]
+        self._internal.field_config.defaults.links = links_resources
+    
+        return self
+    
     def no_value(self, no_value: str) -> typing.Self:    
         """
         Alternative to empty string
@@ -632,7 +710,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def show(self, show: xychart.ScatterShow) -> typing.Self:        
+    def show(self, show: xychart.XYShowMode) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -646,7 +724,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def point_size(self, point_size: cogbuilder.Builder[common.ScaleDimensionConfig]) -> typing.Self:        
+    def point_size(self, point_size: cogbuilder.Builder[xychart.XychartFieldConfigPointSize]) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -661,7 +739,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def point_color(self, point_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:        
+    def point_shape(self, point_shape: xychart.PointShape) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -671,12 +749,13 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = xychart.FieldConfig()
         assert isinstance(self._internal.field_config.defaults.custom, xychart.FieldConfig)
-        point_color_resource = point_color.build()
-        self._internal.field_config.defaults.custom.point_color = point_color_resource
+        self._internal.field_config.defaults.custom.point_shape = point_shape
     
         return self
     
-    def line_color(self, line_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:        
+    def point_stroke_width(self, point_stroke_width: int) -> typing.Self:        
+        if not point_stroke_width >= 0:
+            raise ValueError("point_stroke_width must be >= 0")
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -686,8 +765,23 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = xychart.FieldConfig()
         assert isinstance(self._internal.field_config.defaults.custom, xychart.FieldConfig)
-        line_color_resource = line_color.build()
-        self._internal.field_config.defaults.custom.line_color = line_color_resource
+        self._internal.field_config.defaults.custom.point_stroke_width = point_stroke_width
+    
+        return self
+    
+    def fill_opacity(self, fill_opacity: int) -> typing.Self:        
+        if not fill_opacity <= 100:
+            raise ValueError("fill_opacity must be <= 100")
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        if self._internal.field_config.defaults.custom is None:
+            self._internal.field_config.defaults.custom = xychart.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults.custom, xychart.FieldConfig)
+        self._internal.field_config.defaults.custom.fill_opacity = fill_opacity
     
         return self
     
@@ -704,35 +798,6 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             self._internal.field_config.defaults.custom = xychart.FieldConfig()
         assert isinstance(self._internal.field_config.defaults.custom, xychart.FieldConfig)
         self._internal.field_config.defaults.custom.line_width = line_width
-    
-        return self
-    
-    def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:        
-        if self._internal.field_config is None:
-            self._internal.field_config = dashboard.FieldConfigSource()
-        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        if self._internal.field_config.defaults is None:
-            self._internal.field_config.defaults = dashboard.FieldConfig()
-        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        if self._internal.field_config.defaults.custom is None:
-            self._internal.field_config.defaults.custom = xychart.FieldConfig()
-        assert isinstance(self._internal.field_config.defaults.custom, xychart.FieldConfig)
-        line_style_resource = line_style.build()
-        self._internal.field_config.defaults.custom.line_style = line_style_resource
-    
-        return self
-    
-    def label(self, label: common.VisibilityMode) -> typing.Self:        
-        if self._internal.field_config is None:
-            self._internal.field_config = dashboard.FieldConfigSource()
-        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
-        if self._internal.field_config.defaults is None:
-            self._internal.field_config.defaults = dashboard.FieldConfig()
-        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
-        if self._internal.field_config.defaults.custom is None:
-            self._internal.field_config.defaults.custom = xychart.FieldConfig()
-        assert isinstance(self._internal.field_config.defaults.custom, xychart.FieldConfig)
-        self._internal.field_config.defaults.custom.label = label
     
         return self
     
@@ -878,7 +943,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def label_value(self, label_value: cogbuilder.Builder[common.TextDimensionConfig]) -> typing.Self:        
+    def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:        
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -888,8 +953,8 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = xychart.FieldConfig()
         assert isinstance(self._internal.field_config.defaults.custom, xychart.FieldConfig)
-        label_value_resource = label_value.build()
-        self._internal.field_config.defaults.custom.label_value = label_value_resource
+        line_style_resource = line_style.build()
+        self._internal.field_config.defaults.custom.line_style = line_style_resource
     
         return self
     
@@ -907,24 +972,11 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def series_mapping(self, series_mapping: xychart.SeriesMapping) -> typing.Self:        
+    def mapping(self, mapping: xychart.SeriesMapping) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = xychart.Options()
         assert isinstance(self._internal.options, xychart.Options)
-        self._internal.options.series_mapping = series_mapping
-    
-        return self
-    
-    def dims(self, dims: cogbuilder.Builder[xychart.XYDimensionConfig]) -> typing.Self:    
-        """
-        Table Mode (auto)
-        """
-            
-        if self._internal.options is None:
-            self._internal.options = xychart.Options()
-        assert isinstance(self._internal.options, xychart.Options)
-        dims_resource = dims.build()
-        self._internal.options.dims = dims_resource
+        self._internal.options.mapping = mapping
     
         return self
     
@@ -946,11 +998,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def series(self, series: list[cogbuilder.Builder[xychart.ScatterSeriesConfig]]) -> typing.Self:    
-        """
-        Manual Mode
-        """
-            
+    def series(self, series: list[cogbuilder.Builder[xychart.XYSeriesConfig]]) -> typing.Self:        
         if self._internal.options is None:
             self._internal.options = xychart.Options()
         assert isinstance(self._internal.options, xychart.Options)

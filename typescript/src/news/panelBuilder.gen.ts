@@ -317,6 +317,19 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // The behavior when clicking on a result
+    dataLinks(links: cog.Builder<dashboard.DashboardLink>[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        const linksResources = links.map(builder1 => builder1.build());
+        this.internal.fieldConfig.defaults.links = linksResources;
+        return this;
+    }
+
     // Alternative to empty string
     noValue(noValue: string): this {
         if (!this.internal.fieldConfig) {

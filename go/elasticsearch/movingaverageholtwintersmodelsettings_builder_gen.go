@@ -14,13 +14,11 @@ type MovingAverageHoltWintersModelSettingsBuilder struct {
 }
 
 func NewMovingAverageHoltWintersModelSettingsBuilder() *MovingAverageHoltWintersModelSettingsBuilder {
-	resource := &MovingAverageHoltWintersModelSettings{}
+	resource := NewMovingAverageHoltWintersModelSettings()
 	builder := &MovingAverageHoltWintersModelSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Model = "holt_winters"
 
 	return builder
@@ -61,7 +59,4 @@ func (builder *MovingAverageHoltWintersModelSettingsBuilder) Predict(predict str
 	builder.internal.Predict = predict
 
 	return builder
-}
-
-func (builder *MovingAverageHoltWintersModelSettingsBuilder) applyDefaults() {
 }

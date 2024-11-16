@@ -439,6 +439,24 @@ final class PanelConverter
     
     
     }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->links !== null && count($input->fieldConfig->defaults->links) >= 1) {
+    
+        
+    $buffer = 'dataLinks(';
+        $tmparg0 = [];
+        foreach ($input->fieldConfig->defaults->links as $arg1) {
+        $tmplinksarg1 = \Grafana\Foundation\Dashboard\DashboardLinkConverter::convert($arg1);
+        $tmparg0[] = $tmplinksarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->fieldConfig !== null && $input->fieldConfig->defaults->noValue !== null && $input->fieldConfig->defaults->noValue !== "") {
     
         
@@ -495,7 +513,7 @@ final class PanelConverter
     
         
     $buffer = 'show(';
-        $arg0 ='\Grafana\Foundation\Xychart\ScatterShow::fromValue("'.$input->fieldConfig->defaults->custom->show.'")';
+        $arg0 ='\Grafana\Foundation\Xychart\XYShowMode::fromValue("'.$input->fieldConfig->defaults->custom->show.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -508,7 +526,7 @@ final class PanelConverter
     
         
     $buffer = 'pointSize(';
-        $arg0 = \Grafana\Foundation\Common\ScaleDimensionConfigConverter::convert($input->fieldConfig->defaults->custom->pointSize);
+        $arg0 = \Grafana\Foundation\Xychart\XychartFieldConfigPointSizeConverter::convert($input->fieldConfig->defaults->custom->pointSize);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -517,11 +535,11 @@ final class PanelConverter
     
     
     }
-            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig && $input->fieldConfig->defaults->custom->pointColor !== null) {
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig && $input->fieldConfig->defaults->custom->pointShape !== null) {
     
         
-    $buffer = 'pointColor(';
-        $arg0 = \Grafana\Foundation\Common\ColorDimensionConfigConverter::convert($input->fieldConfig->defaults->custom->pointColor);
+    $buffer = 'pointShape(';
+        $arg0 ='\Grafana\Foundation\Xychart\PointShape::fromValue("'.$input->fieldConfig->defaults->custom->pointShape.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -530,11 +548,24 @@ final class PanelConverter
     
     
     }
-            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig && $input->fieldConfig->defaults->custom->lineColor !== null) {
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig && $input->fieldConfig->defaults->custom->pointStrokeWidth !== null) {
     
         
-    $buffer = 'lineColor(';
-        $arg0 = \Grafana\Foundation\Common\ColorDimensionConfigConverter::convert($input->fieldConfig->defaults->custom->lineColor);
+    $buffer = 'pointStrokeWidth(';
+        $arg0 =\var_export($input->fieldConfig->defaults->custom->pointStrokeWidth, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig && $input->fieldConfig->defaults->custom->fillOpacity !== null && $input->fieldConfig->defaults->custom->fillOpacity !== 50) {
+    
+        
+    $buffer = 'fillOpacity(';
+        $arg0 =\var_export($input->fieldConfig->defaults->custom->fillOpacity, true);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -548,32 +579,6 @@ final class PanelConverter
         
     $buffer = 'lineWidth(';
         $arg0 =\var_export($input->fieldConfig->defaults->custom->lineWidth, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig && $input->fieldConfig->defaults->custom->lineStyle !== null) {
-    
-        
-    $buffer = 'lineStyle(';
-        $arg0 = \Grafana\Foundation\Common\LineStyleConverter::convert($input->fieldConfig->defaults->custom->lineStyle);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig && $input->fieldConfig->defaults->custom->label !== null) {
-    
-        
-    $buffer = 'label(';
-        $arg0 ='\Grafana\Foundation\Common\VisibilityMode::fromValue("'.$input->fieldConfig->defaults->custom->label.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -712,11 +717,11 @@ final class PanelConverter
     
     
     }
-            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig && $input->fieldConfig->defaults->custom->labelValue !== null) {
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig && $input->fieldConfig->defaults->custom->lineStyle !== null) {
     
         
-    $buffer = 'labelValue(';
-        $arg0 = \Grafana\Foundation\Common\TextDimensionConfigConverter::convert($input->fieldConfig->defaults->custom->labelValue);
+    $buffer = 'lineStyle(';
+        $arg0 = \Grafana\Foundation\Common\LineStyleConverter::convert($input->fieldConfig->defaults->custom->lineStyle);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -738,24 +743,11 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Xychart\Options && $input->options->seriesMapping !== null) {
-    
-        
-    $buffer = 'seriesMapping(';
-        $arg0 ='\Grafana\Foundation\Xychart\SeriesMapping::fromValue("'.$input->options->seriesMapping.'")';
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
             if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Xychart\Options) {
     
         
-    $buffer = 'dims(';
-        $arg0 = \Grafana\Foundation\Xychart\XYDimensionConfigConverter::convert($input->options->dims);
+    $buffer = 'mapping(';
+        $arg0 ='\Grafana\Foundation\Xychart\SeriesMapping::fromValue("'.$input->options->mapping.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -796,7 +788,7 @@ final class PanelConverter
     $buffer = 'series(';
         $tmparg0 = [];
         foreach ($input->options->series as $arg1) {
-        $tmpseriesarg1 = \Grafana\Foundation\Xychart\ScatterSeriesConfigConverter::convert($arg1);
+        $tmpseriesarg1 = \Grafana\Foundation\Xychart\XYSeriesConfigConverter::convert($arg1);
         $tmparg0[] = $tmpseriesarg1;
         }
         $arg0 = "[" . implode(", \n", $tmparg0) . "]";

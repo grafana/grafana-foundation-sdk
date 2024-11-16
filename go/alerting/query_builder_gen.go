@@ -15,13 +15,11 @@ type QueryBuilder struct {
 }
 
 func NewQueryBuilder(refId string) *QueryBuilder {
-	resource := &Query{}
+	resource := NewQuery()
 	builder := &QueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.RefId = &refId
 
 	return builder
@@ -73,13 +71,10 @@ func (builder *QueryBuilder) RefId(refId string) *QueryBuilder {
 // for requests.
 func (builder *QueryBuilder) RelativeTimeRange(from Duration, to Duration) *QueryBuilder {
 	if builder.internal.RelativeTimeRange == nil {
-		builder.internal.RelativeTimeRange = &RelativeTimeRange{}
+		builder.internal.RelativeTimeRange = NewRelativeTimeRange()
 	}
 	builder.internal.RelativeTimeRange.From = &from
 	builder.internal.RelativeTimeRange.To = &to
 
 	return builder
-}
-
-func (builder *QueryBuilder) applyDefaults() {
 }

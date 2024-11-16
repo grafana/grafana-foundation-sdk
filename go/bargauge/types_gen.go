@@ -28,6 +28,22 @@ type Options struct {
 	Orientation   common.VizOrientation         `json:"orientation"`
 }
 
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		DisplayMode:   common.BarGaugeDisplayModeGradient,
+		ValueMode:     common.BarGaugeValueModeColor,
+		NamePlacement: common.BarGaugeNamePlacementAuto,
+		ShowUnfilled:  true,
+		Sizing:        common.BarGaugeSizingAuto,
+		MinVizWidth:   8,
+		MinVizHeight:  16,
+		Legend:        *common.NewVizLegendOptions(),
+		ReduceOptions: *common.NewReduceDataOptions(),
+		MaxVizHeight:  300,
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {

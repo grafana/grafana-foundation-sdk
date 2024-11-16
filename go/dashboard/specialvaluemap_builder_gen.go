@@ -17,13 +17,11 @@ type SpecialValueMapBuilder struct {
 }
 
 func NewSpecialValueMapBuilder() *SpecialValueMapBuilder {
-	resource := &SpecialValueMap{}
+	resource := NewSpecialValueMap()
 	builder := &SpecialValueMapBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "special"
 
 	return builder
@@ -46,7 +44,4 @@ func (builder *SpecialValueMapBuilder) Options(options cog.Builder[DashboardSpec
 	builder.internal.Options = optionsResource
 
 	return builder
-}
-
-func (builder *SpecialValueMapBuilder) applyDefaults() {
 }

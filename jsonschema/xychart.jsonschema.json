@@ -1,70 +1,86 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
+    "PointShape": {
+      "enum": [
+        "circle",
+        "square"
+      ]
+    },
     "SeriesMapping": {
       "enum": [
         "auto",
         "manual"
-      ],
-      "description": "Auto is \"table\" in the UI"
+      ]
     },
-    "ScatterShow": {
+    "XYShowMode": {
       "enum": [
         "points",
         "lines",
         "points+lines"
       ]
     },
-    "XYDimensionConfig": {
+    "MatcherConfig": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "frame"
+        "id"
       ],
       "properties": {
-        "frame": {
-          "type": "integer",
-          "minimum": 0
+        "id": {
+          "type": "string",
+          "description": "The matcher id. This is used to find the matcher implementation from registry.",
+          "default": ""
         },
-        "x": {
-          "type": "string"
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+        "options": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "The matcher options. This is specific to the matcher implementation."
         }
       },
-      "description": "Configuration for the Table/Auto mode"
+      "description": "NOTE: (copied from dashboard_kind.cue, since not exported)\nMatcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.\nIt comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type."
     },
     "FieldConfig": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "show": {
-          "$ref": "#/definitions/ScatterShow",
+          "$ref": "#/definitions/XYShowMode",
           "default": "points"
         },
         "pointSize": {
-          "$ref": "#/definitions/ScaleDimensionConfig"
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fixed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "min": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
         },
-        "pointColor": {
-          "$ref": "#/definitions/ColorDimensionConfig"
+        "pointShape": {
+          "$ref": "#/definitions/PointShape"
         },
-        "lineColor": {
-          "$ref": "#/definitions/ColorDimensionConfig"
+        "pointStrokeWidth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fillOpacity": {
+          "type": "integer",
+          "maximum": 100,
+          "default": 50
         },
         "lineWidth": {
           "type": "integer",
           "minimum": 0
-        },
-        "lineStyle": {
-          "$ref": "#/definitions/LineStyle"
-        },
-        "label": {
-          "$ref": "#/definitions/VisibilityMode",
-          "default": "auto"
         },
         "hideFrom": {
           "$ref": "#/definitions/HideSeriesConfig"
@@ -96,89 +112,86 @@
         "axisCenteredZero": {
           "type": "boolean"
         },
-        "labelValue": {
-          "$ref": "#/definitions/TextDimensionConfig"
+        "lineStyle": {
+          "$ref": "#/definitions/LineStyle"
         },
         "axisBorderShow": {
           "type": "boolean"
         }
       }
     },
-    "ScatterSeriesConfig": {
+    "XYSeriesConfig": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "x": {
-          "type": "string"
-        },
-        "y": {
-          "type": "string"
-        },
         "name": {
-          "type": "string"
-        },
-        "show": {
-          "$ref": "#/definitions/ScatterShow",
-          "default": "points"
-        },
-        "pointSize": {
-          "$ref": "#/definitions/ScaleDimensionConfig"
-        },
-        "pointColor": {
-          "$ref": "#/definitions/ColorDimensionConfig"
-        },
-        "lineColor": {
-          "$ref": "#/definitions/ColorDimensionConfig"
-        },
-        "lineWidth": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "lineStyle": {
-          "$ref": "#/definitions/LineStyle"
-        },
-        "label": {
-          "$ref": "#/definitions/VisibilityMode",
-          "default": "auto"
-        },
-        "hideFrom": {
-          "$ref": "#/definitions/HideSeriesConfig"
-        },
-        "axisPlacement": {
-          "$ref": "#/definitions/AxisPlacement"
-        },
-        "axisColorMode": {
-          "$ref": "#/definitions/AxisColorMode"
-        },
-        "axisLabel": {
-          "type": "string"
-        },
-        "axisWidth": {
-          "type": "number"
-        },
-        "axisSoftMin": {
-          "type": "number"
-        },
-        "axisSoftMax": {
-          "type": "number"
-        },
-        "axisGridShow": {
-          "type": "boolean"
-        },
-        "scaleDistribution": {
-          "$ref": "#/definitions/ScaleDistributionConfig"
-        },
-        "axisCenteredZero": {
-          "type": "boolean"
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fixed": {
+              "type": "string"
+            }
+          }
         },
         "frame": {
-          "type": "number"
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "matcher"
+          ],
+          "properties": {
+            "matcher": {
+              "$ref": "#/definitions/MatcherConfig"
+            }
+          }
         },
-        "labelValue": {
-          "$ref": "#/definitions/TextDimensionConfig"
+        "x": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "matcher"
+          ],
+          "properties": {
+            "matcher": {
+              "$ref": "#/definitions/MatcherConfig"
+            }
+          }
         },
-        "axisBorderShow": {
-          "type": "boolean"
+        "y": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "matcher"
+          ],
+          "properties": {
+            "matcher": {
+              "$ref": "#/definitions/MatcherConfig"
+            }
+          }
+        },
+        "color": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "matcher"
+          ],
+          "properties": {
+            "matcher": {
+              "$ref": "#/definitions/MatcherConfig"
+            }
+          }
+        },
+        "size": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "matcher"
+          ],
+          "properties": {
+            "matcher": {
+              "$ref": "#/definitions/MatcherConfig"
+            }
+          }
         }
       }
     },
@@ -186,18 +199,14 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "dims",
+        "mapping",
         "legend",
         "tooltip",
         "series"
       ],
       "properties": {
-        "seriesMapping": {
+        "mapping": {
           "$ref": "#/definitions/SeriesMapping"
-        },
-        "dims": {
-          "$ref": "#/definitions/XYDimensionConfig",
-          "description": "Table Mode (auto)"
         },
         "legend": {
           "$ref": "#/definitions/VizLegendOptions"
@@ -208,81 +217,10 @@
         "series": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ScatterSeriesConfig"
-          },
-          "description": "Manual Mode"
-        }
-      }
-    },
-    "ScaleDimensionConfig": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "min",
-        "max"
-      ],
-      "properties": {
-        "min": {
-          "type": "number"
-        },
-        "max": {
-          "type": "number"
-        },
-        "fixed": {
-          "type": "number"
-        },
-        "field": {
-          "type": "string",
-          "description": "fixed: T -- will be added by each element"
-        },
-        "mode": {
-          "$ref": "#/definitions/ScaleDimensionMode",
-          "description": "| *\"linear\""
-        }
-      }
-    },
-    "ColorDimensionConfig": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "fixed": {
-          "type": "string",
-          "description": "color value"
-        },
-        "field": {
-          "type": "string",
-          "description": "fixed: T -- will be added by each element"
-        }
-      }
-    },
-    "LineStyle": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "fill": {
-          "enum": [
-            "solid",
-            "dash",
-            "dot",
-            "square"
-          ]
-        },
-        "dash": {
-          "type": "array",
-          "items": {
-            "type": "number"
+            "$ref": "#/definitions/XYSeriesConfig"
           }
         }
-      },
-      "description": "TODO docs"
-    },
-    "VisibilityMode": {
-      "enum": [
-        "auto",
-        "never",
-        "always"
-      ],
-      "description": "TODO docs"
+      }
     },
     "HideSeriesConfig": {
       "type": "object",
@@ -342,24 +280,26 @@
       },
       "description": "TODO docs"
     },
-    "TextDimensionConfig": {
+    "LineStyle": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "mode"
-      ],
       "properties": {
-        "mode": {
-          "$ref": "#/definitions/TextDimensionMode"
+        "fill": {
+          "enum": [
+            "solid",
+            "dash",
+            "dot",
+            "square"
+          ]
         },
-        "field": {
-          "type": "string",
-          "description": "fixed: T -- will be added by each element"
-        },
-        "fixed": {
-          "type": "string"
+        "dash": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
         }
-      }
+      },
+      "description": "TODO docs"
     },
     "VizLegendOptions": {
       "type": "object",
@@ -430,12 +370,6 @@
       },
       "description": "TODO docs"
     },
-    "ScaleDimensionMode": {
-      "enum": [
-        "linear",
-        "quad"
-      ]
-    },
     "ScaleDistribution": {
       "enum": [
         "linear",
@@ -444,13 +378,6 @@
         "symlog"
       ],
       "description": "TODO docs"
-    },
-    "TextDimensionMode": {
-      "enum": [
-        "fixed",
-        "field",
-        "template"
-      ]
     },
     "LegendDisplayMode": {
       "enum": [

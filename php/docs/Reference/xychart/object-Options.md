@@ -8,20 +8,14 @@ title: <span class="badge object-type-class"></span> Options
 ```php
 class Options implements \JsonSerializable
 {
-    public ?\Grafana\Foundation\Xychart\SeriesMapping $seriesMapping;
-
-    /**
-     * Table Mode (auto)
-     */
-    public \Grafana\Foundation\Xychart\XYDimensionConfig $dims;
+    public \Grafana\Foundation\Xychart\SeriesMapping $mapping;
 
     public \Grafana\Foundation\Common\VizLegendOptions $legend;
 
     public \Grafana\Foundation\Common\VizTooltipOptions $tooltip;
 
     /**
-     * Manual Mode
-     * @var array<\Grafana\Foundation\Xychart\ScatterSeriesConfig>
+     * @var array<\Grafana\Foundation\Xychart\XYSeriesConfig>
      */
     public array $series;
 

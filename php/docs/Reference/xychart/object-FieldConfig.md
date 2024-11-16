@@ -8,19 +8,17 @@ title: <span class="badge object-type-class"></span> FieldConfig
 ```php
 class FieldConfig implements \JsonSerializable
 {
-    public ?\Grafana\Foundation\Xychart\ScatterShow $show;
+    public ?\Grafana\Foundation\Xychart\XYShowMode $show;
 
-    public ?\Grafana\Foundation\Common\ScaleDimensionConfig $pointSize;
+    public ?\Grafana\Foundation\Xychart\XychartFieldConfigPointSize $pointSize;
 
-    public ?\Grafana\Foundation\Common\ColorDimensionConfig $pointColor;
+    public ?\Grafana\Foundation\Xychart\PointShape $pointShape;
 
-    public ?\Grafana\Foundation\Common\ColorDimensionConfig $lineColor;
+    public ?int $pointStrokeWidth;
+
+    public ?int $fillOpacity;
 
     public ?int $lineWidth;
-
-    public ?\Grafana\Foundation\Common\LineStyle $lineStyle;
-
-    public ?\Grafana\Foundation\Common\VisibilityMode $label;
 
     public ?\Grafana\Foundation\Common\HideSeriesConfig $hideFrom;
 
@@ -42,7 +40,7 @@ class FieldConfig implements \JsonSerializable
 
     public ?bool $axisCenteredZero;
 
-    public ?\Grafana\Foundation\Common\TextDimensionConfig $labelValue;
+    public ?\Grafana\Foundation\Common\LineStyle $lineStyle;
 
     public ?bool $axisBorderShow;
 

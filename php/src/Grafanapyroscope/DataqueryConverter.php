@@ -72,6 +72,19 @@ final class DataqueryConverter
     
     
     }
+            if ($input->limit !== null) {
+    
+        
+    $buffer = 'limit(';
+        $arg0 =\var_export($input->limit, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->maxNodes !== null) {
     
         

@@ -7,13 +7,10 @@ title: <span class="badge object-type-struct"></span> Options
 
 ```go
 type Options struct {
-    SeriesMapping *xychart.SeriesMapping `json:"seriesMapping,omitempty"`
-    // Table Mode (auto)
-    Dims xychart.XYDimensionConfig `json:"dims"`
+    Mapping xychart.SeriesMapping `json:"mapping"`
     Legend common.VizLegendOptions `json:"legend"`
     Tooltip common.VizTooltipOptions `json:"tooltip"`
-    // Manual Mode
-    Series []xychart.ScatterSeriesConfig `json:"series"`
+    Series []xychart.XYSeriesConfig `json:"series"`
 }
 ```
 ## Methods

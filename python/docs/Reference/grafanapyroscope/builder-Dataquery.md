@@ -56,6 +56,14 @@ Specifies the query label selectors.
 def label_selector(label_selector: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> limit
+
+Sets the maximum number of time series.
+
+```python
+def limit(limit: int) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> max_nodes
 
 Sets the maximum number of nodes in the flamegraph.

@@ -62,6 +62,15 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * Sets the maximum number of time series.
+     */
+    public function limit(int $limit): static
+    {
+        $this->internal->limit = $limit;
+    
+        return $this;
+    }
+    /**
      * Sets the maximum number of nodes in the flamegraph.
      */
     public function maxNodes(int $maxNodes): static

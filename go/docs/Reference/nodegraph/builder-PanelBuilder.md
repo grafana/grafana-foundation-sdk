@@ -34,6 +34,14 @@ Panel color configuration
 func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> DataLinks
+
+The behavior when clicking on a result
+
+```go
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> Datasource
 
 The datasource used in all targets.
@@ -370,6 +378,14 @@ Each transformation creates a result set that then passes on to the next transfo
 
 ```go
 func (builder *PanelBuilder) WithTransformation(transformation dashboard.DataTransformerConfig) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> ZoomMode
+
+How to handle zoom/scroll events in the node graph
+
+```go
+func (builder *PanelBuilder) ZoomMode(zoomMode nodegraph.ZoomMode) *PanelBuilder
 ```
 
 ## See also
