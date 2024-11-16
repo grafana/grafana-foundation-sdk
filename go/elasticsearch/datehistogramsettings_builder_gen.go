@@ -14,13 +14,11 @@ type DateHistogramSettingsBuilder struct {
 }
 
 func NewDateHistogramSettingsBuilder() *DateHistogramSettingsBuilder {
-	resource := &DateHistogramSettings{}
+	resource := NewDateHistogramSettings()
 	builder := &DateHistogramSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -61,7 +59,4 @@ func (builder *DateHistogramSettingsBuilder) TimeZone(timeZone string) *DateHist
 	builder.internal.TimeZone = &timeZone
 
 	return builder
-}
-
-func (builder *DateHistogramSettingsBuilder) applyDefaults() {
 }

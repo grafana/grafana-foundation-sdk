@@ -57,7 +57,7 @@ export interface FieldConfig {
 	// Panel color configuration
 	color?: dashboard.FieldColor;
 	// The behavior when clicking on a result
-	links?: any[];
+	links?: dashboard.DashboardLink[];
 	// Alternative to empty string
 	noValue?: string;
 	// custom is specified by the FieldConfig field

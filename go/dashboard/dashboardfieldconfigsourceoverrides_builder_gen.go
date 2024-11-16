@@ -14,13 +14,11 @@ type DashboardFieldConfigSourceOverridesBuilder struct {
 }
 
 func NewDashboardFieldConfigSourceOverridesBuilder() *DashboardFieldConfigSourceOverridesBuilder {
-	resource := &DashboardFieldConfigSourceOverrides{}
+	resource := NewDashboardFieldConfigSourceOverrides()
 	builder := &DashboardFieldConfigSourceOverridesBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *DashboardFieldConfigSourceOverridesBuilder) Properties(properties
 	builder.internal.Properties = properties
 
 	return builder
-}
-
-func (builder *DashboardFieldConfigSourceOverridesBuilder) applyDefaults() {
 }

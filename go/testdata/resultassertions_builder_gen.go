@@ -14,13 +14,11 @@ type ResultAssertionsBuilder struct {
 }
 
 func NewResultAssertionsBuilder() *ResultAssertionsBuilder {
-	resource := &ResultAssertions{}
+	resource := NewResultAssertions()
 	builder := &ResultAssertionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -65,7 +63,4 @@ func (builder *ResultAssertionsBuilder) TypeVersion(typeVersion []int64) *Result
 	builder.internal.TypeVersion = typeVersion
 
 	return builder
-}
-
-func (builder *ResultAssertionsBuilder) applyDefaults() {
 }

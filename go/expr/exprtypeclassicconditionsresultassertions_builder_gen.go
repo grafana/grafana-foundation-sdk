@@ -14,13 +14,11 @@ type ExprTypeClassicConditionsResultAssertionsBuilder struct {
 }
 
 func NewExprTypeClassicConditionsResultAssertionsBuilder() *ExprTypeClassicConditionsResultAssertionsBuilder {
-	resource := &ExprTypeClassicConditionsResultAssertions{}
+	resource := NewExprTypeClassicConditionsResultAssertions()
 	builder := &ExprTypeClassicConditionsResultAssertionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -65,7 +63,4 @@ func (builder *ExprTypeClassicConditionsResultAssertionsBuilder) TypeVersion(typ
 	builder.internal.TypeVersion = typeVersion
 
 	return builder
-}
-
-func (builder *ExprTypeClassicConditionsResultAssertionsBuilder) applyDefaults() {
 }

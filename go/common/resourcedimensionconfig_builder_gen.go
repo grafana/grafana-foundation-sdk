@@ -15,13 +15,11 @@ type ResourceDimensionConfigBuilder struct {
 }
 
 func NewResourceDimensionConfigBuilder() *ResourceDimensionConfigBuilder {
-	resource := &ResourceDimensionConfig{}
+	resource := NewResourceDimensionConfig()
 	builder := &ResourceDimensionConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -51,7 +49,4 @@ func (builder *ResourceDimensionConfigBuilder) Fixed(fixed string) *ResourceDime
 	builder.internal.Fixed = &fixed
 
 	return builder
-}
-
-func (builder *ResourceDimensionConfigBuilder) applyDefaults() {
 }

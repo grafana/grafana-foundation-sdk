@@ -14,13 +14,11 @@ type AverageBuilder struct {
 }
 
 func NewAverageBuilder() *AverageBuilder {
-	resource := &Average{}
+	resource := NewAverage()
 	builder := &AverageBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "avg"
 
 	return builder
@@ -61,7 +59,4 @@ func (builder *AverageBuilder) Hide(hide bool) *AverageBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *AverageBuilder) applyDefaults() {
 }

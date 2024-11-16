@@ -15,13 +15,11 @@ type TableFooterOptionsBuilder struct {
 }
 
 func NewTableFooterOptionsBuilder() *TableFooterOptionsBuilder {
-	resource := &TableFooterOptions{}
+	resource := NewTableFooterOptions()
 	builder := &TableFooterOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -63,7 +61,4 @@ func (builder *TableFooterOptionsBuilder) CountRows(countRows bool) *TableFooter
 	builder.internal.CountRows = &countRows
 
 	return builder
-}
-
-func (builder *TableFooterOptionsBuilder) applyDefaults() {
 }

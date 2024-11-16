@@ -14,13 +14,11 @@ type PipelineMetricAggregationWithMultipleBucketPathsBuilder struct {
 }
 
 func NewPipelineMetricAggregationWithMultipleBucketPathsBuilder() *PipelineMetricAggregationWithMultipleBucketPathsBuilder {
-	resource := &PipelineMetricAggregationWithMultipleBucketPaths{}
+	resource := NewPipelineMetricAggregationWithMultipleBucketPaths()
 	builder := &PipelineMetricAggregationWithMultipleBucketPathsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -69,7 +67,4 @@ func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) Hide(hid
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) applyDefaults() {
 }

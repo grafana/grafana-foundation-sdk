@@ -14,13 +14,11 @@ type NodeOptionsBuilder struct {
 }
 
 func NewNodeOptionsBuilder() *NodeOptionsBuilder {
-	resource := &NodeOptions{}
+	resource := NewNodeOptions()
 	builder := &NodeOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -61,7 +59,4 @@ func (builder *NodeOptionsBuilder) Arcs(arcs []cog.Builder[ArcOption]) *NodeOpti
 	builder.internal.Arcs = arcsResources
 
 	return builder
-}
-
-func (builder *NodeOptionsBuilder) applyDefaults() {
 }

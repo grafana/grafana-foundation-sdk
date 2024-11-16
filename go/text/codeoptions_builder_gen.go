@@ -14,13 +14,11 @@ type CodeOptionsBuilder struct {
 }
 
 func NewCodeOptionsBuilder() *CodeOptionsBuilder {
-	resource := &CodeOptions{}
+	resource := NewCodeOptions()
 	builder := &CodeOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -50,10 +48,4 @@ func (builder *CodeOptionsBuilder) ShowMiniMap(showMiniMap bool) *CodeOptionsBui
 	builder.internal.ShowMiniMap = showMiniMap
 
 	return builder
-}
-
-func (builder *CodeOptionsBuilder) applyDefaults() {
-	builder.Language("plaintext")
-	builder.ShowLineNumbers(false)
-	builder.ShowMiniMap(false)
 }

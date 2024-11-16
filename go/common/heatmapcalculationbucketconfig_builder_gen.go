@@ -14,13 +14,11 @@ type HeatmapCalculationBucketConfigBuilder struct {
 }
 
 func NewHeatmapCalculationBucketConfigBuilder() *HeatmapCalculationBucketConfigBuilder {
-	resource := &HeatmapCalculationBucketConfig{}
+	resource := NewHeatmapCalculationBucketConfig()
 	builder := &HeatmapCalculationBucketConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -57,7 +55,4 @@ func (builder *HeatmapCalculationBucketConfigBuilder) Scale(scale cog.Builder[Sc
 	builder.internal.Scale = &scaleResource
 
 	return builder
-}
-
-func (builder *HeatmapCalculationBucketConfigBuilder) applyDefaults() {
 }

@@ -15,13 +15,11 @@ type RowBuilder struct {
 }
 
 func NewRowBuilder(title string) *RowBuilder {
-	resource := &RowPanel{}
+	resource := NewRowPanel()
 	builder := &RowBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "row"
 	builder.internal.Title = &title
 
@@ -88,8 +86,4 @@ func (builder *RowBuilder) Repeat(repeat string) *RowBuilder {
 	builder.internal.Repeat = &repeat
 
 	return builder
-}
-
-func (builder *RowBuilder) applyDefaults() {
-	builder.Collapsed(false)
 }

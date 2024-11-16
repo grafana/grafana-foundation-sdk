@@ -14,13 +14,11 @@ type QueryEditorArrayExpressionBuilder struct {
 }
 
 func NewQueryEditorArrayExpressionBuilder() *QueryEditorArrayExpressionBuilder {
-	resource := &QueryEditorArrayExpression{}
+	resource := NewQueryEditorArrayExpression()
 	builder := &QueryEditorArrayExpressionBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *QueryEditorArrayExpressionBuilder) Expressions(expressions []Quer
 	builder.internal.Expressions = expressions
 
 	return builder
-}
-
-func (builder *QueryEditorArrayExpressionBuilder) applyDefaults() {
 }

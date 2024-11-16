@@ -14,13 +14,11 @@ type ElasticsearchCumulativeSumSettingsBuilder struct {
 }
 
 func NewElasticsearchCumulativeSumSettingsBuilder() *ElasticsearchCumulativeSumSettingsBuilder {
-	resource := &ElasticsearchCumulativeSumSettings{}
+	resource := NewElasticsearchCumulativeSumSettings()
 	builder := &ElasticsearchCumulativeSumSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *ElasticsearchCumulativeSumSettingsBuilder) Format(format string) 
 	builder.internal.Format = &format
 
 	return builder
-}
-
-func (builder *ElasticsearchCumulativeSumSettingsBuilder) applyDefaults() {
 }

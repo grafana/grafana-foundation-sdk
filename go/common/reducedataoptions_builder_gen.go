@@ -15,13 +15,11 @@ type ReduceDataOptionsBuilder struct {
 }
 
 func NewReduceDataOptionsBuilder() *ReduceDataOptionsBuilder {
-	resource := &ReduceDataOptions{}
+	resource := NewReduceDataOptions()
 	builder := &ReduceDataOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -60,7 +58,4 @@ func (builder *ReduceDataOptionsBuilder) Fields(fields string) *ReduceDataOption
 	builder.internal.Fields = &fields
 
 	return builder
-}
-
-func (builder *ReduceDataOptionsBuilder) applyDefaults() {
 }

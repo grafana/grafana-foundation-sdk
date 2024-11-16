@@ -14,13 +14,11 @@ type MovingAverageHoltModelSettingsBuilder struct {
 }
 
 func NewMovingAverageHoltModelSettingsBuilder() *MovingAverageHoltModelSettingsBuilder {
-	resource := &MovingAverageHoltModelSettings{}
+	resource := NewMovingAverageHoltModelSettings()
 	builder := &MovingAverageHoltModelSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Model = "holt"
 
 	return builder
@@ -61,7 +59,4 @@ func (builder *MovingAverageHoltModelSettingsBuilder) Predict(predict string) *M
 	builder.internal.Predict = predict
 
 	return builder
-}
-
-func (builder *MovingAverageHoltModelSettingsBuilder) applyDefaults() {
 }

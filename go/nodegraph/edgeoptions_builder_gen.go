@@ -14,13 +14,11 @@ type EdgeOptionsBuilder struct {
 }
 
 func NewEdgeOptionsBuilder() *EdgeOptionsBuilder {
-	resource := &EdgeOptions{}
+	resource := NewEdgeOptions()
 	builder := &EdgeOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,7 +43,4 @@ func (builder *EdgeOptionsBuilder) SecondaryStatUnit(secondaryStatUnit string) *
 	builder.internal.SecondaryStatUnit = &secondaryStatUnit
 
 	return builder
-}
-
-func (builder *EdgeOptionsBuilder) applyDefaults() {
 }

@@ -49,6 +49,11 @@ func (resource CloudMonitoringQuery) DataqueryType() string {
 	return "cloud-monitoring"
 }
 
+// NewCloudMonitoringQuery creates a new CloudMonitoringQuery object.
+func NewCloudMonitoringQuery() *CloudMonitoringQuery {
+	return &CloudMonitoringQuery{}
+}
+
 // VariantConfig returns the configuration related to cloud-monitoring dataqueries.
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
@@ -408,6 +413,11 @@ type TimeSeriesList struct {
 	Preprocessor *PreprocessorType `json:"preprocessor,omitempty"`
 }
 
+// NewTimeSeriesList creates a new TimeSeriesList object.
+func NewTimeSeriesList() *TimeSeriesList {
+	return &TimeSeriesList{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeSeriesList` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TimeSeriesList) UnmarshalJSONStrict(raw []byte) error {
@@ -742,6 +752,13 @@ type TimeSeriesQuery struct {
 	GraphPeriod *string `json:"graphPeriod,omitempty"`
 }
 
+// NewTimeSeriesQuery creates a new TimeSeriesQuery object.
+func NewTimeSeriesQuery() *TimeSeriesQuery {
+	return &TimeSeriesQuery{
+		GraphPeriod: cog.ToPtr[string]("disabled"),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeSeriesQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TimeSeriesQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -853,6 +870,11 @@ type SLOQuery struct {
 	Goal *float64 `json:"goal,omitempty"`
 	// Specific lookback period for the SLO.
 	LookbackPeriod *string `json:"lookbackPeriod,omitempty"`
+}
+
+// NewSLOQuery creates a new SLOQuery object.
+func NewSLOQuery() *SLOQuery {
+	return &SLOQuery{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SLOQuery` from JSON.
@@ -1082,6 +1104,11 @@ type PromQLQuery struct {
 	Step string `json:"step"`
 }
 
+// NewPromQLQuery creates a new PromQLQuery object.
+func NewPromQLQuery() *PromQLQuery {
+	return &PromQLQuery{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PromQLQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *PromQLQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -1195,6 +1222,13 @@ type MetricQuery struct {
 	Preprocessor *PreprocessorType `json:"preprocessor,omitempty"`
 	// To disable the graphPeriod, it should explictly be set to 'disabled'.
 	GraphPeriod *string `json:"graphPeriod,omitempty"`
+}
+
+// NewMetricQuery creates a new MetricQuery object.
+func NewMetricQuery() *MetricQuery {
+	return &MetricQuery{
+		GraphPeriod: cog.ToPtr[string]("disabled"),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricQuery` from JSON.
@@ -1583,6 +1617,11 @@ type LegacyCloudMonitoringAnnotationQuery struct {
 	Text string `json:"text"`
 }
 
+// NewLegacyCloudMonitoringAnnotationQuery creates a new LegacyCloudMonitoringAnnotationQuery object.
+func NewLegacyCloudMonitoringAnnotationQuery() *LegacyCloudMonitoringAnnotationQuery {
+	return &LegacyCloudMonitoringAnnotationQuery{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LegacyCloudMonitoringAnnotationQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LegacyCloudMonitoringAnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -1772,6 +1811,11 @@ type Filter struct {
 	Value string `json:"value"`
 	// Filter condition.
 	Condition *string `json:"condition,omitempty"`
+}
+
+// NewFilter creates a new Filter object.
+func NewFilter() *Filter {
+	return &Filter{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Filter` from JSON.

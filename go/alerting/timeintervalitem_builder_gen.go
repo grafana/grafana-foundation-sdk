@@ -14,13 +14,11 @@ type TimeIntervalItemBuilder struct {
 }
 
 func NewTimeIntervalItemBuilder() *TimeIntervalItemBuilder {
-	resource := &TimeIntervalItem{}
+	resource := NewTimeIntervalItem()
 	builder := &TimeIntervalItemBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -76,7 +74,4 @@ func (builder *TimeIntervalItemBuilder) Years(years []string) *TimeIntervalItemB
 	builder.internal.Years = years
 
 	return builder
-}
-
-func (builder *TimeIntervalItemBuilder) applyDefaults() {
 }

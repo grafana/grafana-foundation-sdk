@@ -14,13 +14,11 @@ type RuleGroupBuilder struct {
 }
 
 func NewRuleGroupBuilder(title string) *RuleGroupBuilder {
-	resource := &RuleGroup{}
+	resource := NewRuleGroup()
 	builder := &RuleGroupBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Title = &title
 
 	return builder
@@ -78,7 +76,4 @@ func (builder *RuleGroupBuilder) Title(title string) *RuleGroupBuilder {
 	builder.internal.Title = &title
 
 	return builder
-}
-
-func (builder *RuleGroupBuilder) applyDefaults() {
 }

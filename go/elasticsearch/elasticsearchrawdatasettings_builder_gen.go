@@ -14,13 +14,11 @@ type ElasticsearchRawDataSettingsBuilder struct {
 }
 
 func NewElasticsearchRawDataSettingsBuilder() *ElasticsearchRawDataSettingsBuilder {
-	resource := &ElasticsearchRawDataSettings{}
+	resource := NewElasticsearchRawDataSettings()
 	builder := &ElasticsearchRawDataSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *ElasticsearchRawDataSettingsBuilder) Size(size string) *Elasticse
 	builder.internal.Size = &size
 
 	return builder
-}
-
-func (builder *ElasticsearchRawDataSettingsBuilder) applyDefaults() {
 }
