@@ -15,13 +15,11 @@ type LineConfigBuilder struct {
 }
 
 func NewLineConfigBuilder() *LineConfigBuilder {
-	resource := &LineConfig{}
+	resource := NewLineConfig()
 	builder := &LineConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -70,7 +68,4 @@ func (builder *LineConfigBuilder) SpanNulls(spanNulls BoolOrFloat64) *LineConfig
 	builder.internal.SpanNulls = &spanNulls
 
 	return builder
-}
-
-func (builder *LineConfigBuilder) applyDefaults() {
 }

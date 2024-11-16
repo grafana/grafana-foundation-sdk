@@ -14,13 +14,11 @@ type AnnotationActionsBuilder struct {
 }
 
 func NewAnnotationActionsBuilder() *AnnotationActionsBuilder {
-	resource := &AnnotationActions{}
+	resource := NewAnnotationActions()
 	builder := &AnnotationActionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,7 +47,4 @@ func (builder *AnnotationActionsBuilder) CanEdit(canEdit bool) *AnnotationAction
 	builder.internal.CanEdit = &canEdit
 
 	return builder
-}
-
-func (builder *AnnotationActionsBuilder) applyDefaults() {
 }

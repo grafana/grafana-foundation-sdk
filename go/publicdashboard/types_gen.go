@@ -25,6 +25,11 @@ type PublicDashboard struct {
 	TimeSelectionEnabled bool `json:"timeSelectionEnabled"`
 }
 
+// NewPublicDashboard creates a new PublicDashboard object.
+func NewPublicDashboard() *PublicDashboard {
+	return &PublicDashboard{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PublicDashboard` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *PublicDashboard) UnmarshalJSONStrict(raw []byte) error {

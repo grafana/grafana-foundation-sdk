@@ -15,13 +15,11 @@ type CanvasConnectionBuilder struct {
 }
 
 func NewCanvasConnectionBuilder() *CanvasConnectionBuilder {
-	resource := &CanvasConnection{}
+	resource := NewCanvasConnection()
 	builder := &CanvasConnectionBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -88,7 +86,4 @@ func (builder *CanvasConnectionBuilder) Size(size cog.Builder[common.ScaleDimens
 	builder.internal.Size = &sizeResource
 
 	return builder
-}
-
-func (builder *CanvasConnectionBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type ScaleDimensionConfigBuilder struct {
 }
 
 func NewScaleDimensionConfigBuilder() *ScaleDimensionConfigBuilder {
-	resource := &ScaleDimensionConfig{}
+	resource := NewScaleDimensionConfig()
 	builder := &ScaleDimensionConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -63,7 +61,4 @@ func (builder *ScaleDimensionConfigBuilder) Mode(mode ScaleDimensionMode) *Scale
 	builder.internal.Mode = &mode
 
 	return builder
-}
-
-func (builder *ScaleDimensionConfigBuilder) applyDefaults() {
 }

@@ -16,13 +16,11 @@ type TypeSqlBuilder struct {
 }
 
 func NewTypeSqlBuilder() *TypeSqlBuilder {
-	resource := &TypeSql{}
+	resource := NewTypeSql()
 	builder := &TypeSqlBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "sql"
 
 	return builder
@@ -115,7 +113,4 @@ func (builder *TypeSqlBuilder) TimeRange(timeRange cog.Builder[ExprTypeSqlTimeRa
 	builder.internal.TimeRange = &timeRangeResource
 
 	return builder
-}
-
-func (builder *TypeSqlBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type ExprTypeSqlResultAssertionsBuilder struct {
 }
 
 func NewExprTypeSqlResultAssertionsBuilder() *ExprTypeSqlResultAssertionsBuilder {
-	resource := &ExprTypeSqlResultAssertions{}
+	resource := NewExprTypeSqlResultAssertions()
 	builder := &ExprTypeSqlResultAssertionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -65,7 +63,4 @@ func (builder *ExprTypeSqlResultAssertionsBuilder) TypeVersion(typeVersion []int
 	builder.internal.TypeVersion = typeVersion
 
 	return builder
-}
-
-func (builder *ExprTypeSqlResultAssertionsBuilder) applyDefaults() {
 }

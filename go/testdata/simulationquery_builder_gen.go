@@ -14,13 +14,11 @@ type SimulationQueryBuilder struct {
 }
 
 func NewSimulationQueryBuilder() *SimulationQueryBuilder {
-	resource := &SimulationQuery{}
+	resource := NewSimulationQuery()
 	builder := &SimulationQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -60,7 +58,4 @@ func (builder *SimulationQueryBuilder) Last(last bool) *SimulationQueryBuilder {
 	builder.internal.Last = &last
 
 	return builder
-}
-
-func (builder *SimulationQueryBuilder) applyDefaults() {
 }

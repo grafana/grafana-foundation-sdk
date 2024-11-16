@@ -14,13 +14,11 @@ type AnnotationPermissionBuilder struct {
 }
 
 func NewAnnotationPermissionBuilder() *AnnotationPermissionBuilder {
-	resource := &AnnotationPermission{}
+	resource := NewAnnotationPermission()
 	builder := &AnnotationPermissionBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -53,7 +51,4 @@ func (builder *AnnotationPermissionBuilder) Organization(organization cog.Builde
 	builder.internal.Organization = &organizationResource
 
 	return builder
-}
-
-func (builder *AnnotationPermissionBuilder) applyDefaults() {
 }

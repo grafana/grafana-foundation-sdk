@@ -15,13 +15,11 @@ type PointsConfigBuilder struct {
 }
 
 func NewPointsConfigBuilder() *PointsConfigBuilder {
-	resource := &PointsConfig{}
+	resource := NewPointsConfig()
 	builder := &PointsConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -56,7 +54,4 @@ func (builder *PointsConfigBuilder) PointSymbol(pointSymbol string) *PointsConfi
 	builder.internal.PointSymbol = &pointSymbol
 
 	return builder
-}
-
-func (builder *PointsConfigBuilder) applyDefaults() {
 }

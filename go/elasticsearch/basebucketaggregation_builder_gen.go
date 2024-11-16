@@ -14,13 +14,11 @@ type BaseBucketAggregationBuilder struct {
 }
 
 func NewBaseBucketAggregationBuilder() *BaseBucketAggregationBuilder {
-	resource := &BaseBucketAggregation{}
+	resource := NewBaseBucketAggregation()
 	builder := &BaseBucketAggregationBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,7 +47,4 @@ func (builder *BaseBucketAggregationBuilder) Settings(settings any) *BaseBucketA
 	builder.internal.Settings = &settings
 
 	return builder
-}
-
-func (builder *BaseBucketAggregationBuilder) applyDefaults() {
 }

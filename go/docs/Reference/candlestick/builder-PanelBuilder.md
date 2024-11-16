@@ -122,6 +122,14 @@ Set which colors are used when the price movement is up or down
 func (builder *PanelBuilder) Colors(colors cog.Builder[candlestick.CandlestickColors]) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> DataLinks
+
+The behavior when clicking on a result
+
+```go
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> Datasource
 
 The datasource used in all targets.

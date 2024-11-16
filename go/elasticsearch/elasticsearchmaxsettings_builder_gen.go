@@ -14,13 +14,11 @@ type ElasticsearchMaxSettingsBuilder struct {
 }
 
 func NewElasticsearchMaxSettingsBuilder() *ElasticsearchMaxSettingsBuilder {
-	resource := &ElasticsearchMaxSettings{}
+	resource := NewElasticsearchMaxSettings()
 	builder := &ElasticsearchMaxSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -48,7 +46,4 @@ func (builder *ElasticsearchMaxSettingsBuilder) Missing(missing string) *Elastic
 	builder.internal.Missing = &missing
 
 	return builder
-}
-
-func (builder *ElasticsearchMaxSettingsBuilder) applyDefaults() {
 }

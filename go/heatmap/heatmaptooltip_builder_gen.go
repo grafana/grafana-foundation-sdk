@@ -15,13 +15,11 @@ type HeatmapTooltipBuilder struct {
 }
 
 func NewHeatmapTooltipBuilder() *HeatmapTooltipBuilder {
-	resource := &HeatmapTooltip{}
+	resource := NewHeatmapTooltip()
 	builder := &HeatmapTooltipBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -53,7 +51,4 @@ func (builder *HeatmapTooltipBuilder) ShowColorScale(showColorScale bool) *Heatm
 	builder.internal.ShowColorScale = &showColorScale
 
 	return builder
-}
-
-func (builder *HeatmapTooltipBuilder) applyDefaults() {
 }

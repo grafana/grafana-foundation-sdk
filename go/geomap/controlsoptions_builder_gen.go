@@ -14,13 +14,11 @@ type ControlsOptionsBuilder struct {
 }
 
 func NewControlsOptionsBuilder() *ControlsOptionsBuilder {
-	resource := &ControlsOptions{}
+	resource := NewControlsOptions()
 	builder := &ControlsOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -73,7 +71,4 @@ func (builder *ControlsOptionsBuilder) ShowMeasure(showMeasure bool) *ControlsOp
 	builder.internal.ShowMeasure = &showMeasure
 
 	return builder
-}
-
-func (builder *ControlsOptionsBuilder) applyDefaults() {
 }

@@ -16,13 +16,11 @@ type RuleBuilder struct {
 }
 
 func NewRuleBuilder(title string) *RuleBuilder {
-	resource := &Rule{}
+	resource := NewRule()
 	builder := &RuleBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Title = title
 
 	return builder
@@ -152,7 +150,4 @@ func (builder *RuleBuilder) Updated(updated time.Time) *RuleBuilder {
 	builder.internal.Updated = &updated
 
 	return builder
-}
-
-func (builder *RuleBuilder) applyDefaults() {
 }

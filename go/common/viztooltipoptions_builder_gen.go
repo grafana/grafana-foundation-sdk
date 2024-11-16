@@ -15,13 +15,11 @@ type VizTooltipOptionsBuilder struct {
 }
 
 func NewVizTooltipOptionsBuilder() *VizTooltipOptionsBuilder {
-	resource := &VizTooltipOptions{}
+	resource := NewVizTooltipOptions()
 	builder := &VizTooltipOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -44,7 +42,4 @@ func (builder *VizTooltipOptionsBuilder) Sort(sort SortOrder) *VizTooltipOptions
 	builder.internal.Sort = sort
 
 	return builder
-}
-
-func (builder *VizTooltipOptionsBuilder) applyDefaults() {
 }

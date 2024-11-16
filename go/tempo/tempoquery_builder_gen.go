@@ -16,13 +16,11 @@ type TempoQueryBuilder struct {
 }
 
 func NewTempoQueryBuilder() *TempoQueryBuilder {
-	resource := &TempoQuery{}
+	resource := NewTempoQuery()
 	builder := &TempoQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -177,7 +175,4 @@ func (builder *TempoQueryBuilder) TableType(tableType SearchTableType) *TempoQue
 	builder.internal.TableType = &tableType
 
 	return builder
-}
-
-func (builder *TempoQueryBuilder) applyDefaults() {
 }

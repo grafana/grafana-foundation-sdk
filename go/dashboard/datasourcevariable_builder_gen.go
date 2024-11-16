@@ -15,13 +15,11 @@ type DatasourceVariableBuilder struct {
 }
 
 func NewDatasourceVariableBuilder(name string) *DatasourceVariableBuilder {
-	resource := &VariableModel{}
+	resource := NewVariableModel()
 	builder := &DatasourceVariableBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Name = name
 	builder.internal.Type = "datasource"
 
@@ -67,7 +65,7 @@ func (builder *DatasourceVariableBuilder) Description(description string) *Datas
 // Query used to fetch values for a variable
 func (builder *DatasourceVariableBuilder) Type(stringArg string) *DatasourceVariableBuilder {
 	if builder.internal.Query == nil {
-		builder.internal.Query = &StringOrMap{}
+		builder.internal.Query = NewStringOrMap()
 	}
 	builder.internal.Query.String = &stringArg
 
@@ -108,7 +106,4 @@ func (builder *DatasourceVariableBuilder) Regex(regex string) *DatasourceVariabl
 	builder.internal.Regex = &regex
 
 	return builder
-}
-
-func (builder *DatasourceVariableBuilder) applyDefaults() {
 }
