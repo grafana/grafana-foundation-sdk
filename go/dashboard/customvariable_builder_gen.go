@@ -15,13 +15,11 @@ type CustomVariableBuilder struct {
 }
 
 func NewCustomVariableBuilder(name string) *CustomVariableBuilder {
-	resource := &VariableModel{}
+	resource := NewVariableModel()
 	builder := &CustomVariableBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Name = name
 	builder.internal.Type = "custom"
 
@@ -104,7 +102,4 @@ func (builder *CustomVariableBuilder) AllValue(allValue string) *CustomVariableB
 	builder.internal.AllValue = &allValue
 
 	return builder
-}
-
-func (builder *CustomVariableBuilder) applyDefaults() {
 }

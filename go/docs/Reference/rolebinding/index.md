@@ -17,6 +17,46 @@
  * <span class="badge builder"></span> [RoleBindingSubjectBuilder](./builder-RoleBindingSubjectBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewRoleBinding
+
+NewRoleBinding creates a new RoleBinding object.
+
+```go
+func NewRoleBinding() *RoleBinding
+```
+
+### <span class="badge function"></span> NewCustomRoleRef
+
+NewCustomRoleRef creates a new CustomRoleRef object.
+
+```go
+func NewCustomRoleRef() *CustomRoleRef
+```
+
+### <span class="badge function"></span> NewBuiltinRoleRef
+
+NewBuiltinRoleRef creates a new BuiltinRoleRef object.
+
+```go
+func NewBuiltinRoleRef() *BuiltinRoleRef
+```
+
+### <span class="badge function"></span> NewRoleBindingSubject
+
+NewRoleBindingSubject creates a new RoleBindingSubject object.
+
+```go
+func NewRoleBindingSubject() *RoleBindingSubject
+```
+
+### <span class="badge function"></span> NewBuiltinRoleRefOrCustomRoleRef
+
+NewBuiltinRoleRefOrCustomRoleRef creates a new BuiltinRoleRefOrCustomRoleRef object.
+
+```go
+func NewBuiltinRoleRefOrCustomRoleRef() *BuiltinRoleRefOrCustomRoleRef
+```
+
 ### <span class="badge function"></span> RoleBindingConverter
 
 RoleBindingConverter accepts a `RoleBinding` object and generates the Go code to build this object using builders.

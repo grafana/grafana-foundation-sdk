@@ -15,13 +15,11 @@ type HeatmapColorOptionsBuilder struct {
 }
 
 func NewHeatmapColorOptionsBuilder() *HeatmapColorOptionsBuilder {
-	resource := &HeatmapColorOptions{}
+	resource := NewHeatmapColorOptions()
 	builder := &HeatmapColorOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -95,7 +93,4 @@ func (builder *HeatmapColorOptionsBuilder) Max(max float32) *HeatmapColorOptions
 	builder.internal.Max = &max
 
 	return builder
-}
-
-func (builder *HeatmapColorOptionsBuilder) applyDefaults() {
 }

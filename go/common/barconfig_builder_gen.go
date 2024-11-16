@@ -15,13 +15,11 @@ type BarConfigBuilder struct {
 }
 
 func NewBarConfigBuilder() *BarConfigBuilder {
-	resource := &BarConfig{}
+	resource := NewBarConfig()
 	builder := &BarConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -50,7 +48,4 @@ func (builder *BarConfigBuilder) BarMaxWidth(barMaxWidth float64) *BarConfigBuil
 	builder.internal.BarMaxWidth = &barMaxWidth
 
 	return builder
-}
-
-func (builder *BarConfigBuilder) applyDefaults() {
 }

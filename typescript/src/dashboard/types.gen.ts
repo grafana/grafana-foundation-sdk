@@ -887,7 +887,7 @@ export interface FieldConfig {
 	// Panel color configuration
 	color?: FieldColor;
 	// The behavior when clicking on a result
-	links?: any[];
+	links?: DashboardLink[];
 	// Alternative to empty string
 	noValue?: string;
 	// custom is specified by the FieldConfig field

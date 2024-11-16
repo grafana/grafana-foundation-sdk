@@ -61,6 +61,11 @@ func (resource TempoQuery) DataqueryType() string {
 	return "tempo"
 }
 
+// NewTempoQuery creates a new TempoQuery object.
+func NewTempoQuery() *TempoQuery {
+	return &TempoQuery{}
+}
+
 // VariantConfig returns the configuration related to tempo dataqueries.
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
@@ -592,6 +597,11 @@ type TraceqlFilter struct {
 	Scope *TraceqlSearchScope `json:"scope,omitempty"`
 }
 
+// NewTraceqlFilter creates a new TraceqlFilter object.
+func NewTraceqlFilter() *TraceqlFilter {
+	return &TraceqlFilter{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TraceqlFilter` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TraceqlFilter) UnmarshalJSONStrict(raw []byte) error {
@@ -760,6 +770,11 @@ func (resource TraceqlFilter) Validate() error {
 type StringOrArrayOfString struct {
 	String        *string  `json:"String,omitempty"`
 	ArrayOfString []string `json:"ArrayOfString,omitempty"`
+}
+
+// NewStringOrArrayOfString creates a new StringOrArrayOfString object.
+func NewStringOrArrayOfString() *StringOrArrayOfString {
+	return &StringOrArrayOfString{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `StringOrArrayOfString` as JSON.

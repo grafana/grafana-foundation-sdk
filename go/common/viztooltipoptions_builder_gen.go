@@ -15,13 +15,11 @@ type VizTooltipOptionsBuilder struct {
 }
 
 func NewVizTooltipOptionsBuilder() *VizTooltipOptionsBuilder {
-	resource := &VizTooltipOptions{}
+	resource := NewVizTooltipOptions()
 	builder := &VizTooltipOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -56,7 +54,4 @@ func (builder *VizTooltipOptionsBuilder) MaxHeight(maxHeight float64) *VizToolti
 	builder.internal.MaxHeight = &maxHeight
 
 	return builder
-}
-
-func (builder *VizTooltipOptionsBuilder) applyDefaults() {
 }

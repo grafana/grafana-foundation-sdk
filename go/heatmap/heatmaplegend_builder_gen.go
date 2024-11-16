@@ -15,13 +15,11 @@ type HeatmapLegendBuilder struct {
 }
 
 func NewHeatmapLegendBuilder() *HeatmapLegendBuilder {
-	resource := &HeatmapLegend{}
+	resource := NewHeatmapLegend()
 	builder := &HeatmapLegendBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -39,7 +37,4 @@ func (builder *HeatmapLegendBuilder) Show(show bool) *HeatmapLegendBuilder {
 	builder.internal.Show = show
 
 	return builder
-}
-
-func (builder *HeatmapLegendBuilder) applyDefaults() {
 }

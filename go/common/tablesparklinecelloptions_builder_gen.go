@@ -15,13 +15,11 @@ type TableSparklineCellOptionsBuilder struct {
 }
 
 func NewTableSparklineCellOptionsBuilder() *TableSparklineCellOptionsBuilder {
-	resource := &TableSparklineCellOptions{}
+	resource := NewTableSparklineCellOptions()
 	builder := &TableSparklineCellOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "sparkline"
 
 	return builder
@@ -253,7 +251,4 @@ func (builder *TableSparklineCellOptionsBuilder) BarMaxWidth(barMaxWidth float64
 	builder.internal.BarMaxWidth = &barMaxWidth
 
 	return builder
-}
-
-func (builder *TableSparklineCellOptionsBuilder) applyDefaults() {
 }

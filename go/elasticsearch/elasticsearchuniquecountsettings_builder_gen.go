@@ -14,13 +14,11 @@ type ElasticsearchUniqueCountSettingsBuilder struct {
 }
 
 func NewElasticsearchUniqueCountSettingsBuilder() *ElasticsearchUniqueCountSettingsBuilder {
-	resource := &ElasticsearchUniqueCountSettings{}
+	resource := NewElasticsearchUniqueCountSettings()
 	builder := &ElasticsearchUniqueCountSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *ElasticsearchUniqueCountSettingsBuilder) Missing(missing string) 
 	builder.internal.Missing = &missing
 
 	return builder
-}
-
-func (builder *ElasticsearchUniqueCountSettingsBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type HeatmapCalculationOptionsBuilder struct {
 }
 
 func NewHeatmapCalculationOptionsBuilder() *HeatmapCalculationOptionsBuilder {
-	resource := &HeatmapCalculationOptions{}
+	resource := NewHeatmapCalculationOptions()
 	builder := &HeatmapCalculationOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -55,7 +53,4 @@ func (builder *HeatmapCalculationOptionsBuilder) YBuckets(yBuckets cog.Builder[H
 	builder.internal.YBuckets = &yBucketsResource
 
 	return builder
-}
-
-func (builder *HeatmapCalculationOptionsBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type TimeIntervalTimeRangeBuilder struct {
 }
 
 func NewTimeIntervalTimeRangeBuilder() *TimeIntervalTimeRangeBuilder {
-	resource := &TimeIntervalTimeRange{}
+	resource := NewTimeIntervalTimeRange()
 	builder := &TimeIntervalTimeRangeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *TimeIntervalTimeRangeBuilder) StartTime(startTime string) *TimeIn
 	builder.internal.StartTime = &startTime
 
 	return builder
-}
-
-func (builder *TimeIntervalTimeRangeBuilder) applyDefaults() {
 }

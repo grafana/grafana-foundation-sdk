@@ -14,13 +14,11 @@ type ConnectionCoordinatesBuilder struct {
 }
 
 func NewConnectionCoordinatesBuilder() *ConnectionCoordinatesBuilder {
-	resource := &ConnectionCoordinates{}
+	resource := NewConnectionCoordinates()
 	builder := &ConnectionCoordinatesBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *ConnectionCoordinatesBuilder) Y(y float64) *ConnectionCoordinates
 	builder.internal.Y = y
 
 	return builder
-}
-
-func (builder *ConnectionCoordinatesBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type ResourceGroupsQueryBuilder struct {
 }
 
 func NewResourceGroupsQueryBuilder() *ResourceGroupsQueryBuilder {
-	resource := &ResourceGroupsQuery{}
+	resource := NewResourceGroupsQuery()
 	builder := &ResourceGroupsQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Kind = "ResourceGroupsQuery"
 
 	return builder
@@ -44,7 +42,4 @@ func (builder *ResourceGroupsQueryBuilder) Subscription(subscription string) *Re
 	builder.internal.Subscription = subscription
 
 	return builder
-}
-
-func (builder *ResourceGroupsQueryBuilder) applyDefaults() {
 }
