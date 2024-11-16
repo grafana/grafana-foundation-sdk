@@ -67,7 +67,7 @@ public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<CloudMonitoringQuery> {
+    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
         protected final CloudMonitoringQuery internal;
         
         public Builder() {

@@ -15,13 +15,11 @@ type TimeSeriesQueryBuilder struct {
 }
 
 func NewTimeSeriesQueryBuilder() *TimeSeriesQueryBuilder {
-	resource := &TimeSeriesQuery{}
+	resource := NewTimeSeriesQuery()
 	builder := &TimeSeriesQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -53,8 +51,4 @@ func (builder *TimeSeriesQueryBuilder) GraphPeriod(graphPeriod string) *TimeSeri
 	builder.internal.GraphPeriod = &graphPeriod
 
 	return builder
-}
-
-func (builder *TimeSeriesQueryBuilder) applyDefaults() {
-	builder.GraphPeriod("disabled")
 }

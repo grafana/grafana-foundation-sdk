@@ -19,13 +19,11 @@ type CloudWatchAnnotationQueryBuilder struct {
 }
 
 func NewCloudWatchAnnotationQueryBuilder() *CloudWatchAnnotationQueryBuilder {
-	resource := &CloudWatchAnnotationQuery{}
+	resource := NewCloudWatchAnnotationQuery()
 	builder := &CloudWatchAnnotationQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -167,8 +165,4 @@ func (builder *CloudWatchAnnotationQueryBuilder) Statistics(statistics []string)
 	builder.internal.Statistics = statistics
 
 	return builder
-}
-
-func (builder *CloudWatchAnnotationQueryBuilder) applyDefaults() {
-	builder.QueryMode("Annotations")
 }

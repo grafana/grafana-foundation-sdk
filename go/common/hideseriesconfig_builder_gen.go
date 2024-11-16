@@ -15,13 +15,11 @@ type HideSeriesConfigBuilder struct {
 }
 
 func NewHideSeriesConfigBuilder() *HideSeriesConfigBuilder {
-	resource := &HideSeriesConfig{}
+	resource := NewHideSeriesConfig()
 	builder := &HideSeriesConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -50,7 +48,4 @@ func (builder *HideSeriesConfigBuilder) Viz(viz bool) *HideSeriesConfigBuilder {
 	builder.internal.Viz = viz
 
 	return builder
-}
-
-func (builder *HideSeriesConfigBuilder) applyDefaults() {
 }

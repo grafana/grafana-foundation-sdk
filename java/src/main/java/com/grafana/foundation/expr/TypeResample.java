@@ -88,7 +88,7 @@ public class TypeResample implements com.grafana.foundation.cog.variants.Dataque
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<TypeResample> {
+    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
         protected final TypeResample internal;
         
         public Builder() {

@@ -15,13 +15,11 @@ type BackgroundConfigBuilder struct {
 }
 
 func NewBackgroundConfigBuilder() *BackgroundConfigBuilder {
-	resource := &BackgroundConfig{}
+	resource := NewBackgroundConfig()
 	builder := &BackgroundConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -60,7 +58,4 @@ func (builder *BackgroundConfigBuilder) Size(size BackgroundImageSize) *Backgrou
 	builder.internal.Size = &size
 
 	return builder
-}
-
-func (builder *BackgroundConfigBuilder) applyDefaults() {
 }

@@ -16,13 +16,11 @@ type PreferencesBuilder struct {
 }
 
 func NewPreferencesBuilder() *PreferencesBuilder {
-	resource := &Preferences{}
+	resource := NewPreferences()
 	builder := &PreferencesBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -105,7 +103,4 @@ func (builder *PreferencesBuilder) Navbar(navbar cog.Builder[NavbarPreference]) 
 	builder.internal.Navbar = &navbarResource
 
 	return builder
-}
-
-func (builder *PreferencesBuilder) applyDefaults() {
 }

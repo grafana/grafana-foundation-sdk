@@ -14,13 +14,11 @@ type TimeIntervalBuilder struct {
 }
 
 func NewTimeIntervalBuilder() *TimeIntervalBuilder {
-	resource := &TimeInterval{}
+	resource := NewTimeInterval()
 	builder := &TimeIntervalBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -52,7 +50,4 @@ func (builder *TimeIntervalBuilder) TimeIntervals(timeIntervals []cog.Builder[Ti
 	builder.internal.TimeIntervals = timeIntervalsResources
 
 	return builder
-}
-
-func (builder *TimeIntervalBuilder) applyDefaults() {
 }

@@ -28,6 +28,86 @@
  * <span class="badge builder"></span> [YAxisConfigBuilder](./builder-YAxisConfigBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewHeatmapColorOptions
+
+NewHeatmapColorOptions creates a new HeatmapColorOptions object.
+
+```go
+func NewHeatmapColorOptions() *HeatmapColorOptions
+```
+
+### <span class="badge function"></span> NewYAxisConfig
+
+NewYAxisConfig creates a new YAxisConfig object.
+
+```go
+func NewYAxisConfig() *YAxisConfig
+```
+
+### <span class="badge function"></span> NewCellValues
+
+NewCellValues creates a new CellValues object.
+
+```go
+func NewCellValues() *CellValues
+```
+
+### <span class="badge function"></span> NewFilterValueRange
+
+NewFilterValueRange creates a new FilterValueRange object.
+
+```go
+func NewFilterValueRange() *FilterValueRange
+```
+
+### <span class="badge function"></span> NewHeatmapTooltip
+
+NewHeatmapTooltip creates a new HeatmapTooltip object.
+
+```go
+func NewHeatmapTooltip() *HeatmapTooltip
+```
+
+### <span class="badge function"></span> NewHeatmapLegend
+
+NewHeatmapLegend creates a new HeatmapLegend object.
+
+```go
+func NewHeatmapLegend() *HeatmapLegend
+```
+
+### <span class="badge function"></span> NewExemplarConfig
+
+NewExemplarConfig creates a new ExemplarConfig object.
+
+```go
+func NewExemplarConfig() *ExemplarConfig
+```
+
+### <span class="badge function"></span> NewRowsHeatmapOptions
+
+NewRowsHeatmapOptions creates a new RowsHeatmapOptions object.
+
+```go
+func NewRowsHeatmapOptions() *RowsHeatmapOptions
+```
+
+### <span class="badge function"></span> NewOptions
+
+NewOptions creates a new Options object.
+
+```go
+func NewOptions() *Options
+```
+
+### <span class="badge function"></span> NewFieldConfig
+
+NewFieldConfig creates a new FieldConfig object.
+
+```go
+func NewFieldConfig() *FieldConfig
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to heatmap panels.

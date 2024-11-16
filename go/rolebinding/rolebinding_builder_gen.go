@@ -14,13 +14,11 @@ type RoleBindingBuilder struct {
 }
 
 func NewRoleBindingBuilder() *RoleBindingBuilder {
-	resource := &RoleBinding{}
+	resource := NewRoleBinding()
 	builder := &RoleBindingBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -50,7 +48,4 @@ func (builder *RoleBindingBuilder) Subject(subject cog.Builder[RoleBindingSubjec
 	builder.internal.Subject = subjectResource
 
 	return builder
-}
-
-func (builder *RoleBindingBuilder) applyDefaults() {
 }

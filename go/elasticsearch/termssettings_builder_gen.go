@@ -14,13 +14,11 @@ type TermsSettingsBuilder struct {
 }
 
 func NewTermsSettingsBuilder() *TermsSettingsBuilder {
-	resource := &TermsSettings{}
+	resource := NewTermsSettings()
 	builder := &TermsSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -61,7 +59,4 @@ func (builder *TermsSettingsBuilder) Missing(missing string) *TermsSettingsBuild
 	builder.internal.Missing = &missing
 
 	return builder
-}
-
-func (builder *TermsSettingsBuilder) applyDefaults() {
 }

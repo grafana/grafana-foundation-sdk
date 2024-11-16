@@ -25,6 +25,17 @@ type Options struct {
 	ColWidth *float64 `json:"colWidth,omitempty"`
 }
 
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		RowHeight: 0.9,
+		ShowValue: common.VisibilityModeAuto,
+		Legend:    *common.NewVizLegendOptions(),
+		Tooltip:   *common.NewVizTooltipOptions(),
+		ColWidth:  cog.ToPtr[float64](0.9),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
@@ -208,6 +219,14 @@ type FieldConfig struct {
 	LineWidth   *uint32                  `json:"lineWidth,omitempty"`
 	HideFrom    *common.HideSeriesConfig `json:"hideFrom,omitempty"`
 	FillOpacity *uint32                  `json:"fillOpacity,omitempty"`
+}
+
+// NewFieldConfig creates a new FieldConfig object.
+func NewFieldConfig() *FieldConfig {
+	return &FieldConfig{
+		LineWidth:   cog.ToPtr[uint32](1),
+		FillOpacity: cog.ToPtr[uint32](70),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FieldConfig` from JSON.

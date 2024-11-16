@@ -14,13 +14,11 @@ type CanvasElementOptionsBuilder struct {
 }
 
 func NewCanvasElementOptionsBuilder() *CanvasElementOptionsBuilder {
-	resource := &CanvasElementOptions{}
+	resource := NewCanvasElementOptions()
 	builder := &CanvasElementOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -109,7 +107,4 @@ func (builder *CanvasElementOptionsBuilder) Connections(connections []cog.Builde
 	builder.internal.Connections = connectionsResources
 
 	return builder
-}
-
-func (builder *CanvasElementOptionsBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type InlineScriptBuilder struct {
 }
 
 func NewInlineScriptBuilder() *InlineScriptBuilder {
-	resource := &InlineScript{}
+	resource := NewInlineScript()
 	builder := &InlineScriptBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -48,7 +46,4 @@ func (builder *InlineScriptBuilder) ElasticsearchInlineScript(elasticsearchInlin
 	builder.internal.ElasticsearchInlineScript = &elasticsearchInlineScriptResource
 
 	return builder
-}
-
-func (builder *InlineScriptBuilder) applyDefaults() {
 }

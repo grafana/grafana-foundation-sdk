@@ -14,13 +14,11 @@ type LibraryPanelBuilder struct {
 }
 
 func NewLibraryPanelBuilder() *LibraryPanelBuilder {
-	resource := &LibraryPanel{}
+	resource := NewLibraryPanel()
 	builder := &LibraryPanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -105,7 +103,4 @@ func (builder *LibraryPanelBuilder) Meta(meta cog.Builder[LibraryElementDTOMeta]
 	builder.internal.Meta = &metaResource
 
 	return builder
-}
-
-func (builder *LibraryPanelBuilder) applyDefaults() {
 }

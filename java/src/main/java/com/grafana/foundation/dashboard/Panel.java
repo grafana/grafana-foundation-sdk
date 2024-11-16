@@ -380,6 +380,17 @@ public class Panel {
         return (T) this;
     }
     
+    public T dataLinks(com.grafana.foundation.cog.Builder<List<DashboardLink>> links) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+    this.internal.fieldConfig.defaults.links = links.build();
+        return (T) this;
+    }
+    
     public T noValue(String noValue) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();

@@ -14,13 +14,11 @@ type ElasticsearchMovingAverageEWMAModelSettingsSettingsBuilder struct {
 }
 
 func NewElasticsearchMovingAverageEWMAModelSettingsSettingsBuilder() *ElasticsearchMovingAverageEWMAModelSettingsSettingsBuilder {
-	resource := &ElasticsearchMovingAverageEWMAModelSettingsSettings{}
+	resource := NewElasticsearchMovingAverageEWMAModelSettingsSettings()
 	builder := &ElasticsearchMovingAverageEWMAModelSettingsSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *ElasticsearchMovingAverageEWMAModelSettingsSettingsBuilder) Alpha
 	builder.internal.Alpha = &alpha
 
 	return builder
-}
-
-func (builder *ElasticsearchMovingAverageEWMAModelSettingsSettingsBuilder) applyDefaults() {
 }

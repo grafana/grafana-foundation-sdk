@@ -16,13 +16,11 @@ type AnnotationTargetBuilder struct {
 }
 
 func NewAnnotationTargetBuilder() *AnnotationTargetBuilder {
-	resource := &AnnotationTarget{}
+	resource := NewAnnotationTarget()
 	builder := &AnnotationTargetBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -65,7 +63,4 @@ func (builder *AnnotationTargetBuilder) Type(typeArg string) *AnnotationTargetBu
 	builder.internal.Type = typeArg
 
 	return builder
-}
-
-func (builder *AnnotationTargetBuilder) applyDefaults() {
 }

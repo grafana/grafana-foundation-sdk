@@ -18,6 +18,11 @@ type UpdateConfig struct {
 	SchemaChanged bool `json:"schemaChanged"`
 }
 
+// NewUpdateConfig creates a new UpdateConfig object.
+func NewUpdateConfig() *UpdateConfig {
+	return &UpdateConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `UpdateConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *UpdateConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -117,6 +122,11 @@ const (
 type Options struct {
 	Mode     DebugMode     `json:"mode"`
 	Counters *UpdateConfig `json:"counters,omitempty"`
+}
+
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.

@@ -14,13 +14,11 @@ type MapViewConfigBuilder struct {
 }
 
 func NewMapViewConfigBuilder() *MapViewConfigBuilder {
-	resource := &MapViewConfig{}
+	resource := NewMapViewConfig()
 	builder := &MapViewConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -97,12 +95,4 @@ func (builder *MapViewConfigBuilder) Shared(shared bool) *MapViewConfigBuilder {
 	builder.internal.Shared = &shared
 
 	return builder
-}
-
-func (builder *MapViewConfigBuilder) applyDefaults() {
-	builder.Id("zero")
-	builder.Lat(0)
-	builder.Lon(0)
-	builder.Zoom(1)
-	builder.AllLayers(true)
 }

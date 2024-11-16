@@ -1327,8 +1327,7 @@
           "links": {
             "type": "array",
             "items": {
-              "type": "object",
-              "additionalProperties": {}
+              "$ref": "#/components/schemas/DashboardLink"
             },
             "description": "The behavior when clicking on a result"
           },
