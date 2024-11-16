@@ -19,6 +19,11 @@ type ArcOption struct {
 	Color *string `json:"color,omitempty"`
 }
 
+// NewArcOption creates a new ArcOption object.
+func NewArcOption() *ArcOption {
+	return &ArcOption{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ArcOption` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ArcOption) UnmarshalJSONStrict(raw []byte) error {
@@ -101,6 +106,11 @@ type NodeOptions struct {
 	SecondaryStatUnit *string `json:"secondaryStatUnit,omitempty"`
 	// Define which fields are shown as part of the node arc (colored circle around the node).
 	Arcs []ArcOption `json:"arcs,omitempty"`
+}
+
+// NewNodeOptions creates a new NodeOptions object.
+func NewNodeOptions() *NodeOptions {
+	return &NodeOptions{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NodeOptions` from JSON.
@@ -230,6 +240,11 @@ type EdgeOptions struct {
 	SecondaryStatUnit *string `json:"secondaryStatUnit,omitempty"`
 }
 
+// NewEdgeOptions creates a new EdgeOptions object.
+func NewEdgeOptions() *EdgeOptions {
+	return &EdgeOptions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `EdgeOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *EdgeOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -305,9 +320,23 @@ func (resource EdgeOptions) Validate() error {
 	return nil
 }
 
+type ZoomMode string
+
+const (
+	ZoomModeCooperative ZoomMode = "cooperative"
+	ZoomModeGreedy      ZoomMode = "greedy"
+)
+
 type Options struct {
 	Nodes *NodeOptions `json:"nodes,omitempty"`
 	Edges *EdgeOptions `json:"edges,omitempty"`
+	// How to handle zoom/scroll events in the node graph
+	ZoomMode *ZoomMode `json:"zoomMode,omitempty"`
+}
+
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
@@ -348,6 +377,17 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "edges")
 
 	}
+	// Field "zoomMode"
+	if fields["zoomMode"] != nil {
+		if string(fields["zoomMode"]) != "null" {
+			if err := json.Unmarshal(fields["zoomMode"], &resource.ZoomMode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("zoomMode", err)...)
+			}
+
+		}
+		delete(fields, "zoomMode")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
@@ -377,6 +417,15 @@ func (resource Options) Equals(other Options) bool {
 
 	if resource.Edges != nil {
 		if !resource.Edges.Equals(*other.Edges) {
+			return false
+		}
+	}
+	if resource.ZoomMode == nil && other.ZoomMode != nil || resource.ZoomMode != nil && other.ZoomMode == nil {
+		return false
+	}
+
+	if resource.ZoomMode != nil {
+		if *resource.ZoomMode != *other.ZoomMode {
 			return false
 		}
 	}

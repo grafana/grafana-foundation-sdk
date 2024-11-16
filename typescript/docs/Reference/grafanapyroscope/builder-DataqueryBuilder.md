@@ -56,6 +56,14 @@ Specifies the query label selectors.
 labelSelector(labelSelector: string)
 ```
 
+### <span class="badge object-method"></span> limit
+
+Sets the maximum number of time series.
+
+```typescript
+limit(limit: number)
+```
+
 ### <span class="badge object-method"></span> maxNodes
 
 Sets the maximum number of nodes in the flamegraph.

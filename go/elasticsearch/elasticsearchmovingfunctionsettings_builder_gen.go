@@ -14,13 +14,11 @@ type ElasticsearchMovingFunctionSettingsBuilder struct {
 }
 
 func NewElasticsearchMovingFunctionSettingsBuilder() *ElasticsearchMovingFunctionSettingsBuilder {
-	resource := &ElasticsearchMovingFunctionSettings{}
+	resource := NewElasticsearchMovingFunctionSettings()
 	builder := &ElasticsearchMovingFunctionSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -54,7 +52,4 @@ func (builder *ElasticsearchMovingFunctionSettingsBuilder) Shift(shift string) *
 	builder.internal.Shift = &shift
 
 	return builder
-}
-
-func (builder *ElasticsearchMovingFunctionSettingsBuilder) applyDefaults() {
 }

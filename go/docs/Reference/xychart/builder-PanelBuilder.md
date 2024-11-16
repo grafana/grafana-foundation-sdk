@@ -88,6 +88,14 @@ Panel color configuration
 func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> DataLinks
+
+The behavior when clicking on a result
+
+```go
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> Datasource
 
 The datasource used in all targets.
@@ -118,20 +126,18 @@ Panel description.
 func (builder *PanelBuilder) Description(description string) *PanelBuilder
 ```
 
-### <span class="badge object-method"></span> Dims
-
-Table Mode (auto)
-
-```go
-func (builder *PanelBuilder) Dims(dims cog.Builder[xychart.XYDimensionConfig]) *PanelBuilder
-```
-
 ### <span class="badge object-method"></span> DisplayName
 
 The display value for this field.  This supports template variables blank is auto
 
 ```go
 func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> FillOpacity
+
+```go
+func (builder *PanelBuilder) FillOpacity(fillOpacity uint32) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> GridPos
@@ -186,18 +192,6 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 func (builder *PanelBuilder) Interval(interval string) *PanelBuilder
 ```
 
-### <span class="badge object-method"></span> Label
-
-```go
-func (builder *PanelBuilder) Label(label common.VisibilityMode) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> LabelValue
-
-```go
-func (builder *PanelBuilder) LabelValue(labelValue cog.Builder[common.TextDimensionConfig]) *PanelBuilder
-```
-
 ### <span class="badge object-method"></span> Legend
 
 ```go
@@ -210,12 +204,6 @@ Dynamically load the panel
 
 ```go
 func (builder *PanelBuilder) LibraryPanel(libraryPanel dashboard.LibraryPanelRef) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> LineColor
-
-```go
-func (builder *PanelBuilder) LineColor(lineColor cog.Builder[common.ColorDimensionConfig]) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> LineStyle
@@ -236,6 +224,12 @@ Panel links.
 
 ```go
 func (builder *PanelBuilder) Links(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Mapping
+
+```go
+func (builder *PanelBuilder) Mapping(mapping xychart.SeriesMapping) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Mappings
@@ -296,16 +290,22 @@ Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.DashboardFieldConfigSourceOverrides]) *PanelBuilder
 ```
 
-### <span class="badge object-method"></span> PointColor
+### <span class="badge object-method"></span> PointShape
 
 ```go
-func (builder *PanelBuilder) PointColor(pointColor cog.Builder[common.ColorDimensionConfig]) *PanelBuilder
+func (builder *PanelBuilder) PointShape(pointShape xychart.PointShape) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> PointSize
 
 ```go
-func (builder *PanelBuilder) PointSize(pointSize cog.Builder[common.ScaleDimensionConfig]) *PanelBuilder
+func (builder *PanelBuilder) PointSize(pointSize cog.Builder[xychart.XychartFieldConfigPointSize]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> PointStrokeWidth
+
+```go
+func (builder *PanelBuilder) PointStrokeWidth(pointStrokeWidth int32) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> QueryCachingTTL
@@ -342,22 +342,14 @@ func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[com
 
 ### <span class="badge object-method"></span> Series
 
-Manual Mode
-
 ```go
-func (builder *PanelBuilder) Series(series []cog.Builder[xychart.ScatterSeriesConfig]) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> SeriesMapping
-
-```go
-func (builder *PanelBuilder) SeriesMapping(seriesMapping xychart.SeriesMapping) *PanelBuilder
+func (builder *PanelBuilder) Series(series []cog.Builder[xychart.XYSeriesConfig]) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Show
 
 ```go
-func (builder *PanelBuilder) Show(show xychart.ScatterShow) *PanelBuilder
+func (builder *PanelBuilder) Show(show xychart.XYShowMode) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Span

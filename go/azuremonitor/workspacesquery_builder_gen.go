@@ -14,13 +14,11 @@ type WorkspacesQueryBuilder struct {
 }
 
 func NewWorkspacesQueryBuilder() *WorkspacesQueryBuilder {
-	resource := &WorkspacesQuery{}
+	resource := NewWorkspacesQuery()
 	builder := &WorkspacesQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Kind = "WorkspacesQuery"
 
 	return builder
@@ -44,7 +42,4 @@ func (builder *WorkspacesQueryBuilder) Subscription(subscription string) *Worksp
 	builder.internal.Subscription = subscription
 
 	return builder
-}
-
-func (builder *WorkspacesQueryBuilder) applyDefaults() {
 }

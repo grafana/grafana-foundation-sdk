@@ -16,13 +16,11 @@ type DataqueryBuilder struct {
 }
 
 func NewDataqueryBuilder() *DataqueryBuilder {
-	resource := &Dataquery{}
+	resource := NewDataquery()
 	builder := &DataqueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -59,6 +57,13 @@ func (builder *DataqueryBuilder) ProfileTypeId(profileTypeId string) *DataqueryB
 // Allows to group the results.
 func (builder *DataqueryBuilder) GroupBy(groupBy []string) *DataqueryBuilder {
 	builder.internal.GroupBy = groupBy
+
+	return builder
+}
+
+// Sets the maximum number of time series.
+func (builder *DataqueryBuilder) Limit(limit int64) *DataqueryBuilder {
+	builder.internal.Limit = &limit
 
 	return builder
 }
@@ -102,8 +107,4 @@ func (builder *DataqueryBuilder) Datasource(datasource dashboard.DataSourceRef) 
 	builder.internal.Datasource = &datasource
 
 	return builder
-}
-
-func (builder *DataqueryBuilder) applyDefaults() {
-	builder.LabelSelector("{}")
 }

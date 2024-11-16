@@ -14,13 +14,11 @@ type MovingFunctionBuilder struct {
 }
 
 func NewMovingFunctionBuilder() *MovingFunctionBuilder {
-	resource := &MovingFunction{}
+	resource := NewMovingFunction()
 	builder := &MovingFunctionBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "moving_fn"
 
 	return builder
@@ -67,7 +65,4 @@ func (builder *MovingFunctionBuilder) Hide(hide bool) *MovingFunctionBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *MovingFunctionBuilder) applyDefaults() {
 }

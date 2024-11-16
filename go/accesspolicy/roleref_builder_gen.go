@@ -14,13 +14,11 @@ type RoleRefBuilder struct {
 }
 
 func NewRoleRefBuilder() *RoleRefBuilder {
-	resource := &RoleRef{}
+	resource := NewRoleRef()
 	builder := &RoleRefBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -51,7 +49,4 @@ func (builder *RoleRefBuilder) Xname(xname string) *RoleRefBuilder {
 	builder.internal.Xname = xname
 
 	return builder
-}
-
-func (builder *RoleRefBuilder) applyDefaults() {
 }

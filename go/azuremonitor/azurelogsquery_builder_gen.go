@@ -15,13 +15,11 @@ type AzureLogsQueryBuilder struct {
 }
 
 func NewAzureLogsQueryBuilder() *AzureLogsQueryBuilder {
-	resource := &AzureLogsQuery{}
+	resource := NewAzureLogsQuery()
 	builder := &AzureLogsQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -95,7 +93,4 @@ func (builder *AzureLogsQueryBuilder) IntersectTime(intersectTime bool) *AzureLo
 	builder.internal.IntersectTime = &intersectTime
 
 	return builder
-}
-
-func (builder *AzureLogsQueryBuilder) applyDefaults() {
 }

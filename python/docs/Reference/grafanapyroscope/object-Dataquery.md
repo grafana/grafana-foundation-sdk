@@ -15,6 +15,8 @@ class Dataquery(cogvariants.Dataquery):
     profile_type_id: str
     # Allows to group the results.
     group_by: list[str]
+    # Sets the maximum number of time series.
+    limit: typing.Optional[int]
     # Sets the maximum number of nodes in the flamegraph.
     max_nodes: typing.Optional[int]
     # A unique identifier for the query within the list of targets.

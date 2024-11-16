@@ -14,13 +14,11 @@ type ElasticsearchMinSettingsBuilder struct {
 }
 
 func NewElasticsearchMinSettingsBuilder() *ElasticsearchMinSettingsBuilder {
-	resource := &ElasticsearchMinSettings{}
+	resource := NewElasticsearchMinSettings()
 	builder := &ElasticsearchMinSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -48,7 +46,4 @@ func (builder *ElasticsearchMinSettingsBuilder) Missing(missing string) *Elastic
 	builder.internal.Missing = &missing
 
 	return builder
-}
-
-func (builder *ElasticsearchMinSettingsBuilder) applyDefaults() {
 }

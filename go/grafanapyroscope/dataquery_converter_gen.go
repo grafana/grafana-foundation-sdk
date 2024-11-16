@@ -73,6 +73,18 @@ func DataqueryConverter(input Dataquery) string {
 		buffer.Reset()
 
 	}
+	if input.Limit != nil {
+
+		buffer.WriteString(`Limit(`)
+		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Limit))
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.MaxNodes != nil {
 
 		buffer.WriteString(`MaxNodes(`)

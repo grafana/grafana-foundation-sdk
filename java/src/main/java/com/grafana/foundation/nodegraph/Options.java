@@ -15,6 +15,10 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("edges")
     public EdgeOptions edges;
+    // How to handle zoom/scroll events in the node graph
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("zoomMode")
+    public ZoomMode zoomMode;
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

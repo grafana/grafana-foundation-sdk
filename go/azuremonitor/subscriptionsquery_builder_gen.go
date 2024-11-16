@@ -14,13 +14,11 @@ type SubscriptionsQueryBuilder struct {
 }
 
 func NewSubscriptionsQueryBuilder() *SubscriptionsQueryBuilder {
-	resource := &SubscriptionsQuery{}
+	resource := NewSubscriptionsQuery()
 	builder := &SubscriptionsQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Kind = "SubscriptionsQuery"
 
 	return builder
@@ -38,7 +36,4 @@ func (builder *SubscriptionsQueryBuilder) RawQuery(rawQuery string) *Subscriptio
 	builder.internal.RawQuery = &rawQuery
 
 	return builder
-}
-
-func (builder *SubscriptionsQueryBuilder) applyDefaults() {
 }

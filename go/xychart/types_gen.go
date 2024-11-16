@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"reflect"
 	"strconv"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
@@ -14,7 +15,13 @@ import (
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
-// Auto is "table" in the UI
+type PointShape string
+
+const (
+	PointShapeCircle PointShape = "circle"
+	PointShapeSquare PointShape = "square"
+)
+
 type SeriesMapping string
 
 const (
@@ -22,24 +29,34 @@ const (
 	SeriesMappingManual SeriesMapping = "manual"
 )
 
-type ScatterShow string
+type XYShowMode string
 
 const (
-	ScatterShowPoints         ScatterShow = "points"
-	ScatterShowLines          ScatterShow = "lines"
-	ScatterShowPointsAndLines ScatterShow = "points+lines"
+	XYShowModePoints         XYShowMode = "points"
+	XYShowModeLines          XYShowMode = "lines"
+	XYShowModePointsAndLines XYShowMode = "points+lines"
 )
 
-// Configuration for the Table/Auto mode
-type XYDimensionConfig struct {
-	Frame   int32    `json:"frame"`
-	X       *string  `json:"x,omitempty"`
-	Exclude []string `json:"exclude,omitempty"`
+// NOTE: (copied from dashboard_kind.cue, since not exported)
+// Matcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.
+// It comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type.
+type MatcherConfig struct {
+	// The matcher id. This is used to find the matcher implementation from registry.
+	Id string `json:"id"`
+	// The matcher options. This is specific to the matcher implementation.
+	Options any `json:"options,omitempty"`
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `XYDimensionConfig` from JSON.
+// NewMatcherConfig creates a new MatcherConfig object.
+func NewMatcherConfig() *MatcherConfig {
+	return &MatcherConfig{
+		Id: "",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MatcherConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *XYDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
+func (resource *MatcherConfig) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -49,46 +66,33 @@ func (resource *XYDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
 	}
-	// Field "frame"
-	if fields["frame"] != nil {
-		if string(fields["frame"]) != "null" {
-			if err := json.Unmarshal(fields["frame"], &resource.Frame); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("frame", err)...)
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
 			}
 		} else {
-			errs = append(errs, cog.MakeBuildErrors("frame", errors.New("required field is null"))...)
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
 
 		}
-		delete(fields, "frame")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("frame", errors.New("required field is missing from input"))...)
+		delete(fields, "id")
+
 	}
-	// Field "x"
-	if fields["x"] != nil {
-		if string(fields["x"]) != "null" {
-			if err := json.Unmarshal(fields["x"], &resource.X); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("x", err)...)
+	// Field "options"
+	if fields["options"] != nil {
+		if string(fields["options"]) != "null" {
+			if err := json.Unmarshal(fields["options"], &resource.Options); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("options", err)...)
 			}
 
 		}
-		delete(fields, "x")
-
-	}
-	// Field "exclude"
-	if fields["exclude"] != nil {
-		if string(fields["exclude"]) != "null" {
-
-			if err := json.Unmarshal(fields["exclude"], &resource.Exclude); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("exclude", err)...)
-			}
-
-		}
-		delete(fields, "exclude")
+		delete(fields, "options")
 
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("XYDimensionConfig", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("MatcherConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -98,59 +102,31 @@ func (resource *XYDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two `XYDimensionConfig` objects.
-func (resource XYDimensionConfig) Equals(other XYDimensionConfig) bool {
-	if resource.Frame != other.Frame {
+// Equals tests the equality of two `MatcherConfig` objects.
+func (resource MatcherConfig) Equals(other MatcherConfig) bool {
+	if resource.Id != other.Id {
 		return false
 	}
-	if resource.X == nil && other.X != nil || resource.X != nil && other.X == nil {
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Options, other.Options) {
 		return false
-	}
-
-	if resource.X != nil {
-		if *resource.X != *other.X {
-			return false
-		}
-	}
-
-	if len(resource.Exclude) != len(other.Exclude) {
-		return false
-	}
-
-	for i1 := range resource.Exclude {
-		if resource.Exclude[i1] != other.Exclude[i1] {
-			return false
-		}
 	}
 
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `XYDimensionConfig` fields for violations and returns them.
-func (resource XYDimensionConfig) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Frame >= 0) {
-		errs = append(errs, cog.MakeBuildErrors(
-			"frame",
-			errors.New("must be >= 0"),
-		)...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
+// Validate checks all the validation constraints that may be defined on `MatcherConfig` fields for violations and returns them.
+func (resource MatcherConfig) Validate() error {
+	return nil
 }
 
 type FieldConfig struct {
-	Show              *ScatterShow                    `json:"show,omitempty"`
-	PointSize         *common.ScaleDimensionConfig    `json:"pointSize,omitempty"`
-	PointColor        *common.ColorDimensionConfig    `json:"pointColor,omitempty"`
-	LineColor         *common.ColorDimensionConfig    `json:"lineColor,omitempty"`
+	Show              *XYShowMode                     `json:"show,omitempty"`
+	PointSize         *XychartFieldConfigPointSize    `json:"pointSize,omitempty"`
+	PointShape        *PointShape                     `json:"pointShape,omitempty"`
+	PointStrokeWidth  *int32                          `json:"pointStrokeWidth,omitempty"`
+	FillOpacity       *uint32                         `json:"fillOpacity,omitempty"`
 	LineWidth         *int32                          `json:"lineWidth,omitempty"`
-	LineStyle         *common.LineStyle               `json:"lineStyle,omitempty"`
-	Label             *common.VisibilityMode          `json:"label,omitempty"`
 	HideFrom          *common.HideSeriesConfig        `json:"hideFrom,omitempty"`
 	AxisPlacement     *common.AxisPlacement           `json:"axisPlacement,omitempty"`
 	AxisColorMode     *common.AxisColorMode           `json:"axisColorMode,omitempty"`
@@ -161,8 +137,16 @@ type FieldConfig struct {
 	AxisGridShow      *bool                           `json:"axisGridShow,omitempty"`
 	ScaleDistribution *common.ScaleDistributionConfig `json:"scaleDistribution,omitempty"`
 	AxisCenteredZero  *bool                           `json:"axisCenteredZero,omitempty"`
-	LabelValue        *common.TextDimensionConfig     `json:"labelValue,omitempty"`
+	LineStyle         *common.LineStyle               `json:"lineStyle,omitempty"`
 	AxisBorderShow    *bool                           `json:"axisBorderShow,omitempty"`
+}
+
+// NewFieldConfig creates a new FieldConfig object.
+func NewFieldConfig() *FieldConfig {
+	return &FieldConfig{
+		Show:        cog.ToPtr(XYShowModePoints),
+		FillOpacity: cog.ToPtr[uint32](50),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FieldConfig` from JSON.
@@ -192,7 +176,7 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 	if fields["pointSize"] != nil {
 		if string(fields["pointSize"]) != "null" {
 
-			resource.PointSize = &common.ScaleDimensionConfig{}
+			resource.PointSize = &XychartFieldConfigPointSize{}
 			if err := resource.PointSize.UnmarshalJSONStrict(fields["pointSize"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("pointSize", err)...)
 			}
@@ -201,30 +185,37 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "pointSize")
 
 	}
-	// Field "pointColor"
-	if fields["pointColor"] != nil {
-		if string(fields["pointColor"]) != "null" {
-
-			resource.PointColor = &common.ColorDimensionConfig{}
-			if err := resource.PointColor.UnmarshalJSONStrict(fields["pointColor"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("pointColor", err)...)
+	// Field "pointShape"
+	if fields["pointShape"] != nil {
+		if string(fields["pointShape"]) != "null" {
+			if err := json.Unmarshal(fields["pointShape"], &resource.PointShape); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("pointShape", err)...)
 			}
 
 		}
-		delete(fields, "pointColor")
+		delete(fields, "pointShape")
 
 	}
-	// Field "lineColor"
-	if fields["lineColor"] != nil {
-		if string(fields["lineColor"]) != "null" {
-
-			resource.LineColor = &common.ColorDimensionConfig{}
-			if err := resource.LineColor.UnmarshalJSONStrict(fields["lineColor"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("lineColor", err)...)
+	// Field "pointStrokeWidth"
+	if fields["pointStrokeWidth"] != nil {
+		if string(fields["pointStrokeWidth"]) != "null" {
+			if err := json.Unmarshal(fields["pointStrokeWidth"], &resource.PointStrokeWidth); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("pointStrokeWidth", err)...)
 			}
 
 		}
-		delete(fields, "lineColor")
+		delete(fields, "pointStrokeWidth")
+
+	}
+	// Field "fillOpacity"
+	if fields["fillOpacity"] != nil {
+		if string(fields["fillOpacity"]) != "null" {
+			if err := json.Unmarshal(fields["fillOpacity"], &resource.FillOpacity); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fillOpacity", err)...)
+			}
+
+		}
+		delete(fields, "fillOpacity")
 
 	}
 	// Field "lineWidth"
@@ -236,30 +227,6 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "lineWidth")
-
-	}
-	// Field "lineStyle"
-	if fields["lineStyle"] != nil {
-		if string(fields["lineStyle"]) != "null" {
-
-			resource.LineStyle = &common.LineStyle{}
-			if err := resource.LineStyle.UnmarshalJSONStrict(fields["lineStyle"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("lineStyle", err)...)
-			}
-
-		}
-		delete(fields, "lineStyle")
-
-	}
-	// Field "label"
-	if fields["label"] != nil {
-		if string(fields["label"]) != "null" {
-			if err := json.Unmarshal(fields["label"], &resource.Label); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("label", err)...)
-			}
-
-		}
-		delete(fields, "label")
 
 	}
 	// Field "hideFrom"
@@ -376,17 +343,17 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "axisCenteredZero")
 
 	}
-	// Field "labelValue"
-	if fields["labelValue"] != nil {
-		if string(fields["labelValue"]) != "null" {
+	// Field "lineStyle"
+	if fields["lineStyle"] != nil {
+		if string(fields["lineStyle"]) != "null" {
 
-			resource.LabelValue = &common.TextDimensionConfig{}
-			if err := resource.LabelValue.UnmarshalJSONStrict(fields["labelValue"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("labelValue", err)...)
+			resource.LineStyle = &common.LineStyle{}
+			if err := resource.LineStyle.UnmarshalJSONStrict(fields["lineStyle"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("lineStyle", err)...)
 			}
 
 		}
-		delete(fields, "labelValue")
+		delete(fields, "lineStyle")
 
 	}
 	// Field "axisBorderShow"
@@ -432,21 +399,30 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 			return false
 		}
 	}
-	if resource.PointColor == nil && other.PointColor != nil || resource.PointColor != nil && other.PointColor == nil {
+	if resource.PointShape == nil && other.PointShape != nil || resource.PointShape != nil && other.PointShape == nil {
 		return false
 	}
 
-	if resource.PointColor != nil {
-		if !resource.PointColor.Equals(*other.PointColor) {
+	if resource.PointShape != nil {
+		if *resource.PointShape != *other.PointShape {
 			return false
 		}
 	}
-	if resource.LineColor == nil && other.LineColor != nil || resource.LineColor != nil && other.LineColor == nil {
+	if resource.PointStrokeWidth == nil && other.PointStrokeWidth != nil || resource.PointStrokeWidth != nil && other.PointStrokeWidth == nil {
 		return false
 	}
 
-	if resource.LineColor != nil {
-		if !resource.LineColor.Equals(*other.LineColor) {
+	if resource.PointStrokeWidth != nil {
+		if *resource.PointStrokeWidth != *other.PointStrokeWidth {
+			return false
+		}
+	}
+	if resource.FillOpacity == nil && other.FillOpacity != nil || resource.FillOpacity != nil && other.FillOpacity == nil {
+		return false
+	}
+
+	if resource.FillOpacity != nil {
+		if *resource.FillOpacity != *other.FillOpacity {
 			return false
 		}
 	}
@@ -456,24 +432,6 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 
 	if resource.LineWidth != nil {
 		if *resource.LineWidth != *other.LineWidth {
-			return false
-		}
-	}
-	if resource.LineStyle == nil && other.LineStyle != nil || resource.LineStyle != nil && other.LineStyle == nil {
-		return false
-	}
-
-	if resource.LineStyle != nil {
-		if !resource.LineStyle.Equals(*other.LineStyle) {
-			return false
-		}
-	}
-	if resource.Label == nil && other.Label != nil || resource.Label != nil && other.Label == nil {
-		return false
-	}
-
-	if resource.Label != nil {
-		if *resource.Label != *other.Label {
 			return false
 		}
 	}
@@ -567,12 +525,12 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 			return false
 		}
 	}
-	if resource.LabelValue == nil && other.LabelValue != nil || resource.LabelValue != nil && other.LabelValue == nil {
+	if resource.LineStyle == nil && other.LineStyle != nil || resource.LineStyle != nil && other.LineStyle == nil {
 		return false
 	}
 
-	if resource.LabelValue != nil {
-		if !resource.LabelValue.Equals(*other.LabelValue) {
+	if resource.LineStyle != nil {
+		if !resource.LineStyle.Equals(*other.LineStyle) {
 			return false
 		}
 	}
@@ -597,14 +555,20 @@ func (resource FieldConfig) Validate() error {
 			errs = append(errs, cog.MakeBuildErrors("pointSize", err)...)
 		}
 	}
-	if resource.PointColor != nil {
-		if err := resource.PointColor.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("pointColor", err)...)
+	if resource.PointStrokeWidth != nil {
+		if !(*resource.PointStrokeWidth >= 0) {
+			errs = append(errs, cog.MakeBuildErrors(
+				"pointStrokeWidth",
+				errors.New("must be >= 0"),
+			)...)
 		}
 	}
-	if resource.LineColor != nil {
-		if err := resource.LineColor.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("lineColor", err)...)
+	if resource.FillOpacity != nil {
+		if !(*resource.FillOpacity <= 100) {
+			errs = append(errs, cog.MakeBuildErrors(
+				"fillOpacity",
+				errors.New("must be <= 100"),
+			)...)
 		}
 	}
 	if resource.LineWidth != nil {
@@ -613,11 +577,6 @@ func (resource FieldConfig) Validate() error {
 				"lineWidth",
 				errors.New("must be >= 0"),
 			)...)
-		}
-	}
-	if resource.LineStyle != nil {
-		if err := resource.LineStyle.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("lineStyle", err)...)
 		}
 	}
 	if resource.HideFrom != nil {
@@ -630,9 +589,9 @@ func (resource FieldConfig) Validate() error {
 			errs = append(errs, cog.MakeBuildErrors("scaleDistribution", err)...)
 		}
 	}
-	if resource.LabelValue != nil {
-		if err := resource.LabelValue.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("labelValue", err)...)
+	if resource.LineStyle != nil {
+		if err := resource.LineStyle.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("lineStyle", err)...)
 		}
 	}
 
@@ -643,35 +602,23 @@ func (resource FieldConfig) Validate() error {
 	return errs
 }
 
-type ScatterSeriesConfig struct {
-	X                 *string                         `json:"x,omitempty"`
-	Y                 *string                         `json:"y,omitempty"`
-	Name              *string                         `json:"name,omitempty"`
-	Show              *ScatterShow                    `json:"show,omitempty"`
-	PointSize         *common.ScaleDimensionConfig    `json:"pointSize,omitempty"`
-	PointColor        *common.ColorDimensionConfig    `json:"pointColor,omitempty"`
-	LineColor         *common.ColorDimensionConfig    `json:"lineColor,omitempty"`
-	LineWidth         *int32                          `json:"lineWidth,omitempty"`
-	LineStyle         *common.LineStyle               `json:"lineStyle,omitempty"`
-	Label             *common.VisibilityMode          `json:"label,omitempty"`
-	HideFrom          *common.HideSeriesConfig        `json:"hideFrom,omitempty"`
-	AxisPlacement     *common.AxisPlacement           `json:"axisPlacement,omitempty"`
-	AxisColorMode     *common.AxisColorMode           `json:"axisColorMode,omitempty"`
-	AxisLabel         *string                         `json:"axisLabel,omitempty"`
-	AxisWidth         *float64                        `json:"axisWidth,omitempty"`
-	AxisSoftMin       *float64                        `json:"axisSoftMin,omitempty"`
-	AxisSoftMax       *float64                        `json:"axisSoftMax,omitempty"`
-	AxisGridShow      *bool                           `json:"axisGridShow,omitempty"`
-	ScaleDistribution *common.ScaleDistributionConfig `json:"scaleDistribution,omitempty"`
-	AxisCenteredZero  *bool                           `json:"axisCenteredZero,omitempty"`
-	Frame             *float64                        `json:"frame,omitempty"`
-	LabelValue        *common.TextDimensionConfig     `json:"labelValue,omitempty"`
-	AxisBorderShow    *bool                           `json:"axisBorderShow,omitempty"`
+type XYSeriesConfig struct {
+	Name  *XychartXYSeriesConfigName  `json:"name,omitempty"`
+	Frame *XychartXYSeriesConfigFrame `json:"frame,omitempty"`
+	X     *XychartXYSeriesConfigX     `json:"x,omitempty"`
+	Y     *XychartXYSeriesConfigY     `json:"y,omitempty"`
+	Color *XychartXYSeriesConfigColor `json:"color,omitempty"`
+	Size  *XychartXYSeriesConfigSize  `json:"size,omitempty"`
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ScatterSeriesConfig` from JSON.
+// NewXYSeriesConfig creates a new XYSeriesConfig object.
+func NewXYSeriesConfig() *XYSeriesConfig {
+	return &XYSeriesConfig{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `XYSeriesConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ScatterSeriesConfig) UnmarshalJSONStrict(raw []byte) error {
+func (resource *XYSeriesConfig) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -681,10 +628,38 @@ func (resource *ScatterSeriesConfig) UnmarshalJSONStrict(raw []byte) error {
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
 	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+
+			resource.Name = &XychartXYSeriesConfigName{}
+			if err := resource.Name.UnmarshalJSONStrict(fields["name"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+
+		}
+		delete(fields, "name")
+
+	}
+	// Field "frame"
+	if fields["frame"] != nil {
+		if string(fields["frame"]) != "null" {
+
+			resource.Frame = &XychartXYSeriesConfigFrame{}
+			if err := resource.Frame.UnmarshalJSONStrict(fields["frame"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("frame", err)...)
+			}
+
+		}
+		delete(fields, "frame")
+
+	}
 	// Field "x"
 	if fields["x"] != nil {
 		if string(fields["x"]) != "null" {
-			if err := json.Unmarshal(fields["x"], &resource.X); err != nil {
+
+			resource.X = &XychartXYSeriesConfigX{}
+			if err := resource.X.UnmarshalJSONStrict(fields["x"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("x", err)...)
 			}
 
@@ -695,7 +670,9 @@ func (resource *ScatterSeriesConfig) UnmarshalJSONStrict(raw []byte) error {
 	// Field "y"
 	if fields["y"] != nil {
 		if string(fields["y"]) != "null" {
-			if err := json.Unmarshal(fields["y"], &resource.Y); err != nil {
+
+			resource.Y = &XychartXYSeriesConfigY{}
+			if err := resource.Y.UnmarshalJSONStrict(fields["y"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("y", err)...)
 			}
 
@@ -703,254 +680,35 @@ func (resource *ScatterSeriesConfig) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "y")
 
 	}
-	// Field "name"
-	if fields["name"] != nil {
-		if string(fields["name"]) != "null" {
-			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+	// Field "color"
+	if fields["color"] != nil {
+		if string(fields["color"]) != "null" {
+
+			resource.Color = &XychartXYSeriesConfigColor{}
+			if err := resource.Color.UnmarshalJSONStrict(fields["color"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("color", err)...)
 			}
 
 		}
-		delete(fields, "name")
+		delete(fields, "color")
 
 	}
-	// Field "show"
-	if fields["show"] != nil {
-		if string(fields["show"]) != "null" {
-			if err := json.Unmarshal(fields["show"], &resource.Show); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("show", err)...)
+	// Field "size"
+	if fields["size"] != nil {
+		if string(fields["size"]) != "null" {
+
+			resource.Size = &XychartXYSeriesConfigSize{}
+			if err := resource.Size.UnmarshalJSONStrict(fields["size"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("size", err)...)
 			}
 
 		}
-		delete(fields, "show")
-
-	}
-	// Field "pointSize"
-	if fields["pointSize"] != nil {
-		if string(fields["pointSize"]) != "null" {
-
-			resource.PointSize = &common.ScaleDimensionConfig{}
-			if err := resource.PointSize.UnmarshalJSONStrict(fields["pointSize"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("pointSize", err)...)
-			}
-
-		}
-		delete(fields, "pointSize")
-
-	}
-	// Field "pointColor"
-	if fields["pointColor"] != nil {
-		if string(fields["pointColor"]) != "null" {
-
-			resource.PointColor = &common.ColorDimensionConfig{}
-			if err := resource.PointColor.UnmarshalJSONStrict(fields["pointColor"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("pointColor", err)...)
-			}
-
-		}
-		delete(fields, "pointColor")
-
-	}
-	// Field "lineColor"
-	if fields["lineColor"] != nil {
-		if string(fields["lineColor"]) != "null" {
-
-			resource.LineColor = &common.ColorDimensionConfig{}
-			if err := resource.LineColor.UnmarshalJSONStrict(fields["lineColor"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("lineColor", err)...)
-			}
-
-		}
-		delete(fields, "lineColor")
-
-	}
-	// Field "lineWidth"
-	if fields["lineWidth"] != nil {
-		if string(fields["lineWidth"]) != "null" {
-			if err := json.Unmarshal(fields["lineWidth"], &resource.LineWidth); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("lineWidth", err)...)
-			}
-
-		}
-		delete(fields, "lineWidth")
-
-	}
-	// Field "lineStyle"
-	if fields["lineStyle"] != nil {
-		if string(fields["lineStyle"]) != "null" {
-
-			resource.LineStyle = &common.LineStyle{}
-			if err := resource.LineStyle.UnmarshalJSONStrict(fields["lineStyle"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("lineStyle", err)...)
-			}
-
-		}
-		delete(fields, "lineStyle")
-
-	}
-	// Field "label"
-	if fields["label"] != nil {
-		if string(fields["label"]) != "null" {
-			if err := json.Unmarshal(fields["label"], &resource.Label); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("label", err)...)
-			}
-
-		}
-		delete(fields, "label")
-
-	}
-	// Field "hideFrom"
-	if fields["hideFrom"] != nil {
-		if string(fields["hideFrom"]) != "null" {
-
-			resource.HideFrom = &common.HideSeriesConfig{}
-			if err := resource.HideFrom.UnmarshalJSONStrict(fields["hideFrom"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hideFrom", err)...)
-			}
-
-		}
-		delete(fields, "hideFrom")
-
-	}
-	// Field "axisPlacement"
-	if fields["axisPlacement"] != nil {
-		if string(fields["axisPlacement"]) != "null" {
-			if err := json.Unmarshal(fields["axisPlacement"], &resource.AxisPlacement); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("axisPlacement", err)...)
-			}
-
-		}
-		delete(fields, "axisPlacement")
-
-	}
-	// Field "axisColorMode"
-	if fields["axisColorMode"] != nil {
-		if string(fields["axisColorMode"]) != "null" {
-			if err := json.Unmarshal(fields["axisColorMode"], &resource.AxisColorMode); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("axisColorMode", err)...)
-			}
-
-		}
-		delete(fields, "axisColorMode")
-
-	}
-	// Field "axisLabel"
-	if fields["axisLabel"] != nil {
-		if string(fields["axisLabel"]) != "null" {
-			if err := json.Unmarshal(fields["axisLabel"], &resource.AxisLabel); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("axisLabel", err)...)
-			}
-
-		}
-		delete(fields, "axisLabel")
-
-	}
-	// Field "axisWidth"
-	if fields["axisWidth"] != nil {
-		if string(fields["axisWidth"]) != "null" {
-			if err := json.Unmarshal(fields["axisWidth"], &resource.AxisWidth); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("axisWidth", err)...)
-			}
-
-		}
-		delete(fields, "axisWidth")
-
-	}
-	// Field "axisSoftMin"
-	if fields["axisSoftMin"] != nil {
-		if string(fields["axisSoftMin"]) != "null" {
-			if err := json.Unmarshal(fields["axisSoftMin"], &resource.AxisSoftMin); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("axisSoftMin", err)...)
-			}
-
-		}
-		delete(fields, "axisSoftMin")
-
-	}
-	// Field "axisSoftMax"
-	if fields["axisSoftMax"] != nil {
-		if string(fields["axisSoftMax"]) != "null" {
-			if err := json.Unmarshal(fields["axisSoftMax"], &resource.AxisSoftMax); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("axisSoftMax", err)...)
-			}
-
-		}
-		delete(fields, "axisSoftMax")
-
-	}
-	// Field "axisGridShow"
-	if fields["axisGridShow"] != nil {
-		if string(fields["axisGridShow"]) != "null" {
-			if err := json.Unmarshal(fields["axisGridShow"], &resource.AxisGridShow); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("axisGridShow", err)...)
-			}
-
-		}
-		delete(fields, "axisGridShow")
-
-	}
-	// Field "scaleDistribution"
-	if fields["scaleDistribution"] != nil {
-		if string(fields["scaleDistribution"]) != "null" {
-
-			resource.ScaleDistribution = &common.ScaleDistributionConfig{}
-			if err := resource.ScaleDistribution.UnmarshalJSONStrict(fields["scaleDistribution"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("scaleDistribution", err)...)
-			}
-
-		}
-		delete(fields, "scaleDistribution")
-
-	}
-	// Field "axisCenteredZero"
-	if fields["axisCenteredZero"] != nil {
-		if string(fields["axisCenteredZero"]) != "null" {
-			if err := json.Unmarshal(fields["axisCenteredZero"], &resource.AxisCenteredZero); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("axisCenteredZero", err)...)
-			}
-
-		}
-		delete(fields, "axisCenteredZero")
-
-	}
-	// Field "frame"
-	if fields["frame"] != nil {
-		if string(fields["frame"]) != "null" {
-			if err := json.Unmarshal(fields["frame"], &resource.Frame); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("frame", err)...)
-			}
-
-		}
-		delete(fields, "frame")
-
-	}
-	// Field "labelValue"
-	if fields["labelValue"] != nil {
-		if string(fields["labelValue"]) != "null" {
-
-			resource.LabelValue = &common.TextDimensionConfig{}
-			if err := resource.LabelValue.UnmarshalJSONStrict(fields["labelValue"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("labelValue", err)...)
-			}
-
-		}
-		delete(fields, "labelValue")
-
-	}
-	// Field "axisBorderShow"
-	if fields["axisBorderShow"] != nil {
-		if string(fields["axisBorderShow"]) != "null" {
-			if err := json.Unmarshal(fields["axisBorderShow"], &resource.AxisBorderShow); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("axisBorderShow", err)...)
-			}
-
-		}
-		delete(fields, "axisBorderShow")
+		delete(fields, "size")
 
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ScatterSeriesConfig", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("XYSeriesConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -960,185 +718,14 @@ func (resource *ScatterSeriesConfig) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two `ScatterSeriesConfig` objects.
-func (resource ScatterSeriesConfig) Equals(other ScatterSeriesConfig) bool {
-	if resource.X == nil && other.X != nil || resource.X != nil && other.X == nil {
-		return false
-	}
-
-	if resource.X != nil {
-		if *resource.X != *other.X {
-			return false
-		}
-	}
-	if resource.Y == nil && other.Y != nil || resource.Y != nil && other.Y == nil {
-		return false
-	}
-
-	if resource.Y != nil {
-		if *resource.Y != *other.Y {
-			return false
-		}
-	}
+// Equals tests the equality of two `XYSeriesConfig` objects.
+func (resource XYSeriesConfig) Equals(other XYSeriesConfig) bool {
 	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
 		return false
 	}
 
 	if resource.Name != nil {
-		if *resource.Name != *other.Name {
-			return false
-		}
-	}
-	if resource.Show == nil && other.Show != nil || resource.Show != nil && other.Show == nil {
-		return false
-	}
-
-	if resource.Show != nil {
-		if *resource.Show != *other.Show {
-			return false
-		}
-	}
-	if resource.PointSize == nil && other.PointSize != nil || resource.PointSize != nil && other.PointSize == nil {
-		return false
-	}
-
-	if resource.PointSize != nil {
-		if !resource.PointSize.Equals(*other.PointSize) {
-			return false
-		}
-	}
-	if resource.PointColor == nil && other.PointColor != nil || resource.PointColor != nil && other.PointColor == nil {
-		return false
-	}
-
-	if resource.PointColor != nil {
-		if !resource.PointColor.Equals(*other.PointColor) {
-			return false
-		}
-	}
-	if resource.LineColor == nil && other.LineColor != nil || resource.LineColor != nil && other.LineColor == nil {
-		return false
-	}
-
-	if resource.LineColor != nil {
-		if !resource.LineColor.Equals(*other.LineColor) {
-			return false
-		}
-	}
-	if resource.LineWidth == nil && other.LineWidth != nil || resource.LineWidth != nil && other.LineWidth == nil {
-		return false
-	}
-
-	if resource.LineWidth != nil {
-		if *resource.LineWidth != *other.LineWidth {
-			return false
-		}
-	}
-	if resource.LineStyle == nil && other.LineStyle != nil || resource.LineStyle != nil && other.LineStyle == nil {
-		return false
-	}
-
-	if resource.LineStyle != nil {
-		if !resource.LineStyle.Equals(*other.LineStyle) {
-			return false
-		}
-	}
-	if resource.Label == nil && other.Label != nil || resource.Label != nil && other.Label == nil {
-		return false
-	}
-
-	if resource.Label != nil {
-		if *resource.Label != *other.Label {
-			return false
-		}
-	}
-	if resource.HideFrom == nil && other.HideFrom != nil || resource.HideFrom != nil && other.HideFrom == nil {
-		return false
-	}
-
-	if resource.HideFrom != nil {
-		if !resource.HideFrom.Equals(*other.HideFrom) {
-			return false
-		}
-	}
-	if resource.AxisPlacement == nil && other.AxisPlacement != nil || resource.AxisPlacement != nil && other.AxisPlacement == nil {
-		return false
-	}
-
-	if resource.AxisPlacement != nil {
-		if *resource.AxisPlacement != *other.AxisPlacement {
-			return false
-		}
-	}
-	if resource.AxisColorMode == nil && other.AxisColorMode != nil || resource.AxisColorMode != nil && other.AxisColorMode == nil {
-		return false
-	}
-
-	if resource.AxisColorMode != nil {
-		if *resource.AxisColorMode != *other.AxisColorMode {
-			return false
-		}
-	}
-	if resource.AxisLabel == nil && other.AxisLabel != nil || resource.AxisLabel != nil && other.AxisLabel == nil {
-		return false
-	}
-
-	if resource.AxisLabel != nil {
-		if *resource.AxisLabel != *other.AxisLabel {
-			return false
-		}
-	}
-	if resource.AxisWidth == nil && other.AxisWidth != nil || resource.AxisWidth != nil && other.AxisWidth == nil {
-		return false
-	}
-
-	if resource.AxisWidth != nil {
-		if *resource.AxisWidth != *other.AxisWidth {
-			return false
-		}
-	}
-	if resource.AxisSoftMin == nil && other.AxisSoftMin != nil || resource.AxisSoftMin != nil && other.AxisSoftMin == nil {
-		return false
-	}
-
-	if resource.AxisSoftMin != nil {
-		if *resource.AxisSoftMin != *other.AxisSoftMin {
-			return false
-		}
-	}
-	if resource.AxisSoftMax == nil && other.AxisSoftMax != nil || resource.AxisSoftMax != nil && other.AxisSoftMax == nil {
-		return false
-	}
-
-	if resource.AxisSoftMax != nil {
-		if *resource.AxisSoftMax != *other.AxisSoftMax {
-			return false
-		}
-	}
-	if resource.AxisGridShow == nil && other.AxisGridShow != nil || resource.AxisGridShow != nil && other.AxisGridShow == nil {
-		return false
-	}
-
-	if resource.AxisGridShow != nil {
-		if *resource.AxisGridShow != *other.AxisGridShow {
-			return false
-		}
-	}
-	if resource.ScaleDistribution == nil && other.ScaleDistribution != nil || resource.ScaleDistribution != nil && other.ScaleDistribution == nil {
-		return false
-	}
-
-	if resource.ScaleDistribution != nil {
-		if !resource.ScaleDistribution.Equals(*other.ScaleDistribution) {
-			return false
-		}
-	}
-	if resource.AxisCenteredZero == nil && other.AxisCenteredZero != nil || resource.AxisCenteredZero != nil && other.AxisCenteredZero == nil {
-		return false
-	}
-
-	if resource.AxisCenteredZero != nil {
-		if *resource.AxisCenteredZero != *other.AxisCenteredZero {
+		if !resource.Name.Equals(*other.Name) {
 			return false
 		}
 	}
@@ -1147,25 +734,43 @@ func (resource ScatterSeriesConfig) Equals(other ScatterSeriesConfig) bool {
 	}
 
 	if resource.Frame != nil {
-		if *resource.Frame != *other.Frame {
+		if !resource.Frame.Equals(*other.Frame) {
 			return false
 		}
 	}
-	if resource.LabelValue == nil && other.LabelValue != nil || resource.LabelValue != nil && other.LabelValue == nil {
+	if resource.X == nil && other.X != nil || resource.X != nil && other.X == nil {
 		return false
 	}
 
-	if resource.LabelValue != nil {
-		if !resource.LabelValue.Equals(*other.LabelValue) {
+	if resource.X != nil {
+		if !resource.X.Equals(*other.X) {
 			return false
 		}
 	}
-	if resource.AxisBorderShow == nil && other.AxisBorderShow != nil || resource.AxisBorderShow != nil && other.AxisBorderShow == nil {
+	if resource.Y == nil && other.Y != nil || resource.Y != nil && other.Y == nil {
 		return false
 	}
 
-	if resource.AxisBorderShow != nil {
-		if *resource.AxisBorderShow != *other.AxisBorderShow {
+	if resource.Y != nil {
+		if !resource.Y.Equals(*other.Y) {
+			return false
+		}
+	}
+	if resource.Color == nil && other.Color != nil || resource.Color != nil && other.Color == nil {
+		return false
+	}
+
+	if resource.Color != nil {
+		if !resource.Color.Equals(*other.Color) {
+			return false
+		}
+	}
+	if resource.Size == nil && other.Size != nil || resource.Size != nil && other.Size == nil {
+		return false
+	}
+
+	if resource.Size != nil {
+		if !resource.Size.Equals(*other.Size) {
 			return false
 		}
 	}
@@ -1173,50 +778,37 @@ func (resource ScatterSeriesConfig) Equals(other ScatterSeriesConfig) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `ScatterSeriesConfig` fields for violations and returns them.
-func (resource ScatterSeriesConfig) Validate() error {
+// Validate checks all the validation constraints that may be defined on `XYSeriesConfig` fields for violations and returns them.
+func (resource XYSeriesConfig) Validate() error {
 	var errs cog.BuildErrors
-	if resource.PointSize != nil {
-		if err := resource.PointSize.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("pointSize", err)...)
+	if resource.Name != nil {
+		if err := resource.Name.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("name", err)...)
 		}
 	}
-	if resource.PointColor != nil {
-		if err := resource.PointColor.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("pointColor", err)...)
+	if resource.Frame != nil {
+		if err := resource.Frame.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("frame", err)...)
 		}
 	}
-	if resource.LineColor != nil {
-		if err := resource.LineColor.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("lineColor", err)...)
+	if resource.X != nil {
+		if err := resource.X.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("x", err)...)
 		}
 	}
-	if resource.LineWidth != nil {
-		if !(*resource.LineWidth >= 0) {
-			errs = append(errs, cog.MakeBuildErrors(
-				"lineWidth",
-				errors.New("must be >= 0"),
-			)...)
+	if resource.Y != nil {
+		if err := resource.Y.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("y", err)...)
 		}
 	}
-	if resource.LineStyle != nil {
-		if err := resource.LineStyle.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("lineStyle", err)...)
+	if resource.Color != nil {
+		if err := resource.Color.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("color", err)...)
 		}
 	}
-	if resource.HideFrom != nil {
-		if err := resource.HideFrom.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("hideFrom", err)...)
-		}
-	}
-	if resource.ScaleDistribution != nil {
-		if err := resource.ScaleDistribution.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("scaleDistribution", err)...)
-		}
-	}
-	if resource.LabelValue != nil {
-		if err := resource.LabelValue.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("labelValue", err)...)
+	if resource.Size != nil {
+		if err := resource.Size.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("size", err)...)
 		}
 	}
 
@@ -1228,13 +820,18 @@ func (resource ScatterSeriesConfig) Validate() error {
 }
 
 type Options struct {
-	SeriesMapping *SeriesMapping `json:"seriesMapping,omitempty"`
-	// Table Mode (auto)
-	Dims    XYDimensionConfig        `json:"dims"`
+	Mapping SeriesMapping            `json:"mapping"`
 	Legend  common.VizLegendOptions  `json:"legend"`
 	Tooltip common.VizTooltipOptions `json:"tooltip"`
-	// Manual Mode
-	Series []ScatterSeriesConfig `json:"series"`
+	Series  []XYSeriesConfig         `json:"series"`
+}
+
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		Legend:  *common.NewVizLegendOptions(),
+		Tooltip: *common.NewVizTooltipOptions(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
@@ -1249,32 +846,19 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
 	}
-	// Field "seriesMapping"
-	if fields["seriesMapping"] != nil {
-		if string(fields["seriesMapping"]) != "null" {
-			if err := json.Unmarshal(fields["seriesMapping"], &resource.SeriesMapping); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("seriesMapping", err)...)
-			}
-
-		}
-		delete(fields, "seriesMapping")
-
-	}
-	// Field "dims"
-	if fields["dims"] != nil {
-		if string(fields["dims"]) != "null" {
-
-			resource.Dims = XYDimensionConfig{}
-			if err := resource.Dims.UnmarshalJSONStrict(fields["dims"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("dims", err)...)
+	// Field "mapping"
+	if fields["mapping"] != nil {
+		if string(fields["mapping"]) != "null" {
+			if err := json.Unmarshal(fields["mapping"], &resource.Mapping); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("mapping", err)...)
 			}
 		} else {
-			errs = append(errs, cog.MakeBuildErrors("dims", errors.New("required field is null"))...)
+			errs = append(errs, cog.MakeBuildErrors("mapping", errors.New("required field is null"))...)
 
 		}
-		delete(fields, "dims")
+		delete(fields, "mapping")
 	} else {
-		errs = append(errs, cog.MakeBuildErrors("dims", errors.New("required field is missing from input"))...)
+		errs = append(errs, cog.MakeBuildErrors("mapping", errors.New("required field is missing from input"))...)
 	}
 	// Field "legend"
 	if fields["legend"] != nil {
@@ -1318,9 +902,9 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 			}
 
 			for i1 := range partialArray {
-				var result1 ScatterSeriesConfig
+				var result1 XYSeriesConfig
 
-				result1 = ScatterSeriesConfig{}
+				result1 = XYSeriesConfig{}
 				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
 					errs = append(errs, cog.MakeBuildErrors("series["+strconv.Itoa(i1)+"]", err)...)
 				}
@@ -1348,16 +932,7 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 // Equals tests the equality of two `Options` objects.
 func (resource Options) Equals(other Options) bool {
-	if resource.SeriesMapping == nil && other.SeriesMapping != nil || resource.SeriesMapping != nil && other.SeriesMapping == nil {
-		return false
-	}
-
-	if resource.SeriesMapping != nil {
-		if *resource.SeriesMapping != *other.SeriesMapping {
-			return false
-		}
-	}
-	if !resource.Dims.Equals(other.Dims) {
+	if resource.Mapping != other.Mapping {
 		return false
 	}
 	if !resource.Legend.Equals(other.Legend) {
@@ -1383,9 +958,6 @@ func (resource Options) Equals(other Options) bool {
 // Validate checks all the validation constraints that may be defined on `Options` fields for violations and returns them.
 func (resource Options) Validate() error {
 	var errs cog.BuildErrors
-	if err := resource.Dims.Validate(); err != nil {
-		errs = append(errs, cog.MakeBuildErrors("dims", err)...)
-	}
 	if err := resource.Legend.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("legend", err)...)
 	}
@@ -1397,6 +969,576 @@ func (resource Options) Validate() error {
 		if err := resource.Series[i1].Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("series["+strconv.Itoa(i1)+"]", err)...)
 		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type XychartFieldConfigPointSize struct {
+	Fixed *int32 `json:"fixed,omitempty"`
+	Min   *int32 `json:"min,omitempty"`
+	Max   *int32 `json:"max,omitempty"`
+}
+
+// NewXychartFieldConfigPointSize creates a new XychartFieldConfigPointSize object.
+func NewXychartFieldConfigPointSize() *XychartFieldConfigPointSize {
+	return &XychartFieldConfigPointSize{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `XychartFieldConfigPointSize` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *XychartFieldConfigPointSize) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "fixed"
+	if fields["fixed"] != nil {
+		if string(fields["fixed"]) != "null" {
+			if err := json.Unmarshal(fields["fixed"], &resource.Fixed); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fixed", err)...)
+			}
+
+		}
+		delete(fields, "fixed")
+
+	}
+	// Field "min"
+	if fields["min"] != nil {
+		if string(fields["min"]) != "null" {
+			if err := json.Unmarshal(fields["min"], &resource.Min); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("min", err)...)
+			}
+
+		}
+		delete(fields, "min")
+
+	}
+	// Field "max"
+	if fields["max"] != nil {
+		if string(fields["max"]) != "null" {
+			if err := json.Unmarshal(fields["max"], &resource.Max); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("max", err)...)
+			}
+
+		}
+		delete(fields, "max")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("XychartFieldConfigPointSize", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `XychartFieldConfigPointSize` objects.
+func (resource XychartFieldConfigPointSize) Equals(other XychartFieldConfigPointSize) bool {
+	if resource.Fixed == nil && other.Fixed != nil || resource.Fixed != nil && other.Fixed == nil {
+		return false
+	}
+
+	if resource.Fixed != nil {
+		if *resource.Fixed != *other.Fixed {
+			return false
+		}
+	}
+	if resource.Min == nil && other.Min != nil || resource.Min != nil && other.Min == nil {
+		return false
+	}
+
+	if resource.Min != nil {
+		if *resource.Min != *other.Min {
+			return false
+		}
+	}
+	if resource.Max == nil && other.Max != nil || resource.Max != nil && other.Max == nil {
+		return false
+	}
+
+	if resource.Max != nil {
+		if *resource.Max != *other.Max {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `XychartFieldConfigPointSize` fields for violations and returns them.
+func (resource XychartFieldConfigPointSize) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Fixed != nil {
+		if !(*resource.Fixed >= 0) {
+			errs = append(errs, cog.MakeBuildErrors(
+				"fixed",
+				errors.New("must be >= 0"),
+			)...)
+		}
+	}
+	if resource.Min != nil {
+		if !(*resource.Min >= 0) {
+			errs = append(errs, cog.MakeBuildErrors(
+				"min",
+				errors.New("must be >= 0"),
+			)...)
+		}
+	}
+	if resource.Max != nil {
+		if !(*resource.Max >= 0) {
+			errs = append(errs, cog.MakeBuildErrors(
+				"max",
+				errors.New("must be >= 0"),
+			)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type XychartXYSeriesConfigName struct {
+	Fixed *string `json:"fixed,omitempty"`
+}
+
+// NewXychartXYSeriesConfigName creates a new XychartXYSeriesConfigName object.
+func NewXychartXYSeriesConfigName() *XychartXYSeriesConfigName {
+	return &XychartXYSeriesConfigName{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `XychartXYSeriesConfigName` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *XychartXYSeriesConfigName) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "fixed"
+	if fields["fixed"] != nil {
+		if string(fields["fixed"]) != "null" {
+			if err := json.Unmarshal(fields["fixed"], &resource.Fixed); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fixed", err)...)
+			}
+
+		}
+		delete(fields, "fixed")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigName", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `XychartXYSeriesConfigName` objects.
+func (resource XychartXYSeriesConfigName) Equals(other XychartXYSeriesConfigName) bool {
+	if resource.Fixed == nil && other.Fixed != nil || resource.Fixed != nil && other.Fixed == nil {
+		return false
+	}
+
+	if resource.Fixed != nil {
+		if *resource.Fixed != *other.Fixed {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `XychartXYSeriesConfigName` fields for violations and returns them.
+func (resource XychartXYSeriesConfigName) Validate() error {
+	return nil
+}
+
+type XychartXYSeriesConfigFrame struct {
+	Matcher MatcherConfig `json:"matcher"`
+}
+
+// NewXychartXYSeriesConfigFrame creates a new XychartXYSeriesConfigFrame object.
+func NewXychartXYSeriesConfigFrame() *XychartXYSeriesConfigFrame {
+	return &XychartXYSeriesConfigFrame{
+		Matcher: *NewMatcherConfig(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `XychartXYSeriesConfigFrame` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *XychartXYSeriesConfigFrame) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "matcher"
+	if fields["matcher"] != nil {
+		if string(fields["matcher"]) != "null" {
+
+			resource.Matcher = MatcherConfig{}
+			if err := resource.Matcher.UnmarshalJSONStrict(fields["matcher"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("matcher", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("matcher", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "matcher")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("matcher", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigFrame", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `XychartXYSeriesConfigFrame` objects.
+func (resource XychartXYSeriesConfigFrame) Equals(other XychartXYSeriesConfigFrame) bool {
+	if !resource.Matcher.Equals(other.Matcher) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `XychartXYSeriesConfigFrame` fields for violations and returns them.
+func (resource XychartXYSeriesConfigFrame) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Matcher.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("matcher", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type XychartXYSeriesConfigX struct {
+	Matcher MatcherConfig `json:"matcher"`
+}
+
+// NewXychartXYSeriesConfigX creates a new XychartXYSeriesConfigX object.
+func NewXychartXYSeriesConfigX() *XychartXYSeriesConfigX {
+	return &XychartXYSeriesConfigX{
+		Matcher: *NewMatcherConfig(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `XychartXYSeriesConfigX` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *XychartXYSeriesConfigX) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "matcher"
+	if fields["matcher"] != nil {
+		if string(fields["matcher"]) != "null" {
+
+			resource.Matcher = MatcherConfig{}
+			if err := resource.Matcher.UnmarshalJSONStrict(fields["matcher"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("matcher", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("matcher", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "matcher")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("matcher", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigX", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `XychartXYSeriesConfigX` objects.
+func (resource XychartXYSeriesConfigX) Equals(other XychartXYSeriesConfigX) bool {
+	if !resource.Matcher.Equals(other.Matcher) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `XychartXYSeriesConfigX` fields for violations and returns them.
+func (resource XychartXYSeriesConfigX) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Matcher.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("matcher", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type XychartXYSeriesConfigY struct {
+	Matcher MatcherConfig `json:"matcher"`
+}
+
+// NewXychartXYSeriesConfigY creates a new XychartXYSeriesConfigY object.
+func NewXychartXYSeriesConfigY() *XychartXYSeriesConfigY {
+	return &XychartXYSeriesConfigY{
+		Matcher: *NewMatcherConfig(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `XychartXYSeriesConfigY` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *XychartXYSeriesConfigY) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "matcher"
+	if fields["matcher"] != nil {
+		if string(fields["matcher"]) != "null" {
+
+			resource.Matcher = MatcherConfig{}
+			if err := resource.Matcher.UnmarshalJSONStrict(fields["matcher"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("matcher", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("matcher", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "matcher")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("matcher", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigY", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `XychartXYSeriesConfigY` objects.
+func (resource XychartXYSeriesConfigY) Equals(other XychartXYSeriesConfigY) bool {
+	if !resource.Matcher.Equals(other.Matcher) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `XychartXYSeriesConfigY` fields for violations and returns them.
+func (resource XychartXYSeriesConfigY) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Matcher.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("matcher", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type XychartXYSeriesConfigColor struct {
+	Matcher MatcherConfig `json:"matcher"`
+}
+
+// NewXychartXYSeriesConfigColor creates a new XychartXYSeriesConfigColor object.
+func NewXychartXYSeriesConfigColor() *XychartXYSeriesConfigColor {
+	return &XychartXYSeriesConfigColor{
+		Matcher: *NewMatcherConfig(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `XychartXYSeriesConfigColor` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *XychartXYSeriesConfigColor) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "matcher"
+	if fields["matcher"] != nil {
+		if string(fields["matcher"]) != "null" {
+
+			resource.Matcher = MatcherConfig{}
+			if err := resource.Matcher.UnmarshalJSONStrict(fields["matcher"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("matcher", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("matcher", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "matcher")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("matcher", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigColor", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `XychartXYSeriesConfigColor` objects.
+func (resource XychartXYSeriesConfigColor) Equals(other XychartXYSeriesConfigColor) bool {
+	if !resource.Matcher.Equals(other.Matcher) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `XychartXYSeriesConfigColor` fields for violations and returns them.
+func (resource XychartXYSeriesConfigColor) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Matcher.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("matcher", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type XychartXYSeriesConfigSize struct {
+	Matcher MatcherConfig `json:"matcher"`
+}
+
+// NewXychartXYSeriesConfigSize creates a new XychartXYSeriesConfigSize object.
+func NewXychartXYSeriesConfigSize() *XychartXYSeriesConfigSize {
+	return &XychartXYSeriesConfigSize{
+		Matcher: *NewMatcherConfig(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `XychartXYSeriesConfigSize` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *XychartXYSeriesConfigSize) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "matcher"
+	if fields["matcher"] != nil {
+		if string(fields["matcher"]) != "null" {
+
+			resource.Matcher = MatcherConfig{}
+			if err := resource.Matcher.UnmarshalJSONStrict(fields["matcher"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("matcher", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("matcher", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "matcher")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("matcher", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigSize", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `XychartXYSeriesConfigSize` objects.
+func (resource XychartXYSeriesConfigSize) Equals(other XychartXYSeriesConfigSize) bool {
+	if !resource.Matcher.Equals(other.Matcher) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `XychartXYSeriesConfigSize` fields for violations and returns them.
+func (resource XychartXYSeriesConfigSize) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Matcher.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("matcher", err)...)
 	}
 
 	if len(errs) == 0 {

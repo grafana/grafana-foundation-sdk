@@ -31,6 +31,11 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public array $groupBy;
 
     /**
+     * Sets the maximum number of time series.
+     */
+    public ?int $limit;
+
+    /**
      * Sets the maximum number of nodes in the flamegraph.
      */
     public ?int $maxNodes;

@@ -424,6 +424,24 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * The behavior when clicking on a result
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink>> $links
+     */
+    public function dataLinks(array $links): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+            $linksResources = [];
+            foreach ($links as $r1) {
+                    $linksResources[] = $r1->build();
+            }
+        $this->internal->fieldConfig->defaults->links = $linksResources;
+    
+        return $this;
+    }
+    /**
      * Alternative to empty string
      */
     public function noValue(string $noValue): static
@@ -471,7 +489,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    public function show(\Grafana\Foundation\Xychart\ScatterShow $show): static
+    public function show(\Grafana\Foundation\Xychart\XYShowMode $show): static
     {    
         if ($this->internal->fieldConfig === null) {
             $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
@@ -486,7 +504,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDimensionConfig> $pointSize
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XychartFieldConfigPointSize> $pointSize
      */
     public function pointSize(\Grafana\Foundation\Cog\Builder $pointSize): static
     {    
@@ -503,10 +521,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ColorDimensionConfig> $pointColor
-     */
-    public function pointColor(\Grafana\Foundation\Cog\Builder $pointColor): static
+    public function pointShape(\Grafana\Foundation\Xychart\PointShape $pointShape): static
     {    
         if ($this->internal->fieldConfig === null) {
             $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
@@ -516,16 +531,15 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
             $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Xychart\FieldConfig();
         }
         assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig);
-        $pointColorResource = $pointColor->build();
-        $this->internal->fieldConfig->defaults->custom->pointColor = $pointColorResource;
+        $this->internal->fieldConfig->defaults->custom->pointShape = $pointShape;
     
         return $this;
     }
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ColorDimensionConfig> $lineColor
-     */
-    public function lineColor(\Grafana\Foundation\Cog\Builder $lineColor): static
-    {    
+    public function pointStrokeWidth(int $pointStrokeWidth): static
+    {
+        if (!($pointStrokeWidth >= 0)) {
+            throw new \ValueError('$pointStrokeWidth must be >= 0');
+        }    
         if ($this->internal->fieldConfig === null) {
             $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
         }
@@ -534,8 +548,24 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
             $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Xychart\FieldConfig();
         }
         assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig);
-        $lineColorResource = $lineColor->build();
-        $this->internal->fieldConfig->defaults->custom->lineColor = $lineColorResource;
+        $this->internal->fieldConfig->defaults->custom->pointStrokeWidth = $pointStrokeWidth;
+    
+        return $this;
+    }
+    public function fillOpacity(int $fillOpacity): static
+    {
+        if (!($fillOpacity <= 100)) {
+            throw new \ValueError('$fillOpacity must be <= 100');
+        }    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Xychart\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->fillOpacity = $fillOpacity;
     
         return $this;
     }
@@ -553,38 +583,6 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         }
         assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig);
         $this->internal->fieldConfig->defaults->custom->lineWidth = $lineWidth;
-    
-        return $this;
-    }
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\LineStyle> $lineStyle
-     */
-    public function lineStyle(\Grafana\Foundation\Cog\Builder $lineStyle): static
-    {    
-        if ($this->internal->fieldConfig === null) {
-            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
-        }
-        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
-        if ($this->internal->fieldConfig->defaults->custom === null) {
-            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Xychart\FieldConfig();
-        }
-        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig);
-        $lineStyleResource = $lineStyle->build();
-        $this->internal->fieldConfig->defaults->custom->lineStyle = $lineStyleResource;
-    
-        return $this;
-    }
-    public function label(\Grafana\Foundation\Common\VisibilityMode $label): static
-    {    
-        if ($this->internal->fieldConfig === null) {
-            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
-        }
-        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
-        if ($this->internal->fieldConfig->defaults->custom === null) {
-            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Xychart\FieldConfig();
-        }
-        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig);
-        $this->internal->fieldConfig->defaults->custom->label = $label;
     
         return $this;
     }
@@ -737,9 +735,9 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TextDimensionConfig> $labelValue
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\LineStyle> $lineStyle
      */
-    public function labelValue(\Grafana\Foundation\Cog\Builder $labelValue): static
+    public function lineStyle(\Grafana\Foundation\Cog\Builder $lineStyle): static
     {    
         if ($this->internal->fieldConfig === null) {
             $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
@@ -749,8 +747,8 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
             $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Xychart\FieldConfig();
         }
         assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig);
-        $labelValueResource = $labelValue->build();
-        $this->internal->fieldConfig->defaults->custom->labelValue = $labelValueResource;
+        $lineStyleResource = $lineStyle->build();
+        $this->internal->fieldConfig->defaults->custom->lineStyle = $lineStyleResource;
     
         return $this;
     }
@@ -768,28 +766,13 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
-    public function seriesMapping(\Grafana\Foundation\Xychart\SeriesMapping $seriesMapping): static
+    public function mapping(\Grafana\Foundation\Xychart\SeriesMapping $mapping): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Xychart\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Xychart\Options);
-        $this->internal->options->seriesMapping = $seriesMapping;
-    
-        return $this;
-    }
-    /**
-     * Table Mode (auto)
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XYDimensionConfig> $dims
-     */
-    public function dims(\Grafana\Foundation\Cog\Builder $dims): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Xychart\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Xychart\Options);
-        $dimsResource = $dims->build();
-        $this->internal->options->dims = $dimsResource;
+        $this->internal->options->mapping = $mapping;
     
         return $this;
     }
@@ -822,8 +805,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * Manual Mode
-     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\ScatterSeriesConfig>> $series
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XYSeriesConfig>> $series
      */
     public function series(array $series): static
     {    

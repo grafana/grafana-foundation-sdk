@@ -14,13 +14,11 @@ type StringOrElasticsearchInlineScriptBuilder struct {
 }
 
 func NewStringOrElasticsearchInlineScriptBuilder() *StringOrElasticsearchInlineScriptBuilder {
-	resource := &StringOrElasticsearchInlineScript{}
+	resource := NewStringOrElasticsearchInlineScript()
 	builder := &StringOrElasticsearchInlineScriptBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -48,7 +46,4 @@ func (builder *StringOrElasticsearchInlineScriptBuilder) ElasticsearchInlineScri
 	builder.internal.ElasticsearchInlineScript = &elasticsearchInlineScriptResource
 
 	return builder
-}
-
-func (builder *StringOrElasticsearchInlineScriptBuilder) applyDefaults() {
 }

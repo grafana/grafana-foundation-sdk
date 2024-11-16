@@ -27,6 +27,11 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public array $groupBy;
 
     /**
+     * Sets the maximum number of time series.
+     */
+    public ?int $limit;
+
+    /**
      * Sets the maximum number of nodes in the flamegraph.
      */
     public ?int $maxNodes;
@@ -62,18 +67,20 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param array<string>|null $spanSelector
      * @param string|null $profileTypeId
      * @param array<string>|null $groupBy
+     * @param int|null $limit
      * @param int|null $maxNodes
      * @param string|null $refId
      * @param bool|null $hide
      * @param string|null $queryType
      * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      */
-    public function __construct(?string $labelSelector = null, ?array $spanSelector = null, ?string $profileTypeId = null, ?array $groupBy = null, ?int $maxNodes = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
+    public function __construct(?string $labelSelector = null, ?array $spanSelector = null, ?string $profileTypeId = null, ?array $groupBy = null, ?int $limit = null, ?int $maxNodes = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
     {
         $this->labelSelector = $labelSelector ?: "{}";
         $this->spanSelector = $spanSelector;
         $this->profileTypeId = $profileTypeId ?: "";
         $this->groupBy = $groupBy ?: [];
+        $this->limit = $limit;
         $this->maxNodes = $maxNodes;
         $this->refId = $refId ?: "";
         $this->hide = $hide;
@@ -86,13 +93,14 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{labelSelector?: string, spanSelector?: array<string>, profileTypeId?: string, groupBy?: array<string>, maxNodes?: int, refId?: string, hide?: bool, queryType?: string, datasource?: mixed} $inputData */
+        /** @var array{labelSelector?: string, spanSelector?: array<string>, profileTypeId?: string, groupBy?: array<string>, limit?: int, maxNodes?: int, refId?: string, hide?: bool, queryType?: string, datasource?: mixed} $inputData */
         $data = $inputData;
         return new self(
             labelSelector: $data["labelSelector"] ?? null,
             spanSelector: $data["spanSelector"] ?? null,
             profileTypeId: $data["profileTypeId"] ?? null,
             groupBy: $data["groupBy"] ?? null,
+            limit: $data["limit"] ?? null,
             maxNodes: $data["maxNodes"] ?? null,
             refId: $data["refId"] ?? null,
             hide: $data["hide"] ?? null,
@@ -118,6 +126,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         ];
         if (isset($this->spanSelector)) {
             $data["spanSelector"] = $this->spanSelector;
+        }
+        if (isset($this->limit)) {
+            $data["limit"] = $this->limit;
         }
         if (isset($this->maxNodes)) {
             $data["maxNodes"] = $this->maxNodes;

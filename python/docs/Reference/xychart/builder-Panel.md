@@ -88,6 +88,14 @@ Panel color configuration
 def color_scheme(color: cogbuilder.Builder[dashboard.FieldColor]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> data_links
+
+The behavior when clicking on a result
+
+```python
+def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.
@@ -118,20 +126,18 @@ Panel description.
 def description(description: str) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> dims
-
-Table Mode (auto)
-
-```python
-def dims(dims: cogbuilder.Builder[xychart.XYDimensionConfig]) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> display_name
 
 The display value for this field.  This supports template variables blank is auto
 
 ```python
 def display_name(display_name: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> fill_opacity
+
+```python
+def fill_opacity(fill_opacity: int) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> grid_pos
@@ -186,18 +192,6 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 def interval(interval: str) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> label
-
-```python
-def label(label: common.VisibilityMode) -> typing.Self
-```
-
-### <span class="badge object-method"></span> label_value
-
-```python
-def label_value(label_value: cogbuilder.Builder[common.TextDimensionConfig]) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> legend
 
 ```python
@@ -210,12 +204,6 @@ Dynamically load the panel
 
 ```python
 def library_panel(library_panel: dashboard.LibraryPanelRef) -> typing.Self
-```
-
-### <span class="badge object-method"></span> line_color
-
-```python
-def line_color(line_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> line_style
@@ -236,6 +224,12 @@ Panel links.
 
 ```python
 def links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> mapping
+
+```python
+def mapping(mapping: xychart.SeriesMapping) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> mappings
@@ -296,16 +290,22 @@ Overrides are the options applied to specific fields overriding the defaults.
 def overrides(overrides: list[cogbuilder.Builder[dashboard.DashboardFieldConfigSourceOverrides]]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> point_color
+### <span class="badge object-method"></span> point_shape
 
 ```python
-def point_color(point_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self
+def point_shape(point_shape: xychart.PointShape) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> point_size
 
 ```python
-def point_size(point_size: cogbuilder.Builder[common.ScaleDimensionConfig]) -> typing.Self
+def point_size(point_size: cogbuilder.Builder[xychart.XychartFieldConfigPointSize]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> point_stroke_width
+
+```python
+def point_stroke_width(point_stroke_width: int) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> query_caching_ttl
@@ -342,22 +342,14 @@ def scale_distribution(scale_distribution: cogbuilder.Builder[common.ScaleDistri
 
 ### <span class="badge object-method"></span> series
 
-Manual Mode
-
 ```python
-def series(series: list[cogbuilder.Builder[xychart.ScatterSeriesConfig]]) -> typing.Self
-```
-
-### <span class="badge object-method"></span> series_mapping
-
-```python
-def series_mapping(series_mapping: xychart.SeriesMapping) -> typing.Self
+def series(series: list[cogbuilder.Builder[xychart.XYSeriesConfig]]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> show
 
 ```python
-def show(show: xychart.ScatterShow) -> typing.Self
+def show(show: xychart.XYShowMode) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> span

@@ -439,6 +439,24 @@ final class PanelConverter
     
     
     }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->links !== null && count($input->fieldConfig->defaults->links) >= 1) {
+    
+        
+    $buffer = 'dataLinks(';
+        $tmparg0 = [];
+        foreach ($input->fieldConfig->defaults->links as $arg1) {
+        $tmplinksarg1 = \Grafana\Foundation\Dashboard\DashboardLinkConverter::convert($arg1);
+        $tmparg0[] = $tmplinksarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->fieldConfig !== null && $input->fieldConfig->defaults->noValue !== null && $input->fieldConfig->defaults->noValue !== "") {
     
         
@@ -509,6 +527,19 @@ final class PanelConverter
         
     $buffer = 'edges(';
         $arg0 = \Grafana\Foundation\Nodegraph\EdgeOptionsConverter::convert($input->options->edges);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Nodegraph\Options && $input->options->zoomMode !== null) {
+    
+        
+    $buffer = 'zoomMode(';
+        $arg0 ='\Grafana\Foundation\Nodegraph\ZoomMode::fromValue("'.$input->options->zoomMode.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

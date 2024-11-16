@@ -36,6 +36,16 @@ Panel color configuration
 colorScheme(\Grafana\Foundation\Cog\Builder $color)
 ```
 
+### <span class="badge object-method"></span> dataLinks
+
+The behavior when clicking on a result
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink>> $links
+
+```php
+dataLinks(array $links)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.
@@ -392,6 +402,14 @@ Each transformation creates a result set that then passes on to the next transfo
 
 ```php
 withTransformation(\Grafana\Foundation\Dashboard\DataTransformerConfig $transformation)
+```
+
+### <span class="badge object-method"></span> zoomMode
+
+How to handle zoom/scroll events in the node graph
+
+```php
+zoomMode(\Grafana\Foundation\Nodegraph\ZoomMode $zoomMode)
 ```
 
 ## See also

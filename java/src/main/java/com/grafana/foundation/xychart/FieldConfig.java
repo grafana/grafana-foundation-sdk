@@ -7,38 +7,31 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grafana.foundation.common.ScaleDimensionConfig;
-import com.grafana.foundation.common.ColorDimensionConfig;
-import com.grafana.foundation.common.LineStyle;
-import com.grafana.foundation.common.VisibilityMode;
 import com.grafana.foundation.common.HideSeriesConfig;
 import com.grafana.foundation.common.AxisPlacement;
 import com.grafana.foundation.common.AxisColorMode;
 import com.grafana.foundation.common.ScaleDistributionConfig;
-import com.grafana.foundation.common.TextDimensionConfig;
+import com.grafana.foundation.common.LineStyle;
 
 public class FieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("show")
-    public ScatterShow show;
+    public XYShowMode show;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("pointSize")
-    public ScaleDimensionConfig pointSize;
+    public XychartFieldConfigPointSize pointSize;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("pointColor")
-    public ColorDimensionConfig pointColor;
+    @JsonProperty("pointShape")
+    public PointShape pointShape;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("lineColor")
-    public ColorDimensionConfig lineColor;
+    @JsonProperty("pointStrokeWidth")
+    public Integer pointStrokeWidth;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("fillOpacity")
+    public Integer fillOpacity;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("lineWidth")
     public Integer lineWidth;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("lineStyle")
-    public LineStyle lineStyle;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("label")
-    public VisibilityMode label;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hideFrom")
     public HideSeriesConfig hideFrom;
@@ -70,8 +63,8 @@ public class FieldConfig {
     @JsonProperty("axisCenteredZero")
     public Boolean axisCenteredZero;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("labelValue")
-    public TextDimensionConfig labelValue;
+    @JsonProperty("lineStyle")
+    public LineStyle lineStyle;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("axisBorderShow")
     public Boolean axisBorderShow;

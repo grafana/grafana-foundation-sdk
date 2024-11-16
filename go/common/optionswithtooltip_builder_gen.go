@@ -15,13 +15,11 @@ type OptionsWithTooltipBuilder struct {
 }
 
 func NewOptionsWithTooltipBuilder() *OptionsWithTooltipBuilder {
-	resource := &OptionsWithTooltip{}
+	resource := NewOptionsWithTooltip()
 	builder := &OptionsWithTooltipBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *OptionsWithTooltipBuilder) Tooltip(tooltip cog.Builder[VizTooltip
 	builder.internal.Tooltip = tooltipResource
 
 	return builder
-}
-
-func (builder *OptionsWithTooltipBuilder) applyDefaults() {
 }

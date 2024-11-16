@@ -14,13 +14,11 @@ type BaseGrafanaTemplateVariableQueryBuilder struct {
 }
 
 func NewBaseGrafanaTemplateVariableQueryBuilder() *BaseGrafanaTemplateVariableQueryBuilder {
-	resource := &BaseGrafanaTemplateVariableQuery{}
+	resource := NewBaseGrafanaTemplateVariableQuery()
 	builder := &BaseGrafanaTemplateVariableQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *BaseGrafanaTemplateVariableQueryBuilder) RawQuery(rawQuery string
 	builder.internal.RawQuery = &rawQuery
 
 	return builder
-}
-
-func (builder *BaseGrafanaTemplateVariableQueryBuilder) applyDefaults() {
 }

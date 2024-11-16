@@ -14,13 +14,11 @@ type StreamingQueryBuilder struct {
 }
 
 func NewStreamingQueryBuilder() *StreamingQueryBuilder {
-	resource := &StreamingQuery{}
+	resource := NewStreamingQuery()
 	builder := &StreamingQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -72,7 +70,4 @@ func (builder *StreamingQueryBuilder) Url(url string) *StreamingQueryBuilder {
 	builder.internal.Url = &url
 
 	return builder
-}
-
-func (builder *StreamingQueryBuilder) applyDefaults() {
 }

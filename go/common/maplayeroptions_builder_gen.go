@@ -14,13 +14,11 @@ type MapLayerOptionsBuilder struct {
 }
 
 func NewMapLayerOptionsBuilder() *MapLayerOptionsBuilder {
-	resource := &MapLayerOptions{}
+	resource := NewMapLayerOptions()
 	builder := &MapLayerOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -86,7 +84,4 @@ func (builder *MapLayerOptionsBuilder) Tooltip(tooltip bool) *MapLayerOptionsBui
 	builder.internal.Tooltip = &tooltip
 
 	return builder
-}
-
-func (builder *MapLayerOptionsBuilder) applyDefaults() {
 }

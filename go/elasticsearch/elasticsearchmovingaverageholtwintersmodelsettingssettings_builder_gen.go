@@ -14,13 +14,11 @@ type ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder struct {
 }
 
 func NewElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder() *ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder {
-	resource := &ElasticsearchMovingAverageHoltWintersModelSettingsSettings{}
+	resource := NewElasticsearchMovingAverageHoltWintersModelSettingsSettings()
 	builder := &ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -61,7 +59,4 @@ func (builder *ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder
 	builder.internal.Pad = &pad
 
 	return builder
-}
-
-func (builder *ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder) applyDefaults() {
 }

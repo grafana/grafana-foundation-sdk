@@ -7,13 +7,16 @@ title: <span class="badge object-type-interface"></span> FieldConfig
 
 ```typescript
 export interface FieldConfig {
-	show?: xychart.ScatterShow;
-	pointSize?: common.ScaleDimensionConfig;
-	pointColor?: common.ColorDimensionConfig;
-	lineColor?: common.ColorDimensionConfig;
+	show?: xychart.XYShowMode;
+	pointSize?: {
+		fixed?: number;
+		min?: number;
+		max?: number;
+	};
+	pointShape?: xychart.PointShape;
+	pointStrokeWidth?: number;
+	fillOpacity?: number;
 	lineWidth?: number;
-	lineStyle?: common.LineStyle;
-	label?: common.VisibilityMode;
 	hideFrom?: common.HideSeriesConfig;
 	axisPlacement?: common.AxisPlacement;
 	axisColorMode?: common.AxisColorMode;
@@ -24,7 +27,7 @@ export interface FieldConfig {
 	axisGridShow?: boolean;
 	scaleDistribution?: common.ScaleDistributionConfig;
 	axisCenteredZero?: boolean;
-	labelValue?: common.TextDimensionConfig;
+	lineStyle?: common.LineStyle;
 	axisBorderShow?: boolean;
 }
 

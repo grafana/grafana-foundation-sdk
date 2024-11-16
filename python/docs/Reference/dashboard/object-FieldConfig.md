@@ -63,7 +63,7 @@ class FieldConfig:
     # Panel color configuration
     color: typing.Optional[dashboard.FieldColor]
     # The behavior when clicking on a result
-    links: typing.Optional[list[object]]
+    links: typing.Optional[list[dashboard.DashboardLink]]
     # Alternative to empty string
     no_value: typing.Optional[str]
     # custom is specified by the FieldConfig field

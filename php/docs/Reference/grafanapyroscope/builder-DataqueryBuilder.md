@@ -58,6 +58,14 @@ Specifies the query label selectors.
 labelSelector(string $labelSelector)
 ```
 
+### <span class="badge object-method"></span> limit
+
+Sets the maximum number of time series.
+
+```php
+limit(int $limit)
+```
+
 ### <span class="badge object-method"></span> maxNodes
 
 Sets the maximum number of nodes in the flamegraph.
