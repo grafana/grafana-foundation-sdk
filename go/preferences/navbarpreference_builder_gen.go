@@ -14,13 +14,11 @@ type NavbarPreferenceBuilder struct {
 }
 
 func NewNavbarPreferenceBuilder() *NavbarPreferenceBuilder {
-	resource := &NavbarPreference{}
+	resource := NewNavbarPreference()
 	builder := &NavbarPreferenceBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *NavbarPreferenceBuilder) BookmarkUrls(bookmarkUrls []string) *Nav
 	builder.internal.BookmarkUrls = bookmarkUrls
 
 	return builder
-}
-
-func (builder *NavbarPreferenceBuilder) applyDefaults() {
 }

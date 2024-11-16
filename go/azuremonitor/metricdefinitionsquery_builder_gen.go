@@ -15,13 +15,11 @@ type MetricDefinitionsQueryBuilder struct {
 }
 
 func NewMetricDefinitionsQueryBuilder() *MetricDefinitionsQueryBuilder {
-	resource := &MetricDefinitionsQuery{}
+	resource := NewMetricDefinitionsQuery()
 	builder := &MetricDefinitionsQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Kind = "MetricDefinitionsQuery"
 
 	return builder
@@ -63,7 +61,4 @@ func (builder *MetricDefinitionsQueryBuilder) ResourceName(resourceName string) 
 	builder.internal.ResourceName = &resourceName
 
 	return builder
-}
-
-func (builder *MetricDefinitionsQueryBuilder) applyDefaults() {
 }

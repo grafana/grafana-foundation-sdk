@@ -15,13 +15,11 @@ type TableSortByFieldStateBuilder struct {
 }
 
 func NewTableSortByFieldStateBuilder() *TableSortByFieldStateBuilder {
-	resource := &TableSortByFieldState{}
+	resource := NewTableSortByFieldState()
 	builder := &TableSortByFieldStateBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -46,7 +44,4 @@ func (builder *TableSortByFieldStateBuilder) Desc(desc bool) *TableSortByFieldSt
 	builder.internal.Desc = &desc
 
 	return builder
-}
-
-func (builder *TableSortByFieldStateBuilder) applyDefaults() {
 }

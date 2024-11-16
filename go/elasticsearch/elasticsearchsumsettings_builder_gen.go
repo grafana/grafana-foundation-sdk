@@ -14,13 +14,11 @@ type ElasticsearchSumSettingsBuilder struct {
 }
 
 func NewElasticsearchSumSettingsBuilder() *ElasticsearchSumSettingsBuilder {
-	resource := &ElasticsearchSumSettings{}
+	resource := NewElasticsearchSumSettings()
 	builder := &ElasticsearchSumSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -48,7 +46,4 @@ func (builder *ElasticsearchSumSettingsBuilder) Missing(missing string) *Elastic
 	builder.internal.Missing = &missing
 
 	return builder
-}
-
-func (builder *ElasticsearchSumSettingsBuilder) applyDefaults() {
 }

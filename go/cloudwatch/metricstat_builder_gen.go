@@ -14,13 +14,11 @@ type MetricStatBuilder struct {
 }
 
 func NewMetricStatBuilder() *MetricStatBuilder {
-	resource := &MetricStat{}
+	resource := NewMetricStat()
 	builder := &MetricStatBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -94,7 +92,4 @@ func (builder *MetricStatBuilder) Statistics(statistics []string) *MetricStatBui
 	builder.internal.Statistics = statistics
 
 	return builder
-}
-
-func (builder *MetricStatBuilder) applyDefaults() {
 }

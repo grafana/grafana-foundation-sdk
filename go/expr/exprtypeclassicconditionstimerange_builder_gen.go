@@ -14,13 +14,11 @@ type ExprTypeClassicConditionsTimeRangeBuilder struct {
 }
 
 func NewExprTypeClassicConditionsTimeRangeBuilder() *ExprTypeClassicConditionsTimeRangeBuilder {
-	resource := &ExprTypeClassicConditionsTimeRange{}
+	resource := NewExprTypeClassicConditionsTimeRange()
 	builder := &ExprTypeClassicConditionsTimeRangeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,9 +43,4 @@ func (builder *ExprTypeClassicConditionsTimeRangeBuilder) To(to string) *ExprTyp
 	builder.internal.To = to
 
 	return builder
-}
-
-func (builder *ExprTypeClassicConditionsTimeRangeBuilder) applyDefaults() {
-	builder.From("now-6h")
-	builder.To("now")
 }

@@ -68,7 +68,7 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<CloudWatchLogsQuery> {
+    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
         protected final CloudWatchLogsQuery internal;
         
         public Builder() {

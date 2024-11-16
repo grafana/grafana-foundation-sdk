@@ -15,13 +15,11 @@ type TableAutoCellOptionsBuilder struct {
 }
 
 func NewTableAutoCellOptionsBuilder() *TableAutoCellOptionsBuilder {
-	resource := &TableAutoCellOptions{}
+	resource := NewTableAutoCellOptions()
 	builder := &TableAutoCellOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "auto"
 
 	return builder
@@ -39,7 +37,4 @@ func (builder *TableAutoCellOptionsBuilder) WrapText(wrapText bool) *TableAutoCe
 	builder.internal.WrapText = &wrapText
 
 	return builder
-}
-
-func (builder *TableAutoCellOptionsBuilder) applyDefaults() {
 }

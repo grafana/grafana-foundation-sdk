@@ -15,13 +15,11 @@ type HideableFieldConfigBuilder struct {
 }
 
 func NewHideableFieldConfigBuilder() *HideableFieldConfigBuilder {
-	resource := &HideableFieldConfig{}
+	resource := NewHideableFieldConfig()
 	builder := &HideableFieldConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *HideableFieldConfigBuilder) HideFrom(hideFrom cog.Builder[HideSer
 	builder.internal.HideFrom = &hideFromResource
 
 	return builder
-}
-
-func (builder *HideableFieldConfigBuilder) applyDefaults() {
 }

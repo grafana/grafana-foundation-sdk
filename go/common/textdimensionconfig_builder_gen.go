@@ -14,13 +14,11 @@ type TextDimensionConfigBuilder struct {
 }
 
 func NewTextDimensionConfigBuilder() *TextDimensionConfigBuilder {
-	resource := &TextDimensionConfig{}
+	resource := NewTextDimensionConfig()
 	builder := &TextDimensionConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -50,7 +48,4 @@ func (builder *TextDimensionConfigBuilder) Fixed(fixed string) *TextDimensionCon
 	builder.internal.Fixed = &fixed
 
 	return builder
-}
-
-func (builder *TextDimensionConfigBuilder) applyDefaults() {
 }

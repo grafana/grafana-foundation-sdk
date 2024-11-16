@@ -14,13 +14,11 @@ type PulseWaveQueryBuilder struct {
 }
 
 func NewPulseWaveQueryBuilder() *PulseWaveQueryBuilder {
-	resource := &PulseWaveQuery{}
+	resource := NewPulseWaveQuery()
 	builder := &PulseWaveQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -61,7 +59,4 @@ func (builder *PulseWaveQueryBuilder) TimeStep(timeStep int64) *PulseWaveQueryBu
 	builder.internal.TimeStep = &timeStep
 
 	return builder
-}
-
-func (builder *PulseWaveQueryBuilder) applyDefaults() {
 }

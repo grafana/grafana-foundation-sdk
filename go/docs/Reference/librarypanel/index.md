@@ -15,6 +15,38 @@
  * <span class="badge builder"></span> [LibrarypanelLibraryPanelModelBuilder](./builder-LibrarypanelLibraryPanelModelBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewLibraryPanel
+
+NewLibraryPanel creates a new LibraryPanel object.
+
+```go
+func NewLibraryPanel() *LibraryPanel
+```
+
+### <span class="badge function"></span> NewLibraryElementDTOMetaUser
+
+NewLibraryElementDTOMetaUser creates a new LibraryElementDTOMetaUser object.
+
+```go
+func NewLibraryElementDTOMetaUser() *LibraryElementDTOMetaUser
+```
+
+### <span class="badge function"></span> NewLibraryElementDTOMeta
+
+NewLibraryElementDTOMeta creates a new LibraryElementDTOMeta object.
+
+```go
+func NewLibraryElementDTOMeta() *LibraryElementDTOMeta
+```
+
+### <span class="badge function"></span> NewLibrarypanelLibraryPanelModel
+
+NewLibrarypanelLibraryPanelModel creates a new LibrarypanelLibraryPanelModel object.
+
+```go
+func NewLibrarypanelLibraryPanelModel() *LibrarypanelLibraryPanelModel
+```
+
 ### <span class="badge function"></span> LibraryPanelConverter
 
 LibraryPanelConverter accepts a `LibraryPanel` object and generates the Go code to build this object using builders.

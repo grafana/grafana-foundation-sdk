@@ -14,13 +14,11 @@ type ElasticsearchAverageSettingsBuilder struct {
 }
 
 func NewElasticsearchAverageSettingsBuilder() *ElasticsearchAverageSettingsBuilder {
-	resource := &ElasticsearchAverageSettings{}
+	resource := NewElasticsearchAverageSettings()
 	builder := &ElasticsearchAverageSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -48,7 +46,4 @@ func (builder *ElasticsearchAverageSettingsBuilder) Missing(missing string) *Ela
 	builder.internal.Missing = &missing
 
 	return builder
-}
-
-func (builder *ElasticsearchAverageSettingsBuilder) applyDefaults() {
 }

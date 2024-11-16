@@ -14,13 +14,11 @@ type BasePipelineMetricAggregationBuilder struct {
 }
 
 func NewBasePipelineMetricAggregationBuilder() *BasePipelineMetricAggregationBuilder {
-	resource := &BasePipelineMetricAggregation{}
+	resource := NewBasePipelineMetricAggregation()
 	builder := &BasePipelineMetricAggregationBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -61,7 +59,4 @@ func (builder *BasePipelineMetricAggregationBuilder) Hide(hide bool) *BasePipeli
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *BasePipelineMetricAggregationBuilder) applyDefaults() {
 }
