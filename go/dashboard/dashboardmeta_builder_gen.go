@@ -16,13 +16,11 @@ type DashboardMetaBuilder struct {
 }
 
 func NewDashboardMetaBuilder() *DashboardMetaBuilder {
-	resource := &DashboardMeta{}
+	resource := NewDashboardMeta()
 	builder := &DashboardMetaBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -195,7 +193,4 @@ func (builder *DashboardMetaBuilder) Version(version int64) *DashboardMetaBuilde
 	builder.internal.Version = &version
 
 	return builder
-}
-
-func (builder *DashboardMetaBuilder) applyDefaults() {
 }

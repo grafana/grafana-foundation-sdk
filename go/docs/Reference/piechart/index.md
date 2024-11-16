@@ -14,6 +14,30 @@
  * <span class="badge builder"></span> [PieChartLegendOptionsBuilder](./builder-PieChartLegendOptionsBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewPieChartLegendOptions
+
+NewPieChartLegendOptions creates a new PieChartLegendOptions object.
+
+```go
+func NewPieChartLegendOptions() *PieChartLegendOptions
+```
+
+### <span class="badge function"></span> NewOptions
+
+NewOptions creates a new Options object.
+
+```go
+func NewOptions() *Options
+```
+
+### <span class="badge function"></span> NewFieldConfig
+
+NewFieldConfig creates a new FieldConfig object.
+
+```go
+func NewFieldConfig() *FieldConfig
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to piechart panels.

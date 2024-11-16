@@ -15,13 +15,11 @@ type TableColoredBackgroundCellOptionsBuilder struct {
 }
 
 func NewTableColoredBackgroundCellOptionsBuilder() *TableColoredBackgroundCellOptionsBuilder {
-	resource := &TableColoredBackgroundCellOptions{}
+	resource := NewTableColoredBackgroundCellOptions()
 	builder := &TableColoredBackgroundCellOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "color-background"
 
 	return builder
@@ -51,7 +49,4 @@ func (builder *TableColoredBackgroundCellOptionsBuilder) WrapText(wrapText bool)
 	builder.internal.WrapText = &wrapText
 
 	return builder
-}
-
-func (builder *TableColoredBackgroundCellOptionsBuilder) applyDefaults() {
 }

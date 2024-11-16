@@ -15,13 +15,11 @@ type DashboardLinkBuilder struct {
 }
 
 func NewDashboardLinkBuilder(title string) *DashboardLinkBuilder {
-	resource := &DashboardLink{}
+	resource := NewDashboardLink()
 	builder := &DashboardLinkBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Title = title
 
 	return builder
@@ -103,11 +101,4 @@ func (builder *DashboardLinkBuilder) KeepTime(keepTime bool) *DashboardLinkBuild
 	builder.internal.KeepTime = keepTime
 
 	return builder
-}
-
-func (builder *DashboardLinkBuilder) applyDefaults() {
-	builder.AsDropdown(false)
-	builder.TargetBlank(false)
-	builder.IncludeVars(false)
-	builder.KeepTime(false)
 }

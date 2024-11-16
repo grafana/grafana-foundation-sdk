@@ -15,13 +15,11 @@ type StackingConfigBuilder struct {
 }
 
 func NewStackingConfigBuilder() *StackingConfigBuilder {
-	resource := &StackingConfig{}
+	resource := NewStackingConfig()
 	builder := &StackingConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -44,7 +42,4 @@ func (builder *StackingConfigBuilder) Group(group string) *StackingConfigBuilder
 	builder.internal.Group = &group
 
 	return builder
-}
-
-func (builder *StackingConfigBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type ExtendedStatsBuilder struct {
 }
 
 func NewExtendedStatsBuilder() *ExtendedStatsBuilder {
-	resource := &ExtendedStats{}
+	resource := NewExtendedStats()
 	builder := &ExtendedStatsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "extended_stats"
 
 	return builder
@@ -67,7 +65,4 @@ func (builder *ExtendedStatsBuilder) Hide(hide bool) *ExtendedStatsBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *ExtendedStatsBuilder) applyDefaults() {
 }

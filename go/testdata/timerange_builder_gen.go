@@ -14,13 +14,11 @@ type TimeRangeBuilder struct {
 }
 
 func NewTimeRangeBuilder() *TimeRangeBuilder {
-	resource := &TimeRange{}
+	resource := NewTimeRange()
 	builder := &TimeRangeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,9 +43,4 @@ func (builder *TimeRangeBuilder) To(to string) *TimeRangeBuilder {
 	builder.internal.To = to
 
 	return builder
-}
-
-func (builder *TimeRangeBuilder) applyDefaults() {
-	builder.From("now-6h")
-	builder.To("now")
 }

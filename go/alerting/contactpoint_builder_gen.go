@@ -16,13 +16,11 @@ type ContactPointBuilder struct {
 }
 
 func NewContactPointBuilder() *ContactPointBuilder {
-	resource := &ContactPoint{}
+	resource := NewContactPoint()
 	builder := &ContactPointBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -73,7 +71,4 @@ func (builder *ContactPointBuilder) Uid(uid string) *ContactPointBuilder {
 	builder.internal.Uid = &uid
 
 	return builder
-}
-
-func (builder *ContactPointBuilder) applyDefaults() {
 }

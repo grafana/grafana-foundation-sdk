@@ -14,13 +14,11 @@ type ElasticsearchBucketScriptSettingsBuilder struct {
 }
 
 func NewElasticsearchBucketScriptSettingsBuilder() *ElasticsearchBucketScriptSettingsBuilder {
-	resource := &ElasticsearchBucketScriptSettings{}
+	resource := NewElasticsearchBucketScriptSettings()
 	builder := &ElasticsearchBucketScriptSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -42,7 +40,4 @@ func (builder *ElasticsearchBucketScriptSettingsBuilder) Script(script cog.Build
 	builder.internal.Script = &scriptResource
 
 	return builder
-}
-
-func (builder *ElasticsearchBucketScriptSettingsBuilder) applyDefaults() {
 }

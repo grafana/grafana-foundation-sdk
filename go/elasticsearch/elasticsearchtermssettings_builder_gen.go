@@ -14,13 +14,11 @@ type ElasticsearchTermsSettingsBuilder struct {
 }
 
 func NewElasticsearchTermsSettingsBuilder() *ElasticsearchTermsSettingsBuilder {
-	resource := &ElasticsearchTermsSettings{}
+	resource := NewElasticsearchTermsSettings()
 	builder := &ElasticsearchTermsSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -61,7 +59,4 @@ func (builder *ElasticsearchTermsSettingsBuilder) Missing(missing string) *Elast
 	builder.internal.Missing = &missing
 
 	return builder
-}
-
-func (builder *ElasticsearchTermsSettingsBuilder) applyDefaults() {
 }

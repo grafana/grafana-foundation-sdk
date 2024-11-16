@@ -14,13 +14,11 @@ type ElasticsearchLogsSettingsBuilder struct {
 }
 
 func NewElasticsearchLogsSettingsBuilder() *ElasticsearchLogsSettingsBuilder {
-	resource := &ElasticsearchLogsSettings{}
+	resource := NewElasticsearchLogsSettings()
 	builder := &ElasticsearchLogsSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *ElasticsearchLogsSettingsBuilder) Limit(limit string) *Elasticsea
 	builder.internal.Limit = &limit
 
 	return builder
-}
-
-func (builder *ElasticsearchLogsSettingsBuilder) applyDefaults() {
 }

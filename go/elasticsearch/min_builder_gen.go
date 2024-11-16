@@ -14,13 +14,11 @@ type MinBuilder struct {
 }
 
 func NewMinBuilder() *MinBuilder {
-	resource := &Min{}
+	resource := NewMin()
 	builder := &MinBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "min"
 
 	return builder
@@ -61,7 +59,4 @@ func (builder *MinBuilder) Hide(hide bool) *MinBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *MinBuilder) applyDefaults() {
 }

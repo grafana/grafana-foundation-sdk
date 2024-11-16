@@ -31,7 +31,7 @@ jobs:
         run: composer install
 
       - name: Lint generated PHP code with phpstan
-        run: phpstan analyze --memory-limit 256M -c .config/ci/php/phpstan.neon
+        run: phpstan analyze --memory-limit 512M -c .config/ci/php/phpstan.neon
 
       - name: Lint generated PHP code with psalm
         run: psalm -c .config/ci/php/psalm.xml php

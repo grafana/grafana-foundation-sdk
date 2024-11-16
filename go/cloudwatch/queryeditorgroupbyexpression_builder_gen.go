@@ -14,13 +14,11 @@ type QueryEditorGroupByExpressionBuilder struct {
 }
 
 func NewQueryEditorGroupByExpressionBuilder() *QueryEditorGroupByExpressionBuilder {
-	resource := &QueryEditorGroupByExpression{}
+	resource := NewQueryEditorGroupByExpression()
 	builder := &QueryEditorGroupByExpressionBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "groupBy"
 
 	return builder
@@ -43,7 +41,4 @@ func (builder *QueryEditorGroupByExpressionBuilder) Property(property cog.Builde
 	builder.internal.Property = propertyResource
 
 	return builder
-}
-
-func (builder *QueryEditorGroupByExpressionBuilder) applyDefaults() {
 }

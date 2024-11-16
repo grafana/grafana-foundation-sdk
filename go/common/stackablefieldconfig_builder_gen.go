@@ -15,13 +15,11 @@ type StackableFieldConfigBuilder struct {
 }
 
 func NewStackableFieldConfigBuilder() *StackableFieldConfigBuilder {
-	resource := &StackableFieldConfig{}
+	resource := NewStackableFieldConfig()
 	builder := &StackableFieldConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *StackableFieldConfigBuilder) Stacking(stacking cog.Builder[Stacki
 	builder.internal.Stacking = &stackingResource
 
 	return builder
-}
-
-func (builder *StackableFieldConfigBuilder) applyDefaults() {
 }
