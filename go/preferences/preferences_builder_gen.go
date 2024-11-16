@@ -16,13 +16,11 @@ type PreferencesBuilder struct {
 }
 
 func NewPreferencesBuilder() *PreferencesBuilder {
-	resource := &Preferences{}
+	resource := NewPreferences()
 	builder := &PreferencesBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -93,7 +91,4 @@ func (builder *PreferencesBuilder) CookiePreferences(cookiePreferences cog.Build
 	builder.internal.CookiePreferences = &cookiePreferencesResource
 
 	return builder
-}
-
-func (builder *PreferencesBuilder) applyDefaults() {
 }

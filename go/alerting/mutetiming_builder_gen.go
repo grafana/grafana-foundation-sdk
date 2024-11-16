@@ -14,13 +14,11 @@ type MuteTimingBuilder struct {
 }
 
 func NewMuteTimingBuilder() *MuteTimingBuilder {
-	resource := &MuteTiming{}
+	resource := NewMuteTiming()
 	builder := &MuteTimingBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -52,7 +50,4 @@ func (builder *MuteTimingBuilder) TimeIntervals(timeIntervals []cog.Builder[Time
 	builder.internal.TimeIntervals = timeIntervalsResources
 
 	return builder
-}
-
-func (builder *MuteTimingBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type RawDocumentBuilder struct {
 }
 
 func NewRawDocumentBuilder() *RawDocumentBuilder {
-	resource := &RawDocument{}
+	resource := NewRawDocument()
 	builder := &RawDocumentBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "raw_document"
 
 	return builder
@@ -55,7 +53,4 @@ func (builder *RawDocumentBuilder) Hide(hide bool) *RawDocumentBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *RawDocumentBuilder) applyDefaults() {
 }

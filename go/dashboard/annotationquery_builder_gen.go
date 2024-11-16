@@ -16,13 +16,11 @@ type AnnotationQueryBuilder struct {
 }
 
 func NewAnnotationQueryBuilder() *AnnotationQueryBuilder {
-	resource := &AnnotationQuery{}
+	resource := NewAnnotationQuery()
 	builder := &AnnotationQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -113,10 +111,4 @@ func (builder *AnnotationQueryBuilder) Expr(expr string) *AnnotationQueryBuilder
 	builder.internal.Expr = &expr
 
 	return builder
-}
-
-func (builder *AnnotationQueryBuilder) applyDefaults() {
-	builder.Enable(true)
-	builder.Hide(false)
-	builder.BuiltIn(0)
 }

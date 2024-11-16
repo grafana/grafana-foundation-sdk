@@ -14,13 +14,11 @@ type HistogramSettingsBuilder struct {
 }
 
 func NewHistogramSettingsBuilder() *HistogramSettingsBuilder {
-	resource := &HistogramSettings{}
+	resource := NewHistogramSettings()
 	builder := &HistogramSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *HistogramSettingsBuilder) MinDocCount(minDocCount string) *Histog
 	builder.internal.MinDocCount = &minDocCount
 
 	return builder
-}
-
-func (builder *HistogramSettingsBuilder) applyDefaults() {
 }

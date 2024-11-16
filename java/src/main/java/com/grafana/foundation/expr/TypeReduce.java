@@ -81,7 +81,7 @@ public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<TypeReduce> {
+    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
         protected final TypeReduce internal;
         
         public Builder() {

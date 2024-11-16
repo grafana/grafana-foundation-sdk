@@ -15,13 +15,11 @@ type PromQLQueryBuilder struct {
 }
 
 func NewPromQLQueryBuilder() *PromQLQueryBuilder {
-	resource := &PromQLQuery{}
+	resource := NewPromQLQuery()
 	builder := &PromQLQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -53,7 +51,4 @@ func (builder *PromQLQueryBuilder) Step(step string) *PromQLQueryBuilder {
 	builder.internal.Step = step
 
 	return builder
-}
-
-func (builder *PromQLQueryBuilder) applyDefaults() {
 }

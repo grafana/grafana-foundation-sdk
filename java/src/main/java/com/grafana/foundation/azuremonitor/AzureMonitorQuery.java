@@ -85,7 +85,7 @@ public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Da
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<AzureMonitorQuery> {
+    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
         protected final AzureMonitorQuery internal;
         
         public Builder() {

@@ -12,6 +12,30 @@
  * <span class="badge builder"></span> [QueryHistoryPreferenceBuilder](./builder-QueryHistoryPreferenceBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewPreferences
+
+NewPreferences creates a new Preferences object.
+
+```go
+func NewPreferences() *Preferences
+```
+
+### <span class="badge function"></span> NewQueryHistoryPreference
+
+NewQueryHistoryPreference creates a new QueryHistoryPreference object.
+
+```go
+func NewQueryHistoryPreference() *QueryHistoryPreference
+```
+
+### <span class="badge function"></span> NewCookiePreferences
+
+NewCookiePreferences creates a new CookiePreferences object.
+
+```go
+func NewCookiePreferences() *CookiePreferences
+```
+
 ### <span class="badge function"></span> PreferencesConverter
 
 PreferencesConverter accepts a `Preferences` object and generates the Go code to build this object using builders.

@@ -14,13 +14,11 @@ type StringOrPipelineMetricAggregationTypeBuilder struct {
 }
 
 func NewStringOrPipelineMetricAggregationTypeBuilder() *StringOrPipelineMetricAggregationTypeBuilder {
-	resource := &StringOrPipelineMetricAggregationType{}
+	resource := NewStringOrPipelineMetricAggregationType()
 	builder := &StringOrPipelineMetricAggregationTypeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	valString := "count"
 	builder.internal.String = &valString
 
@@ -39,7 +37,4 @@ func (builder *StringOrPipelineMetricAggregationTypeBuilder) PipelineMetricAggre
 	builder.internal.PipelineMetricAggregationType = &pipelineMetricAggregationType
 
 	return builder
-}
-
-func (builder *StringOrPipelineMetricAggregationTypeBuilder) applyDefaults() {
 }

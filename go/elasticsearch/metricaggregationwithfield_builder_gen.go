@@ -14,13 +14,11 @@ type MetricAggregationWithFieldBuilder struct {
 }
 
 func NewMetricAggregationWithFieldBuilder() *MetricAggregationWithFieldBuilder {
-	resource := &MetricAggregationWithField{}
+	resource := NewMetricAggregationWithField()
 	builder := &MetricAggregationWithFieldBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -60,7 +58,4 @@ func (builder *MetricAggregationWithFieldBuilder) Hide(hide bool) *MetricAggrega
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *MetricAggregationWithFieldBuilder) applyDefaults() {
 }

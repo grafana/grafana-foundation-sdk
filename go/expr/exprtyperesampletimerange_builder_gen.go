@@ -14,13 +14,11 @@ type ExprTypeResampleTimeRangeBuilder struct {
 }
 
 func NewExprTypeResampleTimeRangeBuilder() *ExprTypeResampleTimeRangeBuilder {
-	resource := &ExprTypeResampleTimeRange{}
+	resource := NewExprTypeResampleTimeRange()
 	builder := &ExprTypeResampleTimeRangeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,9 +43,4 @@ func (builder *ExprTypeResampleTimeRangeBuilder) To(to string) *ExprTypeResample
 	builder.internal.To = to
 
 	return builder
-}
-
-func (builder *ExprTypeResampleTimeRangeBuilder) applyDefaults() {
-	builder.From("now-6h")
-	builder.To("now")
 }

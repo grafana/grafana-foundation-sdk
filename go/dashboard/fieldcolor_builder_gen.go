@@ -15,13 +15,11 @@ type FieldColorBuilder struct {
 }
 
 func NewFieldColorBuilder() *FieldColorBuilder {
-	resource := &FieldColor{}
+	resource := NewFieldColor()
 	builder := &FieldColorBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -53,7 +51,4 @@ func (builder *FieldColorBuilder) SeriesBy(seriesBy FieldColorSeriesByMode) *Fie
 	builder.internal.SeriesBy = &seriesBy
 
 	return builder
-}
-
-func (builder *FieldColorBuilder) applyDefaults() {
 }

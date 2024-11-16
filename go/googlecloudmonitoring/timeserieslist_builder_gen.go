@@ -15,13 +15,11 @@ type TimeSeriesListBuilder struct {
 }
 
 func NewTimeSeriesListBuilder() *TimeSeriesListBuilder {
-	resource := &TimeSeriesList{}
+	resource := NewTimeSeriesList()
 	builder := &TimeSeriesListBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -130,7 +128,4 @@ func (builder *TimeSeriesListBuilder) Preprocessor(preprocessor PreprocessorType
 	builder.internal.Preprocessor = &preprocessor
 
 	return builder
-}
-
-func (builder *TimeSeriesListBuilder) applyDefaults() {
 }

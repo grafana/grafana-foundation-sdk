@@ -8,6 +8,14 @@
  * <span class="badge builder"></span> [PublicDashboardBuilder](./builder-PublicDashboardBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewPublicDashboard
+
+NewPublicDashboard creates a new PublicDashboard object.
+
+```go
+func NewPublicDashboard() *PublicDashboard
+```
+
 ### <span class="badge function"></span> PublicDashboardConverter
 
 PublicDashboardConverter accepts a `PublicDashboard` object and generates the Go code to build this object using builders.

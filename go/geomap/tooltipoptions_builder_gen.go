@@ -14,13 +14,11 @@ type TooltipOptionsBuilder struct {
 }
 
 func NewTooltipOptionsBuilder() *TooltipOptionsBuilder {
-	resource := &TooltipOptions{}
+	resource := NewTooltipOptions()
 	builder := &TooltipOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *TooltipOptionsBuilder) Mode(mode TooltipMode) *TooltipOptionsBuil
 	builder.internal.Mode = mode
 
 	return builder
-}
-
-func (builder *TooltipOptionsBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type CountBuilder struct {
 }
 
 func NewCountBuilder() *CountBuilder {
-	resource := &Count{}
+	resource := NewCount()
 	builder := &CountBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "count"
 
 	return builder
@@ -44,7 +42,4 @@ func (builder *CountBuilder) Hide(hide bool) *CountBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *CountBuilder) applyDefaults() {
 }

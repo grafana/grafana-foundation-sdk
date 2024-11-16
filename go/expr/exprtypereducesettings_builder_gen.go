@@ -14,13 +14,11 @@ type ExprTypeReduceSettingsBuilder struct {
 }
 
 func NewExprTypeReduceSettingsBuilder() *ExprTypeReduceSettingsBuilder {
-	resource := &ExprTypeReduceSettings{}
+	resource := NewExprTypeReduceSettings()
 	builder := &ExprTypeReduceSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -48,7 +46,4 @@ func (builder *ExprTypeReduceSettingsBuilder) ReplaceWithValue(replaceWithValue 
 	builder.internal.ReplaceWithValue = &replaceWithValue
 
 	return builder
-}
-
-func (builder *ExprTypeReduceSettingsBuilder) applyDefaults() {
 }

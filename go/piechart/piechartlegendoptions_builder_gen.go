@@ -15,13 +15,11 @@ type PieChartLegendOptionsBuilder struct {
 }
 
 func NewPieChartLegendOptionsBuilder() *PieChartLegendOptionsBuilder {
-	resource := &PieChartLegendOptions{}
+	resource := NewPieChartLegendOptions()
 	builder := &PieChartLegendOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -92,7 +90,4 @@ func (builder *PieChartLegendOptionsBuilder) Calcs(calcs []string) *PieChartLege
 	builder.internal.Calcs = calcs
 
 	return builder
-}
-
-func (builder *PieChartLegendOptionsBuilder) applyDefaults() {
 }

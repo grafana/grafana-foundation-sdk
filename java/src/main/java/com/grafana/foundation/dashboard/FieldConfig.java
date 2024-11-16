@@ -85,7 +85,7 @@ public class FieldConfig {
     // The behavior when clicking on a result
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("links")
-    public List<Object> links;
+    public List<DashboardLink> links;
     // Alternative to empty string
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("noValue")
