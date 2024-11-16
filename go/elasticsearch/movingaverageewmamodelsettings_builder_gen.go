@@ -14,13 +14,11 @@ type MovingAverageEWMAModelSettingsBuilder struct {
 }
 
 func NewMovingAverageEWMAModelSettingsBuilder() *MovingAverageEWMAModelSettingsBuilder {
-	resource := &MovingAverageEWMAModelSettings{}
+	resource := NewMovingAverageEWMAModelSettings()
 	builder := &MovingAverageEWMAModelSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Model = "ewma"
 
 	return builder
@@ -61,7 +59,4 @@ func (builder *MovingAverageEWMAModelSettingsBuilder) Predict(predict string) *M
 	builder.internal.Predict = predict
 
 	return builder
-}
-
-func (builder *MovingAverageEWMAModelSettingsBuilder) applyDefaults() {
 }

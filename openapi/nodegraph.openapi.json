@@ -59,6 +59,12 @@
           }
         }
       },
+      "ZoomMode": {
+        "enum": [
+          "cooperative",
+          "greedy"
+        ]
+      },
       "Options": {
         "type": "object",
         "additionalProperties": false,
@@ -68,6 +74,10 @@
           },
           "edges": {
             "$ref": "#/components/schemas/EdgeOptions"
+          },
+          "zoomMode": {
+            "$ref": "#/components/schemas/ZoomMode",
+            "description": "How to handle zoom/scroll events in the node graph"
           }
         }
       }

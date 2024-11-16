@@ -14,13 +14,11 @@ type FiltersSettingsBuilder struct {
 }
 
 func NewFiltersSettingsBuilder() *FiltersSettingsBuilder {
-	resource := &FiltersSettings{}
+	resource := NewFiltersSettings()
 	builder := &FiltersSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -46,7 +44,4 @@ func (builder *FiltersSettingsBuilder) Filters(filters []cog.Builder[Filter]) *F
 	builder.internal.Filters = filtersResources
 
 	return builder
-}
-
-func (builder *FiltersSettingsBuilder) applyDefaults() {
 }

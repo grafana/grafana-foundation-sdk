@@ -424,6 +424,24 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * The behavior when clicking on a result
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink>> $links
+     */
+    public function dataLinks(array $links): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+            $linksResources = [];
+            foreach ($links as $r1) {
+                    $linksResources[] = $r1->build();
+            }
+        $this->internal->fieldConfig->defaults->links = $linksResources;
+    
+        return $this;
+    }
+    /**
      * Alternative to empty string
      */
     public function noValue(string $noValue): static
@@ -496,6 +514,19 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         assert($this->internal->options instanceof \Grafana\Foundation\Nodegraph\Options);
         $edgesResource = $edges->build();
         $this->internal->options->edges = $edgesResource;
+    
+        return $this;
+    }
+    /**
+     * How to handle zoom/scroll events in the node graph
+     */
+    public function zoomMode(\Grafana\Foundation\Nodegraph\ZoomMode $zoomMode): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Nodegraph\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Nodegraph\Options);
+        $this->internal->options->zoomMode = $zoomMode;
     
         return $this;
     }

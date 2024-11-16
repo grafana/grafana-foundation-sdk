@@ -14,13 +14,11 @@ type SerialDiffBuilder struct {
 }
 
 func NewSerialDiffBuilder() *SerialDiffBuilder {
-	resource := &SerialDiff{}
+	resource := NewSerialDiff()
 	builder := &SerialDiffBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "serial_diff"
 
 	return builder
@@ -67,7 +65,4 @@ func (builder *SerialDiffBuilder) Hide(hide bool) *SerialDiffBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *SerialDiffBuilder) applyDefaults() {
 }

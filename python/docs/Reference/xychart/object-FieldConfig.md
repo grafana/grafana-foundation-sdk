@@ -7,13 +7,12 @@ title: <span class="badge object-type-class"></span> FieldConfig
 
 ```python
 class FieldConfig:
-    show: typing.Optional[xychart.ScatterShow]
-    point_size: typing.Optional[common.ScaleDimensionConfig]
-    point_color: typing.Optional[common.ColorDimensionConfig]
-    line_color: typing.Optional[common.ColorDimensionConfig]
+    show: typing.Optional[xychart.XYShowMode]
+    point_size: typing.Optional[xychart.XychartFieldConfigPointSize]
+    point_shape: typing.Optional[xychart.PointShape]
+    point_stroke_width: typing.Optional[int]
+    fill_opacity: typing.Optional[int]
     line_width: typing.Optional[int]
-    line_style: typing.Optional[common.LineStyle]
-    label: typing.Optional[common.VisibilityMode]
     hide_from: typing.Optional[common.HideSeriesConfig]
     axis_placement: typing.Optional[common.AxisPlacement]
     axis_color_mode: typing.Optional[common.AxisColorMode]
@@ -24,7 +23,7 @@ class FieldConfig:
     axis_grid_show: typing.Optional[bool]
     scale_distribution: typing.Optional[common.ScaleDistributionConfig]
     axis_centered_zero: typing.Optional[bool]
-    label_value: typing.Optional[common.TextDimensionConfig]
+    line_style: typing.Optional[common.LineStyle]
     axis_border_show: typing.Optional[bool]
 ```
 ## Methods

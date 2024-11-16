@@ -15,13 +15,11 @@ type ExemplarConfigBuilder struct {
 }
 
 func NewExemplarConfigBuilder() *ExemplarConfigBuilder {
-	resource := &ExemplarConfig{}
+	resource := NewExemplarConfig()
 	builder := &ExemplarConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -39,7 +37,4 @@ func (builder *ExemplarConfigBuilder) Color(color string) *ExemplarConfigBuilder
 	builder.internal.Color = color
 
 	return builder
-}
-
-func (builder *ExemplarConfigBuilder) applyDefaults() {
 }

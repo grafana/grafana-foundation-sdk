@@ -7,13 +7,12 @@ title: <span class="badge object-type-struct"></span> FieldConfig
 
 ```go
 type FieldConfig struct {
-    Show *xychart.ScatterShow `json:"show,omitempty"`
-    PointSize *common.ScaleDimensionConfig `json:"pointSize,omitempty"`
-    PointColor *common.ColorDimensionConfig `json:"pointColor,omitempty"`
-    LineColor *common.ColorDimensionConfig `json:"lineColor,omitempty"`
+    Show *xychart.XYShowMode `json:"show,omitempty"`
+    PointSize *xychart.XychartFieldConfigPointSize `json:"pointSize,omitempty"`
+    PointShape *xychart.PointShape `json:"pointShape,omitempty"`
+    PointStrokeWidth *int32 `json:"pointStrokeWidth,omitempty"`
+    FillOpacity *uint32 `json:"fillOpacity,omitempty"`
     LineWidth *int32 `json:"lineWidth,omitempty"`
-    LineStyle *common.LineStyle `json:"lineStyle,omitempty"`
-    Label *common.VisibilityMode `json:"label,omitempty"`
     HideFrom *common.HideSeriesConfig `json:"hideFrom,omitempty"`
     AxisPlacement *common.AxisPlacement `json:"axisPlacement,omitempty"`
     AxisColorMode *common.AxisColorMode `json:"axisColorMode,omitempty"`
@@ -24,7 +23,7 @@ type FieldConfig struct {
     AxisGridShow *bool `json:"axisGridShow,omitempty"`
     ScaleDistribution *common.ScaleDistributionConfig `json:"scaleDistribution,omitempty"`
     AxisCenteredZero *bool `json:"axisCenteredZero,omitempty"`
-    LabelValue *common.TextDimensionConfig `json:"labelValue,omitempty"`
+    LineStyle *common.LineStyle `json:"lineStyle,omitempty"`
     AxisBorderShow *bool `json:"axisBorderShow,omitempty"`
 }
 ```

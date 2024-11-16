@@ -14,13 +14,11 @@ type ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder struct {
 }
 
 func NewElasticsearchMetricAggregationWithInlineScriptSettingsBuilder() *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder {
-	resource := &ElasticsearchMetricAggregationWithInlineScriptSettings{}
+	resource := NewElasticsearchMetricAggregationWithInlineScriptSettings()
 	builder := &ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -42,7 +40,4 @@ func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) Sc
 	builder.internal.Script = &scriptResource
 
 	return builder
-}
-
-func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type PlacementBuilder struct {
 }
 
 func NewPlacementBuilder() *PlacementBuilder {
-	resource := &Placement{}
+	resource := NewPlacement()
 	builder := &PlacementBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -73,7 +71,4 @@ func (builder *PlacementBuilder) Rotation(rotation float64) *PlacementBuilder {
 	builder.internal.Rotation = &rotation
 
 	return builder
-}
-
-func (builder *PlacementBuilder) applyDefaults() {
 }

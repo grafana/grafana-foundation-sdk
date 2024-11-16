@@ -14,13 +14,11 @@ type MatcherBuilder struct {
 }
 
 func NewMatcherBuilder() *MatcherBuilder {
-	resource := &Matcher{}
+	resource := NewMatcher()
 	builder := &MatcherBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,7 +47,4 @@ func (builder *MatcherBuilder) Value(value string) *MatcherBuilder {
 	builder.internal.Value = &value
 
 	return builder
-}
-
-func (builder *MatcherBuilder) applyDefaults() {
 }

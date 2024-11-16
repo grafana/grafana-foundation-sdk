@@ -94,7 +94,7 @@ class FieldConfig implements \JsonSerializable
 
     /**
      * The behavior when clicking on a result
-     * @var array<mixed>|null
+     * @var array<\Grafana\Foundation\Dashboard\DashboardLink>|null
      */
     public ?array $links;
 
@@ -124,7 +124,7 @@ class FieldConfig implements \JsonSerializable
      * @param array<\Grafana\Foundation\Dashboard\ValueMap|\Grafana\Foundation\Dashboard\RangeMap|\Grafana\Foundation\Dashboard\RegexMap|\Grafana\Foundation\Dashboard\SpecialValueMap>|null $mappings
      * @param \Grafana\Foundation\Dashboard\ThresholdsConfig|null $thresholds
      * @param \Grafana\Foundation\Dashboard\FieldColor|null $color
-     * @param array<mixed>|null $links
+     * @param array<\Grafana\Foundation\Dashboard\DashboardLink>|null $links
      * @param string|null $noValue
      * @param mixed|null $custom
      */
@@ -192,7 +192,11 @@ class FieldConfig implements \JsonSerializable
     $val = $input;
     	return \Grafana\Foundation\Dashboard\FieldColor::fromArray($val);
     })($data["color"]) : null,
-            links: $data["links"] ?? null,
+            links: array_filter(array_map((function($input) {
+    	/** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, targetBlank?: bool, includeVars?: bool, keepTime?: bool} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboard\DashboardLink::fromArray($val);
+    }), $data["links"] ?? [])),
             noValue: $data["noValue"] ?? null,
             custom: $data["custom"] ?? null,
         );

@@ -56,6 +56,14 @@ Specifies the query label selectors.
 func (builder *DataqueryBuilder) LabelSelector(labelSelector string) *DataqueryBuilder
 ```
 
+### <span class="badge object-method"></span> Limit
+
+Sets the maximum number of time series.
+
+```go
+func (builder *DataqueryBuilder) Limit(limit int64) *DataqueryBuilder
+```
+
 ### <span class="badge object-method"></span> MaxNodes
 
 Sets the maximum number of nodes in the flamegraph.

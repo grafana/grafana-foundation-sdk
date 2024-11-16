@@ -29,6 +29,8 @@ type Dataquery struct {
 	ProfileTypeId string `json:"profileTypeId"`
 	// Allows to group the results.
 	GroupBy []string `json:"groupBy"`
+	// Sets the maximum number of time series.
+	Limit *int64 `json:"limit,omitempty"`
 	// Sets the maximum number of nodes in the flamegraph.
 	MaxNodes *int64 `json:"maxNodes,omitempty"`
 	// A unique identifier for the query within the list of targets.
@@ -51,6 +53,13 @@ func (resource Dataquery) ImplementsDataqueryVariant() {}
 
 func (resource Dataquery) DataqueryType() string {
 	return "grafanapyroscope"
+}
+
+// NewDataquery creates a new Dataquery object.
+func NewDataquery() *Dataquery {
+	return &Dataquery{
+		LabelSelector: "{}",
+	}
 }
 
 // VariantConfig returns the configuration related to grafanapyroscope dataqueries.
@@ -153,6 +162,17 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "groupBy")
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("groupBy", errors.New("required field is missing from input"))...)
+	}
+	// Field "limit"
+	if fields["limit"] != nil {
+		if string(fields["limit"]) != "null" {
+			if err := json.Unmarshal(fields["limit"], &resource.Limit); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("limit", err)...)
+			}
+
+		}
+		delete(fields, "limit")
+
 	}
 	// Field "maxNodes"
 	if fields["maxNodes"] != nil {
@@ -259,6 +279,15 @@ func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 
 	for i1 := range resource.GroupBy {
 		if resource.GroupBy[i1] != other.GroupBy[i1] {
+			return false
+		}
+	}
+	if resource.Limit == nil && other.Limit != nil || resource.Limit != nil && other.Limit == nil {
+		return false
+	}
+
+	if resource.Limit != nil {
+		if *resource.Limit != *other.Limit {
 			return false
 		}
 	}

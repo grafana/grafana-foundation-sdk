@@ -14,13 +14,11 @@ type ElasticsearchGeoHashGridSettingsBuilder struct {
 }
 
 func NewElasticsearchGeoHashGridSettingsBuilder() *ElasticsearchGeoHashGridSettingsBuilder {
-	resource := &ElasticsearchGeoHashGridSettings{}
+	resource := NewElasticsearchGeoHashGridSettings()
 	builder := &ElasticsearchGeoHashGridSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *ElasticsearchGeoHashGridSettingsBuilder) Precision(precision stri
 	builder.internal.Precision = &precision
 
 	return builder
-}
-
-func (builder *ElasticsearchGeoHashGridSettingsBuilder) applyDefaults() {
 }

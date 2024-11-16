@@ -14,13 +14,11 @@ type ElasticsearchPercentilesSettingsBuilder struct {
 }
 
 func NewElasticsearchPercentilesSettingsBuilder() *ElasticsearchPercentilesSettingsBuilder {
-	resource := &ElasticsearchPercentilesSettings{}
+	resource := NewElasticsearchPercentilesSettings()
 	builder := &ElasticsearchPercentilesSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -54,7 +52,4 @@ func (builder *ElasticsearchPercentilesSettingsBuilder) Percents(percents []stri
 	builder.internal.Percents = percents
 
 	return builder
-}
-
-func (builder *ElasticsearchPercentilesSettingsBuilder) applyDefaults() {
 }

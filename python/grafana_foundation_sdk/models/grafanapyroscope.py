@@ -22,6 +22,8 @@ class Dataquery(cogvariants.Dataquery):
     profile_type_id: str
     # Allows to group the results.
     group_by: list[str]
+    # Sets the maximum number of time series.
+    limit: typing.Optional[int]
     # Sets the maximum number of nodes in the flamegraph.
     max_nodes: typing.Optional[int]
     # A unique identifier for the query within the list of targets.
@@ -39,11 +41,12 @@ class Dataquery(cogvariants.Dataquery):
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
 
-    def __init__(self, label_selector: str = "{}", span_selector: typing.Optional[list[str]] = None, profile_type_id: str = "", group_by: typing.Optional[list[str]] = None, max_nodes: typing.Optional[int] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, label_selector: str = "{}", span_selector: typing.Optional[list[str]] = None, profile_type_id: str = "", group_by: typing.Optional[list[str]] = None, limit: typing.Optional[int] = None, max_nodes: typing.Optional[int] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
         self.label_selector = label_selector
         self.span_selector = span_selector
         self.profile_type_id = profile_type_id
         self.group_by = group_by if group_by is not None else []
+        self.limit = limit
         self.max_nodes = max_nodes
         self.ref_id = ref_id
         self.hide = hide
@@ -59,6 +62,8 @@ class Dataquery(cogvariants.Dataquery):
         }
         if self.span_selector is not None:
             payload["spanSelector"] = self.span_selector
+        if self.limit is not None:
+            payload["limit"] = self.limit
         if self.max_nodes is not None:
             payload["maxNodes"] = self.max_nodes
         if self.hide is not None:
@@ -81,6 +86,8 @@ class Dataquery(cogvariants.Dataquery):
             args["profile_type_id"] = data["profileTypeId"]
         if "groupBy" in data:
             args["group_by"] = data["groupBy"]
+        if "limit" in data:
+            args["limit"] = data["limit"]
         if "maxNodes" in data:
             args["max_nodes"] = data["maxNodes"]
         if "refId" in data:

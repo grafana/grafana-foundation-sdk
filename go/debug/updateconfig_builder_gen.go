@@ -14,13 +14,11 @@ type UpdateConfigBuilder struct {
 }
 
 func NewUpdateConfigBuilder() *UpdateConfigBuilder {
-	resource := &UpdateConfig{}
+	resource := NewUpdateConfig()
 	builder := &UpdateConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,7 +47,4 @@ func (builder *UpdateConfigBuilder) SchemaChanged(schemaChanged bool) *UpdateCon
 	builder.internal.SchemaChanged = schemaChanged
 
 	return builder
-}
-
-func (builder *UpdateConfigBuilder) applyDefaults() {
 }

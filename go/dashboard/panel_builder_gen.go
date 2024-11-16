@@ -16,13 +16,11 @@ type PanelBuilder struct {
 }
 
 func NewPanelBuilder() *PanelBuilder {
-	resource := &Panel{}
+	resource := NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -115,7 +113,7 @@ func (builder *PanelBuilder) GridPos(gridPos GridPos) *PanelBuilder {
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &GridPos{}
+		builder.internal.GridPos = NewGridPos()
 	}
 	builder.internal.GridPos.H = h
 
@@ -125,7 +123,7 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &GridPos{}
+		builder.internal.GridPos = NewGridPos()
 	}
 	builder.internal.GridPos.W = w
 
@@ -261,7 +259,7 @@ func (builder *PanelBuilder) QueryCachingTTL(queryCachingTTL float64) *PanelBuil
 // The display value for this field.  This supports template variables blank is auto
 func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &FieldConfigSource{}
+		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.DisplayName = &displayName
 
@@ -280,7 +278,7 @@ func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder {
 // `currency:<unit>` for custom a currency unit.
 func (builder *PanelBuilder) Unit(unit string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &FieldConfigSource{}
+		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Unit = &unit
 
@@ -293,7 +291,7 @@ func (builder *PanelBuilder) Unit(unit string) *PanelBuilder {
 // To display all decimals, set the unit to `String`.
 func (builder *PanelBuilder) Decimals(decimals float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &FieldConfigSource{}
+		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Decimals = &decimals
 
@@ -303,7 +301,7 @@ func (builder *PanelBuilder) Decimals(decimals float64) *PanelBuilder {
 // The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
 func (builder *PanelBuilder) Min(min float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &FieldConfigSource{}
+		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Min = &min
 
@@ -313,7 +311,7 @@ func (builder *PanelBuilder) Min(min float64) *PanelBuilder {
 // The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
 func (builder *PanelBuilder) Max(max float64) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &FieldConfigSource{}
+		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Max = &max
 
@@ -323,7 +321,7 @@ func (builder *PanelBuilder) Max(max float64) *PanelBuilder {
 // Convert input values into a display string
 func (builder *PanelBuilder) Mappings(mappings []ValueMapping) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &FieldConfigSource{}
+		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.Mappings = mappings
 
@@ -333,7 +331,7 @@ func (builder *PanelBuilder) Mappings(mappings []ValueMapping) *PanelBuilder {
 // Map numeric values to states
 func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[ThresholdsConfig]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &FieldConfigSource{}
+		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	thresholdsResource, err := thresholds.Build()
 	if err != nil {
@@ -348,7 +346,7 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[ThresholdsConfig]
 // Panel color configuration
 func (builder *PanelBuilder) ColorScheme(color cog.Builder[FieldColor]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &FieldConfigSource{}
+		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	colorResource, err := color.Build()
 	if err != nil {
@@ -360,10 +358,29 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[FieldColor]) *PanelBu
 	return builder
 }
 
+// The behavior when clicking on a result
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[DashboardLink]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = NewFieldConfigSource()
+	}
+	linksResources := make([]DashboardLink, 0, len(links))
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			return builder
+		}
+		linksResources = append(linksResources, linksDepth1)
+	}
+	builder.internal.FieldConfig.Defaults.Links = linksResources
+
+	return builder
+}
+
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &FieldConfigSource{}
+		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
 
@@ -373,7 +390,7 @@ func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) Overrides(overrides []cog.Builder[DashboardFieldConfigSourceOverrides]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &FieldConfigSource{}
+		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	overridesResources := make([]DashboardFieldConfigSourceOverrides, 0, len(overrides))
 	for _, r1 := range overrides {
@@ -392,7 +409,7 @@ func (builder *PanelBuilder) Overrides(overrides []cog.Builder[DashboardFieldCon
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) WithOverride(matcher MatcherConfig, properties []DynamicConfigValue) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
-		builder.internal.FieldConfig = &FieldConfigSource{}
+		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, DashboardFieldConfigSourceOverrides{
 		Matcher:    matcher,
@@ -400,10 +417,4 @@ func (builder *PanelBuilder) WithOverride(matcher MatcherConfig, properties []Dy
 	})
 
 	return builder
-}
-
-func (builder *PanelBuilder) applyDefaults() {
-	builder.Transparent(false)
-	builder.Height(9)
-	builder.Span(12)
 }

@@ -15,6 +15,8 @@ type Dataquery struct {
     ProfileTypeId string `json:"profileTypeId"`
     // Allows to group the results.
     GroupBy []string `json:"groupBy"`
+    // Sets the maximum number of time series.
+    Limit *int64 `json:"limit,omitempty"`
     // Sets the maximum number of nodes in the flamegraph.
     MaxNodes *int64 `json:"maxNodes,omitempty"`
     // A unique identifier for the query within the list of targets.

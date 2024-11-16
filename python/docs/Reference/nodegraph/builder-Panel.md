@@ -34,6 +34,14 @@ Panel color configuration
 def color_scheme(color: cogbuilder.Builder[dashboard.FieldColor]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> data_links
+
+The behavior when clicking on a result
+
+```python
+def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.
@@ -370,6 +378,14 @@ Each transformation creates a result set that then passes on to the next transfo
 
 ```python
 def with_transformation(transformation: dashboard.DataTransformerConfig) -> typing.Self
+```
+
+### <span class="badge object-method"></span> zoom_mode
+
+How to handle zoom/scroll events in the node graph
+
+```python
+def zoom_mode(zoom_mode: nodegraph.ZoomMode) -> typing.Self
 ```
 
 ## See also

@@ -14,13 +14,11 @@ type UniqueCountBuilder struct {
 }
 
 func NewUniqueCountBuilder() *UniqueCountBuilder {
-	resource := &UniqueCount{}
+	resource := NewUniqueCount()
 	builder := &UniqueCountBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "cardinality"
 
 	return builder
@@ -61,7 +59,4 @@ func (builder *UniqueCountBuilder) Hide(hide bool) *UniqueCountBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *UniqueCountBuilder) applyDefaults() {
 }

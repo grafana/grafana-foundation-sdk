@@ -7,13 +7,10 @@ title: <span class="badge object-type-class"></span> Options
 
 ```python
 class Options:
-    series_mapping: typing.Optional[xychart.SeriesMapping]
-    # Table Mode (auto)
-    dims: xychart.XYDimensionConfig
+    mapping: xychart.SeriesMapping
     legend: common.VizLegendOptions
     tooltip: common.VizTooltipOptions
-    # Manual Mode
-    series: list[xychart.ScatterSeriesConfig]
+    series: list[xychart.XYSeriesConfig]
 ```
 ## Methods
 

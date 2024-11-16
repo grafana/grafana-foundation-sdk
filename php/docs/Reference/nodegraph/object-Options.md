@@ -12,6 +12,11 @@ class Options implements \JsonSerializable
 
     public ?\Grafana\Foundation\Nodegraph\EdgeOptions $edges;
 
+    /**
+     * How to handle zoom/scroll events in the node graph
+     */
+    public ?\Grafana\Foundation\Nodegraph\ZoomMode $zoomMode;
+
 }
 ```
 ## Methods

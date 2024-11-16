@@ -32,9 +32,18 @@ export interface EdgeOptions {
 export const defaultEdgeOptions = (): EdgeOptions => ({
 });
 
+export enum ZoomMode {
+	Cooperative = "cooperative",
+	Greedy = "greedy",
+}
+
+export const defaultZoomMode = (): ZoomMode => (ZoomMode.Cooperative);
+
 export interface Options {
 	nodes?: NodeOptions;
 	edges?: EdgeOptions;
+	// How to handle zoom/scroll events in the node graph
+	zoomMode?: ZoomMode;
 }
 
 export const defaultOptions = (): Options => ({

@@ -318,6 +318,19 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // The behavior when clicking on a result
+    dataLinks(links: cog.Builder<dashboard.DashboardLink>[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        const linksResources = links.map(builder1 => builder1.build());
+        this.internal.fieldConfig.defaults.links = linksResources;
+        return this;
+    }
+
     // Alternative to empty string
     noValue(noValue: string): this {
         if (!this.internal.fieldConfig) {
@@ -357,7 +370,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    show(show: xychart.ScatterShow): this {
+    show(show: xychart.XYShowMode): this {
         if (!this.internal.fieldConfig) {
             this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
         }
@@ -371,7 +384,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    pointSize(pointSize: cog.Builder<common.ScaleDimensionConfig>): this {
+    pointSize(pointSize: {
+	fixed?: number;
+	min?: number;
+	max?: number;
+}): this {
         if (!this.internal.fieldConfig) {
             this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
         }
@@ -381,12 +398,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         if (!this.internal.fieldConfig.defaults.custom) {
             this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
         }
-        const pointSizeResource = pointSize.build();
-        this.internal.fieldConfig.defaults.custom.pointSize = pointSizeResource;
+        this.internal.fieldConfig.defaults.custom.pointSize = pointSize;
         return this;
     }
 
-    pointColor(pointColor: cog.Builder<common.ColorDimensionConfig>): this {
+    pointShape(pointShape: xychart.PointShape): this {
         if (!this.internal.fieldConfig) {
             this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
         }
@@ -396,12 +412,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         if (!this.internal.fieldConfig.defaults.custom) {
             this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
         }
-        const pointColorResource = pointColor.build();
-        this.internal.fieldConfig.defaults.custom.pointColor = pointColorResource;
+        this.internal.fieldConfig.defaults.custom.pointShape = pointShape;
         return this;
     }
 
-    lineColor(lineColor: cog.Builder<common.ColorDimensionConfig>): this {
+    pointStrokeWidth(pointStrokeWidth: number): this {
         if (!this.internal.fieldConfig) {
             this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
         }
@@ -411,8 +426,27 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         if (!this.internal.fieldConfig.defaults.custom) {
             this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
         }
-        const lineColorResource = lineColor.build();
-        this.internal.fieldConfig.defaults.custom.lineColor = lineColorResource;
+        if (!(pointStrokeWidth >= 0)) {
+            throw new Error("pointStrokeWidth must be >= 0");
+        }
+        this.internal.fieldConfig.defaults.custom.pointStrokeWidth = pointStrokeWidth;
+        return this;
+    }
+
+    fillOpacity(fillOpacity: number): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
+        }
+        if (!(fillOpacity <= 100)) {
+            throw new Error("fillOpacity must be <= 100");
+        }
+        this.internal.fieldConfig.defaults.custom.fillOpacity = fillOpacity;
         return this;
     }
 
@@ -430,35 +464,6 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
             throw new Error("lineWidth must be >= 0");
         }
         this.internal.fieldConfig.defaults.custom.lineWidth = lineWidth;
-        return this;
-    }
-
-    lineStyle(lineStyle: cog.Builder<common.LineStyle>): this {
-        if (!this.internal.fieldConfig) {
-            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
-        }
-        if (!this.internal.fieldConfig.defaults) {
-            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
-        }
-        if (!this.internal.fieldConfig.defaults.custom) {
-            this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
-        }
-        const lineStyleResource = lineStyle.build();
-        this.internal.fieldConfig.defaults.custom.lineStyle = lineStyleResource;
-        return this;
-    }
-
-    label(label: common.VisibilityMode): this {
-        if (!this.internal.fieldConfig) {
-            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
-        }
-        if (!this.internal.fieldConfig.defaults) {
-            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
-        }
-        if (!this.internal.fieldConfig.defaults.custom) {
-            this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
-        }
-        this.internal.fieldConfig.defaults.custom.label = label;
         return this;
     }
 
@@ -604,7 +609,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    labelValue(labelValue: cog.Builder<common.TextDimensionConfig>): this {
+    lineStyle(lineStyle: cog.Builder<common.LineStyle>): this {
         if (!this.internal.fieldConfig) {
             this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
         }
@@ -614,8 +619,8 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         if (!this.internal.fieldConfig.defaults.custom) {
             this.internal.fieldConfig.defaults.custom = xychart.defaultFieldConfig();
         }
-        const labelValueResource = labelValue.build();
-        this.internal.fieldConfig.defaults.custom.labelValue = labelValueResource;
+        const lineStyleResource = lineStyle.build();
+        this.internal.fieldConfig.defaults.custom.lineStyle = lineStyleResource;
         return this;
     }
 
@@ -633,21 +638,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    seriesMapping(seriesMapping: xychart.SeriesMapping): this {
+    mapping(mapping: xychart.SeriesMapping): this {
         if (!this.internal.options) {
             this.internal.options = xychart.defaultOptions();
         }
-        this.internal.options.seriesMapping = seriesMapping;
-        return this;
-    }
-
-    // Table Mode (auto)
-    dims(dims: cog.Builder<xychart.XYDimensionConfig>): this {
-        if (!this.internal.options) {
-            this.internal.options = xychart.defaultOptions();
-        }
-        const dimsResource = dims.build();
-        this.internal.options.dims = dimsResource;
+        this.internal.options.mapping = mapping;
         return this;
     }
 
@@ -669,8 +664,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // Manual Mode
-    series(series: cog.Builder<xychart.ScatterSeriesConfig>[]): this {
+    series(series: cog.Builder<xychart.XYSeriesConfig>[]): this {
         if (!this.internal.options) {
             this.internal.options = xychart.defaultOptions();
         }

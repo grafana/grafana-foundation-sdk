@@ -99,7 +99,7 @@ class FieldConfig implements \JsonSerializable
 
     /**
      * The behavior when clicking on a result
-     * @var array<mixed>|null
+     * @var array<\Grafana\Foundation\Dashboard\DashboardLink>|null
      */
     public ?array $links;
 

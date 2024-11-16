@@ -14,13 +14,11 @@ type ExprTypeThresholdResultAssertionsBuilder struct {
 }
 
 func NewExprTypeThresholdResultAssertionsBuilder() *ExprTypeThresholdResultAssertionsBuilder {
-	resource := &ExprTypeThresholdResultAssertions{}
+	resource := NewExprTypeThresholdResultAssertions()
 	builder := &ExprTypeThresholdResultAssertionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -65,7 +63,4 @@ func (builder *ExprTypeThresholdResultAssertionsBuilder) TypeVersion(typeVersion
 	builder.internal.TypeVersion = typeVersion
 
 	return builder
-}
-
-func (builder *ExprTypeThresholdResultAssertionsBuilder) applyDefaults() {
 }

@@ -14,13 +14,11 @@ type CanvasOptionsRootBuilder struct {
 }
 
 func NewCanvasOptionsRootBuilder() *CanvasOptionsRootBuilder {
-	resource := &CanvasOptionsRoot{}
+	resource := NewCanvasOptionsRoot()
 	builder := &CanvasOptionsRootBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "frame"
 
 	return builder
@@ -55,7 +53,4 @@ func (builder *CanvasOptionsRootBuilder) Elements(elements []cog.Builder[CanvasE
 	builder.internal.Elements = elementsResources
 
 	return builder
-}
-
-func (builder *CanvasOptionsRootBuilder) applyDefaults() {
 }

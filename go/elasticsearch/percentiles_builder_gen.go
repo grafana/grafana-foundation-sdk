@@ -14,13 +14,11 @@ type PercentilesBuilder struct {
 }
 
 func NewPercentilesBuilder() *PercentilesBuilder {
-	resource := &Percentiles{}
+	resource := NewPercentiles()
 	builder := &PercentilesBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "percentiles"
 
 	return builder
@@ -61,7 +59,4 @@ func (builder *PercentilesBuilder) Hide(hide bool) *PercentilesBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *PercentilesBuilder) applyDefaults() {
 }

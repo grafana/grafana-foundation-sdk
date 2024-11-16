@@ -34,6 +34,14 @@ Panel color configuration
 colorScheme(color: cog.Builder<dashboard.FieldColor>)
 ```
 
+### <span class="badge object-method"></span> dataLinks
+
+The behavior when clicking on a result
+
+```typescript
+dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
+```
+
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.
@@ -376,6 +384,14 @@ Each transformation creates a result set that then passes on to the next transfo
 
 ```typescript
 withTransformation(transformation: dashboard.DataTransformerConfig)
+```
+
+### <span class="badge object-method"></span> zoomMode
+
+How to handle zoom/scroll events in the node graph
+
+```typescript
+zoomMode(zoomMode: nodegraph.ZoomMode)
 ```
 
 ## See also

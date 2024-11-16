@@ -14,13 +14,11 @@ type ExprTypeMathTimeRangeBuilder struct {
 }
 
 func NewExprTypeMathTimeRangeBuilder() *ExprTypeMathTimeRangeBuilder {
-	resource := &ExprTypeMathTimeRange{}
+	resource := NewExprTypeMathTimeRange()
 	builder := &ExprTypeMathTimeRangeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,9 +43,4 @@ func (builder *ExprTypeMathTimeRangeBuilder) To(to string) *ExprTypeMathTimeRang
 	builder.internal.To = to
 
 	return builder
-}
-
-func (builder *ExprTypeMathTimeRangeBuilder) applyDefaults() {
-	builder.From("now-6h")
-	builder.To("now")
 }

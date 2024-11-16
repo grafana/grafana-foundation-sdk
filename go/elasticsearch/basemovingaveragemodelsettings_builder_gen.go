@@ -14,13 +14,11 @@ type BaseMovingAverageModelSettingsBuilder struct {
 }
 
 func NewBaseMovingAverageModelSettingsBuilder() *BaseMovingAverageModelSettingsBuilder {
-	resource := &BaseMovingAverageModelSettings{}
+	resource := NewBaseMovingAverageModelSettings()
 	builder := &BaseMovingAverageModelSettingsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,7 +47,4 @@ func (builder *BaseMovingAverageModelSettingsBuilder) Predict(predict string) *B
 	builder.internal.Predict = predict
 
 	return builder
-}
-
-func (builder *BaseMovingAverageModelSettingsBuilder) applyDefaults() {
 }

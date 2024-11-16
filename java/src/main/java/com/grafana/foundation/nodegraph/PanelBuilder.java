@@ -229,6 +229,16 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.fieldConfig.defaults.color = color.build();
         return this;
     }
+    public PanelBuilder dataLinks(com.grafana.foundation.cog.Builder<List<DashboardLink>> links) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+    this.internal.fieldConfig.defaults.links = links.build();
+        return this;
+    }
     public PanelBuilder noValue(String noValue) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
@@ -271,6 +281,15 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		}
         com.grafana.foundation.nodegraph.Options optionsResource = (com.grafana.foundation.nodegraph.Options) this.internal.options;
         optionsResource.edges = edges.build();
+    this.internal.options = optionsResource;
+        return this;
+    }
+    public PanelBuilder zoomMode(ZoomMode zoomMode) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.nodegraph.Options();
+		}
+        com.grafana.foundation.nodegraph.Options optionsResource = (com.grafana.foundation.nodegraph.Options) this.internal.options;
+        optionsResource.zoomMode = zoomMode;
     this.internal.options = optionsResource;
         return this;
     }

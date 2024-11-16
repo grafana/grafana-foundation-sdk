@@ -14,13 +14,11 @@ type TraceqlFilterBuilder struct {
 }
 
 func NewTraceqlFilterBuilder() *TraceqlFilterBuilder {
-	resource := &TraceqlFilter{}
+	resource := NewTraceqlFilter()
 	builder := &TraceqlFilterBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -57,7 +55,7 @@ func (builder *TraceqlFilterBuilder) Operator(operator string) *TraceqlFilterBui
 // The value for the search filter
 func (builder *TraceqlFilterBuilder) Value(values []string) *TraceqlFilterBuilder {
 	if builder.internal.Value == nil {
-		builder.internal.Value = &StringOrArrayOfString{}
+		builder.internal.Value = NewStringOrArrayOfString()
 	}
 	builder.internal.Value.ArrayOfString = values
 
@@ -76,7 +74,4 @@ func (builder *TraceqlFilterBuilder) Scope(scope TraceqlSearchScope) *TraceqlFil
 	builder.internal.Scope = &scope
 
 	return builder
-}
-
-func (builder *TraceqlFilterBuilder) applyDefaults() {
 }

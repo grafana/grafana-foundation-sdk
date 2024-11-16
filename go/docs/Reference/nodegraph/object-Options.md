@@ -9,6 +9,8 @@ title: <span class="badge object-type-struct"></span> Options
 type Options struct {
     Nodes *nodegraph.NodeOptions `json:"nodes,omitempty"`
     Edges *nodegraph.EdgeOptions `json:"edges,omitempty"`
+    // How to handle zoom/scroll events in the node graph
+    ZoomMode *nodegraph.ZoomMode `json:"zoomMode,omitempty"`
 }
 ```
 ## Methods

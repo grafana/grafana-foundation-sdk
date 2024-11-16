@@ -15,13 +15,11 @@ type QueryEditorOperatorBuilder struct {
 }
 
 func NewQueryEditorOperatorBuilder() *QueryEditorOperatorBuilder {
-	resource := &QueryEditorOperator{}
+	resource := NewQueryEditorOperator()
 	builder := &QueryEditorOperatorBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -42,12 +40,9 @@ func (builder *QueryEditorOperatorBuilder) Name(name string) *QueryEditorOperato
 
 func (builder *QueryEditorOperatorBuilder) Value(operatorTypes []QueryEditorOperatorType) *QueryEditorOperatorBuilder {
 	if builder.internal.Value == nil {
-		builder.internal.Value = &StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType{}
+		builder.internal.Value = NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType()
 	}
 	builder.internal.Value.ArrayOfQueryEditorOperatorType = operatorTypes
 
 	return builder
-}
-
-func (builder *QueryEditorOperatorBuilder) applyDefaults() {
 }

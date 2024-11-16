@@ -15,13 +15,11 @@ type TextBoxVariableBuilder struct {
 }
 
 func NewTextBoxVariableBuilder(name string) *TextBoxVariableBuilder {
-	resource := &VariableModel{}
+	resource := NewVariableModel()
 	builder := &TextBoxVariableBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Name = name
 	builder.internal.Type = "textbox"
 
@@ -83,7 +81,4 @@ func (builder *TextBoxVariableBuilder) Options(options []VariableOption) *TextBo
 	builder.internal.Options = options
 
 	return builder
-}
-
-func (builder *TextBoxVariableBuilder) applyDefaults() {
 }

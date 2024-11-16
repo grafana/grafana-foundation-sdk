@@ -14,13 +14,11 @@ type CSVWaveBuilder struct {
 }
 
 func NewCSVWaveBuilder() *CSVWaveBuilder {
-	resource := &CSVWave{}
+	resource := NewCSVWave()
 	builder := &CSVWaveBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -55,7 +53,4 @@ func (builder *CSVWaveBuilder) ValuesCSV(valuesCSV string) *CSVWaveBuilder {
 	builder.internal.ValuesCSV = &valuesCSV
 
 	return builder
-}
-
-func (builder *CSVWaveBuilder) applyDefaults() {
 }

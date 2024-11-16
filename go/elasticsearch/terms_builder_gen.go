@@ -14,13 +14,11 @@ type TermsBuilder struct {
 }
 
 func NewTermsBuilder() *TermsBuilder {
-	resource := &Terms{}
+	resource := NewTerms()
 	builder := &TermsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "terms"
 
 	return builder
@@ -55,7 +53,4 @@ func (builder *TermsBuilder) Settings(settings cog.Builder[ElasticsearchTermsSet
 	builder.internal.Settings = &settingsResource
 
 	return builder
-}
-
-func (builder *TermsBuilder) applyDefaults() {
 }

@@ -29,6 +29,78 @@
  * <span class="badge builder"></span> [PlacementBuilder](./builder-PlacementBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewConstraint
+
+NewConstraint creates a new Constraint object.
+
+```go
+func NewConstraint() *Constraint
+```
+
+### <span class="badge function"></span> NewPlacement
+
+NewPlacement creates a new Placement object.
+
+```go
+func NewPlacement() *Placement
+```
+
+### <span class="badge function"></span> NewBackgroundConfig
+
+NewBackgroundConfig creates a new BackgroundConfig object.
+
+```go
+func NewBackgroundConfig() *BackgroundConfig
+```
+
+### <span class="badge function"></span> NewLineConfig
+
+NewLineConfig creates a new LineConfig object.
+
+```go
+func NewLineConfig() *LineConfig
+```
+
+### <span class="badge function"></span> NewConnectionCoordinates
+
+NewConnectionCoordinates creates a new ConnectionCoordinates object.
+
+```go
+func NewConnectionCoordinates() *ConnectionCoordinates
+```
+
+### <span class="badge function"></span> NewCanvasConnection
+
+NewCanvasConnection creates a new CanvasConnection object.
+
+```go
+func NewCanvasConnection() *CanvasConnection
+```
+
+### <span class="badge function"></span> NewCanvasElementOptions
+
+NewCanvasElementOptions creates a new CanvasElementOptions object.
+
+```go
+func NewCanvasElementOptions() *CanvasElementOptions
+```
+
+### <span class="badge function"></span> NewOptions
+
+NewOptions creates a new Options object.
+
+```go
+func NewOptions() *Options
+```
+
+### <span class="badge function"></span> NewCanvasOptionsRoot
+
+NewCanvasOptionsRoot creates a new CanvasOptionsRoot object.
+
+```go
+func NewCanvasOptionsRoot() *CanvasOptionsRoot
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to canvas panels.
