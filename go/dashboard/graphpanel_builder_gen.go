@@ -16,13 +16,11 @@ type GraphPanelBuilder struct {
 }
 
 func NewGraphPanelBuilder() *GraphPanelBuilder {
-	resource := &GraphPanel{}
+	resource := NewGraphPanel()
 	builder := &GraphPanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "graph"
 
 	return builder
@@ -46,7 +44,4 @@ func (builder *GraphPanelBuilder) Legend(legend cog.Builder[DashboardGraphPanelL
 	builder.internal.Legend = &legendResource
 
 	return builder
-}
-
-func (builder *GraphPanelBuilder) applyDefaults() {
 }

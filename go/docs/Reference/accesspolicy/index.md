@@ -15,6 +15,38 @@
  * <span class="badge builder"></span> [RoleRefBuilder](./builder-RoleRefBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewAccessPolicy
+
+NewAccessPolicy creates a new AccessPolicy object.
+
+```go
+func NewAccessPolicy() *AccessPolicy
+```
+
+### <span class="badge function"></span> NewRoleRef
+
+NewRoleRef creates a new RoleRef object.
+
+```go
+func NewRoleRef() *RoleRef
+```
+
+### <span class="badge function"></span> NewResourceRef
+
+NewResourceRef creates a new ResourceRef object.
+
+```go
+func NewResourceRef() *ResourceRef
+```
+
+### <span class="badge function"></span> NewAccessRule
+
+NewAccessRule creates a new AccessRule object.
+
+```go
+func NewAccessRule() *AccessRule
+```
+
 ### <span class="badge function"></span> AccessPolicyConverter
 
 AccessPolicyConverter accepts a `AccessPolicy` object and generates the Go code to build this object using builders.

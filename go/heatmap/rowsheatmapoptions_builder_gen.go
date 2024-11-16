@@ -16,13 +16,11 @@ type RowsHeatmapOptionsBuilder struct {
 }
 
 func NewRowsHeatmapOptionsBuilder() *RowsHeatmapOptionsBuilder {
-	resource := &RowsHeatmapOptions{}
+	resource := NewRowsHeatmapOptions()
 	builder := &RowsHeatmapOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -47,7 +45,4 @@ func (builder *RowsHeatmapOptionsBuilder) Layout(layout common.HeatmapCellLayout
 	builder.internal.Layout = &layout
 
 	return builder
-}
-
-func (builder *RowsHeatmapOptionsBuilder) applyDefaults() {
 }

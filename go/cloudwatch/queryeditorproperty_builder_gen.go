@@ -14,13 +14,11 @@ type QueryEditorPropertyBuilder struct {
 }
 
 func NewQueryEditorPropertyBuilder() *QueryEditorPropertyBuilder {
-	resource := &QueryEditorProperty{}
+	resource := NewQueryEditorProperty()
 	builder := &QueryEditorPropertyBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *QueryEditorPropertyBuilder) Name(name string) *QueryEditorPropert
 	builder.internal.Name = &name
 
 	return builder
-}
-
-func (builder *QueryEditorPropertyBuilder) applyDefaults() {
 }

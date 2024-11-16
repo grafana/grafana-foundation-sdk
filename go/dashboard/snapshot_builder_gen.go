@@ -19,13 +19,11 @@ type SnapshotBuilder struct {
 }
 
 func NewSnapshotBuilder() *SnapshotBuilder {
-	resource := &Snapshot{}
+	resource := NewSnapshot()
 	builder := &SnapshotBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -103,7 +101,4 @@ func (builder *SnapshotBuilder) Dashboard(dashboard cog.Builder[Dashboard]) *Sna
 	builder.internal.Dashboard = &dashboardResource
 
 	return builder
-}
-
-func (builder *SnapshotBuilder) applyDefaults() {
 }

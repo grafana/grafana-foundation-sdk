@@ -15,13 +15,11 @@ type AdHocVariableBuilder struct {
 }
 
 func NewAdHocVariableBuilder(name string) *AdHocVariableBuilder {
-	resource := &VariableModel{}
+	resource := NewVariableModel()
 	builder := &AdHocVariableBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Name = name
 	builder.internal.Type = "adhoc"
 
@@ -83,7 +81,4 @@ func (builder *AdHocVariableBuilder) AllFormat(allFormat string) *AdHocVariableB
 	builder.internal.AllFormat = &allFormat
 
 	return builder
-}
-
-func (builder *AdHocVariableBuilder) applyDefaults() {
 }

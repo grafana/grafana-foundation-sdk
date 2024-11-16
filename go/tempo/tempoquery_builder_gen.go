@@ -16,13 +16,11 @@ type TempoQueryBuilder struct {
 }
 
 func NewTempoQueryBuilder() *TempoQueryBuilder {
-	resource := &TempoQuery{}
+	resource := NewTempoQuery()
 	builder := &TempoQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -147,7 +145,4 @@ func (builder *TempoQueryBuilder) Filters(filters []cog.Builder[TraceqlFilter]) 
 	builder.internal.Filters = filtersResources
 
 	return builder
-}
-
-func (builder *TempoQueryBuilder) applyDefaults() {
 }

@@ -32,6 +32,14 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 func (builder *PanelBuilder) Counters(counters cog.Builder[debug.UpdateConfig]) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> DataLinks
+
+The behavior when clicking on a result
+
+```go
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> Datasource
 
 The datasource used in all targets.

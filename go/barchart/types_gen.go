@@ -45,6 +45,23 @@ type Options struct {
 	FullHighlight bool `json:"fullHighlight"`
 }
 
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		Orientation:        common.VizOrientationAuto,
+		BarRadius:          cog.ToPtr[float64](0),
+		XTickLabelRotation: 0,
+		XTickLabelSpacing:  cog.ToPtr[int32](0),
+		Stacking:           common.StackingModeNone,
+		ShowValue:          common.VisibilityModeAuto,
+		BarWidth:           0.97,
+		GroupWidth:         0.7,
+		Legend:             *common.NewVizLegendOptions(),
+		Tooltip:            *common.NewVizTooltipOptions(),
+		FullHighlight:      false,
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
@@ -442,6 +459,15 @@ type FieldConfig struct {
 	// Threshold rendering
 	ThresholdsStyle  *common.GraphThresholdsStyleConfig `json:"thresholdsStyle,omitempty"`
 	AxisCenteredZero *bool                              `json:"axisCenteredZero,omitempty"`
+}
+
+// NewFieldConfig creates a new FieldConfig object.
+func NewFieldConfig() *FieldConfig {
+	return &FieldConfig{
+		LineWidth:    cog.ToPtr[int32](1),
+		FillOpacity:  cog.ToPtr[int32](80),
+		GradientMode: cog.ToPtr(common.GraphGradientModeNone),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FieldConfig` from JSON.

@@ -40,6 +40,11 @@ type Constraint struct {
 	Vertical   *VerticalConstraint   `json:"vertical,omitempty"`
 }
 
+// NewConstraint creates a new Constraint object.
+func NewConstraint() *Constraint {
+	return &Constraint{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Constraint` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Constraint) UnmarshalJSONStrict(raw []byte) error {
@@ -122,6 +127,11 @@ type Placement struct {
 	Bottom *float64 `json:"bottom,omitempty"`
 	Width  *float64 `json:"width,omitempty"`
 	Height *float64 `json:"height,omitempty"`
+}
+
+// NewPlacement creates a new Placement object.
+func NewPlacement() *Placement {
+	return &Placement{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Placement` from JSON.
@@ -295,6 +305,11 @@ type BackgroundConfig struct {
 	Size  *BackgroundImageSize            `json:"size,omitempty"`
 }
 
+// NewBackgroundConfig creates a new BackgroundConfig object.
+func NewBackgroundConfig() *BackgroundConfig {
+	return &BackgroundConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BackgroundConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *BackgroundConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -415,6 +430,11 @@ type LineConfig struct {
 	Width *float64                     `json:"width,omitempty"`
 }
 
+// NewLineConfig creates a new LineConfig object.
+func NewLineConfig() *LineConfig {
+	return &LineConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LineConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LineConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -508,6 +528,11 @@ type ConnectionCoordinates struct {
 	Y float64 `json:"y"`
 }
 
+// NewConnectionCoordinates creates a new ConnectionCoordinates object.
+func NewConnectionCoordinates() *ConnectionCoordinates {
+	return &ConnectionCoordinates{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ConnectionCoordinates` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ConnectionCoordinates) UnmarshalJSONStrict(raw []byte) error {
@@ -590,6 +615,14 @@ type CanvasConnection struct {
 	Path       ConnectionPath               `json:"path"`
 	Color      *common.ColorDimensionConfig `json:"color,omitempty"`
 	Size       *common.ScaleDimensionConfig `json:"size,omitempty"`
+}
+
+// NewCanvasConnection creates a new CanvasConnection object.
+func NewCanvasConnection() *CanvasConnection {
+	return &CanvasConnection{
+		Source: *NewConnectionCoordinates(),
+		Target: *NewConnectionCoordinates(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CanvasConnection` from JSON.
@@ -778,6 +811,11 @@ type CanvasElementOptions struct {
 	Background  *BackgroundConfig  `json:"background,omitempty"`
 	Border      *LineConfig        `json:"border,omitempty"`
 	Connections []CanvasConnection `json:"connections,omitempty"`
+}
+
+// NewCanvasElementOptions creates a new CanvasElementOptions object.
+func NewCanvasElementOptions() *CanvasElementOptions {
+	return &CanvasElementOptions{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CanvasElementOptions` from JSON.
@@ -1027,6 +1065,15 @@ type Options struct {
 	Root CanvasOptionsRoot `json:"root"`
 }
 
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		InlineEditing:     true,
+		ShowAdvancedTypes: true,
+		Root:              *NewCanvasOptionsRoot(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
@@ -1129,6 +1176,13 @@ type CanvasOptionsRoot struct {
 	Type string `json:"type"`
 	// The list of canvas elements attached to the root element
 	Elements []CanvasElementOptions `json:"elements"`
+}
+
+// NewCanvasOptionsRoot creates a new CanvasOptionsRoot object.
+func NewCanvasOptionsRoot() *CanvasOptionsRoot {
+	return &CanvasOptionsRoot{
+		Type: "frame",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CanvasOptionsRoot` from JSON.

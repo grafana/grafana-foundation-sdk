@@ -14,13 +14,11 @@ type PlaylistItemBuilder struct {
 }
 
 func NewPlaylistItemBuilder() *PlaylistItemBuilder {
-	resource := &PlaylistItem{}
+	resource := NewPlaylistItem()
 	builder := &PlaylistItemBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -59,7 +57,4 @@ func (builder *PlaylistItemBuilder) Title(title string) *PlaylistItemBuilder {
 	builder.internal.Title = &title
 
 	return builder
-}
-
-func (builder *PlaylistItemBuilder) applyDefaults() {
 }

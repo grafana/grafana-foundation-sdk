@@ -15,13 +15,11 @@ type AzureLogsQueryBuilder struct {
 }
 
 func NewAzureLogsQueryBuilder() *AzureLogsQueryBuilder {
-	resource := &AzureLogsQuery{}
+	resource := NewAzureLogsQuery()
 	builder := &AzureLogsQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -74,7 +72,4 @@ func (builder *AzureLogsQueryBuilder) Resource(resource string) *AzureLogsQueryB
 	builder.internal.Resource = &resource
 
 	return builder
-}
-
-func (builder *AzureLogsQueryBuilder) applyDefaults() {
 }

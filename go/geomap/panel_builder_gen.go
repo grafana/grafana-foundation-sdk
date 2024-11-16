@@ -18,13 +18,11 @@ type PanelBuilder struct {
 }
 
 func NewPanelBuilder() *PanelBuilder {
-	resource := &dashboard.Panel{}
+	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "geomap"
 
 	return builder
@@ -111,7 +109,7 @@ func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.H = h
 
@@ -121,7 +119,7 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.W = w
 
@@ -303,6 +301,22 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 	return builder
 }
 
+// The behavior when clicking on a result
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder {
+	linksResources := make([]dashboard.DashboardLink, 0, len(links))
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			return builder
+		}
+		linksResources = append(linksResources, linksDepth1)
+	}
+	builder.internal.FieldConfig.Defaults.Links = linksResources
+
+	return builder
+}
+
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
@@ -338,7 +352,7 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 
 func (builder *PanelBuilder) View(view cog.Builder[MapViewConfig]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	viewResource, err := view.Build()
 	if err != nil {
@@ -352,7 +366,7 @@ func (builder *PanelBuilder) View(view cog.Builder[MapViewConfig]) *PanelBuilder
 
 func (builder *PanelBuilder) Controls(controls cog.Builder[ControlsOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	controlsResource, err := controls.Build()
 	if err != nil {
@@ -366,7 +380,7 @@ func (builder *PanelBuilder) Controls(controls cog.Builder[ControlsOptions]) *Pa
 
 func (builder *PanelBuilder) Basemap(basemap cog.Builder[common.MapLayerOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	basemapResource, err := basemap.Build()
 	if err != nil {
@@ -380,7 +394,7 @@ func (builder *PanelBuilder) Basemap(basemap cog.Builder[common.MapLayerOptions]
 
 func (builder *PanelBuilder) Layers(layers []cog.Builder[common.MapLayerOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	layersResources := make([]common.MapLayerOptions, 0, len(layers))
 	for _, r1 := range layers {
@@ -398,7 +412,7 @@ func (builder *PanelBuilder) Layers(layers []cog.Builder[common.MapLayerOptions]
 
 func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[TooltipOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	tooltipResource, err := tooltip.Build()
 	if err != nil {
@@ -408,10 +422,4 @@ func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[TooltipOptions]) *Panel
 	builder.internal.Options.(*Options).Tooltip = tooltipResource
 
 	return builder
-}
-
-func (builder *PanelBuilder) applyDefaults() {
-	builder.Transparent(false)
-	builder.Height(9)
-	builder.Span(12)
 }

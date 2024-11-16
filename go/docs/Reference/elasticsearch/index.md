@@ -181,6 +181,446 @@
  * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewBucketAggregation
+
+NewBucketAggregation creates a new BucketAggregation object.
+
+```go
+func NewBucketAggregation() *BucketAggregation
+```
+
+### <span class="badge function"></span> NewMetricAggregation
+
+NewMetricAggregation creates a new MetricAggregation object.
+
+```go
+func NewMetricAggregation() *MetricAggregation
+```
+
+### <span class="badge function"></span> NewBaseBucketAggregation
+
+NewBaseBucketAggregation creates a new BaseBucketAggregation object.
+
+```go
+func NewBaseBucketAggregation() *BaseBucketAggregation
+```
+
+### <span class="badge function"></span> NewBucketAggregationWithField
+
+NewBucketAggregationWithField creates a new BucketAggregationWithField object.
+
+```go
+func NewBucketAggregationWithField() *BucketAggregationWithField
+```
+
+### <span class="badge function"></span> NewDateHistogram
+
+NewDateHistogram creates a new DateHistogram object.
+
+```go
+func NewDateHistogram() *DateHistogram
+```
+
+### <span class="badge function"></span> NewDateHistogramSettings
+
+NewDateHistogramSettings creates a new DateHistogramSettings object.
+
+```go
+func NewDateHistogramSettings() *DateHistogramSettings
+```
+
+### <span class="badge function"></span> NewHistogram
+
+NewHistogram creates a new Histogram object.
+
+```go
+func NewHistogram() *Histogram
+```
+
+### <span class="badge function"></span> NewHistogramSettings
+
+NewHistogramSettings creates a new HistogramSettings object.
+
+```go
+func NewHistogramSettings() *HistogramSettings
+```
+
+### <span class="badge function"></span> NewNested
+
+NewNested creates a new Nested object.
+
+```go
+func NewNested() *Nested
+```
+
+### <span class="badge function"></span> NewTerms
+
+NewTerms creates a new Terms object.
+
+```go
+func NewTerms() *Terms
+```
+
+### <span class="badge function"></span> NewTermsSettings
+
+NewTermsSettings creates a new TermsSettings object.
+
+```go
+func NewTermsSettings() *TermsSettings
+```
+
+### <span class="badge function"></span> NewFilters
+
+NewFilters creates a new Filters object.
+
+```go
+func NewFilters() *Filters
+```
+
+### <span class="badge function"></span> NewFilter
+
+NewFilter creates a new Filter object.
+
+```go
+func NewFilter() *Filter
+```
+
+### <span class="badge function"></span> NewFiltersSettings
+
+NewFiltersSettings creates a new FiltersSettings object.
+
+```go
+func NewFiltersSettings() *FiltersSettings
+```
+
+### <span class="badge function"></span> NewGeoHashGrid
+
+NewGeoHashGrid creates a new GeoHashGrid object.
+
+```go
+func NewGeoHashGrid() *GeoHashGrid
+```
+
+### <span class="badge function"></span> NewGeoHashGridSettings
+
+NewGeoHashGridSettings creates a new GeoHashGridSettings object.
+
+```go
+func NewGeoHashGridSettings() *GeoHashGridSettings
+```
+
+### <span class="badge function"></span> NewMetricAggregationType
+
+NewMetricAggregationType creates a new MetricAggregationType object.
+
+```go
+func NewMetricAggregationType() *MetricAggregationType
+```
+
+### <span class="badge function"></span> NewBaseMetricAggregation
+
+NewBaseMetricAggregation creates a new BaseMetricAggregation object.
+
+```go
+func NewBaseMetricAggregation() *BaseMetricAggregation
+```
+
+### <span class="badge function"></span> NewPipelineVariable
+
+NewPipelineVariable creates a new PipelineVariable object.
+
+```go
+func NewPipelineVariable() *PipelineVariable
+```
+
+### <span class="badge function"></span> NewMetricAggregationWithField
+
+NewMetricAggregationWithField creates a new MetricAggregationWithField object.
+
+```go
+func NewMetricAggregationWithField() *MetricAggregationWithField
+```
+
+### <span class="badge function"></span> NewMetricAggregationWithMissingSupport
+
+NewMetricAggregationWithMissingSupport creates a new MetricAggregationWithMissingSupport object.
+
+```go
+func NewMetricAggregationWithMissingSupport() *MetricAggregationWithMissingSupport
+```
+
+### <span class="badge function"></span> NewInlineScript
+
+NewInlineScript creates a new InlineScript object.
+
+```go
+func NewInlineScript() *InlineScript
+```
+
+### <span class="badge function"></span> NewMetricAggregationWithInlineScript
+
+NewMetricAggregationWithInlineScript creates a new MetricAggregationWithInlineScript object.
+
+```go
+func NewMetricAggregationWithInlineScript() *MetricAggregationWithInlineScript
+```
+
+### <span class="badge function"></span> NewCount
+
+NewCount creates a new Count object.
+
+```go
+func NewCount() *Count
+```
+
+### <span class="badge function"></span> NewAverage
+
+NewAverage creates a new Average object.
+
+```go
+func NewAverage() *Average
+```
+
+### <span class="badge function"></span> NewSum
+
+NewSum creates a new Sum object.
+
+```go
+func NewSum() *Sum
+```
+
+### <span class="badge function"></span> NewMax
+
+NewMax creates a new Max object.
+
+```go
+func NewMax() *Max
+```
+
+### <span class="badge function"></span> NewMin
+
+NewMin creates a new Min object.
+
+```go
+func NewMin() *Min
+```
+
+### <span class="badge function"></span> NewExtendedStat
+
+NewExtendedStat creates a new ExtendedStat object.
+
+```go
+func NewExtendedStat() *ExtendedStat
+```
+
+### <span class="badge function"></span> NewExtendedStats
+
+NewExtendedStats creates a new ExtendedStats object.
+
+```go
+func NewExtendedStats() *ExtendedStats
+```
+
+### <span class="badge function"></span> NewPercentiles
+
+NewPercentiles creates a new Percentiles object.
+
+```go
+func NewPercentiles() *Percentiles
+```
+
+### <span class="badge function"></span> NewUniqueCount
+
+NewUniqueCount creates a new UniqueCount object.
+
+```go
+func NewUniqueCount() *UniqueCount
+```
+
+### <span class="badge function"></span> NewRawDocument
+
+NewRawDocument creates a new RawDocument object.
+
+```go
+func NewRawDocument() *RawDocument
+```
+
+### <span class="badge function"></span> NewRawData
+
+NewRawData creates a new RawData object.
+
+```go
+func NewRawData() *RawData
+```
+
+### <span class="badge function"></span> NewLogs
+
+NewLogs creates a new Logs object.
+
+```go
+func NewLogs() *Logs
+```
+
+### <span class="badge function"></span> NewRate
+
+NewRate creates a new Rate object.
+
+```go
+func NewRate() *Rate
+```
+
+### <span class="badge function"></span> NewBasePipelineMetricAggregation
+
+NewBasePipelineMetricAggregation creates a new BasePipelineMetricAggregation object.
+
+```go
+func NewBasePipelineMetricAggregation() *BasePipelineMetricAggregation
+```
+
+### <span class="badge function"></span> NewPipelineMetricAggregationWithMultipleBucketPaths
+
+NewPipelineMetricAggregationWithMultipleBucketPaths creates a new PipelineMetricAggregationWithMultipleBucketPaths object.
+
+```go
+func NewPipelineMetricAggregationWithMultipleBucketPaths() *PipelineMetricAggregationWithMultipleBucketPaths
+```
+
+### <span class="badge function"></span> NewMovingAverageModelOption
+
+NewMovingAverageModelOption creates a new MovingAverageModelOption object.
+
+```go
+func NewMovingAverageModelOption() *MovingAverageModelOption
+```
+
+### <span class="badge function"></span> NewBaseMovingAverageModelSettings
+
+NewBaseMovingAverageModelSettings creates a new BaseMovingAverageModelSettings object.
+
+```go
+func NewBaseMovingAverageModelSettings() *BaseMovingAverageModelSettings
+```
+
+### <span class="badge function"></span> NewMovingAverageSimpleModelSettings
+
+NewMovingAverageSimpleModelSettings creates a new MovingAverageSimpleModelSettings object.
+
+```go
+func NewMovingAverageSimpleModelSettings() *MovingAverageSimpleModelSettings
+```
+
+### <span class="badge function"></span> NewMovingAverageLinearModelSettings
+
+NewMovingAverageLinearModelSettings creates a new MovingAverageLinearModelSettings object.
+
+```go
+func NewMovingAverageLinearModelSettings() *MovingAverageLinearModelSettings
+```
+
+### <span class="badge function"></span> NewMovingAverageEWMAModelSettings
+
+NewMovingAverageEWMAModelSettings creates a new MovingAverageEWMAModelSettings object.
+
+```go
+func NewMovingAverageEWMAModelSettings() *MovingAverageEWMAModelSettings
+```
+
+### <span class="badge function"></span> NewMovingAverageHoltModelSettings
+
+NewMovingAverageHoltModelSettings creates a new MovingAverageHoltModelSettings object.
+
+```go
+func NewMovingAverageHoltModelSettings() *MovingAverageHoltModelSettings
+```
+
+### <span class="badge function"></span> NewMovingAverageHoltWintersModelSettings
+
+NewMovingAverageHoltWintersModelSettings creates a new MovingAverageHoltWintersModelSettings object.
+
+```go
+func NewMovingAverageHoltWintersModelSettings() *MovingAverageHoltWintersModelSettings
+```
+
+### <span class="badge function"></span> NewMovingAverage
+
+NewMovingAverage creates a new MovingAverage object.
+
+```go
+func NewMovingAverage() *MovingAverage
+```
+
+### <span class="badge function"></span> NewMovingFunction
+
+NewMovingFunction creates a new MovingFunction object.
+
+```go
+func NewMovingFunction() *MovingFunction
+```
+
+### <span class="badge function"></span> NewDerivative
+
+NewDerivative creates a new Derivative object.
+
+```go
+func NewDerivative() *Derivative
+```
+
+### <span class="badge function"></span> NewSerialDiff
+
+NewSerialDiff creates a new SerialDiff object.
+
+```go
+func NewSerialDiff() *SerialDiff
+```
+
+### <span class="badge function"></span> NewCumulativeSum
+
+NewCumulativeSum creates a new CumulativeSum object.
+
+```go
+func NewCumulativeSum() *CumulativeSum
+```
+
+### <span class="badge function"></span> NewBucketScript
+
+NewBucketScript creates a new BucketScript object.
+
+```go
+func NewBucketScript() *BucketScript
+```
+
+### <span class="badge function"></span> NewTopMetrics
+
+NewTopMetrics creates a new TopMetrics object.
+
+```go
+func NewTopMetrics() *TopMetrics
+```
+
+### <span class="badge function"></span> NewPipelineMetricAggregation
+
+NewPipelineMetricAggregation creates a new PipelineMetricAggregation object.
+
+```go
+func NewPipelineMetricAggregation() *PipelineMetricAggregation
+```
+
+### <span class="badge function"></span> NewMetricAggregationWithSettings
+
+NewMetricAggregationWithSettings creates a new MetricAggregationWithSettings object.
+
+```go
+func NewMetricAggregationWithSettings() *MetricAggregationWithSettings
+```
+
+### <span class="badge function"></span> NewDataquery
+
+NewDataquery creates a new Dataquery object.
+
+```go
+func NewDataquery() *Dataquery
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to elasticsearch dataqueries.
@@ -189,6 +629,278 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> NewElasticsearchDateHistogramSettings
+
+NewElasticsearchDateHistogramSettings creates a new ElasticsearchDateHistogramSettings object.
+
+```go
+func NewElasticsearchDateHistogramSettings() *ElasticsearchDateHistogramSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchHistogramSettings
+
+NewElasticsearchHistogramSettings creates a new ElasticsearchHistogramSettings object.
+
+```go
+func NewElasticsearchHistogramSettings() *ElasticsearchHistogramSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchTermsSettings
+
+NewElasticsearchTermsSettings creates a new ElasticsearchTermsSettings object.
+
+```go
+func NewElasticsearchTermsSettings() *ElasticsearchTermsSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchFiltersSettings
+
+NewElasticsearchFiltersSettings creates a new ElasticsearchFiltersSettings object.
+
+```go
+func NewElasticsearchFiltersSettings() *ElasticsearchFiltersSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchGeoHashGridSettings
+
+NewElasticsearchGeoHashGridSettings creates a new ElasticsearchGeoHashGridSettings object.
+
+```go
+func NewElasticsearchGeoHashGridSettings() *ElasticsearchGeoHashGridSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMetricAggregationWithMissingSupportSettings
+
+NewElasticsearchMetricAggregationWithMissingSupportSettings creates a new ElasticsearchMetricAggregationWithMissingSupportSettings object.
+
+```go
+func NewElasticsearchMetricAggregationWithMissingSupportSettings() *ElasticsearchMetricAggregationWithMissingSupportSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchInlineScript
+
+NewElasticsearchInlineScript creates a new ElasticsearchInlineScript object.
+
+```go
+func NewElasticsearchInlineScript() *ElasticsearchInlineScript
+```
+
+### <span class="badge function"></span> NewElasticsearchMetricAggregationWithInlineScriptSettings
+
+NewElasticsearchMetricAggregationWithInlineScriptSettings creates a new ElasticsearchMetricAggregationWithInlineScriptSettings object.
+
+```go
+func NewElasticsearchMetricAggregationWithInlineScriptSettings() *ElasticsearchMetricAggregationWithInlineScriptSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchAverageSettings
+
+NewElasticsearchAverageSettings creates a new ElasticsearchAverageSettings object.
+
+```go
+func NewElasticsearchAverageSettings() *ElasticsearchAverageSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchSumSettings
+
+NewElasticsearchSumSettings creates a new ElasticsearchSumSettings object.
+
+```go
+func NewElasticsearchSumSettings() *ElasticsearchSumSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMaxSettings
+
+NewElasticsearchMaxSettings creates a new ElasticsearchMaxSettings object.
+
+```go
+func NewElasticsearchMaxSettings() *ElasticsearchMaxSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMinSettings
+
+NewElasticsearchMinSettings creates a new ElasticsearchMinSettings object.
+
+```go
+func NewElasticsearchMinSettings() *ElasticsearchMinSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchExtendedStatsSettings
+
+NewElasticsearchExtendedStatsSettings creates a new ElasticsearchExtendedStatsSettings object.
+
+```go
+func NewElasticsearchExtendedStatsSettings() *ElasticsearchExtendedStatsSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchPercentilesSettings
+
+NewElasticsearchPercentilesSettings creates a new ElasticsearchPercentilesSettings object.
+
+```go
+func NewElasticsearchPercentilesSettings() *ElasticsearchPercentilesSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchUniqueCountSettings
+
+NewElasticsearchUniqueCountSettings creates a new ElasticsearchUniqueCountSettings object.
+
+```go
+func NewElasticsearchUniqueCountSettings() *ElasticsearchUniqueCountSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchRawDocumentSettings
+
+NewElasticsearchRawDocumentSettings creates a new ElasticsearchRawDocumentSettings object.
+
+```go
+func NewElasticsearchRawDocumentSettings() *ElasticsearchRawDocumentSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchRawDataSettings
+
+NewElasticsearchRawDataSettings creates a new ElasticsearchRawDataSettings object.
+
+```go
+func NewElasticsearchRawDataSettings() *ElasticsearchRawDataSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchLogsSettings
+
+NewElasticsearchLogsSettings creates a new ElasticsearchLogsSettings object.
+
+```go
+func NewElasticsearchLogsSettings() *ElasticsearchLogsSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchRateSettings
+
+NewElasticsearchRateSettings creates a new ElasticsearchRateSettings object.
+
+```go
+func NewElasticsearchRateSettings() *ElasticsearchRateSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMovingAverageEWMAModelSettingsSettings
+
+NewElasticsearchMovingAverageEWMAModelSettingsSettings creates a new ElasticsearchMovingAverageEWMAModelSettingsSettings object.
+
+```go
+func NewElasticsearchMovingAverageEWMAModelSettingsSettings() *ElasticsearchMovingAverageEWMAModelSettingsSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMovingAverageHoltModelSettingsSettings
+
+NewElasticsearchMovingAverageHoltModelSettingsSettings creates a new ElasticsearchMovingAverageHoltModelSettingsSettings object.
+
+```go
+func NewElasticsearchMovingAverageHoltModelSettingsSettings() *ElasticsearchMovingAverageHoltModelSettingsSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMovingAverageHoltWintersModelSettingsSettings
+
+NewElasticsearchMovingAverageHoltWintersModelSettingsSettings creates a new ElasticsearchMovingAverageHoltWintersModelSettingsSettings object.
+
+```go
+func NewElasticsearchMovingAverageHoltWintersModelSettingsSettings() *ElasticsearchMovingAverageHoltWintersModelSettingsSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMovingFunctionSettings
+
+NewElasticsearchMovingFunctionSettings creates a new ElasticsearchMovingFunctionSettings object.
+
+```go
+func NewElasticsearchMovingFunctionSettings() *ElasticsearchMovingFunctionSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchDerivativeSettings
+
+NewElasticsearchDerivativeSettings creates a new ElasticsearchDerivativeSettings object.
+
+```go
+func NewElasticsearchDerivativeSettings() *ElasticsearchDerivativeSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchSerialDiffSettings
+
+NewElasticsearchSerialDiffSettings creates a new ElasticsearchSerialDiffSettings object.
+
+```go
+func NewElasticsearchSerialDiffSettings() *ElasticsearchSerialDiffSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchCumulativeSumSettings
+
+NewElasticsearchCumulativeSumSettings creates a new ElasticsearchCumulativeSumSettings object.
+
+```go
+func NewElasticsearchCumulativeSumSettings() *ElasticsearchCumulativeSumSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchBucketScriptSettings
+
+NewElasticsearchBucketScriptSettings creates a new ElasticsearchBucketScriptSettings object.
+
+```go
+func NewElasticsearchBucketScriptSettings() *ElasticsearchBucketScriptSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchTopMetricsSettings
+
+NewElasticsearchTopMetricsSettings creates a new ElasticsearchTopMetricsSettings object.
+
+```go
+func NewElasticsearchTopMetricsSettings() *ElasticsearchTopMetricsSettings
+```
+
+### <span class="badge function"></span> NewDateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested
+
+NewDateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested creates a new DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested object.
+
+```go
+func NewDateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested() *DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested
+```
+
+### <span class="badge function"></span> NewCountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
+
+NewCountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics creates a new CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics object.
+
+```go
+func NewCountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics() *CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
+```
+
+### <span class="badge function"></span> NewStringOrPipelineMetricAggregationType
+
+NewStringOrPipelineMetricAggregationType creates a new StringOrPipelineMetricAggregationType object.
+
+```go
+func NewStringOrPipelineMetricAggregationType() *StringOrPipelineMetricAggregationType
+```
+
+### <span class="badge function"></span> NewStringOrElasticsearchInlineScript
+
+NewStringOrElasticsearchInlineScript creates a new StringOrElasticsearchInlineScript object.
+
+```go
+func NewStringOrElasticsearchInlineScript() *StringOrElasticsearchInlineScript
+```
+
+### <span class="badge function"></span> NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript
+
+NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript creates a new MovingAverageOrDerivativeOrCumulativeSumOrBucketScript object.
+
+```go
+func NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript() *MovingAverageOrDerivativeOrCumulativeSumOrBucketScript
+```
+
+### <span class="badge function"></span> NewBucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
+
+NewBucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics creates a new BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics object.
+
+```go
+func NewBucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics() *BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
 ```
 
 ### <span class="badge function"></span> BaseBucketAggregationConverter

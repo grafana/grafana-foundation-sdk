@@ -14,13 +14,11 @@ type DashboardRangeMapOptionsBuilder struct {
 }
 
 func NewDashboardRangeMapOptionsBuilder() *DashboardRangeMapOptionsBuilder {
-	resource := &DashboardRangeMapOptions{}
+	resource := NewDashboardRangeMapOptions()
 	builder := &DashboardRangeMapOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -57,7 +55,4 @@ func (builder *DashboardRangeMapOptionsBuilder) Result(result cog.Builder[ValueM
 	builder.internal.Result = resultResource
 
 	return builder
-}
-
-func (builder *DashboardRangeMapOptionsBuilder) applyDefaults() {
 }

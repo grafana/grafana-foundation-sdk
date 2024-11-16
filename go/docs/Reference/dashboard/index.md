@@ -99,6 +99,366 @@
  * <span class="badge builder"></span> [ValueMappingResultBuilder](./builder-ValueMappingResultBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewDashboard
+
+NewDashboard creates a new Dashboard object.
+
+```go
+func NewDashboard() *Dashboard
+```
+
+### <span class="badge function"></span> NewAnnotationTarget
+
+NewAnnotationTarget creates a new AnnotationTarget object.
+
+```go
+func NewAnnotationTarget() *AnnotationTarget
+```
+
+### <span class="badge function"></span> NewAnnotationPanelFilter
+
+NewAnnotationPanelFilter creates a new AnnotationPanelFilter object.
+
+```go
+func NewAnnotationPanelFilter() *AnnotationPanelFilter
+```
+
+### <span class="badge function"></span> NewAnnotationContainer
+
+NewAnnotationContainer creates a new AnnotationContainer object.
+
+```go
+func NewAnnotationContainer() *AnnotationContainer
+```
+
+### <span class="badge function"></span> NewAnnotationQuery
+
+NewAnnotationQuery creates a new AnnotationQuery object.
+
+```go
+func NewAnnotationQuery() *AnnotationQuery
+```
+
+### <span class="badge function"></span> NewVariableModel
+
+NewVariableModel creates a new VariableModel object.
+
+```go
+func NewVariableModel() *VariableModel
+```
+
+### <span class="badge function"></span> NewVariableOption
+
+NewVariableOption creates a new VariableOption object.
+
+```go
+func NewVariableOption() *VariableOption
+```
+
+### <span class="badge function"></span> NewDataSourceRef
+
+NewDataSourceRef creates a new DataSourceRef object.
+
+```go
+func NewDataSourceRef() *DataSourceRef
+```
+
+### <span class="badge function"></span> NewDashboardLink
+
+NewDashboardLink creates a new DashboardLink object.
+
+```go
+func NewDashboardLink() *DashboardLink
+```
+
+### <span class="badge function"></span> NewFieldColor
+
+NewFieldColor creates a new FieldColor object.
+
+```go
+func NewFieldColor() *FieldColor
+```
+
+### <span class="badge function"></span> NewGridPos
+
+NewGridPos creates a new GridPos object.
+
+```go
+func NewGridPos() *GridPos
+```
+
+### <span class="badge function"></span> NewThreshold
+
+NewThreshold creates a new Threshold object.
+
+```go
+func NewThreshold() *Threshold
+```
+
+### <span class="badge function"></span> NewThresholdsConfig
+
+NewThresholdsConfig creates a new ThresholdsConfig object.
+
+```go
+func NewThresholdsConfig() *ThresholdsConfig
+```
+
+### <span class="badge function"></span> NewValueMapping
+
+NewValueMapping creates a new ValueMapping object.
+
+```go
+func NewValueMapping() *ValueMapping
+```
+
+### <span class="badge function"></span> NewValueMap
+
+NewValueMap creates a new ValueMap object.
+
+```go
+func NewValueMap() *ValueMap
+```
+
+### <span class="badge function"></span> NewRangeMap
+
+NewRangeMap creates a new RangeMap object.
+
+```go
+func NewRangeMap() *RangeMap
+```
+
+### <span class="badge function"></span> NewRegexMap
+
+NewRegexMap creates a new RegexMap object.
+
+```go
+func NewRegexMap() *RegexMap
+```
+
+### <span class="badge function"></span> NewSpecialValueMap
+
+NewSpecialValueMap creates a new SpecialValueMap object.
+
+```go
+func NewSpecialValueMap() *SpecialValueMap
+```
+
+### <span class="badge function"></span> NewValueMappingResult
+
+NewValueMappingResult creates a new ValueMappingResult object.
+
+```go
+func NewValueMappingResult() *ValueMappingResult
+```
+
+### <span class="badge function"></span> NewDataTransformerConfig
+
+NewDataTransformerConfig creates a new DataTransformerConfig object.
+
+```go
+func NewDataTransformerConfig() *DataTransformerConfig
+```
+
+### <span class="badge function"></span> NewSnapshot
+
+NewSnapshot creates a new Snapshot object.
+
+```go
+func NewSnapshot() *Snapshot
+```
+
+### <span class="badge function"></span> NewPanel
+
+NewPanel creates a new Panel object.
+
+```go
+func NewPanel() *Panel
+```
+
+### <span class="badge function"></span> NewFieldConfigSource
+
+NewFieldConfigSource creates a new FieldConfigSource object.
+
+```go
+func NewFieldConfigSource() *FieldConfigSource
+```
+
+### <span class="badge function"></span> NewLibraryPanelRef
+
+NewLibraryPanelRef creates a new LibraryPanelRef object.
+
+```go
+func NewLibraryPanelRef() *LibraryPanelRef
+```
+
+### <span class="badge function"></span> NewMatcherConfig
+
+NewMatcherConfig creates a new MatcherConfig object.
+
+```go
+func NewMatcherConfig() *MatcherConfig
+```
+
+### <span class="badge function"></span> NewDynamicConfigValue
+
+NewDynamicConfigValue creates a new DynamicConfigValue object.
+
+```go
+func NewDynamicConfigValue() *DynamicConfigValue
+```
+
+### <span class="badge function"></span> NewFieldConfig
+
+NewFieldConfig creates a new FieldConfig object.
+
+```go
+func NewFieldConfig() *FieldConfig
+```
+
+### <span class="badge function"></span> NewRowPanel
+
+NewRowPanel creates a new RowPanel object.
+
+```go
+func NewRowPanel() *RowPanel
+```
+
+### <span class="badge function"></span> NewGraphPanel
+
+NewGraphPanel creates a new GraphPanel object.
+
+```go
+func NewGraphPanel() *GraphPanel
+```
+
+### <span class="badge function"></span> NewTimePicker
+
+NewTimePicker creates a new TimePicker object.
+
+```go
+func NewTimePicker() *TimePicker
+```
+
+### <span class="badge function"></span> NewAnnotationActions
+
+NewAnnotationActions creates a new AnnotationActions object.
+
+```go
+func NewAnnotationActions() *AnnotationActions
+```
+
+### <span class="badge function"></span> NewAnnotationPermission
+
+NewAnnotationPermission creates a new AnnotationPermission object.
+
+```go
+func NewAnnotationPermission() *AnnotationPermission
+```
+
+### <span class="badge function"></span> NewDashboardMeta
+
+NewDashboardMeta creates a new DashboardMeta object.
+
+```go
+func NewDashboardMeta() *DashboardMeta
+```
+
+### <span class="badge function"></span> NewDashboardDashboardTime
+
+NewDashboardDashboardTime creates a new DashboardDashboardTime object.
+
+```go
+func NewDashboardDashboardTime() *DashboardDashboardTime
+```
+
+### <span class="badge function"></span> NewDashboardDashboardTemplating
+
+NewDashboardDashboardTemplating creates a new DashboardDashboardTemplating object.
+
+```go
+func NewDashboardDashboardTemplating() *DashboardDashboardTemplating
+```
+
+### <span class="badge function"></span> NewDashboardRangeMapOptions
+
+NewDashboardRangeMapOptions creates a new DashboardRangeMapOptions object.
+
+```go
+func NewDashboardRangeMapOptions() *DashboardRangeMapOptions
+```
+
+### <span class="badge function"></span> NewDashboardRegexMapOptions
+
+NewDashboardRegexMapOptions creates a new DashboardRegexMapOptions object.
+
+```go
+func NewDashboardRegexMapOptions() *DashboardRegexMapOptions
+```
+
+### <span class="badge function"></span> NewDashboardSpecialValueMapOptions
+
+NewDashboardSpecialValueMapOptions creates a new DashboardSpecialValueMapOptions object.
+
+```go
+func NewDashboardSpecialValueMapOptions() *DashboardSpecialValueMapOptions
+```
+
+### <span class="badge function"></span> NewDashboardFieldConfigSourceOverrides
+
+NewDashboardFieldConfigSourceOverrides creates a new DashboardFieldConfigSourceOverrides object.
+
+```go
+func NewDashboardFieldConfigSourceOverrides() *DashboardFieldConfigSourceOverrides
+```
+
+### <span class="badge function"></span> NewDashboardGraphPanelLegend
+
+NewDashboardGraphPanelLegend creates a new DashboardGraphPanelLegend object.
+
+```go
+func NewDashboardGraphPanelLegend() *DashboardGraphPanelLegend
+```
+
+### <span class="badge function"></span> NewStringOrBool
+
+NewStringOrBool creates a new StringOrBool object.
+
+```go
+func NewStringOrBool() *StringOrBool
+```
+
+### <span class="badge function"></span> NewPanelOrRowPanel
+
+NewPanelOrRowPanel creates a new PanelOrRowPanel object.
+
+```go
+func NewPanelOrRowPanel() *PanelOrRowPanel
+```
+
+### <span class="badge function"></span> NewStringOrMap
+
+NewStringOrMap creates a new StringOrMap object.
+
+```go
+func NewStringOrMap() *StringOrMap
+```
+
+### <span class="badge function"></span> NewStringOrArrayOfString
+
+NewStringOrArrayOfString creates a new StringOrArrayOfString object.
+
+```go
+func NewStringOrArrayOfString() *StringOrArrayOfString
+```
+
+### <span class="badge function"></span> NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap
+
+NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap creates a new ValueMapOrRangeMapOrRegexMapOrSpecialValueMap object.
+
+```go
+func NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap() *ValueMapOrRangeMapOrRegexMapOrSpecialValueMap
+```
+
 ### <span class="badge function"></span> DashboardConverter
 
 DashboardConverter accepts a `Dashboard` object and generates the Go code to build this object using builders.

@@ -15,13 +15,11 @@ type SingleStatBaseOptionsBuilder struct {
 }
 
 func NewSingleStatBaseOptionsBuilder() *SingleStatBaseOptionsBuilder {
-	resource := &SingleStatBaseOptions{}
+	resource := NewSingleStatBaseOptions()
 	builder := &SingleStatBaseOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -60,7 +58,4 @@ func (builder *SingleStatBaseOptionsBuilder) Orientation(orientation VizOrientat
 	builder.internal.Orientation = orientation
 
 	return builder
-}
-
-func (builder *SingleStatBaseOptionsBuilder) applyDefaults() {
 }

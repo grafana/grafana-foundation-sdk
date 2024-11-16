@@ -14,13 +14,11 @@ type DateHistogramBuilder struct {
 }
 
 func NewDateHistogramBuilder() *DateHistogramBuilder {
-	resource := &DateHistogram{}
+	resource := NewDateHistogram()
 	builder := &DateHistogramBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "date_histogram"
 
 	return builder
@@ -55,7 +53,4 @@ func (builder *DateHistogramBuilder) Settings(settings cog.Builder[Elasticsearch
 	builder.internal.Settings = &settingsResource
 
 	return builder
-}
-
-func (builder *DateHistogramBuilder) applyDefaults() {
 }

@@ -25,6 +25,13 @@ type Playlist struct {
 	Items []PlaylistItem `json:"items,omitempty"`
 }
 
+// NewPlaylist creates a new Playlist object.
+func NewPlaylist() *Playlist {
+	return &Playlist{
+		Interval: "5m",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Playlist` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Playlist) UnmarshalJSONStrict(raw []byte) error {
@@ -169,6 +176,11 @@ type PlaylistItem struct {
 	Value string `json:"value"`
 	// Title is an unused property -- it will be removed in the future
 	Title *string `json:"title,omitempty"`
+}
+
+// NewPlaylistItem creates a new PlaylistItem object.
+func NewPlaylistItem() *PlaylistItem {
+	return &PlaylistItem{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PlaylistItem` from JSON.

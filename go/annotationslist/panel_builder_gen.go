@@ -17,13 +17,11 @@ type PanelBuilder struct {
 }
 
 func NewPanelBuilder() *PanelBuilder {
-	resource := &dashboard.Panel{}
+	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "annolist"
 
 	return builder
@@ -110,7 +108,7 @@ func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.H = h
 
@@ -120,7 +118,7 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.W = w
 
@@ -302,6 +300,22 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 	return builder
 }
 
+// The behavior when clicking on a result
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder {
+	linksResources := make([]dashboard.DashboardLink, 0, len(links))
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			return builder
+		}
+		linksResources = append(linksResources, linksDepth1)
+	}
+	builder.internal.FieldConfig.Defaults.Links = linksResources
+
+	return builder
+}
+
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
@@ -337,7 +351,7 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 
 func (builder *PanelBuilder) OnlyFromThisDashboard(onlyFromThisDashboard bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).OnlyFromThisDashboard = onlyFromThisDashboard
 
@@ -346,7 +360,7 @@ func (builder *PanelBuilder) OnlyFromThisDashboard(onlyFromThisDashboard bool) *
 
 func (builder *PanelBuilder) OnlyInTimeRange(onlyInTimeRange bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).OnlyInTimeRange = onlyInTimeRange
 
@@ -355,7 +369,7 @@ func (builder *PanelBuilder) OnlyInTimeRange(onlyInTimeRange bool) *PanelBuilder
 
 func (builder *PanelBuilder) Limit(limit uint32) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Limit = limit
 
@@ -364,7 +378,7 @@ func (builder *PanelBuilder) Limit(limit uint32) *PanelBuilder {
 
 func (builder *PanelBuilder) ShowUser(showUser bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowUser = showUser
 
@@ -373,7 +387,7 @@ func (builder *PanelBuilder) ShowUser(showUser bool) *PanelBuilder {
 
 func (builder *PanelBuilder) ShowTime(showTime bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowTime = showTime
 
@@ -382,7 +396,7 @@ func (builder *PanelBuilder) ShowTime(showTime bool) *PanelBuilder {
 
 func (builder *PanelBuilder) ShowTags(showTags bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowTags = showTags
 
@@ -391,7 +405,7 @@ func (builder *PanelBuilder) ShowTags(showTags bool) *PanelBuilder {
 
 func (builder *PanelBuilder) NavigateToPanel(navigateToPanel bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).NavigateToPanel = navigateToPanel
 
@@ -400,7 +414,7 @@ func (builder *PanelBuilder) NavigateToPanel(navigateToPanel bool) *PanelBuilder
 
 func (builder *PanelBuilder) NavigateBefore(navigateBefore string) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).NavigateBefore = navigateBefore
 
@@ -409,24 +423,9 @@ func (builder *PanelBuilder) NavigateBefore(navigateBefore string) *PanelBuilder
 
 func (builder *PanelBuilder) NavigateAfter(navigateAfter string) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).NavigateAfter = navigateAfter
 
 	return builder
-}
-
-func (builder *PanelBuilder) applyDefaults() {
-	builder.Transparent(false)
-	builder.Height(9)
-	builder.Span(12)
-	builder.OnlyFromThisDashboard(false)
-	builder.OnlyInTimeRange(false)
-	builder.Limit(10)
-	builder.ShowUser(true)
-	builder.ShowTime(true)
-	builder.ShowTags(true)
-	builder.NavigateToPanel(true)
-	builder.NavigateBefore("10m")
-	builder.NavigateAfter("10m")
 }

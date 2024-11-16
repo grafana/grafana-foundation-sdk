@@ -18,13 +18,11 @@ type PanelBuilder struct {
 }
 
 func NewPanelBuilder() *PanelBuilder {
-	resource := &dashboard.Panel{}
+	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "stat"
 
 	return builder
@@ -111,7 +109,7 @@ func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.H = h
 
@@ -121,7 +119,7 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.W = w
 
@@ -303,6 +301,22 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 	return builder
 }
 
+// The behavior when clicking on a result
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder {
+	linksResources := make([]dashboard.DashboardLink, 0, len(links))
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			return builder
+		}
+		linksResources = append(linksResources, linksDepth1)
+	}
+	builder.internal.FieldConfig.Defaults.Links = linksResources
+
+	return builder
+}
+
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
@@ -338,7 +352,7 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 
 func (builder *PanelBuilder) GraphMode(graphMode common.BigValueGraphMode) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).GraphMode = graphMode
 
@@ -347,7 +361,7 @@ func (builder *PanelBuilder) GraphMode(graphMode common.BigValueGraphMode) *Pane
 
 func (builder *PanelBuilder) ColorMode(colorMode common.BigValueColorMode) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ColorMode = colorMode
 
@@ -356,7 +370,7 @@ func (builder *PanelBuilder) ColorMode(colorMode common.BigValueColorMode) *Pane
 
 func (builder *PanelBuilder) JustifyMode(justifyMode common.BigValueJustifyMode) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).JustifyMode = justifyMode
 
@@ -365,7 +379,7 @@ func (builder *PanelBuilder) JustifyMode(justifyMode common.BigValueJustifyMode)
 
 func (builder *PanelBuilder) ReduceOptions(reduceOptions cog.Builder[common.ReduceDataOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	reduceOptionsResource, err := reduceOptions.Build()
 	if err != nil {
@@ -379,7 +393,7 @@ func (builder *PanelBuilder) ReduceOptions(reduceOptions cog.Builder[common.Redu
 
 func (builder *PanelBuilder) Text(text cog.Builder[common.VizTextDisplayOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	textResource, err := text.Build()
 	if err != nil {
@@ -393,7 +407,7 @@ func (builder *PanelBuilder) Text(text cog.Builder[common.VizTextDisplayOptions]
 
 func (builder *PanelBuilder) TextMode(textMode common.BigValueTextMode) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).TextMode = textMode
 
@@ -402,19 +416,9 @@ func (builder *PanelBuilder) TextMode(textMode common.BigValueTextMode) *PanelBu
 
 func (builder *PanelBuilder) Orientation(orientation common.VizOrientation) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).Orientation = orientation
 
 	return builder
-}
-
-func (builder *PanelBuilder) applyDefaults() {
-	builder.Transparent(false)
-	builder.Height(9)
-	builder.Span(12)
-	builder.GraphMode("area")
-	builder.ColorMode("value")
-	builder.JustifyMode("auto")
-	builder.TextMode("auto")
 }

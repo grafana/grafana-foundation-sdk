@@ -14,13 +14,11 @@ type QueryHistoryPreferenceBuilder struct {
 }
 
 func NewQueryHistoryPreferenceBuilder() *QueryHistoryPreferenceBuilder {
-	resource := &QueryHistoryPreference{}
+	resource := NewQueryHistoryPreference()
 	builder := &QueryHistoryPreferenceBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -38,7 +36,4 @@ func (builder *QueryHistoryPreferenceBuilder) HomeTab(homeTab string) *QueryHist
 	builder.internal.HomeTab = &homeTab
 
 	return builder
-}
-
-func (builder *QueryHistoryPreferenceBuilder) applyDefaults() {
 }

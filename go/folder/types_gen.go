@@ -21,6 +21,11 @@ type Folder struct {
 	Description *string `json:"description,omitempty"`
 }
 
+// NewFolder creates a new Folder object.
+func NewFolder() *Folder {
+	return &Folder{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Folder` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Folder) UnmarshalJSONStrict(raw []byte) error {

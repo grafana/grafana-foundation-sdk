@@ -32,6 +32,14 @@ colorScheme(color: cog.Builder<dashboard.FieldColor>)
 counters(counters: cog.Builder<debug.UpdateConfig>)
 ```
 
+### <span class="badge object-method"></span> dataLinks
+
+The behavior when clicking on a result
+
+```typescript
+dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
+```
+
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.

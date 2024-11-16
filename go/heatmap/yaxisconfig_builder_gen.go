@@ -16,13 +16,11 @@ type YAxisConfigBuilder struct {
 }
 
 func NewYAxisConfigBuilder() *YAxisConfigBuilder {
-	resource := &YAxisConfig{}
+	resource := NewYAxisConfig()
 	builder := &YAxisConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -127,7 +125,4 @@ func (builder *YAxisConfigBuilder) AxisCenteredZero(axisCenteredZero bool) *YAxi
 	builder.internal.AxisCenteredZero = &axisCenteredZero
 
 	return builder
-}
-
-func (builder *YAxisConfigBuilder) applyDefaults() {
 }

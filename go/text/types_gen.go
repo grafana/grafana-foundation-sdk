@@ -41,6 +41,15 @@ type CodeOptions struct {
 	ShowMiniMap     bool         `json:"showMiniMap"`
 }
 
+// NewCodeOptions creates a new CodeOptions object.
+func NewCodeOptions() *CodeOptions {
+	return &CodeOptions{
+		Language:        CodeLanguagePlaintext,
+		ShowLineNumbers: false,
+		ShowMiniMap:     false,
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CodeOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CodeOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -128,6 +137,14 @@ type Options struct {
 	Mode    TextMode     `json:"mode"`
 	Code    *CodeOptions `json:"code,omitempty"`
 	Content string       `json:"content"`
+}
+
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		Mode:    TextModeMarkdown,
+		Content: "# Title\n\nFor markdown syntax help: [commonmark.org/help](https://commonmark.org/help/)",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.

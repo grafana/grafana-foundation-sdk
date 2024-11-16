@@ -16,13 +16,11 @@ type LibrarypanelLibraryPanelModelBuilder struct {
 }
 
 func NewLibrarypanelLibraryPanelModelBuilder() *LibrarypanelLibraryPanelModelBuilder {
-	resource := &LibrarypanelLibraryPanelModel{}
+	resource := NewLibrarypanelLibraryPanelModel()
 	builder := &LibrarypanelLibraryPanelModelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -200,8 +198,4 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) FieldConfig(fieldConfig das
 	builder.internal.FieldConfig = fieldConfig
 
 	return builder
-}
-
-func (builder *LibrarypanelLibraryPanelModelBuilder) applyDefaults() {
-	builder.Transparent(false)
 }

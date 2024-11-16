@@ -14,13 +14,11 @@ type BucketScriptBuilder struct {
 }
 
 func NewBucketScriptBuilder() *BucketScriptBuilder {
-	resource := &BucketScript{}
+	resource := NewBucketScript()
 	builder := &BucketScriptBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "bucket_script"
 
 	return builder
@@ -70,7 +68,4 @@ func (builder *BucketScriptBuilder) Hide(hide bool) *BucketScriptBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *BucketScriptBuilder) applyDefaults() {
 }

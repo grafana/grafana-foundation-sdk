@@ -15,13 +15,11 @@ type LegacyCloudMonitoringAnnotationQueryBuilder struct {
 }
 
 func NewLegacyCloudMonitoringAnnotationQueryBuilder() *LegacyCloudMonitoringAnnotationQueryBuilder {
-	resource := &LegacyCloudMonitoringAnnotationQuery{}
+	resource := NewLegacyCloudMonitoringAnnotationQuery()
 	builder := &LegacyCloudMonitoringAnnotationQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -85,7 +83,4 @@ func (builder *LegacyCloudMonitoringAnnotationQueryBuilder) Text(text string) *L
 	builder.internal.Text = text
 
 	return builder
-}
-
-func (builder *LegacyCloudMonitoringAnnotationQueryBuilder) applyDefaults() {
 }

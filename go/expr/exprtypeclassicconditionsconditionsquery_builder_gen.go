@@ -14,13 +14,11 @@ type ExprTypeClassicConditionsConditionsQueryBuilder struct {
 }
 
 func NewExprTypeClassicConditionsConditionsQueryBuilder() *ExprTypeClassicConditionsConditionsQueryBuilder {
-	resource := &ExprTypeClassicConditionsConditionsQuery{}
+	resource := NewExprTypeClassicConditionsConditionsQuery()
 	builder := &ExprTypeClassicConditionsConditionsQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *ExprTypeClassicConditionsConditionsQueryBuilder) Params(params []
 	builder.internal.Params = params
 
 	return builder
-}
-
-func (builder *ExprTypeClassicConditionsConditionsQueryBuilder) applyDefaults() {
 }

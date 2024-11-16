@@ -14,13 +14,11 @@ type RawDataBuilder struct {
 }
 
 func NewRawDataBuilder() *RawDataBuilder {
-	resource := &RawData{}
+	resource := NewRawData()
 	builder := &RawDataBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "raw_data"
 
 	return builder
@@ -55,7 +53,4 @@ func (builder *RawDataBuilder) Hide(hide bool) *RawDataBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *RawDataBuilder) applyDefaults() {
 }

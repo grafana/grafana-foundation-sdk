@@ -18,13 +18,11 @@ type PanelBuilder struct {
 }
 
 func NewPanelBuilder() *PanelBuilder {
-	resource := &dashboard.Panel{}
+	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "table"
 
 	return builder
@@ -111,7 +109,7 @@ func (builder *PanelBuilder) GridPos(gridPos dashboard.GridPos) *PanelBuilder {
 // Panel height. The height is the number of rows from the top edge of the panel.
 func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.H = h
 
@@ -121,7 +119,7 @@ func (builder *PanelBuilder) Height(h uint32) *PanelBuilder {
 // Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder {
 	if builder.internal.GridPos == nil {
-		builder.internal.GridPos = &dashboard.GridPos{}
+		builder.internal.GridPos = dashboard.NewGridPos()
 	}
 	builder.internal.GridPos.W = w
 
@@ -303,6 +301,22 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 	return builder
 }
 
+// The behavior when clicking on a result
+func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder {
+	linksResources := make([]dashboard.DashboardLink, 0, len(links))
+	for _, r1 := range links {
+		linksDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			return builder
+		}
+		linksResources = append(linksResources, linksDepth1)
+	}
+	builder.internal.FieldConfig.Defaults.Links = linksResources
+
+	return builder
+}
+
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
@@ -339,7 +353,7 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 // Represents the index of the selected frame
 func (builder *PanelBuilder) FrameIndex(frameIndex float64) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).FrameIndex = frameIndex
 
@@ -349,7 +363,7 @@ func (builder *PanelBuilder) FrameIndex(frameIndex float64) *PanelBuilder {
 // Controls whether the panel should show the header
 func (builder *PanelBuilder) ShowHeader(showHeader bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowHeader = showHeader
 
@@ -359,7 +373,7 @@ func (builder *PanelBuilder) ShowHeader(showHeader bool) *PanelBuilder {
 // Controls whether the header should show icons for the column types
 func (builder *PanelBuilder) ShowTypeIcons(showTypeIcons bool) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowTypeIcons = &showTypeIcons
 
@@ -369,7 +383,7 @@ func (builder *PanelBuilder) ShowTypeIcons(showTypeIcons bool) *PanelBuilder {
 // Used to control row sorting
 func (builder *PanelBuilder) SortBy(sortBy []cog.Builder[common.TableSortByFieldState]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	sortByResources := make([]common.TableSortByFieldState, 0, len(sortBy))
 	for _, r1 := range sortBy {
@@ -388,7 +402,7 @@ func (builder *PanelBuilder) SortBy(sortBy []cog.Builder[common.TableSortByField
 // Controls footer options
 func (builder *PanelBuilder) Footer(footer cog.Builder[common.TableFooterOptions]) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	footerResource, err := footer.Build()
 	if err != nil {
@@ -403,24 +417,9 @@ func (builder *PanelBuilder) Footer(footer cog.Builder[common.TableFooterOptions
 // Controls the height of the rows
 func (builder *PanelBuilder) CellHeight(cellHeight common.TableCellHeight) *PanelBuilder {
 	if builder.internal.Options == nil {
-		builder.internal.Options = &Options{}
+		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).CellHeight = &cellHeight
 
 	return builder
-}
-
-func (builder *PanelBuilder) applyDefaults() {
-	builder.Transparent(false)
-	builder.Height(9)
-	builder.Span(12)
-	builder.FrameIndex(0)
-	builder.ShowHeader(true)
-	builder.ShowTypeIcons(false)
-	builder.Footer(common.NewTableFooterOptionsBuilder().
-		CountRows(false).
-		Reducer([]string{}).
-		Show(false),
-	)
-	builder.CellHeight("sm")
 }
