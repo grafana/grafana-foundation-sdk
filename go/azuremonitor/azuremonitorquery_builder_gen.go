@@ -16,13 +16,11 @@ type AzureMonitorQueryBuilder struct {
 }
 
 func NewAzureMonitorQueryBuilder() *AzureMonitorQueryBuilder {
-	resource := &AzureMonitorQuery{}
+	resource := NewAzureMonitorQuery()
 	builder := &AzureMonitorQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -165,7 +163,4 @@ func (builder *AzureMonitorQueryBuilder) Region(region string) *AzureMonitorQuer
 	builder.internal.Region = &region
 
 	return builder
-}
-
-func (builder *AzureMonitorQueryBuilder) applyDefaults() {
 }

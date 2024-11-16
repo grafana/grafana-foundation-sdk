@@ -14,13 +14,11 @@ type BaseMetricAggregationBuilder struct {
 }
 
 func NewBaseMetricAggregationBuilder() *BaseMetricAggregationBuilder {
-	resource := &BaseMetricAggregation{}
+	resource := NewBaseMetricAggregation()
 	builder := &BaseMetricAggregationBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -54,7 +52,4 @@ func (builder *BaseMetricAggregationBuilder) Hide(hide bool) *BaseMetricAggregat
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *BaseMetricAggregationBuilder) applyDefaults() {
 }

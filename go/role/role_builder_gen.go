@@ -14,13 +14,11 @@ type RoleBuilder struct {
 }
 
 func NewRoleBuilder() *RoleBuilder {
-	resource := &Role{}
+	resource := NewRole()
 	builder := &RoleBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -66,8 +64,4 @@ func (builder *RoleBuilder) Hidden(hidden bool) *RoleBuilder {
 	builder.internal.Hidden = hidden
 
 	return builder
-}
-
-func (builder *RoleBuilder) applyDefaults() {
-	builder.Hidden(false)
 }

@@ -14,13 +14,11 @@ type PrometheusDataqueryScopeBuilder struct {
 }
 
 func NewPrometheusDataqueryScopeBuilder() *PrometheusDataqueryScopeBuilder {
-	resource := &PrometheusDataqueryScope{}
+	resource := NewPrometheusDataqueryScope()
 	builder := &PrometheusDataqueryScopeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -37,7 +35,4 @@ func (builder *PrometheusDataqueryScopeBuilder) Matchers(matchers string) *Prome
 	builder.internal.Matchers = matchers
 
 	return builder
-}
-
-func (builder *PrometheusDataqueryScopeBuilder) applyDefaults() {
 }

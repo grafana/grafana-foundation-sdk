@@ -48,6 +48,11 @@ type CandlestickFieldMap struct {
 	Volume *string `json:"volume,omitempty"`
 }
 
+// NewCandlestickFieldMap creates a new CandlestickFieldMap object.
+func NewCandlestickFieldMap() *CandlestickFieldMap {
+	return &CandlestickFieldMap{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CandlestickFieldMap` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CandlestickFieldMap) UnmarshalJSONStrict(raw []byte) error {
@@ -189,6 +194,15 @@ type CandlestickColors struct {
 	Flat string `json:"flat"`
 }
 
+// NewCandlestickColors creates a new CandlestickColors object.
+func NewCandlestickColors() *CandlestickColors {
+	return &CandlestickColors{
+		Up:   "green",
+		Down: "red",
+		Flat: "gray",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CandlestickColors` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CandlestickColors) UnmarshalJSONStrict(raw []byte) error {
@@ -287,6 +301,24 @@ type Options struct {
 	Tooltip common.VizTooltipOptions `json:"tooltip"`
 	// When enabled, all fields will be sent to the graph
 	IncludeAllFields *bool `json:"includeAllFields,omitempty"`
+}
+
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		Mode:          VizDisplayModeCandlesVolume,
+		CandleStyle:   CandleStyleCandles,
+		ColorStrategy: ColorStrategyOpenClose,
+		Fields:        *NewCandlestickFieldMap(),
+		Colors: CandlestickColors{
+			Up:   "green",
+			Down: "red",
+			Flat: "gray",
+		},
+		Legend:           *common.NewVizLegendOptions(),
+		Tooltip:          *common.NewVizTooltipOptions(),
+		IncludeAllFields: cog.ToPtr[bool](false),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
@@ -486,6 +518,11 @@ func (resource Options) Validate() error {
 }
 
 type FieldConfig = common.GraphFieldConfig
+
+// NewFieldConfig creates a new FieldConfig object.
+func NewFieldConfig() *FieldConfig {
+	return common.NewGraphFieldConfig()
+}
 
 // VariantConfig returns the configuration related to candlestick panels.
 // This configuration describes how to unmarshal it, convert it to code, …

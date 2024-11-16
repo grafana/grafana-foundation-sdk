@@ -22,6 +22,16 @@ type Options struct {
 	Tooltip  TooltipOptions           `json:"tooltip"`
 }
 
+// NewOptions creates a new Options object.
+func NewOptions() *Options {
+	return &Options{
+		View:     *NewMapViewConfig(),
+		Controls: *NewControlsOptions(),
+		Basemap:  *common.NewMapLayerOptions(),
+		Tooltip:  *NewTooltipOptions(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Options` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
@@ -205,6 +215,17 @@ type MapViewConfig struct {
 	LastOnly  *bool   `json:"lastOnly,omitempty"`
 	Layer     *string `json:"layer,omitempty"`
 	Shared    *bool   `json:"shared,omitempty"`
+}
+
+// NewMapViewConfig creates a new MapViewConfig object.
+func NewMapViewConfig() *MapViewConfig {
+	return &MapViewConfig{
+		Id:        "zero",
+		Lat:       cog.ToPtr[int64](0),
+		Lon:       cog.ToPtr[int64](0),
+		Zoom:      cog.ToPtr[int64](1),
+		AllLayers: cog.ToPtr[bool](true),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MapViewConfig` from JSON.
@@ -473,6 +494,11 @@ type ControlsOptions struct {
 	ShowMeasure *bool `json:"showMeasure,omitempty"`
 }
 
+// NewControlsOptions creates a new ControlsOptions object.
+func NewControlsOptions() *ControlsOptions {
+	return &ControlsOptions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ControlsOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ControlsOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -630,6 +656,11 @@ func (resource ControlsOptions) Validate() error {
 
 type TooltipOptions struct {
 	Mode TooltipMode `json:"mode"`
+}
+
+// NewTooltipOptions creates a new TooltipOptions object.
+func NewTooltipOptions() *TooltipOptions {
+	return &TooltipOptions{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TooltipOptions` from JSON.

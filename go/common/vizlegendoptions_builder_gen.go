@@ -15,13 +15,11 @@ type VizLegendOptionsBuilder struct {
 }
 
 func NewVizLegendOptionsBuilder() *VizLegendOptionsBuilder {
-	resource := &VizLegendOptions{}
+	resource := NewVizLegendOptions()
 	builder := &VizLegendOptionsBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -86,10 +84,4 @@ func (builder *VizLegendOptionsBuilder) Calcs(calcs []string) *VizLegendOptionsB
 	builder.internal.Calcs = calcs
 
 	return builder
-}
-
-func (builder *VizLegendOptionsBuilder) applyDefaults() {
-	builder.DisplayMode("list")
-	builder.Placement("bottom")
-	builder.Calcs([]string{})
 }

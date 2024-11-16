@@ -14,13 +14,11 @@ type CookiePreferencesBuilder struct {
 }
 
 func NewCookiePreferencesBuilder() *CookiePreferencesBuilder {
-	resource := &CookiePreferences{}
+	resource := NewCookiePreferences()
 	builder := &CookiePreferencesBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,7 +47,4 @@ func (builder *CookiePreferencesBuilder) Functional(functional any) *CookiePrefe
 	builder.internal.Functional = &functional
 
 	return builder
-}
-
-func (builder *CookiePreferencesBuilder) applyDefaults() {
 }

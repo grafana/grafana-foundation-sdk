@@ -14,13 +14,11 @@ type MetricAggregationWithInlineScriptBuilder struct {
 }
 
 func NewMetricAggregationWithInlineScriptBuilder() *MetricAggregationWithInlineScriptBuilder {
-	resource := &MetricAggregationWithInlineScript{}
+	resource := NewMetricAggregationWithInlineScript()
 	builder := &MetricAggregationWithInlineScriptBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -65,7 +63,4 @@ func (builder *MetricAggregationWithInlineScriptBuilder) Hide(hide bool) *Metric
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *MetricAggregationWithInlineScriptBuilder) applyDefaults() {
 }

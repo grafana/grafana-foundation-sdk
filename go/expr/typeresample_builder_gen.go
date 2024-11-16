@@ -16,13 +16,11 @@ type TypeResampleBuilder struct {
 }
 
 func NewTypeResampleBuilder() *TypeResampleBuilder {
-	resource := &TypeResample{}
+	resource := NewTypeResample()
 	builder := &TypeResampleBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "resample"
 
 	return builder
@@ -149,7 +147,4 @@ func (builder *TypeResampleBuilder) Window(window string) *TypeResampleBuilder {
 	builder.internal.Window = window
 
 	return builder
-}
-
-func (builder *TypeResampleBuilder) applyDefaults() {
 }

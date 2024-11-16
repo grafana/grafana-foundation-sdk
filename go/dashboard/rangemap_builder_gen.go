@@ -16,13 +16,11 @@ type RangeMapBuilder struct {
 }
 
 func NewRangeMapBuilder() *RangeMapBuilder {
-	resource := &RangeMap{}
+	resource := NewRangeMap()
 	builder := &RangeMapBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "range"
 
 	return builder
@@ -46,7 +44,4 @@ func (builder *RangeMapBuilder) Options(options cog.Builder[DashboardRangeMapOpt
 	builder.internal.Options = optionsResource
 
 	return builder
-}
-
-func (builder *RangeMapBuilder) applyDefaults() {
 }

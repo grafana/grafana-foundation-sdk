@@ -15,13 +15,11 @@ type LineConfigBuilder struct {
 }
 
 func NewLineConfigBuilder() *LineConfigBuilder {
-	resource := &LineConfig{}
+	resource := NewLineConfig()
 	builder := &LineConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,7 +47,4 @@ func (builder *LineConfigBuilder) Width(width float64) *LineConfigBuilder {
 	builder.internal.Width = &width
 
 	return builder
-}
-
-func (builder *LineConfigBuilder) applyDefaults() {
 }

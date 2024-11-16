@@ -72,6 +72,14 @@
  * <span class="badge builder"></span> [TypeThresholdBuilder](./builder-TypeThresholdBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewExpr
+
+NewExpr creates a new Expr object.
+
+```go
+func NewExpr() *Expr
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to __expr__ dataqueries.
@@ -80,6 +88,230 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> NewTypeMath
+
+NewTypeMath creates a new TypeMath object.
+
+```go
+func NewTypeMath() *TypeMath
+```
+
+### <span class="badge function"></span> NewTypeReduce
+
+NewTypeReduce creates a new TypeReduce object.
+
+```go
+func NewTypeReduce() *TypeReduce
+```
+
+### <span class="badge function"></span> NewTypeResample
+
+NewTypeResample creates a new TypeResample object.
+
+```go
+func NewTypeResample() *TypeResample
+```
+
+### <span class="badge function"></span> NewTypeClassicConditions
+
+NewTypeClassicConditions creates a new TypeClassicConditions object.
+
+```go
+func NewTypeClassicConditions() *TypeClassicConditions
+```
+
+### <span class="badge function"></span> NewTypeThreshold
+
+NewTypeThreshold creates a new TypeThreshold object.
+
+```go
+func NewTypeThreshold() *TypeThreshold
+```
+
+### <span class="badge function"></span> NewTypeSql
+
+NewTypeSql creates a new TypeSql object.
+
+```go
+func NewTypeSql() *TypeSql
+```
+
+### <span class="badge function"></span> NewTypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql
+
+NewTypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql creates a new TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql object.
+
+```go
+func NewTypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql() *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql
+```
+
+### <span class="badge function"></span> NewExprTypeMathResultAssertions
+
+NewExprTypeMathResultAssertions creates a new ExprTypeMathResultAssertions object.
+
+```go
+func NewExprTypeMathResultAssertions() *ExprTypeMathResultAssertions
+```
+
+### <span class="badge function"></span> NewExprTypeMathTimeRange
+
+NewExprTypeMathTimeRange creates a new ExprTypeMathTimeRange object.
+
+```go
+func NewExprTypeMathTimeRange() *ExprTypeMathTimeRange
+```
+
+### <span class="badge function"></span> NewExprTypeReduceResultAssertions
+
+NewExprTypeReduceResultAssertions creates a new ExprTypeReduceResultAssertions object.
+
+```go
+func NewExprTypeReduceResultAssertions() *ExprTypeReduceResultAssertions
+```
+
+### <span class="badge function"></span> NewExprTypeReduceSettings
+
+NewExprTypeReduceSettings creates a new ExprTypeReduceSettings object.
+
+```go
+func NewExprTypeReduceSettings() *ExprTypeReduceSettings
+```
+
+### <span class="badge function"></span> NewExprTypeReduceTimeRange
+
+NewExprTypeReduceTimeRange creates a new ExprTypeReduceTimeRange object.
+
+```go
+func NewExprTypeReduceTimeRange() *ExprTypeReduceTimeRange
+```
+
+### <span class="badge function"></span> NewExprTypeResampleResultAssertions
+
+NewExprTypeResampleResultAssertions creates a new ExprTypeResampleResultAssertions object.
+
+```go
+func NewExprTypeResampleResultAssertions() *ExprTypeResampleResultAssertions
+```
+
+### <span class="badge function"></span> NewExprTypeResampleTimeRange
+
+NewExprTypeResampleTimeRange creates a new ExprTypeResampleTimeRange object.
+
+```go
+func NewExprTypeResampleTimeRange() *ExprTypeResampleTimeRange
+```
+
+### <span class="badge function"></span> NewExprTypeClassicConditionsConditionsEvaluator
+
+NewExprTypeClassicConditionsConditionsEvaluator creates a new ExprTypeClassicConditionsConditionsEvaluator object.
+
+```go
+func NewExprTypeClassicConditionsConditionsEvaluator() *ExprTypeClassicConditionsConditionsEvaluator
+```
+
+### <span class="badge function"></span> NewExprTypeClassicConditionsConditionsOperator
+
+NewExprTypeClassicConditionsConditionsOperator creates a new ExprTypeClassicConditionsConditionsOperator object.
+
+```go
+func NewExprTypeClassicConditionsConditionsOperator() *ExprTypeClassicConditionsConditionsOperator
+```
+
+### <span class="badge function"></span> NewExprTypeClassicConditionsConditionsQuery
+
+NewExprTypeClassicConditionsConditionsQuery creates a new ExprTypeClassicConditionsConditionsQuery object.
+
+```go
+func NewExprTypeClassicConditionsConditionsQuery() *ExprTypeClassicConditionsConditionsQuery
+```
+
+### <span class="badge function"></span> NewExprTypeClassicConditionsConditionsReducer
+
+NewExprTypeClassicConditionsConditionsReducer creates a new ExprTypeClassicConditionsConditionsReducer object.
+
+```go
+func NewExprTypeClassicConditionsConditionsReducer() *ExprTypeClassicConditionsConditionsReducer
+```
+
+### <span class="badge function"></span> NewExprTypeClassicConditionsConditions
+
+NewExprTypeClassicConditionsConditions creates a new ExprTypeClassicConditionsConditions object.
+
+```go
+func NewExprTypeClassicConditionsConditions() *ExprTypeClassicConditionsConditions
+```
+
+### <span class="badge function"></span> NewExprTypeClassicConditionsResultAssertions
+
+NewExprTypeClassicConditionsResultAssertions creates a new ExprTypeClassicConditionsResultAssertions object.
+
+```go
+func NewExprTypeClassicConditionsResultAssertions() *ExprTypeClassicConditionsResultAssertions
+```
+
+### <span class="badge function"></span> NewExprTypeClassicConditionsTimeRange
+
+NewExprTypeClassicConditionsTimeRange creates a new ExprTypeClassicConditionsTimeRange object.
+
+```go
+func NewExprTypeClassicConditionsTimeRange() *ExprTypeClassicConditionsTimeRange
+```
+
+### <span class="badge function"></span> NewExprTypeThresholdConditionsEvaluator
+
+NewExprTypeThresholdConditionsEvaluator creates a new ExprTypeThresholdConditionsEvaluator object.
+
+```go
+func NewExprTypeThresholdConditionsEvaluator() *ExprTypeThresholdConditionsEvaluator
+```
+
+### <span class="badge function"></span> NewExprTypeThresholdConditionsUnloadEvaluator
+
+NewExprTypeThresholdConditionsUnloadEvaluator creates a new ExprTypeThresholdConditionsUnloadEvaluator object.
+
+```go
+func NewExprTypeThresholdConditionsUnloadEvaluator() *ExprTypeThresholdConditionsUnloadEvaluator
+```
+
+### <span class="badge function"></span> NewExprTypeThresholdConditions
+
+NewExprTypeThresholdConditions creates a new ExprTypeThresholdConditions object.
+
+```go
+func NewExprTypeThresholdConditions() *ExprTypeThresholdConditions
+```
+
+### <span class="badge function"></span> NewExprTypeThresholdResultAssertions
+
+NewExprTypeThresholdResultAssertions creates a new ExprTypeThresholdResultAssertions object.
+
+```go
+func NewExprTypeThresholdResultAssertions() *ExprTypeThresholdResultAssertions
+```
+
+### <span class="badge function"></span> NewExprTypeThresholdTimeRange
+
+NewExprTypeThresholdTimeRange creates a new ExprTypeThresholdTimeRange object.
+
+```go
+func NewExprTypeThresholdTimeRange() *ExprTypeThresholdTimeRange
+```
+
+### <span class="badge function"></span> NewExprTypeSqlResultAssertions
+
+NewExprTypeSqlResultAssertions creates a new ExprTypeSqlResultAssertions object.
+
+```go
+func NewExprTypeSqlResultAssertions() *ExprTypeSqlResultAssertions
+```
+
+### <span class="badge function"></span> NewExprTypeSqlTimeRange
+
+NewExprTypeSqlTimeRange creates a new ExprTypeSqlTimeRange object.
+
+```go
+func NewExprTypeSqlTimeRange() *ExprTypeSqlTimeRange
 ```
 
 ### <span class="badge function"></span> TypeMathConverter

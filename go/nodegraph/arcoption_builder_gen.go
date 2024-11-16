@@ -14,13 +14,11 @@ type ArcOptionBuilder struct {
 }
 
 func NewArcOptionBuilder() *ArcOptionBuilder {
-	resource := &ArcOption{}
+	resource := NewArcOption()
 	builder := &ArcOptionBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -45,7 +43,4 @@ func (builder *ArcOptionBuilder) Color(color string) *ArcOptionBuilder {
 	builder.internal.Color = &color
 
 	return builder
-}
-
-func (builder *ArcOptionBuilder) applyDefaults() {
 }
