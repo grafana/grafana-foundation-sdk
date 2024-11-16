@@ -14,13 +14,11 @@ type ExprTypeClassicConditionsConditionsEvaluatorBuilder struct {
 }
 
 func NewExprTypeClassicConditionsConditionsEvaluatorBuilder() *ExprTypeClassicConditionsConditionsEvaluatorBuilder {
-	resource := &ExprTypeClassicConditionsConditionsEvaluator{}
+	resource := NewExprTypeClassicConditionsConditionsEvaluator()
 	builder := &ExprTypeClassicConditionsConditionsEvaluatorBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -44,7 +42,4 @@ func (builder *ExprTypeClassicConditionsConditionsEvaluatorBuilder) Type(typeArg
 	builder.internal.Type = typeArg
 
 	return builder
-}
-
-func (builder *ExprTypeClassicConditionsConditionsEvaluatorBuilder) applyDefaults() {
 }

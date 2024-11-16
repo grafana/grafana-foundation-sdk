@@ -8,6 +8,14 @@
  * <span class="badge builder"></span> [TeamBuilder](./builder-TeamBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewTeam
+
+NewTeam creates a new Team object.
+
+```go
+func NewTeam() *Team
+```
+
 ### <span class="badge function"></span> TeamConverter
 
 TeamConverter accepts a `Team` object and generates the Go code to build this object using builders.

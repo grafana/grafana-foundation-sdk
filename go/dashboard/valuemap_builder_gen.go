@@ -16,13 +16,11 @@ type ValueMapBuilder struct {
 }
 
 func NewValueMapBuilder() *ValueMapBuilder {
-	resource := &ValueMap{}
+	resource := NewValueMap()
 	builder := &ValueMapBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "value"
 
 	return builder
@@ -41,7 +39,4 @@ func (builder *ValueMapBuilder) Options(options map[string]ValueMappingResult) *
 	builder.internal.Options = options
 
 	return builder
-}
-
-func (builder *ValueMapBuilder) applyDefaults() {
 }

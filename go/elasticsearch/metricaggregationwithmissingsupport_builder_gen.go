@@ -14,13 +14,11 @@ type MetricAggregationWithMissingSupportBuilder struct {
 }
 
 func NewMetricAggregationWithMissingSupportBuilder() *MetricAggregationWithMissingSupportBuilder {
-	resource := &MetricAggregationWithMissingSupport{}
+	resource := NewMetricAggregationWithMissingSupport()
 	builder := &MetricAggregationWithMissingSupportBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -65,7 +63,4 @@ func (builder *MetricAggregationWithMissingSupportBuilder) Hide(hide bool) *Metr
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *MetricAggregationWithMissingSupportBuilder) applyDefaults() {
 }

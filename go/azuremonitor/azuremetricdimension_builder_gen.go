@@ -14,13 +14,11 @@ type AzureMetricDimensionBuilder struct {
 }
 
 func NewAzureMetricDimensionBuilder() *AzureMetricDimensionBuilder {
-	resource := &AzureMetricDimension{}
+	resource := NewAzureMetricDimension()
 	builder := &AzureMetricDimensionBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -59,7 +57,4 @@ func (builder *AzureMetricDimensionBuilder) Filter(filter string) *AzureMetricDi
 	builder.internal.Filter = &filter
 
 	return builder
-}
-
-func (builder *AzureMetricDimensionBuilder) applyDefaults() {
 }

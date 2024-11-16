@@ -14,13 +14,11 @@ type NodesQueryBuilder struct {
 }
 
 func NewNodesQueryBuilder() *NodesQueryBuilder {
-	resource := &NodesQuery{}
+	resource := NewNodesQuery()
 	builder := &NodesQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -55,7 +53,4 @@ func (builder *NodesQueryBuilder) Type(typeArg NodesQueryType) *NodesQueryBuilde
 	builder.internal.Type = &typeArg
 
 	return builder
-}
-
-func (builder *NodesQueryBuilder) applyDefaults() {
 }

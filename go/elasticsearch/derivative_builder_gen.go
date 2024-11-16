@@ -14,13 +14,11 @@ type DerivativeBuilder struct {
 }
 
 func NewDerivativeBuilder() *DerivativeBuilder {
-	resource := &Derivative{}
+	resource := NewDerivative()
 	builder := &DerivativeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 	builder.internal.Type = "derivative"
 
 	return builder
@@ -67,7 +65,4 @@ func (builder *DerivativeBuilder) Hide(hide bool) *DerivativeBuilder {
 	builder.internal.Hide = &hide
 
 	return builder
-}
-
-func (builder *DerivativeBuilder) applyDefaults() {
 }

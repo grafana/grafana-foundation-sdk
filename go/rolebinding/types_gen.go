@@ -17,6 +17,14 @@ type RoleBinding struct {
 	Subject RoleBindingSubject `json:"subject"`
 }
 
+// NewRoleBinding creates a new RoleBinding object.
+func NewRoleBinding() *RoleBinding {
+	return &RoleBinding{
+		Role:    *NewBuiltinRoleRefOrCustomRoleRef(),
+		Subject: *NewRoleBindingSubject(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RoleBinding` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *RoleBinding) UnmarshalJSONStrict(raw []byte) error {
@@ -107,6 +115,13 @@ type CustomRoleRef struct {
 	Name string `json:"name"`
 }
 
+// NewCustomRoleRef creates a new CustomRoleRef object.
+func NewCustomRoleRef() *CustomRoleRef {
+	return &CustomRoleRef{
+		Kind: "Role",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CustomRoleRef` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CustomRoleRef) UnmarshalJSONStrict(raw []byte) error {
@@ -179,6 +194,13 @@ func (resource CustomRoleRef) Validate() error {
 type BuiltinRoleRef struct {
 	Kind string             `json:"kind"`
 	Name BuiltinRoleRefName `json:"name"`
+}
+
+// NewBuiltinRoleRef creates a new BuiltinRoleRef object.
+func NewBuiltinRoleRef() *BuiltinRoleRef {
+	return &BuiltinRoleRef{
+		Kind: "BuiltinRole",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuiltinRoleRef` from JSON.
@@ -254,6 +276,11 @@ type RoleBindingSubject struct {
 	Kind RoleBindingSubjectKind `json:"kind"`
 	// The team/user identifier name
 	Name string `json:"name"`
+}
+
+// NewRoleBindingSubject creates a new RoleBindingSubject object.
+func NewRoleBindingSubject() *RoleBindingSubject {
+	return &RoleBindingSubject{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RoleBindingSubject` from JSON.
@@ -343,6 +370,11 @@ const (
 type BuiltinRoleRefOrCustomRoleRef struct {
 	BuiltinRoleRef *BuiltinRoleRef `json:"BuiltinRoleRef,omitempty"`
 	CustomRoleRef  *CustomRoleRef  `json:"CustomRoleRef,omitempty"`
+}
+
+// NewBuiltinRoleRefOrCustomRoleRef creates a new BuiltinRoleRefOrCustomRoleRef object.
+func NewBuiltinRoleRefOrCustomRoleRef() *BuiltinRoleRefOrCustomRoleRef {
+	return &BuiltinRoleRefOrCustomRoleRef{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `BuiltinRoleRefOrCustomRoleRef` as JSON.

@@ -17,13 +17,11 @@ type DataQueryBuilder struct {
 }
 
 func NewDataQueryBuilder() *DataQueryBuilder {
-	resource := &DataQuery{}
+	resource := NewDataQuery()
 	builder := &DataQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -68,7 +66,4 @@ func (builder *DataQueryBuilder) Datasource(datasource any) *DataQueryBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
-}
-
-func (builder *DataQueryBuilder) applyDefaults() {
 }
