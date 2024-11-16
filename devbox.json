@@ -1,9 +1,12 @@
 {
-    "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
-    "packages": [
-      "python3Minimal@3.12",
-      "mkdocs@1.6",
-      "python312Packages.mkdocs-material@9.5"
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
+  "packages": [
+    "python312@3.12"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Entering Python venv' && . $VENV_DIR/bin/activate",
+      "echo 'Installing Python dependencies' && pip install -r requirements.txt"
     ]
   }
-  
+}

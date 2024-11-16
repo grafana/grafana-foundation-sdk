@@ -23,7 +23,6 @@ mkdir -p "${docs_build_dir}"
 ${__dir}/_pull_versions.sh "${build_dir}"
 
 echo "🪧 Building main website"
-rm -rf "${docs_build_dir}/site"
 mkdocs build -f ${mkdocs_dir}/mkdocs.yml -d ${docs_build_dir}
 
 echo '[]' > "${docs_build_dir}/versions.json"
