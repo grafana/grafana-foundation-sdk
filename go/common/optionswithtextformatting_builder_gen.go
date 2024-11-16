@@ -15,13 +15,11 @@ type OptionsWithTextFormattingBuilder struct {
 }
 
 func NewOptionsWithTextFormattingBuilder() *OptionsWithTextFormattingBuilder {
-	resource := &OptionsWithTextFormatting{}
+	resource := NewOptionsWithTextFormatting()
 	builder := &OptionsWithTextFormattingBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *OptionsWithTextFormattingBuilder) Text(text cog.Builder[VizTextDi
 	builder.internal.Text = &textResource
 
 	return builder
-}
-
-func (builder *OptionsWithTextFormattingBuilder) applyDefaults() {
 }

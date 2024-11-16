@@ -14,13 +14,11 @@ type KeyBuilder struct {
 }
 
 func NewKeyBuilder() *KeyBuilder {
-	resource := &Key{}
+	resource := NewKey()
 	builder := &KeyBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -49,7 +47,4 @@ func (builder *KeyBuilder) Uid(uid string) *KeyBuilder {
 	builder.internal.Uid = &uid
 
 	return builder
-}
-
-func (builder *KeyBuilder) applyDefaults() {
 }

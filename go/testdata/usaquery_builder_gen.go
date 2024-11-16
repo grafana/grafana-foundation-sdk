@@ -14,13 +14,11 @@ type USAQueryBuilder struct {
 }
 
 func NewUSAQueryBuilder() *USAQueryBuilder {
-	resource := &USAQuery{}
+	resource := NewUSAQuery()
 	builder := &USAQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -55,7 +53,4 @@ func (builder *USAQueryBuilder) States(states []string) *USAQueryBuilder {
 	builder.internal.States = states
 
 	return builder
-}
-
-func (builder *USAQueryBuilder) applyDefaults() {
 }

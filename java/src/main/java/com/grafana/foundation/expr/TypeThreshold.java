@@ -72,7 +72,7 @@ public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataqu
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<TypeThreshold> {
+    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
         protected final TypeThreshold internal;
         
         public Builder() {

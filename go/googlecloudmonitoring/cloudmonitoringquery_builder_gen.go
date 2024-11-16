@@ -16,13 +16,11 @@ type CloudMonitoringQueryBuilder struct {
 }
 
 func NewCloudMonitoringQueryBuilder() *CloudMonitoringQueryBuilder {
-	resource := &CloudMonitoringQuery{}
+	resource := NewCloudMonitoringQuery()
 	builder := &CloudMonitoringQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -133,7 +131,4 @@ func (builder *CloudMonitoringQueryBuilder) IntervalMs(intervalMs float64) *Clou
 	builder.internal.IntervalMs = &intervalMs
 
 	return builder
-}
-
-func (builder *CloudMonitoringQueryBuilder) applyDefaults() {
 }

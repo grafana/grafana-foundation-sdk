@@ -14,13 +14,11 @@ type BaseDimensionConfigBuilder struct {
 }
 
 func NewBaseDimensionConfigBuilder() *BaseDimensionConfigBuilder {
-	resource := &BaseDimensionConfig{}
+	resource := NewBaseDimensionConfig()
 	builder := &BaseDimensionConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -38,7 +36,4 @@ func (builder *BaseDimensionConfigBuilder) Field(field string) *BaseDimensionCon
 	builder.internal.Field = &field
 
 	return builder
-}
-
-func (builder *BaseDimensionConfigBuilder) applyDefaults() {
 }

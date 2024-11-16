@@ -15,13 +15,11 @@ type FillConfigBuilder struct {
 }
 
 func NewFillConfigBuilder() *FillConfigBuilder {
-	resource := &FillConfig{}
+	resource := NewFillConfig()
 	builder := &FillConfigBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -50,7 +48,4 @@ func (builder *FillConfigBuilder) FillBelowTo(fillBelowTo string) *FillConfigBui
 	builder.internal.FillBelowTo = &fillBelowTo
 
 	return builder
-}
-
-func (builder *FillConfigBuilder) applyDefaults() {
 }

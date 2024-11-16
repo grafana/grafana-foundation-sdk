@@ -42,6 +42,110 @@
  * <span class="badge builder"></span> [TimeRangeBuilder](./builder-TimeRangeBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewQuery
+
+NewQuery creates a new Query object.
+
+```go
+func NewQuery() *Query
+```
+
+### <span class="badge function"></span> NewRuleGroup
+
+NewRuleGroup creates a new RuleGroup object.
+
+```go
+func NewRuleGroup() *RuleGroup
+```
+
+### <span class="badge function"></span> NewContactPoint
+
+NewContactPoint creates a new ContactPoint object.
+
+```go
+func NewContactPoint() *ContactPoint
+```
+
+### <span class="badge function"></span> NewMatcher
+
+NewMatcher creates a new Matcher object.
+
+```go
+func NewMatcher() *Matcher
+```
+
+### <span class="badge function"></span> NewMuteTiming
+
+NewMuteTiming creates a new MuteTiming object.
+
+```go
+func NewMuteTiming() *MuteTiming
+```
+
+### <span class="badge function"></span> NewNotificationTemplate
+
+NewNotificationTemplate creates a new NotificationTemplate object.
+
+```go
+func NewNotificationTemplate() *NotificationTemplate
+```
+
+### <span class="badge function"></span> NewRule
+
+NewRule creates a new Rule object.
+
+```go
+func NewRule() *Rule
+```
+
+### <span class="badge function"></span> NewRelativeTimeRange
+
+NewRelativeTimeRange creates a new RelativeTimeRange object.
+
+```go
+func NewRelativeTimeRange() *RelativeTimeRange
+```
+
+### <span class="badge function"></span> NewNotificationPolicy
+
+NewNotificationPolicy creates a new NotificationPolicy object.
+
+```go
+func NewNotificationPolicy() *NotificationPolicy
+```
+
+### <span class="badge function"></span> NewTimeInterval
+
+NewTimeInterval creates a new TimeInterval object.
+
+```go
+func NewTimeInterval() *TimeInterval
+```
+
+### <span class="badge function"></span> NewTimeIntervalItem
+
+NewTimeIntervalItem creates a new TimeIntervalItem object.
+
+```go
+func NewTimeIntervalItem() *TimeIntervalItem
+```
+
+### <span class="badge function"></span> NewTimeIntervalTimeRange
+
+NewTimeIntervalTimeRange creates a new TimeIntervalTimeRange object.
+
+```go
+func NewTimeIntervalTimeRange() *TimeIntervalTimeRange
+```
+
+### <span class="badge function"></span> NewTimeRange
+
+NewTimeRange creates a new TimeRange object.
+
+```go
+func NewTimeRange() *TimeRange
+```
+
 ### <span class="badge function"></span> QueryConverter
 
 QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.

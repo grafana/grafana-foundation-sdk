@@ -15,13 +15,11 @@ type CellValuesBuilder struct {
 }
 
 func NewCellValuesBuilder() *CellValuesBuilder {
-	resource := &CellValues{}
+	resource := NewCellValues()
 	builder := &CellValuesBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -46,7 +44,4 @@ func (builder *CellValuesBuilder) Decimals(decimals float32) *CellValuesBuilder 
 	builder.internal.Decimals = &decimals
 
 	return builder
-}
-
-func (builder *CellValuesBuilder) applyDefaults() {
 }

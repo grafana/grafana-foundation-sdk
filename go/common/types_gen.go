@@ -30,6 +30,11 @@ type DataSourceJsonData struct {
 	AlertmanagerUid *string `json:"alertmanagerUid,omitempty"`
 }
 
+// NewDataSourceJsonData creates a new DataSourceJsonData object.
+func NewDataSourceJsonData() *DataSourceJsonData {
+	return &DataSourceJsonData{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DataSourceJsonData` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *DataSourceJsonData) UnmarshalJSONStrict(raw []byte) error {
@@ -187,6 +192,11 @@ type DataQuery struct {
 	Datasource any `json:"datasource,omitempty"`
 }
 
+// NewDataQuery creates a new DataQuery object.
+func NewDataQuery() *DataQuery {
+	return &DataQuery{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DataQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *DataQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -299,6 +309,11 @@ type BaseDimensionConfig struct {
 	Field *string `json:"field,omitempty"`
 }
 
+// NewBaseDimensionConfig creates a new BaseDimensionConfig object.
+func NewBaseDimensionConfig() *BaseDimensionConfig {
+	return &BaseDimensionConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseDimensionConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *BaseDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -369,6 +384,11 @@ type ScaleDimensionConfig struct {
 	Field *string `json:"field,omitempty"`
 	// | *"linear"
 	Mode *ScaleDimensionMode `json:"mode,omitempty"`
+}
+
+// NewScaleDimensionConfig creates a new ScaleDimensionConfig object.
+func NewScaleDimensionConfig() *ScaleDimensionConfig {
+	return &ScaleDimensionConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ScaleDimensionConfig` from JSON.
@@ -507,6 +527,11 @@ type ColorDimensionConfig struct {
 	Field *string `json:"field,omitempty"`
 }
 
+// NewColorDimensionConfig creates a new ColorDimensionConfig object.
+func NewColorDimensionConfig() *ColorDimensionConfig {
+	return &ColorDimensionConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ColorDimensionConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ColorDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -596,6 +621,11 @@ type ScalarDimensionConfig struct {
 	// fixed: T -- will be added by each element
 	Field *string              `json:"field,omitempty"`
 	Mode  *ScalarDimensionMode `json:"mode,omitempty"`
+}
+
+// NewScalarDimensionConfig creates a new ScalarDimensionConfig object.
+func NewScalarDimensionConfig() *ScalarDimensionConfig {
+	return &ScalarDimensionConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ScalarDimensionConfig` from JSON.
@@ -742,6 +772,11 @@ type TextDimensionConfig struct {
 	Fixed *string `json:"fixed,omitempty"`
 }
 
+// NewTextDimensionConfig creates a new TextDimensionConfig object.
+func NewTextDimensionConfig() *TextDimensionConfig {
+	return &TextDimensionConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TextDimensionConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TextDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -858,6 +893,11 @@ type MapLayerOptions struct {
 	Opacity *int64 `json:"opacity,omitempty"`
 	// Check tooltip (defaults to true)
 	Tooltip *bool `json:"tooltip,omitempty"`
+}
+
+// NewMapLayerOptions creates a new MapLayerOptions object.
+func NewMapLayerOptions() *MapLayerOptions {
+	return &MapLayerOptions{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MapLayerOptions` from JSON.
@@ -1064,6 +1104,11 @@ type HeatmapCalculationBucketConfig struct {
 	Value *string `json:"value,omitempty"`
 	// Controls the scale of the buckets
 	Scale *ScaleDistributionConfig `json:"scale,omitempty"`
+}
+
+// NewHeatmapCalculationBucketConfig creates a new HeatmapCalculationBucketConfig object.
+func NewHeatmapCalculationBucketConfig() *HeatmapCalculationBucketConfig {
+	return &HeatmapCalculationBucketConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HeatmapCalculationBucketConfig` from JSON.
@@ -1299,6 +1344,11 @@ type LineStyle struct {
 	Dash []float64      `json:"dash,omitempty"`
 }
 
+// NewLineStyle creates a new LineStyle object.
+func NewLineStyle() *LineStyle {
+	return &LineStyle{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LineStyle` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *LineStyle) UnmarshalJSONStrict(raw []byte) error {
@@ -1386,6 +1436,11 @@ type LineConfig struct {
 	// When the value is a number, it represents the maximum delta in the
 	// X axis that should be considered connected.  For timeseries, this is milliseconds
 	SpanNulls *BoolOrFloat64 `json:"spanNulls,omitempty"`
+}
+
+// NewLineConfig creates a new LineConfig object.
+func NewLineConfig() *LineConfig {
+	return &LineConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LineConfig` from JSON.
@@ -1550,6 +1605,11 @@ type BarConfig struct {
 	BarMaxWidth    *float64      `json:"barMaxWidth,omitempty"`
 }
 
+// NewBarConfig creates a new BarConfig object.
+func NewBarConfig() *BarConfig {
+	return &BarConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BarConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *BarConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -1650,6 +1710,11 @@ type FillConfig struct {
 	FillColor   *string  `json:"fillColor,omitempty"`
 	FillOpacity *float64 `json:"fillOpacity,omitempty"`
 	FillBelowTo *string  `json:"fillBelowTo,omitempty"`
+}
+
+// NewFillConfig creates a new FillConfig object.
+func NewFillConfig() *FillConfig {
+	return &FillConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FillConfig` from JSON.
@@ -1753,6 +1818,11 @@ type PointsConfig struct {
 	PointSize   *float64        `json:"pointSize,omitempty"`
 	PointColor  *string         `json:"pointColor,omitempty"`
 	PointSymbol *string         `json:"pointSymbol,omitempty"`
+}
+
+// NewPointsConfig creates a new PointsConfig object.
+func NewPointsConfig() *PointsConfig {
+	return &PointsConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PointsConfig` from JSON.
@@ -1877,6 +1947,11 @@ type ScaleDistributionConfig struct {
 	LinearThreshold *float64          `json:"linearThreshold,omitempty"`
 }
 
+// NewScaleDistributionConfig creates a new ScaleDistributionConfig object.
+func NewScaleDistributionConfig() *ScaleDistributionConfig {
+	return &ScaleDistributionConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ScaleDistributionConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *ScaleDistributionConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -1981,6 +2056,11 @@ type AxisConfig struct {
 	ScaleDistribution *ScaleDistributionConfig `json:"scaleDistribution,omitempty"`
 	AxisCenteredZero  *bool                    `json:"axisCenteredZero,omitempty"`
 	AxisBorderShow    *bool                    `json:"axisBorderShow,omitempty"`
+}
+
+// NewAxisConfig creates a new AxisConfig object.
+func NewAxisConfig() *AxisConfig {
+	return &AxisConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AxisConfig` from JSON.
@@ -2238,6 +2318,11 @@ type HideSeriesConfig struct {
 	Viz     bool `json:"viz"`
 }
 
+// NewHideSeriesConfig creates a new HideSeriesConfig object.
+func NewHideSeriesConfig() *HideSeriesConfig {
+	return &HideSeriesConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HideSeriesConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *HideSeriesConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -2330,6 +2415,11 @@ type StackingConfig struct {
 	Group *string       `json:"group,omitempty"`
 }
 
+// NewStackingConfig creates a new StackingConfig object.
+func NewStackingConfig() *StackingConfig {
+	return &StackingConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StackingConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StackingConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -2410,6 +2500,11 @@ type StackableFieldConfig struct {
 	Stacking *StackingConfig `json:"stacking,omitempty"`
 }
 
+// NewStackableFieldConfig creates a new StackableFieldConfig object.
+func NewStackableFieldConfig() *StackableFieldConfig {
+	return &StackableFieldConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StackableFieldConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StackableFieldConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -2481,6 +2576,11 @@ func (resource StackableFieldConfig) Validate() error {
 // TODO docs
 type HideableFieldConfig struct {
 	HideFrom *HideSeriesConfig `json:"hideFrom,omitempty"`
+}
+
+// NewHideableFieldConfig creates a new HideableFieldConfig object.
+func NewHideableFieldConfig() *HideableFieldConfig {
+	return &HideableFieldConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HideableFieldConfig` from JSON.
@@ -2569,6 +2669,11 @@ type GraphThresholdsStyleConfig struct {
 	Mode GraphThresholdsStyleMode `json:"mode"`
 }
 
+// NewGraphThresholdsStyleConfig creates a new GraphThresholdsStyleConfig object.
+func NewGraphThresholdsStyleConfig() *GraphThresholdsStyleConfig {
+	return &GraphThresholdsStyleConfig{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `GraphThresholdsStyleConfig` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *GraphThresholdsStyleConfig) UnmarshalJSONStrict(raw []byte) error {
@@ -2644,6 +2749,13 @@ type SingleStatBaseOptions struct {
 	ReduceOptions ReduceDataOptions      `json:"reduceOptions"`
 	Text          *VizTextDisplayOptions `json:"text,omitempty"`
 	Orientation   VizOrientation         `json:"orientation"`
+}
+
+// NewSingleStatBaseOptions creates a new SingleStatBaseOptions object.
+func NewSingleStatBaseOptions() *SingleStatBaseOptions {
+	return &SingleStatBaseOptions{
+		ReduceOptions: *NewReduceDataOptions(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SingleStatBaseOptions` from JSON.
@@ -2763,6 +2875,11 @@ type ReduceDataOptions struct {
 	Calcs []string `json:"calcs"`
 	// Which fields to show.  By default this is only numeric fields
 	Fields *string `json:"fields,omitempty"`
+}
+
+// NewReduceDataOptions creates a new ReduceDataOptions object.
+func NewReduceDataOptions() *ReduceDataOptions {
+	return &ReduceDataOptions{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ReduceDataOptions` from JSON.
@@ -2899,6 +3016,13 @@ type OptionsWithTooltip struct {
 	Tooltip VizTooltipOptions `json:"tooltip"`
 }
 
+// NewOptionsWithTooltip creates a new OptionsWithTooltip object.
+func NewOptionsWithTooltip() *OptionsWithTooltip {
+	return &OptionsWithTooltip{
+		Tooltip: *NewVizTooltipOptions(),
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `OptionsWithTooltip` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *OptionsWithTooltip) UnmarshalJSONStrict(raw []byte) error {
@@ -2965,6 +3089,13 @@ func (resource OptionsWithTooltip) Validate() error {
 // TODO docs
 type OptionsWithLegend struct {
 	Legend VizLegendOptions `json:"legend"`
+}
+
+// NewOptionsWithLegend creates a new OptionsWithLegend object.
+func NewOptionsWithLegend() *OptionsWithLegend {
+	return &OptionsWithLegend{
+		Legend: *NewVizLegendOptions(),
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `OptionsWithLegend` from JSON.
@@ -3035,6 +3166,11 @@ type OptionsWithTimezones struct {
 	Timezone []TimeZone `json:"timezone,omitempty"`
 }
 
+// NewOptionsWithTimezones creates a new OptionsWithTimezones object.
+func NewOptionsWithTimezones() *OptionsWithTimezones {
+	return &OptionsWithTimezones{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `OptionsWithTimezones` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *OptionsWithTimezones) UnmarshalJSONStrict(raw []byte) error {
@@ -3095,6 +3231,11 @@ func (resource OptionsWithTimezones) Validate() error {
 // TODO docs
 type OptionsWithTextFormatting struct {
 	Text *VizTextDisplayOptions `json:"text,omitempty"`
+}
+
+// NewOptionsWithTextFormatting creates a new OptionsWithTextFormatting object.
+func NewOptionsWithTextFormatting() *OptionsWithTextFormatting {
+	return &OptionsWithTextFormatting{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `OptionsWithTextFormatting` from JSON.
@@ -3231,6 +3372,11 @@ type VizTextDisplayOptions struct {
 	ValueSize *float64 `json:"valueSize,omitempty"`
 }
 
+// NewVizTextDisplayOptions creates a new VizTextDisplayOptions object.
+func NewVizTextDisplayOptions() *VizTextDisplayOptions {
+	return &VizTextDisplayOptions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VizTextDisplayOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *VizTextDisplayOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -3361,6 +3507,11 @@ type GraphFieldConfig struct {
 	AxisBorderShow *bool          `json:"axisBorderShow,omitempty"`
 	BarMaxWidth    *float64       `json:"barMaxWidth,omitempty"`
 	InsertNulls    *BoolOrUint32  `json:"insertNulls,omitempty"`
+}
+
+// NewGraphFieldConfig creates a new GraphFieldConfig object.
+func NewGraphFieldConfig() *GraphFieldConfig {
+	return &GraphFieldConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `GraphFieldConfig` from JSON.
@@ -4106,6 +4257,15 @@ type VizLegendOptions struct {
 	Calcs       []string          `json:"calcs"`
 }
 
+// NewVizLegendOptions creates a new VizLegendOptions object.
+func NewVizLegendOptions() *VizLegendOptions {
+	return &VizLegendOptions{
+		DisplayMode: LegendDisplayModeList,
+		Placement:   LegendPlacementBottom,
+		Calcs:       []string{},
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VizLegendOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *VizLegendOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -4358,6 +4518,11 @@ type VizTooltipOptions struct {
 	MaxHeight *float64           `json:"maxHeight,omitempty"`
 }
 
+// NewVizTooltipOptions creates a new VizTooltipOptions object.
+func NewVizTooltipOptions() *VizTooltipOptions {
+	return &VizTooltipOptions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VizTooltipOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *VizTooltipOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -4509,6 +4674,11 @@ type TableSortByFieldState struct {
 	Desc *bool `json:"desc,omitempty"`
 }
 
+// NewTableSortByFieldState creates a new TableSortByFieldState object.
+func NewTableSortByFieldState() *TableSortByFieldState {
+	return &TableSortByFieldState{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableSortByFieldState` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TableSortByFieldState) UnmarshalJSONStrict(raw []byte) error {
@@ -4589,6 +4759,11 @@ type TableFooterOptions struct {
 	Fields           []string `json:"fields,omitempty"`
 	EnablePagination *bool    `json:"enablePagination,omitempty"`
 	CountRows        *bool    `json:"countRows,omitempty"`
+}
+
+// NewTableFooterOptions creates a new TableFooterOptions object.
+func NewTableFooterOptions() *TableFooterOptions {
+	return &TableFooterOptions{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableFooterOptions` from JSON.
@@ -4735,6 +4910,13 @@ type TableAutoCellOptions struct {
 	Type string `json:"type"`
 }
 
+// NewTableAutoCellOptions creates a new TableAutoCellOptions object.
+func NewTableAutoCellOptions() *TableAutoCellOptions {
+	return &TableAutoCellOptions{
+		Type: "auto",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableAutoCellOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TableAutoCellOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -4802,6 +4984,13 @@ func (resource TableAutoCellOptions) Validate() error {
 // Colored text cell options
 type TableColorTextCellOptions struct {
 	Type string `json:"type"`
+}
+
+// NewTableColorTextCellOptions creates a new TableColorTextCellOptions object.
+func NewTableColorTextCellOptions() *TableColorTextCellOptions {
+	return &TableColorTextCellOptions{
+		Type: "color-text",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableColorTextCellOptions` from JSON.
@@ -4873,6 +5062,13 @@ type TableJsonViewCellOptions struct {
 	Type string `json:"type"`
 }
 
+// NewTableJsonViewCellOptions creates a new TableJsonViewCellOptions object.
+func NewTableJsonViewCellOptions() *TableJsonViewCellOptions {
+	return &TableJsonViewCellOptions{
+		Type: "json-view",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableJsonViewCellOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TableJsonViewCellOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -4940,6 +5136,13 @@ func (resource TableJsonViewCellOptions) Validate() error {
 // Json view cell options
 type TableImageCellOptions struct {
 	Type string `json:"type"`
+}
+
+// NewTableImageCellOptions creates a new TableImageCellOptions object.
+func NewTableImageCellOptions() *TableImageCellOptions {
+	return &TableImageCellOptions{
+		Type: "image",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableImageCellOptions` from JSON.
@@ -5011,6 +5214,13 @@ type TableDataLinksCellOptions struct {
 	Type string `json:"type"`
 }
 
+// NewTableDataLinksCellOptions creates a new TableDataLinksCellOptions object.
+func NewTableDataLinksCellOptions() *TableDataLinksCellOptions {
+	return &TableDataLinksCellOptions{
+		Type: "data-links",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableDataLinksCellOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TableDataLinksCellOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -5080,6 +5290,13 @@ type TableBarGaugeCellOptions struct {
 	Type             string               `json:"type"`
 	Mode             *BarGaugeDisplayMode `json:"mode,omitempty"`
 	ValueDisplayMode *BarGaugeValueMode   `json:"valueDisplayMode,omitempty"`
+}
+
+// NewTableBarGaugeCellOptions creates a new TableBarGaugeCellOptions object.
+func NewTableBarGaugeCellOptions() *TableBarGaugeCellOptions {
+	return &TableBarGaugeCellOptions{
+		Type: "gauge",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableBarGaugeCellOptions` from JSON.
@@ -5224,6 +5441,13 @@ type TableSparklineCellOptions struct {
 	PointSymbol    *string        `json:"pointSymbol,omitempty"`
 	AxisBorderShow *bool          `json:"axisBorderShow,omitempty"`
 	BarMaxWidth    *float64       `json:"barMaxWidth,omitempty"`
+}
+
+// NewTableSparklineCellOptions creates a new TableSparklineCellOptions object.
+func NewTableSparklineCellOptions() *TableSparklineCellOptions {
+	return &TableSparklineCellOptions{
+		Type: "sparkline",
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableSparklineCellOptions` from JSON.
@@ -5978,6 +6202,13 @@ type TableColoredBackgroundCellOptions struct {
 	Mode *TableCellBackgroundDisplayMode `json:"mode,omitempty"`
 }
 
+// NewTableColoredBackgroundCellOptions creates a new TableColoredBackgroundCellOptions object.
+func NewTableColoredBackgroundCellOptions() *TableColoredBackgroundCellOptions {
+	return &TableColoredBackgroundCellOptions{
+		Type: "color-background",
+	}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableColoredBackgroundCellOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TableColoredBackgroundCellOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -6075,6 +6306,11 @@ const (
 // and other potential options for that display.
 type TableCellOptions = TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions
 
+// NewTableCellOptions creates a new TableCellOptions object.
+func NewTableCellOptions() *TableCellOptions {
+	return NewTableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions()
+}
+
 // Use UTC/GMT timezone
 const TimeZoneUtc = "utc"
 
@@ -6111,6 +6347,11 @@ type ResourceDimensionConfig struct {
 	// fixed: T -- will be added by each element
 	Field *string `json:"field,omitempty"`
 	Fixed *string `json:"fixed,omitempty"`
+}
+
+// NewResourceDimensionConfig creates a new ResourceDimensionConfig object.
+func NewResourceDimensionConfig() *ResourceDimensionConfig {
+	return &ResourceDimensionConfig{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResourceDimensionConfig` from JSON.
@@ -6215,6 +6456,11 @@ type FrameGeometrySource struct {
 	Lookup    *string `json:"lookup,omitempty"`
 	// Path to Gazetteer
 	Gazetteer *string `json:"gazetteer,omitempty"`
+}
+
+// NewFrameGeometrySource creates a new FrameGeometrySource object.
+func NewFrameGeometrySource() *FrameGeometrySource {
+	return &FrameGeometrySource{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FrameGeometrySource` from JSON.
@@ -6396,6 +6642,11 @@ type HeatmapCalculationOptions struct {
 	YBuckets *HeatmapCalculationBucketConfig `json:"yBuckets,omitempty"`
 }
 
+// NewHeatmapCalculationOptions creates a new HeatmapCalculationOptions object.
+func NewHeatmapCalculationOptions() *HeatmapCalculationOptions {
+	return &HeatmapCalculationOptions{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HeatmapCalculationOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *HeatmapCalculationOptions) UnmarshalJSONStrict(raw []byte) error {
@@ -6527,6 +6778,14 @@ type TableFieldOptions struct {
 	Filterable *bool `json:"filterable,omitempty"`
 	// Hides any header for a column, useful for columns that show some static content or buttons.
 	HideHeader *bool `json:"hideHeader,omitempty"`
+}
+
+// NewTableFieldOptions creates a new TableFieldOptions object.
+func NewTableFieldOptions() *TableFieldOptions {
+	return &TableFieldOptions{
+		Align:   FieldTextAlignmentAuto,
+		Inspect: false,
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableFieldOptions` from JSON.
@@ -6766,6 +7025,11 @@ type BoolOrFloat64 struct {
 	Float64 *float64 `json:"Float64,omitempty"`
 }
 
+// NewBoolOrFloat64 creates a new BoolOrFloat64 object.
+func NewBoolOrFloat64() *BoolOrFloat64 {
+	return &BoolOrFloat64{}
+}
+
 // MarshalJSON implements a custom JSON marshalling logic to encode `BoolOrFloat64` as JSON.
 func (resource BoolOrFloat64) MarshalJSON() ([]byte, error) {
 	if resource.Bool != nil {
@@ -6882,6 +7146,11 @@ func (resource BoolOrFloat64) Validate() error {
 type BoolOrUint32 struct {
 	Bool   *bool   `json:"Bool,omitempty"`
 	Uint32 *uint32 `json:"Uint32,omitempty"`
+}
+
+// NewBoolOrUint32 creates a new BoolOrUint32 object.
+func NewBoolOrUint32() *BoolOrUint32 {
+	return &BoolOrUint32{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `BoolOrUint32` as JSON.
@@ -7006,6 +7275,11 @@ type TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOr
 	TableImageCellOptions             *TableImageCellOptions             `json:"TableImageCellOptions,omitempty"`
 	TableDataLinksCellOptions         *TableDataLinksCellOptions         `json:"TableDataLinksCellOptions,omitempty"`
 	TableJsonViewCellOptions          *TableJsonViewCellOptions          `json:"TableJsonViewCellOptions,omitempty"`
+}
+
+// NewTableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions creates a new TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions object.
+func NewTableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions() *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions {
+	return &TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions{}
 }
 
 // MarshalJSON implements a custom JSON marshalling logic to encode `TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions` as JSON.

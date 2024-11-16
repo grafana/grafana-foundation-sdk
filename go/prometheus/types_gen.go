@@ -73,6 +73,11 @@ func (resource Dataquery) DataqueryType() string {
 	return "prometheus"
 }
 
+// NewDataquery creates a new Dataquery object.
+func NewDataquery() *Dataquery {
+	return &Dataquery{}
+}
+
 // VariantConfig returns the configuration related to prometheus dataqueries.
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
@@ -447,6 +452,11 @@ func (resource Dataquery) Validate() error {
 
 type PrometheusDataqueryScope struct {
 	Matchers string `json:"matchers"`
+}
+
+// NewPrometheusDataqueryScope creates a new PrometheusDataqueryScope object.
+func NewPrometheusDataqueryScope() *PrometheusDataqueryScope {
+	return &PrometheusDataqueryScope{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PrometheusDataqueryScope` from JSON.

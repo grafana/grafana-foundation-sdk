@@ -14,13 +14,11 @@ type ResourceRefBuilder struct {
 }
 
 func NewResourceRefBuilder() *ResourceRefBuilder {
-	resource := &ResourceRef{}
+	resource := NewResourceRef()
 	builder := &ResourceRefBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -43,7 +41,4 @@ func (builder *ResourceRefBuilder) Name(name string) *ResourceRefBuilder {
 	builder.internal.Name = name
 
 	return builder
-}
-
-func (builder *ResourceRefBuilder) applyDefaults() {
 }

@@ -15,13 +15,11 @@ type FilterValueRangeBuilder struct {
 }
 
 func NewFilterValueRangeBuilder() *FilterValueRangeBuilder {
-	resource := &FilterValueRange{}
+	resource := NewFilterValueRange()
 	builder := &FilterValueRangeBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -46,7 +44,4 @@ func (builder *FilterValueRangeBuilder) Ge(ge float32) *FilterValueRangeBuilder 
 	builder.internal.Ge = &ge
 
 	return builder
-}
-
-func (builder *FilterValueRangeBuilder) applyDefaults() {
 }

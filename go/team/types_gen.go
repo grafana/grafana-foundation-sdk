@@ -17,6 +17,11 @@ type Team struct {
 	Email *string `json:"email,omitempty"`
 }
 
+// NewTeam creates a new Team object.
+func NewTeam() *Team {
+	return &Team{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Team` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Team) UnmarshalJSONStrict(raw []byte) error {

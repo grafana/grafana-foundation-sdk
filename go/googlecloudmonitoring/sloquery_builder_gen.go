@@ -15,13 +15,11 @@ type SLOQueryBuilder struct {
 }
 
 func NewSLOQueryBuilder() *SLOQueryBuilder {
-	resource := &SLOQuery{}
+	resource := NewSLOQuery()
 	builder := &SLOQueryBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-
-	builder.applyDefaults()
 
 	return builder
 }
@@ -102,7 +100,4 @@ func (builder *SLOQueryBuilder) LookbackPeriod(lookbackPeriod string) *SLOQueryB
 	builder.internal.LookbackPeriod = &lookbackPeriod
 
 	return builder
-}
-
-func (builder *SLOQueryBuilder) applyDefaults() {
 }

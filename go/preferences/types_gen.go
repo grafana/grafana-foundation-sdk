@@ -30,6 +30,11 @@ type Preferences struct {
 	CookiePreferences *CookiePreferences `json:"cookiePreferences,omitempty"`
 }
 
+// NewPreferences creates a new Preferences object.
+func NewPreferences() *Preferences {
+	return &Preferences{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Preferences` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Preferences) UnmarshalJSONStrict(raw []byte) error {
@@ -230,6 +235,11 @@ type QueryHistoryPreference struct {
 	HomeTab *string `json:"homeTab,omitempty"`
 }
 
+// NewQueryHistoryPreference creates a new QueryHistoryPreference object.
+func NewQueryHistoryPreference() *QueryHistoryPreference {
+	return &QueryHistoryPreference{}
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryHistoryPreference` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *QueryHistoryPreference) UnmarshalJSONStrict(raw []byte) error {
@@ -289,6 +299,11 @@ type CookiePreferences struct {
 	Analytics   any `json:"analytics,omitempty"`
 	Performance any `json:"performance,omitempty"`
 	Functional  any `json:"functional,omitempty"`
+}
+
+// NewCookiePreferences creates a new CookiePreferences object.
+func NewCookiePreferences() *CookiePreferences {
+	return &CookiePreferences{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CookiePreferences` from JSON.

@@ -29,6 +29,70 @@
  * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewStreamingQuery
+
+NewStreamingQuery creates a new StreamingQuery object.
+
+```go
+func NewStreamingQuery() *StreamingQuery
+```
+
+### <span class="badge function"></span> NewPulseWaveQuery
+
+NewPulseWaveQuery creates a new PulseWaveQuery object.
+
+```go
+func NewPulseWaveQuery() *PulseWaveQuery
+```
+
+### <span class="badge function"></span> NewSimulationQuery
+
+NewSimulationQuery creates a new SimulationQuery object.
+
+```go
+func NewSimulationQuery() *SimulationQuery
+```
+
+### <span class="badge function"></span> NewNodesQuery
+
+NewNodesQuery creates a new NodesQuery object.
+
+```go
+func NewNodesQuery() *NodesQuery
+```
+
+### <span class="badge function"></span> NewUSAQuery
+
+NewUSAQuery creates a new USAQuery object.
+
+```go
+func NewUSAQuery() *USAQuery
+```
+
+### <span class="badge function"></span> NewCSVWave
+
+NewCSVWave creates a new CSVWave object.
+
+```go
+func NewCSVWave() *CSVWave
+```
+
+### <span class="badge function"></span> NewScenario
+
+NewScenario creates a new Scenario object.
+
+```go
+func NewScenario() *Scenario
+```
+
+### <span class="badge function"></span> NewDataquery
+
+NewDataquery creates a new Dataquery object.
+
+```go
+func NewDataquery() *Dataquery
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to testdata dataqueries.
@@ -37,6 +101,22 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> NewKey
+
+NewKey creates a new Key object.
+
+```go
+func NewKey() *Key
+```
+
+### <span class="badge function"></span> NewStringOrInt64
+
+NewStringOrInt64 creates a new StringOrInt64 object.
+
+```go
+func NewStringOrInt64() *StringOrInt64
 ```
 
 ### <span class="badge function"></span> StreamingQueryConverter
