@@ -1,0 +1,36 @@
+{{- define "api_reference_builder_dashboard_Dashboard_extra" -}}
+## Examples
+
+### Building a dashboard
+
+```python
+from grafana_foundation_sdk.builders.dashboard import Dashboard, Row
+from grafana_foundation_sdk.builders.prometheus import Dataquery as PrometheusQuery
+from grafana_foundation_sdk.builders.timeseries import Panel as Timeseries
+from grafana_foundation_sdk.models.common import TimeZoneBrowser
+
+def build_dashboard() -> Dashboard:
+    return (
+        Dashboard("[TEST] Node Exporter / Raspberry")
+        .uid("test-dashboard-raspberry")
+        .tags(["generated", "raspberrypi-node-integration"])
+
+        .refresh("1m")
+        .time("now-30m", "now")
+        .timezone(TimeZoneBrowser)
+
+        .with_row(Row("Overview"))
+        .with_panel(
+            Timeseries()
+            .title("Network Received")
+            .unit("bps")
+            .min_val(0)
+            .with_target(
+                PrometheusQuery()
+                .expr('rate(node_network_receive_bytes_total{job="integrations/raspberrypi-node", device!="lo"}[$__rate_interval]) * 8')
+                .legend_format({{ `"{{ device }}"` }})
+            )
+        )
+    )
+```
+{{ end }}

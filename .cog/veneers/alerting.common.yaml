@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: alerting
+
+builders:
+  - omit: { by_object: RelativeTimeRange }
+
+  # Make some constructors more friendly
+  - promote_options_to_constructor:
+      by_object: RuleGroup
+      options: [title]
+  - promote_options_to_constructor:
+      by_object: Rule
+      options: [title]
+  - promote_options_to_constructor:
+      by_object: Query
+      options: [refId]
+
+options:
+  - duplicate:
+      by_name: RuleGroup.rules
+      as: withRule
+  - array_to_append:
+      by_name: RuleGroup.withRule
+
+  - rename:
+      by_name: Rule.data
+      as: queries
+  - duplicate:
+      by_name: Rule.queries
+      as: withQuery
+  - array_to_append:
+      by_name: Rule.withQuery

@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: prometheus
+
+builders:
+  # Like the UI, support a "both instant and range" query
+  - add_option:
+      by_object: Dataquery
+      option:
+        name: rangeAndInstant
+        assignments:
+          - path: range
+            method: direct
+            value: { constant: true }
+          - path: instant
+            method: direct
+            value: { constant: true }
+
+options:
+  # Ensure that enabling "range query mode" disables other modes
+  - unfold_boolean:
+      by_name: Dataquery.range
+      true_as: range
+      false_as: notRange
+  - omit: { by_name: Dataquery.notRange }
+  - add_assignment:
+      by_name: Dataquery.range
+      assignment:
+        path: instant
+        method: direct
+        value: { constant: false }
+
+  # Ensure that enabling "instant query mode" disables other modes
+  - unfold_boolean:
+      by_name: Dataquery.instant
+      true_as: instant
+      false_as: notInstant
+  - omit: { by_name: Dataquery.notInstant }
+  - add_assignment:
+      by_name: Dataquery.instant
+      assignment:
+        path: range
+        method: direct
+        value: { constant: false }

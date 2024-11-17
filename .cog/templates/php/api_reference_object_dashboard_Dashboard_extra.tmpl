@@ -1,0 +1,32 @@
+{{- define "api_reference_object_dashboard_Dashboard_extra" -}}
+## Examples
+
+### Encoding to JSON
+
+```php
+use Grafana\Foundation\Dashboard\Dashboard;
+
+require_once __DIR__.'/vendor/autoload.php';
+
+$dashboard = new Dashboard(
+    uid: 'sample-dashboard-uid',
+    title: 'Sample dashboard',
+);
+
+echo(json_encode($dashboard, JSON_PRETTY_PRINT).PHP_EOL);
+```
+
+### Decoding from JSON
+
+```php
+use Grafana\Foundation\Dashboard\Dashboard;
+
+require_once __DIR__.'/vendor/autoload.php';
+
+$dashboardJSON = file_get_contents(__DIR__.'/dashboard.json');
+
+$dashboard = Dashboard::fromArray(json_decode($dashboardJSON, true));
+
+var_dump($dashboard);
+```
+{{ end }}

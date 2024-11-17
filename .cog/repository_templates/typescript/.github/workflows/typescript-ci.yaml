@@ -1,0 +1,30 @@
+name: TypeScript CI
+on:
+  pull_request: ~
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  typescript:
+    name: TypeScript
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./typescript
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js {{ `${{ env.NODE_VERSION }}` }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: {{ `${{ env.NODE_VERSION }}` }}
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build

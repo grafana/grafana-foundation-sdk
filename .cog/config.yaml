@@ -1,0 +1,123 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/pipeline.json
+
+debug: false
+
+parameters:
+  output_dir: './generated/%l'
+  kind_registry_path: '../kind-registry'
+  kind_registry_version: 'v10.4.x'
+  grafana_version: 'v10.4.x'
+  all_grafana_versions: 'v10.4.x'
+  cog_version: 'v0.0.x'
+  release_branch: 'release_branch'
+  build_timestamp: 'build_timestamp'
+  go_package_root: 'github.com/grafana/grafana-foundation-sdk/go'
+  java_package_path: 'com.grafana.foundation'
+  php_namespace_root: 'Grafana\Foundation'
+
+inputs:
+  - kind_registry:
+      path: '%kind_registry_path%'
+      version: '%kind_registry_version%'
+      transformations:
+        - '%__config_dir%/compiler/kind_registry.yaml'
+  - openapi:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/%grafana_version%/public/openapi3.json'
+      no_validate: true
+      package: dashboard
+      metadata:
+        kind: core
+        identifier: Dashboard
+      allowed_objects:
+        - DashboardMeta
+
+  - jsonschema:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/main/pkg/expr/query.request.schema.json'
+      package: expr
+      transformations:
+        - '%__config_dir%/compiler/expr_passes.yaml'
+  - openapi:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/%grafana_version%/public/openapi3.json'
+      no_validate: true
+      package: alerting
+      allowed_objects:
+        - AlertRuleGroup
+        - EmbeddedContactPoint
+        - Route
+        - MuteTimeInterval
+        - NotificationTemplate
+        - TimeIntervalItem
+      transformations:
+        - '%__config_dir%/compiler/alerting.yaml'
+
+  # The schema for testdata queries is gone from the kind-registry since v11.0.x
+  - if: '"%grafana_version%" == "main" || semver("%grafana_version%").MoreThanEqual(semver("v11.0.x"))'
+    jsonschema:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/%grafana_version%/pkg/tsdb/grafana-testdata-datasource/kinds/query.panel.schema.json'
+      package: testdata
+      metadata:
+        kind: composable
+        variant: dataquery
+      transformations:
+        - '%__config_dir%/compiler/testdata_passes.yaml'
+
+  # The schema for prometheus queries is gone from the kind-registry since v11.0.x
+  - if: '"%grafana_version%" == "main" || semver("%grafana_version%").MoreThanEqual(semver("v11.0.x"))'
+    kindsys_composable:
+      entrypoint: '%__config_dir%/schemas/composable/prometheus'
+      cue_imports:
+        - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
+      transformations:
+        - '%__config_dir%/compiler/prometheus.yaml'
+
+transformations:
+  schemas:
+    - '%__config_dir%/compiler/common_passes.yaml'
+
+  builders:
+    - '%__config_dir%/veneers'
+
+output:
+  directory: '%output_dir%'
+
+  types: true
+  builders: true
+  converters: true
+  api_reference: true
+
+  package_templates: '%__config_dir%/package_templates'
+  repository_templates: '%__config_dir%/repository_templates'
+  templates_data:
+    GrafanaVersion: '%kind_registry_version%'
+    AllGrafanaVersions: '%all_grafana_versions%'
+    CogVersion: '%cog_version%'
+    ReleaseBranch: '%release_branch%'
+    BuildTimestamp: '%build_timestamp%'
+
+  languages:
+    - go:
+        go_mod: true
+        package_root: '%go_package_root%'
+        builder_templates:
+          - '%__config_dir%/templates/go'
+        generate_strict_unmarshaller: true
+        generate_equal: true
+        generate_validate: true
+    - jsonschema: {}
+    - openapi: {}
+    - php:
+        namespace_root: '%php_namespace_root%'
+        builder_templates:
+          - '%__config_dir%/templates/php'
+    - python:
+        path_prefix: grafana_foundation_sdk
+        builder_templates:
+          - '%__config_dir%/templates/python'
+    - typescript:
+        builder_templates:
+          - '%__config_dir%/templates/typescript'
+    - java:
+        package_path: '%java_package_path%'
+        skip_gradle_dev: true
+        builder_templates:
+          - '%__config_dir%/templates/java'

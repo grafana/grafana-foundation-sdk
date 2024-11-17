@@ -1,0 +1,47 @@
+name: TypeScript Release
+on:
+  pull_request_target:
+    types: [closed]
+    paths:
+      - 'typescript/package.json'
+      - 'typescript/src/**'
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true && github.base_ref == '{{ .Extra.ReleaseBranch }}'
+
+    name: Build and release
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./typescript
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js {{ `${{ env.NODE_VERSION }}` }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: {{ `${{ env.NODE_VERSION }}` }}
+          scope: '@grafana'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Publish to NPM registry
+        run: yarn publish --access public
+        env:
+          NODE_AUTH_TOKEN: {{ `${{ secrets.NPM_TOKEN }}` }}

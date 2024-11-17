@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: heatmap
+
+builders: ~
+
+options:
+    # ExemplarsColor(color: string) instead of Exemplars(exemplarsConfig: ExemplarConfig)
+    # ExemplarConfig only includes (color: string) field.
+  - struct_fields_as_arguments:
+      by_builder: Panel.exemplars
+  - rename:
+      by_builder: Panel.exemplars
+      as: exemplarsColor
+
+    # ShowLegend/HideLegends instead of Legend(show: bool)
+  - struct_fields_as_arguments:
+      by_builder: Panel.legend
+  - unfold_boolean:
+      by_builder: Panel.legend
+      true_as: showLegend
+      false_as: hideLegend
+
+    # Tooltip(show: bool, yHistogram: bool) split into:
+    # - ShowTooltip/HideTooltip
+    # - ShowYHistogram/HideYHistogram
+  - struct_fields_as_options:
+      by_builder: Panel.tooltip
+  - unfold_boolean:
+      by_builder: Panel.show
+      true_as: showTooltip
+      false_as: hideTooltip
+  - unfold_boolean:
+      by_builder: Panel.yHistogram
+      true_as: showYHistogram
+      false_as: hideYHistogram

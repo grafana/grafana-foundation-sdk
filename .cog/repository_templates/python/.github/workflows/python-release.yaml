@@ -1,0 +1,50 @@
+name: Python Release
+on:
+  pull_request_target:
+    types: [ closed ]
+    paths:
+      - 'python/pyproject.toml'
+      - 'python/grafana_foundation_sdk/**'
+
+env:
+  PYTHON_VERSION: '3.12'
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true && github.base_ref == '{{ .Extra.ReleaseBranch }}'
+
+    name: Build and release
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write  # mandatory for trusted publishing
+
+    environment:
+      name: pypi
+      url: https://pypi.org/p/grafana_foundation_sdk
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./python
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python {{ `${{ env.PYTHON_VERSION }}` }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: {{ `${{ env.PYTHON_VERSION }}` }}
+
+      - name: Install pypa/build
+        run: python3 -m pip install build --user
+
+      - name: Build a binary wheel and a source tarball
+        run: python3 -m build
+
+      - name: Publish distribution 📦 to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: python/dist/
+          attestations: false

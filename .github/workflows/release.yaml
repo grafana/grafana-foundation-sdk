@@ -1,0 +1,68 @@
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release, or "all" to release all supported versions.'
+        required: true
+        default: 'all'
+        type: string
+      dryRun:
+        description: 'Dry-run mode runs the release pipeline without pushing its results.'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  COG_VERSION: 0.0.2
+
+# Grant GITHUB_TOKEN the permissions required to make a release
+permissions:
+  contents: write # to push new branches
+  pull-requests: write # to open PRs
+
+# Allow only one concurrent release, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these releases to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Build SDK and release
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download cog
+        run: |
+          mkdir -p "${HOME}/.local/bin/"
+          wget https://github.com/grafana/cog/releases/download/v${COG_VERSION}/cog_Linux_x86_64.tar.gz
+          tar -xzf cog_Linux_x86_64.tar.gz
+          mv cog "${HOME}/.local/bin/cog"
+          chmod +x "${HOME}/.local/bin/cog"
+          echo "${HOME}/.local/bin" >> $GITHUB_PATH
+
+      - name: Run the release script
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
+
+          if [ "${VERSION_TARGET}" == "all" ]; then
+            ./scripts/release-all.sh
+          else
+            ./scripts/release-version.sh "${VERSION_TARGET}"
+          fi
+        env:
+          TERM: 'xterm'
+          LOG_LEVEL: '7' # debug
+          GOGC: 'off'
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # to be used by `gh`
+          DRY_RUN: ${{ inputs.dryRun == true && 'yes' || 'no' }}
+          VERSION_TARGET: ${{ inputs.version }}

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<psalm
+    resolveFromConfigFile="false"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config"
+    findUnusedBaselineEntry="true"
+    findUnusedCode="true"
+    errorLevel="2"
+>
+    <projectFiles>
+        <directory name="php/src" />
+    </projectFiles>
+
+    <issueHandlers>
+        <PossiblyUnusedMethod errorLevel="suppress" />
+
+        <RedundantCondition errorLevel="suppress" />
+        <MissingClosureParamType errorLevel="suppress" />
+        <RiskyTruthyFalsyComparison errorLevel="suppress" />
+        <DeprecatedProperty errorLevel="suppress" />
+        <DeprecatedClass errorLevel="suppress" />
+        <UnnecessaryVarAnnotation errorLevel="suppress" />
+        <ParadoxicalCondition>
+            <errorLevel type="suppress">
+                <file name="php/src/Common/ScaleDirection.php" />
+            </errorLevel>
+        </ParadoxicalCondition>
+        <PossiblyUnusedParam>
+            <errorLevel type="suppress">
+                <directory name="php/src/Common/" />
+            </errorLevel>
+        </PossiblyUnusedParam>
+    </issueHandlers>
+</psalm>
