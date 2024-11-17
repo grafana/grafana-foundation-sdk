@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - disjunction_of_anonymous_structs_to_explicit: {}
+  - disjunction_infer_mapping: {}
+  - disjunction_to_type: {}
+
+  - schema_set_identifier: { package: expr, identifier: __expr__ }
+
+  - retype_object:
+      object: expr.Expr
+      as:
+        kind: disjunction
+        hints: { implements_variant: dataquery }
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeMath } }
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeReduce } }
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeResample } }
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeClassicConditions } }
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeThreshold } }
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeSql } }
+
+  - hint_object:
+      object: expr.typeMath
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
+  - hint_object:
+      object: expr.typeReduce
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
+  - hint_object:
+      object: expr.typeResample
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
+  - hint_object:
+      object: expr.typeClassicConditions
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
+  - hint_object:
+      object: expr.typeThreshold
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
+  - hint_object:
+      object: expr.typeSql
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }

@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: php
+
+package: dashboard
+
+builders: ~
+
+options:
+  ##############
+  # Dashboards #
+  ##############
+
+  # Time(from, to) instead of time(struct {From string `json:"from"`, To string `json:"to"`}{From: "lala", To: "lala})
+  - struct_fields_as_arguments:
+      by_name: Dashboard.time
+
+  ##############
+  #   Panels   #
+  ##############
+
+  # WithOverride(matcher, properties) instead of WithOverride(struct{...})
+  - struct_fields_as_arguments:
+      by_name: Panel.withOverride

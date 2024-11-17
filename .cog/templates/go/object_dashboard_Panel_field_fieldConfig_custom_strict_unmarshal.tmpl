@@ -1,0 +1,28 @@
+{{- define "object_dashboard_Panel_field_fieldConfig_custom_strict_unmarshal" -}}
+{{- /* Non-standard unmarshalling to parse the correct FieldConfig struct based on the panel type */}}
+	if err := json.Unmarshal(fields["fieldConfig"], &resource.FieldConfig); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("fieldConfig", err)...)
+	}
+
+	variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Type)
+	if found && variantCfg.StrictFieldConfigUnmarshaler != nil {
+		fakeFieldConfigSource := struct {
+			Defaults struct {
+				Custom json.RawMessage `json:"custom"`
+			} `json:"defaults"`
+		}{}
+		if err := json.Unmarshal(fields["fieldConfig"], &fakeFieldConfigSource); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("fieldConfig", err)...)
+		}
+
+		if fakeFieldConfigSource.Defaults.Custom != nil {
+			customFieldConfig, err := variantCfg.StrictFieldConfigUnmarshaler(fakeFieldConfigSource.Defaults.Custom)
+			if err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fieldConfig.defaults.custom", err)...)
+			} else {
+				resource.FieldConfig.Defaults.Custom = customFieldConfig
+			}
+		}
+	}
+
+{{ end }}

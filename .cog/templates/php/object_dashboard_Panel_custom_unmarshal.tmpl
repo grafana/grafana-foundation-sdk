@@ -1,0 +1,84 @@
+{{- define "object_dashboard_Panel_custom_unmarshal" }}
+/**
+ * @param array<string, mixed> $inputData
+ */
+public static function fromArray(array $inputData): self
+{
+    /** @var {{ typeShape .Object.Type }} $inputData */
+    $data = $inputData;
+    return new self(
+        {{- range $field := .Object.Type.Struct.Fields }}
+        {{ $field.Name }}: {{ if eq $field.Name "options" -}}
+        {{ template "unmarshal_dashboard_panel_options" }}
+        {{- else if eq $field.Name "fieldConfig" -}}
+        {{ template "unmarshal_dashboard_panel_fieldConfig" }}
+        {{- else if eq $field.Name "targets" -}}
+        {{ template "unmarshal_dashboard_panel_targets" }}
+        {{- else if $field.Type.IsConcreteScalar }}
+        {{ continue}}
+        {{- else -}}
+        {{ unmarshalForType $field.Type (print "$data[\"" $field.Name "\"]") }}
+        {{- end -}},
+        {{- end }}
+   );
+}
+{{- end }}
+
+{{- define "unmarshal_dashboard_panel_options" -}}
+isset($data["options"]) ? (function($panel) {
+    /** @var array<string, mixed> $options */
+    $options = $panel["options"];
+
+    if (!\Grafana\Foundation\Cog\Runtime::get()->panelcfgVariantExists($panel["type"] ?? "")) {
+        return $options;
+    }
+
+    $config = \Grafana\Foundation\Cog\Runtime::get()->panelcfgVariantConfig($panel["type"] ?? "");
+    if ($config->optionsFromArray === null) {
+        return $options;
+    }
+
+    return ($config->optionsFromArray)($options);
+})($data) : null
+{{- end }}
+
+{{- define "unmarshal_dashboard_panel_fieldConfig" -}}
+isset($data["fieldConfig"]) ? (function($panel) {
+    /** @var array{defaults?: mixed, overrides?: array<mixed>} */
+    $fieldConfigData = $panel["fieldConfig"];
+    $fieldConfig = FieldConfigSource::fromArray($fieldConfigData);
+
+    if (!\Grafana\Foundation\Cog\Runtime::get()->panelcfgVariantExists($panel["type"] ?? "")) {
+        return $fieldConfig;
+    }
+
+    $config = \Grafana\Foundation\Cog\Runtime::get()->panelcfgVariantConfig($panel["type"] ?? "");
+    if ($config->fieldConfigFromArray === null) {
+        return $fieldConfig;
+    }
+
+    if (!isset($fieldConfigData["defaults"])) {
+        return $fieldConfig;
+    }
+
+    /** @var array{custom?: array<string, mixed>} */
+    $defaults = $fieldConfigData["defaults"];
+    if (!isset($defaults["custom"])) {
+        return $fieldConfig;
+    }
+
+    $fieldConfig->defaults->custom = ($config->fieldConfigFromArray)($defaults["custom"]);
+
+    return $fieldConfig;
+})($data) : null
+{{- end }}
+
+{{- define "unmarshal_dashboard_panel_targets" -}}
+isset($data["targets"]) ? (function ($in) {
+    /** @var array{datasource?: array{type?: mixed}} $in */
+    $hint = (isset($in["datasource"], $in["datasource"]["type"]) && is_string($in["datasource"]["type"])) ? $in["datasource"]["type"] : "";
+
+    /** @var array<array<string, mixed>> $in */
+    return \Grafana\Foundation\Cog\Runtime::get()->dataqueriesFromArray($in, $hint);
+})($data["targets"]): null
+{{- end }}

@@ -1,0 +1,24 @@
+{{- define "pre_assignment_Dashboard_withPanel" }}
+
+if panel_resource.grid_pos is None:
+    panel_resource.grid_pos = dashboard.GridPos()
+
+# The panel either has no position set, or it is the first panel of the dashboard.
+# In that case, we position it on the grid
+if panel_resource.grid_pos.x == 0 and panel_resource.grid_pos.y == 0:
+    panel_resource.grid_pos.x = self.__current_x
+    panel_resource.grid_pos.y = self.__current_y
+{{- end }}
+
+{{- define "post_assignment_Dashboard_withPanel" }}
+
+# Prepare the coordinates for the next panel
+self.__current_x += panel_resource.grid_pos.w
+self.__last_panel_height = max(self.__last_panel_height, panel_resource.grid_pos.h)
+
+# Check for grid width overflow?
+if self.__current_x >= 24:
+    self.__current_x = 0
+    self.__current_y += self.__last_panel_height
+    self.__last_panel_height = 0
+{{- end }}

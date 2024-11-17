@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  #########
+  # Teams #
+  #########
+
+  - rename_object:
+      from: team.CreateTeamCommand
+      to: Team
+
+  - fields_set_required:
+      fields: [ team.Team.name ]

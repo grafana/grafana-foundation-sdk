@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: go
+
+package: cloudwatch
+
+builders: ~
+
+options:
+  - struct_fields_as_arguments:
+      by_name: QueryEditorOperator.value
+      fields: [ ArrayOfQueryEditorOperatorType ]
+  - rename_arguments:
+      by_name: QueryEditorOperator.value
+      as: [operatorTypes]

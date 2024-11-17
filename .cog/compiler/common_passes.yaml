@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - entrypoint_identification: {}
+  - dataquery_identification: {}
+  - disjunction_with_constant_to_default: {}
+  - set_datasource_to_dataquery: {}

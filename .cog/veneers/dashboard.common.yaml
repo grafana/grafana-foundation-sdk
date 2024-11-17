@@ -1,0 +1,253 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: dashboard
+
+builders:
+  ##############
+  # Dashboards #
+  ##############
+
+  # We don't want these builders at all
+  - omit: { by_object: GridPos }
+  - omit: { by_object: DataSourceRef }
+  - omit: { by_object: LibraryPanelRef }
+  - omit: { by_object: VariableOption }
+  - omit: { by_object: Threshold }
+  # overrides and transformations related
+  - omit: { by_object: MatcherConfig }
+  - omit: { by_object: DynamicConfigValue }
+  - omit: { by_object: DataTransformerConfig }
+
+  # RowPanel → Row
+  - rename:
+      by_object: RowPanel
+      as: Row
+
+  # TimePickerConfig → TimePicker
+  - rename:
+      by_name: TimePickerConfig
+      as: TimePicker
+
+  - properties:
+      by_object: Dashboard
+      set:
+        - name: currentY
+          type:
+            kind: scalar
+            scalar: {scalar_kind: uint32}
+        - name: currentX
+          type:
+            kind: scalar
+            scalar: {scalar_kind: uint32}
+        - name: lastPanelHeight
+          type:
+            kind: scalar
+            scalar: {scalar_kind: uint32}
+
+  # Rearrange things a bit
+  - merge_into:
+      source: FieldConfig
+      destination: Panel
+      under_path: fieldConfig.defaults
+      exclude_options: [
+        # don't copy these over as they clash with a similarly named options from Panel
+        "description",
+
+        # TODO: check if these are actually relevant
+        "displayNameFromDS", "filterable", "path", "writeable"
+      ]
+      rename_options:
+        color: colorScheme
+        links: dataLinks
+  - merge_into:
+      source: FieldConfigSource
+      destination: Panel
+      under_path: fieldConfig
+
+  # Panels composability
+  - compose_dashboard_panel:
+      panel_builder_name: dashboard.Panel
+      exclude_panel_options: &UnwantedPanelOptions [
+        "defaults",      # merged with another builder
+        "fieldConfig",   # merged with another builder
+        "options",       # comes from a panel plugin
+        "custom",        # comes from a panel plugin
+        "pluginVersion", # TODO: check if it's relevant or not
+        "repeatPanelId", # TODO: check if it's relevant or not
+        "tags",          # TODO: check if it's relevant or not
+      ]
+
+  # remove builders that were previously merged into something else
+  - omit: { by_object: FieldConfig }
+  - omit: { by_object: FieldConfigSource }
+
+  # Not needed
+  - omit: { by_object: AnnotationContainer }
+
+  # No need for builders for structs generated from a disjunction
+  - omit: { generated_from_disjunction: true }
+
+  ################
+  # Constructors #
+  ################
+  - promote_options_to_constructor:
+      by_object: Dashboard
+      options: [title]
+
+  - promote_options_to_constructor:
+      by_object: RowPanel
+      options: [title]
+
+  - promote_options_to_constructor:
+      by_object: DashboardLink
+      options: [title]
+      
+  - default_to_constant:
+      by_object: Dashboard
+      options: [schemaVersion, editable]
+
+options:
+  ##############
+  # Dashboards #
+  ##############
+
+  # `Tooltip` looks better than `GraphTooltip`
+  - rename:
+      by_name: Dashboard.graphTooltip
+      as: tooltip
+
+  # Editable() + Readonly() instead of Editable(val bool)
+  - unfold_boolean:
+      by_name: Dashboard.editable
+      true_as: editable
+      false_as: readonly
+
+  # Refresh(string) instead of Refresh(struct StringOrBool)
+  - struct_fields_as_arguments:
+      by_name: Dashboard.refresh
+      fields: [String]
+
+  # Append a single `link` value instead of a list of everything
+  - duplicate:
+      by_name: Dashboard.links
+      as: link
+  - array_to_append:
+      by_name: Dashboard.link
+
+  # annotations([]AnnotationQuery) instead of annotations(AnnotationContainer)
+  - struct_fields_as_arguments:
+      by_name: Dashboard.annotations
+  # annotations(annotations) instead of annotations(list)
+  - rename_arguments:
+      by_name: Dashboard.annotations
+      as: [annotations]
+
+  # Append a single `annotation` value instead of a list of everything
+  - duplicate:
+      by_name: Dashboard.annotations
+      as: annotation
+  - array_to_append:
+      by_name: Dashboard.annotation
+
+  # Append a single `panel|row` value instead of a list of everything
+  - array_to_append:
+      by_name: Dashboard.panels
+  # Panel(...) and RowPanel(...) instead of panels(...(Panel|RowPanel))
+  - disjunction_as_options:
+      by_name: Dashboard.panels
+  # Panel() to WithPanel()
+  - rename:
+      by_name: Dashboard.panel
+      as: withPanel
+  # RowPanel() to WithRow()
+  - rename:
+      by_name: Dashboard.rowPanel
+      as: withRow
+
+  # Append a single `panel` value instead of a list of everything
+  - array_to_append:
+      by_name: RowPanel.panels
+  # Panels() to WithPanel()
+  - rename:
+      by_name: RowPanel.panels
+      as: withPanel
+
+  # Templating([]VariableModel) instead of Templating(struct []struct{List []VariableModel})
+  - struct_fields_as_arguments:
+      by_name: Dashboard.templating
+      fields: [list]
+  # Templating(variables) instead of Templating(list)
+  - rename_arguments:
+      by_name: Dashboard.templating
+      as: [variables]
+  # Append a single variable instead forcing to define every variable at once
+  - duplicate:
+      by_name: Dashboard.templating
+      as: withVariable
+  - array_to_append:
+      by_name: Dashboard.withVariable
+  # Templating() to Variables()
+  - rename:
+      by_name: Dashboard.templating
+      as: variables
+
+  # We don't want these options at all
+  - omit: { by_name: Dashboard.schemaVersion }
+
+  ##############
+  #   Panels   #
+  ##############
+
+  - omit: { by_names: {object: Panel, options: *UnwantedPanelOptions} }
+
+  # Append a single target instead forcing to define all of them at once
+  - duplicate:
+      by_name: Panel.targets
+      as: withTarget
+  - array_to_append:
+      by_name: Panel.withTarget
+
+  # Append a single override instead forcing to define all of them at once
+  - duplicate:
+      by_name: Panel.overrides
+      as: withOverride
+  - array_to_append:
+      by_name: Panel.withOverride
+
+  # Append a single transformation instead forcing to define all of them at once
+  - duplicate:
+      by_name: Panel.transformations
+      as: withTransformation
+  - array_to_append:
+      by_name: Panel.withTransformation
+
+  # We want to offer both the ability to set gridPos entirely manually,
+  # or to use span/height-based automatic layout
+  - duplicate:
+      by_name: Panel.gridPos
+      as: tmpGridPos
+  # W(), H() instead of explicit GridPos() definition
+  - struct_fields_as_options:
+      by_name: Panel.tmpGridPos
+      fields: [w, h]
+  # W() → Span()
+  - rename:
+      by_name: Panel.w
+      as: span
+  # H() → Height()
+  - rename:
+      by_name: Panel.h
+      as: height
+
+
+  ##############
+  #  Snapshot  #
+  ##############
+
+  # These values are set by Grafana on snapshot creation/update
+  - omit: { by_name: Snapshot.userId }
+  - omit: { by_name: Snapshot.created }
+  - omit: { by_name: Snapshot.updated }
+
