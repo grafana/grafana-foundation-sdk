@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: grafana-foundation-sdk
+  title: Grafana Foundation SDK
+  annotations:
+    github.com/project-slug: grafana/grafana-foundation-sdk
+  links:
+    - title: Slack Channel
+      url: https://raintank-corp.slack.com/archives/C018SLDD5MW
+  description: |
+    Set of tools, types and libraries for building and manipulating Grafana objects. 
+spec:
+  type: library
+  owner: group:default/platform-monitoring
+  lifecycle: production
