@@ -49,7 +49,7 @@ TODO: should be the same panel schema defined in dashboard
 Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
 
 ```python
-def model(model: cogbuilder.Builder[librarypanel.LibrarypanelLibraryPanelModel]) -> typing.Self
+def model(model: cogbuilder.Builder[librarypanel.PanelModel]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> name

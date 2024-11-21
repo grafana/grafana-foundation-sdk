@@ -3,20 +3,21 @@
 namespace Grafana\Foundation\Librarypanel;
 
 /**
- * @implements \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel>
+ * Dashboard panels are the basic visualization building blocks.
+ * @implements \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Librarypanel\PanelModel>
  */
-class LibrarypanelLibraryPanelModelBuilder implements \Grafana\Foundation\Cog\Builder
+class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
 {
-    protected \Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel $internal;
+    protected \Grafana\Foundation\Librarypanel\PanelModel $internal;
 
     public function __construct()
     {
-    	$this->internal = new \Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel();
+    	$this->internal = new \Grafana\Foundation\Librarypanel\PanelModel();
     }
 
     /**
      * Builds the object.
-     * @return \Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel
+     * @return \Grafana\Foundation\Librarypanel\PanelModel
      */
     public function build()
     {
@@ -121,7 +122,7 @@ class LibrarypanelLibraryPanelModelBuilder implements \Grafana\Foundation\Cog\Bu
      * Direction to repeat in if 'repeat' is set.
      * `h` for horizontal, `v` for vertical.
      */
-    public function repeatDirection(\Grafana\Foundation\Librarypanel\LibraryPanelRepeatDirection $repeatDirection): static
+    public function repeatDirection(\Grafana\Foundation\Librarypanel\PanelModelRepeatDirection $repeatDirection): static
     {
         $this->internal->repeatDirection = $repeatDirection;
     

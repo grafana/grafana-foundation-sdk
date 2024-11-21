@@ -23,7 +23,7 @@ type LibraryPanel struct {
     Version int64 `json:"version"`
     // TODO: should be the same panel schema defined in dashboard
     // Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
-    Model librarypanel.LibrarypanelLibraryPanelModel `json:"model"`
+    Model librarypanel.PanelModel `json:"model"`
     // Object storage metadata
     Meta *librarypanel.LibraryElementDTOMeta `json:"meta,omitempty"`
 }

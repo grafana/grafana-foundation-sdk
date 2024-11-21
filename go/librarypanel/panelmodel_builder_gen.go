@@ -8,16 +8,17 @@ import (
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
-var _ cog.Builder[LibrarypanelLibraryPanelModel] = (*LibrarypanelLibraryPanelModelBuilder)(nil)
+var _ cog.Builder[PanelModel] = (*PanelModelBuilder)(nil)
 
-type LibrarypanelLibraryPanelModelBuilder struct {
-	internal *LibrarypanelLibraryPanelModel
+// Dashboard panels are the basic visualization building blocks.
+type PanelModelBuilder struct {
+	internal *PanelModel
 	errors   map[string]cog.BuildErrors
 }
 
-func NewLibrarypanelLibraryPanelModelBuilder() *LibrarypanelLibraryPanelModelBuilder {
-	resource := NewLibrarypanelLibraryPanelModel()
-	builder := &LibrarypanelLibraryPanelModelBuilder{
+func NewPanelModelBuilder() *PanelModelBuilder {
+	resource := NewPanelModel()
+	builder := &PanelModelBuilder{
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
@@ -25,30 +26,30 @@ func NewLibrarypanelLibraryPanelModelBuilder() *LibrarypanelLibraryPanelModelBui
 	return builder
 }
 
-func (builder *LibrarypanelLibraryPanelModelBuilder) Build() (LibrarypanelLibraryPanelModel, error) {
+func (builder *PanelModelBuilder) Build() (PanelModel, error) {
 	if err := builder.internal.Validate(); err != nil {
-		return LibrarypanelLibraryPanelModel{}, err
+		return PanelModel{}, err
 	}
 
 	return *builder.internal, nil
 }
 
 // The panel plugin type id. This is used to find the plugin to display the panel.
-func (builder *LibrarypanelLibraryPanelModelBuilder) Type(typeArg string) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) Type(typeArg string) *PanelModelBuilder {
 	builder.internal.Type = typeArg
 
 	return builder
 }
 
 // The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
-func (builder *LibrarypanelLibraryPanelModelBuilder) PluginVersion(pluginVersion string) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) PluginVersion(pluginVersion string) *PanelModelBuilder {
 	builder.internal.PluginVersion = &pluginVersion
 
 	return builder
 }
 
 // Depends on the panel plugin. See the plugin documentation for details.
-func (builder *LibrarypanelLibraryPanelModelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) *PanelModelBuilder {
 	targetsResources := make([]variants.Dataquery, 0, len(targets))
 	for _, r1 := range targets {
 		targetsDepth1, err := r1.Build()
@@ -64,35 +65,35 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Targets(targets []cog.Build
 }
 
 // Panel title.
-func (builder *LibrarypanelLibraryPanelModelBuilder) Title(title string) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) Title(title string) *PanelModelBuilder {
 	builder.internal.Title = &title
 
 	return builder
 }
 
 // Panel description.
-func (builder *LibrarypanelLibraryPanelModelBuilder) Description(description string) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) Description(description string) *PanelModelBuilder {
 	builder.internal.Description = &description
 
 	return builder
 }
 
 // Whether to display the panel without a background.
-func (builder *LibrarypanelLibraryPanelModelBuilder) Transparent(transparent bool) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) Transparent(transparent bool) *PanelModelBuilder {
 	builder.internal.Transparent = &transparent
 
 	return builder
 }
 
 // The datasource used in all targets.
-func (builder *LibrarypanelLibraryPanelModelBuilder) Datasource(datasource dashboard.DataSourceRef) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelModelBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
 }
 
 // Panel links.
-func (builder *LibrarypanelLibraryPanelModelBuilder) Links(links []cog.Builder[dashboard.DashboardLink]) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) Links(links []cog.Builder[dashboard.DashboardLink]) *PanelModelBuilder {
 	linksResources := make([]dashboard.DashboardLink, 0, len(links))
 	for _, r1 := range links {
 		linksDepth1, err := r1.Build()
@@ -108,7 +109,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Links(links []cog.Builder[d
 }
 
 // Name of template variable to repeat for.
-func (builder *LibrarypanelLibraryPanelModelBuilder) Repeat(repeat string) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) Repeat(repeat string) *PanelModelBuilder {
 	builder.internal.Repeat = &repeat
 
 	return builder
@@ -116,7 +117,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Repeat(repeat string) *Libr
 
 // Direction to repeat in if 'repeat' is set.
 // `h` for horizontal, `v` for vertical.
-func (builder *LibrarypanelLibraryPanelModelBuilder) RepeatDirection(repeatDirection LibraryPanelRepeatDirection) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) RepeatDirection(repeatDirection PanelModelRepeatDirection) *PanelModelBuilder {
 	builder.internal.RepeatDirection = &repeatDirection
 
 	return builder
@@ -124,14 +125,14 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) RepeatDirection(repeatDirec
 
 // Option for repeated panels that controls max items per row
 // Only relevant for horizontally repeated panels
-func (builder *LibrarypanelLibraryPanelModelBuilder) MaxPerRow(maxPerRow float64) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) MaxPerRow(maxPerRow float64) *PanelModelBuilder {
 	builder.internal.MaxPerRow = &maxPerRow
 
 	return builder
 }
 
 // The maximum number of data points that the panel queries are retrieving.
-func (builder *LibrarypanelLibraryPanelModelBuilder) MaxDataPoints(maxDataPoints float64) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) MaxDataPoints(maxDataPoints float64) *PanelModelBuilder {
 	builder.internal.MaxDataPoints = &maxDataPoints
 
 	return builder
@@ -140,7 +141,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) MaxDataPoints(maxDataPoints
 // List of transformations that are applied to the panel data before rendering.
 // When there are multiple transformations, Grafana applies them in the order they are listed.
 // Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
-func (builder *LibrarypanelLibraryPanelModelBuilder) Transformations(transformations []dashboard.DataTransformerConfig) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) Transformations(transformations []dashboard.DataTransformerConfig) *PanelModelBuilder {
 	builder.internal.Transformations = transformations
 
 	return builder
@@ -150,7 +151,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Transformations(transformat
 // This value must be formatted as a number followed by a valid time
 // identifier like: "40s", "3d", etc.
 // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
-func (builder *LibrarypanelLibraryPanelModelBuilder) Interval(interval string) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) Interval(interval string) *PanelModelBuilder {
 	builder.internal.Interval = &interval
 
 	return builder
@@ -164,7 +165,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Interval(interval string) *
 // `now-5d/d`(Last 5 days), `now/w` (This week so far), `now-2y/y` (Last 2 years).
 // Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
 // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
-func (builder *LibrarypanelLibraryPanelModelBuilder) TimeFrom(timeFrom string) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) TimeFrom(timeFrom string) *PanelModelBuilder {
 	builder.internal.TimeFrom = &timeFrom
 
 	return builder
@@ -174,42 +175,42 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) TimeFrom(timeFrom string) *
 // For example, you can shift the time range for the panel to be two hours earlier than the dashboard time picker setting `2h`.
 // Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
 // See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
-func (builder *LibrarypanelLibraryPanelModelBuilder) TimeShift(timeShift string) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) TimeShift(timeShift string) *PanelModelBuilder {
 	builder.internal.TimeShift = &timeShift
 
 	return builder
 }
 
 // Controls if the timeFrom or timeShift overrides are shown in the panel header
-func (builder *LibrarypanelLibraryPanelModelBuilder) HideTimeOverride(hideTimeOverride bool) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) HideTimeOverride(hideTimeOverride bool) *PanelModelBuilder {
 	builder.internal.HideTimeOverride = &hideTimeOverride
 
 	return builder
 }
 
 // Sets panel queries cache timeout.
-func (builder *LibrarypanelLibraryPanelModelBuilder) CacheTimeout(cacheTimeout string) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) CacheTimeout(cacheTimeout string) *PanelModelBuilder {
 	builder.internal.CacheTimeout = &cacheTimeout
 
 	return builder
 }
 
 // Overrides the data source configured time-to-live for a query cache item in milliseconds
-func (builder *LibrarypanelLibraryPanelModelBuilder) QueryCachingTTL(queryCachingTTL float64) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) QueryCachingTTL(queryCachingTTL float64) *PanelModelBuilder {
 	builder.internal.QueryCachingTTL = &queryCachingTTL
 
 	return builder
 }
 
 // It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
-func (builder *LibrarypanelLibraryPanelModelBuilder) Options(options any) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) Options(options any) *PanelModelBuilder {
 	builder.internal.Options = &options
 
 	return builder
 }
 
 // Field options allow you to change how the data is displayed in your visualizations.
-func (builder *LibrarypanelLibraryPanelModelBuilder) FieldConfig(fieldConfig dashboard.FieldConfigSource) *LibrarypanelLibraryPanelModelBuilder {
+func (builder *PanelModelBuilder) FieldConfig(fieldConfig dashboard.FieldConfigSource) *PanelModelBuilder {
 	builder.internal.FieldConfig = &fieldConfig
 
 	return builder
