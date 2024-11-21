@@ -91,5 +91,36 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * Dynamically calculates interval by dividing time range by the count specified.
+     */
+    public function auto(bool $auto): static
+    {
+        $this->internal->auto = $auto;
+    
+        return $this;
+    }
+    /**
+     * The minimum threshold below which the step count intervals will not divide the time.
+     */
+    public function minInterval(string $autoMin): static
+    {
+        $this->internal->autoMin = $autoMin;
+    
+        return $this;
+    }
+    /**
+     * How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+     * For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+     */
+    public function stepCount(int $autoCount): static
+    {
+        if (!($autoCount > 0)) {
+            throw new \ValueError('$autoCount must be > 0');
+        }
+        $this->internal->autoCount = $autoCount;
+    
+        return $this;
+    }
 
 }
