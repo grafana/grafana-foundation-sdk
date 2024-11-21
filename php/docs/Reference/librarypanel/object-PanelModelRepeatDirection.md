@@ -1,15 +1,19 @@
-<?php
+---
+title: <span class="badge object-type-enum"></span> PanelModelRepeatDirection
+---
+# <span class="badge object-type-enum"></span> PanelModelRepeatDirection
 
-namespace Grafana\Foundation\Librarypanel;
+## Definition
 
-final class LibraryPanelRepeatDirection implements \JsonSerializable, \Stringable {
+```php
+final class PanelModelRepeatDirection implements \JsonSerializable, \Stringable {
     /**
      * @var string
      */
     private $value;
 
     /**
-     * @var array<string, LibraryPanelRepeatDirection>
+     * @var array<string, PanelModelRepeatDirection>
      */
     private static $instances = [];
 
@@ -46,7 +50,7 @@ final class LibraryPanelRepeatDirection implements \JsonSerializable, \Stringabl
             return self::v();
         }
 
-        throw new \UnexpectedValueException("Value '$value' is not part of the enum LibraryPanelRepeatDirection");
+        throw new \UnexpectedValueException("Value '$value' is not part of the enum PanelModelRepeatDirection");
     }
 
     public function jsonSerialize(): string
@@ -60,3 +64,4 @@ final class LibraryPanelRepeatDirection implements \JsonSerializable, \Stringabl
     }
 }
 
+```
