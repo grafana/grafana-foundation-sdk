@@ -37,7 +37,7 @@ public class LibraryPanel {
     // Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("model")
-    public LibrarypanelLibraryPanelModel model;
+    public PanelModel model;
     // Object storage metadata
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("meta")
@@ -96,7 +96,7 @@ public class LibraryPanel {
         return this;
     }
     
-    public Builder model(com.grafana.foundation.cog.Builder<LibrarypanelLibraryPanelModel> model) {
+    public Builder model(com.grafana.foundation.cog.Builder<PanelModel> model) {
     this.internal.model = model.build();
         return this;
     }

@@ -2,13 +2,13 @@
 
 namespace Grafana\Foundation\Librarypanel;
 
-final class LibrarypanelLibraryPanelModelConverter
+final class PanelModelConverter
 {
-    public static function convert(\Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel $input): string
+    public static function convert(\Grafana\Foundation\Librarypanel\PanelModel $input): string
     {
         
         $calls = [
-            '(new \Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModelBuilder())',
+            '(new \Grafana\Foundation\Librarypanel\PanelModelBuilder())',
         ];
             if ($input->type !== "") {
     
@@ -141,7 +141,7 @@ final class LibrarypanelLibraryPanelModelConverter
     
         
     $buffer = 'repeatDirection(';
-        $arg0 ='\Grafana\Foundation\Librarypanel\LibraryPanelRepeatDirection::fromValue("'.$input->repeatDirection.'")';
+        $arg0 ='\Grafana\Foundation\Librarypanel\PanelModelRepeatDirection::fromValue("'.$input->repeatDirection.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

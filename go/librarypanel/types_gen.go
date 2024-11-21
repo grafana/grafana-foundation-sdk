@@ -32,7 +32,7 @@ type LibraryPanel struct {
 	Version int64 `json:"version"`
 	// TODO: should be the same panel schema defined in dashboard
 	// Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
-	Model LibrarypanelLibraryPanelModel `json:"model"`
+	Model PanelModel `json:"model"`
 	// Object storage metadata
 	Meta *LibraryElementDTOMeta `json:"meta,omitempty"`
 }
@@ -40,7 +40,7 @@ type LibraryPanel struct {
 // NewLibraryPanel creates a new LibraryPanel object.
 func NewLibraryPanel() *LibraryPanel {
 	return &LibraryPanel{
-		Model: *NewLibrarypanelLibraryPanelModel(),
+		Model: *NewPanelModel(),
 	}
 }
 
@@ -149,7 +149,7 @@ func (resource *LibraryPanel) UnmarshalJSONStrict(raw []byte) error {
 	if fields["model"] != nil {
 		if string(fields["model"]) != "null" {
 
-			resource.Model = LibrarypanelLibraryPanelModel{}
+			resource.Model = PanelModel{}
 			if err := resource.Model.UnmarshalJSONStrict(fields["model"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("model", err)...)
 			}
@@ -559,14 +559,8 @@ func (resource LibraryElementDTOMeta) Validate() error {
 	return errs
 }
 
-type LibraryPanelRepeatDirection string
-
-const (
-	LibraryPanelRepeatDirectionH LibraryPanelRepeatDirection = "h"
-	LibraryPanelRepeatDirectionV LibraryPanelRepeatDirection = "v"
-)
-
-type LibrarypanelLibraryPanelModel struct {
+// Dashboard panels are the basic visualization building blocks.
+type PanelModel struct {
 	// The panel plugin type id. This is used to find the plugin to display the panel.
 	Type string `json:"type"`
 	// The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
@@ -587,7 +581,7 @@ type LibrarypanelLibraryPanelModel struct {
 	Repeat *string `json:"repeat,omitempty"`
 	// Direction to repeat in if 'repeat' is set.
 	// `h` for horizontal, `v` for vertical.
-	RepeatDirection *LibraryPanelRepeatDirection `json:"repeatDirection,omitempty"`
+	RepeatDirection *PanelModelRepeatDirection `json:"repeatDirection,omitempty"`
 	// Option for repeated panels that controls max items per row
 	// Only relevant for horizontally repeated panels
 	MaxPerRow *float64 `json:"maxPerRow,omitempty"`
@@ -628,15 +622,15 @@ type LibrarypanelLibraryPanelModel struct {
 	FieldConfig *dashboard.FieldConfigSource `json:"fieldConfig,omitempty"`
 }
 
-// NewLibrarypanelLibraryPanelModel creates a new LibrarypanelLibraryPanelModel object.
-func NewLibrarypanelLibraryPanelModel() *LibrarypanelLibraryPanelModel {
-	return &LibrarypanelLibraryPanelModel{
+// NewPanelModel creates a new PanelModel object.
+func NewPanelModel() *PanelModel {
+	return &PanelModel{
 		Transparent: cog.ToPtr[bool](false),
 	}
 }
 
-// UnmarshalJSON implements a custom JSON unmarshalling logic to decode LibrarypanelLibraryPanelModel from JSON.
-func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSON(raw []byte) error {
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode PanelModel from JSON.
+func (resource *PanelModel) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -781,9 +775,9 @@ func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSON(raw []byte) error {
 	return nil
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibrarypanelLibraryPanelModel` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PanelModel` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSONStrict(raw []byte) error {
+func (resource *PanelModel) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -1071,7 +1065,7 @@ func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSONStrict(raw []byte) e
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("LibrarypanelLibraryPanelModel", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("PanelModel", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -1081,8 +1075,8 @@ func (resource *LibrarypanelLibraryPanelModel) UnmarshalJSONStrict(raw []byte) e
 	return errs
 }
 
-// Equals tests the equality of two `LibrarypanelLibraryPanelModel` objects.
-func (resource LibrarypanelLibraryPanelModel) Equals(other LibrarypanelLibraryPanelModel) bool {
+// Equals tests the equality of two `PanelModel` objects.
+func (resource PanelModel) Equals(other PanelModel) bool {
 	if resource.Type != other.Type {
 		return false
 	}
@@ -1268,8 +1262,8 @@ func (resource LibrarypanelLibraryPanelModel) Equals(other LibrarypanelLibraryPa
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `LibrarypanelLibraryPanelModel` fields for violations and returns them.
-func (resource LibrarypanelLibraryPanelModel) Validate() error {
+// Validate checks all the validation constraints that may be defined on `PanelModel` fields for violations and returns them.
+func (resource PanelModel) Validate() error {
 	var errs cog.BuildErrors
 	if !(len([]rune(resource.Type)) >= 1) {
 		errs = append(errs, cog.MakeBuildErrors(
@@ -1312,3 +1306,10 @@ func (resource LibrarypanelLibraryPanelModel) Validate() error {
 
 	return errs
 }
+
+type PanelModelRepeatDirection string
+
+const (
+	PanelModelRepeatDirectionH PanelModelRepeatDirection = "h"
+	PanelModelRepeatDirectionV PanelModelRepeatDirection = "v"
+)

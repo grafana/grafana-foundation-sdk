@@ -104,6 +104,42 @@ func IntervalVariableConverter(input VariableModel) string {
 		buffer.Reset()
 
 	}
+	if input.Auto != nil && *input.Auto != false {
+
+		buffer.WriteString(`Auto(`)
+		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Auto))
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.AutoMin != nil && *input.AutoMin != "" && *input.AutoMin != "10s" {
+
+		buffer.WriteString(`MinInterval(`)
+		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AutoMin))
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.AutoCount != nil && *input.AutoCount != 30 {
+
+		buffer.WriteString(`StepCount(`)
+		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AutoCount))
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }
