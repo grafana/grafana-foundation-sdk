@@ -43,7 +43,7 @@ class LibraryPanel implements \JsonSerializable
      * TODO: should be the same panel schema defined in dashboard
      * Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
      */
-    public \Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel $model;
+    public \Grafana\Foundation\Librarypanel\PanelModel $model;
 
     /**
      * Object storage metadata
@@ -58,10 +58,10 @@ class LibraryPanel implements \JsonSerializable
      * @param string|null $type
      * @param int|null $schemaVersion
      * @param int|null $version
-     * @param \Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel|null $model
+     * @param \Grafana\Foundation\Librarypanel\PanelModel|null $model
      * @param \Grafana\Foundation\Librarypanel\LibraryElementDTOMeta|null $meta
      */
-    public function __construct(?string $folderUid = null, ?string $uid = null, ?string $name = null, ?string $description = null, ?string $type = null, ?int $schemaVersion = null, ?int $version = null, ?\Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel $model = null, ?\Grafana\Foundation\Librarypanel\LibraryElementDTOMeta $meta = null)
+    public function __construct(?string $folderUid = null, ?string $uid = null, ?string $name = null, ?string $description = null, ?string $type = null, ?int $schemaVersion = null, ?int $version = null, ?\Grafana\Foundation\Librarypanel\PanelModel $model = null, ?\Grafana\Foundation\Librarypanel\LibraryElementDTOMeta $meta = null)
     {
         $this->folderUid = $folderUid;
         $this->uid = $uid ?: "";
@@ -70,7 +70,7 @@ class LibraryPanel implements \JsonSerializable
         $this->type = $type ?: "";
         $this->schemaVersion = $schemaVersion;
         $this->version = $version ?: 0;
-        $this->model = $model ?: new \Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel();
+        $this->model = $model ?: new \Grafana\Foundation\Librarypanel\PanelModel();
         $this->meta = $meta;
     }
 
@@ -92,7 +92,7 @@ class LibraryPanel implements \JsonSerializable
             model: isset($data["model"]) ? (function($input) {
     	/** @var array{type?: string, pluginVersion?: string, tags?: array<string>, targets?: array<mixed>, title?: string, description?: string, transparent?: bool, datasource?: mixed, links?: array<mixed>, repeat?: string, repeatDirection?: string, repeatPanelId?: int, maxDataPoints?: float, transformations?: array<mixed>, interval?: string, timeFrom?: string, timeShift?: string, options?: mixed, fieldConfig?: mixed} */
     $val = $input;
-    	return \Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel::fromArray($val);
+    	return \Grafana\Foundation\Librarypanel\PanelModel::fromArray($val);
     })($data["model"]) : null,
             meta: isset($data["meta"]) ? (function($input) {
     	/** @var array{folderName?: string, folderUid?: string, connectedDashboards?: int, created?: string, updated?: string, createdBy?: mixed, updatedBy?: mixed} */

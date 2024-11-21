@@ -1,12 +1,14 @@
 ---
-title: <span class="badge object-type-class"></span> LibrarypanelLibraryPanelModel
+title: <span class="badge object-type-class"></span> PanelModel
 ---
-# <span class="badge object-type-class"></span> LibrarypanelLibraryPanelModel
+# <span class="badge object-type-class"></span> PanelModel
+
+Dashboard panels are the basic visualization building blocks.
 
 ## Definition
 
 ```php
-class LibrarypanelLibraryPanelModel implements \JsonSerializable
+class PanelModel implements \JsonSerializable
 {
     /**
      * The panel plugin type id. This is used to find the plugin to display the panel.
@@ -65,7 +67,7 @@ class LibrarypanelLibraryPanelModel implements \JsonSerializable
      * Direction to repeat in if 'repeat' is set.
      * `h` for horizontal, `v` for vertical.
      */
-    public ?\Grafana\Foundation\Librarypanel\LibraryPanelRepeatDirection $repeatDirection;
+    public ?\Grafana\Foundation\Librarypanel\PanelModelRepeatDirection $repeatDirection;
 
     /**
      * Id of the repeating panel.
@@ -148,4 +150,4 @@ jsonSerialize()
 
 ## See also
 
- * <span class="badge builder"></span> [LibrarypanelLibraryPanelModelBuilder](./builder-LibrarypanelLibraryPanelModelBuilder.md)
+ * <span class="badge builder"></span> [PanelModelBuilder](./builder-PanelModelBuilder.md)

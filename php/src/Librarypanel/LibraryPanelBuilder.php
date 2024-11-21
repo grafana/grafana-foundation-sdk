@@ -95,7 +95,7 @@ class LibraryPanelBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * TODO: should be the same panel schema defined in dashboard
      * Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel> $model
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Librarypanel\PanelModel> $model
      */
     public function model(\Grafana\Foundation\Cog\Builder $model): static
     {

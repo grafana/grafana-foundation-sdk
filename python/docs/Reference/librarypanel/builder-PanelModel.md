@@ -1,12 +1,12 @@
 ---
-title: <span class="badge builder"></span> LibrarypanelLibraryPanelModel
+title: <span class="badge builder"></span> PanelModel
 ---
-# <span class="badge builder"></span> LibrarypanelLibraryPanelModel
+# <span class="badge builder"></span> PanelModel
 
 ## Constructor
 
 ```python
-LibrarypanelLibraryPanelModel()
+PanelModel()
 ```
 ## Methods
 
@@ -15,7 +15,7 @@ LibrarypanelLibraryPanelModel()
 Builds the object.
 
 ```python
-def build() -> librarypanel.LibrarypanelLibraryPanelModel
+def build() -> librarypanel.PanelModel
 ```
 
 ### <span class="badge object-method"></span> datasource
@@ -204,4 +204,4 @@ def type_val(type_val: str) -> typing.Self
 
 ## See also
 
- * <span class="badge object-type-class"></span> [LibrarypanelLibraryPanelModel](./object-LibrarypanelLibraryPanelModel.md)
+ * <span class="badge object-type-class"></span> [PanelModel](./object-PanelModel.md)

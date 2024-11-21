@@ -73,4 +73,26 @@ export class IntervalVariableBuilder implements cog.Builder<dashboard.VariableMo
         this.internal.options = options;
         return this;
     }
+
+    // Dynamically calculates interval by dividing time range by the count specified.
+    auto(auto: boolean): this {
+        this.internal.auto = auto;
+        return this;
+    }
+
+    // The minimum threshold below which the step count intervals will not divide the time.
+    minInterval(autoMin: string): this {
+        this.internal.auto_min = autoMin;
+        return this;
+    }
+
+    // How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+    // For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+    stepCount(autoCount: number): this {
+        if (!(autoCount > 0)) {
+            throw new Error("autoCount must be > 0");
+        }
+        this.internal.auto_count = autoCount;
+        return this;
+    }
 }
