@@ -17,8 +17,9 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.grafana.foundation.dashboard.DataTransformerConfig;
 import com.grafana.foundation.dashboard.FieldConfigSource;
 
-@JsonDeserialize(using = LibrarypanelLibraryPanelModelDeserializer.class)
-public class LibrarypanelLibraryPanelModel {
+// Dashboard panels are the basic visualization building blocks.
+@JsonDeserialize(using = PanelModelDeserializer.class)
+public class PanelModel {
     // The panel plugin type id. This is used to find the plugin to display the panel.
     @JsonProperty("type")
     public String type;
@@ -61,7 +62,7 @@ public class LibrarypanelLibraryPanelModel {
     // `h` for horizontal, `v` for vertical.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("repeatDirection")
-    public LibraryPanelRepeatDirection repeatDirection;
+    public PanelModelRepeatDirection repeatDirection;
     // Id of the repeating panel.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("repeatPanelId")
@@ -116,11 +117,11 @@ public class LibrarypanelLibraryPanelModel {
     }
 
     
-    public static class Builder implements com.grafana.foundation.cog.Builder<LibrarypanelLibraryPanelModel> {
-        protected final LibrarypanelLibraryPanelModel internal;
+    public static class Builder implements com.grafana.foundation.cog.Builder<PanelModel> {
+        protected final PanelModel internal;
         
         public Builder() {
-            this.internal = new LibrarypanelLibraryPanelModel();
+            this.internal = new PanelModel();
         this.transparent(false);
         }
     public Builder type(String type) {
@@ -176,7 +177,7 @@ public class LibrarypanelLibraryPanelModel {
         return this;
     }
     
-    public Builder repeatDirection(LibraryPanelRepeatDirection repeatDirection) {
+    public Builder repeatDirection(PanelModelRepeatDirection repeatDirection) {
     this.internal.repeatDirection = repeatDirection;
         return this;
     }
@@ -220,7 +221,7 @@ public class LibrarypanelLibraryPanelModel {
     this.internal.fieldConfig = fieldConfig;
         return this;
     }
-    public LibrarypanelLibraryPanelModel build() {
+    public PanelModel build() {
             return this.internal;
         }
     }

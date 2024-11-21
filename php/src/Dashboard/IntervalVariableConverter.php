@@ -148,6 +148,45 @@ final class IntervalVariableConverter
     
     
     }
+            if ($input->auto !== null && $input->auto !== false) {
+    
+        
+    $buffer = 'auto(';
+        $arg0 =\var_export($input->auto, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->autoMin !== null && $input->autoMin !== "" && $input->autoMin !== "10s") {
+    
+        
+    $buffer = 'minInterval(';
+        $arg0 =\var_export($input->autoMin, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->autoCount !== null && $input->autoCount !== 30) {
+    
+        
+    $buffer = 'stepCount(';
+        $arg0 =\var_export($input->autoCount, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

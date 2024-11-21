@@ -1,12 +1,12 @@
 ---
-title: <span class="badge builder"></span> LibrarypanelLibraryPanelModelBuilder
+title: <span class="badge builder"></span> PanelModelBuilder
 ---
-# <span class="badge builder"></span> LibrarypanelLibraryPanelModelBuilder
+# <span class="badge builder"></span> PanelModelBuilder
 
 ## Constructor
 
 ```php
-new LibrarypanelLibraryPanelModelBuilder()
+new PanelModelBuilder()
 ```
 ## Methods
 
@@ -107,7 +107,7 @@ Direction to repeat in if 'repeat' is set.
 `h` for horizontal, `v` for vertical.
 
 ```php
-repeatDirection(\Grafana\Foundation\Librarypanel\LibraryPanelRepeatDirection $repeatDirection)
+repeatDirection(\Grafana\Foundation\Librarypanel\PanelModelRepeatDirection $repeatDirection)
 ```
 
 ### <span class="badge object-method"></span> repeatPanelId
@@ -214,4 +214,4 @@ type(string $type)
 
 ## See also
 
- * <span class="badge object-type-class"></span> [LibrarypanelLibraryPanelModel](./object-LibrarypanelLibraryPanelModel.md)
+ * <span class="badge object-type-class"></span> [PanelModel](./object-PanelModel.md)

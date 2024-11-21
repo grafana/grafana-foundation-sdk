@@ -2,7 +2,10 @@
 
 namespace Grafana\Foundation\Librarypanel;
 
-class LibrarypanelLibraryPanelModel implements \JsonSerializable
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
+class PanelModel implements \JsonSerializable
 {
     /**
      * The panel plugin type id. This is used to find the plugin to display the panel.
@@ -61,7 +64,7 @@ class LibrarypanelLibraryPanelModel implements \JsonSerializable
      * Direction to repeat in if 'repeat' is set.
      * `h` for horizontal, `v` for vertical.
      */
-    public ?\Grafana\Foundation\Librarypanel\LibraryPanelRepeatDirection $repeatDirection;
+    public ?\Grafana\Foundation\Librarypanel\PanelModelRepeatDirection $repeatDirection;
 
     /**
      * Id of the repeating panel.
@@ -131,7 +134,7 @@ class LibrarypanelLibraryPanelModel implements \JsonSerializable
      * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param array<\Grafana\Foundation\Dashboard\DashboardLink>|null $links
      * @param string|null $repeat
-     * @param \Grafana\Foundation\Librarypanel\LibraryPanelRepeatDirection|null $repeatDirection
+     * @param \Grafana\Foundation\Librarypanel\PanelModelRepeatDirection|null $repeatDirection
      * @param int|null $repeatPanelId
      * @param float|null $maxDataPoints
      * @param array<\Grafana\Foundation\Dashboard\DataTransformerConfig>|null $transformations
@@ -141,7 +144,7 @@ class LibrarypanelLibraryPanelModel implements \JsonSerializable
      * @param mixed|null $options
      * @param \Grafana\Foundation\Dashboard\FieldConfigSource|null $fieldConfig
      */
-    public function __construct(?string $type = null, ?string $pluginVersion = null, ?array $tags = null, ?array $targets = null, ?string $title = null, ?string $description = null, ?bool $transparent = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?array $links = null, ?string $repeat = null, ?\Grafana\Foundation\Librarypanel\LibraryPanelRepeatDirection $repeatDirection = null, ?int $repeatPanelId = null, ?float $maxDataPoints = null, ?array $transformations = null, ?string $interval = null, ?string $timeFrom = null, ?string $timeShift = null,  $options = null, ?\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig = null)
+    public function __construct(?string $type = null, ?string $pluginVersion = null, ?array $tags = null, ?array $targets = null, ?string $title = null, ?string $description = null, ?bool $transparent = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?array $links = null, ?string $repeat = null, ?\Grafana\Foundation\Librarypanel\PanelModelRepeatDirection $repeatDirection = null, ?int $repeatPanelId = null, ?float $maxDataPoints = null, ?array $transformations = null, ?string $interval = null, ?string $timeFrom = null, ?string $timeShift = null,  $options = null, ?\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig = null)
     {
         $this->type = $type ?: "";
         $this->pluginVersion = $pluginVersion;
@@ -195,7 +198,7 @@ class LibrarypanelLibraryPanelModel implements \JsonSerializable
     	return \Grafana\Foundation\Dashboard\DashboardLink::fromArray($val);
     }), $data["links"] ?? [])),
             repeat: $data["repeat"] ?? null,
-            repeatDirection: isset($data["repeatDirection"]) ? (function($input) { return \Grafana\Foundation\Librarypanel\LibraryPanelRepeatDirection::fromValue($input); })($data["repeatDirection"]) : null,
+            repeatDirection: isset($data["repeatDirection"]) ? (function($input) { return \Grafana\Foundation\Librarypanel\PanelModelRepeatDirection::fromValue($input); })($data["repeatDirection"]) : null,
             repeatPanelId: $data["repeatPanelId"] ?? null,
             maxDataPoints: $data["maxDataPoints"] ?? null,
             transformations: array_filter(array_map((function($input) {

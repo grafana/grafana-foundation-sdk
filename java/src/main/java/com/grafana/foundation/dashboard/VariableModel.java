@@ -81,6 +81,19 @@ public class VariableModel {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("regex")
     public String regex;
+    // Dynamically calculates interval by dividing time range by the count specified.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("auto")
+    public Boolean auto;
+    // The minimum threshold below which the step count intervals will not divide the time.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("auto_min")
+    public String autoMin;
+    // How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+    // For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("auto_count")
+    public Integer autoCount;
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -394,6 +407,24 @@ public class VariableModel {
     
     public IntervalVariableBuilder options(List<VariableOption> options) {
     this.internal.options = options;
+        return this;
+    }
+    
+    public IntervalVariableBuilder auto(Boolean auto) {
+    this.internal.auto = auto;
+        return this;
+    }
+    
+    public IntervalVariableBuilder minInterval(String autoMin) {
+    this.internal.autoMin = autoMin;
+        return this;
+    }
+    
+    public IntervalVariableBuilder stepCount(Integer autoCount) {
+        if (!(autoCount > 0)) {
+            throw new IllegalArgumentException("autoCount must be > 0");
+        }
+    this.internal.autoCount = autoCount;
         return this;
     }
     public VariableModel build() {

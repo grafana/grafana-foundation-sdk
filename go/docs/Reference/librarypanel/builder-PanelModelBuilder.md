@@ -1,12 +1,12 @@
 ---
-title: <span class="badge builder"></span> LibrarypanelLibraryPanelModelBuilder
+title: <span class="badge builder"></span> PanelModelBuilder
 ---
-# <span class="badge builder"></span> LibrarypanelLibraryPanelModelBuilder
+# <span class="badge builder"></span> PanelModelBuilder
 
 ## Constructor
 
 ```go
-func NewLibrarypanelLibraryPanelModelBuilder() *LibrarypanelLibraryPanelModelBuilder
+func NewPanelModelBuilder() *PanelModelBuilder
 ```
 ## Methods
 
@@ -15,7 +15,7 @@ func NewLibrarypanelLibraryPanelModelBuilder() *LibrarypanelLibraryPanelModelBui
 Builds the object.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Build() (LibrarypanelLibraryPanelModel, error)
+func (builder *PanelModelBuilder) Build() (PanelModel, error)
 ```
 
 ### <span class="badge object-method"></span> Datasource
@@ -23,7 +23,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Build() (LibrarypanelLibrar
 The datasource used in all targets.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Datasource(datasource dashboard.DataSourceRef) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Description
@@ -31,7 +31,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Datasource(datasource dashb
 Panel description.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Description(description string) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Description(description string) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> FieldConfig
@@ -39,7 +39,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Description(description str
 Field options allow you to change how the data is displayed in your visualizations.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) FieldConfig(fieldConfig dashboard.FieldConfigSource) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) FieldConfig(fieldConfig dashboard.FieldConfigSource) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Interval
@@ -53,7 +53,7 @@ identifier like: "40s", "3d", etc.
 See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Interval(interval string) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Interval(interval string) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Links
@@ -61,7 +61,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Interval(interval string) *
 Panel links.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Links(links []cog.Builder[dashboard.DashboardLink]) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Links(links []cog.Builder[dashboard.DashboardLink]) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> MaxDataPoints
@@ -69,7 +69,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Links(links []cog.Builder[d
 The maximum number of data points that the panel queries are retrieving.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) MaxDataPoints(maxDataPoints float64) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) MaxDataPoints(maxDataPoints float64) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Options
@@ -77,7 +77,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) MaxDataPoints(maxDataPoints
 It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Options(options any) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Options(options any) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> PluginVersion
@@ -85,7 +85,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Options(options any) *Libra
 The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) PluginVersion(pluginVersion string) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) PluginVersion(pluginVersion string) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Repeat
@@ -93,7 +93,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) PluginVersion(pluginVersion
 Name of template variable to repeat for.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Repeat(repeat string) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Repeat(repeat string) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> RepeatDirection
@@ -103,7 +103,7 @@ Direction to repeat in if 'repeat' is set.
 `h` for horizontal, `v` for vertical.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) RepeatDirection(repeatDirection librarypanel.LibraryPanelRepeatDirection) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) RepeatDirection(repeatDirection librarypanel.PanelModelRepeatDirection) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> RepeatPanelId
@@ -111,7 +111,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) RepeatDirection(repeatDirec
 Id of the repeating panel.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) RepeatPanelId(repeatPanelId int64) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) RepeatPanelId(repeatPanelId int64) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Tags
@@ -119,7 +119,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) RepeatPanelId(repeatPanelId
 Tags for the panel.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Tags(tags []string) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Tags(tags []string) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Targets
@@ -127,7 +127,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Tags(tags []string) *Librar
 Depends on the panel plugin. See the plugin documentation for details.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Targets(targets []cog.Builder[cog/variants.Dataquery]) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Targets(targets []cog.Builder[cog/variants.Dataquery]) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> TimeFrom
@@ -149,7 +149,7 @@ Note: Panel time overrides have no effect when the dashboard’s time range is a
 See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) TimeFrom(timeFrom string) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) TimeFrom(timeFrom string) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> TimeShift
@@ -163,7 +163,7 @@ Note: Panel time overrides have no effect when the dashboard’s time range is a
 See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) TimeShift(timeShift string) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) TimeShift(timeShift string) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Title
@@ -171,7 +171,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) TimeShift(timeShift string)
 Panel title.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Title(title string) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Title(title string) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Transformations
@@ -183,7 +183,7 @@ When there are multiple transformations, Grafana applies them in the order they 
 Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Transformations(transformations []dashboard.DataTransformerConfig) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Transformations(transformations []dashboard.DataTransformerConfig) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Transparent
@@ -191,7 +191,7 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Transformations(transformat
 Whether to display the panel without a background.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Transparent(transparent bool) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Transparent(transparent bool) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Type
@@ -199,9 +199,9 @@ func (builder *LibrarypanelLibraryPanelModelBuilder) Transparent(transparent boo
 The panel plugin type id. This is used to find the plugin to display the panel.
 
 ```go
-func (builder *LibrarypanelLibraryPanelModelBuilder) Type(typeArg string) *LibrarypanelLibraryPanelModelBuilder
+func (builder *PanelModelBuilder) Type(typeArg string) *PanelModelBuilder
 ```
 
 ## See also
 
- * <span class="badge object-type-struct"></span> [LibrarypanelLibraryPanelModel](./object-LibrarypanelLibraryPanelModel.md)
+ * <span class="badge object-type-struct"></span> [PanelModel](./object-PanelModel.md)

@@ -1,72 +1,13 @@
-// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+---
+title: <span class="badge object-type-interface"></span> PanelModel
+---
+# <span class="badge object-type-interface"></span> PanelModel
 
-import * as cog from '../cog';
-import * as dashboard from '../dashboard';
+Dashboard panels are the basic visualization building blocks.
 
+## Definition
 
-export interface LibraryPanel {
-	// Folder UID
-	folderUid?: string;
-	// Library element UID
-	uid: string;
-	// Panel name (also saved in the model)
-	name: string;
-	// Panel description
-	description?: string;
-	// The panel type (from inside the model)
-	type: string;
-	// Dashboard version when this was saved (zero if unknown)
-	schemaVersion?: number;
-	// panel version, incremented each time the dashboard is updated.
-	version: number;
-	// TODO: should be the same panel schema defined in dashboard
-	// Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
-	model: PanelModel;
-	// Object storage metadata
-	meta?: LibraryElementDTOMeta;
-}
-
-export const defaultLibraryPanel = (): LibraryPanel => ({
-	uid: "",
-	name: "",
-	type: "",
-	version: 0,
-	model: defaultPanelModel(),
-});
-
-export interface LibraryElementDTOMetaUser {
-	id: number;
-	name: string;
-	avatarUrl: string;
-}
-
-export const defaultLibraryElementDTOMetaUser = (): LibraryElementDTOMetaUser => ({
-	id: 0,
-	name: "",
-	avatarUrl: "",
-});
-
-export interface LibraryElementDTOMeta {
-	folderName: string;
-	folderUid: string;
-	connectedDashboards: number;
-	created: string;
-	updated: string;
-	createdBy: LibraryElementDTOMetaUser;
-	updatedBy: LibraryElementDTOMetaUser;
-}
-
-export const defaultLibraryElementDTOMeta = (): LibraryElementDTOMeta => ({
-	folderName: "",
-	folderUid: "",
-	connectedDashboards: 0,
-	created: "",
-	updated: "",
-	createdBy: defaultLibraryElementDTOMetaUser(),
-	updatedBy: defaultLibraryElementDTOMetaUser(),
-});
-
-// Dashboard panels are the basic visualization building blocks.
+```typescript
 export interface PanelModel {
 	// The panel plugin type id. This is used to find the plugin to display the panel.
 	type: string;
@@ -124,12 +65,10 @@ export interface PanelModel {
 	fieldConfig: dashboard.FieldConfigSource;
 }
 
-export const defaultPanelModel = (): PanelModel => ({
-	type: "",
-	transparent: false,
-	repeatDirection: "h",
-	transformations: [],
-	options: {},
-	fieldConfig: dashboard.defaultFieldConfigSource(),
-});
+```
+## Methods
 
+No methods.
+## See also
+
+ * <span class="badge builder"></span> [PanelModelBuilder](./builder-PanelModelBuilder.md)

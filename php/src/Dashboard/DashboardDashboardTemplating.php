@@ -27,7 +27,7 @@ class DashboardDashboardTemplating implements \JsonSerializable
         $data = $inputData;
         return new self(
             list: array_filter(array_map((function($input) {
-    	/** @var array{id?: string, type?: string, name?: string, label?: string, hide?: int, skipUrlSync?: bool, description?: string, query?: string|array<string, mixed>, datasource?: mixed, allFormat?: string, current?: mixed, multi?: bool, options?: array<mixed>, refresh?: int, sort?: int, includeAll?: bool, allValue?: string, regex?: string} */
+    	/** @var array{id?: string, type?: string, name?: string, label?: string, hide?: int, skipUrlSync?: bool, description?: string, query?: string|array<string, mixed>, datasource?: mixed, allFormat?: string, current?: mixed, multi?: bool, options?: array<mixed>, refresh?: int, sort?: int, includeAll?: bool, allValue?: string, regex?: string, auto?: bool, auto_min?: string, auto_count?: int} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\VariableModel::fromArray($val);
     }), $data["list"] ?? [])),

@@ -101,6 +101,22 @@ class VariableModel implements \JsonSerializable
     public ?string $regex;
 
     /**
+     * Dynamically calculates interval by dividing time range by the count specified.
+     */
+    public ?bool $auto;
+
+    /**
+     * The minimum threshold below which the step count intervals will not divide the time.
+     */
+    public ?string $autoMin;
+
+    /**
+     * How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+     * For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+     */
+    public ?int $autoCount;
+
+    /**
      * @param string|null $id
      * @param \Grafana\Foundation\Dashboard\VariableType|null $type
      * @param string|null $name
@@ -119,8 +135,11 @@ class VariableModel implements \JsonSerializable
      * @param bool|null $includeAll
      * @param string|null $allValue
      * @param string|null $regex
+     * @param bool|null $auto
+     * @param string|null $autoMin
+     * @param int|null $autoCount
      */
-    public function __construct(?string $id = null, ?\Grafana\Foundation\Dashboard\VariableType $type = null, ?string $name = null, ?string $label = null, ?\Grafana\Foundation\Dashboard\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null,  $query = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $allFormat = null, ?\Grafana\Foundation\Dashboard\VariableOption $current = null, ?bool $multi = null, ?array $options = null, ?\Grafana\Foundation\Dashboard\VariableRefresh $refresh = null, ?\Grafana\Foundation\Dashboard\VariableSort $sort = null, ?bool $includeAll = null, ?string $allValue = null, ?string $regex = null)
+    public function __construct(?string $id = null, ?\Grafana\Foundation\Dashboard\VariableType $type = null, ?string $name = null, ?string $label = null, ?\Grafana\Foundation\Dashboard\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null,  $query = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $allFormat = null, ?\Grafana\Foundation\Dashboard\VariableOption $current = null, ?bool $multi = null, ?array $options = null, ?\Grafana\Foundation\Dashboard\VariableRefresh $refresh = null, ?\Grafana\Foundation\Dashboard\VariableSort $sort = null, ?bool $includeAll = null, ?string $allValue = null, ?string $regex = null, ?bool $auto = null, ?string $autoMin = null, ?int $autoCount = null)
     {
         $this->id = $id ?: "00000000-0000-0000-0000-000000000000";
         $this->type = $type ?: \Grafana\Foundation\Dashboard\VariableType::Query();
@@ -140,6 +159,9 @@ class VariableModel implements \JsonSerializable
         $this->includeAll = $includeAll;
         $this->allValue = $allValue;
         $this->regex = $regex;
+        $this->auto = $auto;
+        $this->autoMin = $autoMin;
+        $this->autoCount = $autoCount;
     }
 
     /**
@@ -147,7 +169,7 @@ class VariableModel implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{id?: string, type?: string, name?: string, label?: string, hide?: int, skipUrlSync?: bool, description?: string, query?: string|array<string, mixed>, datasource?: mixed, allFormat?: string, current?: mixed, multi?: bool, options?: array<mixed>, refresh?: int, sort?: int, includeAll?: bool, allValue?: string, regex?: string} $inputData */
+        /** @var array{id?: string, type?: string, name?: string, label?: string, hide?: int, skipUrlSync?: bool, description?: string, query?: string|array<string, mixed>, datasource?: mixed, allFormat?: string, current?: mixed, multi?: bool, options?: array<mixed>, refresh?: int, sort?: int, includeAll?: bool, allValue?: string, regex?: string, auto?: bool, auto_min?: string, auto_count?: int} $inputData */
         $data = $inputData;
         return new self(
             id: $data["id"] ?? null,
@@ -187,6 +209,9 @@ class VariableModel implements \JsonSerializable
             includeAll: $data["includeAll"] ?? null,
             allValue: $data["allValue"] ?? null,
             regex: $data["regex"] ?? null,
+            auto: $data["auto"] ?? null,
+            autoMin: $data["auto_min"] ?? null,
+            autoCount: $data["auto_count"] ?? null,
         );
     }
 
@@ -240,6 +265,15 @@ class VariableModel implements \JsonSerializable
         }
         if (isset($this->regex)) {
             $data["regex"] = $this->regex;
+        }
+        if (isset($this->auto)) {
+            $data["auto"] = $this->auto;
+        }
+        if (isset($this->autoMin)) {
+            $data["auto_min"] = $this->autoMin;
+        }
+        if (isset($this->autoCount)) {
+            $data["auto_count"] = $this->autoCount;
         }
         return $data;
     }
