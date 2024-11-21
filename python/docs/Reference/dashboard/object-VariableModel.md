@@ -38,6 +38,13 @@ class VariableModel:
     refresh: typing.Optional[dashboard.VariableRefresh]
     # Options sort order
     sort: typing.Optional[dashboard.VariableSort]
+    # Dynamically calculates interval by dividing time range by the count specified.
+    auto: typing.Optional[bool]
+    # The minimum threshold below which the step count intervals will not divide the time.
+    auto_min: typing.Optional[str]
+    # How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+    # For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+    auto_count: typing.Optional[int]
 ```
 ## Methods
 

@@ -51,113 +51,7 @@
             "description": "panel version, incremented each time the dashboard is updated."
           },
           "model": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "type"
-            ],
-            "properties": {
-              "type": {
-                "type": "string",
-                "minLength": 1,
-                "description": "The panel plugin type id. This is used to find the plugin to display the panel."
-              },
-              "pluginVersion": {
-                "type": "string",
-                "description": "The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs."
-              },
-              "tags": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                },
-                "description": "Tags for the panel."
-              },
-              "targets": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": {}
-                },
-                "description": "Depends on the panel plugin. See the plugin documentation for details."
-              },
-              "title": {
-                "type": "string",
-                "description": "Panel title."
-              },
-              "description": {
-                "type": "string",
-                "description": "Panel description."
-              },
-              "transparent": {
-                "type": "boolean",
-                "description": "Whether to display the panel without a background.",
-                "default": false
-              },
-              "datasource": {
-                "$ref": "#/components/schemas/DataSourceRef",
-                "description": "The datasource used in all targets."
-              },
-              "links": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/DashboardLink"
-                },
-                "description": "Panel links."
-              },
-              "repeat": {
-                "type": "string",
-                "description": "Name of template variable to repeat for."
-              },
-              "repeatDirection": {
-                "enum": [
-                  "h",
-                  "v"
-                ],
-                "description": "Direction to repeat in if 'repeat' is set.\n`h` for horizontal, `v` for vertical.",
-                "default": "h"
-              },
-              "maxPerRow": {
-                "type": "number",
-                "description": "Option for repeated panels that controls max items per row\nOnly relevant for horizontally repeated panels"
-              },
-              "maxDataPoints": {
-                "type": "number",
-                "description": "The maximum number of data points that the panel queries are retrieving."
-              },
-              "transformations": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/DataTransformerConfig"
-                },
-                "description": "List of transformations that are applied to the panel data before rendering.\nWhen there are multiple transformations, Grafana applies them in the order they are listed.\nEach transformation creates a result set that then passes on to the next transformation in the processing pipeline."
-              },
-              "interval": {
-                "type": "string",
-                "description": "The min time interval setting defines a lower limit for the $__interval and $__interval_ms variables.\nThis value must be formatted as a number followed by a valid time\nidentifier like: \"40s\", \"3d\", etc.\nSee: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options"
-              },
-              "timeFrom": {
-                "type": "string",
-                "description": "Overrides the relative time range for individual panels,\nwhich causes them to be different than what is selected in\nthe dashboard time picker in the top-right corner of the dashboard. You can use this to show metrics from different\ntime periods or days on the same dashboard.\nThe value is formatted as time operation like: `now-5m` (Last 5 minutes), `now/d` (the day so far),\n`now-5d/d`(Last 5 days), `now/w` (This week so far), `now-2y/y` (Last 2 years).\nNote: Panel time overrides have no effect when the dashboard’s time range is absolute.\nSee: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options"
-              },
-              "timeShift": {
-                "type": "string",
-                "description": "Overrides the time range for individual panels by shifting its start and end relative to the time picker.\nFor example, you can shift the time range for the panel to be two hours earlier than the dashboard time picker setting `2h`.\nNote: Panel time overrides have no effect when the dashboard’s time range is absolute.\nSee: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options"
-              },
-              "hideTimeOverride": {
-                "type": "boolean",
-                "description": "Controls if the timeFrom or timeShift overrides are shown in the panel header"
-              },
-              "options": {
-                "type": "object",
-                "additionalProperties": {},
-                "description": "It depends on the panel plugin. They are specified by the Options field in panel plugin schemas."
-              },
-              "fieldConfig": {
-                "$ref": "#/components/schemas/FieldConfigSource",
-                "description": "Field options allow you to change how the data is displayed in your visualizations."
-              }
-            },
+            "$ref": "#/components/schemas/PanelModel",
             "description": "TODO: should be the same panel schema defined in dashboard\nTypescript: Omit\u003cPanel, 'gridPos' | 'id' | 'libraryPanel'\u003e;"
           },
           "meta": {
@@ -223,6 +117,116 @@
             "$ref": "#/components/schemas/LibraryElementDTOMetaUser"
           }
         }
+      },
+      "PanelModel": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The panel plugin type id. This is used to find the plugin to display the panel."
+          },
+          "pluginVersion": {
+            "type": "string",
+            "description": "The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs."
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tags for the panel."
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            "description": "Depends on the panel plugin. See the plugin documentation for details."
+          },
+          "title": {
+            "type": "string",
+            "description": "Panel title."
+          },
+          "description": {
+            "type": "string",
+            "description": "Panel description."
+          },
+          "transparent": {
+            "type": "boolean",
+            "description": "Whether to display the panel without a background.",
+            "default": false
+          },
+          "datasource": {
+            "$ref": "#/components/schemas/DataSourceRef",
+            "description": "The datasource used in all targets."
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DashboardLink"
+            },
+            "description": "Panel links."
+          },
+          "repeat": {
+            "type": "string",
+            "description": "Name of template variable to repeat for."
+          },
+          "repeatDirection": {
+            "enum": [
+              "h",
+              "v"
+            ],
+            "description": "Direction to repeat in if 'repeat' is set.\n`h` for horizontal, `v` for vertical.",
+            "default": "h"
+          },
+          "maxPerRow": {
+            "type": "number",
+            "description": "Option for repeated panels that controls max items per row\nOnly relevant for horizontally repeated panels"
+          },
+          "maxDataPoints": {
+            "type": "number",
+            "description": "The maximum number of data points that the panel queries are retrieving."
+          },
+          "transformations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataTransformerConfig"
+            },
+            "description": "List of transformations that are applied to the panel data before rendering.\nWhen there are multiple transformations, Grafana applies them in the order they are listed.\nEach transformation creates a result set that then passes on to the next transformation in the processing pipeline."
+          },
+          "interval": {
+            "type": "string",
+            "description": "The min time interval setting defines a lower limit for the $__interval and $__interval_ms variables.\nThis value must be formatted as a number followed by a valid time\nidentifier like: \"40s\", \"3d\", etc.\nSee: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options"
+          },
+          "timeFrom": {
+            "type": "string",
+            "description": "Overrides the relative time range for individual panels,\nwhich causes them to be different than what is selected in\nthe dashboard time picker in the top-right corner of the dashboard. You can use this to show metrics from different\ntime periods or days on the same dashboard.\nThe value is formatted as time operation like: `now-5m` (Last 5 minutes), `now/d` (the day so far),\n`now-5d/d`(Last 5 days), `now/w` (This week so far), `now-2y/y` (Last 2 years).\nNote: Panel time overrides have no effect when the dashboard’s time range is absolute.\nSee: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options"
+          },
+          "timeShift": {
+            "type": "string",
+            "description": "Overrides the time range for individual panels by shifting its start and end relative to the time picker.\nFor example, you can shift the time range for the panel to be two hours earlier than the dashboard time picker setting `2h`.\nNote: Panel time overrides have no effect when the dashboard’s time range is absolute.\nSee: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options"
+          },
+          "hideTimeOverride": {
+            "type": "boolean",
+            "description": "Controls if the timeFrom or timeShift overrides are shown in the panel header"
+          },
+          "options": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "It depends on the panel plugin. They are specified by the Options field in panel plugin schemas."
+          },
+          "fieldConfig": {
+            "$ref": "#/components/schemas/FieldConfigSource",
+            "description": "Field options allow you to change how the data is displayed in your visualizations."
+          }
+        },
+        "description": "Dashboard panels are the basic visualization building blocks."
       },
       "DataSourceRef": {
         "type": "object",

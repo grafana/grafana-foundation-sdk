@@ -421,8 +421,15 @@ class VariableModel:
     refresh: typing.Optional['VariableRefresh']
     # Options sort order
     sort: typing.Optional['VariableSort']
+    # Dynamically calculates interval by dividing time range by the count specified.
+    auto: typing.Optional[bool]
+    # The minimum threshold below which the step count intervals will not divide the time.
+    auto_min: typing.Optional[str]
+    # How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+    # For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+    auto_count: typing.Optional[int]
 
-    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional['DataSourceRef'] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None):
+    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional['DataSourceRef'] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, auto: typing.Optional[bool] = False, auto_min: typing.Optional[str] = "10s", auto_count: typing.Optional[int] = 30):
         self.type_val = type_val if type_val is not None else VariableType.QUERY
         self.name = name
         self.label = label
@@ -436,6 +443,9 @@ class VariableModel:
         self.options = options
         self.refresh = refresh
         self.sort = sort
+        self.auto = auto
+        self.auto_min = auto_min
+        self.auto_count = auto_count
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -464,6 +474,12 @@ class VariableModel:
             payload["refresh"] = self.refresh
         if self.sort is not None:
             payload["sort"] = self.sort
+        if self.auto is not None:
+            payload["auto"] = self.auto
+        if self.auto_min is not None:
+            payload["auto_min"] = self.auto_min
+        if self.auto_count is not None:
+            payload["auto_count"] = self.auto_count
         return payload
 
     @classmethod
@@ -495,7 +511,13 @@ class VariableModel:
         if "refresh" in data:
             args["refresh"] = data["refresh"]
         if "sort" in data:
-            args["sort"] = data["sort"]        
+            args["sort"] = data["sort"]
+        if "auto" in data:
+            args["auto"] = data["auto"]
+        if "auto_min" in data:
+            args["auto_min"] = data["auto_min"]
+        if "auto_count" in data:
+            args["auto_count"] = data["auto_count"]        
 
         return cls(**args)
 
