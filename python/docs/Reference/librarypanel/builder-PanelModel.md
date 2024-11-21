@@ -1,12 +1,12 @@
 ---
-title: <span class="badge builder"></span> LibrarypanelLibraryPanelModelBuilder
+title: <span class="badge builder"></span> PanelModel
 ---
-# <span class="badge builder"></span> LibrarypanelLibraryPanelModelBuilder
+# <span class="badge builder"></span> PanelModel
 
 ## Constructor
 
-```php
-new LibrarypanelLibraryPanelModelBuilder()
+```python
+PanelModel()
 ```
 ## Methods
 
@@ -14,48 +14,48 @@ new LibrarypanelLibraryPanelModelBuilder()
 
 Builds the object.
 
-```php
-build()
+```python
+def build() -> librarypanel.PanelModel
 ```
 
-### <span class="badge object-method"></span> cacheTimeout
+### <span class="badge object-method"></span> cache_timeout
 
 Sets panel queries cache timeout.
 
-```php
-cacheTimeout(string $cacheTimeout)
+```python
+def cache_timeout(cache_timeout: str) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.
 
-```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+```python
+def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> description
 
 Panel description.
 
-```php
-description(string $description)
+```python
+def description(description: str) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> fieldConfig
+### <span class="badge object-method"></span> field_config
 
 Field options allow you to change how the data is displayed in your visualizations.
 
-```php
-fieldConfig(\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig)
+```python
+def field_config(field_config: dashboard.FieldConfigSource) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> hideTimeOverride
+### <span class="badge object-method"></span> hide_time_override
 
 Controls if the timeFrom or timeShift overrides are shown in the panel header
 
-```php
-hideTimeOverride(bool $hideTimeOverride)
+```python
+def hide_time_override(hide_time_override: bool) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> interval
@@ -68,93 +68,87 @@ identifier like: "40s", "3d", etc.
 
 See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
 
-```php
-interval(string $interval)
+```python
+def interval(interval: str) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> links
 
 Panel links.
 
-@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink>> $links
-
-```php
-links(array $links)
+```python
+def links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> maxDataPoints
+### <span class="badge object-method"></span> max_data_points
 
 The maximum number of data points that the panel queries are retrieving.
 
-```php
-maxDataPoints(float $maxDataPoints)
+```python
+def max_data_points(max_data_points: float) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> maxPerRow
+### <span class="badge object-method"></span> max_per_row
 
 Option for repeated panels that controls max items per row
 
 Only relevant for horizontally repeated panels
 
-```php
-maxPerRow(float $maxPerRow)
+```python
+def max_per_row(max_per_row: float) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> options
 
 It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
 
-@param mixed $options
-
-```php
-options($options)
+```python
+def options(options: object) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> pluginVersion
+### <span class="badge object-method"></span> plugin_version
 
 The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
 
-```php
-pluginVersion(string $pluginVersion)
+```python
+def plugin_version(plugin_version: str) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> queryCachingTTL
+### <span class="badge object-method"></span> query_caching_ttl
 
 Overrides the data source configured time-to-live for a query cache item in milliseconds
 
-```php
-queryCachingTTL(float $queryCachingTTL)
+```python
+def query_caching_ttl(query_caching_ttl: float) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> repeat
 
 Name of template variable to repeat for.
 
-```php
-repeat(string $repeat)
+```python
+def repeat(repeat: str) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> repeatDirection
+### <span class="badge object-method"></span> repeat_direction
 
 Direction to repeat in if 'repeat' is set.
 
 `h` for horizontal, `v` for vertical.
 
-```php
-repeatDirection(\Grafana\Foundation\Librarypanel\LibraryPanelRepeatDirection $repeatDirection)
+```python
+def repeat_direction(repeat_direction: typing.Literal["h", "v"]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> targets
 
 Depends on the panel plugin. See the plugin documentation for details.
 
-@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cog\Dataquery>> $targets
-
-```php
-targets(array $targets)
+```python
+def targets(targets: list[cogbuilder.Builder[cogvariants.Dataquery]]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> timeFrom
+### <span class="badge object-method"></span> time_from
 
 Overrides the relative time range for individual panels,
 
@@ -172,11 +166,11 @@ Note: Panel time overrides have no effect when the dashboard’s time range is a
 
 See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
 
-```php
-timeFrom(string $timeFrom)
+```python
+def time_from(time_from: str) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> timeShift
+### <span class="badge object-method"></span> time_shift
 
 Overrides the time range for individual panels by shifting its start and end relative to the time picker.
 
@@ -186,16 +180,16 @@ Note: Panel time overrides have no effect when the dashboard’s time range is a
 
 See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
 
-```php
-timeShift(string $timeShift)
+```python
+def time_shift(time_shift: str) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> title
 
 Panel title.
 
-```php
-title(string $title)
+```python
+def title(title: str) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> transformations
@@ -206,28 +200,26 @@ When there are multiple transformations, Grafana applies them in the order they 
 
 Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
 
-@param array<\Grafana\Foundation\Dashboard\DataTransformerConfig> $transformations
-
-```php
-transformations(array $transformations)
+```python
+def transformations(transformations: list[dashboard.DataTransformerConfig]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> transparent
 
 Whether to display the panel without a background.
 
-```php
-transparent(bool $transparent)
+```python
+def transparent(transparent: bool) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> type
+### <span class="badge object-method"></span> type_val
 
 The panel plugin type id. This is used to find the plugin to display the panel.
 
-```php
-type(string $type)
+```python
+def type_val(type_val: str) -> typing.Self
 ```
 
 ## See also
 
- * <span class="badge object-type-class"></span> [LibrarypanelLibraryPanelModel](./object-LibrarypanelLibraryPanelModel.md)
+ * <span class="badge object-type-class"></span> [PanelModel](./object-PanelModel.md)

@@ -18,6 +18,14 @@ Builds the object.
 def build() -> dashboard.VariableModel
 ```
 
+### <span class="badge object-method"></span> auto
+
+Dynamically calculates interval by dividing time range by the count specified.
+
+```python
+def auto(auto: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> current
 
 Shows current selected variable text/value on the dashboard
@@ -50,6 +58,14 @@ Optional display name
 def label(label: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> min_interval
+
+The minimum threshold below which the step count intervals will not divide the time.
+
+```python
+def min_interval(auto_min: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> name
 
 Name of variable
@@ -64,6 +80,16 @@ Options that can be selected for a variable.
 
 ```python
 def options(options: list[dashboard.VariableOption]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> step_count
+
+How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+
+For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+
+```python
+def step_count(auto_count: int) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> values
