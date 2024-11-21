@@ -8,3 +8,5 @@ export * from './libraryElementDTOMetaUserBuilder.gen';
 export type * from './libraryElementDTOMetaUserBuilder.gen';
 export * from './libraryElementDTOMetaBuilder.gen';
 export type * from './libraryElementDTOMetaBuilder.gen';
+export * from './panelModelBuilder.gen';
+export type * from './panelModelBuilder.gen';
