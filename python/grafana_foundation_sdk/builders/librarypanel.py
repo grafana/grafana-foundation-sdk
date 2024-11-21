@@ -86,7 +86,7 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
     
         return self
     
-    def model(self, model: cogbuilder.Builder[librarypanel.LibrarypanelLibraryPanelModel]) -> typing.Self:    
+    def model(self, model: cogbuilder.Builder[librarypanel.PanelModel]) -> typing.Self:    
         """
         TODO: should be the same panel schema defined in dashboard
         Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
@@ -186,13 +186,17 @@ class LibraryElementDTOMeta(cogbuilder.Builder[librarypanel.LibraryElementDTOMet
         return self
     
 
-class LibrarypanelLibraryPanelModel(cogbuilder.Builder[librarypanel.LibrarypanelLibraryPanelModel]):    
-    _internal: librarypanel.LibrarypanelLibraryPanelModel
+class PanelModel(cogbuilder.Builder[librarypanel.PanelModel]):    
+    """
+    Dashboard panels are the basic visualization building blocks.
+    """
+    
+    _internal: librarypanel.PanelModel
 
     def __init__(self):
-        self._internal = librarypanel.LibrarypanelLibraryPanelModel()
+        self._internal = librarypanel.PanelModel()
 
-    def build(self) -> librarypanel.LibrarypanelLibraryPanelModel:
+    def build(self) -> librarypanel.PanelModel:
         """
         Builds the object.
         """

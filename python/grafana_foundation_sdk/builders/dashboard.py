@@ -2367,6 +2367,36 @@ class IntervalVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
+    def auto(self, auto: bool) -> typing.Self:    
+        """
+        Dynamically calculates interval by dividing time range by the count specified.
+        """
+            
+        self._internal.auto = auto
+    
+        return self
+    
+    def min_interval(self, auto_min: str) -> typing.Self:    
+        """
+        The minimum threshold below which the step count intervals will not divide the time.
+        """
+            
+        self._internal.auto_min = auto_min
+    
+        return self
+    
+    def step_count(self, auto_count: int) -> typing.Self:    
+        """
+        How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+        For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+        """
+            
+        if not auto_count > 0:
+            raise ValueError("auto_count must be > 0")
+        self._internal.auto_count = auto_count
+    
+        return self
+    
 
 class TextBoxVariable(cogbuilder.Builder[dashboard.VariableModel]):    
     """
