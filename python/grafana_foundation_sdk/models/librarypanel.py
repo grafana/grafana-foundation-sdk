@@ -23,11 +23,11 @@ class LibraryPanel:
     version: int
     # TODO: should be the same panel schema defined in dashboard
     # Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
-    model: 'LibrarypanelLibraryPanelModel'
+    model: 'PanelModel'
     # Object storage metadata
     meta: typing.Optional['LibraryElementDTOMeta']
 
-    def __init__(self, folder_uid: typing.Optional[str] = None, uid: str = "", name: str = "", description: typing.Optional[str] = None, type_val: str = "", schema_version: typing.Optional[int] = None, version: int = 0, model: typing.Optional['LibrarypanelLibraryPanelModel'] = None, meta: typing.Optional['LibraryElementDTOMeta'] = None):
+    def __init__(self, folder_uid: typing.Optional[str] = None, uid: str = "", name: str = "", description: typing.Optional[str] = None, type_val: str = "", schema_version: typing.Optional[int] = None, version: int = 0, model: typing.Optional['PanelModel'] = None, meta: typing.Optional['LibraryElementDTOMeta'] = None):
         self.folder_uid = folder_uid
         self.uid = uid
         self.name = name
@@ -35,7 +35,7 @@ class LibraryPanel:
         self.type_val = type_val
         self.schema_version = schema_version
         self.version = version
-        self.model = model if model is not None else LibrarypanelLibraryPanelModel()
+        self.model = model if model is not None else PanelModel()
         self.meta = meta
 
     def to_json(self) -> dict[str, object]:
@@ -75,7 +75,7 @@ class LibraryPanel:
         if "version" in data:
             args["version"] = data["version"]
         if "model" in data:
-            args["model"] = LibrarypanelLibraryPanelModel.from_json(data["model"])
+            args["model"] = PanelModel.from_json(data["model"])
         if "meta" in data:
             args["meta"] = LibraryElementDTOMeta.from_json(data["meta"])        
 
@@ -166,7 +166,11 @@ class LibraryElementDTOMeta:
         return cls(**args)
 
 
-class LibrarypanelLibraryPanelModel:
+class PanelModel:
+    """
+    Dashboard panels are the basic visualization building blocks.
+    """
+
     # The panel plugin type id. This is used to find the plugin to display the panel.
     type_val: str
     # The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.

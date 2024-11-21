@@ -101,7 +101,7 @@ func LibraryPanelConverter(input LibraryPanel) string {
 
 	{
 		buffer.WriteString(`Model(`)
-		arg0 := LibrarypanelLibraryPanelModelConverter(input.Model)
+		arg0 := PanelModelConverter(input.Model)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
