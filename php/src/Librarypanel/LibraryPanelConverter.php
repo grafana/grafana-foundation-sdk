@@ -105,7 +105,7 @@ final class LibraryPanelConverter
     
         {
     $buffer = 'model(';
-        $arg0 = \Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModelConverter::convert($input->model);
+        $arg0 = \Grafana\Foundation\Librarypanel\PanelModelConverter::convert($input->model);
         $buffer .= $arg0;
         
     $buffer .= ')';
