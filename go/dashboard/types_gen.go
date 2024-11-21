@@ -1301,6 +1301,13 @@ type VariableModel struct {
 	// Optional field, if you want to extract part of a series name or metric node segment.
 	// Named capture groups can be used to separate the display text and value.
 	Regex *string `json:"regex,omitempty"`
+	// Dynamically calculates interval by dividing time range by the count specified.
+	Auto *bool `json:"auto,omitempty"`
+	// The minimum threshold below which the step count intervals will not divide the time.
+	AutoMin *string `json:"auto_min,omitempty"`
+	// How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+	// For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+	AutoCount *int32 `json:"auto_count,omitempty"`
 }
 
 // NewVariableModel creates a new VariableModel object.
@@ -1309,6 +1316,9 @@ func NewVariableModel() *VariableModel {
 		SkipUrlSync: cog.ToPtr[bool](false),
 		Multi:       cog.ToPtr[bool](false),
 		IncludeAll:  cog.ToPtr[bool](false),
+		Auto:        cog.ToPtr[bool](false),
+		AutoMin:     cog.ToPtr[string]("10s"),
+		AutoCount:   cog.ToPtr[int32](30),
 	}
 }
 
@@ -1524,6 +1534,39 @@ func (resource *VariableModel) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "regex")
 
 	}
+	// Field "auto"
+	if fields["auto"] != nil {
+		if string(fields["auto"]) != "null" {
+			if err := json.Unmarshal(fields["auto"], &resource.Auto); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("auto", err)...)
+			}
+
+		}
+		delete(fields, "auto")
+
+	}
+	// Field "auto_min"
+	if fields["auto_min"] != nil {
+		if string(fields["auto_min"]) != "null" {
+			if err := json.Unmarshal(fields["auto_min"], &resource.AutoMin); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("auto_min", err)...)
+			}
+
+		}
+		delete(fields, "auto_min")
+
+	}
+	// Field "auto_count"
+	if fields["auto_count"] != nil {
+		if string(fields["auto_count"]) != "null" {
+			if err := json.Unmarshal(fields["auto_count"], &resource.AutoCount); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("auto_count", err)...)
+			}
+
+		}
+		delete(fields, "auto_count")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("VariableModel", fmt.Errorf("unexpected field '%s'", field))...)
@@ -1671,6 +1714,33 @@ func (resource VariableModel) Equals(other VariableModel) bool {
 			return false
 		}
 	}
+	if resource.Auto == nil && other.Auto != nil || resource.Auto != nil && other.Auto == nil {
+		return false
+	}
+
+	if resource.Auto != nil {
+		if *resource.Auto != *other.Auto {
+			return false
+		}
+	}
+	if resource.AutoMin == nil && other.AutoMin != nil || resource.AutoMin != nil && other.AutoMin == nil {
+		return false
+	}
+
+	if resource.AutoMin != nil {
+		if *resource.AutoMin != *other.AutoMin {
+			return false
+		}
+	}
+	if resource.AutoCount == nil && other.AutoCount != nil || resource.AutoCount != nil && other.AutoCount == nil {
+		return false
+	}
+
+	if resource.AutoCount != nil {
+		if *resource.AutoCount != *other.AutoCount {
+			return false
+		}
+	}
 
 	return true
 }
@@ -1697,6 +1767,14 @@ func (resource VariableModel) Validate() error {
 	for i1 := range resource.Options {
 		if err := resource.Options[i1].Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("options["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if resource.AutoCount != nil {
+		if !(*resource.AutoCount > 0) {
+			errs = append(errs, cog.MakeBuildErrors(
+				"auto_count",
+				errors.New("must be > 0"),
+			)...)
 		}
 	}
 

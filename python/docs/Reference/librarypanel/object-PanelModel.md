@@ -1,12 +1,18 @@
 ---
-title: <span class="badge object-type-class"></span> LibrarypanelLibraryPanelModel
+title: <span class="badge object-type-class"></span> PanelModel
 ---
-# <span class="badge object-type-class"></span> LibrarypanelLibraryPanelModel
+# <span class="badge object-type-class"></span> PanelModel
+
+Dashboard panels are the basic visualization building blocks.
 
 ## Definition
 
 ```python
-class LibrarypanelLibraryPanelModel:
+class PanelModel:
+    """
+    Dashboard panels are the basic visualization building blocks.
+    """
+
     # The panel plugin type id. This is used to find the plugin to display the panel.
     type_val: str
     # The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
@@ -86,4 +92,4 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
 
 ## See also
 
- * <span class="badge builder"></span> [LibrarypanelLibraryPanelModel](./builder-LibrarypanelLibraryPanelModel.md)
+ * <span class="badge builder"></span> [PanelModel](./builder-PanelModel.md)

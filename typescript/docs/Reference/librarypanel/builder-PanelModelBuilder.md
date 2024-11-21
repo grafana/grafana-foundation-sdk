@@ -1,12 +1,12 @@
 ---
-title: <span class="badge builder"></span> LibrarypanelLibraryPanelModel
+title: <span class="badge builder"></span> PanelModelBuilder
 ---
-# <span class="badge builder"></span> LibrarypanelLibraryPanelModel
+# <span class="badge builder"></span> PanelModelBuilder
 
 ## Constructor
 
-```python
-LibrarypanelLibraryPanelModel()
+```typescript
+new PanelModelBuilder()
 ```
 ## Methods
 
@@ -14,40 +14,40 @@ LibrarypanelLibraryPanelModel()
 
 Builds the object.
 
-```python
-def build() -> librarypanel.LibrarypanelLibraryPanelModel
+```typescript
+build()
 ```
 
 ### <span class="badge object-method"></span> datasource
 
 The datasource used in all targets.
 
-```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+```typescript
+datasource(datasource: dashboard.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> description
 
 Panel description.
 
-```python
-def description(description: str) -> typing.Self
+```typescript
+description(description: string)
 ```
 
-### <span class="badge object-method"></span> field_config
+### <span class="badge object-method"></span> fieldConfig
 
 Field options allow you to change how the data is displayed in your visualizations.
 
-```python
-def field_config(field_config: dashboard.FieldConfigSource) -> typing.Self
+```typescript
+fieldConfig(fieldConfig: dashboard.FieldConfigSource)
 ```
 
-### <span class="badge object-method"></span> hide_time_override
+### <span class="badge object-method"></span> hideTimeOverride
 
 Controls if the timeFrom or timeShift overrides are shown in the panel header
 
-```python
-def hide_time_override(hide_time_override: bool) -> typing.Self
+```typescript
+hideTimeOverride(hideTimeOverride: boolean)
 ```
 
 ### <span class="badge object-method"></span> interval
@@ -60,87 +60,87 @@ identifier like: "40s", "3d", etc.
 
 See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
 
-```python
-def interval(interval: str) -> typing.Self
+```typescript
+interval(interval: string)
 ```
 
 ### <span class="badge object-method"></span> links
 
 Panel links.
 
-```python
-def links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typing.Self
+```typescript
+links(links: cog.Builder<dashboard.DashboardLink>[])
 ```
 
-### <span class="badge object-method"></span> max_data_points
+### <span class="badge object-method"></span> maxDataPoints
 
 The maximum number of data points that the panel queries are retrieving.
 
-```python
-def max_data_points(max_data_points: float) -> typing.Self
+```typescript
+maxDataPoints(maxDataPoints: number)
 ```
 
-### <span class="badge object-method"></span> max_per_row
+### <span class="badge object-method"></span> maxPerRow
 
 Option for repeated panels that controls max items per row
 
 Only relevant for horizontally repeated panels
 
-```python
-def max_per_row(max_per_row: float) -> typing.Self
+```typescript
+maxPerRow(maxPerRow: number)
 ```
 
 ### <span class="badge object-method"></span> options
 
 It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
 
-```python
-def options(options: object) -> typing.Self
+```typescript
+options(options: any)
 ```
 
-### <span class="badge object-method"></span> plugin_version
+### <span class="badge object-method"></span> pluginVersion
 
 The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
 
-```python
-def plugin_version(plugin_version: str) -> typing.Self
+```typescript
+pluginVersion(pluginVersion: string)
 ```
 
 ### <span class="badge object-method"></span> repeat
 
 Name of template variable to repeat for.
 
-```python
-def repeat(repeat: str) -> typing.Self
+```typescript
+repeat(repeat: string)
 ```
 
-### <span class="badge object-method"></span> repeat_direction
+### <span class="badge object-method"></span> repeatDirection
 
 Direction to repeat in if 'repeat' is set.
 
 `h` for horizontal, `v` for vertical.
 
-```python
-def repeat_direction(repeat_direction: typing.Literal["h", "v"]) -> typing.Self
+```typescript
+repeatDirection(repeatDirection: "h" | "v")
 ```
 
 ### <span class="badge object-method"></span> tags
 
 Tags for the panel.
 
-```python
-def tags(tags: list[str]) -> typing.Self
+```typescript
+tags(tags: string[])
 ```
 
 ### <span class="badge object-method"></span> targets
 
 Depends on the panel plugin. See the plugin documentation for details.
 
-```python
-def targets(targets: list[cogbuilder.Builder[cogvariants.Dataquery]]) -> typing.Self
+```typescript
+targets(targets: cog.Builder<cog.Dataquery>[])
 ```
 
-### <span class="badge object-method"></span> time_from
+### <span class="badge object-method"></span> timeFrom
 
 Overrides the relative time range for individual panels,
 
@@ -158,11 +158,11 @@ Note: Panel time overrides have no effect when the dashboard’s time range is a
 
 See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
 
-```python
-def time_from(time_from: str) -> typing.Self
+```typescript
+timeFrom(timeFrom: string)
 ```
 
-### <span class="badge object-method"></span> time_shift
+### <span class="badge object-method"></span> timeShift
 
 Overrides the time range for individual panels by shifting its start and end relative to the time picker.
 
@@ -172,16 +172,16 @@ Note: Panel time overrides have no effect when the dashboard’s time range is a
 
 See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
 
-```python
-def time_shift(time_shift: str) -> typing.Self
+```typescript
+timeShift(timeShift: string)
 ```
 
 ### <span class="badge object-method"></span> title
 
 Panel title.
 
-```python
-def title(title: str) -> typing.Self
+```typescript
+title(title: string)
 ```
 
 ### <span class="badge object-method"></span> transformations
@@ -192,26 +192,26 @@ When there are multiple transformations, Grafana applies them in the order they 
 
 Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
 
-```python
-def transformations(transformations: list[dashboard.DataTransformerConfig]) -> typing.Self
+```typescript
+transformations(transformations: dashboard.DataTransformerConfig[])
 ```
 
 ### <span class="badge object-method"></span> transparent
 
 Whether to display the panel without a background.
 
-```python
-def transparent(transparent: bool) -> typing.Self
+```typescript
+transparent(transparent: boolean)
 ```
 
-### <span class="badge object-method"></span> type_val
+### <span class="badge object-method"></span> type
 
 The panel plugin type id. This is used to find the plugin to display the panel.
 
-```python
-def type_val(type_val: str) -> typing.Self
+```typescript
+type(type: string)
 ```
 
 ## See also
 
- * <span class="badge object-type-class"></span> [LibrarypanelLibraryPanelModel](./object-LibrarypanelLibraryPanelModel.md)
+ * <span class="badge object-type-interface"></span> [PanelModel](./object-PanelModel.md)

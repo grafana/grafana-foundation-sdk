@@ -82,3 +82,25 @@ func (builder *IntervalVariableBuilder) Options(options []VariableOption) *Inter
 
 	return builder
 }
+
+// Dynamically calculates interval by dividing time range by the count specified.
+func (builder *IntervalVariableBuilder) Auto(auto bool) *IntervalVariableBuilder {
+	builder.internal.Auto = &auto
+
+	return builder
+}
+
+// The minimum threshold below which the step count intervals will not divide the time.
+func (builder *IntervalVariableBuilder) MinInterval(autoMin string) *IntervalVariableBuilder {
+	builder.internal.AutoMin = &autoMin
+
+	return builder
+}
+
+// How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+// For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+func (builder *IntervalVariableBuilder) StepCount(autoCount int32) *IntervalVariableBuilder {
+	builder.internal.AutoCount = &autoCount
+
+	return builder
+}

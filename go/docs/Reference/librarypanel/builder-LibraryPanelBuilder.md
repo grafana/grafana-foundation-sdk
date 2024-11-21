@@ -49,7 +49,7 @@ TODO: should be the same panel schema defined in dashboard
 Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
 
 ```go
-func (builder *LibraryPanelBuilder) Model(model cog.Builder[librarypanel.LibrarypanelLibraryPanelModel]) *LibraryPanelBuilder
+func (builder *LibraryPanelBuilder) Model(model cog.Builder[librarypanel.PanelModel]) *LibraryPanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Name

@@ -47,7 +47,7 @@ class LibraryPanel implements \JsonSerializable
      * TODO: should be the same panel schema defined in dashboard
      * Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
      */
-    public \Grafana\Foundation\Librarypanel\LibrarypanelLibraryPanelModel $model;
+    public \Grafana\Foundation\Librarypanel\PanelModel $model;
 
     /**
      * Object storage metadata
