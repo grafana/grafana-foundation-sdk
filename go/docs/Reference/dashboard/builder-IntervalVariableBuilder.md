@@ -18,6 +18,14 @@ Builds the object.
 func (builder *IntervalVariableBuilder) Build() (VariableModel, error)
 ```
 
+### <span class="badge object-method"></span> Auto
+
+Dynamically calculates interval by dividing time range by the count specified.
+
+```go
+func (builder *IntervalVariableBuilder) Auto(auto bool) *IntervalVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Current
 
 Shows current selected variable text/value on the dashboard
@@ -50,6 +58,14 @@ Optional display name
 func (builder *IntervalVariableBuilder) Label(label string) *IntervalVariableBuilder
 ```
 
+### <span class="badge object-method"></span> MinInterval
+
+The minimum threshold below which the step count intervals will not divide the time.
+
+```go
+func (builder *IntervalVariableBuilder) MinInterval(autoMin string) *IntervalVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Name
 
 Name of variable
@@ -64,6 +80,16 @@ Options that can be selected for a variable.
 
 ```go
 func (builder *IntervalVariableBuilder) Options(options []dashboard.VariableOption) *IntervalVariableBuilder
+```
+
+### <span class="badge object-method"></span> StepCount
+
+How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+
+For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+
+```go
+func (builder *IntervalVariableBuilder) StepCount(autoCount int32) *IntervalVariableBuilder
 ```
 
 ### <span class="badge object-method"></span> Values

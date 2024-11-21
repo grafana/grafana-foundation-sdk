@@ -74,6 +74,22 @@ class VariableModel implements \JsonSerializable
      */
     public ?\Grafana\Foundation\Dashboard\VariableSort $sort;
 
+    /**
+     * Dynamically calculates interval by dividing time range by the count specified.
+     */
+    public ?bool $auto;
+
+    /**
+     * The minimum threshold below which the step count intervals will not divide the time.
+     */
+    public ?string $autoMin;
+
+    /**
+     * How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+     * For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+     */
+    public ?int $autoCount;
+
 }
 ```
 ## Methods

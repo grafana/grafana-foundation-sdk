@@ -1,12 +1,14 @@
 ---
-title: <span class="badge object-type-struct"></span> LibrarypanelLibraryPanelModel
+title: <span class="badge object-type-struct"></span> PanelModel
 ---
-# <span class="badge object-type-struct"></span> LibrarypanelLibraryPanelModel
+# <span class="badge object-type-struct"></span> PanelModel
+
+Dashboard panels are the basic visualization building blocks.
 
 ## Definition
 
 ```go
-type LibrarypanelLibraryPanelModel struct {
+type PanelModel struct {
     // The panel plugin type id. This is used to find the plugin to display the panel.
     Type string `json:"type"`
     // The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
@@ -29,7 +31,7 @@ type LibrarypanelLibraryPanelModel struct {
     Repeat *string `json:"repeat,omitempty"`
     // Direction to repeat in if 'repeat' is set.
     // `h` for horizontal, `v` for vertical.
-    RepeatDirection *librarypanel.LibraryPanelRepeatDirection `json:"repeatDirection,omitempty"`
+    RepeatDirection *librarypanel.PanelModelRepeatDirection `json:"repeatDirection,omitempty"`
     // Option for repeated panels that controls max items per row
     // Only relevant for horizontally repeated panels
     MaxPerRow *float64 `json:"maxPerRow,omitempty"`
@@ -70,38 +72,38 @@ type LibrarypanelLibraryPanelModel struct {
 
 ### <span class="badge object-method"></span> UnmarshalJSON
 
-UnmarshalJSON implements a custom JSON unmarshalling logic to decode `LibrarypanelLibraryPanelModel` from JSON.
+UnmarshalJSON implements a custom JSON unmarshalling logic to decode `PanelModel` from JSON.
 
 ```go
-func (librarypanelLibraryPanelModel *LibrarypanelLibraryPanelModel) UnmarshalJSON(raw []byte) error
+func (panelModel *PanelModel) UnmarshalJSON(raw []byte) error
 ```
 
 ### <span class="badge object-method"></span> UnmarshalJSONStrict
 
-UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibrarypanelLibraryPanelModel` from JSON.
+UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PanelModel` from JSON.
 
 Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 
 ```go
-func (librarypanelLibraryPanelModel *LibrarypanelLibraryPanelModel) UnmarshalJSONStrict(raw []byte) error
+func (panelModel *PanelModel) UnmarshalJSONStrict(raw []byte) error
 ```
 
 ### <span class="badge object-method"></span> Equals
 
-Equals tests the equality of two `LibrarypanelLibraryPanelModel` objects.
+Equals tests the equality of two `PanelModel` objects.
 
 ```go
-func (librarypanelLibraryPanelModel *LibrarypanelLibraryPanelModel) Equals(other LibrarypanelLibraryPanelModel) bool
+func (panelModel *PanelModel) Equals(other PanelModel) bool
 ```
 
 ### <span class="badge object-method"></span> Validate
 
-Validate checks all the validation constraints that may be defined on `LibrarypanelLibraryPanelModel` fields for violations and returns them.
+Validate checks all the validation constraints that may be defined on `PanelModel` fields for violations and returns them.
 
 ```go
-func (librarypanelLibraryPanelModel *LibrarypanelLibraryPanelModel) Validate() error
+func (panelModel *PanelModel) Validate() error
 ```
 
 ## See also
 
- * <span class="badge builder"></span> [LibrarypanelLibraryPanelModelBuilder](./builder-LibrarypanelLibraryPanelModelBuilder.md)
+ * <span class="badge builder"></span> [PanelModelBuilder](./builder-PanelModelBuilder.md)

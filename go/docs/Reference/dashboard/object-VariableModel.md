@@ -34,6 +34,13 @@ type VariableModel struct {
     Refresh *dashboard.VariableRefresh `json:"refresh,omitempty"`
     // Options sort order
     Sort *dashboard.VariableSort `json:"sort,omitempty"`
+    // Dynamically calculates interval by dividing time range by the count specified.
+    Auto *bool `json:"auto,omitempty"`
+    // The minimum threshold below which the step count intervals will not divide the time.
+    AutoMin *string `json:"auto_min,omitempty"`
+    // How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+    // For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+    AutoCount *int32 `json:"auto_count,omitempty"`
 }
 ```
 ## Methods

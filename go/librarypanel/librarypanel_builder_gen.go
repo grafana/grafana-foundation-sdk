@@ -82,7 +82,7 @@ func (builder *LibraryPanelBuilder) Version(version int64) *LibraryPanelBuilder 
 
 // TODO: should be the same panel schema defined in dashboard
 // Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
-func (builder *LibraryPanelBuilder) Model(model cog.Builder[LibrarypanelLibraryPanelModel]) *LibraryPanelBuilder {
+func (builder *LibraryPanelBuilder) Model(model cog.Builder[PanelModel]) *LibraryPanelBuilder {
 	modelResource, err := model.Build()
 	if err != nil {
 		builder.errors["model"] = err.(cog.BuildErrors)

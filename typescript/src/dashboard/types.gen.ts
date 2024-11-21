@@ -188,6 +188,13 @@ export interface VariableModel {
 	refresh?: VariableRefresh;
 	// Options sort order
 	sort?: VariableSort;
+	// Dynamically calculates interval by dividing time range by the count specified.
+	auto?: boolean;
+	// The minimum threshold below which the step count intervals will not divide the time.
+	auto_min?: string;
+	// How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+	// For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+	auto_count?: number;
 }
 
 export const defaultVariableModel = (): VariableModel => ({
@@ -195,6 +202,9 @@ export const defaultVariableModel = (): VariableModel => ({
 	name: "",
 	skipUrlSync: false,
 	multi: false,
+	auto: false,
+	auto_min: "10s",
+	auto_count: 30,
 });
 
 // Option to be selected in a variable.

@@ -23,7 +23,7 @@ class LibraryPanel:
     version: int
     # TODO: should be the same panel schema defined in dashboard
     # Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
-    model: librarypanel.LibrarypanelLibraryPanelModel
+    model: librarypanel.PanelModel
     # Object storage metadata
     meta: typing.Optional[librarypanel.LibraryElementDTOMeta]
 ```
