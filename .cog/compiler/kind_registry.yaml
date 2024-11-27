@@ -48,6 +48,24 @@ passes:
       field: dashboard.Dashboard.timepicker
       as: TimePicker
 
+  # From: `panels: [...#Panel | #RowPanel | #GraphPanel | #HeatmapPanel]`
+  # To: `panels: [...#Panel | #GraphPanel | #HeatmapPanel]`
+  - retype_field:
+      field: dashboard.Dashboard.panels
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: disjunction
+            disjunction:
+              branches:
+                - { kind: ref, ref: { referred_pkg: dashboard, referred_type: Panel } }
+                - { kind: ref, ref: { referred_pkg: dashboard, referred_type: RowPanel } }
+              discriminator: type
+              discriminator_mapping:
+                row: RowPanel
+                cog_discriminator_catch_all: Panel
+
   - retype_field:
       field: dashboard.Panel.options
       as:
@@ -79,8 +97,6 @@ passes:
             kind: ref
             ref: { referred_pkg: dashboard, referred_type: DashboardLink }
 
-  - dashboard_panels: {}
-
   # Add a few missing fields.
   # This is meant to be removed once the schema is updated.
   - add_fields:
@@ -90,6 +106,37 @@ passes:
           type:
             kind: scalar
             scalar: { scalar_kind: string }
+
+  #######################
+  # Dashboard variables #
+  #######################
+
+  - add_fields:
+      to: dashboard.VariableModel
+      fields:
+        - name: auto
+          comments: [ 'Dynamically calculates interval by dividing time range by the count specified.' ]
+          type:
+            kind: scalar
+            scalar: { scalar_kind: bool }
+            default: false
+        - name: auto_min
+          comments: [ 'The minimum threshold below which the step count intervals will not divide the time.' ]
+          type:
+            kind: scalar
+            default: '10s'
+            scalar: { scalar_kind: string }
+        - name: auto_count
+          comments:
+            - 'How many times the current time range should be divided to calculate the value, similar to the Max data points query option.'
+            - 'For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.'
+          type:
+            kind: scalar
+            default: 30
+            scalar:
+              scalar_kind: int32
+              constraints:
+                - { op: '>', args: [0] }
 
   ########################
   # Prometheus dataquery #
@@ -113,6 +160,21 @@ passes:
   - name_anonymous_struct:
       field: testdata.SimulationQuery.key
       as: Key
+
+  #############
+  # row panel #
+  #############
+
+  # From: `panels: [...#Panel | #RowPanel]`
+  # To: `panels: [...#Panel]`
+  - retype_field:
+      field: dashboard.RowPanel.panels
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: ref
+            ref: { referred_pkg: dashboard, referred_type: Panel }
 
   ###############
   # table panel #
@@ -218,6 +280,120 @@ passes:
             kind: ref
             ref: { referred_pkg: dashboard, referred_type: Dashboard }
 
+  ###########################
+  # Google Cloud Monitoring #
+  ###########################
+
+  - retype_field:
+      field: googlecloudmonitoring.CloudMonitoringQuery.timeSeriesList
+      as:
+        kind: ref
+        ref: { referred_pkg: googlecloudmonitoring, referred_type: TimeSeriesList }
+
+  - add_fields:
+      to: googlecloudmonitoring.TimeSeriesList
+      fields:
+        - name: title
+          comments: [ "Annotation title." ]
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+        - name: text
+          comments: [ "Annotation text." ]
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+
+  ##############
+  # Cloudwatch #
+  ##############
+
+  # Simplify the definition of the `QueryEditorArrayExpression.expressions` field from
+  # `[...#QueryEditorExpression] | [...#QueryEditorArrayExpression]` to
+  # `[...#QueryEditorExpression]`.
+  # This should be semantically equivalent since `QueryEditorExpression` is a
+  # union type that includes `QueryEditorArrayExpression`.
+  - retype_field:
+      field: cloudwatch.QueryEditorArrayExpression.expressions
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: ref
+            ref: { referred_pkg: cloudwatch, referred_type: QueryEditorExpression }
+
+  # Retype this object to manually define its disjunction mapping.
+  # TODO: check if we need to do this, or if the DisjunctionInferMapping would
+  # be able to infer it on its own.
+  - retype_object:
+      object: cloudwatch.QueryEditorExpression
+      as:
+        kind: disjunction
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorArrayExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorPropertyExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorGroupByExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorFunctionExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorFunctionParameterExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorOperatorExpression } }
+          discriminator: type
+          discriminator_mapping:
+            and: QueryEditorArrayExpression
+            or: QueryEditorArrayExpression
+            property: QueryEditorPropertyExpression
+            groupBy: QueryEditorGroupByExpression
+            function: QueryEditorFunctionExpression
+            functionParameter: QueryEditorFunctionParameterExpression
+            operator: QueryEditorOperatorExpression
+
+  - add_object:
+      object: cloudwatch.CloudWatchQuery
+      as:
+        kind: disjunction
+        hints: { implements_variant: dataquery }
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: CloudWatchMetricsQuery } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: CloudWatchLogsQuery } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: CloudWatchAnnotationQuery } }
+          discriminator: queryMode
+          discriminator_mapping:
+            Metrics: CloudWatchMetricsQuery
+            Logs: CloudWatchLogsQuery
+            Annotations: CloudWatchAnnotationQuery
+
+  - schema_set_entry_point:
+      package: cloudwatch
+      entry_point: CloudWatchQuery
+
+  - fields_set_default:
+      defaults:
+        cloudwatch.CloudWatchMetricsQuery.queryMode: Metrics
+        cloudwatch.CloudWatchLogsQuery.queryMode: Logs
+        cloudwatch.CloudWatchAnnotationQuery.queryMode: Annotations
+
+  - hint_object:
+      object: cloudwatch.CloudWatchMetricsQuery
+      hints:
+        skip_variant_plugin_registration: true
+
+  - hint_object:
+      object: cloudwatch.CloudWatchLogsQuery
+      hints:
+        skip_variant_plugin_registration: true
+
+  - hint_object:
+      object: cloudwatch.CloudWatchAnnotationQuery
+      hints:
+        skip_variant_plugin_registration: true
+
+  - fields_set_required:
+      fields:
+        - cloudwatch.CloudWatchMetricsQuery.queryMode
+        - cloudwatch.CloudWatchLogsQuery.queryMode
+        - cloudwatch.CloudWatchAnnotationQuery.queryMode
+
   ##########
   # Others #
   ##########
@@ -231,9 +407,22 @@ passes:
       comments:
         - 'A specific timezone from https://en.wikipedia.org/wiki/Tz_database'
 
-  - cloudwatch: {}
-  - google_cloud_monitoring: {}
-  - library_panels: {}
+  # In the original `librarypanel.PanelModel` schema, the "model" field is left
+  # mainly undefined but a comment indicates that it should be the same panel
+  # schema defined in dashboard with a few fields omitted:
+  #   model: Omit<dashboard.Panel, 'gridPos' | 'id' | 'libraryPanel'>
+  - duplicate_object:
+      object: dashboard.Panel
+      as: librarypanel.PanelModel
+      omit_fields:
+        - id
+        - gridPos
+        - libraryPanel
+  - retype_field:
+      field: librarypanel.LibraryPanel.model
+      as:
+        kind: ref
+        ref: { referred_pkg: librarypanel, referred_type: PanelModel }
 
   - omit:
       objects:
