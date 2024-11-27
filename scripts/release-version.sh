@@ -17,7 +17,6 @@ source "${__dir}/versions.sh"
 # These environment variables can be used to alter the behavior of the release script.
 
 DRY_RUN=${DRY_RUN:-"yes"} # Some kind of fail-safe to ensure that we're only pushing something when we mean it.
-CLEANUP_WORKSPACE=${CLEANUP_WORKSPACE:-"yes"} # Should the workspace be deleted after the script runs?
 
 GRAFANA_VERSION=${1:-"next"} # version of the schemas/grafana to run the codegen for.
 COG_VERSION="v0.0.x" # hardcoded for now
@@ -29,6 +28,9 @@ KIND_REGISTRY_PATH=${KIND_REGISTRY_PATH:-'../kind-registry'} # Path to the kind-
 
 KIND_REGISTRY_REPO=${KIND_REGISTRY_REPO:-'https://github.com/grafana/kind-registry.git'}
 FOUNDATION_SDK_REPO=${FOUNDATION_SDK_REPO:-'git@github.com:grafana/grafana-foundation-sdk.git'}
+
+CLEANUP_WORKSPACE=${CLEANUP_WORKSPACE:-"yes"} # Should the workspace be deleted after the script runs?
+WORKSPACE_PATH=${WORKSPACE_PATH:-'./workspace'}
 
 #################
 ### Usage ###
@@ -88,13 +90,12 @@ function run_when_safe() {
 ### Main ###
 ############
 
-workspace_path='./workspace'
-codegen_output_path="${workspace_path}/codegen"
-foundation_sdk_path="${workspace_path}/foundation-sdk"
+codegen_output_path="${WORKSPACE_PATH}/codegen"
+foundation_sdk_path="${WORKSPACE_PATH}/foundation-sdk"
 
 function cleanup() {
   debug "Cleaning up workspace"
-  rm -rf "${workspace_path}"
+  rm -rf "${WORKSPACE_PATH}"
 }
 if [ "${CLEANUP_WORKSPACE}" == "yes" ]; then
   trap cleanup EXIT # run the cleanup() function on exit
@@ -114,10 +115,10 @@ notice "Grafana version: ${GRAFANA_VERSION}"
 notice "Cog version: ${COG_VERSION}"
 notice "Release branch in grafana-foundation-sdk: ${release_branch}"
 debug "kind-registry path: ${KIND_REGISTRY_PATH}"
-debug "workspace path: ${workspace_path}"
+debug "workspace path: ${WORKSPACE_PATH}"
 
 # Just in case there are leftovers from a previous run.
-rm -rf "${workspace_path}"
+rm -rf "${WORKSPACE_PATH}"
 
 if [ ! -d "${KIND_REGISTRY_PATH}" ]; then
   info "Cloning kind-registry into ${KIND_REGISTRY_PATH}"
