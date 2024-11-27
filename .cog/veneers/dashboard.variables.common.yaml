@@ -83,6 +83,9 @@ options:
   # QueryVariable #
   #################
   - omit: { by_builder: QueryVariable.skipUrlSync }
+  - omit: { by_builder: QueryVariable.auto }
+  - omit: { by_builder: QueryVariable.auto_min }
+  - omit: { by_builder: QueryVariable.auto_count }
 
   #################
   # AdHocVariable #
@@ -97,6 +100,9 @@ options:
   - omit: { by_builder: AdHocVariable.allValue }
   - omit: { by_builder: AdHocVariable.regex }
   - omit: { by_builder: AdHocVariable.includeAll }
+  - omit: { by_builder: AdHocVariable.auto }
+  - omit: { by_builder: AdHocVariable.auto_min }
+  - omit: { by_builder: AdHocVariable.auto_count }
 
   ####################
   # ConstantVariable #
@@ -112,6 +118,9 @@ options:
   - omit: { by_builder: ConstantVariable.allValue }
   - omit: { by_builder: ConstantVariable.regex }
   - omit: { by_builder: ConstantVariable.includeAll }
+  - omit: { by_builder: ConstantVariable.auto }
+  - omit: { by_builder: ConstantVariable.auto_min }
+  - omit: { by_builder: ConstantVariable.auto_count }
   - rename:
       by_builder: ConstantVariable.query
       as: value
@@ -124,6 +133,9 @@ options:
   - omit: { by_builder: DatasourceVariable.sort }
   - omit: { by_builder: DatasourceVariable.refresh }
   - omit: { by_builder: DatasourceVariable.options }
+  - omit: { by_builder: DatasourceVariable.auto }
+  - omit: { by_builder: DatasourceVariable.auto_min }
+  - omit: { by_builder: DatasourceVariable.auto_count }
   - rename:
       by_builder: DatasourceVariable.query
       as: type
@@ -143,9 +155,16 @@ options:
   - omit: { by_builder: IntervalVariable.allValue }
   - omit: { by_builder: IntervalVariable.regex }
   - omit: { by_builder: IntervalVariable.includeAll }
+  # To mimic the names in the UI
   - rename:
       by_builder: IntervalVariable.query
       as: values
+  - rename:
+      by_builder: IntervalVariable.auto_min
+      as: minInterval
+  - rename:
+      by_builder: IntervalVariable.auto_count
+      as: stepCount
 
   ###################
   # TextBoxVariable #
@@ -158,6 +177,9 @@ options:
   - omit: { by_builder: TextBoxVariable.allValue }
   - omit: { by_builder: TextBoxVariable.regex }
   - omit: { by_builder: TextBoxVariable.includeAll }
+  - omit: { by_builder: TextBoxVariable.auto }
+  - omit: { by_builder: TextBoxVariable.auto_min }
+  - omit: { by_builder: TextBoxVariable.auto_count }
   - rename:
       by_builder: TextBoxVariable.query
       as: defaultValue
@@ -170,6 +192,9 @@ options:
   - omit: { by_builder: CustomVariable.sort }
   - omit: { by_builder: CustomVariable.refresh }
   - omit: { by_builder: CustomVariable.regex }
+  - omit: { by_builder: CustomVariable.auto }
+  - omit: { by_builder: CustomVariable.auto_min }
+  - omit: { by_builder: CustomVariable.auto_count }
   - rename:
       by_builder: CustomVariable.query
       as: values
