@@ -49,9 +49,9 @@ type Options struct {
 func NewOptions() *Options {
 	return &Options{
 		Orientation:        common.VizOrientationAuto,
-		BarRadius:          cog.ToPtr[float64](0),
+		BarRadius:          (func(input float64) *float64 { return &input })(0),
 		XTickLabelRotation: 0,
-		XTickLabelSpacing:  cog.ToPtr[int32](0),
+		XTickLabelSpacing:  (func(input int32) *int32 { return &input })(0),
 		Stacking:           common.StackingModeNone,
 		ShowValue:          common.VisibilityModeAuto,
 		BarWidth:           0.97,
@@ -465,9 +465,9 @@ type FieldConfig struct {
 // NewFieldConfig creates a new FieldConfig object.
 func NewFieldConfig() *FieldConfig {
 	return &FieldConfig{
-		LineWidth:    cog.ToPtr[int32](1),
-		FillOpacity:  cog.ToPtr[int32](80),
-		GradientMode: cog.ToPtr(common.GraphGradientModeNone),
+		LineWidth:    (func(input int32) *int32 { return &input })(1),
+		FillOpacity:  (func(input int32) *int32 { return &input })(80),
+		GradientMode: (func(input common.GraphGradientMode) *common.GraphGradientMode { return &input })(common.GraphGradientModeNone),
 	}
 }
 
