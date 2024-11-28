@@ -27,7 +27,7 @@ type Options struct {
 // NewOptions creates a new Options object.
 func NewOptions() *Options {
 	return &Options{
-		BucketOffset: cog.ToPtr[int32](0),
+		BucketOffset: (func(input int32) *int32 { return &input })(0),
 		Legend:       *common.NewVizLegendOptions(),
 		Tooltip:      *common.NewVizTooltipOptions(),
 	}
@@ -201,9 +201,9 @@ type FieldConfig struct {
 // NewFieldConfig creates a new FieldConfig object.
 func NewFieldConfig() *FieldConfig {
 	return &FieldConfig{
-		LineWidth:    cog.ToPtr[uint32](1),
-		FillOpacity:  cog.ToPtr[uint32](80),
-		GradientMode: cog.ToPtr(common.GraphGradientModeNone),
+		LineWidth:    (func(input uint32) *uint32 { return &input })(1),
+		FillOpacity:  (func(input uint32) *uint32 { return &input })(80),
+		GradientMode: (func(input common.GraphGradientMode) *common.GraphGradientMode { return &input })(common.GraphGradientModeNone),
 	}
 }
 

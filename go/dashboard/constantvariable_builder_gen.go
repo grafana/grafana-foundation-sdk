@@ -22,6 +22,7 @@ func NewConstantVariableBuilder(name string) *ConstantVariableBuilder {
 	}
 	builder.internal.Name = name
 	builder.internal.Type = "constant"
+	builder.internal.Hide = 2
 
 	return builder
 }

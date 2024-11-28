@@ -10579,7 +10579,7 @@ type StringOrPipelineMetricAggregationType struct {
 // NewStringOrPipelineMetricAggregationType creates a new StringOrPipelineMetricAggregationType object.
 func NewStringOrPipelineMetricAggregationType() *StringOrPipelineMetricAggregationType {
 	return &StringOrPipelineMetricAggregationType{
-		String: cog.ToPtr[string]("count"),
+		String: (func(input string) *string { return &input })("count"),
 	}
 }
 
