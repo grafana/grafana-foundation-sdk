@@ -1228,7 +1228,7 @@ type Options struct {
 // NewOptions creates a new Options object.
 func NewOptions() *Options {
 	return &Options{
-		Calculate: cog.ToPtr[bool](false),
+		Calculate: (func(input bool) *bool { return &input })(false),
 		Color: HeatmapColorOptions{
 			Scheme:   "Oranges",
 			Fill:     "dark-orange",
@@ -1237,10 +1237,10 @@ func NewOptions() *Options {
 			Reverse:  false,
 		},
 		FilterValues: &FilterValueRange{
-			Le: cog.ToPtr[float32](1e-09),
+			Le: (func(input float32) *float32 { return &input })(1e-09),
 		},
 		ShowValue: common.VisibilityModeAuto,
-		CellGap:   cog.ToPtr[uint8](1),
+		CellGap:   (func(input uint8) *uint8 { return &input })(1),
 		YAxis:     *NewYAxisConfig(),
 		Legend: HeatmapLegend{
 			Show: true,

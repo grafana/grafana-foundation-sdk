@@ -757,7 +757,7 @@ type TimeSeriesQuery struct {
 // NewTimeSeriesQuery creates a new TimeSeriesQuery object.
 func NewTimeSeriesQuery() *TimeSeriesQuery {
 	return &TimeSeriesQuery{
-		GraphPeriod: cog.ToPtr[string]("disabled"),
+		GraphPeriod: (func(input string) *string { return &input })("disabled"),
 	}
 }
 
@@ -1229,7 +1229,7 @@ type MetricQuery struct {
 // NewMetricQuery creates a new MetricQuery object.
 func NewMetricQuery() *MetricQuery {
 	return &MetricQuery{
-		GraphPeriod: cog.ToPtr[string]("disabled"),
+		GraphPeriod: (func(input string) *string { return &input })("disabled"),
 	}
 }
 

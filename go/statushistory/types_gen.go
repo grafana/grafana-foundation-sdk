@@ -32,7 +32,7 @@ func NewOptions() *Options {
 		ShowValue: common.VisibilityModeAuto,
 		Legend:    *common.NewVizLegendOptions(),
 		Tooltip:   *common.NewVizTooltipOptions(),
-		ColWidth:  cog.ToPtr[float64](0.9),
+		ColWidth:  (func(input float64) *float64 { return &input })(0.9),
 	}
 }
 
@@ -224,8 +224,8 @@ type FieldConfig struct {
 // NewFieldConfig creates a new FieldConfig object.
 func NewFieldConfig() *FieldConfig {
 	return &FieldConfig{
-		LineWidth:   cog.ToPtr[uint32](1),
-		FillOpacity: cog.ToPtr[uint32](70),
+		LineWidth:   (func(input uint32) *uint32 { return &input })(1),
+		FillOpacity: (func(input uint32) *uint32 { return &input })(70),
 	}
 }
 
