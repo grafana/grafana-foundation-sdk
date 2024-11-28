@@ -15,6 +15,7 @@ on:
 
 env:
   COG_VERSION: '0.0.6'
+  DEVBOX_VERSION: '0.13.1'
 
 # Grant GITHUB_TOKEN the permissions required to make a release
 permissions:
@@ -48,6 +49,12 @@ jobs:
           chmod +x "${HOME}/.local/bin/cog"
           echo "${HOME}/.local/bin" >> $GITHUB_PATH
 
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@a03caf5813591bc882139eba6ae947930a83a427 #v0.11.0
+        with:
+          enable-cache: 'true'
+          devbox-version: ${{ env.DEVBOX_VERSION }}
+
       - name: Run the release script
         run: |
           git config --global user.name 'github-actions[bot]'
@@ -55,9 +62,9 @@ jobs:
           git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
 
           if [ "${VERSION_TARGET}" == "all" ]; then
-            ./scripts/release-all.sh
+            devbox run ./scripts/release-all.sh
           else
-            ./scripts/release-version.sh "${VERSION_TARGET}"
+            devbox run ./scripts/release-version.sh "${VERSION_TARGET}"
           fi
         env:
           TERM: 'xterm'

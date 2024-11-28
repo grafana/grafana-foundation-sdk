@@ -1,7 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
   "packages": [
-    "python312@3.12"
+    "python312@3.12",
+    "go@1.23",
+    "php83Packages.composer@2.7",
+    "php83Packages.phpstan@1.11",
+    "php83Packages.psalm@5.25",
+    "yarn@1.22",
+    "gradle@8.10"
   ],
   "shell": {
     "init_hook": [

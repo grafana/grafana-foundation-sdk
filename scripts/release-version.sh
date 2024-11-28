@@ -179,6 +179,9 @@ fi
 
 git_run "${foundation_sdk_path}" commit -m "Automated release"
 
+info "Validating release"
+"$__dir/release-validate.sh" "${codegen_output_path}"
+
 info "Pushing PR branch ${pr_branch}"
 run_when_safe git_run "${foundation_sdk_path}" push origin "${pr_branch}"
 
