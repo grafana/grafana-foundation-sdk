@@ -260,7 +260,7 @@ func DashboardConverter(input Dashboard) string {
 				tmplistarg1 = AdHocVariableConverter(arg1)
 			}
 
-			if arg1.Type == "constant" {
+			if arg1.Type == "constant" && arg1.Hide == 2 {
 				tmplistarg1 = ConstantVariableConverter(arg1)
 			}
 

@@ -170,8 +170,8 @@ type FieldConfig struct {
 // NewFieldConfig creates a new FieldConfig object.
 func NewFieldConfig() *FieldConfig {
 	return &FieldConfig{
-		Show:  cog.ToPtr(ScatterShowPoints),
-		Label: cog.ToPtr(common.VisibilityModeAuto),
+		Show:  (func(input ScatterShow) *ScatterShow { return &input })(ScatterShowPoints),
+		Label: (func(input common.VisibilityMode) *common.VisibilityMode { return &input })(common.VisibilityModeAuto),
 	}
 }
 
@@ -660,8 +660,8 @@ type ScatterSeriesConfig struct {
 // NewScatterSeriesConfig creates a new ScatterSeriesConfig object.
 func NewScatterSeriesConfig() *ScatterSeriesConfig {
 	return &ScatterSeriesConfig{
-		Show:  cog.ToPtr(ScatterShowPoints),
-		Label: cog.ToPtr(common.VisibilityModeAuto),
+		Show:  (func(input ScatterShow) *ScatterShow { return &input })(ScatterShowPoints),
+		Label: (func(input common.VisibilityMode) *common.VisibilityMode { return &input })(common.VisibilityModeAuto),
 	}
 }
 

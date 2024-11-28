@@ -79,10 +79,10 @@ type Dashboard struct {
 // NewDashboard creates a new Dashboard object.
 func NewDashboard() *Dashboard {
 	return &Dashboard{
-		Timezone:             cog.ToPtr[string]("browser"),
+		Timezone:             (func(input string) *string { return &input })("browser"),
 		Editable:             true,
 		GraphTooltip:         DashboardCursorSyncOff,
-		FiscalYearStartMonth: cog.ToPtr[uint8](0),
+		FiscalYearStartMonth: (func(input uint8) *uint8 { return &input })(0),
 		SchemaVersion:        36,
 		Templating:           *NewDashboardDashboardTemplating(),
 		Annotations:          *NewAnnotationContainer(),
@@ -818,7 +818,7 @@ type AnnotationPanelFilter struct {
 // NewAnnotationPanelFilter creates a new AnnotationPanelFilter object.
 func NewAnnotationPanelFilter() *AnnotationPanelFilter {
 	return &AnnotationPanelFilter{
-		Exclude: cog.ToPtr[bool](false),
+		Exclude: (func(input bool) *bool { return &input })(false),
 	}
 }
 
@@ -1024,7 +1024,7 @@ func NewAnnotationQuery() *AnnotationQuery {
 	return &AnnotationQuery{
 		Datasource: *NewDataSourceRef(),
 		Enable:     true,
-		Hide:       cog.ToPtr[bool](false),
+		Hide:       (func(input bool) *bool { return &input })(false),
 	}
 }
 
@@ -1308,11 +1308,11 @@ func NewVariableModel() *VariableModel {
 	return &VariableModel{
 		Id:          "00000000-0000-0000-0000-000000000000",
 		SkipUrlSync: false,
-		Multi:       cog.ToPtr[bool](false),
-		IncludeAll:  cog.ToPtr[bool](false),
-		Auto:        cog.ToPtr[bool](false),
-		AutoMin:     cog.ToPtr[string]("10s"),
-		AutoCount:   cog.ToPtr[int32](30),
+		Multi:       (func(input bool) *bool { return &input })(false),
+		IncludeAll:  (func(input bool) *bool { return &input })(false),
+		Auto:        (func(input bool) *bool { return &input })(false),
+		AutoMin:     (func(input string) *string { return &input })("10s"),
+		AutoCount:   (func(input int32) *int32 { return &input })(30),
 	}
 }
 
@@ -7703,7 +7703,7 @@ type StringOrBool struct {
 // NewStringOrBool creates a new StringOrBool object.
 func NewStringOrBool() *StringOrBool {
 	return &StringOrBool{
-		Bool: cog.ToPtr[bool](false),
+		Bool: (func(input bool) *bool { return &input })(false),
 	}
 }
 

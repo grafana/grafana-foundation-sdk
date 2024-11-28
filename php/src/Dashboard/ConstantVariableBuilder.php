@@ -15,6 +15,7 @@ class ConstantVariableBuilder implements \Grafana\Foundation\Cog\Builder
     	$this->internal = new \Grafana\Foundation\Dashboard\VariableModel();
     $this->internal->name = $name;
     $this->internal->type = \Grafana\Foundation\Dashboard\VariableType::constant();
+    $this->internal->hide = \Grafana\Foundation\Dashboard\VariableHide::hideVariable();
     }
 
     /**
