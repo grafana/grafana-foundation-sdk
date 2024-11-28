@@ -221,10 +221,10 @@ type MapViewConfig struct {
 func NewMapViewConfig() *MapViewConfig {
 	return &MapViewConfig{
 		Id:        "zero",
-		Lat:       cog.ToPtr[int64](0),
-		Lon:       cog.ToPtr[int64](0),
-		Zoom:      cog.ToPtr[int64](1),
-		AllLayers: cog.ToPtr[bool](true),
+		Lat:       (func(input int64) *int64 { return &input })(0),
+		Lon:       (func(input int64) *int64 { return &input })(0),
+		Zoom:      (func(input int64) *int64 { return &input })(1),
+		AllLayers: (func(input bool) *bool { return &input })(true),
 	}
 }
 
