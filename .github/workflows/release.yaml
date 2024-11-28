@@ -14,7 +14,7 @@ on:
         type: boolean
 
 env:
-  COG_VERSION: 0.0.5
+  COG_VERSION: '0.0.6'
 
 # Grant GITHUB_TOKEN the permissions required to make a release
 permissions:
