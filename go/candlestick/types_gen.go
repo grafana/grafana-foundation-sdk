@@ -315,7 +315,7 @@ func NewOptions() *Options {
 			Flat: "gray",
 		},
 		Legend:           *common.NewVizLegendOptions(),
-		IncludeAllFields: cog.ToPtr[bool](false),
+		IncludeAllFields: (func(input bool) *bool { return &input })(false),
 	}
 }
 
