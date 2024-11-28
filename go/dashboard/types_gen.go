@@ -76,10 +76,10 @@ type Dashboard struct {
 // NewDashboard creates a new Dashboard object.
 func NewDashboard() *Dashboard {
 	return &Dashboard{
-		Timezone:             cog.ToPtr[string]("browser"),
-		Editable:             cog.ToPtr[bool](true),
-		GraphTooltip:         cog.ToPtr(DashboardCursorSyncOff),
-		FiscalYearStartMonth: cog.ToPtr[uint8](0),
+		Timezone:             (func(input string) *string { return &input })("browser"),
+		Editable:             (func(input bool) *bool { return &input })(true),
+		GraphTooltip:         (func(input DashboardCursorSync) *DashboardCursorSync { return &input })(DashboardCursorSyncOff),
+		FiscalYearStartMonth: (func(input uint8) *uint8 { return &input })(0),
 		SchemaVersion:        36,
 		Templating:           *NewDashboardDashboardTemplating(),
 		Annotations:          *NewAnnotationContainer(),
@@ -806,7 +806,7 @@ type AnnotationPanelFilter struct {
 // NewAnnotationPanelFilter creates a new AnnotationPanelFilter object.
 func NewAnnotationPanelFilter() *AnnotationPanelFilter {
 	return &AnnotationPanelFilter{
-		Exclude: cog.ToPtr[bool](false),
+		Exclude: (func(input bool) *bool { return &input })(false),
 	}
 }
 
@@ -1014,8 +1014,8 @@ func NewAnnotationQuery() *AnnotationQuery {
 	return &AnnotationQuery{
 		Datasource: *NewDataSourceRef(),
 		Enable:     true,
-		Hide:       cog.ToPtr[bool](false),
-		BuiltIn:    cog.ToPtr[float64](0),
+		Hide:       (func(input bool) *bool { return &input })(false),
+		BuiltIn:    (func(input float64) *float64 { return &input })(0),
 	}
 }
 
@@ -1313,12 +1313,12 @@ type VariableModel struct {
 // NewVariableModel creates a new VariableModel object.
 func NewVariableModel() *VariableModel {
 	return &VariableModel{
-		SkipUrlSync: cog.ToPtr[bool](false),
-		Multi:       cog.ToPtr[bool](false),
-		IncludeAll:  cog.ToPtr[bool](false),
-		Auto:        cog.ToPtr[bool](false),
-		AutoMin:     cog.ToPtr[string]("10s"),
-		AutoCount:   cog.ToPtr[int32](30),
+		SkipUrlSync: (func(input bool) *bool { return &input })(false),
+		Multi:       (func(input bool) *bool { return &input })(false),
+		IncludeAll:  (func(input bool) *bool { return &input })(false),
+		Auto:        (func(input bool) *bool { return &input })(false),
+		AutoMin:     (func(input string) *string { return &input })("10s"),
+		AutoCount:   (func(input int32) *int32 { return &input })(30),
 	}
 }
 
@@ -4107,7 +4107,7 @@ type Panel struct {
 // NewPanel creates a new Panel object.
 func NewPanel() *Panel {
 	return &Panel{
-		Transparent: cog.ToPtr[bool](false),
+		Transparent: (func(input bool) *bool { return &input })(false),
 	}
 }
 
@@ -7436,7 +7436,7 @@ type StringOrBool struct {
 // NewStringOrBool creates a new StringOrBool object.
 func NewStringOrBool() *StringOrBool {
 	return &StringOrBool{
-		Bool: cog.ToPtr[bool](false),
+		Bool: (func(input bool) *bool { return &input })(false),
 	}
 }
 
