@@ -317,7 +317,7 @@ func NewOptions() *Options {
 		},
 		Legend:           *common.NewVizLegendOptions(),
 		Tooltip:          *common.NewVizTooltipOptions(),
-		IncludeAllFields: cog.ToPtr[bool](false),
+		IncludeAllFields: (func(input bool) *bool { return &input })(false),
 	}
 }
 
