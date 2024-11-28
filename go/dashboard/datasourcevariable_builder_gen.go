@@ -86,6 +86,13 @@ func (builder *DatasourceVariableBuilder) Multi(multi bool) *DatasourceVariableB
 	return builder
 }
 
+// Allow custom values to be entered in the variable
+func (builder *DatasourceVariableBuilder) AllowCustomValue(allowCustomValue bool) *DatasourceVariableBuilder {
+	builder.internal.AllowCustomValue = &allowCustomValue
+
+	return builder
+}
+
 // Whether all value option is available or not
 func (builder *DatasourceVariableBuilder) IncludeAll(includeAll bool) *DatasourceVariableBuilder {
 	builder.internal.IncludeAll = &includeAll

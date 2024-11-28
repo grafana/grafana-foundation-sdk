@@ -2041,6 +2041,15 @@ class QueryVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
+    def allow_custom_value(self, allow_custom_value: bool) -> typing.Self:    
+        """
+        Allow custom values to be entered in the variable
+        """
+            
+        self._internal.allow_custom_value = allow_custom_value
+    
+        return self
+    
     def options(self, options: list[dashboard.VariableOption]) -> typing.Self:    
         """
         Options that can be selected for a variable.
@@ -2160,6 +2169,15 @@ class AdHocVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
+    def allow_custom_value(self, allow_custom_value: bool) -> typing.Self:    
+        """
+        Allow custom values to be entered in the variable
+        """
+            
+        self._internal.allow_custom_value = allow_custom_value
+    
+        return self
+    
 
 class ConstantVariable(cogbuilder.Builder[dashboard.VariableModel]):    
     """
@@ -2171,7 +2189,8 @@ class ConstantVariable(cogbuilder.Builder[dashboard.VariableModel]):
     def __init__(self, name: str):
         self._internal = dashboard.VariableModel()        
         self._internal.name = name        
-        self._internal.type_val = dashboard.VariableType.CONSTANT
+        self._internal.type_val = dashboard.VariableType.CONSTANT        
+        self._internal.hide = dashboard.VariableHide.HIDE_VARIABLE
 
     def build(self) -> dashboard.VariableModel:
         """
@@ -2212,6 +2231,15 @@ class ConstantVariable(cogbuilder.Builder[dashboard.VariableModel]):
         """
             
         self._internal.query = query
+    
+        return self
+    
+    def allow_custom_value(self, allow_custom_value: bool) -> typing.Self:    
+        """
+        Allow custom values to be entered in the variable
+        """
+            
+        self._internal.allow_custom_value = allow_custom_value
     
         return self
     
@@ -2294,6 +2322,15 @@ class DatasourceVariable(cogbuilder.Builder[dashboard.VariableModel]):
         """
             
         self._internal.multi = multi
+    
+        return self
+    
+    def allow_custom_value(self, allow_custom_value: bool) -> typing.Self:    
+        """
+        Allow custom values to be entered in the variable
+        """
+            
+        self._internal.allow_custom_value = allow_custom_value
     
         return self
     
@@ -2395,6 +2432,15 @@ class IntervalVariable(cogbuilder.Builder[dashboard.VariableModel]):
         """
             
         self._internal.current = current
+    
+        return self
+    
+    def allow_custom_value(self, allow_custom_value: bool) -> typing.Self:    
+        """
+        Allow custom values to be entered in the variable
+        """
+            
+        self._internal.allow_custom_value = allow_custom_value
     
         return self
     
@@ -2510,6 +2556,15 @@ class TextBoxVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
+    def allow_custom_value(self, allow_custom_value: bool) -> typing.Self:    
+        """
+        Allow custom values to be entered in the variable
+        """
+            
+        self._internal.allow_custom_value = allow_custom_value
+    
+        return self
+    
     def options(self, options: list[dashboard.VariableOption]) -> typing.Self:    
         """
         Options that can be selected for a variable.
@@ -2598,6 +2653,15 @@ class CustomVariable(cogbuilder.Builder[dashboard.VariableModel]):
         """
             
         self._internal.multi = multi
+    
+        return self
+    
+    def allow_custom_value(self, allow_custom_value: bool) -> typing.Self:    
+        """
+        Allow custom values to be entered in the variable
+        """
+            
+        self._internal.allow_custom_value = allow_custom_value
     
         return self
     

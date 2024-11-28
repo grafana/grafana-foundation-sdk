@@ -26,6 +26,14 @@ Custom all value
 func (builder *DatasourceVariableBuilder) AllValue(allValue string) *DatasourceVariableBuilder
 ```
 
+### <span class="badge object-method"></span> AllowCustomValue
+
+Allow custom values to be entered in the variable
+
+```go
+func (builder *DatasourceVariableBuilder) AllowCustomValue(allowCustomValue bool) *DatasourceVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Current
 
 Shows current selected variable text/value on the dashboard

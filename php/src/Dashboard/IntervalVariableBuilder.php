@@ -82,6 +82,15 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * Allow custom values to be entered in the variable
+     */
+    public function allowCustomValue(bool $allowCustomValue): static
+    {
+        $this->internal->allowCustomValue = $allowCustomValue;
+    
+        return $this;
+    }
+    /**
      * Options that can be selected for a variable.
      * @param array<\Grafana\Foundation\Dashboard\VariableOption> $options
      */

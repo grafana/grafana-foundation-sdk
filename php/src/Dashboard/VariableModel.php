@@ -59,6 +59,11 @@ class VariableModel implements \JsonSerializable
     public ?bool $multi;
 
     /**
+     * Allow custom values to be entered in the variable
+     */
+    public ?bool $allowCustomValue;
+
+    /**
      * Options that can be selected for a variable.
      * @var array<\Grafana\Foundation\Dashboard\VariableOption>|null
      */
@@ -117,6 +122,7 @@ class VariableModel implements \JsonSerializable
      * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param \Grafana\Foundation\Dashboard\VariableOption|null $current
      * @param bool|null $multi
+     * @param bool|null $allowCustomValue
      * @param array<\Grafana\Foundation\Dashboard\VariableOption>|null $options
      * @param \Grafana\Foundation\Dashboard\VariableRefresh|null $refresh
      * @param \Grafana\Foundation\Dashboard\VariableSort|null $sort
@@ -127,7 +133,7 @@ class VariableModel implements \JsonSerializable
      * @param string|null $autoMin
      * @param int|null $autoCount
      */
-    public function __construct(?\Grafana\Foundation\Dashboard\VariableType $type = null, ?string $name = null, ?string $label = null, ?\Grafana\Foundation\Dashboard\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null,  $query = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?\Grafana\Foundation\Dashboard\VariableOption $current = null, ?bool $multi = null, ?array $options = null, ?\Grafana\Foundation\Dashboard\VariableRefresh $refresh = null, ?\Grafana\Foundation\Dashboard\VariableSort $sort = null, ?bool $includeAll = null, ?string $allValue = null, ?string $regex = null, ?bool $auto = null, ?string $autoMin = null, ?int $autoCount = null)
+    public function __construct(?\Grafana\Foundation\Dashboard\VariableType $type = null, ?string $name = null, ?string $label = null, ?\Grafana\Foundation\Dashboard\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null,  $query = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?\Grafana\Foundation\Dashboard\VariableOption $current = null, ?bool $multi = null, ?bool $allowCustomValue = null, ?array $options = null, ?\Grafana\Foundation\Dashboard\VariableRefresh $refresh = null, ?\Grafana\Foundation\Dashboard\VariableSort $sort = null, ?bool $includeAll = null, ?string $allValue = null, ?string $regex = null, ?bool $auto = null, ?string $autoMin = null, ?int $autoCount = null)
     {
         $this->type = $type ?: \Grafana\Foundation\Dashboard\VariableType::Query();
         $this->name = $name ?: "";
@@ -139,6 +145,7 @@ class VariableModel implements \JsonSerializable
         $this->datasource = $datasource;
         $this->current = $current;
         $this->multi = $multi;
+        $this->allowCustomValue = $allowCustomValue;
         $this->options = $options;
         $this->refresh = $refresh;
         $this->sort = $sort;
@@ -155,7 +162,7 @@ class VariableModel implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, name?: string, label?: string, hide?: int, skipUrlSync?: bool, description?: string, query?: string|array<string, mixed>, datasource?: mixed, current?: mixed, multi?: bool, options?: array<mixed>, refresh?: int, sort?: int, includeAll?: bool, allValue?: string, regex?: string, auto?: bool, auto_min?: string, auto_count?: int} $inputData */
+        /** @var array{type?: string, name?: string, label?: string, hide?: int, skipUrlSync?: bool, description?: string, query?: string|array<string, mixed>, datasource?: mixed, current?: mixed, multi?: bool, allowCustomValue?: bool, options?: array<mixed>, refresh?: int, sort?: int, includeAll?: bool, allValue?: string, regex?: string, auto?: bool, auto_min?: string, auto_count?: int} $inputData */
         $data = $inputData;
         return new self(
             type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Dashboard\VariableType::fromValue($input); })($data["type"]) : null,
@@ -183,6 +190,7 @@ class VariableModel implements \JsonSerializable
     	return \Grafana\Foundation\Dashboard\VariableOption::fromArray($val);
     })($data["current"]) : null,
             multi: $data["multi"] ?? null,
+            allowCustomValue: $data["allowCustomValue"] ?? null,
             options: array_filter(array_map((function($input) {
     	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} */
     $val = $input;
@@ -231,6 +239,9 @@ class VariableModel implements \JsonSerializable
         }
         if (isset($this->multi)) {
             $data["multi"] = $this->multi;
+        }
+        if (isset($this->allowCustomValue)) {
+            $data["allowCustomValue"] = $this->allowCustomValue;
         }
         if (isset($this->options)) {
             $data["options"] = $this->options;

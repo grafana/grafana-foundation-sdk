@@ -18,6 +18,14 @@ Builds the object.
 func (builder *TextBoxVariableBuilder) Build() (VariableModel, error)
 ```
 
+### <span class="badge object-method"></span> AllowCustomValue
+
+Allow custom values to be entered in the variable
+
+```go
+func (builder *TextBoxVariableBuilder) AllowCustomValue(allowCustomValue bool) *TextBoxVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Current
 
 Shows current selected variable text/value on the dashboard

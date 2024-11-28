@@ -11,6 +11,7 @@ export class ConstantVariableBuilder implements cog.Builder<dashboard.VariableMo
         this.internal = dashboard.defaultVariableModel();
         this.internal.name = name;
         this.internal.type = dashboard.VariableType.Constant;
+        this.internal.hide = dashboard.VariableHide.HideVariable;
     }
 
     /**
@@ -41,6 +42,12 @@ export class ConstantVariableBuilder implements cog.Builder<dashboard.VariableMo
     // Query used to fetch values for a variable
     value(query: string | Record<string, any>): this {
         this.internal.query = query;
+        return this;
+    }
+
+    // Allow custom values to be entered in the variable
+    allowCustomValue(allowCustomValue: boolean): this {
+        this.internal.allowCustomValue = allowCustomValue;
         return this;
     }
 }

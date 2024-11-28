@@ -15,6 +15,7 @@ class ConstantVariableBuilder implements \Grafana\Foundation\Cog\Builder
     	$this->internal = new \Grafana\Foundation\Dashboard\VariableModel();
     $this->internal->name = $name;
     $this->internal->type = \Grafana\Foundation\Dashboard\VariableType::constant();
+    $this->internal->hide = \Grafana\Foundation\Dashboard\VariableHide::hideVariable();
     }
 
     /**
@@ -60,6 +61,15 @@ class ConstantVariableBuilder implements \Grafana\Foundation\Cog\Builder
     public function value( $query): static
     {
         $this->internal->query = $query;
+    
+        return $this;
+    }
+    /**
+     * Allow custom values to be entered in the variable
+     */
+    public function allowCustomValue(bool $allowCustomValue): static
+    {
+        $this->internal->allowCustomValue = $allowCustomValue;
     
         return $this;
     }

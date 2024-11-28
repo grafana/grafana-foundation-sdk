@@ -423,6 +423,8 @@ class VariableModel:
     current: typing.Optional['VariableOption']
     # Whether multiple values can be selected or not from variable value list
     multi: typing.Optional[bool]
+    # Allow custom values to be entered in the variable
+    allow_custom_value: typing.Optional[bool]
     # Options that can be selected for a variable.
     options: typing.Optional[list['VariableOption']]
     # Options to config when to refresh a variable
@@ -444,7 +446,7 @@ class VariableModel:
     # For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
     auto_count: typing.Optional[int]
 
-    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional['DataSourceRef'] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, include_all: typing.Optional[bool] = False, all_value: typing.Optional[str] = None, regex: typing.Optional[str] = None, auto: typing.Optional[bool] = False, auto_min: typing.Optional[str] = "10s", auto_count: typing.Optional[int] = 30):
+    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional['DataSourceRef'] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, allow_custom_value: typing.Optional[bool] = True, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, include_all: typing.Optional[bool] = False, all_value: typing.Optional[str] = None, regex: typing.Optional[str] = None, auto: typing.Optional[bool] = False, auto_min: typing.Optional[str] = "10s", auto_count: typing.Optional[int] = 30):
         self.type_val = type_val if type_val is not None else VariableType.QUERY
         self.name = name
         self.label = label
@@ -455,6 +457,7 @@ class VariableModel:
         self.datasource = datasource
         self.current = current
         self.multi = multi
+        self.allow_custom_value = allow_custom_value
         self.options = options
         self.refresh = refresh
         self.sort = sort
@@ -486,6 +489,8 @@ class VariableModel:
             payload["current"] = self.current
         if self.multi is not None:
             payload["multi"] = self.multi
+        if self.allow_custom_value is not None:
+            payload["allowCustomValue"] = self.allow_custom_value
         if self.options is not None:
             payload["options"] = self.options
         if self.refresh is not None:
@@ -530,6 +535,8 @@ class VariableModel:
             args["current"] = VariableOption.from_json(data["current"])
         if "multi" in data:
             args["multi"] = data["multi"]
+        if "allowCustomValue" in data:
+            args["allow_custom_value"] = data["allowCustomValue"]
         if "options" in data:
             args["options"] = data["options"]
         if "refresh" in data:

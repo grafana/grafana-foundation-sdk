@@ -83,6 +83,13 @@ func (builder *CustomVariableBuilder) Multi(multi bool) *CustomVariableBuilder {
 	return builder
 }
 
+// Allow custom values to be entered in the variable
+func (builder *CustomVariableBuilder) AllowCustomValue(allowCustomValue bool) *CustomVariableBuilder {
+	builder.internal.AllowCustomValue = &allowCustomValue
+
+	return builder
+}
+
 // Options that can be selected for a variable.
 func (builder *CustomVariableBuilder) Options(options []VariableOption) *CustomVariableBuilder {
 	builder.internal.Options = options

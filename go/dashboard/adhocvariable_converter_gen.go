@@ -75,6 +75,18 @@ func AdHocVariableConverter(input VariableModel) string {
 		buffer.Reset()
 
 	}
+	if input.AllowCustomValue != nil && *input.AllowCustomValue != true {
+
+		buffer.WriteString(`AllowCustomValue(`)
+		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AllowCustomValue))
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }

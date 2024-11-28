@@ -78,10 +78,10 @@ type Dashboard struct {
 // NewDashboard creates a new Dashboard object.
 func NewDashboard() *Dashboard {
 	return &Dashboard{
-		Timezone:             cog.ToPtr[string]("browser"),
-		Editable:             cog.ToPtr[bool](true),
-		GraphTooltip:         cog.ToPtr(DashboardCursorSyncOff),
-		FiscalYearStartMonth: cog.ToPtr[uint8](0),
+		Timezone:             (func(input string) *string { return &input })("browser"),
+		Editable:             (func(input bool) *bool { return &input })(true),
+		GraphTooltip:         (func(input DashboardCursorSync) *DashboardCursorSync { return &input })(DashboardCursorSyncOff),
+		FiscalYearStartMonth: (func(input uint8) *uint8 { return &input })(0),
 		SchemaVersion:        39,
 		Templating:           *NewDashboardDashboardTemplating(),
 		Annotations:          *NewAnnotationContainer(),
@@ -821,7 +821,7 @@ type AnnotationPanelFilter struct {
 // NewAnnotationPanelFilter creates a new AnnotationPanelFilter object.
 func NewAnnotationPanelFilter() *AnnotationPanelFilter {
 	return &AnnotationPanelFilter{
-		Exclude: cog.ToPtr[bool](false),
+		Exclude: (func(input bool) *bool { return &input })(false),
 	}
 }
 
@@ -1029,8 +1029,8 @@ func NewAnnotationQuery() *AnnotationQuery {
 	return &AnnotationQuery{
 		Datasource: *NewDataSourceRef(),
 		Enable:     true,
-		Hide:       cog.ToPtr[bool](false),
-		BuiltIn:    cog.ToPtr[float64](0),
+		Hide:       (func(input bool) *bool { return &input })(false),
+		BuiltIn:    (func(input float64) *float64 { return &input })(0),
 	}
 }
 
@@ -1303,6 +1303,8 @@ type VariableModel struct {
 	Current *VariableOption `json:"current,omitempty"`
 	// Whether multiple values can be selected or not from variable value list
 	Multi *bool `json:"multi,omitempty"`
+	// Allow custom values to be entered in the variable
+	AllowCustomValue *bool `json:"allowCustomValue,omitempty"`
 	// Options that can be selected for a variable.
 	Options []VariableOption `json:"options,omitempty"`
 	// Options to config when to refresh a variable
@@ -1328,12 +1330,13 @@ type VariableModel struct {
 // NewVariableModel creates a new VariableModel object.
 func NewVariableModel() *VariableModel {
 	return &VariableModel{
-		SkipUrlSync: cog.ToPtr[bool](false),
-		Multi:       cog.ToPtr[bool](false),
-		IncludeAll:  cog.ToPtr[bool](false),
-		Auto:        cog.ToPtr[bool](false),
-		AutoMin:     cog.ToPtr[string]("10s"),
-		AutoCount:   cog.ToPtr[int32](30),
+		SkipUrlSync:      (func(input bool) *bool { return &input })(false),
+		Multi:            (func(input bool) *bool { return &input })(false),
+		AllowCustomValue: (func(input bool) *bool { return &input })(true),
+		IncludeAll:       (func(input bool) *bool { return &input })(false),
+		Auto:             (func(input bool) *bool { return &input })(false),
+		AutoMin:          (func(input string) *string { return &input })("10s"),
+		AutoCount:        (func(input int32) *int32 { return &input })(30),
 	}
 }
 
@@ -1469,6 +1472,17 @@ func (resource *VariableModel) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "multi")
+
+	}
+	// Field "allowCustomValue"
+	if fields["allowCustomValue"] != nil {
+		if string(fields["allowCustomValue"]) != "null" {
+			if err := json.Unmarshal(fields["allowCustomValue"], &resource.AllowCustomValue); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("allowCustomValue", err)...)
+			}
+
+		}
+		delete(fields, "allowCustomValue")
 
 	}
 	// Field "options"
@@ -1671,6 +1685,15 @@ func (resource VariableModel) Equals(other VariableModel) bool {
 
 	if resource.Multi != nil {
 		if *resource.Multi != *other.Multi {
+			return false
+		}
+	}
+	if resource.AllowCustomValue == nil && other.AllowCustomValue != nil || resource.AllowCustomValue != nil && other.AllowCustomValue == nil {
+		return false
+	}
+
+	if resource.AllowCustomValue != nil {
+		if *resource.AllowCustomValue != *other.AllowCustomValue {
 			return false
 		}
 	}
@@ -3668,7 +3691,7 @@ type TimePickerConfig struct {
 // NewTimePickerConfig creates a new TimePickerConfig object.
 func NewTimePickerConfig() *TimePickerConfig {
 	return &TimePickerConfig{
-		Hidden:           cog.ToPtr[bool](false),
+		Hidden:           (func(input bool) *bool { return &input })(false),
 		RefreshIntervals: []string{"5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"},
 		TimeOptions:      []string{"5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"},
 	}
@@ -4189,7 +4212,7 @@ type Panel struct {
 // NewPanel creates a new Panel object.
 func NewPanel() *Panel {
 	return &Panel{
-		Transparent: cog.ToPtr[bool](false),
+		Transparent: (func(input bool) *bool { return &input })(false),
 	}
 }
 

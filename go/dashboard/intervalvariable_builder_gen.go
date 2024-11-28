@@ -76,6 +76,13 @@ func (builder *IntervalVariableBuilder) Current(current VariableOption) *Interva
 	return builder
 }
 
+// Allow custom values to be entered in the variable
+func (builder *IntervalVariableBuilder) AllowCustomValue(allowCustomValue bool) *IntervalVariableBuilder {
+	builder.internal.AllowCustomValue = &allowCustomValue
+
+	return builder
+}
+
 // Options that can be selected for a variable.
 func (builder *IntervalVariableBuilder) Options(options []VariableOption) *IntervalVariableBuilder {
 	builder.internal.Options = options

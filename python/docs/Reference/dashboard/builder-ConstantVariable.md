@@ -18,6 +18,14 @@ Builds the object.
 def build() -> dashboard.VariableModel
 ```
 
+### <span class="badge object-method"></span> allow_custom_value
+
+Allow custom values to be entered in the variable
+
+```python
+def allow_custom_value(allow_custom_value: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> description
 
 Description of variable. It can be defined but `null`.

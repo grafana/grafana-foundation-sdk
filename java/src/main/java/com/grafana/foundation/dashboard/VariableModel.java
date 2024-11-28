@@ -50,6 +50,10 @@ public class VariableModel {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("multi")
     public Boolean multi;
+    // Allow custom values to be entered in the variable
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("allowCustomValue")
+    public Boolean allowCustomValue;
     // Options that can be selected for a variable.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("options")
@@ -143,6 +147,11 @@ public class VariableModel {
         return this;
     }
     
+    public QueryVariableBuilder allowCustomValue(Boolean allowCustomValue) {
+    this.internal.allowCustomValue = allowCustomValue;
+        return this;
+    }
+    
     public QueryVariableBuilder options(List<VariableOption> options) {
     this.internal.options = options;
         return this;
@@ -209,6 +218,11 @@ public class VariableModel {
     this.internal.datasource = datasource;
         return this;
     }
+    
+    public AdHocVariableBuilder allowCustomValue(Boolean allowCustomValue) {
+    this.internal.allowCustomValue = allowCustomValue;
+        return this;
+    }
     public VariableModel build() {
             return this.internal;
         }
@@ -221,6 +235,7 @@ public class VariableModel {
             this.internal = new VariableModel();
     this.internal.name = name;
     this.internal.type = VariableType.CONSTANT;
+    this.internal.hide = VariableHide.HIDE_VARIABLE;
         }
     public ConstantVariableBuilder name(String name) {
     this.internal.name = name;
@@ -239,6 +254,11 @@ public class VariableModel {
     
     public ConstantVariableBuilder value(StringOrMap query) {
     this.internal.query = query;
+        return this;
+    }
+    
+    public ConstantVariableBuilder allowCustomValue(Boolean allowCustomValue) {
+    this.internal.allowCustomValue = allowCustomValue;
         return this;
     }
     public VariableModel build() {
@@ -289,6 +309,11 @@ public class VariableModel {
     
     public DatasourceVariableBuilder multi(Boolean multi) {
     this.internal.multi = multi;
+        return this;
+    }
+    
+    public DatasourceVariableBuilder allowCustomValue(Boolean allowCustomValue) {
+    this.internal.allowCustomValue = allowCustomValue;
         return this;
     }
     
@@ -346,6 +371,11 @@ public class VariableModel {
     
     public IntervalVariableBuilder current(VariableOption current) {
     this.internal.current = current;
+        return this;
+    }
+    
+    public IntervalVariableBuilder allowCustomValue(Boolean allowCustomValue) {
+    this.internal.allowCustomValue = allowCustomValue;
         return this;
     }
     
@@ -414,6 +444,11 @@ public class VariableModel {
         return this;
     }
     
+    public TextBoxVariableBuilder allowCustomValue(Boolean allowCustomValue) {
+    this.internal.allowCustomValue = allowCustomValue;
+        return this;
+    }
+    
     public TextBoxVariableBuilder options(List<VariableOption> options) {
     this.internal.options = options;
         return this;
@@ -463,6 +498,11 @@ public class VariableModel {
     
     public CustomVariableBuilder multi(Boolean multi) {
     this.internal.multi = multi;
+        return this;
+    }
+    
+    public CustomVariableBuilder allowCustomValue(Boolean allowCustomValue) {
+    this.internal.allowCustomValue = allowCustomValue;
         return this;
     }
     

@@ -75,6 +75,19 @@ final class AdHocVariableConverter
     
     
     }
+            if ($input->allowCustomValue !== null && $input->allowCustomValue !== true) {
+    
+        
+    $buffer = 'allowCustomValue(';
+        $arg0 =\var_export($input->allowCustomValue, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

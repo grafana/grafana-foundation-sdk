@@ -29,6 +29,8 @@ export interface VariableModel {
 	current?: dashboard.VariableOption;
 	// Whether multiple values can be selected or not from variable value list
 	multi?: boolean;
+	// Allow custom values to be entered in the variable
+	allowCustomValue?: boolean;
 	// Options that can be selected for a variable.
 	options?: dashboard.VariableOption[];
 	// Options to config when to refresh a variable

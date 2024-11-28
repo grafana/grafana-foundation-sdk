@@ -18,6 +18,14 @@ Builds the object.
 func (builder *IntervalVariableBuilder) Build() (VariableModel, error)
 ```
 
+### <span class="badge object-method"></span> AllowCustomValue
+
+Allow custom values to be entered in the variable
+
+```go
+func (builder *IntervalVariableBuilder) AllowCustomValue(allowCustomValue bool) *IntervalVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Auto
 
 Dynamically calculates interval by dividing time range by the count specified.

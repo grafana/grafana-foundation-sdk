@@ -144,8 +144,8 @@ type FieldConfig struct {
 // NewFieldConfig creates a new FieldConfig object.
 func NewFieldConfig() *FieldConfig {
 	return &FieldConfig{
-		Show:        cog.ToPtr(XYShowModePoints),
-		FillOpacity: cog.ToPtr[uint32](50),
+		Show:        (func(input XYShowMode) *XYShowMode { return &input })(XYShowModePoints),
+		FillOpacity: (func(input uint32) *uint32 { return &input })(50),
 	}
 }
 
