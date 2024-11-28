@@ -34,12 +34,12 @@ func NewOptions() *Options {
 	return &Options{
 		FrameIndex:    0,
 		ShowHeader:    true,
-		ShowTypeIcons: cog.ToPtr[bool](false),
+		ShowTypeIcons: (func(input bool) *bool { return &input })(false),
 		Footer: &common.TableFooterOptions{
 			Show:      false,
-			CountRows: cog.ToPtr[bool](false),
+			CountRows: (func(input bool) *bool { return &input })(false),
 		},
-		CellHeight: cog.ToPtr(common.TableCellHeightSm),
+		CellHeight: (func(input common.TableCellHeight) *common.TableCellHeight { return &input })(common.TableCellHeightSm),
 	}
 }
 
