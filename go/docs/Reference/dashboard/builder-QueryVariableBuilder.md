@@ -26,6 +26,14 @@ Custom all value
 func (builder *QueryVariableBuilder) AllValue(allValue string) *QueryVariableBuilder
 ```
 
+### <span class="badge object-method"></span> AllowCustomValue
+
+Allow custom values to be entered in the variable
+
+```go
+func (builder *QueryVariableBuilder) AllowCustomValue(allowCustomValue bool) *QueryVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Current
 
 Shows current selected variable text/value on the dashboard

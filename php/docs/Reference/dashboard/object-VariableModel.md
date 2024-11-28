@@ -62,6 +62,11 @@ class VariableModel implements \JsonSerializable
     public ?bool $multi;
 
     /**
+     * Allow custom values to be entered in the variable
+     */
+    public ?bool $allowCustomValue;
+
+    /**
      * Options that can be selected for a variable.
      * @var array<\Grafana\Foundation\Dashboard\VariableOption>|null
      */

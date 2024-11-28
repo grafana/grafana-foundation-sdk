@@ -33,6 +33,8 @@ class VariableModel:
     current: typing.Optional[dashboard.VariableOption]
     # Whether multiple values can be selected or not from variable value list
     multi: typing.Optional[bool]
+    # Allow custom values to be entered in the variable
+    allow_custom_value: typing.Optional[bool]
     # Options that can be selected for a variable.
     options: typing.Optional[list[dashboard.VariableOption]]
     # Options to config when to refresh a variable

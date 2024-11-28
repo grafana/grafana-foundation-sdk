@@ -22,6 +22,8 @@ func NewConstantVariableBuilder(name string) *ConstantVariableBuilder {
 	}
 	builder.internal.Name = name
 	builder.internal.Type = "constant"
+	valHide := VariableHideHideVariable
+	builder.internal.Hide = &valHide
 
 	return builder
 }
@@ -58,6 +60,13 @@ func (builder *ConstantVariableBuilder) Description(description string) *Constan
 // Query used to fetch values for a variable
 func (builder *ConstantVariableBuilder) Value(query StringOrMap) *ConstantVariableBuilder {
 	builder.internal.Query = &query
+
+	return builder
+}
+
+// Allow custom values to be entered in the variable
+func (builder *ConstantVariableBuilder) AllowCustomValue(allowCustomValue bool) *ConstantVariableBuilder {
+	builder.internal.AllowCustomValue = &allowCustomValue
 
 	return builder
 }

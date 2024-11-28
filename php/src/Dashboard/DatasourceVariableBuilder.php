@@ -91,6 +91,15 @@ class DatasourceVariableBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * Allow custom values to be entered in the variable
+     */
+    public function allowCustomValue(bool $allowCustomValue): static
+    {
+        $this->internal->allowCustomValue = $allowCustomValue;
+    
+        return $this;
+    }
+    /**
      * Whether all value option is available or not
      */
     public function includeAll(bool $includeAll): static

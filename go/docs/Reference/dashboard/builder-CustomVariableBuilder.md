@@ -26,6 +26,14 @@ Custom all value
 func (builder *CustomVariableBuilder) AllValue(allValue string) *CustomVariableBuilder
 ```
 
+### <span class="badge object-method"></span> AllowCustomValue
+
+Allow custom values to be entered in the variable
+
+```go
+func (builder *CustomVariableBuilder) AllowCustomValue(allowCustomValue bool) *CustomVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Current
 
 Shows current selected variable text/value on the dashboard

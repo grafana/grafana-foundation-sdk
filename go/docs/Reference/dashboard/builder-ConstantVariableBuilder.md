@@ -18,6 +18,14 @@ Builds the object.
 func (builder *ConstantVariableBuilder) Build() (VariableModel, error)
 ```
 
+### <span class="badge object-method"></span> AllowCustomValue
+
+Allow custom values to be entered in the variable
+
+```go
+func (builder *ConstantVariableBuilder) AllowCustomValue(allowCustomValue bool) *ConstantVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Description
 
 Description of variable. It can be defined but `null`.

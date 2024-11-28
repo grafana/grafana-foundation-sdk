@@ -26,6 +26,14 @@ Custom all value
 allValue(allValue: string)
 ```
 
+### <span class="badge object-method"></span> allowCustomValue
+
+Allow custom values to be entered in the variable
+
+```typescript
+allowCustomValue(allowCustomValue: boolean)
+```
+
 ### <span class="badge object-method"></span> current
 
 Shows current selected variable text/value on the dashboard

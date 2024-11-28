@@ -18,6 +18,14 @@ Builds the object.
 build()
 ```
 
+### <span class="badge object-method"></span> allowCustomValue
+
+Allow custom values to be entered in the variable
+
+```php
+allowCustomValue(bool $allowCustomValue)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 Data source used to fetch values for a variable. It can be defined but `null`.

@@ -18,6 +18,14 @@ Builds the object.
 build()
 ```
 
+### <span class="badge object-method"></span> allowCustomValue
+
+Allow custom values to be entered in the variable
+
+```typescript
+allowCustomValue(allowCustomValue: boolean)
+```
+
 ### <span class="badge object-method"></span> auto
 
 Dynamically calculates interval by dividing time range by the count specified.

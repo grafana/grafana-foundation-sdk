@@ -56,6 +56,12 @@ export class TextBoxVariableBuilder implements cog.Builder<dashboard.VariableMod
         return this;
     }
 
+    // Allow custom values to be entered in the variable
+    allowCustomValue(allowCustomValue: boolean): this {
+        this.internal.allowCustomValue = allowCustomValue;
+        return this;
+    }
+
     // Options that can be selected for a variable.
     options(options: dashboard.VariableOption[]): this {
         this.internal.options = options;

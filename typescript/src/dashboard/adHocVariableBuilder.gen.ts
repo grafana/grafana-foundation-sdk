@@ -49,4 +49,10 @@ export class AdHocVariableBuilder implements cog.Builder<dashboard.VariableModel
         this.internal.datasource = datasource;
         return this;
     }
+
+    // Allow custom values to be entered in the variable
+    allowCustomValue(allowCustomValue: boolean): this {
+        this.internal.allowCustomValue = allowCustomValue;
+        return this;
+    }
 }

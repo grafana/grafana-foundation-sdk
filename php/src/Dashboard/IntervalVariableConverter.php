@@ -104,6 +104,19 @@ final class IntervalVariableConverter
     
     
     }
+            if ($input->allowCustomValue !== null && $input->allowCustomValue !== true) {
+    
+        
+    $buffer = 'allowCustomValue(';
+        $arg0 =\var_export($input->allowCustomValue, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->options !== null && count($input->options) >= 1) {
     
         

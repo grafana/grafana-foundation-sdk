@@ -185,6 +185,8 @@ export interface VariableModel {
 	current?: VariableOption;
 	// Whether multiple values can be selected or not from variable value list
 	multi?: boolean;
+	// Allow custom values to be entered in the variable
+	allowCustomValue?: boolean;
 	// Options that can be selected for a variable.
 	options?: VariableOption[];
 	// Options to config when to refresh a variable
@@ -212,6 +214,7 @@ export const defaultVariableModel = (): VariableModel => ({
 	name: "",
 	skipUrlSync: false,
 	multi: false,
+	allowCustomValue: true,
 	includeAll: false,
 	auto: false,
 	auto_min: "10s",

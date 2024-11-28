@@ -18,6 +18,14 @@ Builds the object.
 func (builder *AdHocVariableBuilder) Build() (VariableModel, error)
 ```
 
+### <span class="badge object-method"></span> AllowCustomValue
+
+Allow custom values to be entered in the variable
+
+```go
+func (builder *AdHocVariableBuilder) AllowCustomValue(allowCustomValue bool) *AdHocVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Datasource
 
 Data source used to fetch values for a variable. It can be defined but `null`.

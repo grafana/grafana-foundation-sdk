@@ -346,6 +346,11 @@
             "description": "Whether multiple values can be selected or not from variable value list",
             "default": false
           },
+          "allowCustomValue": {
+            "type": "boolean",
+            "description": "Allow custom values to be entered in the variable",
+            "default": true
+          },
           "options": {
             "type": "array",
             "items": {

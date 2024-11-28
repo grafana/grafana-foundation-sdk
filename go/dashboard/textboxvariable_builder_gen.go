@@ -76,6 +76,13 @@ func (builder *TextBoxVariableBuilder) Current(current VariableOption) *TextBoxV
 	return builder
 }
 
+// Allow custom values to be entered in the variable
+func (builder *TextBoxVariableBuilder) AllowCustomValue(allowCustomValue bool) *TextBoxVariableBuilder {
+	builder.internal.AllowCustomValue = &allowCustomValue
+
+	return builder
+}
+
 // Options that can be selected for a variable.
 func (builder *TextBoxVariableBuilder) Options(options []VariableOption) *TextBoxVariableBuilder {
 	builder.internal.Options = options

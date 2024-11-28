@@ -29,6 +29,8 @@ type VariableModel struct {
     Current *dashboard.VariableOption `json:"current,omitempty"`
     // Whether multiple values can be selected or not from variable value list
     Multi *bool `json:"multi,omitempty"`
+    // Allow custom values to be entered in the variable
+    AllowCustomValue *bool `json:"allowCustomValue,omitempty"`
     // Options that can be selected for a variable.
     Options []dashboard.VariableOption `json:"options,omitempty"`
     // Options to config when to refresh a variable

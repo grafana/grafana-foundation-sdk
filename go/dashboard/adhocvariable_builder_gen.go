@@ -68,3 +68,10 @@ func (builder *AdHocVariableBuilder) Datasource(datasource DataSourceRef) *AdHoc
 
 	return builder
 }
+
+// Allow custom values to be entered in the variable
+func (builder *AdHocVariableBuilder) AllowCustomValue(allowCustomValue bool) *AdHocVariableBuilder {
+	builder.internal.AllowCustomValue = &allowCustomValue
+
+	return builder
+}

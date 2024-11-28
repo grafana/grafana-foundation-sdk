@@ -62,6 +62,12 @@ export class DatasourceVariableBuilder implements cog.Builder<dashboard.Variable
         return this;
     }
 
+    // Allow custom values to be entered in the variable
+    allowCustomValue(allowCustomValue: boolean): this {
+        this.internal.allowCustomValue = allowCustomValue;
+        return this;
+    }
+
     // Whether all value option is available or not
     includeAll(includeAll: boolean): this {
         this.internal.includeAll = includeAll;

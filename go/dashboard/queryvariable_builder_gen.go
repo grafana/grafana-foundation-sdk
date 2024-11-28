@@ -90,6 +90,13 @@ func (builder *QueryVariableBuilder) Multi(multi bool) *QueryVariableBuilder {
 	return builder
 }
 
+// Allow custom values to be entered in the variable
+func (builder *QueryVariableBuilder) AllowCustomValue(allowCustomValue bool) *QueryVariableBuilder {
+	builder.internal.AllowCustomValue = &allowCustomValue
+
+	return builder
+}
+
 // Options that can be selected for a variable.
 func (builder *QueryVariableBuilder) Options(options []VariableOption) *QueryVariableBuilder {
 	builder.internal.Options = options
