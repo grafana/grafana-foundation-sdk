@@ -34,11 +34,11 @@ func NewOptions() *Options {
 	return &Options{
 		ShowValue:   common.VisibilityModeAuto,
 		RowHeight:   0.9,
-		MergeValues: cog.ToPtr[bool](true),
-		AlignValue:  cog.ToPtr(common.TimelineValueAlignmentLeft),
+		MergeValues: (func(input bool) *bool { return &input })(true),
+		AlignValue:  (func(input common.TimelineValueAlignment) *common.TimelineValueAlignment { return &input })(common.TimelineValueAlignmentLeft),
 		Legend:      *common.NewVizLegendOptions(),
 		Tooltip:     *common.NewVizTooltipOptions(),
-		PerPage:     cog.ToPtr[float64](20),
+		PerPage:     (func(input float64) *float64 { return &input })(20),
 	}
 }
 
@@ -264,8 +264,8 @@ type FieldConfig struct {
 // NewFieldConfig creates a new FieldConfig object.
 func NewFieldConfig() *FieldConfig {
 	return &FieldConfig{
-		LineWidth:   cog.ToPtr[uint32](0),
-		FillOpacity: cog.ToPtr[uint32](70),
+		LineWidth:   (func(input uint32) *uint32 { return &input })(0),
+		FillOpacity: (func(input uint32) *uint32 { return &input })(70),
 	}
 }
 
