@@ -20,7 +20,7 @@ type Options struct {
 // NewOptions creates a new Options object.
 func NewOptions() *Options {
 	return &Options{
-		ShowImage: cog.ToPtr[bool](true),
+		ShowImage: (func(input bool) *bool { return &input })(true),
 	}
 }
 
