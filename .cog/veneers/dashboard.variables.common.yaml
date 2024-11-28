@@ -38,6 +38,7 @@ builders:
       by_name: ConstantVariable
       set:
         - { property: type, value: constant }
+        - { property: hide, value: 2 } # hide label + value
 
   - duplicate:
       by_name: VariableModel
