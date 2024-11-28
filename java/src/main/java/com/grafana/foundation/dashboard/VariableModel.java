@@ -192,6 +192,7 @@ public class VariableModel {
             this.internal = new VariableModel();
     this.internal.name = name;
     this.internal.type = VariableType.CONSTANT;
+    this.internal.hide = VariableHide.HIDE_VARIABLE;
         }
     public ConstantVariableBuilder name(String name) {
     this.internal.name = name;

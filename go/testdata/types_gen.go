@@ -1027,7 +1027,7 @@ func (resource Dataquery) DataqueryType() string {
 // NewDataquery creates a new Dataquery object.
 func NewDataquery() *Dataquery {
 	return &Dataquery{
-		ScenarioId: cog.ToPtr(TestDataQueryTypeRandomWalk),
+		ScenarioId: (func(input TestDataQueryType) *TestDataQueryType { return &input })(TestDataQueryTypeRandomWalk),
 	}
 }
 

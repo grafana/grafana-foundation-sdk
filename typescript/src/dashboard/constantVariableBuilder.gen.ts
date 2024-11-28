@@ -11,6 +11,7 @@ export class ConstantVariableBuilder implements cog.Builder<dashboard.VariableMo
         this.internal = dashboard.defaultVariableModel();
         this.internal.name = name;
         this.internal.type = dashboard.VariableType.Constant;
+        this.internal.hide = dashboard.VariableHide.HideVariable;
     }
 
     /**

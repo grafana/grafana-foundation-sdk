@@ -22,6 +22,8 @@ func NewConstantVariableBuilder(name string) *ConstantVariableBuilder {
 	}
 	builder.internal.Name = name
 	builder.internal.Type = "constant"
+	valHide := VariableHideHideVariable
+	builder.internal.Hide = &valHide
 
 	return builder
 }
