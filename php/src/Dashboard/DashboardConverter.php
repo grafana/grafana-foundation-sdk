@@ -297,7 +297,7 @@ final class DashboardConverter
             $tmplistarg1 = \Grafana\Foundation\Dashboard\AdHocVariableConverter::convert($arg1);
         }
         
-        if ($arg1->type === \Grafana\Foundation\Dashboard\VariableType::fromValue("constant")) {
+        if ($arg1->type === \Grafana\Foundation\Dashboard\VariableType::fromValue("constant") && $arg1->hide !== null && $arg1->hide === \Grafana\Foundation\Dashboard\VariableHide::fromValue(2)) {
             $tmplistarg1 = \Grafana\Foundation\Dashboard\ConstantVariableConverter::convert($arg1);
         }
         

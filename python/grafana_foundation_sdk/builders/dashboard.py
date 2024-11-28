@@ -2131,7 +2131,8 @@ class ConstantVariable(cogbuilder.Builder[dashboard.VariableModel]):
     def __init__(self, name: str):
         self._internal = dashboard.VariableModel()        
         self._internal.name = name        
-        self._internal.type_val = dashboard.VariableType.CONSTANT
+        self._internal.type_val = dashboard.VariableType.CONSTANT        
+        self._internal.hide = dashboard.VariableHide.HIDE_VARIABLE
 
     def build(self) -> dashboard.VariableModel:
         """
