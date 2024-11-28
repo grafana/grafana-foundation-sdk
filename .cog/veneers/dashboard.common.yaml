@@ -69,14 +69,21 @@ builders:
   # Panels composability
   - compose_dashboard_panel:
       panel_builder_name: dashboard.Panel
+      plugin_discriminator_field: type
+      composition_map:
+        Options: options
+        FieldConfig: fieldConfig.defaults.custom
       exclude_panel_options: &UnwantedPanelOptions [
-        "defaults",      # merged with another builder
-        "fieldConfig",   # merged with another builder
-        "options",       # comes from a panel plugin
-        "custom",        # comes from a panel plugin
-        "pluginVersion", # TODO: check if it's relevant or not
-        "repeatPanelId", # TODO: check if it's relevant or not
-        "tags",          # TODO: check if it's relevant or not
+        # merged with another builder
+        "defaults",
+        "fieldConfig",
+        # not needed anymore since we're defining these the composition map
+        "options",
+        "custom",
+        # TODO: check if it's relevant or not
+        "pluginVersion",
+        "repeatPanelId",
+        "tags",
       ]
 
   # remove builders that were previously merged into something else
