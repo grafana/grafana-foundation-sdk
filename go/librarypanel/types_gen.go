@@ -625,7 +625,7 @@ type PanelModel struct {
 // NewPanelModel creates a new PanelModel object.
 func NewPanelModel() *PanelModel {
 	return &PanelModel{
-		Transparent: cog.ToPtr[bool](false),
+		Transparent: (func(input bool) *bool { return &input })(false),
 	}
 }
 
