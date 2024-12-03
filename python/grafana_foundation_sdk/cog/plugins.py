@@ -2,9 +2,11 @@
 
 from ..models import alertgroups
 from ..models import annotationslist
+from ..models import athena
 from ..models import azuremonitor
 from ..models import barchart
 from ..models import bargauge
+from ..models import bigquery
 from ..models import candlestick
 from ..models import canvas
 from ..models import cloudwatch
@@ -68,7 +70,9 @@ def register_default_plugins():
     cogruntime.register_panelcfg_variant(xychart.variant_config())
 
     # Dataquery variants
+    cogruntime.register_dataquery_variant(athena.variant_config())
     cogruntime.register_dataquery_variant(azuremonitor.variant_config())
+    cogruntime.register_dataquery_variant(bigquery.variant_config())
     cogruntime.register_dataquery_variant(cloudwatch.variant_config())
     cogruntime.register_dataquery_variant(elasticsearch.variant_config())
     cogruntime.register_dataquery_variant(expr.variant_config())
