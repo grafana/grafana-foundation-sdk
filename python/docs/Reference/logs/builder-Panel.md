@@ -92,6 +92,12 @@ def display_name(display_name: str) -> typing.Self
 def displayed_fields(displayed_fields: list[str]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> enable_infinite_scrolling
+
+```python
+def enable_infinite_scrolling(enable_infinite_scrolling: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> enable_log_details
 
 ```python
@@ -264,6 +270,12 @@ def on_click_hide_field(on_click_hide_field: object) -> typing.Self
 
 ```python
 def on_click_show_field(on_click_show_field: object) -> typing.Self
+```
+
+### <span class="badge object-method"></span> on_new_logs_received
+
+```python
+def on_new_logs_received(on_new_logs_received: object) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> overrides

@@ -26,6 +26,8 @@ class Options implements \JsonSerializable
 
     public \Grafana\Foundation\Common\LogsDedupStrategy $dedupStrategy;
 
+    public ?bool $enableInfiniteScrolling;
+
     /**
      * TODO: figure out how to define callbacks
      * @var mixed|null
@@ -71,6 +73,11 @@ class Options implements \JsonSerializable
      * @var mixed|null
      */
     public $logRowMenuIconsAfter;
+
+    /**
+     * @var mixed|null
+     */
+    public $onNewLogsReceived;
 
     /**
      * @var array<string>|null

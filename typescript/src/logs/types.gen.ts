@@ -13,6 +13,7 @@ export interface Options {
 	enableLogDetails: boolean;
 	sortOrder: common.LogsSortOrder;
 	dedupStrategy: common.LogsDedupStrategy;
+	enableInfiniteScrolling?: boolean;
 	// TODO: figure out how to define callbacks
 	onClickFilterLabel?: any;
 	onClickFilterOutLabel?: any;
@@ -23,6 +24,7 @@ export interface Options {
 	onClickHideField?: any;
 	logRowMenuIconsBefore?: any;
 	logRowMenuIconsAfter?: any;
+	onNewLogsReceived?: any;
 	displayedFields?: string[];
 }
 

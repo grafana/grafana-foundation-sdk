@@ -52,6 +52,9 @@
           "dedupStrategy": {
             "$ref": "#/components/schemas/LogsDedupStrategy"
           },
+          "enableInfiniteScrolling": {
+            "type": "boolean"
+          },
           "onClickFilterLabel": {
             "type": "object",
             "additionalProperties": {},
@@ -86,6 +89,10 @@
             "additionalProperties": {}
           },
           "logRowMenuIconsAfter": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "onNewLogsReceived": {
             "type": "object",
             "additionalProperties": {}
           },

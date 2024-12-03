@@ -15,15 +15,16 @@ import (
 )
 
 type Options struct {
-	ShowLabels           bool                     `json:"showLabels"`
-	ShowCommonLabels     bool                     `json:"showCommonLabels"`
-	ShowTime             bool                     `json:"showTime"`
-	ShowLogContextToggle bool                     `json:"showLogContextToggle"`
-	WrapLogMessage       bool                     `json:"wrapLogMessage"`
-	PrettifyLogMessage   bool                     `json:"prettifyLogMessage"`
-	EnableLogDetails     bool                     `json:"enableLogDetails"`
-	SortOrder            common.LogsSortOrder     `json:"sortOrder"`
-	DedupStrategy        common.LogsDedupStrategy `json:"dedupStrategy"`
+	ShowLabels              bool                     `json:"showLabels"`
+	ShowCommonLabels        bool                     `json:"showCommonLabels"`
+	ShowTime                bool                     `json:"showTime"`
+	ShowLogContextToggle    bool                     `json:"showLogContextToggle"`
+	WrapLogMessage          bool                     `json:"wrapLogMessage"`
+	PrettifyLogMessage      bool                     `json:"prettifyLogMessage"`
+	EnableLogDetails        bool                     `json:"enableLogDetails"`
+	SortOrder               common.LogsSortOrder     `json:"sortOrder"`
+	DedupStrategy           common.LogsDedupStrategy `json:"dedupStrategy"`
+	EnableInfiniteScrolling *bool                    `json:"enableInfiniteScrolling,omitempty"`
 	// TODO: figure out how to define callbacks
 	OnClickFilterLabel     any      `json:"onClickFilterLabel,omitempty"`
 	OnClickFilterOutLabel  any      `json:"onClickFilterOutLabel,omitempty"`
@@ -34,6 +35,7 @@ type Options struct {
 	OnClickHideField       any      `json:"onClickHideField,omitempty"`
 	LogRowMenuIconsBefore  any      `json:"logRowMenuIconsBefore,omitempty"`
 	LogRowMenuIconsAfter   any      `json:"logRowMenuIconsAfter,omitempty"`
+	OnNewLogsReceived      any      `json:"onNewLogsReceived,omitempty"`
 	DisplayedFields        []string `json:"displayedFields,omitempty"`
 }
 
@@ -180,6 +182,17 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("dedupStrategy", errors.New("required field is missing from input"))...)
 	}
+	// Field "enableInfiniteScrolling"
+	if fields["enableInfiniteScrolling"] != nil {
+		if string(fields["enableInfiniteScrolling"]) != "null" {
+			if err := json.Unmarshal(fields["enableInfiniteScrolling"], &resource.EnableInfiniteScrolling); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("enableInfiniteScrolling", err)...)
+			}
+
+		}
+		delete(fields, "enableInfiniteScrolling")
+
+	}
 	// Field "onClickFilterLabel"
 	if fields["onClickFilterLabel"] != nil {
 		if string(fields["onClickFilterLabel"]) != "null" {
@@ -279,6 +292,17 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "logRowMenuIconsAfter")
 
 	}
+	// Field "onNewLogsReceived"
+	if fields["onNewLogsReceived"] != nil {
+		if string(fields["onNewLogsReceived"]) != "null" {
+			if err := json.Unmarshal(fields["onNewLogsReceived"], &resource.OnNewLogsReceived); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("onNewLogsReceived", err)...)
+			}
+
+		}
+		delete(fields, "onNewLogsReceived")
+
+	}
 	// Field "displayedFields"
 	if fields["displayedFields"] != nil {
 		if string(fields["displayedFields"]) != "null" {
@@ -332,6 +356,15 @@ func (resource Options) Equals(other Options) bool {
 	if resource.DedupStrategy != other.DedupStrategy {
 		return false
 	}
+	if resource.EnableInfiniteScrolling == nil && other.EnableInfiniteScrolling != nil || resource.EnableInfiniteScrolling != nil && other.EnableInfiniteScrolling == nil {
+		return false
+	}
+
+	if resource.EnableInfiniteScrolling != nil {
+		if *resource.EnableInfiniteScrolling != *other.EnableInfiniteScrolling {
+			return false
+		}
+	}
 	// is DeepEqual good enough here?
 	if !reflect.DeepEqual(resource.OnClickFilterLabel, other.OnClickFilterLabel) {
 		return false
@@ -366,6 +399,10 @@ func (resource Options) Equals(other Options) bool {
 	}
 	// is DeepEqual good enough here?
 	if !reflect.DeepEqual(resource.LogRowMenuIconsAfter, other.LogRowMenuIconsAfter) {
+		return false
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.OnNewLogsReceived, other.OnNewLogsReceived) {
 		return false
 	}
 

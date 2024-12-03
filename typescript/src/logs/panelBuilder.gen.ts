@@ -442,6 +442,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    enableInfiniteScrolling(enableInfiniteScrolling: boolean): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.enableInfiniteScrolling = enableInfiniteScrolling;
+        return this;
+    }
+
     // TODO: figure out how to define callbacks
     onClickFilterLabel(onClickFilterLabel: any): this {
         if (!this.internal.options) {
@@ -512,6 +520,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
             this.internal.options = logs.defaultOptions();
         }
         this.internal.options.logRowMenuIconsAfter = logRowMenuIconsAfter;
+        return this;
+    }
+
+    onNewLogsReceived(onNewLogsReceived: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.onNewLogsReceived = onNewLogsReceived;
         return this;
     }
 

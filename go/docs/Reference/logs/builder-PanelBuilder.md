@@ -92,6 +92,12 @@ func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder
 func (builder *PanelBuilder) DisplayedFields(displayedFields []string) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> EnableInfiniteScrolling
+
+```go
+func (builder *PanelBuilder) EnableInfiniteScrolling(enableInfiniteScrolling bool) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> EnableLogDetails
 
 ```go
@@ -264,6 +270,12 @@ func (builder *PanelBuilder) OnClickHideField(onClickHideField any) *PanelBuilde
 
 ```go
 func (builder *PanelBuilder) OnClickShowField(onClickShowField any) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> OnNewLogsReceived
+
+```go
+func (builder *PanelBuilder) OnNewLogsReceived(onNewLogsReceived any) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Overrides

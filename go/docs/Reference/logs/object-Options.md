@@ -16,6 +16,7 @@ type Options struct {
     EnableLogDetails bool `json:"enableLogDetails"`
     SortOrder common.LogsSortOrder `json:"sortOrder"`
     DedupStrategy common.LogsDedupStrategy `json:"dedupStrategy"`
+    EnableInfiniteScrolling *bool `json:"enableInfiniteScrolling,omitempty"`
     // TODO: figure out how to define callbacks
     OnClickFilterLabel any `json:"onClickFilterLabel,omitempty"`
     OnClickFilterOutLabel any `json:"onClickFilterOutLabel,omitempty"`
@@ -26,6 +27,7 @@ type Options struct {
     OnClickHideField any `json:"onClickHideField,omitempty"`
     LogRowMenuIconsBefore any `json:"logRowMenuIconsBefore,omitempty"`
     LogRowMenuIconsAfter any `json:"logRowMenuIconsAfter,omitempty"`
+    OnNewLogsReceived any `json:"onNewLogsReceived,omitempty"`
     DisplayedFields []string `json:"displayedFields,omitempty"`
 }
 ```

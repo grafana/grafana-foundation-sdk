@@ -549,6 +549,14 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def enable_infinite_scrolling(self, enable_infinite_scrolling: bool) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.enable_infinite_scrolling = enable_infinite_scrolling
+    
+        return self
+    
     def on_click_filter_label(self, on_click_filter_label: object) -> typing.Self:    
         """
         TODO: figure out how to define callbacks
@@ -622,6 +630,14 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             self._internal.options = logs.Options()
         assert isinstance(self._internal.options, logs.Options)
         self._internal.options.log_row_menu_icons_after = log_row_menu_icons_after
+    
+        return self
+    
+    def on_new_logs_received(self, on_new_logs_received: object) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.on_new_logs_received = on_new_logs_received
     
         return self
     

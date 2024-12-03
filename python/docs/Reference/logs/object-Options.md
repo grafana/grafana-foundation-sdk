@@ -16,6 +16,7 @@ class Options:
     enable_log_details: bool
     sort_order: common.LogsSortOrder
     dedup_strategy: common.LogsDedupStrategy
+    enable_infinite_scrolling: typing.Optional[bool]
     # TODO: figure out how to define callbacks
     on_click_filter_label: typing.Optional[object]
     on_click_filter_out_label: typing.Optional[object]
@@ -26,6 +27,7 @@ class Options:
     on_click_hide_field: typing.Optional[object]
     log_row_menu_icons_before: typing.Optional[object]
     log_row_menu_icons_after: typing.Optional[object]
+    on_new_logs_received: typing.Optional[object]
     displayed_fields: typing.Optional[list[str]]
 ```
 ## Methods
