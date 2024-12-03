@@ -1,0 +1,33 @@
+name: SDK CI
+on:
+  pull_request: ~
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  validate_cog_config:
+    name: Validate cog config
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup cog
+        uses: ./.github/actions/setup-cog
+
+      - name: Checkout grafana/kind-registry
+        uses: actions/checkout@v4
+        with:
+          repository: grafana/kind-registry
+          path: kind-registry
+
+      - name: Validate cog's config
+        run: |
+          cog inspect --config .cog/config.yaml \
+            --builder-ir \
+            --parameters 'kind_registry_path=./kind-registry'

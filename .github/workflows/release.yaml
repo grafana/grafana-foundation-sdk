@@ -14,7 +14,6 @@ on:
         type: boolean
 
 env:
-  COG_VERSION: '0.0.6'
   DEVBOX_VERSION: '0.13.1'
 
 # Grant GITHUB_TOKEN the permissions required to make a release
@@ -25,7 +24,7 @@ permissions:
 # Allow only one concurrent release, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these releases to complete.
 concurrency:
-  group: "pages"
+  group: "release"
   cancel-in-progress: false
 
 defaults:
@@ -40,14 +39,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download cog
-        run: |
-          mkdir -p "${HOME}/.local/bin/"
-          wget https://github.com/grafana/cog/releases/download/v${COG_VERSION}/cog_Linux_x86_64.tar.gz
-          tar -xzf cog_Linux_x86_64.tar.gz
-          mv cog "${HOME}/.local/bin/cog"
-          chmod +x "${HOME}/.local/bin/cog"
-          echo "${HOME}/.local/bin" >> $GITHUB_PATH
+      - name: Setup cog
+        uses: ./.github/actions/setup-cog
 
       - name: Install devbox
         uses: jetify-com/devbox-install-action@a03caf5813591bc882139eba6ae947930a83a427 #v0.11.0
