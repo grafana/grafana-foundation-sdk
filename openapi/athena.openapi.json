@@ -1,0 +1,115 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "athena",
+    "version": "0.0.0",
+    "x-schema-identifier": "grafana-athena-datasource",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "dataquery"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Dataquery": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "format",
+          "connectionArgs",
+          "refId",
+          "rawSQL"
+        ],
+        "properties": {
+          "format": {
+            "$ref": "#/components/schemas/FormatOptions"
+          },
+          "connectionArgs": {
+            "$ref": "#/components/schemas/ConnectionArgs"
+          },
+          "table": {
+            "type": "string"
+          },
+          "column": {
+            "type": "string"
+          },
+          "queryID": {
+            "type": "string"
+          },
+          "refId": {
+            "type": "string",
+            "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
+          },
+          "hide": {
+            "type": "boolean",
+            "description": "true if query is disabled (ie should not be returned to the dashboard)\nNote this does not always imply that the query should not be executed since\nthe results from a hidden query may be used as the input to other queries (SSE etc)"
+          },
+          "queryType": {
+            "type": "string",
+            "description": "Specify the query flavor\nTODO make this required and give it a default"
+          },
+          "rawSQL": {
+            "type": "string",
+            "default": ""
+          },
+          "datasource": {
+            "$ref": "#/components/schemas/DataSourceRef",
+            "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+          }
+        },
+        "description": "Manually converted from https://github.com/grafana/athena-datasource/blob/57ad707147b7a11e9a521a836d6bf9799877e0e3/src/types.ts"
+      },
+      "defaultKey": {
+        "type": "string",
+        "const": "__default"
+      },
+      "ConnectionArgs": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "region": {
+            "type": "string",
+            "default": "__default"
+          },
+          "catalog": {
+            "type": "string",
+            "default": "__default"
+          },
+          "database": {
+            "type": "string",
+            "default": "__default"
+          },
+          "resultReuseEnabled": {
+            "type": "boolean",
+            "default": false
+          },
+          "resultReuseMaxAgeInMinutes": {
+            "type": "number",
+            "default": 60
+          }
+        }
+      },
+      "FormatOptions": {
+        "enum": [
+          0,
+          1,
+          2
+        ]
+      },
+      "DataSourceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The plugin type-id"
+          },
+          "uid": {
+            "type": "string",
+            "description": "Specific datasource instance"
+          }
+        },
+        "description": "Ref to a DataSource instance"
+      }
+    }
+  }
+}
