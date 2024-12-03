@@ -57,3 +57,13 @@ function warning()   { [[ "${LOG_LEVEL:-0}" -ge 4 ]] && __log warning "${@}"; tr
 function notice()    { [[ "${LOG_LEVEL:-0}" -ge 5 ]] && __log notice "${@}"; true; }
 function info()      { [[ "${LOG_LEVEL:-0}" -ge 6 ]] && __log info "${@}"; true; }
 function debug()     { [[ "${LOG_LEVEL:-0}" -ge 7 ]] && __log debug "${@}"; true; }
+
+function log_group_start() {
+  [[ "${GITHUB_ACTIONS:-}" == "true" ]] && echo "::group::${1}"
+  true
+}
+
+function log_group_end() {
+  [[ "${GITHUB_ACTIONS:-}" == "true" ]] && echo "::endgroup::"
+  true
+}
