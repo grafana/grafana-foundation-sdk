@@ -82,7 +82,7 @@ inputs:
 
   # The schema for athena queries
   - cue:
-      entrypoint: '%__config_dir%/../schemas/composable/athena'
+      entrypoint: '%__config_dir%/schemas/composable/athena'
       metadata:
         kind: composable
         variant: dataquery
