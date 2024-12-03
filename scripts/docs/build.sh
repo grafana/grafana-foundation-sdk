@@ -29,6 +29,8 @@ echo '[]' > "${docs_build_dir}/versions.json"
 
 for short_version in ${ALL_GRAFANA_VERSIONS//;/ } ; do
     full_version="${short_version}+cog-${COG_VERSION}"
+
+    log_group_start "Building documentation for version ${full_version}"
     echo "🪧 Building documentation for version ${full_version}"
 
     cat <<< $(jq ". += [{\"version\": \"${full_version}\", \"title\": \"${short_version}\"}]" "${docs_build_dir}/versions.json") > "${docs_build_dir}/versions.json"
@@ -38,4 +40,6 @@ for short_version in ${ALL_GRAFANA_VERSIONS//;/ } ; do
     echo "🪧 Minifying HTML"
     minhtml --do-not-minify-doctype --ensure-spec-compliant-unquoted-attribute-values --keep-closing-tags --keep-input-type-text-attr --keep-html-and-head-opening-tags --preserve-brace-template-syntax --keep-spaces-between-attributes ${docs_build_dir}/${full_version}/*/*/*/*.html
     minhtml --do-not-minify-doctype --ensure-spec-compliant-unquoted-attribute-values --keep-closing-tags --keep-input-type-text-attr --keep-html-and-head-opening-tags --preserve-brace-template-syntax --keep-spaces-between-attributes ${docs_build_dir}/${full_version}/*/*/*/*/*.html
+
+    log_group_end
 done
