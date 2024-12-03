@@ -80,6 +80,16 @@ inputs:
       cue_imports:
         - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
 
+  # The schema for athena queries
+  - cue:
+      entrypoint: '%__config_dir%/../schemas/composable/athena'
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: grafana-athena-datasource
+      cue_imports:
+        - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
+
 transformations:
   schemas:
     - '%__config_dir%/compiler/common_passes.yaml'
