@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "11.2.0-cogv0.0.x.1732830281",
+  "version": "11.2.0-cogv0.0.x.1733265751",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -47,6 +47,10 @@
       "types": "./dist/annotationslist/index.d.ts",
       "default": "./dist/annotationslist/index.js"
     },
+    "./athena": {
+      "types": "./dist/athena/index.d.ts",
+      "default": "./dist/athena/index.js"
+    },
     "./azuremonitor": {
       "types": "./dist/azuremonitor/index.d.ts",
       "default": "./dist/azuremonitor/index.js"
@@ -58,6 +62,10 @@
     "./bargauge": {
       "types": "./dist/bargauge/index.d.ts",
       "default": "./dist/bargauge/index.js"
+    },
+    "./bigquery": {
+      "types": "./dist/bigquery/index.d.ts",
+      "default": "./dist/bigquery/index.js"
     },
     "./candlestick": {
       "types": "./dist/candlestick/index.d.ts",
