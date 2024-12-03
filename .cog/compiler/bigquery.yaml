@@ -1,5 +1,0 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
-
-passes:
-  - dataquery_identification: {}
-  - schema_set_identifier: { package: bigquery, identifier: "grafana-bigquery-datasource" }
