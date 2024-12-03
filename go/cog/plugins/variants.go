@@ -5,9 +5,11 @@ package plugins
 import (
 	alertgroups "github.com/grafana/grafana-foundation-sdk/go/alertgroups"
 	annotationslist "github.com/grafana/grafana-foundation-sdk/go/annotationslist"
+	athena "github.com/grafana/grafana-foundation-sdk/go/athena"
 	azuremonitor "github.com/grafana/grafana-foundation-sdk/go/azuremonitor"
 	barchart "github.com/grafana/grafana-foundation-sdk/go/barchart"
 	bargauge "github.com/grafana/grafana-foundation-sdk/go/bargauge"
+	bigquery "github.com/grafana/grafana-foundation-sdk/go/bigquery"
 	candlestick "github.com/grafana/grafana-foundation-sdk/go/candlestick"
 	canvas "github.com/grafana/grafana-foundation-sdk/go/canvas"
 	cloudwatch "github.com/grafana/grafana-foundation-sdk/go/cloudwatch"
@@ -73,7 +75,9 @@ func RegisterDefaultPlugins() {
 	runtime.RegisterPanelcfgVariant(xychart.VariantConfig())
 
 	// Dataquery variants
+	runtime.RegisterDataqueryVariant(athena.VariantConfig())
 	runtime.RegisterDataqueryVariant(azuremonitor.VariantConfig())
+	runtime.RegisterDataqueryVariant(bigquery.VariantConfig())
 	runtime.RegisterDataqueryVariant(cloudwatch.VariantConfig())
 	runtime.RegisterDataqueryVariant(elasticsearch.VariantConfig())
 	runtime.RegisterDataqueryVariant(expr.VariantConfig())
