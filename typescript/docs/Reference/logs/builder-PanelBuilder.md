@@ -92,6 +92,12 @@ displayName(displayName: string)
 displayedFields(displayedFields: string[])
 ```
 
+### <span class="badge object-method"></span> enableInfiniteScrolling
+
+```typescript
+enableInfiniteScrolling(enableInfiniteScrolling: boolean)
+```
+
 ### <span class="badge object-method"></span> enableLogDetails
 
 ```typescript
@@ -264,6 +270,12 @@ onClickHideField(onClickHideField: any)
 
 ```typescript
 onClickShowField(onClickShowField: any)
+```
+
+### <span class="badge object-method"></span> onNewLogsReceived
+
+```typescript
+onNewLogsReceived(onNewLogsReceived: any)
 ```
 
 ### <span class="badge object-method"></span> overrides

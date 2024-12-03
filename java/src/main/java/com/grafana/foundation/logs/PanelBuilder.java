@@ -349,6 +349,15 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
+    public PanelBuilder enableInfiniteScrolling(Boolean enableInfiniteScrolling) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logs.Options();
+		}
+        com.grafana.foundation.logs.Options optionsResource = (com.grafana.foundation.logs.Options) this.internal.options;
+        optionsResource.enableInfiniteScrolling = enableInfiniteScrolling;
+    this.internal.options = optionsResource;
+        return this;
+    }
     public PanelBuilder onClickFilterLabel(Object onClickFilterLabel) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.logs.Options();
@@ -427,6 +436,15 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		}
         com.grafana.foundation.logs.Options optionsResource = (com.grafana.foundation.logs.Options) this.internal.options;
         optionsResource.logRowMenuIconsAfter = logRowMenuIconsAfter;
+    this.internal.options = optionsResource;
+        return this;
+    }
+    public PanelBuilder onNewLogsReceived(Object onNewLogsReceived) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logs.Options();
+		}
+        com.grafana.foundation.logs.Options optionsResource = (com.grafana.foundation.logs.Options) this.internal.options;
+        optionsResource.onNewLogsReceived = onNewLogsReceived;
     this.internal.options = optionsResource;
         return this;
     }

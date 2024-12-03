@@ -626,6 +626,19 @@ final class PanelConverter
     
     
     }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->enableInfiniteScrolling !== null) {
+    
+        
+    $buffer = 'enableInfiniteScrolling(';
+        $arg0 =\var_export($input->options->enableInfiniteScrolling, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->onClickFilterLabel !== null) {
     
         
@@ -735,6 +748,19 @@ final class PanelConverter
         
     $buffer = 'logRowMenuIconsAfter(';
         $arg0 =\var_export($input->options->logRowMenuIconsAfter, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->onNewLogsReceived !== null) {
+    
+        
+    $buffer = 'onNewLogsReceived(';
+        $arg0 =\var_export($input->options->onNewLogsReceived, true);
         $buffer .= $arg0;
         
     $buffer .= ')';

@@ -32,6 +32,9 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("dedupStrategy")
     public LogsDedupStrategy dedupStrategy;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("enableInfiniteScrolling")
+    public Boolean enableInfiniteScrolling;
     // TODO: figure out how to define callbacks
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("onClickFilterLabel")
@@ -60,6 +63,9 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("logRowMenuIconsAfter")
     public Object logRowMenuIconsAfter;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("onNewLogsReceived")
+    public Object onNewLogsReceived;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("displayedFields")
     public List<String> displayedFields;

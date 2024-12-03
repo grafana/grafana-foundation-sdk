@@ -579,6 +579,16 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    public function enableInfiniteScrolling(bool $enableInfiniteScrolling): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Logs\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
+        $this->internal->options->enableInfiniteScrolling = $enableInfiniteScrolling;
+    
+        return $this;
+    }
     /**
      * TODO: figure out how to define callbacks
      * @param mixed $onClickFilterLabel
@@ -694,6 +704,19 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
         $this->internal->options->logRowMenuIconsAfter = $logRowMenuIconsAfter;
+    
+        return $this;
+    }
+    /**
+     * @param mixed $onNewLogsReceived
+     */
+    public function onNewLogsReceived( $onNewLogsReceived): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Logs\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
+        $this->internal->options->onNewLogsReceived = $onNewLogsReceived;
     
         return $this;
     }

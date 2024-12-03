@@ -496,6 +496,15 @@ func (builder *PanelBuilder) DedupStrategy(dedupStrategy common.LogsDedupStrateg
 	return builder
 }
 
+func (builder *PanelBuilder) EnableInfiniteScrolling(enableInfiniteScrolling bool) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).EnableInfiniteScrolling = &enableInfiniteScrolling
+
+	return builder
+}
+
 // TODO: figure out how to define callbacks
 func (builder *PanelBuilder) OnClickFilterLabel(onClickFilterLabel any) *PanelBuilder {
 	if builder.internal.Options == nil {
@@ -574,6 +583,15 @@ func (builder *PanelBuilder) LogRowMenuIconsAfter(logRowMenuIconsAfter any) *Pan
 		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).LogRowMenuIconsAfter = &logRowMenuIconsAfter
+
+	return builder
+}
+
+func (builder *PanelBuilder) OnNewLogsReceived(onNewLogsReceived any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).OnNewLogsReceived = &onNewLogsReceived
 
 	return builder
 }

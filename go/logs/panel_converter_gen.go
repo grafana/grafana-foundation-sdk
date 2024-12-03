@@ -572,6 +572,18 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
+	if input.Options != nil && input.Options.(*Options).EnableInfiniteScrolling != nil {
+
+		buffer.WriteString(`EnableInfiniteScrolling(`)
+		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Options.(*Options).EnableInfiniteScrolling))
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Options != nil && input.Options.(*Options).OnClickFilterLabel != nil {
 
 		buffer.WriteString(`OnClickFilterLabel(`)
@@ -672,6 +684,18 @@ func PanelConverter(input dashboard.Panel) string {
 
 		buffer.WriteString(`LogRowMenuIconsAfter(`)
 		arg0 := cog.Dump(input.Options.(*Options).LogRowMenuIconsAfter)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Options != nil && input.Options.(*Options).OnNewLogsReceived != nil {
+
+		buffer.WriteString(`OnNewLogsReceived(`)
+		arg0 := cog.Dump(input.Options.(*Options).OnNewLogsReceived)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -42,7 +42,9 @@ final class Runtime
         $this->registerPanelcfgVariant(\Grafana\Foundation\Timeseries\VariantConfig::get());
         $this->registerPanelcfgVariant(\Grafana\Foundation\Trend\VariantConfig::get());
         $this->registerPanelcfgVariant(\Grafana\Foundation\Xychart\VariantConfig::get());
+        $this->registerDataqueryVariant(\Grafana\Foundation\Athena\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Azuremonitor\VariantConfig::get());
+        $this->registerDataqueryVariant(\Grafana\Foundation\Bigquery\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Cloudwatch\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Elasticsearch\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Expr\VariantConfig::get());

@@ -98,6 +98,12 @@ displayName(string $displayName)
 displayedFields(array $displayedFields)
 ```
 
+### <span class="badge object-method"></span> enableInfiniteScrolling
+
+```php
+enableInfiniteScrolling(bool $enableInfiniteScrolling)
+```
+
 ### <span class="badge object-method"></span> enableLogDetails
 
 ```php
@@ -292,6 +298,14 @@ onClickHideField($onClickHideField)
 
 ```php
 onClickShowField($onClickShowField)
+```
+
+### <span class="badge object-method"></span> onNewLogsReceived
+
+@param mixed $onNewLogsReceived
+
+```php
+onNewLogsReceived($onNewLogsReceived)
 ```
 
 ### <span class="badge object-method"></span> overrides
