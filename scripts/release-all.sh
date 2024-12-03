@@ -20,13 +20,17 @@ source "${__dir}/versions.sh"
 ### Usage ###
 #################
 
-# LOG_LEVEL=7 ./scripts/release-version.sh v10.2.x
+# LOG_LEVEL=7 ./scripts/release-all.sh
 
 ############
 ### Main ###
 ############
 
 for version in ${ALL_GRAFANA_VERSIONS//;/ } ; do
+  log_group_start "Releasing ${version}"
+
   info "🪧 Releasing ${bold}${version}${normal}"
   $__dir/release-version.sh "${version}"
+
+  log_group_end
 done
