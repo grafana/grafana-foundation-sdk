@@ -38,7 +38,9 @@ public class Registry {
         registerDataquery("cloud-monitoring", com.grafana.foundation.googlecloudmonitoring.CloudMonitoringQuery.class);
         registerDataquery("cloudwatch", com.grafana.foundation.cloudwatch.CloudWatchQuery.class);
         registerDataquery("elasticsearch", com.grafana.foundation.elasticsearch.Dataquery.class);
+        registerDataquery("grafana-athena-datasource", com.grafana.foundation.athena.Dataquery.class);
         registerDataquery("grafana-azure-monitor-datasource", com.grafana.foundation.azuremonitor.AzureMonitorQuery.class);
+        registerDataquery("grafana-bigquery-datasource", com.grafana.foundation.bigquery.Dataquery.class);
         registerDataquery("grafanapyroscope", com.grafana.foundation.grafanapyroscope.Dataquery.class);
         registerDataquery("loki", com.grafana.foundation.loki.Dataquery.class);
         registerDataquery("parca", com.grafana.foundation.parca.Dataquery.class);
