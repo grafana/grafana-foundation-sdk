@@ -490,5 +490,18 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * @param array<string> $tags
+     */
+    public function tags(array $tags): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Dashboardlist\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Dashboardlist\Options);
+        $this->internal->options->tags = $tags;
+    
+        return $this;
+    }
 
 }

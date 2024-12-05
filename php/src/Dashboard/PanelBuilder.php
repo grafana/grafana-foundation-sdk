@@ -46,6 +46,25 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
+     */
+    public function pluginVersion(string $pluginVersion): static
+    {
+        $this->internal->pluginVersion = $pluginVersion;
+    
+        return $this;
+    }
+    /**
+     * Tags for the panel.
+     * @param array<string> $tags
+     */
+    public function tags(array $tags): static
+    {
+        $this->internal->tags = $tags;
+    
+        return $this;
+    }
+    /**
      * Depends on the panel plugin. See the plugin documentation for details.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cog\Dataquery>> $targets
      */
@@ -188,6 +207,15 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * Id of the repeating panel.
+     */
+    public function repeatPanelId(int $repeatPanelId): static
+    {
+        $this->internal->repeatPanelId = $repeatPanelId;
+    
+        return $this;
+    }
+    /**
      * The maximum number of data points that the panel queries are retrieving.
      */
     public function maxDataPoints(float $maxDataPoints): static
@@ -265,6 +293,25 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     public function libraryPanel(\Grafana\Foundation\Dashboard\LibraryPanelRef $libraryPanel): static
     {
         $this->internal->libraryPanel = $libraryPanel;
+    
+        return $this;
+    }
+    /**
+     * It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+     * @param mixed $options
+     */
+    public function options( $options): static
+    {
+        $this->internal->options = $options;
+    
+        return $this;
+    }
+    /**
+     * Field options allow you to change how the data is displayed in your visualizations.
+     */
+    public function fieldConfig(\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig): static
+    {
+        $this->internal->fieldConfig = $fieldConfig;
     
         return $this;
     }
@@ -381,6 +428,26 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     public function noValue(string $noValue): static
     {
         $this->internal->fieldConfig->defaults->noValue = $noValue;
+    
+        return $this;
+    }
+    /**
+     * custom is specified by the FieldConfig field
+     * in panel plugin schemas.
+     * @param mixed $custom
+     */
+    public function custom( $custom): static
+    {
+        $this->internal->fieldConfig->defaults->custom = $custom;
+    
+        return $this;
+    }
+    /**
+     * Defaults are the options applied to all fields.
+     */
+    public function defaults(\Grafana\Foundation\Dashboard\FieldConfig $defaults): static
+    {
+        $this->internal->fieldConfig->defaults = $defaults;
     
         return $this;
     }

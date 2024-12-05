@@ -278,6 +278,15 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
+    public PanelBuilder tags(List<String> tags) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.annotationslist.Options();
+		}
+        com.grafana.foundation.annotationslist.Options optionsResource = (com.grafana.foundation.annotationslist.Options) this.internal.options;
+        optionsResource.tags = tags;
+    this.internal.options = optionsResource;
+        return this;
+    }
     public PanelBuilder limit(Integer limit) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.annotationslist.Options();

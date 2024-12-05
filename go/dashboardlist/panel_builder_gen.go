@@ -429,3 +429,12 @@ func (builder *PanelBuilder) FolderId(folderId int64) *PanelBuilder {
 
 	return builder
 }
+
+func (builder *PanelBuilder) Tags(tags []string) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).Tags = tags
+
+	return builder
+}

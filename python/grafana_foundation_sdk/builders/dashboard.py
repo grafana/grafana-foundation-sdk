@@ -1001,6 +1001,24 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def plugin_version(self, plugin_version: str) -> typing.Self:    
+        """
+        The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
+        """
+            
+        self._internal.plugin_version = plugin_version
+    
+        return self
+    
+    def tags(self, tags: list[str]) -> typing.Self:    
+        """
+        Tags for the panel.
+        """
+            
+        self._internal.tags = tags
+    
+        return self
+    
     def targets(self, targets: list[cogbuilder.Builder[cogvariants.Dataquery]]) -> typing.Self:    
         """
         Depends on the panel plugin. See the plugin documentation for details.
@@ -1128,6 +1146,15 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def repeat_panel_id(self, repeat_panel_id: int) -> typing.Self:    
+        """
+        Id of the repeating panel.
+        """
+            
+        self._internal.repeat_panel_id = repeat_panel_id
+    
+        return self
+    
     def max_data_points(self, max_data_points: float) -> typing.Self:    
         """
         The maximum number of data points that the panel queries are retrieving.
@@ -1208,6 +1235,24 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         """
             
         self._internal.library_panel = library_panel
+    
+        return self
+    
+    def options(self, options: object) -> typing.Self:    
+        """
+        It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+        """
+            
+        self._internal.options = options
+    
+        return self
+    
+    def field_config(self, field_config: dashboard.FieldConfigSource) -> typing.Self:    
+        """
+        Field options allow you to change how the data is displayed in your visualizations.
+        """
+            
+        self._internal.field_config = field_config
     
         return self
     
@@ -1373,6 +1418,34 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             self._internal.field_config.defaults = dashboard.FieldConfig()
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
         self._internal.field_config.defaults.no_value = no_value
+    
+        return self
+    
+    def custom(self, custom: object) -> typing.Self:    
+        """
+        custom is specified by the FieldConfig field
+        in panel plugin schemas.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        self._internal.field_config.defaults.custom = custom
+    
+        return self
+    
+    def defaults(self, defaults: dashboard.FieldConfig) -> typing.Self:    
+        """
+        Defaults are the options applied to all fields.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        self._internal.field_config.defaults = defaults
     
         return self
     

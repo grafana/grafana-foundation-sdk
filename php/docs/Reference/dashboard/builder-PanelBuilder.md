@@ -28,6 +28,18 @@ Panel color configuration
 colorScheme(\Grafana\Foundation\Cog\Builder $color)
 ```
 
+### <span class="badge object-method"></span> custom
+
+custom is specified by the FieldConfig field
+
+in panel plugin schemas.
+
+@param mixed $custom
+
+```php
+custom($custom)
+```
+
 ### <span class="badge object-method"></span> dataLinks
 
 The behavior when clicking on a result
@@ -60,6 +72,14 @@ To display all decimals, set the unit to `String`.
 decimals(float $decimals)
 ```
 
+### <span class="badge object-method"></span> defaults
+
+Defaults are the options applied to all fields.
+
+```php
+defaults(\Grafana\Foundation\Dashboard\FieldConfig $defaults)
+```
+
 ### <span class="badge object-method"></span> description
 
 Panel description.
@@ -74,6 +94,14 @@ The display value for this field.  This supports template variables blank is aut
 
 ```php
 displayName(string $displayName)
+```
+
+### <span class="badge object-method"></span> fieldConfig
+
+Field options allow you to change how the data is displayed in your visualizations.
+
+```php
+fieldConfig(\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -174,6 +202,16 @@ Alternative to empty string
 noValue(string $noValue)
 ```
 
+### <span class="badge object-method"></span> options
+
+It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+
+@param mixed $options
+
+```php
+options($options)
+```
+
 ### <span class="badge object-method"></span> overrides
 
 Overrides are the options applied to specific fields overriding the defaults.
@@ -182,6 +220,14 @@ Overrides are the options applied to specific fields overriding the defaults.
 
 ```php
 overrides(array $overrides)
+```
+
+### <span class="badge object-method"></span> pluginVersion
+
+The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
+
+```php
+pluginVersion(string $pluginVersion)
 ```
 
 ### <span class="badge object-method"></span> repeat
@@ -202,12 +248,30 @@ Direction to repeat in if 'repeat' is set.
 repeatDirection(\Grafana\Foundation\Dashboard\PanelRepeatDirection $repeatDirection)
 ```
 
+### <span class="badge object-method"></span> repeatPanelId
+
+Id of the repeating panel.
+
+```php
+repeatPanelId(int $repeatPanelId)
+```
+
 ### <span class="badge object-method"></span> span
 
 Panel width. The width is the number of columns from the left edge of the panel.
 
 ```php
 span(int $w)
+```
+
+### <span class="badge object-method"></span> tags
+
+Tags for the panel.
+
+@param array<string> $tags
+
+```php
+tags(array $tags)
 ```
 
 ### <span class="badge object-method"></span> targets

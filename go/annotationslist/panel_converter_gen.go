@@ -440,6 +440,23 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
+	if input.Options != nil && input.Options.(*Options).Tags != nil && len(input.Options.(*Options).Tags) >= 1 {
+
+		buffer.WriteString(`Tags(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.Options.(*Options).Tags {
+			tmptagsarg1 := fmt.Sprintf("%#v", arg1)
+			tmparg0 = append(tmparg0, tmptagsarg1)
+		}
+		arg0 := "[]string{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Options != nil && input.Options.(*Options).Limit != 10 {
 
 		buffer.WriteString(`Limit(`)

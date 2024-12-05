@@ -341,6 +341,15 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     this.internal.options = optionsResource;
         return this;
     }
+    public PanelBuilder tags(List<String> tags) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        com.grafana.foundation.dashboardlist.Options optionsResource = (com.grafana.foundation.dashboardlist.Options) this.internal.options;
+        optionsResource.tags = tags;
+    this.internal.options = optionsResource;
+        return this;
+    }
     
     public Panel build() {
         return this.internal;

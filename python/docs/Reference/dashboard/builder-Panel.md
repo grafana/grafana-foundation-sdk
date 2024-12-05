@@ -26,6 +26,16 @@ Panel color configuration
 def color_scheme(color: cogbuilder.Builder[dashboard.FieldColor]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> custom
+
+custom is specified by the FieldConfig field
+
+in panel plugin schemas.
+
+```python
+def custom(custom: object) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> data_links
 
 The behavior when clicking on a result
@@ -56,6 +66,14 @@ To display all decimals, set the unit to `String`.
 def decimals(decimals: float) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> defaults
+
+Defaults are the options applied to all fields.
+
+```python
+def defaults(defaults: dashboard.FieldConfig) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> description
 
 Panel description.
@@ -70,6 +88,14 @@ The display value for this field.  This supports template variables blank is aut
 
 ```python
 def display_name(display_name: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> field_config
+
+Field options allow you to change how the data is displayed in your visualizations.
+
+```python
+def field_config(field_config: dashboard.FieldConfigSource) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> grid_pos
@@ -166,12 +192,28 @@ Alternative to empty string
 def no_value(no_value: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> options
+
+It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+
+```python
+def options(options: object) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> overrides
 
 Overrides are the options applied to specific fields overriding the defaults.
 
 ```python
 def overrides(overrides: list[cogbuilder.Builder[dashboard.DashboardFieldConfigSourceOverrides]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> plugin_version
+
+The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
+
+```python
+def plugin_version(plugin_version: str) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> repeat
@@ -192,12 +234,28 @@ Direction to repeat in if 'repeat' is set.
 def repeat_direction(repeat_direction: typing.Literal["h", "v"]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> repeat_panel_id
+
+Id of the repeating panel.
+
+```python
+def repeat_panel_id(repeat_panel_id: int) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> span
 
 Panel width. The width is the number of columns from the left edge of the panel.
 
 ```python
 def span(w: int) -> typing.Self
+```
+
+### <span class="badge object-method"></span> tags
+
+Tags for the panel.
+
+```python
+def tags(tags: list[str]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> targets

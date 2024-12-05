@@ -415,4 +415,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         this.internal.options.folderId = folderId;
         return this;
     }
+
+    tags(tags: string[]): this {
+        if (!this.internal.options) {
+            this.internal.options = dashboardlist.defaultOptions();
+        }
+        this.internal.options.tags = tags;
+        return this;
+    }
 }

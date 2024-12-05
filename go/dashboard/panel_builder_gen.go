@@ -47,6 +47,20 @@ func (builder *PanelBuilder) Id(id uint32) *PanelBuilder {
 	return builder
 }
 
+// The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
+func (builder *PanelBuilder) PluginVersion(pluginVersion string) *PanelBuilder {
+	builder.internal.PluginVersion = &pluginVersion
+
+	return builder
+}
+
+// Tags for the panel.
+func (builder *PanelBuilder) Tags(tags []string) *PanelBuilder {
+	builder.internal.Tags = tags
+
+	return builder
+}
+
 // Depends on the panel plugin. See the plugin documentation for details.
 func (builder *PanelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) *PanelBuilder {
 	targetsResources := make([]variants.Dataquery, 0, len(targets))
@@ -161,6 +175,13 @@ func (builder *PanelBuilder) RepeatDirection(repeatDirection PanelRepeatDirectio
 	return builder
 }
 
+// Id of the repeating panel.
+func (builder *PanelBuilder) RepeatPanelId(repeatPanelId int64) *PanelBuilder {
+	builder.internal.RepeatPanelId = &repeatPanelId
+
+	return builder
+}
+
 // The maximum number of data points that the panel queries are retrieving.
 func (builder *PanelBuilder) MaxDataPoints(maxDataPoints float64) *PanelBuilder {
 	builder.internal.MaxDataPoints = &maxDataPoints
@@ -223,6 +244,20 @@ func (builder *PanelBuilder) TimeShift(timeShift string) *PanelBuilder {
 // Dynamically load the panel
 func (builder *PanelBuilder) LibraryPanel(libraryPanel LibraryPanelRef) *PanelBuilder {
 	builder.internal.LibraryPanel = &libraryPanel
+
+	return builder
+}
+
+// It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+func (builder *PanelBuilder) Options(options any) *PanelBuilder {
+	builder.internal.Options = options
+
+	return builder
+}
+
+// Field options allow you to change how the data is displayed in your visualizations.
+func (builder *PanelBuilder) FieldConfig(fieldConfig FieldConfigSource) *PanelBuilder {
+	builder.internal.FieldConfig = fieldConfig
 
 	return builder
 }
@@ -324,6 +359,21 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[DashboardLink]) *Pane
 // Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
+
+	return builder
+}
+
+// custom is specified by the FieldConfig field
+// in panel plugin schemas.
+func (builder *PanelBuilder) Custom(custom any) *PanelBuilder {
+	builder.internal.FieldConfig.Defaults.Custom = &custom
+
+	return builder
+}
+
+// Defaults are the options applied to all fields.
+func (builder *PanelBuilder) Defaults(defaults FieldConfig) *PanelBuilder {
+	builder.internal.FieldConfig.Defaults = defaults
 
 	return builder
 }
