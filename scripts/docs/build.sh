@@ -11,6 +11,7 @@ set -o pipefail
 
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${__dir}/../versions.sh"
+source "${__dir}/../libs/logs.sh"
 
 build_dir="${__dir}/../../build"
 docs_build_dir="${build_dir}/docs"
