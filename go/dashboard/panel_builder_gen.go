@@ -47,6 +47,13 @@ func (builder *PanelBuilder) Id(id uint32) *PanelBuilder {
 	return builder
 }
 
+// The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
+func (builder *PanelBuilder) PluginVersion(pluginVersion string) *PanelBuilder {
+	builder.internal.PluginVersion = &pluginVersion
+
+	return builder
+}
+
 // Depends on the panel plugin. See the plugin documentation for details.
 func (builder *PanelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) *PanelBuilder {
 	targetsResources := make([]variants.Dataquery, 0, len(targets))
@@ -256,6 +263,20 @@ func (builder *PanelBuilder) QueryCachingTTL(queryCachingTTL float64) *PanelBuil
 	return builder
 }
 
+// It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+func (builder *PanelBuilder) Options(options any) *PanelBuilder {
+	builder.internal.Options = &options
+
+	return builder
+}
+
+// Field options allow you to change how the data is displayed in your visualizations.
+func (builder *PanelBuilder) FieldConfig(fieldConfig FieldConfigSource) *PanelBuilder {
+	builder.internal.FieldConfig = &fieldConfig
+
+	return builder
+}
+
 // The display value for this field.  This supports template variables blank is auto
 func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
@@ -383,6 +404,27 @@ func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 		builder.internal.FieldConfig = NewFieldConfigSource()
 	}
 	builder.internal.FieldConfig.Defaults.NoValue = &noValue
+
+	return builder
+}
+
+// custom is specified by the FieldConfig field
+// in panel plugin schemas.
+func (builder *PanelBuilder) Custom(custom any) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Defaults.Custom = &custom
+
+	return builder
+}
+
+// Defaults are the options applied to all fields.
+func (builder *PanelBuilder) Defaults(defaults FieldConfig) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Defaults = defaults
 
 	return builder
 }
