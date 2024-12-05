@@ -522,6 +522,14 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def tags(self, tags: list[str]) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = dashboardlist.Options()
+        assert isinstance(self._internal.options, dashboardlist.Options)
+        self._internal.options.tags = tags
+    
+        return self
+    
     def folder_id(self, folder_id: int) -> typing.Self:    
         """
         folderId is deprecated, and migrated to folderUid on panel init

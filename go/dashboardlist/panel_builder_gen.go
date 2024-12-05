@@ -472,6 +472,15 @@ func (builder *PanelBuilder) Query(query string) *PanelBuilder {
 	return builder
 }
 
+func (builder *PanelBuilder) Tags(tags []string) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).Tags = tags
+
+	return builder
+}
+
 // folderId is deprecated, and migrated to folderUid on panel init
 func (builder *PanelBuilder) FolderId(folderId int64) *PanelBuilder {
 	if builder.internal.Options == nil {

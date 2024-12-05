@@ -373,6 +373,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    tags(tags: string[]): this {
+        if (!this.internal.options) {
+            this.internal.options = annotationslist.defaultOptions();
+        }
+        this.internal.options.tags = tags;
+        return this;
+    }
+
     limit(limit: number): this {
         if (!this.internal.options) {
             this.internal.options = annotationslist.defaultOptions();
