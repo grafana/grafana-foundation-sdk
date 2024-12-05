@@ -73,7 +73,7 @@ builders:
       composition_map:
         Options: options
         FieldConfig: fieldConfig.defaults.custom
-      exclude_panel_options: &UnwantedPanelOptions [
+      exclude_panel_options: [
         # merged with another builder
         "defaults",
         "fieldConfig",
@@ -206,8 +206,6 @@ options:
   ##############
   #   Panels   #
   ##############
-
-  - omit: { by_names: {object: Panel, options: *UnwantedPanelOptions} }
 
   # Append a single target instead forcing to define all of them at once
   - duplicate:
