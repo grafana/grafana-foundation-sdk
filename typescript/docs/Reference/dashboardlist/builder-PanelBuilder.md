@@ -305,6 +305,12 @@ Panel width. The width is the number of columns from the left edge of the panel.
 span(w: number)
 ```
 
+### <span class="badge object-method"></span> tags
+
+```typescript
+tags(tags: string[])
+```
+
 ### <span class="badge object-method"></span> targets
 
 Depends on the panel plugin. See the plugin documentation for details.

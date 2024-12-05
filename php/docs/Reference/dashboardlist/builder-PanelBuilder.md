@@ -312,6 +312,14 @@ Panel width. The width is the number of columns from the left edge of the panel.
 span(int $w)
 ```
 
+### <span class="badge object-method"></span> tags
+
+@param array<string> $tags
+
+```php
+tags(array $tags)
+```
+
 ### <span class="badge object-method"></span> targets
 
 Depends on the panel plugin. See the plugin documentation for details.
