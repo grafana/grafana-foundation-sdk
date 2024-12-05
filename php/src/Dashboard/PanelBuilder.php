@@ -46,6 +46,25 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
+     */
+    public function pluginVersion(string $pluginVersion): static
+    {
+        $this->internal->pluginVersion = $pluginVersion;
+    
+        return $this;
+    }
+    /**
+     * Tags for the panel.
+     * @param array<string> $tags
+     */
+    public function tags(array $tags): static
+    {
+        $this->internal->tags = $tags;
+    
+        return $this;
+    }
+    /**
      * Depends on the panel plugin. See the plugin documentation for details.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cog\Dataquery>> $targets
      */
@@ -292,6 +311,25 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+     * @param mixed $options
+     */
+    public function options( $options): static
+    {
+        $this->internal->options = $options;
+    
+        return $this;
+    }
+    /**
+     * Field options allow you to change how the data is displayed in your visualizations.
+     */
+    public function fieldConfig(\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig): static
+    {
+        $this->internal->fieldConfig = $fieldConfig;
+    
+        return $this;
+    }
+    /**
      * The display value for this field.  This supports template variables blank is auto
      */
     public function displayName(string $displayName): static
@@ -444,6 +482,34 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         }
         assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
         $this->internal->fieldConfig->defaults->noValue = $noValue;
+    
+        return $this;
+    }
+    /**
+     * custom is specified by the FieldConfig field
+     * in panel plugin schemas.
+     * @param mixed $custom
+     */
+    public function custom( $custom): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->defaults->custom = $custom;
+    
+        return $this;
+    }
+    /**
+     * Defaults are the options applied to all fields.
+     */
+    public function defaults(\Grafana\Foundation\Dashboard\FieldConfig $defaults): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->defaults = $defaults;
     
         return $this;
     }
