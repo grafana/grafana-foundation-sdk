@@ -272,6 +272,12 @@ Panel width. The width is the number of columns from the left edge of the panel.
 def span(w: int) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> tags
+
+```python
+def tags(tags: list[str]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> targets
 
 Depends on the panel plugin. See the plugin documentation for details.

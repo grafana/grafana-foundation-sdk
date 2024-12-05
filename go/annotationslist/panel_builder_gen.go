@@ -418,6 +418,15 @@ func (builder *PanelBuilder) OnlyInTimeRange(onlyInTimeRange bool) *PanelBuilder
 	return builder
 }
 
+func (builder *PanelBuilder) Tags(tags []string) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).Tags = tags
+
+	return builder
+}
+
 func (builder *PanelBuilder) Limit(limit uint32) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
