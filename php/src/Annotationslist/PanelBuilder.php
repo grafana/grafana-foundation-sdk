@@ -509,6 +509,19 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * @param array<string> $tags
+     */
+    public function tags(array $tags): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Annotationslist\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Annotationslist\Options);
+        $this->internal->options->tags = $tags;
+    
+        return $this;
+    }
     public function limit(int $limit): static
     {    
         if ($this->internal->options === null) {

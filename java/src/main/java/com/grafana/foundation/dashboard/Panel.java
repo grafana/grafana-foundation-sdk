@@ -156,6 +156,11 @@ public class Panel {
         return (T) this;
     }
     
+    public T pluginVersion(String pluginVersion) {
+    this.internal.pluginVersion = pluginVersion;
+        return (T) this;
+    }
+    
     public T targets(com.grafana.foundation.cog.Builder<List<Dataquery>> targets) {
     this.internal.targets = targets.build();
         return (T) this;
@@ -292,6 +297,16 @@ public class Panel {
         return (T) this;
     }
     
+    public T options(Object options) {
+    this.internal.options = options;
+        return (T) this;
+    }
+    
+    public T fieldConfig(FieldConfigSource fieldConfig) {
+    this.internal.fieldConfig = fieldConfig;
+        return (T) this;
+    }
+    
     public T displayName(String displayName) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
@@ -399,6 +414,25 @@ public class Panel {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
     this.internal.fieldConfig.defaults.noValue = noValue;
+        return (T) this;
+    }
+    
+    public T custom(Object custom) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+    this.internal.fieldConfig.defaults.custom = custom;
+        return (T) this;
+    }
+    
+    public T defaults(FieldConfig defaults) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+    this.internal.fieldConfig.defaults = defaults;
         return (T) this;
     }
     
