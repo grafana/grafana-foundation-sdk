@@ -2,8 +2,14 @@ name: SDK CI
 on:
   pull_request: ~
 
+env:
+  DEVBOX_VERSION: '0.13.1'
+  FOUNDATION_SDK_REPO: https://github.com/grafana/grafana-foundation-sdk.git
+
 permissions:
   contents: read
+  # to comment on PRs
+  pull-requests: write
 
 defaults:
   run:
@@ -31,3 +37,105 @@ jobs:
           cog inspect --config .cog/config.yaml \
             --builder-ir \
             --parameters 'kind_registry_path=./kind-registry'
+
+  diff_preview:
+    name: Generate diff
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup cog
+        uses: ./.github/actions/setup-cog
+
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@a03caf5813591bc882139eba6ae947930a83a427 #v0.11.0
+        with:
+          enable-cache: 'true'
+          devbox-version: ${{ env.DEVBOX_VERSION }}
+
+      - name: Dry-run release with current branch
+        run: |
+          git config --global user.email "cog-ci@grafana.com"
+          git config --global user.name "cog - CI"
+
+          devbox run ./scripts/release-version.sh next
+        env:
+          TERM: 'xterm'
+          WORKSPACE_PATH: /tmp/foundation-workspace-current
+          CLEANUP_WORKSPACE: 'no'
+          SKIP_VALIDATION: 'yes'
+          LOG_LEVEL: '7' # debug
+          GOGC: 'off'
+
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Dry-run release with main branch
+        run: |
+          git config --global user.email "cog-ci@grafana.com"
+          git config --global user.name "cog - CI"
+
+          devbox run ./scripts/release-version.sh next
+        env:
+          TERM: 'xterm'
+          WORKSPACE_PATH: /tmp/foundation-workspace-main
+          CLEANUP_WORKSPACE: 'no'
+          SKIP_VALIDATION: 'yes'
+          LOG_LEVEL: '7' # debug
+          GOGC: 'off'
+
+      - name: Preview diff
+        run: |
+          cat <<'EOF' > preview.md
+          <!-- grafana-foundation-sdk-diff-preview-marker -->
+          
+          **Note:** the diff show code changes that would be introduced by this PR. Changes already on `main` are excluded.
+          
+          <details>
+          <summary>
+          
+          ### 🔎 Changes to `grafana-foundation-sdk@next+cog-v0.0.x`
+          
+          </summary>
+          
+          ```patch
+          EOF
+          
+          diff \
+            --new-file \
+            --unidirectional-new-file \
+            --color=never \
+            --unified \
+            --recursive \
+            --exclude='.git' \
+            --exclude='gradle.properties' \
+            --exclude='pyproject.toml' \
+            --exclude='package.json' \
+            --exclude='*.md' \
+            /tmp/foundation-workspace-main/foundation-sdk/ /tmp/foundation-workspace-current/foundation-sdk/ >> preview.md || true # diff returns 1 if the two targets have differences
+          
+          cat <<'EOF' >> preview.md
+          ```
+          </details>
+          EOF
+
+      - name: Find preview comment
+        uses: peter-evans/find-comment@v3
+        id: preview-comment-find
+        if: "!contains(github.actor, 'dependabot') && github.repository == 'grafana/grafana-foundation-sdk'" # only run on main repo, and not on dependabot PRs
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'grafana-foundation-sdk-diff-preview-marker'
+
+      - name: Upsert preview comment
+        uses: peter-evans/create-or-update-comment@v4
+        if: "!contains(github.actor, 'dependabot') && github.repository == 'grafana/grafana-foundation-sdk'" # only run on main repo, and not on dependabot PRs
+        with:
+          comment-id: ${{ steps.preview-comment-find.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          edit-mode: replace
+          body-path: './preview.md'

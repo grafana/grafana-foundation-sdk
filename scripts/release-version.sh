@@ -29,6 +29,7 @@ KIND_REGISTRY_PATH=${KIND_REGISTRY_PATH:-'../kind-registry'} # Path to the kind-
 KIND_REGISTRY_REPO=${KIND_REGISTRY_REPO:-'https://github.com/grafana/kind-registry.git'}
 FOUNDATION_SDK_REPO=${FOUNDATION_SDK_REPO:-'git@github.com:grafana/grafana-foundation-sdk.git'}
 
+SKIP_VALIDATION=${SKIP_VALIDATION:-"no"}
 CLEANUP_WORKSPACE=${CLEANUP_WORKSPACE:-"yes"} # Should the workspace be deleted after the script runs?
 WORKSPACE_PATH=${WORKSPACE_PATH:-'./workspace'}
 
@@ -111,6 +112,12 @@ else
   notice "Dry-run is ON."
 fi
 
+if [ "${SKIP_VALIDATION}" == "yes" ]; then
+  warning "Release validation is OFF."
+else
+  debug "Release validation is ON."
+fi
+
 notice "Grafana version: ${GRAFANA_VERSION}"
 notice "Cog version: ${COG_VERSION}"
 notice "Release branch in grafana-foundation-sdk: ${release_branch}"
@@ -179,8 +186,12 @@ fi
 
 git_run "${foundation_sdk_path}" commit -m "Automated release"
 
-info "Validating release"
-"$__dir/release-validate.sh" "${codegen_output_path}"
+if [ "${SKIP_VALIDATION}" == "yes" ]; then
+  warning "Skipping release validation"
+else
+  info "Validating release"
+  "$__dir/release-validate.sh" "${codegen_output_path}"
+fi
 
 info "Pushing PR branch ${pr_branch}"
 run_when_safe git_run "${foundation_sdk_path}" push origin "${pr_branch}"
