@@ -36,6 +36,37 @@ final class PanelConverter
     
     
     }
+            if ($input->pluginVersion !== null && $input->pluginVersion !== "") {
+    
+        
+    $buffer = 'pluginVersion(';
+        $arg0 =\var_export($input->pluginVersion, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->tags !== null && count($input->tags) >= 1) {
+    
+        
+    $buffer = 'tags(';
+        $tmparg0 = [];
+        foreach ($input->tags as $arg1) {
+        $tmptagsarg1 =\var_export($arg1, true);
+        $tmparg0[] = $tmptagsarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->targets !== null && count($input->targets) >= 1) {
     
         
@@ -189,6 +220,19 @@ final class PanelConverter
     
     
     }
+            if ($input->repeatPanelId !== null) {
+    
+        
+    $buffer = 'repeatPanelId(';
+        $arg0 =\var_export($input->repeatPanelId, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->maxDataPoints !== null) {
     
         
@@ -272,6 +316,32 @@ final class PanelConverter
     
     
     }
+            if ($input->options !== null) {
+    
+        
+    $buffer = 'options(';
+        $arg0 =\var_export($input->options, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            
+    
+        {
+    $buffer = 'fieldConfig(';
+        $arg0 ='(new \Grafana\Foundation\Dashboard\FieldConfigSource(defaults: '.'(new \Grafana\Foundation\Dashboard\FieldConfig('.(($input->fieldConfig->defaults->displayName !== null) ? 'displayName: '.\var_export($input->fieldConfig->defaults->displayName, true).', ' : '').''.(($input->fieldConfig->defaults->displayNameFromDS !== null) ? 'displayNameFromDS: '.\var_export($input->fieldConfig->defaults->displayNameFromDS, true).', ' : '').''.(($input->fieldConfig->defaults->description !== null) ? 'description: '.\var_export($input->fieldConfig->defaults->description, true).', ' : '').''.(($input->fieldConfig->defaults->path !== null) ? 'path: '.\var_export($input->fieldConfig->defaults->path, true).', ' : '').''.(($input->fieldConfig->defaults->writeable !== null) ? 'writeable: '.\var_export($input->fieldConfig->defaults->writeable, true).', ' : '').''.(($input->fieldConfig->defaults->filterable !== null) ? 'filterable: '.\var_export($input->fieldConfig->defaults->filterable, true).', ' : '').''.(($input->fieldConfig->defaults->unit !== null) ? 'unit: '.\var_export($input->fieldConfig->defaults->unit, true).', ' : '').''.(($input->fieldConfig->defaults->decimals !== null) ? 'decimals: '.\var_export($input->fieldConfig->defaults->decimals, true).', ' : '').''.(($input->fieldConfig->defaults->min !== null) ? 'min: '.\var_export($input->fieldConfig->defaults->min, true).', ' : '').''.(($input->fieldConfig->defaults->max !== null) ? 'max: '.\var_export($input->fieldConfig->defaults->max, true).', ' : '').''.(($input->fieldConfig->defaults->mappings !== null) ? 'mappings: '.\var_export($input->fieldConfig->defaults->mappings, true).', ' : '').''.(($input->fieldConfig->defaults->thresholds !== null) ? 'thresholds: '.'(new \Grafana\Foundation\Dashboard\ThresholdsConfig(mode: '.'\Grafana\Foundation\Dashboard\ThresholdsMode::fromValue("'.$input->fieldConfig->defaults->thresholds->mode.'")'.',steps: '.\var_export($input->fieldConfig->defaults->thresholds->steps, true).',))'.', ' : '').''.(($input->fieldConfig->defaults->color !== null) ? 'color: '.'(new \Grafana\Foundation\Dashboard\FieldColor(mode: '.'\Grafana\Foundation\Dashboard\FieldColorModeId::fromValue("'.$input->fieldConfig->defaults->color->mode.'")'.','.(($input->fieldConfig->defaults->color->fixedColor !== null) ? 'fixedColor: '.\var_export($input->fieldConfig->defaults->color->fixedColor, true).', ' : '').''.(($input->fieldConfig->defaults->color->seriesBy !== null) ? 'seriesBy: '.'\Grafana\Foundation\Dashboard\FieldColorSeriesByMode::fromValue("'.$input->fieldConfig->defaults->color->seriesBy.'")'.', ' : '').'))'.', ' : '').''.(($input->fieldConfig->defaults->links !== null) ? 'links: '.\var_export($input->fieldConfig->defaults->links, true).', ' : '').''.(($input->fieldConfig->defaults->noValue !== null) ? 'noValue: '.\var_export($input->fieldConfig->defaults->noValue, true).', ' : '').''.(($input->fieldConfig->defaults->custom !== null) ? 'custom: '.\var_export($input->fieldConfig->defaults->custom, true).', ' : '').'))'.',overrides: '.\var_export($input->fieldConfig->overrides, true).',))';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    }
+    
+    
             if ($input->fieldConfig->defaults->displayName !== null && $input->fieldConfig->defaults->displayName !== "") {
     
         
@@ -431,6 +501,32 @@ final class PanelConverter
     
     
     }
+            if ($input->fieldConfig->defaults->custom !== null) {
+    
+        
+    $buffer = 'custom(';
+        $arg0 =\var_export($input->fieldConfig->defaults->custom, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            
+    
+        {
+    $buffer = 'defaults(';
+        $arg0 ='(new \Grafana\Foundation\Dashboard\FieldConfig('.(($input->fieldConfig->defaults->displayName !== null) ? 'displayName: '.\var_export($input->fieldConfig->defaults->displayName, true).', ' : '').''.(($input->fieldConfig->defaults->displayNameFromDS !== null) ? 'displayNameFromDS: '.\var_export($input->fieldConfig->defaults->displayNameFromDS, true).', ' : '').''.(($input->fieldConfig->defaults->description !== null) ? 'description: '.\var_export($input->fieldConfig->defaults->description, true).', ' : '').''.(($input->fieldConfig->defaults->path !== null) ? 'path: '.\var_export($input->fieldConfig->defaults->path, true).', ' : '').''.(($input->fieldConfig->defaults->writeable !== null) ? 'writeable: '.\var_export($input->fieldConfig->defaults->writeable, true).', ' : '').''.(($input->fieldConfig->defaults->filterable !== null) ? 'filterable: '.\var_export($input->fieldConfig->defaults->filterable, true).', ' : '').''.(($input->fieldConfig->defaults->unit !== null) ? 'unit: '.\var_export($input->fieldConfig->defaults->unit, true).', ' : '').''.(($input->fieldConfig->defaults->decimals !== null) ? 'decimals: '.\var_export($input->fieldConfig->defaults->decimals, true).', ' : '').''.(($input->fieldConfig->defaults->min !== null) ? 'min: '.\var_export($input->fieldConfig->defaults->min, true).', ' : '').''.(($input->fieldConfig->defaults->max !== null) ? 'max: '.\var_export($input->fieldConfig->defaults->max, true).', ' : '').''.(($input->fieldConfig->defaults->mappings !== null) ? 'mappings: '.\var_export($input->fieldConfig->defaults->mappings, true).', ' : '').''.(($input->fieldConfig->defaults->thresholds !== null) ? 'thresholds: '.'(new \Grafana\Foundation\Dashboard\ThresholdsConfig(mode: '.'\Grafana\Foundation\Dashboard\ThresholdsMode::fromValue("'.$input->fieldConfig->defaults->thresholds->mode.'")'.',steps: '.\var_export($input->fieldConfig->defaults->thresholds->steps, true).',))'.', ' : '').''.(($input->fieldConfig->defaults->color !== null) ? 'color: '.'(new \Grafana\Foundation\Dashboard\FieldColor(mode: '.'\Grafana\Foundation\Dashboard\FieldColorModeId::fromValue("'.$input->fieldConfig->defaults->color->mode.'")'.','.(($input->fieldConfig->defaults->color->fixedColor !== null) ? 'fixedColor: '.\var_export($input->fieldConfig->defaults->color->fixedColor, true).', ' : '').''.(($input->fieldConfig->defaults->color->seriesBy !== null) ? 'seriesBy: '.'\Grafana\Foundation\Dashboard\FieldColorSeriesByMode::fromValue("'.$input->fieldConfig->defaults->color->seriesBy.'")'.', ' : '').'))'.', ' : '').''.(($input->fieldConfig->defaults->links !== null) ? 'links: '.\var_export($input->fieldConfig->defaults->links, true).', ' : '').''.(($input->fieldConfig->defaults->noValue !== null) ? 'noValue: '.\var_export($input->fieldConfig->defaults->noValue, true).', ' : '').''.(($input->fieldConfig->defaults->custom !== null) ? 'custom: '.\var_export($input->fieldConfig->defaults->custom, true).', ' : '').'))';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    }
+    
+    
             if (count($input->fieldConfig->overrides) >= 1) {
     
         

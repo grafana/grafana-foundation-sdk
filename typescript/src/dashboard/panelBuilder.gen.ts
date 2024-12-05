@@ -33,6 +33,18 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
+    pluginVersion(pluginVersion: string): this {
+        this.internal.pluginVersion = pluginVersion;
+        return this;
+    }
+
+    // Tags for the panel.
+    tags(tags: string[]): this {
+        this.internal.tags = tags;
+        return this;
+    }
+
     // Depends on the panel plugin. See the plugin documentation for details.
     targets(targets: cog.Builder<cog.Dataquery>[]): this {
         const targetsResources = targets.map(builder1 => builder1.build());
@@ -127,6 +139,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Id of the repeating panel.
+    repeatPanelId(repeatPanelId: number): this {
+        this.internal.repeatPanelId = repeatPanelId;
+        return this;
+    }
+
     // The maximum number of data points that the panel queries are retrieving.
     maxDataPoints(maxDataPoints: number): this {
         this.internal.maxDataPoints = maxDataPoints;
@@ -186,6 +204,18 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     // Dynamically load the panel
     libraryPanel(libraryPanel: dashboard.LibraryPanelRef): this {
         this.internal.libraryPanel = libraryPanel;
+        return this;
+    }
+
+    // It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+    options(options: any): this {
+        this.internal.options = options;
+        return this;
+    }
+
+    // Field options allow you to change how the data is displayed in your visualizations.
+    fieldConfig(fieldConfig: dashboard.FieldConfigSource): this {
+        this.internal.fieldConfig = fieldConfig;
         return this;
     }
 
@@ -321,6 +351,28 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
             this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
         }
         this.internal.fieldConfig.defaults.noValue = noValue;
+        return this;
+    }
+
+    // custom is specified by the FieldConfig field
+    // in panel plugin schemas.
+    custom(custom: any): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom = custom;
+        return this;
+    }
+
+    // Defaults are the options applied to all fields.
+    defaults(defaults: dashboard.FieldConfig): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        this.internal.fieldConfig.defaults = defaults;
         return this;
     }
 

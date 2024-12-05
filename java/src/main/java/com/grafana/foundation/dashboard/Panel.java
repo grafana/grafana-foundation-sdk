@@ -148,6 +148,16 @@ public class Panel {
         return (T) this;
     }
     
+    public T pluginVersion(String pluginVersion) {
+    this.internal.pluginVersion = pluginVersion;
+        return (T) this;
+    }
+    
+    public T tags(List<String> tags) {
+    this.internal.tags = tags;
+        return (T) this;
+    }
+    
     public T targets(com.grafana.foundation.cog.Builder<List<Dataquery>> targets) {
     this.internal.targets = targets.build();
         return (T) this;
@@ -226,6 +236,11 @@ public class Panel {
         return (T) this;
     }
     
+    public T repeatPanelId(Long repeatPanelId) {
+    this.internal.repeatPanelId = repeatPanelId;
+        return (T) this;
+    }
+    
     public T maxDataPoints(Double maxDataPoints) {
     this.internal.maxDataPoints = maxDataPoints;
         return (T) this;
@@ -261,6 +276,16 @@ public class Panel {
     
     public T libraryPanel(LibraryPanelRef libraryPanel) {
     this.internal.libraryPanel = libraryPanel;
+        return (T) this;
+    }
+    
+    public T options(Object options) {
+    this.internal.options = options;
+        return (T) this;
+    }
+    
+    public T fieldConfig(FieldConfigSource fieldConfig) {
+    this.internal.fieldConfig = fieldConfig;
         return (T) this;
     }
     
@@ -371,6 +396,25 @@ public class Panel {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
     this.internal.fieldConfig.defaults.noValue = noValue;
+        return (T) this;
+    }
+    
+    public T custom(Object custom) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+    this.internal.fieldConfig.defaults.custom = custom;
+        return (T) this;
+    }
+    
+    public T defaults(FieldConfig defaults) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+    this.internal.fieldConfig.defaults = defaults;
         return (T) this;
     }
     

@@ -26,6 +26,16 @@ Panel color configuration
 colorScheme(color: cog.Builder<dashboard.FieldColor>)
 ```
 
+### <span class="badge object-method"></span> custom
+
+custom is specified by the FieldConfig field
+
+in panel plugin schemas.
+
+```typescript
+custom(custom: any)
+```
+
 ### <span class="badge object-method"></span> dataLinks
 
 The behavior when clicking on a result
@@ -56,6 +66,14 @@ To display all decimals, set the unit to `String`.
 decimals(decimals: number)
 ```
 
+### <span class="badge object-method"></span> defaults
+
+Defaults are the options applied to all fields.
+
+```typescript
+defaults(defaults: dashboard.FieldConfig)
+```
+
 ### <span class="badge object-method"></span> description
 
 Panel description.
@@ -70,6 +88,14 @@ The display value for this field.  This supports template variables blank is aut
 
 ```typescript
 displayName(displayName: string)
+```
+
+### <span class="badge object-method"></span> fieldConfig
+
+Field options allow you to change how the data is displayed in your visualizations.
+
+```typescript
+fieldConfig(fieldConfig: dashboard.FieldConfigSource)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -166,6 +192,14 @@ Alternative to empty string
 noValue(noValue: string)
 ```
 
+### <span class="badge object-method"></span> options
+
+It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+
+```typescript
+options(options: any)
+```
+
 ### <span class="badge object-method"></span> overrides
 
 Overrides are the options applied to specific fields overriding the defaults.
@@ -175,6 +209,14 @@ overrides(overrides: {
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 }[])
+```
+
+### <span class="badge object-method"></span> pluginVersion
+
+The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
+
+```typescript
+pluginVersion(pluginVersion: string)
 ```
 
 ### <span class="badge object-method"></span> repeat
@@ -195,12 +237,28 @@ Direction to repeat in if 'repeat' is set.
 repeatDirection(repeatDirection: "h" | "v")
 ```
 
+### <span class="badge object-method"></span> repeatPanelId
+
+Id of the repeating panel.
+
+```typescript
+repeatPanelId(repeatPanelId: number)
+```
+
 ### <span class="badge object-method"></span> span
 
 Panel width. The width is the number of columns from the left edge of the panel.
 
 ```typescript
 span(w: number)
+```
+
+### <span class="badge object-method"></span> tags
+
+Tags for the panel.
+
+```typescript
+tags(tags: string[])
 ```
 
 ### <span class="badge object-method"></span> targets

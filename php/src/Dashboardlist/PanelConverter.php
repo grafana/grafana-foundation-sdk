@@ -574,6 +574,24 @@ final class PanelConverter
     
     
     }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Dashboardlist\Options && count($input->options->tags) >= 1) {
+    
+        
+    $buffer = 'tags(';
+        $tmparg0 = [];
+        foreach ($input->options->tags as $arg1) {
+        $tmptagsarg1 =\var_export($arg1, true);
+        $tmparg0[] = $tmptagsarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

@@ -39,6 +39,35 @@ func PanelConverter(input Panel) string {
 		buffer.Reset()
 
 	}
+	if input.PluginVersion != nil && *input.PluginVersion != "" {
+
+		buffer.WriteString(`PluginVersion(`)
+		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PluginVersion))
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Tags != nil && len(input.Tags) >= 1 {
+
+		buffer.WriteString(`Tags(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.Tags {
+			tmptagsarg1 := fmt.Sprintf("%#v", arg1)
+			tmparg0 = append(tmparg0, tmptagsarg1)
+		}
+		arg0 := "[]string{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Targets != nil && len(input.Targets) >= 1 {
 
 		buffer.WriteString(`Targets(`)
@@ -181,6 +210,18 @@ func PanelConverter(input Panel) string {
 		buffer.Reset()
 
 	}
+	if input.RepeatPanelId != nil {
+
+		buffer.WriteString(`RepeatPanelId(`)
+		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.RepeatPanelId))
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.MaxDataPoints != nil {
 
 		buffer.WriteString(`MaxDataPoints(`)
@@ -258,6 +299,30 @@ func PanelConverter(input Panel) string {
 		buffer.Reset()
 
 	}
+	if input.Options != nil {
+
+		buffer.WriteString(`Options(`)
+		arg0 := cog.Dump(input.Options)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+
+	{
+		buffer.WriteString(`FieldConfig(`)
+		arg0 := cog.Dump(input.FieldConfig)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+	}
+
 	if input.FieldConfig.Defaults.DisplayName != nil && *input.FieldConfig.Defaults.DisplayName != "" {
 
 		buffer.WriteString(`DisplayName(`)
@@ -388,6 +453,30 @@ func PanelConverter(input Panel) string {
 		buffer.Reset()
 
 	}
+	if input.FieldConfig.Defaults.Custom != nil {
+
+		buffer.WriteString(`Custom(`)
+		arg0 := cog.Dump(input.FieldConfig.Defaults.Custom)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+
+	{
+		buffer.WriteString(`Defaults(`)
+		arg0 := cog.Dump(input.FieldConfig.Defaults)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+	}
+
 	if input.FieldConfig.Overrides != nil && len(input.FieldConfig.Overrides) >= 1 {
 
 		buffer.WriteString(`Overrides(`)

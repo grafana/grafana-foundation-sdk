@@ -26,6 +26,16 @@ Panel color configuration
 func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> Custom
+
+custom is specified by the FieldConfig field
+
+in panel plugin schemas.
+
+```go
+func (builder *PanelBuilder) Custom(custom any) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> DataLinks
 
 The behavior when clicking on a result
@@ -56,6 +66,14 @@ To display all decimals, set the unit to `String`.
 func (builder *PanelBuilder) Decimals(decimals float64) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> Defaults
+
+Defaults are the options applied to all fields.
+
+```go
+func (builder *PanelBuilder) Defaults(defaults dashboard.FieldConfig) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> Description
 
 Panel description.
@@ -70,6 +88,14 @@ The display value for this field.  This supports template variables blank is aut
 
 ```go
 func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> FieldConfig
+
+Field options allow you to change how the data is displayed in your visualizations.
+
+```go
+func (builder *PanelBuilder) FieldConfig(fieldConfig dashboard.FieldConfigSource) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> GridPos
@@ -166,12 +192,28 @@ Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> Options
+
+It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
+
+```go
+func (builder *PanelBuilder) Options(options any) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> Overrides
 
 Overrides are the options applied to specific fields overriding the defaults.
 
 ```go
 func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.DashboardFieldConfigSourceOverrides]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> PluginVersion
+
+The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
+
+```go
+func (builder *PanelBuilder) PluginVersion(pluginVersion string) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Repeat
@@ -192,12 +234,28 @@ Direction to repeat in if 'repeat' is set.
 func (builder *PanelBuilder) RepeatDirection(repeatDirection dashboard.PanelRepeatDirection) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> RepeatPanelId
+
+Id of the repeating panel.
+
+```go
+func (builder *PanelBuilder) RepeatPanelId(repeatPanelId int64) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> Span
 
 Panel width. The width is the number of columns from the left edge of the panel.
 
 ```go
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Tags
+
+Tags for the panel.
+
+```go
+func (builder *PanelBuilder) Tags(tags []string) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Targets
