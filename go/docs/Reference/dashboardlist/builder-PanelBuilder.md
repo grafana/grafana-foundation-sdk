@@ -280,6 +280,12 @@ Panel width. The width is the number of columns from the left edge of the panel.
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> Tags
+
+```go
+func (builder *PanelBuilder) Tags(tags []string) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> Targets
 
 Depends on the panel plugin. See the plugin documentation for details.

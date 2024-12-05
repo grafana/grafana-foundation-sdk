@@ -421,6 +421,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    tags(tags: string[]): this {
+        if (!this.internal.options) {
+            this.internal.options = dashboardlist.defaultOptions();
+        }
+        this.internal.options.tags = tags;
+        return this;
+    }
+
     // folderId is deprecated, and migrated to folderUid on panel init
     folderId(folderId: number): this {
         if (!this.internal.options) {
