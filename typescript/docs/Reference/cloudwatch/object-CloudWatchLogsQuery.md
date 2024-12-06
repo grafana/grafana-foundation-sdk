@@ -20,6 +20,8 @@ export interface CloudWatchLogsQuery {
 	statsGroups?: string[];
 	// Log groups to query
 	logGroups?: cloudwatch.LogGroup[];
+	// @deprecated use logGroups
+	logGroupNames?: string[];
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
@@ -29,8 +31,8 @@ export interface CloudWatchLogsQuery {
 	// Specify the query flavor
 	// TODO make this required and give it a default
 	queryType?: string;
-	// @deprecated use logGroups
-	logGroupNames?: string[];
+	// Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
+	queryLanguage?: cloudwatch.LogsQueryLanguage;
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema

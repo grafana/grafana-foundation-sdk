@@ -40,6 +40,12 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
     public ?array $logGroups;
 
     /**
+     * @deprecated use logGroups
+     * @var array<string>|null
+     */
+    public ?array $logGroupNames;
+
+    /**
      * A unique identifier for the query within the list of targets.
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
@@ -58,10 +64,9 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
     public ?string $queryType;
 
     /**
-     * @deprecated use logGroups
-     * @var array<string>|null
+     * Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
      */
-    public ?array $logGroupNames;
+    public ?\Grafana\Foundation\Cloudwatch\LogsQueryLanguage $queryLanguage;
 
     /**
      * For mixed data sources the selected datasource is on the query level.

@@ -37,6 +37,12 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
     public ?array $logGroups;
 
     /**
+     * @deprecated use logGroups
+     * @var array<string>|null
+     */
+    public ?array $logGroupNames;
+
+    /**
      * A unique identifier for the query within the list of targets.
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
@@ -55,10 +61,9 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
     public ?string $queryType;
 
     /**
-     * @deprecated use logGroups
-     * @var array<string>|null
+     * Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
      */
-    public ?array $logGroupNames;
+    public ?\Grafana\Foundation\Cloudwatch\LogsQueryLanguage $queryLanguage;
 
     /**
      * For mixed data sources the selected datasource is on the query level.
@@ -75,13 +80,14 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
      * @param string|null $expression
      * @param array<string>|null $statsGroups
      * @param array<\Grafana\Foundation\Cloudwatch\LogGroup>|null $logGroups
+     * @param array<string>|null $logGroupNames
      * @param string|null $refId
      * @param bool|null $hide
      * @param string|null $queryType
-     * @param array<string>|null $logGroupNames
+     * @param \Grafana\Foundation\Cloudwatch\LogsQueryLanguage|null $queryLanguage
      * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      */
-    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?string $id = null, ?string $region = null, ?string $expression = null, ?array $statsGroups = null, ?array $logGroups = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?array $logGroupNames = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
+    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?string $id = null, ?string $region = null, ?string $expression = null, ?array $statsGroups = null, ?array $logGroups = null, ?array $logGroupNames = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Cloudwatch\LogsQueryLanguage $queryLanguage = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
     {
         $this->queryMode = $queryMode ?: \Grafana\Foundation\Cloudwatch\CloudWatchQueryMode::logs();
         $this->id = $id ?: "";
@@ -89,10 +95,11 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
         $this->expression = $expression;
         $this->statsGroups = $statsGroups;
         $this->logGroups = $logGroups;
+        $this->logGroupNames = $logGroupNames;
         $this->refId = $refId ?: "";
         $this->hide = $hide;
         $this->queryType = $queryType;
-        $this->logGroupNames = $logGroupNames;
+        $this->queryLanguage = $queryLanguage;
         $this->datasource = $datasource;
     }
 
@@ -101,7 +108,7 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{queryMode?: string, id?: string, region?: string, expression?: string, statsGroups?: array<string>, logGroups?: array<mixed>, refId?: string, hide?: bool, queryType?: string, logGroupNames?: array<string>, datasource?: mixed} $inputData */
+        /** @var array{queryMode?: string, id?: string, region?: string, expression?: string, statsGroups?: array<string>, logGroups?: array<mixed>, logGroupNames?: array<string>, refId?: string, hide?: bool, queryType?: string, queryLanguage?: string, datasource?: mixed} $inputData */
         $data = $inputData;
         return new self(
             queryMode: isset($data["queryMode"]) ? (function($input) { return \Grafana\Foundation\Cloudwatch\CloudWatchQueryMode::fromValue($input); })($data["queryMode"]) : null,
@@ -114,10 +121,11 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
     $val = $input;
     	return \Grafana\Foundation\Cloudwatch\LogGroup::fromArray($val);
     }), $data["logGroups"] ?? [])),
+            logGroupNames: $data["logGroupNames"] ?? null,
             refId: $data["refId"] ?? null,
             hide: $data["hide"] ?? null,
             queryType: $data["queryType"] ?? null,
-            logGroupNames: $data["logGroupNames"] ?? null,
+            queryLanguage: isset($data["queryLanguage"]) ? (function($input) { return \Grafana\Foundation\Cloudwatch\LogsQueryLanguage::fromValue($input); })($data["queryLanguage"]) : null,
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
@@ -146,14 +154,17 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
         if (isset($this->logGroups)) {
             $data["logGroups"] = $this->logGroups;
         }
+        if (isset($this->logGroupNames)) {
+            $data["logGroupNames"] = $this->logGroupNames;
+        }
         if (isset($this->hide)) {
             $data["hide"] = $this->hide;
         }
         if (isset($this->queryType)) {
             $data["queryType"] = $this->queryType;
         }
-        if (isset($this->logGroupNames)) {
-            $data["logGroupNames"] = $this->logGroupNames;
+        if (isset($this->queryLanguage)) {
+            $data["queryLanguage"] = $this->queryLanguage;
         }
         if (isset($this->datasource)) {
             $data["datasource"] = $this->datasource;

@@ -98,6 +98,24 @@ final class CloudWatchLogsQueryConverter
     
     
     }
+            if ($input->logGroupNames !== null && count($input->logGroupNames) >= 1) {
+    
+        
+    $buffer = 'logGroupNames(';
+        $tmparg0 = [];
+        foreach ($input->logGroupNames as $arg1) {
+        $tmplogGroupNamesarg1 =\var_export($arg1, true);
+        $tmparg0[] = $tmplogGroupNamesarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->refId !== "") {
     
         
@@ -137,16 +155,11 @@ final class CloudWatchLogsQueryConverter
     
     
     }
-            if ($input->logGroupNames !== null && count($input->logGroupNames) >= 1) {
+            if ($input->queryLanguage !== null) {
     
         
-    $buffer = 'logGroupNames(';
-        $tmparg0 = [];
-        foreach ($input->logGroupNames as $arg1) {
-        $tmplogGroupNamesarg1 =\var_export($arg1, true);
-        $tmparg0[] = $tmplogGroupNamesarg1;
-        }
-        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+    $buffer = 'queryLanguage(';
+        $arg0 ='\Grafana\Foundation\Cloudwatch\LogsQueryLanguage::fromValue("'.$input->queryLanguage.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

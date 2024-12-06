@@ -599,6 +599,12 @@ class QueryEditorArrayExpression:
 QueryEditorExpression: typing.TypeAlias = typing.Union['QueryEditorArrayExpression', 'QueryEditorPropertyExpression', 'QueryEditorGroupByExpression', 'QueryEditorFunctionExpression', 'QueryEditorFunctionParameterExpression', 'QueryEditorOperatorExpression']
 
 
+class LogsQueryLanguage(enum.StrEnum):
+    CWLI = "CWLI"
+    SQL = "SQL"
+    PPL = "PPL"
+
+
 class CloudWatchLogsQuery(cogvariants.Dataquery):
     """
     Shape of a CloudWatch Logs query
@@ -615,6 +621,8 @@ class CloudWatchLogsQuery(cogvariants.Dataquery):
     stats_groups: typing.Optional[list[str]]
     # Log groups to query
     log_groups: typing.Optional[list['LogGroup']]
+    # @deprecated use logGroups
+    log_group_names: typing.Optional[list[str]]
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
@@ -624,25 +632,26 @@ class CloudWatchLogsQuery(cogvariants.Dataquery):
     # Specify the query flavor
     # TODO make this required and give it a default
     query_type: typing.Optional[str]
-    # @deprecated use logGroups
-    log_group_names: typing.Optional[list[str]]
+    # Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
+    query_language: typing.Optional['LogsQueryLanguage']
     # For mixed data sources the selected datasource is on the query level.
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
 
-    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, id_val: str = "", region: str = "", expression: typing.Optional[str] = None, stats_groups: typing.Optional[list[str]] = None, log_groups: typing.Optional[list['LogGroup']] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, log_group_names: typing.Optional[list[str]] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, id_val: str = "", region: str = "", expression: typing.Optional[str] = None, stats_groups: typing.Optional[list[str]] = None, log_groups: typing.Optional[list['LogGroup']] = None, log_group_names: typing.Optional[list[str]] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query_language: typing.Optional['LogsQueryLanguage'] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
         self.query_mode = query_mode if query_mode is not None else CloudWatchQueryMode.LOGS
         self.id_val = id_val
         self.region = region
         self.expression = expression
         self.stats_groups = stats_groups
         self.log_groups = log_groups
+        self.log_group_names = log_group_names
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
-        self.log_group_names = log_group_names
+        self.query_language = query_language
         self.datasource = datasource
 
     def to_json(self) -> dict[str, object]:
@@ -658,12 +667,14 @@ class CloudWatchLogsQuery(cogvariants.Dataquery):
             payload["statsGroups"] = self.stats_groups
         if self.log_groups is not None:
             payload["logGroups"] = self.log_groups
+        if self.log_group_names is not None:
+            payload["logGroupNames"] = self.log_group_names
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
             payload["queryType"] = self.query_type
-        if self.log_group_names is not None:
-            payload["logGroupNames"] = self.log_group_names
+        if self.query_language is not None:
+            payload["queryLanguage"] = self.query_language
         if self.datasource is not None:
             payload["datasource"] = self.datasource
         return payload
@@ -684,14 +695,16 @@ class CloudWatchLogsQuery(cogvariants.Dataquery):
             args["stats_groups"] = data["statsGroups"]
         if "logGroups" in data:
             args["log_groups"] = data["logGroups"]
+        if "logGroupNames" in data:
+            args["log_group_names"] = data["logGroupNames"]
         if "refId" in data:
             args["ref_id"] = data["refId"]
         if "hide" in data:
             args["hide"] = data["hide"]
         if "queryType" in data:
             args["query_type"] = data["queryType"]
-        if "logGroupNames" in data:
-            args["log_group_names"] = data["logGroupNames"]
+        if "queryLanguage" in data:
+            args["query_language"] = data["queryLanguage"]
         if "datasource" in data:
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])        
 
