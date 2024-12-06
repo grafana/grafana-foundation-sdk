@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "11.1.0-cogv0.0.x.1733429624",
+  "version": "11.1.0-cogv0.0.x.1733524376",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -236,9 +236,6 @@
     "@grafana/tsconfig": "^1.3.0-rc1",
     "babel-loader": "^8.2.2",
     "typescript": "^5.0.0"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "tslib": "^2.6.2"
