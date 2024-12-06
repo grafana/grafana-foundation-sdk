@@ -1,0 +1,217 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "view",
+        "controls",
+        "basemap",
+        "layers",
+        "tooltip"
+      ],
+      "properties": {
+        "view": {
+          "$ref": "#/definitions/MapViewConfig"
+        },
+        "controls": {
+          "$ref": "#/definitions/ControlsOptions"
+        },
+        "basemap": {
+          "$ref": "#/definitions/MapLayerOptions"
+        },
+        "layers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MapLayerOptions"
+          }
+        },
+        "tooltip": {
+          "$ref": "#/definitions/TooltipOptions"
+        }
+      }
+    },
+    "MapViewConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "default": "zero"
+        },
+        "lat": {
+          "type": "integer",
+          "default": 0
+        },
+        "lon": {
+          "type": "integer",
+          "default": 0
+        },
+        "zoom": {
+          "type": "integer",
+          "default": 1
+        },
+        "minZoom": {
+          "type": "integer"
+        },
+        "maxZoom": {
+          "type": "integer"
+        },
+        "padding": {
+          "type": "integer"
+        },
+        "allLayers": {
+          "type": "boolean",
+          "default": true
+        },
+        "lastOnly": {
+          "type": "boolean"
+        },
+        "layer": {
+          "type": "string"
+        },
+        "shared": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ControlsOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "showZoom": {
+          "type": "boolean",
+          "description": "Zoom (upper left)"
+        },
+        "mouseWheelZoom": {
+          "type": "boolean",
+          "description": "let the mouse wheel zoom"
+        },
+        "showAttribution": {
+          "type": "boolean",
+          "description": "Lower right"
+        },
+        "showScale": {
+          "type": "boolean",
+          "description": "Scale options"
+        },
+        "showDebug": {
+          "type": "boolean",
+          "description": "Show debug"
+        },
+        "showMeasure": {
+          "type": "boolean",
+          "description": "Show measure"
+        }
+      }
+    },
+    "TooltipOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/TooltipMode"
+        }
+      }
+    },
+    "TooltipMode": {
+      "enum": [
+        "none",
+        "details"
+      ]
+    },
+    "MapCenterID": {
+      "enum": [
+        "zero",
+        "coords",
+        "fit"
+      ]
+    },
+    "MapLayerOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "configured unique display name"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Custom options depending on the type"
+        },
+        "location": {
+          "$ref": "#/definitions/FrameGeometrySource",
+          "description": "Common method to define geometry fields"
+        },
+        "filterData": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Defines a frame MatcherConfig that may filter data for the given layer"
+        },
+        "opacity": {
+          "type": "integer",
+          "description": "Common properties:\nhttps://openlayers.org/en/latest/apidoc/module-ol_layer_Base-BaseLayer.html\nLayer opacity (0-1)"
+        },
+        "tooltip": {
+          "type": "boolean",
+          "description": "Check tooltip (defaults to true)"
+        }
+      }
+    },
+    "FrameGeometrySource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/FrameGeometrySourceMode"
+        },
+        "geohash": {
+          "type": "string",
+          "description": "Field mappings"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "wkt": {
+          "type": "string"
+        },
+        "lookup": {
+          "type": "string"
+        },
+        "gazetteer": {
+          "type": "string",
+          "description": "Path to Gazetteer"
+        }
+      }
+    },
+    "FrameGeometrySourceMode": {
+      "enum": [
+        "auto",
+        "geohash",
+        "coords",
+        "lookup"
+      ]
+    }
+  }
+}
