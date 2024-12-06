@@ -1,0 +1,398 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "orientation",
+        "xTickLabelRotation",
+        "xTickLabelMaxLength",
+        "stacking",
+        "showValue",
+        "barWidth",
+        "groupWidth",
+        "legend",
+        "tooltip",
+        "fullHighlight"
+      ],
+      "properties": {
+        "xField": {
+          "type": "string",
+          "description": "Manually select which field from the dataset to represent the x field."
+        },
+        "colorByField": {
+          "type": "string",
+          "description": "Use the color value for a sibling field to color each bar value."
+        },
+        "orientation": {
+          "$ref": "#/definitions/VizOrientation",
+          "description": "Controls the orientation of the bar chart, either vertical or horizontal.",
+          "default": "auto"
+        },
+        "barRadius": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.5,
+          "description": "Controls the radius of each bar.",
+          "default": 0
+        },
+        "xTickLabelRotation": {
+          "type": "integer",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "Controls the rotation of the x axis labels.",
+          "default": 0
+        },
+        "xTickLabelMaxLength": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Sets the max length that a label can have before it is truncated."
+        },
+        "xTickLabelSpacing": {
+          "type": "integer",
+          "description": "Controls the spacing between x axis labels.\nnegative values indicate backwards skipping behavior",
+          "default": 0
+        },
+        "stacking": {
+          "$ref": "#/definitions/StackingMode",
+          "description": "Controls whether bars are stacked or not, either normally or in percent mode.",
+          "default": "none"
+        },
+        "showValue": {
+          "$ref": "#/definitions/VisibilityMode",
+          "description": "This controls whether values are shown on top or to the left of bars.",
+          "default": "auto"
+        },
+        "barWidth": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Controls the width of bars. 1 = Max width, 0 = Min width.",
+          "default": 0.97
+        },
+        "groupWidth": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Controls the width of groups. 1 = max with, 0 = min width.",
+          "default": 0.7
+        },
+        "legend": {
+          "$ref": "#/definitions/VizLegendOptions"
+        },
+        "tooltip": {
+          "$ref": "#/definitions/VizTooltipOptions"
+        },
+        "text": {
+          "$ref": "#/definitions/VizTextDisplayOptions"
+        },
+        "fullHighlight": {
+          "type": "boolean",
+          "description": "Enables mode which highlights the entire bar area and shows tooltip when cursor\nhovers over highlighted area",
+          "default": false
+        }
+      }
+    },
+    "FieldConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lineWidth": {
+          "type": "integer",
+          "maximum": 10,
+          "description": "Controls line width of the bars.",
+          "default": 1
+        },
+        "fillOpacity": {
+          "type": "integer",
+          "maximum": 100,
+          "description": "Controls the fill opacity of the bars.",
+          "default": 80
+        },
+        "gradientMode": {
+          "$ref": "#/definitions/GraphGradientMode",
+          "description": "Set the mode of the gradient fill. Fill gradient is based on the line color. To change the color, use the standard color scheme field option.\nGradient appearance is influenced by the Fill opacity setting.",
+          "default": "none"
+        },
+        "axisPlacement": {
+          "$ref": "#/definitions/AxisPlacement"
+        },
+        "axisColorMode": {
+          "$ref": "#/definitions/AxisColorMode"
+        },
+        "axisLabel": {
+          "type": "string"
+        },
+        "axisWidth": {
+          "type": "number"
+        },
+        "axisSoftMin": {
+          "type": "number"
+        },
+        "axisSoftMax": {
+          "type": "number"
+        },
+        "axisGridShow": {
+          "type": "boolean"
+        },
+        "scaleDistribution": {
+          "$ref": "#/definitions/ScaleDistributionConfig"
+        },
+        "axisCenteredZero": {
+          "type": "boolean"
+        },
+        "hideFrom": {
+          "$ref": "#/definitions/HideSeriesConfig"
+        },
+        "thresholdsStyle": {
+          "$ref": "#/definitions/GraphThresholdsStyleConfig",
+          "description": "Threshold rendering"
+        },
+        "axisBorderShow": {
+          "type": "boolean"
+        }
+      }
+    },
+    "VizOrientation": {
+      "enum": [
+        "auto",
+        "vertical",
+        "horizontal"
+      ],
+      "description": "TODO docs"
+    },
+    "StackingMode": {
+      "enum": [
+        "none",
+        "normal",
+        "percent"
+      ],
+      "description": "TODO docs"
+    },
+    "VisibilityMode": {
+      "enum": [
+        "auto",
+        "never",
+        "always"
+      ],
+      "description": "TODO docs"
+    },
+    "VizLegendOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "displayMode",
+        "placement",
+        "showLegend",
+        "calcs"
+      ],
+      "properties": {
+        "displayMode": {
+          "$ref": "#/definitions/LegendDisplayMode",
+          "default": "list"
+        },
+        "placement": {
+          "$ref": "#/definitions/LegendPlacement",
+          "default": "bottom"
+        },
+        "showLegend": {
+          "type": "boolean"
+        },
+        "asTable": {
+          "type": "boolean"
+        },
+        "isVisible": {
+          "type": "boolean"
+        },
+        "sortBy": {
+          "type": "string"
+        },
+        "sortDesc": {
+          "type": "boolean"
+        },
+        "width": {
+          "type": "number"
+        },
+        "calcs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizTooltipOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "sort"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/TooltipDisplayMode"
+        },
+        "sort": {
+          "$ref": "#/definitions/SortOrder"
+        },
+        "maxWidth": {
+          "type": "number"
+        },
+        "maxHeight": {
+          "type": "number"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizTextDisplayOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "titleSize": {
+          "type": "number",
+          "description": "Explicit title text size"
+        },
+        "valueSize": {
+          "type": "number",
+          "description": "Explicit value text size"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "GraphGradientMode": {
+      "enum": [
+        "none",
+        "opacity",
+        "hue",
+        "scheme"
+      ],
+      "description": "TODO docs"
+    },
+    "AxisPlacement": {
+      "enum": [
+        "auto",
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "hidden"
+      ],
+      "description": "TODO docs"
+    },
+    "AxisColorMode": {
+      "enum": [
+        "text",
+        "series"
+      ],
+      "description": "TODO docs"
+    },
+    "ScaleDistributionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ScaleDistribution"
+        },
+        "log": {
+          "type": "number"
+        },
+        "linearThreshold": {
+          "type": "number"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "HideSeriesConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tooltip",
+        "legend",
+        "viz"
+      ],
+      "properties": {
+        "tooltip": {
+          "type": "boolean"
+        },
+        "legend": {
+          "type": "boolean"
+        },
+        "viz": {
+          "type": "boolean"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "GraphThresholdsStyleConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/GraphThresholdsStyleMode"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "LegendDisplayMode": {
+      "enum": [
+        "list",
+        "table",
+        "hidden"
+      ],
+      "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
+    },
+    "LegendPlacement": {
+      "enum": [
+        "bottom",
+        "right"
+      ],
+      "description": "TODO docs"
+    },
+    "TooltipDisplayMode": {
+      "enum": [
+        "single",
+        "multi",
+        "none"
+      ],
+      "description": "TODO docs"
+    },
+    "SortOrder": {
+      "enum": [
+        "asc",
+        "desc",
+        "none"
+      ],
+      "description": "TODO docs"
+    },
+    "ScaleDistribution": {
+      "enum": [
+        "linear",
+        "log",
+        "ordinal",
+        "symlog"
+      ],
+      "description": "TODO docs"
+    },
+    "GraphThresholdsStyleMode": {
+      "enum": [
+        "off",
+        "line",
+        "dashed",
+        "area",
+        "line+area",
+        "dashed+area",
+        "series"
+      ],
+      "description": "TODO docs"
+    }
+  }
+}

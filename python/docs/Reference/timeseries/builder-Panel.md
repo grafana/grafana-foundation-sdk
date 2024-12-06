@@ -1,0 +1,595 @@
+---
+title: <span class="badge builder"></span> Panel
+---
+# <span class="badge builder"></span> Panel
+
+## Constructor
+
+```python
+Panel()
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```python
+def build() -> dashboard.Panel
+```
+
+### <span class="badge object-method"></span> axis_border_show
+
+```python
+def axis_border_show(axis_border_show: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> axis_centered_zero
+
+```python
+def axis_centered_zero(axis_centered_zero: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> axis_color_mode
+
+```python
+def axis_color_mode(axis_color_mode: common.AxisColorMode) -> typing.Self
+```
+
+### <span class="badge object-method"></span> axis_grid_show
+
+```python
+def axis_grid_show(axis_grid_show: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> axis_label
+
+```python
+def axis_label(axis_label: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> axis_placement
+
+```python
+def axis_placement(axis_placement: common.AxisPlacement) -> typing.Self
+```
+
+### <span class="badge object-method"></span> axis_soft_max
+
+```python
+def axis_soft_max(axis_soft_max: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> axis_soft_min
+
+```python
+def axis_soft_min(axis_soft_min: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> axis_width
+
+```python
+def axis_width(axis_width: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> bar_alignment
+
+```python
+def bar_alignment(bar_alignment: common.BarAlignment) -> typing.Self
+```
+
+### <span class="badge object-method"></span> bar_max_width
+
+```python
+def bar_max_width(bar_max_width: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> bar_width_factor
+
+```python
+def bar_width_factor(bar_width_factor: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> cache_timeout
+
+Sets panel queries cache timeout.
+
+```python
+def cache_timeout(cache_timeout: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> color_scheme
+
+Panel color configuration
+
+```python
+def color_scheme(color: cogbuilder.Builder[dashboard.FieldColor]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> data_links
+
+The behavior when clicking on a result
+
+```python
+def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> datasource
+
+The datasource used in all targets.
+
+```python
+def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+```
+
+### <span class="badge object-method"></span> decimals
+
+Specify the number of decimals Grafana includes in the rendered value.
+
+If you leave this field blank, Grafana automatically truncates the number of decimals based on the value.
+
+For example 1.1234 will display as 1.12 and 100.456 will display as 100.
+
+To display all decimals, set the unit to `String`.
+
+```python
+def decimals(decimals: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> description
+
+Panel description.
+
+```python
+def description(description: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> display_name
+
+The display value for this field.  This supports template variables blank is auto
+
+```python
+def display_name(display_name: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> draw_style
+
+```python
+def draw_style(draw_style: common.GraphDrawStyle) -> typing.Self
+```
+
+### <span class="badge object-method"></span> fill_below_to
+
+```python
+def fill_below_to(fill_below_to: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> fill_color
+
+```python
+def fill_color(fill_color: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> fill_opacity
+
+```python
+def fill_opacity(fill_opacity: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> gradient_mode
+
+```python
+def gradient_mode(gradient_mode: common.GraphGradientMode) -> typing.Self
+```
+
+### <span class="badge object-method"></span> grid_pos
+
+Grid position.
+
+```python
+def grid_pos(grid_pos: dashboard.GridPos) -> typing.Self
+```
+
+### <span class="badge object-method"></span> height
+
+Panel height. The height is the number of rows from the top edge of the panel.
+
+```python
+def height(h: int) -> typing.Self
+```
+
+### <span class="badge object-method"></span> hide_from
+
+```python
+def hide_from(hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> hide_time_override
+
+Controls if the timeFrom or timeShift overrides are shown in the panel header
+
+```python
+def hide_time_override(hide_time_override: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> id_val
+
+Unique identifier of the panel. Generated by Grafana when creating a new panel. It must be unique within a dashboard, but not globally.
+
+```python
+def id_val(id_val: int) -> typing.Self
+```
+
+### <span class="badge object-method"></span> insert_nulls
+
+```python
+def insert_nulls(insert_nulls: typing.Union[bool, float]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> interval
+
+The min time interval setting defines a lower limit for the $__interval and $__interval_ms variables.
+
+This value must be formatted as a number followed by a valid time
+
+identifier like: "40s", "3d", etc.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```python
+def interval(interval: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> legend
+
+```python
+def legend(legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> library_panel
+
+Dynamically load the panel
+
+```python
+def library_panel(library_panel: dashboard.LibraryPanelRef) -> typing.Self
+```
+
+### <span class="badge object-method"></span> line_color
+
+```python
+def line_color(line_color: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> line_interpolation
+
+```python
+def line_interpolation(line_interpolation: common.LineInterpolation) -> typing.Self
+```
+
+### <span class="badge object-method"></span> line_style
+
+```python
+def line_style(line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> line_width
+
+```python
+def line_width(line_width: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> links
+
+Panel links.
+
+```python
+def links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> mappings
+
+Convert input values into a display string
+
+```python
+def mappings(mappings: list[dashboard.ValueMapping]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> max_val
+
+The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+
+```python
+def max_val(max_val: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> max_data_points
+
+The maximum number of data points that the panel queries are retrieving.
+
+```python
+def max_data_points(max_data_points: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> max_per_row
+
+Option for repeated panels that controls max items per row
+
+Only relevant for horizontally repeated panels
+
+```python
+def max_per_row(max_per_row: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> min_val
+
+The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+
+```python
+def min_val(min_val: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> no_value
+
+Alternative to empty string
+
+```python
+def no_value(no_value: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> orientation
+
+```python
+def orientation(orientation: common.VizOrientation) -> typing.Self
+```
+
+### <span class="badge object-method"></span> overrides
+
+Overrides are the options applied to specific fields overriding the defaults.
+
+```python
+def overrides(overrides: list[cogbuilder.Builder[dashboard.DashboardFieldConfigSourceOverrides]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> point_color
+
+```python
+def point_color(point_color: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> point_size
+
+```python
+def point_size(point_size: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> point_symbol
+
+```python
+def point_symbol(point_symbol: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> query_caching_ttl
+
+Overrides the data source configured time-to-live for a query cache item in milliseconds
+
+```python
+def query_caching_ttl(query_caching_ttl: float) -> typing.Self
+```
+
+### <span class="badge object-method"></span> repeat
+
+Name of template variable to repeat for.
+
+```python
+def repeat(repeat: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> repeat_direction
+
+Direction to repeat in if 'repeat' is set.
+
+`h` for horizontal, `v` for vertical.
+
+```python
+def repeat_direction(repeat_direction: typing.Literal["h", "v"]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> scale_distribution
+
+```python
+def scale_distribution(scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> show_points
+
+```python
+def show_points(show_points: common.VisibilityMode) -> typing.Self
+```
+
+### <span class="badge object-method"></span> span
+
+Panel width. The width is the number of columns from the left edge of the panel.
+
+```python
+def span(w: int) -> typing.Self
+```
+
+### <span class="badge object-method"></span> span_nulls
+
+Indicate if null values should be treated as gaps or connected.
+
+When the value is a number, it represents the maximum delta in the
+
+X axis that should be considered connected.  For timeseries, this is milliseconds
+
+```python
+def span_nulls(span_nulls: typing.Union[bool, float]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> stacking
+
+```python
+def stacking(stacking: cogbuilder.Builder[common.StackingConfig]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> targets
+
+Depends on the panel plugin. See the plugin documentation for details.
+
+```python
+def targets(targets: list[cogbuilder.Builder[cogvariants.Dataquery]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> thresholds
+
+Map numeric values to states
+
+```python
+def thresholds(thresholds: cogbuilder.Builder[dashboard.ThresholdsConfig]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> thresholds_style
+
+```python
+def thresholds_style(thresholds_style: cogbuilder.Builder[common.GraphThresholdsStyleConfig]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> time_from
+
+Overrides the relative time range for individual panels,
+
+which causes them to be different than what is selected in
+
+the dashboard time picker in the top-right corner of the dashboard. You can use this to show metrics from different
+
+time periods or days on the same dashboard.
+
+The value is formatted as time operation like: `now-5m` (Last 5 minutes), `now/d` (the day so far),
+
+`now-5d/d`(Last 5 days), `now/w` (This week so far), `now-2y/y` (Last 2 years).
+
+Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```python
+def time_from(time_from: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> time_shift
+
+Overrides the time range for individual panels by shifting its start and end relative to the time picker.
+
+For example, you can shift the time range for the panel to be two hours earlier than the dashboard time picker setting `2h`.
+
+Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```python
+def time_shift(time_shift: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> timezone
+
+```python
+def timezone(timezone: list[common.TimeZone]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> title
+
+Panel title.
+
+```python
+def title(title: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> tooltip
+
+```python
+def tooltip(tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> transform
+
+```python
+def transform(transform: common.GraphTransform) -> typing.Self
+```
+
+### <span class="badge object-method"></span> transformations
+
+List of transformations that are applied to the panel data before rendering.
+
+When there are multiple transformations, Grafana applies them in the order they are listed.
+
+Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+
+```python
+def transformations(transformations: list[dashboard.DataTransformerConfig]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> transparent
+
+Whether to display the panel without a background.
+
+```python
+def transparent(transparent: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> unit
+
+Unit a field should use. The unit you select is applied to all fields except time.
+
+You can use the units ID availables in Grafana or a custom unit.
+
+Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
+
+As custom unit, you can use the following formats:
+
+`suffix:<suffix>` for custom unit that should go after value.
+
+`prefix:<prefix>` for custom unit that should go before value.
+
+`time:<format>` For custom date time formats type for example `time:YYYY-MM-DD`.
+
+`si:<base scale><unit characters>` for custom SI units. For example: `si: mF`. This one is a bit more advanced as you can specify both a unit and the source data scale. So if your source data is represented as milli (thousands of) something prefix the unit with that SI scale character.
+
+`count:<unit>` for a custom count unit.
+
+`currency:<unit>` for custom a currency unit.
+
+```python
+def unit(unit: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> with_override
+
+Overrides are the options applied to specific fields overriding the defaults.
+
+```python
+def with_override(matcher: dashboard.MatcherConfig, properties: list[dashboard.DynamicConfigValue]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> with_target
+
+Depends on the panel plugin. See the plugin documentation for details.
+
+```python
+def with_target(target: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> with_transformation
+
+List of transformations that are applied to the panel data before rendering.
+
+When there are multiple transformations, Grafana applies them in the order they are listed.
+
+Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+
+```python
+def with_transformation(transformation: dashboard.DataTransformerConfig) -> typing.Self
+```
+
+## See also
+
+ * <span class="badge object-type-class"></span> [dashboard.Panel](../dashboard/object-Panel.md)

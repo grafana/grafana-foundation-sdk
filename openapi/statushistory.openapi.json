@@ -1,0 +1,209 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "statushistory",
+    "version": "0.0.0",
+    "x-schema-identifier": "status-history",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rowHeight",
+          "showValue",
+          "legend",
+          "tooltip"
+        ],
+        "properties": {
+          "rowHeight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Set the height of the rows",
+            "default": 0.9
+          },
+          "showValue": {
+            "$ref": "#/components/schemas/VisibilityMode",
+            "description": "Show values on the columns",
+            "default": "auto"
+          },
+          "legend": {
+            "$ref": "#/components/schemas/VizLegendOptions"
+          },
+          "tooltip": {
+            "$ref": "#/components/schemas/VizTooltipOptions"
+          },
+          "timezone": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeZone"
+            }
+          },
+          "colWidth": {
+            "type": "number",
+            "maximum": 1,
+            "description": "Controls the column width",
+            "default": 0.9
+          }
+        }
+      },
+      "FieldConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "lineWidth": {
+            "type": "integer",
+            "maximum": 10,
+            "default": 1
+          },
+          "hideFrom": {
+            "$ref": "#/components/schemas/HideSeriesConfig"
+          },
+          "fillOpacity": {
+            "type": "integer",
+            "maximum": 100,
+            "default": 70
+          }
+        }
+      },
+      "VisibilityMode": {
+        "enum": [
+          "auto",
+          "never",
+          "always"
+        ],
+        "description": "TODO docs"
+      },
+      "VizLegendOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "displayMode",
+          "placement",
+          "showLegend",
+          "calcs"
+        ],
+        "properties": {
+          "displayMode": {
+            "$ref": "#/components/schemas/LegendDisplayMode",
+            "default": "list"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/LegendPlacement",
+            "default": "bottom"
+          },
+          "showLegend": {
+            "type": "boolean"
+          },
+          "asTable": {
+            "type": "boolean"
+          },
+          "isVisible": {
+            "type": "boolean"
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "sortDesc": {
+            "type": "boolean"
+          },
+          "width": {
+            "type": "number"
+          },
+          "calcs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        },
+        "description": "TODO docs"
+      },
+      "VizTooltipOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode",
+          "sort"
+        ],
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/TooltipDisplayMode"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortOrder"
+          },
+          "maxWidth": {
+            "type": "number"
+          },
+          "maxHeight": {
+            "type": "number"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "TimeZone": {
+        "type": "string",
+        "description": "A specific timezone from https://en.wikipedia.org/wiki/Tz_database"
+      },
+      "HideSeriesConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tooltip",
+          "legend",
+          "viz"
+        ],
+        "properties": {
+          "tooltip": {
+            "type": "boolean"
+          },
+          "legend": {
+            "type": "boolean"
+          },
+          "viz": {
+            "type": "boolean"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "LegendDisplayMode": {
+        "enum": [
+          "list",
+          "table",
+          "hidden"
+        ],
+        "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
+      },
+      "LegendPlacement": {
+        "enum": [
+          "bottom",
+          "right"
+        ],
+        "description": "TODO docs"
+      },
+      "TooltipDisplayMode": {
+        "enum": [
+          "single",
+          "multi",
+          "none"
+        ],
+        "description": "TODO docs"
+      },
+      "SortOrder": {
+        "enum": [
+          "asc",
+          "desc",
+          "none"
+        ],
+        "description": "TODO docs"
+      }
+    }
+  }
+}
