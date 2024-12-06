@@ -19,6 +19,7 @@ env:
 # Grant GITHUB_TOKEN the permissions required to make a release
 permissions:
   contents: write # to push new branches
+  actions: write # new branches will contain github actions
   pull-requests: write # to open PRs
 
 # Allow only one concurrent release, skipping runs queued between the run in-progress and latest queued.
