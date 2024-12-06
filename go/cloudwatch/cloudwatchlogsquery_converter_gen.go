@@ -97,6 +97,23 @@ func CloudWatchLogsQueryConverter(input CloudWatchLogsQuery) string {
 		buffer.Reset()
 
 	}
+	if input.LogGroupNames != nil && len(input.LogGroupNames) >= 1 {
+
+		buffer.WriteString(`LogGroupNames(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.LogGroupNames {
+			tmplogGroupNamesarg1 := fmt.Sprintf("%#v", arg1)
+			tmparg0 = append(tmparg0, tmplogGroupNamesarg1)
+		}
+		arg0 := "[]string{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.RefId != "" {
 
 		buffer.WriteString(`RefId(`)
@@ -133,15 +150,10 @@ func CloudWatchLogsQueryConverter(input CloudWatchLogsQuery) string {
 		buffer.Reset()
 
 	}
-	if input.LogGroupNames != nil && len(input.LogGroupNames) >= 1 {
+	if input.QueryLanguage != nil {
 
-		buffer.WriteString(`LogGroupNames(`)
-		tmparg0 := []string{}
-		for _, arg1 := range input.LogGroupNames {
-			tmplogGroupNamesarg1 := fmt.Sprintf("%#v", arg1)
-			tmparg0 = append(tmparg0, tmplogGroupNamesarg1)
-		}
-		arg0 := "[]string{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(`QueryLanguage(`)
+		arg0 := cog.Dump(*input.QueryLanguage)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

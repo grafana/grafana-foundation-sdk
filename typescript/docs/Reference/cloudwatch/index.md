@@ -9,6 +9,7 @@
  * <span class="badge object-type-enum"></span> [CloudWatchQueryMode](./object-CloudWatchQueryMode.md)
  * <span class="badge object-type-map"></span> [Dimensions](./object-Dimensions.md)
  * <span class="badge object-type-interface"></span> [LogGroup](./object-LogGroup.md)
+ * <span class="badge object-type-enum"></span> [LogsQueryLanguage](./object-LogsQueryLanguage.md)
  * <span class="badge object-type-enum"></span> [MetricEditorMode](./object-MetricEditorMode.md)
  * <span class="badge object-type-enum"></span> [MetricQueryType](./object-MetricQueryType.md)
  * <span class="badge object-type-interface"></span> [MetricStat](./object-MetricStat.md)
