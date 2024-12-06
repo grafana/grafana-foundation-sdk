@@ -18,6 +18,9 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.tabbed:
       alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - pymdownx.highlight:
       anchor_linenums: true
       extend_pygments_lang:
