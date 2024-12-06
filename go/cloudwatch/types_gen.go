@@ -1994,6 +1994,14 @@ func NewQueryEditorExpression() *QueryEditorExpression {
 	return NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression()
 }
 
+type LogsQueryLanguage string
+
+const (
+	LogsQueryLanguageCWLI LogsQueryLanguage = "CWLI"
+	LogsQueryLanguageSQL  LogsQueryLanguage = "SQL"
+	LogsQueryLanguagePPL  LogsQueryLanguage = "PPL"
+)
+
 // Shape of a CloudWatch Logs query
 type CloudWatchLogsQuery struct {
 	// Whether a query is a Metrics, Logs, or Annotations query
@@ -2007,6 +2015,8 @@ type CloudWatchLogsQuery struct {
 	StatsGroups []string `json:"statsGroups,omitempty"`
 	// Log groups to query
 	LogGroups []LogGroup `json:"logGroups,omitempty"`
+	// @deprecated use logGroups
+	LogGroupNames []string `json:"logGroupNames,omitempty"`
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
@@ -2016,8 +2026,8 @@ type CloudWatchLogsQuery struct {
 	// Specify the query flavor
 	// TODO make this required and give it a default
 	QueryType *string `json:"queryType,omitempty"`
-	// @deprecated use logGroups
-	LogGroupNames []string `json:"logGroupNames,omitempty"`
+	// Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
+	QueryLanguage *LogsQueryLanguage `json:"queryLanguage,omitempty"`
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
@@ -2137,6 +2147,18 @@ func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "logGroups")
 
 	}
+	// Field "logGroupNames"
+	if fields["logGroupNames"] != nil {
+		if string(fields["logGroupNames"]) != "null" {
+
+			if err := json.Unmarshal(fields["logGroupNames"], &resource.LogGroupNames); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("logGroupNames", err)...)
+			}
+
+		}
+		delete(fields, "logGroupNames")
+
+	}
 	// Field "refId"
 	if fields["refId"] != nil {
 		if string(fields["refId"]) != "null" {
@@ -2173,16 +2195,15 @@ func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "queryType")
 
 	}
-	// Field "logGroupNames"
-	if fields["logGroupNames"] != nil {
-		if string(fields["logGroupNames"]) != "null" {
-
-			if err := json.Unmarshal(fields["logGroupNames"], &resource.LogGroupNames); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("logGroupNames", err)...)
+	// Field "queryLanguage"
+	if fields["queryLanguage"] != nil {
+		if string(fields["queryLanguage"]) != "null" {
+			if err := json.Unmarshal(fields["queryLanguage"], &resource.QueryLanguage); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryLanguage", err)...)
 			}
 
 		}
-		delete(fields, "logGroupNames")
+		delete(fields, "queryLanguage")
 
 	}
 	// Field "datasource"
@@ -2258,6 +2279,16 @@ func (resource CloudWatchLogsQuery) Equals(otherCandidate variants.Dataquery) bo
 			return false
 		}
 	}
+
+	if len(resource.LogGroupNames) != len(other.LogGroupNames) {
+		return false
+	}
+
+	for i1 := range resource.LogGroupNames {
+		if resource.LogGroupNames[i1] != other.LogGroupNames[i1] {
+			return false
+		}
+	}
 	if resource.RefId != other.RefId {
 		return false
 	}
@@ -2279,13 +2310,12 @@ func (resource CloudWatchLogsQuery) Equals(otherCandidate variants.Dataquery) bo
 			return false
 		}
 	}
-
-	if len(resource.LogGroupNames) != len(other.LogGroupNames) {
+	if resource.QueryLanguage == nil && other.QueryLanguage != nil || resource.QueryLanguage != nil && other.QueryLanguage == nil {
 		return false
 	}
 
-	for i1 := range resource.LogGroupNames {
-		if resource.LogGroupNames[i1] != other.LogGroupNames[i1] {
+	if resource.QueryLanguage != nil {
+		if *resource.QueryLanguage != *other.QueryLanguage {
 			return false
 		}
 	}

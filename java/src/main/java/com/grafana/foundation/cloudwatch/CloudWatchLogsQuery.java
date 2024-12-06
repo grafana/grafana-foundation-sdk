@@ -33,6 +33,10 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("logGroups")
     public List<LogGroup> logGroups;
+    // @deprecated use logGroups
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("logGroupNames")
+    public List<String> logGroupNames;
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
@@ -47,10 +51,10 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("queryType")
     public String queryType;
-    // @deprecated use logGroups
+    // Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("logGroupNames")
-    public List<String> logGroupNames;
+    @JsonProperty("queryLanguage")
+    public LogsQueryLanguage queryLanguage;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
@@ -105,6 +109,11 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
         return this;
     }
     
+    public Builder logGroupNames(List<String> logGroupNames) {
+    this.internal.logGroupNames = logGroupNames;
+        return this;
+    }
+    
     public Builder refId(String refId) {
     this.internal.refId = refId;
         return this;
@@ -120,8 +129,8 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
         return this;
     }
     
-    public Builder logGroupNames(List<String> logGroupNames) {
-    this.internal.logGroupNames = logGroupNames;
+    public Builder queryLanguage(LogsQueryLanguage queryLanguage) {
+    this.internal.queryLanguage = queryLanguage;
         return this;
     }
     

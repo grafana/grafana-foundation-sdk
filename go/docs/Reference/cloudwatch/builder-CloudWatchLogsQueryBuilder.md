@@ -70,6 +70,14 @@ Log groups to query
 func (builder *CloudWatchLogsQueryBuilder) LogGroups(logGroups []cog.Builder[cloudwatch.LogGroup]) *CloudWatchLogsQueryBuilder
 ```
 
+### <span class="badge object-method"></span> QueryLanguage
+
+Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
+
+```go
+func (builder *CloudWatchLogsQueryBuilder) QueryLanguage(queryLanguage cloudwatch.LogsQueryLanguage) *CloudWatchLogsQueryBuilder
+```
+
 ### <span class="badge object-method"></span> QueryMode
 
 Whether a query is a Metrics, Logs, or Annotations query

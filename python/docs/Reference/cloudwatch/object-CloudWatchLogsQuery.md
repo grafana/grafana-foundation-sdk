@@ -24,6 +24,8 @@ class CloudWatchLogsQuery(cogvariants.Dataquery):
     stats_groups: typing.Optional[list[str]]
     # Log groups to query
     log_groups: typing.Optional[list[cloudwatch.LogGroup]]
+    # @deprecated use logGroups
+    log_group_names: typing.Optional[list[str]]
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
@@ -33,8 +35,8 @@ class CloudWatchLogsQuery(cogvariants.Dataquery):
     # Specify the query flavor
     # TODO make this required and give it a default
     query_type: typing.Optional[str]
-    # @deprecated use logGroups
-    log_group_names: typing.Optional[list[str]]
+    # Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
+    query_language: typing.Optional[cloudwatch.LogsQueryLanguage]
     # For mixed data sources the selected datasource is on the query level.
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema

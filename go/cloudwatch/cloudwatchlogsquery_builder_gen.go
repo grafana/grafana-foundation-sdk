@@ -84,6 +84,13 @@ func (builder *CloudWatchLogsQueryBuilder) LogGroups(logGroups []cog.Builder[Log
 	return builder
 }
 
+// @deprecated use logGroups
+func (builder *CloudWatchLogsQueryBuilder) LogGroupNames(logGroupNames []string) *CloudWatchLogsQueryBuilder {
+	builder.internal.LogGroupNames = logGroupNames
+
+	return builder
+}
+
 // A unique identifier for the query within the list of targets.
 // In server side expressions, the refId is used as a variable name to identify results.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
@@ -108,9 +115,9 @@ func (builder *CloudWatchLogsQueryBuilder) QueryType(queryType string) *CloudWat
 	return builder
 }
 
-// @deprecated use logGroups
-func (builder *CloudWatchLogsQueryBuilder) LogGroupNames(logGroupNames []string) *CloudWatchLogsQueryBuilder {
-	builder.internal.LogGroupNames = logGroupNames
+// Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
+func (builder *CloudWatchLogsQueryBuilder) QueryLanguage(queryLanguage LogsQueryLanguage) *CloudWatchLogsQueryBuilder {
+	builder.internal.QueryLanguage = &queryLanguage
 
 	return builder
 }
