@@ -55,6 +55,12 @@ export class CloudWatchLogsQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
+    // @deprecated use logGroups
+    logGroupNames(logGroupNames: string[]): this {
+        this.internal.logGroupNames = logGroupNames;
+        return this;
+    }
+
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
@@ -76,9 +82,9 @@ export class CloudWatchLogsQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
-    // @deprecated use logGroups
-    logGroupNames(logGroupNames: string[]): this {
-        this.internal.logGroupNames = logGroupNames;
+    // Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
+    queryLanguage(queryLanguage: cloudwatch.LogsQueryLanguage): this {
+        this.internal.queryLanguage = queryLanguage;
         return this;
     }
 

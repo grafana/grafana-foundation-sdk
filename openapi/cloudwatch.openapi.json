@@ -460,6 +460,13 @@
           }
         ]
       },
+      "LogsQueryLanguage": {
+        "enum": [
+          "CWLI",
+          "SQL",
+          "PPL"
+        ]
+      },
       "CloudWatchLogsQuery": {
         "type": "object",
         "additionalProperties": false,
@@ -500,6 +507,13 @@
             },
             "description": "Log groups to query"
           },
+          "logGroupNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "@deprecated use logGroups"
+          },
           "refId": {
             "type": "string",
             "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
@@ -512,12 +526,9 @@
             "type": "string",
             "description": "Specify the query flavor\nTODO make this required and give it a default"
           },
-          "logGroupNames": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "@deprecated use logGroups"
+          "queryLanguage": {
+            "$ref": "#/components/schemas/LogsQueryLanguage",
+            "description": "Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI."
           },
           "datasource": {
             "$ref": "#/components/schemas/DataSourceRef",

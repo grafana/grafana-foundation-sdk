@@ -74,6 +74,14 @@ Log groups to query
 logGroups(array $logGroups)
 ```
 
+### <span class="badge object-method"></span> queryLanguage
+
+Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
+
+```php
+queryLanguage(\Grafana\Foundation\Cloudwatch\LogsQueryLanguage $queryLanguage)
+```
+
 ### <span class="badge object-method"></span> queryMode
 
 Whether a query is a Metrics, Logs, or Annotations query

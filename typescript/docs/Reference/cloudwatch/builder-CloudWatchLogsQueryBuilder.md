@@ -70,6 +70,14 @@ Log groups to query
 logGroups(logGroups: cog.Builder<cloudwatch.LogGroup>[])
 ```
 
+### <span class="badge object-method"></span> queryLanguage
+
+Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
+
+```typescript
+queryLanguage(queryLanguage: cloudwatch.LogsQueryLanguage)
+```
+
 ### <span class="badge object-method"></span> queryMode
 
 Whether a query is a Metrics, Logs, or Annotations query

@@ -70,6 +70,14 @@ Log groups to query
 def log_groups(log_groups: list[cogbuilder.Builder[cloudwatch.LogGroup]]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> query_language
+
+Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
+
+```python
+def query_language(query_language: cloudwatch.LogsQueryLanguage) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> query_mode
 
 Whether a query is a Metrics, Logs, or Annotations query

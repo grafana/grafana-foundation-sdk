@@ -658,6 +658,15 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
     
         return self
     
+    def log_group_names(self, log_group_names: list[str]) -> typing.Self:    
+        """
+        @deprecated use logGroups
+        """
+            
+        self._internal.log_group_names = log_group_names
+    
+        return self
+    
     def ref_id(self, ref_id: str) -> typing.Self:    
         """
         A unique identifier for the query within the list of targets.
@@ -688,12 +697,12 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
     
         return self
     
-    def log_group_names(self, log_group_names: list[str]) -> typing.Self:    
+    def query_language(self, query_language: cloudwatch.LogsQueryLanguage) -> typing.Self:    
         """
-        @deprecated use logGroups
+        Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
         """
             
-        self._internal.log_group_names = log_group_names
+        self._internal.query_language = query_language
     
         return self
     

@@ -82,6 +82,16 @@ class CloudWatchLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * @deprecated use logGroups
+     * @param array<string> $logGroupNames
+     */
+    public function logGroupNames(array $logGroupNames): static
+    {
+        $this->internal->logGroupNames = $logGroupNames;
+    
+        return $this;
+    }
+    /**
      * A unique identifier for the query within the list of targets.
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
@@ -112,12 +122,11 @@ class CloudWatchLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * @deprecated use logGroups
-     * @param array<string> $logGroupNames
+     * Language used for querying logs, can be CWLI, SQL, or PPL. If empty, the default language is CWLI.
      */
-    public function logGroupNames(array $logGroupNames): static
+    public function queryLanguage(\Grafana\Foundation\Cloudwatch\LogsQueryLanguage $queryLanguage): static
     {
-        $this->internal->logGroupNames = $logGroupNames;
+        $this->internal->queryLanguage = $queryLanguage;
     
         return $this;
     }
