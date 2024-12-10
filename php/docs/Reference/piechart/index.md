@@ -1,4 +1,4 @@
-# piechart
+# <span class="badge package-variant-panelcfg"></span> piechart
 
 ## Objects
 

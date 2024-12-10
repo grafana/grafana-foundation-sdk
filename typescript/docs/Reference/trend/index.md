@@ -1,4 +1,4 @@
-# trend
+# <span class="badge package-variant-panelcfg"></span> trend
 
 ## Objects
 
