@@ -1,4 +1,4 @@
-# heatmap
+# <span class="badge package-variant-panelcfg"></span> heatmap
 
 ## Objects
 
