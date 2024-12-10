@@ -1,4 +1,4 @@
-# role
+# <span class="badge package-core"></span> role
 
 ## Objects
 

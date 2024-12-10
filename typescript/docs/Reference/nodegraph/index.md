@@ -1,4 +1,4 @@
-# nodegraph
+# <span class="badge package-variant-panelcfg"></span> nodegraph
 
 ## Objects
 

@@ -1,4 +1,4 @@
-# prometheus
+# <span class="badge package-variant-dataquery"></span> prometheus
 
 ## Objects
 
