@@ -36,6 +36,7 @@ inputs:
       package: expr
       transformations:
         - '%__config_dir%/compiler/expr_passes.yaml'
+
   - openapi:
       url: 'https://raw.githubusercontent.com/grafana/grafana/%grafana_version%/public/openapi3.json'
       no_validate: true
@@ -49,6 +50,17 @@ inputs:
         - TimeIntervalItem
       transformations:
         - '%__config_dir%/compiler/alerting.yaml'
+
+  # The schema for teams is gone from the kind-registry since v11.2.x
+  - if: '"%grafana_version%" == "main" || semver("%grafana_version%").MoreThanEqual(semver("v11.2.x"))'
+    openapi:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/%grafana_version%/public/openapi3.json'
+      no_validate: true
+      package: team
+      allowed_objects:
+        - CreateTeamCommand
+      transformations:
+        - '%__config_dir%/compiler/team.yaml'
 
   # The schema for testdata queries is gone from the kind-registry since v11.0.x
   - if: '"%grafana_version%" == "main" || semver("%grafana_version%").MoreThanEqual(semver("v11.0.x"))'
