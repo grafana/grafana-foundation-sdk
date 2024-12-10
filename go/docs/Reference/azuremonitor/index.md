@@ -1,4 +1,4 @@
-# azuremonitor
+# <span class="badge package-variant-dataquery"></span> azuremonitor
 
 ## Objects
 

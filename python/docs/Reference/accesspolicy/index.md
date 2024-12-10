@@ -1,4 +1,4 @@
-# accesspolicy
+# <span class="badge package-core"></span> accesspolicy
 
 ## Objects
 
