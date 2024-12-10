@@ -1,4 +1,4 @@
-# candlestick
+# <span class="badge package-variant-panelcfg"></span> candlestick
 
 ## Objects
 

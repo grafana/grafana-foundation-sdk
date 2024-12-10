@@ -1,4 +1,4 @@
-# table
+# <span class="badge package-variant-panelcfg"></span> table
 
 ## Objects
 

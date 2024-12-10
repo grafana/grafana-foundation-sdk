@@ -1,4 +1,4 @@
-# canvas
+# <span class="badge package-variant-panelcfg"></span> canvas
 
 ## Objects
 

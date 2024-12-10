@@ -2,6 +2,8 @@
 
 package com.grafana.foundation.cog.variants;
 
+
+
 public class PanelConfig {
     private final Class<?> optionsClass;
     private final Class<?> fieldConfigClass;

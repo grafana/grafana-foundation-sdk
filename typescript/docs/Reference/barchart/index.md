@@ -1,4 +1,4 @@
-# barchart
+# <span class="badge package-variant-panelcfg"></span> barchart
 
 ## Objects
 
