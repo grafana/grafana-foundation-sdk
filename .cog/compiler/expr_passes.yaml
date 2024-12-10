@@ -5,8 +5,6 @@ passes:
   - disjunction_infer_mapping: {}
   - disjunction_to_type: {}
 
-  - schema_set_identifier: { package: expr, identifier: __expr__ }
-
   - retype_object:
       object: expr.Expr
       as:
