@@ -1,4 +1,4 @@
-# dashboard
+# <span class="badge package-core"></span> dashboard
 
 ## Objects
 
