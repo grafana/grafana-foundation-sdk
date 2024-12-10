@@ -1,4 +1,4 @@
-# preferences
+# <span class="badge package-core"></span> preferences
 
 ## Objects
 

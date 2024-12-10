@@ -1,4 +1,4 @@
-# datagrid
+# <span class="badge package-variant-panelcfg"></span> datagrid
 
 ## Objects
 
