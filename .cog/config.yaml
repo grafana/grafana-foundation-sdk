@@ -34,6 +34,10 @@ inputs:
   - jsonschema:
       url: 'https://raw.githubusercontent.com/grafana/grafana/main/pkg/expr/query.request.schema.json'
       package: expr
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: __expr__
       transformations:
         - '%__config_dir%/compiler/expr_passes.yaml'
 
@@ -41,6 +45,9 @@ inputs:
       url: 'https://raw.githubusercontent.com/grafana/grafana/%grafana_version%/public/openapi3.json'
       no_validate: true
       package: alerting
+      metadata:
+        kind: core
+        identifier: AlertRuleGroup
       allowed_objects:
         - AlertRuleGroup
         - EmbeddedContactPoint
@@ -57,6 +64,9 @@ inputs:
       url: 'https://raw.githubusercontent.com/grafana/grafana/%grafana_version%/public/openapi3.json'
       no_validate: true
       package: team
+      metadata:
+        kind: core
+        identifier: Team
       allowed_objects:
         - CreateTeamCommand
       transformations:
