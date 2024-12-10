@@ -1,4 +1,4 @@
-# grafanapyroscope
+# <span class="badge package-variant-dataquery"></span> grafanapyroscope
 
 ## Objects
 
