@@ -1,4 +1,4 @@
-# debug
+# <span class="badge package-variant-panelcfg"></span> debug
 
 ## Objects
 

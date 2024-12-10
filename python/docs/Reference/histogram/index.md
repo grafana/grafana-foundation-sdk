@@ -1,4 +1,4 @@
-# histogram
+# <span class="badge package-variant-panelcfg"></span> histogram
 
 ## Objects
 

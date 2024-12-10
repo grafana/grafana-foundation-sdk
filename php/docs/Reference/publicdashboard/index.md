@@ -1,4 +1,4 @@
-# publicdashboard
+# <span class="badge package-core"></span> publicdashboard
 
 ## Objects
 

@@ -1,4 +1,4 @@
-# team
+# <span class="badge package-core"></span> team
 
 ## Objects
 

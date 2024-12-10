@@ -1,4 +1,4 @@
-# athena
+# <span class="badge package-variant-dataquery"></span> athena
 
 ## Objects
 
