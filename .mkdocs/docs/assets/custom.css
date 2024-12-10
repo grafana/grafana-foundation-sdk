@@ -25,6 +25,30 @@
   content: 'class';
 }
 
+.badge.package-core {
+  color: #44A1A0;
+  background-color: #2E2E3A;
+}
+.badge.package-core::after {
+  content: 'core';
+}
+
+.badge.package-variant-dataquery {
+  color: #8F6593;
+  background-color: #2E2E3A;
+}
+.badge.package-variant-dataquery::after {
+  content: 'query';
+}
+
+.badge.package-variant-panelcfg {
+  color: #BC5D2E;
+  background-color: #2E2E3A;
+}
+.badge.package-variant-panelcfg::after {
+  content: 'panel';
+}
+
 .badge.object-type-enum {
   color: #d2a8ff;
   background-color: #d2a8ff1a;
