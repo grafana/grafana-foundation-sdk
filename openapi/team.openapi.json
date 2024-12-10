@@ -3,8 +3,8 @@
   "info": {
     "title": "team",
     "version": "0.0.0",
-    "x-schema-identifier": "",
-    "x-schema-kind": ""
+    "x-schema-identifier": "Team",
+    "x-schema-kind": "core"
   },
   "paths": {},
   "components": {
