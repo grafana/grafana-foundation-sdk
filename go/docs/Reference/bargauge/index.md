@@ -1,4 +1,4 @@
-# bargauge
+# <span class="badge package-variant-panelcfg"></span> bargauge
 
 ## Objects
 

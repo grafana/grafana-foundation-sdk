@@ -1,4 +1,4 @@
-# timeseries
+# <span class="badge package-variant-panelcfg"></span> timeseries
 
 ## Objects
 

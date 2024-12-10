@@ -5,6 +5,7 @@ package com.grafana.foundation.cog.variants;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class Registry {
     private static final Map<String, PanelConfig> panelRegistry = new HashMap<>();
     private static final Map<String, DataqueryConfig> dataqueryRegistry = new HashMap<>();
@@ -66,8 +67,9 @@ public class Registry {
     public static void registerPanel(String type, Class<?> options, Class<?> fieldConfig) {
         panelRegistry.put(type, new PanelConfig(options, fieldConfig));
     }
-
+    
     public static PanelConfig getPanel(String type) {
         return panelRegistry.get(type);
     }
+    
 }
