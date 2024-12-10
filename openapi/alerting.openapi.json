@@ -3,8 +3,8 @@
   "info": {
     "title": "alerting",
     "version": "0.0.0",
-    "x-schema-identifier": "",
-    "x-schema-kind": ""
+    "x-schema-identifier": "AlertRuleGroup",
+    "x-schema-kind": "core"
   },
   "paths": {},
   "components": {
