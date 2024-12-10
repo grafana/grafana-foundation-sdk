@@ -1,4 +1,4 @@
-# xychart
+# <span class="badge package-variant-panelcfg"></span> xychart
 
 ## Objects
 

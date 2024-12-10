@@ -1,4 +1,4 @@
-# parca
+# <span class="badge package-variant-dataquery"></span> parca
 
 ## Objects
 

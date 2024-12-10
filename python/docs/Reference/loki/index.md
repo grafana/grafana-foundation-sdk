@@ -1,4 +1,4 @@
-# loki
+# <span class="badge package-variant-dataquery"></span> loki
 
 ## Objects
 
