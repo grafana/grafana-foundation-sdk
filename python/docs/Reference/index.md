@@ -40,6 +40,7 @@
  * [statetimeline](./statetimeline/index.md)
  * [statushistory](./statushistory/index.md)
  * [table](./table/index.md)
+ * [team](./team/index.md)
  * [tempo](./tempo/index.md)
  * [testdata](./testdata/index.md)
  * [text](./text/index.md)
