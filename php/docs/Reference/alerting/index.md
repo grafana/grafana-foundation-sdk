@@ -1,4 +1,4 @@
-# alerting
+# <span class="badge package-core"></span> alerting
 
 ## Objects
 

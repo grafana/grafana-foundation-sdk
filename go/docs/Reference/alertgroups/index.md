@@ -1,4 +1,4 @@
-# alertgroups
+# <span class="badge package-variant-panelcfg"></span> alertgroups
 
 ## Objects
 

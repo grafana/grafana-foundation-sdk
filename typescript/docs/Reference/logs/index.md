@@ -1,4 +1,4 @@
-# logs
+# <span class="badge package-variant-panelcfg"></span> logs
 
 ## Objects
 

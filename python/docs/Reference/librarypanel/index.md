@@ -1,4 +1,4 @@
-# librarypanel
+# <span class="badge package-core"></span> librarypanel
 
 ## Objects
 

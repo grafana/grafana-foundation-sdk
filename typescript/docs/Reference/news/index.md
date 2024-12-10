@@ -1,4 +1,4 @@
-# news
+# <span class="badge package-variant-panelcfg"></span> news
 
 ## Objects
 
