@@ -1,4 +1,4 @@
-# geomap
+# <span class="badge package-variant-panelcfg"></span> geomap
 
 ## Objects
 

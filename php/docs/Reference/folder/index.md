@@ -1,4 +1,4 @@
-# folder
+# <span class="badge package-core"></span> folder
 
 ## Objects
 
