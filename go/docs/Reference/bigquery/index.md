@@ -1,4 +1,4 @@
-# bigquery
+# <span class="badge package-variant-dataquery"></span> bigquery
 
 ## Objects
 

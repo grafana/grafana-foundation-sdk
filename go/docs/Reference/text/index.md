@@ -1,4 +1,4 @@
-# text
+# <span class="badge package-variant-panelcfg"></span> text
 
 ## Objects
 

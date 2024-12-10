@@ -1,4 +1,4 @@
-# dashboardlist
+# <span class="badge package-variant-panelcfg"></span> dashboardlist
 
 ## Objects
 
