@@ -1,4 +1,4 @@
-# statushistory
+# <span class="badge package-variant-panelcfg"></span> statushistory
 
 ## Objects
 

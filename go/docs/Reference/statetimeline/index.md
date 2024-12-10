@@ -1,4 +1,4 @@
-# statetimeline
+# <span class="badge package-variant-panelcfg"></span> statetimeline
 
 ## Objects
 

@@ -1,4 +1,4 @@
-# annotationslist
+# <span class="badge package-variant-panelcfg"></span> annotationslist
 
 ## Objects
 
