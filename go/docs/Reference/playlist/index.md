@@ -1,4 +1,4 @@
-# playlist
+# <span class="badge package-core"></span> playlist
 
 ## Objects
 
