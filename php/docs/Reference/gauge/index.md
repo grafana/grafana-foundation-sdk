@@ -1,4 +1,4 @@
-# gauge
+# <span class="badge package-variant-panelcfg"></span> gauge
 
 ## Objects
 

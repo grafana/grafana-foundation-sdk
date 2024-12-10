@@ -1,4 +1,4 @@
-# rolebinding
+# <span class="badge package-core"></span> rolebinding
 
 ## Objects
 
