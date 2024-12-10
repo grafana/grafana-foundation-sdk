@@ -1,4 +1,4 @@
-# cloudwatch
+# <span class="badge package-variant-dataquery"></span> cloudwatch
 
 ## Objects
 

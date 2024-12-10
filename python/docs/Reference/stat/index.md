@@ -1,4 +1,4 @@
-# stat
+# <span class="badge package-variant-panelcfg"></span> stat
 
 ## Objects
 

@@ -1,4 +1,4 @@
-# googlecloudmonitoring
+# <span class="badge package-variant-dataquery"></span> googlecloudmonitoring
 
 ## Objects
 

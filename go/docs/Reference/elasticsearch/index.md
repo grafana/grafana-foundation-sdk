@@ -1,4 +1,4 @@
-# elasticsearch
+# <span class="badge package-variant-dataquery"></span> elasticsearch
 
 ## Objects
 
