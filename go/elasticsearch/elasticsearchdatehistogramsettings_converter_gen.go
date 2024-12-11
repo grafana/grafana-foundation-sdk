@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ElasticsearchDateHistogramSettingsConverter accepts a `ElasticsearchDateHistogramSettings` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ElasticsearchDateHistogramSettingsConverter(input ElasticsearchDateHistogra
 	if input.Interval != nil && *input.Interval != "" {
 
 		buffer.WriteString(`Interval(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Interval))
+		arg0 := fmt.Sprintf("%#v", *input.Interval)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func ElasticsearchDateHistogramSettingsConverter(input ElasticsearchDateHistogra
 	if input.MinDocCount != nil && *input.MinDocCount != "" {
 
 		buffer.WriteString(`MinDocCount(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MinDocCount))
+		arg0 := fmt.Sprintf("%#v", *input.MinDocCount)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func ElasticsearchDateHistogramSettingsConverter(input ElasticsearchDateHistogra
 	if input.TrimEdges != nil && *input.TrimEdges != "" {
 
 		buffer.WriteString(`TrimEdges(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.TrimEdges))
+		arg0 := fmt.Sprintf("%#v", *input.TrimEdges)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func ElasticsearchDateHistogramSettingsConverter(input ElasticsearchDateHistogra
 	if input.Offset != nil && *input.Offset != "" {
 
 		buffer.WriteString(`Offset(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Offset))
+		arg0 := fmt.Sprintf("%#v", *input.Offset)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func ElasticsearchDateHistogramSettingsConverter(input ElasticsearchDateHistogra
 	if input.TimeZone != nil && *input.TimeZone != "" {
 
 		buffer.WriteString(`TimeZone(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.TimeZone))
+		arg0 := fmt.Sprintf("%#v", *input.TimeZone)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

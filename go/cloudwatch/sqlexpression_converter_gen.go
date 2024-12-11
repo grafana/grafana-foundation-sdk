@@ -78,7 +78,7 @@ func SQLExpressionConverter(input SQLExpression) string {
 	if input.OrderByDirection != nil && *input.OrderByDirection != "" {
 
 		buffer.WriteString(`OrderByDirection(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.OrderByDirection))
+		arg0 := fmt.Sprintf("%#v", *input.OrderByDirection)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +90,7 @@ func SQLExpressionConverter(input SQLExpression) string {
 	if input.Limit != nil {
 
 		buffer.WriteString(`Limit(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Limit))
+		arg0 := fmt.Sprintf("%#v", *input.Limit)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
