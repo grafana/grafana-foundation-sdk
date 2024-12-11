@@ -35,7 +35,7 @@ func NotificationPolicyConverter(input NotificationPolicy) string {
 	if input.Continue != nil {
 
 		buffer.WriteString(`Continue(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Continue))
+		arg0 := fmt.Sprintf("%#v", *input.Continue)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -64,7 +64,7 @@ func NotificationPolicyConverter(input NotificationPolicy) string {
 	if input.GroupInterval != nil && *input.GroupInterval != "" {
 
 		buffer.WriteString(`GroupInterval(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.GroupInterval))
+		arg0 := fmt.Sprintf("%#v", *input.GroupInterval)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -76,7 +76,7 @@ func NotificationPolicyConverter(input NotificationPolicy) string {
 	if input.GroupWait != nil && *input.GroupWait != "" {
 
 		buffer.WriteString(`GroupWait(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.GroupWait))
+		arg0 := fmt.Sprintf("%#v", *input.GroupWait)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -170,7 +170,7 @@ func NotificationPolicyConverter(input NotificationPolicy) string {
 	if input.Receiver != nil && *input.Receiver != "" {
 
 		buffer.WriteString(`Receiver(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Receiver))
+		arg0 := fmt.Sprintf("%#v", *input.Receiver)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -182,7 +182,7 @@ func NotificationPolicyConverter(input NotificationPolicy) string {
 	if input.RepeatInterval != nil && *input.RepeatInterval != "" {
 
 		buffer.WriteString(`RepeatInterval(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.RepeatInterval))
+		arg0 := fmt.Sprintf("%#v", *input.RepeatInterval)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

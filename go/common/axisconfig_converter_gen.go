@@ -42,7 +42,7 @@ func AxisConfigConverter(input AxisConfig) string {
 	if input.AxisLabel != nil && *input.AxisLabel != "" {
 
 		buffer.WriteString(`AxisLabel(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisLabel))
+		arg0 := fmt.Sprintf("%#v", *input.AxisLabel)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func AxisConfigConverter(input AxisConfig) string {
 	if input.AxisWidth != nil {
 
 		buffer.WriteString(`AxisWidth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisWidth))
+		arg0 := fmt.Sprintf("%#v", *input.AxisWidth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func AxisConfigConverter(input AxisConfig) string {
 	if input.AxisSoftMin != nil {
 
 		buffer.WriteString(`AxisSoftMin(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisSoftMin))
+		arg0 := fmt.Sprintf("%#v", *input.AxisSoftMin)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -78,7 +78,7 @@ func AxisConfigConverter(input AxisConfig) string {
 	if input.AxisSoftMax != nil {
 
 		buffer.WriteString(`AxisSoftMax(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisSoftMax))
+		arg0 := fmt.Sprintf("%#v", *input.AxisSoftMax)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +90,7 @@ func AxisConfigConverter(input AxisConfig) string {
 	if input.AxisGridShow != nil {
 
 		buffer.WriteString(`AxisGridShow(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisGridShow))
+		arg0 := fmt.Sprintf("%#v", *input.AxisGridShow)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +114,7 @@ func AxisConfigConverter(input AxisConfig) string {
 	if input.AxisCenteredZero != nil {
 
 		buffer.WriteString(`AxisCenteredZero(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisCenteredZero))
+		arg0 := fmt.Sprintf("%#v", *input.AxisCenteredZero)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -126,7 +126,7 @@ func AxisConfigConverter(input AxisConfig) string {
 	if input.AxisBorderShow != nil {
 
 		buffer.WriteString(`AxisBorderShow(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisBorderShow))
+		arg0 := fmt.Sprintf("%#v", *input.AxisBorderShow)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

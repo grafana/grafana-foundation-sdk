@@ -12,7 +12,7 @@ import (
 // RowConverter accepts a `Row` object and generates the Go code to build this object using builders.
 func RowConverter(input RowPanel) string {
 	calls := []string{
-		`dashboard.NewRowBuilder(` + fmt.Sprintf("%#v", cog.Unptr(input.Title)) + `)`,
+		`dashboard.NewRowBuilder(` + fmt.Sprintf("%#v", *input.Title) + `)`,
 	}
 	var buffer strings.Builder
 	if input.Collapsed != false {
@@ -30,7 +30,7 @@ func RowConverter(input RowPanel) string {
 	if input.Title != nil && *input.Title != "" {
 
 		buffer.WriteString(`Title(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Title))
+		arg0 := fmt.Sprintf("%#v", *input.Title)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -92,7 +92,7 @@ func RowConverter(input RowPanel) string {
 	if input.Repeat != nil && *input.Repeat != "" {
 
 		buffer.WriteString(`Repeat(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Repeat))
+		arg0 := fmt.Sprintf("%#v", *input.Repeat)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

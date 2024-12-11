@@ -5,8 +5,6 @@ package dashboard
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // TimePickerConverter accepts a `TimePicker` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func TimePickerConverter(input TimePickerConfig) string {
 	if input.Hidden != nil && *input.Hidden != false {
 
 		buffer.WriteString(`Hidden(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hidden))
+		arg0 := fmt.Sprintf("%#v", *input.Hidden)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -64,7 +62,7 @@ func TimePickerConverter(input TimePickerConfig) string {
 	if input.NowDelay != nil && *input.NowDelay != "" {
 
 		buffer.WriteString(`NowDelay(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.NowDelay))
+		arg0 := fmt.Sprintf("%#v", *input.NowDelay)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

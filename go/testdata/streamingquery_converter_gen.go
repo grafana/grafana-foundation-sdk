@@ -18,7 +18,7 @@ func StreamingQueryConverter(input StreamingQuery) string {
 	if input.Bands != nil {
 
 		buffer.WriteString(`Bands(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Bands))
+		arg0 := fmt.Sprintf("%#v", *input.Bands)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -75,7 +75,7 @@ func StreamingQueryConverter(input StreamingQuery) string {
 	if input.Url != nil && *input.Url != "" {
 
 		buffer.WriteString(`Url(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Url))
+		arg0 := fmt.Sprintf("%#v", *input.Url)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

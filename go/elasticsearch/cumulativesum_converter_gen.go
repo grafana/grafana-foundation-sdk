@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // CumulativeSumConverter accepts a `CumulativeSum` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func CumulativeSumConverter(input CumulativeSum) string {
 	if input.PipelineAgg != nil && *input.PipelineAgg != "" {
 
 		buffer.WriteString(`PipelineAgg(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PipelineAgg))
+		arg0 := fmt.Sprintf("%#v", *input.PipelineAgg)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func CumulativeSumConverter(input CumulativeSum) string {
 	if input.Field != nil && *input.Field != "" {
 
 		buffer.WriteString(`Field(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Field))
+		arg0 := fmt.Sprintf("%#v", *input.Field)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func CumulativeSumConverter(input CumulativeSum) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

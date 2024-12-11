@@ -30,7 +30,7 @@ func BarConfigConverter(input BarConfig) string {
 	if input.BarWidthFactor != nil {
 
 		buffer.WriteString(`BarWidthFactor(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.BarWidthFactor))
+		arg0 := fmt.Sprintf("%#v", *input.BarWidthFactor)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func BarConfigConverter(input BarConfig) string {
 	if input.BarMaxWidth != nil {
 
 		buffer.WriteString(`BarMaxWidth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.BarMaxWidth))
+		arg0 := fmt.Sprintf("%#v", *input.BarMaxWidth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

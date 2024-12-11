@@ -18,7 +18,7 @@ func ExprTypeReduceResultAssertionsConverter(input ExprTypeReduceResultAssertion
 	if input.MaxFrames != nil {
 
 		buffer.WriteString(`MaxFrames(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MaxFrames))
+		arg0 := fmt.Sprintf("%#v", *input.MaxFrames)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -5,8 +5,6 @@ package testdata
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // PulseWaveQueryConverter accepts a `PulseWaveQuery` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func PulseWaveQueryConverter(input PulseWaveQuery) string {
 	if input.OffCount != nil {
 
 		buffer.WriteString(`OffCount(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.OffCount))
+		arg0 := fmt.Sprintf("%#v", *input.OffCount)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func PulseWaveQueryConverter(input PulseWaveQuery) string {
 	if input.OffValue != nil {
 
 		buffer.WriteString(`OffValue(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.OffValue))
+		arg0 := fmt.Sprintf("%#v", *input.OffValue)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func PulseWaveQueryConverter(input PulseWaveQuery) string {
 	if input.OnCount != nil {
 
 		buffer.WriteString(`OnCount(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.OnCount))
+		arg0 := fmt.Sprintf("%#v", *input.OnCount)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func PulseWaveQueryConverter(input PulseWaveQuery) string {
 	if input.OnValue != nil {
 
 		buffer.WriteString(`OnValue(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.OnValue))
+		arg0 := fmt.Sprintf("%#v", *input.OnValue)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func PulseWaveQueryConverter(input PulseWaveQuery) string {
 	if input.TimeStep != nil {
 
 		buffer.WriteString(`TimeStep(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.TimeStep))
+		arg0 := fmt.Sprintf("%#v", *input.TimeStep)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

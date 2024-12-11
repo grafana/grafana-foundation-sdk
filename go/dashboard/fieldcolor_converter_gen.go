@@ -30,7 +30,7 @@ func FieldColorConverter(input FieldColor) string {
 	if input.FixedColor != nil && *input.FixedColor != "" {
 
 		buffer.WriteString(`FixedColor(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FixedColor))
+		arg0 := fmt.Sprintf("%#v", *input.FixedColor)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

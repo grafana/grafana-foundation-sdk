@@ -100,7 +100,7 @@ func RuleConverter(input Rule) string {
 	if input.Id != nil {
 
 		buffer.WriteString(`Id(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Id))
+		arg0 := fmt.Sprintf("%#v", *input.Id)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -112,7 +112,7 @@ func RuleConverter(input Rule) string {
 	if input.IsPaused != nil {
 
 		buffer.WriteString(`IsPaused(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.IsPaused))
+		arg0 := fmt.Sprintf("%#v", *input.IsPaused)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -225,7 +225,7 @@ func RuleConverter(input Rule) string {
 	if input.Uid != nil && *input.Uid != "" {
 
 		buffer.WriteString(`Uid(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Uid))
+		arg0 := fmt.Sprintf("%#v", *input.Uid)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -237,7 +237,7 @@ func RuleConverter(input Rule) string {
 	if input.Updated != nil {
 
 		buffer.WriteString(`Updated(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Updated))
+		arg0 := fmt.Sprintf("%#v", *input.Updated)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
