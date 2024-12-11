@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // CountConverter accepts a `Count` object and generates the Go code to build this object using builders.
@@ -30,7 +28,7 @@ func CountConverter(input Count) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

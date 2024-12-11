@@ -5,8 +5,6 @@ package candlestick
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // CandlestickFieldMapConverter accepts a `CandlestickFieldMap` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func CandlestickFieldMapConverter(input CandlestickFieldMap) string {
 	if input.Open != nil && *input.Open != "" {
 
 		buffer.WriteString(`Open(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Open))
+		arg0 := fmt.Sprintf("%#v", *input.Open)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func CandlestickFieldMapConverter(input CandlestickFieldMap) string {
 	if input.High != nil && *input.High != "" {
 
 		buffer.WriteString(`High(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.High))
+		arg0 := fmt.Sprintf("%#v", *input.High)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func CandlestickFieldMapConverter(input CandlestickFieldMap) string {
 	if input.Low != nil && *input.Low != "" {
 
 		buffer.WriteString(`Low(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Low))
+		arg0 := fmt.Sprintf("%#v", *input.Low)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func CandlestickFieldMapConverter(input CandlestickFieldMap) string {
 	if input.Close != nil && *input.Close != "" {
 
 		buffer.WriteString(`Close(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Close))
+		arg0 := fmt.Sprintf("%#v", *input.Close)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func CandlestickFieldMapConverter(input CandlestickFieldMap) string {
 	if input.Volume != nil && *input.Volume != "" {
 
 		buffer.WriteString(`Volume(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Volume))
+		arg0 := fmt.Sprintf("%#v", *input.Volume)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

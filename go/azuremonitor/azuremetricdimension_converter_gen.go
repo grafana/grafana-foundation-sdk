@@ -5,8 +5,6 @@ package azuremonitor
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // AzureMetricDimensionConverter accepts a `AzureMetricDimension` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func AzureMetricDimensionConverter(input AzureMetricDimension) string {
 	if input.Dimension != nil && *input.Dimension != "" {
 
 		buffer.WriteString(`Dimension(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Dimension))
+		arg0 := fmt.Sprintf("%#v", *input.Dimension)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func AzureMetricDimensionConverter(input AzureMetricDimension) string {
 	if input.Operator != nil && *input.Operator != "" {
 
 		buffer.WriteString(`Operator(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Operator))
+		arg0 := fmt.Sprintf("%#v", *input.Operator)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -59,7 +57,7 @@ func AzureMetricDimensionConverter(input AzureMetricDimension) string {
 	if input.Filter != nil && *input.Filter != "" {
 
 		buffer.WriteString(`Filter(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Filter))
+		arg0 := fmt.Sprintf("%#v", *input.Filter)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

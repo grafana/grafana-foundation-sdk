@@ -5,8 +5,6 @@ package testdata
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ScenarioConverter accepts a `Scenario` object and generates the Go code to build this object using builders.
@@ -54,7 +52,7 @@ func ScenarioConverter(input Scenario) string {
 	if input.Description != nil && *input.Description != "" {
 
 		buffer.WriteString(`Description(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Description))
+		arg0 := fmt.Sprintf("%#v", *input.Description)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func ScenarioConverter(input Scenario) string {
 	if input.HideAliasField != nil {
 
 		buffer.WriteString(`HideAliasField(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.HideAliasField))
+		arg0 := fmt.Sprintf("%#v", *input.HideAliasField)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -5,8 +5,6 @@ package azuremonitor
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // AzureResourceGraphQueryConverter accepts a `AzureResourceGraphQuery` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func AzureResourceGraphQueryConverter(input AzureResourceGraphQuery) string {
 	if input.Query != nil && *input.Query != "" {
 
 		buffer.WriteString(`Query(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Query))
+		arg0 := fmt.Sprintf("%#v", *input.Query)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func AzureResourceGraphQueryConverter(input AzureResourceGraphQuery) string {
 	if input.ResultFormat != nil && *input.ResultFormat != "" {
 
 		buffer.WriteString(`ResultFormat(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ResultFormat))
+		arg0 := fmt.Sprintf("%#v", *input.ResultFormat)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -76,7 +76,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.MaxNodes != nil {
 
 		buffer.WriteString(`MaxNodes(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MaxNodes))
+		arg0 := fmt.Sprintf("%#v", *input.MaxNodes)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -100,7 +100,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -112,7 +112,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.QueryType != nil && *input.QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryType))
+		arg0 := fmt.Sprintf("%#v", *input.QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
