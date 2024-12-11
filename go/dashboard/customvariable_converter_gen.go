@@ -42,7 +42,7 @@ func CustomVariableConverter(input VariableModel) string {
 	if input.Label != nil && *input.Label != "" {
 
 		buffer.WriteString(`Label(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Label))
+		arg0 := fmt.Sprintf("%#v", *input.Label)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func CustomVariableConverter(input VariableModel) string {
 	if input.Description != nil && *input.Description != "" {
 
 		buffer.WriteString(`Description(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Description))
+		arg0 := fmt.Sprintf("%#v", *input.Description)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +90,7 @@ func CustomVariableConverter(input VariableModel) string {
 	if input.AllFormat != nil && *input.AllFormat != "" {
 
 		buffer.WriteString(`AllFormat(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AllFormat))
+		arg0 := fmt.Sprintf("%#v", *input.AllFormat)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +114,7 @@ func CustomVariableConverter(input VariableModel) string {
 	if input.Multi != nil && *input.Multi != false {
 
 		buffer.WriteString(`Multi(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Multi))
+		arg0 := fmt.Sprintf("%#v", *input.Multi)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -143,7 +143,7 @@ func CustomVariableConverter(input VariableModel) string {
 	if input.IncludeAll != nil && *input.IncludeAll != false {
 
 		buffer.WriteString(`IncludeAll(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.IncludeAll))
+		arg0 := fmt.Sprintf("%#v", *input.IncludeAll)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -155,7 +155,7 @@ func CustomVariableConverter(input VariableModel) string {
 	if input.AllValue != nil && *input.AllValue != "" {
 
 		buffer.WriteString(`AllValue(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AllValue))
+		arg0 := fmt.Sprintf("%#v", *input.AllValue)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

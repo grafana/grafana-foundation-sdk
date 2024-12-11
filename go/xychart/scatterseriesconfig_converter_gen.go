@@ -19,7 +19,7 @@ func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string {
 	if input.X != nil && *input.X != "" {
 
 		buffer.WriteString(`X(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.X))
+		arg0 := fmt.Sprintf("%#v", *input.X)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -31,7 +31,7 @@ func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string {
 	if input.Y != nil && *input.Y != "" {
 
 		buffer.WriteString(`Y(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Y))
+		arg0 := fmt.Sprintf("%#v", *input.Y)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -91,7 +91,7 @@ func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string {
 	if input.LineWidth != nil {
 
 		buffer.WriteString(`LineWidth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.LineWidth))
+		arg0 := fmt.Sprintf("%#v", *input.LineWidth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -163,7 +163,7 @@ func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string {
 	if input.AxisLabel != nil && *input.AxisLabel != "" {
 
 		buffer.WriteString(`AxisLabel(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisLabel))
+		arg0 := fmt.Sprintf("%#v", *input.AxisLabel)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -175,7 +175,7 @@ func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string {
 	if input.AxisWidth != nil {
 
 		buffer.WriteString(`AxisWidth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisWidth))
+		arg0 := fmt.Sprintf("%#v", *input.AxisWidth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -187,7 +187,7 @@ func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string {
 	if input.AxisSoftMin != nil {
 
 		buffer.WriteString(`AxisSoftMin(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisSoftMin))
+		arg0 := fmt.Sprintf("%#v", *input.AxisSoftMin)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -199,7 +199,7 @@ func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string {
 	if input.AxisSoftMax != nil {
 
 		buffer.WriteString(`AxisSoftMax(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisSoftMax))
+		arg0 := fmt.Sprintf("%#v", *input.AxisSoftMax)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -211,7 +211,7 @@ func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string {
 	if input.AxisGridShow != nil {
 
 		buffer.WriteString(`AxisGridShow(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisGridShow))
+		arg0 := fmt.Sprintf("%#v", *input.AxisGridShow)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -235,7 +235,7 @@ func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string {
 	if input.Name != nil && *input.Name != "" {
 
 		buffer.WriteString(`Name(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Name))
+		arg0 := fmt.Sprintf("%#v", *input.Name)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -259,7 +259,7 @@ func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string {
 	if input.AxisCenteredZero != nil {
 
 		buffer.WriteString(`AxisCenteredZero(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisCenteredZero))
+		arg0 := fmt.Sprintf("%#v", *input.AxisCenteredZero)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

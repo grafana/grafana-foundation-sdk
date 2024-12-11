@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ElasticsearchMovingAverageEWMAModelSettingsSettingsConverter accepts a `ElasticsearchMovingAverageEWMAModelSettingsSettings` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ElasticsearchMovingAverageEWMAModelSettingsSettingsConverter(input Elastics
 	if input.Alpha != nil && *input.Alpha != "" {
 
 		buffer.WriteString(`Alpha(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Alpha))
+		arg0 := fmt.Sprintf("%#v", *input.Alpha)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

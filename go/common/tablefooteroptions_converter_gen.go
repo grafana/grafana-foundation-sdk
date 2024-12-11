@@ -5,8 +5,6 @@ package common
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // TableFooterOptionsConverter accepts a `TableFooterOptions` object and generates the Go code to build this object using builders.
@@ -64,7 +62,7 @@ func TableFooterOptionsConverter(input TableFooterOptions) string {
 	if input.EnablePagination != nil {
 
 		buffer.WriteString(`EnablePagination(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.EnablePagination))
+		arg0 := fmt.Sprintf("%#v", *input.EnablePagination)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -76,7 +74,7 @@ func TableFooterOptionsConverter(input TableFooterOptions) string {
 	if input.CountRows != nil {
 
 		buffer.WriteString(`CountRows(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.CountRows))
+		arg0 := fmt.Sprintf("%#v", *input.CountRows)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

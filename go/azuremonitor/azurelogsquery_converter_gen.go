@@ -18,7 +18,7 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	if input.Query != nil && *input.Query != "" {
 
 		buffer.WriteString(`Query(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Query))
+		arg0 := fmt.Sprintf("%#v", *input.Query)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -59,7 +59,7 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	if input.IntersectTime != nil {
 
 		buffer.WriteString(`IntersectTime(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.IntersectTime))
+		arg0 := fmt.Sprintf("%#v", *input.IntersectTime)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -71,7 +71,7 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	if input.Workspace != nil && *input.Workspace != "" {
 
 		buffer.WriteString(`Workspace(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Workspace))
+		arg0 := fmt.Sprintf("%#v", *input.Workspace)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -83,7 +83,7 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	if input.Resource != nil && *input.Resource != "" {
 
 		buffer.WriteString(`Resource(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Resource))
+		arg0 := fmt.Sprintf("%#v", *input.Resource)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

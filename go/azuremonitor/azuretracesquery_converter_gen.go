@@ -47,7 +47,7 @@ func AzureTracesQueryConverter(input AzureTracesQuery) string {
 	if input.OperationId != nil && *input.OperationId != "" {
 
 		buffer.WriteString(`OperationId(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.OperationId))
+		arg0 := fmt.Sprintf("%#v", *input.OperationId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -93,7 +93,7 @@ func AzureTracesQueryConverter(input AzureTracesQuery) string {
 	if input.Query != nil && *input.Query != "" {
 
 		buffer.WriteString(`Query(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Query))
+		arg0 := fmt.Sprintf("%#v", *input.Query)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

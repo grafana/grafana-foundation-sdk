@@ -54,7 +54,7 @@ func AnnotationQueryConverter(input AnnotationQuery) string {
 	if input.Hide != nil && *input.Hide != false {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -102,7 +102,7 @@ func AnnotationQueryConverter(input AnnotationQuery) string {
 	if input.Type != nil && *input.Type != "" {
 
 		buffer.WriteString(`Type(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Type))
+		arg0 := fmt.Sprintf("%#v", *input.Type)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +114,7 @@ func AnnotationQueryConverter(input AnnotationQuery) string {
 	if input.Expr != nil && *input.Expr != "" {
 
 		buffer.WriteString(`Expr(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Expr))
+		arg0 := fmt.Sprintf("%#v", *input.Expr)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

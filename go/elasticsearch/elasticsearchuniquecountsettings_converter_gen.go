@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ElasticsearchUniqueCountSettingsConverter accepts a `ElasticsearchUniqueCountSettings` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ElasticsearchUniqueCountSettingsConverter(input ElasticsearchUniqueCountSet
 	if input.PrecisionThreshold != nil && *input.PrecisionThreshold != "" {
 
 		buffer.WriteString(`PrecisionThreshold(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PrecisionThreshold))
+		arg0 := fmt.Sprintf("%#v", *input.PrecisionThreshold)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func ElasticsearchUniqueCountSettingsConverter(input ElasticsearchUniqueCountSet
 	if input.Missing != nil && *input.Missing != "" {
 
 		buffer.WriteString(`Missing(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Missing))
+		arg0 := fmt.Sprintf("%#v", *input.Missing)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

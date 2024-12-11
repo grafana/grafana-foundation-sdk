@@ -42,7 +42,7 @@ func TimeSeriesListConverter(input TimeSeriesList) string {
 	if input.AlignmentPeriod != nil && *input.AlignmentPeriod != "" {
 
 		buffer.WriteString(`AlignmentPeriod(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AlignmentPeriod))
+		arg0 := fmt.Sprintf("%#v", *input.AlignmentPeriod)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func TimeSeriesListConverter(input TimeSeriesList) string {
 	if input.PerSeriesAligner != nil && *input.PerSeriesAligner != "" {
 
 		buffer.WriteString(`PerSeriesAligner(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PerSeriesAligner))
+		arg0 := fmt.Sprintf("%#v", *input.PerSeriesAligner)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -100,7 +100,7 @@ func TimeSeriesListConverter(input TimeSeriesList) string {
 	if input.View != nil && *input.View != "" {
 
 		buffer.WriteString(`View(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.View))
+		arg0 := fmt.Sprintf("%#v", *input.View)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -112,7 +112,7 @@ func TimeSeriesListConverter(input TimeSeriesList) string {
 	if input.SecondaryCrossSeriesReducer != nil && *input.SecondaryCrossSeriesReducer != "" {
 
 		buffer.WriteString(`SecondaryCrossSeriesReducer(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.SecondaryCrossSeriesReducer))
+		arg0 := fmt.Sprintf("%#v", *input.SecondaryCrossSeriesReducer)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -124,7 +124,7 @@ func TimeSeriesListConverter(input TimeSeriesList) string {
 	if input.SecondaryAlignmentPeriod != nil && *input.SecondaryAlignmentPeriod != "" {
 
 		buffer.WriteString(`SecondaryAlignmentPeriod(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.SecondaryAlignmentPeriod))
+		arg0 := fmt.Sprintf("%#v", *input.SecondaryAlignmentPeriod)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -136,7 +136,7 @@ func TimeSeriesListConverter(input TimeSeriesList) string {
 	if input.SecondaryPerSeriesAligner != nil && *input.SecondaryPerSeriesAligner != "" {
 
 		buffer.WriteString(`SecondaryPerSeriesAligner(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.SecondaryPerSeriesAligner))
+		arg0 := fmt.Sprintf("%#v", *input.SecondaryPerSeriesAligner)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -177,7 +177,7 @@ func TimeSeriesListConverter(input TimeSeriesList) string {
 	if input.Title != nil && *input.Title != "" {
 
 		buffer.WriteString(`Title(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Title))
+		arg0 := fmt.Sprintf("%#v", *input.Title)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -189,7 +189,7 @@ func TimeSeriesListConverter(input TimeSeriesList) string {
 	if input.Text != nil && *input.Text != "" {
 
 		buffer.WriteString(`Text(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Text))
+		arg0 := fmt.Sprintf("%#v", *input.Text)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

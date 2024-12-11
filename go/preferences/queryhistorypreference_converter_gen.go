@@ -5,8 +5,6 @@ package preferences
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // QueryHistoryPreferenceConverter accepts a `QueryHistoryPreference` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func QueryHistoryPreferenceConverter(input QueryHistoryPreference) string {
 	if input.HomeTab != nil && *input.HomeTab != "" {
 
 		buffer.WriteString(`HomeTab(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.HomeTab))
+		arg0 := fmt.Sprintf("%#v", *input.HomeTab)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

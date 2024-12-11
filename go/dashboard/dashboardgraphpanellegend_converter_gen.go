@@ -5,8 +5,6 @@ package dashboard
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // DashboardGraphPanelLegendConverter accepts a `DashboardGraphPanelLegend` object and generates the Go code to build this object using builders.
@@ -30,7 +28,7 @@ func DashboardGraphPanelLegendConverter(input DashboardGraphPanelLegend) string 
 	if input.Sort != nil && *input.Sort != "" {
 
 		buffer.WriteString(`Sort(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Sort))
+		arg0 := fmt.Sprintf("%#v", *input.Sort)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func DashboardGraphPanelLegendConverter(input DashboardGraphPanelLegend) string 
 	if input.SortDesc != nil {
 
 		buffer.WriteString(`SortDesc(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.SortDesc))
+		arg0 := fmt.Sprintf("%#v", *input.SortDesc)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

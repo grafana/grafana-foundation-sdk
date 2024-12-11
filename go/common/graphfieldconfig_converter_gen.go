@@ -54,7 +54,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.LineColor != nil && *input.LineColor != "" {
 
 		buffer.WriteString(`LineColor(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.LineColor))
+		arg0 := fmt.Sprintf("%#v", *input.LineColor)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.LineWidth != nil {
 
 		buffer.WriteString(`LineWidth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.LineWidth))
+		arg0 := fmt.Sprintf("%#v", *input.LineWidth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -102,7 +102,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.FillColor != nil && *input.FillColor != "" {
 
 		buffer.WriteString(`FillColor(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FillColor))
+		arg0 := fmt.Sprintf("%#v", *input.FillColor)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +114,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.FillOpacity != nil {
 
 		buffer.WriteString(`FillOpacity(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FillOpacity))
+		arg0 := fmt.Sprintf("%#v", *input.FillOpacity)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -138,7 +138,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.PointSize != nil {
 
 		buffer.WriteString(`PointSize(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PointSize))
+		arg0 := fmt.Sprintf("%#v", *input.PointSize)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -150,7 +150,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.PointColor != nil && *input.PointColor != "" {
 
 		buffer.WriteString(`PointColor(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PointColor))
+		arg0 := fmt.Sprintf("%#v", *input.PointColor)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -186,7 +186,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.AxisLabel != nil && *input.AxisLabel != "" {
 
 		buffer.WriteString(`AxisLabel(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisLabel))
+		arg0 := fmt.Sprintf("%#v", *input.AxisLabel)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -198,7 +198,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.AxisWidth != nil {
 
 		buffer.WriteString(`AxisWidth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisWidth))
+		arg0 := fmt.Sprintf("%#v", *input.AxisWidth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -210,7 +210,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.AxisSoftMin != nil {
 
 		buffer.WriteString(`AxisSoftMin(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisSoftMin))
+		arg0 := fmt.Sprintf("%#v", *input.AxisSoftMin)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -222,7 +222,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.AxisSoftMax != nil {
 
 		buffer.WriteString(`AxisSoftMax(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisSoftMax))
+		arg0 := fmt.Sprintf("%#v", *input.AxisSoftMax)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -234,7 +234,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.AxisGridShow != nil {
 
 		buffer.WriteString(`AxisGridShow(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisGridShow))
+		arg0 := fmt.Sprintf("%#v", *input.AxisGridShow)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -270,7 +270,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.BarWidthFactor != nil {
 
 		buffer.WriteString(`BarWidthFactor(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.BarWidthFactor))
+		arg0 := fmt.Sprintf("%#v", *input.BarWidthFactor)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -330,7 +330,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.FillBelowTo != nil && *input.FillBelowTo != "" {
 
 		buffer.WriteString(`FillBelowTo(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FillBelowTo))
+		arg0 := fmt.Sprintf("%#v", *input.FillBelowTo)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -342,7 +342,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.PointSymbol != nil && *input.PointSymbol != "" {
 
 		buffer.WriteString(`PointSymbol(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PointSymbol))
+		arg0 := fmt.Sprintf("%#v", *input.PointSymbol)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -354,7 +354,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.AxisCenteredZero != nil {
 
 		buffer.WriteString(`AxisCenteredZero(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AxisCenteredZero))
+		arg0 := fmt.Sprintf("%#v", *input.AxisCenteredZero)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -366,7 +366,7 @@ func GraphFieldConfigConverter(input GraphFieldConfig) string {
 	if input.BarMaxWidth != nil {
 
 		buffer.WriteString(`BarMaxWidth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.BarMaxWidth))
+		arg0 := fmt.Sprintf("%#v", *input.BarMaxWidth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
