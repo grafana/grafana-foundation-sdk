@@ -5,8 +5,6 @@ package common
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // VizTextDisplayOptionsConverter accepts a `VizTextDisplayOptions` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func VizTextDisplayOptionsConverter(input VizTextDisplayOptions) string {
 	if input.TitleSize != nil {
 
 		buffer.WriteString(`TitleSize(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.TitleSize))
+		arg0 := fmt.Sprintf("%#v", *input.TitleSize)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func VizTextDisplayOptionsConverter(input VizTextDisplayOptions) string {
 	if input.ValueSize != nil {
 
 		buffer.WriteString(`ValueSize(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ValueSize))
+		arg0 := fmt.Sprintf("%#v", *input.ValueSize)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

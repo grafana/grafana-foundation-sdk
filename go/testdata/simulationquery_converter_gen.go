@@ -47,7 +47,7 @@ func SimulationQueryConverter(input SimulationQuery) string {
 	if input.Stream != nil {
 
 		buffer.WriteString(`Stream(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Stream))
+		arg0 := fmt.Sprintf("%#v", *input.Stream)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -59,7 +59,7 @@ func SimulationQueryConverter(input SimulationQuery) string {
 	if input.Last != nil {
 
 		buffer.WriteString(`Last(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Last))
+		arg0 := fmt.Sprintf("%#v", *input.Last)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

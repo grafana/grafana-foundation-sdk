@@ -5,8 +5,6 @@ package athena
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ConnectionArgsConverter accepts a `ConnectionArgs` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ConnectionArgsConverter(input ConnectionArgs) string {
 	if input.Region != nil && *input.Region != "" && *input.Region != "__default" {
 
 		buffer.WriteString(`Region(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Region))
+		arg0 := fmt.Sprintf("%#v", *input.Region)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func ConnectionArgsConverter(input ConnectionArgs) string {
 	if input.Catalog != nil && *input.Catalog != "" && *input.Catalog != "__default" {
 
 		buffer.WriteString(`Catalog(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Catalog))
+		arg0 := fmt.Sprintf("%#v", *input.Catalog)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func ConnectionArgsConverter(input ConnectionArgs) string {
 	if input.Database != nil && *input.Database != "" && *input.Database != "__default" {
 
 		buffer.WriteString(`Database(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Database))
+		arg0 := fmt.Sprintf("%#v", *input.Database)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func ConnectionArgsConverter(input ConnectionArgs) string {
 	if input.ResultReuseEnabled != nil && *input.ResultReuseEnabled != false {
 
 		buffer.WriteString(`ResultReuseEnabled(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ResultReuseEnabled))
+		arg0 := fmt.Sprintf("%#v", *input.ResultReuseEnabled)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func ConnectionArgsConverter(input ConnectionArgs) string {
 	if input.ResultReuseMaxAgeInMinutes != nil && *input.ResultReuseMaxAgeInMinutes != 60 {
 
 		buffer.WriteString(`ResultReuseMaxAgeInMinutes(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ResultReuseMaxAgeInMinutes))
+		arg0 := fmt.Sprintf("%#v", *input.ResultReuseMaxAgeInMinutes)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

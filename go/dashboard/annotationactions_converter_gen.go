@@ -5,8 +5,6 @@ package dashboard
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // AnnotationActionsConverter accepts a `AnnotationActions` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func AnnotationActionsConverter(input AnnotationActions) string {
 	if input.CanAdd != nil {
 
 		buffer.WriteString(`CanAdd(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.CanAdd))
+		arg0 := fmt.Sprintf("%#v", *input.CanAdd)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func AnnotationActionsConverter(input AnnotationActions) string {
 	if input.CanDelete != nil {
 
 		buffer.WriteString(`CanDelete(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.CanDelete))
+		arg0 := fmt.Sprintf("%#v", *input.CanDelete)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func AnnotationActionsConverter(input AnnotationActions) string {
 	if input.CanEdit != nil {
 
 		buffer.WriteString(`CanEdit(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.CanEdit))
+		arg0 := fmt.Sprintf("%#v", *input.CanEdit)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

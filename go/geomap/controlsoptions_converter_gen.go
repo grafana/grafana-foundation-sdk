@@ -5,8 +5,6 @@ package geomap
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ControlsOptionsConverter accepts a `ControlsOptions` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ControlsOptionsConverter(input ControlsOptions) string {
 	if input.ShowZoom != nil {
 
 		buffer.WriteString(`ShowZoom(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ShowZoom))
+		arg0 := fmt.Sprintf("%#v", *input.ShowZoom)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func ControlsOptionsConverter(input ControlsOptions) string {
 	if input.MouseWheelZoom != nil {
 
 		buffer.WriteString(`MouseWheelZoom(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MouseWheelZoom))
+		arg0 := fmt.Sprintf("%#v", *input.MouseWheelZoom)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func ControlsOptionsConverter(input ControlsOptions) string {
 	if input.ShowAttribution != nil {
 
 		buffer.WriteString(`ShowAttribution(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ShowAttribution))
+		arg0 := fmt.Sprintf("%#v", *input.ShowAttribution)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func ControlsOptionsConverter(input ControlsOptions) string {
 	if input.ShowScale != nil {
 
 		buffer.WriteString(`ShowScale(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ShowScale))
+		arg0 := fmt.Sprintf("%#v", *input.ShowScale)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func ControlsOptionsConverter(input ControlsOptions) string {
 	if input.ShowDebug != nil {
 
 		buffer.WriteString(`ShowDebug(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ShowDebug))
+		arg0 := fmt.Sprintf("%#v", *input.ShowDebug)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -78,7 +76,7 @@ func ControlsOptionsConverter(input ControlsOptions) string {
 	if input.ShowMeasure != nil {
 
 		buffer.WriteString(`ShowMeasure(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ShowMeasure))
+		arg0 := fmt.Sprintf("%#v", *input.ShowMeasure)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

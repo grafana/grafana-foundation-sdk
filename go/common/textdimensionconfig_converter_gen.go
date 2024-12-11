@@ -30,7 +30,7 @@ func TextDimensionConfigConverter(input TextDimensionConfig) string {
 	if input.Field != nil && *input.Field != "" {
 
 		buffer.WriteString(`Field(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Field))
+		arg0 := fmt.Sprintf("%#v", *input.Field)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func TextDimensionConfigConverter(input TextDimensionConfig) string {
 	if input.Fixed != nil && *input.Fixed != "" {
 
 		buffer.WriteString(`Fixed(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Fixed))
+		arg0 := fmt.Sprintf("%#v", *input.Fixed)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

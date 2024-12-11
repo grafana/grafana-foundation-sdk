@@ -5,8 +5,6 @@ package dashboard
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // DashboardMetaConverter accepts a `DashboardMeta` object and generates the Go code to build this object using builders.
@@ -30,7 +28,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.CanAdmin != nil {
 
 		buffer.WriteString(`CanAdmin(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.CanAdmin))
+		arg0 := fmt.Sprintf("%#v", *input.CanAdmin)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.CanDelete != nil {
 
 		buffer.WriteString(`CanDelete(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.CanDelete))
+		arg0 := fmt.Sprintf("%#v", *input.CanDelete)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.CanEdit != nil {
 
 		buffer.WriteString(`CanEdit(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.CanEdit))
+		arg0 := fmt.Sprintf("%#v", *input.CanEdit)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.CanSave != nil {
 
 		buffer.WriteString(`CanSave(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.CanSave))
+		arg0 := fmt.Sprintf("%#v", *input.CanSave)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -78,7 +76,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.CanStar != nil {
 
 		buffer.WriteString(`CanStar(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.CanStar))
+		arg0 := fmt.Sprintf("%#v", *input.CanStar)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +88,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.Created != nil {
 
 		buffer.WriteString(`Created(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Created))
+		arg0 := fmt.Sprintf("%#v", *input.Created)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -102,7 +100,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.CreatedBy != nil && *input.CreatedBy != "" {
 
 		buffer.WriteString(`CreatedBy(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.CreatedBy))
+		arg0 := fmt.Sprintf("%#v", *input.CreatedBy)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +112,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.Expires != nil {
 
 		buffer.WriteString(`Expires(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Expires))
+		arg0 := fmt.Sprintf("%#v", *input.Expires)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -126,7 +124,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.FolderId != nil {
 
 		buffer.WriteString(`FolderId(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FolderId))
+		arg0 := fmt.Sprintf("%#v", *input.FolderId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -138,7 +136,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.FolderTitle != nil && *input.FolderTitle != "" {
 
 		buffer.WriteString(`FolderTitle(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FolderTitle))
+		arg0 := fmt.Sprintf("%#v", *input.FolderTitle)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -150,7 +148,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.FolderUid != nil && *input.FolderUid != "" {
 
 		buffer.WriteString(`FolderUid(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FolderUid))
+		arg0 := fmt.Sprintf("%#v", *input.FolderUid)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -162,7 +160,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.FolderUrl != nil && *input.FolderUrl != "" {
 
 		buffer.WriteString(`FolderUrl(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FolderUrl))
+		arg0 := fmt.Sprintf("%#v", *input.FolderUrl)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -174,7 +172,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.HasAcl != nil {
 
 		buffer.WriteString(`HasAcl(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.HasAcl))
+		arg0 := fmt.Sprintf("%#v", *input.HasAcl)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -186,7 +184,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.IsFolder != nil {
 
 		buffer.WriteString(`IsFolder(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.IsFolder))
+		arg0 := fmt.Sprintf("%#v", *input.IsFolder)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -198,7 +196,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.IsSnapshot != nil {
 
 		buffer.WriteString(`IsSnapshot(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.IsSnapshot))
+		arg0 := fmt.Sprintf("%#v", *input.IsSnapshot)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -210,7 +208,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.IsStarred != nil {
 
 		buffer.WriteString(`IsStarred(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.IsStarred))
+		arg0 := fmt.Sprintf("%#v", *input.IsStarred)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -222,7 +220,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.Provisioned != nil {
 
 		buffer.WriteString(`Provisioned(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Provisioned))
+		arg0 := fmt.Sprintf("%#v", *input.Provisioned)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -234,7 +232,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.ProvisionedExternalId != nil && *input.ProvisionedExternalId != "" {
 
 		buffer.WriteString(`ProvisionedExternalId(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ProvisionedExternalId))
+		arg0 := fmt.Sprintf("%#v", *input.ProvisionedExternalId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -246,7 +244,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.PublicDashboardEnabled != nil {
 
 		buffer.WriteString(`PublicDashboardEnabled(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PublicDashboardEnabled))
+		arg0 := fmt.Sprintf("%#v", *input.PublicDashboardEnabled)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -258,7 +256,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.PublicDashboardUid != nil && *input.PublicDashboardUid != "" {
 
 		buffer.WriteString(`PublicDashboardUid(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PublicDashboardUid))
+		arg0 := fmt.Sprintf("%#v", *input.PublicDashboardUid)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -270,7 +268,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.Slug != nil && *input.Slug != "" {
 
 		buffer.WriteString(`Slug(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Slug))
+		arg0 := fmt.Sprintf("%#v", *input.Slug)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -282,7 +280,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.Type != nil && *input.Type != "" {
 
 		buffer.WriteString(`Type(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Type))
+		arg0 := fmt.Sprintf("%#v", *input.Type)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -294,7 +292,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.Updated != nil {
 
 		buffer.WriteString(`Updated(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Updated))
+		arg0 := fmt.Sprintf("%#v", *input.Updated)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -306,7 +304,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.UpdatedBy != nil && *input.UpdatedBy != "" {
 
 		buffer.WriteString(`UpdatedBy(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.UpdatedBy))
+		arg0 := fmt.Sprintf("%#v", *input.UpdatedBy)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -318,7 +316,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.Url != nil && *input.Url != "" {
 
 		buffer.WriteString(`Url(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Url))
+		arg0 := fmt.Sprintf("%#v", *input.Url)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -330,7 +328,7 @@ func DashboardMetaConverter(input DashboardMeta) string {
 	if input.Version != nil {
 
 		buffer.WriteString(`Version(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Version))
+		arg0 := fmt.Sprintf("%#v", *input.Version)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
