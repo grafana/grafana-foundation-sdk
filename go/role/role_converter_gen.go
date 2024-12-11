@@ -5,8 +5,6 @@ package role
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // RoleConverter accepts a `Role` object and generates the Go code to build this object using builders.
@@ -30,7 +28,7 @@ func RoleConverter(input Role) string {
 	if input.DisplayName != nil && *input.DisplayName != "" {
 
 		buffer.WriteString(`DisplayName(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.DisplayName))
+		arg0 := fmt.Sprintf("%#v", *input.DisplayName)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func RoleConverter(input Role) string {
 	if input.GroupName != nil && *input.GroupName != "" {
 
 		buffer.WriteString(`GroupName(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.GroupName))
+		arg0 := fmt.Sprintf("%#v", *input.GroupName)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func RoleConverter(input Role) string {
 	if input.Description != nil && *input.Description != "" {
 
 		buffer.WriteString(`Description(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Description))
+		arg0 := fmt.Sprintf("%#v", *input.Description)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
