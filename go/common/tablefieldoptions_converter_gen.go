@@ -18,7 +18,7 @@ func TableFieldOptionsConverter(input TableFieldOptions) string {
 	if input.Width != nil {
 
 		buffer.WriteString(`Width(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Width))
+		arg0 := fmt.Sprintf("%#v", *input.Width)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +30,7 @@ func TableFieldOptionsConverter(input TableFieldOptions) string {
 	if input.MinWidth != nil {
 
 		buffer.WriteString(`MinWidth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MinWidth))
+		arg0 := fmt.Sprintf("%#v", *input.MinWidth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -78,7 +78,7 @@ func TableFieldOptionsConverter(input TableFieldOptions) string {
 	if input.Hidden != nil {
 
 		buffer.WriteString(`Hidden(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hidden))
+		arg0 := fmt.Sprintf("%#v", *input.Hidden)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -102,7 +102,7 @@ func TableFieldOptionsConverter(input TableFieldOptions) string {
 	if input.Filterable != nil {
 
 		buffer.WriteString(`Filterable(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Filterable))
+		arg0 := fmt.Sprintf("%#v", *input.Filterable)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +114,7 @@ func TableFieldOptionsConverter(input TableFieldOptions) string {
 	if input.HideHeader != nil {
 
 		buffer.WriteString(`HideHeader(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.HideHeader))
+		arg0 := fmt.Sprintf("%#v", *input.HideHeader)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -66,7 +66,7 @@ func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string {
 	if input.Alias != nil && *input.Alias != "" {
 
 		buffer.WriteString(`Alias(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Alias))
+		arg0 := fmt.Sprintf("%#v", *input.Alias)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -78,7 +78,7 @@ func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string {
 	if input.Label != nil && *input.Label != "" {
 
 		buffer.WriteString(`Label(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Label))
+		arg0 := fmt.Sprintf("%#v", *input.Label)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +90,7 @@ func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string {
 	if input.Expression != nil && *input.Expression != "" {
 
 		buffer.WriteString(`Expression(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Expression))
+		arg0 := fmt.Sprintf("%#v", *input.Expression)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -102,7 +102,7 @@ func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string {
 	if input.SqlExpression != nil && *input.SqlExpression != "" {
 
 		buffer.WriteString(`SqlExpression(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.SqlExpression))
+		arg0 := fmt.Sprintf("%#v", *input.SqlExpression)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -126,7 +126,7 @@ func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -138,7 +138,7 @@ func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string {
 	if input.QueryType != nil && *input.QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryType))
+		arg0 := fmt.Sprintf("%#v", *input.QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -174,7 +174,7 @@ func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string {
 	if input.MetricName != nil && *input.MetricName != "" {
 
 		buffer.WriteString(`MetricName(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MetricName))
+		arg0 := fmt.Sprintf("%#v", *input.MetricName)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -198,7 +198,7 @@ func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string {
 	if input.MatchExact != nil {
 
 		buffer.WriteString(`MatchExact(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MatchExact))
+		arg0 := fmt.Sprintf("%#v", *input.MatchExact)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -210,7 +210,7 @@ func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string {
 	if input.Period != nil && *input.Period != "" {
 
 		buffer.WriteString(`Period(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Period))
+		arg0 := fmt.Sprintf("%#v", *input.Period)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -222,7 +222,7 @@ func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string {
 	if input.AccountId != nil && *input.AccountId != "" {
 
 		buffer.WriteString(`AccountId(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AccountId))
+		arg0 := fmt.Sprintf("%#v", *input.AccountId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -234,7 +234,7 @@ func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string {
 	if input.Statistic != nil && *input.Statistic != "" {
 
 		buffer.WriteString(`Statistic(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Statistic))
+		arg0 := fmt.Sprintf("%#v", *input.Statistic)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

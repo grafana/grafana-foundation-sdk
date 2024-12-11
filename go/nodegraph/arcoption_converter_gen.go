@@ -5,8 +5,6 @@ package nodegraph
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ArcOptionConverter accepts a `ArcOption` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ArcOptionConverter(input ArcOption) string {
 	if input.Field != nil && *input.Field != "" {
 
 		buffer.WriteString(`Field(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Field))
+		arg0 := fmt.Sprintf("%#v", *input.Field)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func ArcOptionConverter(input ArcOption) string {
 	if input.Color != nil && *input.Color != "" {
 
 		buffer.WriteString(`Color(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Color))
+		arg0 := fmt.Sprintf("%#v", *input.Color)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

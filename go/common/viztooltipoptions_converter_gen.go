@@ -41,7 +41,7 @@ func VizTooltipOptionsConverter(input VizTooltipOptions) string {
 	if input.MaxWidth != nil {
 
 		buffer.WriteString(`MaxWidth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MaxWidth))
+		arg0 := fmt.Sprintf("%#v", *input.MaxWidth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -53,7 +53,7 @@ func VizTooltipOptionsConverter(input VizTooltipOptions) string {
 	if input.MaxHeight != nil {
 
 		buffer.WriteString(`MaxHeight(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MaxHeight))
+		arg0 := fmt.Sprintf("%#v", *input.MaxHeight)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

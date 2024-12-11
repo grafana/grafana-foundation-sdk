@@ -42,7 +42,7 @@ func CanvasConnectionConverter(input CanvasConnection) string {
 	if input.TargetName != nil && *input.TargetName != "" {
 
 		buffer.WriteString(`TargetName(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.TargetName))
+		arg0 := fmt.Sprintf("%#v", *input.TargetName)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

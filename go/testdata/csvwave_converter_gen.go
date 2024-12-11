@@ -5,8 +5,6 @@ package testdata
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // CSVWaveConverter accepts a `CSVWave` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func CSVWaveConverter(input CSVWave) string {
 	if input.Labels != nil && *input.Labels != "" {
 
 		buffer.WriteString(`Labels(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Labels))
+		arg0 := fmt.Sprintf("%#v", *input.Labels)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func CSVWaveConverter(input CSVWave) string {
 	if input.Name != nil && *input.Name != "" {
 
 		buffer.WriteString(`Name(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Name))
+		arg0 := fmt.Sprintf("%#v", *input.Name)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func CSVWaveConverter(input CSVWave) string {
 	if input.TimeStep != nil {
 
 		buffer.WriteString(`TimeStep(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.TimeStep))
+		arg0 := fmt.Sprintf("%#v", *input.TimeStep)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func CSVWaveConverter(input CSVWave) string {
 	if input.ValuesCSV != nil && *input.ValuesCSV != "" {
 
 		buffer.WriteString(`ValuesCSV(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ValuesCSV))
+		arg0 := fmt.Sprintf("%#v", *input.ValuesCSV)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
