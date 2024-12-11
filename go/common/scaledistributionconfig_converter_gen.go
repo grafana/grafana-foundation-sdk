@@ -30,7 +30,7 @@ func ScaleDistributionConfigConverter(input ScaleDistributionConfig) string {
 	if input.Log != nil {
 
 		buffer.WriteString(`Log(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Log))
+		arg0 := fmt.Sprintf("%#v", *input.Log)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func ScaleDistributionConfigConverter(input ScaleDistributionConfig) string {
 	if input.LinearThreshold != nil {
 
 		buffer.WriteString(`LinearThreshold(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.LinearThreshold))
+		arg0 := fmt.Sprintf("%#v", *input.LinearThreshold)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

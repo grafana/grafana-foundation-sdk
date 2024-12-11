@@ -78,7 +78,7 @@ func MapLayerOptionsConverter(input MapLayerOptions) string {
 	if input.Opacity != nil {
 
 		buffer.WriteString(`Opacity(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Opacity))
+		arg0 := fmt.Sprintf("%#v", *input.Opacity)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +90,7 @@ func MapLayerOptionsConverter(input MapLayerOptions) string {
 	if input.Tooltip != nil {
 
 		buffer.WriteString(`Tooltip(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Tooltip))
+		arg0 := fmt.Sprintf("%#v", *input.Tooltip)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

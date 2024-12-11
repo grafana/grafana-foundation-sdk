@@ -18,7 +18,7 @@ func MovingAverageConverter(input MovingAverage) string {
 	if input.PipelineAgg != nil && *input.PipelineAgg != "" {
 
 		buffer.WriteString(`PipelineAgg(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PipelineAgg))
+		arg0 := fmt.Sprintf("%#v", *input.PipelineAgg)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +30,7 @@ func MovingAverageConverter(input MovingAverage) string {
 	if input.Field != nil && *input.Field != "" {
 
 		buffer.WriteString(`Field(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Field))
+		arg0 := fmt.Sprintf("%#v", *input.Field)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -71,7 +71,7 @@ func MovingAverageConverter(input MovingAverage) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

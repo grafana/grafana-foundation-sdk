@@ -30,7 +30,7 @@ func MetricQueryConverter(input MetricQuery) string {
 	if input.PerSeriesAligner != nil && *input.PerSeriesAligner != "" {
 
 		buffer.WriteString(`PerSeriesAligner(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PerSeriesAligner))
+		arg0 := fmt.Sprintf("%#v", *input.PerSeriesAligner)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func MetricQueryConverter(input MetricQuery) string {
 	if input.AlignmentPeriod != nil && *input.AlignmentPeriod != "" {
 
 		buffer.WriteString(`AlignmentPeriod(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AlignmentPeriod))
+		arg0 := fmt.Sprintf("%#v", *input.AlignmentPeriod)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func MetricQueryConverter(input MetricQuery) string {
 	if input.AliasBy != nil && *input.AliasBy != "" {
 
 		buffer.WriteString(`AliasBy(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AliasBy))
+		arg0 := fmt.Sprintf("%#v", *input.AliasBy)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -148,7 +148,7 @@ func MetricQueryConverter(input MetricQuery) string {
 	if input.ValueType != nil && *input.ValueType != "" {
 
 		buffer.WriteString(`ValueType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ValueType))
+		arg0 := fmt.Sprintf("%#v", *input.ValueType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -160,7 +160,7 @@ func MetricQueryConverter(input MetricQuery) string {
 	if input.View != nil && *input.View != "" {
 
 		buffer.WriteString(`View(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.View))
+		arg0 := fmt.Sprintf("%#v", *input.View)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -196,7 +196,7 @@ func MetricQueryConverter(input MetricQuery) string {
 	if input.GraphPeriod != nil && *input.GraphPeriod != "" && *input.GraphPeriod != "disabled" {
 
 		buffer.WriteString(`GraphPeriod(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.GraphPeriod))
+		arg0 := fmt.Sprintf("%#v", *input.GraphPeriod)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -5,8 +5,6 @@ package preferences
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // PreferencesConverter accepts a `Preferences` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func PreferencesConverter(input Preferences) string {
 	if input.HomeDashboardUID != nil && *input.HomeDashboardUID != "" {
 
 		buffer.WriteString(`HomeDashboardUID(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.HomeDashboardUID))
+		arg0 := fmt.Sprintf("%#v", *input.HomeDashboardUID)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func PreferencesConverter(input Preferences) string {
 	if input.Timezone != nil && *input.Timezone != "" {
 
 		buffer.WriteString(`Timezone(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Timezone))
+		arg0 := fmt.Sprintf("%#v", *input.Timezone)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func PreferencesConverter(input Preferences) string {
 	if input.WeekStart != nil && *input.WeekStart != "" {
 
 		buffer.WriteString(`WeekStart(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.WeekStart))
+		arg0 := fmt.Sprintf("%#v", *input.WeekStart)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func PreferencesConverter(input Preferences) string {
 	if input.Theme != nil && *input.Theme != "" {
 
 		buffer.WriteString(`Theme(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Theme))
+		arg0 := fmt.Sprintf("%#v", *input.Theme)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func PreferencesConverter(input Preferences) string {
 	if input.Language != nil && *input.Language != "" {
 
 		buffer.WriteString(`Language(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Language))
+		arg0 := fmt.Sprintf("%#v", *input.Language)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

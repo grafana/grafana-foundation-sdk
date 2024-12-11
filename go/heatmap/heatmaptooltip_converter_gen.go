@@ -30,7 +30,7 @@ func HeatmapTooltipConverter(input HeatmapTooltip) string {
 	if input.YHistogram != nil {
 
 		buffer.WriteString(`YHistogram(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.YHistogram))
+		arg0 := fmt.Sprintf("%#v", *input.YHistogram)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func HeatmapTooltipConverter(input HeatmapTooltip) string {
 	if input.ShowColorScale != nil {
 
 		buffer.WriteString(`ShowColorScale(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ShowColorScale))
+		arg0 := fmt.Sprintf("%#v", *input.ShowColorScale)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
