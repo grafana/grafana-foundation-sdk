@@ -67,13 +67,14 @@ builders:
       under_path: fieldConfig
 
   # Panels composability
-  - compose_dashboard_panel:
-      panel_builder_name: dashboard.Panel
+  - compose:
+      by_variant: panelcfg
+      source_builder_name: dashboard.Panel
       plugin_discriminator_field: type
       composition_map:
         Options: options
         FieldConfig: fieldConfig.defaults.custom
-      exclude_panel_options: [
+      exclude_options: [
         # merged with another builder
         "defaults",
         "fieldConfig",
