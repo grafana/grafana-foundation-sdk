@@ -30,7 +30,7 @@ func HeatmapTooltipConverter(input HeatmapTooltip) string {
 	if input.MaxHeight != nil {
 
 		buffer.WriteString(`MaxHeight(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MaxHeight))
+		arg0 := fmt.Sprintf("%#v", *input.MaxHeight)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func HeatmapTooltipConverter(input HeatmapTooltip) string {
 	if input.MaxWidth != nil {
 
 		buffer.WriteString(`MaxWidth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MaxWidth))
+		arg0 := fmt.Sprintf("%#v", *input.MaxWidth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func HeatmapTooltipConverter(input HeatmapTooltip) string {
 	if input.YHistogram != nil {
 
 		buffer.WriteString(`YHistogram(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.YHistogram))
+		arg0 := fmt.Sprintf("%#v", *input.YHistogram)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func HeatmapTooltipConverter(input HeatmapTooltip) string {
 	if input.ShowColorScale != nil {
 
 		buffer.WriteString(`ShowColorScale(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ShowColorScale))
+		arg0 := fmt.Sprintf("%#v", *input.ShowColorScale)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

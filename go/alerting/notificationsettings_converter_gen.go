@@ -5,8 +5,6 @@ package alerting
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // NotificationSettingsConverter accepts a `NotificationSettings` object and generates the Go code to build this object using builders.
@@ -35,7 +33,7 @@ func NotificationSettingsConverter(input NotificationSettings) string {
 	if input.GroupInterval != nil && *input.GroupInterval != "" {
 
 		buffer.WriteString(`GroupInterval(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.GroupInterval))
+		arg0 := fmt.Sprintf("%#v", *input.GroupInterval)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -47,7 +45,7 @@ func NotificationSettingsConverter(input NotificationSettings) string {
 	if input.GroupWait != nil && *input.GroupWait != "" {
 
 		buffer.WriteString(`GroupWait(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.GroupWait))
+		arg0 := fmt.Sprintf("%#v", *input.GroupWait)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -88,7 +86,7 @@ func NotificationSettingsConverter(input NotificationSettings) string {
 	if input.RepeatInterval != nil && *input.RepeatInterval != "" {
 
 		buffer.WriteString(`RepeatInterval(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.RepeatInterval))
+		arg0 := fmt.Sprintf("%#v", *input.RepeatInterval)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

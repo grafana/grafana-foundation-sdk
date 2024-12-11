@@ -18,7 +18,7 @@ func NotificationTemplateConverter(input NotificationTemplate) string {
 	if input.Name != nil && *input.Name != "" {
 
 		buffer.WriteString(`Name(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Name))
+		arg0 := fmt.Sprintf("%#v", *input.Name)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func NotificationTemplateConverter(input NotificationTemplate) string {
 	if input.Template != nil && *input.Template != "" {
 
 		buffer.WriteString(`Template(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Template))
+		arg0 := fmt.Sprintf("%#v", *input.Template)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func NotificationTemplateConverter(input NotificationTemplate) string {
 	if input.Version != nil && *input.Version != "" {
 
 		buffer.WriteString(`Version(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Version))
+		arg0 := fmt.Sprintf("%#v", *input.Version)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

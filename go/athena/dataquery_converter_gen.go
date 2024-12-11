@@ -41,7 +41,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Table != nil && *input.Table != "" {
 
 		buffer.WriteString(`Table(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Table))
+		arg0 := fmt.Sprintf("%#v", *input.Table)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -53,7 +53,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Column != nil && *input.Column != "" {
 
 		buffer.WriteString(`Column(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Column))
+		arg0 := fmt.Sprintf("%#v", *input.Column)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -65,7 +65,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.QueryID != nil && *input.QueryID != "" {
 
 		buffer.WriteString(`QueryID(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryID))
+		arg0 := fmt.Sprintf("%#v", *input.QueryID)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -89,7 +89,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -101,7 +101,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.QueryType != nil && *input.QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryType))
+		arg0 := fmt.Sprintf("%#v", *input.QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

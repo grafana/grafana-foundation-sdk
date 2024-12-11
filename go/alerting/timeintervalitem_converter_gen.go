@@ -5,8 +5,6 @@ package alerting
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // TimeIntervalItemConverter accepts a `TimeIntervalItem` object and generates the Go code to build this object using builders.
@@ -35,7 +33,7 @@ func TimeIntervalItemConverter(input TimeIntervalItem) string {
 	if input.Location != nil && *input.Location != "" {
 
 		buffer.WriteString(`Location(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Location))
+		arg0 := fmt.Sprintf("%#v", *input.Location)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

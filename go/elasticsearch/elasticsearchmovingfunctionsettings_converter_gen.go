@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ElasticsearchMovingFunctionSettingsConverter accepts a `ElasticsearchMovingFunctionSettings` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ElasticsearchMovingFunctionSettingsConverter(input ElasticsearchMovingFunct
 	if input.Window != nil && *input.Window != "" {
 
 		buffer.WriteString(`Window(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Window))
+		arg0 := fmt.Sprintf("%#v", *input.Window)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func ElasticsearchMovingFunctionSettingsConverter(input ElasticsearchMovingFunct
 	if input.Shift != nil && *input.Shift != "" {
 
 		buffer.WriteString(`Shift(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Shift))
+		arg0 := fmt.Sprintf("%#v", *input.Shift)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

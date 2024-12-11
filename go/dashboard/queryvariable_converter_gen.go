@@ -30,7 +30,7 @@ func QueryVariableConverter(input VariableModel) string {
 	if input.Label != nil && *input.Label != "" {
 
 		buffer.WriteString(`Label(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Label))
+		arg0 := fmt.Sprintf("%#v", *input.Label)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func QueryVariableConverter(input VariableModel) string {
 	if input.Description != nil && *input.Description != "" {
 
 		buffer.WriteString(`Description(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Description))
+		arg0 := fmt.Sprintf("%#v", *input.Description)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -102,7 +102,7 @@ func QueryVariableConverter(input VariableModel) string {
 	if input.Multi != nil && *input.Multi != false {
 
 		buffer.WriteString(`Multi(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Multi))
+		arg0 := fmt.Sprintf("%#v", *input.Multi)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +114,7 @@ func QueryVariableConverter(input VariableModel) string {
 	if input.AllowCustomValue != nil && *input.AllowCustomValue != true {
 
 		buffer.WriteString(`AllowCustomValue(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AllowCustomValue))
+		arg0 := fmt.Sprintf("%#v", *input.AllowCustomValue)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -167,7 +167,7 @@ func QueryVariableConverter(input VariableModel) string {
 	if input.IncludeAll != nil && *input.IncludeAll != false {
 
 		buffer.WriteString(`IncludeAll(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.IncludeAll))
+		arg0 := fmt.Sprintf("%#v", *input.IncludeAll)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -179,7 +179,7 @@ func QueryVariableConverter(input VariableModel) string {
 	if input.AllValue != nil && *input.AllValue != "" {
 
 		buffer.WriteString(`AllValue(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AllValue))
+		arg0 := fmt.Sprintf("%#v", *input.AllValue)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -191,7 +191,7 @@ func QueryVariableConverter(input VariableModel) string {
 	if input.Regex != nil && *input.Regex != "" {
 
 		buffer.WriteString(`Regex(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Regex))
+		arg0 := fmt.Sprintf("%#v", *input.Regex)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
