@@ -5,8 +5,6 @@ package librarypanel
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // LibraryPanelConverter accepts a `LibraryPanel` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func LibraryPanelConverter(input LibraryPanel) string {
 	if input.FolderUid != nil && *input.FolderUid != "" {
 
 		buffer.WriteString(`FolderUid(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FolderUid))
+		arg0 := fmt.Sprintf("%#v", *input.FolderUid)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func LibraryPanelConverter(input LibraryPanel) string {
 	if input.Description != nil && *input.Description != "" {
 
 		buffer.WriteString(`Description(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Description))
+		arg0 := fmt.Sprintf("%#v", *input.Description)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -78,7 +76,7 @@ func LibraryPanelConverter(input LibraryPanel) string {
 	if input.SchemaVersion != nil {
 
 		buffer.WriteString(`SchemaVersion(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.SchemaVersion))
+		arg0 := fmt.Sprintf("%#v", *input.SchemaVersion)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

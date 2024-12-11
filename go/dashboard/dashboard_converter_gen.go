@@ -12,13 +12,13 @@ import (
 // DashboardConverter accepts a `Dashboard` object and generates the Go code to build this object using builders.
 func DashboardConverter(input Dashboard) string {
 	calls := []string{
-		`dashboard.NewDashboardBuilder(` + fmt.Sprintf("%#v", cog.Unptr(input.Title)) + `)`,
+		`dashboard.NewDashboardBuilder(` + fmt.Sprintf("%#v", *input.Title) + `)`,
 	}
 	var buffer strings.Builder
 	if input.Id != nil {
 
 		buffer.WriteString(`Id(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Id))
+		arg0 := fmt.Sprintf("%#v", *input.Id)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +30,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.Uid != nil && *input.Uid != "" {
 
 		buffer.WriteString(`Uid(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Uid))
+		arg0 := fmt.Sprintf("%#v", *input.Uid)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.Title != nil && *input.Title != "" {
 
 		buffer.WriteString(`Title(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Title))
+		arg0 := fmt.Sprintf("%#v", *input.Title)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.Description != nil && *input.Description != "" {
 
 		buffer.WriteString(`Description(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Description))
+		arg0 := fmt.Sprintf("%#v", *input.Description)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.Revision != nil {
 
 		buffer.WriteString(`Revision(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Revision))
+		arg0 := fmt.Sprintf("%#v", *input.Revision)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -78,7 +78,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.GnetId != nil && *input.GnetId != "" {
 
 		buffer.WriteString(`GnetId(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.GnetId))
+		arg0 := fmt.Sprintf("%#v", *input.GnetId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -107,7 +107,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.Timezone != nil && *input.Timezone != "" && *input.Timezone != "browser" {
 
 		buffer.WriteString(`Timezone(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Timezone))
+		arg0 := fmt.Sprintf("%#v", *input.Timezone)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -176,7 +176,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.FiscalYearStartMonth != nil && *input.FiscalYearStartMonth != 0 {
 
 		buffer.WriteString(`FiscalYearStartMonth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FiscalYearStartMonth))
+		arg0 := fmt.Sprintf("%#v", *input.FiscalYearStartMonth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -188,7 +188,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.LiveNow != nil {
 
 		buffer.WriteString(`LiveNow(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.LiveNow))
+		arg0 := fmt.Sprintf("%#v", *input.LiveNow)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -200,7 +200,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.WeekStart != nil && *input.WeekStart != "" {
 
 		buffer.WriteString(`WeekStart(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.WeekStart))
+		arg0 := fmt.Sprintf("%#v", *input.WeekStart)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -212,7 +212,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.Refresh != nil && input.Refresh.String != nil && *input.Refresh.String != "" {
 
 		buffer.WriteString(`Refresh(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Refresh.String))
+		arg0 := fmt.Sprintf("%#v", *input.Refresh.String)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -224,7 +224,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.Version != nil {
 
 		buffer.WriteString(`Version(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Version))
+		arg0 := fmt.Sprintf("%#v", *input.Version)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

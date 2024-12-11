@@ -5,8 +5,6 @@ package heatmap
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // FilterValueRangeConverter accepts a `FilterValueRange` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func FilterValueRangeConverter(input FilterValueRange) string {
 	if input.Le != nil {
 
 		buffer.WriteString(`Le(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Le))
+		arg0 := fmt.Sprintf("%#v", *input.Le)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func FilterValueRangeConverter(input FilterValueRange) string {
 	if input.Ge != nil {
 
 		buffer.WriteString(`Ge(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Ge))
+		arg0 := fmt.Sprintf("%#v", *input.Ge)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -30,7 +30,7 @@ func ExprTypeReduceSettingsConverter(input ExprTypeReduceSettings) string {
 	if input.ReplaceWithValue != nil {
 
 		buffer.WriteString(`ReplaceWithValue(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ReplaceWithValue))
+		arg0 := fmt.Sprintf("%#v", *input.ReplaceWithValue)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

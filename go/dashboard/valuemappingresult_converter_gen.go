@@ -5,8 +5,6 @@ package dashboard
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ValueMappingResultConverter accepts a `ValueMappingResult` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ValueMappingResultConverter(input ValueMappingResult) string {
 	if input.Text != nil && *input.Text != "" {
 
 		buffer.WriteString(`Text(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Text))
+		arg0 := fmt.Sprintf("%#v", *input.Text)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func ValueMappingResultConverter(input ValueMappingResult) string {
 	if input.Color != nil && *input.Color != "" {
 
 		buffer.WriteString(`Color(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Color))
+		arg0 := fmt.Sprintf("%#v", *input.Color)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func ValueMappingResultConverter(input ValueMappingResult) string {
 	if input.Icon != nil && *input.Icon != "" {
 
 		buffer.WriteString(`Icon(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Icon))
+		arg0 := fmt.Sprintf("%#v", *input.Icon)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func ValueMappingResultConverter(input ValueMappingResult) string {
 	if input.Index != nil {
 
 		buffer.WriteString(`Index(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Index))
+		arg0 := fmt.Sprintf("%#v", *input.Index)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

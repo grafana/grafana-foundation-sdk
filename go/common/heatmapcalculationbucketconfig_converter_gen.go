@@ -30,7 +30,7 @@ func HeatmapCalculationBucketConfigConverter(input HeatmapCalculationBucketConfi
 	if input.Value != nil && *input.Value != "" {
 
 		buffer.WriteString(`Value(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Value))
+		arg0 := fmt.Sprintf("%#v", *input.Value)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
