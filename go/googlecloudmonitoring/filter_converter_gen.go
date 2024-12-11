@@ -5,8 +5,6 @@ package googlecloudmonitoring
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // FilterConverter accepts a `Filter` object and generates the Go code to build this object using builders.
@@ -54,7 +52,7 @@ func FilterConverter(input Filter) string {
 	if input.Condition != nil && *input.Condition != "" {
 
 		buffer.WriteString(`Condition(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Condition))
+		arg0 := fmt.Sprintf("%#v", *input.Condition)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

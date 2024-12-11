@@ -12,13 +12,13 @@ import (
 // QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
 func QueryConverter(input Query) string {
 	calls := []string{
-		`alerting.NewQueryBuilder(` + fmt.Sprintf("%#v", cog.Unptr(input.RefId)) + `)`,
+		`alerting.NewQueryBuilder(` + fmt.Sprintf("%#v", *input.RefId) + `)`,
 	}
 	var buffer strings.Builder
 	if input.DatasourceUid != nil && *input.DatasourceUid != "" {
 
 		buffer.WriteString(`DatasourceUid(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.DatasourceUid))
+		arg0 := fmt.Sprintf("%#v", *input.DatasourceUid)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func QueryConverter(input Query) string {
 	if input.QueryType != nil && *input.QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryType))
+		arg0 := fmt.Sprintf("%#v", *input.QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func QueryConverter(input Query) string {
 	if input.RefId != nil && *input.RefId != "" {
 
 		buffer.WriteString(`RefId(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.RefId))
+		arg0 := fmt.Sprintf("%#v", *input.RefId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

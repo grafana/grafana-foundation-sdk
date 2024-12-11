@@ -5,8 +5,6 @@ package testdata
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // KeyConverter accepts a `Key` object and generates the Go code to build this object using builders.
@@ -42,7 +40,7 @@ func KeyConverter(input Key) string {
 	if input.Uid != nil && *input.Uid != "" {
 
 		buffer.WriteString(`Uid(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Uid))
+		arg0 := fmt.Sprintf("%#v", *input.Uid)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -30,7 +30,7 @@ func TermsSettingsConverter(input TermsSettings) string {
 	if input.Size != nil && *input.Size != "" {
 
 		buffer.WriteString(`Size(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Size))
+		arg0 := fmt.Sprintf("%#v", *input.Size)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func TermsSettingsConverter(input TermsSettings) string {
 	if input.MinDocCount != nil && *input.MinDocCount != "" {
 
 		buffer.WriteString(`MinDocCount(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MinDocCount))
+		arg0 := fmt.Sprintf("%#v", *input.MinDocCount)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func TermsSettingsConverter(input TermsSettings) string {
 	if input.OrderBy != nil && *input.OrderBy != "" {
 
 		buffer.WriteString(`OrderBy(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.OrderBy))
+		arg0 := fmt.Sprintf("%#v", *input.OrderBy)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func TermsSettingsConverter(input TermsSettings) string {
 	if input.Missing != nil && *input.Missing != "" {
 
 		buffer.WriteString(`Missing(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Missing))
+		arg0 := fmt.Sprintf("%#v", *input.Missing)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

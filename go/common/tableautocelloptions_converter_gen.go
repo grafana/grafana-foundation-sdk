@@ -5,8 +5,6 @@ package common
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // TableAutoCellOptionsConverter accepts a `TableAutoCellOptions` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func TableAutoCellOptionsConverter(input TableAutoCellOptions) string {
 	if input.WrapText != nil {
 
 		buffer.WriteString(`WrapText(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.WrapText))
+		arg0 := fmt.Sprintf("%#v", *input.WrapText)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

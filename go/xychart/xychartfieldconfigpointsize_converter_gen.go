@@ -5,8 +5,6 @@ package xychart
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // XychartFieldConfigPointSizeConverter accepts a `XychartFieldConfigPointSize` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func XychartFieldConfigPointSizeConverter(input XychartFieldConfigPointSize) str
 	if input.Fixed != nil {
 
 		buffer.WriteString(`Fixed(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Fixed))
+		arg0 := fmt.Sprintf("%#v", *input.Fixed)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func XychartFieldConfigPointSizeConverter(input XychartFieldConfigPointSize) str
 	if input.Min != nil {
 
 		buffer.WriteString(`Min(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Min))
+		arg0 := fmt.Sprintf("%#v", *input.Min)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func XychartFieldConfigPointSizeConverter(input XychartFieldConfigPointSize) str
 	if input.Max != nil {
 
 		buffer.WriteString(`Max(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Max))
+		arg0 := fmt.Sprintf("%#v", *input.Max)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

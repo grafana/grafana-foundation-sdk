@@ -5,8 +5,6 @@ package xychart
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // XychartXYSeriesConfigNameConverter accepts a `XychartXYSeriesConfigName` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func XychartXYSeriesConfigNameConverter(input XychartXYSeriesConfigName) string 
 	if input.Fixed != nil && *input.Fixed != "" {
 
 		buffer.WriteString(`Fixed(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Fixed))
+		arg0 := fmt.Sprintf("%#v", *input.Fixed)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

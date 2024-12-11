@@ -5,8 +5,6 @@ package accesspolicy
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // AccessRuleConverter accepts a `AccessRule` object and generates the Go code to build this object using builders.
@@ -42,7 +40,7 @@ func AccessRuleConverter(input AccessRule) string {
 	if input.Target != nil && *input.Target != "" {
 
 		buffer.WriteString(`Target(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Target))
+		arg0 := fmt.Sprintf("%#v", *input.Target)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

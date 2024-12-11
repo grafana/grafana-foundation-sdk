@@ -5,8 +5,6 @@ package testdata
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // USAQueryConverter accepts a `USAQuery` object and generates the Go code to build this object using builders.
@@ -35,7 +33,7 @@ func USAQueryConverter(input USAQuery) string {
 	if input.Mode != nil && *input.Mode != "" {
 
 		buffer.WriteString(`Mode(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Mode))
+		arg0 := fmt.Sprintf("%#v", *input.Mode)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -47,7 +45,7 @@ func USAQueryConverter(input USAQuery) string {
 	if input.Period != nil && *input.Period != "" {
 
 		buffer.WriteString(`Period(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Period))
+		arg0 := fmt.Sprintf("%#v", *input.Period)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
