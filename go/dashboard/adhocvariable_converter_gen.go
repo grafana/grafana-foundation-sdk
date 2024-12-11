@@ -42,7 +42,7 @@ func AdHocVariableConverter(input VariableModel) string {
 	if input.Label != nil && *input.Label != "" {
 
 		buffer.WriteString(`Label(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Label))
+		arg0 := fmt.Sprintf("%#v", *input.Label)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func AdHocVariableConverter(input VariableModel) string {
 	if input.Description != nil && *input.Description != "" {
 
 		buffer.WriteString(`Description(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Description))
+		arg0 := fmt.Sprintf("%#v", *input.Description)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +90,7 @@ func AdHocVariableConverter(input VariableModel) string {
 	if input.AllFormat != nil && *input.AllFormat != "" {
 
 		buffer.WriteString(`AllFormat(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AllFormat))
+		arg0 := fmt.Sprintf("%#v", *input.AllFormat)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

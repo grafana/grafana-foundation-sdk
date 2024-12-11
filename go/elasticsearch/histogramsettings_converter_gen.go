@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // HistogramSettingsConverter accepts a `HistogramSettings` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func HistogramSettingsConverter(input HistogramSettings) string {
 	if input.Interval != nil && *input.Interval != "" {
 
 		buffer.WriteString(`Interval(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Interval))
+		arg0 := fmt.Sprintf("%#v", *input.Interval)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func HistogramSettingsConverter(input HistogramSettings) string {
 	if input.MinDocCount != nil && *input.MinDocCount != "" {
 
 		buffer.WriteString(`MinDocCount(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MinDocCount))
+		arg0 := fmt.Sprintf("%#v", *input.MinDocCount)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -30,7 +30,7 @@ func CloudMonitoringQueryConverter(input CloudMonitoringQuery) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func CloudMonitoringQueryConverter(input CloudMonitoringQuery) string {
 	if input.QueryType != nil && *input.QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryType))
+		arg0 := fmt.Sprintf("%#v", *input.QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func CloudMonitoringQueryConverter(input CloudMonitoringQuery) string {
 	if input.AliasBy != nil && *input.AliasBy != "" {
 
 		buffer.WriteString(`AliasBy(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AliasBy))
+		arg0 := fmt.Sprintf("%#v", *input.AliasBy)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +114,7 @@ func CloudMonitoringQueryConverter(input CloudMonitoringQuery) string {
 	if input.IntervalMs != nil {
 
 		buffer.WriteString(`IntervalMs(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.IntervalMs))
+		arg0 := fmt.Sprintf("%#v", *input.IntervalMs)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

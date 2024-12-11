@@ -30,7 +30,7 @@ func PointsConfigConverter(input PointsConfig) string {
 	if input.PointSize != nil {
 
 		buffer.WriteString(`PointSize(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PointSize))
+		arg0 := fmt.Sprintf("%#v", *input.PointSize)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func PointsConfigConverter(input PointsConfig) string {
 	if input.PointColor != nil && *input.PointColor != "" {
 
 		buffer.WriteString(`PointColor(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PointColor))
+		arg0 := fmt.Sprintf("%#v", *input.PointColor)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func PointsConfigConverter(input PointsConfig) string {
 	if input.PointSymbol != nil && *input.PointSymbol != "" {
 
 		buffer.WriteString(`PointSymbol(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PointSymbol))
+		arg0 := fmt.Sprintf("%#v", *input.PointSymbol)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

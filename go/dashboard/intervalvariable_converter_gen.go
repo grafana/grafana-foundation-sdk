@@ -42,7 +42,7 @@ func IntervalVariableConverter(input VariableModel) string {
 	if input.Label != nil && *input.Label != "" {
 
 		buffer.WriteString(`Label(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Label))
+		arg0 := fmt.Sprintf("%#v", *input.Label)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func IntervalVariableConverter(input VariableModel) string {
 	if input.Description != nil && *input.Description != "" {
 
 		buffer.WriteString(`Description(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Description))
+		arg0 := fmt.Sprintf("%#v", *input.Description)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +90,7 @@ func IntervalVariableConverter(input VariableModel) string {
 	if input.AllFormat != nil && *input.AllFormat != "" {
 
 		buffer.WriteString(`AllFormat(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AllFormat))
+		arg0 := fmt.Sprintf("%#v", *input.AllFormat)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -131,7 +131,7 @@ func IntervalVariableConverter(input VariableModel) string {
 	if input.Auto != nil && *input.Auto != false {
 
 		buffer.WriteString(`Auto(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Auto))
+		arg0 := fmt.Sprintf("%#v", *input.Auto)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -143,7 +143,7 @@ func IntervalVariableConverter(input VariableModel) string {
 	if input.AutoMin != nil && *input.AutoMin != "" && *input.AutoMin != "10s" {
 
 		buffer.WriteString(`MinInterval(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AutoMin))
+		arg0 := fmt.Sprintf("%#v", *input.AutoMin)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -155,7 +155,7 @@ func IntervalVariableConverter(input VariableModel) string {
 	if input.AutoCount != nil && *input.AutoCount != 30 {
 
 		buffer.WriteString(`StepCount(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AutoCount))
+		arg0 := fmt.Sprintf("%#v", *input.AutoCount)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

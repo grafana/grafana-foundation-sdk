@@ -30,7 +30,7 @@ func TempoQueryConverter(input TempoQuery) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func TempoQueryConverter(input TempoQuery) string {
 	if input.QueryType != nil && *input.QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryType))
+		arg0 := fmt.Sprintf("%#v", *input.QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func TempoQueryConverter(input TempoQuery) string {
 	if input.Search != nil && *input.Search != "" {
 
 		buffer.WriteString(`Search(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Search))
+		arg0 := fmt.Sprintf("%#v", *input.Search)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -78,7 +78,7 @@ func TempoQueryConverter(input TempoQuery) string {
 	if input.ServiceName != nil && *input.ServiceName != "" {
 
 		buffer.WriteString(`ServiceName(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ServiceName))
+		arg0 := fmt.Sprintf("%#v", *input.ServiceName)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +90,7 @@ func TempoQueryConverter(input TempoQuery) string {
 	if input.SpanName != nil && *input.SpanName != "" {
 
 		buffer.WriteString(`SpanName(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.SpanName))
+		arg0 := fmt.Sprintf("%#v", *input.SpanName)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -102,7 +102,7 @@ func TempoQueryConverter(input TempoQuery) string {
 	if input.MinDuration != nil && *input.MinDuration != "" {
 
 		buffer.WriteString(`MinDuration(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MinDuration))
+		arg0 := fmt.Sprintf("%#v", *input.MinDuration)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +114,7 @@ func TempoQueryConverter(input TempoQuery) string {
 	if input.MaxDuration != nil && *input.MaxDuration != "" {
 
 		buffer.WriteString(`MaxDuration(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MaxDuration))
+		arg0 := fmt.Sprintf("%#v", *input.MaxDuration)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -126,7 +126,7 @@ func TempoQueryConverter(input TempoQuery) string {
 	if input.ServiceMapQuery != nil && *input.ServiceMapQuery != "" {
 
 		buffer.WriteString(`ServiceMapQuery(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ServiceMapQuery))
+		arg0 := fmt.Sprintf("%#v", *input.ServiceMapQuery)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -138,7 +138,7 @@ func TempoQueryConverter(input TempoQuery) string {
 	if input.ServiceMapIncludeNamespace != nil {
 
 		buffer.WriteString(`ServiceMapIncludeNamespace(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ServiceMapIncludeNamespace))
+		arg0 := fmt.Sprintf("%#v", *input.ServiceMapIncludeNamespace)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -150,7 +150,7 @@ func TempoQueryConverter(input TempoQuery) string {
 	if input.Limit != nil {
 
 		buffer.WriteString(`Limit(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Limit))
+		arg0 := fmt.Sprintf("%#v", *input.Limit)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

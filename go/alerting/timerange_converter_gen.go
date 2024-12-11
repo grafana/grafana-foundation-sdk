@@ -5,8 +5,6 @@ package alerting
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // TimeRangeConverter accepts a `TimeRange` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func TimeRangeConverter(input TimeRange) string {
 	if input.From != nil {
 
 		buffer.WriteString(`From(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.From))
+		arg0 := fmt.Sprintf("%#v", *input.From)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func TimeRangeConverter(input TimeRange) string {
 	if input.To != nil {
 
 		buffer.WriteString(`To(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.To))
+		arg0 := fmt.Sprintf("%#v", *input.To)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

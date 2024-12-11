@@ -42,7 +42,7 @@ func PlaylistItemConverter(input PlaylistItem) string {
 	if input.Title != nil && *input.Title != "" {
 
 		buffer.WriteString(`Title(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Title))
+		arg0 := fmt.Sprintf("%#v", *input.Title)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -5,8 +5,6 @@ package cloudwatch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // LogGroupConverter accepts a `LogGroup` object and generates the Go code to build this object using builders.
@@ -42,7 +40,7 @@ func LogGroupConverter(input LogGroup) string {
 	if input.AccountId != nil && *input.AccountId != "" {
 
 		buffer.WriteString(`AccountId(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AccountId))
+		arg0 := fmt.Sprintf("%#v", *input.AccountId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func LogGroupConverter(input LogGroup) string {
 	if input.AccountLabel != nil && *input.AccountLabel != "" {
 
 		buffer.WriteString(`AccountLabel(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AccountLabel))
+		arg0 := fmt.Sprintf("%#v", *input.AccountLabel)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
