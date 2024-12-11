@@ -52,7 +52,7 @@ func VizLegendOptionsConverter(input VizLegendOptions) string {
 	if input.AsTable != nil {
 
 		buffer.WriteString(`AsTable(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AsTable))
+		arg0 := fmt.Sprintf("%#v", *input.AsTable)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -64,7 +64,7 @@ func VizLegendOptionsConverter(input VizLegendOptions) string {
 	if input.IsVisible != nil {
 
 		buffer.WriteString(`IsVisible(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.IsVisible))
+		arg0 := fmt.Sprintf("%#v", *input.IsVisible)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -76,7 +76,7 @@ func VizLegendOptionsConverter(input VizLegendOptions) string {
 	if input.SortBy != nil && *input.SortBy != "" {
 
 		buffer.WriteString(`SortBy(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.SortBy))
+		arg0 := fmt.Sprintf("%#v", *input.SortBy)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -88,7 +88,7 @@ func VizLegendOptionsConverter(input VizLegendOptions) string {
 	if input.SortDesc != nil {
 
 		buffer.WriteString(`SortDesc(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.SortDesc))
+		arg0 := fmt.Sprintf("%#v", *input.SortDesc)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -100,7 +100,7 @@ func VizLegendOptionsConverter(input VizLegendOptions) string {
 	if input.Width != nil {
 
 		buffer.WriteString(`Width(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Width))
+		arg0 := fmt.Sprintf("%#v", *input.Width)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

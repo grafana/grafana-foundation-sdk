@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ElasticsearchMovingAverageHoltWintersModelSettingsSettingsConverter accepts a `ElasticsearchMovingAverageHoltWintersModelSettingsSettings` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ElasticsearchMovingAverageHoltWintersModelSettingsSettingsConverter(input E
 	if input.Alpha != nil && *input.Alpha != "" {
 
 		buffer.WriteString(`Alpha(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Alpha))
+		arg0 := fmt.Sprintf("%#v", *input.Alpha)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func ElasticsearchMovingAverageHoltWintersModelSettingsSettingsConverter(input E
 	if input.Beta != nil && *input.Beta != "" {
 
 		buffer.WriteString(`Beta(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Beta))
+		arg0 := fmt.Sprintf("%#v", *input.Beta)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func ElasticsearchMovingAverageHoltWintersModelSettingsSettingsConverter(input E
 	if input.Gamma != nil && *input.Gamma != "" {
 
 		buffer.WriteString(`Gamma(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Gamma))
+		arg0 := fmt.Sprintf("%#v", *input.Gamma)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func ElasticsearchMovingAverageHoltWintersModelSettingsSettingsConverter(input E
 	if input.Period != nil && *input.Period != "" {
 
 		buffer.WriteString(`Period(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Period))
+		arg0 := fmt.Sprintf("%#v", *input.Period)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func ElasticsearchMovingAverageHoltWintersModelSettingsSettingsConverter(input E
 	if input.Pad != nil {
 
 		buffer.WriteString(`Pad(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Pad))
+		arg0 := fmt.Sprintf("%#v", *input.Pad)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

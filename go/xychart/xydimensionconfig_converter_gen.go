@@ -5,8 +5,6 @@ package xychart
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // XYDimensionConfigConverter accepts a `XYDimensionConfig` object and generates the Go code to build this object using builders.
@@ -30,7 +28,7 @@ func XYDimensionConfigConverter(input XYDimensionConfig) string {
 	if input.X != nil && *input.X != "" {
 
 		buffer.WriteString(`X(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.X))
+		arg0 := fmt.Sprintf("%#v", *input.X)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

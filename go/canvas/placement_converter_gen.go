@@ -5,8 +5,6 @@ package canvas
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // PlacementConverter accepts a `Placement` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func PlacementConverter(input Placement) string {
 	if input.Top != nil {
 
 		buffer.WriteString(`Top(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Top))
+		arg0 := fmt.Sprintf("%#v", *input.Top)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func PlacementConverter(input Placement) string {
 	if input.Left != nil {
 
 		buffer.WriteString(`Left(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Left))
+		arg0 := fmt.Sprintf("%#v", *input.Left)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func PlacementConverter(input Placement) string {
 	if input.Right != nil {
 
 		buffer.WriteString(`Right(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Right))
+		arg0 := fmt.Sprintf("%#v", *input.Right)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func PlacementConverter(input Placement) string {
 	if input.Bottom != nil {
 
 		buffer.WriteString(`Bottom(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Bottom))
+		arg0 := fmt.Sprintf("%#v", *input.Bottom)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func PlacementConverter(input Placement) string {
 	if input.Width != nil {
 
 		buffer.WriteString(`Width(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Width))
+		arg0 := fmt.Sprintf("%#v", *input.Width)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -78,7 +76,7 @@ func PlacementConverter(input Placement) string {
 	if input.Height != nil {
 
 		buffer.WriteString(`Height(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Height))
+		arg0 := fmt.Sprintf("%#v", *input.Height)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +88,7 @@ func PlacementConverter(input Placement) string {
 	if input.Rotation != nil {
 
 		buffer.WriteString(`Rotation(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Rotation))
+		arg0 := fmt.Sprintf("%#v", *input.Rotation)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

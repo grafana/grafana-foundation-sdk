@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // GeoHashGridConverter accepts a `GeoHashGrid` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func GeoHashGridConverter(input GeoHashGrid) string {
 	if input.Field != nil && *input.Field != "" {
 
 		buffer.WriteString(`Field(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Field))
+		arg0 := fmt.Sprintf("%#v", *input.Field)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -30,7 +30,7 @@ func StackingConfigConverter(input StackingConfig) string {
 	if input.Group != nil && *input.Group != "" {
 
 		buffer.WriteString(`Group(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Group))
+		arg0 := fmt.Sprintf("%#v", *input.Group)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
