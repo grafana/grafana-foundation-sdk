@@ -18,7 +18,7 @@ func QueryEditorOperatorConverter(input QueryEditorOperator) string {
 	if input.Name != nil && *input.Name != "" {
 
 		buffer.WriteString(`Name(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Name))
+		arg0 := fmt.Sprintf("%#v", *input.Name)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

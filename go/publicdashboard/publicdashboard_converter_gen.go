@@ -5,8 +5,6 @@ package publicdashboard
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // PublicDashboardConverter accepts a `PublicDashboard` object and generates the Go code to build this object using builders.
@@ -42,7 +40,7 @@ func PublicDashboardConverter(input PublicDashboard) string {
 	if input.AccessToken != nil && *input.AccessToken != "" {
 
 		buffer.WriteString(`AccessToken(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AccessToken))
+		arg0 := fmt.Sprintf("%#v", *input.AccessToken)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

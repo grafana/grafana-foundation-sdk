@@ -5,8 +5,6 @@ package common
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // DataSourceJsonDataConverter accepts a `DataSourceJsonData` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func DataSourceJsonDataConverter(input DataSourceJsonData) string {
 	if input.AuthType != nil && *input.AuthType != "" {
 
 		buffer.WriteString(`AuthType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AuthType))
+		arg0 := fmt.Sprintf("%#v", *input.AuthType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func DataSourceJsonDataConverter(input DataSourceJsonData) string {
 	if input.DefaultRegion != nil && *input.DefaultRegion != "" {
 
 		buffer.WriteString(`DefaultRegion(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.DefaultRegion))
+		arg0 := fmt.Sprintf("%#v", *input.DefaultRegion)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func DataSourceJsonDataConverter(input DataSourceJsonData) string {
 	if input.Profile != nil && *input.Profile != "" {
 
 		buffer.WriteString(`Profile(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Profile))
+		arg0 := fmt.Sprintf("%#v", *input.Profile)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +52,7 @@ func DataSourceJsonDataConverter(input DataSourceJsonData) string {
 	if input.ManageAlerts != nil {
 
 		buffer.WriteString(`ManageAlerts(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ManageAlerts))
+		arg0 := fmt.Sprintf("%#v", *input.ManageAlerts)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +64,7 @@ func DataSourceJsonDataConverter(input DataSourceJsonData) string {
 	if input.AlertmanagerUid != nil && *input.AlertmanagerUid != "" {
 
 		buffer.WriteString(`AlertmanagerUid(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AlertmanagerUid))
+		arg0 := fmt.Sprintf("%#v", *input.AlertmanagerUid)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

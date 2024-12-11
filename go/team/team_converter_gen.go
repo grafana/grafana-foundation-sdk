@@ -5,8 +5,6 @@ package team
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // TeamConverter accepts a `Team` object and generates the Go code to build this object using builders.
@@ -30,7 +28,7 @@ func TeamConverter(input Team) string {
 	if input.Email != nil && *input.Email != "" {
 
 		buffer.WriteString(`Email(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Email))
+		arg0 := fmt.Sprintf("%#v", *input.Email)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
