@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"strings"
 
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -31,7 +30,7 @@ func LineConfigConverter(input LineConfig) string {
 	if input.Width != nil {
 
 		buffer.WriteString(`Width(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Width))
+		arg0 := fmt.Sprintf("%#v", *input.Width)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -43,7 +42,7 @@ func LineConfigConverter(input LineConfig) string {
 	if input.Radius != nil {
 
 		buffer.WriteString(`Radius(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Radius))
+		arg0 := fmt.Sprintf("%#v", *input.Radius)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -5,8 +5,6 @@ package common
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ReduceDataOptionsConverter accepts a `ReduceDataOptions` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ReduceDataOptionsConverter(input ReduceDataOptions) string {
 	if input.Values != nil {
 
 		buffer.WriteString(`Values(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Values))
+		arg0 := fmt.Sprintf("%#v", *input.Values)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func ReduceDataOptionsConverter(input ReduceDataOptions) string {
 	if input.Limit != nil {
 
 		buffer.WriteString(`Limit(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Limit))
+		arg0 := fmt.Sprintf("%#v", *input.Limit)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -59,7 +57,7 @@ func ReduceDataOptionsConverter(input ReduceDataOptions) string {
 	if input.Fields != nil && *input.Fields != "" {
 
 		buffer.WriteString(`Fields(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Fields))
+		arg0 := fmt.Sprintf("%#v", *input.Fields)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -30,7 +30,7 @@ func TableColoredBackgroundCellOptionsConverter(input TableColoredBackgroundCell
 	if input.ApplyToRow != nil {
 
 		buffer.WriteString(`ApplyToRow(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ApplyToRow))
+		arg0 := fmt.Sprintf("%#v", *input.ApplyToRow)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

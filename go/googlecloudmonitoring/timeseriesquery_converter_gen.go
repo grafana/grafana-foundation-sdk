@@ -5,8 +5,6 @@ package googlecloudmonitoring
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // TimeSeriesQueryConverter accepts a `TimeSeriesQuery` object and generates the Go code to build this object using builders.
@@ -42,7 +40,7 @@ func TimeSeriesQueryConverter(input TimeSeriesQuery) string {
 	if input.GraphPeriod != nil && *input.GraphPeriod != "" && *input.GraphPeriod != "disabled" {
 
 		buffer.WriteString(`GraphPeriod(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.GraphPeriod))
+		arg0 := fmt.Sprintf("%#v", *input.GraphPeriod)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

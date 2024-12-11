@@ -100,7 +100,7 @@ func HeatmapColorOptionsConverter(input HeatmapColorOptions) string {
 	if input.Min != nil {
 
 		buffer.WriteString(`Min(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Min))
+		arg0 := fmt.Sprintf("%#v", *input.Min)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -112,7 +112,7 @@ func HeatmapColorOptionsConverter(input HeatmapColorOptions) string {
 	if input.Max != nil {
 
 		buffer.WriteString(`Max(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Max))
+		arg0 := fmt.Sprintf("%#v", *input.Max)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
