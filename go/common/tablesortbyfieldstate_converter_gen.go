@@ -5,8 +5,6 @@ package common
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // TableSortByFieldStateConverter accepts a `TableSortByFieldState` object and generates the Go code to build this object using builders.
@@ -30,7 +28,7 @@ func TableSortByFieldStateConverter(input TableSortByFieldState) string {
 	if input.Desc != nil {
 
 		buffer.WriteString(`Desc(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Desc))
+		arg0 := fmt.Sprintf("%#v", *input.Desc)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

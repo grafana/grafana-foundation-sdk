@@ -54,7 +54,7 @@ func CloudWatchLogsQueryConverter(input CloudWatchLogsQuery) string {
 	if input.Expression != nil && *input.Expression != "" {
 
 		buffer.WriteString(`Expression(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Expression))
+		arg0 := fmt.Sprintf("%#v", *input.Expression)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -129,7 +129,7 @@ func CloudWatchLogsQueryConverter(input CloudWatchLogsQuery) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -141,7 +141,7 @@ func CloudWatchLogsQueryConverter(input CloudWatchLogsQuery) string {
 	if input.QueryType != nil && *input.QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryType))
+		arg0 := fmt.Sprintf("%#v", *input.QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
