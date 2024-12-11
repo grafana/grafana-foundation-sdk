@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ElasticsearchCumulativeSumSettingsConverter accepts a `ElasticsearchCumulativeSumSettings` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ElasticsearchCumulativeSumSettingsConverter(input ElasticsearchCumulativeSu
 	if input.Format != nil && *input.Format != "" {
 
 		buffer.WriteString(`Format(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Format))
+		arg0 := fmt.Sprintf("%#v", *input.Format)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

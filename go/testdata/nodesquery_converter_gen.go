@@ -30,7 +30,7 @@ func NodesQueryConverter(input NodesQuery) string {
 	if input.Count != nil {
 
 		buffer.WriteString(`Count(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Count))
+		arg0 := fmt.Sprintf("%#v", *input.Count)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

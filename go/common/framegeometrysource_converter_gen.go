@@ -30,7 +30,7 @@ func FrameGeometrySourceConverter(input FrameGeometrySource) string {
 	if input.Geohash != nil && *input.Geohash != "" {
 
 		buffer.WriteString(`Geohash(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Geohash))
+		arg0 := fmt.Sprintf("%#v", *input.Geohash)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func FrameGeometrySourceConverter(input FrameGeometrySource) string {
 	if input.Latitude != nil && *input.Latitude != "" {
 
 		buffer.WriteString(`Latitude(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Latitude))
+		arg0 := fmt.Sprintf("%#v", *input.Latitude)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func FrameGeometrySourceConverter(input FrameGeometrySource) string {
 	if input.Longitude != nil && *input.Longitude != "" {
 
 		buffer.WriteString(`Longitude(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Longitude))
+		arg0 := fmt.Sprintf("%#v", *input.Longitude)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func FrameGeometrySourceConverter(input FrameGeometrySource) string {
 	if input.Wkt != nil && *input.Wkt != "" {
 
 		buffer.WriteString(`Wkt(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Wkt))
+		arg0 := fmt.Sprintf("%#v", *input.Wkt)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -78,7 +78,7 @@ func FrameGeometrySourceConverter(input FrameGeometrySource) string {
 	if input.Lookup != nil && *input.Lookup != "" {
 
 		buffer.WriteString(`Lookup(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Lookup))
+		arg0 := fmt.Sprintf("%#v", *input.Lookup)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +90,7 @@ func FrameGeometrySourceConverter(input FrameGeometrySource) string {
 	if input.Gazetteer != nil && *input.Gazetteer != "" {
 
 		buffer.WriteString(`Gazetteer(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Gazetteer))
+		arg0 := fmt.Sprintf("%#v", *input.Gazetteer)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

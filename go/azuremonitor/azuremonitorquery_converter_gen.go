@@ -30,7 +30,7 @@ func AzureMonitorQueryConverter(input AzureMonitorQuery) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func AzureMonitorQueryConverter(input AzureMonitorQuery) string {
 	if input.QueryType != nil && *input.QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryType))
+		arg0 := fmt.Sprintf("%#v", *input.QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -54,7 +54,7 @@ func AzureMonitorQueryConverter(input AzureMonitorQuery) string {
 	if input.Subscription != nil && *input.Subscription != "" {
 
 		buffer.WriteString(`Subscription(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Subscription))
+		arg0 := fmt.Sprintf("%#v", *input.Subscription)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -143,7 +143,7 @@ func AzureMonitorQueryConverter(input AzureMonitorQuery) string {
 	if input.ResourceGroup != nil && *input.ResourceGroup != "" {
 
 		buffer.WriteString(`ResourceGroup(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ResourceGroup))
+		arg0 := fmt.Sprintf("%#v", *input.ResourceGroup)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -155,7 +155,7 @@ func AzureMonitorQueryConverter(input AzureMonitorQuery) string {
 	if input.Namespace != nil && *input.Namespace != "" {
 
 		buffer.WriteString(`Namespace(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Namespace))
+		arg0 := fmt.Sprintf("%#v", *input.Namespace)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -167,7 +167,7 @@ func AzureMonitorQueryConverter(input AzureMonitorQuery) string {
 	if input.Resource != nil && *input.Resource != "" {
 
 		buffer.WriteString(`Resource(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Resource))
+		arg0 := fmt.Sprintf("%#v", *input.Resource)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -191,7 +191,7 @@ func AzureMonitorQueryConverter(input AzureMonitorQuery) string {
 	if input.Region != nil && *input.Region != "" {
 
 		buffer.WriteString(`Region(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Region))
+		arg0 := fmt.Sprintf("%#v", *input.Region)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

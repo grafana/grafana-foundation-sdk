@@ -18,7 +18,7 @@ func LineConfigConverter(input LineConfig) string {
 	if input.LineColor != nil && *input.LineColor != "" {
 
 		buffer.WriteString(`LineColor(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.LineColor))
+		arg0 := fmt.Sprintf("%#v", *input.LineColor)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +30,7 @@ func LineConfigConverter(input LineConfig) string {
 	if input.LineWidth != nil {
 
 		buffer.WriteString(`LineWidth(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.LineWidth))
+		arg0 := fmt.Sprintf("%#v", *input.LineWidth)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -30,7 +30,7 @@ func TraceqlFilterConverter(input TraceqlFilter) string {
 	if input.Tag != nil && *input.Tag != "" {
 
 		buffer.WriteString(`Tag(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Tag))
+		arg0 := fmt.Sprintf("%#v", *input.Tag)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func TraceqlFilterConverter(input TraceqlFilter) string {
 	if input.Operator != nil && *input.Operator != "" {
 
 		buffer.WriteString(`Operator(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Operator))
+		arg0 := fmt.Sprintf("%#v", *input.Operator)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -71,7 +71,7 @@ func TraceqlFilterConverter(input TraceqlFilter) string {
 	if input.ValueType != nil && *input.ValueType != "" {
 
 		buffer.WriteString(`ValueType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ValueType))
+		arg0 := fmt.Sprintf("%#v", *input.ValueType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
