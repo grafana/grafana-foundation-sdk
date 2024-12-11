@@ -30,7 +30,7 @@ func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string 
 	if input.PrefixMatching != nil {
 
 		buffer.WriteString(`PrefixMatching(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PrefixMatching))
+		arg0 := fmt.Sprintf("%#v", *input.PrefixMatching)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string 
 	if input.ActionPrefix != nil && *input.ActionPrefix != "" {
 
 		buffer.WriteString(`ActionPrefix(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ActionPrefix))
+		arg0 := fmt.Sprintf("%#v", *input.ActionPrefix)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string 
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -78,7 +78,7 @@ func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string 
 	if input.QueryType != nil && *input.QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryType))
+		arg0 := fmt.Sprintf("%#v", *input.QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +114,7 @@ func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string 
 	if input.MetricName != nil && *input.MetricName != "" {
 
 		buffer.WriteString(`MetricName(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MetricName))
+		arg0 := fmt.Sprintf("%#v", *input.MetricName)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -138,7 +138,7 @@ func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string 
 	if input.MatchExact != nil {
 
 		buffer.WriteString(`MatchExact(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MatchExact))
+		arg0 := fmt.Sprintf("%#v", *input.MatchExact)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -150,7 +150,7 @@ func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string 
 	if input.Period != nil && *input.Period != "" {
 
 		buffer.WriteString(`Period(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Period))
+		arg0 := fmt.Sprintf("%#v", *input.Period)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -162,7 +162,7 @@ func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string 
 	if input.AccountId != nil && *input.AccountId != "" {
 
 		buffer.WriteString(`AccountId(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AccountId))
+		arg0 := fmt.Sprintf("%#v", *input.AccountId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -174,7 +174,7 @@ func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string 
 	if input.Statistic != nil && *input.Statistic != "" {
 
 		buffer.WriteString(`Statistic(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Statistic))
+		arg0 := fmt.Sprintf("%#v", *input.Statistic)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -186,7 +186,7 @@ func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string 
 	if input.AlarmNamePrefix != nil && *input.AlarmNamePrefix != "" {
 
 		buffer.WriteString(`AlarmNamePrefix(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AlarmNamePrefix))
+		arg0 := fmt.Sprintf("%#v", *input.AlarmNamePrefix)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

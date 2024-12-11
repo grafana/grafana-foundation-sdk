@@ -19,7 +19,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Id != nil {
 
 		buffer.WriteString(`Id(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Id))
+		arg0 := fmt.Sprintf("%#v", *input.Id)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -48,7 +48,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Title != nil && *input.Title != "" {
 
 		buffer.WriteString(`Title(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Title))
+		arg0 := fmt.Sprintf("%#v", *input.Title)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -60,7 +60,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Description != nil && *input.Description != "" {
 
 		buffer.WriteString(`Description(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Description))
+		arg0 := fmt.Sprintf("%#v", *input.Description)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -72,7 +72,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Transparent != nil && *input.Transparent != false {
 
 		buffer.WriteString(`Transparent(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Transparent))
+		arg0 := fmt.Sprintf("%#v", *input.Transparent)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -149,7 +149,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Repeat != nil && *input.Repeat != "" {
 
 		buffer.WriteString(`Repeat(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Repeat))
+		arg0 := fmt.Sprintf("%#v", *input.Repeat)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -173,7 +173,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.MaxPerRow != nil {
 
 		buffer.WriteString(`MaxPerRow(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MaxPerRow))
+		arg0 := fmt.Sprintf("%#v", *input.MaxPerRow)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -185,7 +185,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.MaxDataPoints != nil {
 
 		buffer.WriteString(`MaxDataPoints(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MaxDataPoints))
+		arg0 := fmt.Sprintf("%#v", *input.MaxDataPoints)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -214,7 +214,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Interval != nil && *input.Interval != "" {
 
 		buffer.WriteString(`Interval(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Interval))
+		arg0 := fmt.Sprintf("%#v", *input.Interval)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -226,7 +226,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.TimeFrom != nil && *input.TimeFrom != "" {
 
 		buffer.WriteString(`TimeFrom(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.TimeFrom))
+		arg0 := fmt.Sprintf("%#v", *input.TimeFrom)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -238,7 +238,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.TimeShift != nil && *input.TimeShift != "" {
 
 		buffer.WriteString(`TimeShift(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.TimeShift))
+		arg0 := fmt.Sprintf("%#v", *input.TimeShift)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -250,7 +250,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.HideTimeOverride != nil {
 
 		buffer.WriteString(`HideTimeOverride(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.HideTimeOverride))
+		arg0 := fmt.Sprintf("%#v", *input.HideTimeOverride)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -274,7 +274,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.CacheTimeout != nil && *input.CacheTimeout != "" {
 
 		buffer.WriteString(`CacheTimeout(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.CacheTimeout))
+		arg0 := fmt.Sprintf("%#v", *input.CacheTimeout)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -286,7 +286,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.QueryCachingTTL != nil {
 
 		buffer.WriteString(`QueryCachingTTL(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryCachingTTL))
+		arg0 := fmt.Sprintf("%#v", *input.QueryCachingTTL)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -298,7 +298,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.FieldConfig != nil && input.FieldConfig.Defaults.DisplayName != nil && *input.FieldConfig.Defaults.DisplayName != "" {
 
 		buffer.WriteString(`DisplayName(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FieldConfig.Defaults.DisplayName))
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.DisplayName)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -310,7 +310,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.FieldConfig != nil && input.FieldConfig.Defaults.Unit != nil && *input.FieldConfig.Defaults.Unit != "" {
 
 		buffer.WriteString(`Unit(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FieldConfig.Defaults.Unit))
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Unit)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -322,7 +322,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.FieldConfig != nil && input.FieldConfig.Defaults.Decimals != nil {
 
 		buffer.WriteString(`Decimals(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FieldConfig.Defaults.Decimals))
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Decimals)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -334,7 +334,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.FieldConfig != nil && input.FieldConfig.Defaults.Min != nil {
 
 		buffer.WriteString(`Min(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FieldConfig.Defaults.Min))
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Min)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -346,7 +346,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.FieldConfig != nil && input.FieldConfig.Defaults.Max != nil {
 
 		buffer.WriteString(`Max(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FieldConfig.Defaults.Max))
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Max)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -416,7 +416,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.FieldConfig != nil && input.FieldConfig.Defaults.NoValue != nil && *input.FieldConfig.Defaults.NoValue != "" {
 
 		buffer.WriteString(`NoValue(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FieldConfig.Defaults.NoValue))
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.NoValue)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -592,7 +592,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil && input.Options.(*Options).FolderId != nil {
 
 		buffer.WriteString(`FolderId(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Options.(*Options).FolderId))
+		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).FolderId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -604,7 +604,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil && input.Options.(*Options).FolderUID != nil && *input.Options.(*Options).FolderUID != "" {
 
 		buffer.WriteString(`FolderUID(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Options.(*Options).FolderUID))
+		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).FolderUID)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

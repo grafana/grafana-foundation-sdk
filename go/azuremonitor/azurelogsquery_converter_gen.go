@@ -18,7 +18,7 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	if input.Query != nil && *input.Query != "" {
 
 		buffer.WriteString(`Query(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Query))
+		arg0 := fmt.Sprintf("%#v", *input.Query)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -59,7 +59,7 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	if input.DashboardTime != nil {
 
 		buffer.WriteString(`DashboardTime(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.DashboardTime))
+		arg0 := fmt.Sprintf("%#v", *input.DashboardTime)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -71,7 +71,7 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	if input.TimeColumn != nil && *input.TimeColumn != "" {
 
 		buffer.WriteString(`TimeColumn(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.TimeColumn))
+		arg0 := fmt.Sprintf("%#v", *input.TimeColumn)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -83,7 +83,7 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	if input.BasicLogsQuery != nil {
 
 		buffer.WriteString(`BasicLogsQuery(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.BasicLogsQuery))
+		arg0 := fmt.Sprintf("%#v", *input.BasicLogsQuery)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -95,7 +95,7 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	if input.Workspace != nil && *input.Workspace != "" {
 
 		buffer.WriteString(`Workspace(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Workspace))
+		arg0 := fmt.Sprintf("%#v", *input.Workspace)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -107,7 +107,7 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	if input.Resource != nil && *input.Resource != "" {
 
 		buffer.WriteString(`Resource(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Resource))
+		arg0 := fmt.Sprintf("%#v", *input.Resource)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -119,7 +119,7 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 	if input.IntersectTime != nil {
 
 		buffer.WriteString(`IntersectTime(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.IntersectTime))
+		arg0 := fmt.Sprintf("%#v", *input.IntersectTime)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

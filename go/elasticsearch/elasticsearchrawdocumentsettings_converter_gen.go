@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ElasticsearchRawDocumentSettingsConverter accepts a `ElasticsearchRawDocumentSettings` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ElasticsearchRawDocumentSettingsConverter(input ElasticsearchRawDocumentSet
 	if input.Size != nil && *input.Size != "" {
 
 		buffer.WriteString(`Size(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Size))
+		arg0 := fmt.Sprintf("%#v", *input.Size)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
