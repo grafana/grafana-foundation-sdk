@@ -18,7 +18,7 @@ func ContactPointConverter(input ContactPoint) string {
 	if input.DisableResolveMessage != nil {
 
 		buffer.WriteString(`DisableResolveMessage(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.DisableResolveMessage))
+		arg0 := fmt.Sprintf("%#v", *input.DisableResolveMessage)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +30,7 @@ func ContactPointConverter(input ContactPoint) string {
 	if input.Name != nil && *input.Name != "" {
 
 		buffer.WriteString(`Name(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Name))
+		arg0 := fmt.Sprintf("%#v", *input.Name)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func ContactPointConverter(input ContactPoint) string {
 	if input.Provenance != nil && *input.Provenance != "" {
 
 		buffer.WriteString(`Provenance(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Provenance))
+		arg0 := fmt.Sprintf("%#v", *input.Provenance)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -77,7 +77,7 @@ func ContactPointConverter(input ContactPoint) string {
 	if input.Uid != nil && *input.Uid != "" {
 
 		buffer.WriteString(`Uid(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Uid))
+		arg0 := fmt.Sprintf("%#v", *input.Uid)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -59,7 +59,7 @@ func TypeThresholdConverter(input TypeThreshold) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -71,7 +71,7 @@ func TypeThresholdConverter(input TypeThreshold) string {
 	if input.IntervalMs != nil {
 
 		buffer.WriteString(`IntervalMs(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.IntervalMs))
+		arg0 := fmt.Sprintf("%#v", *input.IntervalMs)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -83,7 +83,7 @@ func TypeThresholdConverter(input TypeThreshold) string {
 	if input.MaxDataPoints != nil {
 
 		buffer.WriteString(`MaxDataPoints(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.MaxDataPoints))
+		arg0 := fmt.Sprintf("%#v", *input.MaxDataPoints)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -95,7 +95,7 @@ func TypeThresholdConverter(input TypeThreshold) string {
 	if input.QueryType != nil && *input.QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryType))
+		arg0 := fmt.Sprintf("%#v", *input.QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

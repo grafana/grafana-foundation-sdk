@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ElasticsearchTopMetricsSettingsConverter accepts a `ElasticsearchTopMetricsSettings` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func ElasticsearchTopMetricsSettingsConverter(input ElasticsearchTopMetricsSetti
 	if input.Order != nil && *input.Order != "" {
 
 		buffer.WriteString(`Order(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Order))
+		arg0 := fmt.Sprintf("%#v", *input.Order)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +28,7 @@ func ElasticsearchTopMetricsSettingsConverter(input ElasticsearchTopMetricsSetti
 	if input.OrderBy != nil && *input.OrderBy != "" {
 
 		buffer.WriteString(`OrderBy(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.OrderBy))
+		arg0 := fmt.Sprintf("%#v", *input.OrderBy)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

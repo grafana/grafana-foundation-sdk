@@ -18,7 +18,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Dataset != nil && *input.Dataset != "" {
 
 		buffer.WriteString(`Dataset(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Dataset))
+		arg0 := fmt.Sprintf("%#v", *input.Dataset)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -30,7 +30,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Table != nil && *input.Table != "" {
 
 		buffer.WriteString(`Table(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Table))
+		arg0 := fmt.Sprintf("%#v", *input.Table)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Project != nil && *input.Project != "" {
 
 		buffer.WriteString(`Project(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Project))
+		arg0 := fmt.Sprintf("%#v", *input.Project)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -66,7 +66,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.RawQuery != nil {
 
 		buffer.WriteString(`RawQuery(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.RawQuery))
+		arg0 := fmt.Sprintf("%#v", *input.RawQuery)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -90,7 +90,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Location != nil && *input.Location != "" {
 
 		buffer.WriteString(`Location(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Location))
+		arg0 := fmt.Sprintf("%#v", *input.Location)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -102,7 +102,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Partitioned != nil {
 
 		buffer.WriteString(`Partitioned(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Partitioned))
+		arg0 := fmt.Sprintf("%#v", *input.Partitioned)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +114,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.PartitionedField != nil && *input.PartitionedField != "" {
 
 		buffer.WriteString(`PartitionedField(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PartitionedField))
+		arg0 := fmt.Sprintf("%#v", *input.PartitionedField)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -126,7 +126,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.ConvertToUTC != nil {
 
 		buffer.WriteString(`ConvertToUTC(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.ConvertToUTC))
+		arg0 := fmt.Sprintf("%#v", *input.ConvertToUTC)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -138,7 +138,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Sharded != nil {
 
 		buffer.WriteString(`Sharded(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Sharded))
+		arg0 := fmt.Sprintf("%#v", *input.Sharded)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -162,7 +162,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.TimeShift != nil && *input.TimeShift != "" {
 
 		buffer.WriteString(`TimeShift(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.TimeShift))
+		arg0 := fmt.Sprintf("%#v", *input.TimeShift)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -210,7 +210,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Hide))
+		arg0 := fmt.Sprintf("%#v", *input.Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -222,7 +222,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.QueryType != nil && *input.QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.QueryType))
+		arg0 := fmt.Sprintf("%#v", *input.QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

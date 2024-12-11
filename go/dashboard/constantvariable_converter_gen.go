@@ -30,7 +30,7 @@ func ConstantVariableConverter(input VariableModel) string {
 	if input.Label != nil && *input.Label != "" {
 
 		buffer.WriteString(`Label(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Label))
+		arg0 := fmt.Sprintf("%#v", *input.Label)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +42,7 @@ func ConstantVariableConverter(input VariableModel) string {
 	if input.Description != nil && *input.Description != "" {
 
 		buffer.WriteString(`Description(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Description))
+		arg0 := fmt.Sprintf("%#v", *input.Description)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

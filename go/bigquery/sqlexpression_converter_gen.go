@@ -35,7 +35,7 @@ func SQLExpressionConverter(input SQLExpression) string {
 	if input.From != nil && *input.From != "" {
 
 		buffer.WriteString(`From(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.From))
+		arg0 := fmt.Sprintf("%#v", *input.From)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -47,7 +47,7 @@ func SQLExpressionConverter(input SQLExpression) string {
 	if input.WhereString != nil && *input.WhereString != "" {
 
 		buffer.WriteString(`WhereString(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.WhereString))
+		arg0 := fmt.Sprintf("%#v", *input.WhereString)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -100,7 +100,7 @@ func SQLExpressionConverter(input SQLExpression) string {
 	if input.Limit != nil {
 
 		buffer.WriteString(`Limit(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Limit))
+		arg0 := fmt.Sprintf("%#v", *input.Limit)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -112,7 +112,7 @@ func SQLExpressionConverter(input SQLExpression) string {
 	if input.Offset != nil {
 
 		buffer.WriteString(`Offset(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Offset))
+		arg0 := fmt.Sprintf("%#v", *input.Offset)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
