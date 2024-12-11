@@ -5,8 +5,6 @@ package dashboard
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // SnapshotConverter accepts a `Snapshot` object and generates the Go code to build this object using builders.
@@ -114,7 +112,7 @@ func SnapshotConverter(input Snapshot) string {
 	if input.Url != nil && *input.Url != "" {
 
 		buffer.WriteString(`Url(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Url))
+		arg0 := fmt.Sprintf("%#v", *input.Url)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

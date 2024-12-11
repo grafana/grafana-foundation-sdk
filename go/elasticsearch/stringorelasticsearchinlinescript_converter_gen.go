@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // StringOrElasticsearchInlineScriptConverter accepts a `StringOrElasticsearchInlineScript` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func StringOrElasticsearchInlineScriptConverter(input StringOrElasticsearchInlin
 	if input.String != nil && *input.String != "" {
 
 		buffer.WriteString(`String(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.String))
+		arg0 := fmt.Sprintf("%#v", *input.String)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

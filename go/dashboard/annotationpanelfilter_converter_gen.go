@@ -5,8 +5,6 @@ package dashboard
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // AnnotationPanelFilterConverter accepts a `AnnotationPanelFilter` object and generates the Go code to build this object using builders.
@@ -18,7 +16,7 @@ func AnnotationPanelFilterConverter(input AnnotationPanelFilter) string {
 	if input.Exclude != nil && *input.Exclude != false {
 
 		buffer.WriteString(`Exclude(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Exclude))
+		arg0 := fmt.Sprintf("%#v", *input.Exclude)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

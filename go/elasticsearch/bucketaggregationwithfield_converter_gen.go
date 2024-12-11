@@ -18,7 +18,7 @@ func BucketAggregationWithFieldConverter(input BucketAggregationWithField) strin
 	if input.Field != nil && *input.Field != "" {
 
 		buffer.WriteString(`Field(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Field))
+		arg0 := fmt.Sprintf("%#v", *input.Field)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -66,7 +66,7 @@ func DashboardLinkConverter(input DashboardLink) string {
 	if input.Url != nil && *input.Url != "" {
 
 		buffer.WriteString(`Url(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Url))
+		arg0 := fmt.Sprintf("%#v", *input.Url)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

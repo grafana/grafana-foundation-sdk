@@ -5,8 +5,6 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ElasticsearchExtendedStatsSettingsConverter accepts a `ElasticsearchExtendedStatsSettings` object and generates the Go code to build this object using builders.
@@ -30,7 +28,7 @@ func ElasticsearchExtendedStatsSettingsConverter(input ElasticsearchExtendedStat
 	if input.Missing != nil && *input.Missing != "" {
 
 		buffer.WriteString(`Missing(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Missing))
+		arg0 := fmt.Sprintf("%#v", *input.Missing)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func ElasticsearchExtendedStatsSettingsConverter(input ElasticsearchExtendedStat
 	if input.Sigma != nil && *input.Sigma != "" {
 
 		buffer.WriteString(`Sigma(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Sigma))
+		arg0 := fmt.Sprintf("%#v", *input.Sigma)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

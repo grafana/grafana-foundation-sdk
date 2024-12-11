@@ -5,8 +5,6 @@ package googlecloudmonitoring
 import (
 	"fmt"
 	"strings"
-
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // SLOQueryConverter accepts a `SLOQuery` object and generates the Go code to build this object using builders.
@@ -30,7 +28,7 @@ func SLOQueryConverter(input SLOQuery) string {
 	if input.PerSeriesAligner != nil && *input.PerSeriesAligner != "" {
 
 		buffer.WriteString(`PerSeriesAligner(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.PerSeriesAligner))
+		arg0 := fmt.Sprintf("%#v", *input.PerSeriesAligner)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -42,7 +40,7 @@ func SLOQueryConverter(input SLOQuery) string {
 	if input.AlignmentPeriod != nil && *input.AlignmentPeriod != "" {
 
 		buffer.WriteString(`AlignmentPeriod(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.AlignmentPeriod))
+		arg0 := fmt.Sprintf("%#v", *input.AlignmentPeriod)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -114,7 +112,7 @@ func SLOQueryConverter(input SLOQuery) string {
 	if input.Goal != nil {
 
 		buffer.WriteString(`Goal(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Goal))
+		arg0 := fmt.Sprintf("%#v", *input.Goal)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -126,7 +124,7 @@ func SLOQueryConverter(input SLOQuery) string {
 	if input.LookbackPeriod != nil && *input.LookbackPeriod != "" {
 
 		buffer.WriteString(`LookbackPeriod(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.LookbackPeriod))
+		arg0 := fmt.Sprintf("%#v", *input.LookbackPeriod)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

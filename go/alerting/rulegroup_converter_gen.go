@@ -12,13 +12,13 @@ import (
 // RuleGroupConverter accepts a `RuleGroup` object and generates the Go code to build this object using builders.
 func RuleGroupConverter(input RuleGroup) string {
 	calls := []string{
-		`alerting.NewRuleGroupBuilder(` + fmt.Sprintf("%#v", cog.Unptr(input.Title)) + `)`,
+		`alerting.NewRuleGroupBuilder(` + fmt.Sprintf("%#v", *input.Title) + `)`,
 	}
 	var buffer strings.Builder
 	if input.FolderUid != nil && *input.FolderUid != "" {
 
 		buffer.WriteString(`FolderUid(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.FolderUid))
+		arg0 := fmt.Sprintf("%#v", *input.FolderUid)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -59,7 +59,7 @@ func RuleGroupConverter(input RuleGroup) string {
 	if input.Title != nil && *input.Title != "" {
 
 		buffer.WriteString(`Title(`)
-		arg0 := fmt.Sprintf("%#v", cog.Unptr(input.Title))
+		arg0 := fmt.Sprintf("%#v", *input.Title)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
