@@ -29,4 +29,10 @@ export class VizTextDisplayOptionsBuilder implements cog.Builder<common.VizTextD
         this.internal.valueSize = valueSize;
         return this;
     }
+
+    // Explicit percent text size
+    percentSize(percentSize: number): this {
+        this.internal.percentSize = percentSize;
+        return this;
+    }
 }

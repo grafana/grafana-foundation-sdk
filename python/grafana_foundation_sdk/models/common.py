@@ -1374,10 +1374,13 @@ class VizTextDisplayOptions:
     title_size: typing.Optional[float]
     # Explicit value text size
     value_size: typing.Optional[float]
+    # Explicit percent text size
+    percent_size: typing.Optional[float]
 
-    def __init__(self, title_size: typing.Optional[float] = None, value_size: typing.Optional[float] = None):
+    def __init__(self, title_size: typing.Optional[float] = None, value_size: typing.Optional[float] = None, percent_size: typing.Optional[float] = None):
         self.title_size = title_size
         self.value_size = value_size
+        self.percent_size = percent_size
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -1386,6 +1389,8 @@ class VizTextDisplayOptions:
             payload["titleSize"] = self.title_size
         if self.value_size is not None:
             payload["valueSize"] = self.value_size
+        if self.percent_size is not None:
+            payload["percentSize"] = self.percent_size
         return payload
 
     @classmethod
@@ -1395,7 +1400,9 @@ class VizTextDisplayOptions:
         if "titleSize" in data:
             args["title_size"] = data["titleSize"]
         if "valueSize" in data:
-            args["value_size"] = data["valueSize"]        
+            args["value_size"] = data["valueSize"]
+        if "percentSize" in data:
+            args["percent_size"] = data["percentSize"]        
 
         return cls(**args)
 

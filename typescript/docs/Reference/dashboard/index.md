@@ -72,4 +72,3 @@
  * <span class="badge builder"></span> [ThresholdsConfigBuilder](./builder-ThresholdsConfigBuilder.md)
  * <span class="badge builder"></span> [TimePickerBuilder](./builder-TimePickerBuilder.md)
  * <span class="badge builder"></span> [ValueMapBuilder](./builder-ValueMapBuilder.md)
- * <span class="badge builder"></span> [ValueMappingResultBuilder](./builder-ValueMappingResultBuilder.md)

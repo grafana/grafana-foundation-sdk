@@ -18,6 +18,10 @@ public class VizTextDisplayOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("valueSize")
     public Double valueSize;
+    // Explicit percent text size
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("percentSize")
+    public Double percentSize;
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -38,6 +42,11 @@ public class VizTextDisplayOptions {
     
     public Builder valueSize(Double valueSize) {
     this.internal.valueSize = valueSize;
+        return this;
+    }
+    
+    public Builder percentSize(Double percentSize) {
+    this.internal.percentSize = percentSize;
         return this;
     }
     public VizTextDisplayOptions build() {

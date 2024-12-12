@@ -13,6 +13,8 @@ export interface VizTextDisplayOptions {
 	titleSize?: number;
 	// Explicit value text size
 	valueSize?: number;
+	// Explicit percent text size
+	percentSize?: number;
 }
 
 ```

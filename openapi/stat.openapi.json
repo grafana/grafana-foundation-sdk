@@ -138,6 +138,10 @@
           "valueSize": {
             "type": "number",
             "description": "Explicit value text size"
+          },
+          "percentSize": {
+            "type": "number",
+            "description": "Explicit percent text size"
           }
         },
         "description": "TODO docs"

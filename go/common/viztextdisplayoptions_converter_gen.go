@@ -37,6 +37,18 @@ func VizTextDisplayOptionsConverter(input VizTextDisplayOptions) string {
 		buffer.Reset()
 
 	}
+	if input.PercentSize != nil {
+
+		buffer.WriteString(`PercentSize(`)
+		arg0 := fmt.Sprintf("%#v", *input.PercentSize)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }

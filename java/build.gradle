@@ -25,7 +25,6 @@ shadowJar {
 allprojects {
     version = rootProject.version
     apply plugin: "java"
-
     repositories {
         mavenCentral()
         maven {
@@ -50,7 +49,6 @@ tasks.withType(Javadoc).configureEach {
 }
 
 tasks.build.dependsOn shadowJar
-
 publishing {
     publications {
         mavenJava(MavenPublication) {

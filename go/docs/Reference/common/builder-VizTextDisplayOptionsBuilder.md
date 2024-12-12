@@ -18,6 +18,14 @@ Builds the object.
 func (builder *VizTextDisplayOptionsBuilder) Build() (VizTextDisplayOptions, error)
 ```
 
+### <span class="badge object-method"></span> PercentSize
+
+Explicit percent text size
+
+```go
+func (builder *VizTextDisplayOptionsBuilder) PercentSize(percentSize float64) *VizTextDisplayOptionsBuilder
+```
+
 ### <span class="badge object-method"></span> TitleSize
 
 Explicit title text size

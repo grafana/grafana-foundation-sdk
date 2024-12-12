@@ -5,6 +5,8 @@ package dashboard
 import (
 	"fmt"
 	"strings"
+
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ValueMapConverter accepts a `ValueMap` object and generates the Go code to build this object using builders.
@@ -18,7 +20,7 @@ func ValueMapConverter(input ValueMap) string {
 		buffer.WriteString(`Options(`)
 		arg0 := "map[string]dashboard.ValueMappingResult{"
 		for key, arg1 := range input.Options {
-			tmpoptionsarg1 := ValueMappingResultConverter(arg1)
+			tmpoptionsarg1 := cog.Dump(arg1)
 			arg0 += "\t" + fmt.Sprintf("%#v", key) + ": " + tmpoptionsarg1 + ","
 		}
 		arg0 += "}"

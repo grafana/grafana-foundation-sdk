@@ -31,7 +31,7 @@ func (builder *DashboardRegexMapOptionsBuilder) Pattern(pattern string) *Dashboa
 Config to apply when the value matches the regex
 
 ```go
-func (builder *DashboardRegexMapOptionsBuilder) Result(result cog.Builder[dashboard.ValueMappingResult]) *DashboardRegexMapOptionsBuilder
+func (builder *DashboardRegexMapOptionsBuilder) Result(result dashboard.ValueMappingResult) *DashboardRegexMapOptionsBuilder
 ```
 
 ## See also
