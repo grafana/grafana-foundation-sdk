@@ -23,6 +23,3 @@ export interface ValueMappingResult {
 ## Methods
 
 No methods.
-## See also
-
- * <span class="badge builder"></span> [ValueMappingResultBuilder](./builder-ValueMappingResultBuilder.md)

@@ -26,40 +26,18 @@ public class ValueMappingResult {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("index")
     public Integer index;
+    public ValueMappingResult() {}
+    
+    public ValueMappingResult(String text,String color,String icon,Integer index) {
+        this.text = text;
+        this.color = color;
+        this.icon = icon;
+        this.index = index;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ValueMappingResult> {
-        protected final ValueMappingResult internal;
-        
-        public Builder() {
-            this.internal = new ValueMappingResult();
-        }
-    public Builder text(String text) {
-    this.internal.text = text;
-        return this;
-    }
-    
-    public Builder color(String color) {
-    this.internal.color = color;
-        return this;
-    }
-    
-    public Builder icon(String icon) {
-    this.internal.icon = icon;
-        return this;
-    }
-    
-    public Builder index(Integer index) {
-    this.internal.index = index;
-        return this;
-    }
-    public ValueMappingResult build() {
-            return this.internal;
-        }
-    }
 }
