@@ -40,7 +40,7 @@ final class DashboardRangeMapOptionsConverter
     
         {
     $buffer = 'result(';
-        $arg0 = \Grafana\Foundation\Dashboard\ValueMappingResultConverter::convert($input->result);
+        $arg0 ='(new \Grafana\Foundation\Dashboard\ValueMappingResult('.(($input->result->text !== null) ? 'text: '.\var_export($input->result->text, true).', ' : '').''.(($input->result->color !== null) ? 'color: '.\var_export($input->result->color, true).', ' : '').''.(($input->result->icon !== null) ? 'icon: '.\var_export($input->result->icon, true).', ' : '').''.(($input->result->index !== null) ? 'index: '.\var_export($input->result->index, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';

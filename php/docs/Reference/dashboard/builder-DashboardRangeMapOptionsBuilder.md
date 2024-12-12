@@ -30,10 +30,8 @@ from(float $from)
 
 Config to apply when the value is within the range
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\ValueMappingResult> $result
-
 ```php
-result(\Grafana\Foundation\Cog\Builder $result)
+result(\Grafana\Foundation\Dashboard\ValueMappingResult $result)
 ```
 
 ### <span class="badge object-method"></span> to
