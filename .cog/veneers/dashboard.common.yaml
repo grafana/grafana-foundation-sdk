@@ -15,6 +15,7 @@ builders:
   - omit: { by_object: LibraryPanelRef }
   - omit: { by_object: VariableOption }
   - omit: { by_object: Threshold }
+  - omit: { by_object: ValueMappingResult }
   # overrides and transformations related
   - omit: { by_object: MatcherConfig }
   - omit: { by_object: DynamicConfigValue }
