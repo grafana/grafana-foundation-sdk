@@ -34,12 +34,10 @@ class DashboardSpecialValueMapOptionsBuilder implements \Grafana\Foundation\Cog\
     }
     /**
      * Config to apply when the value matches the special value
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\ValueMappingResult> $result
      */
-    public function result(\Grafana\Foundation\Cog\Builder $result): static
+    public function result(\Grafana\Foundation\Dashboard\ValueMappingResult $result): static
     {
-        $resultResource = $result->build();
-        $this->internal->result = $resultResource;
+        $this->internal->result = $result;
     
         return $this;
     }

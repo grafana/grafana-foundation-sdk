@@ -30,10 +30,8 @@ match(\Grafana\Foundation\Dashboard\SpecialValueMatch $match)
 
 Config to apply when the value matches the special value
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\ValueMappingResult> $result
-
 ```php
-result(\Grafana\Foundation\Cog\Builder $result)
+result(\Grafana\Foundation\Dashboard\ValueMappingResult $result)
 ```
 
 ## See also
