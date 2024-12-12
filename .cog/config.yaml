@@ -127,7 +127,6 @@ output:
   converters: true
   api_reference: true
 
-  package_templates: '%__config_dir%/package_templates'
   repository_templates: '%__config_dir%/repository_templates'
   templates_data:
     GrafanaVersion: '%kind_registry_version%'
@@ -138,13 +137,14 @@ output:
 
   languages:
     - go:
-        go_mod: true
         package_root: '%go_package_root%'
-        builder_templates:
-          - '%__config_dir%/templates/go'
         generate_strict_unmarshaller: true
         generate_equal: true
         generate_validate: true
+        extra_files_templates:
+          - '%__config_dir%/templates/go/extra'
+        overrides_templates:
+          - '%__config_dir%/templates/go/overrides'
     - jsonschema: {}
     - openapi: {}
     - php:
