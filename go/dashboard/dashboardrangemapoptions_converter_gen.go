@@ -5,6 +5,8 @@ package dashboard
 import (
 	"fmt"
 	"strings"
+
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // DashboardRangeMapOptionsConverter accepts a `DashboardRangeMapOptions` object and generates the Go code to build this object using builders.
@@ -40,7 +42,7 @@ func DashboardRangeMapOptionsConverter(input DashboardRangeMapOptions) string {
 
 	{
 		buffer.WriteString(`Result(`)
-		arg0 := ValueMappingResultConverter(input.Result)
+		arg0 := cog.Dump(input.Result)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
