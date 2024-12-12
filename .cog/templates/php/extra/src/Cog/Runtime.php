@@ -1,9 +1,8 @@
+{{- $panelPackages := .Context.PackagesForVariant "panelcfg" -}}
+{{- $dataqueryPackages := .Context.PackagesForVariant "dataquery" -}}
 <?php
 
 namespace {{ .Data.NamespaceRoot }}\Cog;
-
-{{- $panelPackages := .Context.PackagesForVariant "panelcfg" -}}
-{{- $dataqueryPackages := .Context.PackagesForVariant "dataquery" -}}
 
 final class Runtime
 {

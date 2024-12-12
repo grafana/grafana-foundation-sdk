@@ -28,7 +28,7 @@ allprojects {
     version = rootProject.version
     apply plugin: "java"
 
-    {{ if .Data.Debug }}
+    {{- if .Data.Debug }}
     repositories {
        mavenCentral()
        mavenLocal()
@@ -37,7 +37,7 @@ allprojects {
     test {
         useJUnitPlatform()
     }
-    {{ else }}
+    {{- else }}
     repositories {
         mavenCentral()
         maven {
@@ -47,7 +47,11 @@ allprojects {
             }
         }
     }
-    {{ end }}
+
+    test {
+        useJUnitPlatform()
+    }
+    {{- end }}
 }
 
 dependencies {
@@ -60,7 +64,7 @@ tasks.withType(Javadoc).configureEach {
 
 tasks.build.dependsOn shadowJar
 
-{{ if .Data.Debug }}
+{{- if .Data.Debug }}
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -68,7 +72,7 @@ publishing {
         }
     }
 }
-{{ else }}
+{{- else }}
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -130,4 +134,4 @@ if (gradle.startParameter.taskNames.contains("publishToSonatype")) {
         useInMemoryPgpKeys(System.getenv("SIGNING_KEY"), System.getenv("SIGNING_PASSWORD"))
     }
 }
-{{ end }}
+{{- end }}
