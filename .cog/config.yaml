@@ -156,8 +156,10 @@ output:
         builder_templates:
           - '%__config_dir%/templates/python'
     - typescript:
-        builder_templates:
-          - '%__config_dir%/templates/typescript'
+        extra_files_templates:
+          - '%__config_dir%/templates/typescript/extra'
+        overrides_templates:
+          - '%__config_dir%/templates/typescript/overrides'
     - java:
         package_path: '%java_package_path%'
         skip_gradle_dev: true
