@@ -18,6 +18,14 @@ Builds the object.
 build()
 ```
 
+### <span class="badge object-method"></span> percentSize
+
+Explicit percent text size
+
+```typescript
+percentSize(percentSize: number)
+```
+
 ### <span class="badge object-method"></span> titleSize
 
 Explicit title text size

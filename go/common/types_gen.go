@@ -3377,6 +3377,8 @@ type VizTextDisplayOptions struct {
 	TitleSize *float64 `json:"titleSize,omitempty"`
 	// Explicit value text size
 	ValueSize *float64 `json:"valueSize,omitempty"`
+	// Explicit percent text size
+	PercentSize *float64 `json:"percentSize,omitempty"`
 }
 
 // NewVizTextDisplayOptions creates a new VizTextDisplayOptions object.
@@ -3418,6 +3420,17 @@ func (resource *VizTextDisplayOptions) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "valueSize")
 
 	}
+	// Field "percentSize"
+	if fields["percentSize"] != nil {
+		if string(fields["percentSize"]) != "null" {
+			if err := json.Unmarshal(fields["percentSize"], &resource.PercentSize); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("percentSize", err)...)
+			}
+
+		}
+		delete(fields, "percentSize")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("VizTextDisplayOptions", fmt.Errorf("unexpected field '%s'", field))...)
@@ -3447,6 +3460,15 @@ func (resource VizTextDisplayOptions) Equals(other VizTextDisplayOptions) bool {
 
 	if resource.ValueSize != nil {
 		if *resource.ValueSize != *other.ValueSize {
+			return false
+		}
+	}
+	if resource.PercentSize == nil && other.PercentSize != nil || resource.PercentSize != nil && other.PercentSize == nil {
+		return false
+	}
+
+	if resource.PercentSize != nil {
+		if *resource.PercentSize != *other.PercentSize {
 			return false
 		}
 	}

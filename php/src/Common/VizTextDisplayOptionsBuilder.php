@@ -42,5 +42,14 @@ class VizTextDisplayOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * Explicit percent text size
+     */
+    public function percentSize(float $percentSize): static
+    {
+        $this->internal->percentSize = $percentSize;
+    
+        return $this;
+    }
 
 }

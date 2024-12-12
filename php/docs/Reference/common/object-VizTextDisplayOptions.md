@@ -20,6 +20,11 @@ class VizTextDisplayOptions implements \JsonSerializable
      */
     public ?float $valueSize;
 
+    /**
+     * Explicit percent text size
+     */
+    public ?float $percentSize;
+
 }
 ```
 ## Methods

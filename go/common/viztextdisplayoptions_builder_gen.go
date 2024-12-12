@@ -45,3 +45,10 @@ func (builder *VizTextDisplayOptionsBuilder) ValueSize(valueSize float64) *VizTe
 
 	return builder
 }
+
+// Explicit percent text size
+func (builder *VizTextDisplayOptionsBuilder) PercentSize(percentSize float64) *VizTextDisplayOptionsBuilder {
+	builder.internal.PercentSize = &percentSize
+
+	return builder
+}

@@ -18,13 +18,20 @@ class VizTextDisplayOptions implements \JsonSerializable
     public ?float $valueSize;
 
     /**
+     * Explicit percent text size
+     */
+    public ?float $percentSize;
+
+    /**
      * @param float|null $titleSize
      * @param float|null $valueSize
+     * @param float|null $percentSize
      */
-    public function __construct(?float $titleSize = null, ?float $valueSize = null)
+    public function __construct(?float $titleSize = null, ?float $valueSize = null, ?float $percentSize = null)
     {
         $this->titleSize = $titleSize;
         $this->valueSize = $valueSize;
+        $this->percentSize = $percentSize;
     }
 
     /**
@@ -32,11 +39,12 @@ class VizTextDisplayOptions implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{titleSize?: float, valueSize?: float} $inputData */
+        /** @var array{titleSize?: float, valueSize?: float, percentSize?: float} $inputData */
         $data = $inputData;
         return new self(
             titleSize: $data["titleSize"] ?? null,
             valueSize: $data["valueSize"] ?? null,
+            percentSize: $data["percentSize"] ?? null,
         );
     }
 
@@ -52,6 +60,9 @@ class VizTextDisplayOptions implements \JsonSerializable
         }
         if (isset($this->valueSize)) {
             $data["valueSize"] = $this->valueSize;
+        }
+        if (isset($this->percentSize)) {
+            $data["percentSize"] = $this->percentSize;
         }
         return $data;
     }

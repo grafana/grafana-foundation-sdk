@@ -1013,6 +1013,15 @@ class VizTextDisplayOptions(cogbuilder.Builder[common.VizTextDisplayOptions]):
     
         return self
     
+    def percent_size(self, percent_size: float) -> typing.Self:    
+        """
+        Explicit percent text size
+        """
+            
+        self._internal.percent_size = percent_size
+    
+        return self
+    
 
 class GraphFieldConfig(cogbuilder.Builder[common.GraphFieldConfig]):    
     """

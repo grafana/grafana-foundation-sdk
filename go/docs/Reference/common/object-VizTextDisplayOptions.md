@@ -13,6 +13,8 @@ type VizTextDisplayOptions struct {
     TitleSize *float64 `json:"titleSize,omitempty"`
     // Explicit value text size
     ValueSize *float64 `json:"valueSize,omitempty"`
+    // Explicit percent text size
+    PercentSize *float64 `json:"percentSize,omitempty"`
 }
 ```
 ## Methods

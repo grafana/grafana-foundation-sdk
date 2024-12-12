@@ -36,6 +36,19 @@ final class VizTextDisplayOptionsConverter
     
     
     }
+            if ($input->percentSize !== null) {
+    
+        
+    $buffer = 'percentSize(';
+        $arg0 =\var_export($input->percentSize, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

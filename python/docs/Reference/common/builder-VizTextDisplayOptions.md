@@ -18,6 +18,14 @@ Builds the object.
 def build() -> common.VizTextDisplayOptions
 ```
 
+### <span class="badge object-method"></span> percent_size
+
+Explicit percent text size
+
+```python
+def percent_size(percent_size: float) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> title_size
 
 Explicit title text size

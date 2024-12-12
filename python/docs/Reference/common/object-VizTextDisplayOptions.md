@@ -17,6 +17,8 @@ class VizTextDisplayOptions:
     title_size: typing.Optional[float]
     # Explicit value text size
     value_size: typing.Optional[float]
+    # Explicit percent text size
+    percent_size: typing.Optional[float]
 ```
 ## Methods
 

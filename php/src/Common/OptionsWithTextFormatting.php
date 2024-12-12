@@ -26,7 +26,7 @@ class OptionsWithTextFormatting implements \JsonSerializable
         $data = $inputData;
         return new self(
             text: isset($data["text"]) ? (function($input) {
-    	/** @var array{titleSize?: float, valueSize?: float} */
+    	/** @var array{titleSize?: float, valueSize?: float, percentSize?: float} */
     $val = $input;
     	return \Grafana\Foundation\Common\VizTextDisplayOptions::fromArray($val);
     })($data["text"]) : null,
