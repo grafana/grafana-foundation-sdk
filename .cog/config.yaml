@@ -149,8 +149,10 @@ output:
     - openapi: {}
     - php:
         namespace_root: '%php_namespace_root%'
-        builder_templates:
-          - '%__config_dir%/templates/php'
+        extra_files_templates:
+          - '%__config_dir%/templates/php/extra'
+        overrides_templates:
+          - '%__config_dir%/templates/php/overrides'
     - python:
         path_prefix: grafana_foundation_sdk
         extra_files_templates:
