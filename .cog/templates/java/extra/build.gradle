@@ -1,7 +1,9 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    {{- if not .Data.Debug }}
     id 'io.github.gradle-nexus.publish-plugin' version '1.3.0'
+    {{- end }}
     id 'signing'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
@@ -26,6 +28,16 @@ allprojects {
     version = rootProject.version
     apply plugin: "java"
 
+    {{ if .Data.Debug }}
+    repositories {
+       mavenCentral()
+       mavenLocal()
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+    {{ else }}
     repositories {
         mavenCentral()
         maven {
@@ -35,10 +47,7 @@ allprojects {
             }
         }
     }
-
-    test {
-        useJUnitPlatform()
-    }
+    {{ end }}
 }
 
 dependencies {
@@ -51,6 +60,15 @@ tasks.withType(Javadoc).configureEach {
 
 tasks.build.dependsOn shadowJar
 
+{{ if .Data.Debug }}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+{{ else }}
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -112,3 +130,4 @@ if (gradle.startParameter.taskNames.contains("publishToSonatype")) {
         useInMemoryPgpKeys(System.getenv("SIGNING_KEY"), System.getenv("SIGNING_PASSWORD"))
     }
 }
+{{ end }}
