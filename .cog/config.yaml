@@ -153,8 +153,10 @@ output:
           - '%__config_dir%/templates/php'
     - python:
         path_prefix: grafana_foundation_sdk
-        builder_templates:
-          - '%__config_dir%/templates/python'
+        extra_files_templates:
+          - '%__config_dir%/templates/python/extra'
+        overrides_templates:
+          - '%__config_dir%/templates/python/overrides'
     - typescript:
         extra_files_templates:
           - '%__config_dir%/templates/typescript/extra'
