@@ -39,13 +39,8 @@ func (builder *DashboardSpecialValueMapOptionsBuilder) Match(match SpecialValueM
 }
 
 // Config to apply when the value matches the special value
-func (builder *DashboardSpecialValueMapOptionsBuilder) Result(result cog.Builder[ValueMappingResult]) *DashboardSpecialValueMapOptionsBuilder {
-	resultResource, err := result.Build()
-	if err != nil {
-		builder.errors["result"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Result = resultResource
+func (builder *DashboardSpecialValueMapOptionsBuilder) Result(result ValueMappingResult) *DashboardSpecialValueMapOptionsBuilder {
+	builder.internal.Result = result
 
 	return builder
 }

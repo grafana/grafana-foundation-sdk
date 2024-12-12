@@ -46,13 +46,8 @@ func (builder *DashboardRangeMapOptionsBuilder) To(to float64) *DashboardRangeMa
 }
 
 // Config to apply when the value is within the range
-func (builder *DashboardRangeMapOptionsBuilder) Result(result cog.Builder[ValueMappingResult]) *DashboardRangeMapOptionsBuilder {
-	resultResource, err := result.Build()
-	if err != nil {
-		builder.errors["result"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Result = resultResource
+func (builder *DashboardRangeMapOptionsBuilder) Result(result ValueMappingResult) *DashboardRangeMapOptionsBuilder {
+	builder.internal.Result = result
 
 	return builder
 }

@@ -44,8 +44,8 @@ public class DashboardRangeMapOptions {
         return this;
     }
     
-    public Builder result(com.grafana.foundation.cog.Builder<ValueMappingResult> result) {
-    this.internal.result = result.build();
+    public Builder result(ValueMappingResult result) {
+    this.internal.result = result;
         return this;
     }
     public DashboardRangeMapOptions build() {
