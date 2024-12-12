@@ -39,13 +39,8 @@ func (builder *DashboardRegexMapOptionsBuilder) Pattern(pattern string) *Dashboa
 }
 
 // Config to apply when the value matches the regex
-func (builder *DashboardRegexMapOptionsBuilder) Result(result cog.Builder[ValueMappingResult]) *DashboardRegexMapOptionsBuilder {
-	resultResource, err := result.Build()
-	if err != nil {
-		builder.errors["result"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Result = resultResource
+func (builder *DashboardRegexMapOptionsBuilder) Result(result ValueMappingResult) *DashboardRegexMapOptionsBuilder {
+	builder.internal.Result = result
 
 	return builder
 }
