@@ -5,6 +5,8 @@ package dashboard
 import (
 	"fmt"
 	"strings"
+
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // DashboardRegexMapOptionsConverter accepts a `DashboardRegexMapOptions` object and generates the Go code to build this object using builders.
@@ -28,7 +30,7 @@ func DashboardRegexMapOptionsConverter(input DashboardRegexMapOptions) string {
 
 	{
 		buffer.WriteString(`Result(`)
-		arg0 := ValueMappingResultConverter(input.Result)
+		arg0 := cog.Dump(input.Result)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
