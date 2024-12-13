@@ -31,7 +31,7 @@ func (builder *DashboardRangeMapOptionsBuilder) From(from float64) *DashboardRan
 Config to apply when the value is within the range
 
 ```go
-func (builder *DashboardRangeMapOptionsBuilder) Result(result cog.Builder[dashboard.ValueMappingResult]) *DashboardRangeMapOptionsBuilder
+func (builder *DashboardRangeMapOptionsBuilder) Result(result dashboard.ValueMappingResult) *DashboardRangeMapOptionsBuilder
 ```
 
 ### <span class="badge object-method"></span> To
