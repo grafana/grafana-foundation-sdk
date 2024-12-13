@@ -1,0 +1,62 @@
+{{- define "schema_variant_panelcfg" -}}
+{{- $json := importStdPkg "encoding/json" -}}
+{{- $dashboard := importPkg "dashboard" -}}
+{{- $variants := importPkg "cog/variants" -}}
+// VariantConfig returns the configuration related to {{ .Schema.Metadata.Identifier|lower }} panels.
+// This configuration describes how to unmarshal it, convert it to code, …
+func VariantConfig() {{ $variants }}.PanelcfgConfig {
+	return {{ $variants }}.PanelcfgConfig{
+		Identifier: "{{ .Schema.Metadata.Identifier|lower }}",
+		{{- if .Schema.HasObject "Options" }}
+		OptionsUnmarshaler: func (raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := json.Unmarshal(raw, options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+		StrictOptionsUnmarshaler: func (raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := options.UnmarshalJSONStrict(raw); err != nil {
+                return nil, err
+            }
+
+			return options, nil
+		},
+		{{- end }}
+		{{- if .Schema.HasObject "FieldConfig" }}
+		FieldConfigUnmarshaler: func (raw []byte) (any, error) {
+			fieldConfig := &FieldConfig{}
+
+			if err := json.Unmarshal(raw, fieldConfig); err != nil {
+				return nil, err
+			}
+
+			return fieldConfig, nil
+		},
+		StrictFieldConfigUnmarshaler: func (raw []byte) (any, error) {
+			fieldConfig := &FieldConfig{}
+
+			if err := fieldConfig.UnmarshalJSONStrict(raw); err != nil {
+                return nil, err
+            }
+
+			return fieldConfig, nil
+		},
+		{{- end }}
+		{{- if .Config.GenerateConverters }}
+		GoConverter: func(inputPanel any) string {
+			if panel, ok := inputPanel.(*{{ $dashboard }}.Panel); ok {
+				return PanelConverter(*panel)
+			}
+
+			return PanelConverter(inputPanel.({{ $dashboard }}.Panel))
+		},
+		{{- end }}
+	}
+}
+
+{{ end }}
