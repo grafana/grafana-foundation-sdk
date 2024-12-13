@@ -28,7 +28,7 @@ func DashboardSpecialValueMapOptionsConverter(input DashboardSpecialValueMapOpti
 
 	{
 		buffer.WriteString(`Result(`)
-		arg0 := ValueMappingResultConverter(input.Result)
+		arg0 := cog.Dump(input.Result)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

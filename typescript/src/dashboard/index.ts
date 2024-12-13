@@ -24,8 +24,6 @@ export * from './regexMapBuilder.gen';
 export type * from './regexMapBuilder.gen';
 export * from './specialValueMapBuilder.gen';
 export type * from './specialValueMapBuilder.gen';
-export * from './valueMappingResultBuilder.gen';
-export type * from './valueMappingResultBuilder.gen';
 export * from './timePickerBuilder.gen';
 export type * from './timePickerBuilder.gen';
 export * from './snapshotBuilder.gen';

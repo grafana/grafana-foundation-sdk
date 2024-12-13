@@ -31,7 +31,7 @@ func (builder *DashboardSpecialValueMapOptionsBuilder) Match(match dashboard.Spe
 Config to apply when the value matches the special value
 
 ```go
-func (builder *DashboardSpecialValueMapOptionsBuilder) Result(result cog.Builder[dashboard.ValueMappingResult]) *DashboardSpecialValueMapOptionsBuilder
+func (builder *DashboardSpecialValueMapOptionsBuilder) Result(result dashboard.ValueMappingResult) *DashboardSpecialValueMapOptionsBuilder
 ```
 
 ## See also
