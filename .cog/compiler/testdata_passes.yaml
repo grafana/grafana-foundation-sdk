@@ -3,6 +3,10 @@
 passes:
   - anonymous_structs_to_named: {}
 
+  - schema_set_entry_point:
+      package: testdata
+      entry_point: dataquery
+
   # To stay close to the pre-v11 object names
 
   - omit:
