@@ -24,8 +24,6 @@ export * from './regexMapBuilder.gen';
 export type * from './regexMapBuilder.gen';
 export * from './specialValueMapBuilder.gen';
 export type * from './specialValueMapBuilder.gen';
-export * from './valueMappingResultBuilder.gen';
-export type * from './valueMappingResultBuilder.gen';
 export * from './snapshotBuilder.gen';
 export type * from './snapshotBuilder.gen';
 export * from './panelBuilder.gen';
