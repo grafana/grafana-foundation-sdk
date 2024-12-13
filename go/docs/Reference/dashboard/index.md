@@ -91,7 +91,6 @@
  * <span class="badge builder"></span> [ThresholdsConfigBuilder](./builder-ThresholdsConfigBuilder.md)
  * <span class="badge builder"></span> [TimePickerBuilder](./builder-TimePickerBuilder.md)
  * <span class="badge builder"></span> [ValueMapBuilder](./builder-ValueMapBuilder.md)
- * <span class="badge builder"></span> [ValueMappingResultBuilder](./builder-ValueMappingResultBuilder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewDashboard
@@ -524,14 +523,6 @@ SpecialValueMapConverter accepts a `SpecialValueMap` object and generates the Go
 
 ```go
 func SpecialValueMapConverter(input SpecialValueMap) string
-```
-
-### <span class="badge function"></span> ValueMappingResultConverter
-
-ValueMappingResultConverter accepts a `ValueMappingResult` object and generates the Go code to build this object using builders.
-
-```go
-func ValueMappingResultConverter(input ValueMappingResult) string
 ```
 
 ### <span class="badge function"></span> TimePickerConverter
