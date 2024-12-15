@@ -1,0 +1,60 @@
+{{- define "schema_variant_dataquery" -}}
+{{- $json := importStdPkg "encoding/json" -}}
+{{- $variants := importPkg "cog/variants" -}}
+{{- $_ := apiDeclareFunction (dict
+    "pkg" .Schema.Package
+    "name" "VariantConfig"
+    "comments" (listStr
+        (print "VariantConfig returns the configuration related to " (.Schema.Metadata.Identifier|lower) " dataqueries.")
+        "This configuration describes how to unmarshal it, convert it to code, …"
+    )
+    "return" "variants.DataqueryConfig"
+) -}}
+// VariantConfig returns the configuration related to {{ .Schema.Metadata.Identifier|lower }} dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
+func VariantConfig() variants.DataqueryConfig {
+    return variants.DataqueryConfig{
+        Identifier: "{{ .Schema.Metadata.Identifier|lower }}",
+        DataqueryUnmarshaler: func (raw []byte) (variants.Dataquery, error) {
+            dataquery := &{{ .Schema.EntryPoint|formatObjectName }}{}
+
+            if err := json.Unmarshal(raw, dataquery); err != nil {
+                return nil, err
+            }
+
+            return dataquery, nil
+        },
+        StrictDataqueryUnmarshaler: func (raw []byte) (variants.Dataquery, error) {
+            dataquery := &{{ .Schema.EntryPoint|formatObjectName }}{}
+
+            if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
+                return nil, err
+            }
+
+            return dataquery, nil
+        },
+        {{ if .Config.GenerateConverters -}}
+        {{- $resolvedEntryPoint := .Schema.EntryPointType|resolveRefs -}}
+        GoConverter: func(input any) string {
+            var dataquery {{ .Schema.EntryPoint|formatObjectName }}
+            if cast, ok := input.(*{{ .Schema.EntryPoint|formatObjectName }}); ok {
+                dataquery = *cast
+            } else {
+                dataquery = input.({{ .Schema.EntryPoint|formatObjectName }})
+            }
+            {{ if $resolvedEntryPoint.IsStructGeneratedFromDisjunction -}}
+                {{- range $field := $resolvedEntryPoint.Struct.Fields }}
+                    if dataquery.{{ $field.Name|formatFieldName }} != nil {
+                        return {{ $field.Type.Ref.ReferredType|formatObjectName }}Converter(*dataquery.{{ $field.Name|formatFieldName }})
+                    }
+                {{- end }}
+
+                return ""
+            {{- else -}}
+                return {{ .Schema.EntryPoint|formatObjectName }}Converter(dataquery)
+            {{- end }}
+        },
+        {{- end }}
+    }
+}
+{{ end }}

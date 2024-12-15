@@ -1,0 +1,26 @@
+{{- define "variant_dataquery_field_unmarshal" -}}
+{{- $cog := importPkg "cog" }}
+if fields["{{ .Field.Name }}"] != nil {
+    dataqueryTypeHint := ""
+    {{ range $field := .Object.Type.Struct.Fields }}
+        {{ if and ($field.Type.IsRef) (eq $field.Type.Ref.ReferredType "DataSourceRef") }}
+        if resource.{{ $field.Name|formatFieldName }} != nil && resource.{{ $field.Name|formatFieldName }}.Type != nil {
+            dataqueryTypeHint = *resource.{{ $field.Name|formatFieldName }}.Type
+        }
+        {{ end }}
+    {{ end }} 
+    {{- if .Field.Type.IsArray -}}
+    {{ .Field.Name }}, err := cog.UnmarshalDataqueryArray(fields["{{ .Field.Name }}"], dataqueryTypeHint)
+    if err != nil {
+        return err
+    }
+    resource.{{ .Field.Name|formatFieldName }} = {{ .Field.Name }}
+    {{- else -}}
+    {{ .Field.Name }}, err := cog.UnmarshalDataquery(fields["{{ .Field.Name }}"], dataqueryTypeHint)
+    if err != nil {
+        return err
+    }
+    resource.{{ .Field.Name|formatFieldName }} = {{ .Field.Name }}
+    {{- end -}}
+}
+{{ end }}
