@@ -2,6 +2,15 @@
 {{- $json := importStdPkg "encoding/json" -}}
 {{- $dashboard := importPkg "dashboard" -}}
 {{- $variants := importPkg "cog/variants" -}}
+{{- $_ := apiDeclareFunction (dict
+    "pkg" .Schema.Package
+    "name" "VariantConfig"
+    "comments" (listStr
+        (print "VariantConfig returns the configuration related to " (.Schema.Metadata.Identifier|lower) " panels.")
+        "This configuration describes how to unmarshal it, convert it to code, …"
+    )
+    "return" "variants.PanelcfgConfig"
+) -}}
 // VariantConfig returns the configuration related to {{ .Schema.Metadata.Identifier|lower }} panels.
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() {{ $variants }}.PanelcfgConfig {
