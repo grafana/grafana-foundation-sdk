@@ -1,6 +1,15 @@
 {{- define "schema_variant_dataquery" -}}
 {{- $json := importStdPkg "encoding/json" -}}
 {{- $variants := importPkg "cog/variants" -}}
+{{- $_ := apiDeclareFunction (dict
+    "pkg" .Schema.Package
+    "name" "VariantConfig"
+    "comments" (listStr
+        (print "VariantConfig returns the configuration related to " (.Schema.Metadata.Identifier|lower) " dataqueries.")
+        "This configuration describes how to unmarshal it, convert it to code, …"
+    )
+    "return" "variants.DataqueryConfig"
+) -}}
 // VariantConfig returns the configuration related to {{ .Schema.Metadata.Identifier|lower }} dataqueries.
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
