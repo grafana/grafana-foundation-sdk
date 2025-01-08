@@ -2,12 +2,12 @@
 
 package com.grafana.foundation.statushistory;
 
+import com.grafana.foundation.common.VisibilityMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grafana.foundation.common.VisibilityMode;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.grafana.foundation.common.VizTooltipOptions;
 import java.util.List;
@@ -33,6 +33,20 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("colWidth")
     public Double colWidth;
+    public Options() {
+        this.rowHeight = 0.9f;
+        this.showValue = VisibilityMode.AUTO;
+        this.colWidth = 0.9;
+    }
+    
+    public Options(Float rowHeight,VisibilityMode showValue,VizLegendOptions legend,VizTooltipOptions tooltip,List<String> timezone,Double colWidth) {
+        this.rowHeight = rowHeight;
+        this.showValue = showValue;
+        this.legend = legend;
+        this.tooltip = tooltip;
+        this.timezone = timezone;
+        this.colWidth = colWidth;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

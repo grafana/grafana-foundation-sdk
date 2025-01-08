@@ -14,25 +14,16 @@ public class NavbarPreference {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("bookmarkUrls")
     public List<String> bookmarkUrls;
+    public NavbarPreference() {
+    }
+    
+    public NavbarPreference(List<String> bookmarkUrls) {
+        this.bookmarkUrls = bookmarkUrls;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<NavbarPreference> {
-        protected final NavbarPreference internal;
-        
-        public Builder() {
-            this.internal = new NavbarPreference();
-        }
-    public Builder bookmarkUrls(List<String> bookmarkUrls) {
-    this.internal.bookmarkUrls = bookmarkUrls;
-        return this;
-    }
-    public NavbarPreference build() {
-            return this.internal;
-        }
-    }
 }

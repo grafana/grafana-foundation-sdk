@@ -16,30 +16,17 @@ public class TimeInterval {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("time_intervals")
     public List<TimeIntervalItem> timeIntervals;
+    public TimeInterval() {
+    }
+    
+    public TimeInterval(String name,List<TimeIntervalItem> timeIntervals) {
+        this.name = name;
+        this.timeIntervals = timeIntervals;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TimeInterval> {
-        protected final TimeInterval internal;
-        
-        public Builder() {
-            this.internal = new TimeInterval();
-        }
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder timeIntervals(com.grafana.foundation.cog.Builder<List<TimeIntervalItem>> timeIntervals) {
-    this.internal.timeIntervals = timeIntervals.build();
-        return this;
-    }
-    public TimeInterval build() {
-            return this.internal;
-        }
-    }
 }

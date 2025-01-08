@@ -35,6 +35,18 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("orientation")
     public VizOrientation orientation;
+    public Options() {
+    }
+    
+    public Options(PieChartType pieType,List<PieChartLabels> displayLabels,VizTooltipOptions tooltip,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,PieChartLegendOptions legend,VizOrientation orientation) {
+        this.pieType = pieType;
+        this.displayLabels = displayLabels;
+        this.tooltip = tooltip;
+        this.reduceOptions = reduceOptions;
+        this.text = text;
+        this.legend = legend;
+        this.orientation = orientation;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

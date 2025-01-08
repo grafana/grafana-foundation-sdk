@@ -18,30 +18,17 @@ public class FilterValueRange {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("ge")
     public Float ge;
+    public FilterValueRange() {
+    }
+    
+    public FilterValueRange(Float le,Float ge) {
+        this.le = le;
+        this.ge = ge;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<FilterValueRange> {
-        protected final FilterValueRange internal;
-        
-        public Builder() {
-            this.internal = new FilterValueRange();
-        }
-    public Builder le(Float le) {
-    this.internal.le = le;
-        return this;
-    }
-    
-    public Builder ge(Float ge) {
-    this.internal.ge = ge;
-        return this;
-    }
-    public FilterValueRange build() {
-            return this.internal;
-        }
-    }
 }

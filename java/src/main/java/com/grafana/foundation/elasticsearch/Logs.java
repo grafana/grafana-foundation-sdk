@@ -19,36 +19,19 @@ public class Logs {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
+    public Logs() {
+    }
+    
+    public Logs(String type,String id,ElasticsearchLogsSettings settings,Boolean hide) {
+        this.type = type;
+        this.id = id;
+        this.settings = settings;
+        this.hide = hide;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Logs> {
-        protected final Logs internal;
-        
-        public Builder() {
-            this.internal = new Logs();
-    this.internal.type = "logs";
-        }
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder settings(com.grafana.foundation.cog.Builder<ElasticsearchLogsSettings> settings) {
-    this.internal.settings = settings.build();
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    public Logs build() {
-            return this.internal;
-        }
-    }
 }

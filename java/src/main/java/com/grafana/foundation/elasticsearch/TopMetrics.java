@@ -19,36 +19,19 @@ public class TopMetrics {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
+    public TopMetrics() {
+    }
+    
+    public TopMetrics(String type,String id,ElasticsearchTopMetricsSettings settings,Boolean hide) {
+        this.type = type;
+        this.id = id;
+        this.settings = settings;
+        this.hide = hide;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TopMetrics> {
-        protected final TopMetrics internal;
-        
-        public Builder() {
-            this.internal = new TopMetrics();
-    this.internal.type = "top_metrics";
-        }
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder settings(com.grafana.foundation.cog.Builder<ElasticsearchTopMetricsSettings> settings) {
-    this.internal.settings = settings.build();
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    public TopMetrics build() {
-            return this.internal;
-        }
-    }
 }

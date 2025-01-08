@@ -17,30 +17,17 @@ public class LineStyle {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("dash")
     public List<Double> dash;
+    public LineStyle() {
+    }
+    
+    public LineStyle(LineStyleFill fill,List<Double> dash) {
+        this.fill = fill;
+        this.dash = dash;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<LineStyle> {
-        protected final LineStyle internal;
-        
-        public Builder() {
-            this.internal = new LineStyle();
-        }
-    public Builder fill(LineStyleFill fill) {
-    this.internal.fill = fill;
-        return this;
-    }
-    
-    public Builder dash(List<Double> dash) {
-    this.internal.dash = dash;
-        return this;
-    }
-    public LineStyle build() {
-            return this.internal;
-        }
-    }
 }
