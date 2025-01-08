@@ -25,45 +25,20 @@ public class DataSourceJsonData {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("alertmanagerUid")
     public String alertmanagerUid;
+    public DataSourceJsonData() {
+    }
+    
+    public DataSourceJsonData(String authType,String defaultRegion,String profile,Boolean manageAlerts,String alertmanagerUid) {
+        this.authType = authType;
+        this.defaultRegion = defaultRegion;
+        this.profile = profile;
+        this.manageAlerts = manageAlerts;
+        this.alertmanagerUid = alertmanagerUid;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<DataSourceJsonData> {
-        protected final DataSourceJsonData internal;
-        
-        public Builder() {
-            this.internal = new DataSourceJsonData();
-        }
-    public Builder authType(String authType) {
-    this.internal.authType = authType;
-        return this;
-    }
-    
-    public Builder defaultRegion(String defaultRegion) {
-    this.internal.defaultRegion = defaultRegion;
-        return this;
-    }
-    
-    public Builder profile(String profile) {
-    this.internal.profile = profile;
-        return this;
-    }
-    
-    public Builder manageAlerts(Boolean manageAlerts) {
-    this.internal.manageAlerts = manageAlerts;
-        return this;
-    }
-    
-    public Builder alertmanagerUid(String alertmanagerUid) {
-    this.internal.alertmanagerUid = alertmanagerUid;
-        return this;
-    }
-    public DataSourceJsonData build() {
-            return this.internal;
-        }
-    }
 }

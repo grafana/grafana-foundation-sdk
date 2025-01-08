@@ -14,26 +14,17 @@ public class BuiltinRoleRef {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("name")
     public BuiltinRoleRefName name;
+    public BuiltinRoleRef() {
+    }
+    
+    public BuiltinRoleRef(String kind,BuiltinRoleRefName name) {
+        this.kind = kind;
+        this.name = name;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<BuiltinRoleRef> {
-        protected final BuiltinRoleRef internal;
-        
-        public Builder() {
-            this.internal = new BuiltinRoleRef();
-    this.internal.kind = "BuiltinRole";
-        }
-    public Builder name(BuiltinRoleRefName name) {
-    this.internal.name = name;
-        return this;
-    }
-    public BuiltinRoleRef build() {
-            return this.internal;
-        }
-    }
 }

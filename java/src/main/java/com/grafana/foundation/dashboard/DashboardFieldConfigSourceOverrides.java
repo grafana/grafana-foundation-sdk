@@ -18,30 +18,17 @@ public class DashboardFieldConfigSourceOverrides {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("properties")
     public List<DynamicConfigValue> properties;
+    public DashboardFieldConfigSourceOverrides() {
+    }
+    
+    public DashboardFieldConfigSourceOverrides(MatcherConfig matcher,List<DynamicConfigValue> properties) {
+        this.matcher = matcher;
+        this.properties = properties;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> {
-        protected final DashboardFieldConfigSourceOverrides internal;
-        
-        public Builder() {
-            this.internal = new DashboardFieldConfigSourceOverrides();
-        }
-    public Builder matcher(MatcherConfig matcher) {
-    this.internal.matcher = matcher;
-        return this;
-    }
-    
-    public Builder properties(List<DynamicConfigValue> properties) {
-    this.internal.properties = properties;
-        return this;
-    }
-    public DashboardFieldConfigSourceOverrides build() {
-            return this.internal;
-        }
-    }
 }

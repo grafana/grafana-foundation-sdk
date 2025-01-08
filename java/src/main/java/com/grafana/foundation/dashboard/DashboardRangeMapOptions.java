@@ -21,35 +21,18 @@ public class DashboardRangeMapOptions {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("result")
     public ValueMappingResult result;
+    public DashboardRangeMapOptions() {
+    }
+    
+    public DashboardRangeMapOptions(Double from,Double to,ValueMappingResult result) {
+        this.from = from;
+        this.to = to;
+        this.result = result;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<DashboardRangeMapOptions> {
-        protected final DashboardRangeMapOptions internal;
-        
-        public Builder() {
-            this.internal = new DashboardRangeMapOptions();
-        }
-    public Builder from(Double from) {
-    this.internal.from = from;
-        return this;
-    }
-    
-    public Builder to(Double to) {
-    this.internal.to = to;
-        return this;
-    }
-    
-    public Builder result(ValueMappingResult result) {
-    this.internal.result = result;
-        return this;
-    }
-    public DashboardRangeMapOptions build() {
-            return this.internal;
-        }
-    }
 }

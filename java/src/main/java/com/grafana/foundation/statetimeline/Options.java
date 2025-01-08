@@ -2,16 +2,16 @@
 
 package com.grafana.foundation.statetimeline;
 
+import com.grafana.foundation.common.VisibilityMode;
+import com.grafana.foundation.common.TimelineValueAlignment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grafana.foundation.common.VisibilityMode;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.grafana.foundation.common.VizTooltipOptions;
 import java.util.List;
-import com.grafana.foundation.common.TimelineValueAlignment;
 
 public class Options {
     // Show timeline values on chart
@@ -38,6 +38,22 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("alignValue")
     public TimelineValueAlignment alignValue;
+    public Options() {
+        this.showValue = VisibilityMode.AUTO;
+        this.rowHeight = 0.9;
+        this.mergeValues = true;
+        this.alignValue = TimelineValueAlignment.LEFT;
+    }
+    
+    public Options(VisibilityMode showValue,Double rowHeight,Boolean mergeValues,VizLegendOptions legend,VizTooltipOptions tooltip,List<String> timezone,TimelineValueAlignment alignValue) {
+        this.showValue = showValue;
+        this.rowHeight = rowHeight;
+        this.mergeValues = mergeValues;
+        this.legend = legend;
+        this.tooltip = tooltip;
+        this.timezone = timezone;
+        this.alignValue = alignValue;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

@@ -22,35 +22,18 @@ public class FieldColor {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("seriesBy")
     public FieldColorSeriesByMode seriesBy;
+    public FieldColor() {
+    }
+    
+    public FieldColor(FieldColorModeId mode,String fixedColor,FieldColorSeriesByMode seriesBy) {
+        this.mode = mode;
+        this.fixedColor = fixedColor;
+        this.seriesBy = seriesBy;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<FieldColor> {
-        protected final FieldColor internal;
-        
-        public Builder() {
-            this.internal = new FieldColor();
-        }
-    public Builder mode(FieldColorModeId mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder fixedColor(String fixedColor) {
-    this.internal.fixedColor = fixedColor;
-        return this;
-    }
-    
-    public Builder seriesBy(FieldColorSeriesByMode seriesBy) {
-    this.internal.seriesBy = seriesBy;
-        return this;
-    }
-    public FieldColor build() {
-            return this.internal;
-        }
-    }
 }

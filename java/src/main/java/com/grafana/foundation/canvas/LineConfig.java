@@ -19,35 +19,18 @@ public class LineConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("radius")
     public Double radius;
+    public LineConfig() {
+    }
+    
+    public LineConfig(ColorDimensionConfig color,Double width,Double radius) {
+        this.color = color;
+        this.width = width;
+        this.radius = radius;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<LineConfig> {
-        protected final LineConfig internal;
-        
-        public Builder() {
-            this.internal = new LineConfig();
-        }
-    public Builder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color) {
-    this.internal.color = color.build();
-        return this;
-    }
-    
-    public Builder width(Double width) {
-    this.internal.width = width;
-        return this;
-    }
-    
-    public Builder radius(Double radius) {
-    this.internal.radius = radius;
-        return this;
-    }
-    public LineConfig build() {
-            return this.internal;
-        }
-    }
 }

@@ -35,50 +35,21 @@ public class AzureTracesQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("query")
     public String query;
+    public AzureTracesQuery() {
+    }
+    
+    public AzureTracesQuery(ResultFormat resultFormat,List<String> resources,String operationId,List<String> traceTypes,List<AzureTracesFilter> filters,String query) {
+        this.resultFormat = resultFormat;
+        this.resources = resources;
+        this.operationId = operationId;
+        this.traceTypes = traceTypes;
+        this.filters = filters;
+        this.query = query;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AzureTracesQuery> {
-        protected final AzureTracesQuery internal;
-        
-        public Builder() {
-            this.internal = new AzureTracesQuery();
-        }
-    public Builder resultFormat(ResultFormat resultFormat) {
-    this.internal.resultFormat = resultFormat;
-        return this;
-    }
-    
-    public Builder resources(List<String> resources) {
-    this.internal.resources = resources;
-        return this;
-    }
-    
-    public Builder operationId(String operationId) {
-    this.internal.operationId = operationId;
-        return this;
-    }
-    
-    public Builder traceTypes(List<String> traceTypes) {
-    this.internal.traceTypes = traceTypes;
-        return this;
-    }
-    
-    public Builder filters(com.grafana.foundation.cog.Builder<List<AzureTracesFilter>> filters) {
-    this.internal.filters = filters.build();
-        return this;
-    }
-    
-    public Builder query(String query) {
-    this.internal.query = query;
-        return this;
-    }
-    public AzureTracesQuery build() {
-            return this.internal;
-        }
-    }
 }

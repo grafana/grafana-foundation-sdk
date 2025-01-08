@@ -15,35 +15,18 @@ public class HideSeriesConfig {
     public Boolean legend;
     @JsonProperty("viz")
     public Boolean viz;
+    public HideSeriesConfig() {
+    }
+    
+    public HideSeriesConfig(Boolean tooltip,Boolean legend,Boolean viz) {
+        this.tooltip = tooltip;
+        this.legend = legend;
+        this.viz = viz;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<HideSeriesConfig> {
-        protected final HideSeriesConfig internal;
-        
-        public Builder() {
-            this.internal = new HideSeriesConfig();
-        }
-    public Builder tooltip(Boolean tooltip) {
-    this.internal.tooltip = tooltip;
-        return this;
-    }
-    
-    public Builder legend(Boolean legend) {
-    this.internal.legend = legend;
-        return this;
-    }
-    
-    public Builder viz(Boolean viz) {
-    this.internal.viz = viz;
-        return this;
-    }
-    public HideSeriesConfig build() {
-            return this.internal;
-        }
-    }
 }

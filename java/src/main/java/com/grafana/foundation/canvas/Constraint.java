@@ -15,30 +15,17 @@ public class Constraint {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("vertical")
     public VerticalConstraint vertical;
+    public Constraint() {
+    }
+    
+    public Constraint(HorizontalConstraint horizontal,VerticalConstraint vertical) {
+        this.horizontal = horizontal;
+        this.vertical = vertical;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Constraint> {
-        protected final Constraint internal;
-        
-        public Builder() {
-            this.internal = new Constraint();
-        }
-    public Builder horizontal(HorizontalConstraint horizontal) {
-    this.internal.horizontal = horizontal;
-        return this;
-    }
-    
-    public Builder vertical(VerticalConstraint vertical) {
-    this.internal.vertical = vertical;
-        return this;
-    }
-    public Constraint build() {
-            return this.internal;
-        }
-    }
 }

@@ -12,25 +12,16 @@ public class ElasticsearchBucketScriptSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("script")
     public InlineScript script;
+    public ElasticsearchBucketScriptSettings() {
+    }
+    
+    public ElasticsearchBucketScriptSettings(InlineScript script) {
+        this.script = script;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchBucketScriptSettings> {
-        protected final ElasticsearchBucketScriptSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchBucketScriptSettings();
-        }
-    public Builder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
-        return this;
-    }
-    public ElasticsearchBucketScriptSettings build() {
-            return this.internal;
-        }
-    }
 }

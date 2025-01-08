@@ -12,30 +12,17 @@ public class Filter {
     public String query;
     @JsonProperty("label")
     public String label;
+    public Filter() {
+    }
+    
+    public Filter(String query,String label) {
+        this.query = query;
+        this.label = label;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Filter> {
-        protected final Filter internal;
-        
-        public Builder() {
-            this.internal = new Filter();
-        }
-    public Builder query(String query) {
-    this.internal.query = query;
-        return this;
-    }
-    
-    public Builder label(String label) {
-    this.internal.label = label;
-        return this;
-    }
-    public Filter build() {
-            return this.internal;
-        }
-    }
 }

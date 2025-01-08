@@ -18,7 +18,8 @@ public class AnnotationContainer {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("list")
     public List<AnnotationQuery> list;
-    public AnnotationContainer() {}
+    public AnnotationContainer() {
+    }
     
     public AnnotationContainer(List<AnnotationQuery> list) {
         this.list = list;

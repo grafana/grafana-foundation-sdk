@@ -23,40 +23,19 @@ public class Filter {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("condition")
     public String condition;
+    public Filter() {
+    }
+    
+    public Filter(String key,String operator,String value,String condition) {
+        this.key = key;
+        this.operator = operator;
+        this.value = value;
+        this.condition = condition;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Filter> {
-        protected final Filter internal;
-        
-        public Builder() {
-            this.internal = new Filter();
-        }
-    public Builder key(String key) {
-    this.internal.key = key;
-        return this;
-    }
-    
-    public Builder operator(String operator) {
-    this.internal.operator = operator;
-        return this;
-    }
-    
-    public Builder value(String value) {
-    this.internal.value = value;
-        return this;
-    }
-    
-    public Builder condition(String condition) {
-    this.internal.condition = condition;
-        return this;
-    }
-    public Filter build() {
-            return this.internal;
-        }
-    }
 }
