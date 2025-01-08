@@ -22,40 +22,19 @@ public class VizTooltipOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("maxHeight")
     public Double maxHeight;
+    public VizTooltipOptions() {
+    }
+    
+    public VizTooltipOptions(TooltipDisplayMode mode,SortOrder sort,Double maxWidth,Double maxHeight) {
+        this.mode = mode;
+        this.sort = sort;
+        this.maxWidth = maxWidth;
+        this.maxHeight = maxHeight;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<VizTooltipOptions> {
-        protected final VizTooltipOptions internal;
-        
-        public Builder() {
-            this.internal = new VizTooltipOptions();
-        }
-    public Builder mode(TooltipDisplayMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder sort(SortOrder sort) {
-    this.internal.sort = sort;
-        return this;
-    }
-    
-    public Builder maxWidth(Double maxWidth) {
-    this.internal.maxWidth = maxWidth;
-        return this;
-    }
-    
-    public Builder maxHeight(Double maxHeight) {
-    this.internal.maxHeight = maxHeight;
-        return this;
-    }
-    public VizTooltipOptions build() {
-            return this.internal;
-        }
-    }
 }

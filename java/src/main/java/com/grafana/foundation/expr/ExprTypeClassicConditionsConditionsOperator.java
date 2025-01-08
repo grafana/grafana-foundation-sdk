@@ -12,25 +12,16 @@ public class ExprTypeClassicConditionsConditionsOperator {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("type")
     public TypeClassicConditionsType type;
+    public ExprTypeClassicConditionsConditionsOperator() {
+    }
+    
+    public ExprTypeClassicConditionsConditionsOperator(TypeClassicConditionsType type) {
+        this.type = type;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsOperator> {
-        protected final ExprTypeClassicConditionsConditionsOperator internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeClassicConditionsConditionsOperator();
-        }
-    public Builder type(TypeClassicConditionsType type) {
-    this.internal.type = type;
-        return this;
-    }
-    public ExprTypeClassicConditionsConditionsOperator build() {
-            return this.internal;
-        }
-    }
 }

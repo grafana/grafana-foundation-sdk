@@ -32,55 +32,22 @@ public class FrameGeometrySource {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("gazetteer")
     public String gazetteer;
+    public FrameGeometrySource() {
+    }
+    
+    public FrameGeometrySource(FrameGeometrySourceMode mode,String geohash,String latitude,String longitude,String wkt,String lookup,String gazetteer) {
+        this.mode = mode;
+        this.geohash = geohash;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.wkt = wkt;
+        this.lookup = lookup;
+        this.gazetteer = gazetteer;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<FrameGeometrySource> {
-        protected final FrameGeometrySource internal;
-        
-        public Builder() {
-            this.internal = new FrameGeometrySource();
-        }
-    public Builder mode(FrameGeometrySourceMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder geohash(String geohash) {
-    this.internal.geohash = geohash;
-        return this;
-    }
-    
-    public Builder latitude(String latitude) {
-    this.internal.latitude = latitude;
-        return this;
-    }
-    
-    public Builder longitude(String longitude) {
-    this.internal.longitude = longitude;
-        return this;
-    }
-    
-    public Builder wkt(String wkt) {
-    this.internal.wkt = wkt;
-        return this;
-    }
-    
-    public Builder lookup(String lookup) {
-    this.internal.lookup = lookup;
-        return this;
-    }
-    
-    public Builder gazetteer(String gazetteer) {
-    this.internal.gazetteer = gazetteer;
-        return this;
-    }
-    public FrameGeometrySource build() {
-            return this.internal;
-        }
-    }
 }

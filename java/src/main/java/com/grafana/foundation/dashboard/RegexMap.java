@@ -17,26 +17,17 @@ public class RegexMap {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("options")
     public DashboardRegexMapOptions options;
+    public RegexMap() {
+    }
+    
+    public RegexMap(String type,DashboardRegexMapOptions options) {
+        this.type = type;
+        this.options = options;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<RegexMap> {
-        protected final RegexMap internal;
-        
-        public Builder() {
-            this.internal = new RegexMap();
-    this.internal.type = "regex";
-        }
-    public Builder options(com.grafana.foundation.cog.Builder<DashboardRegexMapOptions> options) {
-    this.internal.options = options.build();
-        return this;
-    }
-    public RegexMap build() {
-            return this.internal;
-        }
-    }
 }

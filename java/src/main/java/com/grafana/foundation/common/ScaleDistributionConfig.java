@@ -19,35 +19,18 @@ public class ScaleDistributionConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("linearThreshold")
     public Double linearThreshold;
+    public ScaleDistributionConfig() {
+    }
+    
+    public ScaleDistributionConfig(ScaleDistribution type,Double log,Double linearThreshold) {
+        this.type = type;
+        this.log = log;
+        this.linearThreshold = linearThreshold;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ScaleDistributionConfig> {
-        protected final ScaleDistributionConfig internal;
-        
-        public Builder() {
-            this.internal = new ScaleDistributionConfig();
-        }
-    public Builder type(ScaleDistribution type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder log(Double log) {
-    this.internal.log = log;
-        return this;
-    }
-    
-    public Builder linearThreshold(Double linearThreshold) {
-    this.internal.linearThreshold = linearThreshold;
-        return this;
-    }
-    public ScaleDistributionConfig build() {
-            return this.internal;
-        }
-    }
 }

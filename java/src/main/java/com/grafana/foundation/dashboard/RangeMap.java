@@ -17,26 +17,17 @@ public class RangeMap {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("options")
     public DashboardRangeMapOptions options;
+    public RangeMap() {
+    }
+    
+    public RangeMap(String type,DashboardRangeMapOptions options) {
+        this.type = type;
+        this.options = options;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<RangeMap> {
-        protected final RangeMap internal;
-        
-        public Builder() {
-            this.internal = new RangeMap();
-    this.internal.type = "range";
-        }
-    public Builder options(com.grafana.foundation.cog.Builder<DashboardRangeMapOptions> options) {
-    this.internal.options = options.build();
-        return this;
-    }
-    public RangeMap build() {
-            return this.internal;
-        }
-    }
 }
