@@ -17,35 +17,18 @@ public class BaseMetricAggregation {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
+    public BaseMetricAggregation() {
+    }
+    
+    public BaseMetricAggregation(MetricAggregationType type,String id,Boolean hide) {
+        this.type = type;
+        this.id = id;
+        this.hide = hide;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<BaseMetricAggregation> {
-        protected final BaseMetricAggregation internal;
-        
-        public Builder() {
-            this.internal = new BaseMetricAggregation();
-        }
-    public Builder type(com.grafana.foundation.cog.Builder<MetricAggregationType> type) {
-    this.internal.type = type.build();
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    public BaseMetricAggregation build() {
-            return this.internal;
-        }
-    }
 }

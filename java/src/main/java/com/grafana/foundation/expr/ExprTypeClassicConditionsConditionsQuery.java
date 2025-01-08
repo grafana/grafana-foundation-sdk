@@ -14,25 +14,16 @@ public class ExprTypeClassicConditionsConditionsQuery {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("params")
     public List<String> params;
+    public ExprTypeClassicConditionsConditionsQuery() {
+    }
+    
+    public ExprTypeClassicConditionsConditionsQuery(List<String> params) {
+        this.params = params;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsQuery> {
-        protected final ExprTypeClassicConditionsConditionsQuery internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeClassicConditionsConditionsQuery();
-        }
-    public Builder params(List<String> params) {
-    this.internal.params = params;
-        return this;
-    }
-    public ExprTypeClassicConditionsConditionsQuery build() {
-            return this.internal;
-        }
-    }
 }

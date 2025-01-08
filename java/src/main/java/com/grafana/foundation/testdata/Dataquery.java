@@ -101,6 +101,38 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
+    public Dataquery() {
+        this.scenarioId = TestDataQueryType.RANDOM_WALK;
+    }
+    
+    public Dataquery(String alias,TestDataQueryType scenarioId,String stringInput,StreamingQuery stream,PulseWaveQuery pulseWave,SimulationQuery sim,List<CSVWave> csvWave,String labels,Long lines,Boolean levelColumn,String channel,NodesQuery nodes,String csvFileName,String csvContent,String rawFrameContent,Integer seriesCount,USAQuery usa,DataqueryErrorType errorType,Integer spanCount,List<List<StringOrInt64>> points,Double dropPercent,Boolean flamegraphDiff,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
+        this.alias = alias;
+        this.scenarioId = scenarioId;
+        this.stringInput = stringInput;
+        this.stream = stream;
+        this.pulseWave = pulseWave;
+        this.sim = sim;
+        this.csvWave = csvWave;
+        this.labels = labels;
+        this.lines = lines;
+        this.levelColumn = levelColumn;
+        this.channel = channel;
+        this.nodes = nodes;
+        this.csvFileName = csvFileName;
+        this.csvContent = csvContent;
+        this.rawFrameContent = rawFrameContent;
+        this.seriesCount = seriesCount;
+        this.usa = usa;
+        this.errorType = errorType;
+        this.spanCount = spanCount;
+        this.points = points;
+        this.dropPercent = dropPercent;
+        this.flamegraphDiff = flamegraphDiff;
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.datasource = datasource;
+    }
     public String dataqueryName() {
         return "testdata";
     }
@@ -110,145 +142,4 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final Dataquery internal;
-        
-        public Builder() {
-            this.internal = new Dataquery();
-        this.scenarioId(TestDataQueryType.RANDOM_WALK);
-        }
-    public Builder alias(String alias) {
-    this.internal.alias = alias;
-        return this;
-    }
-    
-    public Builder scenarioId(TestDataQueryType scenarioId) {
-    this.internal.scenarioId = scenarioId;
-        return this;
-    }
-    
-    public Builder stringInput(String stringInput) {
-    this.internal.stringInput = stringInput;
-        return this;
-    }
-    
-    public Builder stream(com.grafana.foundation.cog.Builder<StreamingQuery> stream) {
-    this.internal.stream = stream.build();
-        return this;
-    }
-    
-    public Builder pulseWave(com.grafana.foundation.cog.Builder<PulseWaveQuery> pulseWave) {
-    this.internal.pulseWave = pulseWave.build();
-        return this;
-    }
-    
-    public Builder sim(com.grafana.foundation.cog.Builder<SimulationQuery> sim) {
-    this.internal.sim = sim.build();
-        return this;
-    }
-    
-    public Builder csvWave(com.grafana.foundation.cog.Builder<List<CSVWave>> csvWave) {
-    this.internal.csvWave = csvWave.build();
-        return this;
-    }
-    
-    public Builder labels(String labels) {
-    this.internal.labels = labels;
-        return this;
-    }
-    
-    public Builder lines(Long lines) {
-    this.internal.lines = lines;
-        return this;
-    }
-    
-    public Builder levelColumn(Boolean levelColumn) {
-    this.internal.levelColumn = levelColumn;
-        return this;
-    }
-    
-    public Builder channel(String channel) {
-    this.internal.channel = channel;
-        return this;
-    }
-    
-    public Builder nodes(com.grafana.foundation.cog.Builder<NodesQuery> nodes) {
-    this.internal.nodes = nodes.build();
-        return this;
-    }
-    
-    public Builder csvFileName(String csvFileName) {
-    this.internal.csvFileName = csvFileName;
-        return this;
-    }
-    
-    public Builder csvContent(String csvContent) {
-    this.internal.csvContent = csvContent;
-        return this;
-    }
-    
-    public Builder rawFrameContent(String rawFrameContent) {
-    this.internal.rawFrameContent = rawFrameContent;
-        return this;
-    }
-    
-    public Builder seriesCount(Integer seriesCount) {
-    this.internal.seriesCount = seriesCount;
-        return this;
-    }
-    
-    public Builder usa(com.grafana.foundation.cog.Builder<USAQuery> usa) {
-    this.internal.usa = usa.build();
-        return this;
-    }
-    
-    public Builder errorType(DataqueryErrorType errorType) {
-    this.internal.errorType = errorType;
-        return this;
-    }
-    
-    public Builder spanCount(Integer spanCount) {
-    this.internal.spanCount = spanCount;
-        return this;
-    }
-    
-    public Builder points(List<List<StringOrInt64>> points) {
-    this.internal.points = points;
-        return this;
-    }
-    
-    public Builder dropPercent(Double dropPercent) {
-    this.internal.dropPercent = dropPercent;
-        return this;
-    }
-    
-    public Builder flamegraphDiff(Boolean flamegraphDiff) {
-    this.internal.flamegraphDiff = flamegraphDiff;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    public Dataquery build() {
-            return this.internal;
-        }
-    }
 }

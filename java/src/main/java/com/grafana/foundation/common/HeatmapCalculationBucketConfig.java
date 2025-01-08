@@ -21,35 +21,18 @@ public class HeatmapCalculationBucketConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("scale")
     public ScaleDistributionConfig scale;
+    public HeatmapCalculationBucketConfig() {
+    }
+    
+    public HeatmapCalculationBucketConfig(HeatmapCalculationMode mode,String value,ScaleDistributionConfig scale) {
+        this.mode = mode;
+        this.value = value;
+        this.scale = scale;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<HeatmapCalculationBucketConfig> {
-        protected final HeatmapCalculationBucketConfig internal;
-        
-        public Builder() {
-            this.internal = new HeatmapCalculationBucketConfig();
-        }
-    public Builder mode(HeatmapCalculationMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder value(String value) {
-    this.internal.value = value;
-        return this;
-    }
-    
-    public Builder scale(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scale) {
-    this.internal.scale = scale.build();
-        return this;
-    }
-    public HeatmapCalculationBucketConfig build() {
-            return this.internal;
-        }
-    }
 }

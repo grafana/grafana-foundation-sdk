@@ -19,35 +19,18 @@ public class ElasticsearchPercentilesSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("percents")
     public List<String> percents;
+    public ElasticsearchPercentilesSettings() {
+    }
+    
+    public ElasticsearchPercentilesSettings(InlineScript script,String missing,List<String> percents) {
+        this.script = script;
+        this.missing = missing;
+        this.percents = percents;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchPercentilesSettings> {
-        protected final ElasticsearchPercentilesSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchPercentilesSettings();
-        }
-    public Builder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
-        return this;
-    }
-    
-    public Builder missing(String missing) {
-    this.internal.missing = missing;
-        return this;
-    }
-    
-    public Builder percents(List<String> percents) {
-    this.internal.percents = percents;
-        return this;
-    }
-    public ElasticsearchPercentilesSettings build() {
-            return this.internal;
-        }
-    }
 }

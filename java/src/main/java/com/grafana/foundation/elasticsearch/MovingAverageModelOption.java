@@ -14,30 +14,17 @@ public class MovingAverageModelOption {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("value")
     public MovingAverageModel value;
+    public MovingAverageModelOption() {
+    }
+    
+    public MovingAverageModelOption(String label,MovingAverageModel value) {
+        this.label = label;
+        this.value = value;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MovingAverageModelOption> {
-        protected final MovingAverageModelOption internal;
-        
-        public Builder() {
-            this.internal = new MovingAverageModelOption();
-        }
-    public Builder label(String label) {
-    this.internal.label = label;
-        return this;
-    }
-    
-    public Builder value(MovingAverageModel value) {
-    this.internal.value = value;
-        return this;
-    }
-    public MovingAverageModelOption build() {
-            return this.internal;
-        }
-    }
 }

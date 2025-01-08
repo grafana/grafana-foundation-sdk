@@ -18,31 +18,18 @@ public class TableBarGaugeCellOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("valueDisplayMode")
     public BarGaugeValueMode valueDisplayMode;
+    public TableBarGaugeCellOptions() {
+    }
+    
+    public TableBarGaugeCellOptions(String type,BarGaugeDisplayMode mode,BarGaugeValueMode valueDisplayMode) {
+        this.type = type;
+        this.mode = mode;
+        this.valueDisplayMode = valueDisplayMode;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TableBarGaugeCellOptions> {
-        protected final TableBarGaugeCellOptions internal;
-        
-        public Builder() {
-            this.internal = new TableBarGaugeCellOptions();
-    this.internal.type = "gauge";
-        }
-    public Builder mode(BarGaugeDisplayMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder valueDisplayMode(BarGaugeValueMode valueDisplayMode) {
-    this.internal.valueDisplayMode = valueDisplayMode;
-        return this;
-    }
-    public TableBarGaugeCellOptions build() {
-            return this.internal;
-        }
-    }
 }

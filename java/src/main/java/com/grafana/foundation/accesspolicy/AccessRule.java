@@ -20,36 +20,19 @@ public class AccessRule {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("target")
     public String target;
+    public AccessRule() {
+        this.kind = "*";
+    }
+    
+    public AccessRule(String kind,String verb,String target) {
+        this.kind = kind;
+        this.verb = verb;
+        this.target = target;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AccessRule> {
-        protected final AccessRule internal;
-        
-        public Builder() {
-            this.internal = new AccessRule();
-        this.kind("*");
-        }
-    public Builder kind(String kind) {
-    this.internal.kind = kind;
-        return this;
-    }
-    
-    public Builder verb(String verb) {
-    this.internal.verb = verb;
-        return this;
-    }
-    
-    public Builder target(String target) {
-    this.internal.target = target;
-        return this;
-    }
-    public AccessRule build() {
-            return this.internal;
-        }
-    }
 }

@@ -37,55 +37,22 @@ public class SQLExpression {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("limit")
     public Long limit;
+    public SQLExpression() {
+    }
+    
+    public SQLExpression(QueryEditorFunctionExpression select,QueryEditorPropertyExpressionOrQueryEditorFunctionExpression from,QueryEditorArrayExpression where,QueryEditorArrayExpression groupBy,QueryEditorFunctionExpression orderBy,String orderByDirection,Long limit) {
+        this.select = select;
+        this.from = from;
+        this.where = where;
+        this.groupBy = groupBy;
+        this.orderBy = orderBy;
+        this.orderByDirection = orderByDirection;
+        this.limit = limit;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<SQLExpression> {
-        protected final SQLExpression internal;
-        
-        public Builder() {
-            this.internal = new SQLExpression();
-        }
-    public Builder select(com.grafana.foundation.cog.Builder<QueryEditorFunctionExpression> select) {
-    this.internal.select = select.build();
-        return this;
-    }
-    
-    public Builder from(QueryEditorPropertyExpressionOrQueryEditorFunctionExpression from) {
-    this.internal.from = from;
-        return this;
-    }
-    
-    public Builder where(com.grafana.foundation.cog.Builder<QueryEditorArrayExpression> where) {
-    this.internal.where = where.build();
-        return this;
-    }
-    
-    public Builder groupBy(com.grafana.foundation.cog.Builder<QueryEditorArrayExpression> groupBy) {
-    this.internal.groupBy = groupBy.build();
-        return this;
-    }
-    
-    public Builder orderBy(com.grafana.foundation.cog.Builder<QueryEditorFunctionExpression> orderBy) {
-    this.internal.orderBy = orderBy.build();
-        return this;
-    }
-    
-    public Builder orderByDirection(String orderByDirection) {
-    this.internal.orderByDirection = orderByDirection;
-        return this;
-    }
-    
-    public Builder limit(Long limit) {
-    this.internal.limit = limit;
-        return this;
-    }
-    public SQLExpression build() {
-            return this.internal;
-        }
-    }
 }

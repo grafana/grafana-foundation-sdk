@@ -17,6 +17,13 @@ public class FieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hideFrom")
     public HideSeriesConfig hideFrom;
+    public FieldConfig() {
+    }
+    
+    public FieldConfig(ScaleDistributionConfig scaleDistribution,HideSeriesConfig hideFrom) {
+        this.scaleDistribution = scaleDistribution;
+        this.hideFrom = hideFrom;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

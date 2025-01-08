@@ -61,96 +61,31 @@ public class MetricQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("graphPeriod")
     public String graphPeriod;
+    public MetricQuery() {
+        this.graphPeriod = "disabled";
+    }
+    
+    public MetricQuery(String projectName,String perSeriesAligner,String alignmentPeriod,String aliasBy,String editorMode,String metricType,String crossSeriesReducer,List<String> groupBys,List<String> filters,MetricKind metricKind,String valueType,String view,String query,PreprocessorType preprocessor,String graphPeriod) {
+        this.projectName = projectName;
+        this.perSeriesAligner = perSeriesAligner;
+        this.alignmentPeriod = alignmentPeriod;
+        this.aliasBy = aliasBy;
+        this.editorMode = editorMode;
+        this.metricType = metricType;
+        this.crossSeriesReducer = crossSeriesReducer;
+        this.groupBys = groupBys;
+        this.filters = filters;
+        this.metricKind = metricKind;
+        this.valueType = valueType;
+        this.view = view;
+        this.query = query;
+        this.preprocessor = preprocessor;
+        this.graphPeriod = graphPeriod;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MetricQuery> {
-        protected final MetricQuery internal;
-        
-        public Builder() {
-            this.internal = new MetricQuery();
-        this.graphPeriod("disabled");
-        }
-    public Builder projectName(String projectName) {
-    this.internal.projectName = projectName;
-        return this;
-    }
-    
-    public Builder perSeriesAligner(String perSeriesAligner) {
-    this.internal.perSeriesAligner = perSeriesAligner;
-        return this;
-    }
-    
-    public Builder alignmentPeriod(String alignmentPeriod) {
-    this.internal.alignmentPeriod = alignmentPeriod;
-        return this;
-    }
-    
-    public Builder aliasBy(String aliasBy) {
-    this.internal.aliasBy = aliasBy;
-        return this;
-    }
-    
-    public Builder editorMode(String editorMode) {
-    this.internal.editorMode = editorMode;
-        return this;
-    }
-    
-    public Builder metricType(String metricType) {
-    this.internal.metricType = metricType;
-        return this;
-    }
-    
-    public Builder crossSeriesReducer(String crossSeriesReducer) {
-    this.internal.crossSeriesReducer = crossSeriesReducer;
-        return this;
-    }
-    
-    public Builder groupBys(List<String> groupBys) {
-    this.internal.groupBys = groupBys;
-        return this;
-    }
-    
-    public Builder filters(List<String> filters) {
-    this.internal.filters = filters;
-        return this;
-    }
-    
-    public Builder metricKind(MetricKind metricKind) {
-    this.internal.metricKind = metricKind;
-        return this;
-    }
-    
-    public Builder valueType(String valueType) {
-    this.internal.valueType = valueType;
-        return this;
-    }
-    
-    public Builder view(String view) {
-    this.internal.view = view;
-        return this;
-    }
-    
-    public Builder query(String query) {
-    this.internal.query = query;
-        return this;
-    }
-    
-    public Builder preprocessor(PreprocessorType preprocessor) {
-    this.internal.preprocessor = preprocessor;
-        return this;
-    }
-    
-    public Builder graphPeriod(String graphPeriod) {
-    this.internal.graphPeriod = graphPeriod;
-        return this;
-    }
-    public MetricQuery build() {
-            return this.internal;
-        }
-    }
 }
