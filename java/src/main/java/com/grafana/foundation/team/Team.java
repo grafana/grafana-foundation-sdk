@@ -14,31 +14,17 @@ public class Team {
     public String email;
     @JsonProperty("name")
     public String name;
+    public Team() {
+    }
+    
+    public Team(String email,String name) {
+        this.email = email;
+        this.name = name;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Team> {
-        protected final Team internal;
-        
-        public Builder(String name) {
-            this.internal = new Team();
-    this.internal.name = name;
-        }
-    public Builder email(String email) {
-    this.internal.email = email;
-        return this;
-    }
-    
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    public Team build() {
-            return this.internal;
-        }
-    }
 }

@@ -109,180 +109,47 @@ public class GraphFieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("barMaxWidth")
     public Double barMaxWidth;
+    public GraphFieldConfig() {
+    }
+    
+    public GraphFieldConfig(GraphDrawStyle drawStyle,GraphGradientMode gradientMode,GraphThresholdsStyleConfig thresholdsStyle,GraphTransform transform,String lineColor,Double lineWidth,LineInterpolation lineInterpolation,LineStyle lineStyle,String fillColor,Double fillOpacity,VisibilityMode showPoints,Double pointSize,String pointColor,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero,BarAlignment barAlignment,Double barWidthFactor,StackingConfig stacking,HideSeriesConfig hideFrom,BoolOrFloat64 insertNulls,BoolOrFloat64 spanNulls,String fillBelowTo,String pointSymbol,Boolean axisBorderShow,Double barMaxWidth) {
+        this.drawStyle = drawStyle;
+        this.gradientMode = gradientMode;
+        this.thresholdsStyle = thresholdsStyle;
+        this.transform = transform;
+        this.lineColor = lineColor;
+        this.lineWidth = lineWidth;
+        this.lineInterpolation = lineInterpolation;
+        this.lineStyle = lineStyle;
+        this.fillColor = fillColor;
+        this.fillOpacity = fillOpacity;
+        this.showPoints = showPoints;
+        this.pointSize = pointSize;
+        this.pointColor = pointColor;
+        this.axisPlacement = axisPlacement;
+        this.axisColorMode = axisColorMode;
+        this.axisLabel = axisLabel;
+        this.axisWidth = axisWidth;
+        this.axisSoftMin = axisSoftMin;
+        this.axisSoftMax = axisSoftMax;
+        this.axisGridShow = axisGridShow;
+        this.scaleDistribution = scaleDistribution;
+        this.axisCenteredZero = axisCenteredZero;
+        this.barAlignment = barAlignment;
+        this.barWidthFactor = barWidthFactor;
+        this.stacking = stacking;
+        this.hideFrom = hideFrom;
+        this.insertNulls = insertNulls;
+        this.spanNulls = spanNulls;
+        this.fillBelowTo = fillBelowTo;
+        this.pointSymbol = pointSymbol;
+        this.axisBorderShow = axisBorderShow;
+        this.barMaxWidth = barMaxWidth;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<GraphFieldConfig> {
-        protected final GraphFieldConfig internal;
-        
-        public Builder() {
-            this.internal = new GraphFieldConfig();
-        }
-    public Builder drawStyle(GraphDrawStyle drawStyle) {
-    this.internal.drawStyle = drawStyle;
-        return this;
-    }
-    
-    public Builder gradientMode(GraphGradientMode gradientMode) {
-    this.internal.gradientMode = gradientMode;
-        return this;
-    }
-    
-    public Builder thresholdsStyle(com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> thresholdsStyle) {
-    this.internal.thresholdsStyle = thresholdsStyle.build();
-        return this;
-    }
-    
-    public Builder transform(GraphTransform transform) {
-    this.internal.transform = transform;
-        return this;
-    }
-    
-    public Builder lineColor(String lineColor) {
-    this.internal.lineColor = lineColor;
-        return this;
-    }
-    
-    public Builder lineWidth(Double lineWidth) {
-    this.internal.lineWidth = lineWidth;
-        return this;
-    }
-    
-    public Builder lineInterpolation(LineInterpolation lineInterpolation) {
-    this.internal.lineInterpolation = lineInterpolation;
-        return this;
-    }
-    
-    public Builder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle) {
-    this.internal.lineStyle = lineStyle.build();
-        return this;
-    }
-    
-    public Builder fillColor(String fillColor) {
-    this.internal.fillColor = fillColor;
-        return this;
-    }
-    
-    public Builder fillOpacity(Double fillOpacity) {
-    this.internal.fillOpacity = fillOpacity;
-        return this;
-    }
-    
-    public Builder showPoints(VisibilityMode showPoints) {
-    this.internal.showPoints = showPoints;
-        return this;
-    }
-    
-    public Builder pointSize(Double pointSize) {
-    this.internal.pointSize = pointSize;
-        return this;
-    }
-    
-    public Builder pointColor(String pointColor) {
-    this.internal.pointColor = pointColor;
-        return this;
-    }
-    
-    public Builder axisPlacement(AxisPlacement axisPlacement) {
-    this.internal.axisPlacement = axisPlacement;
-        return this;
-    }
-    
-    public Builder axisColorMode(AxisColorMode axisColorMode) {
-    this.internal.axisColorMode = axisColorMode;
-        return this;
-    }
-    
-    public Builder axisLabel(String axisLabel) {
-    this.internal.axisLabel = axisLabel;
-        return this;
-    }
-    
-    public Builder axisWidth(Double axisWidth) {
-    this.internal.axisWidth = axisWidth;
-        return this;
-    }
-    
-    public Builder axisSoftMin(Double axisSoftMin) {
-    this.internal.axisSoftMin = axisSoftMin;
-        return this;
-    }
-    
-    public Builder axisSoftMax(Double axisSoftMax) {
-    this.internal.axisSoftMax = axisSoftMax;
-        return this;
-    }
-    
-    public Builder axisGridShow(Boolean axisGridShow) {
-    this.internal.axisGridShow = axisGridShow;
-        return this;
-    }
-    
-    public Builder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
-    this.internal.scaleDistribution = scaleDistribution.build();
-        return this;
-    }
-    
-    public Builder axisCenteredZero(Boolean axisCenteredZero) {
-    this.internal.axisCenteredZero = axisCenteredZero;
-        return this;
-    }
-    
-    public Builder barAlignment(BarAlignment barAlignment) {
-    this.internal.barAlignment = barAlignment;
-        return this;
-    }
-    
-    public Builder barWidthFactor(Double barWidthFactor) {
-    this.internal.barWidthFactor = barWidthFactor;
-        return this;
-    }
-    
-    public Builder stacking(com.grafana.foundation.cog.Builder<StackingConfig> stacking) {
-    this.internal.stacking = stacking.build();
-        return this;
-    }
-    
-    public Builder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
-    this.internal.hideFrom = hideFrom.build();
-        return this;
-    }
-    
-    public Builder insertNulls(BoolOrFloat64 insertNulls) {
-    this.internal.insertNulls = insertNulls;
-        return this;
-    }
-    
-    public Builder spanNulls(BoolOrFloat64 spanNulls) {
-    this.internal.spanNulls = spanNulls;
-        return this;
-    }
-    
-    public Builder fillBelowTo(String fillBelowTo) {
-    this.internal.fillBelowTo = fillBelowTo;
-        return this;
-    }
-    
-    public Builder pointSymbol(String pointSymbol) {
-    this.internal.pointSymbol = pointSymbol;
-        return this;
-    }
-    
-    public Builder axisBorderShow(Boolean axisBorderShow) {
-    this.internal.axisBorderShow = axisBorderShow;
-        return this;
-    }
-    
-    public Builder barMaxWidth(Double barMaxWidth) {
-    this.internal.barMaxWidth = barMaxWidth;
-        return this;
-    }
-    public GraphFieldConfig build() {
-            return this.internal;
-        }
-    }
 }

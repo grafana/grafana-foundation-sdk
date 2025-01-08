@@ -15,26 +15,17 @@ public class TableAutoCellOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("wrapText")
     public Boolean wrapText;
+    public TableAutoCellOptions() {
+    }
+    
+    public TableAutoCellOptions(String type,Boolean wrapText) {
+        this.type = type;
+        this.wrapText = wrapText;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TableAutoCellOptions> {
-        protected final TableAutoCellOptions internal;
-        
-        public Builder() {
-            this.internal = new TableAutoCellOptions();
-    this.internal.type = "auto";
-        }
-    public Builder wrapText(Boolean wrapText) {
-    this.internal.wrapText = wrapText;
-        return this;
-    }
-    public TableAutoCellOptions build() {
-            return this.internal;
-        }
-    }
 }

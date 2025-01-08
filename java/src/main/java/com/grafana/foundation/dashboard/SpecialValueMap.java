@@ -17,26 +17,17 @@ public class SpecialValueMap {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("options")
     public DashboardSpecialValueMapOptions options;
+    public SpecialValueMap() {
+    }
+    
+    public SpecialValueMap(String type,DashboardSpecialValueMapOptions options) {
+        this.type = type;
+        this.options = options;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<SpecialValueMap> {
-        protected final SpecialValueMap internal;
-        
-        public Builder() {
-            this.internal = new SpecialValueMap();
-    this.internal.type = "special";
-        }
-    public Builder options(com.grafana.foundation.cog.Builder<DashboardSpecialValueMapOptions> options) {
-    this.internal.options = options.build();
-        return this;
-    }
-    public SpecialValueMap build() {
-            return this.internal;
-        }
-    }
 }

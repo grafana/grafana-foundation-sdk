@@ -32,6 +32,30 @@ public class Options {
     public String navigateBefore;
     @JsonProperty("navigateAfter")
     public String navigateAfter;
+    public Options() {
+        this.onlyFromThisDashboard = false;
+        this.onlyInTimeRange = false;
+        this.limit = 10;
+        this.showUser = true;
+        this.showTime = true;
+        this.showTags = true;
+        this.navigateToPanel = true;
+        this.navigateBefore = "10m";
+        this.navigateAfter = "10m";
+    }
+    
+    public Options(Boolean onlyFromThisDashboard,Boolean onlyInTimeRange,List<String> tags,Integer limit,Boolean showUser,Boolean showTime,Boolean showTags,Boolean navigateToPanel,String navigateBefore,String navigateAfter) {
+        this.onlyFromThisDashboard = onlyFromThisDashboard;
+        this.onlyInTimeRange = onlyInTimeRange;
+        this.tags = tags;
+        this.limit = limit;
+        this.showUser = showUser;
+        this.showTime = showTime;
+        this.showTags = showTags;
+        this.navigateToPanel = navigateToPanel;
+        this.navigateBefore = navigateBefore;
+        this.navigateAfter = navigateAfter;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

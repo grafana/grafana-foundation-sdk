@@ -14,32 +14,19 @@ public class ExprTypeMathTimeRange {
     // To is the end time of the query.
     @JsonProperty("to")
     public String to;
+    public ExprTypeMathTimeRange() {
+        this.from = "now-6h";
+        this.to = "now";
+    }
+    
+    public ExprTypeMathTimeRange(String from,String to) {
+        this.from = from;
+        this.to = to;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeMathTimeRange> {
-        protected final ExprTypeMathTimeRange internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeMathTimeRange();
-        this.from("now-6h");
-        this.to("now");
-        }
-    public Builder from(String from) {
-    this.internal.from = from;
-        return this;
-    }
-    
-    public Builder to(String to) {
-    this.internal.to = to;
-        return this;
-    }
-    public ExprTypeMathTimeRange build() {
-            return this.internal;
-        }
-    }
 }

@@ -71,6 +71,23 @@ public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery
     public ExprTypeReduceTimeRange timeRange;
     @JsonProperty("type")
     public String type;
+    public TypeReduce() {
+    }
+    
+    public TypeReduce(DataSourceRef datasource,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,TypeReduceReducer reducer,String refId,ExprTypeReduceResultAssertions resultAssertions,ExprTypeReduceSettings settings,ExprTypeReduceTimeRange timeRange,String type) {
+        this.datasource = datasource;
+        this.expression = expression;
+        this.hide = hide;
+        this.intervalMs = intervalMs;
+        this.maxDataPoints = maxDataPoints;
+        this.queryType = queryType;
+        this.reducer = reducer;
+        this.refId = refId;
+        this.resultAssertions = resultAssertions;
+        this.settings = settings;
+        this.timeRange = timeRange;
+        this.type = type;
+    }
     public String dataqueryName() {
         return "__expr__";
     }
@@ -80,73 +97,4 @@ public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final TypeReduce internal;
-        
-        public Builder() {
-            this.internal = new TypeReduce();
-    this.internal.type = "reduce";
-        }
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder expression(String expression) {
-        if (!(expression.length() >= 1)) {
-            throw new IllegalArgumentException("expression.length() must be >= 1");
-        }
-    this.internal.expression = expression;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder intervalMs(Double intervalMs) {
-    this.internal.intervalMs = intervalMs;
-        return this;
-    }
-    
-    public Builder maxDataPoints(Long maxDataPoints) {
-    this.internal.maxDataPoints = maxDataPoints;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder reducer(TypeReduceReducer reducer) {
-    this.internal.reducer = reducer;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeReduceResultAssertions> resultAssertions) {
-    this.internal.resultAssertions = resultAssertions.build();
-        return this;
-    }
-    
-    public Builder settings(com.grafana.foundation.cog.Builder<ExprTypeReduceSettings> settings) {
-    this.internal.settings = settings.build();
-        return this;
-    }
-    
-    public Builder timeRange(com.grafana.foundation.cog.Builder<ExprTypeReduceTimeRange> timeRange) {
-    this.internal.timeRange = timeRange.build();
-        return this;
-    }
-    public TypeReduce build() {
-            return this.internal;
-        }
-    }
 }

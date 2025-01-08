@@ -49,7 +49,7 @@ def settings(settings: alerting.Json) -> typing.Self
 ### <span class="badge object-method"></span> type_val
 
 ```python
-def type_val(type_val: typing.Literal["alertmanager", " dingding", " discord", " email", " googlechat", " kafka", " line", " opsgenie", " pagerduty", " pushover", " sensugo", " slack", " teams", " telegram", " threema", " victorops", " webhook", " wecom"]) -> typing.Self
+def type_val(type_val: typing.Literal["alertmanager", "dingding", "discord", "email", "googlechat", "kafka", "line", "opsgenie", "pagerduty", "pushover", "sensugo", "slack", "teams", "telegram", "threema", "victorops", "webhook", "wecom"]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> uid

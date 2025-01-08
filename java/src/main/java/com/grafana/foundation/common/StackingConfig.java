@@ -16,30 +16,17 @@ public class StackingConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("group")
     public String group;
+    public StackingConfig() {
+    }
+    
+    public StackingConfig(StackingMode mode,String group) {
+        this.mode = mode;
+        this.group = group;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<StackingConfig> {
-        protected final StackingConfig internal;
-        
-        public Builder() {
-            this.internal = new StackingConfig();
-        }
-    public Builder mode(StackingMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder group(String group) {
-    this.internal.group = group;
-        return this;
-    }
-    public StackingConfig build() {
-            return this.internal;
-        }
-    }
 }
