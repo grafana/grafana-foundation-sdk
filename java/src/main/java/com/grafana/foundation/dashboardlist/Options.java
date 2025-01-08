@@ -40,6 +40,32 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("folderUID")
     public String folderUID;
+    public Options() {
+        this.keepTime = false;
+        this.includeVars = false;
+        this.showStarred = true;
+        this.showRecentlyViewed = false;
+        this.showSearch = false;
+        this.showHeadings = true;
+        this.showFolderNames = true;
+        this.maxItems = 10L;
+        this.query = "";
+    }
+    
+    public Options(Boolean keepTime,Boolean includeVars,Boolean showStarred,Boolean showRecentlyViewed,Boolean showSearch,Boolean showHeadings,Boolean showFolderNames,Long maxItems,String query,List<String> tags,Long folderId,String folderUID) {
+        this.keepTime = keepTime;
+        this.includeVars = includeVars;
+        this.showStarred = showStarred;
+        this.showRecentlyViewed = showRecentlyViewed;
+        this.showSearch = showSearch;
+        this.showHeadings = showHeadings;
+        this.showFolderNames = showFolderNames;
+        this.maxItems = maxItems;
+        this.query = query;
+        this.tags = tags;
+        this.folderId = folderId;
+        this.folderUID = folderUID;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

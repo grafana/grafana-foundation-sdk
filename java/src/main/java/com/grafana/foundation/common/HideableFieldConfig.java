@@ -13,25 +13,16 @@ public class HideableFieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hideFrom")
     public HideSeriesConfig hideFrom;
+    public HideableFieldConfig() {
+    }
+    
+    public HideableFieldConfig(HideSeriesConfig hideFrom) {
+        this.hideFrom = hideFrom;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<HideableFieldConfig> {
-        protected final HideableFieldConfig internal;
-        
-        public Builder() {
-            this.internal = new HideableFieldConfig();
-        }
-    public Builder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
-    this.internal.hideFrom = hideFrom.build();
-        return this;
-    }
-    public HideableFieldConfig build() {
-            return this.internal;
-        }
-    }
 }

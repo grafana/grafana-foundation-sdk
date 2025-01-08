@@ -28,45 +28,20 @@ public class LineConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("spanNulls")
     public BoolOrFloat64 spanNulls;
+    public LineConfig() {
+    }
+    
+    public LineConfig(String lineColor,Double lineWidth,LineInterpolation lineInterpolation,LineStyle lineStyle,BoolOrFloat64 spanNulls) {
+        this.lineColor = lineColor;
+        this.lineWidth = lineWidth;
+        this.lineInterpolation = lineInterpolation;
+        this.lineStyle = lineStyle;
+        this.spanNulls = spanNulls;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<LineConfig> {
-        protected final LineConfig internal;
-        
-        public Builder() {
-            this.internal = new LineConfig();
-        }
-    public Builder lineColor(String lineColor) {
-    this.internal.lineColor = lineColor;
-        return this;
-    }
-    
-    public Builder lineWidth(Double lineWidth) {
-    this.internal.lineWidth = lineWidth;
-        return this;
-    }
-    
-    public Builder lineInterpolation(LineInterpolation lineInterpolation) {
-    this.internal.lineInterpolation = lineInterpolation;
-        return this;
-    }
-    
-    public Builder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle) {
-    this.internal.lineStyle = lineStyle.build();
-        return this;
-    }
-    
-    public Builder spanNulls(BoolOrFloat64 spanNulls) {
-    this.internal.spanNulls = spanNulls;
-        return this;
-    }
-    public LineConfig build() {
-            return this.internal;
-        }
-    }
 }

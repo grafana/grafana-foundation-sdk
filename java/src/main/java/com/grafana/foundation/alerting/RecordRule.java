@@ -14,30 +14,17 @@ public class RecordRule {
     // Name of the recorded metric.
     @JsonProperty("metric")
     public String metric;
+    public RecordRule() {
+    }
+    
+    public RecordRule(String from,String metric) {
+        this.from = from;
+        this.metric = metric;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<RecordRule> {
-        protected final RecordRule internal;
-        
-        public Builder() {
-            this.internal = new RecordRule();
-        }
-    public Builder from(String from) {
-    this.internal.from = from;
-        return this;
-    }
-    
-    public Builder metric(String metric) {
-    this.internal.metric = metric;
-        return this;
-    }
-    public RecordRule build() {
-            return this.internal;
-        }
-    }
 }

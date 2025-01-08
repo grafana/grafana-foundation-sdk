@@ -12,32 +12,19 @@ public class DashboardDashboardTime {
     public String from;
     @JsonProperty("to")
     public String to;
+    public DashboardDashboardTime() {
+        this.from = "now-6h";
+        this.to = "now";
+    }
+    
+    public DashboardDashboardTime(String from,String to) {
+        this.from = from;
+        this.to = to;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<DashboardDashboardTime> {
-        protected final DashboardDashboardTime internal;
-        
-        public Builder() {
-            this.internal = new DashboardDashboardTime();
-        this.from("now-6h");
-        this.to("now");
-        }
-    public Builder from(String from) {
-    this.internal.from = from;
-        return this;
-    }
-    
-    public Builder to(String to) {
-    this.internal.to = to;
-        return this;
-    }
-    public DashboardDashboardTime build() {
-            return this.internal;
-        }
-    }
 }

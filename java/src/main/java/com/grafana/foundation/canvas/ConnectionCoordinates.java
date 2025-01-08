@@ -12,30 +12,17 @@ public class ConnectionCoordinates {
     public Double x;
     @JsonProperty("y")
     public Double y;
+    public ConnectionCoordinates() {
+    }
+    
+    public ConnectionCoordinates(Double x,Double y) {
+        this.x = x;
+        this.y = y;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ConnectionCoordinates> {
-        protected final ConnectionCoordinates internal;
-        
-        public Builder() {
-            this.internal = new ConnectionCoordinates();
-        }
-    public Builder x(Double x) {
-    this.internal.x = x;
-        return this;
-    }
-    
-    public Builder y(Double y) {
-    this.internal.y = y;
-        return this;
-    }
-    public ConnectionCoordinates build() {
-            return this.internal;
-        }
-    }
 }

@@ -13,25 +13,16 @@ public class OptionsWithTextFormatting {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("text")
     public VizTextDisplayOptions text;
+    public OptionsWithTextFormatting() {
+    }
+    
+    public OptionsWithTextFormatting(VizTextDisplayOptions text) {
+        this.text = text;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<OptionsWithTextFormatting> {
-        protected final OptionsWithTextFormatting internal;
-        
-        public Builder() {
-            this.internal = new OptionsWithTextFormatting();
-        }
-    public Builder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text) {
-    this.internal.text = text.build();
-        return this;
-    }
-    public OptionsWithTextFormatting build() {
-            return this.internal;
-        }
-    }
 }

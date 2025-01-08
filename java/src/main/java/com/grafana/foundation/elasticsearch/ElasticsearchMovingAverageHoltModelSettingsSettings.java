@@ -15,30 +15,17 @@ public class ElasticsearchMovingAverageHoltModelSettingsSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("beta")
     public String beta;
+    public ElasticsearchMovingAverageHoltModelSettingsSettings() {
+    }
+    
+    public ElasticsearchMovingAverageHoltModelSettingsSettings(String alpha,String beta) {
+        this.alpha = alpha;
+        this.beta = beta;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageHoltModelSettingsSettings> {
-        protected final ElasticsearchMovingAverageHoltModelSettingsSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchMovingAverageHoltModelSettingsSettings();
-        }
-    public Builder alpha(String alpha) {
-    this.internal.alpha = alpha;
-        return this;
-    }
-    
-    public Builder beta(String beta) {
-    this.internal.beta = beta;
-        return this;
-    }
-    public ElasticsearchMovingAverageHoltModelSettingsSettings build() {
-            return this.internal;
-        }
-    }
 }

@@ -20,41 +20,20 @@ public class MovingAverageHoltWintersModelSettings {
     public Boolean minimize;
     @JsonProperty("predict")
     public String predict;
+    public MovingAverageHoltWintersModelSettings() {
+    }
+    
+    public MovingAverageHoltWintersModelSettings(String model,ElasticsearchMovingAverageHoltWintersModelSettingsSettings settings,String window,Boolean minimize,String predict) {
+        this.model = model;
+        this.settings = settings;
+        this.window = window;
+        this.minimize = minimize;
+        this.predict = predict;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MovingAverageHoltWintersModelSettings> {
-        protected final MovingAverageHoltWintersModelSettings internal;
-        
-        public Builder() {
-            this.internal = new MovingAverageHoltWintersModelSettings();
-    this.internal.model = "holt_winters";
-        }
-    public Builder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageHoltWintersModelSettingsSettings> settings) {
-    this.internal.settings = settings.build();
-        return this;
-    }
-    
-    public Builder window(String window) {
-    this.internal.window = window;
-        return this;
-    }
-    
-    public Builder minimize(Boolean minimize) {
-    this.internal.minimize = minimize;
-        return this;
-    }
-    
-    public Builder predict(String predict) {
-    this.internal.predict = predict;
-        return this;
-    }
-    public MovingAverageHoltWintersModelSettings build() {
-            return this.internal;
-        }
-    }
 }
