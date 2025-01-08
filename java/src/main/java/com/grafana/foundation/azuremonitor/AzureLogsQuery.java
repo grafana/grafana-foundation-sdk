@@ -43,60 +43,23 @@ public class AzureLogsQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("intersectTime")
     public Boolean intersectTime;
+    public AzureLogsQuery() {
+    }
+    
+    public AzureLogsQuery(String query,ResultFormat resultFormat,List<String> resources,Boolean dashboardTime,String timeColumn,String workspace,String resource,Boolean intersectTime) {
+        this.query = query;
+        this.resultFormat = resultFormat;
+        this.resources = resources;
+        this.dashboardTime = dashboardTime;
+        this.timeColumn = timeColumn;
+        this.workspace = workspace;
+        this.resource = resource;
+        this.intersectTime = intersectTime;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AzureLogsQuery> {
-        protected final AzureLogsQuery internal;
-        
-        public Builder() {
-            this.internal = new AzureLogsQuery();
-        }
-    public Builder query(String query) {
-    this.internal.query = query;
-        return this;
-    }
-    
-    public Builder resultFormat(ResultFormat resultFormat) {
-    this.internal.resultFormat = resultFormat;
-        return this;
-    }
-    
-    public Builder resources(List<String> resources) {
-    this.internal.resources = resources;
-        return this;
-    }
-    
-    public Builder dashboardTime(Boolean dashboardTime) {
-    this.internal.dashboardTime = dashboardTime;
-        return this;
-    }
-    
-    public Builder timeColumn(String timeColumn) {
-    this.internal.timeColumn = timeColumn;
-        return this;
-    }
-    
-    public Builder workspace(String workspace) {
-    this.internal.workspace = workspace;
-        return this;
-    }
-    
-    public Builder resource(String resource) {
-    this.internal.resource = resource;
-        return this;
-    }
-    
-    public Builder intersectTime(Boolean intersectTime) {
-    this.internal.intersectTime = intersectTime;
-        return this;
-    }
-    public AzureLogsQuery build() {
-            return this.internal;
-        }
-    }
 }

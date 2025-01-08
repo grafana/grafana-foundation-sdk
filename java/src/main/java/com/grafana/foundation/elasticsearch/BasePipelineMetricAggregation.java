@@ -22,45 +22,20 @@ public class BasePipelineMetricAggregation {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
+    public BasePipelineMetricAggregation() {
+    }
+    
+    public BasePipelineMetricAggregation(String pipelineAgg,String field,String type,String id,Boolean hide) {
+        this.pipelineAgg = pipelineAgg;
+        this.field = field;
+        this.type = type;
+        this.id = id;
+        this.hide = hide;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<BasePipelineMetricAggregation> {
-        protected final BasePipelineMetricAggregation internal;
-        
-        public Builder() {
-            this.internal = new BasePipelineMetricAggregation();
-        }
-    public Builder pipelineAgg(String pipelineAgg) {
-    this.internal.pipelineAgg = pipelineAgg;
-        return this;
-    }
-    
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder type(String type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    public BasePipelineMetricAggregation build() {
-            return this.internal;
-        }
-    }
 }

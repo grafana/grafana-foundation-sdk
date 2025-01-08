@@ -16,35 +16,18 @@ public class Key {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("uid")
     public String uid;
+    public Key() {
+    }
+    
+    public Key(String type,Double tick,String uid) {
+        this.type = type;
+        this.tick = tick;
+        this.uid = uid;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Key> {
-        protected final Key internal;
-        
-        public Builder() {
-            this.internal = new Key();
-        }
-    public Builder type(String type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder tick(Double tick) {
-    this.internal.tick = tick;
-        return this;
-    }
-    
-    public Builder uid(String uid) {
-    this.internal.uid = uid;
-        return this;
-    }
-    public Key build() {
-            return this.internal;
-        }
-    }
 }

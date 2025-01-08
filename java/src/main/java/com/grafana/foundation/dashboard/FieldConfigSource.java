@@ -23,6 +23,13 @@ public class FieldConfigSource {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("overrides")
     public List<DashboardFieldConfigSourceOverrides> overrides;
+    public FieldConfigSource() {
+    }
+    
+    public FieldConfigSource(FieldConfig defaults,List<DashboardFieldConfigSourceOverrides> overrides) {
+        this.defaults = defaults;
+        this.overrides = overrides;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

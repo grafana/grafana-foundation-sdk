@@ -18,35 +18,18 @@ public class PromQLQuery {
     // PromQL min step
     @JsonProperty("step")
     public String step;
+    public PromQLQuery() {
+    }
+    
+    public PromQLQuery(String projectName,String expr,String step) {
+        this.projectName = projectName;
+        this.expr = expr;
+        this.step = step;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<PromQLQuery> {
-        protected final PromQLQuery internal;
-        
-        public Builder() {
-            this.internal = new PromQLQuery();
-        }
-    public Builder projectName(String projectName) {
-    this.internal.projectName = projectName;
-        return this;
-    }
-    
-    public Builder expr(String expr) {
-    this.internal.expr = expr;
-        return this;
-    }
-    
-    public Builder step(String step) {
-    this.internal.step = step;
-        return this;
-    }
-    public PromQLQuery build() {
-            return this.internal;
-        }
-    }
 }

@@ -29,6 +29,19 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("dedupStrategy")
     public LogsDedupStrategy dedupStrategy;
+    public Options() {
+    }
+    
+    public Options(Boolean showLabels,Boolean showCommonLabels,Boolean showTime,Boolean wrapLogMessage,Boolean prettifyLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy) {
+        this.showLabels = showLabels;
+        this.showCommonLabels = showCommonLabels;
+        this.showTime = showTime;
+        this.wrapLogMessage = wrapLogMessage;
+        this.prettifyLogMessage = prettifyLogMessage;
+        this.enableLogDetails = enableLogDetails;
+        this.sortOrder = sortOrder;
+        this.dedupStrategy = dedupStrategy;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

@@ -15,6 +15,13 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("counters")
     public UpdateConfig counters;
+    public Options() {
+    }
+    
+    public Options(DebugMode mode,UpdateConfig counters) {
+        this.mode = mode;
+        this.counters = counters;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

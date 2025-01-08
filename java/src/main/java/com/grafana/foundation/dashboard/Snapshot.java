@@ -51,65 +51,27 @@ public class Snapshot {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("dashboard")
     public Dashboard dashboard;
+    public Snapshot() {
+    }
+    
+    public Snapshot(String created,String expires,Boolean external,String externalUrl,Integer id,String key,String name,Integer orgId,String updated,String url,Integer userId,Dashboard dashboard) {
+        this.created = created;
+        this.expires = expires;
+        this.external = external;
+        this.externalUrl = externalUrl;
+        this.id = id;
+        this.key = key;
+        this.name = name;
+        this.orgId = orgId;
+        this.updated = updated;
+        this.url = url;
+        this.userId = userId;
+        this.dashboard = dashboard;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Snapshot> {
-        protected final Snapshot internal;
-        
-        public Builder() {
-            this.internal = new Snapshot();
-        }
-    public Builder expires(String expires) {
-    this.internal.expires = expires;
-        return this;
-    }
-    
-    public Builder external(Boolean external) {
-    this.internal.external = external;
-        return this;
-    }
-    
-    public Builder externalUrl(String externalUrl) {
-    this.internal.externalUrl = externalUrl;
-        return this;
-    }
-    
-    public Builder id(Integer id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder key(String key) {
-    this.internal.key = key;
-        return this;
-    }
-    
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder orgId(Integer orgId) {
-    this.internal.orgId = orgId;
-        return this;
-    }
-    
-    public Builder url(String url) {
-    this.internal.url = url;
-        return this;
-    }
-    
-    public Builder dashboard(com.grafana.foundation.cog.Builder<Dashboard> dashboard) {
-    this.internal.dashboard = dashboard.build();
-        return this;
-    }
-    public Snapshot build() {
-            return this.internal;
-        }
-    }
 }

@@ -78,6 +78,24 @@ public class TypeResample implements com.grafana.foundation.cog.variants.Dataque
     // The time duration
     @JsonProperty("window")
     public String window;
+    public TypeResample() {
+    }
+    
+    public TypeResample(DataSourceRef datasource,TypeResampleDownsampler downsampler,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeResampleResultAssertions resultAssertions,ExprTypeResampleTimeRange timeRange,String type,TypeResampleUpsampler upsampler,String window) {
+        this.datasource = datasource;
+        this.downsampler = downsampler;
+        this.expression = expression;
+        this.hide = hide;
+        this.intervalMs = intervalMs;
+        this.maxDataPoints = maxDataPoints;
+        this.queryType = queryType;
+        this.refId = refId;
+        this.resultAssertions = resultAssertions;
+        this.timeRange = timeRange;
+        this.type = type;
+        this.upsampler = upsampler;
+        this.window = window;
+    }
     public String dataqueryName() {
         return "__expr__";
     }
@@ -87,81 +105,4 @@ public class TypeResample implements com.grafana.foundation.cog.variants.Dataque
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final TypeResample internal;
-        
-        public Builder() {
-            this.internal = new TypeResample();
-    this.internal.type = "resample";
-        }
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder downsampler(TypeResampleDownsampler downsampler) {
-    this.internal.downsampler = downsampler;
-        return this;
-    }
-    
-    public Builder expression(String expression) {
-        if (!(expression.length() >= 1)) {
-            throw new IllegalArgumentException("expression.length() must be >= 1");
-        }
-    this.internal.expression = expression;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder intervalMs(Double intervalMs) {
-    this.internal.intervalMs = intervalMs;
-        return this;
-    }
-    
-    public Builder maxDataPoints(Long maxDataPoints) {
-    this.internal.maxDataPoints = maxDataPoints;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeResampleResultAssertions> resultAssertions) {
-    this.internal.resultAssertions = resultAssertions.build();
-        return this;
-    }
-    
-    public Builder timeRange(com.grafana.foundation.cog.Builder<ExprTypeResampleTimeRange> timeRange) {
-    this.internal.timeRange = timeRange.build();
-        return this;
-    }
-    
-    public Builder upsampler(TypeResampleUpsampler upsampler) {
-    this.internal.upsampler = upsampler;
-        return this;
-    }
-    
-    public Builder window(String window) {
-        if (!(window.length() >= 1)) {
-            throw new IllegalArgumentException("window.length() must be >= 1");
-        }
-    this.internal.window = window;
-        return this;
-    }
-    public TypeResample build() {
-            return this.internal;
-        }
-    }
 }

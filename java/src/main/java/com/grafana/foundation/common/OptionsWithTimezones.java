@@ -14,25 +14,16 @@ public class OptionsWithTimezones {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("timezone")
     public List<String> timezone;
+    public OptionsWithTimezones() {
+    }
+    
+    public OptionsWithTimezones(List<String> timezone) {
+        this.timezone = timezone;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<OptionsWithTimezones> {
-        protected final OptionsWithTimezones internal;
-        
-        public Builder() {
-            this.internal = new OptionsWithTimezones();
-        }
-    public Builder timezone(List<String> timezone) {
-    this.internal.timezone = timezone;
-        return this;
-    }
-    public OptionsWithTimezones build() {
-            return this.internal;
-        }
-    }
 }

@@ -18,35 +18,18 @@ public class AnnotationActions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("canEdit")
     public Boolean canEdit;
+    public AnnotationActions() {
+    }
+    
+    public AnnotationActions(Boolean canAdd,Boolean canDelete,Boolean canEdit) {
+        this.canAdd = canAdd;
+        this.canDelete = canDelete;
+        this.canEdit = canEdit;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AnnotationActions> {
-        protected final AnnotationActions internal;
-        
-        public Builder() {
-            this.internal = new AnnotationActions();
-        }
-    public Builder canAdd(Boolean canAdd) {
-    this.internal.canAdd = canAdd;
-        return this;
-    }
-    
-    public Builder canDelete(Boolean canDelete) {
-    this.internal.canDelete = canDelete;
-        return this;
-    }
-    
-    public Builder canEdit(Boolean canEdit) {
-    this.internal.canEdit = canEdit;
-        return this;
-    }
-    public AnnotationActions build() {
-            return this.internal;
-        }
-    }
 }

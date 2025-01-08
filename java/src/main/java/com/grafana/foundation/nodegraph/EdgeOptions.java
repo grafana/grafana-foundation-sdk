@@ -17,30 +17,17 @@ public class EdgeOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("secondaryStatUnit")
     public String secondaryStatUnit;
+    public EdgeOptions() {
+    }
+    
+    public EdgeOptions(String mainStatUnit,String secondaryStatUnit) {
+        this.mainStatUnit = mainStatUnit;
+        this.secondaryStatUnit = secondaryStatUnit;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<EdgeOptions> {
-        protected final EdgeOptions internal;
-        
-        public Builder() {
-            this.internal = new EdgeOptions();
-        }
-    public Builder mainStatUnit(String mainStatUnit) {
-    this.internal.mainStatUnit = mainStatUnit;
-        return this;
-    }
-    
-    public Builder secondaryStatUnit(String secondaryStatUnit) {
-    this.internal.secondaryStatUnit = secondaryStatUnit;
-        return this;
-    }
-    public EdgeOptions build() {
-            return this.internal;
-        }
-    }
 }

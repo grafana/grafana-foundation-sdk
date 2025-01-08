@@ -36,60 +36,23 @@ public class LegacyCloudMonitoringAnnotationQuery {
     // Annotation text.
     @JsonProperty("text")
     public String text;
+    public LegacyCloudMonitoringAnnotationQuery() {
+    }
+    
+    public LegacyCloudMonitoringAnnotationQuery(String projectName,String metricType,String refId,List<String> filters,MetricKind metricKind,String valueType,String title,String text) {
+        this.projectName = projectName;
+        this.metricType = metricType;
+        this.refId = refId;
+        this.filters = filters;
+        this.metricKind = metricKind;
+        this.valueType = valueType;
+        this.title = title;
+        this.text = text;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<LegacyCloudMonitoringAnnotationQuery> {
-        protected final LegacyCloudMonitoringAnnotationQuery internal;
-        
-        public Builder() {
-            this.internal = new LegacyCloudMonitoringAnnotationQuery();
-        }
-    public Builder projectName(String projectName) {
-    this.internal.projectName = projectName;
-        return this;
-    }
-    
-    public Builder metricType(String metricType) {
-    this.internal.metricType = metricType;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder filters(List<String> filters) {
-    this.internal.filters = filters;
-        return this;
-    }
-    
-    public Builder metricKind(MetricKind metricKind) {
-    this.internal.metricKind = metricKind;
-        return this;
-    }
-    
-    public Builder valueType(String valueType) {
-    this.internal.valueType = valueType;
-        return this;
-    }
-    
-    public Builder title(String title) {
-    this.internal.title = title;
-        return this;
-    }
-    
-    public Builder text(String text) {
-    this.internal.text = text;
-        return this;
-    }
-    public LegacyCloudMonitoringAnnotationQuery build() {
-            return this.internal;
-        }
-    }
 }

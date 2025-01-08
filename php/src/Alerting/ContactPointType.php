@@ -30,7 +30,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function dingding(): self
     {
         if (!isset(self::$instances["Dingding"])) {
-            self::$instances["Dingding"] = new self(" dingding");
+            self::$instances["Dingding"] = new self("dingding");
         }
 
         return self::$instances["Dingding"];
@@ -39,7 +39,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function discord(): self
     {
         if (!isset(self::$instances["Discord"])) {
-            self::$instances["Discord"] = new self(" discord");
+            self::$instances["Discord"] = new self("discord");
         }
 
         return self::$instances["Discord"];
@@ -48,7 +48,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function email(): self
     {
         if (!isset(self::$instances["Email"])) {
-            self::$instances["Email"] = new self(" email");
+            self::$instances["Email"] = new self("email");
         }
 
         return self::$instances["Email"];
@@ -57,7 +57,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function googlechat(): self
     {
         if (!isset(self::$instances["Googlechat"])) {
-            self::$instances["Googlechat"] = new self(" googlechat");
+            self::$instances["Googlechat"] = new self("googlechat");
         }
 
         return self::$instances["Googlechat"];
@@ -66,7 +66,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function kafka(): self
     {
         if (!isset(self::$instances["Kafka"])) {
-            self::$instances["Kafka"] = new self(" kafka");
+            self::$instances["Kafka"] = new self("kafka");
         }
 
         return self::$instances["Kafka"];
@@ -75,7 +75,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function line(): self
     {
         if (!isset(self::$instances["Line"])) {
-            self::$instances["Line"] = new self(" line");
+            self::$instances["Line"] = new self("line");
         }
 
         return self::$instances["Line"];
@@ -84,7 +84,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function opsgenie(): self
     {
         if (!isset(self::$instances["Opsgenie"])) {
-            self::$instances["Opsgenie"] = new self(" opsgenie");
+            self::$instances["Opsgenie"] = new self("opsgenie");
         }
 
         return self::$instances["Opsgenie"];
@@ -93,7 +93,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function pagerduty(): self
     {
         if (!isset(self::$instances["Pagerduty"])) {
-            self::$instances["Pagerduty"] = new self(" pagerduty");
+            self::$instances["Pagerduty"] = new self("pagerduty");
         }
 
         return self::$instances["Pagerduty"];
@@ -102,7 +102,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function pushover(): self
     {
         if (!isset(self::$instances["Pushover"])) {
-            self::$instances["Pushover"] = new self(" pushover");
+            self::$instances["Pushover"] = new self("pushover");
         }
 
         return self::$instances["Pushover"];
@@ -111,7 +111,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function sensugo(): self
     {
         if (!isset(self::$instances["Sensugo"])) {
-            self::$instances["Sensugo"] = new self(" sensugo");
+            self::$instances["Sensugo"] = new self("sensugo");
         }
 
         return self::$instances["Sensugo"];
@@ -120,7 +120,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function slack(): self
     {
         if (!isset(self::$instances["Slack"])) {
-            self::$instances["Slack"] = new self(" slack");
+            self::$instances["Slack"] = new self("slack");
         }
 
         return self::$instances["Slack"];
@@ -129,7 +129,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function teams(): self
     {
         if (!isset(self::$instances["Teams"])) {
-            self::$instances["Teams"] = new self(" teams");
+            self::$instances["Teams"] = new self("teams");
         }
 
         return self::$instances["Teams"];
@@ -138,7 +138,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function telegram(): self
     {
         if (!isset(self::$instances["Telegram"])) {
-            self::$instances["Telegram"] = new self(" telegram");
+            self::$instances["Telegram"] = new self("telegram");
         }
 
         return self::$instances["Telegram"];
@@ -147,7 +147,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function threema(): self
     {
         if (!isset(self::$instances["Threema"])) {
-            self::$instances["Threema"] = new self(" threema");
+            self::$instances["Threema"] = new self("threema");
         }
 
         return self::$instances["Threema"];
@@ -156,7 +156,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function victorops(): self
     {
         if (!isset(self::$instances["Victorops"])) {
-            self::$instances["Victorops"] = new self(" victorops");
+            self::$instances["Victorops"] = new self("victorops");
         }
 
         return self::$instances["Victorops"];
@@ -165,7 +165,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function webhook(): self
     {
         if (!isset(self::$instances["Webhook"])) {
-            self::$instances["Webhook"] = new self(" webhook");
+            self::$instances["Webhook"] = new self("webhook");
         }
 
         return self::$instances["Webhook"];
@@ -174,7 +174,7 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
     public static function wecom(): self
     {
         if (!isset(self::$instances["Wecom"])) {
-            self::$instances["Wecom"] = new self(" wecom");
+            self::$instances["Wecom"] = new self("wecom");
         }
 
         return self::$instances["Wecom"];
@@ -186,71 +186,71 @@ final class ContactPointType implements \JsonSerializable, \Stringable {
             return self::alertmanager();
         }
 
-        if ($value === " dingding") {
+        if ($value === "dingding") {
             return self::dingding();
         }
 
-        if ($value === " discord") {
+        if ($value === "discord") {
             return self::discord();
         }
 
-        if ($value === " email") {
+        if ($value === "email") {
             return self::email();
         }
 
-        if ($value === " googlechat") {
+        if ($value === "googlechat") {
             return self::googlechat();
         }
 
-        if ($value === " kafka") {
+        if ($value === "kafka") {
             return self::kafka();
         }
 
-        if ($value === " line") {
+        if ($value === "line") {
             return self::line();
         }
 
-        if ($value === " opsgenie") {
+        if ($value === "opsgenie") {
             return self::opsgenie();
         }
 
-        if ($value === " pagerduty") {
+        if ($value === "pagerduty") {
             return self::pagerduty();
         }
 
-        if ($value === " pushover") {
+        if ($value === "pushover") {
             return self::pushover();
         }
 
-        if ($value === " sensugo") {
+        if ($value === "sensugo") {
             return self::sensugo();
         }
 
-        if ($value === " slack") {
+        if ($value === "slack") {
             return self::slack();
         }
 
-        if ($value === " teams") {
+        if ($value === "teams") {
             return self::teams();
         }
 
-        if ($value === " telegram") {
+        if ($value === "telegram") {
             return self::telegram();
         }
 
-        if ($value === " threema") {
+        if ($value === "threema") {
             return self::threema();
         }
 
-        if ($value === " victorops") {
+        if ($value === "victorops") {
             return self::victorops();
         }
 
-        if ($value === " webhook") {
+        if ($value === "webhook") {
             return self::webhook();
         }
 
-        if ($value === " wecom") {
+        if ($value === "wecom") {
             return self::wecom();
         }
 

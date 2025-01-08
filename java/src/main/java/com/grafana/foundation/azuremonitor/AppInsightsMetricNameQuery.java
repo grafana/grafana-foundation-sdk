@@ -14,26 +14,17 @@ public class AppInsightsMetricNameQuery {
     public String rawQuery;
     @JsonProperty("kind")
     public String kind;
+    public AppInsightsMetricNameQuery() {
+    }
+    
+    public AppInsightsMetricNameQuery(String rawQuery,String kind) {
+        this.rawQuery = rawQuery;
+        this.kind = kind;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AppInsightsMetricNameQuery> {
-        protected final AppInsightsMetricNameQuery internal;
-        
-        public Builder() {
-            this.internal = new AppInsightsMetricNameQuery();
-    this.internal.kind = "AppInsightsMetricNameQuery";
-        }
-    public Builder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
-        return this;
-    }
-    public AppInsightsMetricNameQuery build() {
-            return this.internal;
-        }
-    }
 }

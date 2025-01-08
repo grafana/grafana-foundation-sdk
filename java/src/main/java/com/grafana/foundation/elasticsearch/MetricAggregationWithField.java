@@ -20,40 +20,19 @@ public class MetricAggregationWithField {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
+    public MetricAggregationWithField() {
+    }
+    
+    public MetricAggregationWithField(String field,MetricAggregationType type,String id,Boolean hide) {
+        this.field = field;
+        this.type = type;
+        this.id = id;
+        this.hide = hide;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MetricAggregationWithField> {
-        protected final MetricAggregationWithField internal;
-        
-        public Builder() {
-            this.internal = new MetricAggregationWithField();
-        }
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder type(com.grafana.foundation.cog.Builder<MetricAggregationType> type) {
-    this.internal.type = type.build();
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    public MetricAggregationWithField build() {
-            return this.internal;
-        }
-    }
 }
