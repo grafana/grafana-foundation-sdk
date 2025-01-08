@@ -21,40 +21,19 @@ public class NotificationTemplate {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("version")
     public String version;
+    public NotificationTemplate() {
+    }
+    
+    public NotificationTemplate(String name,String provenance,String template,String version) {
+        this.name = name;
+        this.provenance = provenance;
+        this.template = template;
+        this.version = version;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<NotificationTemplate> {
-        protected final NotificationTemplate internal;
-        
-        public Builder() {
-            this.internal = new NotificationTemplate();
-        }
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder provenance(String provenance) {
-    this.internal.provenance = provenance;
-        return this;
-    }
-    
-    public Builder template(String template) {
-    this.internal.template = template;
-        return this;
-    }
-    
-    public Builder version(String version) {
-    this.internal.version = version;
-        return this;
-    }
-    public NotificationTemplate build() {
-            return this.internal;
-        }
-    }
 }

@@ -52,6 +52,21 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
+    public Dataquery() {
+        this.labelSelector = "{}";
+    }
+    
+    public Dataquery(String labelSelector,List<String> spanSelector,String profileTypeId,List<String> groupBy,Long maxNodes,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
+        this.labelSelector = labelSelector;
+        this.spanSelector = spanSelector;
+        this.profileTypeId = profileTypeId;
+        this.groupBy = groupBy;
+        this.maxNodes = maxNodes;
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.datasource = datasource;
+    }
     public String dataqueryName() {
         return "grafanapyroscope";
     }
@@ -61,60 +76,4 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final Dataquery internal;
-        
-        public Builder() {
-            this.internal = new Dataquery();
-        this.labelSelector("{}");
-        }
-    public Builder labelSelector(String labelSelector) {
-    this.internal.labelSelector = labelSelector;
-        return this;
-    }
-    
-    public Builder spanSelector(List<String> spanSelector) {
-    this.internal.spanSelector = spanSelector;
-        return this;
-    }
-    
-    public Builder profileTypeId(String profileTypeId) {
-    this.internal.profileTypeId = profileTypeId;
-        return this;
-    }
-    
-    public Builder groupBy(List<String> groupBy) {
-    this.internal.groupBy = groupBy;
-        return this;
-    }
-    
-    public Builder maxNodes(Long maxNodes) {
-    this.internal.maxNodes = maxNodes;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    public Dataquery build() {
-            return this.internal;
-        }
-    }
 }

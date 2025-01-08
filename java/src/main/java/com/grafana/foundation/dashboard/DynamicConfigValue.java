@@ -14,7 +14,9 @@ public class DynamicConfigValue {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("value")
     public Object value;
-    public DynamicConfigValue() {}
+    public DynamicConfigValue() {
+        this.id = "";
+    }
     
     public DynamicConfigValue(String id,Object value) {
         this.id = id;

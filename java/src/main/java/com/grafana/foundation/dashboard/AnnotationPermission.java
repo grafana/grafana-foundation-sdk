@@ -15,30 +15,17 @@ public class AnnotationPermission {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("organization")
     public AnnotationActions organization;
+    public AnnotationPermission() {
+    }
+    
+    public AnnotationPermission(AnnotationActions dashboard,AnnotationActions organization) {
+        this.dashboard = dashboard;
+        this.organization = organization;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AnnotationPermission> {
-        protected final AnnotationPermission internal;
-        
-        public Builder() {
-            this.internal = new AnnotationPermission();
-        }
-    public Builder dashboard(com.grafana.foundation.cog.Builder<AnnotationActions> dashboard) {
-    this.internal.dashboard = dashboard.build();
-        return this;
-    }
-    
-    public Builder organization(com.grafana.foundation.cog.Builder<AnnotationActions> organization) {
-    this.internal.organization = organization.build();
-        return this;
-    }
-    public AnnotationPermission build() {
-            return this.internal;
-        }
-    }
 }

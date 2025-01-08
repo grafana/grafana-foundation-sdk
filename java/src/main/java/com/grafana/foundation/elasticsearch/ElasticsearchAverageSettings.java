@@ -15,30 +15,17 @@ public class ElasticsearchAverageSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("missing")
     public String missing;
+    public ElasticsearchAverageSettings() {
+    }
+    
+    public ElasticsearchAverageSettings(InlineScript script,String missing) {
+        this.script = script;
+        this.missing = missing;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchAverageSettings> {
-        protected final ElasticsearchAverageSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchAverageSettings();
-        }
-    public Builder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
-        return this;
-    }
-    
-    public Builder missing(String missing) {
-    this.internal.missing = missing;
-        return this;
-    }
-    public ElasticsearchAverageSettings build() {
-            return this.internal;
-        }
-    }
 }

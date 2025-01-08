@@ -33,50 +33,21 @@ public class ControlsOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("showMeasure")
     public Boolean showMeasure;
+    public ControlsOptions() {
+    }
+    
+    public ControlsOptions(Boolean showZoom,Boolean mouseWheelZoom,Boolean showAttribution,Boolean showScale,Boolean showDebug,Boolean showMeasure) {
+        this.showZoom = showZoom;
+        this.mouseWheelZoom = mouseWheelZoom;
+        this.showAttribution = showAttribution;
+        this.showScale = showScale;
+        this.showDebug = showDebug;
+        this.showMeasure = showMeasure;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ControlsOptions> {
-        protected final ControlsOptions internal;
-        
-        public Builder() {
-            this.internal = new ControlsOptions();
-        }
-    public Builder showZoom(Boolean showZoom) {
-    this.internal.showZoom = showZoom;
-        return this;
-    }
-    
-    public Builder mouseWheelZoom(Boolean mouseWheelZoom) {
-    this.internal.mouseWheelZoom = mouseWheelZoom;
-        return this;
-    }
-    
-    public Builder showAttribution(Boolean showAttribution) {
-    this.internal.showAttribution = showAttribution;
-        return this;
-    }
-    
-    public Builder showScale(Boolean showScale) {
-    this.internal.showScale = showScale;
-        return this;
-    }
-    
-    public Builder showDebug(Boolean showDebug) {
-    this.internal.showDebug = showDebug;
-        return this;
-    }
-    
-    public Builder showMeasure(Boolean showMeasure) {
-    this.internal.showMeasure = showMeasure;
-        return this;
-    }
-    public ControlsOptions build() {
-            return this.internal;
-        }
-    }
 }

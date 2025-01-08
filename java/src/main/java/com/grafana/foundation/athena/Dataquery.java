@@ -49,6 +49,22 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
+    public Dataquery() {
+        this.rawSQL = "";
+    }
+    
+    public Dataquery(FormatOptions format,ConnectionArgs connectionArgs,String table,String column,String queryID,String refId,Boolean hide,String queryType,String rawSQL,DataSourceRef datasource) {
+        this.format = format;
+        this.connectionArgs = connectionArgs;
+        this.table = table;
+        this.column = column;
+        this.queryID = queryID;
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.rawSQL = rawSQL;
+        this.datasource = datasource;
+    }
     public String dataqueryName() {
         return "grafana-athena-datasource";
     }
@@ -58,65 +74,4 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final Dataquery internal;
-        
-        public Builder() {
-            this.internal = new Dataquery();
-        this.rawSQL("");
-        }
-    public Builder format(FormatOptions format) {
-    this.internal.format = format;
-        return this;
-    }
-    
-    public Builder connectionArgs(com.grafana.foundation.cog.Builder<ConnectionArgs> connectionArgs) {
-    this.internal.connectionArgs = connectionArgs.build();
-        return this;
-    }
-    
-    public Builder table(String table) {
-    this.internal.table = table;
-        return this;
-    }
-    
-    public Builder column(String column) {
-    this.internal.column = column;
-        return this;
-    }
-    
-    public Builder queryID(String queryID) {
-    this.internal.queryID = queryID;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder rawSQL(String rawSQL) {
-    this.internal.rawSQL = rawSQL;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    public Dataquery build() {
-            return this.internal;
-        }
-    }
 }

@@ -34,46 +34,20 @@ public class Query {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("relativeTimeRange")
     public RelativeTimeRange relativeTimeRange;
+    public Query() {
+    }
+    
+    public Query(String datasourceUid,Dataquery model,String queryType,String refId,RelativeTimeRange relativeTimeRange) {
+        this.datasourceUid = datasourceUid;
+        this.model = model;
+        this.queryType = queryType;
+        this.refId = refId;
+        this.relativeTimeRange = relativeTimeRange;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Query> {
-        protected final Query internal;
-        
-        public Builder(String refId) {
-            this.internal = new Query();
-    this.internal.refId = refId;
-        }
-    public Builder datasourceUid(String datasourceUid) {
-    this.internal.datasourceUid = datasourceUid;
-        return this;
-    }
-    
-    public Builder model(com.grafana.foundation.cog.Builder<Dataquery> model) {
-    this.internal.model = model.build();
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder relativeTimeRange(RelativeTimeRange relativeTimeRange) {
-    this.internal.relativeTimeRange = relativeTimeRange;
-        return this;
-    }
-    public Query build() {
-            return this.internal;
-        }
-    }
 }

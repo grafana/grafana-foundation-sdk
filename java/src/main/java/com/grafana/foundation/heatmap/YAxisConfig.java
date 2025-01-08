@@ -63,95 +63,30 @@ public class YAxisConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("axisBorderShow")
     public Boolean axisBorderShow;
+    public YAxisConfig() {
+    }
+    
+    public YAxisConfig(String unit,Boolean reverse,Float decimals,Float min,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero,Float max,Boolean axisBorderShow) {
+        this.unit = unit;
+        this.reverse = reverse;
+        this.decimals = decimals;
+        this.min = min;
+        this.axisPlacement = axisPlacement;
+        this.axisColorMode = axisColorMode;
+        this.axisLabel = axisLabel;
+        this.axisWidth = axisWidth;
+        this.axisSoftMin = axisSoftMin;
+        this.axisSoftMax = axisSoftMax;
+        this.axisGridShow = axisGridShow;
+        this.scaleDistribution = scaleDistribution;
+        this.axisCenteredZero = axisCenteredZero;
+        this.max = max;
+        this.axisBorderShow = axisBorderShow;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<YAxisConfig> {
-        protected final YAxisConfig internal;
-        
-        public Builder() {
-            this.internal = new YAxisConfig();
-        }
-    public Builder unit(String unit) {
-    this.internal.unit = unit;
-        return this;
-    }
-    
-    public Builder reverse(Boolean reverse) {
-    this.internal.reverse = reverse;
-        return this;
-    }
-    
-    public Builder decimals(Float decimals) {
-    this.internal.decimals = decimals;
-        return this;
-    }
-    
-    public Builder min(Float min) {
-    this.internal.min = min;
-        return this;
-    }
-    
-    public Builder axisPlacement(AxisPlacement axisPlacement) {
-    this.internal.axisPlacement = axisPlacement;
-        return this;
-    }
-    
-    public Builder axisColorMode(AxisColorMode axisColorMode) {
-    this.internal.axisColorMode = axisColorMode;
-        return this;
-    }
-    
-    public Builder axisLabel(String axisLabel) {
-    this.internal.axisLabel = axisLabel;
-        return this;
-    }
-    
-    public Builder axisWidth(Double axisWidth) {
-    this.internal.axisWidth = axisWidth;
-        return this;
-    }
-    
-    public Builder axisSoftMin(Double axisSoftMin) {
-    this.internal.axisSoftMin = axisSoftMin;
-        return this;
-    }
-    
-    public Builder axisSoftMax(Double axisSoftMax) {
-    this.internal.axisSoftMax = axisSoftMax;
-        return this;
-    }
-    
-    public Builder axisGridShow(Boolean axisGridShow) {
-    this.internal.axisGridShow = axisGridShow;
-        return this;
-    }
-    
-    public Builder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
-    this.internal.scaleDistribution = scaleDistribution.build();
-        return this;
-    }
-    
-    public Builder axisCenteredZero(Boolean axisCenteredZero) {
-    this.internal.axisCenteredZero = axisCenteredZero;
-        return this;
-    }
-    
-    public Builder max(Float max) {
-    this.internal.max = max;
-        return this;
-    }
-    
-    public Builder axisBorderShow(Boolean axisBorderShow) {
-    this.internal.axisBorderShow = axisBorderShow;
-        return this;
-    }
-    public YAxisConfig build() {
-            return this.internal;
-        }
-    }
 }
