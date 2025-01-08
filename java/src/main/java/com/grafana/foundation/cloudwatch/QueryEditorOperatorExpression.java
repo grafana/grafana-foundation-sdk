@@ -18,31 +18,18 @@ public class QueryEditorOperatorExpression {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("operator")
     public QueryEditorOperator operator;
+    public QueryEditorOperatorExpression() {
+    }
+    
+    public QueryEditorOperatorExpression(String type,QueryEditorProperty property,QueryEditorOperator operator) {
+        this.type = type;
+        this.property = property;
+        this.operator = operator;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<QueryEditorOperatorExpression> {
-        protected final QueryEditorOperatorExpression internal;
-        
-        public Builder() {
-            this.internal = new QueryEditorOperatorExpression();
-    this.internal.type = "operator";
-        }
-    public Builder property(com.grafana.foundation.cog.Builder<QueryEditorProperty> property) {
-    this.internal.property = property.build();
-        return this;
-    }
-    
-    public Builder operator(com.grafana.foundation.cog.Builder<QueryEditorOperator> operator) {
-    this.internal.operator = operator.build();
-        return this;
-    }
-    public QueryEditorOperatorExpression build() {
-            return this.internal;
-        }
-    }
 }

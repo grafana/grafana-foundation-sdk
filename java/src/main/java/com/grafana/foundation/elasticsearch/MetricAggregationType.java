@@ -15,26 +15,17 @@ public class MetricAggregationType {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("PipelineMetricAggregationType")
     public PipelineMetricAggregationType pipelineMetricAggregationType;
+    public MetricAggregationType() {
+    }
+    
+    public MetricAggregationType(String string,PipelineMetricAggregationType pipelineMetricAggregationType) {
+        this.string = string;
+        this.pipelineMetricAggregationType = pipelineMetricAggregationType;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MetricAggregationType> {
-        protected final MetricAggregationType internal;
-        
-        public Builder() {
-            this.internal = new MetricAggregationType();
-    this.internal.string = "count";
-        }
-    public Builder pipelineMetricAggregationType(PipelineMetricAggregationType pipelineMetricAggregationType) {
-    this.internal.pipelineMetricAggregationType = pipelineMetricAggregationType;
-        return this;
-    }
-    public MetricAggregationType build() {
-            return this.internal;
-        }
-    }
 }

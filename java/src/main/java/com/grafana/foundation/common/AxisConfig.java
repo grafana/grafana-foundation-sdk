@@ -37,65 +37,24 @@ public class AxisConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("axisCenteredZero")
     public Boolean axisCenteredZero;
+    public AxisConfig() {
+    }
+    
+    public AxisConfig(AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero) {
+        this.axisPlacement = axisPlacement;
+        this.axisColorMode = axisColorMode;
+        this.axisLabel = axisLabel;
+        this.axisWidth = axisWidth;
+        this.axisSoftMin = axisSoftMin;
+        this.axisSoftMax = axisSoftMax;
+        this.axisGridShow = axisGridShow;
+        this.scaleDistribution = scaleDistribution;
+        this.axisCenteredZero = axisCenteredZero;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AxisConfig> {
-        protected final AxisConfig internal;
-        
-        public Builder() {
-            this.internal = new AxisConfig();
-        }
-    public Builder axisPlacement(AxisPlacement axisPlacement) {
-    this.internal.axisPlacement = axisPlacement;
-        return this;
-    }
-    
-    public Builder axisColorMode(AxisColorMode axisColorMode) {
-    this.internal.axisColorMode = axisColorMode;
-        return this;
-    }
-    
-    public Builder axisLabel(String axisLabel) {
-    this.internal.axisLabel = axisLabel;
-        return this;
-    }
-    
-    public Builder axisWidth(Double axisWidth) {
-    this.internal.axisWidth = axisWidth;
-        return this;
-    }
-    
-    public Builder axisSoftMin(Double axisSoftMin) {
-    this.internal.axisSoftMin = axisSoftMin;
-        return this;
-    }
-    
-    public Builder axisSoftMax(Double axisSoftMax) {
-    this.internal.axisSoftMax = axisSoftMax;
-        return this;
-    }
-    
-    public Builder axisGridShow(Boolean axisGridShow) {
-    this.internal.axisGridShow = axisGridShow;
-        return this;
-    }
-    
-    public Builder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
-    this.internal.scaleDistribution = scaleDistribution.build();
-        return this;
-    }
-    
-    public Builder axisCenteredZero(Boolean axisCenteredZero) {
-    this.internal.axisCenteredZero = axisCenteredZero;
-        return this;
-    }
-    public AxisConfig build() {
-            return this.internal;
-        }
-    }
 }

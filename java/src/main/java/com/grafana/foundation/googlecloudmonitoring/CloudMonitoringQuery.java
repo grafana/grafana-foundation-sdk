@@ -55,6 +55,20 @@ public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("intervalMs")
     public Double intervalMs;
+    public CloudMonitoringQuery() {
+    }
+    
+    public CloudMonitoringQuery(String refId,Boolean hide,String queryType,String aliasBy,TimeSeriesList timeSeriesList,TimeSeriesQuery timeSeriesQuery,SLOQuery sloQuery,DataSourceRef datasource,Double intervalMs) {
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.aliasBy = aliasBy;
+        this.timeSeriesList = timeSeriesList;
+        this.timeSeriesQuery = timeSeriesQuery;
+        this.sloQuery = sloQuery;
+        this.datasource = datasource;
+        this.intervalMs = intervalMs;
+    }
     public String dataqueryName() {
         return "cloud-monitoring";
     }
@@ -64,59 +78,4 @@ public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final CloudMonitoringQuery internal;
-        
-        public Builder() {
-            this.internal = new CloudMonitoringQuery();
-        }
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder aliasBy(String aliasBy) {
-    this.internal.aliasBy = aliasBy;
-        return this;
-    }
-    
-    public Builder timeSeriesList(com.grafana.foundation.cog.Builder<TimeSeriesList> timeSeriesList) {
-    this.internal.timeSeriesList = timeSeriesList.build();
-        return this;
-    }
-    
-    public Builder timeSeriesQuery(com.grafana.foundation.cog.Builder<TimeSeriesQuery> timeSeriesQuery) {
-    this.internal.timeSeriesQuery = timeSeriesQuery.build();
-        return this;
-    }
-    
-    public Builder sloQuery(com.grafana.foundation.cog.Builder<SLOQuery> sloQuery) {
-    this.internal.sloQuery = sloQuery.build();
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder intervalMs(Double intervalMs) {
-    this.internal.intervalMs = intervalMs;
-        return this;
-    }
-    public CloudMonitoringQuery build() {
-            return this.internal;
-        }
-    }
 }

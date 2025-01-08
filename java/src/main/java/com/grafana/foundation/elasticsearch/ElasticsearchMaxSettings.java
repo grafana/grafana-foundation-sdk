@@ -15,30 +15,17 @@ public class ElasticsearchMaxSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("missing")
     public String missing;
+    public ElasticsearchMaxSettings() {
+    }
+    
+    public ElasticsearchMaxSettings(InlineScript script,String missing) {
+        this.script = script;
+        this.missing = missing;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchMaxSettings> {
-        protected final ElasticsearchMaxSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchMaxSettings();
-        }
-    public Builder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
-        return this;
-    }
-    
-    public Builder missing(String missing) {
-    this.internal.missing = missing;
-        return this;
-    }
-    public ElasticsearchMaxSettings build() {
-            return this.internal;
-        }
-    }
 }

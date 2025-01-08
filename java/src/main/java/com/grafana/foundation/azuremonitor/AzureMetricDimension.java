@@ -26,40 +26,19 @@ public class AzureMetricDimension {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("filter")
     public String filter;
+    public AzureMetricDimension() {
+    }
+    
+    public AzureMetricDimension(String dimension,String operator,List<String> filters,String filter) {
+        this.dimension = dimension;
+        this.operator = operator;
+        this.filters = filters;
+        this.filter = filter;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AzureMetricDimension> {
-        protected final AzureMetricDimension internal;
-        
-        public Builder() {
-            this.internal = new AzureMetricDimension();
-        }
-    public Builder dimension(String dimension) {
-    this.internal.dimension = dimension;
-        return this;
-    }
-    
-    public Builder operator(String operator) {
-    this.internal.operator = operator;
-        return this;
-    }
-    
-    public Builder filters(List<String> filters) {
-    this.internal.filters = filters;
-        return this;
-    }
-    
-    public Builder filter(String filter) {
-    this.internal.filter = filter;
-        return this;
-    }
-    public AzureMetricDimension build() {
-            return this.internal;
-        }
-    }
 }

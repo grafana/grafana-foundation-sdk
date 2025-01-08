@@ -65,90 +65,29 @@ public class AnnotationQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("text")
     public String text;
+    public AnnotationQuery() {
+    }
+    
+    public AnnotationQuery(String projectName,String crossSeriesReducer,String alignmentPeriod,String perSeriesAligner,List<String> groupBys,List<String> filters,String view,String secondaryCrossSeriesReducer,String secondaryAlignmentPeriod,String secondaryPerSeriesAligner,List<String> secondaryGroupBys,String title,PreprocessorType preprocessor,String text) {
+        this.projectName = projectName;
+        this.crossSeriesReducer = crossSeriesReducer;
+        this.alignmentPeriod = alignmentPeriod;
+        this.perSeriesAligner = perSeriesAligner;
+        this.groupBys = groupBys;
+        this.filters = filters;
+        this.view = view;
+        this.secondaryCrossSeriesReducer = secondaryCrossSeriesReducer;
+        this.secondaryAlignmentPeriod = secondaryAlignmentPeriod;
+        this.secondaryPerSeriesAligner = secondaryPerSeriesAligner;
+        this.secondaryGroupBys = secondaryGroupBys;
+        this.title = title;
+        this.preprocessor = preprocessor;
+        this.text = text;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AnnotationQuery> {
-        protected final AnnotationQuery internal;
-        
-        public Builder() {
-            this.internal = new AnnotationQuery();
-        }
-    public Builder projectName(String projectName) {
-    this.internal.projectName = projectName;
-        return this;
-    }
-    
-    public Builder crossSeriesReducer(String crossSeriesReducer) {
-    this.internal.crossSeriesReducer = crossSeriesReducer;
-        return this;
-    }
-    
-    public Builder alignmentPeriod(String alignmentPeriod) {
-    this.internal.alignmentPeriod = alignmentPeriod;
-        return this;
-    }
-    
-    public Builder perSeriesAligner(String perSeriesAligner) {
-    this.internal.perSeriesAligner = perSeriesAligner;
-        return this;
-    }
-    
-    public Builder groupBys(List<String> groupBys) {
-    this.internal.groupBys = groupBys;
-        return this;
-    }
-    
-    public Builder filters(List<String> filters) {
-    this.internal.filters = filters;
-        return this;
-    }
-    
-    public Builder view(String view) {
-    this.internal.view = view;
-        return this;
-    }
-    
-    public Builder secondaryCrossSeriesReducer(String secondaryCrossSeriesReducer) {
-    this.internal.secondaryCrossSeriesReducer = secondaryCrossSeriesReducer;
-        return this;
-    }
-    
-    public Builder secondaryAlignmentPeriod(String secondaryAlignmentPeriod) {
-    this.internal.secondaryAlignmentPeriod = secondaryAlignmentPeriod;
-        return this;
-    }
-    
-    public Builder secondaryPerSeriesAligner(String secondaryPerSeriesAligner) {
-    this.internal.secondaryPerSeriesAligner = secondaryPerSeriesAligner;
-        return this;
-    }
-    
-    public Builder secondaryGroupBys(List<String> secondaryGroupBys) {
-    this.internal.secondaryGroupBys = secondaryGroupBys;
-        return this;
-    }
-    
-    public Builder title(String title) {
-    this.internal.title = title;
-        return this;
-    }
-    
-    public Builder preprocessor(PreprocessorType preprocessor) {
-    this.internal.preprocessor = preprocessor;
-        return this;
-    }
-    
-    public Builder text(String text) {
-    this.internal.text = text;
-        return this;
-    }
-    public AnnotationQuery build() {
-            return this.internal;
-        }
-    }
 }

@@ -63,6 +63,23 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
+    public Dataquery() {
+    }
+    
+    public Dataquery(String expr,String legendFormat,Long maxLines,Long resolution,QueryEditorMode editorMode,Boolean range,Boolean instant,String step,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
+        this.expr = expr;
+        this.legendFormat = legendFormat;
+        this.maxLines = maxLines;
+        this.resolution = resolution;
+        this.editorMode = editorMode;
+        this.range = range;
+        this.instant = instant;
+        this.step = step;
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.datasource = datasource;
+    }
     public String dataqueryName() {
         return "loki";
     }
@@ -72,74 +89,4 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final Dataquery internal;
-        
-        public Builder() {
-            this.internal = new Dataquery();
-        }
-    public Builder expr(String expr) {
-    this.internal.expr = expr;
-        return this;
-    }
-    
-    public Builder legendFormat(String legendFormat) {
-    this.internal.legendFormat = legendFormat;
-        return this;
-    }
-    
-    public Builder maxLines(Long maxLines) {
-    this.internal.maxLines = maxLines;
-        return this;
-    }
-    
-    public Builder resolution(Long resolution) {
-    this.internal.resolution = resolution;
-        return this;
-    }
-    
-    public Builder editorMode(QueryEditorMode editorMode) {
-    this.internal.editorMode = editorMode;
-        return this;
-    }
-    
-    public Builder range(Boolean range) {
-    this.internal.range = range;
-        return this;
-    }
-    
-    public Builder instant(Boolean instant) {
-    this.internal.instant = instant;
-        return this;
-    }
-    
-    public Builder step(String step) {
-    this.internal.step = step;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    public Dataquery build() {
-            return this.internal;
-        }
-    }
 }

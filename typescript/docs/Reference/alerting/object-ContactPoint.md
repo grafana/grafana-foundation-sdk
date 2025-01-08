@@ -17,7 +17,7 @@ export interface ContactPoint {
 	name?: string;
 	provenance?: string;
 	settings: alerting.Json;
-	type: "alertmanager" | " dingding" | " discord" | " email" | " googlechat" | " kafka" | " line" | " opsgenie" | " pagerduty" | " pushover" | " sensugo" | " slack" | " teams" | " telegram" | " threema" | " victorops" | " webhook" | " wecom";
+	type: "alertmanager" | "dingding" | "discord" | "email" | "googlechat" | "kafka" | "line" | "opsgenie" | "pagerduty" | "pushover" | "sensugo" | "slack" | "teams" | "telegram" | "threema" | "victorops" | "webhook" | "wecom";
 	// UID is the unique identifier of the contact point. The UID can be
 	// set by the user.
 	uid?: string;

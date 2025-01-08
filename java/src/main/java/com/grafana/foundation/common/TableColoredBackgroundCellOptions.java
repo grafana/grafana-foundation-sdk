@@ -15,26 +15,17 @@ public class TableColoredBackgroundCellOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("mode")
     public TableCellBackgroundDisplayMode mode;
+    public TableColoredBackgroundCellOptions() {
+    }
+    
+    public TableColoredBackgroundCellOptions(String type,TableCellBackgroundDisplayMode mode) {
+        this.type = type;
+        this.mode = mode;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TableColoredBackgroundCellOptions> {
-        protected final TableColoredBackgroundCellOptions internal;
-        
-        public Builder() {
-            this.internal = new TableColoredBackgroundCellOptions();
-    this.internal.type = "color-background";
-        }
-    public Builder mode(TableCellBackgroundDisplayMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    public TableColoredBackgroundCellOptions build() {
-            return this.internal;
-        }
-    }
 }

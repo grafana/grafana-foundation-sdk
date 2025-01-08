@@ -17,26 +17,17 @@ public class GraphPanel {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("legend")
     public DashboardGraphPanelLegend legend;
+    public GraphPanel() {
+    }
+    
+    public GraphPanel(String type,DashboardGraphPanelLegend legend) {
+        this.type = type;
+        this.legend = legend;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<GraphPanel> {
-        protected final GraphPanel internal;
-        
-        public Builder() {
-            this.internal = new GraphPanel();
-    this.internal.type = "graph";
-        }
-    public Builder legend(com.grafana.foundation.cog.Builder<DashboardGraphPanelLegend> legend) {
-    this.internal.legend = legend.build();
-        return this;
-    }
-    public GraphPanel build() {
-            return this.internal;
-        }
-    }
 }

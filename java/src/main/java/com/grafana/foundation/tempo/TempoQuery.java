@@ -74,6 +74,25 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("filters")
     public List<TraceqlFilter> filters;
+    public TempoQuery() {
+    }
+    
+    public TempoQuery(String refId,Boolean hide,String queryType,String query,String search,String serviceName,String spanName,String minDuration,String maxDuration,String serviceMapQuery,Boolean serviceMapIncludeNamespace,Long limit,DataSourceRef datasource,List<TraceqlFilter> filters) {
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.query = query;
+        this.search = search;
+        this.serviceName = serviceName;
+        this.spanName = spanName;
+        this.minDuration = minDuration;
+        this.maxDuration = maxDuration;
+        this.serviceMapQuery = serviceMapQuery;
+        this.serviceMapIncludeNamespace = serviceMapIncludeNamespace;
+        this.limit = limit;
+        this.datasource = datasource;
+        this.filters = filters;
+    }
     public String dataqueryName() {
         return "tempo";
     }
@@ -83,84 +102,4 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final TempoQuery internal;
-        
-        public Builder() {
-            this.internal = new TempoQuery();
-        }
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder query(String query) {
-    this.internal.query = query;
-        return this;
-    }
-    
-    public Builder search(String search) {
-    this.internal.search = search;
-        return this;
-    }
-    
-    public Builder serviceName(String serviceName) {
-    this.internal.serviceName = serviceName;
-        return this;
-    }
-    
-    public Builder spanName(String spanName) {
-    this.internal.spanName = spanName;
-        return this;
-    }
-    
-    public Builder minDuration(String minDuration) {
-    this.internal.minDuration = minDuration;
-        return this;
-    }
-    
-    public Builder maxDuration(String maxDuration) {
-    this.internal.maxDuration = maxDuration;
-        return this;
-    }
-    
-    public Builder serviceMapQuery(String serviceMapQuery) {
-    this.internal.serviceMapQuery = serviceMapQuery;
-        return this;
-    }
-    
-    public Builder serviceMapIncludeNamespace(Boolean serviceMapIncludeNamespace) {
-    this.internal.serviceMapIncludeNamespace = serviceMapIncludeNamespace;
-        return this;
-    }
-    
-    public Builder limit(Long limit) {
-    this.internal.limit = limit;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder filters(com.grafana.foundation.cog.Builder<List<TraceqlFilter>> filters) {
-    this.internal.filters = filters.build();
-        return this;
-    }
-    public TempoQuery build() {
-            return this.internal;
-        }
-    }
 }

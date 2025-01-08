@@ -34,6 +34,29 @@ public class Options {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("tags")
     public List<String> tags;
+    public Options() {
+        this.keepTime = false;
+        this.includeVars = false;
+        this.showStarred = true;
+        this.showRecentlyViewed = false;
+        this.showSearch = false;
+        this.showHeadings = true;
+        this.maxItems = 10L;
+        this.query = "";
+    }
+    
+    public Options(Boolean keepTime,Boolean includeVars,Boolean showStarred,Boolean showRecentlyViewed,Boolean showSearch,Boolean showHeadings,Long maxItems,String query,Long folderId,List<String> tags) {
+        this.keepTime = keepTime;
+        this.includeVars = includeVars;
+        this.showStarred = showStarred;
+        this.showRecentlyViewed = showRecentlyViewed;
+        this.showSearch = showSearch;
+        this.showHeadings = showHeadings;
+        this.maxItems = maxItems;
+        this.query = query;
+        this.folderId = folderId;
+        this.tags = tags;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

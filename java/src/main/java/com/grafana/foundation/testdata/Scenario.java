@@ -22,45 +22,20 @@ public class Scenario {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hideAliasField")
     public Boolean hideAliasField;
+    public Scenario() {
+    }
+    
+    public Scenario(String id,String name,String stringInput,String description,Boolean hideAliasField) {
+        this.id = id;
+        this.name = name;
+        this.stringInput = stringInput;
+        this.description = description;
+        this.hideAliasField = hideAliasField;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Scenario> {
-        protected final Scenario internal;
-        
-        public Builder() {
-            this.internal = new Scenario();
-        }
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder stringInput(String stringInput) {
-    this.internal.stringInput = stringInput;
-        return this;
-    }
-    
-    public Builder description(String description) {
-    this.internal.description = description;
-        return this;
-    }
-    
-    public Builder hideAliasField(Boolean hideAliasField) {
-    this.internal.hideAliasField = hideAliasField;
-        return this;
-    }
-    public Scenario build() {
-            return this.internal;
-        }
-    }
 }

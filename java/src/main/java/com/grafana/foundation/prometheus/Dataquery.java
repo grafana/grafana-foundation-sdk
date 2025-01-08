@@ -70,6 +70,24 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("interval")
     public String interval;
+    public Dataquery() {
+    }
+    
+    public Dataquery(String expr,Boolean instant,Boolean range,Boolean exemplar,QueryEditorMode editorMode,PromQueryFormat format,String legendFormat,Double intervalFactor,String refId,Boolean hide,String queryType,DataSourceRef datasource,String interval) {
+        this.expr = expr;
+        this.instant = instant;
+        this.range = range;
+        this.exemplar = exemplar;
+        this.editorMode = editorMode;
+        this.format = format;
+        this.legendFormat = legendFormat;
+        this.intervalFactor = intervalFactor;
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.datasource = datasource;
+        this.interval = interval;
+    }
     public String dataqueryName() {
         return "prometheus";
     }
@@ -79,87 +97,4 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final Dataquery internal;
-        
-        public Builder() {
-            this.internal = new Dataquery();
-        }
-    public Builder expr(String expr) {
-    this.internal.expr = expr;
-        return this;
-    }
-    
-    public Builder instant() {
-    this.internal.instant = true;
-    this.internal.range = false;
-        return this;
-    }
-    
-    public Builder range() {
-    this.internal.range = true;
-    this.internal.instant = false;
-        return this;
-    }
-    
-    public Builder exemplar(Boolean exemplar) {
-    this.internal.exemplar = exemplar;
-        return this;
-    }
-    
-    public Builder editorMode(QueryEditorMode editorMode) {
-    this.internal.editorMode = editorMode;
-        return this;
-    }
-    
-    public Builder format(PromQueryFormat format) {
-    this.internal.format = format;
-        return this;
-    }
-    
-    public Builder legendFormat(String legendFormat) {
-    this.internal.legendFormat = legendFormat;
-        return this;
-    }
-    
-    public Builder intervalFactor(Double intervalFactor) {
-    this.internal.intervalFactor = intervalFactor;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder interval(String interval) {
-    this.internal.interval = interval;
-        return this;
-    }
-    
-    public Builder rangeAndInstant() {
-    this.internal.range = true;
-    this.internal.instant = true;
-        return this;
-    }
-    public Dataquery build() {
-            return this.internal;
-        }
-    }
 }

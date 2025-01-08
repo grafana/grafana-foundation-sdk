@@ -16,30 +16,17 @@ public class LineConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("width")
     public Double width;
+    public LineConfig() {
+    }
+    
+    public LineConfig(ColorDimensionConfig color,Double width) {
+        this.color = color;
+        this.width = width;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<LineConfig> {
-        protected final LineConfig internal;
-        
-        public Builder() {
-            this.internal = new LineConfig();
-        }
-    public Builder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color) {
-    this.internal.color = color.build();
-        return this;
-    }
-    
-    public Builder width(Double width) {
-    this.internal.width = width;
-        return this;
-    }
-    public LineConfig build() {
-            return this.internal;
-        }
-    }
 }

@@ -17,30 +17,17 @@ public class TableSortByFieldState {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("desc")
     public Boolean desc;
+    public TableSortByFieldState() {
+    }
+    
+    public TableSortByFieldState(String displayName,Boolean desc) {
+        this.displayName = displayName;
+        this.desc = desc;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TableSortByFieldState> {
-        protected final TableSortByFieldState internal;
-        
-        public Builder() {
-            this.internal = new TableSortByFieldState();
-        }
-    public Builder displayName(String displayName) {
-    this.internal.displayName = displayName;
-        return this;
-    }
-    
-    public Builder desc(Boolean desc) {
-    this.internal.desc = desc;
-        return this;
-    }
-    public TableSortByFieldState build() {
-            return this.internal;
-        }
-    }
 }

@@ -18,7 +18,9 @@ public class MatcherConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("options")
     public Object options;
-    public MatcherConfig() {}
+    public MatcherConfig() {
+        this.id = "";
+    }
     
     public MatcherConfig(String id,Object options) {
         this.id = id;

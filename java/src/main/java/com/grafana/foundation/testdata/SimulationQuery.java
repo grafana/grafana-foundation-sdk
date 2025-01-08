@@ -22,40 +22,19 @@ public class SimulationQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("last")
     public Boolean last;
+    public SimulationQuery() {
+    }
+    
+    public SimulationQuery(Key key,Map<String, Object> config,Boolean stream,Boolean last) {
+        this.key = key;
+        this.config = config;
+        this.stream = stream;
+        this.last = last;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<SimulationQuery> {
-        protected final SimulationQuery internal;
-        
-        public Builder() {
-            this.internal = new SimulationQuery();
-        }
-    public Builder key(com.grafana.foundation.cog.Builder<Key> key) {
-    this.internal.key = key.build();
-        return this;
-    }
-    
-    public Builder config(Map<String, Object> config) {
-    this.internal.config = config;
-        return this;
-    }
-    
-    public Builder stream(Boolean stream) {
-    this.internal.stream = stream;
-        return this;
-    }
-    
-    public Builder last(Boolean last) {
-    this.internal.last = last;
-        return this;
-    }
-    public SimulationQuery build() {
-            return this.internal;
-        }
-    }
 }
