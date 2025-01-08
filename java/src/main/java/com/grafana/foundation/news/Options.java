@@ -16,6 +16,14 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("showImage")
     public Boolean showImage;
+    public Options() {
+        this.showImage = true;
+    }
+    
+    public Options(String feedUrl,Boolean showImage) {
+        this.feedUrl = feedUrl;
+        this.showImage = showImage;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

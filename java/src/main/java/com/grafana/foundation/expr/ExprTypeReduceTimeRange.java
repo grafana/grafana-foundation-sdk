@@ -14,32 +14,19 @@ public class ExprTypeReduceTimeRange {
     // To is the end time of the query.
     @JsonProperty("to")
     public String to;
+    public ExprTypeReduceTimeRange() {
+        this.from = "now-6h";
+        this.to = "now";
+    }
+    
+    public ExprTypeReduceTimeRange(String from,String to) {
+        this.from = from;
+        this.to = to;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeReduceTimeRange> {
-        protected final ExprTypeReduceTimeRange internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeReduceTimeRange();
-        this.from("now-6h");
-        this.to("now");
-        }
-    public Builder from(String from) {
-    this.internal.from = from;
-        return this;
-    }
-    
-    public Builder to(String to) {
-    this.internal.to = to;
-        return this;
-    }
-    public ExprTypeReduceTimeRange build() {
-            return this.internal;
-        }
-    }
 }

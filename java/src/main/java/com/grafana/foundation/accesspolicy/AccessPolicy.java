@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
-import java.util.LinkedList;
 
 public class AccessPolicy {
     // The scope where these policies should apply
@@ -26,38 +25,18 @@ public class AccessPolicy {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("rules")
     public List<AccessRule> rules;
+    public AccessPolicy() {
+    }
+    
+    public AccessPolicy(ResourceRef scope,RoleRef role,List<AccessRule> rules) {
+        this.scope = scope;
+        this.role = role;
+        this.rules = rules;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AccessPolicy> {
-        protected final AccessPolicy internal;
-        
-        public Builder() {
-            this.internal = new AccessPolicy();
-        }
-    public Builder scope(com.grafana.foundation.cog.Builder<ResourceRef> scope) {
-    this.internal.scope = scope.build();
-        return this;
-    }
-    
-    public Builder role(com.grafana.foundation.cog.Builder<RoleRef> role) {
-    this.internal.role = role.build();
-        return this;
-    }
-    
-    public Builder rules(com.grafana.foundation.cog.Builder<AccessRule> rule) {
-		if (this.internal.rules == null) {
-			this.internal.rules = new LinkedList<>();
-		}
-    this.internal.rules.add(rule.build());
-        return this;
-    }
-    public AccessPolicy build() {
-            return this.internal;
-        }
-    }
 }

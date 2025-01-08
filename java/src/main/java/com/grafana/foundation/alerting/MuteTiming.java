@@ -16,30 +16,17 @@ public class MuteTiming {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("time_intervals")
     public List<TimeInterval> timeIntervals;
+    public MuteTiming() {
+    }
+    
+    public MuteTiming(String name,List<TimeInterval> timeIntervals) {
+        this.name = name;
+        this.timeIntervals = timeIntervals;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MuteTiming> {
-        protected final MuteTiming internal;
-        
-        public Builder() {
-            this.internal = new MuteTiming();
-        }
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder timeIntervals(com.grafana.foundation.cog.Builder<List<TimeInterval>> timeIntervals) {
-    this.internal.timeIntervals = timeIntervals.build();
-        return this;
-    }
-    public MuteTiming build() {
-            return this.internal;
-        }
-    }
 }

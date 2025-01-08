@@ -18,35 +18,18 @@ public class NodesQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("seed")
     public Long seed;
+    public NodesQuery() {
+    }
+    
+    public NodesQuery(NodesQueryType type,Long count,Long seed) {
+        this.type = type;
+        this.count = count;
+        this.seed = seed;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<NodesQuery> {
-        protected final NodesQuery internal;
-        
-        public Builder() {
-            this.internal = new NodesQuery();
-        }
-    public Builder type(NodesQueryType type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder count(Long count) {
-    this.internal.count = count;
-        return this;
-    }
-    
-    public Builder seed(Long seed) {
-    this.internal.seed = seed;
-        return this;
-    }
-    public NodesQuery build() {
-            return this.internal;
-        }
-    }
 }

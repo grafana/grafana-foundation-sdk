@@ -19,35 +19,18 @@ public class FillConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("fillBelowTo")
     public String fillBelowTo;
+    public FillConfig() {
+    }
+    
+    public FillConfig(String fillColor,Double fillOpacity,String fillBelowTo) {
+        this.fillColor = fillColor;
+        this.fillOpacity = fillOpacity;
+        this.fillBelowTo = fillBelowTo;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<FillConfig> {
-        protected final FillConfig internal;
-        
-        public Builder() {
-            this.internal = new FillConfig();
-        }
-    public Builder fillColor(String fillColor) {
-    this.internal.fillColor = fillColor;
-        return this;
-    }
-    
-    public Builder fillOpacity(Double fillOpacity) {
-    this.internal.fillOpacity = fillOpacity;
-        return this;
-    }
-    
-    public Builder fillBelowTo(String fillBelowTo) {
-    this.internal.fillBelowTo = fillBelowTo;
-        return this;
-    }
-    public FillConfig build() {
-            return this.internal;
-        }
-    }
 }

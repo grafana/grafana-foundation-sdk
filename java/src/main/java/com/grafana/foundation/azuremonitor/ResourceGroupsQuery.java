@@ -16,31 +16,18 @@ public class ResourceGroupsQuery {
     public String kind;
     @JsonProperty("subscription")
     public String subscription;
+    public ResourceGroupsQuery() {
+    }
+    
+    public ResourceGroupsQuery(String rawQuery,String kind,String subscription) {
+        this.rawQuery = rawQuery;
+        this.kind = kind;
+        this.subscription = subscription;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ResourceGroupsQuery> {
-        protected final ResourceGroupsQuery internal;
-        
-        public Builder() {
-            this.internal = new ResourceGroupsQuery();
-    this.internal.kind = "ResourceGroupsQuery";
-        }
-    public Builder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
-        return this;
-    }
-    
-    public Builder subscription(String subscription) {
-    this.internal.subscription = subscription;
-        return this;
-    }
-    public ResourceGroupsQuery build() {
-            return this.internal;
-        }
-    }
 }

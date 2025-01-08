@@ -27,46 +27,21 @@ public class MovingAverage {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
+    public MovingAverage() {
+    }
+    
+    public MovingAverage(String pipelineAgg,String field,String type,String id,Map<String, Object> settings,Boolean hide) {
+        this.pipelineAgg = pipelineAgg;
+        this.field = field;
+        this.type = type;
+        this.id = id;
+        this.settings = settings;
+        this.hide = hide;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MovingAverage> {
-        protected final MovingAverage internal;
-        
-        public Builder() {
-            this.internal = new MovingAverage();
-    this.internal.type = "moving_avg";
-        }
-    public Builder pipelineAgg(String pipelineAgg) {
-    this.internal.pipelineAgg = pipelineAgg;
-        return this;
-    }
-    
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder settings(Map<String, Object> settings) {
-    this.internal.settings = settings;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    public MovingAverage build() {
-            return this.internal;
-        }
-    }
 }

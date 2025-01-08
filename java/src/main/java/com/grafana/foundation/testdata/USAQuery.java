@@ -22,40 +22,19 @@ public class USAQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("states")
     public List<String> states;
+    public USAQuery() {
+    }
+    
+    public USAQuery(String mode,String period,List<String> fields,List<String> states) {
+        this.mode = mode;
+        this.period = period;
+        this.fields = fields;
+        this.states = states;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<USAQuery> {
-        protected final USAQuery internal;
-        
-        public Builder() {
-            this.internal = new USAQuery();
-        }
-    public Builder mode(String mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder period(String period) {
-    this.internal.period = period;
-        return this;
-    }
-    
-    public Builder fields(List<String> fields) {
-    this.internal.fields = fields;
-        return this;
-    }
-    
-    public Builder states(List<String> states) {
-    this.internal.states = states;
-        return this;
-    }
-    public USAQuery build() {
-            return this.internal;
-        }
-    }
 }

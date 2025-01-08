@@ -14,31 +14,18 @@ public class MovingAverageLinearModelSettings {
     public String window;
     @JsonProperty("predict")
     public String predict;
+    public MovingAverageLinearModelSettings() {
+    }
+    
+    public MovingAverageLinearModelSettings(String model,String window,String predict) {
+        this.model = model;
+        this.window = window;
+        this.predict = predict;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MovingAverageLinearModelSettings> {
-        protected final MovingAverageLinearModelSettings internal;
-        
-        public Builder() {
-            this.internal = new MovingAverageLinearModelSettings();
-    this.internal.model = "linear";
-        }
-    public Builder window(String window) {
-    this.internal.window = window;
-        return this;
-    }
-    
-    public Builder predict(String predict) {
-    this.internal.predict = predict;
-        return this;
-    }
-    public MovingAverageLinearModelSettings build() {
-            return this.internal;
-        }
-    }
 }

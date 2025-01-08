@@ -54,6 +54,20 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
+    public Dataquery() {
+    }
+    
+    public Dataquery(String alias,String query,String timeField,List<BucketAggregation> bucketAggs,List<MetricAggregation> metrics,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
+        this.alias = alias;
+        this.query = query;
+        this.timeField = timeField;
+        this.bucketAggs = bucketAggs;
+        this.metrics = metrics;
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.datasource = datasource;
+    }
     public String dataqueryName() {
         return "elasticsearch";
     }
@@ -63,59 +77,4 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final Dataquery internal;
-        
-        public Builder() {
-            this.internal = new Dataquery();
-        }
-    public Builder alias(String alias) {
-    this.internal.alias = alias;
-        return this;
-    }
-    
-    public Builder query(String query) {
-    this.internal.query = query;
-        return this;
-    }
-    
-    public Builder timeField(String timeField) {
-    this.internal.timeField = timeField;
-        return this;
-    }
-    
-    public Builder bucketAggs(List<BucketAggregation> bucketAggs) {
-    this.internal.bucketAggs = bucketAggs;
-        return this;
-    }
-    
-    public Builder metrics(List<MetricAggregation> metrics) {
-    this.internal.metrics = metrics;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    public Dataquery build() {
-            return this.internal;
-        }
-    }
 }

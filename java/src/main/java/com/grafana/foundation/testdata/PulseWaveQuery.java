@@ -24,45 +24,20 @@ public class PulseWaveQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("offValue")
     public Double offValue;
+    public PulseWaveQuery() {
+    }
+    
+    public PulseWaveQuery(Long timeStep,Long onCount,Long offCount,Double onValue,Double offValue) {
+        this.timeStep = timeStep;
+        this.onCount = onCount;
+        this.offCount = offCount;
+        this.onValue = onValue;
+        this.offValue = offValue;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<PulseWaveQuery> {
-        protected final PulseWaveQuery internal;
-        
-        public Builder() {
-            this.internal = new PulseWaveQuery();
-        }
-    public Builder timeStep(Long timeStep) {
-    this.internal.timeStep = timeStep;
-        return this;
-    }
-    
-    public Builder onCount(Long onCount) {
-    this.internal.onCount = onCount;
-        return this;
-    }
-    
-    public Builder offCount(Long offCount) {
-    this.internal.offCount = offCount;
-        return this;
-    }
-    
-    public Builder onValue(Double onValue) {
-    this.internal.onValue = onValue;
-        return this;
-    }
-    
-    public Builder offValue(Double offValue) {
-    this.internal.offValue = offValue;
-        return this;
-    }
-    public PulseWaveQuery build() {
-            return this.internal;
-        }
-    }
 }

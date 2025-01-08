@@ -78,6 +78,30 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
+    public Dataquery() {
+    }
+    
+    public Dataquery(String dataset,String table,String project,QueryFormat format,Boolean rawQuery,String rawSql,String location,Boolean partitioned,String partitionedField,Boolean convertToUTC,Boolean sharded,QueryPriority queryPriority,String timeShift,EditorMode editorMode,SQLExpression sql,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
+        this.dataset = dataset;
+        this.table = table;
+        this.project = project;
+        this.format = format;
+        this.rawQuery = rawQuery;
+        this.rawSql = rawSql;
+        this.location = location;
+        this.partitioned = partitioned;
+        this.partitionedField = partitionedField;
+        this.convertToUTC = convertToUTC;
+        this.sharded = sharded;
+        this.queryPriority = queryPriority;
+        this.timeShift = timeShift;
+        this.editorMode = editorMode;
+        this.sql = sql;
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.datasource = datasource;
+    }
     public String dataqueryName() {
         return "grafana-bigquery-datasource";
     }
@@ -87,109 +111,4 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final Dataquery internal;
-        
-        public Builder() {
-            this.internal = new Dataquery();
-        }
-    public Builder dataset(String dataset) {
-    this.internal.dataset = dataset;
-        return this;
-    }
-    
-    public Builder table(String table) {
-    this.internal.table = table;
-        return this;
-    }
-    
-    public Builder project(String project) {
-    this.internal.project = project;
-        return this;
-    }
-    
-    public Builder format(QueryFormat format) {
-    this.internal.format = format;
-        return this;
-    }
-    
-    public Builder rawQuery(Boolean rawQuery) {
-    this.internal.rawQuery = rawQuery;
-        return this;
-    }
-    
-    public Builder rawSql(String rawSql) {
-    this.internal.rawSql = rawSql;
-        return this;
-    }
-    
-    public Builder location(String location) {
-    this.internal.location = location;
-        return this;
-    }
-    
-    public Builder partitioned(Boolean partitioned) {
-    this.internal.partitioned = partitioned;
-        return this;
-    }
-    
-    public Builder partitionedField(String partitionedField) {
-    this.internal.partitionedField = partitionedField;
-        return this;
-    }
-    
-    public Builder convertToUTC(Boolean convertToUTC) {
-    this.internal.convertToUTC = convertToUTC;
-        return this;
-    }
-    
-    public Builder sharded(Boolean sharded) {
-    this.internal.sharded = sharded;
-        return this;
-    }
-    
-    public Builder queryPriority(QueryPriority queryPriority) {
-    this.internal.queryPriority = queryPriority;
-        return this;
-    }
-    
-    public Builder timeShift(String timeShift) {
-    this.internal.timeShift = timeShift;
-        return this;
-    }
-    
-    public Builder editorMode(EditorMode editorMode) {
-    this.internal.editorMode = editorMode;
-        return this;
-    }
-    
-    public Builder sql(com.grafana.foundation.cog.Builder<SQLExpression> sql) {
-    this.internal.sql = sql.build();
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    public Dataquery build() {
-            return this.internal;
-        }
-    }
 }

@@ -11,7 +11,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class TableImageCellOptions {
     @JsonProperty("type")
     public String type;
-    public TableImageCellOptions() {}
+    public TableImageCellOptions() {
+    }
     
     public TableImageCellOptions(String type) {
         this.type = type;

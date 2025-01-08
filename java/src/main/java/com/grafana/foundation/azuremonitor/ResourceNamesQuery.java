@@ -20,41 +20,20 @@ public class ResourceNamesQuery {
     public String resourceGroup;
     @JsonProperty("metricNamespace")
     public String metricNamespace;
+    public ResourceNamesQuery() {
+    }
+    
+    public ResourceNamesQuery(String rawQuery,String kind,String subscription,String resourceGroup,String metricNamespace) {
+        this.rawQuery = rawQuery;
+        this.kind = kind;
+        this.subscription = subscription;
+        this.resourceGroup = resourceGroup;
+        this.metricNamespace = metricNamespace;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ResourceNamesQuery> {
-        protected final ResourceNamesQuery internal;
-        
-        public Builder() {
-            this.internal = new ResourceNamesQuery();
-    this.internal.kind = "ResourceNamesQuery";
-        }
-    public Builder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
-        return this;
-    }
-    
-    public Builder subscription(String subscription) {
-    this.internal.subscription = subscription;
-        return this;
-    }
-    
-    public Builder resourceGroup(String resourceGroup) {
-    this.internal.resourceGroup = resourceGroup;
-        return this;
-    }
-    
-    public Builder metricNamespace(String metricNamespace) {
-    this.internal.metricNamespace = metricNamespace;
-        return this;
-    }
-    public ResourceNamesQuery build() {
-            return this.internal;
-        }
-    }
 }

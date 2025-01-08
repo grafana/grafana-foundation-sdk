@@ -44,70 +44,25 @@ public class SLOQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("lookbackPeriod")
     public String lookbackPeriod;
+    public SLOQuery() {
+    }
+    
+    public SLOQuery(String projectName,String perSeriesAligner,String alignmentPeriod,String selectorName,String serviceId,String serviceName,String sloId,String sloName,Double goal,String lookbackPeriod) {
+        this.projectName = projectName;
+        this.perSeriesAligner = perSeriesAligner;
+        this.alignmentPeriod = alignmentPeriod;
+        this.selectorName = selectorName;
+        this.serviceId = serviceId;
+        this.serviceName = serviceName;
+        this.sloId = sloId;
+        this.sloName = sloName;
+        this.goal = goal;
+        this.lookbackPeriod = lookbackPeriod;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<SLOQuery> {
-        protected final SLOQuery internal;
-        
-        public Builder() {
-            this.internal = new SLOQuery();
-        }
-    public Builder projectName(String projectName) {
-    this.internal.projectName = projectName;
-        return this;
-    }
-    
-    public Builder perSeriesAligner(String perSeriesAligner) {
-    this.internal.perSeriesAligner = perSeriesAligner;
-        return this;
-    }
-    
-    public Builder alignmentPeriod(String alignmentPeriod) {
-    this.internal.alignmentPeriod = alignmentPeriod;
-        return this;
-    }
-    
-    public Builder selectorName(String selectorName) {
-    this.internal.selectorName = selectorName;
-        return this;
-    }
-    
-    public Builder serviceId(String serviceId) {
-    this.internal.serviceId = serviceId;
-        return this;
-    }
-    
-    public Builder serviceName(String serviceName) {
-    this.internal.serviceName = serviceName;
-        return this;
-    }
-    
-    public Builder sloId(String sloId) {
-    this.internal.sloId = sloId;
-        return this;
-    }
-    
-    public Builder sloName(String sloName) {
-    this.internal.sloName = sloName;
-        return this;
-    }
-    
-    public Builder goal(Double goal) {
-    this.internal.goal = goal;
-        return this;
-    }
-    
-    public Builder lookbackPeriod(String lookbackPeriod) {
-    this.internal.lookbackPeriod = lookbackPeriod;
-        return this;
-    }
-    public SLOQuery build() {
-            return this.internal;
-        }
-    }
 }

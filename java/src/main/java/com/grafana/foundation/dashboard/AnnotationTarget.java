@@ -30,40 +30,19 @@ public class AnnotationTarget {
     // but code+tests is already depending on it so hard to change
     @JsonProperty("type")
     public String type;
+    public AnnotationTarget() {
+    }
+    
+    public AnnotationTarget(Long limit,Boolean matchAny,List<String> tags,String type) {
+        this.limit = limit;
+        this.matchAny = matchAny;
+        this.tags = tags;
+        this.type = type;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AnnotationTarget> {
-        protected final AnnotationTarget internal;
-        
-        public Builder() {
-            this.internal = new AnnotationTarget();
-        }
-    public Builder limit(Long limit) {
-    this.internal.limit = limit;
-        return this;
-    }
-    
-    public Builder matchAny(Boolean matchAny) {
-    this.internal.matchAny = matchAny;
-        return this;
-    }
-    
-    public Builder tags(List<String> tags) {
-    this.internal.tags = tags;
-        return this;
-    }
-    
-    public Builder type(String type) {
-    this.internal.type = type;
-        return this;
-    }
-    public AnnotationTarget build() {
-            return this.internal;
-        }
-    }
 }

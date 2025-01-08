@@ -18,35 +18,18 @@ public class CookiePreferences {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("functional")
     public Object functional;
+    public CookiePreferences() {
+    }
+    
+    public CookiePreferences(Object analytics,Object performance,Object functional) {
+        this.analytics = analytics;
+        this.performance = performance;
+        this.functional = functional;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<CookiePreferences> {
-        protected final CookiePreferences internal;
-        
-        public Builder() {
-            this.internal = new CookiePreferences();
-        }
-    public Builder analytics(Object analytics) {
-    this.internal.analytics = analytics;
-        return this;
-    }
-    
-    public Builder performance(Object performance) {
-    this.internal.performance = performance;
-        return this;
-    }
-    
-    public Builder functional(Object functional) {
-    this.internal.functional = functional;
-        return this;
-    }
-    public CookiePreferences build() {
-            return this.internal;
-        }
-    }
 }

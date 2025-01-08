@@ -15,30 +15,17 @@ public class ElasticsearchSumSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("missing")
     public String missing;
+    public ElasticsearchSumSettings() {
+    }
+    
+    public ElasticsearchSumSettings(InlineScript script,String missing) {
+        this.script = script;
+        this.missing = missing;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchSumSettings> {
-        protected final ElasticsearchSumSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchSumSettings();
-        }
-    public Builder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
-        return this;
-    }
-    
-    public Builder missing(String missing) {
-    this.internal.missing = missing;
-        return this;
-    }
-    public ElasticsearchSumSettings build() {
-            return this.internal;
-        }
-    }
 }

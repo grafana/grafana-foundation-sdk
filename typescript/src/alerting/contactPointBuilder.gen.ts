@@ -41,7 +41,7 @@ export class ContactPointBuilder implements cog.Builder<alerting.ContactPoint> {
         return this;
     }
 
-    type(type: "alertmanager" | " dingding" | " discord" | " email" | " googlechat" | " kafka" | " line" | " opsgenie" | " pagerduty" | " pushover" | " sensugo" | " slack" | " teams" | " telegram" | " threema" | " victorops" | " webhook" | " wecom"): this {
+    type(type: "alertmanager" | "dingding" | "discord" | "email" | "googlechat" | "kafka" | "line" | "opsgenie" | "pagerduty" | "pushover" | "sensugo" | "slack" | "teams" | "telegram" | "threema" | "victorops" | "webhook" | "wecom"): this {
         this.internal.type = type;
         return this;
     }

@@ -20,31 +20,18 @@ public class AnnotationPanelFilter {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("ids")
     public List<Integer> ids;
+    public AnnotationPanelFilter() {
+        this.exclude = false;
+    }
+    
+    public AnnotationPanelFilter(Boolean exclude,List<Integer> ids) {
+        this.exclude = exclude;
+        this.ids = ids;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AnnotationPanelFilter> {
-        protected final AnnotationPanelFilter internal;
-        
-        public Builder() {
-            this.internal = new AnnotationPanelFilter();
-        this.exclude(false);
-        }
-    public Builder exclude(Boolean exclude) {
-    this.internal.exclude = exclude;
-        return this;
-    }
-    
-    public Builder ids(List<Integer> ids) {
-    this.internal.ids = ids;
-        return this;
-    }
-    public AnnotationPanelFilter build() {
-            return this.internal;
-        }
-    }
 }

@@ -23,45 +23,20 @@ public class ScalarDimensionConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("mode")
     public ScalarDimensionMode mode;
+    public ScalarDimensionConfig() {
+    }
+    
+    public ScalarDimensionConfig(Double min,Double max,Double fixed,String field,ScalarDimensionMode mode) {
+        this.min = min;
+        this.max = max;
+        this.fixed = fixed;
+        this.field = field;
+        this.mode = mode;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ScalarDimensionConfig> {
-        protected final ScalarDimensionConfig internal;
-        
-        public Builder() {
-            this.internal = new ScalarDimensionConfig();
-        }
-    public Builder min(Double min) {
-    this.internal.min = min;
-        return this;
-    }
-    
-    public Builder max(Double max) {
-    this.internal.max = max;
-        return this;
-    }
-    
-    public Builder fixed(Double fixed) {
-    this.internal.fixed = fixed;
-        return this;
-    }
-    
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder mode(ScalarDimensionMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    public ScalarDimensionConfig build() {
-            return this.internal;
-        }
-    }
 }
