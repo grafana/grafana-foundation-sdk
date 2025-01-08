@@ -28,45 +28,20 @@ public class TableFooterOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("countRows")
     public Boolean countRows;
+    public TableFooterOptions() {
+    }
+    
+    public TableFooterOptions(Boolean show,List<String> reducer,List<String> fields,Boolean enablePagination,Boolean countRows) {
+        this.show = show;
+        this.reducer = reducer;
+        this.fields = fields;
+        this.enablePagination = enablePagination;
+        this.countRows = countRows;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TableFooterOptions> {
-        protected final TableFooterOptions internal;
-        
-        public Builder() {
-            this.internal = new TableFooterOptions();
-        }
-    public Builder show(Boolean show) {
-    this.internal.show = show;
-        return this;
-    }
-    
-    public Builder reducer(List<String> reducer) {
-    this.internal.reducer = reducer;
-        return this;
-    }
-    
-    public Builder fields(List<String> fields) {
-    this.internal.fields = fields;
-        return this;
-    }
-    
-    public Builder enablePagination(Boolean enablePagination) {
-    this.internal.enablePagination = enablePagination;
-        return this;
-    }
-    
-    public Builder countRows(Boolean countRows) {
-    this.internal.countRows = countRows;
-        return this;
-    }
-    public TableFooterOptions build() {
-            return this.internal;
-        }
-    }
 }

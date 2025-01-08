@@ -17,30 +17,17 @@ public class RoleBinding {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("subject")
     public RoleBindingSubject subject;
+    public RoleBinding() {
+    }
+    
+    public RoleBinding(BuiltinRoleRefOrCustomRoleRef role,RoleBindingSubject subject) {
+        this.role = role;
+        this.subject = subject;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<RoleBinding> {
-        protected final RoleBinding internal;
-        
-        public Builder() {
-            this.internal = new RoleBinding();
-        }
-    public Builder role(BuiltinRoleRefOrCustomRoleRef role) {
-    this.internal.role = role;
-        return this;
-    }
-    
-    public Builder subject(com.grafana.foundation.cog.Builder<RoleBindingSubject> subject) {
-    this.internal.subject = subject.build();
-        return this;
-    }
-    public RoleBinding build() {
-            return this.internal;
-        }
-    }
 }

@@ -12,25 +12,16 @@ public class XychartXYSeriesConfigX {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("matcher")
     public MatcherConfig matcher;
+    public XychartXYSeriesConfigX() {
+    }
+    
+    public XychartXYSeriesConfigX(MatcherConfig matcher) {
+        this.matcher = matcher;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<XychartXYSeriesConfigX> {
-        protected final XychartXYSeriesConfigX internal;
-        
-        public Builder() {
-            this.internal = new XychartXYSeriesConfigX();
-        }
-    public Builder matcher(com.grafana.foundation.cog.Builder<MatcherConfig> matcher) {
-    this.internal.matcher = matcher.build();
-        return this;
-    }
-    public XychartXYSeriesConfigX build() {
-            return this.internal;
-        }
-    }
 }

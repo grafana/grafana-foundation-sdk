@@ -21,40 +21,19 @@ public class ExprTypeClassicConditionsConditions {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("reducer")
     public ExprTypeClassicConditionsConditionsReducer reducer;
+    public ExprTypeClassicConditionsConditions() {
+    }
+    
+    public ExprTypeClassicConditionsConditions(ExprTypeClassicConditionsConditionsEvaluator evaluator,ExprTypeClassicConditionsConditionsOperator operator,ExprTypeClassicConditionsConditionsQuery query,ExprTypeClassicConditionsConditionsReducer reducer) {
+        this.evaluator = evaluator;
+        this.operator = operator;
+        this.query = query;
+        this.reducer = reducer;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditions> {
-        protected final ExprTypeClassicConditionsConditions internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeClassicConditionsConditions();
-        }
-    public Builder evaluator(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsEvaluator> evaluator) {
-    this.internal.evaluator = evaluator.build();
-        return this;
-    }
-    
-    public Builder operator(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsOperator> operator) {
-    this.internal.operator = operator.build();
-        return this;
-    }
-    
-    public Builder query(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsQuery> query) {
-    this.internal.query = query.build();
-        return this;
-    }
-    
-    public Builder reducer(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsReducer> reducer) {
-    this.internal.reducer = reducer.build();
-        return this;
-    }
-    public ExprTypeClassicConditionsConditions build() {
-            return this.internal;
-        }
-    }
 }

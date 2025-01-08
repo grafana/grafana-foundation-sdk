@@ -12,26 +12,17 @@ public class CustomRoleRef {
     public String kind;
     @JsonProperty("name")
     public String name;
+    public CustomRoleRef() {
+    }
+    
+    public CustomRoleRef(String kind,String name) {
+        this.kind = kind;
+        this.name = name;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<CustomRoleRef> {
-        protected final CustomRoleRef internal;
-        
-        public Builder() {
-            this.internal = new CustomRoleRef();
-    this.internal.kind = "Role";
-        }
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    public CustomRoleRef build() {
-            return this.internal;
-        }
-    }
 }

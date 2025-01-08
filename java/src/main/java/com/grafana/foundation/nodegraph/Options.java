@@ -19,6 +19,14 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("zoomMode")
     public ZoomMode zoomMode;
+    public Options() {
+    }
+    
+    public Options(NodeOptions nodes,EdgeOptions edges,ZoomMode zoomMode) {
+        this.nodes = nodes;
+        this.edges = edges;
+        this.zoomMode = zoomMode;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

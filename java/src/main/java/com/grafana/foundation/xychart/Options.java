@@ -26,6 +26,15 @@ public class Options {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("series")
     public List<XYSeriesConfig> series;
+    public Options() {
+    }
+    
+    public Options(SeriesMapping mapping,VizLegendOptions legend,VizTooltipOptions tooltip,List<XYSeriesConfig> series) {
+        this.mapping = mapping;
+        this.legend = legend;
+        this.tooltip = tooltip;
+        this.series = series;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

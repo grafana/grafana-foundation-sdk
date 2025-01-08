@@ -20,41 +20,20 @@ public class MovingAverageEWMAModelSettings {
     public Boolean minimize;
     @JsonProperty("predict")
     public String predict;
+    public MovingAverageEWMAModelSettings() {
+    }
+    
+    public MovingAverageEWMAModelSettings(String model,ElasticsearchMovingAverageEWMAModelSettingsSettings settings,String window,Boolean minimize,String predict) {
+        this.model = model;
+        this.settings = settings;
+        this.window = window;
+        this.minimize = minimize;
+        this.predict = predict;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MovingAverageEWMAModelSettings> {
-        protected final MovingAverageEWMAModelSettings internal;
-        
-        public Builder() {
-            this.internal = new MovingAverageEWMAModelSettings();
-    this.internal.model = "ewma";
-        }
-    public Builder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageEWMAModelSettingsSettings> settings) {
-    this.internal.settings = settings.build();
-        return this;
-    }
-    
-    public Builder window(String window) {
-    this.internal.window = window;
-        return this;
-    }
-    
-    public Builder minimize(Boolean minimize) {
-    this.internal.minimize = minimize;
-        return this;
-    }
-    
-    public Builder predict(String predict) {
-    this.internal.predict = predict;
-        return this;
-    }
-    public MovingAverageEWMAModelSettings build() {
-            return this.internal;
-        }
-    }
 }

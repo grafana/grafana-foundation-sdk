@@ -13,25 +13,16 @@ public class QueryHistoryPreference {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("homeTab")
     public String homeTab;
+    public QueryHistoryPreference() {
+    }
+    
+    public QueryHistoryPreference(String homeTab) {
+        this.homeTab = homeTab;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<QueryHistoryPreference> {
-        protected final QueryHistoryPreference internal;
-        
-        public Builder() {
-            this.internal = new QueryHistoryPreference();
-        }
-    public Builder homeTab(String homeTab) {
-    this.internal.homeTab = homeTab;
-        return this;
-    }
-    public QueryHistoryPreference build() {
-            return this.internal;
-        }
-    }
 }

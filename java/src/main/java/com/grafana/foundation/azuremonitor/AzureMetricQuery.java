@@ -84,110 +84,33 @@ public class AzureMetricQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("resourceName")
     public String resourceName;
+    public AzureMetricQuery() {
+    }
+    
+    public AzureMetricQuery(List<AzureMonitorResource> resources,String metricNamespace,String customNamespace,String metricName,String region,String timeGrain,String aggregation,List<AzureMetricDimension> dimensionFilters,String top,List<Long> allowedTimeGrainsMs,String alias,String timeGrainUnit,String dimension,String dimensionFilter,String metricDefinition,String resourceUri,String resourceGroup,String resourceName) {
+        this.resources = resources;
+        this.metricNamespace = metricNamespace;
+        this.customNamespace = customNamespace;
+        this.metricName = metricName;
+        this.region = region;
+        this.timeGrain = timeGrain;
+        this.aggregation = aggregation;
+        this.dimensionFilters = dimensionFilters;
+        this.top = top;
+        this.allowedTimeGrainsMs = allowedTimeGrainsMs;
+        this.alias = alias;
+        this.timeGrainUnit = timeGrainUnit;
+        this.dimension = dimension;
+        this.dimensionFilter = dimensionFilter;
+        this.metricDefinition = metricDefinition;
+        this.resourceUri = resourceUri;
+        this.resourceGroup = resourceGroup;
+        this.resourceName = resourceName;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AzureMetricQuery> {
-        protected final AzureMetricQuery internal;
-        
-        public Builder() {
-            this.internal = new AzureMetricQuery();
-        }
-    public Builder resources(com.grafana.foundation.cog.Builder<List<AzureMonitorResource>> resources) {
-    this.internal.resources = resources.build();
-        return this;
-    }
-    
-    public Builder metricNamespace(String metricNamespace) {
-    this.internal.metricNamespace = metricNamespace;
-        return this;
-    }
-    
-    public Builder customNamespace(String customNamespace) {
-    this.internal.customNamespace = customNamespace;
-        return this;
-    }
-    
-    public Builder metricName(String metricName) {
-    this.internal.metricName = metricName;
-        return this;
-    }
-    
-    public Builder region(String region) {
-    this.internal.region = region;
-        return this;
-    }
-    
-    public Builder timeGrain(String timeGrain) {
-    this.internal.timeGrain = timeGrain;
-        return this;
-    }
-    
-    public Builder aggregation(String aggregation) {
-    this.internal.aggregation = aggregation;
-        return this;
-    }
-    
-    public Builder dimensionFilters(com.grafana.foundation.cog.Builder<List<AzureMetricDimension>> dimensionFilters) {
-    this.internal.dimensionFilters = dimensionFilters.build();
-        return this;
-    }
-    
-    public Builder top(String top) {
-    this.internal.top = top;
-        return this;
-    }
-    
-    public Builder allowedTimeGrainsMs(List<Long> allowedTimeGrainsMs) {
-    this.internal.allowedTimeGrainsMs = allowedTimeGrainsMs;
-        return this;
-    }
-    
-    public Builder alias(String alias) {
-    this.internal.alias = alias;
-        return this;
-    }
-    
-    public Builder timeGrainUnit(String timeGrainUnit) {
-    this.internal.timeGrainUnit = timeGrainUnit;
-        return this;
-    }
-    
-    public Builder dimension(String dimension) {
-    this.internal.dimension = dimension;
-        return this;
-    }
-    
-    public Builder dimensionFilter(String dimensionFilter) {
-    this.internal.dimensionFilter = dimensionFilter;
-        return this;
-    }
-    
-    public Builder metricDefinition(String metricDefinition) {
-    this.internal.metricDefinition = metricDefinition;
-        return this;
-    }
-    
-    public Builder resourceUri(String resourceUri) {
-    this.internal.resourceUri = resourceUri;
-        return this;
-    }
-    
-    public Builder resourceGroup(String resourceGroup) {
-    this.internal.resourceGroup = resourceGroup;
-        return this;
-    }
-    
-    public Builder resourceName(String resourceName) {
-    this.internal.resourceName = resourceName;
-        return this;
-    }
-    public AzureMetricQuery build() {
-            return this.internal;
-        }
-    }
 }

@@ -18,35 +18,18 @@ public class ElasticsearchExtendedStatsSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("sigma")
     public String sigma;
+    public ElasticsearchExtendedStatsSettings() {
+    }
+    
+    public ElasticsearchExtendedStatsSettings(InlineScript script,String missing,String sigma) {
+        this.script = script;
+        this.missing = missing;
+        this.sigma = sigma;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchExtendedStatsSettings> {
-        protected final ElasticsearchExtendedStatsSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchExtendedStatsSettings();
-        }
-    public Builder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
-        return this;
-    }
-    
-    public Builder missing(String missing) {
-    this.internal.missing = missing;
-        return this;
-    }
-    
-    public Builder sigma(String sigma) {
-    this.internal.sigma = sigma;
-        return this;
-    }
-    public ElasticsearchExtendedStatsSettings build() {
-            return this.internal;
-        }
-    }
 }

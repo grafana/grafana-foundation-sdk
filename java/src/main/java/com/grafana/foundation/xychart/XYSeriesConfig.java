@@ -27,50 +27,21 @@ public class XYSeriesConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("size")
     public XychartXYSeriesConfigSize size;
+    public XYSeriesConfig() {
+    }
+    
+    public XYSeriesConfig(XychartXYSeriesConfigName name,XychartXYSeriesConfigFrame frame,XychartXYSeriesConfigX x,XychartXYSeriesConfigY y,XychartXYSeriesConfigColor color,XychartXYSeriesConfigSize size) {
+        this.name = name;
+        this.frame = frame;
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.size = size;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<XYSeriesConfig> {
-        protected final XYSeriesConfig internal;
-        
-        public Builder() {
-            this.internal = new XYSeriesConfig();
-        }
-    public Builder name(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigName> name) {
-    this.internal.name = name.build();
-        return this;
-    }
-    
-    public Builder frame(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigFrame> frame) {
-    this.internal.frame = frame.build();
-        return this;
-    }
-    
-    public Builder x(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigX> x) {
-    this.internal.x = x.build();
-        return this;
-    }
-    
-    public Builder y(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigY> y) {
-    this.internal.y = y.build();
-        return this;
-    }
-    
-    public Builder color(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigColor> color) {
-    this.internal.color = color.build();
-        return this;
-    }
-    
-    public Builder size(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigSize> size) {
-    this.internal.size = size.build();
-        return this;
-    }
-    public XYSeriesConfig build() {
-            return this.internal;
-        }
-    }
 }

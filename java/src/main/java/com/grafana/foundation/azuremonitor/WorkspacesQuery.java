@@ -16,31 +16,18 @@ public class WorkspacesQuery {
     public String kind;
     @JsonProperty("subscription")
     public String subscription;
+    public WorkspacesQuery() {
+    }
+    
+    public WorkspacesQuery(String rawQuery,String kind,String subscription) {
+        this.rawQuery = rawQuery;
+        this.kind = kind;
+        this.subscription = subscription;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<WorkspacesQuery> {
-        protected final WorkspacesQuery internal;
-        
-        public Builder() {
-            this.internal = new WorkspacesQuery();
-    this.internal.kind = "WorkspacesQuery";
-        }
-    public Builder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
-        return this;
-    }
-    
-    public Builder subscription(String subscription) {
-    this.internal.subscription = subscription;
-        return this;
-    }
-    public WorkspacesQuery build() {
-            return this.internal;
-        }
-    }
 }

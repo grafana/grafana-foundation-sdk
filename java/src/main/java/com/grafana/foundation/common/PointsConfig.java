@@ -22,40 +22,19 @@ public class PointsConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("pointSymbol")
     public String pointSymbol;
+    public PointsConfig() {
+    }
+    
+    public PointsConfig(VisibilityMode showPoints,Double pointSize,String pointColor,String pointSymbol) {
+        this.showPoints = showPoints;
+        this.pointSize = pointSize;
+        this.pointColor = pointColor;
+        this.pointSymbol = pointSymbol;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<PointsConfig> {
-        protected final PointsConfig internal;
-        
-        public Builder() {
-            this.internal = new PointsConfig();
-        }
-    public Builder showPoints(VisibilityMode showPoints) {
-    this.internal.showPoints = showPoints;
-        return this;
-    }
-    
-    public Builder pointSize(Double pointSize) {
-    this.internal.pointSize = pointSize;
-        return this;
-    }
-    
-    public Builder pointColor(String pointColor) {
-    this.internal.pointColor = pointColor;
-        return this;
-    }
-    
-    public Builder pointSymbol(String pointSymbol) {
-    this.internal.pointSymbol = pointSymbol;
-        return this;
-    }
-    public PointsConfig build() {
-            return this.internal;
-        }
-    }
 }

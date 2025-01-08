@@ -69,6 +69,32 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("displayedFields")
     public List<String> displayedFields;
+    public Options() {
+    }
+    
+    public Options(Boolean showLabels,Boolean showCommonLabels,Boolean showTime,Boolean showLogContextToggle,Boolean wrapLogMessage,Boolean prettifyLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy,Boolean enableInfiniteScrolling,Object onClickFilterLabel,Object onClickFilterOutLabel,Object isFilterLabelActive,Object onClickFilterString,Object onClickFilterOutString,Object onClickShowField,Object onClickHideField,Object logRowMenuIconsBefore,Object logRowMenuIconsAfter,Object onNewLogsReceived,List<String> displayedFields) {
+        this.showLabels = showLabels;
+        this.showCommonLabels = showCommonLabels;
+        this.showTime = showTime;
+        this.showLogContextToggle = showLogContextToggle;
+        this.wrapLogMessage = wrapLogMessage;
+        this.prettifyLogMessage = prettifyLogMessage;
+        this.enableLogDetails = enableLogDetails;
+        this.sortOrder = sortOrder;
+        this.dedupStrategy = dedupStrategy;
+        this.enableInfiniteScrolling = enableInfiniteScrolling;
+        this.onClickFilterLabel = onClickFilterLabel;
+        this.onClickFilterOutLabel = onClickFilterOutLabel;
+        this.isFilterLabelActive = isFilterLabelActive;
+        this.onClickFilterString = onClickFilterString;
+        this.onClickFilterOutString = onClickFilterOutString;
+        this.onClickShowField = onClickShowField;
+        this.onClickHideField = onClickHideField;
+        this.logRowMenuIconsBefore = logRowMenuIconsBefore;
+        this.logRowMenuIconsAfter = logRowMenuIconsAfter;
+        this.onNewLogsReceived = onNewLogsReceived;
+        this.displayedFields = displayedFields;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

@@ -17,30 +17,17 @@ public class HeatmapCalculationOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("yBuckets")
     public HeatmapCalculationBucketConfig yBuckets;
+    public HeatmapCalculationOptions() {
+    }
+    
+    public HeatmapCalculationOptions(HeatmapCalculationBucketConfig xBuckets,HeatmapCalculationBucketConfig yBuckets) {
+        this.xBuckets = xBuckets;
+        this.yBuckets = yBuckets;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<HeatmapCalculationOptions> {
-        protected final HeatmapCalculationOptions internal;
-        
-        public Builder() {
-            this.internal = new HeatmapCalculationOptions();
-        }
-    public Builder xBuckets(com.grafana.foundation.cog.Builder<HeatmapCalculationBucketConfig> xBuckets) {
-    this.internal.xBuckets = xBuckets.build();
-        return this;
-    }
-    
-    public Builder yBuckets(com.grafana.foundation.cog.Builder<HeatmapCalculationBucketConfig> yBuckets) {
-    this.internal.yBuckets = yBuckets.build();
-        return this;
-    }
-    public HeatmapCalculationOptions build() {
-            return this.internal;
-        }
-    }
 }
