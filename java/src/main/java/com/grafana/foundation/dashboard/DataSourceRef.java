@@ -18,7 +18,8 @@ public class DataSourceRef {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("uid")
     public String uid;
-    public DataSourceRef() {}
+    public DataSourceRef() {
+    }
     
     public DataSourceRef(String type,String uid) {
         this.type = type;

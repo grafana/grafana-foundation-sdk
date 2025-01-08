@@ -15,30 +15,17 @@ public class RoleBindingSubject {
     // The team/user identifier name
     @JsonProperty("name")
     public String name;
+    public RoleBindingSubject() {
+    }
+    
+    public RoleBindingSubject(RoleBindingSubjectKind kind,String name) {
+        this.kind = kind;
+        this.name = name;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<RoleBindingSubject> {
-        protected final RoleBindingSubject internal;
-        
-        public Builder() {
-            this.internal = new RoleBindingSubject();
-        }
-    public Builder kind(RoleBindingSubjectKind kind) {
-    this.internal.kind = kind;
-        return this;
-    }
-    
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    public RoleBindingSubject build() {
-            return this.internal;
-        }
-    }
 }

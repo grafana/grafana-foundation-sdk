@@ -27,50 +27,21 @@ public class Placement {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("height")
     public Double height;
+    public Placement() {
+    }
+    
+    public Placement(Double top,Double left,Double right,Double bottom,Double width,Double height) {
+        this.top = top;
+        this.left = left;
+        this.right = right;
+        this.bottom = bottom;
+        this.width = width;
+        this.height = height;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Placement> {
-        protected final Placement internal;
-        
-        public Builder() {
-            this.internal = new Placement();
-        }
-    public Builder top(Double top) {
-    this.internal.top = top;
-        return this;
-    }
-    
-    public Builder left(Double left) {
-    this.internal.left = left;
-        return this;
-    }
-    
-    public Builder right(Double right) {
-    this.internal.right = right;
-        return this;
-    }
-    
-    public Builder bottom(Double bottom) {
-    this.internal.bottom = bottom;
-        return this;
-    }
-    
-    public Builder width(Double width) {
-    this.internal.width = width;
-        return this;
-    }
-    
-    public Builder height(Double height) {
-    this.internal.height = height;
-        return this;
-    }
-    public Placement build() {
-            return this.internal;
-        }
-    }
 }

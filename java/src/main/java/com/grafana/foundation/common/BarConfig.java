@@ -19,35 +19,18 @@ public class BarConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("barMaxWidth")
     public Double barMaxWidth;
+    public BarConfig() {
+    }
+    
+    public BarConfig(BarAlignment barAlignment,Double barWidthFactor,Double barMaxWidth) {
+        this.barAlignment = barAlignment;
+        this.barWidthFactor = barWidthFactor;
+        this.barMaxWidth = barMaxWidth;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<BarConfig> {
-        protected final BarConfig internal;
-        
-        public Builder() {
-            this.internal = new BarConfig();
-        }
-    public Builder barAlignment(BarAlignment barAlignment) {
-    this.internal.barAlignment = barAlignment;
-        return this;
-    }
-    
-    public Builder barWidthFactor(Double barWidthFactor) {
-    this.internal.barWidthFactor = barWidthFactor;
-        return this;
-    }
-    
-    public Builder barMaxWidth(Double barMaxWidth) {
-    this.internal.barMaxWidth = barMaxWidth;
-        return this;
-    }
-    public BarConfig build() {
-            return this.internal;
-        }
-    }
 }

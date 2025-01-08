@@ -25,55 +25,22 @@ public class LibraryElementDTOMeta {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("updatedBy")
     public LibraryElementDTOMetaUser updatedBy;
+    public LibraryElementDTOMeta() {
+    }
+    
+    public LibraryElementDTOMeta(String folderName,String folderUid,Long connectedDashboards,String created,String updated,LibraryElementDTOMetaUser createdBy,LibraryElementDTOMetaUser updatedBy) {
+        this.folderName = folderName;
+        this.folderUid = folderUid;
+        this.connectedDashboards = connectedDashboards;
+        this.created = created;
+        this.updated = updated;
+        this.createdBy = createdBy;
+        this.updatedBy = updatedBy;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<LibraryElementDTOMeta> {
-        protected final LibraryElementDTOMeta internal;
-        
-        public Builder() {
-            this.internal = new LibraryElementDTOMeta();
-        }
-    public Builder folderName(String folderName) {
-    this.internal.folderName = folderName;
-        return this;
-    }
-    
-    public Builder folderUid(String folderUid) {
-    this.internal.folderUid = folderUid;
-        return this;
-    }
-    
-    public Builder connectedDashboards(Long connectedDashboards) {
-    this.internal.connectedDashboards = connectedDashboards;
-        return this;
-    }
-    
-    public Builder created(String created) {
-    this.internal.created = created;
-        return this;
-    }
-    
-    public Builder updated(String updated) {
-    this.internal.updated = updated;
-        return this;
-    }
-    
-    public Builder createdBy(com.grafana.foundation.cog.Builder<LibraryElementDTOMetaUser> createdBy) {
-    this.internal.createdBy = createdBy.build();
-        return this;
-    }
-    
-    public Builder updatedBy(com.grafana.foundation.cog.Builder<LibraryElementDTOMetaUser> updatedBy) {
-    this.internal.updatedBy = updatedBy.build();
-        return this;
-    }
-    public LibraryElementDTOMeta build() {
-            return this.internal;
-        }
-    }
 }

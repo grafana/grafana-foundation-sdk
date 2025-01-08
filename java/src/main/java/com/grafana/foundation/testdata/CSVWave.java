@@ -21,40 +21,19 @@ public class CSVWave {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("labels")
     public String labels;
+    public CSVWave() {
+    }
+    
+    public CSVWave(Long timeStep,String name,String valuesCSV,String labels) {
+        this.timeStep = timeStep;
+        this.name = name;
+        this.valuesCSV = valuesCSV;
+        this.labels = labels;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<CSVWave> {
-        protected final CSVWave internal;
-        
-        public Builder() {
-            this.internal = new CSVWave();
-        }
-    public Builder timeStep(Long timeStep) {
-    this.internal.timeStep = timeStep;
-        return this;
-    }
-    
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder valuesCSV(String valuesCSV) {
-    this.internal.valuesCSV = valuesCSV;
-        return this;
-    }
-    
-    public Builder labels(String labels) {
-    this.internal.labels = labels;
-        return this;
-    }
-    public CSVWave build() {
-            return this.internal;
-        }
-    }
 }

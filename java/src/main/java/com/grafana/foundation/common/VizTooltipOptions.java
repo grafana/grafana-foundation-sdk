@@ -16,30 +16,17 @@ public class VizTooltipOptions {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("sort")
     public SortOrder sort;
+    public VizTooltipOptions() {
+    }
+    
+    public VizTooltipOptions(TooltipDisplayMode mode,SortOrder sort) {
+        this.mode = mode;
+        this.sort = sort;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<VizTooltipOptions> {
-        protected final VizTooltipOptions internal;
-        
-        public Builder() {
-            this.internal = new VizTooltipOptions();
-        }
-    public Builder mode(TooltipDisplayMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder sort(SortOrder sort) {
-    this.internal.sort = sort;
-        return this;
-    }
-    public VizTooltipOptions build() {
-            return this.internal;
-        }
-    }
 }

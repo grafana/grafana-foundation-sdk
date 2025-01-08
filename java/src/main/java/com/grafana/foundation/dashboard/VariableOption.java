@@ -22,7 +22,8 @@ public class VariableOption {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("value")
     public StringOrArrayOfString value;
-    public VariableOption() {}
+    public VariableOption() {
+    }
     
     public VariableOption(Boolean selected,StringOrArrayOfString text,StringOrArrayOfString value) {
         this.selected = selected;

@@ -17,6 +17,14 @@ public class Options {
     // Expand all alert groups by default
     @JsonProperty("expandAll")
     public Boolean expandAll;
+    public Options() {
+    }
+    
+    public Options(String labels,String alertmanager,Boolean expandAll) {
+        this.labels = labels;
+        this.alertmanager = alertmanager;
+        this.expandAll = expandAll;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

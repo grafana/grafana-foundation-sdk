@@ -15,30 +15,17 @@ public class ElasticsearchHistogramSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("min_doc_count")
     public String minDocCount;
+    public ElasticsearchHistogramSettings() {
+    }
+    
+    public ElasticsearchHistogramSettings(String interval,String minDocCount) {
+        this.interval = interval;
+        this.minDocCount = minDocCount;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchHistogramSettings> {
-        protected final ElasticsearchHistogramSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchHistogramSettings();
-        }
-    public Builder interval(String interval) {
-    this.internal.interval = interval;
-        return this;
-    }
-    
-    public Builder minDocCount(String minDocCount) {
-    this.internal.minDocCount = minDocCount;
-        return this;
-    }
-    public ElasticsearchHistogramSettings build() {
-            return this.internal;
-        }
-    }
 }

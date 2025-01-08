@@ -12,25 +12,16 @@ public class GeoHashGridSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("precision")
     public String precision;
+    public GeoHashGridSettings() {
+    }
+    
+    public GeoHashGridSettings(String precision) {
+        this.precision = precision;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<GeoHashGridSettings> {
-        protected final GeoHashGridSettings internal;
-        
-        public Builder() {
-            this.internal = new GeoHashGridSettings();
-        }
-    public Builder precision(String precision) {
-    this.internal.precision = precision;
-        return this;
-    }
-    public GeoHashGridSettings build() {
-            return this.internal;
-        }
-    }
 }

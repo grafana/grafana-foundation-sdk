@@ -94,6 +94,29 @@ public class CloudWatchAnnotationQuery implements com.grafana.foundation.cog.var
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("statistics")
     public List<String> statistics;
+    public CloudWatchAnnotationQuery() {
+        this.queryMode = CloudWatchQueryMode.ANNOTATIONS;
+    }
+    
+    public CloudWatchAnnotationQuery(CloudWatchQueryMode queryMode,Boolean prefixMatching,String actionPrefix,String refId,Boolean hide,String queryType,String region,String namespace,String metricName,Map<String, StringOrArrayOfString> dimensions,Boolean matchExact,String period,String accountId,String statistic,String alarmNamePrefix,DataSourceRef datasource,List<String> statistics) {
+        this.queryMode = queryMode;
+        this.prefixMatching = prefixMatching;
+        this.actionPrefix = actionPrefix;
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.region = region;
+        this.namespace = namespace;
+        this.metricName = metricName;
+        this.dimensions = dimensions;
+        this.matchExact = matchExact;
+        this.period = period;
+        this.accountId = accountId;
+        this.statistic = statistic;
+        this.alarmNamePrefix = alarmNamePrefix;
+        this.datasource = datasource;
+        this.statistics = statistics;
+    }
     public String dataqueryName() {
         return "cloudwatch";
     }
@@ -103,100 +126,4 @@ public class CloudWatchAnnotationQuery implements com.grafana.foundation.cog.var
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final CloudWatchAnnotationQuery internal;
-        
-        public Builder() {
-            this.internal = new CloudWatchAnnotationQuery();
-        this.queryMode(CloudWatchQueryMode.ANNOTATIONS);
-        }
-    public Builder queryMode(CloudWatchQueryMode queryMode) {
-    this.internal.queryMode = queryMode;
-        return this;
-    }
-    
-    public Builder prefixMatching(Boolean prefixMatching) {
-    this.internal.prefixMatching = prefixMatching;
-        return this;
-    }
-    
-    public Builder actionPrefix(String actionPrefix) {
-    this.internal.actionPrefix = actionPrefix;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder region(String region) {
-    this.internal.region = region;
-        return this;
-    }
-    
-    public Builder namespace(String namespace) {
-    this.internal.namespace = namespace;
-        return this;
-    }
-    
-    public Builder metricName(String metricName) {
-    this.internal.metricName = metricName;
-        return this;
-    }
-    
-    public Builder dimensions(Map<String, StringOrArrayOfString> dimensions) {
-    this.internal.dimensions = dimensions;
-        return this;
-    }
-    
-    public Builder matchExact(Boolean matchExact) {
-    this.internal.matchExact = matchExact;
-        return this;
-    }
-    
-    public Builder period(String period) {
-    this.internal.period = period;
-        return this;
-    }
-    
-    public Builder accountId(String accountId) {
-    this.internal.accountId = accountId;
-        return this;
-    }
-    
-    public Builder statistic(String statistic) {
-    this.internal.statistic = statistic;
-        return this;
-    }
-    
-    public Builder alarmNamePrefix(String alarmNamePrefix) {
-    this.internal.alarmNamePrefix = alarmNamePrefix;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder statistics(List<String> statistics) {
-    this.internal.statistics = statistics;
-        return this;
-    }
-    public CloudWatchAnnotationQuery build() {
-            return this.internal;
-        }
-    }
 }
