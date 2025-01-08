@@ -57,6 +57,28 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("displayedFields")
     public List<String> displayedFields;
+    public Options() {
+    }
+    
+    public Options(Boolean showLabels,Boolean showCommonLabels,Boolean showTime,Boolean showLogContextToggle,Boolean wrapLogMessage,Boolean prettifyLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy,Object onClickFilterLabel,Object onClickFilterOutLabel,Object isFilterLabelActive,Object onClickFilterString,Object onClickFilterOutString,Object onClickShowField,Object onClickHideField,List<String> displayedFields) {
+        this.showLabels = showLabels;
+        this.showCommonLabels = showCommonLabels;
+        this.showTime = showTime;
+        this.showLogContextToggle = showLogContextToggle;
+        this.wrapLogMessage = wrapLogMessage;
+        this.prettifyLogMessage = prettifyLogMessage;
+        this.enableLogDetails = enableLogDetails;
+        this.sortOrder = sortOrder;
+        this.dedupStrategy = dedupStrategy;
+        this.onClickFilterLabel = onClickFilterLabel;
+        this.onClickFilterOutLabel = onClickFilterOutLabel;
+        this.isFilterLabelActive = isFilterLabelActive;
+        this.onClickFilterString = onClickFilterString;
+        this.onClickFilterOutString = onClickFilterOutString;
+        this.onClickShowField = onClickShowField;
+        this.onClickHideField = onClickHideField;
+        this.displayedFields = displayedFields;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

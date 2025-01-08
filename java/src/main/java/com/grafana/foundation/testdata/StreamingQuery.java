@@ -29,50 +29,21 @@ public class StreamingQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("url")
     public String url;
+    public StreamingQuery() {
+    }
+    
+    public StreamingQuery(Long bands,Double noise,Double speed,Double spread,StreamingQueryType type,String url) {
+        this.bands = bands;
+        this.noise = noise;
+        this.speed = speed;
+        this.spread = spread;
+        this.type = type;
+        this.url = url;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<StreamingQuery> {
-        protected final StreamingQuery internal;
-        
-        public Builder() {
-            this.internal = new StreamingQuery();
-        }
-    public Builder bands(Long bands) {
-    this.internal.bands = bands;
-        return this;
-    }
-    
-    public Builder noise(Double noise) {
-    this.internal.noise = noise;
-        return this;
-    }
-    
-    public Builder speed(Double speed) {
-    this.internal.speed = speed;
-        return this;
-    }
-    
-    public Builder spread(Double spread) {
-    this.internal.spread = spread;
-        return this;
-    }
-    
-    public Builder type(StreamingQueryType type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder url(String url) {
-    this.internal.url = url;
-        return this;
-    }
-    public StreamingQuery build() {
-            return this.internal;
-        }
-    }
 }

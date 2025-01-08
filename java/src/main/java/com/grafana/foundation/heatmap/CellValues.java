@@ -18,30 +18,17 @@ public class CellValues {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("decimals")
     public Float decimals;
+    public CellValues() {
+    }
+    
+    public CellValues(String unit,Float decimals) {
+        this.unit = unit;
+        this.decimals = decimals;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<CellValues> {
-        protected final CellValues internal;
-        
-        public Builder() {
-            this.internal = new CellValues();
-        }
-    public Builder unit(String unit) {
-    this.internal.unit = unit;
-        return this;
-    }
-    
-    public Builder decimals(Float decimals) {
-    this.internal.decimals = decimals;
-        return this;
-    }
-    public CellValues build() {
-            return this.internal;
-        }
-    }
 }

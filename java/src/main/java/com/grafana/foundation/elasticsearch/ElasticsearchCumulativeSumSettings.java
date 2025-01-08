@@ -12,25 +12,16 @@ public class ElasticsearchCumulativeSumSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("format")
     public String format;
+    public ElasticsearchCumulativeSumSettings() {
+    }
+    
+    public ElasticsearchCumulativeSumSettings(String format) {
+        this.format = format;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchCumulativeSumSettings> {
-        protected final ElasticsearchCumulativeSumSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchCumulativeSumSettings();
-        }
-    public Builder format(String format) {
-    this.internal.format = format;
-        return this;
-    }
-    public ElasticsearchCumulativeSumSettings build() {
-            return this.internal;
-        }
-    }
 }

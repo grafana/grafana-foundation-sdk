@@ -27,46 +27,21 @@ public class Role {
     // Do not show this role
     @JsonProperty("hidden")
     public Boolean hidden;
+    public Role() {
+        this.hidden = false;
+    }
+    
+    public Role(String name,String displayName,String groupName,String description,Boolean hidden) {
+        this.name = name;
+        this.displayName = displayName;
+        this.groupName = groupName;
+        this.description = description;
+        this.hidden = hidden;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Role> {
-        protected final Role internal;
-        
-        public Builder() {
-            this.internal = new Role();
-        this.hidden(false);
-        }
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder displayName(String displayName) {
-    this.internal.displayName = displayName;
-        return this;
-    }
-    
-    public Builder groupName(String groupName) {
-    this.internal.groupName = groupName;
-        return this;
-    }
-    
-    public Builder description(String description) {
-    this.internal.description = description;
-        return this;
-    }
-    
-    public Builder hidden(Boolean hidden) {
-    this.internal.hidden = hidden;
-        return this;
-    }
-    public Role build() {
-            return this.internal;
-        }
-    }
 }

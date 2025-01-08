@@ -49,7 +49,7 @@ settings(settings: alerting.Json)
 ### <span class="badge object-method"></span> type
 
 ```typescript
-type(type: "alertmanager" | " dingding" | " discord" | " email" | " googlechat" | " kafka" | " line" | " opsgenie" | " pagerduty" | " pushover" | " sensugo" | " slack" | " teams" | " telegram" | " threema" | " victorops" | " webhook" | " wecom")
+type(type: "alertmanager" | "dingding" | "discord" | "email" | "googlechat" | "kafka" | "line" | "opsgenie" | "pagerduty" | "pushover" | "sensugo" | "slack" | "teams" | "telegram" | "threema" | "victorops" | "webhook" | "wecom")
 ```
 
 ### <span class="badge object-method"></span> uid

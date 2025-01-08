@@ -54,6 +54,21 @@ public class TypeSql implements com.grafana.foundation.cog.variants.Dataquery {
     public ExprTypeSqlTimeRange timeRange;
     @JsonProperty("type")
     public String type;
+    public TypeSql() {
+    }
+    
+    public TypeSql(DataSourceRef datasource,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeSqlResultAssertions resultAssertions,ExprTypeSqlTimeRange timeRange,String type) {
+        this.datasource = datasource;
+        this.expression = expression;
+        this.hide = hide;
+        this.intervalMs = intervalMs;
+        this.maxDataPoints = maxDataPoints;
+        this.queryType = queryType;
+        this.refId = refId;
+        this.resultAssertions = resultAssertions;
+        this.timeRange = timeRange;
+        this.type = type;
+    }
     public String dataqueryName() {
         return "__expr__";
     }
@@ -63,63 +78,4 @@ public class TypeSql implements com.grafana.foundation.cog.variants.Dataquery {
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final TypeSql internal;
-        
-        public Builder() {
-            this.internal = new TypeSql();
-    this.internal.type = "sql";
-        }
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder expression(String expression) {
-        if (!(expression.length() >= 1)) {
-            throw new IllegalArgumentException("expression.length() must be >= 1");
-        }
-    this.internal.expression = expression;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder intervalMs(Double intervalMs) {
-    this.internal.intervalMs = intervalMs;
-        return this;
-    }
-    
-    public Builder maxDataPoints(Long maxDataPoints) {
-    this.internal.maxDataPoints = maxDataPoints;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeSqlResultAssertions> resultAssertions) {
-    this.internal.resultAssertions = resultAssertions.build();
-        return this;
-    }
-    
-    public Builder timeRange(com.grafana.foundation.cog.Builder<ExprTypeSqlTimeRange> timeRange) {
-    this.internal.timeRange = timeRange.build();
-        return this;
-    }
-    public TypeSql build() {
-            return this.internal;
-        }
-    }
 }

@@ -15,6 +15,13 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("edges")
     public EdgeOptions edges;
+    public Options() {
+    }
+    
+    public Options(NodeOptions nodes,EdgeOptions edges) {
+        this.nodes = nodes;
+        this.edges = edges;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
