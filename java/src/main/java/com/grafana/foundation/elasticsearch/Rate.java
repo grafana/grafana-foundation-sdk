@@ -22,41 +22,20 @@ public class Rate {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
+    public Rate() {
+    }
+    
+    public Rate(String type,String field,String id,ElasticsearchRateSettings settings,Boolean hide) {
+        this.type = type;
+        this.field = field;
+        this.id = id;
+        this.settings = settings;
+        this.hide = hide;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Rate> {
-        protected final Rate internal;
-        
-        public Builder() {
-            this.internal = new Rate();
-    this.internal.type = "rate";
-        }
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder settings(com.grafana.foundation.cog.Builder<ElasticsearchRateSettings> settings) {
-    this.internal.settings = settings.build();
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    public Rate build() {
-            return this.internal;
-        }
-    }
 }

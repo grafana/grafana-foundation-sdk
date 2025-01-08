@@ -11,7 +11,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class TableColorTextCellOptions {
     @JsonProperty("type")
     public String type;
-    public TableColorTextCellOptions() {}
+    public TableColorTextCellOptions() {
+    }
     
     public TableColorTextCellOptions(String type) {
         this.type = type;

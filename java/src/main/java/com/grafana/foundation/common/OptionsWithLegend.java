@@ -13,25 +13,16 @@ public class OptionsWithLegend {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("legend")
     public VizLegendOptions legend;
+    public OptionsWithLegend() {
+    }
+    
+    public OptionsWithLegend(VizLegendOptions legend) {
+        this.legend = legend;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<OptionsWithLegend> {
-        protected final OptionsWithLegend internal;
-        
-        public Builder() {
-            this.internal = new OptionsWithLegend();
-        }
-    public Builder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
-    this.internal.legend = legend.build();
-        return this;
-    }
-    public OptionsWithLegend build() {
-            return this.internal;
-        }
-    }
 }

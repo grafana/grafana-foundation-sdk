@@ -19,36 +19,19 @@ public class Nested {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("settings")
     public Object settings;
+    public Nested() {
+    }
+    
+    public Nested(String field,String id,String type,Object settings) {
+        this.field = field;
+        this.id = id;
+        this.type = type;
+        this.settings = settings;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Nested> {
-        protected final Nested internal;
-        
-        public Builder() {
-            this.internal = new Nested();
-    this.internal.type = "nested";
-        }
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder settings(Object settings) {
-    this.internal.settings = settings;
-        return this;
-    }
-    public Nested build() {
-            return this.internal;
-        }
-    }
 }

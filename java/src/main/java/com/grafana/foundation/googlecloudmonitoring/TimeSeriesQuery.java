@@ -20,36 +20,19 @@ public class TimeSeriesQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("graphPeriod")
     public String graphPeriod;
+    public TimeSeriesQuery() {
+        this.graphPeriod = "disabled";
+    }
+    
+    public TimeSeriesQuery(String projectName,String query,String graphPeriod) {
+        this.projectName = projectName;
+        this.query = query;
+        this.graphPeriod = graphPeriod;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TimeSeriesQuery> {
-        protected final TimeSeriesQuery internal;
-        
-        public Builder() {
-            this.internal = new TimeSeriesQuery();
-        this.graphPeriod("disabled");
-        }
-    public Builder projectName(String projectName) {
-    this.internal.projectName = projectName;
-        return this;
-    }
-    
-    public Builder query(String query) {
-    this.internal.query = query;
-        return this;
-    }
-    
-    public Builder graphPeriod(String graphPeriod) {
-    this.internal.graphPeriod = graphPeriod;
-        return this;
-    }
-    public TimeSeriesQuery build() {
-            return this.internal;
-        }
-    }
 }

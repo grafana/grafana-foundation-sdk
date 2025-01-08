@@ -11,7 +11,6 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
-import java.util.LinkedList;
 
 public class Rule {
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -58,133 +57,31 @@ public class Rule {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("updated")
     public String updated;
+    public Rule() {
+    }
+    
+    public Rule(Map<String, String> annotations,String condition,List<Query> data,RuleExecErrState execErrState,String folderUID,String forArg,Long id,Boolean isPaused,Map<String, String> labels,RuleNoDataState noDataState,Long orgID,String provenance,String ruleGroup,String title,String uid,String updated) {
+        this.annotations = annotations;
+        this.condition = condition;
+        this.data = data;
+        this.execErrState = execErrState;
+        this.folderUID = folderUID;
+        this.forArg = forArg;
+        this.id = id;
+        this.isPaused = isPaused;
+        this.labels = labels;
+        this.noDataState = noDataState;
+        this.orgID = orgID;
+        this.provenance = provenance;
+        this.ruleGroup = ruleGroup;
+        this.title = title;
+        this.uid = uid;
+        this.updated = updated;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Rule> {
-        protected final Rule internal;
-        
-        public Builder(String title) {
-            this.internal = new Rule();
-        if (!(title.length() >= 1)) {
-            throw new IllegalArgumentException("title.length() must be >= 1");
-        }
-        if (!(title.length() <= 190)) {
-            throw new IllegalArgumentException("title.length() must be <= 190");
-        }
-    this.internal.title = title;
-        }
-    public Builder annotations(Map<String, String> annotations) {
-    this.internal.annotations = annotations;
-        return this;
-    }
-    
-    public Builder condition(String condition) {
-    this.internal.condition = condition;
-        return this;
-    }
-    
-    public Builder queries(com.grafana.foundation.cog.Builder<List<Query>> data) {
-    this.internal.data = data.build();
-        return this;
-    }
-    
-    public Builder withQuery(com.grafana.foundation.cog.Builder<Query> data) {
-		if (this.internal.data == null) {
-			this.internal.data = new LinkedList<>();
-		}
-    this.internal.data.add(data.build());
-        return this;
-    }
-    
-    public Builder execErrState(RuleExecErrState execErrState) {
-    this.internal.execErrState = execErrState;
-        return this;
-    }
-    
-    public Builder folderUID(String folderUID) {
-    this.internal.folderUID = folderUID;
-        return this;
-    }
-    
-    public Builder forArg(String forArg) {
-    this.internal.forArg = forArg;
-        return this;
-    }
-    
-    public Builder id(Long id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder isPaused(Boolean isPaused) {
-    this.internal.isPaused = isPaused;
-        return this;
-    }
-    
-    public Builder labels(Map<String, String> labels) {
-    this.internal.labels = labels;
-        return this;
-    }
-    
-    public Builder noDataState(RuleNoDataState noDataState) {
-    this.internal.noDataState = noDataState;
-        return this;
-    }
-    
-    public Builder orgID(Long orgID) {
-    this.internal.orgID = orgID;
-        return this;
-    }
-    
-    public Builder provenance(String provenance) {
-    this.internal.provenance = provenance;
-        return this;
-    }
-    
-    public Builder ruleGroup(String ruleGroup) {
-        if (!(ruleGroup.length() >= 1)) {
-            throw new IllegalArgumentException("ruleGroup.length() must be >= 1");
-        }
-        if (!(ruleGroup.length() <= 190)) {
-            throw new IllegalArgumentException("ruleGroup.length() must be <= 190");
-        }
-    this.internal.ruleGroup = ruleGroup;
-        return this;
-    }
-    
-    public Builder title(String title) {
-        if (!(title.length() >= 1)) {
-            throw new IllegalArgumentException("title.length() must be >= 1");
-        }
-        if (!(title.length() <= 190)) {
-            throw new IllegalArgumentException("title.length() must be <= 190");
-        }
-    this.internal.title = title;
-        return this;
-    }
-    
-    public Builder uid(String uid) {
-        if (!(uid.length() >= 1)) {
-            throw new IllegalArgumentException("uid.length() must be >= 1");
-        }
-        if (!(uid.length() <= 40)) {
-            throw new IllegalArgumentException("uid.length() must be <= 40");
-        }
-    this.internal.uid = uid;
-        return this;
-    }
-    
-    public Builder updated(String updated) {
-    this.internal.updated = updated;
-        return this;
-    }
-    public Rule build() {
-            return this.internal;
-        }
-    }
 }

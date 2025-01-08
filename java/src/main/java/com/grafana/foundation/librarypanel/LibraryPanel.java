@@ -42,71 +42,24 @@ public class LibraryPanel {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("meta")
     public LibraryElementDTOMeta meta;
+    public LibraryPanel() {
+    }
+    
+    public LibraryPanel(String folderUid,String uid,String name,String description,String type,Short schemaVersion,Long version,PanelModel model,LibraryElementDTOMeta meta) {
+        this.folderUid = folderUid;
+        this.uid = uid;
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.schemaVersion = schemaVersion;
+        this.version = version;
+        this.model = model;
+        this.meta = meta;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<LibraryPanel> {
-        protected final LibraryPanel internal;
-        
-        public Builder() {
-            this.internal = new LibraryPanel();
-        }
-    public Builder folderUid(String folderUid) {
-    this.internal.folderUid = folderUid;
-        return this;
-    }
-    
-    public Builder uid(String uid) {
-    this.internal.uid = uid;
-        return this;
-    }
-    
-    public Builder name(String name) {
-        if (!(name.length() >= 1)) {
-            throw new IllegalArgumentException("name.length() must be >= 1");
-        }
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder description(String description) {
-    this.internal.description = description;
-        return this;
-    }
-    
-    public Builder type(String type) {
-        if (!(type.length() >= 1)) {
-            throw new IllegalArgumentException("type.length() must be >= 1");
-        }
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder schemaVersion(Short schemaVersion) {
-    this.internal.schemaVersion = schemaVersion;
-        return this;
-    }
-    
-    public Builder version(Long version) {
-    this.internal.version = version;
-        return this;
-    }
-    
-    public Builder model(com.grafana.foundation.cog.Builder<PanelModel> model) {
-    this.internal.model = model.build();
-        return this;
-    }
-    
-    public Builder meta(com.grafana.foundation.cog.Builder<LibraryElementDTOMeta> meta) {
-    this.internal.meta = meta.build();
-        return this;
-    }
-    public LibraryPanel build() {
-            return this.internal;
-        }
-    }
 }

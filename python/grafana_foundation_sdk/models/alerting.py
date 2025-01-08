@@ -119,12 +119,12 @@ class ContactPoint:
     name: typing.Optional[str]
     provenance: typing.Optional[str]
     settings: 'Json'
-    type_val: typing.Literal["alertmanager", " dingding", " discord", " email", " googlechat", " kafka", " line", " opsgenie", " pagerduty", " pushover", " sensugo", " slack", " teams", " telegram", " threema", " victorops", " webhook", " wecom"]
+    type_val: typing.Literal["alertmanager", "dingding", "discord", "email", "googlechat", "kafka", "line", "opsgenie", "pagerduty", "pushover", "sensugo", "slack", "teams", "telegram", "threema", "victorops", "webhook", "wecom"]
     # UID is the unique identifier of the contact point. The UID can be
     # set by the user.
     uid: typing.Optional[str]
 
-    def __init__(self, disable_resolve_message: typing.Optional[bool] = None, name: typing.Optional[str] = None, provenance: typing.Optional[str] = None, settings: typing.Optional['Json'] = None, type_val: typing.Optional[typing.Literal["alertmanager", " dingding", " discord", " email", " googlechat", " kafka", " line", " opsgenie", " pagerduty", " pushover", " sensugo", " slack", " teams", " telegram", " threema", " victorops", " webhook", " wecom"]] = None, uid: typing.Optional[str] = None):
+    def __init__(self, disable_resolve_message: typing.Optional[bool] = None, name: typing.Optional[str] = None, provenance: typing.Optional[str] = None, settings: typing.Optional['Json'] = None, type_val: typing.Optional[typing.Literal["alertmanager", "dingding", "discord", "email", "googlechat", "kafka", "line", "opsgenie", "pagerduty", "pushover", "sensugo", "slack", "teams", "telegram", "threema", "victorops", "webhook", "wecom"]] = None, uid: typing.Optional[str] = None):
         self.disable_resolve_message = disable_resolve_message
         self.name = name
         self.provenance = provenance

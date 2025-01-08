@@ -13,25 +13,16 @@ public class BaseDimensionConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("field")
     public String field;
+    public BaseDimensionConfig() {
+    }
+    
+    public BaseDimensionConfig(String field) {
+        this.field = field;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<BaseDimensionConfig> {
-        protected final BaseDimensionConfig internal;
-        
-        public Builder() {
-            this.internal = new BaseDimensionConfig();
-        }
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    public BaseDimensionConfig build() {
-            return this.internal;
-        }
-    }
 }

@@ -25,46 +25,21 @@ public class ExtendedStats {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
+    public ExtendedStats() {
+    }
+    
+    public ExtendedStats(String type,ElasticsearchExtendedStatsSettings settings,String field,String id,Object meta,Boolean hide) {
+        this.type = type;
+        this.settings = settings;
+        this.field = field;
+        this.id = id;
+        this.meta = meta;
+        this.hide = hide;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExtendedStats> {
-        protected final ExtendedStats internal;
-        
-        public Builder() {
-            this.internal = new ExtendedStats();
-    this.internal.type = "extended_stats";
-        }
-    public Builder settings(com.grafana.foundation.cog.Builder<ElasticsearchExtendedStatsSettings> settings) {
-    this.internal.settings = settings.build();
-        return this;
-    }
-    
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder meta(Object meta) {
-    this.internal.meta = meta;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    public ExtendedStats build() {
-            return this.internal;
-        }
-    }
 }

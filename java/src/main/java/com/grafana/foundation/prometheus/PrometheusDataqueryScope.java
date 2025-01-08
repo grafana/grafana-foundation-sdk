@@ -10,25 +10,16 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class PrometheusDataqueryScope {
     @JsonProperty("matchers")
     public String matchers;
+    public PrometheusDataqueryScope() {
+    }
+    
+    public PrometheusDataqueryScope(String matchers) {
+        this.matchers = matchers;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<PrometheusDataqueryScope> {
-        protected final PrometheusDataqueryScope internal;
-        
-        public Builder() {
-            this.internal = new PrometheusDataqueryScope();
-        }
-    public Builder matchers(String matchers) {
-    this.internal.matchers = matchers;
-        return this;
-    }
-    public PrometheusDataqueryScope build() {
-            return this.internal;
-        }
-    }
 }

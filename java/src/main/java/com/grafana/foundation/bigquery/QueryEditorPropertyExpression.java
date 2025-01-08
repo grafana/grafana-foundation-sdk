@@ -14,26 +14,17 @@ public class QueryEditorPropertyExpression {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("property")
     public QueryEditorProperty property;
+    public QueryEditorPropertyExpression() {
+    }
+    
+    public QueryEditorPropertyExpression(String type,QueryEditorProperty property) {
+        this.type = type;
+        this.property = property;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<QueryEditorPropertyExpression> {
-        protected final QueryEditorPropertyExpression internal;
-        
-        public Builder() {
-            this.internal = new QueryEditorPropertyExpression();
-    this.internal.type = "property";
-        }
-    public Builder property(com.grafana.foundation.cog.Builder<QueryEditorProperty> property) {
-    this.internal.property = property.build();
-        return this;
-    }
-    public QueryEditorPropertyExpression build() {
-            return this.internal;
-        }
-    }
 }

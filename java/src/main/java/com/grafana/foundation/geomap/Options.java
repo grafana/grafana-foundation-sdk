@@ -28,6 +28,16 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("tooltip")
     public TooltipOptions tooltip;
+    public Options() {
+    }
+    
+    public Options(MapViewConfig view,ControlsOptions controls,MapLayerOptions basemap,List<MapLayerOptions> layers,TooltipOptions tooltip) {
+        this.view = view;
+        this.controls = controls;
+        this.basemap = basemap;
+        this.layers = layers;
+        this.tooltip = tooltip;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

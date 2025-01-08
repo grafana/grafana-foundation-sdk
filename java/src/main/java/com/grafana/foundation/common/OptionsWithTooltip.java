@@ -13,25 +13,16 @@ public class OptionsWithTooltip {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("tooltip")
     public VizTooltipOptions tooltip;
+    public OptionsWithTooltip() {
+    }
+    
+    public OptionsWithTooltip(VizTooltipOptions tooltip) {
+        this.tooltip = tooltip;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<OptionsWithTooltip> {
-        protected final OptionsWithTooltip internal;
-        
-        public Builder() {
-            this.internal = new OptionsWithTooltip();
-        }
-    public Builder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
-    this.internal.tooltip = tooltip.build();
-        return this;
-    }
-    public OptionsWithTooltip build() {
-            return this.internal;
-        }
-    }
 }
