@@ -12,6 +12,11 @@ on:
         required: false
         default: false
         type: boolean
+      skipValidation:
+        description: 'Skip output validation (linters, compilation checks, ...).'
+        required: false
+        default: false
+        type: boolean
 
 env:
   DEVBOX_VERSION: '0.13.1'
@@ -66,4 +71,5 @@ jobs:
           GOGC: 'off'
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # to be used by `gh`
           DRY_RUN: ${{ inputs.dryRun == true && 'yes' || 'no' }}
+          SKIP_VALIDATION: ${{ inputs.skipValidation == true && 'yes' || 'no' }}
           VERSION_TARGET: ${{ inputs.version }}
