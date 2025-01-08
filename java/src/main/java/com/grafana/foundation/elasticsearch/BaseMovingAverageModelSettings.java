@@ -16,35 +16,18 @@ public class BaseMovingAverageModelSettings {
     public String window;
     @JsonProperty("predict")
     public String predict;
+    public BaseMovingAverageModelSettings() {
+    }
+    
+    public BaseMovingAverageModelSettings(MovingAverageModel model,String window,String predict) {
+        this.model = model;
+        this.window = window;
+        this.predict = predict;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<BaseMovingAverageModelSettings> {
-        protected final BaseMovingAverageModelSettings internal;
-        
-        public Builder() {
-            this.internal = new BaseMovingAverageModelSettings();
-        }
-    public Builder model(MovingAverageModel model) {
-    this.internal.model = model;
-        return this;
-    }
-    
-    public Builder window(String window) {
-    this.internal.window = window;
-        return this;
-    }
-    
-    public Builder predict(String predict) {
-    this.internal.predict = predict;
-        return this;
-    }
-    public BaseMovingAverageModelSettings build() {
-            return this.internal;
-        }
-    }
 }

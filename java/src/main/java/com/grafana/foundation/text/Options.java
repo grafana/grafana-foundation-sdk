@@ -17,6 +17,16 @@ public class Options {
     public CodeOptions code;
     @JsonProperty("content")
     public String content;
+    public Options() {
+        this.mode = TextMode.MARKDOWN;
+        this.content = "# Title\n\nFor markdown syntax help: [commonmark.org/help](https://commonmark.org/help/)";
+    }
+    
+    public Options(TextMode mode,CodeOptions code,String content) {
+        this.mode = mode;
+        this.code = code;
+        this.content = content;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

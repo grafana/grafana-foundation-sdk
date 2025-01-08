@@ -21,35 +21,18 @@ public class AzureTracesFilter {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("filters")
     public List<String> filters;
+    public AzureTracesFilter() {
+    }
+    
+    public AzureTracesFilter(String property,String operation,List<String> filters) {
+        this.property = property;
+        this.operation = operation;
+        this.filters = filters;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AzureTracesFilter> {
-        protected final AzureTracesFilter internal;
-        
-        public Builder() {
-            this.internal = new AzureTracesFilter();
-        }
-    public Builder property(String property) {
-    this.internal.property = property;
-        return this;
-    }
-    
-    public Builder operation(String operation) {
-    this.internal.operation = operation;
-        return this;
-    }
-    
-    public Builder filters(List<String> filters) {
-    this.internal.filters = filters;
-        return this;
-    }
-    public AzureTracesFilter build() {
-            return this.internal;
-        }
-    }
 }

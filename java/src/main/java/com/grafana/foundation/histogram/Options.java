@@ -29,6 +29,17 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("combine")
     public Boolean combine;
+    public Options() {
+        this.bucketOffset = 0;
+    }
+    
+    public Options(Integer bucketSize,Integer bucketOffset,VizLegendOptions legend,VizTooltipOptions tooltip,Boolean combine) {
+        this.bucketSize = bucketSize;
+        this.bucketOffset = bucketOffset;
+        this.legend = legend;
+        this.tooltip = tooltip;
+        this.combine = combine;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

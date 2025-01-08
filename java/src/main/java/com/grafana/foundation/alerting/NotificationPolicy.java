@@ -61,85 +61,28 @@ public class NotificationPolicy {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("routes")
     public List<NotificationPolicy> routes;
+    public NotificationPolicy() {
+    }
+    
+    public NotificationPolicy(Boolean continueArg,List<String> groupBy,String groupInterval,String groupWait,Map<String, String> match,Map<String, String> matchRe,List<Matcher> matchers,List<String> muteTimeIntervals,List<Matcher> objectMatchers,String provenance,String receiver,String repeatInterval,List<NotificationPolicy> routes) {
+        this.continueArg = continueArg;
+        this.groupBy = groupBy;
+        this.groupInterval = groupInterval;
+        this.groupWait = groupWait;
+        this.match = match;
+        this.matchRe = matchRe;
+        this.matchers = matchers;
+        this.muteTimeIntervals = muteTimeIntervals;
+        this.objectMatchers = objectMatchers;
+        this.provenance = provenance;
+        this.receiver = receiver;
+        this.repeatInterval = repeatInterval;
+        this.routes = routes;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<NotificationPolicy> {
-        protected final NotificationPolicy internal;
-        
-        public Builder() {
-            this.internal = new NotificationPolicy();
-        }
-    public Builder continueArg(Boolean continueArg) {
-    this.internal.continueArg = continueArg;
-        return this;
-    }
-    
-    public Builder groupBy(List<String> groupBy) {
-    this.internal.groupBy = groupBy;
-        return this;
-    }
-    
-    public Builder groupInterval(String groupInterval) {
-    this.internal.groupInterval = groupInterval;
-        return this;
-    }
-    
-    public Builder groupWait(String groupWait) {
-    this.internal.groupWait = groupWait;
-        return this;
-    }
-    
-    public Builder match(Map<String, String> match) {
-    this.internal.match = match;
-        return this;
-    }
-    
-    public Builder matchRe(Map<String, String> matchRe) {
-    this.internal.matchRe = matchRe;
-        return this;
-    }
-    
-    public Builder matchers(List<Matcher> matchers) {
-    this.internal.matchers = matchers;
-        return this;
-    }
-    
-    public Builder muteTimeIntervals(List<String> muteTimeIntervals) {
-    this.internal.muteTimeIntervals = muteTimeIntervals;
-        return this;
-    }
-    
-    public Builder objectMatchers(com.grafana.foundation.cog.Builder<List<Matcher>> objectMatchers) {
-    this.internal.objectMatchers = objectMatchers.build();
-        return this;
-    }
-    
-    public Builder provenance(String provenance) {
-    this.internal.provenance = provenance;
-        return this;
-    }
-    
-    public Builder receiver(String receiver) {
-    this.internal.receiver = receiver;
-        return this;
-    }
-    
-    public Builder repeatInterval(String repeatInterval) {
-    this.internal.repeatInterval = repeatInterval;
-        return this;
-    }
-    
-    public Builder routes(com.grafana.foundation.cog.Builder<List<NotificationPolicy>> routes) {
-    this.internal.routes = routes.build();
-        return this;
-    }
-    public NotificationPolicy build() {
-            return this.internal;
-        }
-    }
 }

@@ -10,6 +10,13 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class Options {
     @JsonProperty("selectedSeries")
     public Integer selectedSeries;
+    public Options() {
+        this.selectedSeries = 0;
+    }
+    
+    public Options(Integer selectedSeries) {
+        this.selectedSeries = selectedSeries;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

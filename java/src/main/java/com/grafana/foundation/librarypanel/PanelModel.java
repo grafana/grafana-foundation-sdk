@@ -114,124 +114,36 @@ public class PanelModel {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("fieldConfig")
     public FieldConfigSource fieldConfig;
+    public PanelModel() {
+        this.transparent = false;
+    }
+    
+    public PanelModel(String type,String pluginVersion,List<String> tags,List<Dataquery> targets,String title,String description,Boolean transparent,DataSourceRef datasource,List<DashboardLink> links,String repeat,PanelModelRepeatDirection repeatDirection,Double maxPerRow,Double maxDataPoints,List<DataTransformerConfig> transformations,String interval,String timeFrom,String timeShift,Boolean hideTimeOverride,Object options,FieldConfigSource fieldConfig) {
+        this.type = type;
+        this.pluginVersion = pluginVersion;
+        this.tags = tags;
+        this.targets = targets;
+        this.title = title;
+        this.description = description;
+        this.transparent = transparent;
+        this.datasource = datasource;
+        this.links = links;
+        this.repeat = repeat;
+        this.repeatDirection = repeatDirection;
+        this.maxPerRow = maxPerRow;
+        this.maxDataPoints = maxDataPoints;
+        this.transformations = transformations;
+        this.interval = interval;
+        this.timeFrom = timeFrom;
+        this.timeShift = timeShift;
+        this.hideTimeOverride = hideTimeOverride;
+        this.options = options;
+        this.fieldConfig = fieldConfig;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<PanelModel> {
-        protected final PanelModel internal;
-        
-        public Builder() {
-            this.internal = new PanelModel();
-        this.transparent(false);
-        }
-    public Builder type(String type) {
-        if (!(type.length() >= 1)) {
-            throw new IllegalArgumentException("type.length() must be >= 1");
-        }
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder pluginVersion(String pluginVersion) {
-    this.internal.pluginVersion = pluginVersion;
-        return this;
-    }
-    
-    public Builder tags(List<String> tags) {
-    this.internal.tags = tags;
-        return this;
-    }
-    
-    public Builder targets(com.grafana.foundation.cog.Builder<List<Dataquery>> targets) {
-    this.internal.targets = targets.build();
-        return this;
-    }
-    
-    public Builder title(String title) {
-    this.internal.title = title;
-        return this;
-    }
-    
-    public Builder description(String description) {
-    this.internal.description = description;
-        return this;
-    }
-    
-    public Builder transparent(Boolean transparent) {
-    this.internal.transparent = transparent;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder links(com.grafana.foundation.cog.Builder<List<DashboardLink>> links) {
-    this.internal.links = links.build();
-        return this;
-    }
-    
-    public Builder repeat(String repeat) {
-    this.internal.repeat = repeat;
-        return this;
-    }
-    
-    public Builder repeatDirection(PanelModelRepeatDirection repeatDirection) {
-    this.internal.repeatDirection = repeatDirection;
-        return this;
-    }
-    
-    public Builder maxPerRow(Double maxPerRow) {
-    this.internal.maxPerRow = maxPerRow;
-        return this;
-    }
-    
-    public Builder maxDataPoints(Double maxDataPoints) {
-    this.internal.maxDataPoints = maxDataPoints;
-        return this;
-    }
-    
-    public Builder transformations(List<DataTransformerConfig> transformations) {
-    this.internal.transformations = transformations;
-        return this;
-    }
-    
-    public Builder interval(String interval) {
-    this.internal.interval = interval;
-        return this;
-    }
-    
-    public Builder timeFrom(String timeFrom) {
-    this.internal.timeFrom = timeFrom;
-        return this;
-    }
-    
-    public Builder timeShift(String timeShift) {
-    this.internal.timeShift = timeShift;
-        return this;
-    }
-    
-    public Builder hideTimeOverride(Boolean hideTimeOverride) {
-    this.internal.hideTimeOverride = hideTimeOverride;
-        return this;
-    }
-    
-    public Builder options(Object options) {
-    this.internal.options = options;
-        return this;
-    }
-    
-    public Builder fieldConfig(FieldConfigSource fieldConfig) {
-    this.internal.fieldConfig = fieldConfig;
-        return this;
-    }
-    public PanelModel build() {
-            return this.internal;
-        }
-    }
 }

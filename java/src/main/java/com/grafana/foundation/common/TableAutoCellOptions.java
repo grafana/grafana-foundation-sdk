@@ -11,7 +11,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class TableAutoCellOptions {
     @JsonProperty("type")
     public String type;
-    public TableAutoCellOptions() {}
+    public TableAutoCellOptions() {
+    }
     
     public TableAutoCellOptions(String type) {
         this.type = type;

@@ -32,50 +32,21 @@ public class TraceqlFilter {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("scope")
     public TraceqlSearchScope scope;
+    public TraceqlFilter() {
+    }
+    
+    public TraceqlFilter(String id,String tag,String operator,StringOrArrayOfString value,String valueType,TraceqlSearchScope scope) {
+        this.id = id;
+        this.tag = tag;
+        this.operator = operator;
+        this.value = value;
+        this.valueType = valueType;
+        this.scope = scope;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TraceqlFilter> {
-        protected final TraceqlFilter internal;
-        
-        public Builder() {
-            this.internal = new TraceqlFilter();
-        }
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder tag(String tag) {
-    this.internal.tag = tag;
-        return this;
-    }
-    
-    public Builder operator(String operator) {
-    this.internal.operator = operator;
-        return this;
-    }
-    
-    public Builder value(StringOrArrayOfString value) {
-    this.internal.value = value;
-        return this;
-    }
-    
-    public Builder valueType(String valueType) {
-    this.internal.valueType = valueType;
-        return this;
-    }
-    
-    public Builder scope(TraceqlSearchScope scope) {
-    this.internal.scope = scope;
-        return this;
-    }
-    public TraceqlFilter build() {
-            return this.internal;
-        }
-    }
 }

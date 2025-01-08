@@ -23,35 +23,18 @@ public class HeatmapTooltip {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("showColorScale")
     public Boolean showColorScale;
+    public HeatmapTooltip() {
+    }
+    
+    public HeatmapTooltip(TooltipDisplayMode mode,Boolean yHistogram,Boolean showColorScale) {
+        this.mode = mode;
+        this.yHistogram = yHistogram;
+        this.showColorScale = showColorScale;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<HeatmapTooltip> {
-        protected final HeatmapTooltip internal;
-        
-        public Builder() {
-            this.internal = new HeatmapTooltip();
-        }
-    public Builder mode(TooltipDisplayMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder yHistogram(Boolean yHistogram) {
-    this.internal.yHistogram = yHistogram;
-        return this;
-    }
-    
-    public Builder showColorScale(Boolean showColorScale) {
-    this.internal.showColorScale = showColorScale;
-        return this;
-    }
-    public HeatmapTooltip build() {
-            return this.internal;
-        }
-    }
 }

@@ -35,40 +35,19 @@ public class DataQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public Object datasource;
+    public DataQuery() {
+    }
+    
+    public DataQuery(String refId,Boolean hide,String queryType,Object datasource) {
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.datasource = datasource;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<DataQuery> {
-        protected final DataQuery internal;
-        
-        public Builder() {
-            this.internal = new DataQuery();
-        }
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder datasource(Object datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    public DataQuery build() {
-            return this.internal;
-        }
-    }
 }
