@@ -14,32 +14,19 @@ public class ExprTypeThresholdTimeRange {
     // To is the end time of the query.
     @JsonProperty("to")
     public String to;
+    public ExprTypeThresholdTimeRange() {
+        this.from = "now-6h";
+        this.to = "now";
+    }
+    
+    public ExprTypeThresholdTimeRange(String from,String to) {
+        this.from = from;
+        this.to = to;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeThresholdTimeRange> {
-        protected final ExprTypeThresholdTimeRange internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeThresholdTimeRange();
-        this.from("now-6h");
-        this.to("now");
-        }
-    public Builder from(String from) {
-    this.internal.from = from;
-        return this;
-    }
-    
-    public Builder to(String to) {
-    this.internal.to = to;
-        return this;
-    }
-    public ExprTypeThresholdTimeRange build() {
-            return this.internal;
-        }
-    }
 }

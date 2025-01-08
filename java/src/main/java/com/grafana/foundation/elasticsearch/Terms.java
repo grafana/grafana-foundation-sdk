@@ -19,36 +19,19 @@ public class Terms {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("settings")
     public ElasticsearchTermsSettings settings;
+    public Terms() {
+    }
+    
+    public Terms(String field,String id,String type,ElasticsearchTermsSettings settings) {
+        this.field = field;
+        this.id = id;
+        this.type = type;
+        this.settings = settings;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Terms> {
-        protected final Terms internal;
-        
-        public Builder() {
-            this.internal = new Terms();
-    this.internal.type = "terms";
-        }
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder settings(com.grafana.foundation.cog.Builder<ElasticsearchTermsSettings> settings) {
-    this.internal.settings = settings.build();
-        return this;
-    }
-    public Terms build() {
-            return this.internal;
-        }
-    }
 }

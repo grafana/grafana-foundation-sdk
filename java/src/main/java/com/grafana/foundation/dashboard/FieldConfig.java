@@ -95,6 +95,27 @@ public class FieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("custom")
     public Object custom;
+    public FieldConfig() {
+    }
+    
+    public FieldConfig(String displayName,String displayNameFromDS,String description,String path,Boolean writeable,Boolean filterable,String unit,Double decimals,Double min,Double max,List<ValueMapping> mappings,ThresholdsConfig thresholds,FieldColor color,List<DashboardLink> links,String noValue,Object custom) {
+        this.displayName = displayName;
+        this.displayNameFromDS = displayNameFromDS;
+        this.description = description;
+        this.path = path;
+        this.writeable = writeable;
+        this.filterable = filterable;
+        this.unit = unit;
+        this.decimals = decimals;
+        this.min = min;
+        this.max = max;
+        this.mappings = mappings;
+        this.thresholds = thresholds;
+        this.color = color;
+        this.links = links;
+        this.noValue = noValue;
+        this.custom = custom;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

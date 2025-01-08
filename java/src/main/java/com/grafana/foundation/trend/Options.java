@@ -22,6 +22,14 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("xField")
     public String xField;
+    public Options() {
+    }
+    
+    public Options(VizLegendOptions legend,VizTooltipOptions tooltip,String xField) {
+        this.legend = legend;
+        this.tooltip = tooltip;
+        this.xField = xField;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

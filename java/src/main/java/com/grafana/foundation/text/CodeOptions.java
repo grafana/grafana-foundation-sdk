@@ -17,38 +17,21 @@ public class CodeOptions {
     public Boolean showLineNumbers;
     @JsonProperty("showMiniMap")
     public Boolean showMiniMap;
+    public CodeOptions() {
+        this.language = CodeLanguage.PLAINTEXT;
+        this.showLineNumbers = false;
+        this.showMiniMap = false;
+    }
+    
+    public CodeOptions(CodeLanguage language,Boolean showLineNumbers,Boolean showMiniMap) {
+        this.language = language;
+        this.showLineNumbers = showLineNumbers;
+        this.showMiniMap = showMiniMap;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<CodeOptions> {
-        protected final CodeOptions internal;
-        
-        public Builder() {
-            this.internal = new CodeOptions();
-        this.language(CodeLanguage.PLAINTEXT);
-        this.showLineNumbers(false);
-        this.showMiniMap(false);
-        }
-    public Builder language(CodeLanguage language) {
-    this.internal.language = language;
-        return this;
-    }
-    
-    public Builder showLineNumbers(Boolean showLineNumbers) {
-    this.internal.showLineNumbers = showLineNumbers;
-        return this;
-    }
-    
-    public Builder showMiniMap(Boolean showMiniMap) {
-    this.internal.showMiniMap = showMiniMap;
-        return this;
-    }
-    public CodeOptions build() {
-            return this.internal;
-        }
-    }
 }

@@ -15,26 +15,17 @@ public class TableColorTextCellOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("wrapText")
     public Boolean wrapText;
+    public TableColorTextCellOptions() {
+    }
+    
+    public TableColorTextCellOptions(String type,Boolean wrapText) {
+        this.type = type;
+        this.wrapText = wrapText;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TableColorTextCellOptions> {
-        protected final TableColorTextCellOptions internal;
-        
-        public Builder() {
-            this.internal = new TableColorTextCellOptions();
-    this.internal.type = "color-text";
-        }
-    public Builder wrapText(Boolean wrapText) {
-    this.internal.wrapText = wrapText;
-        return this;
-    }
-    public TableColorTextCellOptions build() {
-            return this.internal;
-        }
-    }
 }

@@ -19,30 +19,17 @@ public class ExprTypeThresholdConditionsUnloadEvaluator {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("type")
     public TypeThresholdType type;
+    public ExprTypeThresholdConditionsUnloadEvaluator() {
+    }
+    
+    public ExprTypeThresholdConditionsUnloadEvaluator(List<Double> params,TypeThresholdType type) {
+        this.params = params;
+        this.type = type;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeThresholdConditionsUnloadEvaluator> {
-        protected final ExprTypeThresholdConditionsUnloadEvaluator internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeThresholdConditionsUnloadEvaluator();
-        }
-    public Builder params(List<Double> params) {
-    this.internal.params = params;
-        return this;
-    }
-    
-    public Builder type(TypeThresholdType type) {
-    this.internal.type = type;
-        return this;
-    }
-    public ExprTypeThresholdConditionsUnloadEvaluator build() {
-            return this.internal;
-        }
-    }
 }

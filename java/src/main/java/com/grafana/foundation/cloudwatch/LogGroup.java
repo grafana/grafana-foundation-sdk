@@ -23,40 +23,19 @@ public class LogGroup {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("accountLabel")
     public String accountLabel;
+    public LogGroup() {
+    }
+    
+    public LogGroup(String arn,String name,String accountId,String accountLabel) {
+        this.arn = arn;
+        this.name = name;
+        this.accountId = accountId;
+        this.accountLabel = accountLabel;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<LogGroup> {
-        protected final LogGroup internal;
-        
-        public Builder() {
-            this.internal = new LogGroup();
-        }
-    public Builder arn(String arn) {
-    this.internal.arn = arn;
-        return this;
-    }
-    
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder accountId(String accountId) {
-    this.internal.accountId = accountId;
-        return this;
-    }
-    
-    public Builder accountLabel(String accountLabel) {
-    this.internal.accountLabel = accountLabel;
-        return this;
-    }
-    public LogGroup build() {
-            return this.internal;
-        }
-    }
 }

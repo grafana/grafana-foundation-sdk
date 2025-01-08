@@ -16,31 +16,18 @@ public class Count {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
+    public Count() {
+    }
+    
+    public Count(String type,String id,Boolean hide) {
+        this.type = type;
+        this.id = id;
+        this.hide = hide;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Count> {
-        protected final Count internal;
-        
-        public Builder() {
-            this.internal = new Count();
-    this.internal.type = "count";
-        }
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    public Count build() {
-            return this.internal;
-        }
-    }
 }

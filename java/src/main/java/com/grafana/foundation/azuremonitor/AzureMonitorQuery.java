@@ -77,6 +77,27 @@ public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Da
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("query")
     public String query;
+    public AzureMonitorQuery() {
+    }
+    
+    public AzureMonitorQuery(String refId,Boolean hide,String queryType,String subscription,List<String> subscriptions,AzureMetricQuery azureMonitor,AzureLogsQuery azureLogAnalytics,AzureResourceGraphQuery azureResourceGraph,AzureTracesQuery azureTraces,GrafanaTemplateVariableQuery grafanaTemplateVariableFn,String resourceGroup,String namespace,String resource,String region,DataSourceRef datasource,String query) {
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.subscription = subscription;
+        this.subscriptions = subscriptions;
+        this.azureMonitor = azureMonitor;
+        this.azureLogAnalytics = azureLogAnalytics;
+        this.azureResourceGraph = azureResourceGraph;
+        this.azureTraces = azureTraces;
+        this.grafanaTemplateVariableFn = grafanaTemplateVariableFn;
+        this.resourceGroup = resourceGroup;
+        this.namespace = namespace;
+        this.resource = resource;
+        this.region = region;
+        this.datasource = datasource;
+        this.query = query;
+    }
     public String dataqueryName() {
         return "grafana-azure-monitor-datasource";
     }
@@ -86,94 +107,4 @@ public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Da
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final AzureMonitorQuery internal;
-        
-        public Builder() {
-            this.internal = new AzureMonitorQuery();
-        }
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder subscription(String subscription) {
-    this.internal.subscription = subscription;
-        return this;
-    }
-    
-    public Builder subscriptions(List<String> subscriptions) {
-    this.internal.subscriptions = subscriptions;
-        return this;
-    }
-    
-    public Builder azureMonitor(com.grafana.foundation.cog.Builder<AzureMetricQuery> azureMonitor) {
-    this.internal.azureMonitor = azureMonitor.build();
-        return this;
-    }
-    
-    public Builder azureLogAnalytics(com.grafana.foundation.cog.Builder<AzureLogsQuery> azureLogAnalytics) {
-    this.internal.azureLogAnalytics = azureLogAnalytics.build();
-        return this;
-    }
-    
-    public Builder azureResourceGraph(com.grafana.foundation.cog.Builder<AzureResourceGraphQuery> azureResourceGraph) {
-    this.internal.azureResourceGraph = azureResourceGraph.build();
-        return this;
-    }
-    
-    public Builder azureTraces(com.grafana.foundation.cog.Builder<AzureTracesQuery> azureTraces) {
-    this.internal.azureTraces = azureTraces.build();
-        return this;
-    }
-    
-    public Builder grafanaTemplateVariableFn(GrafanaTemplateVariableQuery grafanaTemplateVariableFn) {
-    this.internal.grafanaTemplateVariableFn = grafanaTemplateVariableFn;
-        return this;
-    }
-    
-    public Builder resourceGroup(String resourceGroup) {
-    this.internal.resourceGroup = resourceGroup;
-        return this;
-    }
-    
-    public Builder namespace(String namespace) {
-    this.internal.namespace = namespace;
-        return this;
-    }
-    
-    public Builder resource(String resource) {
-    this.internal.resource = resource;
-        return this;
-    }
-    
-    public Builder region(String region) {
-    this.internal.region = region;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder query(String query) {
-    this.internal.query = query;
-        return this;
-    }
-    public AzureMonitorQuery build() {
-            return this.internal;
-        }
-    }
 }

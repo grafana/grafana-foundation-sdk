@@ -12,25 +12,16 @@ public class HeatmapLegend {
     // Controls if the legend is shown
     @JsonProperty("show")
     public Boolean show;
+    public HeatmapLegend() {
+    }
+    
+    public HeatmapLegend(Boolean show) {
+        this.show = show;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<HeatmapLegend> {
-        protected final HeatmapLegend internal;
-        
-        public Builder() {
-            this.internal = new HeatmapLegend();
-        }
-    public Builder show(Boolean show) {
-    this.internal.show = show;
-        return this;
-    }
-    public HeatmapLegend build() {
-            return this.internal;
-        }
-    }
 }

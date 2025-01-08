@@ -37,35 +37,18 @@ public class ResultAssertions {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("typeVersion")
     public List<Long> typeVersion;
+    public ResultAssertions() {
+    }
+    
+    public ResultAssertions(Long maxFrames,ResultAssertionsType type,List<Long> typeVersion) {
+        this.maxFrames = maxFrames;
+        this.type = type;
+        this.typeVersion = typeVersion;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ResultAssertions> {
-        protected final ResultAssertions internal;
-        
-        public Builder() {
-            this.internal = new ResultAssertions();
-        }
-    public Builder maxFrames(Long maxFrames) {
-    this.internal.maxFrames = maxFrames;
-        return this;
-    }
-    
-    public Builder type(ResultAssertionsType type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder typeVersion(List<Long> typeVersion) {
-    this.internal.typeVersion = typeVersion;
-        return this;
-    }
-    public ResultAssertions build() {
-            return this.internal;
-        }
-    }
 }

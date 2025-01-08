@@ -26,6 +26,20 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("root")
     public CanvasOptionsRoot root;
+    public Options() {
+        this.inlineEditing = true;
+        this.showAdvancedTypes = true;
+        this.panZoom = true;
+        this.infinitePan = true;
+    }
+    
+    public Options(Boolean inlineEditing,Boolean showAdvancedTypes,Boolean panZoom,Boolean infinitePan,CanvasOptionsRoot root) {
+        this.inlineEditing = inlineEditing;
+        this.showAdvancedTypes = showAdvancedTypes;
+        this.panZoom = panZoom;
+        this.infinitePan = infinitePan;
+        this.root = root;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
