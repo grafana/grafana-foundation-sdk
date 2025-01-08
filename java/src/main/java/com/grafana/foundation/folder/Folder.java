@@ -21,35 +21,18 @@ public class Folder {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("description")
     public String description;
+    public Folder() {
+    }
+    
+    public Folder(String uid,String title,String description) {
+        this.uid = uid;
+        this.title = title;
+        this.description = description;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Folder> {
-        protected final Folder internal;
-        
-        public Builder() {
-            this.internal = new Folder();
-        }
-    public Builder uid(String uid) {
-    this.internal.uid = uid;
-        return this;
-    }
-    
-    public Builder title(String title) {
-    this.internal.title = title;
-        return this;
-    }
-    
-    public Builder description(String description) {
-    this.internal.description = description;
-        return this;
-    }
-    public Folder build() {
-            return this.internal;
-        }
-    }
 }

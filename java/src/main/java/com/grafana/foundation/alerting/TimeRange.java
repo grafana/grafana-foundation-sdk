@@ -16,30 +16,17 @@ public class TimeRange {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("to")
     public String to;
+    public TimeRange() {
+    }
+    
+    public TimeRange(String from,String to) {
+        this.from = from;
+        this.to = to;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TimeRange> {
-        protected final TimeRange internal;
-        
-        public Builder() {
-            this.internal = new TimeRange();
-        }
-    public Builder from(String from) {
-    this.internal.from = from;
-        return this;
-    }
-    
-    public Builder to(String to) {
-    this.internal.to = to;
-        return this;
-    }
-    public TimeRange build() {
-            return this.internal;
-        }
-    }
 }

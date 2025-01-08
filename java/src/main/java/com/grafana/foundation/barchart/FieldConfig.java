@@ -2,12 +2,12 @@
 
 package com.grafana.foundation.barchart;
 
+import com.grafana.foundation.common.GraphGradientMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grafana.foundation.common.GraphGradientMode;
 import com.grafana.foundation.common.AxisPlacement;
 import com.grafana.foundation.common.AxisColorMode;
 import com.grafana.foundation.common.ScaleDistributionConfig;
@@ -62,6 +62,28 @@ public class FieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("axisCenteredZero")
     public Boolean axisCenteredZero;
+    public FieldConfig() {
+        this.lineWidth = 1;
+        this.fillOpacity = 80;
+        this.gradientMode = GraphGradientMode.NONE;
+    }
+    
+    public FieldConfig(Integer lineWidth,Integer fillOpacity,GraphGradientMode gradientMode,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,HideSeriesConfig hideFrom,GraphThresholdsStyleConfig thresholdsStyle,Boolean axisCenteredZero) {
+        this.lineWidth = lineWidth;
+        this.fillOpacity = fillOpacity;
+        this.gradientMode = gradientMode;
+        this.axisPlacement = axisPlacement;
+        this.axisColorMode = axisColorMode;
+        this.axisLabel = axisLabel;
+        this.axisWidth = axisWidth;
+        this.axisSoftMin = axisSoftMin;
+        this.axisSoftMax = axisSoftMax;
+        this.axisGridShow = axisGridShow;
+        this.scaleDistribution = scaleDistribution;
+        this.hideFrom = hideFrom;
+        this.thresholdsStyle = thresholdsStyle;
+        this.axisCenteredZero = axisCenteredZero;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

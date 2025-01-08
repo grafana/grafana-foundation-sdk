@@ -93,160 +93,43 @@ public class DashboardMeta {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("version")
     public Long version;
+    public DashboardMeta() {
+    }
+    
+    public DashboardMeta(AnnotationPermission annotationsPermissions,Boolean canAdmin,Boolean canDelete,Boolean canEdit,Boolean canSave,Boolean canStar,String created,String createdBy,String expires,Long folderId,String folderTitle,String folderUid,String folderUrl,Boolean hasAcl,Boolean isFolder,Boolean isSnapshot,Boolean isStarred,Boolean provisioned,String provisionedExternalId,String publicDashboardAccessToken,Boolean publicDashboardEnabled,String publicDashboardUid,String slug,String type,String updated,String updatedBy,String url,Long version) {
+        this.annotationsPermissions = annotationsPermissions;
+        this.canAdmin = canAdmin;
+        this.canDelete = canDelete;
+        this.canEdit = canEdit;
+        this.canSave = canSave;
+        this.canStar = canStar;
+        this.created = created;
+        this.createdBy = createdBy;
+        this.expires = expires;
+        this.folderId = folderId;
+        this.folderTitle = folderTitle;
+        this.folderUid = folderUid;
+        this.folderUrl = folderUrl;
+        this.hasAcl = hasAcl;
+        this.isFolder = isFolder;
+        this.isSnapshot = isSnapshot;
+        this.isStarred = isStarred;
+        this.provisioned = provisioned;
+        this.provisionedExternalId = provisionedExternalId;
+        this.publicDashboardAccessToken = publicDashboardAccessToken;
+        this.publicDashboardEnabled = publicDashboardEnabled;
+        this.publicDashboardUid = publicDashboardUid;
+        this.slug = slug;
+        this.type = type;
+        this.updated = updated;
+        this.updatedBy = updatedBy;
+        this.url = url;
+        this.version = version;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<DashboardMeta> {
-        protected final DashboardMeta internal;
-        
-        public Builder() {
-            this.internal = new DashboardMeta();
-        }
-    public Builder annotationsPermissions(com.grafana.foundation.cog.Builder<AnnotationPermission> annotationsPermissions) {
-    this.internal.annotationsPermissions = annotationsPermissions.build();
-        return this;
-    }
-    
-    public Builder canAdmin(Boolean canAdmin) {
-    this.internal.canAdmin = canAdmin;
-        return this;
-    }
-    
-    public Builder canDelete(Boolean canDelete) {
-    this.internal.canDelete = canDelete;
-        return this;
-    }
-    
-    public Builder canEdit(Boolean canEdit) {
-    this.internal.canEdit = canEdit;
-        return this;
-    }
-    
-    public Builder canSave(Boolean canSave) {
-    this.internal.canSave = canSave;
-        return this;
-    }
-    
-    public Builder canStar(Boolean canStar) {
-    this.internal.canStar = canStar;
-        return this;
-    }
-    
-    public Builder created(String created) {
-    this.internal.created = created;
-        return this;
-    }
-    
-    public Builder createdBy(String createdBy) {
-    this.internal.createdBy = createdBy;
-        return this;
-    }
-    
-    public Builder expires(String expires) {
-    this.internal.expires = expires;
-        return this;
-    }
-    
-    public Builder folderId(Long folderId) {
-    this.internal.folderId = folderId;
-        return this;
-    }
-    
-    public Builder folderTitle(String folderTitle) {
-    this.internal.folderTitle = folderTitle;
-        return this;
-    }
-    
-    public Builder folderUid(String folderUid) {
-    this.internal.folderUid = folderUid;
-        return this;
-    }
-    
-    public Builder folderUrl(String folderUrl) {
-    this.internal.folderUrl = folderUrl;
-        return this;
-    }
-    
-    public Builder hasAcl(Boolean hasAcl) {
-    this.internal.hasAcl = hasAcl;
-        return this;
-    }
-    
-    public Builder isFolder(Boolean isFolder) {
-    this.internal.isFolder = isFolder;
-        return this;
-    }
-    
-    public Builder isSnapshot(Boolean isSnapshot) {
-    this.internal.isSnapshot = isSnapshot;
-        return this;
-    }
-    
-    public Builder isStarred(Boolean isStarred) {
-    this.internal.isStarred = isStarred;
-        return this;
-    }
-    
-    public Builder provisioned(Boolean provisioned) {
-    this.internal.provisioned = provisioned;
-        return this;
-    }
-    
-    public Builder provisionedExternalId(String provisionedExternalId) {
-    this.internal.provisionedExternalId = provisionedExternalId;
-        return this;
-    }
-    
-    public Builder publicDashboardAccessToken(String publicDashboardAccessToken) {
-    this.internal.publicDashboardAccessToken = publicDashboardAccessToken;
-        return this;
-    }
-    
-    public Builder publicDashboardEnabled(Boolean publicDashboardEnabled) {
-    this.internal.publicDashboardEnabled = publicDashboardEnabled;
-        return this;
-    }
-    
-    public Builder publicDashboardUid(String publicDashboardUid) {
-    this.internal.publicDashboardUid = publicDashboardUid;
-        return this;
-    }
-    
-    public Builder slug(String slug) {
-    this.internal.slug = slug;
-        return this;
-    }
-    
-    public Builder type(String type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder updated(String updated) {
-    this.internal.updated = updated;
-        return this;
-    }
-    
-    public Builder updatedBy(String updatedBy) {
-    this.internal.updatedBy = updatedBy;
-        return this;
-    }
-    
-    public Builder url(String url) {
-    this.internal.url = url;
-        return this;
-    }
-    
-    public Builder version(Long version) {
-    this.internal.version = version;
-        return this;
-    }
-    public DashboardMeta build() {
-            return this.internal;
-        }
-    }
 }

@@ -27,35 +27,18 @@ public class PlaylistItem {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("title")
     public String title;
+    public PlaylistItem() {
+    }
+    
+    public PlaylistItem(PlaylistItemType type,String value,String title) {
+        this.type = type;
+        this.value = value;
+        this.title = title;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<PlaylistItem> {
-        protected final PlaylistItem internal;
-        
-        public Builder() {
-            this.internal = new PlaylistItem();
-        }
-    public Builder type(PlaylistItemType type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder value(String value) {
-    this.internal.value = value;
-        return this;
-    }
-    
-    public Builder title(String title) {
-    this.internal.title = title;
-        return this;
-    }
-    public PlaylistItem build() {
-            return this.internal;
-        }
-    }
 }

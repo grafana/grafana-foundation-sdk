@@ -18,35 +18,18 @@ public class RoleRef {
     public String name;
     @JsonProperty("xname")
     public String xname;
+    public RoleRef() {
+    }
+    
+    public RoleRef(RoleRefKind kind,String name,String xname) {
+        this.kind = kind;
+        this.name = name;
+        this.xname = xname;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<RoleRef> {
-        protected final RoleRef internal;
-        
-        public Builder() {
-            this.internal = new RoleRef();
-        }
-    public Builder kind(RoleRefKind kind) {
-    this.internal.kind = kind;
-        return this;
-    }
-    
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder xname(String xname) {
-    this.internal.xname = xname;
-        return this;
-    }
-    public RoleRef build() {
-            return this.internal;
-        }
-    }
 }

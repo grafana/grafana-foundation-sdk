@@ -16,31 +16,18 @@ public class AppInsightsGroupByQuery {
     public String kind;
     @JsonProperty("metricName")
     public String metricName;
+    public AppInsightsGroupByQuery() {
+    }
+    
+    public AppInsightsGroupByQuery(String rawQuery,String kind,String metricName) {
+        this.rawQuery = rawQuery;
+        this.kind = kind;
+        this.metricName = metricName;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AppInsightsGroupByQuery> {
-        protected final AppInsightsGroupByQuery internal;
-        
-        public Builder() {
-            this.internal = new AppInsightsGroupByQuery();
-    this.internal.kind = "AppInsightsGroupByQuery";
-        }
-    public Builder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
-        return this;
-    }
-    
-    public Builder metricName(String metricName) {
-    this.internal.metricName = metricName;
-        return this;
-    }
-    public AppInsightsGroupByQuery build() {
-            return this.internal;
-        }
-    }
 }

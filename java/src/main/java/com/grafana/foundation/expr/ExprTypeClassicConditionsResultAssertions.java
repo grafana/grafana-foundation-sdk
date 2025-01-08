@@ -37,35 +37,18 @@ public class ExprTypeClassicConditionsResultAssertions {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("typeVersion")
     public List<Long> typeVersion;
+    public ExprTypeClassicConditionsResultAssertions() {
+    }
+    
+    public ExprTypeClassicConditionsResultAssertions(Long maxFrames,TypeClassicConditionsType type,List<Long> typeVersion) {
+        this.maxFrames = maxFrames;
+        this.type = type;
+        this.typeVersion = typeVersion;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsResultAssertions> {
-        protected final ExprTypeClassicConditionsResultAssertions internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeClassicConditionsResultAssertions();
-        }
-    public Builder maxFrames(Long maxFrames) {
-    this.internal.maxFrames = maxFrames;
-        return this;
-    }
-    
-    public Builder type(TypeClassicConditionsType type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder typeVersion(List<Long> typeVersion) {
-    this.internal.typeVersion = typeVersion;
-        return this;
-    }
-    public ExprTypeClassicConditionsResultAssertions build() {
-            return this.internal;
-        }
-    }
 }

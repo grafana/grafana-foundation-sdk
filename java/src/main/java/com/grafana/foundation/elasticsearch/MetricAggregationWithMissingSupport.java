@@ -20,40 +20,19 @@ public class MetricAggregationWithMissingSupport {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
+    public MetricAggregationWithMissingSupport() {
+    }
+    
+    public MetricAggregationWithMissingSupport(ElasticsearchMetricAggregationWithMissingSupportSettings settings,MetricAggregationType type,String id,Boolean hide) {
+        this.settings = settings;
+        this.type = type;
+        this.id = id;
+        this.hide = hide;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MetricAggregationWithMissingSupport> {
-        protected final MetricAggregationWithMissingSupport internal;
-        
-        public Builder() {
-            this.internal = new MetricAggregationWithMissingSupport();
-        }
-    public Builder settings(com.grafana.foundation.cog.Builder<ElasticsearchMetricAggregationWithMissingSupportSettings> settings) {
-    this.internal.settings = settings.build();
-        return this;
-    }
-    
-    public Builder type(com.grafana.foundation.cog.Builder<MetricAggregationType> type) {
-    this.internal.type = type.build();
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    public MetricAggregationWithMissingSupport build() {
-            return this.internal;
-        }
-    }
 }

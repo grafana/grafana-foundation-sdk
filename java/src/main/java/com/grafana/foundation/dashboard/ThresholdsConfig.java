@@ -21,30 +21,17 @@ public class ThresholdsConfig {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("steps")
     public List<Threshold> steps;
+    public ThresholdsConfig() {
+    }
+    
+    public ThresholdsConfig(ThresholdsMode mode,List<Threshold> steps) {
+        this.mode = mode;
+        this.steps = steps;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ThresholdsConfig> {
-        protected final ThresholdsConfig internal;
-        
-        public Builder() {
-            this.internal = new ThresholdsConfig();
-        }
-    public Builder mode(ThresholdsMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder steps(List<Threshold> steps) {
-    this.internal.steps = steps;
-        return this;
-    }
-    public ThresholdsConfig build() {
-            return this.internal;
-        }
-    }
 }

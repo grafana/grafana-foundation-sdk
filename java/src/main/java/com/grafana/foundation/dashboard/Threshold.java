@@ -19,7 +19,8 @@ public class Threshold {
     // Color represents the color of the visual change that will occur in the dashboard when the threshold value is met or exceeded.
     @JsonProperty("color")
     public String color;
-    public Threshold() {}
+    public Threshold() {
+    }
     
     public Threshold(Double value,String color) {
         this.value = value;

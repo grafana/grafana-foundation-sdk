@@ -26,7 +26,8 @@ public class ValueMappingResult {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("index")
     public Integer index;
-    public ValueMappingResult() {}
+    public ValueMappingResult() {
+    }
     
     public ValueMappingResult(String text,String color,String icon,Integer index) {
         this.text = text;

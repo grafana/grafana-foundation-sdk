@@ -14,32 +14,19 @@ public class ExprTypeClassicConditionsTimeRange {
     // To is the end time of the query.
     @JsonProperty("to")
     public String to;
+    public ExprTypeClassicConditionsTimeRange() {
+        this.from = "now-6h";
+        this.to = "now";
+    }
+    
+    public ExprTypeClassicConditionsTimeRange(String from,String to) {
+        this.from = from;
+        this.to = to;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsTimeRange> {
-        protected final ExprTypeClassicConditionsTimeRange internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeClassicConditionsTimeRange();
-        this.from("now-6h");
-        this.to("now");
-        }
-    public Builder from(String from) {
-    this.internal.from = from;
-        return this;
-    }
-    
-    public Builder to(String to) {
-    this.internal.to = to;
-        return this;
-    }
-    public ExprTypeClassicConditionsTimeRange build() {
-            return this.internal;
-        }
-    }
 }

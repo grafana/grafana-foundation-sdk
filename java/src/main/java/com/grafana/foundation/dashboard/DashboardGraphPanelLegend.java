@@ -17,36 +17,19 @@ public class DashboardGraphPanelLegend {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("sortDesc")
     public Boolean sortDesc;
+    public DashboardGraphPanelLegend() {
+        this.show = true;
+    }
+    
+    public DashboardGraphPanelLegend(Boolean show,String sort,Boolean sortDesc) {
+        this.show = show;
+        this.sort = sort;
+        this.sortDesc = sortDesc;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<DashboardGraphPanelLegend> {
-        protected final DashboardGraphPanelLegend internal;
-        
-        public Builder() {
-            this.internal = new DashboardGraphPanelLegend();
-        this.show(true);
-        }
-    public Builder show(Boolean show) {
-    this.internal.show = show;
-        return this;
-    }
-    
-    public Builder sort(String sort) {
-    this.internal.sort = sort;
-        return this;
-    }
-    
-    public Builder sortDesc(Boolean sortDesc) {
-    this.internal.sortDesc = sortDesc;
-        return this;
-    }
-    public DashboardGraphPanelLegend build() {
-            return this.internal;
-        }
-    }
 }

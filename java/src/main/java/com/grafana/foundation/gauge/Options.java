@@ -25,6 +25,18 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("orientation")
     public VizOrientation orientation;
+    public Options() {
+        this.showThresholdLabels = false;
+        this.showThresholdMarkers = true;
+    }
+    
+    public Options(Boolean showThresholdLabels,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,Boolean showThresholdMarkers,VizOrientation orientation) {
+        this.showThresholdLabels = showThresholdLabels;
+        this.reduceOptions = reduceOptions;
+        this.text = text;
+        this.showThresholdMarkers = showThresholdMarkers;
+        this.orientation = orientation;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

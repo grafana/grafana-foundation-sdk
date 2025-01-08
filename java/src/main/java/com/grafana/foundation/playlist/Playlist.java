@@ -26,41 +26,20 @@ public class Playlist {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("items")
     public List<PlaylistItem> items;
+    public Playlist() {
+        this.interval = "5m";
+    }
+    
+    public Playlist(String uid,String name,String interval,List<PlaylistItem> items) {
+        this.uid = uid;
+        this.name = name;
+        this.interval = interval;
+        this.items = items;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Playlist> {
-        protected final Playlist internal;
-        
-        public Builder() {
-            this.internal = new Playlist();
-        this.interval("5m");
-        }
-    public Builder uid(String uid) {
-    this.internal.uid = uid;
-        return this;
-    }
-    
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder interval(String interval) {
-    this.internal.interval = interval;
-        return this;
-    }
-    
-    public Builder items(com.grafana.foundation.cog.Builder<List<PlaylistItem>> items) {
-    this.internal.items = items.build();
-        return this;
-    }
-    public Playlist build() {
-            return this.internal;
-        }
-    }
 }

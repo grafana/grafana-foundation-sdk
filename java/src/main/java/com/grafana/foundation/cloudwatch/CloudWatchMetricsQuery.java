@@ -106,6 +106,34 @@ public class CloudWatchMetricsQuery implements com.grafana.foundation.cog.varian
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("statistics")
     public List<String> statistics;
+    public CloudWatchMetricsQuery() {
+        this.queryMode = CloudWatchQueryMode.METRICS;
+    }
+    
+    public CloudWatchMetricsQuery(CloudWatchQueryMode queryMode,MetricQueryType metricQueryType,MetricEditorMode metricEditorMode,String id,String alias,String label,String expression,String sqlExpression,String refId,Boolean hide,String queryType,String region,String namespace,String metricName,Map<String, StringOrArrayOfString> dimensions,Boolean matchExact,String period,String accountId,String statistic,SQLExpression sql,DataSourceRef datasource,List<String> statistics) {
+        this.queryMode = queryMode;
+        this.metricQueryType = metricQueryType;
+        this.metricEditorMode = metricEditorMode;
+        this.id = id;
+        this.alias = alias;
+        this.label = label;
+        this.expression = expression;
+        this.sqlExpression = sqlExpression;
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.region = region;
+        this.namespace = namespace;
+        this.metricName = metricName;
+        this.dimensions = dimensions;
+        this.matchExact = matchExact;
+        this.period = period;
+        this.accountId = accountId;
+        this.statistic = statistic;
+        this.sql = sql;
+        this.datasource = datasource;
+        this.statistics = statistics;
+    }
     public String dataqueryName() {
         return "cloudwatch";
     }
@@ -115,125 +143,4 @@ public class CloudWatchMetricsQuery implements com.grafana.foundation.cog.varian
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final CloudWatchMetricsQuery internal;
-        
-        public Builder() {
-            this.internal = new CloudWatchMetricsQuery();
-        this.queryMode(CloudWatchQueryMode.METRICS);
-        }
-    public Builder queryMode(CloudWatchQueryMode queryMode) {
-    this.internal.queryMode = queryMode;
-        return this;
-    }
-    
-    public Builder metricQueryType(MetricQueryType metricQueryType) {
-    this.internal.metricQueryType = metricQueryType;
-        return this;
-    }
-    
-    public Builder metricEditorMode(MetricEditorMode metricEditorMode) {
-    this.internal.metricEditorMode = metricEditorMode;
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder alias(String alias) {
-    this.internal.alias = alias;
-        return this;
-    }
-    
-    public Builder label(String label) {
-    this.internal.label = label;
-        return this;
-    }
-    
-    public Builder expression(String expression) {
-    this.internal.expression = expression;
-        return this;
-    }
-    
-    public Builder sqlExpression(String sqlExpression) {
-    this.internal.sqlExpression = sqlExpression;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder region(String region) {
-    this.internal.region = region;
-        return this;
-    }
-    
-    public Builder namespace(String namespace) {
-    this.internal.namespace = namespace;
-        return this;
-    }
-    
-    public Builder metricName(String metricName) {
-    this.internal.metricName = metricName;
-        return this;
-    }
-    
-    public Builder dimensions(Map<String, StringOrArrayOfString> dimensions) {
-    this.internal.dimensions = dimensions;
-        return this;
-    }
-    
-    public Builder matchExact(Boolean matchExact) {
-    this.internal.matchExact = matchExact;
-        return this;
-    }
-    
-    public Builder period(String period) {
-    this.internal.period = period;
-        return this;
-    }
-    
-    public Builder accountId(String accountId) {
-    this.internal.accountId = accountId;
-        return this;
-    }
-    
-    public Builder statistic(String statistic) {
-    this.internal.statistic = statistic;
-        return this;
-    }
-    
-    public Builder sql(com.grafana.foundation.cog.Builder<SQLExpression> sql) {
-    this.internal.sql = sql.build();
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder statistics(List<String> statistics) {
-    this.internal.statistics = statistics;
-        return this;
-    }
-    public CloudWatchMetricsQuery build() {
-            return this.internal;
-        }
-    }
 }

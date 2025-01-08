@@ -17,30 +17,17 @@ public class HeatmapTooltip {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("yHistogram")
     public Boolean yHistogram;
+    public HeatmapTooltip() {
+    }
+    
+    public HeatmapTooltip(Boolean show,Boolean yHistogram) {
+        this.show = show;
+        this.yHistogram = yHistogram;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<HeatmapTooltip> {
-        protected final HeatmapTooltip internal;
-        
-        public Builder() {
-            this.internal = new HeatmapTooltip();
-        }
-    public Builder show(Boolean show) {
-    this.internal.show = show;
-        return this;
-    }
-    
-    public Builder yHistogram(Boolean yHistogram) {
-    this.internal.yHistogram = yHistogram;
-        return this;
-    }
-    public HeatmapTooltip build() {
-            return this.internal;
-        }
-    }
 }

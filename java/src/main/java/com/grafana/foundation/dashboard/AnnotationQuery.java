@@ -44,67 +44,26 @@ public class AnnotationQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("expr")
     public String expr;
+    public AnnotationQuery() {
+        this.enable = true;
+        this.hide = false;
+    }
+    
+    public AnnotationQuery(String name,DataSourceRef datasource,Boolean enable,Boolean hide,String iconColor,AnnotationPanelFilter filter,AnnotationTarget target,String type,String expr) {
+        this.name = name;
+        this.datasource = datasource;
+        this.enable = enable;
+        this.hide = hide;
+        this.iconColor = iconColor;
+        this.filter = filter;
+        this.target = target;
+        this.type = type;
+        this.expr = expr;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<AnnotationQuery> {
-        protected final AnnotationQuery internal;
-        
-        public Builder() {
-            this.internal = new AnnotationQuery();
-        this.enable(true);
-        this.hide(false);
-        }
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder enable(Boolean enable) {
-    this.internal.enable = enable;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder iconColor(String iconColor) {
-    this.internal.iconColor = iconColor;
-        return this;
-    }
-    
-    public Builder filter(com.grafana.foundation.cog.Builder<AnnotationPanelFilter> filter) {
-    this.internal.filter = filter.build();
-        return this;
-    }
-    
-    public Builder target(com.grafana.foundation.cog.Builder<AnnotationTarget> target) {
-    this.internal.target = target.build();
-        return this;
-    }
-    
-    public Builder type(String type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder expr(String expr) {
-    this.internal.expr = expr;
-        return this;
-    }
-    public AnnotationQuery build() {
-            return this.internal;
-        }
-    }
 }

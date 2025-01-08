@@ -36,55 +36,22 @@ public class MapLayerOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("tooltip")
     public Boolean tooltip;
+    public MapLayerOptions() {
+    }
+    
+    public MapLayerOptions(String type,String name,Object config,FrameGeometrySource location,Object filterData,Long opacity,Boolean tooltip) {
+        this.type = type;
+        this.name = name;
+        this.config = config;
+        this.location = location;
+        this.filterData = filterData;
+        this.opacity = opacity;
+        this.tooltip = tooltip;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MapLayerOptions> {
-        protected final MapLayerOptions internal;
-        
-        public Builder() {
-            this.internal = new MapLayerOptions();
-        }
-    public Builder type(String type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder config(Object config) {
-    this.internal.config = config;
-        return this;
-    }
-    
-    public Builder location(com.grafana.foundation.cog.Builder<FrameGeometrySource> location) {
-    this.internal.location = location.build();
-        return this;
-    }
-    
-    public Builder filterData(Object filterData) {
-    this.internal.filterData = filterData;
-        return this;
-    }
-    
-    public Builder opacity(Long opacity) {
-    this.internal.opacity = opacity;
-        return this;
-    }
-    
-    public Builder tooltip(Boolean tooltip) {
-    this.internal.tooltip = tooltip;
-        return this;
-    }
-    public MapLayerOptions build() {
-            return this.internal;
-        }
-    }
 }
