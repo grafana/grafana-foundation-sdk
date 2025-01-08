@@ -28,43 +28,22 @@ public class TimePickerConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("nowDelay")
     public String nowDelay;
+    public TimePickerConfig() {
+        this.hidden = false;
+        this.refreshIntervals = List.of("5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d");
+        this.timeOptions = List.of("5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d");
+    }
+    
+    public TimePickerConfig(Boolean hidden,List<String> refreshIntervals,List<String> timeOptions,String nowDelay) {
+        this.hidden = hidden;
+        this.refreshIntervals = refreshIntervals;
+        this.timeOptions = timeOptions;
+        this.nowDelay = nowDelay;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TimePickerConfig> {
-        protected final TimePickerConfig internal;
-        
-        public Builder() {
-            this.internal = new TimePickerConfig();
-        this.hidden(false);
-        this.refreshIntervals(List.of("5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"));
-        this.timeOptions(List.of("5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"));
-        }
-    public Builder hidden(Boolean hidden) {
-    this.internal.hidden = hidden;
-        return this;
-    }
-    
-    public Builder refreshIntervals(List<String> refreshIntervals) {
-    this.internal.refreshIntervals = refreshIntervals;
-        return this;
-    }
-    
-    public Builder timeOptions(List<String> timeOptions) {
-    this.internal.timeOptions = timeOptions;
-        return this;
-    }
-    
-    public Builder nowDelay(String nowDelay) {
-    this.internal.nowDelay = nowDelay;
-        return this;
-    }
-    public TimePickerConfig build() {
-            return this.internal;
-        }
-    }
 }

@@ -14,26 +14,17 @@ public class QueryEditorGroupByExpression {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("property")
     public QueryEditorProperty property;
+    public QueryEditorGroupByExpression() {
+    }
+    
+    public QueryEditorGroupByExpression(String type,QueryEditorProperty property) {
+        this.type = type;
+        this.property = property;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<QueryEditorGroupByExpression> {
-        protected final QueryEditorGroupByExpression internal;
-        
-        public Builder() {
-            this.internal = new QueryEditorGroupByExpression();
-    this.internal.type = "groupBy";
-        }
-    public Builder property(com.grafana.foundation.cog.Builder<QueryEditorProperty> property) {
-    this.internal.property = property.build();
-        return this;
-    }
-    public QueryEditorGroupByExpression build() {
-            return this.internal;
-        }
-    }
 }

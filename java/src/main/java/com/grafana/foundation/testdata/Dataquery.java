@@ -173,6 +173,47 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("withNil")
     public Boolean withNil;
+    public Dataquery() {
+    }
+    
+    public Dataquery(String alias,String channel,String csvContent,String csvFileName,List<CSVWave> csvWave,DataSourceRef datasource,Double dropPercent,DataqueryErrorType errorType,Boolean flamegraphDiff,Boolean hide,Double intervalMs,String labels,Boolean levelColumn,Long lines,Double max,Long maxDataPoints,Double min,NodesQuery nodes,Double noise,List<List<Object>> points,PulseWaveQuery pulseWave,String queryType,String rawFrameContent,String refId,ResultAssertions resultAssertions,DataqueryScenarioId scenarioId,Long seriesCount,SimulationQuery sim,Long spanCount,Double spread,Double startValue,StreamingQuery stream,String stringInput,TimeRange timeRange,USAQuery usa,Boolean withNil) {
+        this.alias = alias;
+        this.channel = channel;
+        this.csvContent = csvContent;
+        this.csvFileName = csvFileName;
+        this.csvWave = csvWave;
+        this.datasource = datasource;
+        this.dropPercent = dropPercent;
+        this.errorType = errorType;
+        this.flamegraphDiff = flamegraphDiff;
+        this.hide = hide;
+        this.intervalMs = intervalMs;
+        this.labels = labels;
+        this.levelColumn = levelColumn;
+        this.lines = lines;
+        this.max = max;
+        this.maxDataPoints = maxDataPoints;
+        this.min = min;
+        this.nodes = nodes;
+        this.noise = noise;
+        this.points = points;
+        this.pulseWave = pulseWave;
+        this.queryType = queryType;
+        this.rawFrameContent = rawFrameContent;
+        this.refId = refId;
+        this.resultAssertions = resultAssertions;
+        this.scenarioId = scenarioId;
+        this.seriesCount = seriesCount;
+        this.sim = sim;
+        this.spanCount = spanCount;
+        this.spread = spread;
+        this.startValue = startValue;
+        this.stream = stream;
+        this.stringInput = stringInput;
+        this.timeRange = timeRange;
+        this.usa = usa;
+        this.withNil = withNil;
+    }
     public String dataqueryName() {
         return "";
     }
@@ -182,194 +223,4 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final Dataquery internal;
-        
-        public Builder() {
-            this.internal = new Dataquery();
-        }
-    public Builder alias(String alias) {
-    this.internal.alias = alias;
-        return this;
-    }
-    
-    public Builder channel(String channel) {
-    this.internal.channel = channel;
-        return this;
-    }
-    
-    public Builder csvContent(String csvContent) {
-    this.internal.csvContent = csvContent;
-        return this;
-    }
-    
-    public Builder csvFileName(String csvFileName) {
-    this.internal.csvFileName = csvFileName;
-        return this;
-    }
-    
-    public Builder csvWave(com.grafana.foundation.cog.Builder<List<CSVWave>> csvWave) {
-    this.internal.csvWave = csvWave.build();
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder dropPercent(Double dropPercent) {
-    this.internal.dropPercent = dropPercent;
-        return this;
-    }
-    
-    public Builder errorType(DataqueryErrorType errorType) {
-    this.internal.errorType = errorType;
-        return this;
-    }
-    
-    public Builder flamegraphDiff(Boolean flamegraphDiff) {
-    this.internal.flamegraphDiff = flamegraphDiff;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder intervalMs(Double intervalMs) {
-    this.internal.intervalMs = intervalMs;
-        return this;
-    }
-    
-    public Builder labels(String labels) {
-    this.internal.labels = labels;
-        return this;
-    }
-    
-    public Builder levelColumn(Boolean levelColumn) {
-    this.internal.levelColumn = levelColumn;
-        return this;
-    }
-    
-    public Builder lines(Long lines) {
-    this.internal.lines = lines;
-        return this;
-    }
-    
-    public Builder max(Double max) {
-    this.internal.max = max;
-        return this;
-    }
-    
-    public Builder maxDataPoints(Long maxDataPoints) {
-    this.internal.maxDataPoints = maxDataPoints;
-        return this;
-    }
-    
-    public Builder min(Double min) {
-    this.internal.min = min;
-        return this;
-    }
-    
-    public Builder nodes(com.grafana.foundation.cog.Builder<NodesQuery> nodes) {
-    this.internal.nodes = nodes.build();
-        return this;
-    }
-    
-    public Builder noise(Double noise) {
-    this.internal.noise = noise;
-        return this;
-    }
-    
-    public Builder points(List<List<Object>> points) {
-    this.internal.points = points;
-        return this;
-    }
-    
-    public Builder pulseWave(com.grafana.foundation.cog.Builder<PulseWaveQuery> pulseWave) {
-    this.internal.pulseWave = pulseWave.build();
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder rawFrameContent(String rawFrameContent) {
-    this.internal.rawFrameContent = rawFrameContent;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder resultAssertions(com.grafana.foundation.cog.Builder<ResultAssertions> resultAssertions) {
-    this.internal.resultAssertions = resultAssertions.build();
-        return this;
-    }
-    
-    public Builder scenarioId(DataqueryScenarioId scenarioId) {
-    this.internal.scenarioId = scenarioId;
-        return this;
-    }
-    
-    public Builder seriesCount(Long seriesCount) {
-    this.internal.seriesCount = seriesCount;
-        return this;
-    }
-    
-    public Builder sim(com.grafana.foundation.cog.Builder<SimulationQuery> sim) {
-    this.internal.sim = sim.build();
-        return this;
-    }
-    
-    public Builder spanCount(Long spanCount) {
-    this.internal.spanCount = spanCount;
-        return this;
-    }
-    
-    public Builder spread(Double spread) {
-    this.internal.spread = spread;
-        return this;
-    }
-    
-    public Builder startValue(Double startValue) {
-    this.internal.startValue = startValue;
-        return this;
-    }
-    
-    public Builder stream(com.grafana.foundation.cog.Builder<StreamingQuery> stream) {
-    this.internal.stream = stream.build();
-        return this;
-    }
-    
-    public Builder stringInput(String stringInput) {
-    this.internal.stringInput = stringInput;
-        return this;
-    }
-    
-    public Builder timeRange(com.grafana.foundation.cog.Builder<TimeRange> timeRange) {
-    this.internal.timeRange = timeRange.build();
-        return this;
-    }
-    
-    public Builder usa(com.grafana.foundation.cog.Builder<USAQuery> usa) {
-    this.internal.usa = usa.build();
-        return this;
-    }
-    
-    public Builder withNil(Boolean withNil) {
-    this.internal.withNil = withNil;
-        return this;
-    }
-    public Dataquery build() {
-            return this.internal;
-        }
-    }
 }

@@ -2,14 +2,14 @@
 
 package com.grafana.foundation.barchart;
 
+import com.grafana.foundation.common.VizOrientation;
+import com.grafana.foundation.common.StackingMode;
+import com.grafana.foundation.common.VisibilityMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grafana.foundation.common.VizOrientation;
-import com.grafana.foundation.common.StackingMode;
-import com.grafana.foundation.common.VisibilityMode;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.grafana.foundation.common.VizTooltipOptions;
 import com.grafana.foundation.common.VizTextDisplayOptions;
@@ -69,6 +69,35 @@ public class Options {
     // hovers over highlighted area
     @JsonProperty("fullHighlight")
     public Boolean fullHighlight;
+    public Options() {
+        this.orientation = VizOrientation.AUTO;
+        this.barRadius = 0.0;
+        this.xTickLabelRotation = 0;
+        this.xTickLabelSpacing = 0;
+        this.stacking = StackingMode.NONE;
+        this.showValue = VisibilityMode.AUTO;
+        this.barWidth = 1.0;
+        this.groupWidth = 0.7;
+        this.fullHighlight = false;
+    }
+    
+    public Options(String xField,String colorByField,VizOrientation orientation,Double barRadius,Integer xTickLabelRotation,Integer xTickLabelMaxLength,Integer xTickLabelSpacing,StackingMode stacking,VisibilityMode showValue,Double barWidth,Double groupWidth,VizLegendOptions legend,VizTooltipOptions tooltip,VizTextDisplayOptions text,Boolean fullHighlight) {
+        this.xField = xField;
+        this.colorByField = colorByField;
+        this.orientation = orientation;
+        this.barRadius = barRadius;
+        this.xTickLabelRotation = xTickLabelRotation;
+        this.xTickLabelMaxLength = xTickLabelMaxLength;
+        this.xTickLabelSpacing = xTickLabelSpacing;
+        this.stacking = stacking;
+        this.showValue = showValue;
+        this.barWidth = barWidth;
+        this.groupWidth = groupWidth;
+        this.legend = legend;
+        this.tooltip = tooltip;
+        this.text = text;
+        this.fullHighlight = fullHighlight;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

@@ -12,25 +12,16 @@ public class ElasticsearchMovingAverageEWMAModelSettingsSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("alpha")
     public String alpha;
+    public ElasticsearchMovingAverageEWMAModelSettingsSettings() {
+    }
+    
+    public ElasticsearchMovingAverageEWMAModelSettingsSettings(String alpha) {
+        this.alpha = alpha;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageEWMAModelSettingsSettings> {
-        protected final ElasticsearchMovingAverageEWMAModelSettingsSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchMovingAverageEWMAModelSettingsSettings();
-        }
-    public Builder alpha(String alpha) {
-    this.internal.alpha = alpha;
-        return this;
-    }
-    public ElasticsearchMovingAverageEWMAModelSettingsSettings build() {
-            return this.internal;
-        }
-    }
 }

@@ -19,35 +19,18 @@ public class ElasticsearchTopMetricsSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("metrics")
     public List<String> metrics;
+    public ElasticsearchTopMetricsSettings() {
+    }
+    
+    public ElasticsearchTopMetricsSettings(String order,String orderBy,List<String> metrics) {
+        this.order = order;
+        this.orderBy = orderBy;
+        this.metrics = metrics;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchTopMetricsSettings> {
-        protected final ElasticsearchTopMetricsSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchTopMetricsSettings();
-        }
-    public Builder order(String order) {
-    this.internal.order = order;
-        return this;
-    }
-    
-    public Builder orderBy(String orderBy) {
-    this.internal.orderBy = orderBy;
-        return this;
-    }
-    
-    public Builder metrics(List<String> metrics) {
-    this.internal.metrics = metrics;
-        return this;
-    }
-    public ElasticsearchTopMetricsSettings build() {
-            return this.internal;
-        }
-    }
 }

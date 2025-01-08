@@ -17,30 +17,17 @@ public class ColorDimensionConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("field")
     public String field;
+    public ColorDimensionConfig() {
+    }
+    
+    public ColorDimensionConfig(String fixed,String field) {
+        this.fixed = fixed;
+        this.field = field;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ColorDimensionConfig> {
-        protected final ColorDimensionConfig internal;
-        
-        public Builder() {
-            this.internal = new ColorDimensionConfig();
-        }
-    public Builder fixed(String fixed) {
-    this.internal.fixed = fixed;
-        return this;
-    }
-    
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    public ColorDimensionConfig build() {
-            return this.internal;
-        }
-    }
 }

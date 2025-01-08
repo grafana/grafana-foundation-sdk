@@ -45,65 +45,24 @@ public class MetricStat {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("statistics")
     public List<String> statistics;
+    public MetricStat() {
+    }
+    
+    public MetricStat(String region,String namespace,String metricName,Map<String, StringOrArrayOfString> dimensions,Boolean matchExact,String period,String accountId,String statistic,List<String> statistics) {
+        this.region = region;
+        this.namespace = namespace;
+        this.metricName = metricName;
+        this.dimensions = dimensions;
+        this.matchExact = matchExact;
+        this.period = period;
+        this.accountId = accountId;
+        this.statistic = statistic;
+        this.statistics = statistics;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MetricStat> {
-        protected final MetricStat internal;
-        
-        public Builder() {
-            this.internal = new MetricStat();
-        }
-    public Builder region(String region) {
-    this.internal.region = region;
-        return this;
-    }
-    
-    public Builder namespace(String namespace) {
-    this.internal.namespace = namespace;
-        return this;
-    }
-    
-    public Builder metricName(String metricName) {
-    this.internal.metricName = metricName;
-        return this;
-    }
-    
-    public Builder dimensions(Map<String, StringOrArrayOfString> dimensions) {
-    this.internal.dimensions = dimensions;
-        return this;
-    }
-    
-    public Builder matchExact(Boolean matchExact) {
-    this.internal.matchExact = matchExact;
-        return this;
-    }
-    
-    public Builder period(String period) {
-    this.internal.period = period;
-        return this;
-    }
-    
-    public Builder accountId(String accountId) {
-    this.internal.accountId = accountId;
-        return this;
-    }
-    
-    public Builder statistic(String statistic) {
-    this.internal.statistic = statistic;
-        return this;
-    }
-    
-    public Builder statistics(List<String> statistics) {
-    this.internal.statistics = statistics;
-        return this;
-    }
-    public MetricStat build() {
-            return this.internal;
-        }
-    }
 }

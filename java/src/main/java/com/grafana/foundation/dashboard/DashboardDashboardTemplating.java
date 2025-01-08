@@ -14,25 +14,16 @@ public class DashboardDashboardTemplating {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("list")
     public List<VariableModel> list;
+    public DashboardDashboardTemplating() {
+    }
+    
+    public DashboardDashboardTemplating(List<VariableModel> list) {
+        this.list = list;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<DashboardDashboardTemplating> {
-        protected final DashboardDashboardTemplating internal;
-        
-        public Builder() {
-            this.internal = new DashboardDashboardTemplating();
-        }
-    public Builder list(com.grafana.foundation.cog.Builder<List<VariableModel>> list) {
-    this.internal.list = list.build();
-        return this;
-    }
-    public DashboardDashboardTemplating build() {
-            return this.internal;
-        }
-    }
 }

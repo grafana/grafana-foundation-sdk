@@ -43,70 +43,25 @@ public class PieChartLegendOptions {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("calcs")
     public List<String> calcs;
+    public PieChartLegendOptions() {
+    }
+    
+    public PieChartLegendOptions(List<PieChartLegendValues> values,LegendDisplayMode displayMode,LegendPlacement placement,Boolean showLegend,Boolean asTable,Boolean isVisible,String sortBy,Boolean sortDesc,Double width,List<String> calcs) {
+        this.values = values;
+        this.displayMode = displayMode;
+        this.placement = placement;
+        this.showLegend = showLegend;
+        this.asTable = asTable;
+        this.isVisible = isVisible;
+        this.sortBy = sortBy;
+        this.sortDesc = sortDesc;
+        this.width = width;
+        this.calcs = calcs;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<PieChartLegendOptions> {
-        protected final PieChartLegendOptions internal;
-        
-        public Builder() {
-            this.internal = new PieChartLegendOptions();
-        }
-    public Builder values(List<PieChartLegendValues> values) {
-    this.internal.values = values;
-        return this;
-    }
-    
-    public Builder displayMode(LegendDisplayMode displayMode) {
-    this.internal.displayMode = displayMode;
-        return this;
-    }
-    
-    public Builder placement(LegendPlacement placement) {
-    this.internal.placement = placement;
-        return this;
-    }
-    
-    public Builder showLegend(Boolean showLegend) {
-    this.internal.showLegend = showLegend;
-        return this;
-    }
-    
-    public Builder asTable(Boolean asTable) {
-    this.internal.asTable = asTable;
-        return this;
-    }
-    
-    public Builder isVisible(Boolean isVisible) {
-    this.internal.isVisible = isVisible;
-        return this;
-    }
-    
-    public Builder sortBy(String sortBy) {
-    this.internal.sortBy = sortBy;
-        return this;
-    }
-    
-    public Builder sortDesc(Boolean sortDesc) {
-    this.internal.sortDesc = sortDesc;
-        return this;
-    }
-    
-    public Builder width(Double width) {
-    this.internal.width = width;
-        return this;
-    }
-    
-    public Builder calcs(List<String> calcs) {
-    this.internal.calcs = calcs;
-        return this;
-    }
-    public PieChartLegendOptions build() {
-            return this.internal;
-        }
-    }
 }

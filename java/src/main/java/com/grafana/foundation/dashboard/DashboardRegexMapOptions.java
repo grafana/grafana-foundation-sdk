@@ -16,30 +16,17 @@ public class DashboardRegexMapOptions {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("result")
     public ValueMappingResult result;
+    public DashboardRegexMapOptions() {
+    }
+    
+    public DashboardRegexMapOptions(String pattern,ValueMappingResult result) {
+        this.pattern = pattern;
+        this.result = result;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<DashboardRegexMapOptions> {
-        protected final DashboardRegexMapOptions internal;
-        
-        public Builder() {
-            this.internal = new DashboardRegexMapOptions();
-        }
-    public Builder pattern(String pattern) {
-    this.internal.pattern = pattern;
-        return this;
-    }
-    
-    public Builder result(ValueMappingResult result) {
-    this.internal.result = result;
-        return this;
-    }
-    public DashboardRegexMapOptions build() {
-            return this.internal;
-        }
-    }
 }

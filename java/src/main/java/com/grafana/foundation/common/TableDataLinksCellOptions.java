@@ -11,7 +11,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class TableDataLinksCellOptions {
     @JsonProperty("type")
     public String type;
-    public TableDataLinksCellOptions() {}
+    public TableDataLinksCellOptions() {
+    }
     
     public TableDataLinksCellOptions(String type) {
         this.type = type;

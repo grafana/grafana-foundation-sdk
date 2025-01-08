@@ -20,35 +20,18 @@ public class ResourceDimensionConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("fixed")
     public String fixed;
+    public ResourceDimensionConfig() {
+    }
+    
+    public ResourceDimensionConfig(ResourceDimensionMode mode,String field,String fixed) {
+        this.mode = mode;
+        this.field = field;
+        this.fixed = fixed;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ResourceDimensionConfig> {
-        protected final ResourceDimensionConfig internal;
-        
-        public Builder() {
-            this.internal = new ResourceDimensionConfig();
-        }
-    public Builder mode(ResourceDimensionMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder fixed(String fixed) {
-    this.internal.fixed = fixed;
-        return this;
-    }
-    public ResourceDimensionConfig build() {
-            return this.internal;
-        }
-    }
 }

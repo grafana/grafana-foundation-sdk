@@ -23,7 +23,8 @@ public class RelativeTimeRange {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("to")
     public Long to;
-    public RelativeTimeRange() {}
+    public RelativeTimeRange() {
+    }
     
     public RelativeTimeRange(Long from,Long to) {
         this.from = from;

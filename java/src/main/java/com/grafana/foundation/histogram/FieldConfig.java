@@ -2,6 +2,7 @@
 
 package com.grafana.foundation.histogram;
 
+import com.grafana.foundation.common.GraphGradientMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +13,6 @@ import com.grafana.foundation.common.AxisColorMode;
 import com.grafana.foundation.common.ScaleDistributionConfig;
 import com.grafana.foundation.common.HideSeriesConfig;
 import com.grafana.foundation.common.StackingConfig;
-import com.grafana.foundation.common.GraphGradientMode;
 
 public class FieldConfig {
     // Controls line width of the bars.
@@ -64,6 +64,29 @@ public class FieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("axisBorderShow")
     public Boolean axisBorderShow;
+    public FieldConfig() {
+        this.lineWidth = 1;
+        this.fillOpacity = 80;
+        this.gradientMode = GraphGradientMode.NONE;
+    }
+    
+    public FieldConfig(Integer lineWidth,Integer fillOpacity,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero,HideSeriesConfig hideFrom,StackingConfig stacking,GraphGradientMode gradientMode,Boolean axisBorderShow) {
+        this.lineWidth = lineWidth;
+        this.fillOpacity = fillOpacity;
+        this.axisPlacement = axisPlacement;
+        this.axisColorMode = axisColorMode;
+        this.axisLabel = axisLabel;
+        this.axisWidth = axisWidth;
+        this.axisSoftMin = axisSoftMin;
+        this.axisSoftMax = axisSoftMax;
+        this.axisGridShow = axisGridShow;
+        this.scaleDistribution = scaleDistribution;
+        this.axisCenteredZero = axisCenteredZero;
+        this.hideFrom = hideFrom;
+        this.stacking = stacking;
+        this.gradientMode = gradientMode;
+        this.axisBorderShow = axisBorderShow;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
