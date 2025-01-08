@@ -13,25 +13,16 @@ public class GraphThresholdsStyleConfig {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("mode")
     public GraphThresholdsStyleMode mode;
+    public GraphThresholdsStyleConfig() {
+    }
+    
+    public GraphThresholdsStyleConfig(GraphThresholdsStyleMode mode) {
+        this.mode = mode;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> {
-        protected final GraphThresholdsStyleConfig internal;
-        
-        public Builder() {
-            this.internal = new GraphThresholdsStyleConfig();
-        }
-    public Builder mode(GraphThresholdsStyleMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    public GraphThresholdsStyleConfig build() {
-            return this.internal;
-        }
-    }
 }

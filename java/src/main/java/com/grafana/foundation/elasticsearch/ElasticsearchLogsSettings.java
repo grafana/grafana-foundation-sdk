@@ -12,25 +12,16 @@ public class ElasticsearchLogsSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("limit")
     public String limit;
+    public ElasticsearchLogsSettings() {
+    }
+    
+    public ElasticsearchLogsSettings(String limit) {
+        this.limit = limit;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchLogsSettings> {
-        protected final ElasticsearchLogsSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchLogsSettings();
-        }
-    public Builder limit(String limit) {
-    this.internal.limit = limit;
-        return this;
-    }
-    public ElasticsearchLogsSettings build() {
-            return this.internal;
-        }
-    }
 }

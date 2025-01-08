@@ -17,30 +17,17 @@ public class ExprTypeClassicConditionsConditionsEvaluator {
     // e.g. "gt"
     @JsonProperty("type")
     public String type;
+    public ExprTypeClassicConditionsConditionsEvaluator() {
+    }
+    
+    public ExprTypeClassicConditionsConditionsEvaluator(List<Double> params,String type) {
+        this.params = params;
+        this.type = type;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsEvaluator> {
-        protected final ExprTypeClassicConditionsConditionsEvaluator internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeClassicConditionsConditionsEvaluator();
-        }
-    public Builder params(List<Double> params) {
-    this.internal.params = params;
-        return this;
-    }
-    
-    public Builder type(String type) {
-    this.internal.type = type;
-        return this;
-    }
-    public ExprTypeClassicConditionsConditionsEvaluator build() {
-            return this.internal;
-        }
-    }
 }

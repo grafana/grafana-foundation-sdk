@@ -15,30 +15,17 @@ public class ElasticsearchUniqueCountSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("missing")
     public String missing;
+    public ElasticsearchUniqueCountSettings() {
+    }
+    
+    public ElasticsearchUniqueCountSettings(String precisionThreshold,String missing) {
+        this.precisionThreshold = precisionThreshold;
+        this.missing = missing;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchUniqueCountSettings> {
-        protected final ElasticsearchUniqueCountSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchUniqueCountSettings();
-        }
-    public Builder precisionThreshold(String precisionThreshold) {
-    this.internal.precisionThreshold = precisionThreshold;
-        return this;
-    }
-    
-    public Builder missing(String missing) {
-    this.internal.missing = missing;
-        return this;
-    }
-    public ElasticsearchUniqueCountSettings build() {
-            return this.internal;
-        }
-    }
 }

@@ -46,75 +46,29 @@ public class DashboardLink {
     // If true, includes current time range in the link as query params
     @JsonProperty("keepTime")
     public Boolean keepTime;
+    public DashboardLink() {
+        this.asDropdown = false;
+        this.targetBlank = false;
+        this.includeVars = false;
+        this.keepTime = false;
+    }
+    
+    public DashboardLink(String title,DashboardLinkType type,String icon,String tooltip,String url,List<String> tags,Boolean asDropdown,Boolean targetBlank,Boolean includeVars,Boolean keepTime) {
+        this.title = title;
+        this.type = type;
+        this.icon = icon;
+        this.tooltip = tooltip;
+        this.url = url;
+        this.tags = tags;
+        this.asDropdown = asDropdown;
+        this.targetBlank = targetBlank;
+        this.includeVars = includeVars;
+        this.keepTime = keepTime;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<DashboardLink> {
-        protected final DashboardLink internal;
-        
-        public Builder(String title) {
-            this.internal = new DashboardLink();
-    this.internal.title = title;
-        this.asDropdown(false);
-        this.targetBlank(false);
-        this.includeVars(false);
-        this.keepTime(false);
-        }
-    public Builder title(String title) {
-    this.internal.title = title;
-        return this;
-    }
-    
-    public Builder type(DashboardLinkType type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder icon(String icon) {
-    this.internal.icon = icon;
-        return this;
-    }
-    
-    public Builder tooltip(String tooltip) {
-    this.internal.tooltip = tooltip;
-        return this;
-    }
-    
-    public Builder url(String url) {
-    this.internal.url = url;
-        return this;
-    }
-    
-    public Builder tags(List<String> tags) {
-    this.internal.tags = tags;
-        return this;
-    }
-    
-    public Builder asDropdown(Boolean asDropdown) {
-    this.internal.asDropdown = asDropdown;
-        return this;
-    }
-    
-    public Builder targetBlank(Boolean targetBlank) {
-    this.internal.targetBlank = targetBlank;
-        return this;
-    }
-    
-    public Builder includeVars(Boolean includeVars) {
-    this.internal.includeVars = includeVars;
-        return this;
-    }
-    
-    public Builder keepTime(Boolean keepTime) {
-    this.internal.keepTime = keepTime;
-        return this;
-    }
-    public DashboardLink build() {
-            return this.internal;
-        }
-    }
 }

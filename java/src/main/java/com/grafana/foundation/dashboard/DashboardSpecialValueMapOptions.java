@@ -17,30 +17,17 @@ public class DashboardSpecialValueMapOptions {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("result")
     public ValueMappingResult result;
+    public DashboardSpecialValueMapOptions() {
+    }
+    
+    public DashboardSpecialValueMapOptions(SpecialValueMatch match,ValueMappingResult result) {
+        this.match = match;
+        this.result = result;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<DashboardSpecialValueMapOptions> {
-        protected final DashboardSpecialValueMapOptions internal;
-        
-        public Builder() {
-            this.internal = new DashboardSpecialValueMapOptions();
-        }
-    public Builder match(SpecialValueMatch match) {
-    this.internal.match = match;
-        return this;
-    }
-    
-    public Builder result(ValueMappingResult result) {
-    this.internal.result = result;
-        return this;
-    }
-    public DashboardSpecialValueMapOptions build() {
-            return this.internal;
-        }
-    }
 }

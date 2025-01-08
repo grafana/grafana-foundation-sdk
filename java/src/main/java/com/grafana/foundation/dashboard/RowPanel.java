@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
-import java.util.LinkedList;
 
 // Row panel
 public class RowPanel {
@@ -43,61 +42,24 @@ public class RowPanel {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("repeat")
     public String repeat;
+    public RowPanel() {
+        this.collapsed = false;
+    }
+    
+    public RowPanel(String type,Boolean collapsed,String title,DataSourceRef datasource,GridPos gridPos,Integer id,List<Panel> panels,String repeat) {
+        this.type = type;
+        this.collapsed = collapsed;
+        this.title = title;
+        this.datasource = datasource;
+        this.gridPos = gridPos;
+        this.id = id;
+        this.panels = panels;
+        this.repeat = repeat;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<RowPanel> {
-        protected final RowPanel internal;
-        
-        public Builder(String title) {
-            this.internal = new RowPanel();
-    this.internal.type = "row";
-    this.internal.title = title;
-        this.collapsed(false);
-        }
-    public Builder collapsed(Boolean collapsed) {
-    this.internal.collapsed = collapsed;
-        return this;
-    }
-    
-    public Builder title(String title) {
-    this.internal.title = title;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder gridPos(GridPos gridPos) {
-    this.internal.gridPos = gridPos;
-        return this;
-    }
-    
-    public Builder id(Integer id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder withPanel(com.grafana.foundation.cog.Builder<Panel> panel) {
-		if (this.internal.panels == null) {
-			this.internal.panels = new LinkedList<>();
-		}
-    this.internal.panels.add(panel.build());
-        return this;
-    }
-    
-    public Builder repeat(String repeat) {
-    this.internal.repeat = repeat;
-        return this;
-    }
-    public RowPanel build() {
-            return this.internal;
-        }
-    }
 }

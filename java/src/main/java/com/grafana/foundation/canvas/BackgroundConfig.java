@@ -20,35 +20,18 @@ public class BackgroundConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("size")
     public BackgroundImageSize size;
+    public BackgroundConfig() {
+    }
+    
+    public BackgroundConfig(ColorDimensionConfig color,ResourceDimensionConfig image,BackgroundImageSize size) {
+        this.color = color;
+        this.image = image;
+        this.size = size;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<BackgroundConfig> {
-        protected final BackgroundConfig internal;
-        
-        public Builder() {
-            this.internal = new BackgroundConfig();
-        }
-    public Builder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color) {
-    this.internal.color = color.build();
-        return this;
-    }
-    
-    public Builder image(com.grafana.foundation.cog.Builder<ResourceDimensionConfig> image) {
-    this.internal.image = image.build();
-        return this;
-    }
-    
-    public Builder size(BackgroundImageSize size) {
-    this.internal.size = size;
-        return this;
-    }
-    public BackgroundConfig build() {
-            return this.internal;
-        }
-    }
 }

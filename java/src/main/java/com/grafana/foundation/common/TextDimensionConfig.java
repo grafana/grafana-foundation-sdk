@@ -19,35 +19,18 @@ public class TextDimensionConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("fixed")
     public String fixed;
+    public TextDimensionConfig() {
+    }
+    
+    public TextDimensionConfig(TextDimensionMode mode,String field,String fixed) {
+        this.mode = mode;
+        this.field = field;
+        this.fixed = fixed;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TextDimensionConfig> {
-        protected final TextDimensionConfig internal;
-        
-        public Builder() {
-            this.internal = new TextDimensionConfig();
-        }
-    public Builder mode(TextDimensionMode mode) {
-    this.internal.mode = mode;
-        return this;
-    }
-    
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder fixed(String fixed) {
-    this.internal.fixed = fixed;
-        return this;
-    }
-    public TextDimensionConfig build() {
-            return this.internal;
-        }
-    }
 }

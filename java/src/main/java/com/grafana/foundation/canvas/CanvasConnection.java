@@ -39,65 +39,24 @@ public class CanvasConnection {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("targetOriginal")
     public ConnectionCoordinates targetOriginal;
+    public CanvasConnection() {
+    }
+    
+    public CanvasConnection(ConnectionCoordinates source,ConnectionCoordinates target,String targetName,ConnectionPath path,ColorDimensionConfig color,ScaleDimensionConfig size,List<ConnectionCoordinates> vertices,ConnectionCoordinates sourceOriginal,ConnectionCoordinates targetOriginal) {
+        this.source = source;
+        this.target = target;
+        this.targetName = targetName;
+        this.path = path;
+        this.color = color;
+        this.size = size;
+        this.vertices = vertices;
+        this.sourceOriginal = sourceOriginal;
+        this.targetOriginal = targetOriginal;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<CanvasConnection> {
-        protected final CanvasConnection internal;
-        
-        public Builder() {
-            this.internal = new CanvasConnection();
-        }
-    public Builder source(com.grafana.foundation.cog.Builder<ConnectionCoordinates> source) {
-    this.internal.source = source.build();
-        return this;
-    }
-    
-    public Builder target(com.grafana.foundation.cog.Builder<ConnectionCoordinates> target) {
-    this.internal.target = target.build();
-        return this;
-    }
-    
-    public Builder targetName(String targetName) {
-    this.internal.targetName = targetName;
-        return this;
-    }
-    
-    public Builder path(ConnectionPath path) {
-    this.internal.path = path;
-        return this;
-    }
-    
-    public Builder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color) {
-    this.internal.color = color.build();
-        return this;
-    }
-    
-    public Builder size(com.grafana.foundation.cog.Builder<ScaleDimensionConfig> size) {
-    this.internal.size = size.build();
-        return this;
-    }
-    
-    public Builder vertices(com.grafana.foundation.cog.Builder<List<ConnectionCoordinates>> vertices) {
-    this.internal.vertices = vertices.build();
-        return this;
-    }
-    
-    public Builder sourceOriginal(com.grafana.foundation.cog.Builder<ConnectionCoordinates> sourceOriginal) {
-    this.internal.sourceOriginal = sourceOriginal.build();
-        return this;
-    }
-    
-    public Builder targetOriginal(com.grafana.foundation.cog.Builder<ConnectionCoordinates> targetOriginal) {
-    this.internal.targetOriginal = targetOriginal.build();
-        return this;
-    }
-    public CanvasConnection build() {
-            return this.internal;
-        }
-    }
 }

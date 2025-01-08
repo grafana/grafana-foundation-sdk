@@ -25,46 +25,21 @@ public class MovingFunction {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
+    public MovingFunction() {
+    }
+    
+    public MovingFunction(String pipelineAgg,String field,String type,String id,ElasticsearchMovingFunctionSettings settings,Boolean hide) {
+        this.pipelineAgg = pipelineAgg;
+        this.field = field;
+        this.type = type;
+        this.id = id;
+        this.settings = settings;
+        this.hide = hide;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MovingFunction> {
-        protected final MovingFunction internal;
-        
-        public Builder() {
-            this.internal = new MovingFunction();
-    this.internal.type = "moving_fn";
-        }
-    public Builder pipelineAgg(String pipelineAgg) {
-    this.internal.pipelineAgg = pipelineAgg;
-        return this;
-    }
-    
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingFunctionSettings> settings) {
-    this.internal.settings = settings.build();
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    public MovingFunction build() {
-            return this.internal;
-        }
-    }
 }

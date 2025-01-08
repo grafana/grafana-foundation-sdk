@@ -20,40 +20,19 @@ public class BucketAggregationWithField {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("settings")
     public Object settings;
+    public BucketAggregationWithField() {
+    }
+    
+    public BucketAggregationWithField(String field,String id,BucketAggregationType type,Object settings) {
+        this.field = field;
+        this.id = id;
+        this.type = type;
+        this.settings = settings;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<BucketAggregationWithField> {
-        protected final BucketAggregationWithField internal;
-        
-        public Builder() {
-            this.internal = new BucketAggregationWithField();
-        }
-    public Builder field(String field) {
-    this.internal.field = field;
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder type(BucketAggregationType type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder settings(Object settings) {
-    this.internal.settings = settings;
-        return this;
-    }
-    public BucketAggregationWithField build() {
-            return this.internal;
-        }
-    }
 }

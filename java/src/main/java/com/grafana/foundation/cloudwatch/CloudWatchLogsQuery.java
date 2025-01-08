@@ -62,6 +62,24 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
+    public CloudWatchLogsQuery() {
+        this.queryMode = CloudWatchQueryMode.LOGS;
+    }
+    
+    public CloudWatchLogsQuery(CloudWatchQueryMode queryMode,String id,String region,String expression,List<String> statsGroups,List<LogGroup> logGroups,List<String> logGroupNames,String refId,Boolean hide,String queryType,LogsQueryLanguage queryLanguage,DataSourceRef datasource) {
+        this.queryMode = queryMode;
+        this.id = id;
+        this.region = region;
+        this.expression = expression;
+        this.statsGroups = statsGroups;
+        this.logGroups = logGroups;
+        this.logGroupNames = logGroupNames;
+        this.refId = refId;
+        this.hide = hide;
+        this.queryType = queryType;
+        this.queryLanguage = queryLanguage;
+        this.datasource = datasource;
+    }
     public String dataqueryName() {
         return "cloudwatch";
     }
@@ -71,75 +89,4 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final CloudWatchLogsQuery internal;
-        
-        public Builder() {
-            this.internal = new CloudWatchLogsQuery();
-        this.queryMode(CloudWatchQueryMode.LOGS);
-        }
-    public Builder queryMode(CloudWatchQueryMode queryMode) {
-    this.internal.queryMode = queryMode;
-        return this;
-    }
-    
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder region(String region) {
-    this.internal.region = region;
-        return this;
-    }
-    
-    public Builder expression(String expression) {
-    this.internal.expression = expression;
-        return this;
-    }
-    
-    public Builder statsGroups(List<String> statsGroups) {
-    this.internal.statsGroups = statsGroups;
-        return this;
-    }
-    
-    public Builder logGroups(com.grafana.foundation.cog.Builder<List<LogGroup>> logGroups) {
-    this.internal.logGroups = logGroups.build();
-        return this;
-    }
-    
-    public Builder logGroupNames(List<String> logGroupNames) {
-    this.internal.logGroupNames = logGroupNames;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder queryLanguage(LogsQueryLanguage queryLanguage) {
-    this.internal.queryLanguage = queryLanguage;
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    public CloudWatchLogsQuery build() {
-            return this.internal;
-        }
-    }
 }

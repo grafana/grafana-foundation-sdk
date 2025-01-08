@@ -58,6 +58,21 @@ public class TypeClassicConditions implements com.grafana.foundation.cog.variant
     public ExprTypeClassicConditionsTimeRange timeRange;
     @JsonProperty("type")
     public String type;
+    public TypeClassicConditions() {
+    }
+    
+    public TypeClassicConditions(List<ExprTypeClassicConditionsConditions> conditions,DataSourceRef datasource,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeClassicConditionsResultAssertions resultAssertions,ExprTypeClassicConditionsTimeRange timeRange,String type) {
+        this.conditions = conditions;
+        this.datasource = datasource;
+        this.hide = hide;
+        this.intervalMs = intervalMs;
+        this.maxDataPoints = maxDataPoints;
+        this.queryType = queryType;
+        this.refId = refId;
+        this.resultAssertions = resultAssertions;
+        this.timeRange = timeRange;
+        this.type = type;
+    }
     public String dataqueryName() {
         return "__expr__";
     }
@@ -67,60 +82,4 @@ public class TypeClassicConditions implements com.grafana.foundation.cog.variant
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-        protected final TypeClassicConditions internal;
-        
-        public Builder() {
-            this.internal = new TypeClassicConditions();
-    this.internal.type = "classic_conditions";
-        }
-    public Builder conditions(com.grafana.foundation.cog.Builder<List<ExprTypeClassicConditionsConditions>> conditions) {
-    this.internal.conditions = conditions.build();
-        return this;
-    }
-    
-    public Builder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
-        return this;
-    }
-    
-    public Builder hide(Boolean hide) {
-    this.internal.hide = hide;
-        return this;
-    }
-    
-    public Builder intervalMs(Double intervalMs) {
-    this.internal.intervalMs = intervalMs;
-        return this;
-    }
-    
-    public Builder maxDataPoints(Long maxDataPoints) {
-    this.internal.maxDataPoints = maxDataPoints;
-        return this;
-    }
-    
-    public Builder queryType(String queryType) {
-    this.internal.queryType = queryType;
-        return this;
-    }
-    
-    public Builder refId(String refId) {
-    this.internal.refId = refId;
-        return this;
-    }
-    
-    public Builder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsResultAssertions> resultAssertions) {
-    this.internal.resultAssertions = resultAssertions.build();
-        return this;
-    }
-    
-    public Builder timeRange(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsTimeRange> timeRange) {
-    this.internal.timeRange = timeRange.build();
-        return this;
-    }
-    public TypeClassicConditions build() {
-            return this.internal;
-        }
-    }
 }

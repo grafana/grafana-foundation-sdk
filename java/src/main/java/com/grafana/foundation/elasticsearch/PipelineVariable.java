@@ -12,30 +12,17 @@ public class PipelineVariable {
     public String name;
     @JsonProperty("pipelineAgg")
     public String pipelineAgg;
+    public PipelineVariable() {
+    }
+    
+    public PipelineVariable(String name,String pipelineAgg) {
+        this.name = name;
+        this.pipelineAgg = pipelineAgg;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<PipelineVariable> {
-        protected final PipelineVariable internal;
-        
-        public Builder() {
-            this.internal = new PipelineVariable();
-        }
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder pipelineAgg(String pipelineAgg) {
-    this.internal.pipelineAgg = pipelineAgg;
-        return this;
-    }
-    public PipelineVariable build() {
-            return this.internal;
-        }
-    }
 }
