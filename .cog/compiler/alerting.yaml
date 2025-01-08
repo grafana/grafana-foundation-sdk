@@ -79,3 +79,5 @@ passes:
   - rename_object:
       from: alerting.Record
       to: RecordRule
+
+  - trim_enum_values: {}
