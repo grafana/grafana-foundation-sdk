@@ -5,3 +5,4 @@ passes:
   - dataquery_identification: {}
   - disjunction_with_constant_to_default: {}
   - set_datasource_to_dataquery: {}
+  - trim_enum_values: {}
