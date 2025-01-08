@@ -19,31 +19,18 @@ public class MatcherConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("options")
     public Object options;
+    public MatcherConfig() {
+        this.id = "";
+    }
+    
+    public MatcherConfig(String id,Object options) {
+        this.id = id;
+        this.options = options;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MatcherConfig> {
-        protected final MatcherConfig internal;
-        
-        public Builder() {
-            this.internal = new MatcherConfig();
-        this.id("");
-        }
-    public Builder id(String id) {
-    this.internal.id = id;
-        return this;
-    }
-    
-    public Builder options(Object options) {
-    this.internal.options = options;
-        return this;
-    }
-    public MatcherConfig build() {
-            return this.internal;
-        }
-    }
 }

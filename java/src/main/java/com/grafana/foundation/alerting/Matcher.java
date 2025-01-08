@@ -18,35 +18,18 @@ public class Matcher {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("Value")
     public String value;
+    public Matcher() {
+    }
+    
+    public Matcher(String name,MatchType type,String value) {
+        this.name = name;
+        this.type = type;
+        this.value = value;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<Matcher> {
-        protected final Matcher internal;
-        
-        public Builder() {
-            this.internal = new Matcher();
-        }
-    public Builder name(String name) {
-    this.internal.name = name;
-        return this;
-    }
-    
-    public Builder type(MatchType type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder value(String value) {
-    this.internal.value = value;
-        return this;
-    }
-    public Matcher build() {
-            return this.internal;
-        }
-    }
 }

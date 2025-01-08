@@ -12,25 +12,16 @@ public class XychartXYSeriesConfigColor {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("matcher")
     public MatcherConfig matcher;
+    public XychartXYSeriesConfigColor() {
+    }
+    
+    public XychartXYSeriesConfigColor(MatcherConfig matcher) {
+        this.matcher = matcher;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<XychartXYSeriesConfigColor> {
-        protected final XychartXYSeriesConfigColor internal;
-        
-        public Builder() {
-            this.internal = new XychartXYSeriesConfigColor();
-        }
-    public Builder matcher(com.grafana.foundation.cog.Builder<MatcherConfig> matcher) {
-    this.internal.matcher = matcher.build();
-        return this;
-    }
-    public XychartXYSeriesConfigColor build() {
-            return this.internal;
-        }
-    }
 }

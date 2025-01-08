@@ -11,7 +11,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class TableJsonViewCellOptions {
     @JsonProperty("type")
     public String type;
-    public TableJsonViewCellOptions() {}
+    public TableJsonViewCellOptions() {
+    }
     
     public TableJsonViewCellOptions(String type) {
         this.type = type;

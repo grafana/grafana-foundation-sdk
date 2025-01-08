@@ -13,25 +13,16 @@ public class ElasticsearchFiltersSettings {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("filters")
     public List<Filter> filters;
+    public ElasticsearchFiltersSettings() {
+    }
+    
+    public ElasticsearchFiltersSettings(List<Filter> filters) {
+        this.filters = filters;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ElasticsearchFiltersSettings> {
-        protected final ElasticsearchFiltersSettings internal;
-        
-        public Builder() {
-            this.internal = new ElasticsearchFiltersSettings();
-        }
-    public Builder filters(com.grafana.foundation.cog.Builder<List<Filter>> filters) {
-    this.internal.filters = filters.build();
-        return this;
-    }
-    public ElasticsearchFiltersSettings build() {
-            return this.internal;
-        }
-    }
 }

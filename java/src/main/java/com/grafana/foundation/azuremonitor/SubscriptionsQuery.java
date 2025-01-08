@@ -14,26 +14,17 @@ public class SubscriptionsQuery {
     public String rawQuery;
     @JsonProperty("kind")
     public String kind;
+    public SubscriptionsQuery() {
+    }
+    
+    public SubscriptionsQuery(String rawQuery,String kind) {
+        this.rawQuery = rawQuery;
+        this.kind = kind;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<SubscriptionsQuery> {
-        protected final SubscriptionsQuery internal;
-        
-        public Builder() {
-            this.internal = new SubscriptionsQuery();
-    this.internal.kind = "SubscriptionsQuery";
-        }
-    public Builder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
-        return this;
-    }
-    public SubscriptionsQuery build() {
-            return this.internal;
-        }
-    }
 }

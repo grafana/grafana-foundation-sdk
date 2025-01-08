@@ -29,40 +29,19 @@ public class ReduceDataOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("fields")
     public String fields;
+    public ReduceDataOptions() {
+    }
+    
+    public ReduceDataOptions(Boolean values,Double limit,List<String> calcs,String fields) {
+        this.values = values;
+        this.limit = limit;
+        this.calcs = calcs;
+        this.fields = fields;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ReduceDataOptions> {
-        protected final ReduceDataOptions internal;
-        
-        public Builder() {
-            this.internal = new ReduceDataOptions();
-        }
-    public Builder values(Boolean values) {
-    this.internal.values = values;
-        return this;
-    }
-    
-    public Builder limit(Double limit) {
-    this.internal.limit = limit;
-        return this;
-    }
-    
-    public Builder calcs(List<String> calcs) {
-    this.internal.calcs = calcs;
-        return this;
-    }
-    
-    public Builder fields(String fields) {
-    this.internal.fields = fields;
-        return this;
-    }
-    public ReduceDataOptions build() {
-            return this.internal;
-        }
-    }
 }

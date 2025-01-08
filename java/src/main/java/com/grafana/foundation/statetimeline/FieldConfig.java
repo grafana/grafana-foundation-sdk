@@ -19,6 +19,16 @@ public class FieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("fillOpacity")
     public Integer fillOpacity;
+    public FieldConfig() {
+        this.lineWidth = 0;
+        this.fillOpacity = 70;
+    }
+    
+    public FieldConfig(Integer lineWidth,HideSeriesConfig hideFrom,Integer fillOpacity) {
+        this.lineWidth = lineWidth;
+        this.hideFrom = hideFrom;
+        this.fillOpacity = fillOpacity;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

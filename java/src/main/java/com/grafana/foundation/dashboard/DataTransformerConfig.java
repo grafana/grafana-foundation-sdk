@@ -32,7 +32,8 @@ public class DataTransformerConfig {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("options")
     public Object options;
-    public DataTransformerConfig() {}
+    public DataTransformerConfig() {
+    }
     
     public DataTransformerConfig(String id,Boolean disabled,MatcherConfig filter,DataTransformerConfigTopic topic,Object options) {
         this.id = id;

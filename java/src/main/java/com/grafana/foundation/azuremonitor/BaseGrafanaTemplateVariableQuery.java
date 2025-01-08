@@ -12,25 +12,16 @@ public class BaseGrafanaTemplateVariableQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("rawQuery")
     public String rawQuery;
+    public BaseGrafanaTemplateVariableQuery() {
+    }
+    
+    public BaseGrafanaTemplateVariableQuery(String rawQuery) {
+        this.rawQuery = rawQuery;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<BaseGrafanaTemplateVariableQuery> {
-        protected final BaseGrafanaTemplateVariableQuery internal;
-        
-        public Builder() {
-            this.internal = new BaseGrafanaTemplateVariableQuery();
-        }
-    public Builder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
-        return this;
-    }
-    public BaseGrafanaTemplateVariableQuery build() {
-            return this.internal;
-        }
-    }
 }

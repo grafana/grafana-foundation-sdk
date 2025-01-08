@@ -19,26 +19,17 @@ public class ValueMap {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("options")
     public Map<String, ValueMappingResult> options;
+    public ValueMap() {
+    }
+    
+    public ValueMap(String type,Map<String, ValueMappingResult> options) {
+        this.type = type;
+        this.options = options;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ValueMap> {
-        protected final ValueMap internal;
-        
-        public Builder() {
-            this.internal = new ValueMap();
-    this.internal.type = "value";
-        }
-    public Builder options(Map<String, ValueMappingResult> options) {
-    this.internal.options = options;
-        return this;
-    }
-    public ValueMap build() {
-            return this.internal;
-        }
-    }
 }

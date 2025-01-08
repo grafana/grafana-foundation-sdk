@@ -22,35 +22,18 @@ public class VizTextDisplayOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("percentSize")
     public Double percentSize;
+    public VizTextDisplayOptions() {
+    }
+    
+    public VizTextDisplayOptions(Double titleSize,Double valueSize,Double percentSize) {
+        this.titleSize = titleSize;
+        this.valueSize = valueSize;
+        this.percentSize = percentSize;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<VizTextDisplayOptions> {
-        protected final VizTextDisplayOptions internal;
-        
-        public Builder() {
-            this.internal = new VizTextDisplayOptions();
-        }
-    public Builder titleSize(Double titleSize) {
-    this.internal.titleSize = titleSize;
-        return this;
-    }
-    
-    public Builder valueSize(Double valueSize) {
-    this.internal.valueSize = valueSize;
-        return this;
-    }
-    
-    public Builder percentSize(Double percentSize) {
-    this.internal.percentSize = percentSize;
-        return this;
-    }
-    public VizTextDisplayOptions build() {
-            return this.internal;
-        }
-    }
 }

@@ -26,7 +26,12 @@ public class GridPos {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("static")
     public Boolean staticArg;
-    public GridPos() {}
+    public GridPos() {
+        this.h = 9;
+        this.w = 12;
+        this.x = 0;
+        this.y = 0;
+    }
     
     public GridPos(Integer h,Integer w,Integer x,Integer y,Boolean staticArg) {
         this.h = h;

@@ -28,50 +28,21 @@ public class TimeIntervalItem {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("years")
     public List<String> years;
+    public TimeIntervalItem() {
+    }
+    
+    public TimeIntervalItem(List<String> daysOfMonth,String location,List<String> months,List<TimeIntervalTimeRange> times,List<String> weekdays,List<String> years) {
+        this.daysOfMonth = daysOfMonth;
+        this.location = location;
+        this.months = months;
+        this.times = times;
+        this.weekdays = weekdays;
+        this.years = years;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TimeIntervalItem> {
-        protected final TimeIntervalItem internal;
-        
-        public Builder() {
-            this.internal = new TimeIntervalItem();
-        }
-    public Builder daysOfMonth(List<String> daysOfMonth) {
-    this.internal.daysOfMonth = daysOfMonth;
-        return this;
-    }
-    
-    public Builder location(String location) {
-    this.internal.location = location;
-        return this;
-    }
-    
-    public Builder months(List<String> months) {
-    this.internal.months = months;
-        return this;
-    }
-    
-    public Builder times(com.grafana.foundation.cog.Builder<List<TimeIntervalTimeRange>> times) {
-    this.internal.times = times.build();
-        return this;
-    }
-    
-    public Builder weekdays(List<String> weekdays) {
-    this.internal.weekdays = weekdays;
-        return this;
-    }
-    
-    public Builder years(List<String> years) {
-    this.internal.years = years;
-        return this;
-    }
-    public TimeIntervalItem build() {
-            return this.internal;
-        }
-    }
 }

@@ -10,25 +10,16 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class ExprTypeClassicConditionsConditionsReducer {
     @JsonProperty("type")
     public String type;
+    public ExprTypeClassicConditionsConditionsReducer() {
+    }
+    
+    public ExprTypeClassicConditionsConditionsReducer(String type) {
+        this.type = type;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsReducer> {
-        protected final ExprTypeClassicConditionsConditionsReducer internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeClassicConditionsConditionsReducer();
-        }
-    public Builder type(String type) {
-    this.internal.type = type;
-        return this;
-    }
-    public ExprTypeClassicConditionsConditionsReducer build() {
-            return this.internal;
-        }
-    }
 }

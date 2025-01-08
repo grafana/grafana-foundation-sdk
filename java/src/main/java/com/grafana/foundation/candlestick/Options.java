@@ -41,6 +41,24 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("includeAllFields")
     public Boolean includeAllFields;
+    public Options() {
+        this.mode = VizDisplayMode.CANDLES_VOLUME;
+        this.candleStyle = CandleStyle.CANDLES;
+        this.colorStrategy = ColorStrategy.OPEN_CLOSE;
+        this.colors = new CandlestickColors("green", "red", "gray");
+        this.includeAllFields = false;
+    }
+    
+    public Options(VizDisplayMode mode,CandleStyle candleStyle,ColorStrategy colorStrategy,CandlestickFieldMap fields,CandlestickColors colors,VizLegendOptions legend,VizTooltipOptions tooltip,Boolean includeAllFields) {
+        this.mode = mode;
+        this.candleStyle = candleStyle;
+        this.colorStrategy = colorStrategy;
+        this.fields = fields;
+        this.colors = colors;
+        this.legend = legend;
+        this.tooltip = tooltip;
+        this.includeAllFields = includeAllFields;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

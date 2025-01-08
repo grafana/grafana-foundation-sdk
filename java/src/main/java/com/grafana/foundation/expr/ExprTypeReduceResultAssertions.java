@@ -37,35 +37,18 @@ public class ExprTypeReduceResultAssertions {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("typeVersion")
     public List<Long> typeVersion;
+    public ExprTypeReduceResultAssertions() {
+    }
+    
+    public ExprTypeReduceResultAssertions(Long maxFrames,TypeReduceType type,List<Long> typeVersion) {
+        this.maxFrames = maxFrames;
+        this.type = type;
+        this.typeVersion = typeVersion;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<ExprTypeReduceResultAssertions> {
-        protected final ExprTypeReduceResultAssertions internal;
-        
-        public Builder() {
-            this.internal = new ExprTypeReduceResultAssertions();
-        }
-    public Builder maxFrames(Long maxFrames) {
-    this.internal.maxFrames = maxFrames;
-        return this;
-    }
-    
-    public Builder type(TypeReduceType type) {
-    this.internal.type = type;
-        return this;
-    }
-    
-    public Builder typeVersion(List<Long> typeVersion) {
-    this.internal.typeVersion = typeVersion;
-        return this;
-    }
-    public ExprTypeReduceResultAssertions build() {
-            return this.internal;
-        }
-    }
 }

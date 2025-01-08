@@ -15,30 +15,17 @@ public class InlineScript {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("ElasticsearchInlineScript")
     public ElasticsearchInlineScript elasticsearchInlineScript;
+    public InlineScript() {
+    }
+    
+    public InlineScript(String string,ElasticsearchInlineScript elasticsearchInlineScript) {
+        this.string = string;
+        this.elasticsearchInlineScript = elasticsearchInlineScript;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<InlineScript> {
-        protected final InlineScript internal;
-        
-        public Builder() {
-            this.internal = new InlineScript();
-        }
-    public Builder string(String string) {
-    this.internal.string = string;
-        return this;
-    }
-    
-    public Builder elasticsearchInlineScript(com.grafana.foundation.cog.Builder<ElasticsearchInlineScript> elasticsearchInlineScript) {
-    this.internal.elasticsearchInlineScript = elasticsearchInlineScript.build();
-        return this;
-    }
-    public InlineScript build() {
-            return this.internal;
-        }
-    }
 }

@@ -24,46 +24,21 @@ public class MetricNamespaceQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("resourceName")
     public String resourceName;
+    public MetricNamespaceQuery() {
+    }
+    
+    public MetricNamespaceQuery(String rawQuery,String kind,String subscription,String resourceGroup,String metricNamespace,String resourceName) {
+        this.rawQuery = rawQuery;
+        this.kind = kind;
+        this.subscription = subscription;
+        this.resourceGroup = resourceGroup;
+        this.metricNamespace = metricNamespace;
+        this.resourceName = resourceName;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<MetricNamespaceQuery> {
-        protected final MetricNamespaceQuery internal;
-        
-        public Builder() {
-            this.internal = new MetricNamespaceQuery();
-    this.internal.kind = "MetricNamespaceQuery";
-        }
-    public Builder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
-        return this;
-    }
-    
-    public Builder subscription(String subscription) {
-    this.internal.subscription = subscription;
-        return this;
-    }
-    
-    public Builder resourceGroup(String resourceGroup) {
-    this.internal.resourceGroup = resourceGroup;
-        return this;
-    }
-    
-    public Builder metricNamespace(String metricNamespace) {
-    this.internal.metricNamespace = metricNamespace;
-        return this;
-    }
-    
-    public Builder resourceName(String resourceName) {
-    this.internal.resourceName = resourceName;
-        return this;
-    }
-    public MetricNamespaceQuery build() {
-            return this.internal;
-        }
-    }
 }

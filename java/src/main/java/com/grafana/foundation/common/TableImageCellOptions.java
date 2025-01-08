@@ -18,31 +18,18 @@ public class TableImageCellOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("title")
     public String title;
+    public TableImageCellOptions() {
+    }
+    
+    public TableImageCellOptions(String type,String alt,String title) {
+        this.type = type;
+        this.alt = alt;
+        this.title = title;
+    }
     
     public String toJSON() throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(this);
     }
 
-    
-    public static class Builder implements com.grafana.foundation.cog.Builder<TableImageCellOptions> {
-        protected final TableImageCellOptions internal;
-        
-        public Builder() {
-            this.internal = new TableImageCellOptions();
-    this.internal.type = "image";
-        }
-    public Builder alt(String alt) {
-    this.internal.alt = alt;
-        return this;
-    }
-    
-    public Builder title(String title) {
-    this.internal.title = title;
-        return this;
-    }
-    public TableImageCellOptions build() {
-            return this.internal;
-        }
-    }
 }
