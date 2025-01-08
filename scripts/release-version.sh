@@ -202,6 +202,7 @@ run_when_safe gh_run "${foundation_sdk_path}" repo set-default "${FOUNDATION_SDK
 info "Opening release Pull Request"
 run_when_safe gh_run "${foundation_sdk_path}" pr create \
   --base "${release_branch}" \
+  --head "${pr_branch}" \
   --title "Automated release for Grafana ${GRAFANA_VERSION} and Cog ${COG_VERSION}" \
   --body "Automated release."
 
