@@ -183,6 +183,23 @@ options:
       by_name: RowPanel.panels
       as: withPanel
 
+  # Panels added directly to a row will be stripped by Grafana unless the row is collapsed.
+  - add_assignment:
+      by_name: RowPanel.withPanel
+      assignment:
+        path: collapsed
+        method: direct
+        value: { constant: true }
+  - add_comments:
+      by_name: RowPanel.withPanel
+      comments:
+        - 'Note: since panels added directly to a row will be stripped by Grafana unless the row is collapsed,'
+        - 'this option will set the current row as collapsed.'
+  - add_comments:
+      by_name: RowPanel.collapsed
+      comments:
+        - 'Note: panels added directly to a row will be stripped by Grafana unless the row is collapsed'
+
   # Templating([]VariableModel) instead of Templating(struct []struct{List []VariableModel})
   - struct_fields_as_arguments:
       by_name: Dashboard.templating
