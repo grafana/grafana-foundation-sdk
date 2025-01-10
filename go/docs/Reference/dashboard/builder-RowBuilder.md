@@ -22,6 +22,8 @@ func (builder *RowBuilder) Build() (RowPanel, error)
 
 Whether this row should be collapsed or not.
 
+Note: panels added directly to a row will be stripped by Grafana unless the row is collapsed
+
 ```go
 func (builder *RowBuilder) Collapsed(collapsed bool) *RowBuilder
 ```
@@ -69,6 +71,10 @@ func (builder *RowBuilder) Title(title string) *RowBuilder
 ### <span class="badge object-method"></span> WithPanel
 
 List of panels in the row
+
+Note: since panels added directly to a row will be stripped by Grafana unless the row is collapsed,
+
+this option will set the current row as collapsed.
 
 ```go
 func (builder *RowBuilder) WithPanel(panel cog.Builder[dashboard.Panel]) *RowBuilder
