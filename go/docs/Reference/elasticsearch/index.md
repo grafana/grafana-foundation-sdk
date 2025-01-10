@@ -621,16 +621,6 @@ NewDataquery creates a new Dataquery object.
 func NewDataquery() *Dataquery
 ```
 
-### <span class="badge function"></span> VariantConfig
-
-VariantConfig returns the configuration related to elasticsearch dataqueries.
-
-This configuration describes how to unmarshal it, convert it to code, …
-
-```go
-func VariantConfig() variants.DataqueryConfig
-```
-
 ### <span class="badge function"></span> NewElasticsearchDateHistogramSettings
 
 NewElasticsearchDateHistogramSettings creates a new ElasticsearchDateHistogramSettings object.
@@ -901,6 +891,16 @@ NewBucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUn
 
 ```go
 func NewBucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics() *BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
+```
+
+### <span class="badge function"></span> VariantConfig
+
+VariantConfig returns the configuration related to elasticsearch dataqueries.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```go
+func VariantConfig() variants.DataqueryConfig
 ```
 
 ### <span class="badge function"></span> BaseBucketAggregationConverter
