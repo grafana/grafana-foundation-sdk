@@ -4,9 +4,9 @@ namespace Grafana\Foundation\Testdata;
 
 final class DataqueryConverter
 {
-    public static function convert(\Grafana\Foundation\Testdata\Dataquery $input): string
+    public static function convert(\Grafana\Foundation\Cog\Dataquery $input): string
     {
-        
+        assert($input instanceof \Grafana\Foundation\Testdata\Dataquery);
         $calls = [
             '(new \Grafana\Foundation\Testdata\DataqueryBuilder())',
         ];

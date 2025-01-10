@@ -75,18 +75,23 @@ final class RowConverter
     }
     
     
-            if (count($input->panels) >= 1) {
-    foreach ($input->panels as $item) {
+            if (count($input->panels) >= 1 && $input->collapsed === true) {
+    
         
     $buffer = 'withPanel(';
-        $arg0 = \Grafana\Foundation\Cog\Runtime::get()->convertPanelToCode($item, $item->type, );
+        $tmparg0 = [];
+        foreach ($input->panels as $arg1) {
+        $tmppanelsarg1 = \Grafana\Foundation\Cog\Runtime::get()->convertPanelToCode($arg1, $arg1->type, );
+        $tmparg0[] = $tmppanelsarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
         $buffer .= $arg0;
         
     $buffer .= ')';
 
     $calls[] = $buffer;
     
-    }
+    
     }
             if ($input->repeat !== null && $input->repeat !== "") {
     
