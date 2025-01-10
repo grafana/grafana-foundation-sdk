@@ -3,6 +3,6 @@
 package com.grafana.foundation.common;
 
 public class Constants {
-    public static final String TimeZoneUtc = "utc";
     public static final String TimeZoneBrowser = "browser";
+    public static final String TimeZoneUtc = "utc";
 }
