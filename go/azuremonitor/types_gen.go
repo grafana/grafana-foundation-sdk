@@ -62,41 +62,6 @@ func NewAzureMonitorQuery() *AzureMonitorQuery {
 	return &AzureMonitorQuery{}
 }
 
-// VariantConfig returns the configuration related to grafana-azure-monitor-datasource dataqueries.
-// This configuration describes how to unmarshal it, convert it to code, …
-func VariantConfig() variants.DataqueryConfig {
-	return variants.DataqueryConfig{
-		Identifier: "grafana-azure-monitor-datasource",
-		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &AzureMonitorQuery{}
-
-			if err := json.Unmarshal(raw, dataquery); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &AzureMonitorQuery{}
-
-			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-		GoConverter: func(input any) string {
-			var dataquery AzureMonitorQuery
-			if cast, ok := input.(*AzureMonitorQuery); ok {
-				dataquery = *cast
-			} else {
-				dataquery = input.(AzureMonitorQuery)
-			}
-			return AzureMonitorQueryConverter(dataquery)
-		},
-	}
-}
-
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMonitorQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -3744,4 +3709,39 @@ func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscription
 	}
 
 	return errs
+}
+
+// VariantConfig returns the configuration related to grafana-azure-monitor-datasource dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
+func VariantConfig() variants.DataqueryConfig {
+	return variants.DataqueryConfig{
+		Identifier: "grafana-azure-monitor-datasource",
+		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &AzureMonitorQuery{}
+
+			if err := json.Unmarshal(raw, dataquery); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &AzureMonitorQuery{}
+
+			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+		GoConverter: func(input any) string {
+			var dataquery AzureMonitorQuery
+			if cast, ok := input.(*AzureMonitorQuery); ok {
+				dataquery = *cast
+			} else {
+				dataquery = input.(AzureMonitorQuery)
+			}
+			return AzureMonitorQueryConverter(dataquery)
+		},
+	}
 }
