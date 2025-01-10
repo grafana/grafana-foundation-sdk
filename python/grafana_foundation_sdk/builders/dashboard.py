@@ -1592,6 +1592,7 @@ class Row(cogbuilder.Builder[dashboard.RowPanel]):
     def collapsed(self, collapsed: bool) -> typing.Self:    
         """
         Whether this row should be collapsed or not.
+        Note: panels added directly to a row will be stripped by Grafana unless the row is collapsed
         """
             
         self._internal.collapsed = collapsed
@@ -1637,13 +1638,16 @@ class Row(cogbuilder.Builder[dashboard.RowPanel]):
     def with_panel(self, panel: cogbuilder.Builder[dashboard.Panel]) -> typing.Self:    
         """
         List of panels in the row
+        Note: since panels added directly to a row will be stripped by Grafana unless the row is collapsed,
+        this option will set the current row as collapsed.
         """
             
         if self._internal.panels is None:
             self._internal.panels = []
         
         panel_resource = panel.build()
-        self._internal.panels.append(panel_resource)
+        self._internal.panels.append(panel_resource)    
+        self._internal.collapsed = True
     
         return self
     
