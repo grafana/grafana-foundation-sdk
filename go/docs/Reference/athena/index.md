@@ -20,6 +20,14 @@ NewDataquery creates a new Dataquery object.
 func NewDataquery() *Dataquery
 ```
 
+### <span class="badge function"></span> NewConnectionArgs
+
+NewConnectionArgs creates a new ConnectionArgs object.
+
+```go
+func NewConnectionArgs() *ConnectionArgs
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to grafana-athena-datasource dataqueries.
@@ -28,14 +36,6 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
-```
-
-### <span class="badge function"></span> NewConnectionArgs
-
-NewConnectionArgs creates a new ConnectionArgs object.
-
-```go
-func NewConnectionArgs() *ConnectionArgs
 ```
 
 ### <span class="badge function"></span> DataqueryConverter
