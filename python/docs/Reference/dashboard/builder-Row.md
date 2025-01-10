@@ -22,6 +22,8 @@ def build() -> dashboard.RowPanel
 
 Whether this row should be collapsed or not.
 
+Note: panels added directly to a row will be stripped by Grafana unless the row is collapsed
+
 ```python
 def collapsed(collapsed: bool) -> typing.Self
 ```
@@ -69,6 +71,10 @@ def title(title: str) -> typing.Self
 ### <span class="badge object-method"></span> with_panel
 
 List of panels in the row
+
+Note: since panels added directly to a row will be stripped by Grafana unless the row is collapsed,
+
+this option will set the current row as collapsed.
 
 ```python
 def with_panel(panel: cogbuilder.Builder[dashboard.Panel]) -> typing.Self

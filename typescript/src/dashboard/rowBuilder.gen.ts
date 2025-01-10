@@ -21,6 +21,7 @@ export class RowBuilder implements cog.Builder<dashboard.RowPanel> {
     }
 
     // Whether this row should be collapsed or not.
+    // Note: panels added directly to a row will be stripped by Grafana unless the row is collapsed
     collapsed(collapsed: boolean): this {
         this.internal.collapsed = collapsed;
         return this;
@@ -51,12 +52,15 @@ export class RowBuilder implements cog.Builder<dashboard.RowPanel> {
     }
 
     // List of panels in the row
+    // Note: since panels added directly to a row will be stripped by Grafana unless the row is collapsed,
+    // this option will set the current row as collapsed.
     withPanel(panel: cog.Builder<dashboard.Panel>): this {
         if (!this.internal.panels) {
             this.internal.panels = [];
         }
         const panelResource = panel.build();
         this.internal.panels.push(panelResource);
+        this.internal.collapsed = true;
         return this;
     }
 
