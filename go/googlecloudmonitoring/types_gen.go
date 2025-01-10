@@ -54,41 +54,6 @@ func NewCloudMonitoringQuery() *CloudMonitoringQuery {
 	return &CloudMonitoringQuery{}
 }
 
-// VariantConfig returns the configuration related to cloud-monitoring dataqueries.
-// This configuration describes how to unmarshal it, convert it to code, …
-func VariantConfig() variants.DataqueryConfig {
-	return variants.DataqueryConfig{
-		Identifier: "cloud-monitoring",
-		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &CloudMonitoringQuery{}
-
-			if err := json.Unmarshal(raw, dataquery); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &CloudMonitoringQuery{}
-
-			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-		GoConverter: func(input any) string {
-			var dataquery CloudMonitoringQuery
-			if cast, ok := input.(*CloudMonitoringQuery); ok {
-				dataquery = *cast
-			} else {
-				dataquery = input.(CloudMonitoringQuery)
-			}
-			return CloudMonitoringQueryConverter(dataquery)
-		},
-	}
-}
-
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudMonitoringQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *CloudMonitoringQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -2164,3 +2129,38 @@ const (
 	MetricFindQueryTypesSLOServices      MetricFindQueryTypes = "sloServices"
 	MetricFindQueryTypesSLO              MetricFindQueryTypes = "slo"
 )
+
+// VariantConfig returns the configuration related to cloud-monitoring dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
+func VariantConfig() variants.DataqueryConfig {
+	return variants.DataqueryConfig{
+		Identifier: "cloud-monitoring",
+		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &CloudMonitoringQuery{}
+
+			if err := json.Unmarshal(raw, dataquery); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &CloudMonitoringQuery{}
+
+			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+		GoConverter: func(input any) string {
+			var dataquery CloudMonitoringQuery
+			if cast, ok := input.(*CloudMonitoringQuery); ok {
+				dataquery = *cast
+			} else {
+				dataquery = input.(CloudMonitoringQuery)
+			}
+			return CloudMonitoringQueryConverter(dataquery)
+		},
+	}
+}

@@ -195,16 +195,6 @@ NewCloudWatchQuery creates a new CloudWatchQuery object.
 func NewCloudWatchQuery() *CloudWatchQuery
 ```
 
-### <span class="badge function"></span> VariantConfig
-
-VariantConfig returns the configuration related to cloudwatch dataqueries.
-
-This configuration describes how to unmarshal it, convert it to code, …
-
-```go
-func VariantConfig() variants.DataqueryConfig
-```
-
 ### <span class="badge function"></span> NewStringOrArrayOfString
 
 NewStringOrArrayOfString creates a new StringOrArrayOfString object.
@@ -251,6 +241,16 @@ NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery create
 
 ```go
 func NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery() *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
+```
+
+### <span class="badge function"></span> VariantConfig
+
+VariantConfig returns the configuration related to cloudwatch dataqueries.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```go
+func VariantConfig() variants.DataqueryConfig
 ```
 
 ### <span class="badge function"></span> MetricStatConverter

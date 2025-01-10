@@ -21,61 +21,6 @@ func NewExpr() *Expr {
 	return NewTypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql()
 }
 
-// VariantConfig returns the configuration related to __expr__ dataqueries.
-// This configuration describes how to unmarshal it, convert it to code, …
-func VariantConfig() variants.DataqueryConfig {
-	return variants.DataqueryConfig{
-		Identifier: "__expr__",
-		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &Expr{}
-
-			if err := json.Unmarshal(raw, dataquery); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &Expr{}
-
-			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-		GoConverter: func(input any) string {
-			var dataquery Expr
-			if cast, ok := input.(*Expr); ok {
-				dataquery = *cast
-			} else {
-				dataquery = input.(Expr)
-			}
-
-			if dataquery.TypeMath != nil {
-				return TypeMathConverter(*dataquery.TypeMath)
-			}
-			if dataquery.TypeReduce != nil {
-				return TypeReduceConverter(*dataquery.TypeReduce)
-			}
-			if dataquery.TypeResample != nil {
-				return TypeResampleConverter(*dataquery.TypeResample)
-			}
-			if dataquery.TypeClassicConditions != nil {
-				return TypeClassicConditionsConverter(*dataquery.TypeClassicConditions)
-			}
-			if dataquery.TypeThreshold != nil {
-				return TypeThresholdConverter(*dataquery.TypeThreshold)
-			}
-			if dataquery.TypeSql != nil {
-				return TypeSqlConverter(*dataquery.TypeSql)
-			}
-
-			return ""
-		},
-	}
-}
-
 type TypeMath struct {
 	// The datasource
 	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
@@ -4623,4 +4568,59 @@ func (resource ExprTypeSqlTimeRange) Equals(other ExprTypeSqlTimeRange) bool {
 // Validate checks all the validation constraints that may be defined on `ExprTypeSqlTimeRange` fields for violations and returns them.
 func (resource ExprTypeSqlTimeRange) Validate() error {
 	return nil
+}
+
+// VariantConfig returns the configuration related to __expr__ dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
+func VariantConfig() variants.DataqueryConfig {
+	return variants.DataqueryConfig{
+		Identifier: "__expr__",
+		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &Expr{}
+
+			if err := json.Unmarshal(raw, dataquery); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &Expr{}
+
+			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+		GoConverter: func(input any) string {
+			var dataquery Expr
+			if cast, ok := input.(*Expr); ok {
+				dataquery = *cast
+			} else {
+				dataquery = input.(Expr)
+			}
+
+			if dataquery.TypeMath != nil {
+				return TypeMathConverter(*dataquery.TypeMath)
+			}
+			if dataquery.TypeReduce != nil {
+				return TypeReduceConverter(*dataquery.TypeReduce)
+			}
+			if dataquery.TypeResample != nil {
+				return TypeResampleConverter(*dataquery.TypeResample)
+			}
+			if dataquery.TypeClassicConditions != nil {
+				return TypeClassicConditionsConverter(*dataquery.TypeClassicConditions)
+			}
+			if dataquery.TypeThreshold != nil {
+				return TypeThresholdConverter(*dataquery.TypeThreshold)
+			}
+			if dataquery.TypeSql != nil {
+				return TypeSqlConverter(*dataquery.TypeSql)
+			}
+
+			return ""
+		},
+	}
 }

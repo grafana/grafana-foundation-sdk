@@ -35,6 +35,7 @@ func (builder *RowBuilder) Build() (RowPanel, error) {
 }
 
 // Whether this row should be collapsed or not.
+// Note: panels added directly to a row will be stripped by Grafana unless the row is collapsed
 func (builder *RowBuilder) Collapsed(collapsed bool) *RowBuilder {
 	builder.internal.Collapsed = collapsed
 
@@ -70,6 +71,8 @@ func (builder *RowBuilder) Id(id uint32) *RowBuilder {
 }
 
 // List of panels in the row
+// Note: since panels added directly to a row will be stripped by Grafana unless the row is collapsed,
+// this option will set the current row as collapsed.
 func (builder *RowBuilder) WithPanel(panel cog.Builder[Panel]) *RowBuilder {
 	panelResource, err := panel.Build()
 	if err != nil {
@@ -77,6 +80,7 @@ func (builder *RowBuilder) WithPanel(panel cog.Builder[Panel]) *RowBuilder {
 		return builder
 	}
 	builder.internal.Panels = append(builder.internal.Panels, panelResource)
+	builder.internal.Collapsed = true
 
 	return builder
 }

@@ -36,16 +36,6 @@ NewCloudMonitoringQuery creates a new CloudMonitoringQuery object.
 func NewCloudMonitoringQuery() *CloudMonitoringQuery
 ```
 
-### <span class="badge function"></span> VariantConfig
-
-VariantConfig returns the configuration related to cloud-monitoring dataqueries.
-
-This configuration describes how to unmarshal it, convert it to code, …
-
-```go
-func VariantConfig() variants.DataqueryConfig
-```
-
 ### <span class="badge function"></span> NewTimeSeriesList
 
 NewTimeSeriesList creates a new TimeSeriesList object.
@@ -100,6 +90,16 @@ NewFilter creates a new Filter object.
 
 ```go
 func NewFilter() *Filter
+```
+
+### <span class="badge function"></span> VariantConfig
+
+VariantConfig returns the configuration related to cloud-monitoring dataqueries.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```go
+func VariantConfig() variants.DataqueryConfig
 ```
 
 ### <span class="badge function"></span> CloudMonitoringQueryConverter
