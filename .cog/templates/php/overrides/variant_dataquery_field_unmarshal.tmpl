@@ -1,0 +1,23 @@
+{{- define "variant_dataquery_field_unmarshal" -}}
+{{- $dataqueryHint := "\"\"" -}}
+{{- range $candidate := .Object.Type.Struct.Fields -}}
+    {{- if and ($candidate.Type.IsRef) (eq $candidate.Type.Ref.ReferredType "DataSourceRef") -}}
+    {{- $dataqueryHint = include "dataquery_field_unmarshal_hint" (dict "Candidate" $candidate) -}}
+    {{- end -}}
+{{- end -}}
+isset({{ .InputVar }}) ? (function ($in) {
+	/** @var array{datasource?: array{type?: mixed}} $in */
+    $hint = {{ $dataqueryHint }};
+{{ if .Type.IsArray -}}
+    /** @var array<array<string, mixed>> $in */
+    return {{ "Cog\\Runtime"|fullNamespaceRef }}::get()->dataqueriesFromArray($in, $hint);
+{{- else }}
+    /** @var array<string, mixed> $in */
+    return {{ "Cog\\Runtime"|fullNamespaceRef }}::get()->dataqueryFromArray($in, $hint);
+{{- end }}
+})({{ .InputVar }}) : null
+{{- end }}
+
+{{- define "dataquery_field_unmarshal_hint" -}}
+(isset($in["{{ .Candidate.Name }}"], $in["{{ .Candidate.Name }}"]["type"]) && is_string($in["{{ .Candidate.Name }}"]["type"])) ? $in["{{ .Candidate.Name }}"]["type"] : ""
+{{- end }}
