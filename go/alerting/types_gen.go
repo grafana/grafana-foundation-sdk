@@ -67,9 +67,9 @@ func (resource *Query) UnmarshalJSON(raw []byte) error {
 		}
 	}
 
-	dataqueryTypeHint := ""
-
 	if fields["model"] != nil {
+		dataqueryTypeHint := ""
+
 		model, err := cog.UnmarshalDataquery(fields["model"], dataqueryTypeHint)
 		if err != nil {
 			return err

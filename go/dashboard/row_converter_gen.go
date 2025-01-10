@@ -75,19 +75,22 @@ func RowConverter(input RowPanel) string {
 		buffer.Reset()
 	}
 
-	if input.Panels != nil && len(input.Panels) >= 1 {
-		for _, item := range input.Panels {
+	if input.Panels != nil && len(input.Panels) >= 1 && input.Collapsed == true {
 
-			buffer.WriteString(`WithPanel(`)
-			arg0 := cog.ConvertPanelToCode(item, item.Type)
-			buffer.WriteString(arg0)
-
-			buffer.WriteString(")")
-
-			calls = append(calls, buffer.String())
-			buffer.Reset()
-
+		buffer.WriteString(`WithPanel(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.Panels {
+			tmppanelsarg1 := cog.ConvertPanelToCode(arg1, arg1.Type)
+			tmparg0 = append(tmparg0, tmppanelsarg1)
 		}
+		arg0 := "[]cog.Builder[dashboard.Panel]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
 	}
 	if input.Repeat != nil && *input.Repeat != "" {
 
