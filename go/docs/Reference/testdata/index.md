@@ -93,16 +93,6 @@ NewDataquery creates a new Dataquery object.
 func NewDataquery() *Dataquery
 ```
 
-### <span class="badge function"></span> VariantConfig
-
-VariantConfig returns the configuration related to testdata dataqueries.
-
-This configuration describes how to unmarshal it, convert it to code, …
-
-```go
-func VariantConfig() variants.DataqueryConfig
-```
-
 ### <span class="badge function"></span> NewKey
 
 NewKey creates a new Key object.
@@ -117,6 +107,16 @@ NewStringOrInt64 creates a new StringOrInt64 object.
 
 ```go
 func NewStringOrInt64() *StringOrInt64
+```
+
+### <span class="badge function"></span> VariantConfig
+
+VariantConfig returns the configuration related to testdata dataqueries.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```go
+func VariantConfig() variants.DataqueryConfig
 ```
 
 ### <span class="badge function"></span> StreamingQueryConverter

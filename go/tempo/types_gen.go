@@ -68,41 +68,6 @@ func NewTempoQuery() *TempoQuery {
 	return &TempoQuery{}
 }
 
-// VariantConfig returns the configuration related to tempo dataqueries.
-// This configuration describes how to unmarshal it, convert it to code, …
-func VariantConfig() variants.DataqueryConfig {
-	return variants.DataqueryConfig{
-		Identifier: "tempo",
-		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &TempoQuery{}
-
-			if err := json.Unmarshal(raw, dataquery); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &TempoQuery{}
-
-			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-		GoConverter: func(input any) string {
-			var dataquery TempoQuery
-			if cast, ok := input.(*TempoQuery); ok {
-				dataquery = *cast
-			} else {
-				dataquery = input.(TempoQuery)
-			}
-			return TempoQueryConverter(dataquery)
-		},
-	}
-}
-
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TempoQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
@@ -886,4 +851,39 @@ func (resource StringOrArrayOfString) Equals(other StringOrArrayOfString) bool {
 // Validate checks all the validation constraints that may be defined on `StringOrArrayOfString` fields for violations and returns them.
 func (resource StringOrArrayOfString) Validate() error {
 	return nil
+}
+
+// VariantConfig returns the configuration related to tempo dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
+func VariantConfig() variants.DataqueryConfig {
+	return variants.DataqueryConfig{
+		Identifier: "tempo",
+		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &TempoQuery{}
+
+			if err := json.Unmarshal(raw, dataquery); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &TempoQuery{}
+
+			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+		GoConverter: func(input any) string {
+			var dataquery TempoQuery
+			if cast, ok := input.(*TempoQuery); ok {
+				dataquery = *cast
+			} else {
+				dataquery = input.(TempoQuery)
+			}
+			return TempoQueryConverter(dataquery)
+		},
+	}
 }

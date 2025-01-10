@@ -80,16 +80,6 @@ NewExpr creates a new Expr object.
 func NewExpr() *Expr
 ```
 
-### <span class="badge function"></span> VariantConfig
-
-VariantConfig returns the configuration related to __expr__ dataqueries.
-
-This configuration describes how to unmarshal it, convert it to code, …
-
-```go
-func VariantConfig() variants.DataqueryConfig
-```
-
 ### <span class="badge function"></span> NewTypeMath
 
 NewTypeMath creates a new TypeMath object.
@@ -312,6 +302,16 @@ NewExprTypeSqlTimeRange creates a new ExprTypeSqlTimeRange object.
 
 ```go
 func NewExprTypeSqlTimeRange() *ExprTypeSqlTimeRange
+```
+
+### <span class="badge function"></span> VariantConfig
+
+VariantConfig returns the configuration related to __expr__ dataqueries.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```go
+func VariantConfig() variants.DataqueryConfig
 ```
 
 ### <span class="badge function"></span> TypeMathConverter

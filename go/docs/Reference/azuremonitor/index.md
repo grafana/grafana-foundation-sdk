@@ -57,16 +57,6 @@ NewAzureMonitorQuery creates a new AzureMonitorQuery object.
 func NewAzureMonitorQuery() *AzureMonitorQuery
 ```
 
-### <span class="badge function"></span> VariantConfig
-
-VariantConfig returns the configuration related to grafana-azure-monitor-datasource dataqueries.
-
-This configuration describes how to unmarshal it, convert it to code, …
-
-```go
-func VariantConfig() variants.DataqueryConfig
-```
-
 ### <span class="badge function"></span> NewAzureMetricQuery
 
 NewAzureMetricQuery creates a new AzureMetricQuery object.
@@ -225,6 +215,16 @@ NewAppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrReso
 
 ```go
 func NewAppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery() *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery
+```
+
+### <span class="badge function"></span> VariantConfig
+
+VariantConfig returns the configuration related to grafana-azure-monitor-datasource dataqueries.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```go
+func VariantConfig() variants.DataqueryConfig
 ```
 
 ### <span class="badge function"></span> AzureMonitorQueryConverter
