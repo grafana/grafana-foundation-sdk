@@ -1244,41 +1244,6 @@ func NewDataquery() *Dataquery {
 	return &Dataquery{}
 }
 
-// VariantConfig returns the configuration related to  dataqueries.
-// This configuration describes how to unmarshal it, convert it to code, …
-func VariantConfig() variants.DataqueryConfig {
-	return variants.DataqueryConfig{
-		Identifier: "",
-		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &Dataquery{}
-
-			if err := json.Unmarshal(raw, dataquery); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &Dataquery{}
-
-			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
-				return nil, err
-			}
-
-			return dataquery, nil
-		},
-		GoConverter: func(input any) string {
-			var dataquery Dataquery
-			if cast, ok := input.(*Dataquery); ok {
-				dataquery = *cast
-			} else {
-				dataquery = input.(Dataquery)
-			}
-			return DataqueryConverter(dataquery)
-		},
-	}
-}
-
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Dataquery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
@@ -2237,3 +2202,38 @@ const (
 	DataqueryScenarioIdUsa                          DataqueryScenarioId = "usa"
 	DataqueryScenarioIdVariablesQuery               DataqueryScenarioId = "variables-query"
 )
+
+// VariantConfig returns the configuration related to  dataqueries.
+// This configuration describes how to unmarshal it, convert it to code, …
+func VariantConfig() variants.DataqueryConfig {
+	return variants.DataqueryConfig{
+		Identifier: "",
+		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &Dataquery{}
+
+			if err := json.Unmarshal(raw, dataquery); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
+			dataquery := &Dataquery{}
+
+			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
+				return nil, err
+			}
+
+			return dataquery, nil
+		},
+		GoConverter: func(input any) string {
+			var dataquery Dataquery
+			if cast, ok := input.(*Dataquery); ok {
+				dataquery = *cast
+			} else {
+				dataquery = input.(Dataquery)
+			}
+			return DataqueryConverter(dataquery)
+		},
+	}
+}
