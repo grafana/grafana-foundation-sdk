@@ -20,6 +20,14 @@ NewDataquery creates a new Dataquery object.
 func NewDataquery() *Dataquery
 ```
 
+### <span class="badge function"></span> NewPrometheusDataqueryScope
+
+NewPrometheusDataqueryScope creates a new PrometheusDataqueryScope object.
+
+```go
+func NewPrometheusDataqueryScope() *PrometheusDataqueryScope
+```
+
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to prometheus dataqueries.
@@ -28,14 +36,6 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
-```
-
-### <span class="badge function"></span> NewPrometheusDataqueryScope
-
-NewPrometheusDataqueryScope creates a new PrometheusDataqueryScope object.
-
-```go
-func NewPrometheusDataqueryScope() *PrometheusDataqueryScope
 ```
 
 ### <span class="badge function"></span> DataqueryConverter
