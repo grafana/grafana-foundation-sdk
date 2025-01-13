@@ -10,7 +10,7 @@
 ) -}}
 {{- $cogruntime := importModule "cogruntime" "..cog" "runtime" -}}
 {{- $options := ternary "Options.from_json" "None" (schemaHasObject .Schema "Options") -}}
-{{- $fieldConfig := ternary "Options.from_json" "None" (schemaHasObject .Schema "FieldConfig") -}}
+{{- $fieldConfig := ternary "FieldConfig.from_json" "None" (schemaHasObject .Schema "FieldConfig") -}}
 
 def variant_config():
     return {{ $cogruntime }}.PanelCfgConfig(
