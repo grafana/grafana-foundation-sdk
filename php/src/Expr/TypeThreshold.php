@@ -168,6 +168,6 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
 
     public function dataqueryType(): string
     {
-        return "__expr__";
+        return '__expr__';
     }
 }

@@ -158,6 +158,6 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
 
     public function dataqueryType(): string
     {
-        return "__expr__";
+        return '__expr__';
     }
 }
