@@ -134,6 +134,6 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
 
     public function dataqueryType(): string
     {
-        return "grafana-athena-datasource";
+        return 'grafana-athena-datasource';
     }
 }
