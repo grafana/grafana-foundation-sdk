@@ -18,6 +18,12 @@ Builds the object.
 def build() -> common.VizTooltipOptions
 ```
 
+### <span class="badge object-method"></span> hide_zeros
+
+```python
+def hide_zeros(hide_zeros: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> max_height
 
 ```python

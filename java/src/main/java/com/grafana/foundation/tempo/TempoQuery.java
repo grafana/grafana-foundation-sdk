@@ -78,6 +78,10 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("tableType")
     public SearchTableType tableType;
+    // For metric queries, the step size to use
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("step")
+    public String step;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
@@ -85,14 +89,14 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
-    // For metric queries, the step size to use
+    // For metric queries, how many exemplars to request, 0 means no exemplars
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("step")
-    public String step;
+    @JsonProperty("exemplars")
+    public Long exemplars;
     public TempoQuery() {
     }
     
-    public TempoQuery(String refId,Boolean hide,String queryType,String query,String search,String serviceName,String spanName,String minDuration,String maxDuration,StringOrArrayOfString serviceMapQuery,Boolean serviceMapIncludeNamespace,Long limit,Long spss,List<TraceqlFilter> filters,List<TraceqlFilter> groupBy,SearchTableType tableType,DataSourceRef datasource,String step) {
+    public TempoQuery(String refId,Boolean hide,String queryType,String query,String search,String serviceName,String spanName,String minDuration,String maxDuration,StringOrArrayOfString serviceMapQuery,Boolean serviceMapIncludeNamespace,Long limit,Long spss,List<TraceqlFilter> filters,List<TraceqlFilter> groupBy,SearchTableType tableType,String step,DataSourceRef datasource,Long exemplars) {
         this.refId = refId;
         this.hide = hide;
         this.queryType = queryType;
@@ -109,8 +113,9 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
         this.filters = filters;
         this.groupBy = groupBy;
         this.tableType = tableType;
-        this.datasource = datasource;
         this.step = step;
+        this.datasource = datasource;
+        this.exemplars = exemplars;
     }
     public String dataqueryName() {
         return "tempo";

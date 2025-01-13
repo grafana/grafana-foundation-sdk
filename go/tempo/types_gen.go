@@ -48,13 +48,15 @@ type TempoQuery struct {
 	GroupBy []TraceqlFilter `json:"groupBy,omitempty"`
 	// The type of the table that is used to display the search results
 	TableType *SearchTableType `json:"tableType,omitempty"`
+	// For metric queries, the step size to use
+	Step *string `json:"step,omitempty"`
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
-	// For metric queries, the step size to use
-	Step *string `json:"step,omitempty"`
+	// For metric queries, how many exemplars to request, 0 means no exemplars
+	Exemplars *int64 `json:"exemplars,omitempty"`
 }
 
 func (resource TempoQuery) ImplementsDataqueryVariant() {}
@@ -288,6 +290,17 @@ func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "tableType")
 
 	}
+	// Field "step"
+	if fields["step"] != nil {
+		if string(fields["step"]) != "null" {
+			if err := json.Unmarshal(fields["step"], &resource.Step); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("step", err)...)
+			}
+
+		}
+		delete(fields, "step")
+
+	}
 	// Field "datasource"
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
@@ -301,15 +314,15 @@ func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "datasource")
 
 	}
-	// Field "step"
-	if fields["step"] != nil {
-		if string(fields["step"]) != "null" {
-			if err := json.Unmarshal(fields["step"], &resource.Step); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("step", err)...)
+	// Field "exemplars"
+	if fields["exemplars"] != nil {
+		if string(fields["exemplars"]) != "null" {
+			if err := json.Unmarshal(fields["exemplars"], &resource.Exemplars); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("exemplars", err)...)
 			}
 
 		}
-		delete(fields, "step")
+		delete(fields, "exemplars")
 
 	}
 
@@ -474,6 +487,15 @@ func (resource TempoQuery) Equals(otherCandidate variants.Dataquery) bool {
 			return false
 		}
 	}
+	if resource.Step == nil && other.Step != nil || resource.Step != nil && other.Step == nil {
+		return false
+	}
+
+	if resource.Step != nil {
+		if *resource.Step != *other.Step {
+			return false
+		}
+	}
 	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
 	}
@@ -483,12 +505,12 @@ func (resource TempoQuery) Equals(otherCandidate variants.Dataquery) bool {
 			return false
 		}
 	}
-	if resource.Step == nil && other.Step != nil || resource.Step != nil && other.Step == nil {
+	if resource.Exemplars == nil && other.Exemplars != nil || resource.Exemplars != nil && other.Exemplars == nil {
 		return false
 	}
 
-	if resource.Step != nil {
-		if *resource.Step != *other.Step {
+	if resource.Exemplars != nil {
+		if *resource.Exemplars != *other.Exemplars {
 			return false
 		}
 	}

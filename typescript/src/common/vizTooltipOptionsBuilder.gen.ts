@@ -37,4 +37,9 @@ export class VizTooltipOptionsBuilder implements cog.Builder<common.VizTooltipOp
         this.internal.maxHeight = maxHeight;
         return this;
     }
+
+    hideZeros(hideZeros: boolean): this {
+        this.internal.hideZeros = hideZeros;
+        return this;
+    }
 }

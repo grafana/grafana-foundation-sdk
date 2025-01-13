@@ -1309,6 +1309,11 @@ class VizTooltipOptions(cogbuilder.Builder[common.VizTooltipOptions]):
     
         return self
     
+    def hide_zeros(self, hide_zeros: bool) -> typing.Self:        
+        self._internal.hide_zeros = hide_zeros
+    
+        return self
+    
 
 class TableSortByFieldState(cogbuilder.Builder[common.TableSortByFieldState]):    
     """

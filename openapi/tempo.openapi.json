@@ -97,13 +97,17 @@
             "$ref": "#/components/schemas/SearchTableType",
             "description": "The type of the table that is used to display the search results"
           },
+          "step": {
+            "type": "string",
+            "description": "For metric queries, the step size to use"
+          },
           "datasource": {
             "$ref": "#/components/schemas/DataSourceRef",
             "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
           },
-          "step": {
-            "type": "string",
-            "description": "For metric queries, the step size to use"
+          "exemplars": {
+            "type": "integer",
+            "description": "For metric queries, how many exemplars to request, 0 means no exemplars"
           }
         }
       },

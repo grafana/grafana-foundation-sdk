@@ -32,6 +32,14 @@ TODO this shouldn't be unknown but DataSourceRef | null
 func (builder *TempoQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *TempoQueryBuilder
 ```
 
+### <span class="badge object-method"></span> Exemplars
+
+For metric queries, how many exemplars to request, 0 means no exemplars
+
+```go
+func (builder *TempoQueryBuilder) Exemplars(exemplars int64) *TempoQueryBuilder
+```
+
 ### <span class="badge object-method"></span> Filters
 
 ```go
