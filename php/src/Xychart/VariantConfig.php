@@ -8,10 +8,9 @@ final class VariantConfig
     {
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'xychart',
-            optionsFromArray: [\Grafana\Foundation\Xychart\Options::class, 'fromArray'],
-            fieldConfigFromArray: [\Grafana\Foundation\Xychart\FieldConfig::class, 'fromArray'],
-            convert: [\Grafana\Foundation\Xychart\PanelConverter::class, 'convert'],
-
+            optionsFromArray: [Options::class, 'fromArray'],
+            fieldConfigFromArray: [FieldConfig::class, 'fromArray'],
+            convert: [PanelConverter::class, 'convert'],
         );
     }
 }
