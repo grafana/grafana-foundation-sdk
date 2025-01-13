@@ -283,6 +283,6 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
 
     public function dataqueryType(): string
     {
-        return "cloudwatch";
+        return 'cloudwatch';
     }
 }
