@@ -8,10 +8,9 @@ final class VariantConfig
     {
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'state-timeline',
-            optionsFromArray: [\Grafana\Foundation\Statetimeline\Options::class, 'fromArray'],
-            fieldConfigFromArray: [\Grafana\Foundation\Statetimeline\FieldConfig::class, 'fromArray'],
-            convert: [\Grafana\Foundation\Statetimeline\PanelConverter::class, 'convert'],
-
+            optionsFromArray: [Options::class, 'fromArray'],
+            fieldConfigFromArray: [FieldConfig::class, 'fromArray'],
+            convert: [PanelConverter::class, 'convert'],
         );
     }
 }
