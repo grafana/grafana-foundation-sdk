@@ -8,10 +8,9 @@ final class VariantConfig
     {
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'piechart',
-            optionsFromArray: [\Grafana\Foundation\Piechart\Options::class, 'fromArray'],
-            fieldConfigFromArray: [\Grafana\Foundation\Piechart\FieldConfig::class, 'fromArray'],
-            convert: [\Grafana\Foundation\Piechart\PanelConverter::class, 'convert'],
-
+            optionsFromArray: [Options::class, 'fromArray'],
+            fieldConfigFromArray: [FieldConfig::class, 'fromArray'],
+            convert: [PanelConverter::class, 'convert'],
         );
     }
 }
