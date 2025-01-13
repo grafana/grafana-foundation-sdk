@@ -8,10 +8,9 @@ final class VariantConfig
     {
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'geomap',
-            optionsFromArray: [\Grafana\Foundation\Geomap\Options::class, 'fromArray'],
+            optionsFromArray: [Options::class, 'fromArray'],
             fieldConfigFromArray: null,
-            convert: [\Grafana\Foundation\Geomap\PanelConverter::class, 'convert'],
-
+            convert: [PanelConverter::class, 'convert'],
         );
     }
 }
