@@ -18,6 +18,12 @@ Builds the object.
 func (builder *VizTooltipOptionsBuilder) Build() (VizTooltipOptions, error)
 ```
 
+### <span class="badge object-method"></span> HideZeros
+
+```go
+func (builder *VizTooltipOptionsBuilder) HideZeros(hideZeros bool) *VizTooltipOptionsBuilder
+```
+
 ### <span class="badge object-method"></span> MaxHeight
 
 ```go

@@ -44,7 +44,7 @@ class Options implements \JsonSerializable
     	return \Grafana\Foundation\Common\VizLegendOptions::fromArray($val);
     })($data["legend"]) : null,
             tooltip: isset($data["tooltip"]) ? (function($input) {
-    	/** @var array{mode?: string, sort?: string, maxWidth?: float, maxHeight?: float} */
+    	/** @var array{mode?: string, sort?: string, maxWidth?: float, maxHeight?: float, hideZeros?: bool} */
     $val = $input;
     	return \Grafana\Foundation\Common\VizTooltipOptions::fromArray($val);
     })($data["tooltip"]) : null,

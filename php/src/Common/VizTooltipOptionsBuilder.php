@@ -48,5 +48,11 @@ class VizTooltipOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    public function hideZeros(bool $hideZeros): static
+    {
+        $this->internal->hideZeros = $hideZeros;
+    
+        return $this;
+    }
 
 }

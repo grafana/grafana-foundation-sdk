@@ -1764,12 +1764,14 @@ class VizTooltipOptions:
     sort: 'SortOrder'
     max_width: typing.Optional[float]
     max_height: typing.Optional[float]
+    hide_zeros: typing.Optional[bool]
 
-    def __init__(self, mode: typing.Optional['TooltipDisplayMode'] = None, sort: typing.Optional['SortOrder'] = None, max_width: typing.Optional[float] = None, max_height: typing.Optional[float] = None):
+    def __init__(self, mode: typing.Optional['TooltipDisplayMode'] = None, sort: typing.Optional['SortOrder'] = None, max_width: typing.Optional[float] = None, max_height: typing.Optional[float] = None, hide_zeros: typing.Optional[bool] = None):
         self.mode = mode if mode is not None else TooltipDisplayMode.SINGLE
         self.sort = sort if sort is not None else SortOrder.ASCENDING
         self.max_width = max_width
         self.max_height = max_height
+        self.hide_zeros = hide_zeros
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -1780,6 +1782,8 @@ class VizTooltipOptions:
             payload["maxWidth"] = self.max_width
         if self.max_height is not None:
             payload["maxHeight"] = self.max_height
+        if self.hide_zeros is not None:
+            payload["hideZeros"] = self.hide_zeros
         return payload
 
     @classmethod
@@ -1793,7 +1797,9 @@ class VizTooltipOptions:
         if "maxWidth" in data:
             args["max_width"] = data["maxWidth"]
         if "maxHeight" in data:
-            args["max_height"] = data["maxHeight"]        
+            args["max_height"] = data["maxHeight"]
+        if "hideZeros" in data:
+            args["hide_zeros"] = data["hideZeros"]        
 
         return cls(**args)
 

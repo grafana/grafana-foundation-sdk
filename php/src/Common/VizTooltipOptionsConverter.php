@@ -62,6 +62,19 @@ final class VizTooltipOptionsConverter
     
     
     }
+            if ($input->hideZeros !== null) {
+    
+        
+    $buffer = 'hideZeros(';
+        $arg0 =\var_export($input->hideZeros, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

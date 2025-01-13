@@ -193,6 +193,6 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
 
     public function dataqueryType(): string
     {
-        return "__expr__";
+        return '__expr__';
     }
 }

@@ -91,13 +91,18 @@ public class TempoQueryBuilder implements com.grafana.foundation.cog.Builder<com
         return this;
     }
     
+    public TempoQueryBuilder step(String step) {
+    this.internal.step = step;
+        return this;
+    }
+    
     public TempoQueryBuilder datasource(DataSourceRef datasource) {
     this.internal.datasource = datasource;
         return this;
     }
     
-    public TempoQueryBuilder step(String step) {
-    this.internal.step = step;
+    public TempoQueryBuilder exemplars(Long exemplars) {
+    this.internal.exemplars = exemplars;
         return this;
     }
     public TempoQuery build() {

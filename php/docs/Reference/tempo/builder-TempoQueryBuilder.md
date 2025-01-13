@@ -32,6 +32,14 @@ TODO this shouldn't be unknown but DataSourceRef | null
 datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
 ```
 
+### <span class="badge object-method"></span> exemplars
+
+For metric queries, how many exemplars to request, 0 means no exemplars
+
+```php
+exemplars(int $exemplars)
+```
+
 ### <span class="badge object-method"></span> filters
 
 @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Tempo\TraceqlFilter>> $filters

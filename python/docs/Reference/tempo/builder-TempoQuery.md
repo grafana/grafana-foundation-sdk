@@ -32,6 +32,14 @@ TODO this shouldn't be unknown but DataSourceRef | null
 def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> exemplars
+
+For metric queries, how many exemplars to request, 0 means no exemplars
+
+```python
+def exemplars(exemplars: int) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> filters
 
 ```python

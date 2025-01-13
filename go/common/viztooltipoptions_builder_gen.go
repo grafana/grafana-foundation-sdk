@@ -55,3 +55,9 @@ func (builder *VizTooltipOptionsBuilder) MaxHeight(maxHeight float64) *VizToolti
 
 	return builder
 }
+
+func (builder *VizTooltipOptionsBuilder) HideZeros(hideZeros bool) *VizTooltipOptionsBuilder {
+	builder.internal.HideZeros = &hideZeros
+
+	return builder
+}

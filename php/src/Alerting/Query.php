@@ -57,12 +57,13 @@ class Query implements \JsonSerializable
         $data = $inputData;
         return new self(
             datasourceUid: $data["datasourceUid"] ?? null,
-            model: isset($data["model"]) ? (function($in) {
+            model: isset($data["model"]) ? (function ($in) {
     	/** @var array{datasource?: array{type?: mixed}} $in */
         $hint = "";
+    
         /** @var array<string, mixed> $in */
         return \Grafana\Foundation\Cog\Runtime::get()->dataqueryFromArray($in, $hint);
-    })($data["model"]): null,
+    })($data["model"]) : null,
             queryType: $data["queryType"] ?? null,
             refId: $data["refId"] ?? null,
             relativeTimeRange: isset($data["relativeTimeRange"]) ? (function($input) {

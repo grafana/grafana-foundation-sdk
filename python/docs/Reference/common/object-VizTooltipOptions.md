@@ -17,6 +17,7 @@ class VizTooltipOptions:
     sort: common.SortOrder
     max_width: typing.Optional[float]
     max_height: typing.Optional[float]
+    hide_zeros: typing.Optional[bool]
 ```
 ## Methods
 
