@@ -244,6 +244,6 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
 
     public function dataqueryType(): string
     {
-        return "grafana-azure-monitor-datasource";
+        return 'grafana-azure-monitor-datasource';
     }
 }
