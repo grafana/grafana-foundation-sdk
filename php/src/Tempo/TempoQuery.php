@@ -254,6 +254,6 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
 
     public function dataqueryType(): string
     {
-        return "tempo";
+        return 'tempo';
     }
 }
