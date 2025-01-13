@@ -174,6 +174,6 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
 
     public function dataqueryType(): string
     {
-        return "cloudwatch";
+        return 'cloudwatch';
     }
 }

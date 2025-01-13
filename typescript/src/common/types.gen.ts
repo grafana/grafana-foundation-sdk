@@ -749,6 +749,7 @@ export interface VizTooltipOptions {
 	sort: SortOrder;
 	maxWidth?: number;
 	maxHeight?: number;
+	hideZeros?: boolean;
 }
 
 export const defaultVizTooltipOptions = (): VizTooltipOptions => ({

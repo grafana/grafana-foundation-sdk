@@ -28,6 +28,11 @@ public class VizTooltipOptionsBuilder implements com.grafana.foundation.cog.Buil
     this.internal.maxHeight = maxHeight;
         return this;
     }
+    
+    public VizTooltipOptionsBuilder hideZeros(Boolean hideZeros) {
+    this.internal.hideZeros = hideZeros;
+        return this;
+    }
     public VizTooltipOptions build() {
         return this.internal;
     }

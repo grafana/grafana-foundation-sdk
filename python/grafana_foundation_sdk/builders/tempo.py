@@ -163,6 +163,15 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
     
         return self
     
+    def step(self, step: str) -> typing.Self:    
+        """
+        For metric queries, the step size to use
+        """
+            
+        self._internal.step = step
+    
+        return self
+    
     def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
@@ -175,12 +184,12 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
     
         return self
     
-    def step(self, step: str) -> typing.Self:    
+    def exemplars(self, exemplars: int) -> typing.Self:    
         """
-        For metric queries, the step size to use
+        For metric queries, how many exemplars to request, 0 means no exemplars
         """
             
-        self._internal.step = step
+        self._internal.exemplars = exemplars
     
         return self
     

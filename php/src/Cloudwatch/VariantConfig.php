@@ -7,7 +7,7 @@ final class VariantConfig
     public static function get(): \Grafana\Foundation\Cog\DataqueryConfig
     {
         return new \Grafana\Foundation\Cog\DataqueryConfig(
-            identifier: "cloudwatch",
+            identifier: 'cloudwatch',
             fromArray: (function($input) {
     \assert(is_array($input), 'expected disjunction value to be an array');
 

@@ -62,6 +62,18 @@ func VizTooltipOptionsConverter(input VizTooltipOptions) string {
 		buffer.Reset()
 
 	}
+	if input.HideZeros != nil {
+
+		buffer.WriteString(`HideZeros(`)
+		arg0 := fmt.Sprintf("%#v", *input.HideZeros)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }

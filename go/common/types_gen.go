@@ -4546,6 +4546,7 @@ type VizTooltipOptions struct {
 	Sort      SortOrder          `json:"sort"`
 	MaxWidth  *float64           `json:"maxWidth,omitempty"`
 	MaxHeight *float64           `json:"maxHeight,omitempty"`
+	HideZeros *bool              `json:"hideZeros,omitempty"`
 }
 
 // NewVizTooltipOptions creates a new VizTooltipOptions object.
@@ -4615,6 +4616,17 @@ func (resource *VizTooltipOptions) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "maxHeight")
 
 	}
+	// Field "hideZeros"
+	if fields["hideZeros"] != nil {
+		if string(fields["hideZeros"]) != "null" {
+			if err := json.Unmarshal(fields["hideZeros"], &resource.HideZeros); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hideZeros", err)...)
+			}
+
+		}
+		delete(fields, "hideZeros")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("VizTooltipOptions", fmt.Errorf("unexpected field '%s'", field))...)
@@ -4650,6 +4662,15 @@ func (resource VizTooltipOptions) Equals(other VizTooltipOptions) bool {
 
 	if resource.MaxHeight != nil {
 		if *resource.MaxHeight != *other.MaxHeight {
+			return false
+		}
+	}
+	if resource.HideZeros == nil && other.HideZeros != nil || resource.HideZeros != nil && other.HideZeros == nil {
+		return false
+	}
+
+	if resource.HideZeros != nil {
+		if *resource.HideZeros != *other.HideZeros {
 			return false
 		}
 	}

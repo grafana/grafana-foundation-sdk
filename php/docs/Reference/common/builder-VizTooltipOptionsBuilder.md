@@ -18,6 +18,12 @@ Builds the object.
 build()
 ```
 
+### <span class="badge object-method"></span> hideZeros
+
+```php
+hideZeros(bool $hideZeros)
+```
+
 ### <span class="badge object-method"></span> maxHeight
 
 ```php

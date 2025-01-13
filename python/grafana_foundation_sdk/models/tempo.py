@@ -42,15 +42,17 @@ class TempoQuery(cogvariants.Dataquery):
     group_by: typing.Optional[list['TraceqlFilter']]
     # The type of the table that is used to display the search results
     table_type: typing.Optional['SearchTableType']
+    # For metric queries, the step size to use
+    step: typing.Optional[str]
     # For mixed data sources the selected datasource is on the query level.
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
-    # For metric queries, the step size to use
-    step: typing.Optional[str]
+    # For metric queries, how many exemplars to request, 0 means no exemplars
+    exemplars: typing.Optional[int]
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, table_type: typing.Optional['SearchTableType'] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, step: typing.Optional[str] = None):
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, table_type: typing.Optional['SearchTableType'] = None, step: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, exemplars: typing.Optional[int] = None):
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -67,8 +69,9 @@ class TempoQuery(cogvariants.Dataquery):
         self.filters = filters if filters is not None else []
         self.group_by = group_by
         self.table_type = table_type
-        self.datasource = datasource
         self.step = step
+        self.datasource = datasource
+        self.exemplars = exemplars
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -103,10 +106,12 @@ class TempoQuery(cogvariants.Dataquery):
             payload["groupBy"] = self.group_by
         if self.table_type is not None:
             payload["tableType"] = self.table_type
-        if self.datasource is not None:
-            payload["datasource"] = self.datasource
         if self.step is not None:
             payload["step"] = self.step
+        if self.datasource is not None:
+            payload["datasource"] = self.datasource
+        if self.exemplars is not None:
+            payload["exemplars"] = self.exemplars
         return payload
 
     @classmethod
@@ -145,10 +150,12 @@ class TempoQuery(cogvariants.Dataquery):
             args["group_by"] = data["groupBy"]
         if "tableType" in data:
             args["table_type"] = data["tableType"]
+        if "step" in data:
+            args["step"] = data["step"]
         if "datasource" in data:
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
-        if "step" in data:
-            args["step"] = data["step"]        
+        if "exemplars" in data:
+            args["exemplars"] = data["exemplars"]        
 
         return cls(**args)
 

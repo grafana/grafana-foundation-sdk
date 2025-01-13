@@ -41,13 +41,15 @@ class TempoQuery(cogvariants.Dataquery):
     group_by: typing.Optional[list[tempo.TraceqlFilter]]
     # The type of the table that is used to display the search results
     table_type: typing.Optional[tempo.SearchTableType]
+    # For metric queries, the step size to use
+    step: typing.Optional[str]
     # For mixed data sources the selected datasource is on the query level.
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
-    # For metric queries, the step size to use
-    step: typing.Optional[str]
+    # For metric queries, how many exemplars to request, 0 means no exemplars
+    exemplars: typing.Optional[int]
 ```
 ## Methods
 
