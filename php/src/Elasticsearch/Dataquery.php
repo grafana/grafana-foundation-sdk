@@ -208,6 +208,6 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
 
     public function dataqueryType(): string
     {
-        return "elasticsearch";
+        return 'elasticsearch';
     }
 }
