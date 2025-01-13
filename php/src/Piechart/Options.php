@@ -52,7 +52,7 @@ class Options implements \JsonSerializable
             pieType: isset($data["pieType"]) ? (function($input) { return \Grafana\Foundation\Piechart\PieChartType::fromValue($input); })($data["pieType"]) : null,
             displayLabels: array_filter(array_map((function($input) { return \Grafana\Foundation\Piechart\PieChartLabels::fromValue($input); }), $data["displayLabels"] ?? [])),
             tooltip: isset($data["tooltip"]) ? (function($input) {
-    	/** @var array{mode?: string, sort?: string, maxWidth?: float, maxHeight?: float} */
+    	/** @var array{mode?: string, sort?: string, maxWidth?: float, maxHeight?: float, hideZeros?: bool} */
     $val = $input;
     	return \Grafana\Foundation\Common\VizTooltipOptions::fromArray($val);
     })($data["tooltip"]) : null,

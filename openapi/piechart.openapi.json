@@ -155,6 +155,9 @@
           },
           "maxHeight": {
             "type": "number"
+          },
+          "hideZeros": {
+            "type": "boolean"
           }
         },
         "description": "TODO docs"

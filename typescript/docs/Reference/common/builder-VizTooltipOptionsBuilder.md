@@ -18,6 +18,12 @@ Builds the object.
 build()
 ```
 
+### <span class="badge object-method"></span> hideZeros
+
+```typescript
+hideZeros(hideZeros: boolean)
+```
+
 ### <span class="badge object-method"></span> maxHeight
 
 ```typescript

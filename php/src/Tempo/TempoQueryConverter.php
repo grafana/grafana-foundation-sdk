@@ -244,6 +244,19 @@ final class TempoQueryConverter
     
     
     }
+            if ($input->step !== null && $input->step !== "") {
+    
+        
+    $buffer = 'step(';
+        $arg0 =\var_export($input->step, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->datasource !== null) {
     
         
@@ -257,11 +270,11 @@ final class TempoQueryConverter
     
     
     }
-            if ($input->step !== null && $input->step !== "") {
+            if ($input->exemplars !== null) {
     
         
-    $buffer = 'step(';
-        $arg0 =\var_export($input->step, true);
+    $buffer = 'exemplars(';
+        $arg0 =\var_export($input->exemplars, true);
         $buffer .= $arg0;
         
     $buffer .= ')';

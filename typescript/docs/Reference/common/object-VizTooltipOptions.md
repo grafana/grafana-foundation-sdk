@@ -13,6 +13,7 @@ export interface VizTooltipOptions {
 	sort: common.SortOrder;
 	maxWidth?: number;
 	maxHeight?: number;
+	hideZeros?: boolean;
 }
 
 ```

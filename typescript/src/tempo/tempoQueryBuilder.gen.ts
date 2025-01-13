@@ -118,6 +118,12 @@ export class TempoQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
+    // For metric queries, the step size to use
+    step(step: string): this {
+        this.internal.step = step;
+        return this;
+    }
+
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
@@ -127,9 +133,9 @@ export class TempoQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
-    // For metric queries, the step size to use
-    step(step: string): this {
-        this.internal.step = step;
+    // For metric queries, how many exemplars to request, 0 means no exemplars
+    exemplars(exemplars: number): this {
+        this.internal.exemplars = exemplars;
         return this;
     }
 }

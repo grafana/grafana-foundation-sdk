@@ -194,9 +194,9 @@ class PanelModel implements \JsonSerializable
             targets: isset($data["targets"]) ? (function ($in) {
     	/** @var array{datasource?: array{type?: mixed}} $in */
         $hint = (isset($in["datasource"], $in["datasource"]["type"]) && is_string($in["datasource"]["type"])) ? $in["datasource"]["type"] : "";
-        /** @var array<array<string, mixed>> $in */
+    /** @var array<array<string, mixed>> $in */
         return \Grafana\Foundation\Cog\Runtime::get()->dataqueriesFromArray($in, $hint);
-    })($data["targets"]): null,
+    })($data["targets"]) : null,
             title: $data["title"] ?? null,
             description: $data["description"] ?? null,
             transparent: $data["transparent"] ?? null,

@@ -22,14 +22,18 @@ public class VizTooltipOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("maxHeight")
     public Double maxHeight;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("hideZeros")
+    public Boolean hideZeros;
     public VizTooltipOptions() {
     }
     
-    public VizTooltipOptions(TooltipDisplayMode mode,SortOrder sort,Double maxWidth,Double maxHeight) {
+    public VizTooltipOptions(TooltipDisplayMode mode,SortOrder sort,Double maxWidth,Double maxHeight,Boolean hideZeros) {
         this.mode = mode;
         this.sort = sort;
         this.maxWidth = maxWidth;
         this.maxHeight = maxHeight;
+        this.hideZeros = hideZeros;
     }
     
     public String toJSON() throws JsonProcessingException {

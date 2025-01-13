@@ -32,6 +32,14 @@ TODO this shouldn't be unknown but DataSourceRef | null
 datasource(datasource: dashboard.DataSourceRef)
 ```
 
+### <span class="badge object-method"></span> exemplars
+
+For metric queries, how many exemplars to request, 0 means no exemplars
+
+```typescript
+exemplars(exemplars: number)
+```
+
 ### <span class="badge object-method"></span> filters
 
 ```typescript

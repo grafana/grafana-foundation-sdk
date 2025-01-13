@@ -13,6 +13,7 @@ type VizTooltipOptions struct {
     Sort common.SortOrder `json:"sort"`
     MaxWidth *float64 `json:"maxWidth,omitempty"`
     MaxHeight *float64 `json:"maxHeight,omitempty"`
+    HideZeros *bool `json:"hideZeros,omitempty"`
 }
 ```
 ## Methods

@@ -18,6 +18,8 @@ class VizTooltipOptions implements \JsonSerializable
 
     public ?float $maxHeight;
 
+    public ?bool $hideZeros;
+
 }
 ```
 ## Methods
