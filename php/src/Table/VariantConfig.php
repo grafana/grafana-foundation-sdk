@@ -8,10 +8,9 @@ final class VariantConfig
     {
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'table',
-            optionsFromArray: [\Grafana\Foundation\Table\Options::class, 'fromArray'],
+            optionsFromArray: [Options::class, 'fromArray'],
             fieldConfigFromArray: null,
-            convert: [\Grafana\Foundation\Table\PanelConverter::class, 'convert'],
-
+            convert: [PanelConverter::class, 'convert'],
         );
     }
 }

@@ -186,6 +186,6 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
 
     public function dataqueryType(): string
     {
-        return "__expr__";
+        return '__expr__';
     }
 }
