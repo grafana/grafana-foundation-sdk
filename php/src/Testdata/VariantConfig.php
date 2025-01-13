@@ -7,9 +7,9 @@ final class VariantConfig
     public static function get(): \Grafana\Foundation\Cog\DataqueryConfig
     {
         return new \Grafana\Foundation\Cog\DataqueryConfig(
-            identifier: "",
-            fromArray: [\Grafana\Foundation\Testdata\Dataquery::class, 'fromArray'],
-            convert: [\Grafana\Foundation\Testdata\DataqueryConverter::class, 'convert'],
+            identifier: '',
+            fromArray: [Dataquery::class, 'fromArray'],
+            convert: [DataqueryConverter::class, 'convert'],
         );
     }
 }
