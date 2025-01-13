@@ -1,4 +1,4 @@
-{{- define "schema_variant_panelcfg" -}}
+{{- define "schema_variant_dataquery" -}}
 {{- $_ := apiDeclareFunction (dict
     "pkg" .Schema.Package
     "name" "variant_config"
@@ -6,19 +6,19 @@
         (print "variant_config returns the configuration related to " (.Schema.Metadata.Identifier|lower) " data queries.")
         "This configuration describes how to unmarshal it, convert it to code, …"
     )
-    "return" "variants.PanelcfgConfig"
+    "return" "variants.DataqueryConfig"
 ) -}}
 {{- $cogruntime := importModule "cogruntime" "..cog" "runtime" -}}
 {{- $fromJsonSetup := "" -}}
-{{- $fromJson := print (.Schema.EntryPoint.Name|formatObjectName) ".from_json" -}}
-{{- if .Schema.EntryPointType.IsDisjunction -}}
+{{- $fromJson := print (.Schema.EntryPoint|formatObjectName) ".from_json" -}}
+{{- if resolvesToDisjunction .Schema.EntryPointType -}}
     {{- $code := disjunctionFromJSON .Schema.EntryPointType "data" -}}
     {{- $fromJsonSetup = print $code.Setup "\n    " -}}
     {{- $fromJson = print "lambda data: " $code.DecodingCall -}}
 {{- end -}}
 
-def variant_config():
-    return {{ $cogruntime }}.PanelCfgConfig(
+def variant_config() -> {{ $cogruntime }}.DataqueryConfig:
+    {{ $fromJsonSetup }}return {{ $cogruntime }}.DataqueryConfig(
         identifier="{{ .Schema.Metadata.Identifier }}",
         from_json_hook={{ $fromJson }},
     )

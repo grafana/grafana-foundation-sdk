@@ -12,7 +12,7 @@
 {{- $options := ternary "Options.from_json" "None" (schemaHasObject .Schema "Options") -}}
 {{- $fieldConfig := ternary "FieldConfig.from_json" "None" (schemaHasObject .Schema "FieldConfig") -}}
 
-def variant_config():
+def variant_config() -> {{ $cogruntime }}.PanelCfgConfig:
     return {{ $cogruntime }}.PanelCfgConfig(
         identifier="{{ .Schema.Metadata.Identifier }}",
         options_from_json_hook={{ $options }},
