@@ -156,6 +156,6 @@ class CloudMonitoringQuery implements \JsonSerializable, \Grafana\Foundation\Cog
 
     public function dataqueryType(): string
     {
-        return "cloud-monitoring";
+        return 'cloud-monitoring';
     }
 }
