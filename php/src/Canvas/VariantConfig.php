@@ -8,10 +8,9 @@ final class VariantConfig
     {
         return new \Grafana\Foundation\Cog\PanelcfgConfig(
             identifier: 'canvas',
-            optionsFromArray: [\Grafana\Foundation\Canvas\Options::class, 'fromArray'],
+            optionsFromArray: [Options::class, 'fromArray'],
             fieldConfigFromArray: null,
-            convert: [\Grafana\Foundation\Canvas\PanelConverter::class, 'convert'],
-
+            convert: [PanelConverter::class, 'convert'],
         );
     }
 }
