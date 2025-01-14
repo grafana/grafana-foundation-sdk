@@ -1,0 +1,18 @@
+{{- define "object_common_TableFooterOptions_field_fields_custom_strict_unmarshal" -}}
+{{- /* Non-standard unmarshalling needed because even though the "fields" field
+	   is typed as []string in the schema, Grafana uses `""` as an empty value 
+*/ -}}
+	if len(fields["fields"]) != 0 && fields["fields"][0] == '"' {
+		var field string
+		if err := json.Unmarshal(fields["fields"], &field); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("fields", err)...)
+		} else {
+			resource.Fields = []string{field}
+		}
+	} else {
+		if err := json.Unmarshal(fields["fields"], &resource.Fields); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("fields", err)...)
+		}
+	}
+
+{{ end }}
