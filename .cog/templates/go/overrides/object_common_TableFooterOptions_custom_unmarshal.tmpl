@@ -1,0 +1,49 @@
+{{- define "object_common_TableFooterOptions_custom_unmarshal" }}
+{{- /* Non-standard unmarshalling needed because even though the "fields" field
+	   is typed as []string in the schema, Grafana uses `""` as an empty value 
+*/ -}}
+{{- $fmt := importStdPkg "fmt" -}}
+{{- $json := importStdPkg "encoding/json" -}}
+func (resource *{{ .Object.Name|upperCamelCase }}) UnmarshalJSON(raw []byte) error {
+    if raw == nil {
+        return nil
+    }
+
+    fields := make(map[string]json.RawMessage)
+    if err := json.Unmarshal(raw, &fields); err != nil {
+        return err
+    }
+    {{- range $field := .Object.Type.Struct.Fields }}
+    {{- if eq $field.Name "fields" }}
+    {{ template "unmarshal_common_TableFooterOptions_fields" }}
+    {{- else }}
+    if fields["{{ $field.Name }}"] != nil {
+		if err := json.Unmarshal(fields["{{ $field.Name }}"], &resource.{{ $field.Name|upperCamelCase }}); err != nil {
+			return fmt.Errorf("error decoding field '{{ $field.Name }}': %w", err)
+		}
+	}
+    {{- end }}
+    {{- end }}
+
+    return nil
+}
+
+{{ end }}
+
+{{- define "unmarshal_common_TableFooterOptions_fields" -}}
+	rawFields := fields["fields"]
+
+	if rawFields != nil {		
+		if len(rawFields) != 0 && rawFields[0] == '"' {
+			var field string
+			if err := json.Unmarshal(rawFields, &field); err != nil {
+				return fmt.Errorf("error decoding field 'fields': %w", err)
+			}
+			resource.Fields = []string{field}
+		} else {
+			if err := json.Unmarshal(rawFields, &resource.Fields); err != nil {
+				return fmt.Errorf("error decoding field 'fields': %w", err)
+			}
+		}
+	}
+{{- end -}}
