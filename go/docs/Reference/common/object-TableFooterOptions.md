@@ -19,6 +19,14 @@ type TableFooterOptions struct {
 ```
 ## Methods
 
+### <span class="badge object-method"></span> UnmarshalJSON
+
+UnmarshalJSON implements a custom JSON unmarshalling logic to decode `TableFooterOptions` from JSON.
+
+```go
+func (tableFooterOptions *TableFooterOptions) UnmarshalJSON(raw []byte) error
+```
+
 ### <span class="badge object-method"></span> UnmarshalJSONStrict
 
 UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableFooterOptions` from JSON.
