@@ -4773,6 +4773,53 @@ type TableFooterOptions struct {
 func NewTableFooterOptions() *TableFooterOptions {
 	return &TableFooterOptions{}
 }
+func (resource *TableFooterOptions) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	if fields["show"] != nil {
+		if err := json.Unmarshal(fields["show"], &resource.Show); err != nil {
+			return fmt.Errorf("error decoding field 'show': %w", err)
+		}
+	}
+	if fields["reducer"] != nil {
+		if err := json.Unmarshal(fields["reducer"], &resource.Reducer); err != nil {
+			return fmt.Errorf("error decoding field 'reducer': %w", err)
+		}
+	}
+	rawFields := fields["fields"]
+
+	if rawFields != nil {
+		if len(rawFields) != 0 && rawFields[0] == '"' {
+			var field string
+			if err := json.Unmarshal(rawFields, &field); err != nil {
+				return fmt.Errorf("error decoding field 'fields': %w", err)
+			}
+			resource.Fields = []string{field}
+		} else {
+			if err := json.Unmarshal(rawFields, &resource.Fields); err != nil {
+				return fmt.Errorf("error decoding field 'fields': %w", err)
+			}
+		}
+	}
+	if fields["enablePagination"] != nil {
+		if err := json.Unmarshal(fields["enablePagination"], &resource.EnablePagination); err != nil {
+			return fmt.Errorf("error decoding field 'enablePagination': %w", err)
+		}
+	}
+	if fields["countRows"] != nil {
+		if err := json.Unmarshal(fields["countRows"], &resource.CountRows); err != nil {
+			return fmt.Errorf("error decoding field 'countRows': %w", err)
+		}
+	}
+
+	return nil
+}
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableFooterOptions` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
@@ -4818,9 +4865,17 @@ func (resource *TableFooterOptions) UnmarshalJSONStrict(raw []byte) error {
 	// Field "fields"
 	if fields["fields"] != nil {
 		if string(fields["fields"]) != "null" {
-
-			if err := json.Unmarshal(fields["fields"], &resource.Fields); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("fields", err)...)
+			if len(fields["fields"]) != 0 && fields["fields"][0] == '"' {
+				var field string
+				if err := json.Unmarshal(fields["fields"], &field); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("fields", err)...)
+				} else {
+					resource.Fields = []string{field}
+				}
+			} else {
+				if err := json.Unmarshal(fields["fields"], &resource.Fields); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("fields", err)...)
+				}
 			}
 
 		}
