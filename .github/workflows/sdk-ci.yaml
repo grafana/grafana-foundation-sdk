@@ -73,6 +73,10 @@ jobs:
         with:
           ref: main
 
+      # re-install cog since the PR and main branch might use different versions.
+      - name: Setup cog
+        uses: ./.github/actions/setup-cog
+
       - name: Dry-run release with main branch
         run: |
           git config --global user.email "cog-ci@grafana.com"
