@@ -16,6 +16,10 @@ builders:
   - omit: { by_object: VariableOption }
   - omit: { by_object: Threshold }
   - omit: { by_object: ValueMappingResult }
+  - omit: { by_object: ValueMap }
+  - omit: { by_object: RangeMap }
+  - omit: { by_object: RegexMap }
+  - omit: { by_object: SpecialValueMap }
   # overrides and transformations related
   - omit: { by_object: MatcherConfig }
   - omit: { by_object: DynamicConfigValue }
@@ -264,7 +268,6 @@ options:
   - rename:
       by_name: Panel.h
       as: height
-
 
   ##############
   #  Snapshot  #
