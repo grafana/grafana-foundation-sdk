@@ -169,3 +169,15 @@
  * <span class="badge builder"></span> [TopMetrics](./builder-TopMetrics.md)
  * <span class="badge builder"></span> [UniqueCount](./builder-UniqueCount.md)
  * <span class="badge builder"></span> [Dataquery](./builder-Dataquery.md)
+## Functions
+
+### <span class="badge function"></span> variant_config
+
+variant_config returns the configuration related to elasticsearch data queries.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```python
+def variant_config() -> variants.DataqueryConfig
+```
+

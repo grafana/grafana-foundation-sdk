@@ -26,6 +26,3 @@ export interface SpecialValueMap {
 ## Methods
 
 No methods.
-## See also
-
- * <span class="badge builder"></span> [SpecialValueMapBuilder](./builder-SpecialValueMapBuilder.md)

@@ -21,7 +21,7 @@ build()
 ### <span class="badge object-method"></span> expressions
 
 ```typescript
-expressions(expressions: cloudwatch.QueryEditorExpression[])
+expressions(expressions: cog.Builder<cloudwatch.QueryEditorExpression>[])
 ```
 
 ### <span class="badge object-method"></span> type

@@ -5,6 +5,8 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
+
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // ElasticsearchPercentilesSettingsConverter accepts a `ElasticsearchPercentilesSettings` object and generates the Go code to build this object using builders.
@@ -16,7 +18,7 @@ func ElasticsearchPercentilesSettingsConverter(input ElasticsearchPercentilesSet
 	if input.Script != nil {
 
 		buffer.WriteString(`Script(`)
-		arg0 := InlineScriptConverter(*input.Script)
+		arg0 := cog.Dump(*input.Script)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

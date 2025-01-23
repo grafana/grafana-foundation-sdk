@@ -13,3 +13,15 @@
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
  * <span class="badge builder"></span> [ScatterSeriesConfig](./builder-ScatterSeriesConfig.md)
  * <span class="badge builder"></span> [XYDimensionConfig](./builder-XYDimensionConfig.md)
+## Functions
+
+### <span class="badge function"></span> variant_config
+
+variant_config returns the configuration related to xychart panels.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```python
+def variant_config() -> variants.PanelcfgConfig
+```
+

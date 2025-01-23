@@ -80,8 +80,9 @@ export class AzureMonitorQueryBuilder implements cog.Builder<cog.Dataquery> {
     }
 
     // @deprecated Legacy template variable support.
-    grafanaTemplateVariableFn(grafanaTemplateVariableFn: azuremonitor.GrafanaTemplateVariableQuery): this {
-        this.internal.grafanaTemplateVariableFn = grafanaTemplateVariableFn;
+    grafanaTemplateVariableFn(grafanaTemplateVariableFn: cog.Builder<azuremonitor.GrafanaTemplateVariableQuery>): this {
+        const grafanaTemplateVariableFnResource = grafanaTemplateVariableFn.build();
+        this.internal.grafanaTemplateVariableFn = grafanaTemplateVariableFnResource;
         return this;
     }
 

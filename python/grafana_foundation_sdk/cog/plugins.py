@@ -29,6 +29,7 @@ from ..models import athena
 from ..models import azuremonitor
 from ..models import bigquery
 from ..models import cloudwatch
+from ..models import datasource
 from ..models import elasticsearch
 from ..models import expr
 from ..models import googlecloudmonitoring
@@ -72,6 +73,7 @@ def register_default_plugins():
     cogruntime.register_dataquery_variant(azuremonitor.variant_config())
     cogruntime.register_dataquery_variant(bigquery.variant_config())
     cogruntime.register_dataquery_variant(cloudwatch.variant_config())
+    cogruntime.register_dataquery_variant(datasource.variant_config())
     cogruntime.register_dataquery_variant(elasticsearch.variant_config())
     cogruntime.register_dataquery_variant(expr.variant_config())
     cogruntime.register_dataquery_variant(googlecloudmonitoring.variant_config())

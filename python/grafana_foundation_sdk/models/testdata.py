@@ -669,11 +669,12 @@ class Dataquery(cogvariants.Dataquery):
         return cls(**args)
 
 
+
+
+
 def variant_config() -> cogruntime.DataqueryConfig:
     return cogruntime.DataqueryConfig(
         identifier="",
         from_json_hook=Dataquery.from_json,
     )
-
-
 

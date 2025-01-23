@@ -106,12 +106,13 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     
         return self
     
-    def grafana_template_variable_fn(self, grafana_template_variable_fn: azuremonitor.GrafanaTemplateVariableQuery) -> typing.Self:    
+    def grafana_template_variable_fn(self, grafana_template_variable_fn: cogbuilder.Builder[azuremonitor.GrafanaTemplateVariableQuery]) -> typing.Self:    
         """
         @deprecated Legacy template variable support.
         """
             
-        self._internal.grafana_template_variable_fn = grafana_template_variable_fn
+        grafana_template_variable_fn_resource = grafana_template_variable_fn.build()
+        self._internal.grafana_template_variable_fn = grafana_template_variable_fn_resource
     
         return self
     
