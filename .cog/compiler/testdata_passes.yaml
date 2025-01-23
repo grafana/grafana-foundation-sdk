@@ -3,27 +3,30 @@
 passes:
   - anonymous_structs_to_named: {}
 
-  - schema_set_entry_point:
-      package: testdata
-      entry_point: dataquery
-
   # To stay close to the pre-v11 object names
 
   - omit:
-      objects: ['testdata.Testdata']
+      objects:
+        - 'testdata.Testdata'
+        - 'testdata.TestdataTestdataTargetsDatasource'
 
   - rename_object:
       from: 'testdata.TestdataTestdataTargets'
       to: 'dataquery'
 
+  - schema_set_entry_point:
+      package: testdata
+      entry_point: dataquery
+
+  - retype_field:
+      field: testdata.dataquery.datasource
+      as:
+        kind: ref
+        ref: { referred_pkg: dashboard, referred_type: DataSourceRef }
+
   - rename_object:
       from: 'testdata.TestdataTestdataTargetsCsvWave'
       to: 'CSVWave'
-
-  # TODO: should be replaced by a ref to dashboard.DatasourceRef
-  - rename_object:
-      from: 'testdata.TestdataTestdataTargetsDatasource'
-      to: 'Datasource'
 
   - rename_object:
       from: 'testdata.TestdataTestdataTargetsNodes'

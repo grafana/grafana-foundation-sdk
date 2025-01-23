@@ -2,6 +2,10 @@
 
 passes:
   - entrypoint_identification: {}
-  - dataquery_identification: {}
   - disjunction_with_constant_to_default: {}
-  - set_datasource_to_dataquery: {}
+
+  # Ensure consistent DataSourceRef
+  - replace_reference:
+      from: common.DataSourceRef
+      to: dashboard.DataSourceRef
+  - omit: { objects: [ common.DataSourceRef ] }
