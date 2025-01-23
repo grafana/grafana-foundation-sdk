@@ -10,8 +10,8 @@ public class ElasticsearchPercentilesSettingsBuilder implements com.grafana.foun
     public ElasticsearchPercentilesSettingsBuilder() {
         this.internal = new ElasticsearchPercentilesSettings();
     }
-    public ElasticsearchPercentilesSettingsBuilder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
+    public ElasticsearchPercentilesSettingsBuilder script(InlineScript script) {
+    this.internal.script = script;
         return this;
     }
     

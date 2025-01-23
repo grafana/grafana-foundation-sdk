@@ -1,0 +1,60 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "datasource",
+    "version": "0.0.0",
+    "x-schema-identifier": "datasource",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "dataquery"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Dataquery": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "panelId",
+          "refId"
+        ],
+        "properties": {
+          "panelId": {
+            "type": "integer",
+            "description": "Panel ID from wich the queries will be reused."
+          },
+          "refId": {
+            "type": "string",
+            "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
+          },
+          "hide": {
+            "type": "boolean",
+            "description": "If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel."
+          },
+          "queryType": {
+            "type": "string",
+            "description": "Specify the query flavor\nTODO make this required and give it a default"
+          },
+          "datasource": {
+            "$ref": "#/components/schemas/DataSourceRef",
+            "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+          }
+        }
+      },
+      "DataSourceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The plugin type-id"
+          },
+          "uid": {
+            "type": "string",
+            "description": "Specific datasource instance"
+          }
+        },
+        "description": "Ref to a DataSource instance"
+      }
+    }
+  }
+}

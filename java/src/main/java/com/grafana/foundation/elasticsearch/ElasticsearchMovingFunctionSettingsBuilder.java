@@ -14,8 +14,8 @@ public class ElasticsearchMovingFunctionSettingsBuilder implements com.grafana.f
         return this;
     }
     
-    public ElasticsearchMovingFunctionSettingsBuilder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
+    public ElasticsearchMovingFunctionSettingsBuilder script(InlineScript script) {
+    this.internal.script = script;
         return this;
     }
     

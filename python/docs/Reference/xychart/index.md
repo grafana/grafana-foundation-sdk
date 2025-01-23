@@ -28,3 +28,15 @@
  * <span class="badge builder"></span> [XychartXYSeriesConfigSize](./builder-XychartXYSeriesConfigSize.md)
  * <span class="badge builder"></span> [XychartXYSeriesConfigX](./builder-XychartXYSeriesConfigX.md)
  * <span class="badge builder"></span> [XychartXYSeriesConfigY](./builder-XychartXYSeriesConfigY.md)
+## Functions
+
+### <span class="badge function"></span> variant_config
+
+variant_config returns the configuration related to xychart panels.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```python
+def variant_config() -> variants.PanelcfgConfig
+```
+

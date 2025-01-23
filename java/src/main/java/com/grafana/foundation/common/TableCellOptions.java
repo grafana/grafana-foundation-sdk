@@ -41,34 +41,34 @@ public class TableCellOptions {
     @JsonUnwrapped
     protected TableJsonViewCellOptions tableJsonViewCellOptions;
     protected TableCellOptions() {}
-    public static TableCellOptions createTableAutoCellOptions(com.grafana.foundation.cog.Builder<TableAutoCellOptions> tableAutoCellOptions) {
+    public static TableCellOptions createTableAutoCellOptions(TableAutoCellOptions tableAutoCellOptions) {
         TableCellOptions tableCellOptions = new TableCellOptions();
-        tableCellOptions.tableAutoCellOptions = tableAutoCellOptions.build();
+        tableCellOptions.tableAutoCellOptions = tableAutoCellOptions;
         return tableCellOptions;
     }
-    public static TableCellOptions createTableSparklineCellOptions(com.grafana.foundation.cog.Builder<TableSparklineCellOptions> tableSparklineCellOptions) {
+    public static TableCellOptions createTableSparklineCellOptions(TableSparklineCellOptions tableSparklineCellOptions) {
         TableCellOptions tableCellOptions = new TableCellOptions();
-        tableCellOptions.tableSparklineCellOptions = tableSparklineCellOptions.build();
+        tableCellOptions.tableSparklineCellOptions = tableSparklineCellOptions;
         return tableCellOptions;
     }
-    public static TableCellOptions createTableBarGaugeCellOptions(com.grafana.foundation.cog.Builder<TableBarGaugeCellOptions> tableBarGaugeCellOptions) {
+    public static TableCellOptions createTableBarGaugeCellOptions(TableBarGaugeCellOptions tableBarGaugeCellOptions) {
         TableCellOptions tableCellOptions = new TableCellOptions();
-        tableCellOptions.tableBarGaugeCellOptions = tableBarGaugeCellOptions.build();
+        tableCellOptions.tableBarGaugeCellOptions = tableBarGaugeCellOptions;
         return tableCellOptions;
     }
-    public static TableCellOptions createTableColoredBackgroundCellOptions(com.grafana.foundation.cog.Builder<TableColoredBackgroundCellOptions> tableColoredBackgroundCellOptions) {
+    public static TableCellOptions createTableColoredBackgroundCellOptions(TableColoredBackgroundCellOptions tableColoredBackgroundCellOptions) {
         TableCellOptions tableCellOptions = new TableCellOptions();
-        tableCellOptions.tableColoredBackgroundCellOptions = tableColoredBackgroundCellOptions.build();
+        tableCellOptions.tableColoredBackgroundCellOptions = tableColoredBackgroundCellOptions;
         return tableCellOptions;
     }
-    public static TableCellOptions createTableColorTextCellOptions(com.grafana.foundation.cog.Builder<TableColorTextCellOptions> tableColorTextCellOptions) {
+    public static TableCellOptions createTableColorTextCellOptions(TableColorTextCellOptions tableColorTextCellOptions) {
         TableCellOptions tableCellOptions = new TableCellOptions();
-        tableCellOptions.tableColorTextCellOptions = tableColorTextCellOptions.build();
+        tableCellOptions.tableColorTextCellOptions = tableColorTextCellOptions;
         return tableCellOptions;
     }
-    public static TableCellOptions createTableImageCellOptions(com.grafana.foundation.cog.Builder<TableImageCellOptions> tableImageCellOptions) {
+    public static TableCellOptions createTableImageCellOptions(TableImageCellOptions tableImageCellOptions) {
         TableCellOptions tableCellOptions = new TableCellOptions();
-        tableCellOptions.tableImageCellOptions = tableImageCellOptions.build();
+        tableCellOptions.tableImageCellOptions = tableImageCellOptions;
         return tableCellOptions;
     }
     public static TableCellOptions createTableDataLinksCellOptions(TableDataLinksCellOptions tableDataLinksCellOptions) {
