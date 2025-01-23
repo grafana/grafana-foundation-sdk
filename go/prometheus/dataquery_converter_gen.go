@@ -144,7 +144,7 @@ func DataqueryConverter(input Dataquery) string {
 	if input.Datasource != nil {
 
 		buffer.WriteString(`Datasource(`)
-		arg0 := cog.Dump(*input.Datasource)
+		arg0 := cog.Dump(input.Datasource)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

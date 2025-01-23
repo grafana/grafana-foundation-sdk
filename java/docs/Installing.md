@@ -2,13 +2,13 @@
 
 === "Gradle"
     ```kotlin
-    implementation("com.grafana:grafana-foundation-sdk:10.3.0-1737636858")
+    implementation("com.grafana:grafana-foundation-sdk:10.3.0-1737673381")
     ```
 === "Maven"
     ```xml
     <dependency>
         <groupId>com.grafana</groupId>
         <artifactId>grafana-foundation-sdk</artifactId>
-        <version>10.3.0-1737636858</version>
+        <version>10.3.0-1737673381</version>
     </dependency>
     ```

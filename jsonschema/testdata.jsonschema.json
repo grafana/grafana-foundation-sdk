@@ -308,7 +308,8 @@
           "description": "Specify the query flavor\nTODO make this required and give it a default"
         },
         "datasource": {
-          "$ref": "#/definitions/DataSourceRef",
+          "type": "object",
+          "additionalProperties": {},
           "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
         }
       }
@@ -331,21 +332,6 @@
           "type": "string"
         }
       }
-    },
-    "DataSourceRef": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "type": {
-          "type": "string",
-          "description": "The plugin type-id"
-        },
-        "uid": {
-          "type": "string",
-          "description": "Specific datasource instance"
-        }
-      },
-      "description": "Ref to a DataSource instance"
     }
   }
 }

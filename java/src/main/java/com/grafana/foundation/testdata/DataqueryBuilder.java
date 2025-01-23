@@ -3,7 +3,6 @@
 package com.grafana.foundation.testdata;
 
 import java.util.List;
-import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
     protected final Dataquery internal;
@@ -136,7 +135,7 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
         return this;
     }
     
-    public DataqueryBuilder datasource(DataSourceRef datasource) {
+    public DataqueryBuilder datasource(Object datasource) {
     this.internal.datasource = datasource;
         return this;
     }
