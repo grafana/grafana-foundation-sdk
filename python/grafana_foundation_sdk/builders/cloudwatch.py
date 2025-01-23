@@ -585,8 +585,9 @@ class QueryEditorArrayExpression(cogbuilder.Builder[cloudwatch.QueryEditorArrayE
     
         return self
     
-    def expressions(self, expressions: list[cloudwatch.QueryEditorExpression]) -> typing.Self:        
-        self._internal.expressions = expressions
+    def expressions(self, expressions: list[cogbuilder.Builder[cloudwatch.QueryEditorExpression]]) -> typing.Self:        
+        expressions_resources = [r1.build() for r1 in expressions]
+        self._internal.expressions = expressions_resources
     
         return self
     

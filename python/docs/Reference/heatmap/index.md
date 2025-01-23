@@ -26,3 +26,15 @@
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
  * <span class="badge builder"></span> [RowsHeatmapOptions](./builder-RowsHeatmapOptions.md)
  * <span class="badge builder"></span> [YAxisConfig](./builder-YAxisConfig.md)
+## Functions
+
+### <span class="badge function"></span> variant_config
+
+variant_config returns the configuration related to heatmap panels.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```python
+def variant_config() -> variants.PanelcfgConfig
+```
+

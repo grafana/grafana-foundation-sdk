@@ -27,3 +27,15 @@
  * <span class="badge builder"></span> [LineConfig](./builder-LineConfig.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
  * <span class="badge builder"></span> [Placement](./builder-Placement.md)
+## Functions
+
+### <span class="badge function"></span> variant_config
+
+variant_config returns the configuration related to canvas panels.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```python
+def variant_config() -> variants.PanelcfgConfig
+```
+

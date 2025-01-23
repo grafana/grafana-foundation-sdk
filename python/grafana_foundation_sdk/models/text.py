@@ -92,9 +92,10 @@ class Options:
 
 
 
-def variant_config():
+def variant_config() -> cogruntime.PanelCfgConfig:
     return cogruntime.PanelCfgConfig(
         identifier="text",
         options_from_json_hook=Options.from_json,
         field_config_from_json_hook=None,
     )
+
