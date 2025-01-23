@@ -513,13 +513,6 @@ class Dataquery(cogvariants.Dataquery):
         return cls(**args)
 
 
-def variant_config() -> cogruntime.DataqueryConfig:
-    return cogruntime.DataqueryConfig(
-        identifier="testdata",
-        from_json_hook=Dataquery.from_json,
-    )
-
-
 class Key:
     type_val: str
     tick: float
@@ -553,4 +546,12 @@ class Key:
         return cls(**args)
 
 
+
+
+
+def variant_config() -> cogruntime.DataqueryConfig:
+    return cogruntime.DataqueryConfig(
+        identifier="testdata",
+        from_json_hook=Dataquery.from_json,
+    )
 

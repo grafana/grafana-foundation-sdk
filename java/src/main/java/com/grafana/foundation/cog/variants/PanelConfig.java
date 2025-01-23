@@ -3,7 +3,6 @@
 package com.grafana.foundation.cog.variants;
 
 
-
 public class PanelConfig {
     private final Class<?> optionsClass;
     private final Class<?> fieldConfigClass;
@@ -11,6 +10,7 @@ public class PanelConfig {
     public PanelConfig(Class<?> optionsClass, Class<?> fieldConfigClass) {
         this.optionsClass = optionsClass;
         this.fieldConfigClass = fieldConfigClass;
+        
     }
 
     public Class<?> getOptionsClass() {

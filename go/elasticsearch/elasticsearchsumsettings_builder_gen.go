@@ -31,13 +31,8 @@ func (builder *ElasticsearchSumSettingsBuilder) Build() (ElasticsearchSumSetting
 	return *builder.internal, nil
 }
 
-func (builder *ElasticsearchSumSettingsBuilder) Script(script cog.Builder[InlineScript]) *ElasticsearchSumSettingsBuilder {
-	scriptResource, err := script.Build()
-	if err != nil {
-		builder.errors["script"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Script = &scriptResource
+func (builder *ElasticsearchSumSettingsBuilder) Script(script InlineScript) *ElasticsearchSumSettingsBuilder {
+	builder.internal.Script = &script
 
 	return builder
 }

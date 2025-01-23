@@ -13,7 +13,7 @@ keywords = [
     "traces",
     "metrics"
 ]
-version = "1736942354!10.1.0"
+version = "1737637027!10.1.0"
 dependencies = []
 requires-python = ">=3.11"
 classifiers = [

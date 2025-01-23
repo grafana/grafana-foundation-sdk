@@ -60,3 +60,15 @@
  * <span class="badge builder"></span> [TypeResample](./builder-TypeResample.md)
  * <span class="badge builder"></span> [TypeSql](./builder-TypeSql.md)
  * <span class="badge builder"></span> [TypeThreshold](./builder-TypeThreshold.md)
+## Functions
+
+### <span class="badge function"></span> variant_config
+
+variant_config returns the configuration related to __expr__ data queries.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```python
+def variant_config() -> variants.DataqueryConfig
+```
+

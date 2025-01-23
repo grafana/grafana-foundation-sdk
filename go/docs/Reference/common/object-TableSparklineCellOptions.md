@@ -73,6 +73,3 @@ Validate checks all the validation constraints that may be defined on `TableSpar
 func (tableSparklineCellOptions *TableSparklineCellOptions) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [TableSparklineCellOptionsBuilder](./builder-TableSparklineCellOptionsBuilder.md)

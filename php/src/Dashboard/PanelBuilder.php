@@ -374,15 +374,11 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
     /**
      * Convert input values into a display string
-     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\ValueMap>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\RangeMap>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\RegexMap>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\SpecialValueMap>> $mappings
+     * @param array<\Grafana\Foundation\Dashboard\ValueMap|\Grafana\Foundation\Dashboard\RangeMap|\Grafana\Foundation\Dashboard\RegexMap|\Grafana\Foundation\Dashboard\SpecialValueMap> $mappings
      */
     public function mappings(array $mappings): static
     {
-            $mappingsResources = [];
-            foreach ($mappings as $r1) {
-                    $mappingsResources[] = $r1->build();
-            }
-        $this->internal->fieldConfig->defaults->mappings = $mappingsResources;
+        $this->internal->fieldConfig->defaults->mappings = $mappings;
     
         return $this;
     }
