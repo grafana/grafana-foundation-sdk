@@ -26,6 +26,60 @@ Controls value alignment on the timelines
 alignValue(alignValue: common.TimelineValueAlignment)
 ```
 
+### <span class="badge object-method"></span> axisBorderShow
+
+```typescript
+axisBorderShow(axisBorderShow: boolean)
+```
+
+### <span class="badge object-method"></span> axisCenteredZero
+
+```typescript
+axisCenteredZero(axisCenteredZero: boolean)
+```
+
+### <span class="badge object-method"></span> axisColorMode
+
+```typescript
+axisColorMode(axisColorMode: common.AxisColorMode)
+```
+
+### <span class="badge object-method"></span> axisGridShow
+
+```typescript
+axisGridShow(axisGridShow: boolean)
+```
+
+### <span class="badge object-method"></span> axisLabel
+
+```typescript
+axisLabel(axisLabel: string)
+```
+
+### <span class="badge object-method"></span> axisPlacement
+
+```typescript
+axisPlacement(axisPlacement: common.AxisPlacement)
+```
+
+### <span class="badge object-method"></span> axisSoftMax
+
+```typescript
+axisSoftMax(axisSoftMax: number)
+```
+
+### <span class="badge object-method"></span> axisSoftMin
+
+```typescript
+axisSoftMin(axisSoftMin: number)
+```
+
+### <span class="badge object-method"></span> axisWidth
+
+```typescript
+axisWidth(axisWidth: number)
+```
+
 ### <span class="badge object-method"></span> cacheTimeout
 
 Sets panel queries cache timeout.
@@ -283,6 +337,12 @@ Controls the row height
 
 ```typescript
 rowHeight(rowHeight: number)
+```
+
+### <span class="badge object-method"></span> scaleDistribution
+
+```typescript
+scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>)
 ```
 
 ### <span class="badge object-method"></span> showValue

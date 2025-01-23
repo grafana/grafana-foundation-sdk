@@ -52,6 +52,33 @@
           "maximum": 10,
           "default": 1
         },
+        "axisPlacement": {
+          "$ref": "#/definitions/AxisPlacement"
+        },
+        "axisColorMode": {
+          "$ref": "#/definitions/AxisColorMode"
+        },
+        "axisLabel": {
+          "type": "string"
+        },
+        "axisWidth": {
+          "type": "number"
+        },
+        "axisSoftMin": {
+          "type": "number"
+        },
+        "axisSoftMax": {
+          "type": "number"
+        },
+        "axisGridShow": {
+          "type": "boolean"
+        },
+        "scaleDistribution": {
+          "$ref": "#/definitions/ScaleDistributionConfig"
+        },
+        "axisCenteredZero": {
+          "type": "boolean"
+        },
         "hideFrom": {
           "$ref": "#/definitions/HideSeriesConfig"
         },
@@ -59,6 +86,9 @@
           "type": "integer",
           "maximum": 100,
           "default": 70
+        },
+        "axisBorderShow": {
+          "type": "boolean"
         }
       }
     },
@@ -146,6 +176,43 @@
       "type": "string",
       "description": "A specific timezone from https://en.wikipedia.org/wiki/Tz_database"
     },
+    "AxisPlacement": {
+      "enum": [
+        "auto",
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "hidden"
+      ],
+      "description": "TODO docs"
+    },
+    "AxisColorMode": {
+      "enum": [
+        "text",
+        "series"
+      ],
+      "description": "TODO docs"
+    },
+    "ScaleDistributionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ScaleDistribution"
+        },
+        "log": {
+          "type": "number"
+        },
+        "linearThreshold": {
+          "type": "number"
+        }
+      },
+      "description": "TODO docs"
+    },
     "HideSeriesConfig": {
       "type": "object",
       "additionalProperties": false,
@@ -195,6 +262,15 @@
         "asc",
         "desc",
         "none"
+      ],
+      "description": "TODO docs"
+    },
+    "ScaleDistribution": {
+      "enum": [
+        "linear",
+        "log",
+        "ordinal",
+        "symlog"
       ],
       "description": "TODO docs"
     }

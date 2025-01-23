@@ -256,9 +256,19 @@ func (resource Options) Validate() error {
 }
 
 type FieldConfig struct {
-	LineWidth   *uint32                  `json:"lineWidth,omitempty"`
-	HideFrom    *common.HideSeriesConfig `json:"hideFrom,omitempty"`
-	FillOpacity *uint32                  `json:"fillOpacity,omitempty"`
+	LineWidth         *uint32                         `json:"lineWidth,omitempty"`
+	AxisPlacement     *common.AxisPlacement           `json:"axisPlacement,omitempty"`
+	AxisColorMode     *common.AxisColorMode           `json:"axisColorMode,omitempty"`
+	AxisLabel         *string                         `json:"axisLabel,omitempty"`
+	AxisWidth         *float64                        `json:"axisWidth,omitempty"`
+	AxisSoftMin       *float64                        `json:"axisSoftMin,omitempty"`
+	AxisSoftMax       *float64                        `json:"axisSoftMax,omitempty"`
+	AxisGridShow      *bool                           `json:"axisGridShow,omitempty"`
+	ScaleDistribution *common.ScaleDistributionConfig `json:"scaleDistribution,omitempty"`
+	AxisCenteredZero  *bool                           `json:"axisCenteredZero,omitempty"`
+	HideFrom          *common.HideSeriesConfig        `json:"hideFrom,omitempty"`
+	FillOpacity       *uint32                         `json:"fillOpacity,omitempty"`
+	AxisBorderShow    *bool                           `json:"axisBorderShow,omitempty"`
 }
 
 // NewFieldConfig creates a new FieldConfig object.
@@ -292,6 +302,107 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "lineWidth")
 
 	}
+	// Field "axisPlacement"
+	if fields["axisPlacement"] != nil {
+		if string(fields["axisPlacement"]) != "null" {
+			if err := json.Unmarshal(fields["axisPlacement"], &resource.AxisPlacement); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisPlacement", err)...)
+			}
+
+		}
+		delete(fields, "axisPlacement")
+
+	}
+	// Field "axisColorMode"
+	if fields["axisColorMode"] != nil {
+		if string(fields["axisColorMode"]) != "null" {
+			if err := json.Unmarshal(fields["axisColorMode"], &resource.AxisColorMode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisColorMode", err)...)
+			}
+
+		}
+		delete(fields, "axisColorMode")
+
+	}
+	// Field "axisLabel"
+	if fields["axisLabel"] != nil {
+		if string(fields["axisLabel"]) != "null" {
+			if err := json.Unmarshal(fields["axisLabel"], &resource.AxisLabel); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisLabel", err)...)
+			}
+
+		}
+		delete(fields, "axisLabel")
+
+	}
+	// Field "axisWidth"
+	if fields["axisWidth"] != nil {
+		if string(fields["axisWidth"]) != "null" {
+			if err := json.Unmarshal(fields["axisWidth"], &resource.AxisWidth); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisWidth", err)...)
+			}
+
+		}
+		delete(fields, "axisWidth")
+
+	}
+	// Field "axisSoftMin"
+	if fields["axisSoftMin"] != nil {
+		if string(fields["axisSoftMin"]) != "null" {
+			if err := json.Unmarshal(fields["axisSoftMin"], &resource.AxisSoftMin); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisSoftMin", err)...)
+			}
+
+		}
+		delete(fields, "axisSoftMin")
+
+	}
+	// Field "axisSoftMax"
+	if fields["axisSoftMax"] != nil {
+		if string(fields["axisSoftMax"]) != "null" {
+			if err := json.Unmarshal(fields["axisSoftMax"], &resource.AxisSoftMax); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisSoftMax", err)...)
+			}
+
+		}
+		delete(fields, "axisSoftMax")
+
+	}
+	// Field "axisGridShow"
+	if fields["axisGridShow"] != nil {
+		if string(fields["axisGridShow"]) != "null" {
+			if err := json.Unmarshal(fields["axisGridShow"], &resource.AxisGridShow); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisGridShow", err)...)
+			}
+
+		}
+		delete(fields, "axisGridShow")
+
+	}
+	// Field "scaleDistribution"
+	if fields["scaleDistribution"] != nil {
+		if string(fields["scaleDistribution"]) != "null" {
+
+			resource.ScaleDistribution = &common.ScaleDistributionConfig{}
+			if err := resource.ScaleDistribution.UnmarshalJSONStrict(fields["scaleDistribution"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("scaleDistribution", err)...)
+			}
+
+		}
+		delete(fields, "scaleDistribution")
+
+	}
+	// Field "axisCenteredZero"
+	if fields["axisCenteredZero"] != nil {
+		if string(fields["axisCenteredZero"]) != "null" {
+			if err := json.Unmarshal(fields["axisCenteredZero"], &resource.AxisCenteredZero); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisCenteredZero", err)...)
+			}
+
+		}
+		delete(fields, "axisCenteredZero")
+
+	}
 	// Field "hideFrom"
 	if fields["hideFrom"] != nil {
 		if string(fields["hideFrom"]) != "null" {
@@ -314,6 +425,17 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "fillOpacity")
+
+	}
+	// Field "axisBorderShow"
+	if fields["axisBorderShow"] != nil {
+		if string(fields["axisBorderShow"]) != "null" {
+			if err := json.Unmarshal(fields["axisBorderShow"], &resource.AxisBorderShow); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("axisBorderShow", err)...)
+			}
+
+		}
+		delete(fields, "axisBorderShow")
 
 	}
 
@@ -339,6 +461,87 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 			return false
 		}
 	}
+	if resource.AxisPlacement == nil && other.AxisPlacement != nil || resource.AxisPlacement != nil && other.AxisPlacement == nil {
+		return false
+	}
+
+	if resource.AxisPlacement != nil {
+		if *resource.AxisPlacement != *other.AxisPlacement {
+			return false
+		}
+	}
+	if resource.AxisColorMode == nil && other.AxisColorMode != nil || resource.AxisColorMode != nil && other.AxisColorMode == nil {
+		return false
+	}
+
+	if resource.AxisColorMode != nil {
+		if *resource.AxisColorMode != *other.AxisColorMode {
+			return false
+		}
+	}
+	if resource.AxisLabel == nil && other.AxisLabel != nil || resource.AxisLabel != nil && other.AxisLabel == nil {
+		return false
+	}
+
+	if resource.AxisLabel != nil {
+		if *resource.AxisLabel != *other.AxisLabel {
+			return false
+		}
+	}
+	if resource.AxisWidth == nil && other.AxisWidth != nil || resource.AxisWidth != nil && other.AxisWidth == nil {
+		return false
+	}
+
+	if resource.AxisWidth != nil {
+		if *resource.AxisWidth != *other.AxisWidth {
+			return false
+		}
+	}
+	if resource.AxisSoftMin == nil && other.AxisSoftMin != nil || resource.AxisSoftMin != nil && other.AxisSoftMin == nil {
+		return false
+	}
+
+	if resource.AxisSoftMin != nil {
+		if *resource.AxisSoftMin != *other.AxisSoftMin {
+			return false
+		}
+	}
+	if resource.AxisSoftMax == nil && other.AxisSoftMax != nil || resource.AxisSoftMax != nil && other.AxisSoftMax == nil {
+		return false
+	}
+
+	if resource.AxisSoftMax != nil {
+		if *resource.AxisSoftMax != *other.AxisSoftMax {
+			return false
+		}
+	}
+	if resource.AxisGridShow == nil && other.AxisGridShow != nil || resource.AxisGridShow != nil && other.AxisGridShow == nil {
+		return false
+	}
+
+	if resource.AxisGridShow != nil {
+		if *resource.AxisGridShow != *other.AxisGridShow {
+			return false
+		}
+	}
+	if resource.ScaleDistribution == nil && other.ScaleDistribution != nil || resource.ScaleDistribution != nil && other.ScaleDistribution == nil {
+		return false
+	}
+
+	if resource.ScaleDistribution != nil {
+		if !resource.ScaleDistribution.Equals(*other.ScaleDistribution) {
+			return false
+		}
+	}
+	if resource.AxisCenteredZero == nil && other.AxisCenteredZero != nil || resource.AxisCenteredZero != nil && other.AxisCenteredZero == nil {
+		return false
+	}
+
+	if resource.AxisCenteredZero != nil {
+		if *resource.AxisCenteredZero != *other.AxisCenteredZero {
+			return false
+		}
+	}
 	if resource.HideFrom == nil && other.HideFrom != nil || resource.HideFrom != nil && other.HideFrom == nil {
 		return false
 	}
@@ -357,6 +560,15 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 			return false
 		}
 	}
+	if resource.AxisBorderShow == nil && other.AxisBorderShow != nil || resource.AxisBorderShow != nil && other.AxisBorderShow == nil {
+		return false
+	}
+
+	if resource.AxisBorderShow != nil {
+		if *resource.AxisBorderShow != *other.AxisBorderShow {
+			return false
+		}
+	}
 
 	return true
 }
@@ -370,6 +582,11 @@ func (resource FieldConfig) Validate() error {
 				"lineWidth",
 				errors.New("must be <= 10"),
 			)...)
+		}
+	}
+	if resource.ScaleDistribution != nil {
+		if err := resource.ScaleDistribution.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("scaleDistribution", err)...)
 		}
 	}
 	if resource.HideFrom != nil {

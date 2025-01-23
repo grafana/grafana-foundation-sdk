@@ -1236,7 +1236,7 @@ type Dataquery struct {
 func (resource Dataquery) ImplementsDataqueryVariant() {}
 
 func (resource Dataquery) DataqueryType() string {
-	return ""
+	return "testdata"
 }
 
 // NewDataquery creates a new Dataquery object.
@@ -2203,11 +2203,11 @@ const (
 	DataqueryScenarioIdVariablesQuery               DataqueryScenarioId = "variables-query"
 )
 
-// VariantConfig returns the configuration related to  dataqueries.
+// VariantConfig returns the configuration related to testdata dataqueries.
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
-		Identifier: "",
+		Identifier: "testdata",
 		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
 			dataquery := &Dataquery{}
 

@@ -18,6 +18,60 @@ Builds the object.
 func (builder *PanelBuilder) Build() (dashboard.Panel, error)
 ```
 
+### <span class="badge object-method"></span> AxisBorderShow
+
+```go
+func (builder *PanelBuilder) AxisBorderShow(axisBorderShow bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisCenteredZero
+
+```go
+func (builder *PanelBuilder) AxisCenteredZero(axisCenteredZero bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisColorMode
+
+```go
+func (builder *PanelBuilder) AxisColorMode(axisColorMode common.AxisColorMode) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisGridShow
+
+```go
+func (builder *PanelBuilder) AxisGridShow(axisGridShow bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisLabel
+
+```go
+func (builder *PanelBuilder) AxisLabel(axisLabel string) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisPlacement
+
+```go
+func (builder *PanelBuilder) AxisPlacement(axisPlacement common.AxisPlacement) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisSoftMax
+
+```go
+func (builder *PanelBuilder) AxisSoftMax(axisSoftMax float64) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisSoftMin
+
+```go
+func (builder *PanelBuilder) AxisSoftMin(axisSoftMin float64) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> AxisWidth
+
+```go
+func (builder *PanelBuilder) AxisWidth(axisWidth float64) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> CacheTimeout
 
 Sets panel queries cache timeout.
@@ -264,6 +318,12 @@ Set the height of the rows
 
 ```go
 func (builder *PanelBuilder) RowHeight(rowHeight float32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> ScaleDistribution
+
+```go
+func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[common.ScaleDistributionConfig]) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> ShowValue
