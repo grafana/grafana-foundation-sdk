@@ -7,24 +7,24 @@ passes:
 
   - retype_field:
       field: expr.typeMath.datasource
-      as: &dashboard_datasourceRef
+      as: &common_datasourceRef
         kind: ref
-        ref: { referred_pkg: dashboard, referred_type: DataSourceRef }
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
   - retype_field:
       field: expr.typeReduce.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: expr.typeResample.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: expr.typeClassicConditions.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: expr.typeThreshold.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: expr.typeSql.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
 
   - retype_object:
       object: expr.Expr

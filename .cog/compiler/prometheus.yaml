@@ -7,7 +7,7 @@ passes:
       field: prometheus.Dataquery.datasource
       as:
         kind: ref
-        ref: { referred_pkg: dashboard, referred_type: DataSourceRef }
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
 
   # Add a few missing fields.
   # This is meant to be removed once the schema is updated.
