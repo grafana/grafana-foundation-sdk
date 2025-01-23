@@ -31,13 +31,8 @@ func (builder *ElasticsearchMinSettingsBuilder) Build() (ElasticsearchMinSetting
 	return *builder.internal, nil
 }
 
-func (builder *ElasticsearchMinSettingsBuilder) Script(script cog.Builder[InlineScript]) *ElasticsearchMinSettingsBuilder {
-	scriptResource, err := script.Build()
-	if err != nil {
-		builder.errors["script"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Script = &scriptResource
+func (builder *ElasticsearchMinSettingsBuilder) Script(script InlineScript) *ElasticsearchMinSettingsBuilder {
+	builder.internal.Script = &script
 
 	return builder
 }

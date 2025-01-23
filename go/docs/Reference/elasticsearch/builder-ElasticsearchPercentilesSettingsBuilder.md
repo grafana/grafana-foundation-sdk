@@ -33,7 +33,7 @@ func (builder *ElasticsearchPercentilesSettingsBuilder) Percents(percents []stri
 ### <span class="badge object-method"></span> Script
 
 ```go
-func (builder *ElasticsearchPercentilesSettingsBuilder) Script(script cog.Builder[elasticsearch.InlineScript]) *ElasticsearchPercentilesSettingsBuilder
+func (builder *ElasticsearchPercentilesSettingsBuilder) Script(script elasticsearch.InlineScript) *ElasticsearchPercentilesSettingsBuilder
 ```
 
 ## See also

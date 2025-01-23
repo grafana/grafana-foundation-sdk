@@ -25,6 +25,3 @@ export interface RegexMap {
 ## Methods
 
 No methods.
-## See also
-
- * <span class="badge builder"></span> [RegexMapBuilder](./builder-RegexMapBuilder.md)
