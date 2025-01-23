@@ -9,8 +9,8 @@ public class ElasticsearchAverageSettingsBuilder implements com.grafana.foundati
     public ElasticsearchAverageSettingsBuilder() {
         this.internal = new ElasticsearchAverageSettings();
     }
-    public ElasticsearchAverageSettingsBuilder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
+    public ElasticsearchAverageSettingsBuilder script(InlineScript script) {
+    this.internal.script = script;
         return this;
     }
     

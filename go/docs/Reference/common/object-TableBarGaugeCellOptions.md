@@ -42,6 +42,3 @@ Validate checks all the validation constraints that may be defined on `TableBarG
 func (tableBarGaugeCellOptions *TableBarGaugeCellOptions) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [TableBarGaugeCellOptionsBuilder](./builder-TableBarGaugeCellOptionsBuilder.md)

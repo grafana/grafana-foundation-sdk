@@ -3,8 +3,8 @@
 from ..cog import variants as cogvariants
 import typing
 from ..models import dashboard
-from ..cog import runtime as cogruntime
 import enum
+from ..cog import runtime as cogruntime
 
 
 class TempoQuery(cogvariants.Dataquery):
@@ -146,13 +146,6 @@ class TempoQuery(cogvariants.Dataquery):
         return cls(**args)
 
 
-def variant_config() -> cogruntime.DataqueryConfig:
-    return cogruntime.DataqueryConfig(
-        identifier="tempo",
-        from_json_hook=TempoQuery.from_json,
-    )
-
-
 class TempoQueryType(enum.StrEnum):
     TRACEQL = "traceql"
     TRACEQL_SEARCH = "traceqlSearch"
@@ -253,4 +246,12 @@ class TraceqlFilter:
         return cls(**args)
 
 
+
+
+
+def variant_config() -> cogruntime.DataqueryConfig:
+    return cogruntime.DataqueryConfig(
+        identifier="tempo",
+        from_json_hook=TempoQuery.from_json,
+    )
 

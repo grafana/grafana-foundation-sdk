@@ -41,6 +41,3 @@ Validate checks all the validation constraints that may be defined on `TableAuto
 func (tableAutoCellOptions *TableAutoCellOptions) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [TableAutoCellOptionsBuilder](./builder-TableAutoCellOptionsBuilder.md)
