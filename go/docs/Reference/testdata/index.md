@@ -113,7 +113,7 @@ func NewDataquery() *Dataquery
 
 ### <span class="badge function"></span> VariantConfig
 
-VariantConfig returns the configuration related to  dataqueries.
+VariantConfig returns the configuration related to testdata dataqueries.
 
 This configuration describes how to unmarshal it, convert it to code, …
 
