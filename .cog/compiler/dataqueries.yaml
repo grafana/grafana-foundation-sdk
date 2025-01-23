@@ -17,39 +17,39 @@ passes:
 
   - retype_field:
       field: azuremonitor.AzureMonitorQuery.datasource
-      as: &dashboard_datasourceRef
+      as: &common_datasourceRef
         kind: ref
-        ref: { referred_pkg: dashboard, referred_type: DataSourceRef }
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
   - retype_field:
       field: bigquery.Dataquery.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: cloudwatch.CloudWatchMetricsQuery.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: cloudwatch.CloudWatchLogsQuery.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: cloudwatch.CloudWatchAnnotationQuery.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: datasource.Dataquery.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: elasticsearch.Dataquery.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: googlecloudmonitoring.CloudMonitoringQuery.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: grafanapyroscope.Dataquery.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: loki.Dataquery.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: parca.Dataquery.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef
   - retype_field:
       field: tempo.TempoQuery.datasource
-      as: *dashboard_datasourceRef
+      as: *common_datasourceRef

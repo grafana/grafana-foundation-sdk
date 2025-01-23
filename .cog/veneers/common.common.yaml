@@ -18,3 +18,5 @@ builders:
   - omit: { by_name: TableDataLinksCellOptions }
   - omit: { by_name: TableActionsCellOptions }
   - omit: { by_name: TableJsonViewCellOptions }
+
+  - omit: { by_name: DataSourceRef }

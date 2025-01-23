@@ -22,7 +22,7 @@ passes:
       field: testdata.dataquery.datasource
       as:
         kind: ref
-        ref: { referred_pkg: dashboard, referred_type: DataSourceRef }
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
 
   - rename_object:
       from: 'testdata.TestdataTestdataTargetsCsvWave'
