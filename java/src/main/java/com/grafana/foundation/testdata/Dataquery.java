@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
-import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -97,12 +96,12 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     // TODO this shouldn't be unknown but DataSourceRef | null
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
-    public DataSourceRef datasource;
+    public Object datasource;
     public Dataquery() {
         this.scenarioId = TestDataQueryType.RANDOM_WALK;
     }
     
-    public Dataquery(String alias,TestDataQueryType scenarioId,String stringInput,StreamingQuery stream,PulseWaveQuery pulseWave,SimulationQuery sim,List<CSVWave> csvWave,String labels,Long lines,Boolean levelColumn,String channel,NodesQuery nodes,String csvFileName,String csvContent,String rawFrameContent,Integer seriesCount,USAQuery usa,DataqueryErrorType errorType,Integer spanCount,List<List<StringOrInt64>> points,Double dropPercent,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
+    public Dataquery(String alias,TestDataQueryType scenarioId,String stringInput,StreamingQuery stream,PulseWaveQuery pulseWave,SimulationQuery sim,List<CSVWave> csvWave,String labels,Long lines,Boolean levelColumn,String channel,NodesQuery nodes,String csvFileName,String csvContent,String rawFrameContent,Integer seriesCount,USAQuery usa,DataqueryErrorType errorType,Integer spanCount,List<List<StringOrInt64>> points,Double dropPercent,String refId,Boolean hide,String queryType,Object datasource) {
         this.alias = alias;
         this.scenarioId = scenarioId;
         this.stringInput = stringInput;

@@ -59,7 +59,7 @@ TODO find a better way to do this ^ that's friendly to schema
 TODO this shouldn't be unknown but DataSourceRef | null
 
 ```go
-func (builder *DataqueryBuilder) Datasource(datasource dashboard.DataSourceRef) *DataqueryBuilder
+func (builder *DataqueryBuilder) Datasource(datasource any) *DataqueryBuilder
 ```
 
 ### <span class="badge object-method"></span> DropPercent

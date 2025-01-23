@@ -3,7 +3,6 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import testdata
-from ..models import dashboard
 
 
 class StreamingQuery(cogbuilder.Builder[testdata.StreamingQuery]):    
@@ -411,7 +410,7 @@ class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: object) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.
