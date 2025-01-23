@@ -9,8 +9,8 @@ public class ElasticsearchMaxSettingsBuilder implements com.grafana.foundation.c
     public ElasticsearchMaxSettingsBuilder() {
         this.internal = new ElasticsearchMaxSettings();
     }
-    public ElasticsearchMaxSettingsBuilder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
+    public ElasticsearchMaxSettingsBuilder script(InlineScript script) {
+    this.internal.script = script;
         return this;
     }
     

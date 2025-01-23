@@ -26,3 +26,15 @@
  * <span class="badge builder"></span> [SLOQuery](./builder-SLOQuery.md)
  * <span class="badge builder"></span> [TimeSeriesList](./builder-TimeSeriesList.md)
  * <span class="badge builder"></span> [TimeSeriesQuery](./builder-TimeSeriesQuery.md)
+## Functions
+
+### <span class="badge function"></span> variant_config
+
+variant_config returns the configuration related to cloud-monitoring data queries.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```python
+def variant_config() -> variants.DataqueryConfig
+```
+

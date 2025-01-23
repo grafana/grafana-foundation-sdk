@@ -20,6 +20,3 @@ export interface ValueMap {
 ## Methods
 
 No methods.
-## See also
-
- * <span class="badge builder"></span> [ValueMapBuilder](./builder-ValueMapBuilder.md)

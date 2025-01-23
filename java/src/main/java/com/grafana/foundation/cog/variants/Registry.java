@@ -36,13 +36,14 @@ public class Registry {
         registerPanel("timeseries", com.grafana.foundation.timeseries.Options.class, com.grafana.foundation.timeseries.FieldConfig.class);
         registerPanel("trend", com.grafana.foundation.trend.Options.class, com.grafana.foundation.trend.FieldConfig.class);
         registerPanel("xychart", com.grafana.foundation.xychart.Options.class, com.grafana.foundation.xychart.FieldConfig.class);
-        registerDataquery("__expr__", com.grafana.foundation.expr.Expr.class);
-        registerDataquery("cloud-monitoring", com.grafana.foundation.googlecloudmonitoring.CloudMonitoringQuery.class);
-        registerDataquery("cloudwatch", com.grafana.foundation.cloudwatch.CloudWatchQuery.class);
-        registerDataquery("elasticsearch", com.grafana.foundation.elasticsearch.Dataquery.class);
         registerDataquery("grafana-athena-datasource", com.grafana.foundation.athena.Dataquery.class);
         registerDataquery("grafana-azure-monitor-datasource", com.grafana.foundation.azuremonitor.AzureMonitorQuery.class);
         registerDataquery("grafana-bigquery-datasource", com.grafana.foundation.bigquery.Dataquery.class);
+        registerDataquery("cloudwatch", com.grafana.foundation.cloudwatch.CloudWatchQuery.class);
+        registerDataquery("datasource", com.grafana.foundation.datasource.Dataquery.class);
+        registerDataquery("elasticsearch", com.grafana.foundation.elasticsearch.Dataquery.class);
+        registerDataquery("__expr__", com.grafana.foundation.expr.Expr.class);
+        registerDataquery("cloud-monitoring", com.grafana.foundation.googlecloudmonitoring.CloudMonitoringQuery.class);
         registerDataquery("grafanapyroscope", com.grafana.foundation.grafanapyroscope.Dataquery.class);
         registerDataquery("loki", com.grafana.foundation.loki.Dataquery.class);
         registerDataquery("parca", com.grafana.foundation.parca.Dataquery.class);
@@ -71,5 +72,4 @@ public class Registry {
     public static PanelConfig getPanel(String type) {
         return panelRegistry.get(type);
     }
-    
 }

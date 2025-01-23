@@ -21,7 +21,7 @@ func (builder *ElasticsearchBucketScriptSettingsBuilder) Build() (ElasticsearchB
 ### <span class="badge object-method"></span> Script
 
 ```go
-func (builder *ElasticsearchBucketScriptSettingsBuilder) Script(script cog.Builder[elasticsearch.InlineScript]) *ElasticsearchBucketScriptSettingsBuilder
+func (builder *ElasticsearchBucketScriptSettingsBuilder) Script(script elasticsearch.InlineScript) *ElasticsearchBucketScriptSettingsBuilder
 ```
 
 ## See also

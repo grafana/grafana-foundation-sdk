@@ -81,15 +81,11 @@
  * <span class="badge builder"></span> [IntervalVariableBuilder](./builder-IntervalVariableBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [QueryVariableBuilder](./builder-QueryVariableBuilder.md)
- * <span class="badge builder"></span> [RangeMapBuilder](./builder-RangeMapBuilder.md)
- * <span class="badge builder"></span> [RegexMapBuilder](./builder-RegexMapBuilder.md)
  * <span class="badge builder"></span> [RowBuilder](./builder-RowBuilder.md)
  * <span class="badge builder"></span> [SnapshotBuilder](./builder-SnapshotBuilder.md)
- * <span class="badge builder"></span> [SpecialValueMapBuilder](./builder-SpecialValueMapBuilder.md)
  * <span class="badge builder"></span> [TextBoxVariableBuilder](./builder-TextBoxVariableBuilder.md)
  * <span class="badge builder"></span> [ThresholdsConfigBuilder](./builder-ThresholdsConfigBuilder.md)
  * <span class="badge builder"></span> [TimePickerBuilder](./builder-TimePickerBuilder.md)
- * <span class="badge builder"></span> [ValueMapBuilder](./builder-ValueMapBuilder.md)
 ## Examples
 
 ### Building a dashboard

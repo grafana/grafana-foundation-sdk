@@ -37,13 +37,8 @@ func (builder *ElasticsearchMovingFunctionSettingsBuilder) Window(window string)
 	return builder
 }
 
-func (builder *ElasticsearchMovingFunctionSettingsBuilder) Script(script cog.Builder[InlineScript]) *ElasticsearchMovingFunctionSettingsBuilder {
-	scriptResource, err := script.Build()
-	if err != nil {
-		builder.errors["script"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Script = &scriptResource
+func (builder *ElasticsearchMovingFunctionSettingsBuilder) Script(script InlineScript) *ElasticsearchMovingFunctionSettingsBuilder {
+	builder.internal.Script = &script
 
 	return builder
 }
