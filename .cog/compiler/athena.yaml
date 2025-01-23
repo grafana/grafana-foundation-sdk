@@ -13,4 +13,4 @@ passes:
       field: athena.Dataquery.datasource
       as:
         kind: ref
-        ref: { referred_pkg: dashboard, referred_type: DataSourceRef }
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
