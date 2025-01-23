@@ -215,7 +215,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         this.withNil = withNil;
     }
     public String dataqueryName() {
-        return "";
+        return "testdata";
     }
     
     public String toJSON() throws JsonProcessingException {

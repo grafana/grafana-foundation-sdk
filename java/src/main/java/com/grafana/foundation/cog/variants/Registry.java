@@ -48,6 +48,7 @@ public class Registry {
         registerDataquery("parca", com.grafana.foundation.parca.Dataquery.class);
         registerDataquery("prometheus", com.grafana.foundation.prometheus.Dataquery.class);
         registerDataquery("tempo", com.grafana.foundation.tempo.TempoQuery.class);
+        registerDataquery("testdata", com.grafana.foundation.testdata.Dataquery.class);
     }
 
     public static void registerDataquery(String type, Class<? extends Dataquery> clazz) {
