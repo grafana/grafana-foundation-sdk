@@ -21,7 +21,7 @@ func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) Bu
 ### <span class="badge object-method"></span> Script
 
 ```go
-func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) Script(script cog.Builder[elasticsearch.InlineScript]) *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder
+func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) Script(script elasticsearch.InlineScript) *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder
 ```
 
 ## See also

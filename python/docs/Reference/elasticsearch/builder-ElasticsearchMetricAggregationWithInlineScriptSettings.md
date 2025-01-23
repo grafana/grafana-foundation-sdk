@@ -21,7 +21,7 @@ def build() -> elasticsearch.ElasticsearchMetricAggregationWithInlineScriptSetti
 ### <span class="badge object-method"></span> script
 
 ```python
-def script(script: elasticsearch.InlineScript) -> typing.Self
+def script(script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self
 ```
 
 ## See also

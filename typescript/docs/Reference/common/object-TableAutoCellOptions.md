@@ -17,6 +17,3 @@ export interface TableAutoCellOptions {
 ## Methods
 
 No methods.
-## See also
-
- * <span class="badge builder"></span> [TableAutoCellOptionsBuilder](./builder-TableAutoCellOptionsBuilder.md)
