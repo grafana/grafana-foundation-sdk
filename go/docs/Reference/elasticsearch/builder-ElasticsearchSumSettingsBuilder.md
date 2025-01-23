@@ -27,7 +27,7 @@ func (builder *ElasticsearchSumSettingsBuilder) Missing(missing string) *Elastic
 ### <span class="badge object-method"></span> Script
 
 ```go
-func (builder *ElasticsearchSumSettingsBuilder) Script(script cog.Builder[elasticsearch.InlineScript]) *ElasticsearchSumSettingsBuilder
+func (builder *ElasticsearchSumSettingsBuilder) Script(script elasticsearch.InlineScript) *ElasticsearchSumSettingsBuilder
 ```
 
 ## See also

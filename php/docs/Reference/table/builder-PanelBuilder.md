@@ -42,7 +42,7 @@ cellHeight(\Grafana\Foundation\Common\TableCellHeight $cellHeight)
 
 ### <span class="badge object-method"></span> cellOptions
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableAutoCellOptions>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableSparklineCellOptions>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableBarGaugeCellOptions>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableColoredBackgroundCellOptions>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableColorTextCellOptions>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableImageCellOptions>|\Grafana\Foundation\Common\TableDataLinksCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions $cellOptions
+@param \Grafana\Foundation\Common\TableAutoCellOptions|\Grafana\Foundation\Common\TableSparklineCellOptions|\Grafana\Foundation\Common\TableBarGaugeCellOptions|\Grafana\Foundation\Common\TableColoredBackgroundCellOptions|\Grafana\Foundation\Common\TableColorTextCellOptions|\Grafana\Foundation\Common\TableImageCellOptions|\Grafana\Foundation\Common\TableDataLinksCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions $cellOptions
 
 ```php
 cellOptions($cellOptions)
@@ -228,7 +228,7 @@ links(array $links)
 
 Convert input values into a display string
 
-@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\ValueMap>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\RangeMap>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\RegexMap>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\SpecialValueMap>> $mappings
+@param array<\Grafana\Foundation\Dashboard\ValueMap|\Grafana\Foundation\Dashboard\RangeMap|\Grafana\Foundation\Dashboard\RegexMap|\Grafana\Foundation\Dashboard\SpecialValueMap> $mappings
 
 ```php
 mappings(array $mappings)

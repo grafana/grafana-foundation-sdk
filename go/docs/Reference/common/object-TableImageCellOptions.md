@@ -42,6 +42,3 @@ Validate checks all the validation constraints that may be defined on `TableImag
 func (tableImageCellOptions *TableImageCellOptions) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [TableImageCellOptionsBuilder](./builder-TableImageCellOptionsBuilder.md)

@@ -44,6 +44,3 @@ Validate checks all the validation constraints that may be defined on `RegexMap`
 func (regexMap *RegexMap) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [RegexMapBuilder](./builder-RegexMapBuilder.md)

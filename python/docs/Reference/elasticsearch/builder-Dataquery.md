@@ -31,7 +31,7 @@ def alias(alias: str) -> typing.Self
 List of bucket aggregations
 
 ```python
-def bucket_aggs(bucket_aggs: list[elasticsearch.BucketAggregation]) -> typing.Self
+def bucket_aggs(bucket_aggs: list[cogbuilder.Builder[elasticsearch.BucketAggregation]]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> datasource
@@ -61,7 +61,7 @@ def hide(hide: bool) -> typing.Self
 List of metric aggregations
 
 ```python
-def metrics(metrics: list[elasticsearch.MetricAggregation]) -> typing.Self
+def metrics(metrics: list[cogbuilder.Builder[elasticsearch.MetricAggregation]]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> query
