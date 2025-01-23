@@ -8,6 +8,3 @@ title: <span class="badge object-type-ref"></span> InlineScript
 ```go
 type InlineScript = elasticsearch.StringOrElasticsearchInlineScript
 ```
-## See also
-
- * <span class="badge builder"></span> [InlineScriptBuilder](./builder-InlineScriptBuilder.md)

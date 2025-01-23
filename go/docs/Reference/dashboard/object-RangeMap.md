@@ -44,6 +44,3 @@ Validate checks all the validation constraints that may be defined on `RangeMap`
 func (rangeMap *RangeMap) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [RangeMapBuilder](./builder-RangeMapBuilder.md)

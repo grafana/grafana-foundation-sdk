@@ -140,13 +140,6 @@ class Dataquery(cogvariants.Dataquery):
         return cls(**args)
 
 
-def variant_config() -> cogruntime.DataqueryConfig:
-    return cogruntime.DataqueryConfig(
-        identifier="prometheus",
-        from_json_hook=Dataquery.from_json,
-    )
-
-
 class PrometheusDataqueryScope:
     matchers: str
 
@@ -169,4 +162,12 @@ class PrometheusDataqueryScope:
         return cls(**args)
 
 
+
+
+
+def variant_config() -> cogruntime.DataqueryConfig:
+    return cogruntime.DataqueryConfig(
+        identifier="prometheus",
+        from_json_hook=Dataquery.from_json,
+    )
 

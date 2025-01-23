@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "10.4.0-cogv0.0.x.1736942148",
+  "version": "10.4.0-cogv0.0.x.1737636784",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -98,6 +98,10 @@
     "./datagrid": {
       "types": "./dist/datagrid/index.d.ts",
       "default": "./dist/datagrid/index.js"
+    },
+    "./datasource": {
+      "types": "./dist/datasource/index.d.ts",
+      "default": "./dist/datasource/index.js"
     },
     "./debug": {
       "types": "./dist/debug/index.d.ts",
