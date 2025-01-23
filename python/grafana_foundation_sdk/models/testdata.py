@@ -674,7 +674,7 @@ class Dataquery(cogvariants.Dataquery):
 
 def variant_config() -> cogruntime.DataqueryConfig:
     return cogruntime.DataqueryConfig(
-        identifier="",
+        identifier="testdata",
         from_json_hook=Dataquery.from_json,
     )
 
