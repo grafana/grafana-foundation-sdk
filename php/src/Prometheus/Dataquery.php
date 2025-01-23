@@ -72,8 +72,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
+     * @var mixed|null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public $datasource;
 
     /**
      * An additional lower limit for the step parameter of the Prometheus query and for the
@@ -94,10 +95,10 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param string|null $refId
      * @param bool|null $hide
      * @param string|null $queryType
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param mixed|null $datasource
      * @param string|null $interval
      */
-    public function __construct(?string $expr = null, ?bool $instant = null, ?bool $range = null, ?bool $exemplar = null, ?\Grafana\Foundation\Prometheus\QueryEditorMode $editorMode = null, ?\Grafana\Foundation\Prometheus\PromQueryFormat $format = null, ?string $legendFormat = null, ?float $intervalFactor = null, ?\Grafana\Foundation\Prometheus\PrometheusDataqueryScope $scope = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $interval = null)
+    public function __construct(?string $expr = null, ?bool $instant = null, ?bool $range = null, ?bool $exemplar = null, ?\Grafana\Foundation\Prometheus\QueryEditorMode $editorMode = null, ?\Grafana\Foundation\Prometheus\PromQueryFormat $format = null, ?string $legendFormat = null, ?float $intervalFactor = null, ?\Grafana\Foundation\Prometheus\PrometheusDataqueryScope $scope = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null,  $datasource = null, ?string $interval = null)
     {
         $this->expr = $expr ?: "";
         $this->instant = $instant;
@@ -139,11 +140,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             refId: $data["refId"] ?? null,
             hide: $data["hide"] ?? null,
             queryType: $data["queryType"] ?? null,
-            datasource: isset($data["datasource"]) ? (function($input) {
-    	/** @var array{type?: string, uid?: string} */
-    $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
-    })($data["datasource"]) : null,
+            datasource: $data["datasource"] ?? null,
             interval: $data["interval"] ?? null,
         );
     }
