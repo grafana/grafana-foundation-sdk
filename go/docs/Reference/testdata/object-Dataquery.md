@@ -45,7 +45,7 @@ type Dataquery struct {
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
     // TODO this shouldn't be unknown but DataSourceRef | null
-    Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+    Datasource any `json:"datasource,omitempty"`
 }
 ```
 ## Methods

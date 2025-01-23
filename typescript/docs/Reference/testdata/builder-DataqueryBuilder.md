@@ -59,7 +59,7 @@ TODO find a better way to do this ^ that's friendly to schema
 TODO this shouldn't be unknown but DataSourceRef | null
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: any)
 ```
 
 ### <span class="badge object-method"></span> dropPercent
