@@ -69,7 +69,7 @@ datasource(datasource: dashboard.DataSourceRef)
 @deprecated Legacy template variable support.
 
 ```typescript
-grafanaTemplateVariableFn(grafanaTemplateVariableFn: azuremonitor.GrafanaTemplateVariableQuery)
+grafanaTemplateVariableFn(grafanaTemplateVariableFn: cog.Builder<azuremonitor.GrafanaTemplateVariableQuery>)
 ```
 
 ### <span class="badge object-method"></span> hide

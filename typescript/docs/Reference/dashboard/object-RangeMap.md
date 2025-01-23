@@ -27,6 +27,3 @@ export interface RangeMap {
 ## Methods
 
 No methods.
-## See also
-
- * <span class="badge builder"></span> [RangeMapBuilder](./builder-RangeMapBuilder.md)

@@ -18,6 +18,3 @@ export interface TableImageCellOptions {
 ## Methods
 
 No methods.
-## See also
-
- * <span class="badge builder"></span> [TableImageCellOptionsBuilder](./builder-TableImageCellOptionsBuilder.md)

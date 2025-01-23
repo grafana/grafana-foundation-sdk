@@ -21,7 +21,7 @@ func (builder *ElasticsearchMovingFunctionSettingsBuilder) Build() (Elasticsearc
 ### <span class="badge object-method"></span> Script
 
 ```go
-func (builder *ElasticsearchMovingFunctionSettingsBuilder) Script(script cog.Builder[elasticsearch.InlineScript]) *ElasticsearchMovingFunctionSettingsBuilder
+func (builder *ElasticsearchMovingFunctionSettingsBuilder) Script(script elasticsearch.InlineScript) *ElasticsearchMovingFunctionSettingsBuilder
 ```
 
 ### <span class="badge object-method"></span> Shift

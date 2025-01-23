@@ -25,24 +25,24 @@ public class ValueMapping {
     @JsonUnwrapped
     protected SpecialValueMap specialValueMap;
     protected ValueMapping() {}
-    public static ValueMapping createValueMap(com.grafana.foundation.cog.Builder<ValueMap> valueMap) {
+    public static ValueMapping createValueMap(ValueMap valueMap) {
         ValueMapping valueMapping = new ValueMapping();
-        valueMapping.valueMap = valueMap.build();
+        valueMapping.valueMap = valueMap;
         return valueMapping;
     }
-    public static ValueMapping createRangeMap(com.grafana.foundation.cog.Builder<RangeMap> rangeMap) {
+    public static ValueMapping createRangeMap(RangeMap rangeMap) {
         ValueMapping valueMapping = new ValueMapping();
-        valueMapping.rangeMap = rangeMap.build();
+        valueMapping.rangeMap = rangeMap;
         return valueMapping;
     }
-    public static ValueMapping createRegexMap(com.grafana.foundation.cog.Builder<RegexMap> regexMap) {
+    public static ValueMapping createRegexMap(RegexMap regexMap) {
         ValueMapping valueMapping = new ValueMapping();
-        valueMapping.regexMap = regexMap.build();
+        valueMapping.regexMap = regexMap;
         return valueMapping;
     }
-    public static ValueMapping createSpecialValueMap(com.grafana.foundation.cog.Builder<SpecialValueMap> specialValueMap) {
+    public static ValueMapping createSpecialValueMap(SpecialValueMap specialValueMap) {
         ValueMapping valueMapping = new ValueMapping();
-        valueMapping.specialValueMap = specialValueMap.build();
+        valueMapping.specialValueMap = specialValueMap;
         return valueMapping;
     }
     

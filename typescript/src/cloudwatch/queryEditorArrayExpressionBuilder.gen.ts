@@ -22,8 +22,9 @@ export class QueryEditorArrayExpressionBuilder implements cog.Builder<cloudwatch
         return this;
     }
 
-    expressions(expressions: cloudwatch.QueryEditorExpression[]): this {
-        this.internal.expressions = expressions;
+    expressions(expressions: cog.Builder<cloudwatch.QueryEditorExpression>[]): this {
+        const expressionsResources = expressions.map(builder1 => builder1.build());
+        this.internal.expressions = expressionsResources;
         return this;
     }
 }
