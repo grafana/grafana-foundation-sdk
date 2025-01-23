@@ -131,14 +131,9 @@
  * <span class="badge builder"></span> [SingleStatBaseOptionsBuilder](./builder-SingleStatBaseOptionsBuilder.md)
  * <span class="badge builder"></span> [StackableFieldConfigBuilder](./builder-StackableFieldConfigBuilder.md)
  * <span class="badge builder"></span> [StackingConfigBuilder](./builder-StackingConfigBuilder.md)
- * <span class="badge builder"></span> [TableAutoCellOptionsBuilder](./builder-TableAutoCellOptionsBuilder.md)
- * <span class="badge builder"></span> [TableBarGaugeCellOptionsBuilder](./builder-TableBarGaugeCellOptionsBuilder.md)
- * <span class="badge builder"></span> [TableColorTextCellOptionsBuilder](./builder-TableColorTextCellOptionsBuilder.md)
- * <span class="badge builder"></span> [TableColoredBackgroundCellOptionsBuilder](./builder-TableColoredBackgroundCellOptionsBuilder.md)
  * <span class="badge builder"></span> [TableFieldOptionsBuilder](./builder-TableFieldOptionsBuilder.md)
  * <span class="badge builder"></span> [TableFooterOptionsBuilder](./builder-TableFooterOptionsBuilder.md)
  * <span class="badge builder"></span> [TableSortByFieldStateBuilder](./builder-TableSortByFieldStateBuilder.md)
- * <span class="badge builder"></span> [TableSparklineCellOptionsBuilder](./builder-TableSparklineCellOptionsBuilder.md)
  * <span class="badge builder"></span> [TextDimensionConfigBuilder](./builder-TextDimensionConfigBuilder.md)
  * <span class="badge builder"></span> [VizLegendOptionsBuilder](./builder-VizLegendOptionsBuilder.md)
  * <span class="badge builder"></span> [VizTextDisplayOptionsBuilder](./builder-VizTextDisplayOptionsBuilder.md)
@@ -791,46 +786,6 @@ TableFooterOptionsConverter accepts a `TableFooterOptions` object and generates 
 
 ```go
 func TableFooterOptionsConverter(input TableFooterOptions) string
-```
-
-### <span class="badge function"></span> TableAutoCellOptionsConverter
-
-TableAutoCellOptionsConverter accepts a `TableAutoCellOptions` object and generates the Go code to build this object using builders.
-
-```go
-func TableAutoCellOptionsConverter(input TableAutoCellOptions) string
-```
-
-### <span class="badge function"></span> TableColorTextCellOptionsConverter
-
-TableColorTextCellOptionsConverter accepts a `TableColorTextCellOptions` object and generates the Go code to build this object using builders.
-
-```go
-func TableColorTextCellOptionsConverter(input TableColorTextCellOptions) string
-```
-
-### <span class="badge function"></span> TableBarGaugeCellOptionsConverter
-
-TableBarGaugeCellOptionsConverter accepts a `TableBarGaugeCellOptions` object and generates the Go code to build this object using builders.
-
-```go
-func TableBarGaugeCellOptionsConverter(input TableBarGaugeCellOptions) string
-```
-
-### <span class="badge function"></span> TableSparklineCellOptionsConverter
-
-TableSparklineCellOptionsConverter accepts a `TableSparklineCellOptions` object and generates the Go code to build this object using builders.
-
-```go
-func TableSparklineCellOptionsConverter(input TableSparklineCellOptions) string
-```
-
-### <span class="badge function"></span> TableColoredBackgroundCellOptionsConverter
-
-TableColoredBackgroundCellOptionsConverter accepts a `TableColoredBackgroundCellOptions` object and generates the Go code to build this object using builders.
-
-```go
-func TableColoredBackgroundCellOptionsConverter(input TableColoredBackgroundCellOptions) string
 ```
 
 ### <span class="badge function"></span> ResourceDimensionConfigConverter

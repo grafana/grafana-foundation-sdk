@@ -15,6 +15,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	dashboardlist "github.com/grafana/grafana-foundation-sdk/go/dashboardlist"
 	datagrid "github.com/grafana/grafana-foundation-sdk/go/datagrid"
+	datasource "github.com/grafana/grafana-foundation-sdk/go/datasource"
 	debug "github.com/grafana/grafana-foundation-sdk/go/debug"
 	elasticsearch "github.com/grafana/grafana-foundation-sdk/go/elasticsearch"
 	expr "github.com/grafana/grafana-foundation-sdk/go/expr"
@@ -76,6 +77,7 @@ func RegisterDefaultPlugins() {
 	runtime.RegisterDataqueryVariant(azuremonitor.VariantConfig())
 	runtime.RegisterDataqueryVariant(bigquery.VariantConfig())
 	runtime.RegisterDataqueryVariant(cloudwatch.VariantConfig())
+	runtime.RegisterDataqueryVariant(datasource.VariantConfig())
 	runtime.RegisterDataqueryVariant(elasticsearch.VariantConfig())
 	runtime.RegisterDataqueryVariant(expr.VariantConfig())
 	runtime.RegisterDataqueryVariant(googlecloudmonitoring.VariantConfig())

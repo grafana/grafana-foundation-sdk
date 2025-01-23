@@ -26,7 +26,7 @@ align(\Grafana\Foundation\Common\FieldTextAlignment $align)
 
 ### <span class="badge object-method"></span> cellOptions
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableAutoCellOptions>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableSparklineCellOptions>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableBarGaugeCellOptions>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableColoredBackgroundCellOptions>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableColorTextCellOptions>|\Grafana\Foundation\Common\TableImageCellOptions|\Grafana\Foundation\Common\TableDataLinksCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions $cellOptions
+@param \Grafana\Foundation\Common\TableAutoCellOptions|\Grafana\Foundation\Common\TableSparklineCellOptions|\Grafana\Foundation\Common\TableBarGaugeCellOptions|\Grafana\Foundation\Common\TableColoredBackgroundCellOptions|\Grafana\Foundation\Common\TableColorTextCellOptions|\Grafana\Foundation\Common\TableImageCellOptions|\Grafana\Foundation\Common\TableDataLinksCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions $cellOptions
 
 ```php
 cellOptions($cellOptions)
