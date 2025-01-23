@@ -51,6 +51,3 @@ export interface TableSparklineCellOptions {
 ## Methods
 
 No methods.
-## See also
-
- * <span class="badge builder"></span> [TableSparklineCellOptionsBuilder](./builder-TableSparklineCellOptionsBuilder.md)

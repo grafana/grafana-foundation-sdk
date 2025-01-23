@@ -900,12 +900,13 @@ class CloudWatchAnnotationQuery(cogvariants.Dataquery):
 CloudWatchQuery: typing.TypeAlias = typing.Union['CloudWatchMetricsQuery', 'CloudWatchLogsQuery', 'CloudWatchAnnotationQuery']
 
 
+
+
+
 def variant_config() -> cogruntime.DataqueryConfig:
     decoding_map: dict[str, typing.Union[typing.Type[CloudWatchAnnotationQuery], typing.Type[CloudWatchLogsQuery], typing.Type[CloudWatchMetricsQuery]]] = {"Annotations": CloudWatchAnnotationQuery, "Logs": CloudWatchLogsQuery, "Metrics": CloudWatchMetricsQuery}
     return cogruntime.DataqueryConfig(
         identifier="cloudwatch",
         from_json_hook=lambda data: decoding_map[data["queryMode"]].from_json(data),
     )
-
-
 

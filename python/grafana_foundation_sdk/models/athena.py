@@ -3,8 +3,8 @@
 from ..cog import variants as cogvariants
 import typing
 from ..models import dashboard
-from ..cog import runtime as cogruntime
 import enum
+from ..cog import runtime as cogruntime
 
 
 class Dataquery(cogvariants.Dataquery):
@@ -96,13 +96,6 @@ class Dataquery(cogvariants.Dataquery):
         return cls(**args)
 
 
-def variant_config() -> cogruntime.DataqueryConfig:
-    return cogruntime.DataqueryConfig(
-        identifier="grafana-athena-datasource",
-        from_json_hook=Dataquery.from_json,
-    )
-
-
 DefaultKey: typing.Literal["__default"] = "__default"
 
 
@@ -159,4 +152,12 @@ class FormatOptions(enum.IntEnum):
     LOGS = 2
 
 
+
+
+
+def variant_config() -> cogruntime.DataqueryConfig:
+    return cogruntime.DataqueryConfig(
+        identifier="grafana-athena-datasource",
+        from_json_hook=Dataquery.from_json,
+    )
 

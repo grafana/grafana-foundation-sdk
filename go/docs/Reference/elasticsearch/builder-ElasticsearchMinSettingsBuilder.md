@@ -27,7 +27,7 @@ func (builder *ElasticsearchMinSettingsBuilder) Missing(missing string) *Elastic
 ### <span class="badge object-method"></span> Script
 
 ```go
-func (builder *ElasticsearchMinSettingsBuilder) Script(script cog.Builder[elasticsearch.InlineScript]) *ElasticsearchMinSettingsBuilder
+func (builder *ElasticsearchMinSettingsBuilder) Script(script elasticsearch.InlineScript) *ElasticsearchMinSettingsBuilder
 ```
 
 ## See also
