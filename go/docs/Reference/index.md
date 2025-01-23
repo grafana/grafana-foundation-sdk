@@ -16,6 +16,7 @@
  * <span class="badge package-core"></span> [dashboard](./dashboard/index.md)
  * <span class="badge package-variant-panelcfg"></span> [dashboardlist](./dashboardlist/index.md)
  * <span class="badge package-variant-panelcfg"></span> [datagrid](./datagrid/index.md)
+ * <span class="badge package-variant-dataquery"></span> [datasource](./datasource/index.md)
  * <span class="badge package-variant-panelcfg"></span> [debug](./debug/index.md)
  * <span class="badge package-variant-dataquery"></span> [elasticsearch](./elasticsearch/index.md)
  * <span class="badge package-variant-dataquery"></span> [expr](./expr/index.md)

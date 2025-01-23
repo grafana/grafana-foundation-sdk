@@ -3,8 +3,8 @@
 from ..cog import variants as cogvariants
 import typing
 from ..models import dashboard
-from ..cog import runtime as cogruntime
 import enum
+from ..cog import runtime as cogruntime
 
 
 class CloudMonitoringQuery(cogvariants.Dataquery):
@@ -101,13 +101,6 @@ class CloudMonitoringQuery(cogvariants.Dataquery):
             args["interval_ms"] = data["intervalMs"]        
 
         return cls(**args)
-
-
-def variant_config() -> cogruntime.DataqueryConfig:
-    return cogruntime.DataqueryConfig(
-        identifier="cloud-monitoring",
-        from_json_hook=CloudMonitoringQuery.from_json,
-    )
 
 
 class QueryType(enum.StrEnum):
@@ -696,4 +689,12 @@ class MetricFindQueryTypes(enum.StrEnum):
     SLO = "slo"
 
 
+
+
+
+def variant_config() -> cogruntime.DataqueryConfig:
+    return cogruntime.DataqueryConfig(
+        identifier="cloud-monitoring",
+        from_json_hook=CloudMonitoringQuery.from_json,
+    )
 

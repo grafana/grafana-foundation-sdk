@@ -42,3 +42,15 @@
  * <span class="badge builder"></span> [QueryEditorProperty](./builder-QueryEditorProperty.md)
  * <span class="badge builder"></span> [QueryEditorPropertyExpression](./builder-QueryEditorPropertyExpression.md)
  * <span class="badge builder"></span> [SQLExpression](./builder-SQLExpression.md)
+## Functions
+
+### <span class="badge function"></span> variant_config
+
+variant_config returns the configuration related to cloudwatch data queries.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```python
+def variant_config() -> variants.DataqueryConfig
+```
+

@@ -9,8 +9,8 @@ public class ElasticsearchExtendedStatsSettingsBuilder implements com.grafana.fo
     public ElasticsearchExtendedStatsSettingsBuilder() {
         this.internal = new ElasticsearchExtendedStatsSettings();
     }
-    public ElasticsearchExtendedStatsSettingsBuilder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
+    public ElasticsearchExtendedStatsSettingsBuilder script(InlineScript script) {
+    this.internal.script = script;
         return this;
     }
     

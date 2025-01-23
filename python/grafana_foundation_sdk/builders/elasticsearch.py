@@ -1558,21 +1558,23 @@ class Dataquery(cogbuilder.Builder[elasticsearch.Dataquery]):
     
         return self
     
-    def bucket_aggs(self, bucket_aggs: list[elasticsearch.BucketAggregation]) -> typing.Self:    
+    def bucket_aggs(self, bucket_aggs: list[cogbuilder.Builder[elasticsearch.BucketAggregation]]) -> typing.Self:    
         """
         List of bucket aggregations
         """
             
-        self._internal.bucket_aggs = bucket_aggs
+        bucket_aggs_resources = [r1.build() for r1 in bucket_aggs]
+        self._internal.bucket_aggs = bucket_aggs_resources
     
         return self
     
-    def metrics(self, metrics: list[elasticsearch.MetricAggregation]) -> typing.Self:    
+    def metrics(self, metrics: list[cogbuilder.Builder[elasticsearch.MetricAggregation]]) -> typing.Self:    
         """
         List of metric aggregations
         """
             
-        self._internal.metrics = metrics
+        metrics_resources = [r1.build() for r1 in metrics]
+        self._internal.metrics = metrics_resources
     
         return self
     
@@ -1805,8 +1807,9 @@ class ElasticsearchMetricAggregationWithInlineScriptSettings(cogbuilder.Builder[
         """
         return self._internal    
     
-    def script(self, script: elasticsearch.InlineScript) -> typing.Self:        
-        self._internal.script = script
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+        script_resource = script.build()
+        self._internal.script = script_resource
     
         return self
     
@@ -1823,8 +1826,9 @@ class ElasticsearchAverageSettings(cogbuilder.Builder[elasticsearch.Elasticsearc
         """
         return self._internal    
     
-    def script(self, script: elasticsearch.InlineScript) -> typing.Self:        
-        self._internal.script = script
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+        script_resource = script.build()
+        self._internal.script = script_resource
     
         return self
     
@@ -1846,8 +1850,9 @@ class ElasticsearchSumSettings(cogbuilder.Builder[elasticsearch.ElasticsearchSum
         """
         return self._internal    
     
-    def script(self, script: elasticsearch.InlineScript) -> typing.Self:        
-        self._internal.script = script
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+        script_resource = script.build()
+        self._internal.script = script_resource
     
         return self
     
@@ -1869,8 +1874,9 @@ class ElasticsearchMaxSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMax
         """
         return self._internal    
     
-    def script(self, script: elasticsearch.InlineScript) -> typing.Self:        
-        self._internal.script = script
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+        script_resource = script.build()
+        self._internal.script = script_resource
     
         return self
     
@@ -1892,8 +1898,9 @@ class ElasticsearchMinSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMin
         """
         return self._internal    
     
-    def script(self, script: elasticsearch.InlineScript) -> typing.Self:        
-        self._internal.script = script
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+        script_resource = script.build()
+        self._internal.script = script_resource
     
         return self
     
@@ -1915,8 +1922,9 @@ class ElasticsearchExtendedStatsSettings(cogbuilder.Builder[elasticsearch.Elasti
         """
         return self._internal    
     
-    def script(self, script: elasticsearch.InlineScript) -> typing.Self:        
-        self._internal.script = script
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+        script_resource = script.build()
+        self._internal.script = script_resource
     
         return self
     
@@ -1943,8 +1951,9 @@ class ElasticsearchPercentilesSettings(cogbuilder.Builder[elasticsearch.Elastics
         """
         return self._internal    
     
-    def script(self, script: elasticsearch.InlineScript) -> typing.Self:        
-        self._internal.script = script
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+        script_resource = script.build()
+        self._internal.script = script_resource
     
         return self
     
@@ -2155,8 +2164,9 @@ class ElasticsearchMovingFunctionSettings(cogbuilder.Builder[elasticsearch.Elast
     
         return self
     
-    def script(self, script: elasticsearch.InlineScript) -> typing.Self:        
-        self._internal.script = script
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+        script_resource = script.build()
+        self._internal.script = script_resource
     
         return self
     
@@ -2232,8 +2242,9 @@ class ElasticsearchBucketScriptSettings(cogbuilder.Builder[elasticsearch.Elastic
         """
         return self._internal    
     
-    def script(self, script: elasticsearch.InlineScript) -> typing.Self:        
-        self._internal.script = script
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+        script_resource = script.build()
+        self._internal.script = script_resource
     
         return self
     

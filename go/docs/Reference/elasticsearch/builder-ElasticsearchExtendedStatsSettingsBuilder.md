@@ -27,7 +27,7 @@ func (builder *ElasticsearchExtendedStatsSettingsBuilder) Missing(missing string
 ### <span class="badge object-method"></span> Script
 
 ```go
-func (builder *ElasticsearchExtendedStatsSettingsBuilder) Script(script cog.Builder[elasticsearch.InlineScript]) *ElasticsearchExtendedStatsSettingsBuilder
+func (builder *ElasticsearchExtendedStatsSettingsBuilder) Script(script elasticsearch.InlineScript) *ElasticsearchExtendedStatsSettingsBuilder
 ```
 
 ### <span class="badge object-method"></span> Sigma
