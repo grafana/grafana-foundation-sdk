@@ -28,7 +28,7 @@
 
 ### <span class="badge function"></span> variant_config
 
-variant_config returns the configuration related to  data queries.
+variant_config returns the configuration related to testdata data queries.
 
 This configuration describes how to unmarshal it, convert it to code, …
 
