@@ -352,7 +352,7 @@ final class DataqueryConverter
     
         
     $buffer = 'datasource(';
-        $arg0 ='(new \Grafana\Foundation\Dashboard\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
+        $arg0 =\var_export($input->datasource, true);
         $buffer .= $arg0;
         
     $buffer .= ')';

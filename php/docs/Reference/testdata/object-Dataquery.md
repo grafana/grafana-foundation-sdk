@@ -84,8 +84,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
+     * @var mixed|null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public $datasource;
 
 }
 ```
