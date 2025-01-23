@@ -19,11 +19,6 @@ passes:
   - schema_set_identifier: { package: statetimeline, identifier: state-timeline }
   - schema_set_identifier: { package: statushistory, identifier: status-history }
   - schema_set_identifier: { package: tableold, identifier: table-old }
-  # Datasources
-  - schema_set_identifier: { package: googlecloudmonitoring, identifier: cloud-monitoring }
-  - schema_set_identifier: { package: azuremonitor, identifier: grafana-azure-monitor-datasource }
-  - schema_set_identifier: { package: microsoftsqlserver, identifier: mssql }
-  - schema_set_identifier: { package: postgresql, identifier: postgres }
 
   #############
   # Dashboard #
