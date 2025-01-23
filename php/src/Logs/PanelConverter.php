@@ -384,19 +384,19 @@ final class PanelConverter
         foreach ($input->fieldConfig->defaults->mappings as $arg1) {
         switch (true) {
             case $arg1 instanceof \Grafana\Foundation\Dashboard\ValueMap:
-                $disjunctionarg1 = \Grafana\Foundation\Dashboard\ValueMapConverter::convert($arg1);
+                $disjunctionarg1 ='(new \Grafana\Foundation\Dashboard\ValueMap(type: '.\var_export($arg1->type, true).',options: '.\var_export($arg1->options, true).',))';
                 $tmpmappingsarg1 = $disjunctionarg1;
                 break;
             case $arg1 instanceof \Grafana\Foundation\Dashboard\RangeMap:
-                $disjunctionarg1 = \Grafana\Foundation\Dashboard\RangeMapConverter::convert($arg1);
+                $disjunctionarg1 ='(new \Grafana\Foundation\Dashboard\RangeMap(type: '.\var_export($arg1->type, true).',options: '.'(new \Grafana\Foundation\Dashboard\DashboardRangeMapOptions('.(($arg1->options->from !== null) ? 'from: '.\var_export($arg1->options->from, true).', ' : '').''.(($arg1->options->to !== null) ? 'to: '.\var_export($arg1->options->to, true).', ' : '').'result: '.'(new \Grafana\Foundation\Dashboard\ValueMappingResult('.(($arg1->options->result->text !== null) ? 'text: '.\var_export($arg1->options->result->text, true).', ' : '').''.(($arg1->options->result->color !== null) ? 'color: '.\var_export($arg1->options->result->color, true).', ' : '').''.(($arg1->options->result->icon !== null) ? 'icon: '.\var_export($arg1->options->result->icon, true).', ' : '').''.(($arg1->options->result->index !== null) ? 'index: '.\var_export($arg1->options->result->index, true).', ' : '').'))'.',))'.',))';
                 $tmpmappingsarg1 = $disjunctionarg1;
                 break;
             case $arg1 instanceof \Grafana\Foundation\Dashboard\RegexMap:
-                $disjunctionarg1 = \Grafana\Foundation\Dashboard\RegexMapConverter::convert($arg1);
+                $disjunctionarg1 ='(new \Grafana\Foundation\Dashboard\RegexMap(type: '.\var_export($arg1->type, true).',options: '.'(new \Grafana\Foundation\Dashboard\DashboardRegexMapOptions(pattern: '.\var_export($arg1->options->pattern, true).',result: '.'(new \Grafana\Foundation\Dashboard\ValueMappingResult('.(($arg1->options->result->text !== null) ? 'text: '.\var_export($arg1->options->result->text, true).', ' : '').''.(($arg1->options->result->color !== null) ? 'color: '.\var_export($arg1->options->result->color, true).', ' : '').''.(($arg1->options->result->icon !== null) ? 'icon: '.\var_export($arg1->options->result->icon, true).', ' : '').''.(($arg1->options->result->index !== null) ? 'index: '.\var_export($arg1->options->result->index, true).', ' : '').'))'.',))'.',))';
                 $tmpmappingsarg1 = $disjunctionarg1;
                 break;
             case $arg1 instanceof \Grafana\Foundation\Dashboard\SpecialValueMap:
-                $disjunctionarg1 = \Grafana\Foundation\Dashboard\SpecialValueMapConverter::convert($arg1);
+                $disjunctionarg1 ='(new \Grafana\Foundation\Dashboard\SpecialValueMap(type: '.\var_export($arg1->type, true).',options: '.'(new \Grafana\Foundation\Dashboard\DashboardSpecialValueMapOptions(match: '.'\Grafana\Foundation\Dashboard\SpecialValueMatch::fromValue("'.$arg1->options->match.'")'.',result: '.'(new \Grafana\Foundation\Dashboard\ValueMappingResult('.(($arg1->options->result->text !== null) ? 'text: '.\var_export($arg1->options->result->text, true).', ' : '').''.(($arg1->options->result->color !== null) ? 'color: '.\var_export($arg1->options->result->color, true).', ' : '').''.(($arg1->options->result->icon !== null) ? 'icon: '.\var_export($arg1->options->result->icon, true).', ' : '').''.(($arg1->options->result->index !== null) ? 'index: '.\var_export($arg1->options->result->index, true).', ' : '').'))'.',))'.',))';
                 $tmpmappingsarg1 = $disjunctionarg1;
                 break;
             default:

@@ -31,13 +31,8 @@ func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) Bu
 	return *builder.internal, nil
 }
 
-func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) Script(script cog.Builder[InlineScript]) *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder {
-	scriptResource, err := script.Build()
-	if err != nil {
-		builder.errors["script"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Script = &scriptResource
+func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) Script(script InlineScript) *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder {
+	builder.internal.Script = &script
 
 	return builder
 }

@@ -44,6 +44,3 @@ Validate checks all the validation constraints that may be defined on `ValueMap`
 func (valueMap *ValueMap) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [ValueMapBuilder](./builder-ValueMapBuilder.md)
