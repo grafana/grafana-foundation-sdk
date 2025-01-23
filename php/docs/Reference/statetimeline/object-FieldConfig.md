@@ -10,9 +10,29 @@ class FieldConfig implements \JsonSerializable
 {
     public ?int $lineWidth;
 
+    public ?\Grafana\Foundation\Common\AxisPlacement $axisPlacement;
+
+    public ?\Grafana\Foundation\Common\AxisColorMode $axisColorMode;
+
+    public ?string $axisLabel;
+
+    public ?float $axisWidth;
+
+    public ?float $axisSoftMin;
+
+    public ?float $axisSoftMax;
+
+    public ?bool $axisGridShow;
+
+    public ?\Grafana\Foundation\Common\ScaleDistributionConfig $scaleDistribution;
+
+    public ?bool $axisCenteredZero;
+
     public ?\Grafana\Foundation\Common\HideSeriesConfig $hideFrom;
 
     public ?int $fillOpacity;
+
+    public ?bool $axisBorderShow;
 
 }
 ```

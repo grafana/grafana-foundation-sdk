@@ -26,6 +26,60 @@ Controls value alignment on the timelines
 alignValue(\Grafana\Foundation\Common\TimelineValueAlignment $alignValue)
 ```
 
+### <span class="badge object-method"></span> axisBorderShow
+
+```php
+axisBorderShow(bool $axisBorderShow)
+```
+
+### <span class="badge object-method"></span> axisCenteredZero
+
+```php
+axisCenteredZero(bool $axisCenteredZero)
+```
+
+### <span class="badge object-method"></span> axisColorMode
+
+```php
+axisColorMode(\Grafana\Foundation\Common\AxisColorMode $axisColorMode)
+```
+
+### <span class="badge object-method"></span> axisGridShow
+
+```php
+axisGridShow(bool $axisGridShow)
+```
+
+### <span class="badge object-method"></span> axisLabel
+
+```php
+axisLabel(string $axisLabel)
+```
+
+### <span class="badge object-method"></span> axisPlacement
+
+```php
+axisPlacement(\Grafana\Foundation\Common\AxisPlacement $axisPlacement)
+```
+
+### <span class="badge object-method"></span> axisSoftMax
+
+```php
+axisSoftMax(float $axisSoftMax)
+```
+
+### <span class="badge object-method"></span> axisSoftMin
+
+```php
+axisSoftMin(float $axisSoftMin)
+```
+
+### <span class="badge object-method"></span> axisWidth
+
+```php
+axisWidth(float $axisWidth)
+```
+
 ### <span class="badge object-method"></span> cacheTimeout
 
 Sets panel queries cache timeout.
@@ -294,6 +348,14 @@ Controls the row height
 
 ```php
 rowHeight(float $rowHeight)
+```
+
+### <span class="badge object-method"></span> scaleDistribution
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDistributionConfig> $scaleDistribution
+
+```php
+scaleDistribution(\Grafana\Foundation\Cog\Builder $scaleDistribution)
 ```
 
 ### <span class="badge object-method"></span> showValue

@@ -614,6 +614,136 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    public function axisPlacement(\Grafana\Foundation\Common\AxisPlacement $axisPlacement): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->axisPlacement = $axisPlacement;
+    
+        return $this;
+    }
+    public function axisColorMode(\Grafana\Foundation\Common\AxisColorMode $axisColorMode): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->axisColorMode = $axisColorMode;
+    
+        return $this;
+    }
+    public function axisLabel(string $axisLabel): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->axisLabel = $axisLabel;
+    
+        return $this;
+    }
+    public function axisWidth(float $axisWidth): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->axisWidth = $axisWidth;
+    
+        return $this;
+    }
+    public function axisSoftMin(float $axisSoftMin): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->axisSoftMin = $axisSoftMin;
+    
+        return $this;
+    }
+    public function axisSoftMax(float $axisSoftMax): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->axisSoftMax = $axisSoftMax;
+    
+        return $this;
+    }
+    public function axisGridShow(bool $axisGridShow): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->axisGridShow = $axisGridShow;
+    
+        return $this;
+    }
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDistributionConfig> $scaleDistribution
+     */
+    public function scaleDistribution(\Grafana\Foundation\Cog\Builder $scaleDistribution): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $scaleDistributionResource = $scaleDistribution->build();
+        $this->internal->fieldConfig->defaults->custom->scaleDistribution = $scaleDistributionResource;
+    
+        return $this;
+    }
+    public function axisCenteredZero(bool $axisCenteredZero): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->axisCenteredZero = $axisCenteredZero;
+    
+        return $this;
+    }
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\HideSeriesConfig> $hideFrom
      */
@@ -646,6 +776,20 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         }
         assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
         $this->internal->fieldConfig->defaults->custom->fillOpacity = $fillOpacity;
+    
+        return $this;
+    }
+    public function axisBorderShow(bool $axisBorderShow): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->axisBorderShow = $axisBorderShow;
     
         return $this;
     }

@@ -449,6 +449,133 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    axisPlacement(axisPlacement: common.AxisPlacement): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statushistory.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.axisPlacement = axisPlacement;
+        return this;
+    }
+
+    axisColorMode(axisColorMode: common.AxisColorMode): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statushistory.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.axisColorMode = axisColorMode;
+        return this;
+    }
+
+    axisLabel(axisLabel: string): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statushistory.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.axisLabel = axisLabel;
+        return this;
+    }
+
+    axisWidth(axisWidth: number): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statushistory.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.axisWidth = axisWidth;
+        return this;
+    }
+
+    axisSoftMin(axisSoftMin: number): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statushistory.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.axisSoftMin = axisSoftMin;
+        return this;
+    }
+
+    axisSoftMax(axisSoftMax: number): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statushistory.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.axisSoftMax = axisSoftMax;
+        return this;
+    }
+
+    axisGridShow(axisGridShow: boolean): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statushistory.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.axisGridShow = axisGridShow;
+        return this;
+    }
+
+    scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statushistory.defaultFieldConfig();
+        }
+        const scaleDistributionResource = scaleDistribution.build();
+        this.internal.fieldConfig.defaults.custom.scaleDistribution = scaleDistributionResource;
+        return this;
+    }
+
+    axisCenteredZero(axisCenteredZero: boolean): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statushistory.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.axisCenteredZero = axisCenteredZero;
+        return this;
+    }
+
     hideFrom(hideFrom: cog.Builder<common.HideSeriesConfig>): this {
         if (!this.internal.fieldConfig) {
             this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
@@ -478,6 +605,20 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
             throw new Error("fillOpacity must be <= 100");
         }
         this.internal.fieldConfig.defaults.custom.fillOpacity = fillOpacity;
+        return this;
+    }
+
+    axisBorderShow(axisBorderShow: boolean): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statushistory.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.axisBorderShow = axisBorderShow;
         return this;
     }
 }

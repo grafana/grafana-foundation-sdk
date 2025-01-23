@@ -631,6 +631,123 @@ final class PanelConverter
     
     
     }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->axisPlacement !== null) {
+    
+        
+    $buffer = 'axisPlacement(';
+        $arg0 ='\Grafana\Foundation\Common\AxisPlacement::fromValue("'.$input->fieldConfig->defaults->custom->axisPlacement.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->axisColorMode !== null) {
+    
+        
+    $buffer = 'axisColorMode(';
+        $arg0 ='\Grafana\Foundation\Common\AxisColorMode::fromValue("'.$input->fieldConfig->defaults->custom->axisColorMode.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->axisLabel !== null && $input->fieldConfig->defaults->custom->axisLabel !== "") {
+    
+        
+    $buffer = 'axisLabel(';
+        $arg0 =\var_export($input->fieldConfig->defaults->custom->axisLabel, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->axisWidth !== null) {
+    
+        
+    $buffer = 'axisWidth(';
+        $arg0 =\var_export($input->fieldConfig->defaults->custom->axisWidth, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->axisSoftMin !== null) {
+    
+        
+    $buffer = 'axisSoftMin(';
+        $arg0 =\var_export($input->fieldConfig->defaults->custom->axisSoftMin, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->axisSoftMax !== null) {
+    
+        
+    $buffer = 'axisSoftMax(';
+        $arg0 =\var_export($input->fieldConfig->defaults->custom->axisSoftMax, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->axisGridShow !== null) {
+    
+        
+    $buffer = 'axisGridShow(';
+        $arg0 =\var_export($input->fieldConfig->defaults->custom->axisGridShow, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->scaleDistribution !== null) {
+    
+        
+    $buffer = 'scaleDistribution(';
+        $arg0 = \Grafana\Foundation\Common\ScaleDistributionConfigConverter::convert($input->fieldConfig->defaults->custom->scaleDistribution);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->axisCenteredZero !== null) {
+    
+        
+    $buffer = 'axisCenteredZero(';
+        $arg0 =\var_export($input->fieldConfig->defaults->custom->axisCenteredZero, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->hideFrom !== null) {
     
         
@@ -649,6 +766,19 @@ final class PanelConverter
         
     $buffer = 'fillOpacity(';
         $arg0 =\var_export($input->fieldConfig->defaults->custom->fillOpacity, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->axisBorderShow !== null) {
+    
+        
+    $buffer = 'axisBorderShow(';
+        $arg0 =\var_export($input->fieldConfig->defaults->custom->axisBorderShow, true);
         $buffer .= $arg0;
         
     $buffer .= ')';

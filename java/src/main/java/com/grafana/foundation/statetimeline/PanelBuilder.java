@@ -20,6 +20,9 @@ import com.grafana.foundation.common.VisibilityMode;
 import com.grafana.foundation.common.TimelineValueAlignment;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.grafana.foundation.common.VizTooltipOptions;
+import com.grafana.foundation.common.AxisPlacement;
+import com.grafana.foundation.common.AxisColorMode;
+import com.grafana.foundation.common.ScaleDistributionConfig;
 import com.grafana.foundation.common.HideSeriesConfig;
 
 public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
@@ -404,6 +407,150 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
+    public PanelBuilder axisPlacement(AxisPlacement axisPlacement) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        com.grafana.foundation.statetimeline.FieldConfig fieldConfigResource = (com.grafana.foundation.statetimeline.FieldConfig) this.internal.fieldConfig.defaults.custom;
+        fieldConfigResource.axisPlacement = axisPlacement;
+    this.internal.fieldConfig.defaults.custom = fieldConfigResource;
+        return this;
+    }
+    
+    public PanelBuilder axisColorMode(AxisColorMode axisColorMode) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        com.grafana.foundation.statetimeline.FieldConfig fieldConfigResource = (com.grafana.foundation.statetimeline.FieldConfig) this.internal.fieldConfig.defaults.custom;
+        fieldConfigResource.axisColorMode = axisColorMode;
+    this.internal.fieldConfig.defaults.custom = fieldConfigResource;
+        return this;
+    }
+    
+    public PanelBuilder axisLabel(String axisLabel) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        com.grafana.foundation.statetimeline.FieldConfig fieldConfigResource = (com.grafana.foundation.statetimeline.FieldConfig) this.internal.fieldConfig.defaults.custom;
+        fieldConfigResource.axisLabel = axisLabel;
+    this.internal.fieldConfig.defaults.custom = fieldConfigResource;
+        return this;
+    }
+    
+    public PanelBuilder axisWidth(Double axisWidth) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        com.grafana.foundation.statetimeline.FieldConfig fieldConfigResource = (com.grafana.foundation.statetimeline.FieldConfig) this.internal.fieldConfig.defaults.custom;
+        fieldConfigResource.axisWidth = axisWidth;
+    this.internal.fieldConfig.defaults.custom = fieldConfigResource;
+        return this;
+    }
+    
+    public PanelBuilder axisSoftMin(Double axisSoftMin) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        com.grafana.foundation.statetimeline.FieldConfig fieldConfigResource = (com.grafana.foundation.statetimeline.FieldConfig) this.internal.fieldConfig.defaults.custom;
+        fieldConfigResource.axisSoftMin = axisSoftMin;
+    this.internal.fieldConfig.defaults.custom = fieldConfigResource;
+        return this;
+    }
+    
+    public PanelBuilder axisSoftMax(Double axisSoftMax) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        com.grafana.foundation.statetimeline.FieldConfig fieldConfigResource = (com.grafana.foundation.statetimeline.FieldConfig) this.internal.fieldConfig.defaults.custom;
+        fieldConfigResource.axisSoftMax = axisSoftMax;
+    this.internal.fieldConfig.defaults.custom = fieldConfigResource;
+        return this;
+    }
+    
+    public PanelBuilder axisGridShow(Boolean axisGridShow) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        com.grafana.foundation.statetimeline.FieldConfig fieldConfigResource = (com.grafana.foundation.statetimeline.FieldConfig) this.internal.fieldConfig.defaults.custom;
+        fieldConfigResource.axisGridShow = axisGridShow;
+    this.internal.fieldConfig.defaults.custom = fieldConfigResource;
+        return this;
+    }
+    
+    public PanelBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        com.grafana.foundation.statetimeline.FieldConfig fieldConfigResource = (com.grafana.foundation.statetimeline.FieldConfig) this.internal.fieldConfig.defaults.custom;
+        fieldConfigResource.scaleDistribution = scaleDistribution.build();
+    this.internal.fieldConfig.defaults.custom = fieldConfigResource;
+        return this;
+    }
+    
+    public PanelBuilder axisCenteredZero(Boolean axisCenteredZero) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        com.grafana.foundation.statetimeline.FieldConfig fieldConfigResource = (com.grafana.foundation.statetimeline.FieldConfig) this.internal.fieldConfig.defaults.custom;
+        fieldConfigResource.axisCenteredZero = axisCenteredZero;
+    this.internal.fieldConfig.defaults.custom = fieldConfigResource;
+        return this;
+    }
+    
     public PanelBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
@@ -435,6 +582,22 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		}
         com.grafana.foundation.statetimeline.FieldConfig fieldConfigResource = (com.grafana.foundation.statetimeline.FieldConfig) this.internal.fieldConfig.defaults.custom;
         fieldConfigResource.fillOpacity = fillOpacity;
+    this.internal.fieldConfig.defaults.custom = fieldConfigResource;
+        return this;
+    }
+    
+    public PanelBuilder axisBorderShow(Boolean axisBorderShow) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        com.grafana.foundation.statetimeline.FieldConfig fieldConfigResource = (com.grafana.foundation.statetimeline.FieldConfig) this.internal.fieldConfig.defaults.custom;
+        fieldConfigResource.axisBorderShow = axisBorderShow;
     this.internal.fieldConfig.defaults.custom = fieldConfigResource;
         return this;
     }

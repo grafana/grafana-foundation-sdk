@@ -8,8 +8,18 @@ title: <span class="badge object-type-class"></span> FieldConfig
 ```python
 class FieldConfig:
     line_width: typing.Optional[int]
+    axis_placement: typing.Optional[common.AxisPlacement]
+    axis_color_mode: typing.Optional[common.AxisColorMode]
+    axis_label: typing.Optional[str]
+    axis_width: typing.Optional[float]
+    axis_soft_min: typing.Optional[float]
+    axis_soft_max: typing.Optional[float]
+    axis_grid_show: typing.Optional[bool]
+    scale_distribution: typing.Optional[common.ScaleDistributionConfig]
+    axis_centered_zero: typing.Optional[bool]
     hide_from: typing.Optional[common.HideSeriesConfig]
     fill_opacity: typing.Optional[int]
+    axis_border_show: typing.Optional[bool]
 ```
 ## Methods
 

@@ -8,8 +8,18 @@ title: <span class="badge object-type-struct"></span> FieldConfig
 ```go
 type FieldConfig struct {
     LineWidth *uint32 `json:"lineWidth,omitempty"`
+    AxisPlacement *common.AxisPlacement `json:"axisPlacement,omitempty"`
+    AxisColorMode *common.AxisColorMode `json:"axisColorMode,omitempty"`
+    AxisLabel *string `json:"axisLabel,omitempty"`
+    AxisWidth *float64 `json:"axisWidth,omitempty"`
+    AxisSoftMin *float64 `json:"axisSoftMin,omitempty"`
+    AxisSoftMax *float64 `json:"axisSoftMax,omitempty"`
+    AxisGridShow *bool `json:"axisGridShow,omitempty"`
+    ScaleDistribution *common.ScaleDistributionConfig `json:"scaleDistribution,omitempty"`
+    AxisCenteredZero *bool `json:"axisCenteredZero,omitempty"`
     HideFrom *common.HideSeriesConfig `json:"hideFrom,omitempty"`
     FillOpacity *uint32 `json:"fillOpacity,omitempty"`
+    AxisBorderShow *bool `json:"axisBorderShow,omitempty"`
 }
 ```
 ## Methods

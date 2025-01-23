@@ -578,6 +578,114 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisPlacement != nil {
+
+		buffer.WriteString(`AxisPlacement(`)
+		arg0 := cog.Dump(*input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisPlacement)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisColorMode != nil {
+
+		buffer.WriteString(`AxisColorMode(`)
+		arg0 := cog.Dump(*input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisColorMode)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisLabel != nil && *input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisLabel != "" {
+
+		buffer.WriteString(`AxisLabel(`)
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisLabel)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisWidth != nil {
+
+		buffer.WriteString(`AxisWidth(`)
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisWidth)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisSoftMin != nil {
+
+		buffer.WriteString(`AxisSoftMin(`)
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisSoftMin)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisSoftMax != nil {
+
+		buffer.WriteString(`AxisSoftMax(`)
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisSoftMax)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisGridShow != nil {
+
+		buffer.WriteString(`AxisGridShow(`)
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisGridShow)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).ScaleDistribution != nil {
+
+		buffer.WriteString(`ScaleDistribution(`)
+		arg0 := common.ScaleDistributionConfigConverter(*input.FieldConfig.Defaults.Custom.(*FieldConfig).ScaleDistribution)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisCenteredZero != nil {
+
+		buffer.WriteString(`AxisCenteredZero(`)
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisCenteredZero)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).HideFrom != nil {
 
 		buffer.WriteString(`HideFrom(`)
@@ -594,6 +702,18 @@ func PanelConverter(input dashboard.Panel) string {
 
 		buffer.WriteString(`FillOpacity(`)
 		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Custom.(*FieldConfig).FillOpacity)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisBorderShow != nil {
+
+		buffer.WriteString(`AxisBorderShow(`)
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisBorderShow)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
