@@ -27,7 +27,7 @@ func (builder *ElasticsearchMaxSettingsBuilder) Missing(missing string) *Elastic
 ### <span class="badge object-method"></span> Script
 
 ```go
-func (builder *ElasticsearchMaxSettingsBuilder) Script(script cog.Builder[elasticsearch.InlineScript]) *ElasticsearchMaxSettingsBuilder
+func (builder *ElasticsearchMaxSettingsBuilder) Script(script elasticsearch.InlineScript) *ElasticsearchMaxSettingsBuilder
 ```
 
 ## See also

@@ -147,7 +147,6 @@
  * <span class="badge builder"></span> [GeoHashGridSettingsBuilder](./builder-GeoHashGridSettingsBuilder.md)
  * <span class="badge builder"></span> [HistogramBuilder](./builder-HistogramBuilder.md)
  * <span class="badge builder"></span> [HistogramSettingsBuilder](./builder-HistogramSettingsBuilder.md)
- * <span class="badge builder"></span> [InlineScriptBuilder](./builder-InlineScriptBuilder.md)
  * <span class="badge builder"></span> [LogsBuilder](./builder-LogsBuilder.md)
  * <span class="badge builder"></span> [MaxBuilder](./builder-MaxBuilder.md)
  * <span class="badge builder"></span> [MetricAggregationTypeBuilder](./builder-MetricAggregationTypeBuilder.md)
@@ -1053,14 +1052,6 @@ MetricAggregationWithMissingSupportConverter accepts a `MetricAggregationWithMis
 
 ```go
 func MetricAggregationWithMissingSupportConverter(input MetricAggregationWithMissingSupport) string
-```
-
-### <span class="badge function"></span> InlineScriptConverter
-
-InlineScriptConverter accepts a `InlineScript` object and generates the Go code to build this object using builders.
-
-```go
-func InlineScriptConverter(input InlineScript) string
 ```
 
 ### <span class="badge function"></span> MetricAggregationWithInlineScriptConverter

@@ -21,7 +21,7 @@ def build() -> cloudwatch.QueryEditorArrayExpression
 ### <span class="badge object-method"></span> expressions
 
 ```python
-def expressions(expressions: list[cloudwatch.QueryEditorExpression]) -> typing.Self
+def expressions(expressions: list[cogbuilder.Builder[cloudwatch.QueryEditorExpression]]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> type_val

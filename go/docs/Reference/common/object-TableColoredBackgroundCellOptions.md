@@ -41,6 +41,3 @@ Validate checks all the validation constraints that may be defined on `TableColo
 func (tableColoredBackgroundCellOptions *TableColoredBackgroundCellOptions) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [TableColoredBackgroundCellOptionsBuilder](./builder-TableColoredBackgroundCellOptionsBuilder.md)

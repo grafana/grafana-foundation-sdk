@@ -37,14 +37,16 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     }
 
     // List of bucket aggregations
-    bucketAggs(bucketAggs: elasticsearch.BucketAggregation[]): this {
-        this.internal.bucketAggs = bucketAggs;
+    bucketAggs(bucketAggs: cog.Builder<elasticsearch.BucketAggregation>[]): this {
+        const bucketAggsResources = bucketAggs.map(builder1 => builder1.build());
+        this.internal.bucketAggs = bucketAggsResources;
         return this;
     }
 
     // List of metric aggregations
-    metrics(metrics: elasticsearch.MetricAggregation[]): this {
-        this.internal.metrics = metrics;
+    metrics(metrics: cog.Builder<elasticsearch.MetricAggregation>[]): this {
+        const metricsResources = metrics.map(builder1 => builder1.build());
+        this.internal.metrics = metricsResources;
         return this;
     }
 

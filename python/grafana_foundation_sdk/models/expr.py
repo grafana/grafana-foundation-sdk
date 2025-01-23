@@ -1,20 +1,12 @@
 # Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
 import typing
-from ..cog import runtime as cogruntime
 from ..cog import variants as cogvariants
 from ..models import dashboard
+from ..cog import runtime as cogruntime
 
 
 Expr: typing.TypeAlias = typing.Union['TypeMath', 'TypeReduce', 'TypeResample', 'TypeClassicConditions', 'TypeThreshold', 'TypeSql']
-
-
-def variant_config() -> cogruntime.DataqueryConfig:
-    decoding_map: dict[str, typing.Union[typing.Type[TypeClassicConditions], typing.Type[TypeMath], typing.Type[TypeReduce], typing.Type[TypeResample], typing.Type[TypeSql], typing.Type[TypeThreshold]]] = {"classic_conditions": TypeClassicConditions, "math": TypeMath, "reduce": TypeReduce, "resample": TypeResample, "sql": TypeSql, "threshold": TypeThreshold}
-    return cogruntime.DataqueryConfig(
-        identifier="__expr__",
-        from_json_hook=lambda data: decoding_map[data["type"]].from_json(data),
-    )
 
 
 class TypeMath(cogvariants.Dataquery):
@@ -1393,4 +1385,13 @@ class ExprTypeSqlTimeRange:
         return cls(**args)
 
 
+
+
+
+def variant_config() -> cogruntime.DataqueryConfig:
+    decoding_map: dict[str, typing.Union[typing.Type[TypeClassicConditions], typing.Type[TypeMath], typing.Type[TypeReduce], typing.Type[TypeResample], typing.Type[TypeSql], typing.Type[TypeThreshold]]] = {"classic_conditions": TypeClassicConditions, "math": TypeMath, "reduce": TypeReduce, "resample": TypeResample, "sql": TypeSql, "threshold": TypeThreshold}
+    return cogruntime.DataqueryConfig(
+        identifier="__expr__",
+        from_json_hook=lambda data: decoding_map[data["type"]].from_json(data),
+    )
 

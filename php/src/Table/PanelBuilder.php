@@ -359,7 +359,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
     /**
      * Convert input values into a display string
-     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\ValueMap>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\RangeMap>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\RegexMap>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\SpecialValueMap>> $mappings
+     * @param array<\Grafana\Foundation\Dashboard\ValueMap|\Grafana\Foundation\Dashboard\RangeMap|\Grafana\Foundation\Dashboard\RegexMap|\Grafana\Foundation\Dashboard\SpecialValueMap> $mappings
      */
     public function mappings(array $mappings): static
     {    
@@ -367,11 +367,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
             $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
         }
         assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
-            $mappingsResources = [];
-            foreach ($mappings as $r1) {
-                    $mappingsResources[] = $r1->build();
-            }
-        $this->internal->fieldConfig->defaults->mappings = $mappingsResources;
+        $this->internal->fieldConfig->defaults->mappings = $mappings;
     
         return $this;
     }
@@ -616,7 +612,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * @param \Grafana\Foundation\Common\TableAutoCellOptions|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableSparklineCellOptions>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableBarGaugeCellOptions>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TableColoredBackgroundCellOptions>|\Grafana\Foundation\Common\TableColorTextCellOptions|\Grafana\Foundation\Common\TableImageCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions $cellOptions
+     * @param \Grafana\Foundation\Common\TableAutoCellOptions|\Grafana\Foundation\Common\TableSparklineCellOptions|\Grafana\Foundation\Common\TableBarGaugeCellOptions|\Grafana\Foundation\Common\TableColoredBackgroundCellOptions|\Grafana\Foundation\Common\TableColorTextCellOptions|\Grafana\Foundation\Common\TableImageCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions $cellOptions
      */
     public function cellOptions( $cellOptions): static
     {    
@@ -628,9 +624,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
             $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Table\FieldConfig();
         }
         assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Table\FieldConfig);
-        /** @var \Grafana\Foundation\Common\TableAutoCellOptions|\Grafana\Foundation\Common\TableSparklineCellOptions|\Grafana\Foundation\Common\TableBarGaugeCellOptions|\Grafana\Foundation\Common\TableColoredBackgroundCellOptions|\Grafana\Foundation\Common\TableColorTextCellOptions|\Grafana\Foundation\Common\TableImageCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions $cellOptionsResource */
-        $cellOptionsResource = $cellOptions instanceof \Grafana\Foundation\Cog\Builder ? $cellOptions->build() : $cellOptions;
-        $this->internal->fieldConfig->defaults->custom->cellOptions = $cellOptionsResource;
+        $this->internal->fieldConfig->defaults->custom->cellOptions = $cellOptions;
     
         return $this;
     }
