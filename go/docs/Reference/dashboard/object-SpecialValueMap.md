@@ -45,6 +45,3 @@ Validate checks all the validation constraints that may be defined on `SpecialVa
 func (specialValueMap *SpecialValueMap) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [SpecialValueMapBuilder](./builder-SpecialValueMapBuilder.md)

@@ -31,7 +31,7 @@ alias(alias: string)
 List of bucket aggregations
 
 ```typescript
-bucketAggs(bucketAggs: elasticsearch.BucketAggregation[])
+bucketAggs(bucketAggs: cog.Builder<elasticsearch.BucketAggregation>[])
 ```
 
 ### <span class="badge object-method"></span> datasource
@@ -65,7 +65,7 @@ hide(hide: boolean)
 List of metric aggregations
 
 ```typescript
-metrics(metrics: elasticsearch.MetricAggregation[])
+metrics(metrics: cog.Builder<elasticsearch.MetricAggregation>[])
 ```
 
 ### <span class="badge object-method"></span> query

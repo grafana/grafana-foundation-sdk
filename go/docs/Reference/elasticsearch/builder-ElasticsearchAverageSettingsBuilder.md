@@ -27,7 +27,7 @@ func (builder *ElasticsearchAverageSettingsBuilder) Missing(missing string) *Ela
 ### <span class="badge object-method"></span> Script
 
 ```go
-func (builder *ElasticsearchAverageSettingsBuilder) Script(script cog.Builder[elasticsearch.InlineScript]) *ElasticsearchAverageSettingsBuilder
+func (builder *ElasticsearchAverageSettingsBuilder) Script(script elasticsearch.InlineScript) *ElasticsearchAverageSettingsBuilder
 ```
 
 ## See also

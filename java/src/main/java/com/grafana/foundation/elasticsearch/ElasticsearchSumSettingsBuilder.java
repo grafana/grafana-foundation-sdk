@@ -9,8 +9,8 @@ public class ElasticsearchSumSettingsBuilder implements com.grafana.foundation.c
     public ElasticsearchSumSettingsBuilder() {
         this.internal = new ElasticsearchSumSettings();
     }
-    public ElasticsearchSumSettingsBuilder script(com.grafana.foundation.cog.Builder<InlineScript> script) {
-    this.internal.script = script.build();
+    public ElasticsearchSumSettingsBuilder script(InlineScript script) {
+    this.internal.script = script;
         return this;
     }
     

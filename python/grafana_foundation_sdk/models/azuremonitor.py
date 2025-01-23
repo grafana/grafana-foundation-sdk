@@ -3,8 +3,8 @@
 from ..cog import variants as cogvariants
 import typing
 from ..models import dashboard
-from ..cog import runtime as cogruntime
 import enum
+from ..cog import runtime as cogruntime
 
 
 class AzureMonitorQuery(cogvariants.Dataquery):
@@ -133,13 +133,6 @@ class AzureMonitorQuery(cogvariants.Dataquery):
             args["region"] = data["region"]        
 
         return cls(**args)
-
-
-def variant_config() -> cogruntime.DataqueryConfig:
-    return cogruntime.DataqueryConfig(
-        identifier="grafana-azure-monitor-datasource",
-        from_json_hook=AzureMonitorQuery.from_json,
-    )
 
 
 class AzureQueryType(enum.StrEnum):
@@ -1007,4 +1000,12 @@ class WorkspacesQuery:
 GrafanaTemplateVariableQuery: typing.TypeAlias = typing.Union['AppInsightsMetricNameQuery', 'AppInsightsGroupByQuery', 'SubscriptionsQuery', 'ResourceGroupsQuery', 'ResourceNamesQuery', 'MetricNamespaceQuery', 'MetricDefinitionsQuery', 'MetricNamesQuery', 'WorkspacesQuery', 'UnknownQuery']
 
 
+
+
+
+def variant_config() -> cogruntime.DataqueryConfig:
+    return cogruntime.DataqueryConfig(
+        identifier="grafana-azure-monitor-datasource",
+        from_json_hook=AzureMonitorQuery.from_json,
+    )
 
