@@ -11,7 +11,6 @@ import (
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
-	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 type TestDataQueryType string
@@ -1015,7 +1014,7 @@ type Dataquery struct {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Datasource any `json:"datasource,omitempty"`
 }
 
 func (resource Dataquery) ImplementsDataqueryVariant() {}
@@ -1368,9 +1367,7 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 	// Field "datasource"
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
-
-			resource.Datasource = &dashboard.DataSourceRef{}
-			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+			if err := json.Unmarshal(fields["datasource"], &resource.Datasource); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
 
@@ -1628,14 +1625,9 @@ func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 			return false
 		}
 	}
-	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Datasource, other.Datasource) {
 		return false
-	}
-
-	if resource.Datasource != nil {
-		if !resource.Datasource.Equals(*other.Datasource) {
-			return false
-		}
 	}
 
 	return true
@@ -1682,11 +1674,6 @@ func (resource Dataquery) Validate() error {
 			if err := resource.Points[i1][i2].Validate(); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("points["+strconv.Itoa(i1)+"]["+strconv.Itoa(i2)+"]", err)...)
 			}
-		}
-	}
-	if resource.Datasource != nil {
-		if err := resource.Datasource.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 		}
 	}
 
