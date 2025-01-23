@@ -69,7 +69,7 @@ def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
 @deprecated Legacy template variable support.
 
 ```python
-def grafana_template_variable_fn(grafana_template_variable_fn: azuremonitor.GrafanaTemplateVariableQuery) -> typing.Self
+def grafana_template_variable_fn(grafana_template_variable_fn: cogbuilder.Builder[azuremonitor.GrafanaTemplateVariableQuery]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> hide

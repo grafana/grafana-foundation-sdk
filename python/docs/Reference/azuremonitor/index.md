@@ -46,3 +46,15 @@
  * <span class="badge builder"></span> [SubscriptionsQuery](./builder-SubscriptionsQuery.md)
  * <span class="badge builder"></span> [UnknownQuery](./builder-UnknownQuery.md)
  * <span class="badge builder"></span> [WorkspacesQuery](./builder-WorkspacesQuery.md)
+## Functions
+
+### <span class="badge function"></span> variant_config
+
+variant_config returns the configuration related to grafana-azure-monitor-datasource data queries.
+
+This configuration describes how to unmarshal it, convert it to code, …
+
+```python
+def variant_config() -> variants.DataqueryConfig
+```
+

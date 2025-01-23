@@ -31,13 +31,8 @@ func (builder *ElasticsearchPercentilesSettingsBuilder) Build() (ElasticsearchPe
 	return *builder.internal, nil
 }
 
-func (builder *ElasticsearchPercentilesSettingsBuilder) Script(script cog.Builder[InlineScript]) *ElasticsearchPercentilesSettingsBuilder {
-	scriptResource, err := script.Build()
-	if err != nil {
-		builder.errors["script"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Script = &scriptResource
+func (builder *ElasticsearchPercentilesSettingsBuilder) Script(script InlineScript) *ElasticsearchPercentilesSettingsBuilder {
+	builder.internal.Script = &script
 
 	return builder
 }
