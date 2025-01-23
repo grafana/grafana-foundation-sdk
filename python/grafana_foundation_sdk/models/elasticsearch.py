@@ -1987,13 +1987,6 @@ class Dataquery(cogvariants.Dataquery):
         return cls(**args)
 
 
-def variant_config() -> cogruntime.DataqueryConfig:
-    return cogruntime.DataqueryConfig(
-        identifier="elasticsearch",
-        from_json_hook=Dataquery.from_json,
-    )
-
-
 class ElasticsearchDateHistogramSettings:
     interval: typing.Optional[str]
     min_doc_count: typing.Optional[str]
@@ -2806,4 +2799,12 @@ class ElasticsearchTopMetricsSettings:
         return cls(**args)
 
 
+
+
+
+def variant_config() -> cogruntime.DataqueryConfig:
+    return cogruntime.DataqueryConfig(
+        identifier="elasticsearch",
+        from_json_hook=Dataquery.from_json,
+    )
 

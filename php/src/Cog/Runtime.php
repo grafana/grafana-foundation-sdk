@@ -47,6 +47,7 @@ final class Runtime
         $this->registerDataqueryVariant(\Grafana\Foundation\Azuremonitor\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Bigquery\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Cloudwatch\VariantConfig::get());
+        $this->registerDataqueryVariant(\Grafana\Foundation\Datasource\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Elasticsearch\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Expr\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Googlecloudmonitoring\VariantConfig::get());

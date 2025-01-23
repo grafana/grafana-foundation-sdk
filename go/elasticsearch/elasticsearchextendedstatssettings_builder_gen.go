@@ -31,13 +31,8 @@ func (builder *ElasticsearchExtendedStatsSettingsBuilder) Build() (Elasticsearch
 	return *builder.internal, nil
 }
 
-func (builder *ElasticsearchExtendedStatsSettingsBuilder) Script(script cog.Builder[InlineScript]) *ElasticsearchExtendedStatsSettingsBuilder {
-	scriptResource, err := script.Build()
-	if err != nil {
-		builder.errors["script"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Script = &scriptResource
+func (builder *ElasticsearchExtendedStatsSettingsBuilder) Script(script InlineScript) *ElasticsearchExtendedStatsSettingsBuilder {
+	builder.internal.Script = &script
 
 	return builder
 }
