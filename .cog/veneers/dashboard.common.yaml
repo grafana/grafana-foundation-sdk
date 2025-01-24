@@ -207,6 +207,8 @@ builders:
   # Panels composability
   - compose:
       by_variant: panelcfg
+      # so that the dashboardv2 package can do its magic
+      preserve_original_builders: true
       source_builder_name: dashboard.Panel
       plugin_discriminator_field: type
       composition_map:
