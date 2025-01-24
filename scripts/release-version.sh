@@ -24,6 +24,8 @@ COG_VERSION="v0.0.x" # hardcoded for now
 COG_CMD=${COG_CMD:-"cog"} # Command used to run `cog`
 GH_CLI_CMD=${GH_CLI_CMD:-"gh"} # Command used to run `gh` (GitHub cli)
 
+CODEGEN_PIPELINE_CONFIG=${CODEGEN_PIPELINE_CONFIG:-"${__dir}/../.cog/config.yaml"} # Codegen pipeline config file to use.
+
 KIND_REGISTRY_PATH=${KIND_REGISTRY_PATH:-'../kind-registry'} # Path to the kind-registry
 
 KIND_REGISTRY_REPO=${KIND_REGISTRY_REPO:-'https://github.com/grafana/kind-registry.git'}
@@ -62,7 +64,7 @@ function run_codegen() {
   shift
 
   $COG_CMD generate \
-    --config "${__dir}/../.cog/config.yaml" \
+    --config "${CODEGEN_PIPELINE_CONFIG}" \
     --parameters "${extra_parameters}"
 }
 
