@@ -400,6 +400,9 @@ passes:
   # Others #
   ##########
 
+  - omit_fields:
+      fields: [common.DataSourceRef.apiVersion]
+
   - retype_object:
       object: common.TimeZone
       as:
