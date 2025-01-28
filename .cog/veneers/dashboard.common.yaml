@@ -50,28 +50,18 @@ builders:
             path: overrides
             value:
               envelope:
-                type: &type_FieldConfigSourceOverrides
-                  kind: ref
-                  ref: {referred_pkg: dashboard, referred_type: DashboardFieldConfigSourceOverrides}
                 values:
                   # Matcher
-                  - path: &path_matcher
-                      - {identifier: matcher, type: {kind: ref, ref: {referred_pkg: dashboard, referred_type: MatcherConfig}}}
+                  - field: matcher
                     value:
                       envelope:
-                        type: &type_MatcherConfig
-                          kind: ref
-                          ref: { referred_pkg: dashboard, referred_type: MatcherConfig }
                         values:
-                          - path:
-                              - {identifier: id, type: *type_string}
+                          - field: id
                             value: {constant: byName}
-                          - path:
-                              - {identifier: options, type: {kind: scalar, scalar: {scalar_kind: any}}}
+                          - field: options
                             value: {argument: {name: name, type: *type_string}}
                   # Properties
-                  - path:
-                      - { identifier: properties, type: *type_DynamicConfigValue_array }
+                  - field: properties
                     value:
                       argument: { name: properties, type: *type_DynamicConfigValue_array }
 
@@ -92,23 +82,18 @@ builders:
             path: overrides
             value:
               envelope:
-                type: *type_FieldConfigSourceOverrides
                 values:
                   # Matcher
-                  - path: *path_matcher
+                  - field: matcher
                     value:
                       envelope:
-                        type: *type_MatcherConfig
                         values:
-                          - path:
-                              - {identifier: id, type: *type_string}
+                          - field: id
                             value: {constant: byRegexp}
-                          - path:
-                              - {identifier: options, type: {kind: scalar, scalar: {scalar_kind: any}}}
+                          - field: options
                             value: {argument: {name: regexp, type: *type_string}}
                   # Properties
-                  - path:
-                      - {identifier: properties, type: *type_DynamicConfigValue_array}
+                  - field: properties
                     value:
                       argument: {name: properties, type: *type_DynamicConfigValue_array}
 
@@ -129,23 +114,18 @@ builders:
             path: overrides
             value:
               envelope:
-                type: *type_FieldConfigSourceOverrides
                 values:
                   # Matcher
-                  - path: *path_matcher
+                  - field: matcher
                     value:
                       envelope:
-                        type: *type_MatcherConfig
                         values:
-                          - path:
-                              - {identifier: id, type: *type_string}
+                          - field: id
                             value: {constant: byType}
-                          - path:
-                              - {identifier: options, type: {kind: scalar, scalar: {scalar_kind: any}}}
+                          - field: options
                             value: {argument: {name: fieldType, type: *type_string}}
                   # Properties
-                  - path:
-                      - {identifier: properties, type: *type_DynamicConfigValue_array}
+                  - field: properties
                     value:
                       argument: {name: properties, type: *type_DynamicConfigValue_array}
 
@@ -164,23 +144,18 @@ builders:
             path: overrides
             value:
               envelope:
-                type: *type_FieldConfigSourceOverrides
                 values:
                   # Matcher
-                  - path: *path_matcher
+                  - field: matcher
                     value:
                       envelope:
-                        type: *type_MatcherConfig
                         values:
-                          - path:
-                              - {identifier: id, type: *type_string}
+                          - field: id
                             value: {constant: byFrameRefID}
-                          - path:
-                              - {identifier: options, type: {kind: scalar, scalar: {scalar_kind: any}}}
+                          - field: options
                             value: {argument: {name: queryRefId, type: *type_string}}
                   # Properties
-                  - path:
-                      - {identifier: properties, type: *type_DynamicConfigValue_array}
+                  - field: properties
                     value:
                       argument: {name: properties, type: *type_DynamicConfigValue_array}
 
@@ -275,7 +250,7 @@ builders:
   - promote_options_to_constructor:
       by_object: DashboardLink
       options: [title]
-      
+
   - default_to_constant:
       by_object: Dashboard
       options: [schemaVersion, editable]
