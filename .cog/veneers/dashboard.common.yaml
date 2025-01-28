@@ -25,6 +25,165 @@ builders:
   - omit: { by_object: DynamicConfigValue }
   - omit: { by_object: DataTransformerConfig }
 
+  #######################
+  # Overrides shortcuts #
+  #######################
+
+  # byName
+  - add_option:
+      by_object: FieldConfigSource
+      option:
+        name: overrideByName
+        comments:
+          - Adds override rules for a specific field, referred to by its name.
+        arguments:
+          - name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+          - name: properties
+            type: &type_DynamicConfigValue_array
+              kind: array
+              array: {value_type: {kind: ref, ref: {referred_pkg: dashboard, referred_type: DynamicConfigValue}}}
+        assignments:
+          - method: append
+            path: overrides
+            value:
+              envelope:
+                type: &type_FieldConfigSourceOverrides
+                  kind: ref
+                  ref: {referred_pkg: dashboard, referred_type: DashboardFieldConfigSourceOverrides}
+                values:
+                  # Matcher
+                  - path: &path_matcher
+                      - {identifier: matcher, type: {kind: ref, ref: {referred_pkg: dashboard, referred_type: MatcherConfig}}}
+                    value:
+                      envelope:
+                        type: &type_MatcherConfig
+                          kind: ref
+                          ref: { referred_pkg: dashboard, referred_type: MatcherConfig }
+                        values:
+                          - path:
+                              - {identifier: id, type: *type_string}
+                            value: {constant: byName}
+                          - path:
+                              - {identifier: options, type: {kind: scalar, scalar: {scalar_kind: any}}}
+                            value: {argument: {name: name, type: *type_string}}
+                  # Properties
+                  - path:
+                      - { identifier: properties, type: *type_DynamicConfigValue_array }
+                    value:
+                      argument: { name: properties, type: *type_DynamicConfigValue_array }
+
+  # byRegexp
+  - add_option:
+      by_object: FieldConfigSource
+      option:
+        name: overrideByRegexp
+        comments:
+          - Adds override rules for the fields whose name match the given regexp.
+        arguments:
+          - name: regexp
+            type: *type_string
+          - name: properties
+            type: *type_DynamicConfigValue_array
+        assignments:
+          - method: append
+            path: overrides
+            value:
+              envelope:
+                type: *type_FieldConfigSourceOverrides
+                values:
+                  # Matcher
+                  - path: *path_matcher
+                    value:
+                      envelope:
+                        type: *type_MatcherConfig
+                        values:
+                          - path:
+                              - {identifier: id, type: *type_string}
+                            value: {constant: byRegexp}
+                          - path:
+                              - {identifier: options, type: {kind: scalar, scalar: {scalar_kind: any}}}
+                            value: {argument: {name: regexp, type: *type_string}}
+                  # Properties
+                  - path:
+                      - {identifier: properties, type: *type_DynamicConfigValue_array}
+                    value:
+                      argument: {name: properties, type: *type_DynamicConfigValue_array}
+
+  # byType
+  - add_option:
+      by_object: FieldConfigSource
+      option:
+        name: overrideByFieldType
+        comments:
+          - Adds override rules for all the fields of the given type.
+        arguments:
+          - name: fieldType
+            type: *type_string
+          - name: properties
+            type: *type_DynamicConfigValue_array
+        assignments:
+          - method: append
+            path: overrides
+            value:
+              envelope:
+                type: *type_FieldConfigSourceOverrides
+                values:
+                  # Matcher
+                  - path: *path_matcher
+                    value:
+                      envelope:
+                        type: *type_MatcherConfig
+                        values:
+                          - path:
+                              - {identifier: id, type: *type_string}
+                            value: {constant: byType}
+                          - path:
+                              - {identifier: options, type: {kind: scalar, scalar: {scalar_kind: any}}}
+                            value: {argument: {name: fieldType, type: *type_string}}
+                  # Properties
+                  - path:
+                      - {identifier: properties, type: *type_DynamicConfigValue_array}
+                    value:
+                      argument: {name: properties, type: *type_DynamicConfigValue_array}
+
+  # byFrameRefID
+  - add_option:
+      by_object: FieldConfigSource
+      option:
+        name: overrideByQuery
+        arguments:
+          - name: queryRefId
+            type: *type_string
+          - name: properties
+            type: *type_DynamicConfigValue_array
+        assignments:
+          - method: append
+            path: overrides
+            value:
+              envelope:
+                type: *type_FieldConfigSourceOverrides
+                values:
+                  # Matcher
+                  - path: *path_matcher
+                    value:
+                      envelope:
+                        type: *type_MatcherConfig
+                        values:
+                          - path:
+                              - {identifier: id, type: *type_string}
+                            value: {constant: byFrameRefID}
+                          - path:
+                              - {identifier: options, type: {kind: scalar, scalar: {scalar_kind: any}}}
+                            value: {argument: {name: queryRefId, type: *type_string}}
+                  # Properties
+                  - path:
+                      - {identifier: properties, type: *type_DynamicConfigValue_array}
+                    value:
+                      argument: {name: properties, type: *type_DynamicConfigValue_array}
+
   # RowPanel → Row
   - rename:
       by_object: RowPanel
