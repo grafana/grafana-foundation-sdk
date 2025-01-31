@@ -71,6 +71,22 @@ def panelcfg_config(variant: str) -> Optional[PanelCfgConfig]:
     return Runtime().panelcfg_config(variant)
 
 
+def panelcfg_options_from_json(data: dict[str, Any], panel_type: str) -> Any:
+    config = Runtime().panelcfg_config(panel_type)
+    if config is None or config.options_from_json_hook is None:
+        return data
+
+    return config.options_from_json_hook(data)
+
+
+def panelcfg_field_config_from_json(data: dict[str, Any], panel_type: str) -> Any:
+    config = Runtime().panelcfg_config(panel_type)
+    if config is None or config.field_config_from_json_hook is None:
+        return data
+
+    return config.field_config_from_json_hook(data)
+
+
 def register_panelcfg_variant(variant: PanelCfgConfig):
     Runtime().register_panelcfg_variant(variant)
 
