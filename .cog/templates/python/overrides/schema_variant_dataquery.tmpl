@@ -12,7 +12,7 @@
 {{- $fromJsonSetup := "" -}}
 {{- $fromJson := print (.Schema.EntryPoint|formatObjectName) ".from_json" -}}
 {{- if resolvesToDisjunction .Schema.EntryPointType -}}
-    {{- $code := disjunctionFromJSON .Schema.EntryPointType "data" -}}
+    {{- $code := unmarshalForType .Schema.EntryPointType "data" "entrypoint" -}}
     {{- $fromJsonSetup = print $code.Setup "\n    " -}}
     {{- $fromJson = print "lambda data: " $code.DecodingCall -}}
 {{- end -}}
