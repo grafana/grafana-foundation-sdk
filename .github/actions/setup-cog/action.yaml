@@ -4,7 +4,7 @@ inputs:
   version:
     description: "Cog version to install"
     required: true
-    default: "0.0.19"
+    default: "0.0.20"
 runs:
   using: "composite"
   steps:
