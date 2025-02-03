@@ -35,7 +35,7 @@ jobs:
       - name: Validate cog's config
         run: |
           cog inspect --config .cog/config.yaml \
-            --builder-ir \
+            --ir builders \
             --parameters 'kind_registry_path=./kind-registry'
 
   diff_preview:
