@@ -4,15 +4,14 @@
     "python312@3.12",
     "go@1.23",
     "php83Packages.composer@2.7",
-    "php83Packages.phpstan@1.11",
-    "php83Packages.psalm@5.25",
+    "php83Packages.phpstan@2.1.1",
     "yarn@1.22",
     "gradle@8.10"
   ],
   "shell": {
     "init_hook": [
       "echo 'Entering Python venv' && . $VENV_DIR/bin/activate",
-      "echo 'Installing Python dependencies' && pip install -r requirements.txt"
+      "echo 'Installing Python dependencies' && pip install -qq -r requirements.txt"
     ]
   }
 }
