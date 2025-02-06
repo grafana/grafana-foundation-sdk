@@ -322,7 +322,7 @@ class CanvasElementOptions:
         if "border" in data:
             args["border"] = LineConfig.from_json(data["border"])
         if "connections" in data:
-            args["connections"] = data["connections"]        
+            args["connections"] = [CanvasConnection.from_json(item) for item in data["connections"]]        
 
         return cls(**args)
 
@@ -391,7 +391,7 @@ class CanvasOptionsRoot:
         if "name" in data:
             args["name"] = data["name"]
         if "elements" in data:
-            args["elements"] = data["elements"]        
+            args["elements"] = [CanvasElementOptions.from_json(item) for item in data["elements"]]        
 
         return cls(**args)
 

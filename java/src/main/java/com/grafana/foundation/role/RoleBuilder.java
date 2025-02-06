@@ -10,27 +10,27 @@ public class RoleBuilder implements com.grafana.foundation.cog.Builder<Role> {
         this.internal = new Role();
     }
     public RoleBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public RoleBuilder displayName(String displayName) {
-    this.internal.displayName = displayName;
+        this.internal.displayName = displayName;
         return this;
     }
     
     public RoleBuilder groupName(String groupName) {
-    this.internal.groupName = groupName;
+        this.internal.groupName = groupName;
         return this;
     }
     
     public RoleBuilder description(String description) {
-    this.internal.description = description;
+        this.internal.description = description;
         return this;
     }
     
     public RoleBuilder hidden(Boolean hidden) {
-    this.internal.hidden = hidden;
+        this.internal.hidden = hidden;
         return this;
     }
     public Role build() {

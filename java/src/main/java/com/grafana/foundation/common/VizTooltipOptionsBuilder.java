@@ -10,12 +10,12 @@ public class VizTooltipOptionsBuilder implements com.grafana.foundation.cog.Buil
         this.internal = new VizTooltipOptions();
     }
     public VizTooltipOptionsBuilder mode(TooltipDisplayMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     
     public VizTooltipOptionsBuilder sort(SortOrder sort) {
-    this.internal.sort = sort;
+        this.internal.sort = sort;
         return this;
     }
     public VizTooltipOptions build() {

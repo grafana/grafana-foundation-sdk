@@ -10,12 +10,12 @@ public class ElasticsearchRateSettingsBuilder implements com.grafana.foundation.
         this.internal = new ElasticsearchRateSettings();
     }
     public ElasticsearchRateSettingsBuilder unit(String unit) {
-    this.internal.unit = unit;
+        this.internal.unit = unit;
         return this;
     }
     
     public ElasticsearchRateSettingsBuilder mode(String mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     public ElasticsearchRateSettings build() {

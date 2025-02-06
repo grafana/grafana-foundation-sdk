@@ -10,17 +10,17 @@ public class CodeOptionsBuilder implements com.grafana.foundation.cog.Builder<Co
         this.internal = new CodeOptions();
     }
     public CodeOptionsBuilder language(CodeLanguage language) {
-    this.internal.language = language;
+        this.internal.language = language;
         return this;
     }
     
     public CodeOptionsBuilder showLineNumbers(Boolean showLineNumbers) {
-    this.internal.showLineNumbers = showLineNumbers;
+        this.internal.showLineNumbers = showLineNumbers;
         return this;
     }
     
     public CodeOptionsBuilder showMiniMap(Boolean showMiniMap) {
-    this.internal.showMiniMap = showMiniMap;
+        this.internal.showMiniMap = showMiniMap;
         return this;
     }
     public CodeOptions build() {

@@ -522,7 +522,7 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Barchart\Options && $input->options->barRadius !== null && $input->options->barRadius !== 0) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Barchart\Options && $input->options->barRadius !== null && $input->options->barRadius !== (float) 0) {
     
         
     $buffer = 'barRadius(';
@@ -600,7 +600,7 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Barchart\Options && $input->options->barWidth !== 0.97) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Barchart\Options && $input->options->barWidth !== (float) 0.97) {
     
         
     $buffer = 'barWidth(';
@@ -613,7 +613,7 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Barchart\Options && $input->options->groupWidth !== 0.7) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Barchart\Options && $input->options->groupWidth !== (float) 0.7) {
     
         
     $buffer = 'groupWidth(';

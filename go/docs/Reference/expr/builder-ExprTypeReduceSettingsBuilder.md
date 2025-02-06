@@ -29,7 +29,7 @@ Possible enum values:
  - `"replaceNN"` Replace non-numbers
 
 ```go
-func (builder *ExprTypeReduceSettingsBuilder) Mode(mode expr.TypeReduceMode) *ExprTypeReduceSettingsBuilder
+func (builder *ExprTypeReduceSettingsBuilder) Mode(mode expr.ExprTypeReduceSettingsMode) *ExprTypeReduceSettingsBuilder
 ```
 
 ### <span class="badge object-method"></span> ReplaceWithValue

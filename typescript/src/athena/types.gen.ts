@@ -38,7 +38,13 @@ export const defaultDataquery = (): Dataquery => ({
 	_implementsDataqueryVariant: () => {},
 });
 
-export const defaultKey = "__default";
+export enum FormatOptions {
+	TimeSeries = 0,
+	Table = 1,
+	Logs = 2,
+}
+
+export const defaultFormatOptions = (): FormatOptions => (FormatOptions.TimeSeries);
 
 export interface ConnectionArgs {
 	region?: string;
@@ -56,11 +62,5 @@ export const defaultConnectionArgs = (): ConnectionArgs => ({
 	resultReuseMaxAgeInMinutes: 60,
 });
 
-export enum FormatOptions {
-	TimeSeries = 0,
-	Table = 1,
-	Logs = 2,
-}
-
-export const defaultFormatOptions = (): FormatOptions => (FormatOptions.TimeSeries);
+export const defaultKey = "__default";
 

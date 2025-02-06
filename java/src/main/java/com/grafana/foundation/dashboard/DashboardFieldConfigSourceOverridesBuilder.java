@@ -11,12 +11,12 @@ public class DashboardFieldConfigSourceOverridesBuilder implements com.grafana.f
         this.internal = new DashboardFieldConfigSourceOverrides();
     }
     public DashboardFieldConfigSourceOverridesBuilder matcher(MatcherConfig matcher) {
-    this.internal.matcher = matcher;
+        this.internal.matcher = matcher;
         return this;
     }
     
     public DashboardFieldConfigSourceOverridesBuilder properties(List<DynamicConfigValue> properties) {
-    this.internal.properties = properties;
+        this.internal.properties = properties;
         return this;
     }
     public DashboardFieldConfigSourceOverrides build() {

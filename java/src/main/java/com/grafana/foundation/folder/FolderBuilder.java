@@ -10,17 +10,17 @@ public class FolderBuilder implements com.grafana.foundation.cog.Builder<Folder>
         this.internal = new Folder();
     }
     public FolderBuilder uid(String uid) {
-    this.internal.uid = uid;
+        this.internal.uid = uid;
         return this;
     }
     
     public FolderBuilder title(String title) {
-    this.internal.title = title;
+        this.internal.title = title;
         return this;
     }
     
     public FolderBuilder description(String description) {
-    this.internal.description = description;
+        this.internal.description = description;
         return this;
     }
     public Folder build() {

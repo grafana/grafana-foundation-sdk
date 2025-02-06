@@ -34,18 +34,6 @@ export const defaultLibraryPanel = (): LibraryPanel => ({
 	model: defaultPanelModel(),
 });
 
-export interface LibraryElementDTOMetaUser {
-	id: number;
-	name: string;
-	avatarUrl: string;
-}
-
-export const defaultLibraryElementDTOMetaUser = (): LibraryElementDTOMetaUser => ({
-	id: 0,
-	name: "",
-	avatarUrl: "",
-});
-
 export interface LibraryElementDTOMeta {
 	folderName: string;
 	folderUid: string;
@@ -64,6 +52,18 @@ export const defaultLibraryElementDTOMeta = (): LibraryElementDTOMeta => ({
 	updated: "",
 	createdBy: defaultLibraryElementDTOMetaUser(),
 	updatedBy: defaultLibraryElementDTOMetaUser(),
+});
+
+export interface LibraryElementDTOMetaUser {
+	id: number;
+	name: string;
+	avatarUrl: string;
+}
+
+export const defaultLibraryElementDTOMetaUser = (): LibraryElementDTOMetaUser => ({
+	id: 0,
+	name: "",
+	avatarUrl: "",
 });
 
 // Dashboard panels are the basic visualization building blocks.

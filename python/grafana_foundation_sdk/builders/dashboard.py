@@ -370,389 +370,6 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         return self
     
 
-class AnnotationTarget(cogbuilder.Builder[dashboard.AnnotationTarget]):    
-    """
-    TODO: this should be a regular DataQuery that depends on the selected dashboard
-    these match the properties of the "grafana" datasouce that is default in most dashboards
-    """
-    
-    _internal: dashboard.AnnotationTarget
-
-    def __init__(self):
-        self._internal = dashboard.AnnotationTarget()
-
-    def build(self) -> dashboard.AnnotationTarget:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def limit(self, limit: int) -> typing.Self:    
-        """
-        Only required/valid for the grafana datasource...
-        but code+tests is already depending on it so hard to change
-        """
-            
-        self._internal.limit = limit
-    
-        return self
-    
-    def match_any(self, match_any: bool) -> typing.Self:    
-        """
-        Only required/valid for the grafana datasource...
-        but code+tests is already depending on it so hard to change
-        """
-            
-        self._internal.match_any = match_any
-    
-        return self
-    
-    def tags(self, tags: list[str]) -> typing.Self:    
-        """
-        Only required/valid for the grafana datasource...
-        but code+tests is already depending on it so hard to change
-        """
-            
-        self._internal.tags = tags
-    
-        return self
-    
-    def type_val(self, type_val: str) -> typing.Self:    
-        """
-        Only required/valid for the grafana datasource...
-        but code+tests is already depending on it so hard to change
-        """
-            
-        self._internal.type_val = type_val
-    
-        return self
-    
-
-class AnnotationPanelFilter(cogbuilder.Builder[dashboard.AnnotationPanelFilter]):    
-    _internal: dashboard.AnnotationPanelFilter
-
-    def __init__(self):
-        self._internal = dashboard.AnnotationPanelFilter()
-
-    def build(self) -> dashboard.AnnotationPanelFilter:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def exclude(self, exclude: bool) -> typing.Self:    
-        """
-        Should the specified panels be included or excluded
-        """
-            
-        self._internal.exclude = exclude
-    
-        return self
-    
-    def ids(self, ids: list[int]) -> typing.Self:    
-        """
-        Panel IDs that should be included or excluded
-        """
-            
-        self._internal.ids = ids
-    
-        return self
-    
-
-class AnnotationQuery(cogbuilder.Builder[dashboard.AnnotationQuery]):    
-    """
-    TODO docs
-    FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
-    """
-    
-    _internal: dashboard.AnnotationQuery
-
-    def __init__(self):
-        self._internal = dashboard.AnnotationQuery()
-
-    def build(self) -> dashboard.AnnotationQuery:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def name(self, name: str) -> typing.Self:    
-        """
-        Name of annotation.
-        """
-            
-        self._internal.name = name
-    
-        return self
-    
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
-        """
-        Datasource where the annotations data is
-        """
-            
-        self._internal.datasource = datasource
-    
-        return self
-    
-    def enable(self, enable: bool) -> typing.Self:    
-        """
-        When enabled the annotation query is issued with every dashboard refresh
-        """
-            
-        self._internal.enable = enable
-    
-        return self
-    
-    def hide(self, hide: bool) -> typing.Self:    
-        """
-        Annotation queries can be toggled on or off at the top of the dashboard.
-        When hide is true, the toggle is not shown in the dashboard.
-        """
-            
-        self._internal.hide = hide
-    
-        return self
-    
-    def icon_color(self, icon_color: str) -> typing.Self:    
-        """
-        Color to use for the annotation event markers
-        """
-            
-        self._internal.icon_color = icon_color
-    
-        return self
-    
-    def filter_val(self, filter_val: cogbuilder.Builder[dashboard.AnnotationPanelFilter]) -> typing.Self:    
-        """
-        Filters to apply when fetching annotations
-        """
-            
-        filter_val_resource = filter_val.build()
-        self._internal.filter_val = filter_val_resource
-    
-        return self
-    
-    def target(self, target: cogbuilder.Builder[dashboard.AnnotationTarget]) -> typing.Self:    
-        """
-        TODO.. this should just be a normal query target
-        """
-            
-        target_resource = target.build()
-        self._internal.target = target_resource
-    
-        return self
-    
-    def type_val(self, type_val: str) -> typing.Self:    
-        """
-        TODO -- this should not exist here, it is based on the --grafana-- datasource
-        """
-            
-        self._internal.type_val = type_val
-    
-        return self
-    
-    def built_in(self, built_in: float) -> typing.Self:    
-        """
-        Set to 1 for the standard annotation query all dashboards have by default.
-        """
-            
-        self._internal.built_in = built_in
-    
-        return self
-    
-    def expr(self, expr: str) -> typing.Self:        
-        self._internal.expr = expr
-    
-        return self
-    
-
-class DashboardLink(cogbuilder.Builder[dashboard.DashboardLink]):    
-    """
-    Links with references to other dashboards or external resources
-    """
-    
-    _internal: dashboard.DashboardLink
-
-    def __init__(self, title: str):
-        self._internal = dashboard.DashboardLink()        
-        self._internal.title = title
-
-    def build(self) -> dashboard.DashboardLink:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def title(self, title: str) -> typing.Self:    
-        """
-        Title to display with the link
-        """
-            
-        self._internal.title = title
-    
-        return self
-    
-    def type_val(self, type_val: dashboard.DashboardLinkType) -> typing.Self:    
-        """
-        Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
-        """
-            
-        self._internal.type_val = type_val
-    
-        return self
-    
-    def icon(self, icon: str) -> typing.Self:    
-        """
-        Icon name to be displayed with the link
-        """
-            
-        self._internal.icon = icon
-    
-        return self
-    
-    def tooltip(self, tooltip: str) -> typing.Self:    
-        """
-        Tooltip to display when the user hovers their mouse over it
-        """
-            
-        self._internal.tooltip = tooltip
-    
-        return self
-    
-    def url(self, url: str) -> typing.Self:    
-        """
-        Link URL. Only required/valid if the type is link
-        """
-            
-        self._internal.url = url
-    
-        return self
-    
-    def tags(self, tags: list[str]) -> typing.Self:    
-        """
-        List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
-        """
-            
-        self._internal.tags = tags
-    
-        return self
-    
-    def as_dropdown(self, as_dropdown: bool) -> typing.Self:    
-        """
-        If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
-        """
-            
-        self._internal.as_dropdown = as_dropdown
-    
-        return self
-    
-    def target_blank(self, target_blank: bool) -> typing.Self:    
-        """
-        If true, the link will be opened in a new tab
-        """
-            
-        self._internal.target_blank = target_blank
-    
-        return self
-    
-    def include_vars(self, include_vars: bool) -> typing.Self:    
-        """
-        If true, includes current template variables values in the link as query params
-        """
-            
-        self._internal.include_vars = include_vars
-    
-        return self
-    
-    def keep_time(self, keep_time: bool) -> typing.Self:    
-        """
-        If true, includes current time range in the link as query params
-        """
-            
-        self._internal.keep_time = keep_time
-    
-        return self
-    
-
-class FieldColor(cogbuilder.Builder[dashboard.FieldColor]):    
-    """
-    Map a field to a color.
-    """
-    
-    _internal: dashboard.FieldColor
-
-    def __init__(self):
-        self._internal = dashboard.FieldColor()
-
-    def build(self) -> dashboard.FieldColor:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def mode(self, mode: dashboard.FieldColorModeId) -> typing.Self:    
-        """
-        The main color scheme mode.
-        """
-            
-        self._internal.mode = mode
-    
-        return self
-    
-    def fixed_color(self, fixed_color: str) -> typing.Self:    
-        """
-        The fixed color value for fixed or shades color modes.
-        """
-            
-        self._internal.fixed_color = fixed_color
-    
-        return self
-    
-    def series_by(self, series_by: dashboard.FieldColorSeriesByMode) -> typing.Self:    
-        """
-        Some visualizations need to know how to assign a series color from by value color schemes.
-        """
-            
-        self._internal.series_by = series_by
-    
-        return self
-    
-
-class ThresholdsConfig(cogbuilder.Builder[dashboard.ThresholdsConfig]):    
-    """
-    Thresholds configuration for the panel
-    """
-    
-    _internal: dashboard.ThresholdsConfig
-
-    def __init__(self):
-        self._internal = dashboard.ThresholdsConfig()
-
-    def build(self) -> dashboard.ThresholdsConfig:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def mode(self, mode: dashboard.ThresholdsMode) -> typing.Self:    
-        """
-        Thresholds mode.
-        """
-            
-        self._internal.mode = mode
-    
-        return self
-    
-    def steps(self, steps: list[dashboard.Threshold]) -> typing.Self:    
-        """
-        Must be sorted by 'value', first value is always -Infinity
-        """
-            
-        self._internal.steps = steps
-    
-        return self
-    
-
 class TimePicker(cogbuilder.Builder[dashboard.TimePickerConfig]):    
     """
     Time picker configuration
@@ -794,105 +411,6 @@ class TimePicker(cogbuilder.Builder[dashboard.TimePickerConfig]):
         """
             
         self._internal.time_options = time_options
-    
-        return self
-    
-
-class Snapshot(cogbuilder.Builder[dashboard.Snapshot]):    
-    """
-    A dashboard snapshot shares an interactive dashboard publicly.
-    It is a read-only version of a dashboard, and is not editable.
-    It is possible to create a snapshot of a snapshot.
-    Grafana strips away all sensitive information from the dashboard.
-    Sensitive information stripped: queries (metric, template,annotation) and panel links.
-    """
-    
-    _internal: dashboard.Snapshot
-
-    def __init__(self):
-        self._internal = dashboard.Snapshot()
-
-    def build(self) -> dashboard.Snapshot:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def expires(self, expires: str) -> typing.Self:    
-        """
-        Time when the snapshot expires, default is never to expire
-        """
-            
-        self._internal.expires = expires
-    
-        return self
-    
-    def external(self, external: bool) -> typing.Self:    
-        """
-        Is the snapshot saved in an external grafana instance
-        """
-            
-        self._internal.external = external
-    
-        return self
-    
-    def external_url(self, external_url: str) -> typing.Self:    
-        """
-        external url, if snapshot was shared in external grafana instance
-        """
-            
-        self._internal.external_url = external_url
-    
-        return self
-    
-    def id_val(self, id_val: int) -> typing.Self:    
-        """
-        Unique identifier of the snapshot
-        """
-            
-        self._internal.id_val = id_val
-    
-        return self
-    
-    def key(self, key: str) -> typing.Self:    
-        """
-        Optional, defined the unique key of the snapshot, required if external is true
-        """
-            
-        self._internal.key = key
-    
-        return self
-    
-    def name(self, name: str) -> typing.Self:    
-        """
-        Optional, name of the snapshot
-        """
-            
-        self._internal.name = name
-    
-        return self
-    
-    def org_id(self, org_id: int) -> typing.Self:    
-        """
-        org id of the snapshot
-        """
-            
-        self._internal.org_id = org_id
-    
-        return self
-    
-    def url(self, url: str) -> typing.Self:    
-        """
-        url of the snapshot, if snapshot was shared internally
-        """
-            
-        self._internal.url = url
-    
-        return self
-    
-    def dashboard(self, dashboard: cogbuilder.Builder[dashboard.Dashboard]) -> typing.Self:        
-        dashboard_resource = dashboard.build()
-        self._internal.dashboard = dashboard_resource
     
         return self
     
@@ -1422,6 +940,273 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def override_by_name(self, name: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for a specific field, referred to by its name.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byName",
+            options=name,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_regexp(self, regexp: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for the fields whose name match the given regexp.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byRegexp",
+            options=regexp,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_field_type(self, field_type: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for all the fields of the given type.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byType",
+            options=field_type,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_query(self, query_ref_id: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:        
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byFrameRefID",
+            options=query_ref_id,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+
+class DashboardLink(cogbuilder.Builder[dashboard.DashboardLink]):    
+    """
+    Links with references to other dashboards or external resources
+    """
+    
+    _internal: dashboard.DashboardLink
+
+    def __init__(self, title: str):
+        self._internal = dashboard.DashboardLink()        
+        self._internal.title = title
+
+    def build(self) -> dashboard.DashboardLink:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def title(self, title: str) -> typing.Self:    
+        """
+        Title to display with the link
+        """
+            
+        self._internal.title = title
+    
+        return self
+    
+    def type_val(self, type_val: dashboard.DashboardLinkType) -> typing.Self:    
+        """
+        Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
+        """
+            
+        self._internal.type_val = type_val
+    
+        return self
+    
+    def icon(self, icon: str) -> typing.Self:    
+        """
+        Icon name to be displayed with the link
+        """
+            
+        self._internal.icon = icon
+    
+        return self
+    
+    def tooltip(self, tooltip: str) -> typing.Self:    
+        """
+        Tooltip to display when the user hovers their mouse over it
+        """
+            
+        self._internal.tooltip = tooltip
+    
+        return self
+    
+    def url(self, url: str) -> typing.Self:    
+        """
+        Link URL. Only required/valid if the type is link
+        """
+            
+        self._internal.url = url
+    
+        return self
+    
+    def tags(self, tags: list[str]) -> typing.Self:    
+        """
+        List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
+        """
+            
+        self._internal.tags = tags
+    
+        return self
+    
+    def as_dropdown(self, as_dropdown: bool) -> typing.Self:    
+        """
+        If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
+        """
+            
+        self._internal.as_dropdown = as_dropdown
+    
+        return self
+    
+    def target_blank(self, target_blank: bool) -> typing.Self:    
+        """
+        If true, the link will be opened in a new tab
+        """
+            
+        self._internal.target_blank = target_blank
+    
+        return self
+    
+    def include_vars(self, include_vars: bool) -> typing.Self:    
+        """
+        If true, includes current template variables values in the link as query params
+        """
+            
+        self._internal.include_vars = include_vars
+    
+        return self
+    
+    def keep_time(self, keep_time: bool) -> typing.Self:    
+        """
+        If true, includes current time range in the link as query params
+        """
+            
+        self._internal.keep_time = keep_time
+    
+        return self
+    
+
+class ThresholdsConfig(cogbuilder.Builder[dashboard.ThresholdsConfig]):    
+    """
+    Thresholds configuration for the panel
+    """
+    
+    _internal: dashboard.ThresholdsConfig
+
+    def __init__(self):
+        self._internal = dashboard.ThresholdsConfig()
+
+    def build(self) -> dashboard.ThresholdsConfig:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def mode(self, mode: dashboard.ThresholdsMode) -> typing.Self:    
+        """
+        Thresholds mode.
+        """
+            
+        self._internal.mode = mode
+    
+        return self
+    
+    def steps(self, steps: list[dashboard.Threshold]) -> typing.Self:    
+        """
+        Must be sorted by 'value', first value is always -Infinity
+        """
+            
+        self._internal.steps = steps
+    
+        return self
+    
+
+class FieldColor(cogbuilder.Builder[dashboard.FieldColor]):    
+    """
+    Map a field to a color.
+    """
+    
+    _internal: dashboard.FieldColor
+
+    def __init__(self):
+        self._internal = dashboard.FieldColor()
+
+    def build(self) -> dashboard.FieldColor:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def mode(self, mode: dashboard.FieldColorModeId) -> typing.Self:    
+        """
+        The main color scheme mode.
+        """
+            
+        self._internal.mode = mode
+    
+        return self
+    
+    def fixed_color(self, fixed_color: str) -> typing.Self:    
+        """
+        The fixed color value for fixed or shades color modes.
+        """
+            
+        self._internal.fixed_color = fixed_color
+    
+        return self
+    
+    def series_by(self, series_by: dashboard.FieldColorSeriesByMode) -> typing.Self:    
+        """
+        Some visualizations need to know how to assign a series color from by value color schemes.
+        """
+            
+        self._internal.series_by = series_by
+    
+        return self
+    
 
 class Row(cogbuilder.Builder[dashboard.RowPanel]):    
     """
@@ -1509,6 +1294,301 @@ class Row(cogbuilder.Builder[dashboard.RowPanel]):
         """
             
         self._internal.repeat = repeat
+    
+        return self
+    
+
+class AnnotationQuery(cogbuilder.Builder[dashboard.AnnotationQuery]):    
+    """
+    TODO docs
+    FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+    """
+    
+    _internal: dashboard.AnnotationQuery
+
+    def __init__(self):
+        self._internal = dashboard.AnnotationQuery()
+
+    def build(self) -> dashboard.AnnotationQuery:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def name(self, name: str) -> typing.Self:    
+        """
+        Name of annotation.
+        """
+            
+        self._internal.name = name
+    
+        return self
+    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+        """
+        Datasource where the annotations data is
+        """
+            
+        self._internal.datasource = datasource
+    
+        return self
+    
+    def enable(self, enable: bool) -> typing.Self:    
+        """
+        When enabled the annotation query is issued with every dashboard refresh
+        """
+            
+        self._internal.enable = enable
+    
+        return self
+    
+    def hide(self, hide: bool) -> typing.Self:    
+        """
+        Annotation queries can be toggled on or off at the top of the dashboard.
+        When hide is true, the toggle is not shown in the dashboard.
+        """
+            
+        self._internal.hide = hide
+    
+        return self
+    
+    def icon_color(self, icon_color: str) -> typing.Self:    
+        """
+        Color to use for the annotation event markers
+        """
+            
+        self._internal.icon_color = icon_color
+    
+        return self
+    
+    def filter_val(self, filter_val: cogbuilder.Builder[dashboard.AnnotationPanelFilter]) -> typing.Self:    
+        """
+        Filters to apply when fetching annotations
+        """
+            
+        filter_val_resource = filter_val.build()
+        self._internal.filter_val = filter_val_resource
+    
+        return self
+    
+    def target(self, target: cogbuilder.Builder[dashboard.AnnotationTarget]) -> typing.Self:    
+        """
+        TODO.. this should just be a normal query target
+        """
+            
+        target_resource = target.build()
+        self._internal.target = target_resource
+    
+        return self
+    
+    def type_val(self, type_val: str) -> typing.Self:    
+        """
+        TODO -- this should not exist here, it is based on the --grafana-- datasource
+        """
+            
+        self._internal.type_val = type_val
+    
+        return self
+    
+    def built_in(self, built_in: float) -> typing.Self:    
+        """
+        Set to 1 for the standard annotation query all dashboards have by default.
+        """
+            
+        self._internal.built_in = built_in
+    
+        return self
+    
+    def expr(self, expr: str) -> typing.Self:        
+        self._internal.expr = expr
+    
+        return self
+    
+
+class AnnotationPanelFilter(cogbuilder.Builder[dashboard.AnnotationPanelFilter]):    
+    _internal: dashboard.AnnotationPanelFilter
+
+    def __init__(self):
+        self._internal = dashboard.AnnotationPanelFilter()
+
+    def build(self) -> dashboard.AnnotationPanelFilter:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def exclude(self, exclude: bool) -> typing.Self:    
+        """
+        Should the specified panels be included or excluded
+        """
+            
+        self._internal.exclude = exclude
+    
+        return self
+    
+    def ids(self, ids: list[int]) -> typing.Self:    
+        """
+        Panel IDs that should be included or excluded
+        """
+            
+        self._internal.ids = ids
+    
+        return self
+    
+
+class AnnotationTarget(cogbuilder.Builder[dashboard.AnnotationTarget]):    
+    """
+    TODO: this should be a regular DataQuery that depends on the selected dashboard
+    these match the properties of the "grafana" datasouce that is default in most dashboards
+    """
+    
+    _internal: dashboard.AnnotationTarget
+
+    def __init__(self):
+        self._internal = dashboard.AnnotationTarget()
+
+    def build(self) -> dashboard.AnnotationTarget:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def limit(self, limit: int) -> typing.Self:    
+        """
+        Only required/valid for the grafana datasource...
+        but code+tests is already depending on it so hard to change
+        """
+            
+        self._internal.limit = limit
+    
+        return self
+    
+    def match_any(self, match_any: bool) -> typing.Self:    
+        """
+        Only required/valid for the grafana datasource...
+        but code+tests is already depending on it so hard to change
+        """
+            
+        self._internal.match_any = match_any
+    
+        return self
+    
+    def tags(self, tags: list[str]) -> typing.Self:    
+        """
+        Only required/valid for the grafana datasource...
+        but code+tests is already depending on it so hard to change
+        """
+            
+        self._internal.tags = tags
+    
+        return self
+    
+    def type_val(self, type_val: str) -> typing.Self:    
+        """
+        Only required/valid for the grafana datasource...
+        but code+tests is already depending on it so hard to change
+        """
+            
+        self._internal.type_val = type_val
+    
+        return self
+    
+
+class Snapshot(cogbuilder.Builder[dashboard.Snapshot]):    
+    """
+    A dashboard snapshot shares an interactive dashboard publicly.
+    It is a read-only version of a dashboard, and is not editable.
+    It is possible to create a snapshot of a snapshot.
+    Grafana strips away all sensitive information from the dashboard.
+    Sensitive information stripped: queries (metric, template,annotation) and panel links.
+    """
+    
+    _internal: dashboard.Snapshot
+
+    def __init__(self):
+        self._internal = dashboard.Snapshot()
+
+    def build(self) -> dashboard.Snapshot:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def expires(self, expires: str) -> typing.Self:    
+        """
+        Time when the snapshot expires, default is never to expire
+        """
+            
+        self._internal.expires = expires
+    
+        return self
+    
+    def external(self, external: bool) -> typing.Self:    
+        """
+        Is the snapshot saved in an external grafana instance
+        """
+            
+        self._internal.external = external
+    
+        return self
+    
+    def external_url(self, external_url: str) -> typing.Self:    
+        """
+        external url, if snapshot was shared in external grafana instance
+        """
+            
+        self._internal.external_url = external_url
+    
+        return self
+    
+    def id_val(self, id_val: int) -> typing.Self:    
+        """
+        Unique identifier of the snapshot
+        """
+            
+        self._internal.id_val = id_val
+    
+        return self
+    
+    def key(self, key: str) -> typing.Self:    
+        """
+        Optional, defined the unique key of the snapshot, required if external is true
+        """
+            
+        self._internal.key = key
+    
+        return self
+    
+    def name(self, name: str) -> typing.Self:    
+        """
+        Optional, name of the snapshot
+        """
+            
+        self._internal.name = name
+    
+        return self
+    
+    def org_id(self, org_id: int) -> typing.Self:    
+        """
+        org id of the snapshot
+        """
+            
+        self._internal.org_id = org_id
+    
+        return self
+    
+    def url(self, url: str) -> typing.Self:    
+        """
+        url of the snapshot, if snapshot was shared internally
+        """
+            
+        self._internal.url = url
+    
+        return self
+    
+    def dashboard(self, dashboard: cogbuilder.Builder[dashboard.Dashboard]) -> typing.Self:        
+        dashboard_resource = dashboard.build()
+        self._internal.dashboard = dashboard_resource
     
         return self
     
@@ -1742,6 +1822,29 @@ class DashboardDashboardTemplating(cogbuilder.Builder[dashboard.DashboardDashboa
         return self
     
 
+class DashboardFieldConfigSourceOverrides(cogbuilder.Builder[dashboard.DashboardFieldConfigSourceOverrides]):    
+    _internal: dashboard.DashboardFieldConfigSourceOverrides
+
+    def __init__(self):
+        self._internal = dashboard.DashboardFieldConfigSourceOverrides()
+
+    def build(self) -> dashboard.DashboardFieldConfigSourceOverrides:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def matcher(self, matcher: dashboard.MatcherConfig) -> typing.Self:        
+        self._internal.matcher = matcher
+    
+        return self
+    
+    def properties(self, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:        
+        self._internal.properties = properties
+    
+        return self
+    
+
 class DashboardRangeMapOptions(cogbuilder.Builder[dashboard.DashboardRangeMapOptions]):    
     _internal: dashboard.DashboardRangeMapOptions
 
@@ -1840,29 +1943,6 @@ class DashboardSpecialValueMapOptions(cogbuilder.Builder[dashboard.DashboardSpec
         """
             
         self._internal.result = result
-    
-        return self
-    
-
-class DashboardFieldConfigSourceOverrides(cogbuilder.Builder[dashboard.DashboardFieldConfigSourceOverrides]):    
-    _internal: dashboard.DashboardFieldConfigSourceOverrides
-
-    def __init__(self):
-        self._internal = dashboard.DashboardFieldConfigSourceOverrides()
-
-    def build(self) -> dashboard.DashboardFieldConfigSourceOverrides:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def matcher(self, matcher: dashboard.MatcherConfig) -> typing.Self:        
-        self._internal.matcher = matcher
-    
-        return self
-    
-    def properties(self, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:        
-        self._internal.properties = properties
     
         return self
     

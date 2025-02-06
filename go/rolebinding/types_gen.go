@@ -110,87 +110,6 @@ func (resource RoleBinding) Validate() error {
 	return errs
 }
 
-type CustomRoleRef struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-}
-
-// NewCustomRoleRef creates a new CustomRoleRef object.
-func NewCustomRoleRef() *CustomRoleRef {
-	return &CustomRoleRef{
-		Kind: "Role",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CustomRoleRef` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *CustomRoleRef) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "kind"
-	if fields["kind"] != nil {
-		if string(fields["kind"]) != "null" {
-			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "kind")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
-	}
-	// Field "name"
-	if fields["name"] != nil {
-		if string(fields["name"]) != "null" {
-			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("name", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "name")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("CustomRoleRef", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `CustomRoleRef` objects.
-func (resource CustomRoleRef) Equals(other CustomRoleRef) bool {
-	if resource.Kind != other.Kind {
-		return false
-	}
-	if resource.Name != other.Name {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `CustomRoleRef` fields for violations and returns them.
-func (resource CustomRoleRef) Validate() error {
-	return nil
-}
-
 type BuiltinRoleRef struct {
 	Kind string             `json:"kind"`
 	Name BuiltinRoleRefName `json:"name"`
@@ -269,6 +188,87 @@ func (resource BuiltinRoleRef) Equals(other BuiltinRoleRef) bool {
 
 // Validate checks all the validation constraints that may be defined on `BuiltinRoleRef` fields for violations and returns them.
 func (resource BuiltinRoleRef) Validate() error {
+	return nil
+}
+
+type CustomRoleRef struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+}
+
+// NewCustomRoleRef creates a new CustomRoleRef object.
+func NewCustomRoleRef() *CustomRoleRef {
+	return &CustomRoleRef{
+		Kind: "Role",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CustomRoleRef` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *CustomRoleRef) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "name")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("CustomRoleRef", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `CustomRoleRef` objects.
+func (resource CustomRoleRef) Equals(other CustomRoleRef) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `CustomRoleRef` fields for violations and returns them.
+func (resource CustomRoleRef) Validate() error {
 	return nil
 }
 

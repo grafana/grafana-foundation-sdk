@@ -2,7 +2,6 @@
 
 package com.grafana.foundation.table;
 
-import com.grafana.foundation.common.TableFieldOptions;
 
-public class FieldConfig extends TableFieldOptions {
+public class FieldConfig extends com.grafana.foundation.common.TableFieldOptions {
 }

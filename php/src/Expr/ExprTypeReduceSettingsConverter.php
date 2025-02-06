@@ -14,7 +14,7 @@ final class ExprTypeReduceSettingsConverter
     
         {
     $buffer = 'mode(';
-        $arg0 ='\Grafana\Foundation\Expr\TypeReduceMode::fromValue("'.$input->mode.'")';
+        $arg0 ='\Grafana\Foundation\Expr\ExprTypeReduceSettingsMode::fromValue("'.$input->mode.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

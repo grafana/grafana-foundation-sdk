@@ -51,7 +51,7 @@ func (builder *ExprTypeMathResultAssertionsBuilder) MaxFrames(maxFrames int64) *
 //   - `"numeric-multi"`
 //   - `"numeric-long"`
 //   - `"log-lines"`
-func (builder *ExprTypeMathResultAssertionsBuilder) Type(typeArg TypeMathType) *ExprTypeMathResultAssertionsBuilder {
+func (builder *ExprTypeMathResultAssertionsBuilder) Type(typeArg ExprTypeMathResultAssertionsType) *ExprTypeMathResultAssertionsBuilder {
 	builder.internal.Type = &typeArg
 
 	return builder

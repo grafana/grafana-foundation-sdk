@@ -11,22 +11,22 @@ public class AzureMetricDimensionBuilder implements com.grafana.foundation.cog.B
         this.internal = new AzureMetricDimension();
     }
     public AzureMetricDimensionBuilder dimension(String dimension) {
-    this.internal.dimension = dimension;
+        this.internal.dimension = dimension;
         return this;
     }
     
     public AzureMetricDimensionBuilder operator(String operator) {
-    this.internal.operator = operator;
+        this.internal.operator = operator;
         return this;
     }
     
     public AzureMetricDimensionBuilder filters(List<String> filters) {
-    this.internal.filters = filters;
+        this.internal.filters = filters;
         return this;
     }
     
     public AzureMetricDimensionBuilder filter(String filter) {
-    this.internal.filter = filter;
+        this.internal.filter = filter;
         return this;
     }
     public AzureMetricDimension build() {

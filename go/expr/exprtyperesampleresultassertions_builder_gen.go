@@ -51,7 +51,7 @@ func (builder *ExprTypeResampleResultAssertionsBuilder) MaxFrames(maxFrames int6
 //   - `"numeric-multi"`
 //   - `"numeric-long"`
 //   - `"log-lines"`
-func (builder *ExprTypeResampleResultAssertionsBuilder) Type(typeArg TypeResampleType) *ExprTypeResampleResultAssertionsBuilder {
+func (builder *ExprTypeResampleResultAssertionsBuilder) Type(typeArg ExprTypeResampleResultAssertionsType) *ExprTypeResampleResultAssertionsBuilder {
 	builder.internal.Type = &typeArg
 
 	return builder

@@ -10,7 +10,7 @@ public class GraphThresholdsStyleConfigBuilder implements com.grafana.foundation
         this.internal = new GraphThresholdsStyleConfig();
     }
     public GraphThresholdsStyleConfigBuilder mode(GraphTresholdsStyleMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     public GraphThresholdsStyleConfig build() {

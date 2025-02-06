@@ -42,13 +42,8 @@ func (builder *MetricAggregationWithInlineScriptBuilder) Settings(settings cog.B
 	return builder
 }
 
-func (builder *MetricAggregationWithInlineScriptBuilder) Type(typeArg cog.Builder[MetricAggregationType]) *MetricAggregationWithInlineScriptBuilder {
-	typeArgResource, err := typeArg.Build()
-	if err != nil {
-		builder.errors["type"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Type = typeArgResource
+func (builder *MetricAggregationWithInlineScriptBuilder) Type(typeArg MetricAggregationType) *MetricAggregationWithInlineScriptBuilder {
+	builder.internal.Type = typeArg
 
 	return builder
 }
