@@ -10,12 +10,12 @@ public class EdgeOptionsBuilder implements com.grafana.foundation.cog.Builder<Ed
         this.internal = new EdgeOptions();
     }
     public EdgeOptionsBuilder mainStatUnit(String mainStatUnit) {
-    this.internal.mainStatUnit = mainStatUnit;
+        this.internal.mainStatUnit = mainStatUnit;
         return this;
     }
     
     public EdgeOptionsBuilder secondaryStatUnit(String secondaryStatUnit) {
-    this.internal.secondaryStatUnit = secondaryStatUnit;
+        this.internal.secondaryStatUnit = secondaryStatUnit;
         return this;
     }
     public EdgeOptions build() {

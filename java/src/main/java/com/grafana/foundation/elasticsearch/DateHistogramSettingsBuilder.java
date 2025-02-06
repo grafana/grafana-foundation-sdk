@@ -10,27 +10,27 @@ public class DateHistogramSettingsBuilder implements com.grafana.foundation.cog.
         this.internal = new DateHistogramSettings();
     }
     public DateHistogramSettingsBuilder interval(String interval) {
-    this.internal.interval = interval;
+        this.internal.interval = interval;
         return this;
     }
     
     public DateHistogramSettingsBuilder minDocCount(String minDocCount) {
-    this.internal.minDocCount = minDocCount;
+        this.internal.minDocCount = minDocCount;
         return this;
     }
     
     public DateHistogramSettingsBuilder trimEdges(String trimEdges) {
-    this.internal.trimEdges = trimEdges;
+        this.internal.trimEdges = trimEdges;
         return this;
     }
     
     public DateHistogramSettingsBuilder offset(String offset) {
-    this.internal.offset = offset;
+        this.internal.offset = offset;
         return this;
     }
     
     public DateHistogramSettingsBuilder timeZone(String timeZone) {
-    this.internal.timeZone = timeZone;
+        this.internal.timeZone = timeZone;
         return this;
     }
     public DateHistogramSettings build() {

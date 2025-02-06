@@ -10,7 +10,7 @@ public class ElasticsearchRawDataSettingsBuilder implements com.grafana.foundati
         this.internal = new ElasticsearchRawDataSettings();
     }
     public ElasticsearchRawDataSettingsBuilder size(String size) {
-    this.internal.size = size;
+        this.internal.size = size;
         return this;
     }
     public ElasticsearchRawDataSettings build() {

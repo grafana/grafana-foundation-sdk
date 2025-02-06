@@ -47,7 +47,7 @@ class ExprTypeReduceResultAssertionsBuilder implements \Grafana\Foundation\Cog\B
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public function type(\Grafana\Foundation\Expr\TypeReduceType $type): static
+    public function type(\Grafana\Foundation\Expr\ExprTypeReduceResultAssertionsType $type): static
     {
         $this->internal->type = $type;
     

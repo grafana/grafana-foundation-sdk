@@ -120,6 +120,39 @@ class SimulationQuery(cogbuilder.Builder[testdata.SimulationQuery]):
         return self
     
 
+class CSVWave(cogbuilder.Builder[testdata.CSVWave]):    
+    _internal: testdata.CSVWave
+
+    def __init__(self):
+        self._internal = testdata.CSVWave()
+
+    def build(self) -> testdata.CSVWave:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def time_step(self, time_step: int) -> typing.Self:        
+        self._internal.time_step = time_step
+    
+        return self
+    
+    def name(self, name: str) -> typing.Self:        
+        self._internal.name = name
+    
+        return self
+    
+    def values_csv(self, values_csv: str) -> typing.Self:        
+        self._internal.values_csv = values_csv
+    
+        return self
+    
+    def labels(self, labels: str) -> typing.Self:        
+        self._internal.labels = labels
+    
+        return self
+    
+
 class NodesQuery(cogbuilder.Builder[testdata.NodesQuery]):    
     _internal: testdata.NodesQuery
 
@@ -177,39 +210,6 @@ class USAQuery(cogbuilder.Builder[testdata.USAQuery]):
     
     def states(self, states: list[str]) -> typing.Self:        
         self._internal.states = states
-    
-        return self
-    
-
-class CSVWave(cogbuilder.Builder[testdata.CSVWave]):    
-    _internal: testdata.CSVWave
-
-    def __init__(self):
-        self._internal = testdata.CSVWave()
-
-    def build(self) -> testdata.CSVWave:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def time_step(self, time_step: int) -> typing.Self:        
-        self._internal.time_step = time_step
-    
-        return self
-    
-    def name(self, name: str) -> typing.Self:        
-        self._internal.name = name
-    
-        return self
-    
-    def values_csv(self, values_csv: str) -> typing.Self:        
-        self._internal.values_csv = values_csv
-    
-        return self
-    
-    def labels(self, labels: str) -> typing.Self:        
-        self._internal.labels = labels
     
         return self
     

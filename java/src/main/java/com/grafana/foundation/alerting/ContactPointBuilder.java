@@ -10,27 +10,27 @@ public class ContactPointBuilder implements com.grafana.foundation.cog.Builder<C
         this.internal = new ContactPoint();
     }
     public ContactPointBuilder disableResolveMessage(Boolean disableResolveMessage) {
-    this.internal.disableResolveMessage = disableResolveMessage;
+        this.internal.disableResolveMessage = disableResolveMessage;
         return this;
     }
     
     public ContactPointBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public ContactPointBuilder provenance(String provenance) {
-    this.internal.provenance = provenance;
+        this.internal.provenance = provenance;
         return this;
     }
     
     public ContactPointBuilder settings(Object settings) {
-    this.internal.settings = settings;
+        this.internal.settings = settings;
         return this;
     }
     
     public ContactPointBuilder type(ContactPointType type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
@@ -41,7 +41,7 @@ public class ContactPointBuilder implements com.grafana.foundation.cog.Builder<C
         if (!(uid.length() <= 40)) {
             throw new IllegalArgumentException("uid.length() must be <= 40");
         }
-    this.internal.uid = uid;
+        this.internal.uid = uid;
         return this;
     }
     public ContactPoint build() {

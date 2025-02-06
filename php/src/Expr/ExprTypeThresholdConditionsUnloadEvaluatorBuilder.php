@@ -35,7 +35,7 @@ class ExprTypeThresholdConditionsUnloadEvaluatorBuilder implements \Grafana\Foun
     /**
      * e.g. "gt"
      */
-    public function type(\Grafana\Foundation\Expr\TypeThresholdType $type): static
+    public function type(\Grafana\Foundation\Expr\ExprTypeThresholdConditionsUnloadEvaluatorType $type): static
     {
         $this->internal->type = $type;
     

@@ -477,6 +477,86 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def override_by_name(self, name: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for a specific field, referred to by its name.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byName",
+            options=name,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_regexp(self, regexp: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for the fields whose name match the given regexp.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byRegexp",
+            options=regexp,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_field_type(self, field_type: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for all the fields of the given type.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byType",
+            options=field_type,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_query(self, query_ref_id: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:        
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byFrameRefID",
+            options=query_ref_id,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
     def bucket_count(self, bucket_count: int) -> typing.Self:    
         """
         Bucket count (approx)

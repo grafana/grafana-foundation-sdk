@@ -61,7 +61,7 @@
  * <span class="badge object-type-struct"></span> [Logs](./object-Logs.md)
  * <span class="badge object-type-struct"></span> [Max](./object-Max.md)
  * <span class="badge object-type-ref"></span> [MetricAggregation](./object-MetricAggregation.md)
- * <span class="badge object-type-ref"></span> [MetricAggregationType](./object-MetricAggregationType.md)
+ * <span class="badge object-type-enum"></span> [MetricAggregationType](./object-MetricAggregationType.md)
  * <span class="badge object-type-struct"></span> [MetricAggregationWithField](./object-MetricAggregationWithField.md)
  * <span class="badge object-type-struct"></span> [MetricAggregationWithInlineScript](./object-MetricAggregationWithInlineScript.md)
  * <span class="badge object-type-struct"></span> [MetricAggregationWithMissingSupport](./object-MetricAggregationWithMissingSupport.md)
@@ -88,7 +88,6 @@
  * <span class="badge object-type-struct"></span> [RawDocument](./object-RawDocument.md)
  * <span class="badge object-type-struct"></span> [SerialDiff](./object-SerialDiff.md)
  * <span class="badge object-type-struct"></span> [StringOrElasticsearchInlineScript](./object-StringOrElasticsearchInlineScript.md)
- * <span class="badge object-type-struct"></span> [StringOrPipelineMetricAggregationType](./object-StringOrPipelineMetricAggregationType.md)
  * <span class="badge object-type-struct"></span> [Sum](./object-Sum.md)
  * <span class="badge object-type-struct"></span> [Terms](./object-Terms.md)
  * <span class="badge object-type-enum"></span> [TermsOrder](./object-TermsOrder.md)
@@ -149,7 +148,6 @@
  * <span class="badge builder"></span> [HistogramSettingsBuilder](./builder-HistogramSettingsBuilder.md)
  * <span class="badge builder"></span> [LogsBuilder](./builder-LogsBuilder.md)
  * <span class="badge builder"></span> [MaxBuilder](./builder-MaxBuilder.md)
- * <span class="badge builder"></span> [MetricAggregationTypeBuilder](./builder-MetricAggregationTypeBuilder.md)
  * <span class="badge builder"></span> [MetricAggregationWithFieldBuilder](./builder-MetricAggregationWithFieldBuilder.md)
  * <span class="badge builder"></span> [MetricAggregationWithInlineScriptBuilder](./builder-MetricAggregationWithInlineScriptBuilder.md)
  * <span class="badge builder"></span> [MetricAggregationWithMissingSupportBuilder](./builder-MetricAggregationWithMissingSupportBuilder.md)
@@ -171,7 +169,6 @@
  * <span class="badge builder"></span> [RawDocumentBuilder](./builder-RawDocumentBuilder.md)
  * <span class="badge builder"></span> [SerialDiffBuilder](./builder-SerialDiffBuilder.md)
  * <span class="badge builder"></span> [StringOrElasticsearchInlineScriptBuilder](./builder-StringOrElasticsearchInlineScriptBuilder.md)
- * <span class="badge builder"></span> [StringOrPipelineMetricAggregationTypeBuilder](./builder-StringOrPipelineMetricAggregationTypeBuilder.md)
  * <span class="badge builder"></span> [SumBuilder](./builder-SumBuilder.md)
  * <span class="badge builder"></span> [TermsBuilder](./builder-TermsBuilder.md)
  * <span class="badge builder"></span> [TermsSettingsBuilder](./builder-TermsSettingsBuilder.md)
@@ -188,44 +185,12 @@ NewBucketAggregation creates a new BucketAggregation object.
 func NewBucketAggregation() *BucketAggregation
 ```
 
-### <span class="badge function"></span> NewMetricAggregation
-
-NewMetricAggregation creates a new MetricAggregation object.
-
-```go
-func NewMetricAggregation() *MetricAggregation
-```
-
-### <span class="badge function"></span> NewBaseBucketAggregation
-
-NewBaseBucketAggregation creates a new BaseBucketAggregation object.
-
-```go
-func NewBaseBucketAggregation() *BaseBucketAggregation
-```
-
-### <span class="badge function"></span> NewBucketAggregationWithField
-
-NewBucketAggregationWithField creates a new BucketAggregationWithField object.
-
-```go
-func NewBucketAggregationWithField() *BucketAggregationWithField
-```
-
 ### <span class="badge function"></span> NewDateHistogram
 
 NewDateHistogram creates a new DateHistogram object.
 
 ```go
 func NewDateHistogram() *DateHistogram
-```
-
-### <span class="badge function"></span> NewDateHistogramSettings
-
-NewDateHistogramSettings creates a new DateHistogramSettings object.
-
-```go
-func NewDateHistogramSettings() *DateHistogramSettings
 ```
 
 ### <span class="badge function"></span> NewHistogram
@@ -236,36 +201,12 @@ NewHistogram creates a new Histogram object.
 func NewHistogram() *Histogram
 ```
 
-### <span class="badge function"></span> NewHistogramSettings
-
-NewHistogramSettings creates a new HistogramSettings object.
-
-```go
-func NewHistogramSettings() *HistogramSettings
-```
-
-### <span class="badge function"></span> NewNested
-
-NewNested creates a new Nested object.
-
-```go
-func NewNested() *Nested
-```
-
 ### <span class="badge function"></span> NewTerms
 
 NewTerms creates a new Terms object.
 
 ```go
 func NewTerms() *Terms
-```
-
-### <span class="badge function"></span> NewTermsSettings
-
-NewTermsSettings creates a new TermsSettings object.
-
-```go
-func NewTermsSettings() *TermsSettings
 ```
 
 ### <span class="badge function"></span> NewFilters
@@ -284,20 +225,260 @@ NewFilter creates a new Filter object.
 func NewFilter() *Filter
 ```
 
-### <span class="badge function"></span> NewFiltersSettings
-
-NewFiltersSettings creates a new FiltersSettings object.
-
-```go
-func NewFiltersSettings() *FiltersSettings
-```
-
 ### <span class="badge function"></span> NewGeoHashGrid
 
 NewGeoHashGrid creates a new GeoHashGrid object.
 
 ```go
 func NewGeoHashGrid() *GeoHashGrid
+```
+
+### <span class="badge function"></span> NewNested
+
+NewNested creates a new Nested object.
+
+```go
+func NewNested() *Nested
+```
+
+### <span class="badge function"></span> NewMetricAggregation
+
+NewMetricAggregation creates a new MetricAggregation object.
+
+```go
+func NewMetricAggregation() *MetricAggregation
+```
+
+### <span class="badge function"></span> NewCount
+
+NewCount creates a new Count object.
+
+```go
+func NewCount() *Count
+```
+
+### <span class="badge function"></span> NewPipelineMetricAggregation
+
+NewPipelineMetricAggregation creates a new PipelineMetricAggregation object.
+
+```go
+func NewPipelineMetricAggregation() *PipelineMetricAggregation
+```
+
+### <span class="badge function"></span> NewMovingAverage
+
+NewMovingAverage creates a new MovingAverage object.
+
+```go
+func NewMovingAverage() *MovingAverage
+```
+
+### <span class="badge function"></span> NewDerivative
+
+NewDerivative creates a new Derivative object.
+
+```go
+func NewDerivative() *Derivative
+```
+
+### <span class="badge function"></span> NewCumulativeSum
+
+NewCumulativeSum creates a new CumulativeSum object.
+
+```go
+func NewCumulativeSum() *CumulativeSum
+```
+
+### <span class="badge function"></span> NewBucketScript
+
+NewBucketScript creates a new BucketScript object.
+
+```go
+func NewBucketScript() *BucketScript
+```
+
+### <span class="badge function"></span> NewPipelineVariable
+
+NewPipelineVariable creates a new PipelineVariable object.
+
+```go
+func NewPipelineVariable() *PipelineVariable
+```
+
+### <span class="badge function"></span> NewInlineScript
+
+NewInlineScript creates a new InlineScript object.
+
+```go
+func NewInlineScript() *InlineScript
+```
+
+### <span class="badge function"></span> NewMetricAggregationWithSettings
+
+NewMetricAggregationWithSettings creates a new MetricAggregationWithSettings object.
+
+```go
+func NewMetricAggregationWithSettings() *MetricAggregationWithSettings
+```
+
+### <span class="badge function"></span> NewSerialDiff
+
+NewSerialDiff creates a new SerialDiff object.
+
+```go
+func NewSerialDiff() *SerialDiff
+```
+
+### <span class="badge function"></span> NewRawData
+
+NewRawData creates a new RawData object.
+
+```go
+func NewRawData() *RawData
+```
+
+### <span class="badge function"></span> NewRawDocument
+
+NewRawDocument creates a new RawDocument object.
+
+```go
+func NewRawDocument() *RawDocument
+```
+
+### <span class="badge function"></span> NewUniqueCount
+
+NewUniqueCount creates a new UniqueCount object.
+
+```go
+func NewUniqueCount() *UniqueCount
+```
+
+### <span class="badge function"></span> NewPercentiles
+
+NewPercentiles creates a new Percentiles object.
+
+```go
+func NewPercentiles() *Percentiles
+```
+
+### <span class="badge function"></span> NewExtendedStats
+
+NewExtendedStats creates a new ExtendedStats object.
+
+```go
+func NewExtendedStats() *ExtendedStats
+```
+
+### <span class="badge function"></span> NewMin
+
+NewMin creates a new Min object.
+
+```go
+func NewMin() *Min
+```
+
+### <span class="badge function"></span> NewMax
+
+NewMax creates a new Max object.
+
+```go
+func NewMax() *Max
+```
+
+### <span class="badge function"></span> NewSum
+
+NewSum creates a new Sum object.
+
+```go
+func NewSum() *Sum
+```
+
+### <span class="badge function"></span> NewAverage
+
+NewAverage creates a new Average object.
+
+```go
+func NewAverage() *Average
+```
+
+### <span class="badge function"></span> NewMovingFunction
+
+NewMovingFunction creates a new MovingFunction object.
+
+```go
+func NewMovingFunction() *MovingFunction
+```
+
+### <span class="badge function"></span> NewLogs
+
+NewLogs creates a new Logs object.
+
+```go
+func NewLogs() *Logs
+```
+
+### <span class="badge function"></span> NewRate
+
+NewRate creates a new Rate object.
+
+```go
+func NewRate() *Rate
+```
+
+### <span class="badge function"></span> NewTopMetrics
+
+NewTopMetrics creates a new TopMetrics object.
+
+```go
+func NewTopMetrics() *TopMetrics
+```
+
+### <span class="badge function"></span> NewBaseBucketAggregation
+
+NewBaseBucketAggregation creates a new BaseBucketAggregation object.
+
+```go
+func NewBaseBucketAggregation() *BaseBucketAggregation
+```
+
+### <span class="badge function"></span> NewBucketAggregationWithField
+
+NewBucketAggregationWithField creates a new BucketAggregationWithField object.
+
+```go
+func NewBucketAggregationWithField() *BucketAggregationWithField
+```
+
+### <span class="badge function"></span> NewDateHistogramSettings
+
+NewDateHistogramSettings creates a new DateHistogramSettings object.
+
+```go
+func NewDateHistogramSettings() *DateHistogramSettings
+```
+
+### <span class="badge function"></span> NewHistogramSettings
+
+NewHistogramSettings creates a new HistogramSettings object.
+
+```go
+func NewHistogramSettings() *HistogramSettings
+```
+
+### <span class="badge function"></span> NewTermsSettings
+
+NewTermsSettings creates a new TermsSettings object.
+
+```go
+func NewTermsSettings() *TermsSettings
+```
+
+### <span class="badge function"></span> NewFiltersSettings
+
+NewFiltersSettings creates a new FiltersSettings object.
+
+```go
+func NewFiltersSettings() *FiltersSettings
 ```
 
 ### <span class="badge function"></span> NewGeoHashGridSettings
@@ -308,28 +489,12 @@ NewGeoHashGridSettings creates a new GeoHashGridSettings object.
 func NewGeoHashGridSettings() *GeoHashGridSettings
 ```
 
-### <span class="badge function"></span> NewMetricAggregationType
-
-NewMetricAggregationType creates a new MetricAggregationType object.
-
-```go
-func NewMetricAggregationType() *MetricAggregationType
-```
-
 ### <span class="badge function"></span> NewBaseMetricAggregation
 
 NewBaseMetricAggregation creates a new BaseMetricAggregation object.
 
 ```go
 func NewBaseMetricAggregation() *BaseMetricAggregation
-```
-
-### <span class="badge function"></span> NewPipelineVariable
-
-NewPipelineVariable creates a new PipelineVariable object.
-
-```go
-func NewPipelineVariable() *PipelineVariable
 ```
 
 ### <span class="badge function"></span> NewMetricAggregationWithField
@@ -348,14 +513,6 @@ NewMetricAggregationWithMissingSupport creates a new MetricAggregationWithMissin
 func NewMetricAggregationWithMissingSupport() *MetricAggregationWithMissingSupport
 ```
 
-### <span class="badge function"></span> NewInlineScript
-
-NewInlineScript creates a new InlineScript object.
-
-```go
-func NewInlineScript() *InlineScript
-```
-
 ### <span class="badge function"></span> NewMetricAggregationWithInlineScript
 
 NewMetricAggregationWithInlineScript creates a new MetricAggregationWithInlineScript object.
@@ -364,108 +521,12 @@ NewMetricAggregationWithInlineScript creates a new MetricAggregationWithInlineSc
 func NewMetricAggregationWithInlineScript() *MetricAggregationWithInlineScript
 ```
 
-### <span class="badge function"></span> NewCount
-
-NewCount creates a new Count object.
-
-```go
-func NewCount() *Count
-```
-
-### <span class="badge function"></span> NewAverage
-
-NewAverage creates a new Average object.
-
-```go
-func NewAverage() *Average
-```
-
-### <span class="badge function"></span> NewSum
-
-NewSum creates a new Sum object.
-
-```go
-func NewSum() *Sum
-```
-
-### <span class="badge function"></span> NewMax
-
-NewMax creates a new Max object.
-
-```go
-func NewMax() *Max
-```
-
-### <span class="badge function"></span> NewMin
-
-NewMin creates a new Min object.
-
-```go
-func NewMin() *Min
-```
-
 ### <span class="badge function"></span> NewExtendedStat
 
 NewExtendedStat creates a new ExtendedStat object.
 
 ```go
 func NewExtendedStat() *ExtendedStat
-```
-
-### <span class="badge function"></span> NewExtendedStats
-
-NewExtendedStats creates a new ExtendedStats object.
-
-```go
-func NewExtendedStats() *ExtendedStats
-```
-
-### <span class="badge function"></span> NewPercentiles
-
-NewPercentiles creates a new Percentiles object.
-
-```go
-func NewPercentiles() *Percentiles
-```
-
-### <span class="badge function"></span> NewUniqueCount
-
-NewUniqueCount creates a new UniqueCount object.
-
-```go
-func NewUniqueCount() *UniqueCount
-```
-
-### <span class="badge function"></span> NewRawDocument
-
-NewRawDocument creates a new RawDocument object.
-
-```go
-func NewRawDocument() *RawDocument
-```
-
-### <span class="badge function"></span> NewRawData
-
-NewRawData creates a new RawData object.
-
-```go
-func NewRawData() *RawData
-```
-
-### <span class="badge function"></span> NewLogs
-
-NewLogs creates a new Logs object.
-
-```go
-func NewLogs() *Logs
-```
-
-### <span class="badge function"></span> NewRate
-
-NewRate creates a new Rate object.
-
-```go
-func NewRate() *Rate
 ```
 
 ### <span class="badge function"></span> NewBasePipelineMetricAggregation
@@ -540,78 +601,6 @@ NewMovingAverageHoltWintersModelSettings creates a new MovingAverageHoltWintersM
 func NewMovingAverageHoltWintersModelSettings() *MovingAverageHoltWintersModelSettings
 ```
 
-### <span class="badge function"></span> NewMovingAverage
-
-NewMovingAverage creates a new MovingAverage object.
-
-```go
-func NewMovingAverage() *MovingAverage
-```
-
-### <span class="badge function"></span> NewMovingFunction
-
-NewMovingFunction creates a new MovingFunction object.
-
-```go
-func NewMovingFunction() *MovingFunction
-```
-
-### <span class="badge function"></span> NewDerivative
-
-NewDerivative creates a new Derivative object.
-
-```go
-func NewDerivative() *Derivative
-```
-
-### <span class="badge function"></span> NewSerialDiff
-
-NewSerialDiff creates a new SerialDiff object.
-
-```go
-func NewSerialDiff() *SerialDiff
-```
-
-### <span class="badge function"></span> NewCumulativeSum
-
-NewCumulativeSum creates a new CumulativeSum object.
-
-```go
-func NewCumulativeSum() *CumulativeSum
-```
-
-### <span class="badge function"></span> NewBucketScript
-
-NewBucketScript creates a new BucketScript object.
-
-```go
-func NewBucketScript() *BucketScript
-```
-
-### <span class="badge function"></span> NewTopMetrics
-
-NewTopMetrics creates a new TopMetrics object.
-
-```go
-func NewTopMetrics() *TopMetrics
-```
-
-### <span class="badge function"></span> NewPipelineMetricAggregation
-
-NewPipelineMetricAggregation creates a new PipelineMetricAggregation object.
-
-```go
-func NewPipelineMetricAggregation() *PipelineMetricAggregation
-```
-
-### <span class="badge function"></span> NewMetricAggregationWithSettings
-
-NewMetricAggregationWithSettings creates a new MetricAggregationWithSettings object.
-
-```go
-func NewMetricAggregationWithSettings() *MetricAggregationWithSettings
-```
-
 ### <span class="badge function"></span> NewDataquery
 
 NewDataquery creates a new Dataquery object.
@@ -660,12 +649,28 @@ NewElasticsearchGeoHashGridSettings creates a new ElasticsearchGeoHashGridSettin
 func NewElasticsearchGeoHashGridSettings() *ElasticsearchGeoHashGridSettings
 ```
 
-### <span class="badge function"></span> NewElasticsearchMetricAggregationWithMissingSupportSettings
+### <span class="badge function"></span> NewElasticsearchDerivativeSettings
 
-NewElasticsearchMetricAggregationWithMissingSupportSettings creates a new ElasticsearchMetricAggregationWithMissingSupportSettings object.
+NewElasticsearchDerivativeSettings creates a new ElasticsearchDerivativeSettings object.
 
 ```go
-func NewElasticsearchMetricAggregationWithMissingSupportSettings() *ElasticsearchMetricAggregationWithMissingSupportSettings
+func NewElasticsearchDerivativeSettings() *ElasticsearchDerivativeSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchCumulativeSumSettings
+
+NewElasticsearchCumulativeSumSettings creates a new ElasticsearchCumulativeSumSettings object.
+
+```go
+func NewElasticsearchCumulativeSumSettings() *ElasticsearchCumulativeSumSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchBucketScriptSettings
+
+NewElasticsearchBucketScriptSettings creates a new ElasticsearchBucketScriptSettings object.
+
+```go
+func NewElasticsearchBucketScriptSettings() *ElasticsearchBucketScriptSettings
 ```
 
 ### <span class="badge function"></span> NewElasticsearchInlineScript
@@ -676,68 +681,20 @@ NewElasticsearchInlineScript creates a new ElasticsearchInlineScript object.
 func NewElasticsearchInlineScript() *ElasticsearchInlineScript
 ```
 
-### <span class="badge function"></span> NewElasticsearchMetricAggregationWithInlineScriptSettings
+### <span class="badge function"></span> NewElasticsearchSerialDiffSettings
 
-NewElasticsearchMetricAggregationWithInlineScriptSettings creates a new ElasticsearchMetricAggregationWithInlineScriptSettings object.
+NewElasticsearchSerialDiffSettings creates a new ElasticsearchSerialDiffSettings object.
 
 ```go
-func NewElasticsearchMetricAggregationWithInlineScriptSettings() *ElasticsearchMetricAggregationWithInlineScriptSettings
+func NewElasticsearchSerialDiffSettings() *ElasticsearchSerialDiffSettings
 ```
 
-### <span class="badge function"></span> NewElasticsearchAverageSettings
+### <span class="badge function"></span> NewElasticsearchRawDataSettings
 
-NewElasticsearchAverageSettings creates a new ElasticsearchAverageSettings object.
-
-```go
-func NewElasticsearchAverageSettings() *ElasticsearchAverageSettings
-```
-
-### <span class="badge function"></span> NewElasticsearchSumSettings
-
-NewElasticsearchSumSettings creates a new ElasticsearchSumSettings object.
+NewElasticsearchRawDataSettings creates a new ElasticsearchRawDataSettings object.
 
 ```go
-func NewElasticsearchSumSettings() *ElasticsearchSumSettings
-```
-
-### <span class="badge function"></span> NewElasticsearchMaxSettings
-
-NewElasticsearchMaxSettings creates a new ElasticsearchMaxSettings object.
-
-```go
-func NewElasticsearchMaxSettings() *ElasticsearchMaxSettings
-```
-
-### <span class="badge function"></span> NewElasticsearchMinSettings
-
-NewElasticsearchMinSettings creates a new ElasticsearchMinSettings object.
-
-```go
-func NewElasticsearchMinSettings() *ElasticsearchMinSettings
-```
-
-### <span class="badge function"></span> NewElasticsearchExtendedStatsSettings
-
-NewElasticsearchExtendedStatsSettings creates a new ElasticsearchExtendedStatsSettings object.
-
-```go
-func NewElasticsearchExtendedStatsSettings() *ElasticsearchExtendedStatsSettings
-```
-
-### <span class="badge function"></span> NewElasticsearchPercentilesSettings
-
-NewElasticsearchPercentilesSettings creates a new ElasticsearchPercentilesSettings object.
-
-```go
-func NewElasticsearchPercentilesSettings() *ElasticsearchPercentilesSettings
-```
-
-### <span class="badge function"></span> NewElasticsearchUniqueCountSettings
-
-NewElasticsearchUniqueCountSettings creates a new ElasticsearchUniqueCountSettings object.
-
-```go
-func NewElasticsearchUniqueCountSettings() *ElasticsearchUniqueCountSettings
+func NewElasticsearchRawDataSettings() *ElasticsearchRawDataSettings
 ```
 
 ### <span class="badge function"></span> NewElasticsearchRawDocumentSettings
@@ -748,12 +705,68 @@ NewElasticsearchRawDocumentSettings creates a new ElasticsearchRawDocumentSettin
 func NewElasticsearchRawDocumentSettings() *ElasticsearchRawDocumentSettings
 ```
 
-### <span class="badge function"></span> NewElasticsearchRawDataSettings
+### <span class="badge function"></span> NewElasticsearchUniqueCountSettings
 
-NewElasticsearchRawDataSettings creates a new ElasticsearchRawDataSettings object.
+NewElasticsearchUniqueCountSettings creates a new ElasticsearchUniqueCountSettings object.
 
 ```go
-func NewElasticsearchRawDataSettings() *ElasticsearchRawDataSettings
+func NewElasticsearchUniqueCountSettings() *ElasticsearchUniqueCountSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchPercentilesSettings
+
+NewElasticsearchPercentilesSettings creates a new ElasticsearchPercentilesSettings object.
+
+```go
+func NewElasticsearchPercentilesSettings() *ElasticsearchPercentilesSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchExtendedStatsSettings
+
+NewElasticsearchExtendedStatsSettings creates a new ElasticsearchExtendedStatsSettings object.
+
+```go
+func NewElasticsearchExtendedStatsSettings() *ElasticsearchExtendedStatsSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMinSettings
+
+NewElasticsearchMinSettings creates a new ElasticsearchMinSettings object.
+
+```go
+func NewElasticsearchMinSettings() *ElasticsearchMinSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMaxSettings
+
+NewElasticsearchMaxSettings creates a new ElasticsearchMaxSettings object.
+
+```go
+func NewElasticsearchMaxSettings() *ElasticsearchMaxSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchSumSettings
+
+NewElasticsearchSumSettings creates a new ElasticsearchSumSettings object.
+
+```go
+func NewElasticsearchSumSettings() *ElasticsearchSumSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchAverageSettings
+
+NewElasticsearchAverageSettings creates a new ElasticsearchAverageSettings object.
+
+```go
+func NewElasticsearchAverageSettings() *ElasticsearchAverageSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMovingFunctionSettings
+
+NewElasticsearchMovingFunctionSettings creates a new ElasticsearchMovingFunctionSettings object.
+
+```go
+func NewElasticsearchMovingFunctionSettings() *ElasticsearchMovingFunctionSettings
 ```
 
 ### <span class="badge function"></span> NewElasticsearchLogsSettings
@@ -770,6 +783,30 @@ NewElasticsearchRateSettings creates a new ElasticsearchRateSettings object.
 
 ```go
 func NewElasticsearchRateSettings() *ElasticsearchRateSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchTopMetricsSettings
+
+NewElasticsearchTopMetricsSettings creates a new ElasticsearchTopMetricsSettings object.
+
+```go
+func NewElasticsearchTopMetricsSettings() *ElasticsearchTopMetricsSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMetricAggregationWithMissingSupportSettings
+
+NewElasticsearchMetricAggregationWithMissingSupportSettings creates a new ElasticsearchMetricAggregationWithMissingSupportSettings object.
+
+```go
+func NewElasticsearchMetricAggregationWithMissingSupportSettings() *ElasticsearchMetricAggregationWithMissingSupportSettings
+```
+
+### <span class="badge function"></span> NewElasticsearchMetricAggregationWithInlineScriptSettings
+
+NewElasticsearchMetricAggregationWithInlineScriptSettings creates a new ElasticsearchMetricAggregationWithInlineScriptSettings object.
+
+```go
+func NewElasticsearchMetricAggregationWithInlineScriptSettings() *ElasticsearchMetricAggregationWithInlineScriptSettings
 ```
 
 ### <span class="badge function"></span> NewElasticsearchMovingAverageEWMAModelSettingsSettings
@@ -796,54 +833,6 @@ NewElasticsearchMovingAverageHoltWintersModelSettingsSettings creates a new Elas
 func NewElasticsearchMovingAverageHoltWintersModelSettingsSettings() *ElasticsearchMovingAverageHoltWintersModelSettingsSettings
 ```
 
-### <span class="badge function"></span> NewElasticsearchMovingFunctionSettings
-
-NewElasticsearchMovingFunctionSettings creates a new ElasticsearchMovingFunctionSettings object.
-
-```go
-func NewElasticsearchMovingFunctionSettings() *ElasticsearchMovingFunctionSettings
-```
-
-### <span class="badge function"></span> NewElasticsearchDerivativeSettings
-
-NewElasticsearchDerivativeSettings creates a new ElasticsearchDerivativeSettings object.
-
-```go
-func NewElasticsearchDerivativeSettings() *ElasticsearchDerivativeSettings
-```
-
-### <span class="badge function"></span> NewElasticsearchSerialDiffSettings
-
-NewElasticsearchSerialDiffSettings creates a new ElasticsearchSerialDiffSettings object.
-
-```go
-func NewElasticsearchSerialDiffSettings() *ElasticsearchSerialDiffSettings
-```
-
-### <span class="badge function"></span> NewElasticsearchCumulativeSumSettings
-
-NewElasticsearchCumulativeSumSettings creates a new ElasticsearchCumulativeSumSettings object.
-
-```go
-func NewElasticsearchCumulativeSumSettings() *ElasticsearchCumulativeSumSettings
-```
-
-### <span class="badge function"></span> NewElasticsearchBucketScriptSettings
-
-NewElasticsearchBucketScriptSettings creates a new ElasticsearchBucketScriptSettings object.
-
-```go
-func NewElasticsearchBucketScriptSettings() *ElasticsearchBucketScriptSettings
-```
-
-### <span class="badge function"></span> NewElasticsearchTopMetricsSettings
-
-NewElasticsearchTopMetricsSettings creates a new ElasticsearchTopMetricsSettings object.
-
-```go
-func NewElasticsearchTopMetricsSettings() *ElasticsearchTopMetricsSettings
-```
-
 ### <span class="badge function"></span> NewDateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested
 
 NewDateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested creates a new DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested object.
@@ -860,12 +849,12 @@ NewCountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRa
 func NewCountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics() *CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
 ```
 
-### <span class="badge function"></span> NewStringOrPipelineMetricAggregationType
+### <span class="badge function"></span> NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript
 
-NewStringOrPipelineMetricAggregationType creates a new StringOrPipelineMetricAggregationType object.
+NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript creates a new MovingAverageOrDerivativeOrCumulativeSumOrBucketScript object.
 
 ```go
-func NewStringOrPipelineMetricAggregationType() *StringOrPipelineMetricAggregationType
+func NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript() *MovingAverageOrDerivativeOrCumulativeSumOrBucketScript
 ```
 
 ### <span class="badge function"></span> NewStringOrElasticsearchInlineScript
@@ -874,14 +863,6 @@ NewStringOrElasticsearchInlineScript creates a new StringOrElasticsearchInlineSc
 
 ```go
 func NewStringOrElasticsearchInlineScript() *StringOrElasticsearchInlineScript
-```
-
-### <span class="badge function"></span> NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript
-
-NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript creates a new MovingAverageOrDerivativeOrCumulativeSumOrBucketScript object.
-
-```go
-func NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript() *MovingAverageOrDerivativeOrCumulativeSumOrBucketScript
 ```
 
 ### <span class="badge function"></span> NewBucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
@@ -902,36 +883,12 @@ This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig
 ```
 
-### <span class="badge function"></span> BaseBucketAggregationConverter
-
-BaseBucketAggregationConverter accepts a `BaseBucketAggregation` object and generates the Go code to build this object using builders.
-
-```go
-func BaseBucketAggregationConverter(input BaseBucketAggregation) string
-```
-
-### <span class="badge function"></span> BucketAggregationWithFieldConverter
-
-BucketAggregationWithFieldConverter accepts a `BucketAggregationWithField` object and generates the Go code to build this object using builders.
-
-```go
-func BucketAggregationWithFieldConverter(input BucketAggregationWithField) string
-```
-
 ### <span class="badge function"></span> DateHistogramConverter
 
 DateHistogramConverter accepts a `DateHistogram` object and generates the Go code to build this object using builders.
 
 ```go
 func DateHistogramConverter(input DateHistogram) string
-```
-
-### <span class="badge function"></span> DateHistogramSettingsConverter
-
-DateHistogramSettingsConverter accepts a `DateHistogramSettings` object and generates the Go code to build this object using builders.
-
-```go
-func DateHistogramSettingsConverter(input DateHistogramSettings) string
 ```
 
 ### <span class="badge function"></span> HistogramConverter
@@ -942,36 +899,12 @@ HistogramConverter accepts a `Histogram` object and generates the Go code to bui
 func HistogramConverter(input Histogram) string
 ```
 
-### <span class="badge function"></span> HistogramSettingsConverter
-
-HistogramSettingsConverter accepts a `HistogramSettings` object and generates the Go code to build this object using builders.
-
-```go
-func HistogramSettingsConverter(input HistogramSettings) string
-```
-
-### <span class="badge function"></span> NestedConverter
-
-NestedConverter accepts a `Nested` object and generates the Go code to build this object using builders.
-
-```go
-func NestedConverter(input Nested) string
-```
-
 ### <span class="badge function"></span> TermsConverter
 
 TermsConverter accepts a `Terms` object and generates the Go code to build this object using builders.
 
 ```go
 func TermsConverter(input Terms) string
-```
-
-### <span class="badge function"></span> TermsSettingsConverter
-
-TermsSettingsConverter accepts a `TermsSettings` object and generates the Go code to build this object using builders.
-
-```go
-func TermsSettingsConverter(input TermsSettings) string
 ```
 
 ### <span class="badge function"></span> FiltersConverter
@@ -990,20 +923,228 @@ FilterConverter accepts a `Filter` object and generates the Go code to build thi
 func FilterConverter(input Filter) string
 ```
 
-### <span class="badge function"></span> FiltersSettingsConverter
-
-FiltersSettingsConverter accepts a `FiltersSettings` object and generates the Go code to build this object using builders.
-
-```go
-func FiltersSettingsConverter(input FiltersSettings) string
-```
-
 ### <span class="badge function"></span> GeoHashGridConverter
 
 GeoHashGridConverter accepts a `GeoHashGrid` object and generates the Go code to build this object using builders.
 
 ```go
 func GeoHashGridConverter(input GeoHashGrid) string
+```
+
+### <span class="badge function"></span> NestedConverter
+
+NestedConverter accepts a `Nested` object and generates the Go code to build this object using builders.
+
+```go
+func NestedConverter(input Nested) string
+```
+
+### <span class="badge function"></span> CountConverter
+
+CountConverter accepts a `Count` object and generates the Go code to build this object using builders.
+
+```go
+func CountConverter(input Count) string
+```
+
+### <span class="badge function"></span> MovingAverageConverter
+
+MovingAverageConverter accepts a `MovingAverage` object and generates the Go code to build this object using builders.
+
+```go
+func MovingAverageConverter(input MovingAverage) string
+```
+
+### <span class="badge function"></span> DerivativeConverter
+
+DerivativeConverter accepts a `Derivative` object and generates the Go code to build this object using builders.
+
+```go
+func DerivativeConverter(input Derivative) string
+```
+
+### <span class="badge function"></span> CumulativeSumConverter
+
+CumulativeSumConverter accepts a `CumulativeSum` object and generates the Go code to build this object using builders.
+
+```go
+func CumulativeSumConverter(input CumulativeSum) string
+```
+
+### <span class="badge function"></span> BucketScriptConverter
+
+BucketScriptConverter accepts a `BucketScript` object and generates the Go code to build this object using builders.
+
+```go
+func BucketScriptConverter(input BucketScript) string
+```
+
+### <span class="badge function"></span> PipelineVariableConverter
+
+PipelineVariableConverter accepts a `PipelineVariable` object and generates the Go code to build this object using builders.
+
+```go
+func PipelineVariableConverter(input PipelineVariable) string
+```
+
+### <span class="badge function"></span> SerialDiffConverter
+
+SerialDiffConverter accepts a `SerialDiff` object and generates the Go code to build this object using builders.
+
+```go
+func SerialDiffConverter(input SerialDiff) string
+```
+
+### <span class="badge function"></span> RawDataConverter
+
+RawDataConverter accepts a `RawData` object and generates the Go code to build this object using builders.
+
+```go
+func RawDataConverter(input RawData) string
+```
+
+### <span class="badge function"></span> RawDocumentConverter
+
+RawDocumentConverter accepts a `RawDocument` object and generates the Go code to build this object using builders.
+
+```go
+func RawDocumentConverter(input RawDocument) string
+```
+
+### <span class="badge function"></span> UniqueCountConverter
+
+UniqueCountConverter accepts a `UniqueCount` object and generates the Go code to build this object using builders.
+
+```go
+func UniqueCountConverter(input UniqueCount) string
+```
+
+### <span class="badge function"></span> PercentilesConverter
+
+PercentilesConverter accepts a `Percentiles` object and generates the Go code to build this object using builders.
+
+```go
+func PercentilesConverter(input Percentiles) string
+```
+
+### <span class="badge function"></span> ExtendedStatsConverter
+
+ExtendedStatsConverter accepts a `ExtendedStats` object and generates the Go code to build this object using builders.
+
+```go
+func ExtendedStatsConverter(input ExtendedStats) string
+```
+
+### <span class="badge function"></span> MinConverter
+
+MinConverter accepts a `Min` object and generates the Go code to build this object using builders.
+
+```go
+func MinConverter(input Min) string
+```
+
+### <span class="badge function"></span> MaxConverter
+
+MaxConverter accepts a `Max` object and generates the Go code to build this object using builders.
+
+```go
+func MaxConverter(input Max) string
+```
+
+### <span class="badge function"></span> SumConverter
+
+SumConverter accepts a `Sum` object and generates the Go code to build this object using builders.
+
+```go
+func SumConverter(input Sum) string
+```
+
+### <span class="badge function"></span> AverageConverter
+
+AverageConverter accepts a `Average` object and generates the Go code to build this object using builders.
+
+```go
+func AverageConverter(input Average) string
+```
+
+### <span class="badge function"></span> MovingFunctionConverter
+
+MovingFunctionConverter accepts a `MovingFunction` object and generates the Go code to build this object using builders.
+
+```go
+func MovingFunctionConverter(input MovingFunction) string
+```
+
+### <span class="badge function"></span> LogsConverter
+
+LogsConverter accepts a `Logs` object and generates the Go code to build this object using builders.
+
+```go
+func LogsConverter(input Logs) string
+```
+
+### <span class="badge function"></span> RateConverter
+
+RateConverter accepts a `Rate` object and generates the Go code to build this object using builders.
+
+```go
+func RateConverter(input Rate) string
+```
+
+### <span class="badge function"></span> TopMetricsConverter
+
+TopMetricsConverter accepts a `TopMetrics` object and generates the Go code to build this object using builders.
+
+```go
+func TopMetricsConverter(input TopMetrics) string
+```
+
+### <span class="badge function"></span> BaseBucketAggregationConverter
+
+BaseBucketAggregationConverter accepts a `BaseBucketAggregation` object and generates the Go code to build this object using builders.
+
+```go
+func BaseBucketAggregationConverter(input BaseBucketAggregation) string
+```
+
+### <span class="badge function"></span> BucketAggregationWithFieldConverter
+
+BucketAggregationWithFieldConverter accepts a `BucketAggregationWithField` object and generates the Go code to build this object using builders.
+
+```go
+func BucketAggregationWithFieldConverter(input BucketAggregationWithField) string
+```
+
+### <span class="badge function"></span> DateHistogramSettingsConverter
+
+DateHistogramSettingsConverter accepts a `DateHistogramSettings` object and generates the Go code to build this object using builders.
+
+```go
+func DateHistogramSettingsConverter(input DateHistogramSettings) string
+```
+
+### <span class="badge function"></span> HistogramSettingsConverter
+
+HistogramSettingsConverter accepts a `HistogramSettings` object and generates the Go code to build this object using builders.
+
+```go
+func HistogramSettingsConverter(input HistogramSettings) string
+```
+
+### <span class="badge function"></span> TermsSettingsConverter
+
+TermsSettingsConverter accepts a `TermsSettings` object and generates the Go code to build this object using builders.
+
+```go
+func TermsSettingsConverter(input TermsSettings) string
+```
+
+### <span class="badge function"></span> FiltersSettingsConverter
+
+FiltersSettingsConverter accepts a `FiltersSettings` object and generates the Go code to build this object using builders.
+
+```go
+func FiltersSettingsConverter(input FiltersSettings) string
 ```
 
 ### <span class="badge function"></span> GeoHashGridSettingsConverter
@@ -1014,28 +1155,12 @@ GeoHashGridSettingsConverter accepts a `GeoHashGridSettings` object and generate
 func GeoHashGridSettingsConverter(input GeoHashGridSettings) string
 ```
 
-### <span class="badge function"></span> MetricAggregationTypeConverter
-
-MetricAggregationTypeConverter accepts a `MetricAggregationType` object and generates the Go code to build this object using builders.
-
-```go
-func MetricAggregationTypeConverter(input MetricAggregationType) string
-```
-
 ### <span class="badge function"></span> BaseMetricAggregationConverter
 
 BaseMetricAggregationConverter accepts a `BaseMetricAggregation` object and generates the Go code to build this object using builders.
 
 ```go
 func BaseMetricAggregationConverter(input BaseMetricAggregation) string
-```
-
-### <span class="badge function"></span> PipelineVariableConverter
-
-PipelineVariableConverter accepts a `PipelineVariable` object and generates the Go code to build this object using builders.
-
-```go
-func PipelineVariableConverter(input PipelineVariable) string
 ```
 
 ### <span class="badge function"></span> MetricAggregationWithFieldConverter
@@ -1062,108 +1187,12 @@ MetricAggregationWithInlineScriptConverter accepts a `MetricAggregationWithInlin
 func MetricAggregationWithInlineScriptConverter(input MetricAggregationWithInlineScript) string
 ```
 
-### <span class="badge function"></span> CountConverter
-
-CountConverter accepts a `Count` object and generates the Go code to build this object using builders.
-
-```go
-func CountConverter(input Count) string
-```
-
-### <span class="badge function"></span> AverageConverter
-
-AverageConverter accepts a `Average` object and generates the Go code to build this object using builders.
-
-```go
-func AverageConverter(input Average) string
-```
-
-### <span class="badge function"></span> SumConverter
-
-SumConverter accepts a `Sum` object and generates the Go code to build this object using builders.
-
-```go
-func SumConverter(input Sum) string
-```
-
-### <span class="badge function"></span> MaxConverter
-
-MaxConverter accepts a `Max` object and generates the Go code to build this object using builders.
-
-```go
-func MaxConverter(input Max) string
-```
-
-### <span class="badge function"></span> MinConverter
-
-MinConverter accepts a `Min` object and generates the Go code to build this object using builders.
-
-```go
-func MinConverter(input Min) string
-```
-
 ### <span class="badge function"></span> ExtendedStatConverter
 
 ExtendedStatConverter accepts a `ExtendedStat` object and generates the Go code to build this object using builders.
 
 ```go
 func ExtendedStatConverter(input ExtendedStat) string
-```
-
-### <span class="badge function"></span> ExtendedStatsConverter
-
-ExtendedStatsConverter accepts a `ExtendedStats` object and generates the Go code to build this object using builders.
-
-```go
-func ExtendedStatsConverter(input ExtendedStats) string
-```
-
-### <span class="badge function"></span> PercentilesConverter
-
-PercentilesConverter accepts a `Percentiles` object and generates the Go code to build this object using builders.
-
-```go
-func PercentilesConverter(input Percentiles) string
-```
-
-### <span class="badge function"></span> UniqueCountConverter
-
-UniqueCountConverter accepts a `UniqueCount` object and generates the Go code to build this object using builders.
-
-```go
-func UniqueCountConverter(input UniqueCount) string
-```
-
-### <span class="badge function"></span> RawDocumentConverter
-
-RawDocumentConverter accepts a `RawDocument` object and generates the Go code to build this object using builders.
-
-```go
-func RawDocumentConverter(input RawDocument) string
-```
-
-### <span class="badge function"></span> RawDataConverter
-
-RawDataConverter accepts a `RawData` object and generates the Go code to build this object using builders.
-
-```go
-func RawDataConverter(input RawData) string
-```
-
-### <span class="badge function"></span> LogsConverter
-
-LogsConverter accepts a `Logs` object and generates the Go code to build this object using builders.
-
-```go
-func LogsConverter(input Logs) string
-```
-
-### <span class="badge function"></span> RateConverter
-
-RateConverter accepts a `Rate` object and generates the Go code to build this object using builders.
-
-```go
-func RateConverter(input Rate) string
 ```
 
 ### <span class="badge function"></span> BasePipelineMetricAggregationConverter
@@ -1238,62 +1267,6 @@ MovingAverageHoltWintersModelSettingsConverter accepts a `MovingAverageHoltWinte
 func MovingAverageHoltWintersModelSettingsConverter(input MovingAverageHoltWintersModelSettings) string
 ```
 
-### <span class="badge function"></span> MovingAverageConverter
-
-MovingAverageConverter accepts a `MovingAverage` object and generates the Go code to build this object using builders.
-
-```go
-func MovingAverageConverter(input MovingAverage) string
-```
-
-### <span class="badge function"></span> MovingFunctionConverter
-
-MovingFunctionConverter accepts a `MovingFunction` object and generates the Go code to build this object using builders.
-
-```go
-func MovingFunctionConverter(input MovingFunction) string
-```
-
-### <span class="badge function"></span> DerivativeConverter
-
-DerivativeConverter accepts a `Derivative` object and generates the Go code to build this object using builders.
-
-```go
-func DerivativeConverter(input Derivative) string
-```
-
-### <span class="badge function"></span> SerialDiffConverter
-
-SerialDiffConverter accepts a `SerialDiff` object and generates the Go code to build this object using builders.
-
-```go
-func SerialDiffConverter(input SerialDiff) string
-```
-
-### <span class="badge function"></span> CumulativeSumConverter
-
-CumulativeSumConverter accepts a `CumulativeSum` object and generates the Go code to build this object using builders.
-
-```go
-func CumulativeSumConverter(input CumulativeSum) string
-```
-
-### <span class="badge function"></span> BucketScriptConverter
-
-BucketScriptConverter accepts a `BucketScript` object and generates the Go code to build this object using builders.
-
-```go
-func BucketScriptConverter(input BucketScript) string
-```
-
-### <span class="badge function"></span> TopMetricsConverter
-
-TopMetricsConverter accepts a `TopMetrics` object and generates the Go code to build this object using builders.
-
-```go
-func TopMetricsConverter(input TopMetrics) string
-```
-
 ### <span class="badge function"></span> DataqueryConverter
 
 DataqueryConverter accepts a `Dataquery` object and generates the Go code to build this object using builders.
@@ -1342,12 +1315,28 @@ ElasticsearchGeoHashGridSettingsConverter accepts a `ElasticsearchGeoHashGridSet
 func ElasticsearchGeoHashGridSettingsConverter(input ElasticsearchGeoHashGridSettings) string
 ```
 
-### <span class="badge function"></span> ElasticsearchMetricAggregationWithMissingSupportSettingsConverter
+### <span class="badge function"></span> ElasticsearchDerivativeSettingsConverter
 
-ElasticsearchMetricAggregationWithMissingSupportSettingsConverter accepts a `ElasticsearchMetricAggregationWithMissingSupportSettings` object and generates the Go code to build this object using builders.
+ElasticsearchDerivativeSettingsConverter accepts a `ElasticsearchDerivativeSettings` object and generates the Go code to build this object using builders.
 
 ```go
-func ElasticsearchMetricAggregationWithMissingSupportSettingsConverter(input ElasticsearchMetricAggregationWithMissingSupportSettings) string
+func ElasticsearchDerivativeSettingsConverter(input ElasticsearchDerivativeSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchCumulativeSumSettingsConverter
+
+ElasticsearchCumulativeSumSettingsConverter accepts a `ElasticsearchCumulativeSumSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchCumulativeSumSettingsConverter(input ElasticsearchCumulativeSumSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchBucketScriptSettingsConverter
+
+ElasticsearchBucketScriptSettingsConverter accepts a `ElasticsearchBucketScriptSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchBucketScriptSettingsConverter(input ElasticsearchBucketScriptSettings) string
 ```
 
 ### <span class="badge function"></span> ElasticsearchInlineScriptConverter
@@ -1358,68 +1347,20 @@ ElasticsearchInlineScriptConverter accepts a `ElasticsearchInlineScript` object 
 func ElasticsearchInlineScriptConverter(input ElasticsearchInlineScript) string
 ```
 
-### <span class="badge function"></span> ElasticsearchMetricAggregationWithInlineScriptSettingsConverter
+### <span class="badge function"></span> ElasticsearchSerialDiffSettingsConverter
 
-ElasticsearchMetricAggregationWithInlineScriptSettingsConverter accepts a `ElasticsearchMetricAggregationWithInlineScriptSettings` object and generates the Go code to build this object using builders.
+ElasticsearchSerialDiffSettingsConverter accepts a `ElasticsearchSerialDiffSettings` object and generates the Go code to build this object using builders.
 
 ```go
-func ElasticsearchMetricAggregationWithInlineScriptSettingsConverter(input ElasticsearchMetricAggregationWithInlineScriptSettings) string
+func ElasticsearchSerialDiffSettingsConverter(input ElasticsearchSerialDiffSettings) string
 ```
 
-### <span class="badge function"></span> ElasticsearchAverageSettingsConverter
+### <span class="badge function"></span> ElasticsearchRawDataSettingsConverter
 
-ElasticsearchAverageSettingsConverter accepts a `ElasticsearchAverageSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchAverageSettingsConverter(input ElasticsearchAverageSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchSumSettingsConverter
-
-ElasticsearchSumSettingsConverter accepts a `ElasticsearchSumSettings` object and generates the Go code to build this object using builders.
+ElasticsearchRawDataSettingsConverter accepts a `ElasticsearchRawDataSettings` object and generates the Go code to build this object using builders.
 
 ```go
-func ElasticsearchSumSettingsConverter(input ElasticsearchSumSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchMaxSettingsConverter
-
-ElasticsearchMaxSettingsConverter accepts a `ElasticsearchMaxSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchMaxSettingsConverter(input ElasticsearchMaxSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchMinSettingsConverter
-
-ElasticsearchMinSettingsConverter accepts a `ElasticsearchMinSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchMinSettingsConverter(input ElasticsearchMinSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchExtendedStatsSettingsConverter
-
-ElasticsearchExtendedStatsSettingsConverter accepts a `ElasticsearchExtendedStatsSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchExtendedStatsSettingsConverter(input ElasticsearchExtendedStatsSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchPercentilesSettingsConverter
-
-ElasticsearchPercentilesSettingsConverter accepts a `ElasticsearchPercentilesSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchPercentilesSettingsConverter(input ElasticsearchPercentilesSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchUniqueCountSettingsConverter
-
-ElasticsearchUniqueCountSettingsConverter accepts a `ElasticsearchUniqueCountSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchUniqueCountSettingsConverter(input ElasticsearchUniqueCountSettings) string
+func ElasticsearchRawDataSettingsConverter(input ElasticsearchRawDataSettings) string
 ```
 
 ### <span class="badge function"></span> ElasticsearchRawDocumentSettingsConverter
@@ -1430,12 +1371,68 @@ ElasticsearchRawDocumentSettingsConverter accepts a `ElasticsearchRawDocumentSet
 func ElasticsearchRawDocumentSettingsConverter(input ElasticsearchRawDocumentSettings) string
 ```
 
-### <span class="badge function"></span> ElasticsearchRawDataSettingsConverter
+### <span class="badge function"></span> ElasticsearchUniqueCountSettingsConverter
 
-ElasticsearchRawDataSettingsConverter accepts a `ElasticsearchRawDataSettings` object and generates the Go code to build this object using builders.
+ElasticsearchUniqueCountSettingsConverter accepts a `ElasticsearchUniqueCountSettings` object and generates the Go code to build this object using builders.
 
 ```go
-func ElasticsearchRawDataSettingsConverter(input ElasticsearchRawDataSettings) string
+func ElasticsearchUniqueCountSettingsConverter(input ElasticsearchUniqueCountSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchPercentilesSettingsConverter
+
+ElasticsearchPercentilesSettingsConverter accepts a `ElasticsearchPercentilesSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchPercentilesSettingsConverter(input ElasticsearchPercentilesSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchExtendedStatsSettingsConverter
+
+ElasticsearchExtendedStatsSettingsConverter accepts a `ElasticsearchExtendedStatsSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchExtendedStatsSettingsConverter(input ElasticsearchExtendedStatsSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchMinSettingsConverter
+
+ElasticsearchMinSettingsConverter accepts a `ElasticsearchMinSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchMinSettingsConverter(input ElasticsearchMinSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchMaxSettingsConverter
+
+ElasticsearchMaxSettingsConverter accepts a `ElasticsearchMaxSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchMaxSettingsConverter(input ElasticsearchMaxSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchSumSettingsConverter
+
+ElasticsearchSumSettingsConverter accepts a `ElasticsearchSumSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchSumSettingsConverter(input ElasticsearchSumSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchAverageSettingsConverter
+
+ElasticsearchAverageSettingsConverter accepts a `ElasticsearchAverageSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchAverageSettingsConverter(input ElasticsearchAverageSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchMovingFunctionSettingsConverter
+
+ElasticsearchMovingFunctionSettingsConverter accepts a `ElasticsearchMovingFunctionSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchMovingFunctionSettingsConverter(input ElasticsearchMovingFunctionSettings) string
 ```
 
 ### <span class="badge function"></span> ElasticsearchLogsSettingsConverter
@@ -1452,6 +1449,30 @@ ElasticsearchRateSettingsConverter accepts a `ElasticsearchRateSettings` object 
 
 ```go
 func ElasticsearchRateSettingsConverter(input ElasticsearchRateSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchTopMetricsSettingsConverter
+
+ElasticsearchTopMetricsSettingsConverter accepts a `ElasticsearchTopMetricsSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchTopMetricsSettingsConverter(input ElasticsearchTopMetricsSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchMetricAggregationWithMissingSupportSettingsConverter
+
+ElasticsearchMetricAggregationWithMissingSupportSettingsConverter accepts a `ElasticsearchMetricAggregationWithMissingSupportSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchMetricAggregationWithMissingSupportSettingsConverter(input ElasticsearchMetricAggregationWithMissingSupportSettings) string
+```
+
+### <span class="badge function"></span> ElasticsearchMetricAggregationWithInlineScriptSettingsConverter
+
+ElasticsearchMetricAggregationWithInlineScriptSettingsConverter accepts a `ElasticsearchMetricAggregationWithInlineScriptSettings` object and generates the Go code to build this object using builders.
+
+```go
+func ElasticsearchMetricAggregationWithInlineScriptSettingsConverter(input ElasticsearchMetricAggregationWithInlineScriptSettings) string
 ```
 
 ### <span class="badge function"></span> ElasticsearchMovingAverageEWMAModelSettingsSettingsConverter
@@ -1476,62 +1497,6 @@ ElasticsearchMovingAverageHoltWintersModelSettingsSettingsConverter accepts a `E
 
 ```go
 func ElasticsearchMovingAverageHoltWintersModelSettingsSettingsConverter(input ElasticsearchMovingAverageHoltWintersModelSettingsSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchMovingFunctionSettingsConverter
-
-ElasticsearchMovingFunctionSettingsConverter accepts a `ElasticsearchMovingFunctionSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchMovingFunctionSettingsConverter(input ElasticsearchMovingFunctionSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchDerivativeSettingsConverter
-
-ElasticsearchDerivativeSettingsConverter accepts a `ElasticsearchDerivativeSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchDerivativeSettingsConverter(input ElasticsearchDerivativeSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchSerialDiffSettingsConverter
-
-ElasticsearchSerialDiffSettingsConverter accepts a `ElasticsearchSerialDiffSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchSerialDiffSettingsConverter(input ElasticsearchSerialDiffSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchCumulativeSumSettingsConverter
-
-ElasticsearchCumulativeSumSettingsConverter accepts a `ElasticsearchCumulativeSumSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchCumulativeSumSettingsConverter(input ElasticsearchCumulativeSumSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchBucketScriptSettingsConverter
-
-ElasticsearchBucketScriptSettingsConverter accepts a `ElasticsearchBucketScriptSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchBucketScriptSettingsConverter(input ElasticsearchBucketScriptSettings) string
-```
-
-### <span class="badge function"></span> ElasticsearchTopMetricsSettingsConverter
-
-ElasticsearchTopMetricsSettingsConverter accepts a `ElasticsearchTopMetricsSettings` object and generates the Go code to build this object using builders.
-
-```go
-func ElasticsearchTopMetricsSettingsConverter(input ElasticsearchTopMetricsSettings) string
-```
-
-### <span class="badge function"></span> StringOrPipelineMetricAggregationTypeConverter
-
-StringOrPipelineMetricAggregationTypeConverter accepts a `StringOrPipelineMetricAggregationType` object and generates the Go code to build this object using builders.
-
-```go
-func StringOrPipelineMetricAggregationTypeConverter(input StringOrPipelineMetricAggregationType) string
 ```
 
 ### <span class="badge function"></span> StringOrElasticsearchInlineScriptConverter

@@ -10,27 +10,27 @@ public class BasePipelineMetricAggregationBuilder implements com.grafana.foundat
         this.internal = new BasePipelineMetricAggregation();
     }
     public BasePipelineMetricAggregationBuilder pipelineAgg(String pipelineAgg) {
-    this.internal.pipelineAgg = pipelineAgg;
+        this.internal.pipelineAgg = pipelineAgg;
         return this;
     }
     
     public BasePipelineMetricAggregationBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public BasePipelineMetricAggregationBuilder type(String type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public BasePipelineMetricAggregationBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public BasePipelineMetricAggregationBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public BasePipelineMetricAggregation build() {

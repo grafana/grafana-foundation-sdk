@@ -10,22 +10,22 @@ public class PointsConfigBuilder implements com.grafana.foundation.cog.Builder<P
         this.internal = new PointsConfig();
     }
     public PointsConfigBuilder showPoints(VisibilityMode showPoints) {
-    this.internal.showPoints = showPoints;
+        this.internal.showPoints = showPoints;
         return this;
     }
     
     public PointsConfigBuilder pointSize(Double pointSize) {
-    this.internal.pointSize = pointSize;
+        this.internal.pointSize = pointSize;
         return this;
     }
     
     public PointsConfigBuilder pointColor(String pointColor) {
-    this.internal.pointColor = pointColor;
+        this.internal.pointColor = pointColor;
         return this;
     }
     
     public PointsConfigBuilder pointSymbol(String pointSymbol) {
-    this.internal.pointSymbol = pointSymbol;
+        this.internal.pointSymbol = pointSymbol;
         return this;
     }
     public PointsConfig build() {

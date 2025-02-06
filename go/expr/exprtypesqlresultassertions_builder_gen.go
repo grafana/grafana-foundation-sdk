@@ -51,7 +51,7 @@ func (builder *ExprTypeSqlResultAssertionsBuilder) MaxFrames(maxFrames int64) *E
 //   - `"numeric-multi"`
 //   - `"numeric-long"`
 //   - `"log-lines"`
-func (builder *ExprTypeSqlResultAssertionsBuilder) Type(typeArg TypeSqlType) *ExprTypeSqlResultAssertionsBuilder {
+func (builder *ExprTypeSqlResultAssertionsBuilder) Type(typeArg ExprTypeSqlResultAssertionsType) *ExprTypeSqlResultAssertionsBuilder {
 	builder.internal.Type = &typeArg
 
 	return builder

@@ -59,16 +59,6 @@
           }
         }
       },
-      "QueryType": {
-        "enum": [
-          "timeSeriesList",
-          "timeSeriesQuery",
-          "slo",
-          "annotation",
-          "promQL"
-        ],
-        "description": "Defines the supported queryTypes."
-      },
       "TimeSeriesList": {
         "type": "object",
         "additionalProperties": false,
@@ -255,6 +245,16 @@
           }
         },
         "description": "PromQL sub-query properties."
+      },
+      "QueryType": {
+        "enum": [
+          "timeSeriesList",
+          "timeSeriesQuery",
+          "slo",
+          "annotation",
+          "promQL"
+        ],
+        "description": "Defines the supported queryTypes."
       },
       "MetricQuery": {
         "type": "object",

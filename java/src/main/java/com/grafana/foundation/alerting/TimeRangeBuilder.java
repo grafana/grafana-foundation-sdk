@@ -10,12 +10,12 @@ public class TimeRangeBuilder implements com.grafana.foundation.cog.Builder<Time
         this.internal = new TimeRange();
     }
     public TimeRangeBuilder from(String from) {
-    this.internal.from = from;
+        this.internal.from = from;
         return this;
     }
     
     public TimeRangeBuilder to(String to) {
-    this.internal.to = to;
+        this.internal.to = to;
         return this;
     }
     public TimeRange build() {

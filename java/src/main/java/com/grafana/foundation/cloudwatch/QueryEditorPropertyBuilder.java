@@ -10,12 +10,12 @@ public class QueryEditorPropertyBuilder implements com.grafana.foundation.cog.Bu
         this.internal = new QueryEditorProperty();
     }
     public QueryEditorPropertyBuilder type(QueryEditorPropertyType type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public QueryEditorPropertyBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     public QueryEditorProperty build() {

@@ -4,14 +4,14 @@ namespace Grafana\Foundation\Expr;
 
 class ExprTypeClassicConditionsConditionsOperator implements \JsonSerializable
 {
-    public \Grafana\Foundation\Expr\TypeClassicConditionsType $type;
+    public \Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsOperatorType $type;
 
     /**
-     * @param \Grafana\Foundation\Expr\TypeClassicConditionsType|null $type
+     * @param \Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsOperatorType|null $type
      */
-    public function __construct(?\Grafana\Foundation\Expr\TypeClassicConditionsType $type = null)
+    public function __construct(?\Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsOperatorType $type = null)
     {
-        $this->type = $type ?: \Grafana\Foundation\Expr\TypeClassicConditionsType::None();
+        $this->type = $type ?: \Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsOperatorType::And();
     }
 
     /**
@@ -22,7 +22,7 @@ class ExprTypeClassicConditionsConditionsOperator implements \JsonSerializable
         /** @var array{type?: string} $inputData */
         $data = $inputData;
         return new self(
-            type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Expr\TypeClassicConditionsType::fromValue($input); })($data["type"]) : null,
+            type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsOperatorType::fromValue($input); })($data["type"]) : null,
         );
     }
 
