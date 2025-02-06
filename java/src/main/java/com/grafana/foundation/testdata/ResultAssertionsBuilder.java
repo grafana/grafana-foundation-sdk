@@ -11,17 +11,17 @@ public class ResultAssertionsBuilder implements com.grafana.foundation.cog.Build
         this.internal = new ResultAssertions();
     }
     public ResultAssertionsBuilder maxFrames(Long maxFrames) {
-    this.internal.maxFrames = maxFrames;
+        this.internal.maxFrames = maxFrames;
         return this;
     }
     
     public ResultAssertionsBuilder type(ResultAssertionsType type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public ResultAssertionsBuilder typeVersion(List<Long> typeVersion) {
-    this.internal.typeVersion = typeVersion;
+        this.internal.typeVersion = typeVersion;
         return this;
     }
     public ResultAssertions build() {

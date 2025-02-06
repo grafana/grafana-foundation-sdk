@@ -28,6 +28,22 @@
         }
       }
     },
+    "ResourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "name"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "RoleRef": {
       "type": "object",
       "additionalProperties": false,
@@ -50,22 +66,6 @@
           "type": "string"
         },
         "xname": {
-          "type": "string"
-        }
-      }
-    },
-    "ResourceRef": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "kind",
-        "name"
-      ],
-      "properties": {
-        "kind": {
-          "type": "string"
-        },
-        "name": {
           "type": "string"
         }
       }

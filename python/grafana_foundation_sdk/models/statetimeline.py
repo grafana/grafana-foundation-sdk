@@ -57,7 +57,7 @@ class Options:
         if "tooltip" in data:
             args["tooltip"] = common.VizTooltipOptions.from_json(data["tooltip"])
         if "timezone" in data:
-            args["timezone"] = data["timezone"]
+            args["timezone"] = [item for item in data["timezone"]]
         if "alignValue" in data:
             args["align_value"] = data["alignValue"]        
 

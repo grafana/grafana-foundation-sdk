@@ -8,10 +8,10 @@ public class CustomRoleRefBuilder implements com.grafana.foundation.cog.Builder<
     
     public CustomRoleRefBuilder() {
         this.internal = new CustomRoleRef();
-    this.internal.kind = "Role";
+        this.internal.kind = "Role";
     }
     public CustomRoleRefBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     public CustomRoleRef build() {

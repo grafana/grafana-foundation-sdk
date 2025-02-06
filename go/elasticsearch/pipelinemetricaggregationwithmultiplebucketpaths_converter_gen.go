@@ -5,6 +5,8 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
+
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // PipelineMetricAggregationWithMultipleBucketPathsConverter accepts a `PipelineMetricAggregationWithMultipleBucketPaths` object and generates the Go code to build this object using builders.
@@ -33,7 +35,7 @@ func PipelineMetricAggregationWithMultipleBucketPathsConverter(input PipelineMet
 
 	{
 		buffer.WriteString(`Type(`)
-		arg0 := MetricAggregationTypeConverter(input.Type)
+		arg0 := cog.Dump(input.Type)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -17,20 +17,20 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
         if (!(title.length() <= 190)) {
             throw new IllegalArgumentException("title.length() must be <= 190");
         }
-    this.internal.title = title;
+        this.internal.title = title;
     }
     public RuleBuilder annotations(Map<String, String> annotations) {
-    this.internal.annotations = annotations;
+        this.internal.annotations = annotations;
         return this;
     }
     
     public RuleBuilder condition(String condition) {
-    this.internal.condition = condition;
+        this.internal.condition = condition;
         return this;
     }
     
     public RuleBuilder queries(com.grafana.foundation.cog.Builder<List<Query>> data) {
-    this.internal.data = data.build();
+        this.internal.data = data.build();
         return this;
     }
     
@@ -38,57 +38,57 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
 		if (this.internal.data == null) {
 			this.internal.data = new LinkedList<>();
 		}
-    this.internal.data.add(data.build());
+        this.internal.data.add(data.build());
         return this;
     }
     
     public RuleBuilder execErrState(RuleExecErrState execErrState) {
-    this.internal.execErrState = execErrState;
+        this.internal.execErrState = execErrState;
         return this;
     }
     
     public RuleBuilder folderUID(String folderUID) {
-    this.internal.folderUID = folderUID;
+        this.internal.folderUID = folderUID;
         return this;
     }
     
     public RuleBuilder forArg(String forArg) {
-    this.internal.forArg = forArg;
+        this.internal.forArg = forArg;
         return this;
     }
     
     public RuleBuilder id(Long id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public RuleBuilder isPaused(Boolean isPaused) {
-    this.internal.isPaused = isPaused;
+        this.internal.isPaused = isPaused;
         return this;
     }
     
     public RuleBuilder labels(Map<String, String> labels) {
-    this.internal.labels = labels;
+        this.internal.labels = labels;
         return this;
     }
     
     public RuleBuilder noDataState(RuleNoDataState noDataState) {
-    this.internal.noDataState = noDataState;
+        this.internal.noDataState = noDataState;
         return this;
     }
     
     public RuleBuilder notificationSettings(com.grafana.foundation.cog.Builder<NotificationSettings> notificationSettings) {
-    this.internal.notificationSettings = notificationSettings.build();
+        this.internal.notificationSettings = notificationSettings.build();
         return this;
     }
     
     public RuleBuilder orgID(Long orgID) {
-    this.internal.orgID = orgID;
+        this.internal.orgID = orgID;
         return this;
     }
     
     public RuleBuilder provenance(String provenance) {
-    this.internal.provenance = provenance;
+        this.internal.provenance = provenance;
         return this;
     }
     
@@ -99,7 +99,7 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
         if (!(ruleGroup.length() <= 190)) {
             throw new IllegalArgumentException("ruleGroup.length() must be <= 190");
         }
-    this.internal.ruleGroup = ruleGroup;
+        this.internal.ruleGroup = ruleGroup;
         return this;
     }
     
@@ -110,7 +110,7 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
         if (!(title.length() <= 190)) {
             throw new IllegalArgumentException("title.length() must be <= 190");
         }
-    this.internal.title = title;
+        this.internal.title = title;
         return this;
     }
     
@@ -121,12 +121,12 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
         if (!(uid.length() <= 40)) {
             throw new IllegalArgumentException("uid.length() must be <= 40");
         }
-    this.internal.uid = uid;
+        this.internal.uid = uid;
         return this;
     }
     
     public RuleBuilder updated(String updated) {
-    this.internal.updated = updated;
+        this.internal.updated = updated;
         return this;
     }
     public Rule build() {

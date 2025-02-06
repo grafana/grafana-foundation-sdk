@@ -10,17 +10,17 @@ public class RoleRefBuilder implements com.grafana.foundation.cog.Builder<RoleRe
         this.internal = new RoleRef();
     }
     public RoleRefBuilder kind(RoleRefKind kind) {
-    this.internal.kind = kind;
+        this.internal.kind = kind;
         return this;
     }
     
     public RoleRefBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public RoleRefBuilder xname(String xname) {
-    this.internal.xname = xname;
+        this.internal.xname = xname;
         return this;
     }
     public RoleRef build() {

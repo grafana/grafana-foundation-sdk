@@ -70,7 +70,7 @@ class MetricStat:
         if "metricName" in data:
             args["metric_name"] = data["metricName"]
         if "dimensions" in data:
-            args["dimensions"] = data["dimensions"]
+            args["dimensions"] = {key: data["dimensions"][key] for key in data["dimensions"].keys()}
         if "matchExact" in data:
             args["match_exact"] = data["matchExact"]
         if "period" in data:
@@ -247,7 +247,7 @@ class CloudWatchMetricsQuery(cogvariants.Dataquery):
         if "metricName" in data:
             args["metric_name"] = data["metricName"]
         if "dimensions" in data:
-            args["dimensions"] = data["dimensions"]
+            args["dimensions"] = {key: data["dimensions"][key] for key in data["dimensions"].keys()}
         if "matchExact" in data:
             args["match_exact"] = data["matchExact"]
         if "period" in data:
@@ -333,8 +333,8 @@ class SQLExpression:
         if "select" in data:
             args["select"] = QueryEditorFunctionExpression.from_json(data["select"])
         if "from" in data:
-            decoding_map: dict[str, typing.Union[typing.Type[QueryEditorFunctionExpression], typing.Type[QueryEditorPropertyExpression]]] = {"function": QueryEditorFunctionExpression, "property": QueryEditorPropertyExpression}
-            args["from_val"] = decoding_map[data["from"]["type"]].from_json(data["from"])
+            decoding_map_from_union: dict[str, typing.Union[typing.Type[QueryEditorFunctionExpression], typing.Type[QueryEditorPropertyExpression]]] = {"function": QueryEditorFunctionExpression, "property": QueryEditorPropertyExpression}
+            args["from_val"] = decoding_map_from_union[data["from"]["type"]].from_json(data["from"])
         if "where" in data:
             args["where"] = QueryEditorArrayExpression.from_json(data["where"])
         if "groupBy" in data:
@@ -376,19 +376,9 @@ class QueryEditorFunctionExpression:
         if "name" in data:
             args["name"] = data["name"]
         if "parameters" in data:
-            args["parameters"] = data["parameters"]        
+            args["parameters"] = [QueryEditorFunctionParameterExpression.from_json(item) for item in data["parameters"]]        
 
         return cls(**args)
-
-
-class QueryEditorExpressionType(enum.StrEnum):
-    PROPERTY = "property"
-    OPERATOR = "operator"
-    OR = "or"
-    AND = "and"
-    GROUP_BY = "groupBy"
-    FUNCTION = "function"
-    FUNCTION_PARAMETER = "functionParameter"
 
 
 class QueryEditorFunctionParameterExpression:
@@ -440,6 +430,69 @@ class QueryEditorPropertyExpression:
             args["property_val"] = QueryEditorProperty.from_json(data["property"])        
 
         return cls(**args)
+
+
+class QueryEditorProperty:
+    type_val: 'QueryEditorPropertyType'
+    name: typing.Optional[str]
+
+    def __init__(self, type_val: typing.Optional['QueryEditorPropertyType'] = None, name: typing.Optional[str] = None):
+        self.type_val = type_val if type_val is not None else QueryEditorPropertyType.STRING
+        self.name = name
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+        }
+        if self.name is not None:
+            payload["name"] = self.name
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "name" in data:
+            args["name"] = data["name"]        
+
+        return cls(**args)
+
+
+class QueryEditorPropertyType(enum.StrEnum):
+    STRING = "string"
+
+
+class QueryEditorArrayExpression:
+    type_val: typing.Literal["and", "or"]
+    expressions: list['QueryEditorExpression']
+
+    def __init__(self, type_val: typing.Optional[typing.Literal["and", "or"]] = None, expressions: typing.Optional[list['QueryEditorExpression']] = None):
+        self.type_val = type_val if type_val is not None else "and"
+        self.expressions = expressions if expressions is not None else []
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "expressions": self.expressions,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "expressions" in data:
+            decoding_map_expressions_array_ref_union: dict[str, typing.Union[typing.Type[QueryEditorArrayExpression], typing.Type[QueryEditorFunctionExpression], typing.Type[QueryEditorFunctionParameterExpression], typing.Type[QueryEditorGroupByExpression], typing.Type[QueryEditorOperatorExpression], typing.Type[QueryEditorArrayExpression], typing.Type[QueryEditorPropertyExpression]]] = {"and": QueryEditorArrayExpression, "function": QueryEditorFunctionExpression, "functionParameter": QueryEditorFunctionParameterExpression, "groupBy": QueryEditorGroupByExpression, "operator": QueryEditorOperatorExpression, "or": QueryEditorArrayExpression, "property": QueryEditorPropertyExpression}
+            args["expressions"] = [decoding_map_expressions_array_ref_union[item["type"]].from_json(item) for item in data["expressions"]]        
+
+        return cls(**args)
+
+
+QueryEditorExpression: typing.TypeAlias = typing.Union['QueryEditorArrayExpression', 'QueryEditorPropertyExpression', 'QueryEditorGroupByExpression', 'QueryEditorFunctionExpression', 'QueryEditorFunctionParameterExpression', 'QueryEditorOperatorExpression']
 
 
 class QueryEditorGroupByExpression:
@@ -531,72 +584,20 @@ class QueryEditorOperator:
         return cls(**args)
 
 
-QueryEditorOperatorValueType: typing.TypeAlias = typing.Union[str, bool, int, list['QueryEditorOperatorType']]
-
-
 QueryEditorOperatorType: typing.TypeAlias = typing.Union[str, bool, int]
 
 
-class QueryEditorProperty:
-    type_val: 'QueryEditorPropertyType'
-    name: typing.Optional[str]
-
-    def __init__(self, type_val: typing.Optional['QueryEditorPropertyType'] = None, name: typing.Optional[str] = None):
-        self.type_val = type_val if type_val is not None else QueryEditorPropertyType.STRING
-        self.name = name
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.name is not None:
-            payload["name"] = self.name
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "name" in data:
-            args["name"] = data["name"]        
-
-        return cls(**args)
+class QueryEditorExpressionType(enum.StrEnum):
+    PROPERTY = "property"
+    OPERATOR = "operator"
+    OR = "or"
+    AND = "and"
+    GROUP_BY = "groupBy"
+    FUNCTION = "function"
+    FUNCTION_PARAMETER = "functionParameter"
 
 
-class QueryEditorPropertyType(enum.StrEnum):
-    STRING = "string"
-
-
-class QueryEditorArrayExpression:
-    type_val: typing.Literal["and", "or"]
-    expressions: list['QueryEditorExpression']
-
-    def __init__(self, type_val: typing.Optional[typing.Literal["and", "or"]] = None, expressions: typing.Optional[list['QueryEditorExpression']] = None):
-        self.type_val = type_val if type_val is not None else "and"
-        self.expressions = expressions if expressions is not None else []
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-            "expressions": self.expressions,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "expressions" in data:
-            args["expressions"] = data["expressions"]        
-
-        return cls(**args)
-
-
-QueryEditorExpression: typing.TypeAlias = typing.Union['QueryEditorArrayExpression', 'QueryEditorPropertyExpression', 'QueryEditorGroupByExpression', 'QueryEditorFunctionExpression', 'QueryEditorFunctionParameterExpression', 'QueryEditorOperatorExpression']
+QueryEditorOperatorValueType: typing.TypeAlias = typing.Union[str, bool, int, list['QueryEditorOperatorType']]
 
 
 class CloudWatchLogsQuery(cogvariants.Dataquery):
@@ -683,7 +684,7 @@ class CloudWatchLogsQuery(cogvariants.Dataquery):
         if "statsGroups" in data:
             args["stats_groups"] = data["statsGroups"]
         if "logGroups" in data:
-            args["log_groups"] = data["logGroups"]
+            args["log_groups"] = [LogGroup.from_json(item) for item in data["logGroups"]]
         if "refId" in data:
             args["ref_id"] = data["refId"]
         if "hide" in data:
@@ -872,7 +873,7 @@ class CloudWatchAnnotationQuery(cogvariants.Dataquery):
         if "metricName" in data:
             args["metric_name"] = data["metricName"]
         if "dimensions" in data:
-            args["dimensions"] = data["dimensions"]
+            args["dimensions"] = {key: data["dimensions"][key] for key in data["dimensions"].keys()}
         if "matchExact" in data:
             args["match_exact"] = data["matchExact"]
         if "period" in data:
@@ -898,9 +899,9 @@ CloudWatchQuery: typing.TypeAlias = typing.Union['CloudWatchMetricsQuery', 'Clou
 
 
 def variant_config() -> cogruntime.DataqueryConfig:
-    decoding_map: dict[str, typing.Union[typing.Type[CloudWatchAnnotationQuery], typing.Type[CloudWatchLogsQuery], typing.Type[CloudWatchMetricsQuery]]] = {"Annotations": CloudWatchAnnotationQuery, "Logs": CloudWatchLogsQuery, "Metrics": CloudWatchMetricsQuery}
+    decoding_map_entrypoint_ref_union: dict[str, typing.Union[typing.Type[CloudWatchAnnotationQuery], typing.Type[CloudWatchLogsQuery], typing.Type[CloudWatchMetricsQuery]]] = {"Annotations": CloudWatchAnnotationQuery, "Logs": CloudWatchLogsQuery, "Metrics": CloudWatchMetricsQuery}
     return cogruntime.DataqueryConfig(
         identifier="cloudwatch",
-        from_json_hook=lambda data: decoding_map[data["queryMode"]].from_json(data),
+        from_json_hook=lambda data: decoding_map_entrypoint_ref_union[data["queryMode"]].from_json(data),
     )
 

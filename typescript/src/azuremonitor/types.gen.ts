@@ -47,24 +47,6 @@ export const defaultAzureMonitorQuery = (): AzureMonitorQuery => ({
 	_implementsDataqueryVariant: () => {},
 });
 
-// Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
-export enum AzureQueryType {
-	AzureMonitor = "Azure Monitor",
-	LogAnalytics = "Azure Log Analytics",
-	AzureResourceGraph = "Azure Resource Graph",
-	AzureTraces = "Azure Traces",
-	SubscriptionsQuery = "Azure Subscriptions",
-	ResourceGroupsQuery = "Azure Resource Groups",
-	NamespacesQuery = "Azure Namespaces",
-	ResourceNamesQuery = "Azure Resource Names",
-	MetricNamesQuery = "Azure Metric Names",
-	WorkspacesQuery = "Azure Workspaces",
-	LocationsQuery = "Azure Regions",
-	GrafanaTemplateVariableFn = "Grafana Template Variable Function",
-}
-
-export const defaultAzureQueryType = (): AzureQueryType => (AzureQueryType.AzureMonitor);
-
 export interface AzureMetricQuery {
 	// Array of resource URIs to be queried.
 	resources?: AzureMonitorResource[];
@@ -109,6 +91,31 @@ export interface AzureMetricQuery {
 export const defaultAzureMetricQuery = (): AzureMetricQuery => ({
 });
 
+export interface AzureMonitorResource {
+	subscription?: string;
+	resourceGroup?: string;
+	resourceName?: string;
+	metricNamespace?: string;
+	region?: string;
+}
+
+export const defaultAzureMonitorResource = (): AzureMonitorResource => ({
+});
+
+export interface AzureMetricDimension {
+	// Name of Dimension to be filtered on.
+	dimension?: string;
+	// String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators.
+	operator?: string;
+	// Values to match with the filter.
+	filters?: string[];
+	// @deprecated filter is deprecated in favour of filters to support multiselect.
+	filter?: string;
+}
+
+export const defaultAzureMetricDimension = (): AzureMetricDimension => ({
+});
+
 // Azure Monitor Logs sub-query properties
 export interface AzureLogsQuery {
 	// KQL query to be executed.
@@ -130,6 +137,25 @@ export interface AzureLogsQuery {
 }
 
 export const defaultAzureLogsQuery = (): AzureLogsQuery => ({
+});
+
+export enum ResultFormat {
+	Table = "table",
+	TimeSeries = "time_series",
+	Trace = "trace",
+	Logs = "logs",
+}
+
+export const defaultResultFormat = (): ResultFormat => (ResultFormat.Table);
+
+export interface AzureResourceGraphQuery {
+	// Azure Resource Graph KQL query to be executed.
+	query?: string;
+	// Specifies the format results should be returned as. Defaults to table.
+	resultFormat?: string;
+}
+
+export const defaultAzureResourceGraphQuery = (): AzureResourceGraphQuery => ({
 });
 
 // Application Insights Traces sub-query properties
@@ -166,79 +192,9 @@ export const defaultAzureTracesFilter = (): AzureTracesFilter => ({
 	filters: [],
 });
 
-export enum ResultFormat {
-	Table = "table",
-	TimeSeries = "time_series",
-	Trace = "trace",
-	Logs = "logs",
-}
+export type GrafanaTemplateVariableQuery = AppInsightsMetricNameQuery | AppInsightsGroupByQuery | SubscriptionsQuery | ResourceGroupsQuery | ResourceNamesQuery | MetricNamespaceQuery | MetricDefinitionsQuery | MetricNamesQuery | WorkspacesQuery | UnknownQuery;
 
-export const defaultResultFormat = (): ResultFormat => (ResultFormat.Table);
-
-export interface AzureResourceGraphQuery {
-	// Azure Resource Graph KQL query to be executed.
-	query?: string;
-	// Specifies the format results should be returned as. Defaults to table.
-	resultFormat?: string;
-}
-
-export const defaultAzureResourceGraphQuery = (): AzureResourceGraphQuery => ({
-});
-
-export interface AzureMonitorResource {
-	subscription?: string;
-	resourceGroup?: string;
-	resourceName?: string;
-	metricNamespace?: string;
-	region?: string;
-}
-
-export const defaultAzureMonitorResource = (): AzureMonitorResource => ({
-});
-
-export interface AzureMetricDimension {
-	// Name of Dimension to be filtered on.
-	dimension?: string;
-	// String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators.
-	operator?: string;
-	// Values to match with the filter.
-	filters?: string[];
-	// @deprecated filter is deprecated in favour of filters to support multiselect.
-	filter?: string;
-}
-
-export const defaultAzureMetricDimension = (): AzureMetricDimension => ({
-});
-
-export enum GrafanaTemplateVariableQueryType {
-	AppInsightsMetricNameQuery = "AppInsightsMetricNameQuery",
-	AppInsightsGroupByQuery = "AppInsightsGroupByQuery",
-	SubscriptionsQuery = "SubscriptionsQuery",
-	ResourceGroupsQuery = "ResourceGroupsQuery",
-	ResourceNamesQuery = "ResourceNamesQuery",
-	MetricNamespaceQuery = "MetricNamespaceQuery",
-	MetricNamesQuery = "MetricNamesQuery",
-	WorkspacesQuery = "WorkspacesQuery",
-	UnknownQuery = "UnknownQuery",
-}
-
-export const defaultGrafanaTemplateVariableQueryType = (): GrafanaTemplateVariableQueryType => (GrafanaTemplateVariableQueryType.AppInsightsMetricNameQuery);
-
-export interface BaseGrafanaTemplateVariableQuery {
-	rawQuery?: string;
-}
-
-export const defaultBaseGrafanaTemplateVariableQuery = (): BaseGrafanaTemplateVariableQuery => ({
-});
-
-export interface UnknownQuery {
-	rawQuery?: string;
-	kind: "UnknownQuery";
-}
-
-export const defaultUnknownQuery = (): UnknownQuery => ({
-	kind: "UnknownQuery",
-});
+export const defaultGrafanaTemplateVariableQuery = (): GrafanaTemplateVariableQuery => (defaultAppInsightsMetricNameQuery());
 
 export interface AppInsightsMetricNameQuery {
 	rawQuery?: string;
@@ -354,7 +310,51 @@ export const defaultWorkspacesQuery = (): WorkspacesQuery => ({
 	subscription: "",
 });
 
-export type GrafanaTemplateVariableQuery = AppInsightsMetricNameQuery | AppInsightsGroupByQuery | SubscriptionsQuery | ResourceGroupsQuery | ResourceNamesQuery | MetricNamespaceQuery | MetricDefinitionsQuery | MetricNamesQuery | WorkspacesQuery | UnknownQuery;
+export interface UnknownQuery {
+	rawQuery?: string;
+	kind: "UnknownQuery";
+}
 
-export const defaultGrafanaTemplateVariableQuery = (): GrafanaTemplateVariableQuery => (defaultAppInsightsMetricNameQuery());
+export const defaultUnknownQuery = (): UnknownQuery => ({
+	kind: "UnknownQuery",
+});
+
+// Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
+export enum AzureQueryType {
+	AzureMonitor = "Azure Monitor",
+	LogAnalytics = "Azure Log Analytics",
+	AzureResourceGraph = "Azure Resource Graph",
+	AzureTraces = "Azure Traces",
+	SubscriptionsQuery = "Azure Subscriptions",
+	ResourceGroupsQuery = "Azure Resource Groups",
+	NamespacesQuery = "Azure Namespaces",
+	ResourceNamesQuery = "Azure Resource Names",
+	MetricNamesQuery = "Azure Metric Names",
+	WorkspacesQuery = "Azure Workspaces",
+	LocationsQuery = "Azure Regions",
+	GrafanaTemplateVariableFn = "Grafana Template Variable Function",
+}
+
+export const defaultAzureQueryType = (): AzureQueryType => (AzureQueryType.AzureMonitor);
+
+export enum GrafanaTemplateVariableQueryType {
+	AppInsightsMetricNameQuery = "AppInsightsMetricNameQuery",
+	AppInsightsGroupByQuery = "AppInsightsGroupByQuery",
+	SubscriptionsQuery = "SubscriptionsQuery",
+	ResourceGroupsQuery = "ResourceGroupsQuery",
+	ResourceNamesQuery = "ResourceNamesQuery",
+	MetricNamespaceQuery = "MetricNamespaceQuery",
+	MetricNamesQuery = "MetricNamesQuery",
+	WorkspacesQuery = "WorkspacesQuery",
+	UnknownQuery = "UnknownQuery",
+}
+
+export const defaultGrafanaTemplateVariableQueryType = (): GrafanaTemplateVariableQueryType => (GrafanaTemplateVariableQueryType.AppInsightsMetricNameQuery);
+
+export interface BaseGrafanaTemplateVariableQuery {
+	rawQuery?: string;
+}
+
+export const defaultBaseGrafanaTemplateVariableQuery = (): BaseGrafanaTemplateVariableQuery => ({
+});
 

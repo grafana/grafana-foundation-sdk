@@ -14,7 +14,7 @@ final class ExprTypeClassicConditionsConditionsOperatorConverter
     
         {
     $buffer = 'type(';
-        $arg0 ='\Grafana\Foundation\Expr\TypeClassicConditionsType::fromValue("'.$input->type.'")';
+        $arg0 ='\Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsOperatorType::fromValue("'.$input->type.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

@@ -34,23 +34,6 @@
           }
         }
       },
-      "CustomRoleRef": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "kind",
-          "name"
-        ],
-        "properties": {
-          "kind": {
-            "type": "string",
-            "const": "Role"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
       "BuiltinRoleRef": {
         "type": "object",
         "additionalProperties": false,
@@ -69,6 +52,23 @@
               "editor",
               "admin"
             ]
+          }
+        }
+      },
+      "CustomRoleRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "name"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "Role"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },

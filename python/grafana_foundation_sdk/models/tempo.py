@@ -135,56 +135,15 @@ class TempoQuery(cogvariants.Dataquery):
         if "spss" in data:
             args["spss"] = data["spss"]
         if "filters" in data:
-            args["filters"] = data["filters"]
+            args["filters"] = [TraceqlFilter.from_json(item) for item in data["filters"]]
         if "groupBy" in data:
-            args["group_by"] = data["groupBy"]
+            args["group_by"] = [TraceqlFilter.from_json(item) for item in data["groupBy"]]
         if "datasource" in data:
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "tableType" in data:
             args["table_type"] = data["tableType"]        
 
         return cls(**args)
-
-
-class TempoQueryType(enum.StrEnum):
-    TRACEQL = "traceql"
-    TRACEQL_SEARCH = "traceqlSearch"
-    SERVICE_MAP = "serviceMap"
-    UPLOAD = "upload"
-    NATIVE_SEARCH = "nativeSearch"
-    TRACE_ID = "traceId"
-    CLEAR = "clear"
-
-
-class SearchStreamingState(enum.StrEnum):
-    """
-    The state of the TraceQL streaming search query
-    """
-
-    PENDING = "pending"
-    STREAMING = "streaming"
-    DONE = "done"
-    ERROR = "error"
-
-
-class SearchTableType(enum.StrEnum):
-    """
-    The type of the table that is used to display the search results
-    """
-
-    TRACES = "traces"
-    SPANS = "spans"
-
-
-class TraceqlSearchScope(enum.StrEnum):
-    """
-    static fields are pre-set in the UI, dynamic fields are added by the user
-    """
-
-    INTRINSIC = "intrinsic"
-    UNSCOPED = "unscoped"
-    RESOURCE = "resource"
-    SPAN = "span"
 
 
 class TraceqlFilter:
@@ -243,6 +202,47 @@ class TraceqlFilter:
             args["scope"] = data["scope"]        
 
         return cls(**args)
+
+
+class TraceqlSearchScope(enum.StrEnum):
+    """
+    static fields are pre-set in the UI, dynamic fields are added by the user
+    """
+
+    INTRINSIC = "intrinsic"
+    UNSCOPED = "unscoped"
+    RESOURCE = "resource"
+    SPAN = "span"
+
+
+class SearchTableType(enum.StrEnum):
+    """
+    The type of the table that is used to display the search results
+    """
+
+    TRACES = "traces"
+    SPANS = "spans"
+
+
+class TempoQueryType(enum.StrEnum):
+    TRACEQL = "traceql"
+    TRACEQL_SEARCH = "traceqlSearch"
+    SERVICE_MAP = "serviceMap"
+    UPLOAD = "upload"
+    NATIVE_SEARCH = "nativeSearch"
+    TRACE_ID = "traceId"
+    CLEAR = "clear"
+
+
+class SearchStreamingState(enum.StrEnum):
+    """
+    The state of the TraceQL streaming search query
+    """
+
+    PENDING = "pending"
+    STREAMING = "streaming"
+    DONE = "done"
+    ERROR = "error"
 
 
 

@@ -8,30 +8,30 @@ public class SerialDiffBuilder implements com.grafana.foundation.cog.Builder<Ser
     
     public SerialDiffBuilder() {
         this.internal = new SerialDiff();
-    this.internal.type = "serial_diff";
+        this.internal.type = "serial_diff";
     }
     public SerialDiffBuilder pipelineAgg(String pipelineAgg) {
-    this.internal.pipelineAgg = pipelineAgg;
+        this.internal.pipelineAgg = pipelineAgg;
         return this;
     }
     
     public SerialDiffBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public SerialDiffBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public SerialDiffBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchSerialDiffSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     
     public SerialDiffBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public SerialDiff build() {

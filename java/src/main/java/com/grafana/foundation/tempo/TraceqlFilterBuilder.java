@@ -10,32 +10,32 @@ public class TraceqlFilterBuilder implements com.grafana.foundation.cog.Builder<
         this.internal = new TraceqlFilter();
     }
     public TraceqlFilterBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public TraceqlFilterBuilder tag(String tag) {
-    this.internal.tag = tag;
+        this.internal.tag = tag;
         return this;
     }
     
     public TraceqlFilterBuilder operator(String operator) {
-    this.internal.operator = operator;
+        this.internal.operator = operator;
         return this;
     }
     
     public TraceqlFilterBuilder value(StringOrArrayOfString value) {
-    this.internal.value = value;
+        this.internal.value = value;
         return this;
     }
     
     public TraceqlFilterBuilder valueType(String valueType) {
-    this.internal.valueType = valueType;
+        this.internal.valueType = valueType;
         return this;
     }
     
     public TraceqlFilterBuilder scope(TraceqlSearchScope scope) {
-    this.internal.scope = scope;
+        this.internal.scope = scope;
         return this;
     }
     public TraceqlFilter build() {

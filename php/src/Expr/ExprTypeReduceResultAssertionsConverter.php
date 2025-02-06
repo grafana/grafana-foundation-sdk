@@ -27,7 +27,7 @@ final class ExprTypeReduceResultAssertionsConverter
     
         
     $buffer = 'type(';
-        $arg0 ='\Grafana\Foundation\Expr\TypeReduceType::fromValue("'.$input->type.'")';
+        $arg0 ='\Grafana\Foundation\Expr\ExprTypeReduceResultAssertionsType::fromValue("'.$input->type.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';
