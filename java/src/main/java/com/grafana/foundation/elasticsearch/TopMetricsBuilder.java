@@ -8,20 +8,20 @@ public class TopMetricsBuilder implements com.grafana.foundation.cog.Builder<Top
     
     public TopMetricsBuilder() {
         this.internal = new TopMetrics();
-    this.internal.type = "top_metrics";
+        this.internal.type = "top_metrics";
     }
     public TopMetricsBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public TopMetricsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchTopMetricsSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     
     public TopMetricsBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public TopMetrics build() {

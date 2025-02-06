@@ -11,7 +11,7 @@ type ExprTypeReduceSettings struct {
     // Possible enum values:
     //  - `"dropNN"` Drop non-numbers
     //  - `"replaceNN"` Replace non-numbers
-    Mode expr.TypeReduceMode `json:"mode"`
+    Mode expr.ExprTypeReduceSettingsMode `json:"mode"`
     // Only valid when mode is replace
     ReplaceWithValue *float64 `json:"replaceWithValue,omitempty"`
 }

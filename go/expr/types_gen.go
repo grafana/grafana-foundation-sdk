@@ -2375,141 +2375,6 @@ func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeTh
 	return errs
 }
 
-type TypeMathType string
-
-const (
-	TypeMathTypeNone             TypeMathType = ""
-	TypeMathTypeTimeseriesWide   TypeMathType = "timeseries-wide"
-	TypeMathTypeTimeseriesLong   TypeMathType = "timeseries-long"
-	TypeMathTypeTimeseriesMany   TypeMathType = "timeseries-many"
-	TypeMathTypeTimeseriesMulti  TypeMathType = "timeseries-multi"
-	TypeMathTypeDirectoryListing TypeMathType = "directory-listing"
-	TypeMathTypeTable            TypeMathType = "table"
-	TypeMathTypeNumericWide      TypeMathType = "numeric-wide"
-	TypeMathTypeNumericMulti     TypeMathType = "numeric-multi"
-	TypeMathTypeNumericLong      TypeMathType = "numeric-long"
-	TypeMathTypeLogLines         TypeMathType = "log-lines"
-)
-
-type TypeReduceReducer string
-
-const (
-	TypeReduceReducerSum    TypeReduceReducer = "sum"
-	TypeReduceReducerMean   TypeReduceReducer = "mean"
-	TypeReduceReducerMin    TypeReduceReducer = "min"
-	TypeReduceReducerMax    TypeReduceReducer = "max"
-	TypeReduceReducerCount  TypeReduceReducer = "count"
-	TypeReduceReducerLast   TypeReduceReducer = "last"
-	TypeReduceReducerMedian TypeReduceReducer = "median"
-)
-
-type TypeReduceType string
-
-const (
-	TypeReduceTypeNone             TypeReduceType = ""
-	TypeReduceTypeTimeseriesWide   TypeReduceType = "timeseries-wide"
-	TypeReduceTypeTimeseriesLong   TypeReduceType = "timeseries-long"
-	TypeReduceTypeTimeseriesMany   TypeReduceType = "timeseries-many"
-	TypeReduceTypeTimeseriesMulti  TypeReduceType = "timeseries-multi"
-	TypeReduceTypeDirectoryListing TypeReduceType = "directory-listing"
-	TypeReduceTypeTable            TypeReduceType = "table"
-	TypeReduceTypeNumericWide      TypeReduceType = "numeric-wide"
-	TypeReduceTypeNumericMulti     TypeReduceType = "numeric-multi"
-	TypeReduceTypeNumericLong      TypeReduceType = "numeric-long"
-	TypeReduceTypeLogLines         TypeReduceType = "log-lines"
-)
-
-type TypeReduceMode string
-
-const (
-	TypeReduceModeDropNN    TypeReduceMode = "dropNN"
-	TypeReduceModeReplaceNN TypeReduceMode = "replaceNN"
-)
-
-type TypeResampleDownsampler string
-
-const (
-	TypeResampleDownsamplerSum    TypeResampleDownsampler = "sum"
-	TypeResampleDownsamplerMean   TypeResampleDownsampler = "mean"
-	TypeResampleDownsamplerMin    TypeResampleDownsampler = "min"
-	TypeResampleDownsamplerMax    TypeResampleDownsampler = "max"
-	TypeResampleDownsamplerCount  TypeResampleDownsampler = "count"
-	TypeResampleDownsamplerLast   TypeResampleDownsampler = "last"
-	TypeResampleDownsamplerMedian TypeResampleDownsampler = "median"
-)
-
-type TypeResampleType string
-
-const (
-	TypeResampleTypeNone             TypeResampleType = ""
-	TypeResampleTypeTimeseriesWide   TypeResampleType = "timeseries-wide"
-	TypeResampleTypeTimeseriesLong   TypeResampleType = "timeseries-long"
-	TypeResampleTypeTimeseriesMany   TypeResampleType = "timeseries-many"
-	TypeResampleTypeTimeseriesMulti  TypeResampleType = "timeseries-multi"
-	TypeResampleTypeDirectoryListing TypeResampleType = "directory-listing"
-	TypeResampleTypeTable            TypeResampleType = "table"
-	TypeResampleTypeNumericWide      TypeResampleType = "numeric-wide"
-	TypeResampleTypeNumericMulti     TypeResampleType = "numeric-multi"
-	TypeResampleTypeNumericLong      TypeResampleType = "numeric-long"
-	TypeResampleTypeLogLines         TypeResampleType = "log-lines"
-)
-
-type TypeResampleUpsampler string
-
-const (
-	TypeResampleUpsamplerPad         TypeResampleUpsampler = "pad"
-	TypeResampleUpsamplerBackfilling TypeResampleUpsampler = "backfilling"
-	TypeResampleUpsamplerFillna      TypeResampleUpsampler = "fillna"
-)
-
-type TypeClassicConditionsType string
-
-const (
-	TypeClassicConditionsTypeNone             TypeClassicConditionsType = ""
-	TypeClassicConditionsTypeTimeseriesWide   TypeClassicConditionsType = "timeseries-wide"
-	TypeClassicConditionsTypeTimeseriesLong   TypeClassicConditionsType = "timeseries-long"
-	TypeClassicConditionsTypeTimeseriesMany   TypeClassicConditionsType = "timeseries-many"
-	TypeClassicConditionsTypeTimeseriesMulti  TypeClassicConditionsType = "timeseries-multi"
-	TypeClassicConditionsTypeDirectoryListing TypeClassicConditionsType = "directory-listing"
-	TypeClassicConditionsTypeTable            TypeClassicConditionsType = "table"
-	TypeClassicConditionsTypeNumericWide      TypeClassicConditionsType = "numeric-wide"
-	TypeClassicConditionsTypeNumericMulti     TypeClassicConditionsType = "numeric-multi"
-	TypeClassicConditionsTypeNumericLong      TypeClassicConditionsType = "numeric-long"
-	TypeClassicConditionsTypeLogLines         TypeClassicConditionsType = "log-lines"
-)
-
-type TypeThresholdType string
-
-const (
-	TypeThresholdTypeNone             TypeThresholdType = ""
-	TypeThresholdTypeTimeseriesWide   TypeThresholdType = "timeseries-wide"
-	TypeThresholdTypeTimeseriesLong   TypeThresholdType = "timeseries-long"
-	TypeThresholdTypeTimeseriesMany   TypeThresholdType = "timeseries-many"
-	TypeThresholdTypeTimeseriesMulti  TypeThresholdType = "timeseries-multi"
-	TypeThresholdTypeDirectoryListing TypeThresholdType = "directory-listing"
-	TypeThresholdTypeTable            TypeThresholdType = "table"
-	TypeThresholdTypeNumericWide      TypeThresholdType = "numeric-wide"
-	TypeThresholdTypeNumericMulti     TypeThresholdType = "numeric-multi"
-	TypeThresholdTypeNumericLong      TypeThresholdType = "numeric-long"
-	TypeThresholdTypeLogLines         TypeThresholdType = "log-lines"
-)
-
-type TypeSqlType string
-
-const (
-	TypeSqlTypeNone             TypeSqlType = ""
-	TypeSqlTypeTimeseriesWide   TypeSqlType = "timeseries-wide"
-	TypeSqlTypeTimeseriesLong   TypeSqlType = "timeseries-long"
-	TypeSqlTypeTimeseriesMany   TypeSqlType = "timeseries-many"
-	TypeSqlTypeTimeseriesMulti  TypeSqlType = "timeseries-multi"
-	TypeSqlTypeDirectoryListing TypeSqlType = "directory-listing"
-	TypeSqlTypeTable            TypeSqlType = "table"
-	TypeSqlTypeNumericWide      TypeSqlType = "numeric-wide"
-	TypeSqlTypeNumericMulti     TypeSqlType = "numeric-multi"
-	TypeSqlTypeNumericLong      TypeSqlType = "numeric-long"
-	TypeSqlTypeLogLines         TypeSqlType = "log-lines"
-)
-
 type ExprTypeMathResultAssertions struct {
 	// Maximum frame count
 	MaxFrames *int64 `json:"maxFrames,omitempty"`
@@ -2526,7 +2391,7 @@ type ExprTypeMathResultAssertions struct {
 	//  - `"numeric-multi"`
 	//  - `"numeric-long"`
 	//  - `"log-lines"`
-	Type *TypeMathType `json:"type,omitempty"`
+	Type *ExprTypeMathResultAssertionsType `json:"type,omitempty"`
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
@@ -2735,7 +2600,7 @@ type ExprTypeReduceResultAssertions struct {
 	//  - `"numeric-multi"`
 	//  - `"numeric-long"`
 	//  - `"log-lines"`
-	Type *TypeReduceType `json:"type,omitempty"`
+	Type *ExprTypeReduceResultAssertionsType `json:"type,omitempty"`
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
@@ -2851,7 +2716,7 @@ type ExprTypeReduceSettings struct {
 	// Possible enum values:
 	//  - `"dropNN"` Drop non-numbers
 	//  - `"replaceNN"` Replace non-numbers
-	Mode TypeReduceMode `json:"mode"`
+	Mode ExprTypeReduceSettingsMode `json:"mode"`
 	// Only valid when mode is replace
 	ReplaceWithValue *float64 `json:"replaceWithValue,omitempty"`
 }
@@ -3031,7 +2896,7 @@ type ExprTypeResampleResultAssertions struct {
 	//  - `"numeric-multi"`
 	//  - `"numeric-long"`
 	//  - `"log-lines"`
-	Type *TypeResampleType `json:"type,omitempty"`
+	Type *ExprTypeResampleResultAssertionsType `json:"type,omitempty"`
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
@@ -3313,7 +3178,7 @@ func (resource ExprTypeClassicConditionsConditionsEvaluator) Validate() error {
 }
 
 type ExprTypeClassicConditionsConditionsOperator struct {
-	Type TypeClassicConditionsType `json:"type"`
+	Type ExprTypeClassicConditionsConditionsOperatorType `json:"type"`
 }
 
 // NewExprTypeClassicConditionsConditionsOperator creates a new ExprTypeClassicConditionsConditionsOperator object.
@@ -3665,7 +3530,7 @@ type ExprTypeClassicConditionsResultAssertions struct {
 	//  - `"numeric-multi"`
 	//  - `"numeric-long"`
 	//  - `"log-lines"`
-	Type *TypeClassicConditionsType `json:"type,omitempty"`
+	Type *ExprTypeClassicConditionsResultAssertionsType `json:"type,omitempty"`
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
@@ -3861,7 +3726,7 @@ func (resource ExprTypeClassicConditionsTimeRange) Validate() error {
 type ExprTypeThresholdConditionsEvaluator struct {
 	Params []float64 `json:"params"`
 	// e.g. "gt"
-	Type TypeThresholdType `json:"type"`
+	Type ExprTypeThresholdConditionsEvaluatorType `json:"type"`
 }
 
 // NewExprTypeThresholdConditionsEvaluator creates a new ExprTypeThresholdConditionsEvaluator object.
@@ -3949,7 +3814,7 @@ func (resource ExprTypeThresholdConditionsEvaluator) Validate() error {
 type ExprTypeThresholdConditionsUnloadEvaluator struct {
 	Params []float64 `json:"params"`
 	// e.g. "gt"
-	Type TypeThresholdType `json:"type"`
+	Type ExprTypeThresholdConditionsUnloadEvaluatorType `json:"type"`
 }
 
 // NewExprTypeThresholdConditionsUnloadEvaluator creates a new ExprTypeThresholdConditionsUnloadEvaluator object.
@@ -4168,7 +4033,7 @@ type ExprTypeThresholdResultAssertions struct {
 	//  - `"numeric-multi"`
 	//  - `"numeric-long"`
 	//  - `"log-lines"`
-	Type *TypeThresholdType `json:"type,omitempty"`
+	Type *ExprTypeThresholdResultAssertionsType `json:"type,omitempty"`
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
@@ -4377,7 +4242,7 @@ type ExprTypeSqlResultAssertions struct {
 	//  - `"numeric-multi"`
 	//  - `"numeric-long"`
 	//  - `"log-lines"`
-	Type *TypeSqlType `json:"type,omitempty"`
+	Type *ExprTypeSqlResultAssertionsType `json:"type,omitempty"`
 	// TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
 	// contract documentation https://grafana.github.io/dataplane/contract/.
 	TypeVersion []int64 `json:"typeVersion"`
@@ -4569,6 +4434,167 @@ func (resource ExprTypeSqlTimeRange) Equals(other ExprTypeSqlTimeRange) bool {
 func (resource ExprTypeSqlTimeRange) Validate() error {
 	return nil
 }
+
+type TypeReduceReducer string
+
+const (
+	TypeReduceReducerSum    TypeReduceReducer = "sum"
+	TypeReduceReducerMean   TypeReduceReducer = "mean"
+	TypeReduceReducerMin    TypeReduceReducer = "min"
+	TypeReduceReducerMax    TypeReduceReducer = "max"
+	TypeReduceReducerCount  TypeReduceReducer = "count"
+	TypeReduceReducerLast   TypeReduceReducer = "last"
+	TypeReduceReducerMedian TypeReduceReducer = "median"
+)
+
+type TypeResampleDownsampler string
+
+const (
+	TypeResampleDownsamplerSum    TypeResampleDownsampler = "sum"
+	TypeResampleDownsamplerMean   TypeResampleDownsampler = "mean"
+	TypeResampleDownsamplerMin    TypeResampleDownsampler = "min"
+	TypeResampleDownsamplerMax    TypeResampleDownsampler = "max"
+	TypeResampleDownsamplerCount  TypeResampleDownsampler = "count"
+	TypeResampleDownsamplerLast   TypeResampleDownsampler = "last"
+	TypeResampleDownsamplerMedian TypeResampleDownsampler = "median"
+)
+
+type TypeResampleUpsampler string
+
+const (
+	TypeResampleUpsamplerPad         TypeResampleUpsampler = "pad"
+	TypeResampleUpsamplerBackfilling TypeResampleUpsampler = "backfilling"
+	TypeResampleUpsamplerFillna      TypeResampleUpsampler = "fillna"
+)
+
+type ExprTypeMathResultAssertionsType string
+
+const (
+	ExprTypeMathResultAssertionsTypeNone             ExprTypeMathResultAssertionsType = ""
+	ExprTypeMathResultAssertionsTypeTimeseriesWide   ExprTypeMathResultAssertionsType = "timeseries-wide"
+	ExprTypeMathResultAssertionsTypeTimeseriesLong   ExprTypeMathResultAssertionsType = "timeseries-long"
+	ExprTypeMathResultAssertionsTypeTimeseriesMany   ExprTypeMathResultAssertionsType = "timeseries-many"
+	ExprTypeMathResultAssertionsTypeTimeseriesMulti  ExprTypeMathResultAssertionsType = "timeseries-multi"
+	ExprTypeMathResultAssertionsTypeDirectoryListing ExprTypeMathResultAssertionsType = "directory-listing"
+	ExprTypeMathResultAssertionsTypeTable            ExprTypeMathResultAssertionsType = "table"
+	ExprTypeMathResultAssertionsTypeNumericWide      ExprTypeMathResultAssertionsType = "numeric-wide"
+	ExprTypeMathResultAssertionsTypeNumericMulti     ExprTypeMathResultAssertionsType = "numeric-multi"
+	ExprTypeMathResultAssertionsTypeNumericLong      ExprTypeMathResultAssertionsType = "numeric-long"
+	ExprTypeMathResultAssertionsTypeLogLines         ExprTypeMathResultAssertionsType = "log-lines"
+)
+
+type ExprTypeReduceResultAssertionsType string
+
+const (
+	ExprTypeReduceResultAssertionsTypeNone             ExprTypeReduceResultAssertionsType = ""
+	ExprTypeReduceResultAssertionsTypeTimeseriesWide   ExprTypeReduceResultAssertionsType = "timeseries-wide"
+	ExprTypeReduceResultAssertionsTypeTimeseriesLong   ExprTypeReduceResultAssertionsType = "timeseries-long"
+	ExprTypeReduceResultAssertionsTypeTimeseriesMany   ExprTypeReduceResultAssertionsType = "timeseries-many"
+	ExprTypeReduceResultAssertionsTypeTimeseriesMulti  ExprTypeReduceResultAssertionsType = "timeseries-multi"
+	ExprTypeReduceResultAssertionsTypeDirectoryListing ExprTypeReduceResultAssertionsType = "directory-listing"
+	ExprTypeReduceResultAssertionsTypeTable            ExprTypeReduceResultAssertionsType = "table"
+	ExprTypeReduceResultAssertionsTypeNumericWide      ExprTypeReduceResultAssertionsType = "numeric-wide"
+	ExprTypeReduceResultAssertionsTypeNumericMulti     ExprTypeReduceResultAssertionsType = "numeric-multi"
+	ExprTypeReduceResultAssertionsTypeNumericLong      ExprTypeReduceResultAssertionsType = "numeric-long"
+	ExprTypeReduceResultAssertionsTypeLogLines         ExprTypeReduceResultAssertionsType = "log-lines"
+)
+
+type ExprTypeReduceSettingsMode string
+
+const (
+	ExprTypeReduceSettingsModeDropNN    ExprTypeReduceSettingsMode = "dropNN"
+	ExprTypeReduceSettingsModeReplaceNN ExprTypeReduceSettingsMode = "replaceNN"
+)
+
+type ExprTypeResampleResultAssertionsType string
+
+const (
+	ExprTypeResampleResultAssertionsTypeNone             ExprTypeResampleResultAssertionsType = ""
+	ExprTypeResampleResultAssertionsTypeTimeseriesWide   ExprTypeResampleResultAssertionsType = "timeseries-wide"
+	ExprTypeResampleResultAssertionsTypeTimeseriesLong   ExprTypeResampleResultAssertionsType = "timeseries-long"
+	ExprTypeResampleResultAssertionsTypeTimeseriesMany   ExprTypeResampleResultAssertionsType = "timeseries-many"
+	ExprTypeResampleResultAssertionsTypeTimeseriesMulti  ExprTypeResampleResultAssertionsType = "timeseries-multi"
+	ExprTypeResampleResultAssertionsTypeDirectoryListing ExprTypeResampleResultAssertionsType = "directory-listing"
+	ExprTypeResampleResultAssertionsTypeTable            ExprTypeResampleResultAssertionsType = "table"
+	ExprTypeResampleResultAssertionsTypeNumericWide      ExprTypeResampleResultAssertionsType = "numeric-wide"
+	ExprTypeResampleResultAssertionsTypeNumericMulti     ExprTypeResampleResultAssertionsType = "numeric-multi"
+	ExprTypeResampleResultAssertionsTypeNumericLong      ExprTypeResampleResultAssertionsType = "numeric-long"
+	ExprTypeResampleResultAssertionsTypeLogLines         ExprTypeResampleResultAssertionsType = "log-lines"
+)
+
+type ExprTypeClassicConditionsConditionsOperatorType string
+
+const (
+	ExprTypeClassicConditionsConditionsOperatorTypeAnd     ExprTypeClassicConditionsConditionsOperatorType = "and"
+	ExprTypeClassicConditionsConditionsOperatorTypeOr      ExprTypeClassicConditionsConditionsOperatorType = "or"
+	ExprTypeClassicConditionsConditionsOperatorTypeLogicOr ExprTypeClassicConditionsConditionsOperatorType = "logic-or"
+)
+
+type ExprTypeClassicConditionsResultAssertionsType string
+
+const (
+	ExprTypeClassicConditionsResultAssertionsTypeNone             ExprTypeClassicConditionsResultAssertionsType = ""
+	ExprTypeClassicConditionsResultAssertionsTypeTimeseriesWide   ExprTypeClassicConditionsResultAssertionsType = "timeseries-wide"
+	ExprTypeClassicConditionsResultAssertionsTypeTimeseriesLong   ExprTypeClassicConditionsResultAssertionsType = "timeseries-long"
+	ExprTypeClassicConditionsResultAssertionsTypeTimeseriesMany   ExprTypeClassicConditionsResultAssertionsType = "timeseries-many"
+	ExprTypeClassicConditionsResultAssertionsTypeTimeseriesMulti  ExprTypeClassicConditionsResultAssertionsType = "timeseries-multi"
+	ExprTypeClassicConditionsResultAssertionsTypeDirectoryListing ExprTypeClassicConditionsResultAssertionsType = "directory-listing"
+	ExprTypeClassicConditionsResultAssertionsTypeTable            ExprTypeClassicConditionsResultAssertionsType = "table"
+	ExprTypeClassicConditionsResultAssertionsTypeNumericWide      ExprTypeClassicConditionsResultAssertionsType = "numeric-wide"
+	ExprTypeClassicConditionsResultAssertionsTypeNumericMulti     ExprTypeClassicConditionsResultAssertionsType = "numeric-multi"
+	ExprTypeClassicConditionsResultAssertionsTypeNumericLong      ExprTypeClassicConditionsResultAssertionsType = "numeric-long"
+	ExprTypeClassicConditionsResultAssertionsTypeLogLines         ExprTypeClassicConditionsResultAssertionsType = "log-lines"
+)
+
+type ExprTypeThresholdConditionsEvaluatorType string
+
+const (
+	ExprTypeThresholdConditionsEvaluatorTypeGt           ExprTypeThresholdConditionsEvaluatorType = "gt"
+	ExprTypeThresholdConditionsEvaluatorTypeLt           ExprTypeThresholdConditionsEvaluatorType = "lt"
+	ExprTypeThresholdConditionsEvaluatorTypeWithinRange  ExprTypeThresholdConditionsEvaluatorType = "within_range"
+	ExprTypeThresholdConditionsEvaluatorTypeOutsideRange ExprTypeThresholdConditionsEvaluatorType = "outside_range"
+)
+
+type ExprTypeThresholdConditionsUnloadEvaluatorType string
+
+const (
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeGt           ExprTypeThresholdConditionsUnloadEvaluatorType = "gt"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeLt           ExprTypeThresholdConditionsUnloadEvaluatorType = "lt"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeWithinRange  ExprTypeThresholdConditionsUnloadEvaluatorType = "within_range"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeOutsideRange ExprTypeThresholdConditionsUnloadEvaluatorType = "outside_range"
+)
+
+type ExprTypeThresholdResultAssertionsType string
+
+const (
+	ExprTypeThresholdResultAssertionsTypeNone             ExprTypeThresholdResultAssertionsType = ""
+	ExprTypeThresholdResultAssertionsTypeTimeseriesWide   ExprTypeThresholdResultAssertionsType = "timeseries-wide"
+	ExprTypeThresholdResultAssertionsTypeTimeseriesLong   ExprTypeThresholdResultAssertionsType = "timeseries-long"
+	ExprTypeThresholdResultAssertionsTypeTimeseriesMany   ExprTypeThresholdResultAssertionsType = "timeseries-many"
+	ExprTypeThresholdResultAssertionsTypeTimeseriesMulti  ExprTypeThresholdResultAssertionsType = "timeseries-multi"
+	ExprTypeThresholdResultAssertionsTypeDirectoryListing ExprTypeThresholdResultAssertionsType = "directory-listing"
+	ExprTypeThresholdResultAssertionsTypeTable            ExprTypeThresholdResultAssertionsType = "table"
+	ExprTypeThresholdResultAssertionsTypeNumericWide      ExprTypeThresholdResultAssertionsType = "numeric-wide"
+	ExprTypeThresholdResultAssertionsTypeNumericMulti     ExprTypeThresholdResultAssertionsType = "numeric-multi"
+	ExprTypeThresholdResultAssertionsTypeNumericLong      ExprTypeThresholdResultAssertionsType = "numeric-long"
+	ExprTypeThresholdResultAssertionsTypeLogLines         ExprTypeThresholdResultAssertionsType = "log-lines"
+)
+
+type ExprTypeSqlResultAssertionsType string
+
+const (
+	ExprTypeSqlResultAssertionsTypeNone             ExprTypeSqlResultAssertionsType = ""
+	ExprTypeSqlResultAssertionsTypeTimeseriesWide   ExprTypeSqlResultAssertionsType = "timeseries-wide"
+	ExprTypeSqlResultAssertionsTypeTimeseriesLong   ExprTypeSqlResultAssertionsType = "timeseries-long"
+	ExprTypeSqlResultAssertionsTypeTimeseriesMany   ExprTypeSqlResultAssertionsType = "timeseries-many"
+	ExprTypeSqlResultAssertionsTypeTimeseriesMulti  ExprTypeSqlResultAssertionsType = "timeseries-multi"
+	ExprTypeSqlResultAssertionsTypeDirectoryListing ExprTypeSqlResultAssertionsType = "directory-listing"
+	ExprTypeSqlResultAssertionsTypeTable            ExprTypeSqlResultAssertionsType = "table"
+	ExprTypeSqlResultAssertionsTypeNumericWide      ExprTypeSqlResultAssertionsType = "numeric-wide"
+	ExprTypeSqlResultAssertionsTypeNumericMulti     ExprTypeSqlResultAssertionsType = "numeric-multi"
+	ExprTypeSqlResultAssertionsTypeNumericLong      ExprTypeSqlResultAssertionsType = "numeric-long"
+	ExprTypeSqlResultAssertionsTypeLogLines         ExprTypeSqlResultAssertionsType = "log-lines"
+)
 
 // VariantConfig returns the configuration related to __expr__ dataqueries.
 // This configuration describes how to unmarshal it, convert it to code, …

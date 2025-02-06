@@ -2,7 +2,6 @@
 
 package com.grafana.foundation.candlestick;
 
-import com.grafana.foundation.common.GraphFieldConfig;
 
-public class FieldConfig extends GraphFieldConfig {
+public class FieldConfig extends com.grafana.foundation.common.GraphFieldConfig {
 }

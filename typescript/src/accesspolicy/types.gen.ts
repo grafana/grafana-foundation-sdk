@@ -16,6 +16,16 @@ export const defaultAccessPolicy = (): AccessPolicy => ({
 	rules: [],
 });
 
+export interface ResourceRef {
+	kind: string;
+	name: string;
+}
+
+export const defaultResourceRef = (): ResourceRef => ({
+	kind: "",
+	name: "",
+});
+
 export interface RoleRef {
 	// Policies can apply to roles, teams, or users
 	// Applying policies to individual users is supported, but discouraged
@@ -28,16 +38,6 @@ export const defaultRoleRef = (): RoleRef => ({
 	kind: "Role",
 	name: "",
 	xname: "",
-});
-
-export interface ResourceRef {
-	kind: string;
-	name: string;
-}
-
-export const defaultResourceRef = (): ResourceRef => ({
-	kind: "",
-	name: "",
 });
 
 export interface AccessRule {

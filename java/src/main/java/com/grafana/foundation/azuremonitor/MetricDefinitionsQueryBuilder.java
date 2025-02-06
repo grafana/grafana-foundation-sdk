@@ -8,30 +8,30 @@ public class MetricDefinitionsQueryBuilder implements com.grafana.foundation.cog
     
     public MetricDefinitionsQueryBuilder() {
         this.internal = new MetricDefinitionsQuery();
-    this.internal.kind = "MetricDefinitionsQuery";
+        this.internal.kind = "MetricDefinitionsQuery";
     }
     public MetricDefinitionsQueryBuilder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
+        this.internal.rawQuery = rawQuery;
         return this;
     }
     
     public MetricDefinitionsQueryBuilder subscription(String subscription) {
-    this.internal.subscription = subscription;
+        this.internal.subscription = subscription;
         return this;
     }
     
     public MetricDefinitionsQueryBuilder resourceGroup(String resourceGroup) {
-    this.internal.resourceGroup = resourceGroup;
+        this.internal.resourceGroup = resourceGroup;
         return this;
     }
     
     public MetricDefinitionsQueryBuilder metricNamespace(String metricNamespace) {
-    this.internal.metricNamespace = metricNamespace;
+        this.internal.metricNamespace = metricNamespace;
         return this;
     }
     
     public MetricDefinitionsQueryBuilder resourceName(String resourceName) {
-    this.internal.resourceName = resourceName;
+        this.internal.resourceName = resourceName;
         return this;
     }
     public MetricDefinitionsQuery build() {

@@ -8,20 +8,20 @@ public class GeoHashGridBuilder implements com.grafana.foundation.cog.Builder<Ge
     
     public GeoHashGridBuilder() {
         this.internal = new GeoHashGrid();
-    this.internal.type = "geohash_grid";
+        this.internal.type = "geohash_grid";
     }
     public GeoHashGridBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public GeoHashGridBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public GeoHashGridBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchGeoHashGridSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     public GeoHashGrid build() {

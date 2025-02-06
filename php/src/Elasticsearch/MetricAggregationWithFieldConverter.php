@@ -27,18 +27,7 @@ final class MetricAggregationWithFieldConverter
     
         {
     $buffer = 'type(';
-        switch (true) {
-            case is_string($input->type):
-                $disjunctiontype =\var_export($input->type, true);
-                $arg0 = $disjunctiontype;
-                break;
-            case $input->type instanceof \Grafana\Foundation\Elasticsearch\PipelineMetricAggregationType:
-                $disjunctiontype ='\Grafana\Foundation\Elasticsearch\PipelineMetricAggregationType::fromValue("'.$input->type.'")';
-                $arg0 = $disjunctiontype;
-                break;
-            default:
-                throw new \ValueError('disjunction branch not handled');
-        }
+        $arg0 ='\Grafana\Foundation\Elasticsearch\MetricAggregationType::fromValue("'.$input->type.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

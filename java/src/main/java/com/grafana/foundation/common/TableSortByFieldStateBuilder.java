@@ -10,12 +10,12 @@ public class TableSortByFieldStateBuilder implements com.grafana.foundation.cog.
         this.internal = new TableSortByFieldState();
     }
     public TableSortByFieldStateBuilder displayName(String displayName) {
-    this.internal.displayName = displayName;
+        this.internal.displayName = displayName;
         return this;
     }
     
     public TableSortByFieldStateBuilder desc(Boolean desc) {
-    this.internal.desc = desc;
+        this.internal.desc = desc;
         return this;
     }
     public TableSortByFieldState build() {

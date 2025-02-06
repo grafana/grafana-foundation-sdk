@@ -10,7 +10,7 @@ public class ExprTypeClassicConditionsConditionsReducerBuilder implements com.gr
         this.internal = new ExprTypeClassicConditionsConditionsReducer();
     }
     public ExprTypeClassicConditionsConditionsReducerBuilder type(String type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     public ExprTypeClassicConditionsConditionsReducer build() {

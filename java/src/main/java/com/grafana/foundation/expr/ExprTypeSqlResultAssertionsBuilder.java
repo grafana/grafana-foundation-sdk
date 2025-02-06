@@ -11,17 +11,17 @@ public class ExprTypeSqlResultAssertionsBuilder implements com.grafana.foundatio
         this.internal = new ExprTypeSqlResultAssertions();
     }
     public ExprTypeSqlResultAssertionsBuilder maxFrames(Long maxFrames) {
-    this.internal.maxFrames = maxFrames;
+        this.internal.maxFrames = maxFrames;
         return this;
     }
     
-    public ExprTypeSqlResultAssertionsBuilder type(TypeSqlType type) {
-    this.internal.type = type;
+    public ExprTypeSqlResultAssertionsBuilder type(ExprTypeSqlResultAssertionsType type) {
+        this.internal.type = type;
         return this;
     }
     
     public ExprTypeSqlResultAssertionsBuilder typeVersion(List<Long> typeVersion) {
-    this.internal.typeVersion = typeVersion;
+        this.internal.typeVersion = typeVersion;
         return this;
     }
     public ExprTypeSqlResultAssertions build() {

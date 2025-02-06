@@ -11,17 +11,17 @@ public class ExprTypeResampleResultAssertionsBuilder implements com.grafana.foun
         this.internal = new ExprTypeResampleResultAssertions();
     }
     public ExprTypeResampleResultAssertionsBuilder maxFrames(Long maxFrames) {
-    this.internal.maxFrames = maxFrames;
+        this.internal.maxFrames = maxFrames;
         return this;
     }
     
-    public ExprTypeResampleResultAssertionsBuilder type(TypeResampleType type) {
-    this.internal.type = type;
+    public ExprTypeResampleResultAssertionsBuilder type(ExprTypeResampleResultAssertionsType type) {
+        this.internal.type = type;
         return this;
     }
     
     public ExprTypeResampleResultAssertionsBuilder typeVersion(List<Long> typeVersion) {
-    this.internal.typeVersion = typeVersion;
+        this.internal.typeVersion = typeVersion;
         return this;
     }
     public ExprTypeResampleResultAssertions build() {

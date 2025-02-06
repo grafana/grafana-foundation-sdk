@@ -9,18 +9,18 @@ public class BaseMetricAggregationBuilder implements com.grafana.foundation.cog.
     public BaseMetricAggregationBuilder() {
         this.internal = new BaseMetricAggregation();
     }
-    public BaseMetricAggregationBuilder type(com.grafana.foundation.cog.Builder<MetricAggregationType> type) {
-    this.internal.type = type.build();
+    public BaseMetricAggregationBuilder type(MetricAggregationType type) {
+        this.internal.type = type;
         return this;
     }
     
     public BaseMetricAggregationBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public BaseMetricAggregationBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public BaseMetricAggregation build() {

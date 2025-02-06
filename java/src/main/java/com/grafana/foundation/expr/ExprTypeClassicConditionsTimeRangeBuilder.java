@@ -10,12 +10,12 @@ public class ExprTypeClassicConditionsTimeRangeBuilder implements com.grafana.fo
         this.internal = new ExprTypeClassicConditionsTimeRange();
     }
     public ExprTypeClassicConditionsTimeRangeBuilder from(String from) {
-    this.internal.from = from;
+        this.internal.from = from;
         return this;
     }
     
     public ExprTypeClassicConditionsTimeRangeBuilder to(String to) {
-    this.internal.to = to;
+        this.internal.to = to;
         return this;
     }
     public ExprTypeClassicConditionsTimeRange build() {

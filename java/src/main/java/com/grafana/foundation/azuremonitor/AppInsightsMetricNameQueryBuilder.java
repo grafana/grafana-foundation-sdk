@@ -8,10 +8,10 @@ public class AppInsightsMetricNameQueryBuilder implements com.grafana.foundation
     
     public AppInsightsMetricNameQueryBuilder() {
         this.internal = new AppInsightsMetricNameQuery();
-    this.internal.kind = "AppInsightsMetricNameQuery";
+        this.internal.kind = "AppInsightsMetricNameQuery";
     }
     public AppInsightsMetricNameQueryBuilder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
+        this.internal.rawQuery = rawQuery;
         return this;
     }
     public AppInsightsMetricNameQuery build() {

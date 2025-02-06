@@ -64,7 +64,7 @@ class Options:
         if "tooltip" in data:
             args["tooltip"] = common.VizTooltipOptions.from_json(data["tooltip"])
         if "timezone" in data:
-            args["timezone"] = data["timezone"]
+            args["timezone"] = [item for item in data["timezone"]]
         if "perPage" in data:
             args["per_page"] = data["perPage"]        
 

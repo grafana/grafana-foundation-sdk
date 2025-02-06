@@ -10,12 +10,12 @@ public class TimeIntervalTimeRangeBuilder implements com.grafana.foundation.cog.
         this.internal = new TimeIntervalTimeRange();
     }
     public TimeIntervalTimeRangeBuilder endTime(String endTime) {
-    this.internal.endTime = endTime;
+        this.internal.endTime = endTime;
         return this;
     }
     
     public TimeIntervalTimeRangeBuilder startTime(String startTime) {
-    this.internal.startTime = startTime;
+        this.internal.startTime = startTime;
         return this;
     }
     public TimeIntervalTimeRange build() {

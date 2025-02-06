@@ -10,7 +10,7 @@ public class ElasticsearchSerialDiffSettingsBuilder implements com.grafana.found
         this.internal = new ElasticsearchSerialDiffSettings();
     }
     public ElasticsearchSerialDiffSettingsBuilder lag(String lag) {
-    this.internal.lag = lag;
+        this.internal.lag = lag;
         return this;
     }
     public ElasticsearchSerialDiffSettings build() {

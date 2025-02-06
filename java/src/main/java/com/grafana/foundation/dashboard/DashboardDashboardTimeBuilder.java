@@ -10,12 +10,12 @@ public class DashboardDashboardTimeBuilder implements com.grafana.foundation.cog
         this.internal = new DashboardDashboardTime();
     }
     public DashboardDashboardTimeBuilder from(String from) {
-    this.internal.from = from;
+        this.internal.from = from;
         return this;
     }
     
     public DashboardDashboardTimeBuilder to(String to) {
-    this.internal.to = to;
+        this.internal.to = to;
         return this;
     }
     public DashboardDashboardTime build() {

@@ -34,11 +34,18 @@ class ValueMap implements \JsonSerializable
         /** @var array{type?: string, options?: array<string, mixed>} $inputData */
         $data = $inputData;
         return new self(
-            options: isset($data["options"]) ? array_map((function($input) {
+            options: isset($data["options"]) ? (function($input) {
+        /** @var array<string, \Grafana\Foundation\Dashboard\ValueMappingResult> $results */
+        $results = [];
+        foreach ($input as $key => $val) {
+            $results[$key] = isset($val) ? (function($input) {
     	/** @var array{text?: string, color?: string, icon?: string, index?: int} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\ValueMappingResult::fromArray($val);
-    }), $data["options"]) : null,
+    })($val) : null;
+        }
+        return array_filter($results);
+    })($data["options"]) : null,
         );
     }
 

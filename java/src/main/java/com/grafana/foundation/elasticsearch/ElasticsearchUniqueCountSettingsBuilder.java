@@ -10,12 +10,12 @@ public class ElasticsearchUniqueCountSettingsBuilder implements com.grafana.foun
         this.internal = new ElasticsearchUniqueCountSettings();
     }
     public ElasticsearchUniqueCountSettingsBuilder precisionThreshold(String precisionThreshold) {
-    this.internal.precisionThreshold = precisionThreshold;
+        this.internal.precisionThreshold = precisionThreshold;
         return this;
     }
     
     public ElasticsearchUniqueCountSettingsBuilder missing(String missing) {
-    this.internal.missing = missing;
+        this.internal.missing = missing;
         return this;
     }
     public ElasticsearchUniqueCountSettings build() {

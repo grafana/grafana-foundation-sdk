@@ -10,7 +10,7 @@ public class OptionsWithLegendBuilder implements com.grafana.foundation.cog.Buil
         this.internal = new OptionsWithLegend();
     }
     public OptionsWithLegendBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
-    this.internal.legend = legend.build();
+        this.internal.legend = legend.build();
         return this;
     }
     public OptionsWithLegend build() {
