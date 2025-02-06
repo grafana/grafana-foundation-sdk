@@ -10,17 +10,17 @@ public class BaseBucketAggregationBuilder implements com.grafana.foundation.cog.
         this.internal = new BaseBucketAggregation();
     }
     public BaseBucketAggregationBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public BaseBucketAggregationBuilder type(BucketAggregationType type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public BaseBucketAggregationBuilder settings(Object settings) {
-    this.internal.settings = settings;
+        this.internal.settings = settings;
         return this;
     }
     public BaseBucketAggregation build() {

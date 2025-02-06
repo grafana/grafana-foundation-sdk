@@ -10,17 +10,17 @@ public class ScaleDistributionConfigBuilder implements com.grafana.foundation.co
         this.internal = new ScaleDistributionConfig();
     }
     public ScaleDistributionConfigBuilder type(ScaleDistribution type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public ScaleDistributionConfigBuilder log(Double log) {
-    this.internal.log = log;
+        this.internal.log = log;
         return this;
     }
     
     public ScaleDistributionConfigBuilder linearThreshold(Double linearThreshold) {
-    this.internal.linearThreshold = linearThreshold;
+        this.internal.linearThreshold = linearThreshold;
         return this;
     }
     public ScaleDistributionConfig build() {

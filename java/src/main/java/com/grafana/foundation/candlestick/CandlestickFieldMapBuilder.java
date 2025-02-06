@@ -10,27 +10,27 @@ public class CandlestickFieldMapBuilder implements com.grafana.foundation.cog.Bu
         this.internal = new CandlestickFieldMap();
     }
     public CandlestickFieldMapBuilder open(String open) {
-    this.internal.open = open;
+        this.internal.open = open;
         return this;
     }
     
     public CandlestickFieldMapBuilder high(String high) {
-    this.internal.high = high;
+        this.internal.high = high;
         return this;
     }
     
     public CandlestickFieldMapBuilder low(String low) {
-    this.internal.low = low;
+        this.internal.low = low;
         return this;
     }
     
     public CandlestickFieldMapBuilder close(String close) {
-    this.internal.close = close;
+        this.internal.close = close;
         return this;
     }
     
     public CandlestickFieldMapBuilder volume(String volume) {
-    this.internal.volume = volume;
+        this.internal.volume = volume;
         return this;
     }
     public CandlestickFieldMap build() {

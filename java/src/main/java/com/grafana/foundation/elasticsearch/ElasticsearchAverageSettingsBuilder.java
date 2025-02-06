@@ -10,12 +10,12 @@ public class ElasticsearchAverageSettingsBuilder implements com.grafana.foundati
         this.internal = new ElasticsearchAverageSettings();
     }
     public ElasticsearchAverageSettingsBuilder script(InlineScript script) {
-    this.internal.script = script;
+        this.internal.script = script;
         return this;
     }
     
     public ElasticsearchAverageSettingsBuilder missing(String missing) {
-    this.internal.missing = missing;
+        this.internal.missing = missing;
         return this;
     }
     public ElasticsearchAverageSettings build() {

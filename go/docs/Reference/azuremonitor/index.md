@@ -65,12 +65,36 @@ NewAzureMetricQuery creates a new AzureMetricQuery object.
 func NewAzureMetricQuery() *AzureMetricQuery
 ```
 
+### <span class="badge function"></span> NewAzureMonitorResource
+
+NewAzureMonitorResource creates a new AzureMonitorResource object.
+
+```go
+func NewAzureMonitorResource() *AzureMonitorResource
+```
+
+### <span class="badge function"></span> NewAzureMetricDimension
+
+NewAzureMetricDimension creates a new AzureMetricDimension object.
+
+```go
+func NewAzureMetricDimension() *AzureMetricDimension
+```
+
 ### <span class="badge function"></span> NewAzureLogsQuery
 
 NewAzureLogsQuery creates a new AzureLogsQuery object.
 
 ```go
 func NewAzureLogsQuery() *AzureLogsQuery
+```
+
+### <span class="badge function"></span> NewAzureResourceGraphQuery
+
+NewAzureResourceGraphQuery creates a new AzureResourceGraphQuery object.
+
+```go
+func NewAzureResourceGraphQuery() *AzureResourceGraphQuery
 ```
 
 ### <span class="badge function"></span> NewAzureTracesQuery
@@ -89,44 +113,12 @@ NewAzureTracesFilter creates a new AzureTracesFilter object.
 func NewAzureTracesFilter() *AzureTracesFilter
 ```
 
-### <span class="badge function"></span> NewAzureResourceGraphQuery
+### <span class="badge function"></span> NewGrafanaTemplateVariableQuery
 
-NewAzureResourceGraphQuery creates a new AzureResourceGraphQuery object.
-
-```go
-func NewAzureResourceGraphQuery() *AzureResourceGraphQuery
-```
-
-### <span class="badge function"></span> NewAzureMonitorResource
-
-NewAzureMonitorResource creates a new AzureMonitorResource object.
+NewGrafanaTemplateVariableQuery creates a new GrafanaTemplateVariableQuery object.
 
 ```go
-func NewAzureMonitorResource() *AzureMonitorResource
-```
-
-### <span class="badge function"></span> NewAzureMetricDimension
-
-NewAzureMetricDimension creates a new AzureMetricDimension object.
-
-```go
-func NewAzureMetricDimension() *AzureMetricDimension
-```
-
-### <span class="badge function"></span> NewBaseGrafanaTemplateVariableQuery
-
-NewBaseGrafanaTemplateVariableQuery creates a new BaseGrafanaTemplateVariableQuery object.
-
-```go
-func NewBaseGrafanaTemplateVariableQuery() *BaseGrafanaTemplateVariableQuery
-```
-
-### <span class="badge function"></span> NewUnknownQuery
-
-NewUnknownQuery creates a new UnknownQuery object.
-
-```go
-func NewUnknownQuery() *UnknownQuery
+func NewGrafanaTemplateVariableQuery() *GrafanaTemplateVariableQuery
 ```
 
 ### <span class="badge function"></span> NewAppInsightsMetricNameQuery
@@ -201,12 +193,20 @@ NewWorkspacesQuery creates a new WorkspacesQuery object.
 func NewWorkspacesQuery() *WorkspacesQuery
 ```
 
-### <span class="badge function"></span> NewGrafanaTemplateVariableQuery
+### <span class="badge function"></span> NewUnknownQuery
 
-NewGrafanaTemplateVariableQuery creates a new GrafanaTemplateVariableQuery object.
+NewUnknownQuery creates a new UnknownQuery object.
 
 ```go
-func NewGrafanaTemplateVariableQuery() *GrafanaTemplateVariableQuery
+func NewUnknownQuery() *UnknownQuery
+```
+
+### <span class="badge function"></span> NewBaseGrafanaTemplateVariableQuery
+
+NewBaseGrafanaTemplateVariableQuery creates a new BaseGrafanaTemplateVariableQuery object.
+
+```go
+func NewBaseGrafanaTemplateVariableQuery() *BaseGrafanaTemplateVariableQuery
 ```
 
 ### <span class="badge function"></span> NewAppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery
@@ -243,38 +243,6 @@ AzureMetricQueryConverter accepts a `AzureMetricQuery` object and generates the 
 func AzureMetricQueryConverter(input AzureMetricQuery) string
 ```
 
-### <span class="badge function"></span> AzureLogsQueryConverter
-
-AzureLogsQueryConverter accepts a `AzureLogsQuery` object and generates the Go code to build this object using builders.
-
-```go
-func AzureLogsQueryConverter(input AzureLogsQuery) string
-```
-
-### <span class="badge function"></span> AzureTracesQueryConverter
-
-AzureTracesQueryConverter accepts a `AzureTracesQuery` object and generates the Go code to build this object using builders.
-
-```go
-func AzureTracesQueryConverter(input AzureTracesQuery) string
-```
-
-### <span class="badge function"></span> AzureTracesFilterConverter
-
-AzureTracesFilterConverter accepts a `AzureTracesFilter` object and generates the Go code to build this object using builders.
-
-```go
-func AzureTracesFilterConverter(input AzureTracesFilter) string
-```
-
-### <span class="badge function"></span> AzureResourceGraphQueryConverter
-
-AzureResourceGraphQueryConverter accepts a `AzureResourceGraphQuery` object and generates the Go code to build this object using builders.
-
-```go
-func AzureResourceGraphQueryConverter(input AzureResourceGraphQuery) string
-```
-
 ### <span class="badge function"></span> AzureMonitorResourceConverter
 
 AzureMonitorResourceConverter accepts a `AzureMonitorResource` object and generates the Go code to build this object using builders.
@@ -291,20 +259,36 @@ AzureMetricDimensionConverter accepts a `AzureMetricDimension` object and genera
 func AzureMetricDimensionConverter(input AzureMetricDimension) string
 ```
 
-### <span class="badge function"></span> BaseGrafanaTemplateVariableQueryConverter
+### <span class="badge function"></span> AzureLogsQueryConverter
 
-BaseGrafanaTemplateVariableQueryConverter accepts a `BaseGrafanaTemplateVariableQuery` object and generates the Go code to build this object using builders.
+AzureLogsQueryConverter accepts a `AzureLogsQuery` object and generates the Go code to build this object using builders.
 
 ```go
-func BaseGrafanaTemplateVariableQueryConverter(input BaseGrafanaTemplateVariableQuery) string
+func AzureLogsQueryConverter(input AzureLogsQuery) string
 ```
 
-### <span class="badge function"></span> UnknownQueryConverter
+### <span class="badge function"></span> AzureResourceGraphQueryConverter
 
-UnknownQueryConverter accepts a `UnknownQuery` object and generates the Go code to build this object using builders.
+AzureResourceGraphQueryConverter accepts a `AzureResourceGraphQuery` object and generates the Go code to build this object using builders.
 
 ```go
-func UnknownQueryConverter(input UnknownQuery) string
+func AzureResourceGraphQueryConverter(input AzureResourceGraphQuery) string
+```
+
+### <span class="badge function"></span> AzureTracesQueryConverter
+
+AzureTracesQueryConverter accepts a `AzureTracesQuery` object and generates the Go code to build this object using builders.
+
+```go
+func AzureTracesQueryConverter(input AzureTracesQuery) string
+```
+
+### <span class="badge function"></span> AzureTracesFilterConverter
+
+AzureTracesFilterConverter accepts a `AzureTracesFilter` object and generates the Go code to build this object using builders.
+
+```go
+func AzureTracesFilterConverter(input AzureTracesFilter) string
 ```
 
 ### <span class="badge function"></span> AppInsightsMetricNameQueryConverter
@@ -377,5 +361,21 @@ WorkspacesQueryConverter accepts a `WorkspacesQuery` object and generates the Go
 
 ```go
 func WorkspacesQueryConverter(input WorkspacesQuery) string
+```
+
+### <span class="badge function"></span> UnknownQueryConverter
+
+UnknownQueryConverter accepts a `UnknownQuery` object and generates the Go code to build this object using builders.
+
+```go
+func UnknownQueryConverter(input UnknownQuery) string
+```
+
+### <span class="badge function"></span> BaseGrafanaTemplateVariableQueryConverter
+
+BaseGrafanaTemplateVariableQueryConverter accepts a `BaseGrafanaTemplateVariableQuery` object and generates the Go code to build this object using builders.
+
+```go
+func BaseGrafanaTemplateVariableQueryConverter(input BaseGrafanaTemplateVariableQuery) string
 ```
 

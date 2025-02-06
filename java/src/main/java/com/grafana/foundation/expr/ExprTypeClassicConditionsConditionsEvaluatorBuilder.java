@@ -11,12 +11,12 @@ public class ExprTypeClassicConditionsConditionsEvaluatorBuilder implements com.
         this.internal = new ExprTypeClassicConditionsConditionsEvaluator();
     }
     public ExprTypeClassicConditionsConditionsEvaluatorBuilder params(List<Double> params) {
-    this.internal.params = params;
+        this.internal.params = params;
         return this;
     }
     
     public ExprTypeClassicConditionsConditionsEvaluatorBuilder type(String type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     public ExprTypeClassicConditionsConditionsEvaluator build() {

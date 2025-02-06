@@ -53,26 +53,6 @@
         }
       }
     },
-    "LibraryElementDTOMetaUser": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "id",
-        "name",
-        "avatarUrl"
-      ],
-      "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "avatarUrl": {
-          "type": "string"
-        }
-      }
-    },
     "LibraryElementDTOMeta": {
       "type": "object",
       "additionalProperties": false,
@@ -108,6 +88,26 @@
         },
         "updatedBy": {
           "$ref": "#/definitions/LibraryElementDTOMetaUser"
+        }
+      }
+    },
+    "LibraryElementDTOMetaUser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "avatarUrl"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
         }
       }
     },

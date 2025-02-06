@@ -10,22 +10,22 @@ public class CSVWaveBuilder implements com.grafana.foundation.cog.Builder<CSVWav
         this.internal = new CSVWave();
     }
     public CSVWaveBuilder labels(String labels) {
-    this.internal.labels = labels;
+        this.internal.labels = labels;
         return this;
     }
     
     public CSVWaveBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public CSVWaveBuilder timeStep(Long timeStep) {
-    this.internal.timeStep = timeStep;
+        this.internal.timeStep = timeStep;
         return this;
     }
     
     public CSVWaveBuilder valuesCSV(String valuesCSV) {
-    this.internal.valuesCSV = valuesCSV;
+        this.internal.valuesCSV = valuesCSV;
         return this;
     }
     public CSVWave build() {

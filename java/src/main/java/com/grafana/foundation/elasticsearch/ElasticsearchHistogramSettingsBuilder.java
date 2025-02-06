@@ -10,12 +10,12 @@ public class ElasticsearchHistogramSettingsBuilder implements com.grafana.founda
         this.internal = new ElasticsearchHistogramSettings();
     }
     public ElasticsearchHistogramSettingsBuilder interval(String interval) {
-    this.internal.interval = interval;
+        this.internal.interval = interval;
         return this;
     }
     
     public ElasticsearchHistogramSettingsBuilder minDocCount(String minDocCount) {
-    this.internal.minDocCount = minDocCount;
+        this.internal.minDocCount = minDocCount;
         return this;
     }
     public ElasticsearchHistogramSettings build() {

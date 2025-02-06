@@ -55,7 +55,7 @@ Possible enum values:
  - `"log-lines"` 
 
 ```go
-func (builder *ExprTypeResampleResultAssertionsBuilder) Type(typeArg expr.TypeResampleType) *ExprTypeResampleResultAssertionsBuilder
+func (builder *ExprTypeResampleResultAssertionsBuilder) Type(typeArg expr.ExprTypeResampleResultAssertionsType) *ExprTypeResampleResultAssertionsBuilder
 ```
 
 ### <span class="badge object-method"></span> TypeVersion

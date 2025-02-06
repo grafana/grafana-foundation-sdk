@@ -8,15 +8,15 @@ public class QueryEditorOperatorExpressionBuilder implements com.grafana.foundat
     
     public QueryEditorOperatorExpressionBuilder() {
         this.internal = new QueryEditorOperatorExpression();
-    this.internal.type = "operator";
+        this.internal.type = "operator";
     }
     public QueryEditorOperatorExpressionBuilder property(com.grafana.foundation.cog.Builder<QueryEditorProperty> property) {
-    this.internal.property = property.build();
+        this.internal.property = property.build();
         return this;
     }
     
     public QueryEditorOperatorExpressionBuilder operator(com.grafana.foundation.cog.Builder<QueryEditorOperator> operator) {
-    this.internal.operator = operator.build();
+        this.internal.operator = operator.build();
         return this;
     }
     public QueryEditorOperatorExpression build() {

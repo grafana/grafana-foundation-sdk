@@ -23,20 +23,20 @@ NewAccessPolicy creates a new AccessPolicy object.
 func NewAccessPolicy() *AccessPolicy
 ```
 
-### <span class="badge function"></span> NewRoleRef
-
-NewRoleRef creates a new RoleRef object.
-
-```go
-func NewRoleRef() *RoleRef
-```
-
 ### <span class="badge function"></span> NewResourceRef
 
 NewResourceRef creates a new ResourceRef object.
 
 ```go
 func NewResourceRef() *ResourceRef
+```
+
+### <span class="badge function"></span> NewRoleRef
+
+NewRoleRef creates a new RoleRef object.
+
+```go
+func NewRoleRef() *RoleRef
 ```
 
 ### <span class="badge function"></span> NewAccessRule
@@ -55,20 +55,20 @@ AccessPolicyConverter accepts a `AccessPolicy` object and generates the Go code 
 func AccessPolicyConverter(input AccessPolicy) string
 ```
 
-### <span class="badge function"></span> RoleRefConverter
-
-RoleRefConverter accepts a `RoleRef` object and generates the Go code to build this object using builders.
-
-```go
-func RoleRefConverter(input RoleRef) string
-```
-
 ### <span class="badge function"></span> ResourceRefConverter
 
 ResourceRefConverter accepts a `ResourceRef` object and generates the Go code to build this object using builders.
 
 ```go
 func ResourceRefConverter(input ResourceRef) string
+```
+
+### <span class="badge function"></span> RoleRefConverter
+
+RoleRefConverter accepts a `RoleRef` object and generates the Go code to build this object using builders.
+
+```go
+func RoleRefConverter(input RoleRef) string
 ```
 
 ### <span class="badge function"></span> AccessRuleConverter

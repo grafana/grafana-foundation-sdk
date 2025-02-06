@@ -28,7 +28,7 @@ class ExprTypeReduceResultAssertions implements \JsonSerializable
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public ?\Grafana\Foundation\Expr\TypeReduceType $type;
+    public ?\Grafana\Foundation\Expr\ExprTypeReduceResultAssertionsType $type;
 
     /**
      * TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane

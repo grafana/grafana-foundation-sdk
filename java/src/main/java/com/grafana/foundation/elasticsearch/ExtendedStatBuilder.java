@@ -10,12 +10,12 @@ public class ExtendedStatBuilder implements com.grafana.foundation.cog.Builder<E
         this.internal = new ExtendedStat();
     }
     public ExtendedStatBuilder label(String label) {
-    this.internal.label = label;
+        this.internal.label = label;
         return this;
     }
     
     public ExtendedStatBuilder value(ExtendedStatMetaType value) {
-    this.internal.value = value;
+        this.internal.value = value;
         return this;
     }
     public ExtendedStat build() {

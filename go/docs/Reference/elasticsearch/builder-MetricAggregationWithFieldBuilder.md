@@ -39,7 +39,7 @@ func (builder *MetricAggregationWithFieldBuilder) Id(id string) *MetricAggregati
 ### <span class="badge object-method"></span> Type
 
 ```go
-func (builder *MetricAggregationWithFieldBuilder) Type(typeArg cog.Builder[elasticsearch.MetricAggregationType]) *MetricAggregationWithFieldBuilder
+func (builder *MetricAggregationWithFieldBuilder) Type(typeArg elasticsearch.MetricAggregationType) *MetricAggregationWithFieldBuilder
 ```
 
 ## See also

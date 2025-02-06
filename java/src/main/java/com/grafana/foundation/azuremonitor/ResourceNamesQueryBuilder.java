@@ -8,25 +8,25 @@ public class ResourceNamesQueryBuilder implements com.grafana.foundation.cog.Bui
     
     public ResourceNamesQueryBuilder() {
         this.internal = new ResourceNamesQuery();
-    this.internal.kind = "ResourceNamesQuery";
+        this.internal.kind = "ResourceNamesQuery";
     }
     public ResourceNamesQueryBuilder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
+        this.internal.rawQuery = rawQuery;
         return this;
     }
     
     public ResourceNamesQueryBuilder subscription(String subscription) {
-    this.internal.subscription = subscription;
+        this.internal.subscription = subscription;
         return this;
     }
     
     public ResourceNamesQueryBuilder resourceGroup(String resourceGroup) {
-    this.internal.resourceGroup = resourceGroup;
+        this.internal.resourceGroup = resourceGroup;
         return this;
     }
     
     public ResourceNamesQueryBuilder metricNamespace(String metricNamespace) {
-    this.internal.metricNamespace = metricNamespace;
+        this.internal.metricNamespace = metricNamespace;
         return this;
     }
     public ResourceNamesQuery build() {

@@ -18,11 +18,11 @@ public class ExprTypeThresholdConditionsEvaluator {
     // e.g. "gt"
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("type")
-    public TypeThresholdType type;
+    public ExprTypeThresholdConditionsEvaluatorType type;
     public ExprTypeThresholdConditionsEvaluator() {
     }
     
-    public ExprTypeThresholdConditionsEvaluator(List<Double> params,TypeThresholdType type) {
+    public ExprTypeThresholdConditionsEvaluator(List<Double> params,ExprTypeThresholdConditionsEvaluatorType type) {
         this.params = params;
         this.type = type;
     }

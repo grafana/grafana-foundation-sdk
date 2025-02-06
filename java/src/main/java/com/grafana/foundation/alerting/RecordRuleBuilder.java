@@ -10,12 +10,12 @@ public class RecordRuleBuilder implements com.grafana.foundation.cog.Builder<Rec
         this.internal = new RecordRule();
     }
     public RecordRuleBuilder from(String from) {
-    this.internal.from = from;
+        this.internal.from = from;
         return this;
     }
     
     public RecordRuleBuilder metric(String metric) {
-    this.internal.metric = metric;
+        this.internal.metric = metric;
         return this;
     }
     public RecordRule build() {

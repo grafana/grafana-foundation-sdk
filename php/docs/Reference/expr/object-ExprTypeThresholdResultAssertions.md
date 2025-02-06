@@ -28,7 +28,7 @@ class ExprTypeThresholdResultAssertions implements \JsonSerializable
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public ?\Grafana\Foundation\Expr\TypeThresholdType $type;
+    public ?\Grafana\Foundation\Expr\ExprTypeThresholdResultAssertionsType $type;
 
     /**
      * TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane

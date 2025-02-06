@@ -11,17 +11,17 @@ public class ElasticsearchTopMetricsSettingsBuilder implements com.grafana.found
         this.internal = new ElasticsearchTopMetricsSettings();
     }
     public ElasticsearchTopMetricsSettingsBuilder order(String order) {
-    this.internal.order = order;
+        this.internal.order = order;
         return this;
     }
     
     public ElasticsearchTopMetricsSettingsBuilder orderBy(String orderBy) {
-    this.internal.orderBy = orderBy;
+        this.internal.orderBy = orderBy;
         return this;
     }
     
     public ElasticsearchTopMetricsSettingsBuilder metrics(List<String> metrics) {
-    this.internal.metrics = metrics;
+        this.internal.metrics = metrics;
         return this;
     }
     public ElasticsearchTopMetricsSettings build() {
