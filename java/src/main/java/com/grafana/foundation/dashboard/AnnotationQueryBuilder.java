@@ -10,52 +10,52 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
         this.internal = new AnnotationQuery();
     }
     public AnnotationQueryBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public AnnotationQueryBuilder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
+        this.internal.datasource = datasource;
         return this;
     }
     
     public AnnotationQueryBuilder enable(Boolean enable) {
-    this.internal.enable = enable;
+        this.internal.enable = enable;
         return this;
     }
     
     public AnnotationQueryBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     
     public AnnotationQueryBuilder iconColor(String iconColor) {
-    this.internal.iconColor = iconColor;
+        this.internal.iconColor = iconColor;
         return this;
     }
     
     public AnnotationQueryBuilder filter(com.grafana.foundation.cog.Builder<AnnotationPanelFilter> filter) {
-    this.internal.filter = filter.build();
+        this.internal.filter = filter.build();
         return this;
     }
     
     public AnnotationQueryBuilder target(com.grafana.foundation.cog.Builder<AnnotationTarget> target) {
-    this.internal.target = target.build();
+        this.internal.target = target.build();
         return this;
     }
     
     public AnnotationQueryBuilder type(String type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public AnnotationQueryBuilder builtIn(Double builtIn) {
-    this.internal.builtIn = builtIn;
+        this.internal.builtIn = builtIn;
         return this;
     }
     
     public AnnotationQueryBuilder expr(String expr) {
-    this.internal.expr = expr;
+        this.internal.expr = expr;
         return this;
     }
     public AnnotationQuery build() {

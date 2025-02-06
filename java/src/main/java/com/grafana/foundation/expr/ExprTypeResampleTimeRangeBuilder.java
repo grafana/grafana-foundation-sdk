@@ -10,12 +10,12 @@ public class ExprTypeResampleTimeRangeBuilder implements com.grafana.foundation.
         this.internal = new ExprTypeResampleTimeRange();
     }
     public ExprTypeResampleTimeRangeBuilder from(String from) {
-    this.internal.from = from;
+        this.internal.from = from;
         return this;
     }
     
     public ExprTypeResampleTimeRangeBuilder to(String to) {
-    this.internal.to = to;
+        this.internal.to = to;
         return this;
     }
     public ExprTypeResampleTimeRange build() {

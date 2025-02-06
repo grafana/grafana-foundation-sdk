@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> ExprTypeClassicConditionsCo
 ```php
 class ExprTypeClassicConditionsConditionsOperator implements \JsonSerializable
 {
-    public \Grafana\Foundation\Expr\TypeClassicConditionsType $type;
+    public \Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsOperatorType $type;
 
 }
 ```

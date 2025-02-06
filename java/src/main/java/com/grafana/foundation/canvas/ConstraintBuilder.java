@@ -10,12 +10,12 @@ public class ConstraintBuilder implements com.grafana.foundation.cog.Builder<Con
         this.internal = new Constraint();
     }
     public ConstraintBuilder horizontal(HorizontalConstraint horizontal) {
-    this.internal.horizontal = horizontal;
+        this.internal.horizontal = horizontal;
         return this;
     }
     
     public ConstraintBuilder vertical(VerticalConstraint vertical) {
-    this.internal.vertical = vertical;
+        this.internal.vertical = vertical;
         return this;
     }
     public Constraint build() {

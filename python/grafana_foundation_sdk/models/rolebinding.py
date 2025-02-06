@@ -25,21 +25,21 @@ class RoleBinding:
         args: dict[str, typing.Any] = {}
         
         if "role" in data:
-            decoding_map: dict[str, typing.Union[typing.Type[BuiltinRoleRef], typing.Type[CustomRoleRef]]] = {"BuiltinRole": BuiltinRoleRef, "Role": CustomRoleRef}
-            args["role"] = decoding_map[data["role"]["kind"]].from_json(data["role"])
+            decoding_map_role_union: dict[str, typing.Union[typing.Type[BuiltinRoleRef], typing.Type[CustomRoleRef]]] = {"BuiltinRole": BuiltinRoleRef, "Role": CustomRoleRef}
+            args["role"] = decoding_map_role_union[data["role"]["kind"]].from_json(data["role"])
         if "subject" in data:
             args["subject"] = RoleBindingSubject.from_json(data["subject"])        
 
         return cls(**args)
 
 
-class CustomRoleRef:
-    kind: typing.Literal["Role"]
-    name: str
+class BuiltinRoleRef:
+    kind: typing.Literal["BuiltinRole"]
+    name: typing.Literal["viewer", "editor", "admin"]
 
-    def __init__(self, name: str = ""):
-        self.kind = "Role"
-        self.name = name
+    def __init__(self, name: typing.Optional[typing.Literal["viewer", "editor", "admin"]] = None):
+        self.kind = "BuiltinRole"
+        self.name = name if name is not None else "viewer"
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -58,13 +58,13 @@ class CustomRoleRef:
         return cls(**args)
 
 
-class BuiltinRoleRef:
-    kind: typing.Literal["BuiltinRole"]
-    name: typing.Literal["viewer", "editor", "admin"]
+class CustomRoleRef:
+    kind: typing.Literal["Role"]
+    name: str
 
-    def __init__(self, name: typing.Optional[typing.Literal["viewer", "editor", "admin"]] = None):
-        self.kind = "BuiltinRole"
-        self.name = name if name is not None else "viewer"
+    def __init__(self, name: str = ""):
+        self.kind = "Role"
+        self.name = name
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {

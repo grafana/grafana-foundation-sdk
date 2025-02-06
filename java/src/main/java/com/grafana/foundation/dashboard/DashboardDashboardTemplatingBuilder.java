@@ -11,7 +11,7 @@ public class DashboardDashboardTemplatingBuilder implements com.grafana.foundati
         this.internal = new DashboardDashboardTemplating();
     }
     public DashboardDashboardTemplatingBuilder list(com.grafana.foundation.cog.Builder<List<VariableModel>> list) {
-    this.internal.list = list.build();
+        this.internal.list = list.build();
         return this;
     }
     public DashboardDashboardTemplating build() {

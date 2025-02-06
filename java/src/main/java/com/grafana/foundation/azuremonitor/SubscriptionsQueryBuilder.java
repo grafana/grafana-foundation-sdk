@@ -8,10 +8,10 @@ public class SubscriptionsQueryBuilder implements com.grafana.foundation.cog.Bui
     
     public SubscriptionsQueryBuilder() {
         this.internal = new SubscriptionsQuery();
-    this.internal.kind = "SubscriptionsQuery";
+        this.internal.kind = "SubscriptionsQuery";
     }
     public SubscriptionsQueryBuilder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
+        this.internal.rawQuery = rawQuery;
         return this;
     }
     public SubscriptionsQuery build() {

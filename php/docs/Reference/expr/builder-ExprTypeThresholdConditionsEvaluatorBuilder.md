@@ -31,7 +31,7 @@ params(array $params)
 e.g. "gt"
 
 ```php
-type(\Grafana\Foundation\Expr\TypeThresholdType $type)
+type(\Grafana\Foundation\Expr\ExprTypeThresholdConditionsEvaluatorType $type)
 ```
 
 ## See also

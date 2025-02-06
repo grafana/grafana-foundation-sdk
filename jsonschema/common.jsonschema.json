@@ -219,6 +219,38 @@
         }
       }
     },
+    "FrameGeometrySource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/FrameGeometrySourceMode"
+        },
+        "geohash": {
+          "type": "string",
+          "description": "Field mappings"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "wkt": {
+          "type": "string"
+        },
+        "lookup": {
+          "type": "string"
+        },
+        "gazetteer": {
+          "type": "string",
+          "description": "Path to Gazetteer"
+        }
+      }
+    },
     "FrameGeometrySourceMode": {
       "enum": [
         "auto",
@@ -258,6 +290,34 @@
           "description": "Controls the scale of the buckets"
         }
       }
+    },
+    "ScaleDistributionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ScaleDistribution"
+        },
+        "log": {
+          "type": "number"
+        },
+        "linearThreshold": {
+          "type": "number"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "ScaleDistribution": {
+      "enum": [
+        "linear",
+        "log",
+        "ordinal",
+        "symlog"
+      ],
+      "description": "TODO docs"
     },
     "LogsSortOrder": {
       "enum": [
@@ -312,15 +372,6 @@
         "smooth",
         "stepBefore",
         "stepAfter"
-      ],
-      "description": "TODO docs"
-    },
-    "ScaleDistribution": {
-      "enum": [
-        "linear",
-        "log",
-        "ordinal",
-        "symlog"
       ],
       "description": "TODO docs"
     },
@@ -463,25 +514,6 @@
         },
         "pointSymbol": {
           "type": "string"
-        }
-      },
-      "description": "TODO docs"
-    },
-    "ScaleDistributionConfig": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type"
-      ],
-      "properties": {
-        "type": {
-          "$ref": "#/definitions/ScaleDistribution"
-        },
-        "log": {
-          "type": "number"
-        },
-        "linearThreshold": {
-          "type": "number"
         }
       },
       "description": "TODO docs"
@@ -666,6 +698,21 @@
       },
       "description": "TODO docs"
     },
+    "VizTextDisplayOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "titleSize": {
+          "type": "number",
+          "description": "Explicit title text size"
+        },
+        "valueSize": {
+          "type": "number",
+          "description": "Explicit value text size"
+        }
+      },
+      "description": "TODO docs"
+    },
     "VizOrientation": {
       "enum": [
         "auto",
@@ -687,6 +734,45 @@
       },
       "description": "TODO docs"
     },
+    "VizTooltipOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "sort"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/TooltipDisplayMode"
+        },
+        "sort": {
+          "$ref": "#/definitions/SortOrder"
+        },
+        "maxWidth": {
+          "type": "number"
+        },
+        "maxHeight": {
+          "type": "number"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "TooltipDisplayMode": {
+      "enum": [
+        "single",
+        "multi",
+        "none"
+      ],
+      "description": "TODO docs"
+    },
+    "SortOrder": {
+      "enum": [
+        "asc",
+        "desc",
+        "none"
+      ],
+      "description": "TODO docs"
+    },
     "OptionsWithLegend": {
       "type": "object",
       "additionalProperties": false,
@@ -696,6 +782,52 @@
       "properties": {
         "legend": {
           "$ref": "#/definitions/VizLegendOptions"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizLegendOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "displayMode",
+        "placement",
+        "showLegend",
+        "calcs"
+      ],
+      "properties": {
+        "displayMode": {
+          "$ref": "#/definitions/LegendDisplayMode",
+          "default": "list"
+        },
+        "placement": {
+          "$ref": "#/definitions/LegendPlacement",
+          "default": "bottom"
+        },
+        "showLegend": {
+          "type": "boolean"
+        },
+        "asTable": {
+          "type": "boolean"
+        },
+        "isVisible": {
+          "type": "boolean"
+        },
+        "sortBy": {
+          "type": "string"
+        },
+        "sortDesc": {
+          "type": "boolean"
+        },
+        "width": {
+          "type": "number"
+        },
+        "calcs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
         }
       },
       "description": "TODO docs"
@@ -712,6 +844,20 @@
         }
       },
       "description": "TODO docs"
+    },
+    "TimeZone": {
+      "type": "string",
+      "description": "A specific timezone from https://en.wikipedia.org/wiki/Tz_database"
+    },
+    "TimeZoneUtc": {
+      "type": "string",
+      "const": "utc",
+      "description": "Use UTC/GMT timezone"
+    },
+    "TimeZoneBrowser": {
+      "type": "string",
+      "const": "browser",
+      "description": "Use the timezone defined by end user web browser"
     },
     "OptionsWithTextFormatting": {
       "type": "object",
@@ -781,37 +927,6 @@
         "right"
       ],
       "description": "Controls the value alignment in the TimelineChart component"
-    },
-    "VizTextDisplayOptions": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "titleSize": {
-          "type": "number",
-          "description": "Explicit title text size"
-        },
-        "valueSize": {
-          "type": "number",
-          "description": "Explicit value text size"
-        }
-      },
-      "description": "TODO docs"
-    },
-    "TooltipDisplayMode": {
-      "enum": [
-        "single",
-        "multi",
-        "none"
-      ],
-      "description": "TODO docs"
-    },
-    "SortOrder": {
-      "enum": [
-        "asc",
-        "desc",
-        "none"
-      ],
-      "description": "TODO docs"
     },
     "GraphFieldConfig": {
       "type": "object",
@@ -931,52 +1046,6 @@
       },
       "description": "TODO docs"
     },
-    "VizLegendOptions": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "displayMode",
-        "placement",
-        "showLegend",
-        "calcs"
-      ],
-      "properties": {
-        "displayMode": {
-          "$ref": "#/definitions/LegendDisplayMode",
-          "default": "list"
-        },
-        "placement": {
-          "$ref": "#/definitions/LegendPlacement",
-          "default": "bottom"
-        },
-        "showLegend": {
-          "type": "boolean"
-        },
-        "asTable": {
-          "type": "boolean"
-        },
-        "isVisible": {
-          "type": "boolean"
-        },
-        "sortBy": {
-          "type": "string"
-        },
-        "sortDesc": {
-          "type": "boolean"
-        },
-        "width": {
-          "type": "number"
-        },
-        "calcs": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": []
-        }
-      },
-      "description": "TODO docs"
-    },
     "BarGaugeDisplayMode": {
       "enum": [
         "basic",
@@ -1007,29 +1076,6 @@
         "manual"
       ],
       "description": "Allows for the bar gauge size to be set explicitly"
-    },
-    "VizTooltipOptions": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "mode",
-        "sort"
-      ],
-      "properties": {
-        "mode": {
-          "$ref": "#/definitions/TooltipDisplayMode"
-        },
-        "sort": {
-          "$ref": "#/definitions/SortOrder"
-        },
-        "maxWidth": {
-          "type": "number"
-        },
-        "maxHeight": {
-          "type": "number"
-        }
-      },
-      "description": "TODO docs"
     },
     "Labels": {
       "type": "object",
@@ -1398,16 +1444,6 @@
       ],
       "description": "Table cell options. Each cell has a display mode\nand other potential options for that display."
     },
-    "TimeZoneUtc": {
-      "type": "string",
-      "const": "utc",
-      "description": "Use UTC/GMT timezone"
-    },
-    "TimeZoneBrowser": {
-      "type": "string",
-      "const": "browser",
-      "description": "Use the timezone defined by end user web browser"
-    },
     "VariableFormatID": {
       "enum": [
         "lucene",
@@ -1449,38 +1485,6 @@
         }
       },
       "description": "Links to a resource (image/svg path)"
-    },
-    "FrameGeometrySource": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "mode"
-      ],
-      "properties": {
-        "mode": {
-          "$ref": "#/definitions/FrameGeometrySourceMode"
-        },
-        "geohash": {
-          "type": "string",
-          "description": "Field mappings"
-        },
-        "latitude": {
-          "type": "string"
-        },
-        "longitude": {
-          "type": "string"
-        },
-        "wkt": {
-          "type": "string"
-        },
-        "lookup": {
-          "type": "string"
-        },
-        "gazetteer": {
-          "type": "string",
-          "description": "Path to Gazetteer"
-        }
-      }
     },
     "HeatmapCalculationOptions": {
       "type": "object",
@@ -1557,10 +1561,6 @@
         }
       },
       "description": "Field options for each field within a table (e.g 10, \"The String\", 64.20, etc.)\nGenerally defines alignment, filtering capabilties, display options, etc."
-    },
-    "TimeZone": {
-      "type": "string",
-      "description": "A specific timezone from https://en.wikipedia.org/wiki/Tz_database"
     }
   }
 }

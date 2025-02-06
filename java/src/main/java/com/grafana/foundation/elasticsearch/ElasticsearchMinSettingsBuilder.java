@@ -10,12 +10,12 @@ public class ElasticsearchMinSettingsBuilder implements com.grafana.foundation.c
         this.internal = new ElasticsearchMinSettings();
     }
     public ElasticsearchMinSettingsBuilder script(InlineScript script) {
-    this.internal.script = script;
+        this.internal.script = script;
         return this;
     }
     
     public ElasticsearchMinSettingsBuilder missing(String missing) {
-    this.internal.missing = missing;
+        this.internal.missing = missing;
         return this;
     }
     public ElasticsearchMinSettings build() {

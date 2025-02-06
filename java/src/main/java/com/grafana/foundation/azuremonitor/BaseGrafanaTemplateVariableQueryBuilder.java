@@ -10,7 +10,7 @@ public class BaseGrafanaTemplateVariableQueryBuilder implements com.grafana.foun
         this.internal = new BaseGrafanaTemplateVariableQuery();
     }
     public BaseGrafanaTemplateVariableQueryBuilder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
+        this.internal.rawQuery = rawQuery;
         return this;
     }
     public BaseGrafanaTemplateVariableQuery build() {

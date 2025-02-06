@@ -9,13 +9,13 @@ public class ExprTypeReduceSettingsBuilder implements com.grafana.foundation.cog
     public ExprTypeReduceSettingsBuilder() {
         this.internal = new ExprTypeReduceSettings();
     }
-    public ExprTypeReduceSettingsBuilder mode(TypeReduceMode mode) {
-    this.internal.mode = mode;
+    public ExprTypeReduceSettingsBuilder mode(ExprTypeReduceSettingsMode mode) {
+        this.internal.mode = mode;
         return this;
     }
     
     public ExprTypeReduceSettingsBuilder replaceWithValue(Double replaceWithValue) {
-    this.internal.replaceWithValue = replaceWithValue;
+        this.internal.replaceWithValue = replaceWithValue;
         return this;
     }
     public ExprTypeReduceSettings build() {

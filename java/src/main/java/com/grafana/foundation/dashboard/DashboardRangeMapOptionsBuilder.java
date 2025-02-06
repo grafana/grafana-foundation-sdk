@@ -10,17 +10,17 @@ public class DashboardRangeMapOptionsBuilder implements com.grafana.foundation.c
         this.internal = new DashboardRangeMapOptions();
     }
     public DashboardRangeMapOptionsBuilder from(Double from) {
-    this.internal.from = from;
+        this.internal.from = from;
         return this;
     }
     
     public DashboardRangeMapOptionsBuilder to(Double to) {
-    this.internal.to = to;
+        this.internal.to = to;
         return this;
     }
     
     public DashboardRangeMapOptionsBuilder result(ValueMappingResult result) {
-    this.internal.result = result;
+        this.internal.result = result;
         return this;
     }
     public DashboardRangeMapOptions build() {

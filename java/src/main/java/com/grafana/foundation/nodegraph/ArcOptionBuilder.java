@@ -10,12 +10,12 @@ public class ArcOptionBuilder implements com.grafana.foundation.cog.Builder<ArcO
         this.internal = new ArcOption();
     }
     public ArcOptionBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public ArcOptionBuilder color(String color) {
-    this.internal.color = color;
+        this.internal.color = color;
         return this;
     }
     public ArcOption build() {

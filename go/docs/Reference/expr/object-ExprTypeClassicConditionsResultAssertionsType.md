@@ -1,0 +1,24 @@
+---
+title: <span class="badge object-type-enum"></span> ExprTypeClassicConditionsResultAssertionsType
+---
+# <span class="badge object-type-enum"></span> ExprTypeClassicConditionsResultAssertionsType
+
+## Definition
+
+```go
+type ExprTypeClassicConditionsResultAssertionsType string
+const (
+	ExprTypeClassicConditionsResultAssertionsTypeNone ExprTypeClassicConditionsResultAssertionsType = ""
+	ExprTypeClassicConditionsResultAssertionsTypeTimeseriesWide ExprTypeClassicConditionsResultAssertionsType = "timeseries-wide"
+	ExprTypeClassicConditionsResultAssertionsTypeTimeseriesLong ExprTypeClassicConditionsResultAssertionsType = "timeseries-long"
+	ExprTypeClassicConditionsResultAssertionsTypeTimeseriesMany ExprTypeClassicConditionsResultAssertionsType = "timeseries-many"
+	ExprTypeClassicConditionsResultAssertionsTypeTimeseriesMulti ExprTypeClassicConditionsResultAssertionsType = "timeseries-multi"
+	ExprTypeClassicConditionsResultAssertionsTypeDirectoryListing ExprTypeClassicConditionsResultAssertionsType = "directory-listing"
+	ExprTypeClassicConditionsResultAssertionsTypeTable ExprTypeClassicConditionsResultAssertionsType = "table"
+	ExprTypeClassicConditionsResultAssertionsTypeNumericWide ExprTypeClassicConditionsResultAssertionsType = "numeric-wide"
+	ExprTypeClassicConditionsResultAssertionsTypeNumericMulti ExprTypeClassicConditionsResultAssertionsType = "numeric-multi"
+	ExprTypeClassicConditionsResultAssertionsTypeNumericLong ExprTypeClassicConditionsResultAssertionsType = "numeric-long"
+	ExprTypeClassicConditionsResultAssertionsTypeLogLines ExprTypeClassicConditionsResultAssertionsType = "log-lines"
+)
+
+```
