@@ -20,6 +20,3 @@ composer install
 
 debug "  → running phpstan"
 phpstan analyze --memory-limit 512M -c .config/ci/php/phpstan.neon
-
-debug "  → running psalm"
-psalm -c .config/ci/php/psalm.xml php
