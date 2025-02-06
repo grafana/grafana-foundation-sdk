@@ -38,7 +38,7 @@ func (builder *ExprTypeThresholdConditionsEvaluatorBuilder) Params(params []floa
 }
 
 // e.g. "gt"
-func (builder *ExprTypeThresholdConditionsEvaluatorBuilder) Type(typeArg TypeThresholdType) *ExprTypeThresholdConditionsEvaluatorBuilder {
+func (builder *ExprTypeThresholdConditionsEvaluatorBuilder) Type(typeArg ExprTypeThresholdConditionsEvaluatorType) *ExprTypeThresholdConditionsEvaluatorBuilder {
 	builder.internal.Type = typeArg
 
 	return builder

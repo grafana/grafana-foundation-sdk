@@ -27,7 +27,7 @@ final class ExprTypeThresholdResultAssertionsConverter
     
         
     $buffer = 'type(';
-        $arg0 ='\Grafana\Foundation\Expr\TypeThresholdType::fromValue("'.$input->type.'")';
+        $arg0 ='\Grafana\Foundation\Expr\ExprTypeThresholdResultAssertionsType::fromValue("'.$input->type.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

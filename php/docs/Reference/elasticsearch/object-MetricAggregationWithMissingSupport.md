@@ -10,10 +10,7 @@ class MetricAggregationWithMissingSupport implements \JsonSerializable
 {
     public ?\Grafana\Foundation\Elasticsearch\ElasticsearchMetricAggregationWithMissingSupportSettings $settings;
 
-    /**
-     * @var string|\Grafana\Foundation\Elasticsearch\PipelineMetricAggregationType
-     */
-    public $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public string $id;
 

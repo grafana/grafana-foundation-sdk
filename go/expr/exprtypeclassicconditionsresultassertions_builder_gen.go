@@ -51,7 +51,7 @@ func (builder *ExprTypeClassicConditionsResultAssertionsBuilder) MaxFrames(maxFr
 //   - `"numeric-multi"`
 //   - `"numeric-long"`
 //   - `"log-lines"`
-func (builder *ExprTypeClassicConditionsResultAssertionsBuilder) Type(typeArg TypeClassicConditionsType) *ExprTypeClassicConditionsResultAssertionsBuilder {
+func (builder *ExprTypeClassicConditionsResultAssertionsBuilder) Type(typeArg ExprTypeClassicConditionsResultAssertionsType) *ExprTypeClassicConditionsResultAssertionsBuilder {
 	builder.internal.Type = &typeArg
 
 	return builder

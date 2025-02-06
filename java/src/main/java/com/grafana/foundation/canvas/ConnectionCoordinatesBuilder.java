@@ -10,12 +10,12 @@ public class ConnectionCoordinatesBuilder implements com.grafana.foundation.cog.
         this.internal = new ConnectionCoordinates();
     }
     public ConnectionCoordinatesBuilder x(Double x) {
-    this.internal.x = x;
+        this.internal.x = x;
         return this;
     }
     
     public ConnectionCoordinatesBuilder y(Double y) {
-    this.internal.y = y;
+        this.internal.y = y;
         return this;
     }
     public ConnectionCoordinates build() {

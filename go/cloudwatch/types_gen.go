@@ -1246,18 +1246,6 @@ func (resource QueryEditorFunctionExpression) Validate() error {
 	return errs
 }
 
-type QueryEditorExpressionType string
-
-const (
-	QueryEditorExpressionTypeProperty          QueryEditorExpressionType = "property"
-	QueryEditorExpressionTypeOperator          QueryEditorExpressionType = "operator"
-	QueryEditorExpressionTypeOr                QueryEditorExpressionType = "or"
-	QueryEditorExpressionTypeAnd               QueryEditorExpressionType = "and"
-	QueryEditorExpressionTypeGroupBy           QueryEditorExpressionType = "groupBy"
-	QueryEditorExpressionTypeFunction          QueryEditorExpressionType = "function"
-	QueryEditorExpressionTypeFunctionParameter QueryEditorExpressionType = "functionParameter"
-)
-
 type QueryEditorFunctionParameterExpression struct {
 	Type string  `json:"type"`
 	Name *string `json:"name,omitempty"`
@@ -1451,6 +1439,211 @@ func (resource QueryEditorPropertyExpression) Validate() error {
 	}
 
 	return errs
+}
+
+type QueryEditorProperty struct {
+	Type QueryEditorPropertyType `json:"type"`
+	Name *string                 `json:"name,omitempty"`
+}
+
+// NewQueryEditorProperty creates a new QueryEditorProperty object.
+func NewQueryEditorProperty() *QueryEditorProperty {
+	return &QueryEditorProperty{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorProperty` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *QueryEditorProperty) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+
+		}
+		delete(fields, "name")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("QueryEditorProperty", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `QueryEditorProperty` objects.
+func (resource QueryEditorProperty) Equals(other QueryEditorProperty) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
+		return false
+	}
+
+	if resource.Name != nil {
+		if *resource.Name != *other.Name {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `QueryEditorProperty` fields for violations and returns them.
+func (resource QueryEditorProperty) Validate() error {
+	return nil
+}
+
+type QueryEditorPropertyType string
+
+const (
+	QueryEditorPropertyTypeString QueryEditorPropertyType = "string"
+)
+
+type QueryEditorArrayExpression struct {
+	Type        QueryEditorArrayExpressionType `json:"type"`
+	Expressions []QueryEditorExpression        `json:"expressions"`
+}
+
+// NewQueryEditorArrayExpression creates a new QueryEditorArrayExpression object.
+func NewQueryEditorArrayExpression() *QueryEditorArrayExpression {
+	return &QueryEditorArrayExpression{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *QueryEditorArrayExpression) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "expressions"
+	if fields["expressions"] != nil {
+		if string(fields["expressions"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["expressions"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 QueryEditorExpression
+
+				result1 = QueryEditorExpression{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Expressions = append(resource.Expressions, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expressions")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("QueryEditorArrayExpression", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `QueryEditorArrayExpression` objects.
+func (resource QueryEditorArrayExpression) Equals(other QueryEditorArrayExpression) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+
+	if len(resource.Expressions) != len(other.Expressions) {
+		return false
+	}
+
+	for i1 := range resource.Expressions {
+		if !resource.Expressions[i1].Equals(other.Expressions[i1]) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `QueryEditorArrayExpression` fields for violations and returns them.
+func (resource QueryEditorArrayExpression) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Expressions {
+		if err := resource.Expressions[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type QueryEditorExpression = QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
+
+// NewQueryEditorExpression creates a new QueryEditorExpression object.
+func NewQueryEditorExpression() *QueryEditorExpression {
+	return NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression()
 }
 
 type QueryEditorGroupByExpression struct {
@@ -1775,13 +1968,6 @@ func (resource QueryEditorOperator) Validate() error {
 	return errs
 }
 
-type QueryEditorOperatorValueType = StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType
-
-// NewQueryEditorOperatorValueType creates a new QueryEditorOperatorValueType object.
-func NewQueryEditorOperatorValueType() *QueryEditorOperatorValueType {
-	return NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType()
-}
-
 type QueryEditorOperatorType = StringOrBoolOrInt64
 
 // NewQueryEditorOperatorType creates a new QueryEditorOperatorType object.
@@ -1789,209 +1975,23 @@ func NewQueryEditorOperatorType() *QueryEditorOperatorType {
 	return NewStringOrBoolOrInt64()
 }
 
-type QueryEditorProperty struct {
-	Type QueryEditorPropertyType `json:"type"`
-	Name *string                 `json:"name,omitempty"`
-}
-
-// NewQueryEditorProperty creates a new QueryEditorProperty object.
-func NewQueryEditorProperty() *QueryEditorProperty {
-	return &QueryEditorProperty{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorProperty` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *QueryEditorProperty) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "name"
-	if fields["name"] != nil {
-		if string(fields["name"]) != "null" {
-			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("name", err)...)
-			}
-
-		}
-		delete(fields, "name")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("QueryEditorProperty", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `QueryEditorProperty` objects.
-func (resource QueryEditorProperty) Equals(other QueryEditorProperty) bool {
-	if resource.Type != other.Type {
-		return false
-	}
-	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
-		return false
-	}
-
-	if resource.Name != nil {
-		if *resource.Name != *other.Name {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `QueryEditorProperty` fields for violations and returns them.
-func (resource QueryEditorProperty) Validate() error {
-	return nil
-}
-
-type QueryEditorPropertyType string
+type QueryEditorExpressionType string
 
 const (
-	QueryEditorPropertyTypeString QueryEditorPropertyType = "string"
+	QueryEditorExpressionTypeProperty          QueryEditorExpressionType = "property"
+	QueryEditorExpressionTypeOperator          QueryEditorExpressionType = "operator"
+	QueryEditorExpressionTypeOr                QueryEditorExpressionType = "or"
+	QueryEditorExpressionTypeAnd               QueryEditorExpressionType = "and"
+	QueryEditorExpressionTypeGroupBy           QueryEditorExpressionType = "groupBy"
+	QueryEditorExpressionTypeFunction          QueryEditorExpressionType = "function"
+	QueryEditorExpressionTypeFunctionParameter QueryEditorExpressionType = "functionParameter"
 )
 
-type QueryEditorArrayExpression struct {
-	Type        QueryEditorArrayExpressionType `json:"type"`
-	Expressions []QueryEditorExpression        `json:"expressions"`
-}
+type QueryEditorOperatorValueType = StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType
 
-// NewQueryEditorArrayExpression creates a new QueryEditorArrayExpression object.
-func NewQueryEditorArrayExpression() *QueryEditorArrayExpression {
-	return &QueryEditorArrayExpression{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpression` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *QueryEditorArrayExpression) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "expressions"
-	if fields["expressions"] != nil {
-		if string(fields["expressions"]) != "null" {
-
-			partialArray := []json.RawMessage{}
-			if err := json.Unmarshal(fields["expressions"], &partialArray); err != nil {
-				return err
-			}
-
-			for i1 := range partialArray {
-				var result1 QueryEditorExpression
-
-				result1 = QueryEditorExpression{}
-				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
-					errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
-				}
-				resource.Expressions = append(resource.Expressions, result1)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "expressions")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is missing from input"))...)
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("QueryEditorArrayExpression", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `QueryEditorArrayExpression` objects.
-func (resource QueryEditorArrayExpression) Equals(other QueryEditorArrayExpression) bool {
-	if resource.Type != other.Type {
-		return false
-	}
-
-	if len(resource.Expressions) != len(other.Expressions) {
-		return false
-	}
-
-	for i1 := range resource.Expressions {
-		if !resource.Expressions[i1].Equals(other.Expressions[i1]) {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `QueryEditorArrayExpression` fields for violations and returns them.
-func (resource QueryEditorArrayExpression) Validate() error {
-	var errs cog.BuildErrors
-
-	for i1 := range resource.Expressions {
-		if err := resource.Expressions[i1].Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type QueryEditorExpression = QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
-
-// NewQueryEditorExpression creates a new QueryEditorExpression object.
-func NewQueryEditorExpression() *QueryEditorExpression {
-	return NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression()
+// NewQueryEditorOperatorValueType creates a new QueryEditorOperatorValueType object.
+func NewQueryEditorOperatorValueType() *QueryEditorOperatorValueType {
+	return NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType()
 }
 
 // Shape of a CloudWatch Logs query
@@ -3202,6 +3202,303 @@ func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Val
 	return errs
 }
 
+type QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression struct {
+	QueryEditorArrayExpression             *QueryEditorArrayExpression             `json:"QueryEditorArrayExpression,omitempty"`
+	QueryEditorPropertyExpression          *QueryEditorPropertyExpression          `json:"QueryEditorPropertyExpression,omitempty"`
+	QueryEditorGroupByExpression           *QueryEditorGroupByExpression           `json:"QueryEditorGroupByExpression,omitempty"`
+	QueryEditorFunctionExpression          *QueryEditorFunctionExpression          `json:"QueryEditorFunctionExpression,omitempty"`
+	QueryEditorFunctionParameterExpression *QueryEditorFunctionParameterExpression `json:"QueryEditorFunctionParameterExpression,omitempty"`
+	QueryEditorOperatorExpression          *QueryEditorOperatorExpression          `json:"QueryEditorOperatorExpression,omitempty"`
+}
+
+// NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression creates a new QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression object.
+func NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression() *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression {
+	return &QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression{}
+}
+
+// MarshalJSON implements a custom JSON marshalling logic to encode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` as JSON.
+func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) MarshalJSON() ([]byte, error) {
+	if resource.QueryEditorArrayExpression != nil {
+		return json.Marshal(resource.QueryEditorArrayExpression)
+	}
+	if resource.QueryEditorPropertyExpression != nil {
+		return json.Marshal(resource.QueryEditorPropertyExpression)
+	}
+	if resource.QueryEditorGroupByExpression != nil {
+		return json.Marshal(resource.QueryEditorGroupByExpression)
+	}
+	if resource.QueryEditorFunctionExpression != nil {
+		return json.Marshal(resource.QueryEditorFunctionExpression)
+	}
+	if resource.QueryEditorFunctionParameterExpression != nil {
+		return json.Marshal(resource.QueryEditorFunctionParameterExpression)
+	}
+	if resource.QueryEditorOperatorExpression != nil {
+		return json.Marshal(resource.QueryEditorOperatorExpression)
+	}
+
+	return nil, fmt.Errorf("no value for disjunction of refs")
+}
+
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` from JSON.
+func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
+	parsedAsMap := make(map[string]any)
+	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
+		return err
+	}
+
+	discriminator, found := parsedAsMap["type"]
+	if !found {
+		return errors.New("discriminator field 'type' not found in payload")
+	}
+
+	switch discriminator {
+	case "and":
+		var queryEditorArrayExpression QueryEditorArrayExpression
+		if err := json.Unmarshal(raw, &queryEditorArrayExpression); err != nil {
+			return err
+		}
+
+		resource.QueryEditorArrayExpression = &queryEditorArrayExpression
+		return nil
+	case "function":
+		var queryEditorFunctionExpression QueryEditorFunctionExpression
+		if err := json.Unmarshal(raw, &queryEditorFunctionExpression); err != nil {
+			return err
+		}
+
+		resource.QueryEditorFunctionExpression = &queryEditorFunctionExpression
+		return nil
+	case "functionParameter":
+		var queryEditorFunctionParameterExpression QueryEditorFunctionParameterExpression
+		if err := json.Unmarshal(raw, &queryEditorFunctionParameterExpression); err != nil {
+			return err
+		}
+
+		resource.QueryEditorFunctionParameterExpression = &queryEditorFunctionParameterExpression
+		return nil
+	case "groupBy":
+		var queryEditorGroupByExpression QueryEditorGroupByExpression
+		if err := json.Unmarshal(raw, &queryEditorGroupByExpression); err != nil {
+			return err
+		}
+
+		resource.QueryEditorGroupByExpression = &queryEditorGroupByExpression
+		return nil
+	case "operator":
+		var queryEditorOperatorExpression QueryEditorOperatorExpression
+		if err := json.Unmarshal(raw, &queryEditorOperatorExpression); err != nil {
+			return err
+		}
+
+		resource.QueryEditorOperatorExpression = &queryEditorOperatorExpression
+		return nil
+	case "or":
+		var queryEditorArrayExpression QueryEditorArrayExpression
+		if err := json.Unmarshal(raw, &queryEditorArrayExpression); err != nil {
+			return err
+		}
+
+		resource.QueryEditorArrayExpression = &queryEditorArrayExpression
+		return nil
+	case "property":
+		var queryEditorPropertyExpression QueryEditorPropertyExpression
+		if err := json.Unmarshal(raw, &queryEditorPropertyExpression); err != nil {
+			return err
+		}
+
+		resource.QueryEditorPropertyExpression = &queryEditorPropertyExpression
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
+	parsedAsMap := make(map[string]any)
+	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
+		return err
+	}
+
+	discriminator, found := parsedAsMap["type"]
+	if !found {
+		return fmt.Errorf("discriminator field 'type' not found in payload")
+	}
+
+	switch discriminator {
+	case "and":
+		queryEditorArrayExpression := &QueryEditorArrayExpression{}
+		if err := queryEditorArrayExpression.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.QueryEditorArrayExpression = queryEditorArrayExpression
+		return nil
+	case "function":
+		queryEditorFunctionExpression := &QueryEditorFunctionExpression{}
+		if err := queryEditorFunctionExpression.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.QueryEditorFunctionExpression = queryEditorFunctionExpression
+		return nil
+	case "functionParameter":
+		queryEditorFunctionParameterExpression := &QueryEditorFunctionParameterExpression{}
+		if err := queryEditorFunctionParameterExpression.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.QueryEditorFunctionParameterExpression = queryEditorFunctionParameterExpression
+		return nil
+	case "groupBy":
+		queryEditorGroupByExpression := &QueryEditorGroupByExpression{}
+		if err := queryEditorGroupByExpression.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.QueryEditorGroupByExpression = queryEditorGroupByExpression
+		return nil
+	case "operator":
+		queryEditorOperatorExpression := &QueryEditorOperatorExpression{}
+		if err := queryEditorOperatorExpression.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.QueryEditorOperatorExpression = queryEditorOperatorExpression
+		return nil
+	case "or":
+		queryEditorArrayExpression := &QueryEditorArrayExpression{}
+		if err := queryEditorArrayExpression.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.QueryEditorArrayExpression = queryEditorArrayExpression
+		return nil
+	case "property":
+		queryEditorPropertyExpression := &QueryEditorPropertyExpression{}
+		if err := queryEditorPropertyExpression.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.QueryEditorPropertyExpression = queryEditorPropertyExpression
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+}
+
+// Equals tests the equality of two `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` objects.
+func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) Equals(other QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) bool {
+	if resource.QueryEditorArrayExpression == nil && other.QueryEditorArrayExpression != nil || resource.QueryEditorArrayExpression != nil && other.QueryEditorArrayExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorArrayExpression != nil {
+		if !resource.QueryEditorArrayExpression.Equals(*other.QueryEditorArrayExpression) {
+			return false
+		}
+	}
+	if resource.QueryEditorPropertyExpression == nil && other.QueryEditorPropertyExpression != nil || resource.QueryEditorPropertyExpression != nil && other.QueryEditorPropertyExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorPropertyExpression != nil {
+		if !resource.QueryEditorPropertyExpression.Equals(*other.QueryEditorPropertyExpression) {
+			return false
+		}
+	}
+	if resource.QueryEditorGroupByExpression == nil && other.QueryEditorGroupByExpression != nil || resource.QueryEditorGroupByExpression != nil && other.QueryEditorGroupByExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorGroupByExpression != nil {
+		if !resource.QueryEditorGroupByExpression.Equals(*other.QueryEditorGroupByExpression) {
+			return false
+		}
+	}
+	if resource.QueryEditorFunctionExpression == nil && other.QueryEditorFunctionExpression != nil || resource.QueryEditorFunctionExpression != nil && other.QueryEditorFunctionExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorFunctionExpression != nil {
+		if !resource.QueryEditorFunctionExpression.Equals(*other.QueryEditorFunctionExpression) {
+			return false
+		}
+	}
+	if resource.QueryEditorFunctionParameterExpression == nil && other.QueryEditorFunctionParameterExpression != nil || resource.QueryEditorFunctionParameterExpression != nil && other.QueryEditorFunctionParameterExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorFunctionParameterExpression != nil {
+		if !resource.QueryEditorFunctionParameterExpression.Equals(*other.QueryEditorFunctionParameterExpression) {
+			return false
+		}
+	}
+	if resource.QueryEditorOperatorExpression == nil && other.QueryEditorOperatorExpression != nil || resource.QueryEditorOperatorExpression != nil && other.QueryEditorOperatorExpression == nil {
+		return false
+	}
+
+	if resource.QueryEditorOperatorExpression != nil {
+		if !resource.QueryEditorOperatorExpression.Equals(*other.QueryEditorOperatorExpression) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` fields for violations and returns them.
+func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) Validate() error {
+	var errs cog.BuildErrors
+	if resource.QueryEditorArrayExpression != nil {
+		if err := resource.QueryEditorArrayExpression.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("QueryEditorArrayExpression", err)...)
+		}
+	}
+	if resource.QueryEditorPropertyExpression != nil {
+		if err := resource.QueryEditorPropertyExpression.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("QueryEditorPropertyExpression", err)...)
+		}
+	}
+	if resource.QueryEditorGroupByExpression != nil {
+		if err := resource.QueryEditorGroupByExpression.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("QueryEditorGroupByExpression", err)...)
+		}
+	}
+	if resource.QueryEditorFunctionExpression != nil {
+		if err := resource.QueryEditorFunctionExpression.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("QueryEditorFunctionExpression", err)...)
+		}
+	}
+	if resource.QueryEditorFunctionParameterExpression != nil {
+		if err := resource.QueryEditorFunctionParameterExpression.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("QueryEditorFunctionParameterExpression", err)...)
+		}
+	}
+	if resource.QueryEditorOperatorExpression != nil {
+		if err := resource.QueryEditorOperatorExpression.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("QueryEditorOperatorExpression", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType struct {
 	String                         *string                   `json:"String,omitempty"`
 	Bool                           *bool                     `json:"Bool,omitempty"`
@@ -3561,303 +3858,6 @@ func (resource StringOrBoolOrInt64) Equals(other StringOrBoolOrInt64) bool {
 // Validate checks all the validation constraints that may be defined on `StringOrBoolOrInt64` fields for violations and returns them.
 func (resource StringOrBoolOrInt64) Validate() error {
 	return nil
-}
-
-type QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression struct {
-	QueryEditorArrayExpression             *QueryEditorArrayExpression             `json:"QueryEditorArrayExpression,omitempty"`
-	QueryEditorPropertyExpression          *QueryEditorPropertyExpression          `json:"QueryEditorPropertyExpression,omitempty"`
-	QueryEditorGroupByExpression           *QueryEditorGroupByExpression           `json:"QueryEditorGroupByExpression,omitempty"`
-	QueryEditorFunctionExpression          *QueryEditorFunctionExpression          `json:"QueryEditorFunctionExpression,omitempty"`
-	QueryEditorFunctionParameterExpression *QueryEditorFunctionParameterExpression `json:"QueryEditorFunctionParameterExpression,omitempty"`
-	QueryEditorOperatorExpression          *QueryEditorOperatorExpression          `json:"QueryEditorOperatorExpression,omitempty"`
-}
-
-// NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression creates a new QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression object.
-func NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression() *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression {
-	return &QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression{}
-}
-
-// MarshalJSON implements a custom JSON marshalling logic to encode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` as JSON.
-func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) MarshalJSON() ([]byte, error) {
-	if resource.QueryEditorArrayExpression != nil {
-		return json.Marshal(resource.QueryEditorArrayExpression)
-	}
-	if resource.QueryEditorPropertyExpression != nil {
-		return json.Marshal(resource.QueryEditorPropertyExpression)
-	}
-	if resource.QueryEditorGroupByExpression != nil {
-		return json.Marshal(resource.QueryEditorGroupByExpression)
-	}
-	if resource.QueryEditorFunctionExpression != nil {
-		return json.Marshal(resource.QueryEditorFunctionExpression)
-	}
-	if resource.QueryEditorFunctionParameterExpression != nil {
-		return json.Marshal(resource.QueryEditorFunctionParameterExpression)
-	}
-	if resource.QueryEditorOperatorExpression != nil {
-		return json.Marshal(resource.QueryEditorOperatorExpression)
-	}
-
-	return nil, fmt.Errorf("no value for disjunction of refs")
-}
-
-// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` from JSON.
-func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) UnmarshalJSON(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-
-	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
-	parsedAsMap := make(map[string]any)
-	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
-		return err
-	}
-
-	discriminator, found := parsedAsMap["type"]
-	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
-	}
-
-	switch discriminator {
-	case "and":
-		var queryEditorArrayExpression QueryEditorArrayExpression
-		if err := json.Unmarshal(raw, &queryEditorArrayExpression); err != nil {
-			return err
-		}
-
-		resource.QueryEditorArrayExpression = &queryEditorArrayExpression
-		return nil
-	case "function":
-		var queryEditorFunctionExpression QueryEditorFunctionExpression
-		if err := json.Unmarshal(raw, &queryEditorFunctionExpression); err != nil {
-			return err
-		}
-
-		resource.QueryEditorFunctionExpression = &queryEditorFunctionExpression
-		return nil
-	case "functionParameter":
-		var queryEditorFunctionParameterExpression QueryEditorFunctionParameterExpression
-		if err := json.Unmarshal(raw, &queryEditorFunctionParameterExpression); err != nil {
-			return err
-		}
-
-		resource.QueryEditorFunctionParameterExpression = &queryEditorFunctionParameterExpression
-		return nil
-	case "groupBy":
-		var queryEditorGroupByExpression QueryEditorGroupByExpression
-		if err := json.Unmarshal(raw, &queryEditorGroupByExpression); err != nil {
-			return err
-		}
-
-		resource.QueryEditorGroupByExpression = &queryEditorGroupByExpression
-		return nil
-	case "operator":
-		var queryEditorOperatorExpression QueryEditorOperatorExpression
-		if err := json.Unmarshal(raw, &queryEditorOperatorExpression); err != nil {
-			return err
-		}
-
-		resource.QueryEditorOperatorExpression = &queryEditorOperatorExpression
-		return nil
-	case "or":
-		var queryEditorArrayExpression QueryEditorArrayExpression
-		if err := json.Unmarshal(raw, &queryEditorArrayExpression); err != nil {
-			return err
-		}
-
-		resource.QueryEditorArrayExpression = &queryEditorArrayExpression
-		return nil
-	case "property":
-		var queryEditorPropertyExpression QueryEditorPropertyExpression
-		if err := json.Unmarshal(raw, &queryEditorPropertyExpression); err != nil {
-			return err
-		}
-
-		resource.QueryEditorPropertyExpression = &queryEditorPropertyExpression
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
-	parsedAsMap := make(map[string]any)
-	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
-		return err
-	}
-
-	discriminator, found := parsedAsMap["type"]
-	if !found {
-		return fmt.Errorf("discriminator field 'type' not found in payload")
-	}
-
-	switch discriminator {
-	case "and":
-		queryEditorArrayExpression := &QueryEditorArrayExpression{}
-		if err := queryEditorArrayExpression.UnmarshalJSONStrict(raw); err != nil {
-			return err
-		}
-
-		resource.QueryEditorArrayExpression = queryEditorArrayExpression
-		return nil
-	case "function":
-		queryEditorFunctionExpression := &QueryEditorFunctionExpression{}
-		if err := queryEditorFunctionExpression.UnmarshalJSONStrict(raw); err != nil {
-			return err
-		}
-
-		resource.QueryEditorFunctionExpression = queryEditorFunctionExpression
-		return nil
-	case "functionParameter":
-		queryEditorFunctionParameterExpression := &QueryEditorFunctionParameterExpression{}
-		if err := queryEditorFunctionParameterExpression.UnmarshalJSONStrict(raw); err != nil {
-			return err
-		}
-
-		resource.QueryEditorFunctionParameterExpression = queryEditorFunctionParameterExpression
-		return nil
-	case "groupBy":
-		queryEditorGroupByExpression := &QueryEditorGroupByExpression{}
-		if err := queryEditorGroupByExpression.UnmarshalJSONStrict(raw); err != nil {
-			return err
-		}
-
-		resource.QueryEditorGroupByExpression = queryEditorGroupByExpression
-		return nil
-	case "operator":
-		queryEditorOperatorExpression := &QueryEditorOperatorExpression{}
-		if err := queryEditorOperatorExpression.UnmarshalJSONStrict(raw); err != nil {
-			return err
-		}
-
-		resource.QueryEditorOperatorExpression = queryEditorOperatorExpression
-		return nil
-	case "or":
-		queryEditorArrayExpression := &QueryEditorArrayExpression{}
-		if err := queryEditorArrayExpression.UnmarshalJSONStrict(raw); err != nil {
-			return err
-		}
-
-		resource.QueryEditorArrayExpression = queryEditorArrayExpression
-		return nil
-	case "property":
-		queryEditorPropertyExpression := &QueryEditorPropertyExpression{}
-		if err := queryEditorPropertyExpression.UnmarshalJSONStrict(raw); err != nil {
-			return err
-		}
-
-		resource.QueryEditorPropertyExpression = queryEditorPropertyExpression
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
-}
-
-// Equals tests the equality of two `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` objects.
-func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) Equals(other QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) bool {
-	if resource.QueryEditorArrayExpression == nil && other.QueryEditorArrayExpression != nil || resource.QueryEditorArrayExpression != nil && other.QueryEditorArrayExpression == nil {
-		return false
-	}
-
-	if resource.QueryEditorArrayExpression != nil {
-		if !resource.QueryEditorArrayExpression.Equals(*other.QueryEditorArrayExpression) {
-			return false
-		}
-	}
-	if resource.QueryEditorPropertyExpression == nil && other.QueryEditorPropertyExpression != nil || resource.QueryEditorPropertyExpression != nil && other.QueryEditorPropertyExpression == nil {
-		return false
-	}
-
-	if resource.QueryEditorPropertyExpression != nil {
-		if !resource.QueryEditorPropertyExpression.Equals(*other.QueryEditorPropertyExpression) {
-			return false
-		}
-	}
-	if resource.QueryEditorGroupByExpression == nil && other.QueryEditorGroupByExpression != nil || resource.QueryEditorGroupByExpression != nil && other.QueryEditorGroupByExpression == nil {
-		return false
-	}
-
-	if resource.QueryEditorGroupByExpression != nil {
-		if !resource.QueryEditorGroupByExpression.Equals(*other.QueryEditorGroupByExpression) {
-			return false
-		}
-	}
-	if resource.QueryEditorFunctionExpression == nil && other.QueryEditorFunctionExpression != nil || resource.QueryEditorFunctionExpression != nil && other.QueryEditorFunctionExpression == nil {
-		return false
-	}
-
-	if resource.QueryEditorFunctionExpression != nil {
-		if !resource.QueryEditorFunctionExpression.Equals(*other.QueryEditorFunctionExpression) {
-			return false
-		}
-	}
-	if resource.QueryEditorFunctionParameterExpression == nil && other.QueryEditorFunctionParameterExpression != nil || resource.QueryEditorFunctionParameterExpression != nil && other.QueryEditorFunctionParameterExpression == nil {
-		return false
-	}
-
-	if resource.QueryEditorFunctionParameterExpression != nil {
-		if !resource.QueryEditorFunctionParameterExpression.Equals(*other.QueryEditorFunctionParameterExpression) {
-			return false
-		}
-	}
-	if resource.QueryEditorOperatorExpression == nil && other.QueryEditorOperatorExpression != nil || resource.QueryEditorOperatorExpression != nil && other.QueryEditorOperatorExpression == nil {
-		return false
-	}
-
-	if resource.QueryEditorOperatorExpression != nil {
-		if !resource.QueryEditorOperatorExpression.Equals(*other.QueryEditorOperatorExpression) {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` fields for violations and returns them.
-func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression) Validate() error {
-	var errs cog.BuildErrors
-	if resource.QueryEditorArrayExpression != nil {
-		if err := resource.QueryEditorArrayExpression.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("QueryEditorArrayExpression", err)...)
-		}
-	}
-	if resource.QueryEditorPropertyExpression != nil {
-		if err := resource.QueryEditorPropertyExpression.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("QueryEditorPropertyExpression", err)...)
-		}
-	}
-	if resource.QueryEditorGroupByExpression != nil {
-		if err := resource.QueryEditorGroupByExpression.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("QueryEditorGroupByExpression", err)...)
-		}
-	}
-	if resource.QueryEditorFunctionExpression != nil {
-		if err := resource.QueryEditorFunctionExpression.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("QueryEditorFunctionExpression", err)...)
-		}
-	}
-	if resource.QueryEditorFunctionParameterExpression != nil {
-		if err := resource.QueryEditorFunctionParameterExpression.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("QueryEditorFunctionParameterExpression", err)...)
-		}
-	}
-	if resource.QueryEditorOperatorExpression != nil {
-		if err := resource.QueryEditorOperatorExpression.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("QueryEditorOperatorExpression", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
 }
 
 type CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery struct {

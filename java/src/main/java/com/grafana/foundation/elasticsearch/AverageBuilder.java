@@ -8,25 +8,25 @@ public class AverageBuilder implements com.grafana.foundation.cog.Builder<Averag
     
     public AverageBuilder() {
         this.internal = new Average();
-    this.internal.type = "avg";
+        this.internal.type = "avg";
     }
     public AverageBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public AverageBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public AverageBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchAverageSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     
     public AverageBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public Average build() {

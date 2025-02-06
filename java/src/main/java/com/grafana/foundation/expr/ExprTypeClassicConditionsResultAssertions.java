@@ -31,7 +31,7 @@ public class ExprTypeClassicConditionsResultAssertions {
     //  - `"log-lines"` 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("type")
-    public TypeClassicConditionsType type;
+    public ExprTypeClassicConditionsResultAssertionsType type;
     // TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
     // contract documentation https://grafana.github.io/dataplane/contract/.
     @JsonSetter(nulls = Nulls.AS_EMPTY)
@@ -40,7 +40,7 @@ public class ExprTypeClassicConditionsResultAssertions {
     public ExprTypeClassicConditionsResultAssertions() {
     }
     
-    public ExprTypeClassicConditionsResultAssertions(Long maxFrames,TypeClassicConditionsType type,List<Long> typeVersion) {
+    public ExprTypeClassicConditionsResultAssertions(Long maxFrames,ExprTypeClassicConditionsResultAssertionsType type,List<Long> typeVersion) {
         this.maxFrames = maxFrames;
         this.type = type;
         this.typeVersion = typeVersion;

@@ -11,11 +11,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class ExprTypeClassicConditionsConditionsOperator {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("type")
-    public TypeClassicConditionsType type;
+    public ExprTypeClassicConditionsConditionsOperatorType type;
     public ExprTypeClassicConditionsConditionsOperator() {
     }
     
-    public ExprTypeClassicConditionsConditionsOperator(TypeClassicConditionsType type) {
+    public ExprTypeClassicConditionsConditionsOperator(ExprTypeClassicConditionsConditionsOperatorType type) {
         this.type = type;
     }
     

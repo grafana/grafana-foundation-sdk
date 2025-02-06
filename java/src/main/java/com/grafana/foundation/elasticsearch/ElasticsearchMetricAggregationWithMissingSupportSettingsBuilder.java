@@ -10,7 +10,7 @@ public class ElasticsearchMetricAggregationWithMissingSupportSettingsBuilder imp
         this.internal = new ElasticsearchMetricAggregationWithMissingSupportSettings();
     }
     public ElasticsearchMetricAggregationWithMissingSupportSettingsBuilder missing(String missing) {
-    this.internal.missing = missing;
+        this.internal.missing = missing;
         return this;
     }
     public ElasticsearchMetricAggregationWithMissingSupportSettings build() {

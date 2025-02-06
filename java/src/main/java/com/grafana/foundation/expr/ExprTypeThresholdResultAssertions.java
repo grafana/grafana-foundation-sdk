@@ -31,7 +31,7 @@ public class ExprTypeThresholdResultAssertions {
     //  - `"log-lines"` 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("type")
-    public TypeThresholdType type;
+    public ExprTypeThresholdResultAssertionsType type;
     // TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
     // contract documentation https://grafana.github.io/dataplane/contract/.
     @JsonSetter(nulls = Nulls.AS_EMPTY)
@@ -40,7 +40,7 @@ public class ExprTypeThresholdResultAssertions {
     public ExprTypeThresholdResultAssertions() {
     }
     
-    public ExprTypeThresholdResultAssertions(Long maxFrames,TypeThresholdType type,List<Long> typeVersion) {
+    public ExprTypeThresholdResultAssertions(Long maxFrames,ExprTypeThresholdResultAssertionsType type,List<Long> typeVersion) {
         this.maxFrames = maxFrames;
         this.type = type;
         this.typeVersion = typeVersion;

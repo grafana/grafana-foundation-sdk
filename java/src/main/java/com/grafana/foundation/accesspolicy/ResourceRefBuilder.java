@@ -10,12 +10,12 @@ public class ResourceRefBuilder implements com.grafana.foundation.cog.Builder<Re
         this.internal = new ResourceRef();
     }
     public ResourceRefBuilder kind(String kind) {
-    this.internal.kind = kind;
+        this.internal.kind = kind;
         return this;
     }
     
     public ResourceRefBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     public ResourceRef build() {

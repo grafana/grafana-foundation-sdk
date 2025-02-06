@@ -9,7 +9,7 @@ title: <span class="badge object-type-struct"></span> ExprTypeThresholdCondition
 type ExprTypeThresholdConditionsEvaluator struct {
     Params []float64 `json:"params"`
     // e.g. "gt"
-    Type expr.TypeThresholdType `json:"type"`
+    Type expr.ExprTypeThresholdConditionsEvaluatorType `json:"type"`
 }
 ```
 ## Methods

@@ -10,17 +10,17 @@ public class MatcherBuilder implements com.grafana.foundation.cog.Builder<Matche
         this.internal = new Matcher();
     }
     public MatcherBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public MatcherBuilder type(MatchType type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public MatcherBuilder value(String value) {
-    this.internal.value = value;
+        this.internal.value = value;
         return this;
     }
     public Matcher build() {

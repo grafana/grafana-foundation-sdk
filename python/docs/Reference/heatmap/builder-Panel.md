@@ -304,6 +304,36 @@ Alternative to empty string
 def no_value(no_value: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> override_by_field_type
+
+Adds override rules for all the fields of the given type.
+
+```python
+def override_by_field_type(field_type: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> override_by_name
+
+Adds override rules for a specific field, referred to by its name.
+
+```python
+def override_by_name(name: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> override_by_query
+
+```python
+def override_by_query(query_ref_id: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> override_by_regexp
+
+Adds override rules for the fields whose name match the given regexp.
+
+```python
+def override_by_regexp(regexp: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> overrides
 
 Overrides are the options applied to specific fields overriding the defaults.

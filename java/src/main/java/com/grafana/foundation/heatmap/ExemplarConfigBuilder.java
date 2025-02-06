@@ -10,7 +10,7 @@ public class ExemplarConfigBuilder implements com.grafana.foundation.cog.Builder
         this.internal = new ExemplarConfig();
     }
     public ExemplarConfigBuilder color(String color) {
-    this.internal.color = color;
+        this.internal.color = color;
         return this;
     }
     public ExemplarConfig build() {

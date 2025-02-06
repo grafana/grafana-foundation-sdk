@@ -10,17 +10,17 @@ public class LibraryElementDTOMetaUserBuilder implements com.grafana.foundation.
         this.internal = new LibraryElementDTOMetaUser();
     }
     public LibraryElementDTOMetaUserBuilder id(Long id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public LibraryElementDTOMetaUserBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public LibraryElementDTOMetaUserBuilder avatarUrl(String avatarUrl) {
-    this.internal.avatarUrl = avatarUrl;
+        this.internal.avatarUrl = avatarUrl;
         return this;
     }
     public LibraryElementDTOMetaUser build() {

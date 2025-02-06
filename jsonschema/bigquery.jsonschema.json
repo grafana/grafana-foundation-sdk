@@ -2,6 +2,79 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$ref": "#/definitions/Dataquery",
   "definitions": {
+    "Dataquery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "rawSql",
+        "refId"
+      ],
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "table": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        },
+        "format": {
+          "$ref": "#/definitions/QueryFormat"
+        },
+        "rawQuery": {
+          "type": "boolean"
+        },
+        "rawSql": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "partitioned": {
+          "type": "boolean"
+        },
+        "partitionedField": {
+          "type": "string"
+        },
+        "convertToUTC": {
+          "type": "boolean"
+        },
+        "sharded": {
+          "type": "boolean"
+        },
+        "queryPriority": {
+          "$ref": "#/definitions/QueryPriority"
+        },
+        "timeShift": {
+          "type": "string"
+        },
+        "editorMode": {
+          "$ref": "#/definitions/EditorMode"
+        },
+        "sql": {
+          "$ref": "#/definitions/SQLExpression"
+        },
+        "refId": {
+          "type": "string",
+          "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
+        },
+        "hide": {
+          "type": "boolean",
+          "description": "If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel."
+        },
+        "queryType": {
+          "type": "string",
+          "description": "Specify the query flavor\nTODO make this required and give it a default"
+        },
+        "datasource": {
+          "$ref": "#/definitions/DataSourceRef",
+          "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+        }
+      },
+      "description": "Manually converted from https://github.com/grafana/google-bigquery-datasource/blob/18680e42ba557791d109c7c540c2c3f2647592f0/src/types.ts#L75"
+    },
     "QueryFormat": {
       "enum": [
         0,
@@ -56,17 +129,6 @@
           "type": "integer"
         }
       }
-    },
-    "QueryEditorExpressionType": {
-      "enum": [
-        "property",
-        "operator",
-        "or",
-        "and",
-        "groupBy",
-        "function",
-        "functionParameter"
-      ]
     },
     "QueryEditorFunctionExpression": {
       "type": "object",
@@ -166,78 +228,16 @@
         "DESC"
       ]
     },
-    "Dataquery": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "format",
-        "rawSql",
-        "refId"
-      ],
-      "properties": {
-        "dataset": {
-          "type": "string"
-        },
-        "table": {
-          "type": "string"
-        },
-        "project": {
-          "type": "string"
-        },
-        "format": {
-          "$ref": "#/definitions/QueryFormat"
-        },
-        "rawQuery": {
-          "type": "boolean"
-        },
-        "rawSql": {
-          "type": "string"
-        },
-        "location": {
-          "type": "string"
-        },
-        "partitioned": {
-          "type": "boolean"
-        },
-        "partitionedField": {
-          "type": "string"
-        },
-        "convertToUTC": {
-          "type": "boolean"
-        },
-        "sharded": {
-          "type": "boolean"
-        },
-        "queryPriority": {
-          "$ref": "#/definitions/QueryPriority"
-        },
-        "timeShift": {
-          "type": "string"
-        },
-        "editorMode": {
-          "$ref": "#/definitions/EditorMode"
-        },
-        "sql": {
-          "$ref": "#/definitions/SQLExpression"
-        },
-        "refId": {
-          "type": "string",
-          "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
-        },
-        "hide": {
-          "type": "boolean",
-          "description": "If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel."
-        },
-        "queryType": {
-          "type": "string",
-          "description": "Specify the query flavor\nTODO make this required and give it a default"
-        },
-        "datasource": {
-          "$ref": "#/definitions/DataSourceRef",
-          "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
-        }
-      },
-      "description": "Manually converted from https://github.com/grafana/google-bigquery-datasource/blob/18680e42ba557791d109c7c540c2c3f2647592f0/src/types.ts#L75"
+    "QueryEditorExpressionType": {
+      "enum": [
+        "property",
+        "operator",
+        "or",
+        "and",
+        "groupBy",
+        "function",
+        "functionParameter"
+      ]
     },
     "DataSourceRef": {
       "type": "object",

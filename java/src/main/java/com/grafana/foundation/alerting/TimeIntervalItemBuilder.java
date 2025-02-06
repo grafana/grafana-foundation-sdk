@@ -11,32 +11,32 @@ public class TimeIntervalItemBuilder implements com.grafana.foundation.cog.Build
         this.internal = new TimeIntervalItem();
     }
     public TimeIntervalItemBuilder daysOfMonth(List<String> daysOfMonth) {
-    this.internal.daysOfMonth = daysOfMonth;
+        this.internal.daysOfMonth = daysOfMonth;
         return this;
     }
     
     public TimeIntervalItemBuilder location(String location) {
-    this.internal.location = location;
+        this.internal.location = location;
         return this;
     }
     
     public TimeIntervalItemBuilder months(List<String> months) {
-    this.internal.months = months;
+        this.internal.months = months;
         return this;
     }
     
     public TimeIntervalItemBuilder times(com.grafana.foundation.cog.Builder<List<TimeIntervalTimeRange>> times) {
-    this.internal.times = times.build();
+        this.internal.times = times.build();
         return this;
     }
     
     public TimeIntervalItemBuilder weekdays(List<String> weekdays) {
-    this.internal.weekdays = weekdays;
+        this.internal.weekdays = weekdays;
         return this;
     }
     
     public TimeIntervalItemBuilder years(List<String> years) {
-    this.internal.years = years;
+        this.internal.years = years;
         return this;
     }
     public TimeIntervalItem build() {
