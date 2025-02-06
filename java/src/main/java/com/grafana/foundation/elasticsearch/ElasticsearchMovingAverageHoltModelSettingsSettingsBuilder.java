@@ -10,12 +10,12 @@ public class ElasticsearchMovingAverageHoltModelSettingsSettingsBuilder implemen
         this.internal = new ElasticsearchMovingAverageHoltModelSettingsSettings();
     }
     public ElasticsearchMovingAverageHoltModelSettingsSettingsBuilder alpha(String alpha) {
-    this.internal.alpha = alpha;
+        this.internal.alpha = alpha;
         return this;
     }
     
     public ElasticsearchMovingAverageHoltModelSettingsSettingsBuilder beta(String beta) {
-    this.internal.beta = beta;
+        this.internal.beta = beta;
         return this;
     }
     public ElasticsearchMovingAverageHoltModelSettingsSettings build() {

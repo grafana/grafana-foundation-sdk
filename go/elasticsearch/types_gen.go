@@ -21,235 +21,6 @@ func NewBucketAggregation() *BucketAggregation {
 	return NewDateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested()
 }
 
-type MetricAggregation = CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
-
-// NewMetricAggregation creates a new MetricAggregation object.
-func NewMetricAggregation() *MetricAggregation {
-	return NewCountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics()
-}
-
-type BucketAggregationType string
-
-const (
-	BucketAggregationTypeTerms         BucketAggregationType = "terms"
-	BucketAggregationTypeFilters       BucketAggregationType = "filters"
-	BucketAggregationTypeGeohashGrid   BucketAggregationType = "geohash_grid"
-	BucketAggregationTypeDateHistogram BucketAggregationType = "date_histogram"
-	BucketAggregationTypeHistogram     BucketAggregationType = "histogram"
-	BucketAggregationTypeNested        BucketAggregationType = "nested"
-)
-
-type BaseBucketAggregation struct {
-	Id       string                `json:"id"`
-	Type     BucketAggregationType `json:"type"`
-	Settings any                   `json:"settings,omitempty"`
-}
-
-// NewBaseBucketAggregation creates a new BaseBucketAggregation object.
-func NewBaseBucketAggregation() *BaseBucketAggregation {
-	return &BaseBucketAggregation{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseBucketAggregation` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *BaseBucketAggregation) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-			if err := json.Unmarshal(fields["settings"], &resource.Settings); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("BaseBucketAggregation", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `BaseBucketAggregation` objects.
-func (resource BaseBucketAggregation) Equals(other BaseBucketAggregation) bool {
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Type != other.Type {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.Settings, other.Settings) {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `BaseBucketAggregation` fields for violations and returns them.
-func (resource BaseBucketAggregation) Validate() error {
-	return nil
-}
-
-type BucketAggregationWithField struct {
-	Field    *string               `json:"field,omitempty"`
-	Id       string                `json:"id"`
-	Type     BucketAggregationType `json:"type"`
-	Settings any                   `json:"settings,omitempty"`
-}
-
-// NewBucketAggregationWithField creates a new BucketAggregationWithField object.
-func NewBucketAggregationWithField() *BucketAggregationWithField {
-	return &BucketAggregationWithField{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BucketAggregationWithField` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *BucketAggregationWithField) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "field"
-	if fields["field"] != nil {
-		if string(fields["field"]) != "null" {
-			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("field", err)...)
-			}
-
-		}
-		delete(fields, "field")
-
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-			if err := json.Unmarshal(fields["settings"], &resource.Settings); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("BucketAggregationWithField", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `BucketAggregationWithField` objects.
-func (resource BucketAggregationWithField) Equals(other BucketAggregationWithField) bool {
-	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
-		return false
-	}
-
-	if resource.Field != nil {
-		if *resource.Field != *other.Field {
-			return false
-		}
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Type != other.Type {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.Settings, other.Settings) {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `BucketAggregationWithField` fields for violations and returns them.
-func (resource BucketAggregationWithField) Validate() error {
-	return nil
-}
-
 type DateHistogram struct {
 	Field    *string                             `json:"field,omitempty"`
 	Id       string                              `json:"id"`
@@ -392,154 +163,6 @@ func (resource DateHistogram) Validate() error {
 	return errs
 }
 
-type DateHistogramSettings struct {
-	Interval    *string `json:"interval,omitempty"`
-	MinDocCount *string `json:"min_doc_count,omitempty"`
-	TrimEdges   *string `json:"trimEdges,omitempty"`
-	Offset      *string `json:"offset,omitempty"`
-	TimeZone    *string `json:"timeZone,omitempty"`
-}
-
-// NewDateHistogramSettings creates a new DateHistogramSettings object.
-func NewDateHistogramSettings() *DateHistogramSettings {
-	return &DateHistogramSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DateHistogramSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *DateHistogramSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "interval"
-	if fields["interval"] != nil {
-		if string(fields["interval"]) != "null" {
-			if err := json.Unmarshal(fields["interval"], &resource.Interval); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("interval", err)...)
-			}
-
-		}
-		delete(fields, "interval")
-
-	}
-	// Field "min_doc_count"
-	if fields["min_doc_count"] != nil {
-		if string(fields["min_doc_count"]) != "null" {
-			if err := json.Unmarshal(fields["min_doc_count"], &resource.MinDocCount); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("min_doc_count", err)...)
-			}
-
-		}
-		delete(fields, "min_doc_count")
-
-	}
-	// Field "trimEdges"
-	if fields["trimEdges"] != nil {
-		if string(fields["trimEdges"]) != "null" {
-			if err := json.Unmarshal(fields["trimEdges"], &resource.TrimEdges); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("trimEdges", err)...)
-			}
-
-		}
-		delete(fields, "trimEdges")
-
-	}
-	// Field "offset"
-	if fields["offset"] != nil {
-		if string(fields["offset"]) != "null" {
-			if err := json.Unmarshal(fields["offset"], &resource.Offset); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("offset", err)...)
-			}
-
-		}
-		delete(fields, "offset")
-
-	}
-	// Field "timeZone"
-	if fields["timeZone"] != nil {
-		if string(fields["timeZone"]) != "null" {
-			if err := json.Unmarshal(fields["timeZone"], &resource.TimeZone); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("timeZone", err)...)
-			}
-
-		}
-		delete(fields, "timeZone")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("DateHistogramSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `DateHistogramSettings` objects.
-func (resource DateHistogramSettings) Equals(other DateHistogramSettings) bool {
-	if resource.Interval == nil && other.Interval != nil || resource.Interval != nil && other.Interval == nil {
-		return false
-	}
-
-	if resource.Interval != nil {
-		if *resource.Interval != *other.Interval {
-			return false
-		}
-	}
-	if resource.MinDocCount == nil && other.MinDocCount != nil || resource.MinDocCount != nil && other.MinDocCount == nil {
-		return false
-	}
-
-	if resource.MinDocCount != nil {
-		if *resource.MinDocCount != *other.MinDocCount {
-			return false
-		}
-	}
-	if resource.TrimEdges == nil && other.TrimEdges != nil || resource.TrimEdges != nil && other.TrimEdges == nil {
-		return false
-	}
-
-	if resource.TrimEdges != nil {
-		if *resource.TrimEdges != *other.TrimEdges {
-			return false
-		}
-	}
-	if resource.Offset == nil && other.Offset != nil || resource.Offset != nil && other.Offset == nil {
-		return false
-	}
-
-	if resource.Offset != nil {
-		if *resource.Offset != *other.Offset {
-			return false
-		}
-	}
-	if resource.TimeZone == nil && other.TimeZone != nil || resource.TimeZone != nil && other.TimeZone == nil {
-		return false
-	}
-
-	if resource.TimeZone != nil {
-		if *resource.TimeZone != *other.TimeZone {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `DateHistogramSettings` fields for violations and returns them.
-func (resource DateHistogramSettings) Validate() error {
-	return nil
-}
-
 type Histogram struct {
 	Field    *string                         `json:"field,omitempty"`
 	Id       string                          `json:"id"`
@@ -673,228 +296,6 @@ func (resource Histogram) Validate() error {
 		if err := resource.Settings.Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
 		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type HistogramSettings struct {
-	Interval    *string `json:"interval,omitempty"`
-	MinDocCount *string `json:"min_doc_count,omitempty"`
-}
-
-// NewHistogramSettings creates a new HistogramSettings object.
-func NewHistogramSettings() *HistogramSettings {
-	return &HistogramSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HistogramSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *HistogramSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "interval"
-	if fields["interval"] != nil {
-		if string(fields["interval"]) != "null" {
-			if err := json.Unmarshal(fields["interval"], &resource.Interval); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("interval", err)...)
-			}
-
-		}
-		delete(fields, "interval")
-
-	}
-	// Field "min_doc_count"
-	if fields["min_doc_count"] != nil {
-		if string(fields["min_doc_count"]) != "null" {
-			if err := json.Unmarshal(fields["min_doc_count"], &resource.MinDocCount); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("min_doc_count", err)...)
-			}
-
-		}
-		delete(fields, "min_doc_count")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("HistogramSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `HistogramSettings` objects.
-func (resource HistogramSettings) Equals(other HistogramSettings) bool {
-	if resource.Interval == nil && other.Interval != nil || resource.Interval != nil && other.Interval == nil {
-		return false
-	}
-
-	if resource.Interval != nil {
-		if *resource.Interval != *other.Interval {
-			return false
-		}
-	}
-	if resource.MinDocCount == nil && other.MinDocCount != nil || resource.MinDocCount != nil && other.MinDocCount == nil {
-		return false
-	}
-
-	if resource.MinDocCount != nil {
-		if *resource.MinDocCount != *other.MinDocCount {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `HistogramSettings` fields for violations and returns them.
-func (resource HistogramSettings) Validate() error {
-	return nil
-}
-
-type TermsOrder string
-
-const (
-	TermsOrderDesc TermsOrder = "desc"
-	TermsOrderAsc  TermsOrder = "asc"
-)
-
-type Nested struct {
-	Field    *string `json:"field,omitempty"`
-	Id       string  `json:"id"`
-	Type     string  `json:"type"`
-	Settings any     `json:"settings,omitempty"`
-}
-
-// NewNested creates a new Nested object.
-func NewNested() *Nested {
-	return &Nested{
-		Type: "nested",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Nested` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *Nested) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "field"
-	if fields["field"] != nil {
-		if string(fields["field"]) != "null" {
-			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("field", err)...)
-			}
-
-		}
-		delete(fields, "field")
-
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-			if err := json.Unmarshal(fields["settings"], &resource.Settings); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("Nested", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `Nested` objects.
-func (resource Nested) Equals(other Nested) bool {
-	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
-		return false
-	}
-
-	if resource.Field != nil {
-		if *resource.Field != *other.Field {
-			return false
-		}
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Type != other.Type {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.Settings, other.Settings) {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `Nested` fields for violations and returns them.
-func (resource Nested) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Type == "nested") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == nested"),
-		)...)
 	}
 
 	if len(errs) == 0 {
@@ -1046,153 +447,12 @@ func (resource Terms) Validate() error {
 	return errs
 }
 
-type TermsSettings struct {
-	Order       *TermsOrder `json:"order,omitempty"`
-	Size        *string     `json:"size,omitempty"`
-	MinDocCount *string     `json:"min_doc_count,omitempty"`
-	OrderBy     *string     `json:"orderBy,omitempty"`
-	Missing     *string     `json:"missing,omitempty"`
-}
+type TermsOrder string
 
-// NewTermsSettings creates a new TermsSettings object.
-func NewTermsSettings() *TermsSettings {
-	return &TermsSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TermsSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *TermsSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "order"
-	if fields["order"] != nil {
-		if string(fields["order"]) != "null" {
-			if err := json.Unmarshal(fields["order"], &resource.Order); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("order", err)...)
-			}
-
-		}
-		delete(fields, "order")
-
-	}
-	// Field "size"
-	if fields["size"] != nil {
-		if string(fields["size"]) != "null" {
-			if err := json.Unmarshal(fields["size"], &resource.Size); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("size", err)...)
-			}
-
-		}
-		delete(fields, "size")
-
-	}
-	// Field "min_doc_count"
-	if fields["min_doc_count"] != nil {
-		if string(fields["min_doc_count"]) != "null" {
-			if err := json.Unmarshal(fields["min_doc_count"], &resource.MinDocCount); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("min_doc_count", err)...)
-			}
-
-		}
-		delete(fields, "min_doc_count")
-
-	}
-	// Field "orderBy"
-	if fields["orderBy"] != nil {
-		if string(fields["orderBy"]) != "null" {
-			if err := json.Unmarshal(fields["orderBy"], &resource.OrderBy); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("orderBy", err)...)
-			}
-
-		}
-		delete(fields, "orderBy")
-
-	}
-	// Field "missing"
-	if fields["missing"] != nil {
-		if string(fields["missing"]) != "null" {
-			if err := json.Unmarshal(fields["missing"], &resource.Missing); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("missing", err)...)
-			}
-
-		}
-		delete(fields, "missing")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("TermsSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `TermsSettings` objects.
-func (resource TermsSettings) Equals(other TermsSettings) bool {
-	if resource.Order == nil && other.Order != nil || resource.Order != nil && other.Order == nil {
-		return false
-	}
-
-	if resource.Order != nil {
-		if *resource.Order != *other.Order {
-			return false
-		}
-	}
-	if resource.Size == nil && other.Size != nil || resource.Size != nil && other.Size == nil {
-		return false
-	}
-
-	if resource.Size != nil {
-		if *resource.Size != *other.Size {
-			return false
-		}
-	}
-	if resource.MinDocCount == nil && other.MinDocCount != nil || resource.MinDocCount != nil && other.MinDocCount == nil {
-		return false
-	}
-
-	if resource.MinDocCount != nil {
-		if *resource.MinDocCount != *other.MinDocCount {
-			return false
-		}
-	}
-	if resource.OrderBy == nil && other.OrderBy != nil || resource.OrderBy != nil && other.OrderBy == nil {
-		return false
-	}
-
-	if resource.OrderBy != nil {
-		if *resource.OrderBy != *other.OrderBy {
-			return false
-		}
-	}
-	if resource.Missing == nil && other.Missing != nil || resource.Missing != nil && other.Missing == nil {
-		return false
-	}
-
-	if resource.Missing != nil {
-		if *resource.Missing != *other.Missing {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `TermsSettings` fields for violations and returns them.
-func (resource TermsSettings) Validate() error {
-	return nil
-}
+const (
+	TermsOrderDesc TermsOrder = "desc"
+	TermsOrderAsc  TermsOrder = "asc"
+)
 
 type Filters struct {
 	Id       string                        `json:"id"`
@@ -1394,95 +654,6 @@ func (resource Filter) Validate() error {
 	return nil
 }
 
-type FiltersSettings struct {
-	Filters []Filter `json:"filters,omitempty"`
-}
-
-// NewFiltersSettings creates a new FiltersSettings object.
-func NewFiltersSettings() *FiltersSettings {
-	return &FiltersSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FiltersSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *FiltersSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "filters"
-	if fields["filters"] != nil {
-		if string(fields["filters"]) != "null" {
-
-			partialArray := []json.RawMessage{}
-			if err := json.Unmarshal(fields["filters"], &partialArray); err != nil {
-				return err
-			}
-
-			for i1 := range partialArray {
-				var result1 Filter
-
-				result1 = Filter{}
-				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
-					errs = append(errs, cog.MakeBuildErrors("filters["+strconv.Itoa(i1)+"]", err)...)
-				}
-				resource.Filters = append(resource.Filters, result1)
-			}
-
-		}
-		delete(fields, "filters")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("FiltersSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `FiltersSettings` objects.
-func (resource FiltersSettings) Equals(other FiltersSettings) bool {
-
-	if len(resource.Filters) != len(other.Filters) {
-		return false
-	}
-
-	for i1 := range resource.Filters {
-		if !resource.Filters[i1].Equals(other.Filters[i1]) {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `FiltersSettings` fields for violations and returns them.
-func (resource FiltersSettings) Validate() error {
-	var errs cog.BuildErrors
-
-	for i1 := range resource.Filters {
-		if err := resource.Filters[i1].Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("filters["+strconv.Itoa(i1)+"]", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
 type GeoHashGrid struct {
 	Field    *string                           `json:"field,omitempty"`
 	Id       string                            `json:"id"`
@@ -1625,297 +796,23 @@ func (resource GeoHashGrid) Validate() error {
 	return errs
 }
 
-type GeoHashGridSettings struct {
-	Precision *string `json:"precision,omitempty"`
+type Nested struct {
+	Field    *string `json:"field,omitempty"`
+	Id       string  `json:"id"`
+	Type     string  `json:"type"`
+	Settings any     `json:"settings,omitempty"`
 }
 
-// NewGeoHashGridSettings creates a new GeoHashGridSettings object.
-func NewGeoHashGridSettings() *GeoHashGridSettings {
-	return &GeoHashGridSettings{}
+// NewNested creates a new Nested object.
+func NewNested() *Nested {
+	return &Nested{
+		Type: "nested",
+	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `GeoHashGridSettings` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Nested` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *GeoHashGridSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "precision"
-	if fields["precision"] != nil {
-		if string(fields["precision"]) != "null" {
-			if err := json.Unmarshal(fields["precision"], &resource.Precision); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("precision", err)...)
-			}
-
-		}
-		delete(fields, "precision")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("GeoHashGridSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `GeoHashGridSettings` objects.
-func (resource GeoHashGridSettings) Equals(other GeoHashGridSettings) bool {
-	if resource.Precision == nil && other.Precision != nil || resource.Precision != nil && other.Precision == nil {
-		return false
-	}
-
-	if resource.Precision != nil {
-		if *resource.Precision != *other.Precision {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `GeoHashGridSettings` fields for violations and returns them.
-func (resource GeoHashGridSettings) Validate() error {
-	return nil
-}
-
-type PipelineMetricAggregationType string
-
-const (
-	PipelineMetricAggregationTypeMovingAvg     PipelineMetricAggregationType = "moving_avg"
-	PipelineMetricAggregationTypeMovingFn      PipelineMetricAggregationType = "moving_fn"
-	PipelineMetricAggregationTypeDerivative    PipelineMetricAggregationType = "derivative"
-	PipelineMetricAggregationTypeSerialDiff    PipelineMetricAggregationType = "serial_diff"
-	PipelineMetricAggregationTypeCumulativeSum PipelineMetricAggregationType = "cumulative_sum"
-	PipelineMetricAggregationTypeBucketScript  PipelineMetricAggregationType = "bucket_script"
-)
-
-type MetricAggregationType = StringOrPipelineMetricAggregationType
-
-// NewMetricAggregationType creates a new MetricAggregationType object.
-func NewMetricAggregationType() *MetricAggregationType {
-	return NewStringOrPipelineMetricAggregationType()
-}
-
-type BaseMetricAggregation struct {
-	Type MetricAggregationType `json:"type"`
-	Id   string                `json:"id"`
-	Hide *bool                 `json:"hide,omitempty"`
-}
-
-// NewBaseMetricAggregation creates a new BaseMetricAggregation object.
-func NewBaseMetricAggregation() *BaseMetricAggregation {
-	return &BaseMetricAggregation{
-		Type: *NewMetricAggregationType(),
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseMetricAggregation` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *BaseMetricAggregation) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-
-			resource.Type = MetricAggregationType{}
-			if err := resource.Type.UnmarshalJSONStrict(fields["type"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("BaseMetricAggregation", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `BaseMetricAggregation` objects.
-func (resource BaseMetricAggregation) Equals(other BaseMetricAggregation) bool {
-	if !resource.Type.Equals(other.Type) {
-		return false
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `BaseMetricAggregation` fields for violations and returns them.
-func (resource BaseMetricAggregation) Validate() error {
-	var errs cog.BuildErrors
-	if err := resource.Type.Validate(); err != nil {
-		errs = append(errs, cog.MakeBuildErrors("type", err)...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type PipelineVariable struct {
-	Name        string `json:"name"`
-	PipelineAgg string `json:"pipelineAgg"`
-}
-
-// NewPipelineVariable creates a new PipelineVariable object.
-func NewPipelineVariable() *PipelineVariable {
-	return &PipelineVariable{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PipelineVariable` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *PipelineVariable) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "name"
-	if fields["name"] != nil {
-		if string(fields["name"]) != "null" {
-			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("name", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "name")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
-	}
-	// Field "pipelineAgg"
-	if fields["pipelineAgg"] != nil {
-		if string(fields["pipelineAgg"]) != "null" {
-			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("pipelineAgg", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "pipelineAgg")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("pipelineAgg", errors.New("required field is missing from input"))...)
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("PipelineVariable", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `PipelineVariable` objects.
-func (resource PipelineVariable) Equals(other PipelineVariable) bool {
-	if resource.Name != other.Name {
-		return false
-	}
-	if resource.PipelineAgg != other.PipelineAgg {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `PipelineVariable` fields for violations and returns them.
-func (resource PipelineVariable) Validate() error {
-	return nil
-}
-
-type MetricAggregationWithField struct {
-	Field *string               `json:"field,omitempty"`
-	Type  MetricAggregationType `json:"type"`
-	Id    string                `json:"id"`
-	Hide  *bool                 `json:"hide,omitempty"`
-}
-
-// NewMetricAggregationWithField creates a new MetricAggregationWithField object.
-func NewMetricAggregationWithField() *MetricAggregationWithField {
-	return &MetricAggregationWithField{
-		Type: *NewMetricAggregationType(),
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricAggregationWithField` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *MetricAggregationWithField) UnmarshalJSONStrict(raw []byte) error {
+func (resource *Nested) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -1936,22 +833,6 @@ func (resource *MetricAggregationWithField) UnmarshalJSONStrict(raw []byte) erro
 		delete(fields, "field")
 
 	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-
-			resource.Type = MetricAggregationType{}
-			if err := resource.Type.UnmarshalJSONStrict(fields["type"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
 	// Field "id"
 	if fields["id"] != nil {
 		if string(fields["id"]) != "null" {
@@ -1966,20 +847,34 @@ func (resource *MetricAggregationWithField) UnmarshalJSONStrict(raw []byte) erro
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
 	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+			if err := json.Unmarshal(fields["settings"], &resource.Settings); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
 			}
 
 		}
-		delete(fields, "hide")
+		delete(fields, "settings")
 
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithField", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("Nested", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -1989,8 +884,8 @@ func (resource *MetricAggregationWithField) UnmarshalJSONStrict(raw []byte) erro
 	return errs
 }
 
-// Equals tests the equality of two `MetricAggregationWithField` objects.
-func (resource MetricAggregationWithField) Equals(other MetricAggregationWithField) bool {
+// Equals tests the equality of two `Nested` objects.
+func (resource Nested) Equals(other Nested) bool {
 	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
 		return false
 	}
@@ -2000,30 +895,28 @@ func (resource MetricAggregationWithField) Equals(other MetricAggregationWithFie
 			return false
 		}
 	}
-	if !resource.Type.Equals(other.Type) {
-		return false
-	}
 	if resource.Id != other.Id {
 		return false
 	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+	if resource.Type != other.Type {
 		return false
 	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Settings, other.Settings) {
+		return false
 	}
 
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `MetricAggregationWithField` fields for violations and returns them.
-func (resource MetricAggregationWithField) Validate() error {
+// Validate checks all the validation constraints that may be defined on `Nested` fields for violations and returns them.
+func (resource Nested) Validate() error {
 	var errs cog.BuildErrors
-	if err := resource.Type.Validate(); err != nil {
-		errs = append(errs, cog.MakeBuildErrors("type", err)...)
+	if !(resource.Type == "nested") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be == nested"),
+		)...)
 	}
 
 	if len(errs) == 0 {
@@ -2033,293 +926,11 @@ func (resource MetricAggregationWithField) Validate() error {
 	return errs
 }
 
-type MetricAggregationWithMissingSupport struct {
-	Settings *ElasticsearchMetricAggregationWithMissingSupportSettings `json:"settings,omitempty"`
-	Type     MetricAggregationType                                     `json:"type"`
-	Id       string                                                    `json:"id"`
-	Hide     *bool                                                     `json:"hide,omitempty"`
-}
+type MetricAggregation = CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
 
-// NewMetricAggregationWithMissingSupport creates a new MetricAggregationWithMissingSupport object.
-func NewMetricAggregationWithMissingSupport() *MetricAggregationWithMissingSupport {
-	return &MetricAggregationWithMissingSupport{
-		Type: *NewMetricAggregationType(),
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricAggregationWithMissingSupport` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *MetricAggregationWithMissingSupport) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-
-			resource.Settings = &ElasticsearchMetricAggregationWithMissingSupportSettings{}
-			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-
-			resource.Type = MetricAggregationType{}
-			if err := resource.Type.UnmarshalJSONStrict(fields["type"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithMissingSupport", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `MetricAggregationWithMissingSupport` objects.
-func (resource MetricAggregationWithMissingSupport) Equals(other MetricAggregationWithMissingSupport) bool {
-	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
-		return false
-	}
-
-	if resource.Settings != nil {
-		if !resource.Settings.Equals(*other.Settings) {
-			return false
-		}
-	}
-	if !resource.Type.Equals(other.Type) {
-		return false
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `MetricAggregationWithMissingSupport` fields for violations and returns them.
-func (resource MetricAggregationWithMissingSupport) Validate() error {
-	var errs cog.BuildErrors
-	if resource.Settings != nil {
-		if err := resource.Settings.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-		}
-	}
-	if err := resource.Type.Validate(); err != nil {
-		errs = append(errs, cog.MakeBuildErrors("type", err)...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type InlineScript = StringOrElasticsearchInlineScript
-
-// NewInlineScript creates a new InlineScript object.
-func NewInlineScript() *InlineScript {
-	return NewStringOrElasticsearchInlineScript()
-}
-
-type MetricAggregationWithInlineScript struct {
-	Settings *ElasticsearchMetricAggregationWithInlineScriptSettings `json:"settings,omitempty"`
-	Type     MetricAggregationType                                   `json:"type"`
-	Id       string                                                  `json:"id"`
-	Hide     *bool                                                   `json:"hide,omitempty"`
-}
-
-// NewMetricAggregationWithInlineScript creates a new MetricAggregationWithInlineScript object.
-func NewMetricAggregationWithInlineScript() *MetricAggregationWithInlineScript {
-	return &MetricAggregationWithInlineScript{
-		Type: *NewMetricAggregationType(),
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricAggregationWithInlineScript` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *MetricAggregationWithInlineScript) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-
-			resource.Settings = &ElasticsearchMetricAggregationWithInlineScriptSettings{}
-			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-
-			resource.Type = MetricAggregationType{}
-			if err := resource.Type.UnmarshalJSONStrict(fields["type"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithInlineScript", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `MetricAggregationWithInlineScript` objects.
-func (resource MetricAggregationWithInlineScript) Equals(other MetricAggregationWithInlineScript) bool {
-	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
-		return false
-	}
-
-	if resource.Settings != nil {
-		if !resource.Settings.Equals(*other.Settings) {
-			return false
-		}
-	}
-	if !resource.Type.Equals(other.Type) {
-		return false
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `MetricAggregationWithInlineScript` fields for violations and returns them.
-func (resource MetricAggregationWithInlineScript) Validate() error {
-	var errs cog.BuildErrors
-	if resource.Settings != nil {
-		if err := resource.Settings.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-		}
-	}
-	if err := resource.Type.Validate(); err != nil {
-		errs = append(errs, cog.MakeBuildErrors("type", err)...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
+// NewMetricAggregation creates a new MetricAggregation object.
+func NewMetricAggregation() *MetricAggregation {
+	return NewCountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics()
 }
 
 type Count struct {
@@ -2436,24 +1047,1323 @@ func (resource Count) Validate() error {
 	return errs
 }
 
-type Average struct {
+type PipelineMetricAggregation = MovingAverageOrDerivativeOrCumulativeSumOrBucketScript
+
+// NewPipelineMetricAggregation creates a new PipelineMetricAggregation object.
+func NewPipelineMetricAggregation() *PipelineMetricAggregation {
+	return NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript()
+}
+
+// #MovingAverage's settings are overridden in types.ts
+type MovingAverage struct {
+	PipelineAgg *string        `json:"pipelineAgg,omitempty"`
+	Field       *string        `json:"field,omitempty"`
+	Type        string         `json:"type"`
+	Id          string         `json:"id"`
+	Settings    map[string]any `json:"settings,omitempty"`
+	Hide        *bool          `json:"hide,omitempty"`
+}
+
+// NewMovingAverage creates a new MovingAverage object.
+func NewMovingAverage() *MovingAverage {
+	return &MovingAverage{
+		Type: "moving_avg",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingAverage` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *MovingAverage) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "pipelineAgg"
+	if fields["pipelineAgg"] != nil {
+		if string(fields["pipelineAgg"]) != "null" {
+			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
+			}
+
+		}
+		delete(fields, "pipelineAgg")
+
+	}
+	// Field "field"
+	if fields["field"] != nil {
+		if string(fields["field"]) != "null" {
+			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("field", err)...)
+			}
+
+		}
+		delete(fields, "field")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			if err := json.Unmarshal(fields["settings"], &resource.Settings); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("MovingAverage", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `MovingAverage` objects.
+func (resource MovingAverage) Equals(other MovingAverage) bool {
+	if resource.PipelineAgg == nil && other.PipelineAgg != nil || resource.PipelineAgg != nil && other.PipelineAgg == nil {
+		return false
+	}
+
+	if resource.PipelineAgg != nil {
+		if *resource.PipelineAgg != *other.PipelineAgg {
+			return false
+		}
+	}
+	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
+		return false
+	}
+
+	if resource.Field != nil {
+		if *resource.Field != *other.Field {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+
+	if len(resource.Settings) != len(other.Settings) {
+		return false
+	}
+
+	for key1 := range resource.Settings {
+		// is DeepEqual good enough here?
+		if !reflect.DeepEqual(resource.Settings[key1], other.Settings[key1]) {
+			return false
+		}
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `MovingAverage` fields for violations and returns them.
+func (resource MovingAverage) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Type == "moving_avg") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be == moving_avg"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type Derivative struct {
+	PipelineAgg *string                          `json:"pipelineAgg,omitempty"`
+	Field       *string                          `json:"field,omitempty"`
+	Type        string                           `json:"type"`
+	Id          string                           `json:"id"`
+	Settings    *ElasticsearchDerivativeSettings `json:"settings,omitempty"`
+	Hide        *bool                            `json:"hide,omitempty"`
+}
+
+// NewDerivative creates a new Derivative object.
+func NewDerivative() *Derivative {
+	return &Derivative{
+		Type: "derivative",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Derivative` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *Derivative) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "pipelineAgg"
+	if fields["pipelineAgg"] != nil {
+		if string(fields["pipelineAgg"]) != "null" {
+			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
+			}
+
+		}
+		delete(fields, "pipelineAgg")
+
+	}
+	// Field "field"
+	if fields["field"] != nil {
+		if string(fields["field"]) != "null" {
+			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("field", err)...)
+			}
+
+		}
+		delete(fields, "field")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			resource.Settings = &ElasticsearchDerivativeSettings{}
+			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Derivative", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `Derivative` objects.
+func (resource Derivative) Equals(other Derivative) bool {
+	if resource.PipelineAgg == nil && other.PipelineAgg != nil || resource.PipelineAgg != nil && other.PipelineAgg == nil {
+		return false
+	}
+
+	if resource.PipelineAgg != nil {
+		if *resource.PipelineAgg != *other.PipelineAgg {
+			return false
+		}
+	}
+	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
+		return false
+	}
+
+	if resource.Field != nil {
+		if *resource.Field != *other.Field {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
+		return false
+	}
+
+	if resource.Settings != nil {
+		if !resource.Settings.Equals(*other.Settings) {
+			return false
+		}
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `Derivative` fields for violations and returns them.
+func (resource Derivative) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Type == "derivative") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be == derivative"),
+		)...)
+	}
+	if resource.Settings != nil {
+		if err := resource.Settings.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type CumulativeSum struct {
+	PipelineAgg *string                             `json:"pipelineAgg,omitempty"`
+	Field       *string                             `json:"field,omitempty"`
+	Type        string                              `json:"type"`
+	Id          string                              `json:"id"`
+	Settings    *ElasticsearchCumulativeSumSettings `json:"settings,omitempty"`
+	Hide        *bool                               `json:"hide,omitempty"`
+}
+
+// NewCumulativeSum creates a new CumulativeSum object.
+func NewCumulativeSum() *CumulativeSum {
+	return &CumulativeSum{
+		Type: "cumulative_sum",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CumulativeSum` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *CumulativeSum) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "pipelineAgg"
+	if fields["pipelineAgg"] != nil {
+		if string(fields["pipelineAgg"]) != "null" {
+			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
+			}
+
+		}
+		delete(fields, "pipelineAgg")
+
+	}
+	// Field "field"
+	if fields["field"] != nil {
+		if string(fields["field"]) != "null" {
+			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("field", err)...)
+			}
+
+		}
+		delete(fields, "field")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			resource.Settings = &ElasticsearchCumulativeSumSettings{}
+			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("CumulativeSum", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `CumulativeSum` objects.
+func (resource CumulativeSum) Equals(other CumulativeSum) bool {
+	if resource.PipelineAgg == nil && other.PipelineAgg != nil || resource.PipelineAgg != nil && other.PipelineAgg == nil {
+		return false
+	}
+
+	if resource.PipelineAgg != nil {
+		if *resource.PipelineAgg != *other.PipelineAgg {
+			return false
+		}
+	}
+	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
+		return false
+	}
+
+	if resource.Field != nil {
+		if *resource.Field != *other.Field {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
+		return false
+	}
+
+	if resource.Settings != nil {
+		if !resource.Settings.Equals(*other.Settings) {
+			return false
+		}
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `CumulativeSum` fields for violations and returns them.
+func (resource CumulativeSum) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Type == "cumulative_sum") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be == cumulative_sum"),
+		)...)
+	}
+	if resource.Settings != nil {
+		if err := resource.Settings.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BucketScript struct {
+	Type              string                             `json:"type"`
+	PipelineVariables []PipelineVariable                 `json:"pipelineVariables,omitempty"`
+	Id                string                             `json:"id"`
+	Settings          *ElasticsearchBucketScriptSettings `json:"settings,omitempty"`
+	Hide              *bool                              `json:"hide,omitempty"`
+}
+
+// NewBucketScript creates a new BucketScript object.
+func NewBucketScript() *BucketScript {
+	return &BucketScript{
+		Type: "bucket_script",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BucketScript` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BucketScript) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "pipelineVariables"
+	if fields["pipelineVariables"] != nil {
+		if string(fields["pipelineVariables"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["pipelineVariables"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 PipelineVariable
+
+				result1 = PipelineVariable{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("pipelineVariables["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.PipelineVariables = append(resource.PipelineVariables, result1)
+			}
+
+		}
+		delete(fields, "pipelineVariables")
+
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			resource.Settings = &ElasticsearchBucketScriptSettings{}
+			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BucketScript", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BucketScript` objects.
+func (resource BucketScript) Equals(other BucketScript) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+
+	if len(resource.PipelineVariables) != len(other.PipelineVariables) {
+		return false
+	}
+
+	for i1 := range resource.PipelineVariables {
+		if !resource.PipelineVariables[i1].Equals(other.PipelineVariables[i1]) {
+			return false
+		}
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
+		return false
+	}
+
+	if resource.Settings != nil {
+		if !resource.Settings.Equals(*other.Settings) {
+			return false
+		}
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BucketScript` fields for violations and returns them.
+func (resource BucketScript) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Type == "bucket_script") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be == bucket_script"),
+		)...)
+	}
+
+	for i1 := range resource.PipelineVariables {
+		if err := resource.PipelineVariables[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("pipelineVariables["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if resource.Settings != nil {
+		if err := resource.Settings.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type PipelineVariable struct {
+	Name        string `json:"name"`
+	PipelineAgg string `json:"pipelineAgg"`
+}
+
+// NewPipelineVariable creates a new PipelineVariable object.
+func NewPipelineVariable() *PipelineVariable {
+	return &PipelineVariable{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PipelineVariable` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *PipelineVariable) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "name")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
+	}
+	// Field "pipelineAgg"
+	if fields["pipelineAgg"] != nil {
+		if string(fields["pipelineAgg"]) != "null" {
+			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("pipelineAgg", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "pipelineAgg")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("pipelineAgg", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("PipelineVariable", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `PipelineVariable` objects.
+func (resource PipelineVariable) Equals(other PipelineVariable) bool {
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.PipelineAgg != other.PipelineAgg {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `PipelineVariable` fields for violations and returns them.
+func (resource PipelineVariable) Validate() error {
+	return nil
+}
+
+type InlineScript = StringOrElasticsearchInlineScript
+
+// NewInlineScript creates a new InlineScript object.
+func NewInlineScript() *InlineScript {
+	return NewStringOrElasticsearchInlineScript()
+}
+
+type MetricAggregationWithSettings = BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
+
+// NewMetricAggregationWithSettings creates a new MetricAggregationWithSettings object.
+func NewMetricAggregationWithSettings() *MetricAggregationWithSettings {
+	return NewBucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics()
+}
+
+type SerialDiff struct {
+	PipelineAgg *string                          `json:"pipelineAgg,omitempty"`
+	Field       *string                          `json:"field,omitempty"`
+	Type        string                           `json:"type"`
+	Id          string                           `json:"id"`
+	Settings    *ElasticsearchSerialDiffSettings `json:"settings,omitempty"`
+	Hide        *bool                            `json:"hide,omitempty"`
+}
+
+// NewSerialDiff creates a new SerialDiff object.
+func NewSerialDiff() *SerialDiff {
+	return &SerialDiff{
+		Type: "serial_diff",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SerialDiff` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *SerialDiff) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "pipelineAgg"
+	if fields["pipelineAgg"] != nil {
+		if string(fields["pipelineAgg"]) != "null" {
+			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
+			}
+
+		}
+		delete(fields, "pipelineAgg")
+
+	}
+	// Field "field"
+	if fields["field"] != nil {
+		if string(fields["field"]) != "null" {
+			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("field", err)...)
+			}
+
+		}
+		delete(fields, "field")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			resource.Settings = &ElasticsearchSerialDiffSettings{}
+			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("SerialDiff", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `SerialDiff` objects.
+func (resource SerialDiff) Equals(other SerialDiff) bool {
+	if resource.PipelineAgg == nil && other.PipelineAgg != nil || resource.PipelineAgg != nil && other.PipelineAgg == nil {
+		return false
+	}
+
+	if resource.PipelineAgg != nil {
+		if *resource.PipelineAgg != *other.PipelineAgg {
+			return false
+		}
+	}
+	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
+		return false
+	}
+
+	if resource.Field != nil {
+		if *resource.Field != *other.Field {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
+		return false
+	}
+
+	if resource.Settings != nil {
+		if !resource.Settings.Equals(*other.Settings) {
+			return false
+		}
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `SerialDiff` fields for violations and returns them.
+func (resource SerialDiff) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Type == "serial_diff") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be == serial_diff"),
+		)...)
+	}
+	if resource.Settings != nil {
+		if err := resource.Settings.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type RawData struct {
 	Type     string                        `json:"type"`
-	Field    *string                       `json:"field,omitempty"`
 	Id       string                        `json:"id"`
-	Settings *ElasticsearchAverageSettings `json:"settings,omitempty"`
+	Settings *ElasticsearchRawDataSettings `json:"settings,omitempty"`
 	Hide     *bool                         `json:"hide,omitempty"`
 }
 
-// NewAverage creates a new Average object.
-func NewAverage() *Average {
-	return &Average{
-		Type: "avg",
+// NewRawData creates a new RawData object.
+func NewRawData() *RawData {
+	return &RawData{
+		Type: "raw_data",
 	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Average` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RawData` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *Average) UnmarshalJSONStrict(raw []byte) error {
+func (resource *RawData) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			resource.Settings = &ElasticsearchRawDataSettings{}
+			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("RawData", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `RawData` objects.
+func (resource RawData) Equals(other RawData) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
+		return false
+	}
+
+	if resource.Settings != nil {
+		if !resource.Settings.Equals(*other.Settings) {
+			return false
+		}
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `RawData` fields for violations and returns them.
+func (resource RawData) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Type == "raw_data") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be == raw_data"),
+		)...)
+	}
+	if resource.Settings != nil {
+		if err := resource.Settings.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type RawDocument struct {
+	Type     string                            `json:"type"`
+	Id       string                            `json:"id"`
+	Settings *ElasticsearchRawDocumentSettings `json:"settings,omitempty"`
+	Hide     *bool                             `json:"hide,omitempty"`
+}
+
+// NewRawDocument creates a new RawDocument object.
+func NewRawDocument() *RawDocument {
+	return &RawDocument{
+		Type: "raw_document",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RawDocument` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *RawDocument) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			resource.Settings = &ElasticsearchRawDocumentSettings{}
+			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("RawDocument", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `RawDocument` objects.
+func (resource RawDocument) Equals(other RawDocument) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
+		return false
+	}
+
+	if resource.Settings != nil {
+		if !resource.Settings.Equals(*other.Settings) {
+			return false
+		}
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `RawDocument` fields for violations and returns them.
+func (resource RawDocument) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Type == "raw_document") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be == raw_document"),
+		)...)
+	}
+	if resource.Settings != nil {
+		if err := resource.Settings.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type UniqueCount struct {
+	Type     string                            `json:"type"`
+	Field    *string                           `json:"field,omitempty"`
+	Id       string                            `json:"id"`
+	Settings *ElasticsearchUniqueCountSettings `json:"settings,omitempty"`
+	Hide     *bool                             `json:"hide,omitempty"`
+}
+
+// NewUniqueCount creates a new UniqueCount object.
+func NewUniqueCount() *UniqueCount {
+	return &UniqueCount{
+		Type: "cardinality",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `UniqueCount` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *UniqueCount) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -2506,7 +2416,7 @@ func (resource *Average) UnmarshalJSONStrict(raw []byte) error {
 	if fields["settings"] != nil {
 		if string(fields["settings"]) != "null" {
 
-			resource.Settings = &ElasticsearchAverageSettings{}
+			resource.Settings = &ElasticsearchUniqueCountSettings{}
 			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
 			}
@@ -2528,7 +2438,7 @@ func (resource *Average) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("Average", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("UniqueCount", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -2538,8 +2448,8 @@ func (resource *Average) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two `Average` objects.
-func (resource Average) Equals(other Average) bool {
+// Equals tests the equality of two `UniqueCount` objects.
+func (resource UniqueCount) Equals(other UniqueCount) bool {
 	if resource.Type != other.Type {
 		return false
 	}
@@ -2577,13 +2487,13 @@ func (resource Average) Equals(other Average) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `Average` fields for violations and returns them.
-func (resource Average) Validate() error {
+// Validate checks all the validation constraints that may be defined on `UniqueCount` fields for violations and returns them.
+func (resource UniqueCount) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "avg") {
+	if !(resource.Type == "cardinality") {
 		errs = append(errs, cog.MakeBuildErrors(
 			"type",
-			errors.New("must be == avg"),
+			errors.New("must be == cardinality"),
 		)...)
 	}
 	if resource.Settings != nil {
@@ -2599,24 +2509,24 @@ func (resource Average) Validate() error {
 	return errs
 }
 
-type Sum struct {
-	Type     string                    `json:"type"`
-	Field    *string                   `json:"field,omitempty"`
-	Id       string                    `json:"id"`
-	Settings *ElasticsearchSumSettings `json:"settings,omitempty"`
-	Hide     *bool                     `json:"hide,omitempty"`
+type Percentiles struct {
+	Type     string                            `json:"type"`
+	Field    *string                           `json:"field,omitempty"`
+	Id       string                            `json:"id"`
+	Settings *ElasticsearchPercentilesSettings `json:"settings,omitempty"`
+	Hide     *bool                             `json:"hide,omitempty"`
 }
 
-// NewSum creates a new Sum object.
-func NewSum() *Sum {
-	return &Sum{
-		Type: "sum",
+// NewPercentiles creates a new Percentiles object.
+func NewPercentiles() *Percentiles {
+	return &Percentiles{
+		Type: "percentiles",
 	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Sum` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Percentiles` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *Sum) UnmarshalJSONStrict(raw []byte) error {
+func (resource *Percentiles) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -2669,7 +2579,7 @@ func (resource *Sum) UnmarshalJSONStrict(raw []byte) error {
 	if fields["settings"] != nil {
 		if string(fields["settings"]) != "null" {
 
-			resource.Settings = &ElasticsearchSumSettings{}
+			resource.Settings = &ElasticsearchPercentilesSettings{}
 			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
 			}
@@ -2691,7 +2601,7 @@ func (resource *Sum) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("Sum", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("Percentiles", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -2701,8 +2611,8 @@ func (resource *Sum) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two `Sum` objects.
-func (resource Sum) Equals(other Sum) bool {
+// Equals tests the equality of two `Percentiles` objects.
+func (resource Percentiles) Equals(other Percentiles) bool {
 	if resource.Type != other.Type {
 		return false
 	}
@@ -2740,13 +2650,13 @@ func (resource Sum) Equals(other Sum) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `Sum` fields for violations and returns them.
-func (resource Sum) Validate() error {
+// Validate checks all the validation constraints that may be defined on `Percentiles` fields for violations and returns them.
+func (resource Percentiles) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "sum") {
+	if !(resource.Type == "percentiles") {
 		errs = append(errs, cog.MakeBuildErrors(
 			"type",
-			errors.New("must be == sum"),
+			errors.New("must be == percentiles"),
 		)...)
 	}
 	if resource.Settings != nil {
@@ -2760,424 +2670,6 @@ func (resource Sum) Validate() error {
 	}
 
 	return errs
-}
-
-type Max struct {
-	Type     string                    `json:"type"`
-	Field    *string                   `json:"field,omitempty"`
-	Id       string                    `json:"id"`
-	Settings *ElasticsearchMaxSettings `json:"settings,omitempty"`
-	Hide     *bool                     `json:"hide,omitempty"`
-}
-
-// NewMax creates a new Max object.
-func NewMax() *Max {
-	return &Max{
-		Type: "max",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Max` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *Max) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "field"
-	if fields["field"] != nil {
-		if string(fields["field"]) != "null" {
-			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("field", err)...)
-			}
-
-		}
-		delete(fields, "field")
-
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-
-			resource.Settings = &ElasticsearchMaxSettings{}
-			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("Max", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `Max` objects.
-func (resource Max) Equals(other Max) bool {
-	if resource.Type != other.Type {
-		return false
-	}
-	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
-		return false
-	}
-
-	if resource.Field != nil {
-		if *resource.Field != *other.Field {
-			return false
-		}
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
-		return false
-	}
-
-	if resource.Settings != nil {
-		if !resource.Settings.Equals(*other.Settings) {
-			return false
-		}
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `Max` fields for violations and returns them.
-func (resource Max) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Type == "max") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == max"),
-		)...)
-	}
-	if resource.Settings != nil {
-		if err := resource.Settings.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type Min struct {
-	Type     string                    `json:"type"`
-	Field    *string                   `json:"field,omitempty"`
-	Id       string                    `json:"id"`
-	Settings *ElasticsearchMinSettings `json:"settings,omitempty"`
-	Hide     *bool                     `json:"hide,omitempty"`
-}
-
-// NewMin creates a new Min object.
-func NewMin() *Min {
-	return &Min{
-		Type: "min",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Min` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *Min) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "field"
-	if fields["field"] != nil {
-		if string(fields["field"]) != "null" {
-			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("field", err)...)
-			}
-
-		}
-		delete(fields, "field")
-
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-
-			resource.Settings = &ElasticsearchMinSettings{}
-			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("Min", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `Min` objects.
-func (resource Min) Equals(other Min) bool {
-	if resource.Type != other.Type {
-		return false
-	}
-	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
-		return false
-	}
-
-	if resource.Field != nil {
-		if *resource.Field != *other.Field {
-			return false
-		}
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
-		return false
-	}
-
-	if resource.Settings != nil {
-		if !resource.Settings.Equals(*other.Settings) {
-			return false
-		}
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `Min` fields for violations and returns them.
-func (resource Min) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Type == "min") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == min"),
-		)...)
-	}
-	if resource.Settings != nil {
-		if err := resource.Settings.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type ExtendedStatMetaType string
-
-const (
-	ExtendedStatMetaTypeAvg                     ExtendedStatMetaType = "avg"
-	ExtendedStatMetaTypeMin                     ExtendedStatMetaType = "min"
-	ExtendedStatMetaTypeMax                     ExtendedStatMetaType = "max"
-	ExtendedStatMetaTypeSum                     ExtendedStatMetaType = "sum"
-	ExtendedStatMetaTypeCount                   ExtendedStatMetaType = "count"
-	ExtendedStatMetaTypeStdDeviation            ExtendedStatMetaType = "std_deviation"
-	ExtendedStatMetaTypeStdDeviationBoundsUpper ExtendedStatMetaType = "std_deviation_bounds_upper"
-	ExtendedStatMetaTypeStdDeviationBoundsLower ExtendedStatMetaType = "std_deviation_bounds_lower"
-)
-
-type ExtendedStat struct {
-	Label string               `json:"label"`
-	Value ExtendedStatMetaType `json:"value"`
-}
-
-// NewExtendedStat creates a new ExtendedStat object.
-func NewExtendedStat() *ExtendedStat {
-	return &ExtendedStat{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExtendedStat` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ExtendedStat) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "label"
-	if fields["label"] != nil {
-		if string(fields["label"]) != "null" {
-			if err := json.Unmarshal(fields["label"], &resource.Label); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("label", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("label", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "label")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("label", errors.New("required field is missing from input"))...)
-	}
-	// Field "value"
-	if fields["value"] != nil {
-		if string(fields["value"]) != "null" {
-			if err := json.Unmarshal(fields["value"], &resource.Value); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("value", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "value")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is missing from input"))...)
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ExtendedStat", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ExtendedStat` objects.
-func (resource ExtendedStat) Equals(other ExtendedStat) bool {
-	if resource.Label != other.Label {
-		return false
-	}
-	if resource.Value != other.Value {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ExtendedStat` fields for violations and returns them.
-func (resource ExtendedStat) Validate() error {
-	return nil
 }
 
 type ExtendedStats struct {
@@ -3359,24 +2851,24 @@ func (resource ExtendedStats) Validate() error {
 	return errs
 }
 
-type Percentiles struct {
-	Type     string                            `json:"type"`
-	Field    *string                           `json:"field,omitempty"`
-	Id       string                            `json:"id"`
-	Settings *ElasticsearchPercentilesSettings `json:"settings,omitempty"`
-	Hide     *bool                             `json:"hide,omitempty"`
+type Min struct {
+	Type     string                    `json:"type"`
+	Field    *string                   `json:"field,omitempty"`
+	Id       string                    `json:"id"`
+	Settings *ElasticsearchMinSettings `json:"settings,omitempty"`
+	Hide     *bool                     `json:"hide,omitempty"`
 }
 
-// NewPercentiles creates a new Percentiles object.
-func NewPercentiles() *Percentiles {
-	return &Percentiles{
-		Type: "percentiles",
+// NewMin creates a new Min object.
+func NewMin() *Min {
+	return &Min{
+		Type: "min",
 	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Percentiles` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Min` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *Percentiles) UnmarshalJSONStrict(raw []byte) error {
+func (resource *Min) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -3429,7 +2921,7 @@ func (resource *Percentiles) UnmarshalJSONStrict(raw []byte) error {
 	if fields["settings"] != nil {
 		if string(fields["settings"]) != "null" {
 
-			resource.Settings = &ElasticsearchPercentilesSettings{}
+			resource.Settings = &ElasticsearchMinSettings{}
 			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
 			}
@@ -3451,7 +2943,7 @@ func (resource *Percentiles) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("Percentiles", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("Min", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -3461,8 +2953,8 @@ func (resource *Percentiles) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two `Percentiles` objects.
-func (resource Percentiles) Equals(other Percentiles) bool {
+// Equals tests the equality of two `Min` objects.
+func (resource Min) Equals(other Min) bool {
 	if resource.Type != other.Type {
 		return false
 	}
@@ -3500,13 +2992,13 @@ func (resource Percentiles) Equals(other Percentiles) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `Percentiles` fields for violations and returns them.
-func (resource Percentiles) Validate() error {
+// Validate checks all the validation constraints that may be defined on `Min` fields for violations and returns them.
+func (resource Min) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "percentiles") {
+	if !(resource.Type == "min") {
 		errs = append(errs, cog.MakeBuildErrors(
 			"type",
-			errors.New("must be == percentiles"),
+			errors.New("must be == min"),
 		)...)
 	}
 	if resource.Settings != nil {
@@ -3522,24 +3014,24 @@ func (resource Percentiles) Validate() error {
 	return errs
 }
 
-type UniqueCount struct {
-	Type     string                            `json:"type"`
-	Field    *string                           `json:"field,omitempty"`
-	Id       string                            `json:"id"`
-	Settings *ElasticsearchUniqueCountSettings `json:"settings,omitempty"`
-	Hide     *bool                             `json:"hide,omitempty"`
+type Max struct {
+	Type     string                    `json:"type"`
+	Field    *string                   `json:"field,omitempty"`
+	Id       string                    `json:"id"`
+	Settings *ElasticsearchMaxSettings `json:"settings,omitempty"`
+	Hide     *bool                     `json:"hide,omitempty"`
 }
 
-// NewUniqueCount creates a new UniqueCount object.
-func NewUniqueCount() *UniqueCount {
-	return &UniqueCount{
-		Type: "cardinality",
+// NewMax creates a new Max object.
+func NewMax() *Max {
+	return &Max{
+		Type: "max",
 	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `UniqueCount` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Max` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *UniqueCount) UnmarshalJSONStrict(raw []byte) error {
+func (resource *Max) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -3592,7 +3084,7 @@ func (resource *UniqueCount) UnmarshalJSONStrict(raw []byte) error {
 	if fields["settings"] != nil {
 		if string(fields["settings"]) != "null" {
 
-			resource.Settings = &ElasticsearchUniqueCountSettings{}
+			resource.Settings = &ElasticsearchMaxSettings{}
 			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
 			}
@@ -3614,7 +3106,7 @@ func (resource *UniqueCount) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("UniqueCount", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("Max", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -3624,8 +3116,8 @@ func (resource *UniqueCount) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two `UniqueCount` objects.
-func (resource UniqueCount) Equals(other UniqueCount) bool {
+// Equals tests the equality of two `Max` objects.
+func (resource Max) Equals(other Max) bool {
 	if resource.Type != other.Type {
 		return false
 	}
@@ -3663,13 +3155,13 @@ func (resource UniqueCount) Equals(other UniqueCount) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `UniqueCount` fields for violations and returns them.
-func (resource UniqueCount) Validate() error {
+// Validate checks all the validation constraints that may be defined on `Max` fields for violations and returns them.
+func (resource Max) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "cardinality") {
+	if !(resource.Type == "max") {
 		errs = append(errs, cog.MakeBuildErrors(
 			"type",
-			errors.New("must be == cardinality"),
+			errors.New("must be == max"),
 		)...)
 	}
 	if resource.Settings != nil {
@@ -3685,23 +3177,24 @@ func (resource UniqueCount) Validate() error {
 	return errs
 }
 
-type RawDocument struct {
-	Type     string                            `json:"type"`
-	Id       string                            `json:"id"`
-	Settings *ElasticsearchRawDocumentSettings `json:"settings,omitempty"`
-	Hide     *bool                             `json:"hide,omitempty"`
+type Sum struct {
+	Type     string                    `json:"type"`
+	Field    *string                   `json:"field,omitempty"`
+	Id       string                    `json:"id"`
+	Settings *ElasticsearchSumSettings `json:"settings,omitempty"`
+	Hide     *bool                     `json:"hide,omitempty"`
 }
 
-// NewRawDocument creates a new RawDocument object.
-func NewRawDocument() *RawDocument {
-	return &RawDocument{
-		Type: "raw_document",
+// NewSum creates a new Sum object.
+func NewSum() *Sum {
+	return &Sum{
+		Type: "sum",
 	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RawDocument` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Sum` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *RawDocument) UnmarshalJSONStrict(raw []byte) error {
+func (resource *Sum) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -3725,6 +3218,17 @@ func (resource *RawDocument) UnmarshalJSONStrict(raw []byte) error {
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
 	}
+	// Field "field"
+	if fields["field"] != nil {
+		if string(fields["field"]) != "null" {
+			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("field", err)...)
+			}
+
+		}
+		delete(fields, "field")
+
+	}
 	// Field "id"
 	if fields["id"] != nil {
 		if string(fields["id"]) != "null" {
@@ -3743,7 +3247,7 @@ func (resource *RawDocument) UnmarshalJSONStrict(raw []byte) error {
 	if fields["settings"] != nil {
 		if string(fields["settings"]) != "null" {
 
-			resource.Settings = &ElasticsearchRawDocumentSettings{}
+			resource.Settings = &ElasticsearchSumSettings{}
 			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
 			}
@@ -3765,7 +3269,7 @@ func (resource *RawDocument) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("RawDocument", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("Sum", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -3775,10 +3279,19 @@ func (resource *RawDocument) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two `RawDocument` objects.
-func (resource RawDocument) Equals(other RawDocument) bool {
+// Equals tests the equality of two `Sum` objects.
+func (resource Sum) Equals(other Sum) bool {
 	if resource.Type != other.Type {
 		return false
+	}
+	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
+		return false
+	}
+
+	if resource.Field != nil {
+		if *resource.Field != *other.Field {
+			return false
+		}
 	}
 	if resource.Id != other.Id {
 		return false
@@ -3805,13 +3318,13 @@ func (resource RawDocument) Equals(other RawDocument) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `RawDocument` fields for violations and returns them.
-func (resource RawDocument) Validate() error {
+// Validate checks all the validation constraints that may be defined on `Sum` fields for violations and returns them.
+func (resource Sum) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "raw_document") {
+	if !(resource.Type == "sum") {
 		errs = append(errs, cog.MakeBuildErrors(
 			"type",
-			errors.New("must be == raw_document"),
+			errors.New("must be == sum"),
 		)...)
 	}
 	if resource.Settings != nil {
@@ -3827,23 +3340,24 @@ func (resource RawDocument) Validate() error {
 	return errs
 }
 
-type RawData struct {
+type Average struct {
 	Type     string                        `json:"type"`
+	Field    *string                       `json:"field,omitempty"`
 	Id       string                        `json:"id"`
-	Settings *ElasticsearchRawDataSettings `json:"settings,omitempty"`
+	Settings *ElasticsearchAverageSettings `json:"settings,omitempty"`
 	Hide     *bool                         `json:"hide,omitempty"`
 }
 
-// NewRawData creates a new RawData object.
-func NewRawData() *RawData {
-	return &RawData{
-		Type: "raw_data",
+// NewAverage creates a new Average object.
+func NewAverage() *Average {
+	return &Average{
+		Type: "avg",
 	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `RawData` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Average` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *RawData) UnmarshalJSONStrict(raw []byte) error {
+func (resource *Average) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -3852,6 +3366,192 @@ func (resource *RawData) UnmarshalJSONStrict(raw []byte) error {
 	fields := make(map[string]json.RawMessage)
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "field"
+	if fields["field"] != nil {
+		if string(fields["field"]) != "null" {
+			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("field", err)...)
+			}
+
+		}
+		delete(fields, "field")
+
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			resource.Settings = &ElasticsearchAverageSettings{}
+			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Average", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `Average` objects.
+func (resource Average) Equals(other Average) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
+		return false
+	}
+
+	if resource.Field != nil {
+		if *resource.Field != *other.Field {
+			return false
+		}
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
+		return false
+	}
+
+	if resource.Settings != nil {
+		if !resource.Settings.Equals(*other.Settings) {
+			return false
+		}
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `Average` fields for violations and returns them.
+func (resource Average) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Type == "avg") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be == avg"),
+		)...)
+	}
+	if resource.Settings != nil {
+		if err := resource.Settings.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type MovingFunction struct {
+	PipelineAgg *string                              `json:"pipelineAgg,omitempty"`
+	Field       *string                              `json:"field,omitempty"`
+	Type        string                               `json:"type"`
+	Id          string                               `json:"id"`
+	Settings    *ElasticsearchMovingFunctionSettings `json:"settings,omitempty"`
+	Hide        *bool                                `json:"hide,omitempty"`
+}
+
+// NewMovingFunction creates a new MovingFunction object.
+func NewMovingFunction() *MovingFunction {
+	return &MovingFunction{
+		Type: "moving_fn",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingFunction` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *MovingFunction) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "pipelineAgg"
+	if fields["pipelineAgg"] != nil {
+		if string(fields["pipelineAgg"]) != "null" {
+			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
+			}
+
+		}
+		delete(fields, "pipelineAgg")
+
+	}
+	// Field "field"
+	if fields["field"] != nil {
+		if string(fields["field"]) != "null" {
+			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("field", err)...)
+			}
+
+		}
+		delete(fields, "field")
+
 	}
 	// Field "type"
 	if fields["type"] != nil {
@@ -3885,7 +3585,7 @@ func (resource *RawData) UnmarshalJSONStrict(raw []byte) error {
 	if fields["settings"] != nil {
 		if string(fields["settings"]) != "null" {
 
-			resource.Settings = &ElasticsearchRawDataSettings{}
+			resource.Settings = &ElasticsearchMovingFunctionSettings{}
 			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
 			}
@@ -3907,7 +3607,7 @@ func (resource *RawData) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("RawData", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("MovingFunction", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -3917,8 +3617,26 @@ func (resource *RawData) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two `RawData` objects.
-func (resource RawData) Equals(other RawData) bool {
+// Equals tests the equality of two `MovingFunction` objects.
+func (resource MovingFunction) Equals(other MovingFunction) bool {
+	if resource.PipelineAgg == nil && other.PipelineAgg != nil || resource.PipelineAgg != nil && other.PipelineAgg == nil {
+		return false
+	}
+
+	if resource.PipelineAgg != nil {
+		if *resource.PipelineAgg != *other.PipelineAgg {
+			return false
+		}
+	}
+	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
+		return false
+	}
+
+	if resource.Field != nil {
+		if *resource.Field != *other.Field {
+			return false
+		}
+	}
 	if resource.Type != other.Type {
 		return false
 	}
@@ -3947,13 +3665,13 @@ func (resource RawData) Equals(other RawData) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `RawData` fields for violations and returns them.
-func (resource RawData) Validate() error {
+// Validate checks all the validation constraints that may be defined on `MovingFunction` fields for violations and returns them.
+func (resource MovingFunction) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "raw_data") {
+	if !(resource.Type == "moving_fn") {
 		errs = append(errs, cog.MakeBuildErrors(
 			"type",
-			errors.New("must be == raw_data"),
+			errors.New("must be == moving_fn"),
 		)...)
 	}
 	if resource.Settings != nil {
@@ -4274,6 +3992,1520 @@ func (resource Rate) Validate() error {
 	return errs
 }
 
+type TopMetrics struct {
+	Type     string                           `json:"type"`
+	Id       string                           `json:"id"`
+	Settings *ElasticsearchTopMetricsSettings `json:"settings,omitempty"`
+	Hide     *bool                            `json:"hide,omitempty"`
+}
+
+// NewTopMetrics creates a new TopMetrics object.
+func NewTopMetrics() *TopMetrics {
+	return &TopMetrics{
+		Type: "top_metrics",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TopMetrics` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *TopMetrics) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			resource.Settings = &ElasticsearchTopMetricsSettings{}
+			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TopMetrics", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `TopMetrics` objects.
+func (resource TopMetrics) Equals(other TopMetrics) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
+		return false
+	}
+
+	if resource.Settings != nil {
+		if !resource.Settings.Equals(*other.Settings) {
+			return false
+		}
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `TopMetrics` fields for violations and returns them.
+func (resource TopMetrics) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Type == "top_metrics") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"type",
+			errors.New("must be == top_metrics"),
+		)...)
+	}
+	if resource.Settings != nil {
+		if err := resource.Settings.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BucketAggregationType string
+
+const (
+	BucketAggregationTypeTerms         BucketAggregationType = "terms"
+	BucketAggregationTypeFilters       BucketAggregationType = "filters"
+	BucketAggregationTypeGeohashGrid   BucketAggregationType = "geohash_grid"
+	BucketAggregationTypeDateHistogram BucketAggregationType = "date_histogram"
+	BucketAggregationTypeHistogram     BucketAggregationType = "histogram"
+	BucketAggregationTypeNested        BucketAggregationType = "nested"
+)
+
+type BaseBucketAggregation struct {
+	Id       string                `json:"id"`
+	Type     BucketAggregationType `json:"type"`
+	Settings any                   `json:"settings,omitempty"`
+}
+
+// NewBaseBucketAggregation creates a new BaseBucketAggregation object.
+func NewBaseBucketAggregation() *BaseBucketAggregation {
+	return &BaseBucketAggregation{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseBucketAggregation` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BaseBucketAggregation) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+			if err := json.Unmarshal(fields["settings"], &resource.Settings); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BaseBucketAggregation", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BaseBucketAggregation` objects.
+func (resource BaseBucketAggregation) Equals(other BaseBucketAggregation) bool {
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Settings, other.Settings) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BaseBucketAggregation` fields for violations and returns them.
+func (resource BaseBucketAggregation) Validate() error {
+	return nil
+}
+
+type BucketAggregationWithField struct {
+	Field    *string               `json:"field,omitempty"`
+	Id       string                `json:"id"`
+	Type     BucketAggregationType `json:"type"`
+	Settings any                   `json:"settings,omitempty"`
+}
+
+// NewBucketAggregationWithField creates a new BucketAggregationWithField object.
+func NewBucketAggregationWithField() *BucketAggregationWithField {
+	return &BucketAggregationWithField{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BucketAggregationWithField` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BucketAggregationWithField) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "field"
+	if fields["field"] != nil {
+		if string(fields["field"]) != "null" {
+			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("field", err)...)
+			}
+
+		}
+		delete(fields, "field")
+
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+			if err := json.Unmarshal(fields["settings"], &resource.Settings); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BucketAggregationWithField", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BucketAggregationWithField` objects.
+func (resource BucketAggregationWithField) Equals(other BucketAggregationWithField) bool {
+	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
+		return false
+	}
+
+	if resource.Field != nil {
+		if *resource.Field != *other.Field {
+			return false
+		}
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Settings, other.Settings) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BucketAggregationWithField` fields for violations and returns them.
+func (resource BucketAggregationWithField) Validate() error {
+	return nil
+}
+
+type DateHistogramSettings struct {
+	Interval    *string `json:"interval,omitempty"`
+	MinDocCount *string `json:"min_doc_count,omitempty"`
+	TrimEdges   *string `json:"trimEdges,omitempty"`
+	Offset      *string `json:"offset,omitempty"`
+	TimeZone    *string `json:"timeZone,omitempty"`
+}
+
+// NewDateHistogramSettings creates a new DateHistogramSettings object.
+func NewDateHistogramSettings() *DateHistogramSettings {
+	return &DateHistogramSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DateHistogramSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *DateHistogramSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "interval"
+	if fields["interval"] != nil {
+		if string(fields["interval"]) != "null" {
+			if err := json.Unmarshal(fields["interval"], &resource.Interval); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("interval", err)...)
+			}
+
+		}
+		delete(fields, "interval")
+
+	}
+	// Field "min_doc_count"
+	if fields["min_doc_count"] != nil {
+		if string(fields["min_doc_count"]) != "null" {
+			if err := json.Unmarshal(fields["min_doc_count"], &resource.MinDocCount); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("min_doc_count", err)...)
+			}
+
+		}
+		delete(fields, "min_doc_count")
+
+	}
+	// Field "trimEdges"
+	if fields["trimEdges"] != nil {
+		if string(fields["trimEdges"]) != "null" {
+			if err := json.Unmarshal(fields["trimEdges"], &resource.TrimEdges); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("trimEdges", err)...)
+			}
+
+		}
+		delete(fields, "trimEdges")
+
+	}
+	// Field "offset"
+	if fields["offset"] != nil {
+		if string(fields["offset"]) != "null" {
+			if err := json.Unmarshal(fields["offset"], &resource.Offset); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("offset", err)...)
+			}
+
+		}
+		delete(fields, "offset")
+
+	}
+	// Field "timeZone"
+	if fields["timeZone"] != nil {
+		if string(fields["timeZone"]) != "null" {
+			if err := json.Unmarshal(fields["timeZone"], &resource.TimeZone); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeZone", err)...)
+			}
+
+		}
+		delete(fields, "timeZone")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("DateHistogramSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `DateHistogramSettings` objects.
+func (resource DateHistogramSettings) Equals(other DateHistogramSettings) bool {
+	if resource.Interval == nil && other.Interval != nil || resource.Interval != nil && other.Interval == nil {
+		return false
+	}
+
+	if resource.Interval != nil {
+		if *resource.Interval != *other.Interval {
+			return false
+		}
+	}
+	if resource.MinDocCount == nil && other.MinDocCount != nil || resource.MinDocCount != nil && other.MinDocCount == nil {
+		return false
+	}
+
+	if resource.MinDocCount != nil {
+		if *resource.MinDocCount != *other.MinDocCount {
+			return false
+		}
+	}
+	if resource.TrimEdges == nil && other.TrimEdges != nil || resource.TrimEdges != nil && other.TrimEdges == nil {
+		return false
+	}
+
+	if resource.TrimEdges != nil {
+		if *resource.TrimEdges != *other.TrimEdges {
+			return false
+		}
+	}
+	if resource.Offset == nil && other.Offset != nil || resource.Offset != nil && other.Offset == nil {
+		return false
+	}
+
+	if resource.Offset != nil {
+		if *resource.Offset != *other.Offset {
+			return false
+		}
+	}
+	if resource.TimeZone == nil && other.TimeZone != nil || resource.TimeZone != nil && other.TimeZone == nil {
+		return false
+	}
+
+	if resource.TimeZone != nil {
+		if *resource.TimeZone != *other.TimeZone {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `DateHistogramSettings` fields for violations and returns them.
+func (resource DateHistogramSettings) Validate() error {
+	return nil
+}
+
+type HistogramSettings struct {
+	Interval    *string `json:"interval,omitempty"`
+	MinDocCount *string `json:"min_doc_count,omitempty"`
+}
+
+// NewHistogramSettings creates a new HistogramSettings object.
+func NewHistogramSettings() *HistogramSettings {
+	return &HistogramSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `HistogramSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *HistogramSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "interval"
+	if fields["interval"] != nil {
+		if string(fields["interval"]) != "null" {
+			if err := json.Unmarshal(fields["interval"], &resource.Interval); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("interval", err)...)
+			}
+
+		}
+		delete(fields, "interval")
+
+	}
+	// Field "min_doc_count"
+	if fields["min_doc_count"] != nil {
+		if string(fields["min_doc_count"]) != "null" {
+			if err := json.Unmarshal(fields["min_doc_count"], &resource.MinDocCount); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("min_doc_count", err)...)
+			}
+
+		}
+		delete(fields, "min_doc_count")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("HistogramSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `HistogramSettings` objects.
+func (resource HistogramSettings) Equals(other HistogramSettings) bool {
+	if resource.Interval == nil && other.Interval != nil || resource.Interval != nil && other.Interval == nil {
+		return false
+	}
+
+	if resource.Interval != nil {
+		if *resource.Interval != *other.Interval {
+			return false
+		}
+	}
+	if resource.MinDocCount == nil && other.MinDocCount != nil || resource.MinDocCount != nil && other.MinDocCount == nil {
+		return false
+	}
+
+	if resource.MinDocCount != nil {
+		if *resource.MinDocCount != *other.MinDocCount {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `HistogramSettings` fields for violations and returns them.
+func (resource HistogramSettings) Validate() error {
+	return nil
+}
+
+type TermsSettings struct {
+	Order       *TermsOrder `json:"order,omitempty"`
+	Size        *string     `json:"size,omitempty"`
+	MinDocCount *string     `json:"min_doc_count,omitempty"`
+	OrderBy     *string     `json:"orderBy,omitempty"`
+	Missing     *string     `json:"missing,omitempty"`
+}
+
+// NewTermsSettings creates a new TermsSettings object.
+func NewTermsSettings() *TermsSettings {
+	return &TermsSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TermsSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *TermsSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "order"
+	if fields["order"] != nil {
+		if string(fields["order"]) != "null" {
+			if err := json.Unmarshal(fields["order"], &resource.Order); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("order", err)...)
+			}
+
+		}
+		delete(fields, "order")
+
+	}
+	// Field "size"
+	if fields["size"] != nil {
+		if string(fields["size"]) != "null" {
+			if err := json.Unmarshal(fields["size"], &resource.Size); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("size", err)...)
+			}
+
+		}
+		delete(fields, "size")
+
+	}
+	// Field "min_doc_count"
+	if fields["min_doc_count"] != nil {
+		if string(fields["min_doc_count"]) != "null" {
+			if err := json.Unmarshal(fields["min_doc_count"], &resource.MinDocCount); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("min_doc_count", err)...)
+			}
+
+		}
+		delete(fields, "min_doc_count")
+
+	}
+	// Field "orderBy"
+	if fields["orderBy"] != nil {
+		if string(fields["orderBy"]) != "null" {
+			if err := json.Unmarshal(fields["orderBy"], &resource.OrderBy); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("orderBy", err)...)
+			}
+
+		}
+		delete(fields, "orderBy")
+
+	}
+	// Field "missing"
+	if fields["missing"] != nil {
+		if string(fields["missing"]) != "null" {
+			if err := json.Unmarshal(fields["missing"], &resource.Missing); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("missing", err)...)
+			}
+
+		}
+		delete(fields, "missing")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TermsSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `TermsSettings` objects.
+func (resource TermsSettings) Equals(other TermsSettings) bool {
+	if resource.Order == nil && other.Order != nil || resource.Order != nil && other.Order == nil {
+		return false
+	}
+
+	if resource.Order != nil {
+		if *resource.Order != *other.Order {
+			return false
+		}
+	}
+	if resource.Size == nil && other.Size != nil || resource.Size != nil && other.Size == nil {
+		return false
+	}
+
+	if resource.Size != nil {
+		if *resource.Size != *other.Size {
+			return false
+		}
+	}
+	if resource.MinDocCount == nil && other.MinDocCount != nil || resource.MinDocCount != nil && other.MinDocCount == nil {
+		return false
+	}
+
+	if resource.MinDocCount != nil {
+		if *resource.MinDocCount != *other.MinDocCount {
+			return false
+		}
+	}
+	if resource.OrderBy == nil && other.OrderBy != nil || resource.OrderBy != nil && other.OrderBy == nil {
+		return false
+	}
+
+	if resource.OrderBy != nil {
+		if *resource.OrderBy != *other.OrderBy {
+			return false
+		}
+	}
+	if resource.Missing == nil && other.Missing != nil || resource.Missing != nil && other.Missing == nil {
+		return false
+	}
+
+	if resource.Missing != nil {
+		if *resource.Missing != *other.Missing {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `TermsSettings` fields for violations and returns them.
+func (resource TermsSettings) Validate() error {
+	return nil
+}
+
+type FiltersSettings struct {
+	Filters []Filter `json:"filters,omitempty"`
+}
+
+// NewFiltersSettings creates a new FiltersSettings object.
+func NewFiltersSettings() *FiltersSettings {
+	return &FiltersSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FiltersSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *FiltersSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "filters"
+	if fields["filters"] != nil {
+		if string(fields["filters"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["filters"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 Filter
+
+				result1 = Filter{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("filters["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Filters = append(resource.Filters, result1)
+			}
+
+		}
+		delete(fields, "filters")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("FiltersSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `FiltersSettings` objects.
+func (resource FiltersSettings) Equals(other FiltersSettings) bool {
+
+	if len(resource.Filters) != len(other.Filters) {
+		return false
+	}
+
+	for i1 := range resource.Filters {
+		if !resource.Filters[i1].Equals(other.Filters[i1]) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `FiltersSettings` fields for violations and returns them.
+func (resource FiltersSettings) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Filters {
+		if err := resource.Filters[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("filters["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type GeoHashGridSettings struct {
+	Precision *string `json:"precision,omitempty"`
+}
+
+// NewGeoHashGridSettings creates a new GeoHashGridSettings object.
+func NewGeoHashGridSettings() *GeoHashGridSettings {
+	return &GeoHashGridSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `GeoHashGridSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *GeoHashGridSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "precision"
+	if fields["precision"] != nil {
+		if string(fields["precision"]) != "null" {
+			if err := json.Unmarshal(fields["precision"], &resource.Precision); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("precision", err)...)
+			}
+
+		}
+		delete(fields, "precision")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("GeoHashGridSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `GeoHashGridSettings` objects.
+func (resource GeoHashGridSettings) Equals(other GeoHashGridSettings) bool {
+	if resource.Precision == nil && other.Precision != nil || resource.Precision != nil && other.Precision == nil {
+		return false
+	}
+
+	if resource.Precision != nil {
+		if *resource.Precision != *other.Precision {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `GeoHashGridSettings` fields for violations and returns them.
+func (resource GeoHashGridSettings) Validate() error {
+	return nil
+}
+
+type PipelineMetricAggregationType string
+
+const (
+	PipelineMetricAggregationTypeMovingAvg     PipelineMetricAggregationType = "moving_avg"
+	PipelineMetricAggregationTypeMovingFn      PipelineMetricAggregationType = "moving_fn"
+	PipelineMetricAggregationTypeDerivative    PipelineMetricAggregationType = "derivative"
+	PipelineMetricAggregationTypeSerialDiff    PipelineMetricAggregationType = "serial_diff"
+	PipelineMetricAggregationTypeCumulativeSum PipelineMetricAggregationType = "cumulative_sum"
+	PipelineMetricAggregationTypeBucketScript  PipelineMetricAggregationType = "bucket_script"
+)
+
+type MetricAggregationType string
+
+const (
+	MetricAggregationTypeCount         MetricAggregationType = "count"
+	MetricAggregationTypeAvg           MetricAggregationType = "avg"
+	MetricAggregationTypeSum           MetricAggregationType = "sum"
+	MetricAggregationTypeMin           MetricAggregationType = "min"
+	MetricAggregationTypeMax           MetricAggregationType = "max"
+	MetricAggregationTypeExtendedStats MetricAggregationType = "extended_stats"
+	MetricAggregationTypePercentiles   MetricAggregationType = "percentiles"
+	MetricAggregationTypeCardinality   MetricAggregationType = "cardinality"
+	MetricAggregationTypeRawDocument   MetricAggregationType = "raw_document"
+	MetricAggregationTypeRawData       MetricAggregationType = "raw_data"
+	MetricAggregationTypeLogs          MetricAggregationType = "logs"
+	MetricAggregationTypeRate          MetricAggregationType = "rate"
+	MetricAggregationTypeTopMetrics    MetricAggregationType = "top_metrics"
+	MetricAggregationTypeMovingAvg     MetricAggregationType = "moving_avg"
+	MetricAggregationTypeMovingFn      MetricAggregationType = "moving_fn"
+	MetricAggregationTypeDerivative    MetricAggregationType = "derivative"
+	MetricAggregationTypeSerialDiff    MetricAggregationType = "serial_diff"
+	MetricAggregationTypeCumulativeSum MetricAggregationType = "cumulative_sum"
+	MetricAggregationTypeBucketScript  MetricAggregationType = "bucket_script"
+)
+
+type BaseMetricAggregation struct {
+	Type MetricAggregationType `json:"type"`
+	Id   string                `json:"id"`
+	Hide *bool                 `json:"hide,omitempty"`
+}
+
+// NewBaseMetricAggregation creates a new BaseMetricAggregation object.
+func NewBaseMetricAggregation() *BaseMetricAggregation {
+	return &BaseMetricAggregation{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseMetricAggregation` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BaseMetricAggregation) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BaseMetricAggregation", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BaseMetricAggregation` objects.
+func (resource BaseMetricAggregation) Equals(other BaseMetricAggregation) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BaseMetricAggregation` fields for violations and returns them.
+func (resource BaseMetricAggregation) Validate() error {
+	return nil
+}
+
+type MetricAggregationWithField struct {
+	Field *string               `json:"field,omitempty"`
+	Type  MetricAggregationType `json:"type"`
+	Id    string                `json:"id"`
+	Hide  *bool                 `json:"hide,omitempty"`
+}
+
+// NewMetricAggregationWithField creates a new MetricAggregationWithField object.
+func NewMetricAggregationWithField() *MetricAggregationWithField {
+	return &MetricAggregationWithField{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricAggregationWithField` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *MetricAggregationWithField) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "field"
+	if fields["field"] != nil {
+		if string(fields["field"]) != "null" {
+			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("field", err)...)
+			}
+
+		}
+		delete(fields, "field")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithField", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `MetricAggregationWithField` objects.
+func (resource MetricAggregationWithField) Equals(other MetricAggregationWithField) bool {
+	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
+		return false
+	}
+
+	if resource.Field != nil {
+		if *resource.Field != *other.Field {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `MetricAggregationWithField` fields for violations and returns them.
+func (resource MetricAggregationWithField) Validate() error {
+	return nil
+}
+
+type MetricAggregationWithMissingSupport struct {
+	Settings *ElasticsearchMetricAggregationWithMissingSupportSettings `json:"settings,omitempty"`
+	Type     MetricAggregationType                                     `json:"type"`
+	Id       string                                                    `json:"id"`
+	Hide     *bool                                                     `json:"hide,omitempty"`
+}
+
+// NewMetricAggregationWithMissingSupport creates a new MetricAggregationWithMissingSupport object.
+func NewMetricAggregationWithMissingSupport() *MetricAggregationWithMissingSupport {
+	return &MetricAggregationWithMissingSupport{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricAggregationWithMissingSupport` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *MetricAggregationWithMissingSupport) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			resource.Settings = &ElasticsearchMetricAggregationWithMissingSupportSettings{}
+			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithMissingSupport", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `MetricAggregationWithMissingSupport` objects.
+func (resource MetricAggregationWithMissingSupport) Equals(other MetricAggregationWithMissingSupport) bool {
+	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
+		return false
+	}
+
+	if resource.Settings != nil {
+		if !resource.Settings.Equals(*other.Settings) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `MetricAggregationWithMissingSupport` fields for violations and returns them.
+func (resource MetricAggregationWithMissingSupport) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Settings != nil {
+		if err := resource.Settings.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type MetricAggregationWithInlineScript struct {
+	Settings *ElasticsearchMetricAggregationWithInlineScriptSettings `json:"settings,omitempty"`
+	Type     MetricAggregationType                                   `json:"type"`
+	Id       string                                                  `json:"id"`
+	Hide     *bool                                                   `json:"hide,omitempty"`
+}
+
+// NewMetricAggregationWithInlineScript creates a new MetricAggregationWithInlineScript object.
+func NewMetricAggregationWithInlineScript() *MetricAggregationWithInlineScript {
+	return &MetricAggregationWithInlineScript{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricAggregationWithInlineScript` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *MetricAggregationWithInlineScript) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "settings"
+	if fields["settings"] != nil {
+		if string(fields["settings"]) != "null" {
+
+			resource.Settings = &ElasticsearchMetricAggregationWithInlineScriptSettings{}
+			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+			}
+
+		}
+		delete(fields, "settings")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "hide"
+	if fields["hide"] != nil {
+		if string(fields["hide"]) != "null" {
+			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
+			}
+
+		}
+		delete(fields, "hide")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithInlineScript", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `MetricAggregationWithInlineScript` objects.
+func (resource MetricAggregationWithInlineScript) Equals(other MetricAggregationWithInlineScript) bool {
+	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
+		return false
+	}
+
+	if resource.Settings != nil {
+		if !resource.Settings.Equals(*other.Settings) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
+		return false
+	}
+
+	if resource.Hide != nil {
+		if *resource.Hide != *other.Hide {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `MetricAggregationWithInlineScript` fields for violations and returns them.
+func (resource MetricAggregationWithInlineScript) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Settings != nil {
+		if err := resource.Settings.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type ExtendedStatMetaType string
+
+const (
+	ExtendedStatMetaTypeAvg                     ExtendedStatMetaType = "avg"
+	ExtendedStatMetaTypeMin                     ExtendedStatMetaType = "min"
+	ExtendedStatMetaTypeMax                     ExtendedStatMetaType = "max"
+	ExtendedStatMetaTypeSum                     ExtendedStatMetaType = "sum"
+	ExtendedStatMetaTypeCount                   ExtendedStatMetaType = "count"
+	ExtendedStatMetaTypeStdDeviation            ExtendedStatMetaType = "std_deviation"
+	ExtendedStatMetaTypeStdDeviationBoundsUpper ExtendedStatMetaType = "std_deviation_bounds_upper"
+	ExtendedStatMetaTypeStdDeviationBoundsLower ExtendedStatMetaType = "std_deviation_bounds_lower"
+)
+
+type ExtendedStat struct {
+	Label string               `json:"label"`
+	Value ExtendedStatMetaType `json:"value"`
+}
+
+// NewExtendedStat creates a new ExtendedStat object.
+func NewExtendedStat() *ExtendedStat {
+	return &ExtendedStat{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExtendedStat` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ExtendedStat) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "label"
+	if fields["label"] != nil {
+		if string(fields["label"]) != "null" {
+			if err := json.Unmarshal(fields["label"], &resource.Label); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("label", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("label", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "label")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("label", errors.New("required field is missing from input"))...)
+	}
+	// Field "value"
+	if fields["value"] != nil {
+		if string(fields["value"]) != "null" {
+			if err := json.Unmarshal(fields["value"], &resource.Value); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("value", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "value")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ExtendedStat", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ExtendedStat` objects.
+func (resource ExtendedStat) Equals(other ExtendedStat) bool {
+	if resource.Label != other.Label {
+		return false
+	}
+	if resource.Value != other.Value {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ExtendedStat` fields for violations and returns them.
+func (resource ExtendedStat) Validate() error {
+	return nil
+}
+
 type BasePipelineMetricAggregation struct {
 	PipelineAgg *string `json:"pipelineAgg,omitempty"`
 	Field       *string `json:"field,omitempty"`
@@ -4425,9 +5657,7 @@ type PipelineMetricAggregationWithMultipleBucketPaths struct {
 
 // NewPipelineMetricAggregationWithMultipleBucketPaths creates a new PipelineMetricAggregationWithMultipleBucketPaths object.
 func NewPipelineMetricAggregationWithMultipleBucketPaths() *PipelineMetricAggregationWithMultipleBucketPaths {
-	return &PipelineMetricAggregationWithMultipleBucketPaths{
-		Type: *NewMetricAggregationType(),
-	}
+	return &PipelineMetricAggregationWithMultipleBucketPaths{}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PipelineMetricAggregationWithMultipleBucketPaths` from JSON.
@@ -4468,9 +5698,7 @@ func (resource *PipelineMetricAggregationWithMultipleBucketPaths) UnmarshalJSONS
 	// Field "type"
 	if fields["type"] != nil {
 		if string(fields["type"]) != "null" {
-
-			resource.Type = MetricAggregationType{}
-			if err := resource.Type.UnmarshalJSONStrict(fields["type"]); err != nil {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("type", err)...)
 			}
 		} else {
@@ -4530,7 +5758,7 @@ func (resource PipelineMetricAggregationWithMultipleBucketPaths) Equals(other Pi
 			return false
 		}
 	}
-	if !resource.Type.Equals(other.Type) {
+	if resource.Type != other.Type {
 		return false
 	}
 	if resource.Id != other.Id {
@@ -4557,9 +5785,6 @@ func (resource PipelineMetricAggregationWithMultipleBucketPaths) Validate() erro
 		if err := resource.PipelineVariables[i1].Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("pipelineVariables["+strconv.Itoa(i1)+"]", err)...)
 		}
-	}
-	if err := resource.Type.Validate(); err != nil {
-		errs = append(errs, cog.MakeBuildErrors("type", err)...)
 	}
 
 	if len(errs) == 0 {
@@ -5440,1261 +6665,6 @@ func (resource MovingAverageHoltWintersModelSettings) Validate() error {
 	return errs
 }
 
-// #MovingAverage's settings are overridden in types.ts
-type MovingAverage struct {
-	PipelineAgg *string        `json:"pipelineAgg,omitempty"`
-	Field       *string        `json:"field,omitempty"`
-	Type        string         `json:"type"`
-	Id          string         `json:"id"`
-	Settings    map[string]any `json:"settings,omitempty"`
-	Hide        *bool          `json:"hide,omitempty"`
-}
-
-// NewMovingAverage creates a new MovingAverage object.
-func NewMovingAverage() *MovingAverage {
-	return &MovingAverage{
-		Type: "moving_avg",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingAverage` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *MovingAverage) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "pipelineAgg"
-	if fields["pipelineAgg"] != nil {
-		if string(fields["pipelineAgg"]) != "null" {
-			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
-			}
-
-		}
-		delete(fields, "pipelineAgg")
-
-	}
-	// Field "field"
-	if fields["field"] != nil {
-		if string(fields["field"]) != "null" {
-			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("field", err)...)
-			}
-
-		}
-		delete(fields, "field")
-
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-
-			if err := json.Unmarshal(fields["settings"], &resource.Settings); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("MovingAverage", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `MovingAverage` objects.
-func (resource MovingAverage) Equals(other MovingAverage) bool {
-	if resource.PipelineAgg == nil && other.PipelineAgg != nil || resource.PipelineAgg != nil && other.PipelineAgg == nil {
-		return false
-	}
-
-	if resource.PipelineAgg != nil {
-		if *resource.PipelineAgg != *other.PipelineAgg {
-			return false
-		}
-	}
-	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
-		return false
-	}
-
-	if resource.Field != nil {
-		if *resource.Field != *other.Field {
-			return false
-		}
-	}
-	if resource.Type != other.Type {
-		return false
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-
-	if len(resource.Settings) != len(other.Settings) {
-		return false
-	}
-
-	for key1 := range resource.Settings {
-		// is DeepEqual good enough here?
-		if !reflect.DeepEqual(resource.Settings[key1], other.Settings[key1]) {
-			return false
-		}
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `MovingAverage` fields for violations and returns them.
-func (resource MovingAverage) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Type == "moving_avg") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == moving_avg"),
-		)...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type MovingFunction struct {
-	PipelineAgg *string                              `json:"pipelineAgg,omitempty"`
-	Field       *string                              `json:"field,omitempty"`
-	Type        string                               `json:"type"`
-	Id          string                               `json:"id"`
-	Settings    *ElasticsearchMovingFunctionSettings `json:"settings,omitempty"`
-	Hide        *bool                                `json:"hide,omitempty"`
-}
-
-// NewMovingFunction creates a new MovingFunction object.
-func NewMovingFunction() *MovingFunction {
-	return &MovingFunction{
-		Type: "moving_fn",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingFunction` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *MovingFunction) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "pipelineAgg"
-	if fields["pipelineAgg"] != nil {
-		if string(fields["pipelineAgg"]) != "null" {
-			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
-			}
-
-		}
-		delete(fields, "pipelineAgg")
-
-	}
-	// Field "field"
-	if fields["field"] != nil {
-		if string(fields["field"]) != "null" {
-			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("field", err)...)
-			}
-
-		}
-		delete(fields, "field")
-
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-
-			resource.Settings = &ElasticsearchMovingFunctionSettings{}
-			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("MovingFunction", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `MovingFunction` objects.
-func (resource MovingFunction) Equals(other MovingFunction) bool {
-	if resource.PipelineAgg == nil && other.PipelineAgg != nil || resource.PipelineAgg != nil && other.PipelineAgg == nil {
-		return false
-	}
-
-	if resource.PipelineAgg != nil {
-		if *resource.PipelineAgg != *other.PipelineAgg {
-			return false
-		}
-	}
-	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
-		return false
-	}
-
-	if resource.Field != nil {
-		if *resource.Field != *other.Field {
-			return false
-		}
-	}
-	if resource.Type != other.Type {
-		return false
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
-		return false
-	}
-
-	if resource.Settings != nil {
-		if !resource.Settings.Equals(*other.Settings) {
-			return false
-		}
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `MovingFunction` fields for violations and returns them.
-func (resource MovingFunction) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Type == "moving_fn") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == moving_fn"),
-		)...)
-	}
-	if resource.Settings != nil {
-		if err := resource.Settings.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type Derivative struct {
-	PipelineAgg *string                          `json:"pipelineAgg,omitempty"`
-	Field       *string                          `json:"field,omitempty"`
-	Type        string                           `json:"type"`
-	Id          string                           `json:"id"`
-	Settings    *ElasticsearchDerivativeSettings `json:"settings,omitempty"`
-	Hide        *bool                            `json:"hide,omitempty"`
-}
-
-// NewDerivative creates a new Derivative object.
-func NewDerivative() *Derivative {
-	return &Derivative{
-		Type: "derivative",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Derivative` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *Derivative) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "pipelineAgg"
-	if fields["pipelineAgg"] != nil {
-		if string(fields["pipelineAgg"]) != "null" {
-			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
-			}
-
-		}
-		delete(fields, "pipelineAgg")
-
-	}
-	// Field "field"
-	if fields["field"] != nil {
-		if string(fields["field"]) != "null" {
-			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("field", err)...)
-			}
-
-		}
-		delete(fields, "field")
-
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-
-			resource.Settings = &ElasticsearchDerivativeSettings{}
-			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("Derivative", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `Derivative` objects.
-func (resource Derivative) Equals(other Derivative) bool {
-	if resource.PipelineAgg == nil && other.PipelineAgg != nil || resource.PipelineAgg != nil && other.PipelineAgg == nil {
-		return false
-	}
-
-	if resource.PipelineAgg != nil {
-		if *resource.PipelineAgg != *other.PipelineAgg {
-			return false
-		}
-	}
-	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
-		return false
-	}
-
-	if resource.Field != nil {
-		if *resource.Field != *other.Field {
-			return false
-		}
-	}
-	if resource.Type != other.Type {
-		return false
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
-		return false
-	}
-
-	if resource.Settings != nil {
-		if !resource.Settings.Equals(*other.Settings) {
-			return false
-		}
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `Derivative` fields for violations and returns them.
-func (resource Derivative) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Type == "derivative") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == derivative"),
-		)...)
-	}
-	if resource.Settings != nil {
-		if err := resource.Settings.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type SerialDiff struct {
-	PipelineAgg *string                          `json:"pipelineAgg,omitempty"`
-	Field       *string                          `json:"field,omitempty"`
-	Type        string                           `json:"type"`
-	Id          string                           `json:"id"`
-	Settings    *ElasticsearchSerialDiffSettings `json:"settings,omitempty"`
-	Hide        *bool                            `json:"hide,omitempty"`
-}
-
-// NewSerialDiff creates a new SerialDiff object.
-func NewSerialDiff() *SerialDiff {
-	return &SerialDiff{
-		Type: "serial_diff",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SerialDiff` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *SerialDiff) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "pipelineAgg"
-	if fields["pipelineAgg"] != nil {
-		if string(fields["pipelineAgg"]) != "null" {
-			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
-			}
-
-		}
-		delete(fields, "pipelineAgg")
-
-	}
-	// Field "field"
-	if fields["field"] != nil {
-		if string(fields["field"]) != "null" {
-			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("field", err)...)
-			}
-
-		}
-		delete(fields, "field")
-
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-
-			resource.Settings = &ElasticsearchSerialDiffSettings{}
-			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("SerialDiff", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `SerialDiff` objects.
-func (resource SerialDiff) Equals(other SerialDiff) bool {
-	if resource.PipelineAgg == nil && other.PipelineAgg != nil || resource.PipelineAgg != nil && other.PipelineAgg == nil {
-		return false
-	}
-
-	if resource.PipelineAgg != nil {
-		if *resource.PipelineAgg != *other.PipelineAgg {
-			return false
-		}
-	}
-	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
-		return false
-	}
-
-	if resource.Field != nil {
-		if *resource.Field != *other.Field {
-			return false
-		}
-	}
-	if resource.Type != other.Type {
-		return false
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
-		return false
-	}
-
-	if resource.Settings != nil {
-		if !resource.Settings.Equals(*other.Settings) {
-			return false
-		}
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `SerialDiff` fields for violations and returns them.
-func (resource SerialDiff) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Type == "serial_diff") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == serial_diff"),
-		)...)
-	}
-	if resource.Settings != nil {
-		if err := resource.Settings.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type CumulativeSum struct {
-	PipelineAgg *string                             `json:"pipelineAgg,omitempty"`
-	Field       *string                             `json:"field,omitempty"`
-	Type        string                              `json:"type"`
-	Id          string                              `json:"id"`
-	Settings    *ElasticsearchCumulativeSumSettings `json:"settings,omitempty"`
-	Hide        *bool                               `json:"hide,omitempty"`
-}
-
-// NewCumulativeSum creates a new CumulativeSum object.
-func NewCumulativeSum() *CumulativeSum {
-	return &CumulativeSum{
-		Type: "cumulative_sum",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CumulativeSum` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *CumulativeSum) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "pipelineAgg"
-	if fields["pipelineAgg"] != nil {
-		if string(fields["pipelineAgg"]) != "null" {
-			if err := json.Unmarshal(fields["pipelineAgg"], &resource.PipelineAgg); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("pipelineAgg", err)...)
-			}
-
-		}
-		delete(fields, "pipelineAgg")
-
-	}
-	// Field "field"
-	if fields["field"] != nil {
-		if string(fields["field"]) != "null" {
-			if err := json.Unmarshal(fields["field"], &resource.Field); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("field", err)...)
-			}
-
-		}
-		delete(fields, "field")
-
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-
-			resource.Settings = &ElasticsearchCumulativeSumSettings{}
-			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("CumulativeSum", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `CumulativeSum` objects.
-func (resource CumulativeSum) Equals(other CumulativeSum) bool {
-	if resource.PipelineAgg == nil && other.PipelineAgg != nil || resource.PipelineAgg != nil && other.PipelineAgg == nil {
-		return false
-	}
-
-	if resource.PipelineAgg != nil {
-		if *resource.PipelineAgg != *other.PipelineAgg {
-			return false
-		}
-	}
-	if resource.Field == nil && other.Field != nil || resource.Field != nil && other.Field == nil {
-		return false
-	}
-
-	if resource.Field != nil {
-		if *resource.Field != *other.Field {
-			return false
-		}
-	}
-	if resource.Type != other.Type {
-		return false
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
-		return false
-	}
-
-	if resource.Settings != nil {
-		if !resource.Settings.Equals(*other.Settings) {
-			return false
-		}
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `CumulativeSum` fields for violations and returns them.
-func (resource CumulativeSum) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Type == "cumulative_sum") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == cumulative_sum"),
-		)...)
-	}
-	if resource.Settings != nil {
-		if err := resource.Settings.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type BucketScript struct {
-	Type              string                             `json:"type"`
-	PipelineVariables []PipelineVariable                 `json:"pipelineVariables,omitempty"`
-	Id                string                             `json:"id"`
-	Settings          *ElasticsearchBucketScriptSettings `json:"settings,omitempty"`
-	Hide              *bool                              `json:"hide,omitempty"`
-}
-
-// NewBucketScript creates a new BucketScript object.
-func NewBucketScript() *BucketScript {
-	return &BucketScript{
-		Type: "bucket_script",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BucketScript` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *BucketScript) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "pipelineVariables"
-	if fields["pipelineVariables"] != nil {
-		if string(fields["pipelineVariables"]) != "null" {
-
-			partialArray := []json.RawMessage{}
-			if err := json.Unmarshal(fields["pipelineVariables"], &partialArray); err != nil {
-				return err
-			}
-
-			for i1 := range partialArray {
-				var result1 PipelineVariable
-
-				result1 = PipelineVariable{}
-				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
-					errs = append(errs, cog.MakeBuildErrors("pipelineVariables["+strconv.Itoa(i1)+"]", err)...)
-				}
-				resource.PipelineVariables = append(resource.PipelineVariables, result1)
-			}
-
-		}
-		delete(fields, "pipelineVariables")
-
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-
-			resource.Settings = &ElasticsearchBucketScriptSettings{}
-			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("BucketScript", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `BucketScript` objects.
-func (resource BucketScript) Equals(other BucketScript) bool {
-	if resource.Type != other.Type {
-		return false
-	}
-
-	if len(resource.PipelineVariables) != len(other.PipelineVariables) {
-		return false
-	}
-
-	for i1 := range resource.PipelineVariables {
-		if !resource.PipelineVariables[i1].Equals(other.PipelineVariables[i1]) {
-			return false
-		}
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
-		return false
-	}
-
-	if resource.Settings != nil {
-		if !resource.Settings.Equals(*other.Settings) {
-			return false
-		}
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `BucketScript` fields for violations and returns them.
-func (resource BucketScript) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Type == "bucket_script") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == bucket_script"),
-		)...)
-	}
-
-	for i1 := range resource.PipelineVariables {
-		if err := resource.PipelineVariables[i1].Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("pipelineVariables["+strconv.Itoa(i1)+"]", err)...)
-		}
-	}
-	if resource.Settings != nil {
-		if err := resource.Settings.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type TopMetrics struct {
-	Type     string                           `json:"type"`
-	Id       string                           `json:"id"`
-	Settings *ElasticsearchTopMetricsSettings `json:"settings,omitempty"`
-	Hide     *bool                            `json:"hide,omitempty"`
-}
-
-// NewTopMetrics creates a new TopMetrics object.
-func NewTopMetrics() *TopMetrics {
-	return &TopMetrics{
-		Type: "top_metrics",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TopMetrics` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *TopMetrics) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "settings"
-	if fields["settings"] != nil {
-		if string(fields["settings"]) != "null" {
-
-			resource.Settings = &ElasticsearchTopMetricsSettings{}
-			if err := resource.Settings.UnmarshalJSONStrict(fields["settings"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-			}
-
-		}
-		delete(fields, "settings")
-
-	}
-	// Field "hide"
-	if fields["hide"] != nil {
-		if string(fields["hide"]) != "null" {
-			if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hide", err)...)
-			}
-
-		}
-		delete(fields, "hide")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("TopMetrics", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `TopMetrics` objects.
-func (resource TopMetrics) Equals(other TopMetrics) bool {
-	if resource.Type != other.Type {
-		return false
-	}
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Settings == nil && other.Settings != nil || resource.Settings != nil && other.Settings == nil {
-		return false
-	}
-
-	if resource.Settings != nil {
-		if !resource.Settings.Equals(*other.Settings) {
-			return false
-		}
-	}
-	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
-		return false
-	}
-
-	if resource.Hide != nil {
-		if *resource.Hide != *other.Hide {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `TopMetrics` fields for violations and returns them.
-func (resource TopMetrics) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Type == "top_metrics") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == top_metrics"),
-		)...)
-	}
-	if resource.Settings != nil {
-		if err := resource.Settings.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("settings", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type PipelineMetricAggregation = MovingAverageOrDerivativeOrCumulativeSumOrBucketScript
-
-// NewPipelineMetricAggregation creates a new PipelineMetricAggregation object.
-func NewPipelineMetricAggregation() *PipelineMetricAggregation {
-	return NewMovingAverageOrDerivativeOrCumulativeSumOrBucketScript()
-}
-
-type MetricAggregationWithSettings = BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics
-
-// NewMetricAggregationWithSettings creates a new MetricAggregationWithSettings object.
-func NewMetricAggregationWithSettings() *MetricAggregationWithSettings {
-	return NewBucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics()
-}
-
 type Dataquery struct {
 	// Alias pattern
 	Alias *string `json:"alias,omitempty"`
@@ -7540,18 +7510,18 @@ func (resource ElasticsearchGeoHashGridSettings) Validate() error {
 	return nil
 }
 
-type ElasticsearchMetricAggregationWithMissingSupportSettings struct {
-	Missing *string `json:"missing,omitempty"`
+type ElasticsearchDerivativeSettings struct {
+	Unit *string `json:"unit,omitempty"`
 }
 
-// NewElasticsearchMetricAggregationWithMissingSupportSettings creates a new ElasticsearchMetricAggregationWithMissingSupportSettings object.
-func NewElasticsearchMetricAggregationWithMissingSupportSettings() *ElasticsearchMetricAggregationWithMissingSupportSettings {
-	return &ElasticsearchMetricAggregationWithMissingSupportSettings{}
+// NewElasticsearchDerivativeSettings creates a new ElasticsearchDerivativeSettings object.
+func NewElasticsearchDerivativeSettings() *ElasticsearchDerivativeSettings {
+	return &ElasticsearchDerivativeSettings{}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMetricAggregationWithMissingSupportSettings` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchDerivativeSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchMetricAggregationWithMissingSupportSettings) UnmarshalJSONStrict(raw []byte) error {
+func (resource *ElasticsearchDerivativeSettings) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -7561,20 +7531,20 @@ func (resource *ElasticsearchMetricAggregationWithMissingSupportSettings) Unmars
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
 	}
-	// Field "missing"
-	if fields["missing"] != nil {
-		if string(fields["missing"]) != "null" {
-			if err := json.Unmarshal(fields["missing"], &resource.Missing); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("missing", err)...)
+	// Field "unit"
+	if fields["unit"] != nil {
+		if string(fields["unit"]) != "null" {
+			if err := json.Unmarshal(fields["unit"], &resource.Unit); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("unit", err)...)
 			}
 
 		}
-		delete(fields, "missing")
+		delete(fields, "unit")
 
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMetricAggregationWithMissingSupportSettings", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchDerivativeSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -7584,14 +7554,14 @@ func (resource *ElasticsearchMetricAggregationWithMissingSupportSettings) Unmars
 	return errs
 }
 
-// Equals tests the equality of two `ElasticsearchMetricAggregationWithMissingSupportSettings` objects.
-func (resource ElasticsearchMetricAggregationWithMissingSupportSettings) Equals(other ElasticsearchMetricAggregationWithMissingSupportSettings) bool {
-	if resource.Missing == nil && other.Missing != nil || resource.Missing != nil && other.Missing == nil {
+// Equals tests the equality of two `ElasticsearchDerivativeSettings` objects.
+func (resource ElasticsearchDerivativeSettings) Equals(other ElasticsearchDerivativeSettings) bool {
+	if resource.Unit == nil && other.Unit != nil || resource.Unit != nil && other.Unit == nil {
 		return false
 	}
 
-	if resource.Missing != nil {
-		if *resource.Missing != *other.Missing {
+	if resource.Unit != nil {
+		if *resource.Unit != *other.Unit {
 			return false
 		}
 	}
@@ -7599,9 +7569,150 @@ func (resource ElasticsearchMetricAggregationWithMissingSupportSettings) Equals(
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `ElasticsearchMetricAggregationWithMissingSupportSettings` fields for violations and returns them.
-func (resource ElasticsearchMetricAggregationWithMissingSupportSettings) Validate() error {
+// Validate checks all the validation constraints that may be defined on `ElasticsearchDerivativeSettings` fields for violations and returns them.
+func (resource ElasticsearchDerivativeSettings) Validate() error {
 	return nil
+}
+
+type ElasticsearchCumulativeSumSettings struct {
+	Format *string `json:"format,omitempty"`
+}
+
+// NewElasticsearchCumulativeSumSettings creates a new ElasticsearchCumulativeSumSettings object.
+func NewElasticsearchCumulativeSumSettings() *ElasticsearchCumulativeSumSettings {
+	return &ElasticsearchCumulativeSumSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchCumulativeSumSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ElasticsearchCumulativeSumSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "format"
+	if fields["format"] != nil {
+		if string(fields["format"]) != "null" {
+			if err := json.Unmarshal(fields["format"], &resource.Format); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("format", err)...)
+			}
+
+		}
+		delete(fields, "format")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchCumulativeSumSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ElasticsearchCumulativeSumSettings` objects.
+func (resource ElasticsearchCumulativeSumSettings) Equals(other ElasticsearchCumulativeSumSettings) bool {
+	if resource.Format == nil && other.Format != nil || resource.Format != nil && other.Format == nil {
+		return false
+	}
+
+	if resource.Format != nil {
+		if *resource.Format != *other.Format {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ElasticsearchCumulativeSumSettings` fields for violations and returns them.
+func (resource ElasticsearchCumulativeSumSettings) Validate() error {
+	return nil
+}
+
+type ElasticsearchBucketScriptSettings struct {
+	Script *InlineScript `json:"script,omitempty"`
+}
+
+// NewElasticsearchBucketScriptSettings creates a new ElasticsearchBucketScriptSettings object.
+func NewElasticsearchBucketScriptSettings() *ElasticsearchBucketScriptSettings {
+	return &ElasticsearchBucketScriptSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchBucketScriptSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ElasticsearchBucketScriptSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "script"
+	if fields["script"] != nil {
+		if string(fields["script"]) != "null" {
+
+			resource.Script = &InlineScript{}
+			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("script", err)...)
+			}
+
+		}
+		delete(fields, "script")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchBucketScriptSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ElasticsearchBucketScriptSettings` objects.
+func (resource ElasticsearchBucketScriptSettings) Equals(other ElasticsearchBucketScriptSettings) bool {
+	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
+		return false
+	}
+
+	if resource.Script != nil {
+		if !resource.Script.Equals(*other.Script) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ElasticsearchBucketScriptSettings` fields for violations and returns them.
+func (resource ElasticsearchBucketScriptSettings) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Script != nil {
+		if err := resource.Script.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("script", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 type ElasticsearchInlineScript struct {
@@ -7668,18 +7779,18 @@ func (resource ElasticsearchInlineScript) Validate() error {
 	return nil
 }
 
-type ElasticsearchMetricAggregationWithInlineScriptSettings struct {
-	Script *InlineScript `json:"script,omitempty"`
+type ElasticsearchSerialDiffSettings struct {
+	Lag *string `json:"lag,omitempty"`
 }
 
-// NewElasticsearchMetricAggregationWithInlineScriptSettings creates a new ElasticsearchMetricAggregationWithInlineScriptSettings object.
-func NewElasticsearchMetricAggregationWithInlineScriptSettings() *ElasticsearchMetricAggregationWithInlineScriptSettings {
-	return &ElasticsearchMetricAggregationWithInlineScriptSettings{}
+// NewElasticsearchSerialDiffSettings creates a new ElasticsearchSerialDiffSettings object.
+func NewElasticsearchSerialDiffSettings() *ElasticsearchSerialDiffSettings {
+	return &ElasticsearchSerialDiffSettings{}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMetricAggregationWithInlineScriptSettings` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchSerialDiffSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchMetricAggregationWithInlineScriptSettings) UnmarshalJSONStrict(raw []byte) error {
+func (resource *ElasticsearchSerialDiffSettings) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -7689,22 +7800,20 @@ func (resource *ElasticsearchMetricAggregationWithInlineScriptSettings) Unmarsha
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
 	}
-	// Field "script"
-	if fields["script"] != nil {
-		if string(fields["script"]) != "null" {
-
-			resource.Script = &InlineScript{}
-			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("script", err)...)
+	// Field "lag"
+	if fields["lag"] != nil {
+		if string(fields["lag"]) != "null" {
+			if err := json.Unmarshal(fields["lag"], &resource.Lag); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("lag", err)...)
 			}
 
 		}
-		delete(fields, "script")
+		delete(fields, "lag")
 
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMetricAggregationWithInlineScriptSettings", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchSerialDiffSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -7714,14 +7823,14 @@ func (resource *ElasticsearchMetricAggregationWithInlineScriptSettings) Unmarsha
 	return errs
 }
 
-// Equals tests the equality of two `ElasticsearchMetricAggregationWithInlineScriptSettings` objects.
-func (resource ElasticsearchMetricAggregationWithInlineScriptSettings) Equals(other ElasticsearchMetricAggregationWithInlineScriptSettings) bool {
-	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
+// Equals tests the equality of two `ElasticsearchSerialDiffSettings` objects.
+func (resource ElasticsearchSerialDiffSettings) Equals(other ElasticsearchSerialDiffSettings) bool {
+	if resource.Lag == nil && other.Lag != nil || resource.Lag != nil && other.Lag == nil {
 		return false
 	}
 
-	if resource.Script != nil {
-		if !resource.Script.Equals(*other.Script) {
+	if resource.Lag != nil {
+		if *resource.Lag != *other.Lag {
 			return false
 		}
 	}
@@ -7729,13 +7838,46 @@ func (resource ElasticsearchMetricAggregationWithInlineScriptSettings) Equals(ot
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `ElasticsearchMetricAggregationWithInlineScriptSettings` fields for violations and returns them.
-func (resource ElasticsearchMetricAggregationWithInlineScriptSettings) Validate() error {
+// Validate checks all the validation constraints that may be defined on `ElasticsearchSerialDiffSettings` fields for violations and returns them.
+func (resource ElasticsearchSerialDiffSettings) Validate() error {
+	return nil
+}
+
+type ElasticsearchRawDataSettings struct {
+	Size *string `json:"size,omitempty"`
+}
+
+// NewElasticsearchRawDataSettings creates a new ElasticsearchRawDataSettings object.
+func NewElasticsearchRawDataSettings() *ElasticsearchRawDataSettings {
+	return &ElasticsearchRawDataSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchRawDataSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ElasticsearchRawDataSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
 	var errs cog.BuildErrors
-	if resource.Script != nil {
-		if err := resource.Script.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("script", err)...)
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "size"
+	if fields["size"] != nil {
+		if string(fields["size"]) != "null" {
+			if err := json.Unmarshal(fields["size"], &resource.Size); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("size", err)...)
+			}
+
 		}
+		delete(fields, "size")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchRawDataSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -7745,19 +7887,189 @@ func (resource ElasticsearchMetricAggregationWithInlineScriptSettings) Validate(
 	return errs
 }
 
-type ElasticsearchAverageSettings struct {
-	Script  *InlineScript `json:"script,omitempty"`
-	Missing *string       `json:"missing,omitempty"`
+// Equals tests the equality of two `ElasticsearchRawDataSettings` objects.
+func (resource ElasticsearchRawDataSettings) Equals(other ElasticsearchRawDataSettings) bool {
+	if resource.Size == nil && other.Size != nil || resource.Size != nil && other.Size == nil {
+		return false
+	}
+
+	if resource.Size != nil {
+		if *resource.Size != *other.Size {
+			return false
+		}
+	}
+
+	return true
 }
 
-// NewElasticsearchAverageSettings creates a new ElasticsearchAverageSettings object.
-func NewElasticsearchAverageSettings() *ElasticsearchAverageSettings {
-	return &ElasticsearchAverageSettings{}
+// Validate checks all the validation constraints that may be defined on `ElasticsearchRawDataSettings` fields for violations and returns them.
+func (resource ElasticsearchRawDataSettings) Validate() error {
+	return nil
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchAverageSettings` from JSON.
+type ElasticsearchRawDocumentSettings struct {
+	Size *string `json:"size,omitempty"`
+}
+
+// NewElasticsearchRawDocumentSettings creates a new ElasticsearchRawDocumentSettings object.
+func NewElasticsearchRawDocumentSettings() *ElasticsearchRawDocumentSettings {
+	return &ElasticsearchRawDocumentSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchRawDocumentSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchAverageSettings) UnmarshalJSONStrict(raw []byte) error {
+func (resource *ElasticsearchRawDocumentSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "size"
+	if fields["size"] != nil {
+		if string(fields["size"]) != "null" {
+			if err := json.Unmarshal(fields["size"], &resource.Size); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("size", err)...)
+			}
+
+		}
+		delete(fields, "size")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchRawDocumentSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ElasticsearchRawDocumentSettings` objects.
+func (resource ElasticsearchRawDocumentSettings) Equals(other ElasticsearchRawDocumentSettings) bool {
+	if resource.Size == nil && other.Size != nil || resource.Size != nil && other.Size == nil {
+		return false
+	}
+
+	if resource.Size != nil {
+		if *resource.Size != *other.Size {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ElasticsearchRawDocumentSettings` fields for violations and returns them.
+func (resource ElasticsearchRawDocumentSettings) Validate() error {
+	return nil
+}
+
+type ElasticsearchUniqueCountSettings struct {
+	PrecisionThreshold *string `json:"precision_threshold,omitempty"`
+	Missing            *string `json:"missing,omitempty"`
+}
+
+// NewElasticsearchUniqueCountSettings creates a new ElasticsearchUniqueCountSettings object.
+func NewElasticsearchUniqueCountSettings() *ElasticsearchUniqueCountSettings {
+	return &ElasticsearchUniqueCountSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchUniqueCountSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ElasticsearchUniqueCountSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "precision_threshold"
+	if fields["precision_threshold"] != nil {
+		if string(fields["precision_threshold"]) != "null" {
+			if err := json.Unmarshal(fields["precision_threshold"], &resource.PrecisionThreshold); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("precision_threshold", err)...)
+			}
+
+		}
+		delete(fields, "precision_threshold")
+
+	}
+	// Field "missing"
+	if fields["missing"] != nil {
+		if string(fields["missing"]) != "null" {
+			if err := json.Unmarshal(fields["missing"], &resource.Missing); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("missing", err)...)
+			}
+
+		}
+		delete(fields, "missing")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchUniqueCountSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ElasticsearchUniqueCountSettings` objects.
+func (resource ElasticsearchUniqueCountSettings) Equals(other ElasticsearchUniqueCountSettings) bool {
+	if resource.PrecisionThreshold == nil && other.PrecisionThreshold != nil || resource.PrecisionThreshold != nil && other.PrecisionThreshold == nil {
+		return false
+	}
+
+	if resource.PrecisionThreshold != nil {
+		if *resource.PrecisionThreshold != *other.PrecisionThreshold {
+			return false
+		}
+	}
+	if resource.Missing == nil && other.Missing != nil || resource.Missing != nil && other.Missing == nil {
+		return false
+	}
+
+	if resource.Missing != nil {
+		if *resource.Missing != *other.Missing {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ElasticsearchUniqueCountSettings` fields for violations and returns them.
+func (resource ElasticsearchUniqueCountSettings) Validate() error {
+	return nil
+}
+
+type ElasticsearchPercentilesSettings struct {
+	Script   *InlineScript `json:"script,omitempty"`
+	Missing  *string       `json:"missing,omitempty"`
+	Percents []string      `json:"percents,omitempty"`
+}
+
+// NewElasticsearchPercentilesSettings creates a new ElasticsearchPercentilesSettings object.
+func NewElasticsearchPercentilesSettings() *ElasticsearchPercentilesSettings {
+	return &ElasticsearchPercentilesSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchPercentilesSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ElasticsearchPercentilesSettings) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -7791,9 +8103,21 @@ func (resource *ElasticsearchAverageSettings) UnmarshalJSONStrict(raw []byte) er
 		delete(fields, "missing")
 
 	}
+	// Field "percents"
+	if fields["percents"] != nil {
+		if string(fields["percents"]) != "null" {
+
+			if err := json.Unmarshal(fields["percents"], &resource.Percents); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("percents", err)...)
+			}
+
+		}
+		delete(fields, "percents")
+
+	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchAverageSettings", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchPercentilesSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -7803,8 +8127,8 @@ func (resource *ElasticsearchAverageSettings) UnmarshalJSONStrict(raw []byte) er
 	return errs
 }
 
-// Equals tests the equality of two `ElasticsearchAverageSettings` objects.
-func (resource ElasticsearchAverageSettings) Equals(other ElasticsearchAverageSettings) bool {
+// Equals tests the equality of two `ElasticsearchPercentilesSettings` objects.
+func (resource ElasticsearchPercentilesSettings) Equals(other ElasticsearchPercentilesSettings) bool {
 	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
 		return false
 	}
@@ -7824,100 +8148,12 @@ func (resource ElasticsearchAverageSettings) Equals(other ElasticsearchAverageSe
 		}
 	}
 
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ElasticsearchAverageSettings` fields for violations and returns them.
-func (resource ElasticsearchAverageSettings) Validate() error {
-	var errs cog.BuildErrors
-	if resource.Script != nil {
-		if err := resource.Script.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("script", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type ElasticsearchSumSettings struct {
-	Script  *InlineScript `json:"script,omitempty"`
-	Missing *string       `json:"missing,omitempty"`
-}
-
-// NewElasticsearchSumSettings creates a new ElasticsearchSumSettings object.
-func NewElasticsearchSumSettings() *ElasticsearchSumSettings {
-	return &ElasticsearchSumSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchSumSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchSumSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "script"
-	if fields["script"] != nil {
-		if string(fields["script"]) != "null" {
-
-			resource.Script = &InlineScript{}
-			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("script", err)...)
-			}
-
-		}
-		delete(fields, "script")
-
-	}
-	// Field "missing"
-	if fields["missing"] != nil {
-		if string(fields["missing"]) != "null" {
-			if err := json.Unmarshal(fields["missing"], &resource.Missing); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("missing", err)...)
-			}
-
-		}
-		delete(fields, "missing")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchSumSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ElasticsearchSumSettings` objects.
-func (resource ElasticsearchSumSettings) Equals(other ElasticsearchSumSettings) bool {
-	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
+	if len(resource.Percents) != len(other.Percents) {
 		return false
 	}
 
-	if resource.Script != nil {
-		if !resource.Script.Equals(*other.Script) {
-			return false
-		}
-	}
-	if resource.Missing == nil && other.Missing != nil || resource.Missing != nil && other.Missing == nil {
-		return false
-	}
-
-	if resource.Missing != nil {
-		if *resource.Missing != *other.Missing {
+	for i1 := range resource.Percents {
+		if resource.Percents[i1] != other.Percents[i1] {
 			return false
 		}
 	}
@@ -7925,204 +8161,8 @@ func (resource ElasticsearchSumSettings) Equals(other ElasticsearchSumSettings) 
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `ElasticsearchSumSettings` fields for violations and returns them.
-func (resource ElasticsearchSumSettings) Validate() error {
-	var errs cog.BuildErrors
-	if resource.Script != nil {
-		if err := resource.Script.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("script", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type ElasticsearchMaxSettings struct {
-	Script  *InlineScript `json:"script,omitempty"`
-	Missing *string       `json:"missing,omitempty"`
-}
-
-// NewElasticsearchMaxSettings creates a new ElasticsearchMaxSettings object.
-func NewElasticsearchMaxSettings() *ElasticsearchMaxSettings {
-	return &ElasticsearchMaxSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMaxSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchMaxSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "script"
-	if fields["script"] != nil {
-		if string(fields["script"]) != "null" {
-
-			resource.Script = &InlineScript{}
-			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("script", err)...)
-			}
-
-		}
-		delete(fields, "script")
-
-	}
-	// Field "missing"
-	if fields["missing"] != nil {
-		if string(fields["missing"]) != "null" {
-			if err := json.Unmarshal(fields["missing"], &resource.Missing); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("missing", err)...)
-			}
-
-		}
-		delete(fields, "missing")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMaxSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ElasticsearchMaxSettings` objects.
-func (resource ElasticsearchMaxSettings) Equals(other ElasticsearchMaxSettings) bool {
-	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
-		return false
-	}
-
-	if resource.Script != nil {
-		if !resource.Script.Equals(*other.Script) {
-			return false
-		}
-	}
-	if resource.Missing == nil && other.Missing != nil || resource.Missing != nil && other.Missing == nil {
-		return false
-	}
-
-	if resource.Missing != nil {
-		if *resource.Missing != *other.Missing {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ElasticsearchMaxSettings` fields for violations and returns them.
-func (resource ElasticsearchMaxSettings) Validate() error {
-	var errs cog.BuildErrors
-	if resource.Script != nil {
-		if err := resource.Script.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("script", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type ElasticsearchMinSettings struct {
-	Script  *InlineScript `json:"script,omitempty"`
-	Missing *string       `json:"missing,omitempty"`
-}
-
-// NewElasticsearchMinSettings creates a new ElasticsearchMinSettings object.
-func NewElasticsearchMinSettings() *ElasticsearchMinSettings {
-	return &ElasticsearchMinSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMinSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchMinSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "script"
-	if fields["script"] != nil {
-		if string(fields["script"]) != "null" {
-
-			resource.Script = &InlineScript{}
-			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("script", err)...)
-			}
-
-		}
-		delete(fields, "script")
-
-	}
-	// Field "missing"
-	if fields["missing"] != nil {
-		if string(fields["missing"]) != "null" {
-			if err := json.Unmarshal(fields["missing"], &resource.Missing); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("missing", err)...)
-			}
-
-		}
-		delete(fields, "missing")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMinSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ElasticsearchMinSettings` objects.
-func (resource ElasticsearchMinSettings) Equals(other ElasticsearchMinSettings) bool {
-	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
-		return false
-	}
-
-	if resource.Script != nil {
-		if !resource.Script.Equals(*other.Script) {
-			return false
-		}
-	}
-	if resource.Missing == nil && other.Missing != nil || resource.Missing != nil && other.Missing == nil {
-		return false
-	}
-
-	if resource.Missing != nil {
-		if *resource.Missing != *other.Missing {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ElasticsearchMinSettings` fields for violations and returns them.
-func (resource ElasticsearchMinSettings) Validate() error {
+// Validate checks all the validation constraints that may be defined on `ElasticsearchPercentilesSettings` fields for violations and returns them.
+func (resource ElasticsearchPercentilesSettings) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Script != nil {
 		if err := resource.Script.Validate(); err != nil {
@@ -8256,20 +8296,19 @@ func (resource ElasticsearchExtendedStatsSettings) Validate() error {
 	return errs
 }
 
-type ElasticsearchPercentilesSettings struct {
-	Script   *InlineScript `json:"script,omitempty"`
-	Missing  *string       `json:"missing,omitempty"`
-	Percents []string      `json:"percents,omitempty"`
+type ElasticsearchMinSettings struct {
+	Script  *InlineScript `json:"script,omitempty"`
+	Missing *string       `json:"missing,omitempty"`
 }
 
-// NewElasticsearchPercentilesSettings creates a new ElasticsearchPercentilesSettings object.
-func NewElasticsearchPercentilesSettings() *ElasticsearchPercentilesSettings {
-	return &ElasticsearchPercentilesSettings{}
+// NewElasticsearchMinSettings creates a new ElasticsearchMinSettings object.
+func NewElasticsearchMinSettings() *ElasticsearchMinSettings {
+	return &ElasticsearchMinSettings{}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchPercentilesSettings` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMinSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchPercentilesSettings) UnmarshalJSONStrict(raw []byte) error {
+func (resource *ElasticsearchMinSettings) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -8303,21 +8342,9 @@ func (resource *ElasticsearchPercentilesSettings) UnmarshalJSONStrict(raw []byte
 		delete(fields, "missing")
 
 	}
-	// Field "percents"
-	if fields["percents"] != nil {
-		if string(fields["percents"]) != "null" {
-
-			if err := json.Unmarshal(fields["percents"], &resource.Percents); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("percents", err)...)
-			}
-
-		}
-		delete(fields, "percents")
-
-	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchPercentilesSettings", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMinSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -8327,8 +8354,8 @@ func (resource *ElasticsearchPercentilesSettings) UnmarshalJSONStrict(raw []byte
 	return errs
 }
 
-// Equals tests the equality of two `ElasticsearchPercentilesSettings` objects.
-func (resource ElasticsearchPercentilesSettings) Equals(other ElasticsearchPercentilesSettings) bool {
+// Equals tests the equality of two `ElasticsearchMinSettings` objects.
+func (resource ElasticsearchMinSettings) Equals(other ElasticsearchMinSettings) bool {
 	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
 		return false
 	}
@@ -8348,21 +8375,11 @@ func (resource ElasticsearchPercentilesSettings) Equals(other ElasticsearchPerce
 		}
 	}
 
-	if len(resource.Percents) != len(other.Percents) {
-		return false
-	}
-
-	for i1 := range resource.Percents {
-		if resource.Percents[i1] != other.Percents[i1] {
-			return false
-		}
-	}
-
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `ElasticsearchPercentilesSettings` fields for violations and returns them.
-func (resource ElasticsearchPercentilesSettings) Validate() error {
+// Validate checks all the validation constraints that may be defined on `ElasticsearchMinSettings` fields for violations and returns them.
+func (resource ElasticsearchMinSettings) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Script != nil {
 		if err := resource.Script.Validate(); err != nil {
@@ -8377,19 +8394,19 @@ func (resource ElasticsearchPercentilesSettings) Validate() error {
 	return errs
 }
 
-type ElasticsearchUniqueCountSettings struct {
-	PrecisionThreshold *string `json:"precision_threshold,omitempty"`
-	Missing            *string `json:"missing,omitempty"`
+type ElasticsearchMaxSettings struct {
+	Script  *InlineScript `json:"script,omitempty"`
+	Missing *string       `json:"missing,omitempty"`
 }
 
-// NewElasticsearchUniqueCountSettings creates a new ElasticsearchUniqueCountSettings object.
-func NewElasticsearchUniqueCountSettings() *ElasticsearchUniqueCountSettings {
-	return &ElasticsearchUniqueCountSettings{}
+// NewElasticsearchMaxSettings creates a new ElasticsearchMaxSettings object.
+func NewElasticsearchMaxSettings() *ElasticsearchMaxSettings {
+	return &ElasticsearchMaxSettings{}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchUniqueCountSettings` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMaxSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchUniqueCountSettings) UnmarshalJSONStrict(raw []byte) error {
+func (resource *ElasticsearchMaxSettings) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -8399,15 +8416,17 @@ func (resource *ElasticsearchUniqueCountSettings) UnmarshalJSONStrict(raw []byte
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
 	}
-	// Field "precision_threshold"
-	if fields["precision_threshold"] != nil {
-		if string(fields["precision_threshold"]) != "null" {
-			if err := json.Unmarshal(fields["precision_threshold"], &resource.PrecisionThreshold); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("precision_threshold", err)...)
+	// Field "script"
+	if fields["script"] != nil {
+		if string(fields["script"]) != "null" {
+
+			resource.Script = &InlineScript{}
+			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("script", err)...)
 			}
 
 		}
-		delete(fields, "precision_threshold")
+		delete(fields, "script")
 
 	}
 	// Field "missing"
@@ -8423,7 +8442,7 @@ func (resource *ElasticsearchUniqueCountSettings) UnmarshalJSONStrict(raw []byte
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchUniqueCountSettings", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMaxSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -8433,14 +8452,14 @@ func (resource *ElasticsearchUniqueCountSettings) UnmarshalJSONStrict(raw []byte
 	return errs
 }
 
-// Equals tests the equality of two `ElasticsearchUniqueCountSettings` objects.
-func (resource ElasticsearchUniqueCountSettings) Equals(other ElasticsearchUniqueCountSettings) bool {
-	if resource.PrecisionThreshold == nil && other.PrecisionThreshold != nil || resource.PrecisionThreshold != nil && other.PrecisionThreshold == nil {
+// Equals tests the equality of two `ElasticsearchMaxSettings` objects.
+func (resource ElasticsearchMaxSettings) Equals(other ElasticsearchMaxSettings) bool {
+	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
 		return false
 	}
 
-	if resource.PrecisionThreshold != nil {
-		if *resource.PrecisionThreshold != *other.PrecisionThreshold {
+	if resource.Script != nil {
+		if !resource.Script.Equals(*other.Script) {
 			return false
 		}
 	}
@@ -8457,46 +8476,13 @@ func (resource ElasticsearchUniqueCountSettings) Equals(other ElasticsearchUniqu
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `ElasticsearchUniqueCountSettings` fields for violations and returns them.
-func (resource ElasticsearchUniqueCountSettings) Validate() error {
-	return nil
-}
-
-type ElasticsearchRawDocumentSettings struct {
-	Size *string `json:"size,omitempty"`
-}
-
-// NewElasticsearchRawDocumentSettings creates a new ElasticsearchRawDocumentSettings object.
-func NewElasticsearchRawDocumentSettings() *ElasticsearchRawDocumentSettings {
-	return &ElasticsearchRawDocumentSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchRawDocumentSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchRawDocumentSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
+// Validate checks all the validation constraints that may be defined on `ElasticsearchMaxSettings` fields for violations and returns them.
+func (resource ElasticsearchMaxSettings) Validate() error {
 	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "size"
-	if fields["size"] != nil {
-		if string(fields["size"]) != "null" {
-			if err := json.Unmarshal(fields["size"], &resource.Size); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("size", err)...)
-			}
-
+	if resource.Script != nil {
+		if err := resource.Script.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("script", err)...)
 		}
-		delete(fields, "size")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchRawDocumentSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -8506,38 +8492,19 @@ func (resource *ElasticsearchRawDocumentSettings) UnmarshalJSONStrict(raw []byte
 	return errs
 }
 
-// Equals tests the equality of two `ElasticsearchRawDocumentSettings` objects.
-func (resource ElasticsearchRawDocumentSettings) Equals(other ElasticsearchRawDocumentSettings) bool {
-	if resource.Size == nil && other.Size != nil || resource.Size != nil && other.Size == nil {
-		return false
-	}
-
-	if resource.Size != nil {
-		if *resource.Size != *other.Size {
-			return false
-		}
-	}
-
-	return true
+type ElasticsearchSumSettings struct {
+	Script  *InlineScript `json:"script,omitempty"`
+	Missing *string       `json:"missing,omitempty"`
 }
 
-// Validate checks all the validation constraints that may be defined on `ElasticsearchRawDocumentSettings` fields for violations and returns them.
-func (resource ElasticsearchRawDocumentSettings) Validate() error {
-	return nil
+// NewElasticsearchSumSettings creates a new ElasticsearchSumSettings object.
+func NewElasticsearchSumSettings() *ElasticsearchSumSettings {
+	return &ElasticsearchSumSettings{}
 }
 
-type ElasticsearchRawDataSettings struct {
-	Size *string `json:"size,omitempty"`
-}
-
-// NewElasticsearchRawDataSettings creates a new ElasticsearchRawDataSettings object.
-func NewElasticsearchRawDataSettings() *ElasticsearchRawDataSettings {
-	return &ElasticsearchRawDataSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchRawDataSettings` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchSumSettings` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchRawDataSettings) UnmarshalJSONStrict(raw []byte) error {
+func (resource *ElasticsearchSumSettings) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -8547,20 +8514,33 @@ func (resource *ElasticsearchRawDataSettings) UnmarshalJSONStrict(raw []byte) er
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
 	}
-	// Field "size"
-	if fields["size"] != nil {
-		if string(fields["size"]) != "null" {
-			if err := json.Unmarshal(fields["size"], &resource.Size); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("size", err)...)
+	// Field "script"
+	if fields["script"] != nil {
+		if string(fields["script"]) != "null" {
+
+			resource.Script = &InlineScript{}
+			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("script", err)...)
 			}
 
 		}
-		delete(fields, "size")
+		delete(fields, "script")
+
+	}
+	// Field "missing"
+	if fields["missing"] != nil {
+		if string(fields["missing"]) != "null" {
+			if err := json.Unmarshal(fields["missing"], &resource.Missing); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("missing", err)...)
+			}
+
+		}
+		delete(fields, "missing")
 
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchRawDataSettings", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchSumSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -8570,14 +8550,23 @@ func (resource *ElasticsearchRawDataSettings) UnmarshalJSONStrict(raw []byte) er
 	return errs
 }
 
-// Equals tests the equality of two `ElasticsearchRawDataSettings` objects.
-func (resource ElasticsearchRawDataSettings) Equals(other ElasticsearchRawDataSettings) bool {
-	if resource.Size == nil && other.Size != nil || resource.Size != nil && other.Size == nil {
+// Equals tests the equality of two `ElasticsearchSumSettings` objects.
+func (resource ElasticsearchSumSettings) Equals(other ElasticsearchSumSettings) bool {
+	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
 		return false
 	}
 
-	if resource.Size != nil {
-		if *resource.Size != *other.Size {
+	if resource.Script != nil {
+		if !resource.Script.Equals(*other.Script) {
+			return false
+		}
+	}
+	if resource.Missing == nil && other.Missing != nil || resource.Missing != nil && other.Missing == nil {
+		return false
+	}
+
+	if resource.Missing != nil {
+		if *resource.Missing != *other.Missing {
 			return false
 		}
 	}
@@ -8585,9 +8574,237 @@ func (resource ElasticsearchRawDataSettings) Equals(other ElasticsearchRawDataSe
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `ElasticsearchRawDataSettings` fields for violations and returns them.
-func (resource ElasticsearchRawDataSettings) Validate() error {
-	return nil
+// Validate checks all the validation constraints that may be defined on `ElasticsearchSumSettings` fields for violations and returns them.
+func (resource ElasticsearchSumSettings) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Script != nil {
+		if err := resource.Script.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("script", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type ElasticsearchAverageSettings struct {
+	Script  *InlineScript `json:"script,omitempty"`
+	Missing *string       `json:"missing,omitempty"`
+}
+
+// NewElasticsearchAverageSettings creates a new ElasticsearchAverageSettings object.
+func NewElasticsearchAverageSettings() *ElasticsearchAverageSettings {
+	return &ElasticsearchAverageSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchAverageSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ElasticsearchAverageSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "script"
+	if fields["script"] != nil {
+		if string(fields["script"]) != "null" {
+
+			resource.Script = &InlineScript{}
+			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("script", err)...)
+			}
+
+		}
+		delete(fields, "script")
+
+	}
+	// Field "missing"
+	if fields["missing"] != nil {
+		if string(fields["missing"]) != "null" {
+			if err := json.Unmarshal(fields["missing"], &resource.Missing); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("missing", err)...)
+			}
+
+		}
+		delete(fields, "missing")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchAverageSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ElasticsearchAverageSettings` objects.
+func (resource ElasticsearchAverageSettings) Equals(other ElasticsearchAverageSettings) bool {
+	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
+		return false
+	}
+
+	if resource.Script != nil {
+		if !resource.Script.Equals(*other.Script) {
+			return false
+		}
+	}
+	if resource.Missing == nil && other.Missing != nil || resource.Missing != nil && other.Missing == nil {
+		return false
+	}
+
+	if resource.Missing != nil {
+		if *resource.Missing != *other.Missing {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ElasticsearchAverageSettings` fields for violations and returns them.
+func (resource ElasticsearchAverageSettings) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Script != nil {
+		if err := resource.Script.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("script", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type ElasticsearchMovingFunctionSettings struct {
+	Window *string       `json:"window,omitempty"`
+	Script *InlineScript `json:"script,omitempty"`
+	Shift  *string       `json:"shift,omitempty"`
+}
+
+// NewElasticsearchMovingFunctionSettings creates a new ElasticsearchMovingFunctionSettings object.
+func NewElasticsearchMovingFunctionSettings() *ElasticsearchMovingFunctionSettings {
+	return &ElasticsearchMovingFunctionSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMovingFunctionSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ElasticsearchMovingFunctionSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "window"
+	if fields["window"] != nil {
+		if string(fields["window"]) != "null" {
+			if err := json.Unmarshal(fields["window"], &resource.Window); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("window", err)...)
+			}
+
+		}
+		delete(fields, "window")
+
+	}
+	// Field "script"
+	if fields["script"] != nil {
+		if string(fields["script"]) != "null" {
+
+			resource.Script = &InlineScript{}
+			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("script", err)...)
+			}
+
+		}
+		delete(fields, "script")
+
+	}
+	// Field "shift"
+	if fields["shift"] != nil {
+		if string(fields["shift"]) != "null" {
+			if err := json.Unmarshal(fields["shift"], &resource.Shift); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("shift", err)...)
+			}
+
+		}
+		delete(fields, "shift")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMovingFunctionSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ElasticsearchMovingFunctionSettings` objects.
+func (resource ElasticsearchMovingFunctionSettings) Equals(other ElasticsearchMovingFunctionSettings) bool {
+	if resource.Window == nil && other.Window != nil || resource.Window != nil && other.Window == nil {
+		return false
+	}
+
+	if resource.Window != nil {
+		if *resource.Window != *other.Window {
+			return false
+		}
+	}
+	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
+		return false
+	}
+
+	if resource.Script != nil {
+		if !resource.Script.Equals(*other.Script) {
+			return false
+		}
+	}
+	if resource.Shift == nil && other.Shift != nil || resource.Shift != nil && other.Shift == nil {
+		return false
+	}
+
+	if resource.Shift != nil {
+		if *resource.Shift != *other.Shift {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ElasticsearchMovingFunctionSettings` fields for violations and returns them.
+func (resource ElasticsearchMovingFunctionSettings) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Script != nil {
+		if err := resource.Script.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("script", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 type ElasticsearchLogsSettings struct {
@@ -8737,6 +8954,255 @@ func (resource ElasticsearchRateSettings) Equals(other ElasticsearchRateSettings
 // Validate checks all the validation constraints that may be defined on `ElasticsearchRateSettings` fields for violations and returns them.
 func (resource ElasticsearchRateSettings) Validate() error {
 	return nil
+}
+
+type ElasticsearchTopMetricsSettings struct {
+	Order   *string  `json:"order,omitempty"`
+	OrderBy *string  `json:"orderBy,omitempty"`
+	Metrics []string `json:"metrics,omitempty"`
+}
+
+// NewElasticsearchTopMetricsSettings creates a new ElasticsearchTopMetricsSettings object.
+func NewElasticsearchTopMetricsSettings() *ElasticsearchTopMetricsSettings {
+	return &ElasticsearchTopMetricsSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchTopMetricsSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ElasticsearchTopMetricsSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "order"
+	if fields["order"] != nil {
+		if string(fields["order"]) != "null" {
+			if err := json.Unmarshal(fields["order"], &resource.Order); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("order", err)...)
+			}
+
+		}
+		delete(fields, "order")
+
+	}
+	// Field "orderBy"
+	if fields["orderBy"] != nil {
+		if string(fields["orderBy"]) != "null" {
+			if err := json.Unmarshal(fields["orderBy"], &resource.OrderBy); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("orderBy", err)...)
+			}
+
+		}
+		delete(fields, "orderBy")
+
+	}
+	// Field "metrics"
+	if fields["metrics"] != nil {
+		if string(fields["metrics"]) != "null" {
+
+			if err := json.Unmarshal(fields["metrics"], &resource.Metrics); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metrics", err)...)
+			}
+
+		}
+		delete(fields, "metrics")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchTopMetricsSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ElasticsearchTopMetricsSettings` objects.
+func (resource ElasticsearchTopMetricsSettings) Equals(other ElasticsearchTopMetricsSettings) bool {
+	if resource.Order == nil && other.Order != nil || resource.Order != nil && other.Order == nil {
+		return false
+	}
+
+	if resource.Order != nil {
+		if *resource.Order != *other.Order {
+			return false
+		}
+	}
+	if resource.OrderBy == nil && other.OrderBy != nil || resource.OrderBy != nil && other.OrderBy == nil {
+		return false
+	}
+
+	if resource.OrderBy != nil {
+		if *resource.OrderBy != *other.OrderBy {
+			return false
+		}
+	}
+
+	if len(resource.Metrics) != len(other.Metrics) {
+		return false
+	}
+
+	for i1 := range resource.Metrics {
+		if resource.Metrics[i1] != other.Metrics[i1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ElasticsearchTopMetricsSettings` fields for violations and returns them.
+func (resource ElasticsearchTopMetricsSettings) Validate() error {
+	return nil
+}
+
+type ElasticsearchMetricAggregationWithMissingSupportSettings struct {
+	Missing *string `json:"missing,omitempty"`
+}
+
+// NewElasticsearchMetricAggregationWithMissingSupportSettings creates a new ElasticsearchMetricAggregationWithMissingSupportSettings object.
+func NewElasticsearchMetricAggregationWithMissingSupportSettings() *ElasticsearchMetricAggregationWithMissingSupportSettings {
+	return &ElasticsearchMetricAggregationWithMissingSupportSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMetricAggregationWithMissingSupportSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ElasticsearchMetricAggregationWithMissingSupportSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "missing"
+	if fields["missing"] != nil {
+		if string(fields["missing"]) != "null" {
+			if err := json.Unmarshal(fields["missing"], &resource.Missing); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("missing", err)...)
+			}
+
+		}
+		delete(fields, "missing")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMetricAggregationWithMissingSupportSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ElasticsearchMetricAggregationWithMissingSupportSettings` objects.
+func (resource ElasticsearchMetricAggregationWithMissingSupportSettings) Equals(other ElasticsearchMetricAggregationWithMissingSupportSettings) bool {
+	if resource.Missing == nil && other.Missing != nil || resource.Missing != nil && other.Missing == nil {
+		return false
+	}
+
+	if resource.Missing != nil {
+		if *resource.Missing != *other.Missing {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ElasticsearchMetricAggregationWithMissingSupportSettings` fields for violations and returns them.
+func (resource ElasticsearchMetricAggregationWithMissingSupportSettings) Validate() error {
+	return nil
+}
+
+type ElasticsearchMetricAggregationWithInlineScriptSettings struct {
+	Script *InlineScript `json:"script,omitempty"`
+}
+
+// NewElasticsearchMetricAggregationWithInlineScriptSettings creates a new ElasticsearchMetricAggregationWithInlineScriptSettings object.
+func NewElasticsearchMetricAggregationWithInlineScriptSettings() *ElasticsearchMetricAggregationWithInlineScriptSettings {
+	return &ElasticsearchMetricAggregationWithInlineScriptSettings{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMetricAggregationWithInlineScriptSettings` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ElasticsearchMetricAggregationWithInlineScriptSettings) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "script"
+	if fields["script"] != nil {
+		if string(fields["script"]) != "null" {
+
+			resource.Script = &InlineScript{}
+			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("script", err)...)
+			}
+
+		}
+		delete(fields, "script")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMetricAggregationWithInlineScriptSettings", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ElasticsearchMetricAggregationWithInlineScriptSettings` objects.
+func (resource ElasticsearchMetricAggregationWithInlineScriptSettings) Equals(other ElasticsearchMetricAggregationWithInlineScriptSettings) bool {
+	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
+		return false
+	}
+
+	if resource.Script != nil {
+		if !resource.Script.Equals(*other.Script) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ElasticsearchMetricAggregationWithInlineScriptSettings` fields for violations and returns them.
+func (resource ElasticsearchMetricAggregationWithInlineScriptSettings) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Script != nil {
+		if err := resource.Script.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("script", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 type ElasticsearchMovingAverageEWMAModelSettingsSettings struct {
@@ -9033,502 +9499,6 @@ func (resource ElasticsearchMovingAverageHoltWintersModelSettingsSettings) Equal
 
 // Validate checks all the validation constraints that may be defined on `ElasticsearchMovingAverageHoltWintersModelSettingsSettings` fields for violations and returns them.
 func (resource ElasticsearchMovingAverageHoltWintersModelSettingsSettings) Validate() error {
-	return nil
-}
-
-type ElasticsearchMovingFunctionSettings struct {
-	Window *string       `json:"window,omitempty"`
-	Script *InlineScript `json:"script,omitempty"`
-	Shift  *string       `json:"shift,omitempty"`
-}
-
-// NewElasticsearchMovingFunctionSettings creates a new ElasticsearchMovingFunctionSettings object.
-func NewElasticsearchMovingFunctionSettings() *ElasticsearchMovingFunctionSettings {
-	return &ElasticsearchMovingFunctionSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchMovingFunctionSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchMovingFunctionSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "window"
-	if fields["window"] != nil {
-		if string(fields["window"]) != "null" {
-			if err := json.Unmarshal(fields["window"], &resource.Window); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("window", err)...)
-			}
-
-		}
-		delete(fields, "window")
-
-	}
-	// Field "script"
-	if fields["script"] != nil {
-		if string(fields["script"]) != "null" {
-
-			resource.Script = &InlineScript{}
-			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("script", err)...)
-			}
-
-		}
-		delete(fields, "script")
-
-	}
-	// Field "shift"
-	if fields["shift"] != nil {
-		if string(fields["shift"]) != "null" {
-			if err := json.Unmarshal(fields["shift"], &resource.Shift); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("shift", err)...)
-			}
-
-		}
-		delete(fields, "shift")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMovingFunctionSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ElasticsearchMovingFunctionSettings` objects.
-func (resource ElasticsearchMovingFunctionSettings) Equals(other ElasticsearchMovingFunctionSettings) bool {
-	if resource.Window == nil && other.Window != nil || resource.Window != nil && other.Window == nil {
-		return false
-	}
-
-	if resource.Window != nil {
-		if *resource.Window != *other.Window {
-			return false
-		}
-	}
-	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
-		return false
-	}
-
-	if resource.Script != nil {
-		if !resource.Script.Equals(*other.Script) {
-			return false
-		}
-	}
-	if resource.Shift == nil && other.Shift != nil || resource.Shift != nil && other.Shift == nil {
-		return false
-	}
-
-	if resource.Shift != nil {
-		if *resource.Shift != *other.Shift {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ElasticsearchMovingFunctionSettings` fields for violations and returns them.
-func (resource ElasticsearchMovingFunctionSettings) Validate() error {
-	var errs cog.BuildErrors
-	if resource.Script != nil {
-		if err := resource.Script.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("script", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type ElasticsearchDerivativeSettings struct {
-	Unit *string `json:"unit,omitempty"`
-}
-
-// NewElasticsearchDerivativeSettings creates a new ElasticsearchDerivativeSettings object.
-func NewElasticsearchDerivativeSettings() *ElasticsearchDerivativeSettings {
-	return &ElasticsearchDerivativeSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchDerivativeSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchDerivativeSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "unit"
-	if fields["unit"] != nil {
-		if string(fields["unit"]) != "null" {
-			if err := json.Unmarshal(fields["unit"], &resource.Unit); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("unit", err)...)
-			}
-
-		}
-		delete(fields, "unit")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchDerivativeSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ElasticsearchDerivativeSettings` objects.
-func (resource ElasticsearchDerivativeSettings) Equals(other ElasticsearchDerivativeSettings) bool {
-	if resource.Unit == nil && other.Unit != nil || resource.Unit != nil && other.Unit == nil {
-		return false
-	}
-
-	if resource.Unit != nil {
-		if *resource.Unit != *other.Unit {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ElasticsearchDerivativeSettings` fields for violations and returns them.
-func (resource ElasticsearchDerivativeSettings) Validate() error {
-	return nil
-}
-
-type ElasticsearchSerialDiffSettings struct {
-	Lag *string `json:"lag,omitempty"`
-}
-
-// NewElasticsearchSerialDiffSettings creates a new ElasticsearchSerialDiffSettings object.
-func NewElasticsearchSerialDiffSettings() *ElasticsearchSerialDiffSettings {
-	return &ElasticsearchSerialDiffSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchSerialDiffSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchSerialDiffSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "lag"
-	if fields["lag"] != nil {
-		if string(fields["lag"]) != "null" {
-			if err := json.Unmarshal(fields["lag"], &resource.Lag); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("lag", err)...)
-			}
-
-		}
-		delete(fields, "lag")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchSerialDiffSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ElasticsearchSerialDiffSettings` objects.
-func (resource ElasticsearchSerialDiffSettings) Equals(other ElasticsearchSerialDiffSettings) bool {
-	if resource.Lag == nil && other.Lag != nil || resource.Lag != nil && other.Lag == nil {
-		return false
-	}
-
-	if resource.Lag != nil {
-		if *resource.Lag != *other.Lag {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ElasticsearchSerialDiffSettings` fields for violations and returns them.
-func (resource ElasticsearchSerialDiffSettings) Validate() error {
-	return nil
-}
-
-type ElasticsearchCumulativeSumSettings struct {
-	Format *string `json:"format,omitempty"`
-}
-
-// NewElasticsearchCumulativeSumSettings creates a new ElasticsearchCumulativeSumSettings object.
-func NewElasticsearchCumulativeSumSettings() *ElasticsearchCumulativeSumSettings {
-	return &ElasticsearchCumulativeSumSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchCumulativeSumSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchCumulativeSumSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "format"
-	if fields["format"] != nil {
-		if string(fields["format"]) != "null" {
-			if err := json.Unmarshal(fields["format"], &resource.Format); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("format", err)...)
-			}
-
-		}
-		delete(fields, "format")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchCumulativeSumSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ElasticsearchCumulativeSumSettings` objects.
-func (resource ElasticsearchCumulativeSumSettings) Equals(other ElasticsearchCumulativeSumSettings) bool {
-	if resource.Format == nil && other.Format != nil || resource.Format != nil && other.Format == nil {
-		return false
-	}
-
-	if resource.Format != nil {
-		if *resource.Format != *other.Format {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ElasticsearchCumulativeSumSettings` fields for violations and returns them.
-func (resource ElasticsearchCumulativeSumSettings) Validate() error {
-	return nil
-}
-
-type ElasticsearchBucketScriptSettings struct {
-	Script *InlineScript `json:"script,omitempty"`
-}
-
-// NewElasticsearchBucketScriptSettings creates a new ElasticsearchBucketScriptSettings object.
-func NewElasticsearchBucketScriptSettings() *ElasticsearchBucketScriptSettings {
-	return &ElasticsearchBucketScriptSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchBucketScriptSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchBucketScriptSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "script"
-	if fields["script"] != nil {
-		if string(fields["script"]) != "null" {
-
-			resource.Script = &InlineScript{}
-			if err := resource.Script.UnmarshalJSONStrict(fields["script"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("script", err)...)
-			}
-
-		}
-		delete(fields, "script")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchBucketScriptSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ElasticsearchBucketScriptSettings` objects.
-func (resource ElasticsearchBucketScriptSettings) Equals(other ElasticsearchBucketScriptSettings) bool {
-	if resource.Script == nil && other.Script != nil || resource.Script != nil && other.Script == nil {
-		return false
-	}
-
-	if resource.Script != nil {
-		if !resource.Script.Equals(*other.Script) {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ElasticsearchBucketScriptSettings` fields for violations and returns them.
-func (resource ElasticsearchBucketScriptSettings) Validate() error {
-	var errs cog.BuildErrors
-	if resource.Script != nil {
-		if err := resource.Script.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("script", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type ElasticsearchTopMetricsSettings struct {
-	Order   *string  `json:"order,omitempty"`
-	OrderBy *string  `json:"orderBy,omitempty"`
-	Metrics []string `json:"metrics,omitempty"`
-}
-
-// NewElasticsearchTopMetricsSettings creates a new ElasticsearchTopMetricsSettings object.
-func NewElasticsearchTopMetricsSettings() *ElasticsearchTopMetricsSettings {
-	return &ElasticsearchTopMetricsSettings{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ElasticsearchTopMetricsSettings` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ElasticsearchTopMetricsSettings) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "order"
-	if fields["order"] != nil {
-		if string(fields["order"]) != "null" {
-			if err := json.Unmarshal(fields["order"], &resource.Order); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("order", err)...)
-			}
-
-		}
-		delete(fields, "order")
-
-	}
-	// Field "orderBy"
-	if fields["orderBy"] != nil {
-		if string(fields["orderBy"]) != "null" {
-			if err := json.Unmarshal(fields["orderBy"], &resource.OrderBy); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("orderBy", err)...)
-			}
-
-		}
-		delete(fields, "orderBy")
-
-	}
-	// Field "metrics"
-	if fields["metrics"] != nil {
-		if string(fields["metrics"]) != "null" {
-
-			if err := json.Unmarshal(fields["metrics"], &resource.Metrics); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("metrics", err)...)
-			}
-
-		}
-		delete(fields, "metrics")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ElasticsearchTopMetricsSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ElasticsearchTopMetricsSettings` objects.
-func (resource ElasticsearchTopMetricsSettings) Equals(other ElasticsearchTopMetricsSettings) bool {
-	if resource.Order == nil && other.Order != nil || resource.Order != nil && other.Order == nil {
-		return false
-	}
-
-	if resource.Order != nil {
-		if *resource.Order != *other.Order {
-			return false
-		}
-	}
-	if resource.OrderBy == nil && other.OrderBy != nil || resource.OrderBy != nil && other.OrderBy == nil {
-		return false
-	}
-
-	if resource.OrderBy != nil {
-		if *resource.OrderBy != *other.OrderBy {
-			return false
-		}
-	}
-
-	if len(resource.Metrics) != len(other.Metrics) {
-		return false
-	}
-
-	for i1 := range resource.Metrics {
-		if resource.Metrics[i1] != other.Metrics[i1] {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ElasticsearchTopMetricsSettings` fields for violations and returns them.
-func (resource ElasticsearchTopMetricsSettings) Validate() error {
 	return nil
 }
 
@@ -10536,191 +10506,6 @@ func (resource CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSe
 	return errs
 }
 
-type StringOrPipelineMetricAggregationType struct {
-	String                        *string                        `json:"String,omitempty"`
-	PipelineMetricAggregationType *PipelineMetricAggregationType `json:"PipelineMetricAggregationType,omitempty"`
-}
-
-// NewStringOrPipelineMetricAggregationType creates a new StringOrPipelineMetricAggregationType object.
-func NewStringOrPipelineMetricAggregationType() *StringOrPipelineMetricAggregationType {
-	return &StringOrPipelineMetricAggregationType{
-		String: (func(input string) *string { return &input })("count"),
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrPipelineMetricAggregationType` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *StringOrPipelineMetricAggregationType) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "String"
-	if fields["String"] != nil {
-		if string(fields["String"]) != "null" {
-			if err := json.Unmarshal(fields["String"], &resource.String); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("String", err)...)
-			}
-
-		}
-		delete(fields, "String")
-
-	}
-	// Field "PipelineMetricAggregationType"
-	if fields["PipelineMetricAggregationType"] != nil {
-		if string(fields["PipelineMetricAggregationType"]) != "null" {
-			if err := json.Unmarshal(fields["PipelineMetricAggregationType"], &resource.PipelineMetricAggregationType); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("PipelineMetricAggregationType", err)...)
-			}
-
-		}
-		delete(fields, "PipelineMetricAggregationType")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("StringOrPipelineMetricAggregationType", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `StringOrPipelineMetricAggregationType` objects.
-func (resource StringOrPipelineMetricAggregationType) Equals(other StringOrPipelineMetricAggregationType) bool {
-	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
-		return false
-	}
-
-	if resource.String != nil {
-		if *resource.String != *other.String {
-			return false
-		}
-	}
-	if resource.PipelineMetricAggregationType == nil && other.PipelineMetricAggregationType != nil || resource.PipelineMetricAggregationType != nil && other.PipelineMetricAggregationType == nil {
-		return false
-	}
-
-	if resource.PipelineMetricAggregationType != nil {
-		if *resource.PipelineMetricAggregationType != *other.PipelineMetricAggregationType {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `StringOrPipelineMetricAggregationType` fields for violations and returns them.
-func (resource StringOrPipelineMetricAggregationType) Validate() error {
-	return nil
-}
-
-type StringOrElasticsearchInlineScript struct {
-	String                    *string                    `json:"String,omitempty"`
-	ElasticsearchInlineScript *ElasticsearchInlineScript `json:"ElasticsearchInlineScript,omitempty"`
-}
-
-// NewStringOrElasticsearchInlineScript creates a new StringOrElasticsearchInlineScript object.
-func NewStringOrElasticsearchInlineScript() *StringOrElasticsearchInlineScript {
-	return &StringOrElasticsearchInlineScript{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrElasticsearchInlineScript` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *StringOrElasticsearchInlineScript) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "String"
-	if fields["String"] != nil {
-		if string(fields["String"]) != "null" {
-			if err := json.Unmarshal(fields["String"], &resource.String); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("String", err)...)
-			}
-
-		}
-		delete(fields, "String")
-
-	}
-	// Field "ElasticsearchInlineScript"
-	if fields["ElasticsearchInlineScript"] != nil {
-		if string(fields["ElasticsearchInlineScript"]) != "null" {
-
-			resource.ElasticsearchInlineScript = &ElasticsearchInlineScript{}
-			if err := resource.ElasticsearchInlineScript.UnmarshalJSONStrict(fields["ElasticsearchInlineScript"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("ElasticsearchInlineScript", err)...)
-			}
-
-		}
-		delete(fields, "ElasticsearchInlineScript")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("StringOrElasticsearchInlineScript", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `StringOrElasticsearchInlineScript` objects.
-func (resource StringOrElasticsearchInlineScript) Equals(other StringOrElasticsearchInlineScript) bool {
-	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
-		return false
-	}
-
-	if resource.String != nil {
-		if *resource.String != *other.String {
-			return false
-		}
-	}
-	if resource.ElasticsearchInlineScript == nil && other.ElasticsearchInlineScript != nil || resource.ElasticsearchInlineScript != nil && other.ElasticsearchInlineScript == nil {
-		return false
-	}
-
-	if resource.ElasticsearchInlineScript != nil {
-		if !resource.ElasticsearchInlineScript.Equals(*other.ElasticsearchInlineScript) {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `StringOrElasticsearchInlineScript` fields for violations and returns them.
-func (resource StringOrElasticsearchInlineScript) Validate() error {
-	var errs cog.BuildErrors
-	if resource.ElasticsearchInlineScript != nil {
-		if err := resource.ElasticsearchInlineScript.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("ElasticsearchInlineScript", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
 type MovingAverageOrDerivativeOrCumulativeSumOrBucketScript struct {
 	MovingAverage *MovingAverage `json:"MovingAverage,omitempty"`
 	Derivative    *Derivative    `json:"Derivative,omitempty"`
@@ -10924,6 +10709,104 @@ func (resource MovingAverageOrDerivativeOrCumulativeSumOrBucketScript) Validate(
 	if resource.BucketScript != nil {
 		if err := resource.BucketScript.Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("BucketScript", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type StringOrElasticsearchInlineScript struct {
+	String                    *string                    `json:"String,omitempty"`
+	ElasticsearchInlineScript *ElasticsearchInlineScript `json:"ElasticsearchInlineScript,omitempty"`
+}
+
+// NewStringOrElasticsearchInlineScript creates a new StringOrElasticsearchInlineScript object.
+func NewStringOrElasticsearchInlineScript() *StringOrElasticsearchInlineScript {
+	return &StringOrElasticsearchInlineScript{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrElasticsearchInlineScript` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *StringOrElasticsearchInlineScript) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "String"
+	if fields["String"] != nil {
+		if string(fields["String"]) != "null" {
+			if err := json.Unmarshal(fields["String"], &resource.String); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("String", err)...)
+			}
+
+		}
+		delete(fields, "String")
+
+	}
+	// Field "ElasticsearchInlineScript"
+	if fields["ElasticsearchInlineScript"] != nil {
+		if string(fields["ElasticsearchInlineScript"]) != "null" {
+
+			resource.ElasticsearchInlineScript = &ElasticsearchInlineScript{}
+			if err := resource.ElasticsearchInlineScript.UnmarshalJSONStrict(fields["ElasticsearchInlineScript"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("ElasticsearchInlineScript", err)...)
+			}
+
+		}
+		delete(fields, "ElasticsearchInlineScript")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("StringOrElasticsearchInlineScript", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `StringOrElasticsearchInlineScript` objects.
+func (resource StringOrElasticsearchInlineScript) Equals(other StringOrElasticsearchInlineScript) bool {
+	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
+		return false
+	}
+
+	if resource.String != nil {
+		if *resource.String != *other.String {
+			return false
+		}
+	}
+	if resource.ElasticsearchInlineScript == nil && other.ElasticsearchInlineScript != nil || resource.ElasticsearchInlineScript != nil && other.ElasticsearchInlineScript == nil {
+		return false
+	}
+
+	if resource.ElasticsearchInlineScript != nil {
+		if !resource.ElasticsearchInlineScript.Equals(*other.ElasticsearchInlineScript) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `StringOrElasticsearchInlineScript` fields for violations and returns them.
+func (resource StringOrElasticsearchInlineScript) Validate() error {
+	var errs cog.BuildErrors
+	if resource.ElasticsearchInlineScript != nil {
+		if err := resource.ElasticsearchInlineScript.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("ElasticsearchInlineScript", err)...)
 		}
 	}
 

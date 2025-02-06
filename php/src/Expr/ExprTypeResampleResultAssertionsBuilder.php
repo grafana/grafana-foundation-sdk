@@ -47,7 +47,7 @@ class ExprTypeResampleResultAssertionsBuilder implements \Grafana\Foundation\Cog
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public function type(\Grafana\Foundation\Expr\TypeResampleType $type): static
+    public function type(\Grafana\Foundation\Expr\ExprTypeResampleResultAssertionsType $type): static
     {
         $this->internal->type = $type;
     

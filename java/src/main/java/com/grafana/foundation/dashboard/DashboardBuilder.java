@@ -13,75 +13,75 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
     
     public DashboardBuilder(String title) {
         this.internal = new Dashboard();
-    this.internal.title = title;
-    this.internal.schemaVersion = 36;
-    this.internal.editable = true;
+        this.internal.title = title;
+        this.internal.schemaVersion = 36;
+        this.internal.editable = true;
     this.currentY = 0;
     this.currentX = 0;
     this.lastPanelHeight = 0;
     }
     public DashboardBuilder id(Long id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public DashboardBuilder uid(String uid) {
-    this.internal.uid = uid;
+        this.internal.uid = uid;
         return this;
     }
     
     public DashboardBuilder title(String title) {
-    this.internal.title = title;
+        this.internal.title = title;
         return this;
     }
     
     public DashboardBuilder description(String description) {
-    this.internal.description = description;
+        this.internal.description = description;
         return this;
     }
     
     public DashboardBuilder revision(Long revision) {
-    this.internal.revision = revision;
+        this.internal.revision = revision;
         return this;
     }
     
     public DashboardBuilder gnetId(String gnetId) {
-    this.internal.gnetId = gnetId;
+        this.internal.gnetId = gnetId;
         return this;
     }
     
     public DashboardBuilder tags(List<String> tags) {
-    this.internal.tags = tags;
+        this.internal.tags = tags;
         return this;
     }
     
     public DashboardBuilder timezone(String timezone) {
-    this.internal.timezone = timezone;
+        this.internal.timezone = timezone;
         return this;
     }
     
     public DashboardBuilder editable() {
-    this.internal.editable = true;
+        this.internal.editable = true;
         return this;
     }
     
     public DashboardBuilder readonly() {
-    this.internal.editable = false;
+        this.internal.editable = false;
         return this;
     }
     
     public DashboardBuilder tooltip(DashboardCursorSync graphTooltip) {
-    this.internal.graphTooltip = graphTooltip;
+        this.internal.graphTooltip = graphTooltip;
         return this;
     }
     
     public DashboardBuilder time(com.grafana.foundation.cog.Builder<DashboardDashboardTime> time) {
-    this.internal.time = time.build();
+        this.internal.time = time.build();
         return this;
     }
     
     public DashboardBuilder timepicker(com.grafana.foundation.cog.Builder<TimePickerConfig> timepicker) {
-    this.internal.timepicker = timepicker.build();
+        this.internal.timepicker = timepicker.build();
         return this;
     }
     
@@ -89,27 +89,27 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
         if (!(fiscalYearStartMonth < 12)) {
             throw new IllegalArgumentException("fiscalYearStartMonth must be < 12");
         }
-    this.internal.fiscalYearStartMonth = fiscalYearStartMonth;
+        this.internal.fiscalYearStartMonth = fiscalYearStartMonth;
         return this;
     }
     
     public DashboardBuilder liveNow(Boolean liveNow) {
-    this.internal.liveNow = liveNow;
+        this.internal.liveNow = liveNow;
         return this;
     }
     
     public DashboardBuilder weekStart(String weekStart) {
-    this.internal.weekStart = weekStart;
+        this.internal.weekStart = weekStart;
         return this;
     }
     
     public DashboardBuilder refresh(String refresh) {
-    this.internal.refresh = refresh;
+        this.internal.refresh = refresh;
         return this;
     }
     
     public DashboardBuilder version(Integer version) {
-    this.internal.version = version;
+        this.internal.version = version;
         return this;
     }
     
@@ -141,7 +141,7 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
         panelOrRowPanel.panel.gridPos.x = this.currentX;
         panelOrRowPanel.panel.gridPos.y = this.currentY;
     }
-    this.internal.panels.add(panelOrRowPanel);
+        this.internal.panels.add(panelOrRowPanel);
 
 	// Prepare the coordinates for the next panel
 	this.currentX += panelOrRowPanel.panel.gridPos.w;
@@ -172,7 +172,7 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
         gridPos.w = 24; // full width
         panelOrRowPanel.rowPanel.gridPos = gridPos;
     }
-    this.internal.panels.add(panelOrRowPanel);
+        this.internal.panels.add(panelOrRowPanel);
 
     // Reset the state for the next row
 	this.currentX = 0;
@@ -185,7 +185,7 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
 		if (this.internal.templating == null) {
 			this.internal.templating = new com.grafana.foundation.dashboard.DashboardDashboardTemplatingBuilder().build();
 		}
-    this.internal.templating.list = variables.build();
+        this.internal.templating.list = variables.build();
         return this;
     }
     
@@ -196,7 +196,7 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
 		if (this.internal.templating.list == null) {
 			this.internal.templating.list = new LinkedList<>();
 		}
-    this.internal.templating.list.add(variable.build());
+        this.internal.templating.list.add(variable.build());
         return this;
     }
     
@@ -204,7 +204,7 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
 		if (this.internal.annotations == null) {
 			this.internal.annotations = new com.grafana.foundation.dashboard.AnnotationContainer();
 		}
-    this.internal.annotations.list = annotations.build();
+        this.internal.annotations.list = annotations.build();
         return this;
     }
     
@@ -215,12 +215,12 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
 		if (this.internal.annotations.list == null) {
 			this.internal.annotations.list = new LinkedList<>();
 		}
-    this.internal.annotations.list.add(annotation.build());
+        this.internal.annotations.list.add(annotation.build());
         return this;
     }
     
     public DashboardBuilder links(com.grafana.foundation.cog.Builder<List<DashboardLink>> links) {
-    this.internal.links = links.build();
+        this.internal.links = links.build();
         return this;
     }
     
@@ -228,12 +228,12 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
 		if (this.internal.links == null) {
 			this.internal.links = new LinkedList<>();
 		}
-    this.internal.links.add(link.build());
+        this.internal.links.add(link.build());
         return this;
     }
     
     public DashboardBuilder snapshot(com.grafana.foundation.cog.Builder<Snapshot> snapshot) {
-    this.internal.snapshot = snapshot.build();
+        this.internal.snapshot = snapshot.build();
         return this;
     }
     public Dashboard build() {

@@ -10,7 +10,7 @@ public class QueryHistoryPreferenceBuilder implements com.grafana.foundation.cog
         this.internal = new QueryHistoryPreference();
     }
     public QueryHistoryPreferenceBuilder homeTab(String homeTab) {
-    this.internal.homeTab = homeTab;
+        this.internal.homeTab = homeTab;
         return this;
     }
     public QueryHistoryPreference build() {

@@ -2,7 +2,6 @@
 
 package com.grafana.foundation.piechart;
 
-import com.grafana.foundation.common.HideableFieldConfig;
 
-public class FieldConfig extends HideableFieldConfig {
+public class FieldConfig extends com.grafana.foundation.common.HideableFieldConfig {
 }

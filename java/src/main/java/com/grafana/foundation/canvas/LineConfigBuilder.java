@@ -11,12 +11,12 @@ public class LineConfigBuilder implements com.grafana.foundation.cog.Builder<Lin
         this.internal = new LineConfig();
     }
     public LineConfigBuilder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color) {
-    this.internal.color = color.build();
+        this.internal.color = color.build();
         return this;
     }
     
     public LineConfigBuilder width(Double width) {
-    this.internal.width = width;
+        this.internal.width = width;
         return this;
     }
     public LineConfig build() {

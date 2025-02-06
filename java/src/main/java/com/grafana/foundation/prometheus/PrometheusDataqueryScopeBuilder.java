@@ -10,7 +10,7 @@ public class PrometheusDataqueryScopeBuilder implements com.grafana.foundation.c
         this.internal = new PrometheusDataqueryScope();
     }
     public PrometheusDataqueryScopeBuilder matchers(String matchers) {
-    this.internal.matchers = matchers;
+        this.internal.matchers = matchers;
         return this;
     }
     public PrometheusDataqueryScope build() {

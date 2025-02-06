@@ -522,7 +522,7 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Statetimeline\Options && $input->options->rowHeight !== 0.9) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Statetimeline\Options && $input->options->rowHeight !== (float) 0.9) {
     
         
     $buffer = 'rowHeight(';

@@ -415,6 +415,69 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 	return builder
 }
 
+// Adds override rules for a specific field, referred to by its name.
+func (builder *PanelBuilder) OverrideByName(name string, properties []dashboard.DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
+		Matcher: dashboard.MatcherConfig{
+			Id:      "byName",
+			Options: &name,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+// Adds override rules for the fields whose name match the given regexp.
+func (builder *PanelBuilder) OverrideByRegexp(regexp string, properties []dashboard.DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
+		Matcher: dashboard.MatcherConfig{
+			Id:      "byRegexp",
+			Options: &regexp,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+// Adds override rules for all the fields of the given type.
+func (builder *PanelBuilder) OverrideByFieldType(fieldType string, properties []dashboard.DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
+		Matcher: dashboard.MatcherConfig{
+			Id:      "byType",
+			Options: &fieldType,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+func (builder *PanelBuilder) OverrideByQuery(queryRefId string, properties []dashboard.DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
+		Matcher: dashboard.MatcherConfig{
+			Id:      "byFrameRefID",
+			Options: &queryRefId,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
 func (builder *PanelBuilder) View(view cog.Builder[MapViewConfig]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()

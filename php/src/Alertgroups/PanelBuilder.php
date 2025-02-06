@@ -486,6 +486,85 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * Adds override rules for a specific field, referred to by its name.
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByName(string $name,array $properties): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byName",
+            options: $name,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
+     * Adds override rules for the fields whose name match the given regexp.
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByRegexp(string $regexp,array $properties): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byRegexp",
+            options: $regexp,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
+     * Adds override rules for all the fields of the given type.
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByFieldType(string $fieldType,array $properties): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byType",
+            options: $fieldType,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByQuery(string $queryRefId,array $properties): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byFrameRefID",
+            options: $queryRefId,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
      * Comma-separated list of values used to filter alert results
      */
     public function labels(string $labels): static

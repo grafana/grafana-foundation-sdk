@@ -11,17 +11,17 @@ public class ElasticsearchPercentilesSettingsBuilder implements com.grafana.foun
         this.internal = new ElasticsearchPercentilesSettings();
     }
     public ElasticsearchPercentilesSettingsBuilder script(InlineScript script) {
-    this.internal.script = script;
+        this.internal.script = script;
         return this;
     }
     
     public ElasticsearchPercentilesSettingsBuilder missing(String missing) {
-    this.internal.missing = missing;
+        this.internal.missing = missing;
         return this;
     }
     
     public ElasticsearchPercentilesSettingsBuilder percents(List<String> percents) {
-    this.internal.percents = percents;
+        this.internal.percents = percents;
         return this;
     }
     public ElasticsearchPercentilesSettings build() {

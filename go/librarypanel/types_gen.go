@@ -274,103 +274,6 @@ func (resource LibraryPanel) Validate() error {
 	return errs
 }
 
-type LibraryElementDTOMetaUser struct {
-	Id        int64  `json:"id"`
-	Name      string `json:"name"`
-	AvatarUrl string `json:"avatarUrl"`
-}
-
-// NewLibraryElementDTOMetaUser creates a new LibraryElementDTOMetaUser object.
-func NewLibraryElementDTOMetaUser() *LibraryElementDTOMetaUser {
-	return &LibraryElementDTOMetaUser{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibraryElementDTOMetaUser` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *LibraryElementDTOMetaUser) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "id"
-	if fields["id"] != nil {
-		if string(fields["id"]) != "null" {
-			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("id", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "id")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
-	}
-	// Field "name"
-	if fields["name"] != nil {
-		if string(fields["name"]) != "null" {
-			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("name", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "name")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
-	}
-	// Field "avatarUrl"
-	if fields["avatarUrl"] != nil {
-		if string(fields["avatarUrl"]) != "null" {
-			if err := json.Unmarshal(fields["avatarUrl"], &resource.AvatarUrl); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("avatarUrl", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("avatarUrl", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "avatarUrl")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("avatarUrl", errors.New("required field is missing from input"))...)
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("LibraryElementDTOMetaUser", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `LibraryElementDTOMetaUser` objects.
-func (resource LibraryElementDTOMetaUser) Equals(other LibraryElementDTOMetaUser) bool {
-	if resource.Id != other.Id {
-		return false
-	}
-	if resource.Name != other.Name {
-		return false
-	}
-	if resource.AvatarUrl != other.AvatarUrl {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `LibraryElementDTOMetaUser` fields for violations and returns them.
-func (resource LibraryElementDTOMetaUser) Validate() error {
-	return nil
-}
-
 type LibraryElementDTOMeta struct {
 	FolderName          string                    `json:"folderName"`
 	FolderUid           string                    `json:"folderUid"`
@@ -557,6 +460,103 @@ func (resource LibraryElementDTOMeta) Validate() error {
 	}
 
 	return errs
+}
+
+type LibraryElementDTOMetaUser struct {
+	Id        int64  `json:"id"`
+	Name      string `json:"name"`
+	AvatarUrl string `json:"avatarUrl"`
+}
+
+// NewLibraryElementDTOMetaUser creates a new LibraryElementDTOMetaUser object.
+func NewLibraryElementDTOMetaUser() *LibraryElementDTOMetaUser {
+	return &LibraryElementDTOMetaUser{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LibraryElementDTOMetaUser` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *LibraryElementDTOMetaUser) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "name")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
+	}
+	// Field "avatarUrl"
+	if fields["avatarUrl"] != nil {
+		if string(fields["avatarUrl"]) != "null" {
+			if err := json.Unmarshal(fields["avatarUrl"], &resource.AvatarUrl); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("avatarUrl", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("avatarUrl", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "avatarUrl")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("avatarUrl", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("LibraryElementDTOMetaUser", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `LibraryElementDTOMetaUser` objects.
+func (resource LibraryElementDTOMetaUser) Equals(other LibraryElementDTOMetaUser) bool {
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.AvatarUrl != other.AvatarUrl {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `LibraryElementDTOMetaUser` fields for violations and returns them.
+func (resource LibraryElementDTOMetaUser) Validate() error {
+	return nil
 }
 
 // Dashboard panels are the basic visualization building blocks.

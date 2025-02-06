@@ -10,22 +10,22 @@ public class ExprTypeClassicConditionsConditionsBuilder implements com.grafana.f
         this.internal = new ExprTypeClassicConditionsConditions();
     }
     public ExprTypeClassicConditionsConditionsBuilder evaluator(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsEvaluator> evaluator) {
-    this.internal.evaluator = evaluator.build();
+        this.internal.evaluator = evaluator.build();
         return this;
     }
     
     public ExprTypeClassicConditionsConditionsBuilder operator(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsOperator> operator) {
-    this.internal.operator = operator.build();
+        this.internal.operator = operator.build();
         return this;
     }
     
     public ExprTypeClassicConditionsConditionsBuilder query(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsQuery> query) {
-    this.internal.query = query.build();
+        this.internal.query = query.build();
         return this;
     }
     
     public ExprTypeClassicConditionsConditionsBuilder reducer(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsReducer> reducer) {
-    this.internal.reducer = reducer.build();
+        this.internal.reducer = reducer.build();
         return this;
     }
     public ExprTypeClassicConditionsConditions build() {

@@ -124,6 +124,24 @@
           }
         }
       },
+      "CSVWave": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "timeStep": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "valuesCSV": {
+            "type": "string"
+          },
+          "labels": {
+            "type": "string"
+          }
+        }
+      },
       "NodesQuery": {
         "type": "object",
         "additionalProperties": false,
@@ -165,24 +183,6 @@
             "items": {
               "type": "string"
             }
-          }
-        }
-      },
-      "CSVWave": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "timeStep": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "valuesCSV": {
-            "type": "string"
-          },
-          "labels": {
-            "type": "string"
           }
         }
       },

@@ -10,12 +10,12 @@ public class MovingAverageModelOptionBuilder implements com.grafana.foundation.c
         this.internal = new MovingAverageModelOption();
     }
     public MovingAverageModelOptionBuilder label(String label) {
-    this.internal.label = label;
+        this.internal.label = label;
         return this;
     }
     
     public MovingAverageModelOptionBuilder value(MovingAverageModel value) {
-    this.internal.value = value;
+        this.internal.value = value;
         return this;
     }
     public MovingAverageModelOption build() {

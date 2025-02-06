@@ -8,15 +8,15 @@ public class MovingAverageSimpleModelSettingsBuilder implements com.grafana.foun
     
     public MovingAverageSimpleModelSettingsBuilder() {
         this.internal = new MovingAverageSimpleModelSettings();
-    this.internal.model = "simple";
+        this.internal.model = "simple";
     }
     public MovingAverageSimpleModelSettingsBuilder window(String window) {
-    this.internal.window = window;
+        this.internal.window = window;
         return this;
     }
     
     public MovingAverageSimpleModelSettingsBuilder predict(String predict) {
-    this.internal.predict = predict;
+        this.internal.predict = predict;
         return this;
     }
     public MovingAverageSimpleModelSettings build() {

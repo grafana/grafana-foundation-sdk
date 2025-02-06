@@ -32,7 +32,7 @@ class QueryEditorArrayExpression implements \JsonSerializable
             type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Cloudwatch\QueryEditorArrayExpressionType::fromValue($input); })($data["type"]) : null,
             expressions: !empty($data["expressions"]) ? array_map((function($input) {
         \assert(is_array($input), 'expected disjunction value to be an array');
-    
+        /** @var array<string, mixed> $input */
         switch ($input["type"]) {
         case "and":
             return QueryEditorArrayExpression::fromArray($input);

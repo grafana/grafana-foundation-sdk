@@ -42,17 +42,6 @@ export const defaultCloudMonitoringQuery = (): CloudMonitoringQuery => ({
 	_implementsDataqueryVariant: () => {},
 });
 
-// Defines the supported queryTypes.
-export enum QueryType {
-	TIMESERIESLIST = "timeSeriesList",
-	TIMESERIESQUERY = "timeSeriesQuery",
-	SLO = "slo",
-	ANNOTATION = "annotation",
-	PROMQL = "promQL",
-}
-
-export const defaultQueryType = (): QueryType => (QueryType.TIMESERIESLIST);
-
 // Time Series List sub-query properties.
 export interface TimeSeriesList {
 	// GCP project to execute the query against.
@@ -163,6 +152,17 @@ export const defaultPromQLQuery = (): PromQLQuery => ({
 	expr: "",
 	step: "",
 });
+
+// Defines the supported queryTypes.
+export enum QueryType {
+	TIMESERIESLIST = "timeSeriesList",
+	TIMESERIESQUERY = "timeSeriesQuery",
+	SLO = "slo",
+	ANNOTATION = "annotation",
+	PROMQL = "promQL",
+}
+
+export const defaultQueryType = (): QueryType => (QueryType.TIMESERIESLIST);
 
 // @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
 export interface MetricQuery {
