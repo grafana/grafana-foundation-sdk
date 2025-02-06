@@ -8,25 +8,25 @@ public class SumBuilder implements com.grafana.foundation.cog.Builder<Sum> {
     
     public SumBuilder() {
         this.internal = new Sum();
-    this.internal.type = "sum";
+        this.internal.type = "sum";
     }
     public SumBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public SumBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public SumBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchSumSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     
     public SumBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public Sum build() {

@@ -10,7 +10,7 @@ public class ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder imple
         this.internal = new ElasticsearchMetricAggregationWithInlineScriptSettings();
     }
     public ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder script(InlineScript script) {
-    this.internal.script = script;
+        this.internal.script = script;
         return this;
     }
     public ElasticsearchMetricAggregationWithInlineScriptSettings build() {

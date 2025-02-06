@@ -204,12 +204,28 @@ NewMapLayerOptions creates a new MapLayerOptions object.
 func NewMapLayerOptions() *MapLayerOptions
 ```
 
+### <span class="badge function"></span> NewFrameGeometrySource
+
+NewFrameGeometrySource creates a new FrameGeometrySource object.
+
+```go
+func NewFrameGeometrySource() *FrameGeometrySource
+```
+
 ### <span class="badge function"></span> NewHeatmapCalculationBucketConfig
 
 NewHeatmapCalculationBucketConfig creates a new HeatmapCalculationBucketConfig object.
 
 ```go
 func NewHeatmapCalculationBucketConfig() *HeatmapCalculationBucketConfig
+```
+
+### <span class="badge function"></span> NewScaleDistributionConfig
+
+NewScaleDistributionConfig creates a new ScaleDistributionConfig object.
+
+```go
+func NewScaleDistributionConfig() *ScaleDistributionConfig
 ```
 
 ### <span class="badge function"></span> NewLineStyle
@@ -250,14 +266,6 @@ NewPointsConfig creates a new PointsConfig object.
 
 ```go
 func NewPointsConfig() *PointsConfig
-```
-
-### <span class="badge function"></span> NewScaleDistributionConfig
-
-NewScaleDistributionConfig creates a new ScaleDistributionConfig object.
-
-```go
-func NewScaleDistributionConfig() *ScaleDistributionConfig
 ```
 
 ### <span class="badge function"></span> NewAxisConfig
@@ -324,6 +332,14 @@ NewReduceDataOptions creates a new ReduceDataOptions object.
 func NewReduceDataOptions() *ReduceDataOptions
 ```
 
+### <span class="badge function"></span> NewVizTextDisplayOptions
+
+NewVizTextDisplayOptions creates a new VizTextDisplayOptions object.
+
+```go
+func NewVizTextDisplayOptions() *VizTextDisplayOptions
+```
+
 ### <span class="badge function"></span> NewOptionsWithTooltip
 
 NewOptionsWithTooltip creates a new OptionsWithTooltip object.
@@ -332,12 +348,28 @@ NewOptionsWithTooltip creates a new OptionsWithTooltip object.
 func NewOptionsWithTooltip() *OptionsWithTooltip
 ```
 
+### <span class="badge function"></span> NewVizTooltipOptions
+
+NewVizTooltipOptions creates a new VizTooltipOptions object.
+
+```go
+func NewVizTooltipOptions() *VizTooltipOptions
+```
+
 ### <span class="badge function"></span> NewOptionsWithLegend
 
 NewOptionsWithLegend creates a new OptionsWithLegend object.
 
 ```go
 func NewOptionsWithLegend() *OptionsWithLegend
+```
+
+### <span class="badge function"></span> NewVizLegendOptions
+
+NewVizLegendOptions creates a new VizLegendOptions object.
+
+```go
+func NewVizLegendOptions() *VizLegendOptions
 ```
 
 ### <span class="badge function"></span> NewOptionsWithTimezones
@@ -356,36 +388,12 @@ NewOptionsWithTextFormatting creates a new OptionsWithTextFormatting object.
 func NewOptionsWithTextFormatting() *OptionsWithTextFormatting
 ```
 
-### <span class="badge function"></span> NewVizTextDisplayOptions
-
-NewVizTextDisplayOptions creates a new VizTextDisplayOptions object.
-
-```go
-func NewVizTextDisplayOptions() *VizTextDisplayOptions
-```
-
 ### <span class="badge function"></span> NewGraphFieldConfig
 
 NewGraphFieldConfig creates a new GraphFieldConfig object.
 
 ```go
 func NewGraphFieldConfig() *GraphFieldConfig
-```
-
-### <span class="badge function"></span> NewVizLegendOptions
-
-NewVizLegendOptions creates a new VizLegendOptions object.
-
-```go
-func NewVizLegendOptions() *VizLegendOptions
-```
-
-### <span class="badge function"></span> NewVizTooltipOptions
-
-NewVizTooltipOptions creates a new VizTooltipOptions object.
-
-```go
-func NewVizTooltipOptions() *VizTooltipOptions
 ```
 
 ### <span class="badge function"></span> NewTableSortByFieldState
@@ -484,14 +492,6 @@ NewResourceDimensionConfig creates a new ResourceDimensionConfig object.
 func NewResourceDimensionConfig() *ResourceDimensionConfig
 ```
 
-### <span class="badge function"></span> NewFrameGeometrySource
-
-NewFrameGeometrySource creates a new FrameGeometrySource object.
-
-```go
-func NewFrameGeometrySource() *FrameGeometrySource
-```
-
 ### <span class="badge function"></span> NewHeatmapCalculationOptions
 
 NewHeatmapCalculationOptions creates a new HeatmapCalculationOptions object.
@@ -588,12 +588,28 @@ MapLayerOptionsConverter accepts a `MapLayerOptions` object and generates the Go
 func MapLayerOptionsConverter(input MapLayerOptions) string
 ```
 
+### <span class="badge function"></span> FrameGeometrySourceConverter
+
+FrameGeometrySourceConverter accepts a `FrameGeometrySource` object and generates the Go code to build this object using builders.
+
+```go
+func FrameGeometrySourceConverter(input FrameGeometrySource) string
+```
+
 ### <span class="badge function"></span> HeatmapCalculationBucketConfigConverter
 
 HeatmapCalculationBucketConfigConverter accepts a `HeatmapCalculationBucketConfig` object and generates the Go code to build this object using builders.
 
 ```go
 func HeatmapCalculationBucketConfigConverter(input HeatmapCalculationBucketConfig) string
+```
+
+### <span class="badge function"></span> ScaleDistributionConfigConverter
+
+ScaleDistributionConfigConverter accepts a `ScaleDistributionConfig` object and generates the Go code to build this object using builders.
+
+```go
+func ScaleDistributionConfigConverter(input ScaleDistributionConfig) string
 ```
 
 ### <span class="badge function"></span> LineStyleConverter
@@ -634,14 +650,6 @@ PointsConfigConverter accepts a `PointsConfig` object and generates the Go code 
 
 ```go
 func PointsConfigConverter(input PointsConfig) string
-```
-
-### <span class="badge function"></span> ScaleDistributionConfigConverter
-
-ScaleDistributionConfigConverter accepts a `ScaleDistributionConfig` object and generates the Go code to build this object using builders.
-
-```go
-func ScaleDistributionConfigConverter(input ScaleDistributionConfig) string
 ```
 
 ### <span class="badge function"></span> AxisConfigConverter
@@ -708,6 +716,14 @@ ReduceDataOptionsConverter accepts a `ReduceDataOptions` object and generates th
 func ReduceDataOptionsConverter(input ReduceDataOptions) string
 ```
 
+### <span class="badge function"></span> VizTextDisplayOptionsConverter
+
+VizTextDisplayOptionsConverter accepts a `VizTextDisplayOptions` object and generates the Go code to build this object using builders.
+
+```go
+func VizTextDisplayOptionsConverter(input VizTextDisplayOptions) string
+```
+
 ### <span class="badge function"></span> OptionsWithTooltipConverter
 
 OptionsWithTooltipConverter accepts a `OptionsWithTooltip` object and generates the Go code to build this object using builders.
@@ -716,12 +732,28 @@ OptionsWithTooltipConverter accepts a `OptionsWithTooltip` object and generates 
 func OptionsWithTooltipConverter(input OptionsWithTooltip) string
 ```
 
+### <span class="badge function"></span> VizTooltipOptionsConverter
+
+VizTooltipOptionsConverter accepts a `VizTooltipOptions` object and generates the Go code to build this object using builders.
+
+```go
+func VizTooltipOptionsConverter(input VizTooltipOptions) string
+```
+
 ### <span class="badge function"></span> OptionsWithLegendConverter
 
 OptionsWithLegendConverter accepts a `OptionsWithLegend` object and generates the Go code to build this object using builders.
 
 ```go
 func OptionsWithLegendConverter(input OptionsWithLegend) string
+```
+
+### <span class="badge function"></span> VizLegendOptionsConverter
+
+VizLegendOptionsConverter accepts a `VizLegendOptions` object and generates the Go code to build this object using builders.
+
+```go
+func VizLegendOptionsConverter(input VizLegendOptions) string
 ```
 
 ### <span class="badge function"></span> OptionsWithTimezonesConverter
@@ -740,36 +772,12 @@ OptionsWithTextFormattingConverter accepts a `OptionsWithTextFormatting` object 
 func OptionsWithTextFormattingConverter(input OptionsWithTextFormatting) string
 ```
 
-### <span class="badge function"></span> VizTextDisplayOptionsConverter
-
-VizTextDisplayOptionsConverter accepts a `VizTextDisplayOptions` object and generates the Go code to build this object using builders.
-
-```go
-func VizTextDisplayOptionsConverter(input VizTextDisplayOptions) string
-```
-
 ### <span class="badge function"></span> GraphFieldConfigConverter
 
 GraphFieldConfigConverter accepts a `GraphFieldConfig` object and generates the Go code to build this object using builders.
 
 ```go
 func GraphFieldConfigConverter(input GraphFieldConfig) string
-```
-
-### <span class="badge function"></span> VizLegendOptionsConverter
-
-VizLegendOptionsConverter accepts a `VizLegendOptions` object and generates the Go code to build this object using builders.
-
-```go
-func VizLegendOptionsConverter(input VizLegendOptions) string
-```
-
-### <span class="badge function"></span> VizTooltipOptionsConverter
-
-VizTooltipOptionsConverter accepts a `VizTooltipOptions` object and generates the Go code to build this object using builders.
-
-```go
-func VizTooltipOptionsConverter(input VizTooltipOptions) string
 ```
 
 ### <span class="badge function"></span> TableSortByFieldStateConverter
@@ -794,14 +802,6 @@ ResourceDimensionConfigConverter accepts a `ResourceDimensionConfig` object and 
 
 ```go
 func ResourceDimensionConfigConverter(input ResourceDimensionConfig) string
-```
-
-### <span class="badge function"></span> FrameGeometrySourceConverter
-
-FrameGeometrySourceConverter accepts a `FrameGeometrySource` object and generates the Go code to build this object using builders.
-
-```go
-func FrameGeometrySourceConverter(input FrameGeometrySource) string
 ```
 
 ### <span class="badge function"></span> HeatmapCalculationOptionsConverter

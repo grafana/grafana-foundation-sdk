@@ -10,17 +10,17 @@ public class AccessRuleBuilder implements com.grafana.foundation.cog.Builder<Acc
         this.internal = new AccessRule();
     }
     public AccessRuleBuilder kind(String kind) {
-    this.internal.kind = kind;
+        this.internal.kind = kind;
         return this;
     }
     
     public AccessRuleBuilder verb(String verb) {
-    this.internal.verb = verb;
+        this.internal.verb = verb;
         return this;
     }
     
     public AccessRuleBuilder target(String target) {
-    this.internal.target = target;
+        this.internal.target = target;
         return this;
     }
     public AccessRule build() {

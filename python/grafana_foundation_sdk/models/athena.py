@@ -94,7 +94,10 @@ class Dataquery(cogvariants.Dataquery):
         return cls(**args)
 
 
-DefaultKey: typing.Literal["__default"] = "__default"
+class FormatOptions(enum.IntEnum):
+    TIME_SERIES = 0
+    TABLE = 1
+    LOGS = 2
 
 
 class ConnectionArgs:
@@ -144,10 +147,7 @@ class ConnectionArgs:
         return cls(**args)
 
 
-class FormatOptions(enum.IntEnum):
-    TIME_SERIES = 0
-    TABLE = 1
-    LOGS = 2
+DefaultKey: typing.Literal["__default"] = "__default"
 
 
 

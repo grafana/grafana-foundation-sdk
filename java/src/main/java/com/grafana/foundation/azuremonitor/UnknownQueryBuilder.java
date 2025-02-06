@@ -8,10 +8,10 @@ public class UnknownQueryBuilder implements com.grafana.foundation.cog.Builder<U
     
     public UnknownQueryBuilder() {
         this.internal = new UnknownQuery();
-    this.internal.kind = "UnknownQuery";
+        this.internal.kind = "UnknownQuery";
     }
     public UnknownQueryBuilder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
+        this.internal.rawQuery = rawQuery;
         return this;
     }
     public UnknownQuery build() {

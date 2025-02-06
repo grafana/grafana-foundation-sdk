@@ -10,17 +10,17 @@ public class TextDimensionConfigBuilder implements com.grafana.foundation.cog.Bu
         this.internal = new TextDimensionConfig();
     }
     public TextDimensionConfigBuilder mode(TextDimensionMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     
     public TextDimensionConfigBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public TextDimensionConfigBuilder fixed(String fixed) {
-    this.internal.fixed = fixed;
+        this.internal.fixed = fixed;
         return this;
     }
     public TextDimensionConfig build() {

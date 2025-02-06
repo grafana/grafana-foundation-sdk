@@ -10,7 +10,7 @@ public class HideableFieldConfigBuilder implements com.grafana.foundation.cog.Bu
         this.internal = new HideableFieldConfig();
     }
     public HideableFieldConfigBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
-    this.internal.hideFrom = hideFrom.build();
+        this.internal.hideFrom = hideFrom.build();
         return this;
     }
     public HideableFieldConfig build() {

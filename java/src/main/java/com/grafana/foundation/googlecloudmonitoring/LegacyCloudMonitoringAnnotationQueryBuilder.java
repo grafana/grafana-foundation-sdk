@@ -11,42 +11,42 @@ public class LegacyCloudMonitoringAnnotationQueryBuilder implements com.grafana.
         this.internal = new LegacyCloudMonitoringAnnotationQuery();
     }
     public LegacyCloudMonitoringAnnotationQueryBuilder projectName(String projectName) {
-    this.internal.projectName = projectName;
+        this.internal.projectName = projectName;
         return this;
     }
     
     public LegacyCloudMonitoringAnnotationQueryBuilder metricType(String metricType) {
-    this.internal.metricType = metricType;
+        this.internal.metricType = metricType;
         return this;
     }
     
     public LegacyCloudMonitoringAnnotationQueryBuilder refId(String refId) {
-    this.internal.refId = refId;
+        this.internal.refId = refId;
         return this;
     }
     
     public LegacyCloudMonitoringAnnotationQueryBuilder filters(List<String> filters) {
-    this.internal.filters = filters;
+        this.internal.filters = filters;
         return this;
     }
     
     public LegacyCloudMonitoringAnnotationQueryBuilder metricKind(MetricKind metricKind) {
-    this.internal.metricKind = metricKind;
+        this.internal.metricKind = metricKind;
         return this;
     }
     
     public LegacyCloudMonitoringAnnotationQueryBuilder valueType(String valueType) {
-    this.internal.valueType = valueType;
+        this.internal.valueType = valueType;
         return this;
     }
     
     public LegacyCloudMonitoringAnnotationQueryBuilder title(String title) {
-    this.internal.title = title;
+        this.internal.title = title;
         return this;
     }
     
     public LegacyCloudMonitoringAnnotationQueryBuilder text(String text) {
-    this.internal.text = text;
+        this.internal.text = text;
         return this;
     }
     public LegacyCloudMonitoringAnnotationQuery build() {

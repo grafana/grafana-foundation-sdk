@@ -8,20 +8,20 @@ public class DateHistogramBuilder implements com.grafana.foundation.cog.Builder<
     
     public DateHistogramBuilder() {
         this.internal = new DateHistogram();
-    this.internal.type = "date_histogram";
+        this.internal.type = "date_histogram";
     }
     public DateHistogramBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public DateHistogramBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public DateHistogramBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchDateHistogramSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     public DateHistogram build() {

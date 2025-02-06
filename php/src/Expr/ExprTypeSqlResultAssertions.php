@@ -24,7 +24,7 @@ class ExprTypeSqlResultAssertions implements \JsonSerializable
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public ?\Grafana\Foundation\Expr\TypeSqlType $type;
+    public ?\Grafana\Foundation\Expr\ExprTypeSqlResultAssertionsType $type;
 
     /**
      * TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
@@ -35,10 +35,10 @@ class ExprTypeSqlResultAssertions implements \JsonSerializable
 
     /**
      * @param int|null $maxFrames
-     * @param \Grafana\Foundation\Expr\TypeSqlType|null $type
+     * @param \Grafana\Foundation\Expr\ExprTypeSqlResultAssertionsType|null $type
      * @param array<int>|null $typeVersion
      */
-    public function __construct(?int $maxFrames = null, ?\Grafana\Foundation\Expr\TypeSqlType $type = null, ?array $typeVersion = null)
+    public function __construct(?int $maxFrames = null, ?\Grafana\Foundation\Expr\ExprTypeSqlResultAssertionsType $type = null, ?array $typeVersion = null)
     {
         $this->maxFrames = $maxFrames;
         $this->type = $type;
@@ -54,7 +54,7 @@ class ExprTypeSqlResultAssertions implements \JsonSerializable
         $data = $inputData;
         return new self(
             maxFrames: $data["maxFrames"] ?? null,
-            type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Expr\TypeSqlType::fromValue($input); })($data["type"]) : null,
+            type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Expr\ExprTypeSqlResultAssertionsType::fromValue($input); })($data["type"]) : null,
             typeVersion: $data["typeVersion"] ?? null,
         );
     }

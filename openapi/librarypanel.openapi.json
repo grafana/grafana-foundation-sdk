@@ -60,26 +60,6 @@
           }
         }
       },
-      "LibraryElementDTOMetaUser": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "name",
-          "avatarUrl"
-        ],
-        "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "avatarUrl": {
-            "type": "string"
-          }
-        }
-      },
       "LibraryElementDTOMeta": {
         "type": "object",
         "additionalProperties": false,
@@ -115,6 +95,26 @@
           },
           "updatedBy": {
             "$ref": "#/components/schemas/LibraryElementDTOMetaUser"
+          }
+        }
+      },
+      "LibraryElementDTOMetaUser": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "avatarUrl"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "avatarUrl": {
+            "type": "string"
           }
         }
       },

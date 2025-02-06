@@ -11,22 +11,22 @@ public class AnnotationTargetBuilder implements com.grafana.foundation.cog.Build
         this.internal = new AnnotationTarget();
     }
     public AnnotationTargetBuilder limit(Long limit) {
-    this.internal.limit = limit;
+        this.internal.limit = limit;
         return this;
     }
     
     public AnnotationTargetBuilder matchAny(Boolean matchAny) {
-    this.internal.matchAny = matchAny;
+        this.internal.matchAny = matchAny;
         return this;
     }
     
     public AnnotationTargetBuilder tags(List<String> tags) {
-    this.internal.tags = tags;
+        this.internal.tags = tags;
         return this;
     }
     
     public AnnotationTargetBuilder type(String type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     public AnnotationTarget build() {

@@ -460,3 +460,66 @@ func (builder *PanelBuilder) WithOverride(matcher MatcherConfig, properties []Dy
 
 	return builder
 }
+
+// Adds override rules for a specific field, referred to by its name.
+func (builder *PanelBuilder) OverrideByName(name string, properties []DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, DashboardFieldConfigSourceOverrides{
+		Matcher: MatcherConfig{
+			Id:      "byName",
+			Options: &name,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+// Adds override rules for the fields whose name match the given regexp.
+func (builder *PanelBuilder) OverrideByRegexp(regexp string, properties []DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, DashboardFieldConfigSourceOverrides{
+		Matcher: MatcherConfig{
+			Id:      "byRegexp",
+			Options: &regexp,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+// Adds override rules for all the fields of the given type.
+func (builder *PanelBuilder) OverrideByFieldType(fieldType string, properties []DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, DashboardFieldConfigSourceOverrides{
+		Matcher: MatcherConfig{
+			Id:      "byType",
+			Options: &fieldType,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+func (builder *PanelBuilder) OverrideByQuery(queryRefId string, properties []DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, DashboardFieldConfigSourceOverrides{
+		Matcher: MatcherConfig{
+			Id:      "byFrameRefID",
+			Options: &queryRefId,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}

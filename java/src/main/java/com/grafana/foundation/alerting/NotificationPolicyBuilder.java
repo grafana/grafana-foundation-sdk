@@ -12,67 +12,67 @@ public class NotificationPolicyBuilder implements com.grafana.foundation.cog.Bui
         this.internal = new NotificationPolicy();
     }
     public NotificationPolicyBuilder continueArg(Boolean continueArg) {
-    this.internal.continueArg = continueArg;
+        this.internal.continueArg = continueArg;
         return this;
     }
     
     public NotificationPolicyBuilder groupBy(List<String> groupBy) {
-    this.internal.groupBy = groupBy;
+        this.internal.groupBy = groupBy;
         return this;
     }
     
     public NotificationPolicyBuilder groupInterval(String groupInterval) {
-    this.internal.groupInterval = groupInterval;
+        this.internal.groupInterval = groupInterval;
         return this;
     }
     
     public NotificationPolicyBuilder groupWait(String groupWait) {
-    this.internal.groupWait = groupWait;
+        this.internal.groupWait = groupWait;
         return this;
     }
     
     public NotificationPolicyBuilder match(Map<String, String> match) {
-    this.internal.match = match;
+        this.internal.match = match;
         return this;
     }
     
     public NotificationPolicyBuilder matchRe(Map<String, String> matchRe) {
-    this.internal.matchRe = matchRe;
+        this.internal.matchRe = matchRe;
         return this;
     }
     
     public NotificationPolicyBuilder matchers(List<Matcher> matchers) {
-    this.internal.matchers = matchers;
+        this.internal.matchers = matchers;
         return this;
     }
     
     public NotificationPolicyBuilder muteTimeIntervals(List<String> muteTimeIntervals) {
-    this.internal.muteTimeIntervals = muteTimeIntervals;
+        this.internal.muteTimeIntervals = muteTimeIntervals;
         return this;
     }
     
     public NotificationPolicyBuilder objectMatchers(List<List<String>> objectMatchers) {
-    this.internal.objectMatchers = objectMatchers;
+        this.internal.objectMatchers = objectMatchers;
         return this;
     }
     
     public NotificationPolicyBuilder provenance(String provenance) {
-    this.internal.provenance = provenance;
+        this.internal.provenance = provenance;
         return this;
     }
     
     public NotificationPolicyBuilder receiver(String receiver) {
-    this.internal.receiver = receiver;
+        this.internal.receiver = receiver;
         return this;
     }
     
     public NotificationPolicyBuilder repeatInterval(String repeatInterval) {
-    this.internal.repeatInterval = repeatInterval;
+        this.internal.repeatInterval = repeatInterval;
         return this;
     }
     
     public NotificationPolicyBuilder routes(com.grafana.foundation.cog.Builder<List<NotificationPolicy>> routes) {
-    this.internal.routes = routes.build();
+        this.internal.routes = routes.build();
         return this;
     }
     public NotificationPolicy build() {

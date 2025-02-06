@@ -47,7 +47,7 @@ class ExprTypeSqlResultAssertionsBuilder implements \Grafana\Foundation\Cog\Buil
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public function type(\Grafana\Foundation\Expr\TypeSqlType $type): static
+    public function type(\Grafana\Foundation\Expr\ExprTypeSqlResultAssertionsType $type): static
     {
         $this->internal->type = $type;
     

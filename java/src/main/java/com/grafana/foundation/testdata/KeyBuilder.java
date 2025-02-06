@@ -10,17 +10,17 @@ public class KeyBuilder implements com.grafana.foundation.cog.Builder<Key> {
         this.internal = new Key();
     }
     public KeyBuilder tick(Double tick) {
-    this.internal.tick = tick;
+        this.internal.tick = tick;
         return this;
     }
     
     public KeyBuilder type(String type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public KeyBuilder uid(String uid) {
-    this.internal.uid = uid;
+        this.internal.uid = uid;
         return this;
     }
     public Key build() {

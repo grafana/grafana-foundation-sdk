@@ -24,7 +24,7 @@ class ExprTypeThresholdResultAssertions implements \JsonSerializable
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public ?\Grafana\Foundation\Expr\TypeThresholdType $type;
+    public ?\Grafana\Foundation\Expr\ExprTypeThresholdResultAssertionsType $type;
 
     /**
      * TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
@@ -35,10 +35,10 @@ class ExprTypeThresholdResultAssertions implements \JsonSerializable
 
     /**
      * @param int|null $maxFrames
-     * @param \Grafana\Foundation\Expr\TypeThresholdType|null $type
+     * @param \Grafana\Foundation\Expr\ExprTypeThresholdResultAssertionsType|null $type
      * @param array<int>|null $typeVersion
      */
-    public function __construct(?int $maxFrames = null, ?\Grafana\Foundation\Expr\TypeThresholdType $type = null, ?array $typeVersion = null)
+    public function __construct(?int $maxFrames = null, ?\Grafana\Foundation\Expr\ExprTypeThresholdResultAssertionsType $type = null, ?array $typeVersion = null)
     {
         $this->maxFrames = $maxFrames;
         $this->type = $type;
@@ -54,7 +54,7 @@ class ExprTypeThresholdResultAssertions implements \JsonSerializable
         $data = $inputData;
         return new self(
             maxFrames: $data["maxFrames"] ?? null,
-            type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Expr\TypeThresholdType::fromValue($input); })($data["type"]) : null,
+            type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Expr\ExprTypeThresholdResultAssertionsType::fromValue($input); })($data["type"]) : null,
             typeVersion: $data["typeVersion"] ?? null,
         );
     }

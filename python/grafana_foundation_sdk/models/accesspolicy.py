@@ -34,7 +34,34 @@ class AccessPolicy:
         if "role" in data:
             args["role"] = RoleRef.from_json(data["role"])
         if "rules" in data:
-            args["rules"] = data["rules"]        
+            args["rules"] = [AccessRule.from_json(item) for item in data["rules"]]        
+
+        return cls(**args)
+
+
+class ResourceRef:
+    kind: str
+    name: str
+
+    def __init__(self, kind: str = "", name: str = ""):
+        self.kind = kind
+        self.name = name
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "kind": self.kind,
+            "name": self.name,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "kind" in data:
+            args["kind"] = data["kind"]
+        if "name" in data:
+            args["name"] = data["name"]        
 
         return cls(**args)
 
@@ -69,33 +96,6 @@ class RoleRef:
             args["name"] = data["name"]
         if "xname" in data:
             args["xname"] = data["xname"]        
-
-        return cls(**args)
-
-
-class ResourceRef:
-    kind: str
-    name: str
-
-    def __init__(self, kind: str = "", name: str = ""):
-        self.kind = kind
-        self.name = name
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "kind": self.kind,
-            "name": self.name,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "kind" in data:
-            args["kind"] = data["kind"]
-        if "name" in data:
-            args["name"] = data["name"]        
 
         return cls(**args)
 

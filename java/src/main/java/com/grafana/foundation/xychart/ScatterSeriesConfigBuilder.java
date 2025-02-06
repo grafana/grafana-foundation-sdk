@@ -19,37 +19,37 @@ public class ScatterSeriesConfigBuilder implements com.grafana.foundation.cog.Bu
         this.internal = new ScatterSeriesConfig();
     }
     public ScatterSeriesConfigBuilder x(String x) {
-    this.internal.x = x;
+        this.internal.x = x;
         return this;
     }
     
     public ScatterSeriesConfigBuilder y(String y) {
-    this.internal.y = y;
+        this.internal.y = y;
         return this;
     }
     
     public ScatterSeriesConfigBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public ScatterSeriesConfigBuilder show(ScatterShow show) {
-    this.internal.show = show;
+        this.internal.show = show;
         return this;
     }
     
     public ScatterSeriesConfigBuilder pointSize(com.grafana.foundation.cog.Builder<ScaleDimensionConfig> pointSize) {
-    this.internal.pointSize = pointSize.build();
+        this.internal.pointSize = pointSize.build();
         return this;
     }
     
     public ScatterSeriesConfigBuilder pointColor(com.grafana.foundation.cog.Builder<ColorDimensionConfig> pointColor) {
-    this.internal.pointColor = pointColor.build();
+        this.internal.pointColor = pointColor.build();
         return this;
     }
     
     public ScatterSeriesConfigBuilder lineColor(com.grafana.foundation.cog.Builder<ColorDimensionConfig> lineColor) {
-    this.internal.lineColor = lineColor.build();
+        this.internal.lineColor = lineColor.build();
         return this;
     }
     
@@ -57,82 +57,82 @@ public class ScatterSeriesConfigBuilder implements com.grafana.foundation.cog.Bu
         if (!(lineWidth >= 0)) {
             throw new IllegalArgumentException("lineWidth must be >= 0");
         }
-    this.internal.lineWidth = lineWidth;
+        this.internal.lineWidth = lineWidth;
         return this;
     }
     
     public ScatterSeriesConfigBuilder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle) {
-    this.internal.lineStyle = lineStyle.build();
+        this.internal.lineStyle = lineStyle.build();
         return this;
     }
     
     public ScatterSeriesConfigBuilder label(VisibilityMode label) {
-    this.internal.label = label;
+        this.internal.label = label;
         return this;
     }
     
     public ScatterSeriesConfigBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
-    this.internal.hideFrom = hideFrom.build();
+        this.internal.hideFrom = hideFrom.build();
         return this;
     }
     
     public ScatterSeriesConfigBuilder axisPlacement(AxisPlacement axisPlacement) {
-    this.internal.axisPlacement = axisPlacement;
+        this.internal.axisPlacement = axisPlacement;
         return this;
     }
     
     public ScatterSeriesConfigBuilder axisColorMode(AxisColorMode axisColorMode) {
-    this.internal.axisColorMode = axisColorMode;
+        this.internal.axisColorMode = axisColorMode;
         return this;
     }
     
     public ScatterSeriesConfigBuilder axisLabel(String axisLabel) {
-    this.internal.axisLabel = axisLabel;
+        this.internal.axisLabel = axisLabel;
         return this;
     }
     
     public ScatterSeriesConfigBuilder axisWidth(Double axisWidth) {
-    this.internal.axisWidth = axisWidth;
+        this.internal.axisWidth = axisWidth;
         return this;
     }
     
     public ScatterSeriesConfigBuilder axisSoftMin(Double axisSoftMin) {
-    this.internal.axisSoftMin = axisSoftMin;
+        this.internal.axisSoftMin = axisSoftMin;
         return this;
     }
     
     public ScatterSeriesConfigBuilder axisSoftMax(Double axisSoftMax) {
-    this.internal.axisSoftMax = axisSoftMax;
+        this.internal.axisSoftMax = axisSoftMax;
         return this;
     }
     
     public ScatterSeriesConfigBuilder axisGridShow(Boolean axisGridShow) {
-    this.internal.axisGridShow = axisGridShow;
+        this.internal.axisGridShow = axisGridShow;
         return this;
     }
     
     public ScatterSeriesConfigBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
-    this.internal.scaleDistribution = scaleDistribution.build();
+        this.internal.scaleDistribution = scaleDistribution.build();
         return this;
     }
     
     public ScatterSeriesConfigBuilder axisCenteredZero(Boolean axisCenteredZero) {
-    this.internal.axisCenteredZero = axisCenteredZero;
+        this.internal.axisCenteredZero = axisCenteredZero;
         return this;
     }
     
     public ScatterSeriesConfigBuilder frame(Double frame) {
-    this.internal.frame = frame;
+        this.internal.frame = frame;
         return this;
     }
     
     public ScatterSeriesConfigBuilder labelValue(com.grafana.foundation.cog.Builder<TextDimensionConfig> labelValue) {
-    this.internal.labelValue = labelValue.build();
+        this.internal.labelValue = labelValue.build();
         return this;
     }
     
     public ScatterSeriesConfigBuilder axisBorderShow(Boolean axisBorderShow) {
-    this.internal.axisBorderShow = axisBorderShow;
+        this.internal.axisBorderShow = axisBorderShow;
         return this;
     }
     public ScatterSeriesConfig build() {
