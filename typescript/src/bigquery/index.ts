@@ -2,6 +2,8 @@
 
 export * from './types.gen';
 export type * from './types.gen';
+export * from './dataqueryBuilder.gen';
+export type * from './dataqueryBuilder.gen';
 export * from './sQLExpressionBuilder.gen';
 export type * from './sQLExpressionBuilder.gen';
 export * from './queryEditorFunctionExpressionBuilder.gen';
@@ -14,5 +16,3 @@ export * from './queryEditorPropertyBuilder.gen';
 export type * from './queryEditorPropertyBuilder.gen';
 export * from './queryEditorPropertyExpressionBuilder.gen';
 export type * from './queryEditorPropertyExpressionBuilder.gen';
-export * from './dataqueryBuilder.gen';
-export type * from './dataqueryBuilder.gen';

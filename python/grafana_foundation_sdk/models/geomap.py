@@ -41,7 +41,7 @@ class Options:
         if "basemap" in data:
             args["basemap"] = common.MapLayerOptions.from_json(data["basemap"])
         if "layers" in data:
-            args["layers"] = data["layers"]
+            args["layers"] = [common.MapLayerOptions.from_json(item) for item in data["layers"]]
         if "tooltip" in data:
             args["tooltip"] = TooltipOptions.from_json(data["tooltip"])        
 

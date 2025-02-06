@@ -47,7 +47,7 @@ class ExprTypeThresholdResultAssertionsBuilder implements \Grafana\Foundation\Co
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public function type(\Grafana\Foundation\Expr\TypeThresholdType $type): static
+    public function type(\Grafana\Foundation\Expr\ExprTypeThresholdResultAssertionsType $type): static
     {
         $this->internal->type = $type;
     

@@ -11,17 +11,17 @@ public class HeatmapTooltipBuilder implements com.grafana.foundation.cog.Builder
         this.internal = new HeatmapTooltip();
     }
     public HeatmapTooltipBuilder mode(TooltipDisplayMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     
     public HeatmapTooltipBuilder yHistogram(Boolean yHistogram) {
-    this.internal.yHistogram = yHistogram;
+        this.internal.yHistogram = yHistogram;
         return this;
     }
     
     public HeatmapTooltipBuilder showColorScale(Boolean showColorScale) {
-    this.internal.showColorScale = showColorScale;
+        this.internal.showColorScale = showColorScale;
         return this;
     }
     public HeatmapTooltip build() {

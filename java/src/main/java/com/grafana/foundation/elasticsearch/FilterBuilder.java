@@ -10,12 +10,12 @@ public class FilterBuilder implements com.grafana.foundation.cog.Builder<Filter>
         this.internal = new Filter();
     }
     public FilterBuilder query(String query) {
-    this.internal.query = query;
+        this.internal.query = query;
         return this;
     }
     
     public FilterBuilder label(String label) {
-    this.internal.label = label;
+        this.internal.label = label;
         return this;
     }
     public Filter build() {

@@ -10,12 +10,12 @@ public class CellValuesBuilder implements com.grafana.foundation.cog.Builder<Cel
         this.internal = new CellValues();
     }
     public CellValuesBuilder unit(String unit) {
-    this.internal.unit = unit;
+        this.internal.unit = unit;
         return this;
     }
     
     public CellValuesBuilder decimals(Float decimals) {
-    this.internal.decimals = decimals;
+        this.internal.decimals = decimals;
         return this;
     }
     public CellValues build() {

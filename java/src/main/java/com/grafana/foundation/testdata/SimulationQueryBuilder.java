@@ -11,22 +11,22 @@ public class SimulationQueryBuilder implements com.grafana.foundation.cog.Builde
         this.internal = new SimulationQuery();
     }
     public SimulationQueryBuilder key(com.grafana.foundation.cog.Builder<Key> key) {
-    this.internal.key = key.build();
+        this.internal.key = key.build();
         return this;
     }
     
     public SimulationQueryBuilder config(Map<String, Object> config) {
-    this.internal.config = config;
+        this.internal.config = config;
         return this;
     }
     
     public SimulationQueryBuilder stream(Boolean stream) {
-    this.internal.stream = stream;
+        this.internal.stream = stream;
         return this;
     }
     
     public SimulationQueryBuilder last(Boolean last) {
-    this.internal.last = last;
+        this.internal.last = last;
         return this;
     }
     public SimulationQuery build() {

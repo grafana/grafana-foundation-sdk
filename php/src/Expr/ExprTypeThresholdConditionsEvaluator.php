@@ -12,16 +12,16 @@ class ExprTypeThresholdConditionsEvaluator implements \JsonSerializable
     /**
      * e.g. "gt"
      */
-    public \Grafana\Foundation\Expr\TypeThresholdType $type;
+    public \Grafana\Foundation\Expr\ExprTypeThresholdConditionsEvaluatorType $type;
 
     /**
      * @param array<float>|null $params
-     * @param \Grafana\Foundation\Expr\TypeThresholdType|null $type
+     * @param \Grafana\Foundation\Expr\ExprTypeThresholdConditionsEvaluatorType|null $type
      */
-    public function __construct(?array $params = null, ?\Grafana\Foundation\Expr\TypeThresholdType $type = null)
+    public function __construct(?array $params = null, ?\Grafana\Foundation\Expr\ExprTypeThresholdConditionsEvaluatorType $type = null)
     {
         $this->params = $params ?: [];
-        $this->type = $type ?: \Grafana\Foundation\Expr\TypeThresholdType::None();
+        $this->type = $type ?: \Grafana\Foundation\Expr\ExprTypeThresholdConditionsEvaluatorType::Gt();
     }
 
     /**
@@ -33,7 +33,7 @@ class ExprTypeThresholdConditionsEvaluator implements \JsonSerializable
         $data = $inputData;
         return new self(
             params: $data["params"] ?? null,
-            type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Expr\TypeThresholdType::fromValue($input); })($data["type"]) : null,
+            type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Expr\ExprTypeThresholdConditionsEvaluatorType::fromValue($input); })($data["type"]) : null,
         );
     }
 

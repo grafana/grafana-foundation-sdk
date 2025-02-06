@@ -10,12 +10,12 @@ public class AzureResourceGraphQueryBuilder implements com.grafana.foundation.co
         this.internal = new AzureResourceGraphQuery();
     }
     public AzureResourceGraphQueryBuilder query(String query) {
-    this.internal.query = query;
+        this.internal.query = query;
         return this;
     }
     
     public AzureResourceGraphQueryBuilder resultFormat(String resultFormat) {
-    this.internal.resultFormat = resultFormat;
+        this.internal.resultFormat = resultFormat;
         return this;
     }
     public AzureResourceGraphQuery build() {

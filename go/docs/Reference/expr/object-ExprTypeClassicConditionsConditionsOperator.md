@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> ExprTypeClassicConditionsC
 
 ```go
 type ExprTypeClassicConditionsConditionsOperator struct {
-    Type expr.TypeClassicConditionsType `json:"type"`
+    Type expr.ExprTypeClassicConditionsConditionsOperatorType `json:"type"`
 }
 ```
 ## Methods

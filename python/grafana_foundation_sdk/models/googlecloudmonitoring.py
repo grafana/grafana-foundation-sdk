@@ -103,18 +103,6 @@ class CloudMonitoringQuery(cogvariants.Dataquery):
         return cls(**args)
 
 
-class QueryType(enum.StrEnum):
-    """
-    Defines the supported queryTypes.
-    """
-
-    TIME_SERIES_LIST = "timeSeriesList"
-    TIME_SERIES_QUERY = "timeSeriesQuery"
-    SLO = "slo"
-    ANNOTATION = "annotation"
-    PROMQL = "promQL"
-
-
 class TimeSeriesList:
     """
     Time Series List sub-query properties.
@@ -404,6 +392,18 @@ class PromQLQuery:
             args["step"] = data["step"]        
 
         return cls(**args)
+
+
+class QueryType(enum.StrEnum):
+    """
+    Defines the supported queryTypes.
+    """
+
+    TIME_SERIES_LIST = "timeSeriesList"
+    TIME_SERIES_QUERY = "timeSeriesQuery"
+    SLO = "slo"
+    ANNOTATION = "annotation"
+    PROMQL = "promQL"
 
 
 class MetricQuery:

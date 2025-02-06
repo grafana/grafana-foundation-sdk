@@ -10,27 +10,27 @@ public class HeatmapColorOptionsBuilder implements com.grafana.foundation.cog.Bu
         this.internal = new HeatmapColorOptions();
     }
     public HeatmapColorOptionsBuilder mode(HeatmapColorMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     
     public HeatmapColorOptionsBuilder scheme(String scheme) {
-    this.internal.scheme = scheme;
+        this.internal.scheme = scheme;
         return this;
     }
     
     public HeatmapColorOptionsBuilder fill(String fill) {
-    this.internal.fill = fill;
+        this.internal.fill = fill;
         return this;
     }
     
     public HeatmapColorOptionsBuilder scale(HeatmapColorScale scale) {
-    this.internal.scale = scale;
+        this.internal.scale = scale;
         return this;
     }
     
     public HeatmapColorOptionsBuilder exponent(Float exponent) {
-    this.internal.exponent = exponent;
+        this.internal.exponent = exponent;
         return this;
     }
     
@@ -41,22 +41,22 @@ public class HeatmapColorOptionsBuilder implements com.grafana.foundation.cog.Bu
         if (!(steps <= 128)) {
             throw new IllegalArgumentException("steps must be <= 128");
         }
-    this.internal.steps = steps;
+        this.internal.steps = steps;
         return this;
     }
     
     public HeatmapColorOptionsBuilder reverse(Boolean reverse) {
-    this.internal.reverse = reverse;
+        this.internal.reverse = reverse;
         return this;
     }
     
     public HeatmapColorOptionsBuilder min(Float min) {
-    this.internal.min = min;
+        this.internal.min = min;
         return this;
     }
     
     public HeatmapColorOptionsBuilder max(Float max) {
-    this.internal.max = max;
+        this.internal.max = max;
         return this;
     }
     public HeatmapColorOptions build() {

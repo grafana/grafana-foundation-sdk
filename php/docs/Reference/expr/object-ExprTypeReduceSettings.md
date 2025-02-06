@@ -14,7 +14,7 @@ class ExprTypeReduceSettings implements \JsonSerializable
      *  - `"dropNN"` Drop non-numbers
      *  - `"replaceNN"` Replace non-numbers
      */
-    public \Grafana\Foundation\Expr\TypeReduceMode $mode;
+    public \Grafana\Foundation\Expr\ExprTypeReduceSettingsMode $mode;
 
     /**
      * Only valid when mode is replace

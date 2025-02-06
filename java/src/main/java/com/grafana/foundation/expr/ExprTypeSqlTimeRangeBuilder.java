@@ -10,12 +10,12 @@ public class ExprTypeSqlTimeRangeBuilder implements com.grafana.foundation.cog.B
         this.internal = new ExprTypeSqlTimeRange();
     }
     public ExprTypeSqlTimeRangeBuilder from(String from) {
-    this.internal.from = from;
+        this.internal.from = from;
         return this;
     }
     
     public ExprTypeSqlTimeRangeBuilder to(String to) {
-    this.internal.to = to;
+        this.internal.to = to;
         return this;
     }
     public ExprTypeSqlTimeRange build() {

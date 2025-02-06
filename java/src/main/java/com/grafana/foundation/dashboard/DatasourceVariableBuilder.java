@@ -8,26 +8,26 @@ public class DatasourceVariableBuilder implements com.grafana.foundation.cog.Bui
     
     public DatasourceVariableBuilder(String name) {
         this.internal = new VariableModel();
-    this.internal.name = name;
-    this.internal.type = VariableType.DATASOURCE;
+        this.internal.name = name;
+        this.internal.type = VariableType.DATASOURCE;
     }
     public DatasourceVariableBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public DatasourceVariableBuilder label(String label) {
-    this.internal.label = label;
+        this.internal.label = label;
         return this;
     }
     
     public DatasourceVariableBuilder hide(VariableHide hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     
     public DatasourceVariableBuilder description(String description) {
-    this.internal.description = description;
+        this.internal.description = description;
         return this;
     }
     
@@ -35,17 +35,17 @@ public class DatasourceVariableBuilder implements com.grafana.foundation.cog.Bui
 		if (this.internal.query == null) {
 			this.internal.query = new com.grafana.foundation.dashboard.StringOrMap();
 		}
-    this.internal.query.string = string;
+        this.internal.query.string = string;
         return this;
     }
     
     public DatasourceVariableBuilder current(VariableOption current) {
-    this.internal.current = current;
+        this.internal.current = current;
         return this;
     }
     
     public DatasourceVariableBuilder multi(Boolean multi) {
-    this.internal.multi = multi;
+        this.internal.multi = multi;
         return this;
     }
     public VariableModel build() {
