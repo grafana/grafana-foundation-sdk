@@ -38,25 +38,6 @@ class RoleBinding(cogbuilder.Builder[rolebinding.RoleBinding]):
         return self
     
 
-class CustomRoleRef(cogbuilder.Builder[rolebinding.CustomRoleRef]):    
-    _internal: rolebinding.CustomRoleRef
-
-    def __init__(self):
-        self._internal = rolebinding.CustomRoleRef()        
-        self._internal.kind = "Role"
-
-    def build(self) -> rolebinding.CustomRoleRef:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def name(self, name: str) -> typing.Self:        
-        self._internal.name = name
-    
-        return self
-    
-
 class BuiltinRoleRef(cogbuilder.Builder[rolebinding.BuiltinRoleRef]):    
     _internal: rolebinding.BuiltinRoleRef
 
@@ -71,6 +52,25 @@ class BuiltinRoleRef(cogbuilder.Builder[rolebinding.BuiltinRoleRef]):
         return self._internal    
     
     def name(self, name: typing.Literal["viewer", "editor", "admin"]) -> typing.Self:        
+        self._internal.name = name
+    
+        return self
+    
+
+class CustomRoleRef(cogbuilder.Builder[rolebinding.CustomRoleRef]):    
+    _internal: rolebinding.CustomRoleRef
+
+    def __init__(self):
+        self._internal = rolebinding.CustomRoleRef()        
+        self._internal.kind = "Role"
+
+    def build(self) -> rolebinding.CustomRoleRef:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def name(self, name: str) -> typing.Self:        
         self._internal.name = name
     
         return self

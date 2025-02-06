@@ -10,17 +10,17 @@ public class HeatmapCalculationBucketConfigBuilder implements com.grafana.founda
         this.internal = new HeatmapCalculationBucketConfig();
     }
     public HeatmapCalculationBucketConfigBuilder mode(HeatmapCalculationMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     
     public HeatmapCalculationBucketConfigBuilder value(String value) {
-    this.internal.value = value;
+        this.internal.value = value;
         return this;
     }
     
     public HeatmapCalculationBucketConfigBuilder scale(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scale) {
-    this.internal.scale = scale.build();
+        this.internal.scale = scale.build();
         return this;
     }
     public HeatmapCalculationBucketConfig build() {

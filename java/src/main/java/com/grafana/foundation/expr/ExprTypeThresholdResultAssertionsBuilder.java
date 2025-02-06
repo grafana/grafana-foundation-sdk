@@ -11,17 +11,17 @@ public class ExprTypeThresholdResultAssertionsBuilder implements com.grafana.fou
         this.internal = new ExprTypeThresholdResultAssertions();
     }
     public ExprTypeThresholdResultAssertionsBuilder maxFrames(Long maxFrames) {
-    this.internal.maxFrames = maxFrames;
+        this.internal.maxFrames = maxFrames;
         return this;
     }
     
-    public ExprTypeThresholdResultAssertionsBuilder type(TypeThresholdType type) {
-    this.internal.type = type;
+    public ExprTypeThresholdResultAssertionsBuilder type(ExprTypeThresholdResultAssertionsType type) {
+        this.internal.type = type;
         return this;
     }
     
     public ExprTypeThresholdResultAssertionsBuilder typeVersion(List<Long> typeVersion) {
-    this.internal.typeVersion = typeVersion;
+        this.internal.typeVersion = typeVersion;
         return this;
     }
     public ExprTypeThresholdResultAssertions build() {

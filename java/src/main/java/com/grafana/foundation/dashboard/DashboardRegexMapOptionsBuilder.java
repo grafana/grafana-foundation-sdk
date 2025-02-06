@@ -10,12 +10,12 @@ public class DashboardRegexMapOptionsBuilder implements com.grafana.foundation.c
         this.internal = new DashboardRegexMapOptions();
     }
     public DashboardRegexMapOptionsBuilder pattern(String pattern) {
-    this.internal.pattern = pattern;
+        this.internal.pattern = pattern;
         return this;
     }
     
     public DashboardRegexMapOptionsBuilder result(ValueMappingResult result) {
-    this.internal.result = result;
+        this.internal.result = result;
         return this;
     }
     public DashboardRegexMapOptions build() {

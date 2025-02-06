@@ -492,6 +492,133 @@ func (resource SimulationQuery) Validate() error {
 	return errs
 }
 
+type CSVWave struct {
+	TimeStep  *int64  `json:"timeStep,omitempty"`
+	Name      *string `json:"name,omitempty"`
+	ValuesCSV *string `json:"valuesCSV,omitempty"`
+	Labels    *string `json:"labels,omitempty"`
+}
+
+// NewCSVWave creates a new CSVWave object.
+func NewCSVWave() *CSVWave {
+	return &CSVWave{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CSVWave` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *CSVWave) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "timeStep"
+	if fields["timeStep"] != nil {
+		if string(fields["timeStep"]) != "null" {
+			if err := json.Unmarshal(fields["timeStep"], &resource.TimeStep); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeStep", err)...)
+			}
+
+		}
+		delete(fields, "timeStep")
+
+	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+
+		}
+		delete(fields, "name")
+
+	}
+	// Field "valuesCSV"
+	if fields["valuesCSV"] != nil {
+		if string(fields["valuesCSV"]) != "null" {
+			if err := json.Unmarshal(fields["valuesCSV"], &resource.ValuesCSV); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("valuesCSV", err)...)
+			}
+
+		}
+		delete(fields, "valuesCSV")
+
+	}
+	// Field "labels"
+	if fields["labels"] != nil {
+		if string(fields["labels"]) != "null" {
+			if err := json.Unmarshal(fields["labels"], &resource.Labels); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("labels", err)...)
+			}
+
+		}
+		delete(fields, "labels")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("CSVWave", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `CSVWave` objects.
+func (resource CSVWave) Equals(other CSVWave) bool {
+	if resource.TimeStep == nil && other.TimeStep != nil || resource.TimeStep != nil && other.TimeStep == nil {
+		return false
+	}
+
+	if resource.TimeStep != nil {
+		if *resource.TimeStep != *other.TimeStep {
+			return false
+		}
+	}
+	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
+		return false
+	}
+
+	if resource.Name != nil {
+		if *resource.Name != *other.Name {
+			return false
+		}
+	}
+	if resource.ValuesCSV == nil && other.ValuesCSV != nil || resource.ValuesCSV != nil && other.ValuesCSV == nil {
+		return false
+	}
+
+	if resource.ValuesCSV != nil {
+		if *resource.ValuesCSV != *other.ValuesCSV {
+			return false
+		}
+	}
+	if resource.Labels == nil && other.Labels != nil || resource.Labels != nil && other.Labels == nil {
+		return false
+	}
+
+	if resource.Labels != nil {
+		if *resource.Labels != *other.Labels {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `CSVWave` fields for violations and returns them.
+func (resource CSVWave) Validate() error {
+	return nil
+}
+
 type NodesQuery struct {
 	Type  *NodesQueryType `json:"type,omitempty"`
 	Count *int64          `json:"count,omitempty"`
@@ -705,133 +832,6 @@ func (resource USAQuery) Equals(other USAQuery) bool {
 
 // Validate checks all the validation constraints that may be defined on `USAQuery` fields for violations and returns them.
 func (resource USAQuery) Validate() error {
-	return nil
-}
-
-type CSVWave struct {
-	TimeStep  *int64  `json:"timeStep,omitempty"`
-	Name      *string `json:"name,omitempty"`
-	ValuesCSV *string `json:"valuesCSV,omitempty"`
-	Labels    *string `json:"labels,omitempty"`
-}
-
-// NewCSVWave creates a new CSVWave object.
-func NewCSVWave() *CSVWave {
-	return &CSVWave{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CSVWave` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *CSVWave) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "timeStep"
-	if fields["timeStep"] != nil {
-		if string(fields["timeStep"]) != "null" {
-			if err := json.Unmarshal(fields["timeStep"], &resource.TimeStep); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("timeStep", err)...)
-			}
-
-		}
-		delete(fields, "timeStep")
-
-	}
-	// Field "name"
-	if fields["name"] != nil {
-		if string(fields["name"]) != "null" {
-			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("name", err)...)
-			}
-
-		}
-		delete(fields, "name")
-
-	}
-	// Field "valuesCSV"
-	if fields["valuesCSV"] != nil {
-		if string(fields["valuesCSV"]) != "null" {
-			if err := json.Unmarshal(fields["valuesCSV"], &resource.ValuesCSV); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("valuesCSV", err)...)
-			}
-
-		}
-		delete(fields, "valuesCSV")
-
-	}
-	// Field "labels"
-	if fields["labels"] != nil {
-		if string(fields["labels"]) != "null" {
-			if err := json.Unmarshal(fields["labels"], &resource.Labels); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("labels", err)...)
-			}
-
-		}
-		delete(fields, "labels")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("CSVWave", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `CSVWave` objects.
-func (resource CSVWave) Equals(other CSVWave) bool {
-	if resource.TimeStep == nil && other.TimeStep != nil || resource.TimeStep != nil && other.TimeStep == nil {
-		return false
-	}
-
-	if resource.TimeStep != nil {
-		if *resource.TimeStep != *other.TimeStep {
-			return false
-		}
-	}
-	if resource.Name == nil && other.Name != nil || resource.Name != nil && other.Name == nil {
-		return false
-	}
-
-	if resource.Name != nil {
-		if *resource.Name != *other.Name {
-			return false
-		}
-	}
-	if resource.ValuesCSV == nil && other.ValuesCSV != nil || resource.ValuesCSV != nil && other.ValuesCSV == nil {
-		return false
-	}
-
-	if resource.ValuesCSV != nil {
-		if *resource.ValuesCSV != *other.ValuesCSV {
-			return false
-		}
-	}
-	if resource.Labels == nil && other.Labels != nil || resource.Labels != nil && other.Labels == nil {
-		return false
-	}
-
-	if resource.Labels != nil {
-		if *resource.Labels != *other.Labels {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `CSVWave` fields for violations and returns them.
-func (resource CSVWave) Validate() error {
 	return nil
 }
 

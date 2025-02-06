@@ -10,27 +10,27 @@ public class PulseWaveQueryBuilder implements com.grafana.foundation.cog.Builder
         this.internal = new PulseWaveQuery();
     }
     public PulseWaveQueryBuilder timeStep(Long timeStep) {
-    this.internal.timeStep = timeStep;
+        this.internal.timeStep = timeStep;
         return this;
     }
     
     public PulseWaveQueryBuilder onCount(Long onCount) {
-    this.internal.onCount = onCount;
+        this.internal.onCount = onCount;
         return this;
     }
     
     public PulseWaveQueryBuilder offCount(Long offCount) {
-    this.internal.offCount = offCount;
+        this.internal.offCount = offCount;
         return this;
     }
     
     public PulseWaveQueryBuilder onValue(Double onValue) {
-    this.internal.onValue = onValue;
+        this.internal.onValue = onValue;
         return this;
     }
     
     public PulseWaveQueryBuilder offValue(Double offValue) {
-    this.internal.offValue = offValue;
+        this.internal.offValue = offValue;
         return this;
     }
     public PulseWaveQuery build() {

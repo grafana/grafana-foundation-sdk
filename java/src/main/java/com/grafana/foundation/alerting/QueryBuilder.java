@@ -9,30 +9,30 @@ public class QueryBuilder implements com.grafana.foundation.cog.Builder<Query> {
     
     public QueryBuilder(String refId) {
         this.internal = new Query();
-    this.internal.refId = refId;
+        this.internal.refId = refId;
     }
     public QueryBuilder datasourceUid(String datasourceUid) {
-    this.internal.datasourceUid = datasourceUid;
+        this.internal.datasourceUid = datasourceUid;
         return this;
     }
     
     public QueryBuilder model(com.grafana.foundation.cog.Builder<Dataquery> model) {
-    this.internal.model = model.build();
+        this.internal.model = model.build();
         return this;
     }
     
     public QueryBuilder queryType(String queryType) {
-    this.internal.queryType = queryType;
+        this.internal.queryType = queryType;
         return this;
     }
     
     public QueryBuilder refId(String refId) {
-    this.internal.refId = refId;
+        this.internal.refId = refId;
         return this;
     }
     
     public QueryBuilder relativeTimeRange(RelativeTimeRange relativeTimeRange) {
-    this.internal.relativeTimeRange = relativeTimeRange;
+        this.internal.relativeTimeRange = relativeTimeRange;
         return this;
     }
     public Query build() {

@@ -10,12 +10,12 @@ public class HistogramSettingsBuilder implements com.grafana.foundation.cog.Buil
         this.internal = new HistogramSettings();
     }
     public HistogramSettingsBuilder interval(String interval) {
-    this.internal.interval = interval;
+        this.internal.interval = interval;
         return this;
     }
     
     public HistogramSettingsBuilder minDocCount(String minDocCount) {
-    this.internal.minDocCount = minDocCount;
+        this.internal.minDocCount = minDocCount;
         return this;
     }
     public HistogramSettings build() {

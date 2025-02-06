@@ -358,6 +358,77 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Adds override rules for a specific field, referred to by its name.
+    overrideByName(name: string,properties: dashboard.DynamicConfigValue[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.overrides) {
+            this.internal.fieldConfig.overrides = [];
+        }
+        this.internal.fieldConfig.overrides.push({
+        matcher: {
+        id: "byName",
+        options: name,
+    },
+        properties: properties,
+    });
+        return this;
+    }
+
+    // Adds override rules for the fields whose name match the given regexp.
+    overrideByRegexp(regexp: string,properties: dashboard.DynamicConfigValue[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.overrides) {
+            this.internal.fieldConfig.overrides = [];
+        }
+        this.internal.fieldConfig.overrides.push({
+        matcher: {
+        id: "byRegexp",
+        options: regexp,
+    },
+        properties: properties,
+    });
+        return this;
+    }
+
+    // Adds override rules for all the fields of the given type.
+    overrideByFieldType(fieldType: string,properties: dashboard.DynamicConfigValue[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.overrides) {
+            this.internal.fieldConfig.overrides = [];
+        }
+        this.internal.fieldConfig.overrides.push({
+        matcher: {
+        id: "byType",
+        options: fieldType,
+    },
+        properties: properties,
+    });
+        return this;
+    }
+
+    overrideByQuery(queryRefId: string,properties: dashboard.DynamicConfigValue[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.overrides) {
+            this.internal.fieldConfig.overrides = [];
+        }
+        this.internal.fieldConfig.overrides.push({
+        matcher: {
+        id: "byFrameRefID",
+        options: queryRefId,
+    },
+        properties: properties,
+    });
+        return this;
+    }
+
     // Represents the index of the selected frame
     frameIndex(frameIndex: number): this {
         if (!this.internal.options) {

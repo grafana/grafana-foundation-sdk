@@ -10,17 +10,17 @@ public class CandlestickColorsBuilder implements com.grafana.foundation.cog.Buil
         this.internal = new CandlestickColors();
     }
     public CandlestickColorsBuilder up(String up) {
-    this.internal.up = up;
+        this.internal.up = up;
         return this;
     }
     
     public CandlestickColorsBuilder down(String down) {
-    this.internal.down = down;
+        this.internal.down = down;
         return this;
     }
     
     public CandlestickColorsBuilder flat(String flat) {
-    this.internal.flat = flat;
+        this.internal.flat = flat;
         return this;
     }
     public CandlestickColors build() {

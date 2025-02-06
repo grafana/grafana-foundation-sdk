@@ -26,6 +26,14 @@
  * <span class="badge builder"></span> [SQLExpressionBuilder](./builder-SQLExpressionBuilder.md)
 ## Functions
 
+### <span class="badge function"></span> NewDataquery
+
+NewDataquery creates a new Dataquery object.
+
+```go
+func NewDataquery() *Dataquery
+```
+
 ### <span class="badge function"></span> NewSQLExpression
 
 NewSQLExpression creates a new SQLExpression object.
@@ -74,14 +82,6 @@ NewQueryEditorPropertyExpression creates a new QueryEditorPropertyExpression obj
 func NewQueryEditorPropertyExpression() *QueryEditorPropertyExpression
 ```
 
-### <span class="badge function"></span> NewDataquery
-
-NewDataquery creates a new Dataquery object.
-
-```go
-func NewDataquery() *Dataquery
-```
-
 ### <span class="badge function"></span> VariantConfig
 
 VariantConfig returns the configuration related to grafana-bigquery-datasource dataqueries.
@@ -90,6 +90,14 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> DataqueryConverter
+
+DataqueryConverter accepts a `Dataquery` object and generates the Go code to build this object using builders.
+
+```go
+func DataqueryConverter(input Dataquery) string
 ```
 
 ### <span class="badge function"></span> SQLExpressionConverter
@@ -138,13 +146,5 @@ QueryEditorPropertyExpressionConverter accepts a `QueryEditorPropertyExpression`
 
 ```go
 func QueryEditorPropertyExpressionConverter(input QueryEditorPropertyExpression) string
-```
-
-### <span class="badge function"></span> DataqueryConverter
-
-DataqueryConverter accepts a `Dataquery` object and generates the Go code to build this object using builders.
-
-```go
-func DataqueryConverter(input Dataquery) string
 ```
 

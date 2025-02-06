@@ -6,6 +6,143 @@ from ..models import bigquery
 from ..models import dashboard
 
 
+class Dataquery(cogbuilder.Builder[bigquery.Dataquery]):    
+    """
+    Manually converted from https://github.com/grafana/google-bigquery-datasource/blob/18680e42ba557791d109c7c540c2c3f2647592f0/src/types.ts#L75
+    """
+    
+    _internal: bigquery.Dataquery
+
+    def __init__(self):
+        self._internal = bigquery.Dataquery()
+
+    def build(self) -> bigquery.Dataquery:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def dataset(self, dataset: str) -> typing.Self:        
+        self._internal.dataset = dataset
+    
+        return self
+    
+    def table(self, table: str) -> typing.Self:        
+        self._internal.table = table
+    
+        return self
+    
+    def project(self, project: str) -> typing.Self:        
+        self._internal.project = project
+    
+        return self
+    
+    def format_val(self, format_val: bigquery.QueryFormat) -> typing.Self:        
+        self._internal.format_val = format_val
+    
+        return self
+    
+    def raw_query(self, raw_query: bool) -> typing.Self:        
+        self._internal.raw_query = raw_query
+    
+        return self
+    
+    def raw_sql(self, raw_sql: str) -> typing.Self:        
+        self._internal.raw_sql = raw_sql
+    
+        return self
+    
+    def location(self, location: str) -> typing.Self:        
+        self._internal.location = location
+    
+        return self
+    
+    def partitioned(self, partitioned: bool) -> typing.Self:        
+        self._internal.partitioned = partitioned
+    
+        return self
+    
+    def partitioned_field(self, partitioned_field: str) -> typing.Self:        
+        self._internal.partitioned_field = partitioned_field
+    
+        return self
+    
+    def convert_to_utc(self, convert_to_utc: bool) -> typing.Self:        
+        self._internal.convert_to_utc = convert_to_utc
+    
+        return self
+    
+    def sharded(self, sharded: bool) -> typing.Self:        
+        self._internal.sharded = sharded
+    
+        return self
+    
+    def query_priority(self, query_priority: bigquery.QueryPriority) -> typing.Self:        
+        self._internal.query_priority = query_priority
+    
+        return self
+    
+    def time_shift(self, time_shift: str) -> typing.Self:        
+        self._internal.time_shift = time_shift
+    
+        return self
+    
+    def editor_mode(self, editor_mode: bigquery.EditorMode) -> typing.Self:        
+        self._internal.editor_mode = editor_mode
+    
+        return self
+    
+    def sql(self, sql: cogbuilder.Builder[bigquery.SQLExpression]) -> typing.Self:        
+        sql_resource = sql.build()
+        self._internal.sql = sql_resource
+    
+        return self
+    
+    def ref_id(self, ref_id: str) -> typing.Self:    
+        """
+        A unique identifier for the query within the list of targets.
+        In server side expressions, the refId is used as a variable name to identify results.
+        By default, the UI will assign A->Z; however setting meaningful names may be useful.
+        """
+            
+        self._internal.ref_id = ref_id
+    
+        return self
+    
+    def hide(self, hide: bool) -> typing.Self:    
+        """
+        true if query is disabled (ie should not be returned to the dashboard)
+        Note this does not always imply that the query should not be executed since
+        the results from a hidden query may be used as the input to other queries (SSE etc)
+        """
+            
+        self._internal.hide = hide
+    
+        return self
+    
+    def query_type(self, query_type: str) -> typing.Self:    
+        """
+        Specify the query flavor
+        TODO make this required and give it a default
+        """
+            
+        self._internal.query_type = query_type
+    
+        return self
+    
+    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+        """
+        For mixed data sources the selected datasource is on the query level.
+        For non mixed scenarios this is undefined.
+        TODO find a better way to do this ^ that's friendly to schema
+        TODO this shouldn't be unknown but DataSourceRef | null
+        """
+            
+        self._internal.datasource = datasource
+    
+        return self
+    
+
 class SQLExpression(cogbuilder.Builder[bigquery.SQLExpression]):    
     _internal: bigquery.SQLExpression
 
@@ -169,143 +306,6 @@ class QueryEditorPropertyExpression(cogbuilder.Builder[bigquery.QueryEditorPrope
     def property_val(self, property_val: cogbuilder.Builder[bigquery.QueryEditorProperty]) -> typing.Self:        
         property_val_resource = property_val.build()
         self._internal.property_val = property_val_resource
-    
-        return self
-    
-
-class Dataquery(cogbuilder.Builder[bigquery.Dataquery]):    
-    """
-    Manually converted from https://github.com/grafana/google-bigquery-datasource/blob/18680e42ba557791d109c7c540c2c3f2647592f0/src/types.ts#L75
-    """
-    
-    _internal: bigquery.Dataquery
-
-    def __init__(self):
-        self._internal = bigquery.Dataquery()
-
-    def build(self) -> bigquery.Dataquery:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def dataset(self, dataset: str) -> typing.Self:        
-        self._internal.dataset = dataset
-    
-        return self
-    
-    def table(self, table: str) -> typing.Self:        
-        self._internal.table = table
-    
-        return self
-    
-    def project(self, project: str) -> typing.Self:        
-        self._internal.project = project
-    
-        return self
-    
-    def format_val(self, format_val: bigquery.QueryFormat) -> typing.Self:        
-        self._internal.format_val = format_val
-    
-        return self
-    
-    def raw_query(self, raw_query: bool) -> typing.Self:        
-        self._internal.raw_query = raw_query
-    
-        return self
-    
-    def raw_sql(self, raw_sql: str) -> typing.Self:        
-        self._internal.raw_sql = raw_sql
-    
-        return self
-    
-    def location(self, location: str) -> typing.Self:        
-        self._internal.location = location
-    
-        return self
-    
-    def partitioned(self, partitioned: bool) -> typing.Self:        
-        self._internal.partitioned = partitioned
-    
-        return self
-    
-    def partitioned_field(self, partitioned_field: str) -> typing.Self:        
-        self._internal.partitioned_field = partitioned_field
-    
-        return self
-    
-    def convert_to_utc(self, convert_to_utc: bool) -> typing.Self:        
-        self._internal.convert_to_utc = convert_to_utc
-    
-        return self
-    
-    def sharded(self, sharded: bool) -> typing.Self:        
-        self._internal.sharded = sharded
-    
-        return self
-    
-    def query_priority(self, query_priority: bigquery.QueryPriority) -> typing.Self:        
-        self._internal.query_priority = query_priority
-    
-        return self
-    
-    def time_shift(self, time_shift: str) -> typing.Self:        
-        self._internal.time_shift = time_shift
-    
-        return self
-    
-    def editor_mode(self, editor_mode: bigquery.EditorMode) -> typing.Self:        
-        self._internal.editor_mode = editor_mode
-    
-        return self
-    
-    def sql(self, sql: cogbuilder.Builder[bigquery.SQLExpression]) -> typing.Self:        
-        sql_resource = sql.build()
-        self._internal.sql = sql_resource
-    
-        return self
-    
-    def ref_id(self, ref_id: str) -> typing.Self:    
-        """
-        A unique identifier for the query within the list of targets.
-        In server side expressions, the refId is used as a variable name to identify results.
-        By default, the UI will assign A->Z; however setting meaningful names may be useful.
-        """
-            
-        self._internal.ref_id = ref_id
-    
-        return self
-    
-    def hide(self, hide: bool) -> typing.Self:    
-        """
-        true if query is disabled (ie should not be returned to the dashboard)
-        Note this does not always imply that the query should not be executed since
-        the results from a hidden query may be used as the input to other queries (SSE etc)
-        """
-            
-        self._internal.hide = hide
-    
-        return self
-    
-    def query_type(self, query_type: str) -> typing.Self:    
-        """
-        Specify the query flavor
-        TODO make this required and give it a default
-        """
-            
-        self._internal.query_type = query_type
-    
-        return self
-    
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
-        """
-        For mixed data sources the selected datasource is on the query level.
-        For non mixed scenarios this is undefined.
-        TODO find a better way to do this ^ that's friendly to schema
-        TODO this shouldn't be unknown but DataSourceRef | null
-        """
-            
-        self._internal.datasource = datasource
     
         return self
     

@@ -11,17 +11,17 @@ public class ExprTypeMathResultAssertionsBuilder implements com.grafana.foundati
         this.internal = new ExprTypeMathResultAssertions();
     }
     public ExprTypeMathResultAssertionsBuilder maxFrames(Long maxFrames) {
-    this.internal.maxFrames = maxFrames;
+        this.internal.maxFrames = maxFrames;
         return this;
     }
     
-    public ExprTypeMathResultAssertionsBuilder type(TypeMathType type) {
-    this.internal.type = type;
+    public ExprTypeMathResultAssertionsBuilder type(ExprTypeMathResultAssertionsType type) {
+        this.internal.type = type;
         return this;
     }
     
     public ExprTypeMathResultAssertionsBuilder typeVersion(List<Long> typeVersion) {
-    this.internal.typeVersion = typeVersion;
+        this.internal.typeVersion = typeVersion;
         return this;
     }
     public ExprTypeMathResultAssertions build() {

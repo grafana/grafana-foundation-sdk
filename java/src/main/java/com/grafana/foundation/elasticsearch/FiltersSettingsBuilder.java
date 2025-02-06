@@ -11,7 +11,7 @@ public class FiltersSettingsBuilder implements com.grafana.foundation.cog.Builde
         this.internal = new FiltersSettings();
     }
     public FiltersSettingsBuilder filters(com.grafana.foundation.cog.Builder<List<Filter>> filters) {
-    this.internal.filters = filters.build();
+        this.internal.filters = filters.build();
         return this;
     }
     public FiltersSettings build() {

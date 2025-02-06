@@ -62,7 +62,7 @@ final class ConnectionArgsConverter
     
     
     }
-            if ($input->resultReuseMaxAgeInMinutes !== null && $input->resultReuseMaxAgeInMinutes !== 60) {
+            if ($input->resultReuseMaxAgeInMinutes !== null && $input->resultReuseMaxAgeInMinutes !== (float) 60) {
     
         
     $buffer = 'resultReuseMaxAgeInMinutes(';

@@ -11,27 +11,27 @@ public class TableFooterOptionsBuilder implements com.grafana.foundation.cog.Bui
         this.internal = new TableFooterOptions();
     }
     public TableFooterOptionsBuilder show(Boolean show) {
-    this.internal.show = show;
+        this.internal.show = show;
         return this;
     }
     
     public TableFooterOptionsBuilder reducer(List<String> reducer) {
-    this.internal.reducer = reducer;
+        this.internal.reducer = reducer;
         return this;
     }
     
     public TableFooterOptionsBuilder fields(List<String> fields) {
-    this.internal.fields = fields;
+        this.internal.fields = fields;
         return this;
     }
     
     public TableFooterOptionsBuilder enablePagination(Boolean enablePagination) {
-    this.internal.enablePagination = enablePagination;
+        this.internal.enablePagination = enablePagination;
         return this;
     }
     
     public TableFooterOptionsBuilder countRows(Boolean countRows) {
-    this.internal.countRows = countRows;
+        this.internal.countRows = countRows;
         return this;
     }
     public TableFooterOptions build() {

@@ -10,12 +10,12 @@ public class NodesQueryBuilder implements com.grafana.foundation.cog.Builder<Nod
         this.internal = new NodesQuery();
     }
     public NodesQueryBuilder type(NodesQueryType type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public NodesQueryBuilder count(Long count) {
-    this.internal.count = count;
+        this.internal.count = count;
         return this;
     }
     public NodesQuery build() {

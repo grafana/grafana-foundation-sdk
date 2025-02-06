@@ -10,12 +10,12 @@ public class RoleBindingSubjectBuilder implements com.grafana.foundation.cog.Bui
         this.internal = new RoleBindingSubject();
     }
     public RoleBindingSubjectBuilder kind(RoleBindingSubjectKind kind) {
-    this.internal.kind = kind;
+        this.internal.kind = kind;
         return this;
     }
     
     public RoleBindingSubjectBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     public RoleBindingSubject build() {

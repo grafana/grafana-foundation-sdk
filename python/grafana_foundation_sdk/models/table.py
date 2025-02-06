@@ -53,7 +53,7 @@ class Options:
         if "showTypeIcons" in data:
             args["show_type_icons"] = data["showTypeIcons"]
         if "sortBy" in data:
-            args["sort_by"] = data["sortBy"]
+            args["sort_by"] = [common.TableSortByFieldState.from_json(item) for item in data["sortBy"]]
         if "footer" in data:
             args["footer"] = common.TableFooterOptions.from_json(data["footer"])
         if "cellHeight" in data:

@@ -38,10 +38,8 @@ id(string $id)
 
 ### <span class="badge object-method"></span> type
 
-@param string|\Grafana\Foundation\Elasticsearch\PipelineMetricAggregationType $type
-
 ```php
-type($type)
+type(\Grafana\Foundation\Elasticsearch\MetricAggregationType $type)
 ```
 
 ## See also
