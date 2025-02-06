@@ -31,7 +31,7 @@
           },
           "subscription": {
             "type": "string",
-            "description": "Azure subscription containing the resource(s) to be queried."
+            "description": "Azure subscription containing the resource(s) to be queried.\nAlso used for template variable queries"
           },
           "subscriptions": {
             "type": "array",
@@ -62,16 +62,23 @@
           },
           "resourceGroup": {
             "type": "string",
-            "description": "Template variables params. These exist for backwards compatiblity with legacy template variables."
+            "description": "Resource group used in template variable queries"
           },
           "namespace": {
-            "type": "string"
+            "type": "string",
+            "description": "Namespace used in template variable queries"
           },
           "resource": {
-            "type": "string"
+            "type": "string",
+            "description": "Resource used in template variable queries"
           },
           "region": {
-            "type": "string"
+            "type": "string",
+            "description": "Region used in template variable queries"
+          },
+          "customNamespace": {
+            "type": "string",
+            "description": "Custom namespace used in template variable queries"
           },
           "datasource": {
             "$ref": "#/components/schemas/DataSourceRef",
@@ -82,24 +89,6 @@
             "description": "Used only for exemplar queries from Prometheus"
           }
         }
-      },
-      "AzureQueryType": {
-        "enum": [
-          "Azure Monitor",
-          "Azure Log Analytics",
-          "Azure Resource Graph",
-          "Azure Traces",
-          "Azure Subscriptions",
-          "Azure Resource Groups",
-          "Azure Namespaces",
-          "Azure Resource Names",
-          "Azure Metric Names",
-          "Azure Workspaces",
-          "Azure Regions",
-          "Grafana Template Variable Function",
-          "traceql"
-        ],
-        "description": "Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated"
       },
       "AzureMetricQuery": {
         "type": "object",
@@ -188,6 +177,52 @@
           }
         }
       },
+      "AzureMonitorResource": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "subscription": {
+            "type": "string"
+          },
+          "resourceGroup": {
+            "type": "string"
+          },
+          "resourceName": {
+            "type": "string"
+          },
+          "metricNamespace": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          }
+        }
+      },
+      "AzureMetricDimension": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "description": "Name of Dimension to be filtered on."
+          },
+          "operator": {
+            "type": "string",
+            "description": "String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators."
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Values to match with the filter."
+          },
+          "filter": {
+            "type": "string",
+            "description": "@deprecated filter is deprecated in favour of filters to support multiselect."
+          }
+        }
+      },
       "AzureLogsQuery": {
         "type": "object",
         "additionalProperties": false,
@@ -233,6 +268,28 @@
           }
         },
         "description": "Azure Monitor Logs sub-query properties"
+      },
+      "ResultFormat": {
+        "enum": [
+          "table",
+          "time_series",
+          "trace",
+          "logs"
+        ]
+      },
+      "AzureResourceGraphQuery": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Azure Resource Graph KQL query to be executed."
+          },
+          "resultFormat": {
+            "type": "string",
+            "description": "Specifies the format results should be returned as. Defaults to table."
+          }
+        }
       },
       "AzureTracesQuery": {
         "type": "object",
@@ -300,111 +357,39 @@
           }
         }
       },
-      "ResultFormat": {
-        "enum": [
-          "table",
-          "time_series",
-          "trace",
-          "logs"
+      "GrafanaTemplateVariableQuery": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AppInsightsMetricNameQuery"
+          },
+          {
+            "$ref": "#/components/schemas/AppInsightsGroupByQuery"
+          },
+          {
+            "$ref": "#/components/schemas/SubscriptionsQuery"
+          },
+          {
+            "$ref": "#/components/schemas/ResourceGroupsQuery"
+          },
+          {
+            "$ref": "#/components/schemas/ResourceNamesQuery"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNamespaceQuery"
+          },
+          {
+            "$ref": "#/components/schemas/MetricDefinitionsQuery"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNamesQuery"
+          },
+          {
+            "$ref": "#/components/schemas/WorkspacesQuery"
+          },
+          {
+            "$ref": "#/components/schemas/UnknownQuery"
+          }
         ]
-      },
-      "AzureResourceGraphQuery": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "query": {
-            "type": "string",
-            "description": "Azure Resource Graph KQL query to be executed."
-          },
-          "resultFormat": {
-            "type": "string",
-            "description": "Specifies the format results should be returned as. Defaults to table."
-          }
-        }
-      },
-      "AzureMonitorResource": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "subscription": {
-            "type": "string"
-          },
-          "resourceGroup": {
-            "type": "string"
-          },
-          "resourceName": {
-            "type": "string"
-          },
-          "metricNamespace": {
-            "type": "string"
-          },
-          "region": {
-            "type": "string"
-          }
-        }
-      },
-      "AzureMetricDimension": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "dimension": {
-            "type": "string",
-            "description": "Name of Dimension to be filtered on."
-          },
-          "operator": {
-            "type": "string",
-            "description": "String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators."
-          },
-          "filters": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Values to match with the filter."
-          },
-          "filter": {
-            "type": "string",
-            "description": "@deprecated filter is deprecated in favour of filters to support multiselect."
-          }
-        }
-      },
-      "GrafanaTemplateVariableQueryType": {
-        "enum": [
-          "AppInsightsMetricNameQuery",
-          "AppInsightsGroupByQuery",
-          "SubscriptionsQuery",
-          "ResourceGroupsQuery",
-          "ResourceNamesQuery",
-          "MetricNamespaceQuery",
-          "MetricNamesQuery",
-          "WorkspacesQuery",
-          "UnknownQuery"
-        ]
-      },
-      "BaseGrafanaTemplateVariableQuery": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "rawQuery": {
-            "type": "string"
-          }
-        }
-      },
-      "UnknownQuery": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "kind"
-        ],
-        "properties": {
-          "rawQuery": {
-            "type": "string"
-          },
-          "kind": {
-            "type": "string",
-            "const": "UnknownQuery"
-          }
-        }
       },
       "AppInsightsMetricNameQuery": {
         "type": "object",
@@ -619,39 +604,63 @@
           }
         }
       },
-      "GrafanaTemplateVariableQuery": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/AppInsightsMetricNameQuery"
+      "UnknownQuery": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "rawQuery": {
+            "type": "string"
           },
-          {
-            "$ref": "#/components/schemas/AppInsightsGroupByQuery"
-          },
-          {
-            "$ref": "#/components/schemas/SubscriptionsQuery"
-          },
-          {
-            "$ref": "#/components/schemas/ResourceGroupsQuery"
-          },
-          {
-            "$ref": "#/components/schemas/ResourceNamesQuery"
-          },
-          {
-            "$ref": "#/components/schemas/MetricNamespaceQuery"
-          },
-          {
-            "$ref": "#/components/schemas/MetricDefinitionsQuery"
-          },
-          {
-            "$ref": "#/components/schemas/MetricNamesQuery"
-          },
-          {
-            "$ref": "#/components/schemas/WorkspacesQuery"
-          },
-          {
-            "$ref": "#/components/schemas/UnknownQuery"
+          "kind": {
+            "type": "string",
+            "const": "UnknownQuery"
           }
+        }
+      },
+      "AzureQueryType": {
+        "enum": [
+          "Azure Monitor",
+          "Azure Log Analytics",
+          "Azure Resource Graph",
+          "Azure Traces",
+          "Azure Subscriptions",
+          "Azure Resource Groups",
+          "Azure Namespaces",
+          "Azure Resource Names",
+          "Azure Metric Names",
+          "Azure Workspaces",
+          "Azure Regions",
+          "Grafana Template Variable Function",
+          "traceql",
+          "Azure Custom Namespaces",
+          "Azure Custom Metric Names"
+        ],
+        "description": "Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated"
+      },
+      "GrafanaTemplateVariableQueryType": {
+        "enum": [
+          "AppInsightsMetricNameQuery",
+          "AppInsightsGroupByQuery",
+          "SubscriptionsQuery",
+          "ResourceGroupsQuery",
+          "ResourceNamesQuery",
+          "MetricNamespaceQuery",
+          "MetricNamesQuery",
+          "WorkspacesQuery",
+          "UnknownQuery"
         ]
+      },
+      "BaseGrafanaTemplateVariableQuery": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rawQuery": {
+            "type": "string"
+          }
+        }
       },
       "DataSourceRef": {
         "type": "object",

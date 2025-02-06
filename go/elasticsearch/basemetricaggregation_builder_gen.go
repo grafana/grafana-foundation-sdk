@@ -31,13 +31,8 @@ func (builder *BaseMetricAggregationBuilder) Build() (BaseMetricAggregation, err
 	return *builder.internal, nil
 }
 
-func (builder *BaseMetricAggregationBuilder) Type(typeArg cog.Builder[MetricAggregationType]) *BaseMetricAggregationBuilder {
-	typeArgResource, err := typeArg.Build()
-	if err != nil {
-		builder.errors["type"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Type = typeArgResource
+func (builder *BaseMetricAggregationBuilder) Type(typeArg MetricAggregationType) *BaseMetricAggregationBuilder {
+	builder.internal.Type = typeArg
 
 	return builder
 }

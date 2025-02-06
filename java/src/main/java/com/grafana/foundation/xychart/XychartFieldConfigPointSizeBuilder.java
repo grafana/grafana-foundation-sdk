@@ -13,7 +13,7 @@ public class XychartFieldConfigPointSizeBuilder implements com.grafana.foundatio
         if (!(fixed >= 0)) {
             throw new IllegalArgumentException("fixed must be >= 0");
         }
-    this.internal.fixed = fixed;
+        this.internal.fixed = fixed;
         return this;
     }
     
@@ -21,7 +21,7 @@ public class XychartFieldConfigPointSizeBuilder implements com.grafana.foundatio
         if (!(min >= 0)) {
             throw new IllegalArgumentException("min must be >= 0");
         }
-    this.internal.min = min;
+        this.internal.min = min;
         return this;
     }
     
@@ -29,7 +29,7 @@ public class XychartFieldConfigPointSizeBuilder implements com.grafana.foundatio
         if (!(max >= 0)) {
             throw new IllegalArgumentException("max must be >= 0");
         }
-    this.internal.max = max;
+        this.internal.max = max;
         return this;
     }
     public XychartFieldConfigPointSize build() {

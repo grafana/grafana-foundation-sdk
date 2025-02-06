@@ -28,6 +28,7 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
 
     /**
      * Azure subscription containing the resource(s) to be queried.
+     * Also used for template variable queries
      */
     public ?string $subscription;
 
@@ -64,15 +65,29 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
     public $grafanaTemplateVariableFn;
 
     /**
-     * Template variables params. These exist for backwards compatiblity with legacy template variables.
+     * Resource group used in template variable queries
      */
     public ?string $resourceGroup;
 
+    /**
+     * Namespace used in template variable queries
+     */
     public ?string $namespace;
 
+    /**
+     * Resource used in template variable queries
+     */
     public ?string $resource;
 
+    /**
+     * Region used in template variable queries
+     */
     public ?string $region;
+
+    /**
+     * Custom namespace used in template variable queries
+     */
+    public ?string $customNamespace;
 
     /**
      * For mixed data sources the selected datasource is on the query level.

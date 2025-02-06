@@ -39,7 +39,7 @@ func (builder *MetricAggregationWithInlineScriptBuilder) Settings(settings cog.B
 ### <span class="badge object-method"></span> Type
 
 ```go
-func (builder *MetricAggregationWithInlineScriptBuilder) Type(typeArg cog.Builder[elasticsearch.MetricAggregationType]) *MetricAggregationWithInlineScriptBuilder
+func (builder *MetricAggregationWithInlineScriptBuilder) Type(typeArg elasticsearch.MetricAggregationType) *MetricAggregationWithInlineScriptBuilder
 ```
 
 ## See also

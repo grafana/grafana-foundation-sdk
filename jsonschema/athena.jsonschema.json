@@ -50,9 +50,12 @@
       },
       "description": "Manually converted from https://github.com/grafana/athena-datasource/blob/57ad707147b7a11e9a521a836d6bf9799877e0e3/src/types.ts"
     },
-    "defaultKey": {
-      "type": "string",
-      "const": "__default"
+    "FormatOptions": {
+      "enum": [
+        0,
+        1,
+        2
+      ]
     },
     "ConnectionArgs": {
       "type": "object",
@@ -80,12 +83,9 @@
         }
       }
     },
-    "FormatOptions": {
-      "enum": [
-        0,
-        1,
-        2
-      ]
+    "defaultKey": {
+      "type": "string",
+      "const": "__default"
     },
     "DataSourceRef": {
       "type": "object",

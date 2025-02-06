@@ -76,7 +76,7 @@ class TableFieldOptions implements \JsonSerializable
             displayMode: isset($data["displayMode"]) ? (function($input) { return \Grafana\Foundation\Common\TableCellDisplayMode::fromValue($input); })($data["displayMode"]) : null,
             cellOptions: isset($data["cellOptions"]) ? (function($input) {
         \assert(is_array($input), 'expected disjunction value to be an array');
-    
+        /** @var array<string, mixed> $input */
         switch ($input["type"]) {
         case "actions":
             return TableActionsCellOptions::fromArray($input);

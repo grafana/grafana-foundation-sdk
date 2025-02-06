@@ -10,7 +10,7 @@ public class XychartXYSeriesConfigNameBuilder implements com.grafana.foundation.
         this.internal = new XychartXYSeriesConfigName();
     }
     public XychartXYSeriesConfigNameBuilder fixed(String fixed) {
-    this.internal.fixed = fixed;
+        this.internal.fixed = fixed;
         return this;
     }
     public XychartXYSeriesConfigName build() {

@@ -55,6 +55,20 @@ class TimePickerBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * Quick ranges for time picker.
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\TimeOption>> $quickRanges
+     */
+    public function quickRanges(array $quickRanges): static
+    {
+            $quickRangesResources = [];
+            foreach ($quickRanges as $r1) {
+                    $quickRangesResources[] = $r1->build();
+            }
+        $this->internal->quickRanges = $quickRangesResources;
+    
+        return $this;
+    }
+    /**
      * Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
      */
     public function nowDelay(string $nowDelay): static

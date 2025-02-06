@@ -24,6 +24,7 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
 
     /**
      * Azure subscription containing the resource(s) to be queried.
+     * Also used for template variable queries
      */
     public ?string $subscription;
 
@@ -60,15 +61,29 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
     public $grafanaTemplateVariableFn;
 
     /**
-     * Template variables params. These exist for backwards compatiblity with legacy template variables.
+     * Resource group used in template variable queries
      */
     public ?string $resourceGroup;
 
+    /**
+     * Namespace used in template variable queries
+     */
     public ?string $namespace;
 
+    /**
+     * Resource used in template variable queries
+     */
     public ?string $resource;
 
+    /**
+     * Region used in template variable queries
+     */
     public ?string $region;
+
+    /**
+     * Custom namespace used in template variable queries
+     */
+    public ?string $customNamespace;
 
     /**
      * For mixed data sources the selected datasource is on the query level.
@@ -98,10 +113,11 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
      * @param string|null $namespace
      * @param string|null $resource
      * @param string|null $region
+     * @param string|null $customNamespace
      * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param string|null $query
      */
-    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $subscription = null, ?array $subscriptions = null, ?\Grafana\Foundation\Azuremonitor\AzureMetricQuery $azureMonitor = null, ?\Grafana\Foundation\Azuremonitor\AzureLogsQuery $azureLogAnalytics = null, ?\Grafana\Foundation\Azuremonitor\AzureResourceGraphQuery $azureResourceGraph = null, ?\Grafana\Foundation\Azuremonitor\AzureTracesQuery $azureTraces = null,  $grafanaTemplateVariableFn = null, ?string $resourceGroup = null, ?string $namespace = null, ?string $resource = null, ?string $region = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $query = null)
+    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $subscription = null, ?array $subscriptions = null, ?\Grafana\Foundation\Azuremonitor\AzureMetricQuery $azureMonitor = null, ?\Grafana\Foundation\Azuremonitor\AzureLogsQuery $azureLogAnalytics = null, ?\Grafana\Foundation\Azuremonitor\AzureResourceGraphQuery $azureResourceGraph = null, ?\Grafana\Foundation\Azuremonitor\AzureTracesQuery $azureTraces = null,  $grafanaTemplateVariableFn = null, ?string $resourceGroup = null, ?string $namespace = null, ?string $resource = null, ?string $region = null, ?string $customNamespace = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $query = null)
     {
         $this->refId = $refId ?: "";
         $this->hide = $hide;
@@ -117,6 +133,7 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
         $this->namespace = $namespace;
         $this->resource = $resource;
         $this->region = $region;
+        $this->customNamespace = $customNamespace;
         $this->datasource = $datasource;
         $this->query = $query;
     }
@@ -126,7 +143,7 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{refId?: string, hide?: bool, queryType?: string, subscription?: string, subscriptions?: array<string>, azureMonitor?: mixed, azureLogAnalytics?: mixed, azureResourceGraph?: mixed, azureTraces?: mixed, grafanaTemplateVariableFn?: mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed, resourceGroup?: string, namespace?: string, resource?: string, region?: string, datasource?: mixed, query?: string} $inputData */
+        /** @var array{refId?: string, hide?: bool, queryType?: string, subscription?: string, subscriptions?: array<string>, azureMonitor?: mixed, azureLogAnalytics?: mixed, azureResourceGraph?: mixed, azureTraces?: mixed, grafanaTemplateVariableFn?: mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed, resourceGroup?: string, namespace?: string, resource?: string, region?: string, customNamespace?: string, datasource?: mixed, query?: string} $inputData */
         $data = $inputData;
         return new self(
             refId: $data["refId"] ?? null,
@@ -156,7 +173,7 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
     })($data["azureTraces"]) : null,
             grafanaTemplateVariableFn: isset($data["grafanaTemplateVariableFn"]) ? (function($input) {
         \assert(is_array($input), 'expected disjunction value to be an array');
-    
+        /** @var array<string, mixed> $input */
         switch ($input["kind"]) {
         case "AppInsightsGroupByQuery":
             return AppInsightsGroupByQuery::fromArray($input);
@@ -186,6 +203,7 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
             namespace: $data["namespace"] ?? null,
             resource: $data["resource"] ?? null,
             region: $data["region"] ?? null,
+            customNamespace: $data["customNamespace"] ?? null,
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
@@ -239,6 +257,9 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
         }
         if (isset($this->region)) {
             $data["region"] = $this->region;
+        }
+        if (isset($this->customNamespace)) {
+            $data["customNamespace"] = $this->customNamespace;
         }
         if (isset($this->datasource)) {
             $data["datasource"] = $this->datasource;

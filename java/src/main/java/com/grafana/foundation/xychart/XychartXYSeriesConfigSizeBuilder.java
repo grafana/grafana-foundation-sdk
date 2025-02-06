@@ -10,7 +10,7 @@ public class XychartXYSeriesConfigSizeBuilder implements com.grafana.foundation.
         this.internal = new XychartXYSeriesConfigSize();
     }
     public XychartXYSeriesConfigSizeBuilder matcher(com.grafana.foundation.cog.Builder<MatcherConfig> matcher) {
-    this.internal.matcher = matcher.build();
+        this.internal.matcher = matcher.build();
         return this;
     }
     public XychartXYSeriesConfigSize build() {

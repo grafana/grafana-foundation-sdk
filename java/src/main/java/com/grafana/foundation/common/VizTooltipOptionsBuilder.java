@@ -10,27 +10,27 @@ public class VizTooltipOptionsBuilder implements com.grafana.foundation.cog.Buil
         this.internal = new VizTooltipOptions();
     }
     public VizTooltipOptionsBuilder mode(TooltipDisplayMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     
     public VizTooltipOptionsBuilder sort(SortOrder sort) {
-    this.internal.sort = sort;
+        this.internal.sort = sort;
         return this;
     }
     
     public VizTooltipOptionsBuilder maxWidth(Double maxWidth) {
-    this.internal.maxWidth = maxWidth;
+        this.internal.maxWidth = maxWidth;
         return this;
     }
     
     public VizTooltipOptionsBuilder maxHeight(Double maxHeight) {
-    this.internal.maxHeight = maxHeight;
+        this.internal.maxHeight = maxHeight;
         return this;
     }
     
     public VizTooltipOptionsBuilder hideZeros(Boolean hideZeros) {
-    this.internal.hideZeros = hideZeros;
+        this.internal.hideZeros = hideZeros;
         return this;
     }
     public VizTooltipOptions build() {

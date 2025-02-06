@@ -370,6 +370,77 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Adds override rules for a specific field, referred to by its name.
+    overrideByName(name: string,properties: dashboard.DynamicConfigValue[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.overrides) {
+            this.internal.fieldConfig.overrides = [];
+        }
+        this.internal.fieldConfig.overrides.push({
+        matcher: {
+        id: "byName",
+        options: name,
+    },
+        properties: properties,
+    });
+        return this;
+    }
+
+    // Adds override rules for the fields whose name match the given regexp.
+    overrideByRegexp(regexp: string,properties: dashboard.DynamicConfigValue[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.overrides) {
+            this.internal.fieldConfig.overrides = [];
+        }
+        this.internal.fieldConfig.overrides.push({
+        matcher: {
+        id: "byRegexp",
+        options: regexp,
+    },
+        properties: properties,
+    });
+        return this;
+    }
+
+    // Adds override rules for all the fields of the given type.
+    overrideByFieldType(fieldType: string,properties: dashboard.DynamicConfigValue[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.overrides) {
+            this.internal.fieldConfig.overrides = [];
+        }
+        this.internal.fieldConfig.overrides.push({
+        matcher: {
+        id: "byType",
+        options: fieldType,
+    },
+        properties: properties,
+    });
+        return this;
+    }
+
+    overrideByQuery(queryRefId: string,properties: dashboard.DynamicConfigValue[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.overrides) {
+            this.internal.fieldConfig.overrides = [];
+        }
+        this.internal.fieldConfig.overrides.push({
+        matcher: {
+        id: "byFrameRefID",
+        options: queryRefId,
+    },
+        properties: properties,
+    });
+        return this;
+    }
+
     // Set the height of the rows
     rowHeight(rowHeight: number): this {
         if (!this.internal.options) {
@@ -391,6 +462,18 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
             this.internal.options = statushistory.defaultOptions();
         }
         this.internal.options.showValue = showValue;
+        return this;
+    }
+
+    // Controls the column width
+    colWidth(colWidth: number): this {
+        if (!this.internal.options) {
+            this.internal.options = statushistory.defaultOptions();
+        }
+        if (!(colWidth <= 1)) {
+            throw new Error("colWidth must be <= 1");
+        }
+        this.internal.options.colWidth = colWidth;
         return this;
     }
 
@@ -420,15 +503,15 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // Controls the column width
-    colWidth(colWidth: number): this {
+    // Enables pagination when > 0
+    perPage(perPage: number): this {
         if (!this.internal.options) {
             this.internal.options = statushistory.defaultOptions();
         }
-        if (!(colWidth <= 1)) {
-            throw new Error("colWidth must be <= 1");
+        if (!(perPage >= 1)) {
+            throw new Error("perPage must be >= 1");
         }
-        this.internal.options.colWidth = colWidth;
+        this.internal.options.perPage = perPage;
         return this;
     }
 

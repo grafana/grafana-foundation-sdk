@@ -290,6 +290,44 @@ Alternative to empty string
 noValue(string $noValue)
 ```
 
+### <span class="badge object-method"></span> overrideByFieldType
+
+Adds override rules for all the fields of the given type.
+
+@param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+
+```php
+overrideByFieldType(string $fieldType, array $properties)
+```
+
+### <span class="badge object-method"></span> overrideByName
+
+Adds override rules for a specific field, referred to by its name.
+
+@param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+
+```php
+overrideByName(string $name, array $properties)
+```
+
+### <span class="badge object-method"></span> overrideByQuery
+
+@param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+
+```php
+overrideByQuery(string $queryRefId, array $properties)
+```
+
+### <span class="badge object-method"></span> overrideByRegexp
+
+Adds override rules for the fields whose name match the given regexp.
+
+@param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+
+```php
+overrideByRegexp(string $regexp, array $properties)
+```
+
 ### <span class="badge object-method"></span> overrides
 
 Overrides are the options applied to specific fields overriding the defaults.
@@ -298,6 +336,14 @@ Overrides are the options applied to specific fields overriding the defaults.
 
 ```php
 overrides(array $overrides)
+```
+
+### <span class="badge object-method"></span> perPage
+
+Enables pagination when > 0
+
+```php
+perPage(float $perPage)
 ```
 
 ### <span class="badge object-method"></span> queryCachingTTL

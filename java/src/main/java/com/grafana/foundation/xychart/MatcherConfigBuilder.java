@@ -10,12 +10,12 @@ public class MatcherConfigBuilder implements com.grafana.foundation.cog.Builder<
         this.internal = new MatcherConfig();
     }
     public MatcherConfigBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public MatcherConfigBuilder options(Object options) {
-    this.internal.options = options;
+        this.internal.options = options;
         return this;
     }
     public MatcherConfig build() {

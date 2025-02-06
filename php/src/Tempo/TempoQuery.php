@@ -95,6 +95,11 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public ?string $step;
 
     /**
+     * For metric queries, how many exemplars to request, 0 means no exemplars
+     */
+    public ?int $exemplars;
+
+    /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
@@ -103,9 +108,9 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
     /**
-     * For metric queries, how many exemplars to request, 0 means no exemplars
+     * For metric queries, whether to run instant or range queries
      */
-    public ?int $exemplars;
+    public ?\Grafana\Foundation\Tempo\MetricsQueryType $metricsQueryType;
 
     /**
      * @param string|null $refId
@@ -125,10 +130,11 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param array<\Grafana\Foundation\Tempo\TraceqlFilter>|null $groupBy
      * @param \Grafana\Foundation\Tempo\SearchTableType|null $tableType
      * @param string|null $step
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param int|null $exemplars
+     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Tempo\MetricsQueryType|null $metricsQueryType
      */
-    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $query = null, ?string $search = null, ?string $serviceName = null, ?string $spanName = null, ?string $minDuration = null, ?string $maxDuration = null,  $serviceMapQuery = null, ?bool $serviceMapIncludeNamespace = null, ?int $limit = null, ?int $spss = null, ?array $filters = null, ?array $groupBy = null, ?\Grafana\Foundation\Tempo\SearchTableType $tableType = null, ?string $step = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?int $exemplars = null)
+    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $query = null, ?string $search = null, ?string $serviceName = null, ?string $spanName = null, ?string $minDuration = null, ?string $maxDuration = null,  $serviceMapQuery = null, ?bool $serviceMapIncludeNamespace = null, ?int $limit = null, ?int $spss = null, ?array $filters = null, ?array $groupBy = null, ?\Grafana\Foundation\Tempo\SearchTableType $tableType = null, ?string $step = null, ?int $exemplars = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?\Grafana\Foundation\Tempo\MetricsQueryType $metricsQueryType = null)
     {
         $this->refId = $refId ?: "";
         $this->hide = $hide;
@@ -147,8 +153,9 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $this->groupBy = $groupBy;
         $this->tableType = $tableType;
         $this->step = $step;
-        $this->datasource = $datasource;
         $this->exemplars = $exemplars;
+        $this->datasource = $datasource;
+        $this->metricsQueryType = $metricsQueryType;
     }
 
     /**
@@ -156,7 +163,7 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{refId?: string, hide?: bool, queryType?: string, query?: string, search?: string, serviceName?: string, spanName?: string, minDuration?: string, maxDuration?: string, serviceMapQuery?: string|array<string>, serviceMapIncludeNamespace?: bool, limit?: int, spss?: int, filters?: array<mixed>, groupBy?: array<mixed>, tableType?: string, step?: string, datasource?: mixed, exemplars?: int} $inputData */
+        /** @var array{refId?: string, hide?: bool, queryType?: string, query?: string, search?: string, serviceName?: string, spanName?: string, minDuration?: string, maxDuration?: string, serviceMapQuery?: string|array<string>, serviceMapIncludeNamespace?: bool, limit?: int, spss?: int, filters?: array<mixed>, groupBy?: array<mixed>, tableType?: string, step?: string, exemplars?: int, datasource?: mixed, metricsQueryType?: string} $inputData */
         $data = $inputData;
         return new self(
             refId: $data["refId"] ?? null,
@@ -191,12 +198,13 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     }), $data["groupBy"] ?? [])),
             tableType: isset($data["tableType"]) ? (function($input) { return \Grafana\Foundation\Tempo\SearchTableType::fromValue($input); })($data["tableType"]) : null,
             step: $data["step"] ?? null,
+            exemplars: $data["exemplars"] ?? null,
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
-            exemplars: $data["exemplars"] ?? null,
+            metricsQueryType: isset($data["metricsQueryType"]) ? (function($input) { return \Grafana\Foundation\Tempo\MetricsQueryType::fromValue($input); })($data["metricsQueryType"]) : null,
         );
     }
 
@@ -254,11 +262,14 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         if (isset($this->step)) {
             $data["step"] = $this->step;
         }
+        if (isset($this->exemplars)) {
+            $data["exemplars"] = $this->exemplars;
+        }
         if (isset($this->datasource)) {
             $data["datasource"] = $this->datasource;
         }
-        if (isset($this->exemplars)) {
-            $data["exemplars"] = $this->exemplars;
+        if (isset($this->metricsQueryType)) {
+            $data["metricsQueryType"] = $this->metricsQueryType;
         }
         return $data;
     }

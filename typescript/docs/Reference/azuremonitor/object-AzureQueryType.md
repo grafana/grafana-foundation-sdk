@@ -22,6 +22,8 @@ export enum AzureQueryType {
 	LocationsQuery = "Azure Regions",
 	GrafanaTemplateVariableFn = "Grafana Template Variable Function",
 	TraceExemplar = "traceql",
+	CustomNamespacesQuery = "Azure Custom Namespaces",
+	CustomMetricNamesQuery = "Azure Custom Metric Names",
 }
 
 ```

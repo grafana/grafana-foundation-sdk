@@ -22,7 +22,7 @@ type ExprTypeClassicConditionsResultAssertions struct {
     //  - `"numeric-multi"` 
     //  - `"numeric-long"` 
     //  - `"log-lines"` 
-    Type *expr.TypeClassicConditionsType `json:"type,omitempty"`
+    Type *expr.ExprTypeClassicConditionsResultAssertionsType `json:"type,omitempty"`
     // TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
     // contract documentation https://grafana.github.io/dataplane/contract/.
     TypeVersion []int64 `json:"typeVersion"`

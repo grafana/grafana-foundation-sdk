@@ -59,6 +59,23 @@ func TimePickerConverter(input TimePickerConfig) string {
 		buffer.Reset()
 
 	}
+	if input.QuickRanges != nil && len(input.QuickRanges) >= 1 {
+
+		buffer.WriteString(`QuickRanges(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.QuickRanges {
+			tmpquick_rangesarg1 := TimeOptionConverter(arg1)
+			tmparg0 = append(tmparg0, tmpquick_rangesarg1)
+		}
+		arg0 := "[]cog.Builder[dashboard.TimeOption]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.NowDelay != nil && *input.NowDelay != "" {
 
 		buffer.WriteString(`NowDelay(`)

@@ -2,7 +2,6 @@
 
 package com.grafana.foundation.timeseries;
 
-import com.grafana.foundation.common.GraphFieldConfig;
 
-public class FieldConfig extends GraphFieldConfig {
+public class FieldConfig extends com.grafana.foundation.common.GraphFieldConfig {
 }

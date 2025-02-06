@@ -12,16 +12,6 @@ export const defaultRoleBinding = (): RoleBinding => ({
 	subject: defaultRoleBindingSubject(),
 });
 
-export interface CustomRoleRef {
-	kind: "Role";
-	name: string;
-}
-
-export const defaultCustomRoleRef = (): CustomRoleRef => ({
-	kind: "Role",
-	name: "",
-});
-
 export interface BuiltinRoleRef {
 	kind: "BuiltinRole";
 	name: "viewer" | "editor" | "admin";
@@ -30,6 +20,16 @@ export interface BuiltinRoleRef {
 export const defaultBuiltinRoleRef = (): BuiltinRoleRef => ({
 	kind: "BuiltinRole",
 	name: "viewer",
+});
+
+export interface CustomRoleRef {
+	kind: "Role";
+	name: string;
+}
+
+export const defaultCustomRoleRef = (): CustomRoleRef => ({
+	kind: "Role",
+	name: "",
 });
 
 export interface RoleBindingSubject {

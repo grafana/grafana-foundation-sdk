@@ -138,6 +138,24 @@ final class AzureQueryType implements \JsonSerializable, \Stringable {
         return self::$instances["TraceExemplar"];
     }
 
+    public static function customNamespacesQuery(): self
+    {
+        if (!isset(self::$instances["CustomNamespacesQuery"])) {
+            self::$instances["CustomNamespacesQuery"] = new self("Azure Custom Namespaces");
+        }
+
+        return self::$instances["CustomNamespacesQuery"];
+    }
+
+    public static function customMetricNamesQuery(): self
+    {
+        if (!isset(self::$instances["CustomMetricNamesQuery"])) {
+            self::$instances["CustomMetricNamesQuery"] = new self("Azure Custom Metric Names");
+        }
+
+        return self::$instances["CustomMetricNamesQuery"];
+    }
+
     public static function fromValue(string $value): self
     {
         if ($value === "Azure Monitor") {
@@ -190,6 +208,14 @@ final class AzureQueryType implements \JsonSerializable, \Stringable {
 
         if ($value === "traceql") {
             return self::traceExemplar();
+        }
+
+        if ($value === "Azure Custom Namespaces") {
+            return self::customNamespacesQuery();
+        }
+
+        if ($value === "Azure Custom Metric Names") {
+            return self::customMetricNamesQuery();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum AzureQueryType");

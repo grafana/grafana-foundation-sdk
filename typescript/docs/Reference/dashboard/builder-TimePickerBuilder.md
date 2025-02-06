@@ -34,6 +34,14 @@ Override the now time by entering a time delay. Use this option to accommodate k
 nowDelay(nowDelay: string)
 ```
 
+### <span class="badge object-method"></span> quickRanges
+
+Quick ranges for time picker.
+
+```typescript
+quickRanges(quickRanges: cog.Builder<dashboard.TimeOption>[])
+```
+
 ### <span class="badge object-method"></span> refreshIntervals
 
 Interval options available in the refresh picker dropdown.

@@ -268,7 +268,7 @@ class Options:
         if "tooltip" in data:
             args["tooltip"] = common.VizTooltipOptions.from_json(data["tooltip"])
         if "series" in data:
-            args["series"] = data["series"]        
+            args["series"] = [XYSeriesConfig.from_json(item) for item in data["series"]]        
 
         return cls(**args)
 

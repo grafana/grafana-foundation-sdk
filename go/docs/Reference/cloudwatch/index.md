@@ -100,6 +100,30 @@ NewQueryEditorPropertyExpression creates a new QueryEditorPropertyExpression obj
 func NewQueryEditorPropertyExpression() *QueryEditorPropertyExpression
 ```
 
+### <span class="badge function"></span> NewQueryEditorProperty
+
+NewQueryEditorProperty creates a new QueryEditorProperty object.
+
+```go
+func NewQueryEditorProperty() *QueryEditorProperty
+```
+
+### <span class="badge function"></span> NewQueryEditorArrayExpression
+
+NewQueryEditorArrayExpression creates a new QueryEditorArrayExpression object.
+
+```go
+func NewQueryEditorArrayExpression() *QueryEditorArrayExpression
+```
+
+### <span class="badge function"></span> NewQueryEditorExpression
+
+NewQueryEditorExpression creates a new QueryEditorExpression object.
+
+```go
+func NewQueryEditorExpression() *QueryEditorExpression
+```
+
 ### <span class="badge function"></span> NewQueryEditorGroupByExpression
 
 NewQueryEditorGroupByExpression creates a new QueryEditorGroupByExpression object.
@@ -124,14 +148,6 @@ NewQueryEditorOperator creates a new QueryEditorOperator object.
 func NewQueryEditorOperator() *QueryEditorOperator
 ```
 
-### <span class="badge function"></span> NewQueryEditorOperatorValueType
-
-NewQueryEditorOperatorValueType creates a new QueryEditorOperatorValueType object.
-
-```go
-func NewQueryEditorOperatorValueType() *QueryEditorOperatorValueType
-```
-
 ### <span class="badge function"></span> NewQueryEditorOperatorType
 
 NewQueryEditorOperatorType creates a new QueryEditorOperatorType object.
@@ -140,28 +156,12 @@ NewQueryEditorOperatorType creates a new QueryEditorOperatorType object.
 func NewQueryEditorOperatorType() *QueryEditorOperatorType
 ```
 
-### <span class="badge function"></span> NewQueryEditorProperty
+### <span class="badge function"></span> NewQueryEditorOperatorValueType
 
-NewQueryEditorProperty creates a new QueryEditorProperty object.
-
-```go
-func NewQueryEditorProperty() *QueryEditorProperty
-```
-
-### <span class="badge function"></span> NewQueryEditorArrayExpression
-
-NewQueryEditorArrayExpression creates a new QueryEditorArrayExpression object.
+NewQueryEditorOperatorValueType creates a new QueryEditorOperatorValueType object.
 
 ```go
-func NewQueryEditorArrayExpression() *QueryEditorArrayExpression
-```
-
-### <span class="badge function"></span> NewQueryEditorExpression
-
-NewQueryEditorExpression creates a new QueryEditorExpression object.
-
-```go
-func NewQueryEditorExpression() *QueryEditorExpression
+func NewQueryEditorOperatorValueType() *QueryEditorOperatorValueType
 ```
 
 ### <span class="badge function"></span> NewCloudWatchLogsQuery
@@ -212,6 +212,14 @@ NewQueryEditorPropertyExpressionOrQueryEditorFunctionExpression creates a new Qu
 func NewQueryEditorPropertyExpressionOrQueryEditorFunctionExpression() *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression
 ```
 
+### <span class="badge function"></span> NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
+
+NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression creates a new QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression object.
+
+```go
+func NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression() *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
+```
+
 ### <span class="badge function"></span> NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType
 
 NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType creates a new StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType object.
@@ -226,14 +234,6 @@ NewStringOrBoolOrInt64 creates a new StringOrBoolOrInt64 object.
 
 ```go
 func NewStringOrBoolOrInt64() *StringOrBoolOrInt64
-```
-
-### <span class="badge function"></span> NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
-
-NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression creates a new QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression object.
-
-```go
-func NewQueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression() *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression
 ```
 
 ### <span class="badge function"></span> NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
@@ -302,6 +302,22 @@ QueryEditorPropertyExpressionConverter accepts a `QueryEditorPropertyExpression`
 func QueryEditorPropertyExpressionConverter(input QueryEditorPropertyExpression) string
 ```
 
+### <span class="badge function"></span> QueryEditorPropertyConverter
+
+QueryEditorPropertyConverter accepts a `QueryEditorProperty` object and generates the Go code to build this object using builders.
+
+```go
+func QueryEditorPropertyConverter(input QueryEditorProperty) string
+```
+
+### <span class="badge function"></span> QueryEditorArrayExpressionConverter
+
+QueryEditorArrayExpressionConverter accepts a `QueryEditorArrayExpression` object and generates the Go code to build this object using builders.
+
+```go
+func QueryEditorArrayExpressionConverter(input QueryEditorArrayExpression) string
+```
+
 ### <span class="badge function"></span> QueryEditorGroupByExpressionConverter
 
 QueryEditorGroupByExpressionConverter accepts a `QueryEditorGroupByExpression` object and generates the Go code to build this object using builders.
@@ -324,22 +340,6 @@ QueryEditorOperatorConverter accepts a `QueryEditorOperator` object and generate
 
 ```go
 func QueryEditorOperatorConverter(input QueryEditorOperator) string
-```
-
-### <span class="badge function"></span> QueryEditorPropertyConverter
-
-QueryEditorPropertyConverter accepts a `QueryEditorProperty` object and generates the Go code to build this object using builders.
-
-```go
-func QueryEditorPropertyConverter(input QueryEditorProperty) string
-```
-
-### <span class="badge function"></span> QueryEditorArrayExpressionConverter
-
-QueryEditorArrayExpressionConverter accepts a `QueryEditorArrayExpression` object and generates the Go code to build this object using builders.
-
-```go
-func QueryEditorArrayExpressionConverter(input QueryEditorArrayExpression) string
 ```
 
 ### <span class="badge function"></span> CloudWatchLogsQueryConverter

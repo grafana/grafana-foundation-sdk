@@ -44,15 +44,17 @@ class TempoQuery(cogvariants.Dataquery):
     table_type: typing.Optional['SearchTableType']
     # For metric queries, the step size to use
     step: typing.Optional[str]
+    # For metric queries, how many exemplars to request, 0 means no exemplars
+    exemplars: typing.Optional[int]
     # For mixed data sources the selected datasource is on the query level.
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
-    # For metric queries, how many exemplars to request, 0 means no exemplars
-    exemplars: typing.Optional[int]
+    # For metric queries, whether to run instant or range queries
+    metrics_query_type: typing.Optional['MetricsQueryType']
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, table_type: typing.Optional['SearchTableType'] = None, step: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, exemplars: typing.Optional[int] = None):
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, table_type: typing.Optional['SearchTableType'] = None, step: typing.Optional[str] = None, exemplars: typing.Optional[int] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, metrics_query_type: typing.Optional['MetricsQueryType'] = None):
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -70,8 +72,9 @@ class TempoQuery(cogvariants.Dataquery):
         self.group_by = group_by
         self.table_type = table_type
         self.step = step
-        self.datasource = datasource
         self.exemplars = exemplars
+        self.datasource = datasource
+        self.metrics_query_type = metrics_query_type
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -108,10 +111,12 @@ class TempoQuery(cogvariants.Dataquery):
             payload["tableType"] = self.table_type
         if self.step is not None:
             payload["step"] = self.step
-        if self.datasource is not None:
-            payload["datasource"] = self.datasource
         if self.exemplars is not None:
             payload["exemplars"] = self.exemplars
+        if self.datasource is not None:
+            payload["datasource"] = self.datasource
+        if self.metrics_query_type is not None:
+            payload["metricsQueryType"] = self.metrics_query_type
         return payload
 
     @classmethod
@@ -145,64 +150,21 @@ class TempoQuery(cogvariants.Dataquery):
         if "spss" in data:
             args["spss"] = data["spss"]
         if "filters" in data:
-            args["filters"] = data["filters"]
+            args["filters"] = [TraceqlFilter.from_json(item) for item in data["filters"]]
         if "groupBy" in data:
-            args["group_by"] = data["groupBy"]
+            args["group_by"] = [TraceqlFilter.from_json(item) for item in data["groupBy"]]
         if "tableType" in data:
             args["table_type"] = data["tableType"]
         if "step" in data:
             args["step"] = data["step"]
+        if "exemplars" in data:
+            args["exemplars"] = data["exemplars"]
         if "datasource" in data:
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
-        if "exemplars" in data:
-            args["exemplars"] = data["exemplars"]        
+        if "metricsQueryType" in data:
+            args["metrics_query_type"] = data["metricsQueryType"]        
 
         return cls(**args)
-
-
-class TempoQueryType(enum.StrEnum):
-    TRACEQL = "traceql"
-    TRACEQL_SEARCH = "traceqlSearch"
-    SERVICE_MAP = "serviceMap"
-    UPLOAD = "upload"
-    NATIVE_SEARCH = "nativeSearch"
-    TRACE_ID = "traceId"
-    CLEAR = "clear"
-
-
-class SearchStreamingState(enum.StrEnum):
-    """
-    The state of the TraceQL streaming search query
-    """
-
-    PENDING = "pending"
-    STREAMING = "streaming"
-    DONE = "done"
-    ERROR = "error"
-
-
-class SearchTableType(enum.StrEnum):
-    """
-    The type of the table that is used to display the search results
-    """
-
-    TRACES = "traces"
-    SPANS = "spans"
-    RAW = "raw"
-
-
-class TraceqlSearchScope(enum.StrEnum):
-    """
-    static fields are pre-set in the UI, dynamic fields are added by the user
-    """
-
-    INTRINSIC = "intrinsic"
-    UNSCOPED = "unscoped"
-    EVENT = "event"
-    INSTRUMENTATION = "instrumentation"
-    LINK = "link"
-    RESOURCE = "resource"
-    SPAN = "span"
 
 
 class TraceqlFilter:
@@ -261,6 +223,56 @@ class TraceqlFilter:
             args["scope"] = data["scope"]        
 
         return cls(**args)
+
+
+class TraceqlSearchScope(enum.StrEnum):
+    """
+    static fields are pre-set in the UI, dynamic fields are added by the user
+    """
+
+    INTRINSIC = "intrinsic"
+    UNSCOPED = "unscoped"
+    EVENT = "event"
+    INSTRUMENTATION = "instrumentation"
+    LINK = "link"
+    RESOURCE = "resource"
+    SPAN = "span"
+
+
+class SearchTableType(enum.StrEnum):
+    """
+    The type of the table that is used to display the search results
+    """
+
+    TRACES = "traces"
+    SPANS = "spans"
+    RAW = "raw"
+
+
+class MetricsQueryType(enum.StrEnum):
+    RANGE = "range"
+    INSTANT = "instant"
+
+
+class TempoQueryType(enum.StrEnum):
+    TRACEQL = "traceql"
+    TRACEQL_SEARCH = "traceqlSearch"
+    SERVICE_MAP = "serviceMap"
+    UPLOAD = "upload"
+    NATIVE_SEARCH = "nativeSearch"
+    TRACE_ID = "traceId"
+    CLEAR = "clear"
+
+
+class SearchStreamingState(enum.StrEnum):
+    """
+    The state of the TraceQL streaming search query
+    """
+
+    PENDING = "pending"
+    STREAMING = "streaming"
+    DONE = "done"
+    ERROR = "error"
 
 
 

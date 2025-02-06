@@ -58,6 +58,7 @@ func (builder *AzureMonitorQueryBuilder) QueryType(queryType string) *AzureMonit
 }
 
 // Azure subscription containing the resource(s) to be queried.
+// Also used for template variable queries
 func (builder *AzureMonitorQueryBuilder) Subscription(subscription string) *AzureMonitorQueryBuilder {
 	builder.internal.Subscription = &subscription
 
@@ -126,27 +127,37 @@ func (builder *AzureMonitorQueryBuilder) GrafanaTemplateVariableFn(grafanaTempla
 	return builder
 }
 
-// Template variables params. These exist for backwards compatiblity with legacy template variables.
+// Resource group used in template variable queries
 func (builder *AzureMonitorQueryBuilder) ResourceGroup(resourceGroup string) *AzureMonitorQueryBuilder {
 	builder.internal.ResourceGroup = &resourceGroup
 
 	return builder
 }
 
+// Namespace used in template variable queries
 func (builder *AzureMonitorQueryBuilder) Namespace(namespace string) *AzureMonitorQueryBuilder {
 	builder.internal.Namespace = &namespace
 
 	return builder
 }
 
+// Resource used in template variable queries
 func (builder *AzureMonitorQueryBuilder) Resource(resource string) *AzureMonitorQueryBuilder {
 	builder.internal.Resource = &resource
 
 	return builder
 }
 
+// Region used in template variable queries
 func (builder *AzureMonitorQueryBuilder) Region(region string) *AzureMonitorQueryBuilder {
 	builder.internal.Region = &region
+
+	return builder
+}
+
+// Custom namespace used in template variable queries
+func (builder *AzureMonitorQueryBuilder) CustomNamespace(customNamespace string) *AzureMonitorQueryBuilder {
+	builder.internal.CustomNamespace = &customNamespace
 
 	return builder
 }

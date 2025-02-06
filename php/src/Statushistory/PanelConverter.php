@@ -509,7 +509,7 @@ final class PanelConverter
     
     }
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Statushistory\Options && $input->options->rowHeight !== 0.9) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Statushistory\Options && $input->options->rowHeight !== (float) 0.9) {
     
         
     $buffer = 'rowHeight(';
@@ -527,6 +527,19 @@ final class PanelConverter
         
     $buffer = 'showValue(';
         $arg0 ='\Grafana\Foundation\Common\VisibilityMode::fromValue("'.$input->options->showValue.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Statushistory\Options && $input->options->colWidth !== null && $input->options->colWidth !== (float) 0.9) {
+    
+        
+    $buffer = 'colWidth(';
+        $arg0 =\var_export($input->options->colWidth, true);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -579,11 +592,11 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Statushistory\Options && $input->options->colWidth !== null && $input->options->colWidth !== 0.9) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Statushistory\Options && $input->options->perPage !== null && $input->options->perPage !== (float) 20) {
     
         
-    $buffer = 'colWidth(';
-        $arg0 =\var_export($input->options->colWidth, true);
+    $buffer = 'perPage(';
+        $arg0 =\var_export($input->options->perPage, true);
         $buffer .= $arg0;
         
     $buffer .= ')';

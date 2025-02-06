@@ -17,6 +17,8 @@ export interface TimePickerConfig {
 	refresh_intervals?: string[];
 	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
 	time_options?: string[];
+	// Quick ranges for time picker.
+	quick_ranges?: dashboard.TimeOption[];
 	// Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
 	nowDelay?: string;
 }

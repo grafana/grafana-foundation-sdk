@@ -27,6 +27,7 @@
  * <span class="badge package-variant-panelcfg"></span> [histogram](./histogram/index.md)
  * <span class="badge package-core"></span> [librarypanel](./librarypanel/index.md)
  * <span class="badge package-variant-panelcfg"></span> [logs](./logs/index.md)
+ * <span class="badge package-variant-panelcfg"></span> [logsnew](./logsnew/index.md)
  * <span class="badge package-variant-dataquery"></span> [loki](./loki/index.md)
  * <span class="badge package-variant-panelcfg"></span> [news](./news/index.md)
  * <span class="badge package-variant-panelcfg"></span> [nodegraph](./nodegraph/index.md)

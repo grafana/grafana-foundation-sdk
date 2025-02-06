@@ -10,17 +10,17 @@ public class ElasticsearchMovingFunctionSettingsBuilder implements com.grafana.f
         this.internal = new ElasticsearchMovingFunctionSettings();
     }
     public ElasticsearchMovingFunctionSettingsBuilder window(String window) {
-    this.internal.window = window;
+        this.internal.window = window;
         return this;
     }
     
     public ElasticsearchMovingFunctionSettingsBuilder script(InlineScript script) {
-    this.internal.script = script;
+        this.internal.script = script;
         return this;
     }
     
     public ElasticsearchMovingFunctionSettingsBuilder shift(String shift) {
-    this.internal.shift = shift;
+        this.internal.shift = shift;
         return this;
     }
     public ElasticsearchMovingFunctionSettings build() {

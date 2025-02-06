@@ -14,6 +14,11 @@ class Options implements \JsonSerializable
      */
     public \Grafana\Foundation\Common\VisibilityMode $showValue;
 
+    /**
+     * Controls the column width
+     */
+    public ?float $colWidth;
+
     public \Grafana\Foundation\Common\VizLegendOptions $legend;
 
     public \Grafana\Foundation\Common\VizTooltipOptions $tooltip;
@@ -24,26 +29,28 @@ class Options implements \JsonSerializable
     public ?array $timezone;
 
     /**
-     * Controls the column width
+     * Enables pagination when > 0
      */
-    public ?float $colWidth;
+    public ?float $perPage;
 
     /**
      * @param float|null $rowHeight
      * @param \Grafana\Foundation\Common\VisibilityMode|null $showValue
+     * @param float|null $colWidth
      * @param \Grafana\Foundation\Common\VizLegendOptions|null $legend
      * @param \Grafana\Foundation\Common\VizTooltipOptions|null $tooltip
      * @param array<string>|null $timezone
-     * @param float|null $colWidth
+     * @param float|null $perPage
      */
-    public function __construct(?float $rowHeight = null, ?\Grafana\Foundation\Common\VisibilityMode $showValue = null, ?\Grafana\Foundation\Common\VizLegendOptions $legend = null, ?\Grafana\Foundation\Common\VizTooltipOptions $tooltip = null, ?array $timezone = null, ?float $colWidth = null)
+    public function __construct(?float $rowHeight = null, ?\Grafana\Foundation\Common\VisibilityMode $showValue = null, ?float $colWidth = null, ?\Grafana\Foundation\Common\VizLegendOptions $legend = null, ?\Grafana\Foundation\Common\VizTooltipOptions $tooltip = null, ?array $timezone = null, ?float $perPage = null)
     {
         $this->rowHeight = $rowHeight ?: 0.9;
         $this->showValue = $showValue ?: \Grafana\Foundation\Common\VisibilityMode::auto();
+        $this->colWidth = $colWidth;
         $this->legend = $legend ?: new \Grafana\Foundation\Common\VizLegendOptions();
         $this->tooltip = $tooltip ?: new \Grafana\Foundation\Common\VizTooltipOptions();
         $this->timezone = $timezone;
-        $this->colWidth = $colWidth;
+        $this->perPage = $perPage;
     }
 
     /**
@@ -51,11 +58,12 @@ class Options implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{rowHeight?: float, showValue?: string, legend?: mixed, tooltip?: mixed, timezone?: array<string>, colWidth?: float} $inputData */
+        /** @var array{rowHeight?: float, showValue?: string, colWidth?: float, legend?: mixed, tooltip?: mixed, timezone?: array<string>, perPage?: float} $inputData */
         $data = $inputData;
         return new self(
             rowHeight: $data["rowHeight"] ?? null,
             showValue: isset($data["showValue"]) ? (function($input) { return \Grafana\Foundation\Common\VisibilityMode::fromValue($input); })($data["showValue"]) : null,
+            colWidth: $data["colWidth"] ?? null,
             legend: isset($data["legend"]) ? (function($input) {
     	/** @var array{displayMode?: string, placement?: string, showLegend?: bool, asTable?: bool, isVisible?: bool, sortBy?: string, sortDesc?: bool, width?: float, calcs?: array<string>} */
     $val = $input;
@@ -67,7 +75,7 @@ class Options implements \JsonSerializable
     	return \Grafana\Foundation\Common\VizTooltipOptions::fromArray($val);
     })($data["tooltip"]) : null,
             timezone: $data["timezone"] ?? null,
-            colWidth: $data["colWidth"] ?? null,
+            perPage: $data["perPage"] ?? null,
         );
     }
 
@@ -82,11 +90,14 @@ class Options implements \JsonSerializable
             "legend" => $this->legend,
             "tooltip" => $this->tooltip,
         ];
+        if (isset($this->colWidth)) {
+            $data["colWidth"] = $this->colWidth;
+        }
         if (isset($this->timezone)) {
             $data["timezone"] = $this->timezone;
         }
-        if (isset($this->colWidth)) {
-            $data["colWidth"] = $this->colWidth;
+        if (isset($this->perPage)) {
+            $data["perPage"] = $this->perPage;
         }
         return $data;
     }

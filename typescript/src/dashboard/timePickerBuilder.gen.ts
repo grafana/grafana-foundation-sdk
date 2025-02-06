@@ -37,6 +37,13 @@ export class TimePickerBuilder implements cog.Builder<dashboard.TimePickerConfig
         return this;
     }
 
+    // Quick ranges for time picker.
+    quickRanges(quickRanges: cog.Builder<dashboard.TimeOption>[]): this {
+        const quickRangesResources = quickRanges.map(builder1 => builder1.build());
+        this.internal.quick_ranges = quickRangesResources;
+        return this;
+    }
+
     // Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
     nowDelay(nowDelay: string): this {
         this.internal.nowDelay = nowDelay;

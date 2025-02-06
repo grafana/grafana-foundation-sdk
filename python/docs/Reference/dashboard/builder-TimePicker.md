@@ -34,6 +34,14 @@ Override the now time by entering a time delay. Use this option to accommodate k
 def now_delay(now_delay: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> quick_ranges
+
+Quick ranges for time picker.
+
+```python
+def quick_ranges(quick_ranges: list[cogbuilder.Builder[dashboard.TimeOption]]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> refresh_intervals
 
 Interval options available in the refresh picker dropdown.

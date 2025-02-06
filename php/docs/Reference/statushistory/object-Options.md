@@ -18,6 +18,11 @@ class Options implements \JsonSerializable
      */
     public \Grafana\Foundation\Common\VisibilityMode $showValue;
 
+    /**
+     * Controls the column width
+     */
+    public ?float $colWidth;
+
     public \Grafana\Foundation\Common\VizLegendOptions $legend;
 
     public \Grafana\Foundation\Common\VizTooltipOptions $tooltip;
@@ -28,9 +33,9 @@ class Options implements \JsonSerializable
     public ?array $timezone;
 
     /**
-     * Controls the column width
+     * Enables pagination when > 0
      */
-    public ?float $colWidth;
+    public ?float $perPage;
 
 }
 ```

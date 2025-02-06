@@ -40,13 +40,15 @@ export interface TempoQuery {
 	tableType?: SearchTableType;
 	// For metric queries, the step size to use
 	step?: string;
+	// For metric queries, how many exemplars to request, 0 means no exemplars
+	exemplars?: number;
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	datasource?: dashboard.DataSourceRef;
-	// For metric queries, how many exemplars to request, 0 means no exemplars
-	exemplars?: number;
+	// For metric queries, whether to run instant or range queries
+	metricsQueryType?: MetricsQueryType;
 	_implementsDataqueryVariant(): void;
 }
 
@@ -55,6 +57,54 @@ export const defaultTempoQuery = (): TempoQuery => ({
 	filters: [],
 	_implementsDataqueryVariant: () => {},
 });
+
+export interface TraceqlFilter {
+	// Uniquely identify the filter, will not be used in the query generation
+	id: string;
+	// The tag for the search filter, for example: .http.status_code, .service.name, status
+	tag?: string;
+	// The operator that connects the tag to the value, for example: =, >, !=, =~
+	operator?: string;
+	// The value for the search filter
+	value?: string | string[];
+	// The type of the value, used for example to check whether we need to wrap the value in quotes when generating the query
+	valueType?: string;
+	// The scope of the filter, can either be unscoped/all scopes, resource or span
+	scope?: TraceqlSearchScope;
+}
+
+export const defaultTraceqlFilter = (): TraceqlFilter => ({
+	id: "",
+});
+
+// static fields are pre-set in the UI, dynamic fields are added by the user
+export enum TraceqlSearchScope {
+	Intrinsic = "intrinsic",
+	Unscoped = "unscoped",
+	Event = "event",
+	Instrumentation = "instrumentation",
+	Link = "link",
+	Resource = "resource",
+	Span = "span",
+}
+
+export const defaultTraceqlSearchScope = (): TraceqlSearchScope => (TraceqlSearchScope.Intrinsic);
+
+// The type of the table that is used to display the search results
+export enum SearchTableType {
+	Traces = "traces",
+	Spans = "spans",
+	Raw = "raw",
+}
+
+export const defaultSearchTableType = (): SearchTableType => (SearchTableType.Traces);
+
+export enum MetricsQueryType {
+	Range = "range",
+	Instant = "instant",
+}
+
+export const defaultMetricsQueryType = (): MetricsQueryType => (MetricsQueryType.Range);
 
 export enum TempoQueryType {
 	Traceql = "traceql",
@@ -77,45 +127,4 @@ export enum SearchStreamingState {
 }
 
 export const defaultSearchStreamingState = (): SearchStreamingState => (SearchStreamingState.Pending);
-
-// The type of the table that is used to display the search results
-export enum SearchTableType {
-	Traces = "traces",
-	Spans = "spans",
-	Raw = "raw",
-}
-
-export const defaultSearchTableType = (): SearchTableType => (SearchTableType.Traces);
-
-// static fields are pre-set in the UI, dynamic fields are added by the user
-export enum TraceqlSearchScope {
-	Intrinsic = "intrinsic",
-	Unscoped = "unscoped",
-	Event = "event",
-	Instrumentation = "instrumentation",
-	Link = "link",
-	Resource = "resource",
-	Span = "span",
-}
-
-export const defaultTraceqlSearchScope = (): TraceqlSearchScope => (TraceqlSearchScope.Intrinsic);
-
-export interface TraceqlFilter {
-	// Uniquely identify the filter, will not be used in the query generation
-	id: string;
-	// The tag for the search filter, for example: .http.status_code, .service.name, status
-	tag?: string;
-	// The operator that connects the tag to the value, for example: =, >, !=, =~
-	operator?: string;
-	// The value for the search filter
-	value?: string | string[];
-	// The type of the value, used for example to check whether we need to wrap the value in quotes when generating the query
-	valueType?: string;
-	// The scope of the filter, can either be unscoped/all scopes, resource or span
-	scope?: TraceqlSearchScope;
-}
-
-export const defaultTraceqlFilter = (): TraceqlFilter => ({
-	id: "",
-});
 

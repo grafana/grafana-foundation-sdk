@@ -240,6 +240,19 @@ final class AzureMonitorQueryConverter
     
     
     }
+            if ($input->customNamespace !== null && $input->customNamespace !== "") {
+    
+        
+    $buffer = 'customNamespace(';
+        $arg0 =\var_export($input->customNamespace, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->datasource !== null) {
     
         

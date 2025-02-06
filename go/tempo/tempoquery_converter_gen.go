@@ -229,6 +229,18 @@ func TempoQueryConverter(input TempoQuery) string {
 		buffer.Reset()
 
 	}
+	if input.Exemplars != nil {
+
+		buffer.WriteString(`Exemplars(`)
+		arg0 := fmt.Sprintf("%#v", *input.Exemplars)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Datasource != nil {
 
 		buffer.WriteString(`Datasource(`)
@@ -241,10 +253,10 @@ func TempoQueryConverter(input TempoQuery) string {
 		buffer.Reset()
 
 	}
-	if input.Exemplars != nil {
+	if input.MetricsQueryType != nil {
 
-		buffer.WriteString(`Exemplars(`)
-		arg0 := fmt.Sprintf("%#v", *input.Exemplars)
+		buffer.WriteString(`MetricsQueryType(`)
+		arg0 := cog.Dump(*input.MetricsQueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

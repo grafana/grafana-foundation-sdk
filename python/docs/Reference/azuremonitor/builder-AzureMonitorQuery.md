@@ -50,6 +50,14 @@ Application Insights Traces sub-query properties.
 def azure_traces(azure_traces: cogbuilder.Builder[azuremonitor.AzureTracesQuery]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> custom_namespace
+
+Custom namespace used in template variable queries
+
+```python
+def custom_namespace(custom_namespace: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> datasource
 
 For mixed data sources the selected datasource is on the query level.
@@ -81,6 +89,8 @@ def hide(hide: bool) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> namespace
+
+Namespace used in template variable queries
 
 ```python
 def namespace(namespace: str) -> typing.Self
@@ -118,11 +128,15 @@ def ref_id(ref_id: str) -> typing.Self
 
 ### <span class="badge object-method"></span> region
 
+Region used in template variable queries
+
 ```python
 def region(region: str) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> resource
+
+Resource used in template variable queries
 
 ```python
 def resource(resource: str) -> typing.Self
@@ -130,7 +144,7 @@ def resource(resource: str) -> typing.Self
 
 ### <span class="badge object-method"></span> resource_group
 
-Template variables params. These exist for backwards compatiblity with legacy template variables.
+Resource group used in template variable queries
 
 ```python
 def resource_group(resource_group: str) -> typing.Self
@@ -139,6 +153,8 @@ def resource_group(resource_group: str) -> typing.Self
 ### <span class="badge object-method"></span> subscription
 
 Azure subscription containing the resource(s) to be queried.
+
+Also used for template variable queries
 
 ```python
 def subscription(subscription: str) -> typing.Self

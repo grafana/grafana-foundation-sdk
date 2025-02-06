@@ -11,11 +11,13 @@ class Options:
     row_height: float
     # Show values on the columns
     show_value: common.VisibilityMode
+    # Controls the column width
+    col_width: typing.Optional[float]
     legend: common.VizLegendOptions
     tooltip: common.VizTooltipOptions
     timezone: typing.Optional[list[common.TimeZone]]
-    # Controls the column width
-    col_width: typing.Optional[float]
+    # Enables pagination when > 0
+    per_page: typing.Optional[float]
 ```
 ## Methods
 

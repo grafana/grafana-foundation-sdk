@@ -11,11 +11,13 @@ export interface Options {
 	rowHeight: number;
 	// Show values on the columns
 	showValue: common.VisibilityMode;
+	// Controls the column width
+	colWidth?: number;
 	legend: common.VizLegendOptions;
 	tooltip: common.VizTooltipOptions;
 	timezone?: common.TimeZone[];
-	// Controls the column width
-	colWidth?: number;
+	// Enables pagination when > 0
+	perPage?: number;
 }
 
 ```

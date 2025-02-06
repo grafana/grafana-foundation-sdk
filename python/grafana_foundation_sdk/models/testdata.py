@@ -610,7 +610,7 @@ class Dataquery(cogvariants.Dataquery):
         if "csvFileName" in data:
             args["csv_file_name"] = data["csvFileName"]
         if "csvWave" in data:
-            args["csv_wave"] = data["csvWave"]
+            args["csv_wave"] = [CSVWave.from_json(item) for item in data["csvWave"]]
         if "datasource" in data:
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "dropPercent" in data:
@@ -642,7 +642,7 @@ class Dataquery(cogvariants.Dataquery):
         if "noise" in data:
             args["noise"] = data["noise"]
         if "points" in data:
-            args["points"] = data["points"]
+            args["points"] = [item for item in data["points"]]
         if "pulseWave" in data:
             args["pulse_wave"] = PulseWaveQuery.from_json(data["pulseWave"])
         if "queryType" in data:

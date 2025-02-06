@@ -30,6 +30,12 @@ class TimePickerConfig implements \JsonSerializable
     public ?array $timeOptions;
 
     /**
+     * Quick ranges for time picker.
+     * @var array<\Grafana\Foundation\Dashboard\TimeOption>|null
+     */
+    public ?array $quickRanges;
+
+    /**
      * Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
      */
     public ?string $nowDelay;

@@ -20,6 +20,10 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("showValue")
     public VisibilityMode showValue;
+    // Controls the column width
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("colWidth")
+    public Double colWidth;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("legend")
     public VizLegendOptions legend;
@@ -29,23 +33,25 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("timezone")
     public List<String> timezone;
-    // Controls the column width
+    // Enables pagination when > 0
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("colWidth")
-    public Double colWidth;
+    @JsonProperty("perPage")
+    public Double perPage;
     public Options() {
         this.rowHeight = 0.9f;
         this.showValue = VisibilityMode.AUTO;
         this.colWidth = 0.9;
+        this.perPage = 20.0;
     }
     
-    public Options(Float rowHeight,VisibilityMode showValue,VizLegendOptions legend,VizTooltipOptions tooltip,List<String> timezone,Double colWidth) {
+    public Options(Float rowHeight,VisibilityMode showValue,Double colWidth,VizLegendOptions legend,VizTooltipOptions tooltip,List<String> timezone,Double perPage) {
         this.rowHeight = rowHeight;
         this.showValue = showValue;
+        this.colWidth = colWidth;
         this.legend = legend;
         this.tooltip = tooltip;
         this.timezone = timezone;
-        this.colWidth = colWidth;
+        this.perPage = perPage;
     }
     
     public String toJSON() throws JsonProcessingException {

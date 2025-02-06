@@ -34,6 +34,14 @@ Override the now time by entering a time delay. Use this option to accommodate k
 func (builder *TimePickerBuilder) NowDelay(nowDelay string) *TimePickerBuilder
 ```
 
+### <span class="badge object-method"></span> QuickRanges
+
+Quick ranges for time picker.
+
+```go
+func (builder *TimePickerBuilder) QuickRanges(quickRanges []cog.Builder[dashboard.TimeOption]) *TimePickerBuilder
+```
+
 ### <span class="badge object-method"></span> RefreshIntervals
 
 Interval options available in the refresh picker dropdown.

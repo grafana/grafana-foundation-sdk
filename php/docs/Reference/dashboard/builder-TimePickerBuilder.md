@@ -34,6 +34,16 @@ Override the now time by entering a time delay. Use this option to accommodate k
 nowDelay(string $nowDelay)
 ```
 
+### <span class="badge object-method"></span> quickRanges
+
+Quick ranges for time picker.
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\TimeOption>> $quickRanges
+
+```php
+quickRanges(array $quickRanges)
+```
+
 ### <span class="badge object-method"></span> refreshIntervals
 
 Interval options available in the refresh picker dropdown.

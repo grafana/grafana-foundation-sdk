@@ -10,10 +10,7 @@ class MetricAggregationWithInlineScript implements \JsonSerializable
 {
     public ?\Grafana\Foundation\Elasticsearch\ElasticsearchMetricAggregationWithInlineScriptSettings $settings;
 
-    /**
-     * @var string|\Grafana\Foundation\Elasticsearch\PipelineMetricAggregationType
-     */
-    public $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public string $id;
 

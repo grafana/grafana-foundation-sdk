@@ -88,7 +88,7 @@ class PieChartLegendOptions:
         args: dict[str, typing.Any] = {}
         
         if "values" in data:
-            args["values"] = data["values"]
+            args["values"] = [item for item in data["values"]]
         if "displayMode" in data:
             args["display_mode"] = data["displayMode"]
         if "placement" in data:
@@ -150,7 +150,7 @@ class Options:
         if "pieType" in data:
             args["pie_type"] = data["pieType"]
         if "displayLabels" in data:
-            args["display_labels"] = data["displayLabels"]
+            args["display_labels"] = [item for item in data["displayLabels"]]
         if "tooltip" in data:
             args["tooltip"] = common.VizTooltipOptions.from_json(data["tooltip"])
         if "reduceOptions" in data:

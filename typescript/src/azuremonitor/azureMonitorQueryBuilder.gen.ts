@@ -40,6 +40,7 @@ export class AzureMonitorQueryBuilder implements cog.Builder<cog.Dataquery> {
     }
 
     // Azure subscription containing the resource(s) to be queried.
+    // Also used for template variable queries
     subscription(subscription: string): this {
         this.internal.subscription = subscription;
         return this;
@@ -86,24 +87,33 @@ export class AzureMonitorQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
-    // Template variables params. These exist for backwards compatiblity with legacy template variables.
+    // Resource group used in template variable queries
     resourceGroup(resourceGroup: string): this {
         this.internal.resourceGroup = resourceGroup;
         return this;
     }
 
+    // Namespace used in template variable queries
     namespace(namespace: string): this {
         this.internal.namespace = namespace;
         return this;
     }
 
+    // Resource used in template variable queries
     resource(resource: string): this {
         this.internal.resource = resource;
         return this;
     }
 
+    // Region used in template variable queries
     region(region: string): this {
         this.internal.region = region;
+        return this;
+    }
+
+    // Custom namespace used in template variable queries
+    customNamespace(customNamespace: string): this {
+        this.internal.customNamespace = customNamespace;
         return this;
     }
 

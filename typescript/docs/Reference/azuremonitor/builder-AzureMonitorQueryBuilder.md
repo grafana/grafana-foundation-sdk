@@ -50,6 +50,14 @@ Application Insights Traces sub-query properties.
 azureTraces(azureTraces: cog.Builder<azuremonitor.AzureTracesQuery>)
 ```
 
+### <span class="badge object-method"></span> customNamespace
+
+Custom namespace used in template variable queries
+
+```typescript
+customNamespace(customNamespace: string)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 For mixed data sources the selected datasource is on the query level.
@@ -81,6 +89,8 @@ hide(hide: boolean)
 ```
 
 ### <span class="badge object-method"></span> namespace
+
+Namespace used in template variable queries
 
 ```typescript
 namespace(namespace: string)
@@ -118,11 +128,15 @@ refId(refId: string)
 
 ### <span class="badge object-method"></span> region
 
+Region used in template variable queries
+
 ```typescript
 region(region: string)
 ```
 
 ### <span class="badge object-method"></span> resource
+
+Resource used in template variable queries
 
 ```typescript
 resource(resource: string)
@@ -130,7 +144,7 @@ resource(resource: string)
 
 ### <span class="badge object-method"></span> resourceGroup
 
-Template variables params. These exist for backwards compatiblity with legacy template variables.
+Resource group used in template variable queries
 
 ```typescript
 resourceGroup(resourceGroup: string)
@@ -139,6 +153,8 @@ resourceGroup(resourceGroup: string)
 ### <span class="badge object-method"></span> subscription
 
 Azure subscription containing the resource(s) to be queried.
+
+Also used for template variable queries
 
 ```typescript
 subscription(subscription: string)
