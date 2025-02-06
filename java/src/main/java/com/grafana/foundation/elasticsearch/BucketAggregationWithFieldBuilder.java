@@ -10,22 +10,22 @@ public class BucketAggregationWithFieldBuilder implements com.grafana.foundation
         this.internal = new BucketAggregationWithField();
     }
     public BucketAggregationWithFieldBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public BucketAggregationWithFieldBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public BucketAggregationWithFieldBuilder type(BucketAggregationType type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public BucketAggregationWithFieldBuilder settings(Object settings) {
-    this.internal.settings = settings;
+        this.internal.settings = settings;
         return this;
     }
     public BucketAggregationWithField build() {

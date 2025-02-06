@@ -31,7 +31,7 @@ func (builder *ExprTypeClassicConditionsConditionsOperatorBuilder) Build() (Expr
 	return *builder.internal, nil
 }
 
-func (builder *ExprTypeClassicConditionsConditionsOperatorBuilder) Type(typeArg TypeClassicConditionsType) *ExprTypeClassicConditionsConditionsOperatorBuilder {
+func (builder *ExprTypeClassicConditionsConditionsOperatorBuilder) Type(typeArg ExprTypeClassicConditionsConditionsOperatorType) *ExprTypeClassicConditionsConditionsOperatorBuilder {
 	builder.internal.Type = typeArg
 
 	return builder

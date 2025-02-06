@@ -10,15 +10,15 @@ public class TypeThresholdBuilder implements com.grafana.foundation.cog.Builder<
     
     public TypeThresholdBuilder() {
         this.internal = new TypeThreshold();
-    this.internal.type = "threshold";
+        this.internal.type = "threshold";
     }
     public TypeThresholdBuilder conditions(com.grafana.foundation.cog.Builder<List<ExprTypeThresholdConditions>> conditions) {
-    this.internal.conditions = conditions.build();
+        this.internal.conditions = conditions.build();
         return this;
     }
     
     public TypeThresholdBuilder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
+        this.internal.datasource = datasource;
         return this;
     }
     
@@ -26,42 +26,42 @@ public class TypeThresholdBuilder implements com.grafana.foundation.cog.Builder<
         if (!(expression.length() >= 1)) {
             throw new IllegalArgumentException("expression.length() must be >= 1");
         }
-    this.internal.expression = expression;
+        this.internal.expression = expression;
         return this;
     }
     
     public TypeThresholdBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     
     public TypeThresholdBuilder intervalMs(Double intervalMs) {
-    this.internal.intervalMs = intervalMs;
+        this.internal.intervalMs = intervalMs;
         return this;
     }
     
     public TypeThresholdBuilder maxDataPoints(Long maxDataPoints) {
-    this.internal.maxDataPoints = maxDataPoints;
+        this.internal.maxDataPoints = maxDataPoints;
         return this;
     }
     
     public TypeThresholdBuilder queryType(String queryType) {
-    this.internal.queryType = queryType;
+        this.internal.queryType = queryType;
         return this;
     }
     
     public TypeThresholdBuilder refId(String refId) {
-    this.internal.refId = refId;
+        this.internal.refId = refId;
         return this;
     }
     
     public TypeThresholdBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeThresholdResultAssertions> resultAssertions) {
-    this.internal.resultAssertions = resultAssertions.build();
+        this.internal.resultAssertions = resultAssertions.build();
         return this;
     }
     
     public TypeThresholdBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeThresholdTimeRange> timeRange) {
-    this.internal.timeRange = timeRange.build();
+        this.internal.timeRange = timeRange.build();
         return this;
     }
     public TypeThreshold build() {

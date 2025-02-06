@@ -10,7 +10,7 @@ public class ElasticsearchMovingAverageEWMAModelSettingsSettingsBuilder implemen
         this.internal = new ElasticsearchMovingAverageEWMAModelSettingsSettings();
     }
     public ElasticsearchMovingAverageEWMAModelSettingsSettingsBuilder alpha(String alpha) {
-    this.internal.alpha = alpha;
+        this.internal.alpha = alpha;
         return this;
     }
     public ElasticsearchMovingAverageEWMAModelSettingsSettings build() {

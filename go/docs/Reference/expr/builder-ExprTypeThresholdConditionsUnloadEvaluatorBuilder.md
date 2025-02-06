@@ -29,7 +29,7 @@ func (builder *ExprTypeThresholdConditionsUnloadEvaluatorBuilder) Params(params 
 e.g. "gt"
 
 ```go
-func (builder *ExprTypeThresholdConditionsUnloadEvaluatorBuilder) Type(typeArg expr.TypeThresholdType) *ExprTypeThresholdConditionsUnloadEvaluatorBuilder
+func (builder *ExprTypeThresholdConditionsUnloadEvaluatorBuilder) Type(typeArg expr.ExprTypeThresholdConditionsUnloadEvaluatorType) *ExprTypeThresholdConditionsUnloadEvaluatorBuilder
 ```
 
 ## See also

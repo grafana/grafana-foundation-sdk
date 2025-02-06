@@ -10,7 +10,7 @@ public class ElasticsearchBucketScriptSettingsBuilder implements com.grafana.fou
         this.internal = new ElasticsearchBucketScriptSettings();
     }
     public ElasticsearchBucketScriptSettingsBuilder script(InlineScript script) {
-    this.internal.script = script;
+        this.internal.script = script;
         return this;
     }
     public ElasticsearchBucketScriptSettings build() {

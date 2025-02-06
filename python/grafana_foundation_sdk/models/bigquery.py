@@ -1,246 +1,10 @@
 # Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-import enum
-import typing
 from ..cog import variants as cogvariants
+import typing
 from ..models import dashboard
+import enum
 from ..cog import runtime as cogruntime
-
-
-class QueryFormat(enum.IntEnum):
-    TIMESERIES = 0
-    TABLE = 1
-
-
-class QueryPriority(enum.StrEnum):
-    INTERACTIVE = "INTERACTIVE"
-    BATCH = "BATCH"
-
-
-class EditorMode(enum.StrEnum):
-    CODE = "code"
-    BUILDER = "builder"
-
-
-class SQLExpression:
-    columns: typing.Optional[list['QueryEditorFunctionExpression']]
-    from_val: typing.Optional[str]
-    # whereJsonTree?: _
-    where_string: typing.Optional[str]
-    group_by: typing.Optional[list['QueryEditorGroupByExpression']]
-    order_by: typing.Optional['QueryEditorPropertyExpression']
-    order_by_direction: typing.Optional['OrderByDirection']
-    limit: typing.Optional[int]
-    offset: typing.Optional[int]
-
-    def __init__(self, columns: typing.Optional[list['QueryEditorFunctionExpression']] = None, from_val: typing.Optional[str] = None, where_string: typing.Optional[str] = None, group_by: typing.Optional[list['QueryEditorGroupByExpression']] = None, order_by: typing.Optional['QueryEditorPropertyExpression'] = None, order_by_direction: typing.Optional['OrderByDirection'] = None, limit: typing.Optional[int] = None, offset: typing.Optional[int] = None):
-        self.columns = columns
-        self.from_val = from_val
-        self.where_string = where_string
-        self.group_by = group_by
-        self.order_by = order_by
-        self.order_by_direction = order_by_direction
-        self.limit = limit
-        self.offset = offset
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.columns is not None:
-            payload["columns"] = self.columns
-        if self.from_val is not None:
-            payload["from"] = self.from_val
-        if self.where_string is not None:
-            payload["whereString"] = self.where_string
-        if self.group_by is not None:
-            payload["groupBy"] = self.group_by
-        if self.order_by is not None:
-            payload["orderBy"] = self.order_by
-        if self.order_by_direction is not None:
-            payload["orderByDirection"] = self.order_by_direction
-        if self.limit is not None:
-            payload["limit"] = self.limit
-        if self.offset is not None:
-            payload["offset"] = self.offset
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "columns" in data:
-            args["columns"] = data["columns"]
-        if "from" in data:
-            args["from_val"] = data["from"]
-        if "whereString" in data:
-            args["where_string"] = data["whereString"]
-        if "groupBy" in data:
-            args["group_by"] = data["groupBy"]
-        if "orderBy" in data:
-            args["order_by"] = QueryEditorPropertyExpression.from_json(data["orderBy"])
-        if "orderByDirection" in data:
-            args["order_by_direction"] = data["orderByDirection"]
-        if "limit" in data:
-            args["limit"] = data["limit"]
-        if "offset" in data:
-            args["offset"] = data["offset"]        
-
-        return cls(**args)
-
-
-class QueryEditorExpressionType(enum.StrEnum):
-    PROPERTY = "property"
-    OPERATOR = "operator"
-    OR = "or"
-    AND = "and"
-    GROUP_BY = "groupBy"
-    FUNCTION = "function"
-    FUNCTION_PARAMETER = "functionParameter"
-
-
-class QueryEditorFunctionExpression:
-    type_val: typing.Literal["function"]
-    name: typing.Optional[str]
-    parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']]
-
-    def __init__(self, name: typing.Optional[str] = None, parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']] = None):
-        self.type_val = "function"
-        self.name = name
-        self.parameters = parameters
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.name is not None:
-            payload["name"] = self.name
-        if self.parameters is not None:
-            payload["parameters"] = self.parameters
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "name" in data:
-            args["name"] = data["name"]
-        if "parameters" in data:
-            args["parameters"] = data["parameters"]        
-
-        return cls(**args)
-
-
-class QueryEditorFunctionParameterExpression:
-    type_val: typing.Literal["functionParameter"]
-    name: typing.Optional[str]
-
-    def __init__(self, name: typing.Optional[str] = None):
-        self.type_val = "functionParameter"
-        self.name = name
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.name is not None:
-            payload["name"] = self.name
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "name" in data:
-            args["name"] = data["name"]        
-
-        return cls(**args)
-
-
-class QueryEditorGroupByExpression:
-    type_val: typing.Literal["groupBy"]
-    property_val: 'QueryEditorProperty'
-
-    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None):
-        self.type_val = "groupBy"
-        self.property_val = property_val if property_val is not None else QueryEditorProperty()
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-            "property": self.property_val,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "property" in data:
-            args["property_val"] = QueryEditorProperty.from_json(data["property"])        
-
-        return cls(**args)
-
-
-class QueryEditorProperty:
-    type_val: 'QueryEditorPropertyType'
-    name: typing.Optional[str]
-
-    def __init__(self, type_val: typing.Optional['QueryEditorPropertyType'] = None, name: typing.Optional[str] = None):
-        self.type_val = type_val if type_val is not None else QueryEditorPropertyType.STRING
-        self.name = name
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.name is not None:
-            payload["name"] = self.name
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "name" in data:
-            args["name"] = data["name"]        
-
-        return cls(**args)
-
-
-class QueryEditorPropertyType(enum.StrEnum):
-    STRING = "string"
-
-
-class QueryEditorPropertyExpression:
-    type_val: typing.Literal["property"]
-    property_val: 'QueryEditorProperty'
-
-    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None):
-        self.type_val = "property"
-        self.property_val = property_val if property_val is not None else QueryEditorProperty()
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-            "property": self.property_val,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "property" in data:
-            args["property_val"] = QueryEditorProperty.from_json(data["property"])        
-
-        return cls(**args)
-
-
-class OrderByDirection(enum.StrEnum):
-    ASC = "ASC"
-    DESC = "DESC"
 
 
 class Dataquery(cogvariants.Dataquery):
@@ -383,6 +147,242 @@ class Dataquery(cogvariants.Dataquery):
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])        
 
         return cls(**args)
+
+
+class QueryFormat(enum.IntEnum):
+    TIMESERIES = 0
+    TABLE = 1
+
+
+class QueryPriority(enum.StrEnum):
+    INTERACTIVE = "INTERACTIVE"
+    BATCH = "BATCH"
+
+
+class EditorMode(enum.StrEnum):
+    CODE = "code"
+    BUILDER = "builder"
+
+
+class SQLExpression:
+    columns: typing.Optional[list['QueryEditorFunctionExpression']]
+    from_val: typing.Optional[str]
+    # whereJsonTree?: _
+    where_string: typing.Optional[str]
+    group_by: typing.Optional[list['QueryEditorGroupByExpression']]
+    order_by: typing.Optional['QueryEditorPropertyExpression']
+    order_by_direction: typing.Optional['OrderByDirection']
+    limit: typing.Optional[int]
+    offset: typing.Optional[int]
+
+    def __init__(self, columns: typing.Optional[list['QueryEditorFunctionExpression']] = None, from_val: typing.Optional[str] = None, where_string: typing.Optional[str] = None, group_by: typing.Optional[list['QueryEditorGroupByExpression']] = None, order_by: typing.Optional['QueryEditorPropertyExpression'] = None, order_by_direction: typing.Optional['OrderByDirection'] = None, limit: typing.Optional[int] = None, offset: typing.Optional[int] = None):
+        self.columns = columns
+        self.from_val = from_val
+        self.where_string = where_string
+        self.group_by = group_by
+        self.order_by = order_by
+        self.order_by_direction = order_by_direction
+        self.limit = limit
+        self.offset = offset
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.columns is not None:
+            payload["columns"] = self.columns
+        if self.from_val is not None:
+            payload["from"] = self.from_val
+        if self.where_string is not None:
+            payload["whereString"] = self.where_string
+        if self.group_by is not None:
+            payload["groupBy"] = self.group_by
+        if self.order_by is not None:
+            payload["orderBy"] = self.order_by
+        if self.order_by_direction is not None:
+            payload["orderByDirection"] = self.order_by_direction
+        if self.limit is not None:
+            payload["limit"] = self.limit
+        if self.offset is not None:
+            payload["offset"] = self.offset
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "columns" in data:
+            args["columns"] = [QueryEditorFunctionExpression.from_json(item) for item in data["columns"]]
+        if "from" in data:
+            args["from_val"] = data["from"]
+        if "whereString" in data:
+            args["where_string"] = data["whereString"]
+        if "groupBy" in data:
+            args["group_by"] = [QueryEditorGroupByExpression.from_json(item) for item in data["groupBy"]]
+        if "orderBy" in data:
+            args["order_by"] = QueryEditorPropertyExpression.from_json(data["orderBy"])
+        if "orderByDirection" in data:
+            args["order_by_direction"] = data["orderByDirection"]
+        if "limit" in data:
+            args["limit"] = data["limit"]
+        if "offset" in data:
+            args["offset"] = data["offset"]        
+
+        return cls(**args)
+
+
+class QueryEditorFunctionExpression:
+    type_val: typing.Literal["function"]
+    name: typing.Optional[str]
+    parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']]
+
+    def __init__(self, name: typing.Optional[str] = None, parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']] = None):
+        self.type_val = "function"
+        self.name = name
+        self.parameters = parameters
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+        }
+        if self.name is not None:
+            payload["name"] = self.name
+        if self.parameters is not None:
+            payload["parameters"] = self.parameters
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "name" in data:
+            args["name"] = data["name"]
+        if "parameters" in data:
+            args["parameters"] = [QueryEditorFunctionParameterExpression.from_json(item) for item in data["parameters"]]        
+
+        return cls(**args)
+
+
+class QueryEditorFunctionParameterExpression:
+    type_val: typing.Literal["functionParameter"]
+    name: typing.Optional[str]
+
+    def __init__(self, name: typing.Optional[str] = None):
+        self.type_val = "functionParameter"
+        self.name = name
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+        }
+        if self.name is not None:
+            payload["name"] = self.name
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "name" in data:
+            args["name"] = data["name"]        
+
+        return cls(**args)
+
+
+class QueryEditorGroupByExpression:
+    type_val: typing.Literal["groupBy"]
+    property_val: 'QueryEditorProperty'
+
+    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None):
+        self.type_val = "groupBy"
+        self.property_val = property_val if property_val is not None else QueryEditorProperty()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "property": self.property_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "property" in data:
+            args["property_val"] = QueryEditorProperty.from_json(data["property"])        
+
+        return cls(**args)
+
+
+class QueryEditorProperty:
+    type_val: 'QueryEditorPropertyType'
+    name: typing.Optional[str]
+
+    def __init__(self, type_val: typing.Optional['QueryEditorPropertyType'] = None, name: typing.Optional[str] = None):
+        self.type_val = type_val if type_val is not None else QueryEditorPropertyType.STRING
+        self.name = name
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+        }
+        if self.name is not None:
+            payload["name"] = self.name
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "name" in data:
+            args["name"] = data["name"]        
+
+        return cls(**args)
+
+
+class QueryEditorPropertyType(enum.StrEnum):
+    STRING = "string"
+
+
+class QueryEditorPropertyExpression:
+    type_val: typing.Literal["property"]
+    property_val: 'QueryEditorProperty'
+
+    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None):
+        self.type_val = "property"
+        self.property_val = property_val if property_val is not None else QueryEditorProperty()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "property": self.property_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "property" in data:
+            args["property_val"] = QueryEditorProperty.from_json(data["property"])        
+
+        return cls(**args)
+
+
+class OrderByDirection(enum.StrEnum):
+    ASC = "ASC"
+    DESC = "DESC"
+
+
+class QueryEditorExpressionType(enum.StrEnum):
+    PROPERTY = "property"
+    OPERATOR = "operator"
+    OR = "or"
+    AND = "and"
+    GROUP_BY = "groupBy"
+    FUNCTION = "function"
+    FUNCTION_PARAMETER = "functionParameter"
 
 
 

@@ -356,6 +356,62 @@ class MapLayerOptions(cogbuilder.Builder[common.MapLayerOptions]):
         return self
     
 
+class FrameGeometrySource(cogbuilder.Builder[common.FrameGeometrySource]):    
+    _internal: common.FrameGeometrySource
+
+    def __init__(self):
+        self._internal = common.FrameGeometrySource()
+
+    def build(self) -> common.FrameGeometrySource:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def mode(self, mode: common.FrameGeometrySourceMode) -> typing.Self:        
+        self._internal.mode = mode
+    
+        return self
+    
+    def geohash(self, geohash: str) -> typing.Self:    
+        """
+        Field mappings
+        """
+            
+        self._internal.geohash = geohash
+    
+        return self
+    
+    def latitude(self, latitude: str) -> typing.Self:        
+        self._internal.latitude = latitude
+    
+        return self
+    
+    def longitude(self, longitude: str) -> typing.Self:        
+        self._internal.longitude = longitude
+    
+        return self
+    
+    def wkt(self, wkt: str) -> typing.Self:        
+        self._internal.wkt = wkt
+    
+        return self
+    
+    def lookup(self, lookup: str) -> typing.Self:        
+        self._internal.lookup = lookup
+    
+        return self
+    
+    def gazetteer(self, gazetteer: str) -> typing.Self:    
+        """
+        Path to Gazetteer
+        """
+            
+        self._internal.gazetteer = gazetteer
+    
+        return self
+    
+
 class HeatmapCalculationBucketConfig(cogbuilder.Builder[common.HeatmapCalculationBucketConfig]):    
     _internal: common.HeatmapCalculationBucketConfig
 
@@ -393,6 +449,38 @@ class HeatmapCalculationBucketConfig(cogbuilder.Builder[common.HeatmapCalculatio
             
         scale_resource = scale.build()
         self._internal.scale = scale_resource
+    
+        return self
+    
+
+class ScaleDistributionConfig(cogbuilder.Builder[common.ScaleDistributionConfig]):    
+    """
+    TODO docs
+    """
+    
+    _internal: common.ScaleDistributionConfig
+
+    def __init__(self):
+        self._internal = common.ScaleDistributionConfig()
+
+    def build(self) -> common.ScaleDistributionConfig:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def type_val(self, type_val: common.ScaleDistribution) -> typing.Self:        
+        self._internal.type_val = type_val
+    
+        return self
+    
+    def log(self, log: float) -> typing.Self:        
+        self._internal.log = log
+    
+        return self
+    
+    def linear_threshold(self, linear_threshold: float) -> typing.Self:        
+        self._internal.linear_threshold = linear_threshold
     
         return self
     
@@ -570,38 +658,6 @@ class PointsConfig(cogbuilder.Builder[common.PointsConfig]):
     
     def point_symbol(self, point_symbol: str) -> typing.Self:        
         self._internal.point_symbol = point_symbol
-    
-        return self
-    
-
-class ScaleDistributionConfig(cogbuilder.Builder[common.ScaleDistributionConfig]):    
-    """
-    TODO docs
-    """
-    
-    _internal: common.ScaleDistributionConfig
-
-    def __init__(self):
-        self._internal = common.ScaleDistributionConfig()
-
-    def build(self) -> common.ScaleDistributionConfig:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def type_val(self, type_val: common.ScaleDistribution) -> typing.Self:        
-        self._internal.type_val = type_val
-    
-        return self
-    
-    def log(self, log: float) -> typing.Self:        
-        self._internal.log = log
-    
-        return self
-    
-    def linear_threshold(self, linear_threshold: float) -> typing.Self:        
-        self._internal.linear_threshold = linear_threshold
     
         return self
     
@@ -888,6 +944,41 @@ class ReduceDataOptions(cogbuilder.Builder[common.ReduceDataOptions]):
         return self
     
 
+class VizTextDisplayOptions(cogbuilder.Builder[common.VizTextDisplayOptions]):    
+    """
+    TODO docs
+    """
+    
+    _internal: common.VizTextDisplayOptions
+
+    def __init__(self):
+        self._internal = common.VizTextDisplayOptions()
+
+    def build(self) -> common.VizTextDisplayOptions:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def title_size(self, title_size: float) -> typing.Self:    
+        """
+        Explicit title text size
+        """
+            
+        self._internal.title_size = title_size
+    
+        return self
+    
+    def value_size(self, value_size: float) -> typing.Self:    
+        """
+        Explicit value text size
+        """
+            
+        self._internal.value_size = value_size
+    
+        return self
+    
+
 class OptionsWithTooltip(cogbuilder.Builder[common.OptionsWithTooltip]):    
     """
     TODO docs
@@ -911,6 +1002,43 @@ class OptionsWithTooltip(cogbuilder.Builder[common.OptionsWithTooltip]):
         return self
     
 
+class VizTooltipOptions(cogbuilder.Builder[common.VizTooltipOptions]):    
+    """
+    TODO docs
+    """
+    
+    _internal: common.VizTooltipOptions
+
+    def __init__(self):
+        self._internal = common.VizTooltipOptions()
+
+    def build(self) -> common.VizTooltipOptions:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def mode(self, mode: common.TooltipDisplayMode) -> typing.Self:        
+        self._internal.mode = mode
+    
+        return self
+    
+    def sort(self, sort: common.SortOrder) -> typing.Self:        
+        self._internal.sort = sort
+    
+        return self
+    
+    def max_width(self, max_width: float) -> typing.Self:        
+        self._internal.max_width = max_width
+    
+        return self
+    
+    def max_height(self, max_height: float) -> typing.Self:        
+        self._internal.max_height = max_height
+    
+        return self
+    
+
 class OptionsWithLegend(cogbuilder.Builder[common.OptionsWithLegend]):    
     """
     TODO docs
@@ -930,6 +1058,68 @@ class OptionsWithLegend(cogbuilder.Builder[common.OptionsWithLegend]):
     def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:        
         legend_resource = legend.build()
         self._internal.legend = legend_resource
+    
+        return self
+    
+
+class VizLegendOptions(cogbuilder.Builder[common.VizLegendOptions]):    
+    """
+    TODO docs
+    """
+    
+    _internal: common.VizLegendOptions
+
+    def __init__(self):
+        self._internal = common.VizLegendOptions()
+
+    def build(self) -> common.VizLegendOptions:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def display_mode(self, display_mode: common.LegendDisplayMode) -> typing.Self:        
+        self._internal.display_mode = display_mode
+    
+        return self
+    
+    def placement(self, placement: common.LegendPlacement) -> typing.Self:        
+        self._internal.placement = placement
+    
+        return self
+    
+    def show_legend(self, show_legend: bool) -> typing.Self:        
+        self._internal.show_legend = show_legend
+    
+        return self
+    
+    def as_table(self, as_table: bool) -> typing.Self:        
+        self._internal.as_table = as_table
+    
+        return self
+    
+    def is_visible(self, is_visible: bool) -> typing.Self:        
+        self._internal.is_visible = is_visible
+    
+        return self
+    
+    def sort_by(self, sort_by: str) -> typing.Self:        
+        self._internal.sort_by = sort_by
+    
+        return self
+    
+    def sort_desc(self, sort_desc: bool) -> typing.Self:        
+        self._internal.sort_desc = sort_desc
+    
+        return self
+    
+    def width(self, width: float) -> typing.Self:        
+        self._internal.width = width
+    
+        return self
+    
+    def calcs(self, calcs: list[str]) -> typing.Self:        
+        self._internal.calcs = calcs
     
         return self
     
@@ -975,41 +1165,6 @@ class OptionsWithTextFormatting(cogbuilder.Builder[common.OptionsWithTextFormatt
     def text(self, text: cogbuilder.Builder[common.VizTextDisplayOptions]) -> typing.Self:        
         text_resource = text.build()
         self._internal.text = text_resource
-    
-        return self
-    
-
-class VizTextDisplayOptions(cogbuilder.Builder[common.VizTextDisplayOptions]):    
-    """
-    TODO docs
-    """
-    
-    _internal: common.VizTextDisplayOptions
-
-    def __init__(self):
-        self._internal = common.VizTextDisplayOptions()
-
-    def build(self) -> common.VizTextDisplayOptions:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def title_size(self, title_size: float) -> typing.Self:    
-        """
-        Explicit title text size
-        """
-            
-        self._internal.title_size = title_size
-    
-        return self
-    
-    def value_size(self, value_size: float) -> typing.Self:    
-        """
-        Explicit value text size
-        """
-            
-        self._internal.value_size = value_size
     
         return self
     
@@ -1202,105 +1357,6 @@ class GraphFieldConfig(cogbuilder.Builder[common.GraphFieldConfig]):
         return self
     
 
-class VizLegendOptions(cogbuilder.Builder[common.VizLegendOptions]):    
-    """
-    TODO docs
-    """
-    
-    _internal: common.VizLegendOptions
-
-    def __init__(self):
-        self._internal = common.VizLegendOptions()
-
-    def build(self) -> common.VizLegendOptions:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def display_mode(self, display_mode: common.LegendDisplayMode) -> typing.Self:        
-        self._internal.display_mode = display_mode
-    
-        return self
-    
-    def placement(self, placement: common.LegendPlacement) -> typing.Self:        
-        self._internal.placement = placement
-    
-        return self
-    
-    def show_legend(self, show_legend: bool) -> typing.Self:        
-        self._internal.show_legend = show_legend
-    
-        return self
-    
-    def as_table(self, as_table: bool) -> typing.Self:        
-        self._internal.as_table = as_table
-    
-        return self
-    
-    def is_visible(self, is_visible: bool) -> typing.Self:        
-        self._internal.is_visible = is_visible
-    
-        return self
-    
-    def sort_by(self, sort_by: str) -> typing.Self:        
-        self._internal.sort_by = sort_by
-    
-        return self
-    
-    def sort_desc(self, sort_desc: bool) -> typing.Self:        
-        self._internal.sort_desc = sort_desc
-    
-        return self
-    
-    def width(self, width: float) -> typing.Self:        
-        self._internal.width = width
-    
-        return self
-    
-    def calcs(self, calcs: list[str]) -> typing.Self:        
-        self._internal.calcs = calcs
-    
-        return self
-    
-
-class VizTooltipOptions(cogbuilder.Builder[common.VizTooltipOptions]):    
-    """
-    TODO docs
-    """
-    
-    _internal: common.VizTooltipOptions
-
-    def __init__(self):
-        self._internal = common.VizTooltipOptions()
-
-    def build(self) -> common.VizTooltipOptions:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def mode(self, mode: common.TooltipDisplayMode) -> typing.Self:        
-        self._internal.mode = mode
-    
-        return self
-    
-    def sort(self, sort: common.SortOrder) -> typing.Self:        
-        self._internal.sort = sort
-    
-        return self
-    
-    def max_width(self, max_width: float) -> typing.Self:        
-        self._internal.max_width = max_width
-    
-        return self
-    
-    def max_height(self, max_height: float) -> typing.Self:        
-        self._internal.max_height = max_height
-    
-        return self
-    
-
 class TableSortByFieldState(cogbuilder.Builder[common.TableSortByFieldState]):    
     """
     Sort by field state
@@ -1414,62 +1470,6 @@ class ResourceDimensionConfig(cogbuilder.Builder[common.ResourceDimensionConfig]
     
     def fixed(self, fixed: str) -> typing.Self:        
         self._internal.fixed = fixed
-    
-        return self
-    
-
-class FrameGeometrySource(cogbuilder.Builder[common.FrameGeometrySource]):    
-    _internal: common.FrameGeometrySource
-
-    def __init__(self):
-        self._internal = common.FrameGeometrySource()
-
-    def build(self) -> common.FrameGeometrySource:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def mode(self, mode: common.FrameGeometrySourceMode) -> typing.Self:        
-        self._internal.mode = mode
-    
-        return self
-    
-    def geohash(self, geohash: str) -> typing.Self:    
-        """
-        Field mappings
-        """
-            
-        self._internal.geohash = geohash
-    
-        return self
-    
-    def latitude(self, latitude: str) -> typing.Self:        
-        self._internal.latitude = latitude
-    
-        return self
-    
-    def longitude(self, longitude: str) -> typing.Self:        
-        self._internal.longitude = longitude
-    
-        return self
-    
-    def wkt(self, wkt: str) -> typing.Self:        
-        self._internal.wkt = wkt
-    
-        return self
-    
-    def lookup(self, lookup: str) -> typing.Self:        
-        self._internal.lookup = lookup
-    
-        return self
-    
-    def gazetteer(self, gazetteer: str) -> typing.Self:    
-        """
-        Path to Gazetteer
-        """
-            
-        self._internal.gazetteer = gazetteer
     
         return self
     

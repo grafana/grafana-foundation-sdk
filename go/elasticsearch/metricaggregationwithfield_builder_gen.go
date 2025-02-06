@@ -37,13 +37,8 @@ func (builder *MetricAggregationWithFieldBuilder) Field(field string) *MetricAgg
 	return builder
 }
 
-func (builder *MetricAggregationWithFieldBuilder) Type(typeArg cog.Builder[MetricAggregationType]) *MetricAggregationWithFieldBuilder {
-	typeArgResource, err := typeArg.Build()
-	if err != nil {
-		builder.errors["type"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Type = typeArgResource
+func (builder *MetricAggregationWithFieldBuilder) Type(typeArg MetricAggregationType) *MetricAggregationWithFieldBuilder {
+	builder.internal.Type = typeArg
 
 	return builder
 }

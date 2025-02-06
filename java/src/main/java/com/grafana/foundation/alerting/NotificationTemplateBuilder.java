@@ -10,22 +10,22 @@ public class NotificationTemplateBuilder implements com.grafana.foundation.cog.B
         this.internal = new NotificationTemplate();
     }
     public NotificationTemplateBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public NotificationTemplateBuilder provenance(String provenance) {
-    this.internal.provenance = provenance;
+        this.internal.provenance = provenance;
         return this;
     }
     
     public NotificationTemplateBuilder template(String template) {
-    this.internal.template = template;
+        this.internal.template = template;
         return this;
     }
     
     public NotificationTemplateBuilder version(String version) {
-    this.internal.version = version;
+        this.internal.version = version;
         return this;
     }
     public NotificationTemplate build() {

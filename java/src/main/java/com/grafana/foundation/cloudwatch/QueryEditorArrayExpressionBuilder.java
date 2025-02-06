@@ -11,12 +11,12 @@ public class QueryEditorArrayExpressionBuilder implements com.grafana.foundation
         this.internal = new QueryEditorArrayExpression();
     }
     public QueryEditorArrayExpressionBuilder type(QueryEditorArrayExpressionType type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public QueryEditorArrayExpressionBuilder expressions(List<QueryEditorExpression> expressions) {
-    this.internal.expressions = expressions;
+        this.internal.expressions = expressions;
         return this;
     }
     public QueryEditorArrayExpression build() {

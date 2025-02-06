@@ -8,15 +8,15 @@ public class AppInsightsGroupByQueryBuilder implements com.grafana.foundation.co
     
     public AppInsightsGroupByQueryBuilder() {
         this.internal = new AppInsightsGroupByQuery();
-    this.internal.kind = "AppInsightsGroupByQuery";
+        this.internal.kind = "AppInsightsGroupByQuery";
     }
     public AppInsightsGroupByQueryBuilder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
+        this.internal.rawQuery = rawQuery;
         return this;
     }
     
     public AppInsightsGroupByQueryBuilder metricName(String metricName) {
-    this.internal.metricName = metricName;
+        this.internal.metricName = metricName;
         return this;
     }
     public AppInsightsGroupByQuery build() {

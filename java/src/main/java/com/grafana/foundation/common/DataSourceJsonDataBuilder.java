@@ -10,27 +10,27 @@ public class DataSourceJsonDataBuilder implements com.grafana.foundation.cog.Bui
         this.internal = new DataSourceJsonData();
     }
     public DataSourceJsonDataBuilder authType(String authType) {
-    this.internal.authType = authType;
+        this.internal.authType = authType;
         return this;
     }
     
     public DataSourceJsonDataBuilder defaultRegion(String defaultRegion) {
-    this.internal.defaultRegion = defaultRegion;
+        this.internal.defaultRegion = defaultRegion;
         return this;
     }
     
     public DataSourceJsonDataBuilder profile(String profile) {
-    this.internal.profile = profile;
+        this.internal.profile = profile;
         return this;
     }
     
     public DataSourceJsonDataBuilder manageAlerts(Boolean manageAlerts) {
-    this.internal.manageAlerts = manageAlerts;
+        this.internal.manageAlerts = manageAlerts;
         return this;
     }
     
     public DataSourceJsonDataBuilder alertmanagerUid(String alertmanagerUid) {
-    this.internal.alertmanagerUid = alertmanagerUid;
+        this.internal.alertmanagerUid = alertmanagerUid;
         return this;
     }
     public DataSourceJsonData build() {

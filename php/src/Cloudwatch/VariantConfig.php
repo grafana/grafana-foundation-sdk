@@ -10,7 +10,7 @@ final class VariantConfig
             identifier: 'cloudwatch',
             fromArray: (function($input) {
     \assert(is_array($input), 'expected disjunction value to be an array');
-
+    /** @var array<string, mixed> $input */
     switch ($input["queryMode"]) {
     case "Annotations":
         return CloudWatchAnnotationQuery::fromArray($input);

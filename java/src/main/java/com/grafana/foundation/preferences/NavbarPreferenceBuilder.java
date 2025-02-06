@@ -11,7 +11,7 @@ public class NavbarPreferenceBuilder implements com.grafana.foundation.cog.Build
         this.internal = new NavbarPreference();
     }
     public NavbarPreferenceBuilder bookmarkUrls(List<String> bookmarkUrls) {
-    this.internal.bookmarkUrls = bookmarkUrls;
+        this.internal.bookmarkUrls = bookmarkUrls;
         return this;
     }
     public NavbarPreference build() {

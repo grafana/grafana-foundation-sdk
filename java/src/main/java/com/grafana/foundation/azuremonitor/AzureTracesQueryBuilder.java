@@ -11,32 +11,32 @@ public class AzureTracesQueryBuilder implements com.grafana.foundation.cog.Build
         this.internal = new AzureTracesQuery();
     }
     public AzureTracesQueryBuilder resultFormat(ResultFormat resultFormat) {
-    this.internal.resultFormat = resultFormat;
+        this.internal.resultFormat = resultFormat;
         return this;
     }
     
     public AzureTracesQueryBuilder resources(List<String> resources) {
-    this.internal.resources = resources;
+        this.internal.resources = resources;
         return this;
     }
     
     public AzureTracesQueryBuilder operationId(String operationId) {
-    this.internal.operationId = operationId;
+        this.internal.operationId = operationId;
         return this;
     }
     
     public AzureTracesQueryBuilder traceTypes(List<String> traceTypes) {
-    this.internal.traceTypes = traceTypes;
+        this.internal.traceTypes = traceTypes;
         return this;
     }
     
     public AzureTracesQueryBuilder filters(com.grafana.foundation.cog.Builder<List<AzureTracesFilter>> filters) {
-    this.internal.filters = filters.build();
+        this.internal.filters = filters.build();
         return this;
     }
     
     public AzureTracesQueryBuilder query(String query) {
-    this.internal.query = query;
+        this.internal.query = query;
         return this;
     }
     public AzureTracesQuery build() {

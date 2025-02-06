@@ -55,7 +55,7 @@ Possible enum values:
  - `"log-lines"` 
 
 ```php
-type(\Grafana\Foundation\Expr\TypeThresholdType $type)
+type(\Grafana\Foundation\Expr\ExprTypeThresholdResultAssertionsType $type)
 ```
 
 ### <span class="badge object-method"></span> typeVersion

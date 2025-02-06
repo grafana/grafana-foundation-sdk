@@ -28,7 +28,7 @@ class ExprTypeMathResultAssertions implements \JsonSerializable
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public ?\Grafana\Foundation\Expr\TypeMathType $type;
+    public ?\Grafana\Foundation\Expr\ExprTypeMathResultAssertionsType $type;
 
     /**
      * TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane

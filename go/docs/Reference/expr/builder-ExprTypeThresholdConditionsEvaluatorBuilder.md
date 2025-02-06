@@ -29,7 +29,7 @@ func (builder *ExprTypeThresholdConditionsEvaluatorBuilder) Params(params []floa
 e.g. "gt"
 
 ```go
-func (builder *ExprTypeThresholdConditionsEvaluatorBuilder) Type(typeArg expr.TypeThresholdType) *ExprTypeThresholdConditionsEvaluatorBuilder
+func (builder *ExprTypeThresholdConditionsEvaluatorBuilder) Type(typeArg expr.ExprTypeThresholdConditionsEvaluatorType) *ExprTypeThresholdConditionsEvaluatorBuilder
 ```
 
 ## See also

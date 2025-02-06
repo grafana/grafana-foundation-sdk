@@ -535,7 +535,7 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Histogram\Options && $input->options->bucketOffset !== null && $input->options->bucketOffset !== 0) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Histogram\Options && $input->options->bucketOffset !== null && $input->options->bucketOffset !== (float) 0) {
     
         
     $buffer = 'bucketOffset(';

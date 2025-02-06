@@ -9,8 +9,8 @@ public class ExprTypeClassicConditionsConditionsOperatorBuilder implements com.g
     public ExprTypeClassicConditionsConditionsOperatorBuilder() {
         this.internal = new ExprTypeClassicConditionsConditionsOperator();
     }
-    public ExprTypeClassicConditionsConditionsOperatorBuilder type(TypeClassicConditionsType type) {
-    this.internal.type = type;
+    public ExprTypeClassicConditionsConditionsOperatorBuilder type(ExprTypeClassicConditionsConditionsOperatorType type) {
+        this.internal.type = type;
         return this;
     }
     public ExprTypeClassicConditionsConditionsOperator build() {

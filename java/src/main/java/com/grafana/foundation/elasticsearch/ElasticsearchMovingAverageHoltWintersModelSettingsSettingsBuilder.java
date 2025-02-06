@@ -10,27 +10,27 @@ public class ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder i
         this.internal = new ElasticsearchMovingAverageHoltWintersModelSettingsSettings();
     }
     public ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder alpha(String alpha) {
-    this.internal.alpha = alpha;
+        this.internal.alpha = alpha;
         return this;
     }
     
     public ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder beta(String beta) {
-    this.internal.beta = beta;
+        this.internal.beta = beta;
         return this;
     }
     
     public ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder gamma(String gamma) {
-    this.internal.gamma = gamma;
+        this.internal.gamma = gamma;
         return this;
     }
     
     public ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder period(String period) {
-    this.internal.period = period;
+        this.internal.period = period;
         return this;
     }
     
     public ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder pad(Boolean pad) {
-    this.internal.pad = pad;
+        this.internal.pad = pad;
         return this;
     }
     public ElasticsearchMovingAverageHoltWintersModelSettingsSettings build() {

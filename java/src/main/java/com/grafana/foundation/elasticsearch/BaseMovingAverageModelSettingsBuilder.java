@@ -10,17 +10,17 @@ public class BaseMovingAverageModelSettingsBuilder implements com.grafana.founda
         this.internal = new BaseMovingAverageModelSettings();
     }
     public BaseMovingAverageModelSettingsBuilder model(MovingAverageModel model) {
-    this.internal.model = model;
+        this.internal.model = model;
         return this;
     }
     
     public BaseMovingAverageModelSettingsBuilder window(String window) {
-    this.internal.window = window;
+        this.internal.window = window;
         return this;
     }
     
     public BaseMovingAverageModelSettingsBuilder predict(String predict) {
-    this.internal.predict = predict;
+        this.internal.predict = predict;
         return this;
     }
     public BaseMovingAverageModelSettings build() {
