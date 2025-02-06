@@ -8,20 +8,20 @@ public class RawDocumentBuilder implements com.grafana.foundation.cog.Builder<Ra
     
     public RawDocumentBuilder() {
         this.internal = new RawDocument();
-    this.internal.type = "raw_document";
+        this.internal.type = "raw_document";
     }
     public RawDocumentBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public RawDocumentBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchRawDocumentSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     
     public RawDocumentBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public RawDocument build() {

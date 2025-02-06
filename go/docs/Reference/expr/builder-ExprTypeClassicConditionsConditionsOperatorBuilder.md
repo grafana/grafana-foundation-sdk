@@ -21,7 +21,7 @@ func (builder *ExprTypeClassicConditionsConditionsOperatorBuilder) Build() (Expr
 ### <span class="badge object-method"></span> Type
 
 ```go
-func (builder *ExprTypeClassicConditionsConditionsOperatorBuilder) Type(typeArg expr.TypeClassicConditionsType) *ExprTypeClassicConditionsConditionsOperatorBuilder
+func (builder *ExprTypeClassicConditionsConditionsOperatorBuilder) Type(typeArg expr.ExprTypeClassicConditionsConditionsOperatorType) *ExprTypeClassicConditionsConditionsOperatorBuilder
 ```
 
 ## See also

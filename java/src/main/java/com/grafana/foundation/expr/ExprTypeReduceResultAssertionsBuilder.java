@@ -11,17 +11,17 @@ public class ExprTypeReduceResultAssertionsBuilder implements com.grafana.founda
         this.internal = new ExprTypeReduceResultAssertions();
     }
     public ExprTypeReduceResultAssertionsBuilder maxFrames(Long maxFrames) {
-    this.internal.maxFrames = maxFrames;
+        this.internal.maxFrames = maxFrames;
         return this;
     }
     
-    public ExprTypeReduceResultAssertionsBuilder type(TypeReduceType type) {
-    this.internal.type = type;
+    public ExprTypeReduceResultAssertionsBuilder type(ExprTypeReduceResultAssertionsType type) {
+        this.internal.type = type;
         return this;
     }
     
     public ExprTypeReduceResultAssertionsBuilder typeVersion(List<Long> typeVersion) {
-    this.internal.typeVersion = typeVersion;
+        this.internal.typeVersion = typeVersion;
         return this;
     }
     public ExprTypeReduceResultAssertions build() {

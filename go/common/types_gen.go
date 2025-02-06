@@ -1072,6 +1072,195 @@ func (resource MapLayerOptions) Validate() error {
 	return errs
 }
 
+type FrameGeometrySource struct {
+	Mode FrameGeometrySourceMode `json:"mode"`
+	// Field mappings
+	Geohash   *string `json:"geohash,omitempty"`
+	Latitude  *string `json:"latitude,omitempty"`
+	Longitude *string `json:"longitude,omitempty"`
+	Wkt       *string `json:"wkt,omitempty"`
+	Lookup    *string `json:"lookup,omitempty"`
+	// Path to Gazetteer
+	Gazetteer *string `json:"gazetteer,omitempty"`
+}
+
+// NewFrameGeometrySource creates a new FrameGeometrySource object.
+func NewFrameGeometrySource() *FrameGeometrySource {
+	return &FrameGeometrySource{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FrameGeometrySource` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *FrameGeometrySource) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "mode"
+	if fields["mode"] != nil {
+		if string(fields["mode"]) != "null" {
+			if err := json.Unmarshal(fields["mode"], &resource.Mode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("mode", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "mode")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is missing from input"))...)
+	}
+	// Field "geohash"
+	if fields["geohash"] != nil {
+		if string(fields["geohash"]) != "null" {
+			if err := json.Unmarshal(fields["geohash"], &resource.Geohash); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("geohash", err)...)
+			}
+
+		}
+		delete(fields, "geohash")
+
+	}
+	// Field "latitude"
+	if fields["latitude"] != nil {
+		if string(fields["latitude"]) != "null" {
+			if err := json.Unmarshal(fields["latitude"], &resource.Latitude); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("latitude", err)...)
+			}
+
+		}
+		delete(fields, "latitude")
+
+	}
+	// Field "longitude"
+	if fields["longitude"] != nil {
+		if string(fields["longitude"]) != "null" {
+			if err := json.Unmarshal(fields["longitude"], &resource.Longitude); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("longitude", err)...)
+			}
+
+		}
+		delete(fields, "longitude")
+
+	}
+	// Field "wkt"
+	if fields["wkt"] != nil {
+		if string(fields["wkt"]) != "null" {
+			if err := json.Unmarshal(fields["wkt"], &resource.Wkt); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("wkt", err)...)
+			}
+
+		}
+		delete(fields, "wkt")
+
+	}
+	// Field "lookup"
+	if fields["lookup"] != nil {
+		if string(fields["lookup"]) != "null" {
+			if err := json.Unmarshal(fields["lookup"], &resource.Lookup); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("lookup", err)...)
+			}
+
+		}
+		delete(fields, "lookup")
+
+	}
+	// Field "gazetteer"
+	if fields["gazetteer"] != nil {
+		if string(fields["gazetteer"]) != "null" {
+			if err := json.Unmarshal(fields["gazetteer"], &resource.Gazetteer); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("gazetteer", err)...)
+			}
+
+		}
+		delete(fields, "gazetteer")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("FrameGeometrySource", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `FrameGeometrySource` objects.
+func (resource FrameGeometrySource) Equals(other FrameGeometrySource) bool {
+	if resource.Mode != other.Mode {
+		return false
+	}
+	if resource.Geohash == nil && other.Geohash != nil || resource.Geohash != nil && other.Geohash == nil {
+		return false
+	}
+
+	if resource.Geohash != nil {
+		if *resource.Geohash != *other.Geohash {
+			return false
+		}
+	}
+	if resource.Latitude == nil && other.Latitude != nil || resource.Latitude != nil && other.Latitude == nil {
+		return false
+	}
+
+	if resource.Latitude != nil {
+		if *resource.Latitude != *other.Latitude {
+			return false
+		}
+	}
+	if resource.Longitude == nil && other.Longitude != nil || resource.Longitude != nil && other.Longitude == nil {
+		return false
+	}
+
+	if resource.Longitude != nil {
+		if *resource.Longitude != *other.Longitude {
+			return false
+		}
+	}
+	if resource.Wkt == nil && other.Wkt != nil || resource.Wkt != nil && other.Wkt == nil {
+		return false
+	}
+
+	if resource.Wkt != nil {
+		if *resource.Wkt != *other.Wkt {
+			return false
+		}
+	}
+	if resource.Lookup == nil && other.Lookup != nil || resource.Lookup != nil && other.Lookup == nil {
+		return false
+	}
+
+	if resource.Lookup != nil {
+		if *resource.Lookup != *other.Lookup {
+			return false
+		}
+	}
+	if resource.Gazetteer == nil && other.Gazetteer != nil || resource.Gazetteer != nil && other.Gazetteer == nil {
+		return false
+	}
+
+	if resource.Gazetteer != nil {
+		if *resource.Gazetteer != *other.Gazetteer {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `FrameGeometrySource` fields for violations and returns them.
+func (resource FrameGeometrySource) Validate() error {
+	return nil
+}
+
 type FrameGeometrySourceMode string
 
 const (
@@ -1219,6 +1408,120 @@ func (resource HeatmapCalculationBucketConfig) Validate() error {
 	return errs
 }
 
+// TODO docs
+type ScaleDistributionConfig struct {
+	Type            ScaleDistribution `json:"type"`
+	Log             *float64          `json:"log,omitempty"`
+	LinearThreshold *float64          `json:"linearThreshold,omitempty"`
+}
+
+// NewScaleDistributionConfig creates a new ScaleDistributionConfig object.
+func NewScaleDistributionConfig() *ScaleDistributionConfig {
+	return &ScaleDistributionConfig{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ScaleDistributionConfig` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ScaleDistributionConfig) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "log"
+	if fields["log"] != nil {
+		if string(fields["log"]) != "null" {
+			if err := json.Unmarshal(fields["log"], &resource.Log); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("log", err)...)
+			}
+
+		}
+		delete(fields, "log")
+
+	}
+	// Field "linearThreshold"
+	if fields["linearThreshold"] != nil {
+		if string(fields["linearThreshold"]) != "null" {
+			if err := json.Unmarshal(fields["linearThreshold"], &resource.LinearThreshold); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("linearThreshold", err)...)
+			}
+
+		}
+		delete(fields, "linearThreshold")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ScaleDistributionConfig", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ScaleDistributionConfig` objects.
+func (resource ScaleDistributionConfig) Equals(other ScaleDistributionConfig) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Log == nil && other.Log != nil || resource.Log != nil && other.Log == nil {
+		return false
+	}
+
+	if resource.Log != nil {
+		if *resource.Log != *other.Log {
+			return false
+		}
+	}
+	if resource.LinearThreshold == nil && other.LinearThreshold != nil || resource.LinearThreshold != nil && other.LinearThreshold == nil {
+		return false
+	}
+
+	if resource.LinearThreshold != nil {
+		if *resource.LinearThreshold != *other.LinearThreshold {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ScaleDistributionConfig` fields for violations and returns them.
+func (resource ScaleDistributionConfig) Validate() error {
+	return nil
+}
+
+// TODO docs
+type ScaleDistribution string
+
+const (
+	ScaleDistributionLinear  ScaleDistribution = "linear"
+	ScaleDistributionLog     ScaleDistribution = "log"
+	ScaleDistributionOrdinal ScaleDistribution = "ordinal"
+	ScaleDistributionSymlog  ScaleDistribution = "symlog"
+)
+
 type LogsSortOrder string
 
 const (
@@ -1280,16 +1583,6 @@ const (
 	LineInterpolationSmooth     LineInterpolation = "smooth"
 	LineInterpolationStepBefore LineInterpolation = "stepBefore"
 	LineInterpolationStepAfter  LineInterpolation = "stepAfter"
-)
-
-// TODO docs
-type ScaleDistribution string
-
-const (
-	ScaleDistributionLinear  ScaleDistribution = "linear"
-	ScaleDistributionLog     ScaleDistribution = "log"
-	ScaleDistributionOrdinal ScaleDistribution = "ordinal"
-	ScaleDistributionSymlog  ScaleDistribution = "symlog"
 )
 
 // TODO docs
@@ -1937,110 +2230,6 @@ func (resource PointsConfig) Equals(other PointsConfig) bool {
 
 // Validate checks all the validation constraints that may be defined on `PointsConfig` fields for violations and returns them.
 func (resource PointsConfig) Validate() error {
-	return nil
-}
-
-// TODO docs
-type ScaleDistributionConfig struct {
-	Type            ScaleDistribution `json:"type"`
-	Log             *float64          `json:"log,omitempty"`
-	LinearThreshold *float64          `json:"linearThreshold,omitempty"`
-}
-
-// NewScaleDistributionConfig creates a new ScaleDistributionConfig object.
-func NewScaleDistributionConfig() *ScaleDistributionConfig {
-	return &ScaleDistributionConfig{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ScaleDistributionConfig` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ScaleDistributionConfig) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "log"
-	if fields["log"] != nil {
-		if string(fields["log"]) != "null" {
-			if err := json.Unmarshal(fields["log"], &resource.Log); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("log", err)...)
-			}
-
-		}
-		delete(fields, "log")
-
-	}
-	// Field "linearThreshold"
-	if fields["linearThreshold"] != nil {
-		if string(fields["linearThreshold"]) != "null" {
-			if err := json.Unmarshal(fields["linearThreshold"], &resource.LinearThreshold); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("linearThreshold", err)...)
-			}
-
-		}
-		delete(fields, "linearThreshold")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ScaleDistributionConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ScaleDistributionConfig` objects.
-func (resource ScaleDistributionConfig) Equals(other ScaleDistributionConfig) bool {
-	if resource.Type != other.Type {
-		return false
-	}
-	if resource.Log == nil && other.Log != nil || resource.Log != nil && other.Log == nil {
-		return false
-	}
-
-	if resource.Log != nil {
-		if *resource.Log != *other.Log {
-			return false
-		}
-	}
-	if resource.LinearThreshold == nil && other.LinearThreshold != nil || resource.LinearThreshold != nil && other.LinearThreshold == nil {
-		return false
-	}
-
-	if resource.LinearThreshold != nil {
-		if *resource.LinearThreshold != *other.LinearThreshold {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ScaleDistributionConfig` fields for violations and returns them.
-func (resource ScaleDistributionConfig) Validate() error {
 	return nil
 }
 
@@ -3003,6 +3192,94 @@ func (resource ReduceDataOptions) Validate() error {
 }
 
 // TODO docs
+type VizTextDisplayOptions struct {
+	// Explicit title text size
+	TitleSize *float64 `json:"titleSize,omitempty"`
+	// Explicit value text size
+	ValueSize *float64 `json:"valueSize,omitempty"`
+}
+
+// NewVizTextDisplayOptions creates a new VizTextDisplayOptions object.
+func NewVizTextDisplayOptions() *VizTextDisplayOptions {
+	return &VizTextDisplayOptions{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VizTextDisplayOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *VizTextDisplayOptions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "titleSize"
+	if fields["titleSize"] != nil {
+		if string(fields["titleSize"]) != "null" {
+			if err := json.Unmarshal(fields["titleSize"], &resource.TitleSize); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("titleSize", err)...)
+			}
+
+		}
+		delete(fields, "titleSize")
+
+	}
+	// Field "valueSize"
+	if fields["valueSize"] != nil {
+		if string(fields["valueSize"]) != "null" {
+			if err := json.Unmarshal(fields["valueSize"], &resource.ValueSize); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("valueSize", err)...)
+			}
+
+		}
+		delete(fields, "valueSize")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("VizTextDisplayOptions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `VizTextDisplayOptions` objects.
+func (resource VizTextDisplayOptions) Equals(other VizTextDisplayOptions) bool {
+	if resource.TitleSize == nil && other.TitleSize != nil || resource.TitleSize != nil && other.TitleSize == nil {
+		return false
+	}
+
+	if resource.TitleSize != nil {
+		if *resource.TitleSize != *other.TitleSize {
+			return false
+		}
+	}
+	if resource.ValueSize == nil && other.ValueSize != nil || resource.ValueSize != nil && other.ValueSize == nil {
+		return false
+	}
+
+	if resource.ValueSize != nil {
+		if *resource.ValueSize != *other.ValueSize {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `VizTextDisplayOptions` fields for violations and returns them.
+func (resource VizTextDisplayOptions) Validate() error {
+	return nil
+}
+
+// TODO docs
 type VizOrientation string
 
 const (
@@ -3087,6 +3364,104 @@ func (resource OptionsWithTooltip) Validate() error {
 }
 
 // TODO docs
+type VizTooltipOptions struct {
+	Mode TooltipDisplayMode `json:"mode"`
+	Sort SortOrder          `json:"sort"`
+}
+
+// NewVizTooltipOptions creates a new VizTooltipOptions object.
+func NewVizTooltipOptions() *VizTooltipOptions {
+	return &VizTooltipOptions{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VizTooltipOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *VizTooltipOptions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "mode"
+	if fields["mode"] != nil {
+		if string(fields["mode"]) != "null" {
+			if err := json.Unmarshal(fields["mode"], &resource.Mode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("mode", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "mode")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is missing from input"))...)
+	}
+	// Field "sort"
+	if fields["sort"] != nil {
+		if string(fields["sort"]) != "null" {
+			if err := json.Unmarshal(fields["sort"], &resource.Sort); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("sort", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("sort", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "sort")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("sort", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("VizTooltipOptions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `VizTooltipOptions` objects.
+func (resource VizTooltipOptions) Equals(other VizTooltipOptions) bool {
+	if resource.Mode != other.Mode {
+		return false
+	}
+	if resource.Sort != other.Sort {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `VizTooltipOptions` fields for violations and returns them.
+func (resource VizTooltipOptions) Validate() error {
+	return nil
+}
+
+// TODO docs
+type TooltipDisplayMode string
+
+const (
+	TooltipDisplayModeSingle TooltipDisplayMode = "single"
+	TooltipDisplayModeMulti  TooltipDisplayMode = "multi"
+	TooltipDisplayModeNone   TooltipDisplayMode = "none"
+)
+
+// TODO docs
+type SortOrder string
+
+const (
+	SortOrderAscending  SortOrder = "asc"
+	SortOrderDescending SortOrder = "desc"
+	SortOrderNone       SortOrder = "none"
+)
+
+// TODO docs
 type OptionsWithLegend struct {
 	Legend VizLegendOptions `json:"legend"`
 }
@@ -3162,6 +3537,236 @@ func (resource OptionsWithLegend) Validate() error {
 }
 
 // TODO docs
+type VizLegendOptions struct {
+	DisplayMode LegendDisplayMode `json:"displayMode"`
+	Placement   LegendPlacement   `json:"placement"`
+	ShowLegend  bool              `json:"showLegend"`
+	AsTable     *bool             `json:"asTable,omitempty"`
+	IsVisible   *bool             `json:"isVisible,omitempty"`
+	SortBy      *string           `json:"sortBy,omitempty"`
+	SortDesc    *bool             `json:"sortDesc,omitempty"`
+	Width       *float64          `json:"width,omitempty"`
+	Calcs       []string          `json:"calcs"`
+}
+
+// NewVizLegendOptions creates a new VizLegendOptions object.
+func NewVizLegendOptions() *VizLegendOptions {
+	return &VizLegendOptions{
+		DisplayMode: LegendDisplayModeList,
+		Placement:   LegendPlacementBottom,
+		Calcs:       []string{},
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VizLegendOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *VizLegendOptions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "displayMode"
+	if fields["displayMode"] != nil {
+		if string(fields["displayMode"]) != "null" {
+			if err := json.Unmarshal(fields["displayMode"], &resource.DisplayMode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("displayMode", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("displayMode", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "displayMode")
+
+	}
+	// Field "placement"
+	if fields["placement"] != nil {
+		if string(fields["placement"]) != "null" {
+			if err := json.Unmarshal(fields["placement"], &resource.Placement); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("placement", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("placement", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "placement")
+
+	}
+	// Field "showLegend"
+	if fields["showLegend"] != nil {
+		if string(fields["showLegend"]) != "null" {
+			if err := json.Unmarshal(fields["showLegend"], &resource.ShowLegend); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showLegend", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("showLegend", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "showLegend")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showLegend", errors.New("required field is missing from input"))...)
+	}
+	// Field "asTable"
+	if fields["asTable"] != nil {
+		if string(fields["asTable"]) != "null" {
+			if err := json.Unmarshal(fields["asTable"], &resource.AsTable); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("asTable", err)...)
+			}
+
+		}
+		delete(fields, "asTable")
+
+	}
+	// Field "isVisible"
+	if fields["isVisible"] != nil {
+		if string(fields["isVisible"]) != "null" {
+			if err := json.Unmarshal(fields["isVisible"], &resource.IsVisible); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("isVisible", err)...)
+			}
+
+		}
+		delete(fields, "isVisible")
+
+	}
+	// Field "sortBy"
+	if fields["sortBy"] != nil {
+		if string(fields["sortBy"]) != "null" {
+			if err := json.Unmarshal(fields["sortBy"], &resource.SortBy); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("sortBy", err)...)
+			}
+
+		}
+		delete(fields, "sortBy")
+
+	}
+	// Field "sortDesc"
+	if fields["sortDesc"] != nil {
+		if string(fields["sortDesc"]) != "null" {
+			if err := json.Unmarshal(fields["sortDesc"], &resource.SortDesc); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("sortDesc", err)...)
+			}
+
+		}
+		delete(fields, "sortDesc")
+
+	}
+	// Field "width"
+	if fields["width"] != nil {
+		if string(fields["width"]) != "null" {
+			if err := json.Unmarshal(fields["width"], &resource.Width); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("width", err)...)
+			}
+
+		}
+		delete(fields, "width")
+
+	}
+	// Field "calcs"
+	if fields["calcs"] != nil {
+		if string(fields["calcs"]) != "null" {
+
+			if err := json.Unmarshal(fields["calcs"], &resource.Calcs); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("calcs", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("calcs", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "calcs")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("VizLegendOptions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `VizLegendOptions` objects.
+func (resource VizLegendOptions) Equals(other VizLegendOptions) bool {
+	if resource.DisplayMode != other.DisplayMode {
+		return false
+	}
+	if resource.Placement != other.Placement {
+		return false
+	}
+	if resource.ShowLegend != other.ShowLegend {
+		return false
+	}
+	if resource.AsTable == nil && other.AsTable != nil || resource.AsTable != nil && other.AsTable == nil {
+		return false
+	}
+
+	if resource.AsTable != nil {
+		if *resource.AsTable != *other.AsTable {
+			return false
+		}
+	}
+	if resource.IsVisible == nil && other.IsVisible != nil || resource.IsVisible != nil && other.IsVisible == nil {
+		return false
+	}
+
+	if resource.IsVisible != nil {
+		if *resource.IsVisible != *other.IsVisible {
+			return false
+		}
+	}
+	if resource.SortBy == nil && other.SortBy != nil || resource.SortBy != nil && other.SortBy == nil {
+		return false
+	}
+
+	if resource.SortBy != nil {
+		if *resource.SortBy != *other.SortBy {
+			return false
+		}
+	}
+	if resource.SortDesc == nil && other.SortDesc != nil || resource.SortDesc != nil && other.SortDesc == nil {
+		return false
+	}
+
+	if resource.SortDesc != nil {
+		if *resource.SortDesc != *other.SortDesc {
+			return false
+		}
+	}
+	if resource.Width == nil && other.Width != nil || resource.Width != nil && other.Width == nil {
+		return false
+	}
+
+	if resource.Width != nil {
+		if *resource.Width != *other.Width {
+			return false
+		}
+	}
+
+	if len(resource.Calcs) != len(other.Calcs) {
+		return false
+	}
+
+	for i1 := range resource.Calcs {
+		if resource.Calcs[i1] != other.Calcs[i1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `VizLegendOptions` fields for violations and returns them.
+func (resource VizLegendOptions) Validate() error {
+	return nil
+}
+
+// TODO docs
 type OptionsWithTimezones struct {
 	Timezone []TimeZone `json:"timezone,omitempty"`
 }
@@ -3227,6 +3832,15 @@ func (resource OptionsWithTimezones) Equals(other OptionsWithTimezones) bool {
 func (resource OptionsWithTimezones) Validate() error {
 	return nil
 }
+
+// A specific timezone from https://en.wikipedia.org/wiki/Tz_database
+type TimeZone string
+
+// Use UTC/GMT timezone
+const TimeZoneUtc = "utc"
+
+// Use the timezone defined by end user web browser
+const TimeZoneBrowser = "browser"
 
 // TODO docs
 type OptionsWithTextFormatting struct {
@@ -3362,112 +3976,6 @@ const (
 	TimelineValueAlignmentCenter TimelineValueAlignment = "center"
 	TimelineValueAlignmentLeft   TimelineValueAlignment = "left"
 	TimelineValueAlignmentRight  TimelineValueAlignment = "right"
-)
-
-// TODO docs
-type VizTextDisplayOptions struct {
-	// Explicit title text size
-	TitleSize *float64 `json:"titleSize,omitempty"`
-	// Explicit value text size
-	ValueSize *float64 `json:"valueSize,omitempty"`
-}
-
-// NewVizTextDisplayOptions creates a new VizTextDisplayOptions object.
-func NewVizTextDisplayOptions() *VizTextDisplayOptions {
-	return &VizTextDisplayOptions{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VizTextDisplayOptions` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *VizTextDisplayOptions) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "titleSize"
-	if fields["titleSize"] != nil {
-		if string(fields["titleSize"]) != "null" {
-			if err := json.Unmarshal(fields["titleSize"], &resource.TitleSize); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("titleSize", err)...)
-			}
-
-		}
-		delete(fields, "titleSize")
-
-	}
-	// Field "valueSize"
-	if fields["valueSize"] != nil {
-		if string(fields["valueSize"]) != "null" {
-			if err := json.Unmarshal(fields["valueSize"], &resource.ValueSize); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("valueSize", err)...)
-			}
-
-		}
-		delete(fields, "valueSize")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("VizTextDisplayOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `VizTextDisplayOptions` objects.
-func (resource VizTextDisplayOptions) Equals(other VizTextDisplayOptions) bool {
-	if resource.TitleSize == nil && other.TitleSize != nil || resource.TitleSize != nil && other.TitleSize == nil {
-		return false
-	}
-
-	if resource.TitleSize != nil {
-		if *resource.TitleSize != *other.TitleSize {
-			return false
-		}
-	}
-	if resource.ValueSize == nil && other.ValueSize != nil || resource.ValueSize != nil && other.ValueSize == nil {
-		return false
-	}
-
-	if resource.ValueSize != nil {
-		if *resource.ValueSize != *other.ValueSize {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `VizTextDisplayOptions` fields for violations and returns them.
-func (resource VizTextDisplayOptions) Validate() error {
-	return nil
-}
-
-// TODO docs
-type TooltipDisplayMode string
-
-const (
-	TooltipDisplayModeSingle TooltipDisplayMode = "single"
-	TooltipDisplayModeMulti  TooltipDisplayMode = "multi"
-	TooltipDisplayModeNone   TooltipDisplayMode = "none"
-)
-
-// TODO docs
-type SortOrder string
-
-const (
-	SortOrderAscending  SortOrder = "asc"
-	SortOrderDescending SortOrder = "desc"
-	SortOrderNone       SortOrder = "none"
 )
 
 // TODO docs
@@ -4244,236 +4752,6 @@ func (resource GraphFieldConfig) Validate() error {
 	return errs
 }
 
-// TODO docs
-type VizLegendOptions struct {
-	DisplayMode LegendDisplayMode `json:"displayMode"`
-	Placement   LegendPlacement   `json:"placement"`
-	ShowLegend  bool              `json:"showLegend"`
-	AsTable     *bool             `json:"asTable,omitempty"`
-	IsVisible   *bool             `json:"isVisible,omitempty"`
-	SortBy      *string           `json:"sortBy,omitempty"`
-	SortDesc    *bool             `json:"sortDesc,omitempty"`
-	Width       *float64          `json:"width,omitempty"`
-	Calcs       []string          `json:"calcs"`
-}
-
-// NewVizLegendOptions creates a new VizLegendOptions object.
-func NewVizLegendOptions() *VizLegendOptions {
-	return &VizLegendOptions{
-		DisplayMode: LegendDisplayModeList,
-		Placement:   LegendPlacementBottom,
-		Calcs:       []string{},
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VizLegendOptions` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *VizLegendOptions) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "displayMode"
-	if fields["displayMode"] != nil {
-		if string(fields["displayMode"]) != "null" {
-			if err := json.Unmarshal(fields["displayMode"], &resource.DisplayMode); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("displayMode", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("displayMode", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "displayMode")
-
-	}
-	// Field "placement"
-	if fields["placement"] != nil {
-		if string(fields["placement"]) != "null" {
-			if err := json.Unmarshal(fields["placement"], &resource.Placement); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("placement", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("placement", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "placement")
-
-	}
-	// Field "showLegend"
-	if fields["showLegend"] != nil {
-		if string(fields["showLegend"]) != "null" {
-			if err := json.Unmarshal(fields["showLegend"], &resource.ShowLegend); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("showLegend", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("showLegend", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "showLegend")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("showLegend", errors.New("required field is missing from input"))...)
-	}
-	// Field "asTable"
-	if fields["asTable"] != nil {
-		if string(fields["asTable"]) != "null" {
-			if err := json.Unmarshal(fields["asTable"], &resource.AsTable); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("asTable", err)...)
-			}
-
-		}
-		delete(fields, "asTable")
-
-	}
-	// Field "isVisible"
-	if fields["isVisible"] != nil {
-		if string(fields["isVisible"]) != "null" {
-			if err := json.Unmarshal(fields["isVisible"], &resource.IsVisible); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("isVisible", err)...)
-			}
-
-		}
-		delete(fields, "isVisible")
-
-	}
-	// Field "sortBy"
-	if fields["sortBy"] != nil {
-		if string(fields["sortBy"]) != "null" {
-			if err := json.Unmarshal(fields["sortBy"], &resource.SortBy); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("sortBy", err)...)
-			}
-
-		}
-		delete(fields, "sortBy")
-
-	}
-	// Field "sortDesc"
-	if fields["sortDesc"] != nil {
-		if string(fields["sortDesc"]) != "null" {
-			if err := json.Unmarshal(fields["sortDesc"], &resource.SortDesc); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("sortDesc", err)...)
-			}
-
-		}
-		delete(fields, "sortDesc")
-
-	}
-	// Field "width"
-	if fields["width"] != nil {
-		if string(fields["width"]) != "null" {
-			if err := json.Unmarshal(fields["width"], &resource.Width); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("width", err)...)
-			}
-
-		}
-		delete(fields, "width")
-
-	}
-	// Field "calcs"
-	if fields["calcs"] != nil {
-		if string(fields["calcs"]) != "null" {
-
-			if err := json.Unmarshal(fields["calcs"], &resource.Calcs); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("calcs", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("calcs", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "calcs")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("VizLegendOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `VizLegendOptions` objects.
-func (resource VizLegendOptions) Equals(other VizLegendOptions) bool {
-	if resource.DisplayMode != other.DisplayMode {
-		return false
-	}
-	if resource.Placement != other.Placement {
-		return false
-	}
-	if resource.ShowLegend != other.ShowLegend {
-		return false
-	}
-	if resource.AsTable == nil && other.AsTable != nil || resource.AsTable != nil && other.AsTable == nil {
-		return false
-	}
-
-	if resource.AsTable != nil {
-		if *resource.AsTable != *other.AsTable {
-			return false
-		}
-	}
-	if resource.IsVisible == nil && other.IsVisible != nil || resource.IsVisible != nil && other.IsVisible == nil {
-		return false
-	}
-
-	if resource.IsVisible != nil {
-		if *resource.IsVisible != *other.IsVisible {
-			return false
-		}
-	}
-	if resource.SortBy == nil && other.SortBy != nil || resource.SortBy != nil && other.SortBy == nil {
-		return false
-	}
-
-	if resource.SortBy != nil {
-		if *resource.SortBy != *other.SortBy {
-			return false
-		}
-	}
-	if resource.SortDesc == nil && other.SortDesc != nil || resource.SortDesc != nil && other.SortDesc == nil {
-		return false
-	}
-
-	if resource.SortDesc != nil {
-		if *resource.SortDesc != *other.SortDesc {
-			return false
-		}
-	}
-	if resource.Width == nil && other.Width != nil || resource.Width != nil && other.Width == nil {
-		return false
-	}
-
-	if resource.Width != nil {
-		if *resource.Width != *other.Width {
-			return false
-		}
-	}
-
-	if len(resource.Calcs) != len(other.Calcs) {
-		return false
-	}
-
-	for i1 := range resource.Calcs {
-		if resource.Calcs[i1] != other.Calcs[i1] {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `VizLegendOptions` fields for violations and returns them.
-func (resource VizLegendOptions) Validate() error {
-	return nil
-}
-
 // Enum expressing the possible display modes
 // for the bar gauge component of Grafana UI
 type BarGaugeDisplayMode string
@@ -4509,86 +4787,6 @@ const (
 	BarGaugeSizingAuto   BarGaugeSizing = "auto"
 	BarGaugeSizingManual BarGaugeSizing = "manual"
 )
-
-// TODO docs
-type VizTooltipOptions struct {
-	Mode TooltipDisplayMode `json:"mode"`
-	Sort SortOrder          `json:"sort"`
-}
-
-// NewVizTooltipOptions creates a new VizTooltipOptions object.
-func NewVizTooltipOptions() *VizTooltipOptions {
-	return &VizTooltipOptions{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `VizTooltipOptions` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *VizTooltipOptions) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "mode"
-	if fields["mode"] != nil {
-		if string(fields["mode"]) != "null" {
-			if err := json.Unmarshal(fields["mode"], &resource.Mode); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("mode", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "mode")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is missing from input"))...)
-	}
-	// Field "sort"
-	if fields["sort"] != nil {
-		if string(fields["sort"]) != "null" {
-			if err := json.Unmarshal(fields["sort"], &resource.Sort); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("sort", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("sort", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "sort")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("sort", errors.New("required field is missing from input"))...)
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("VizTooltipOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `VizTooltipOptions` objects.
-func (resource VizTooltipOptions) Equals(other VizTooltipOptions) bool {
-	if resource.Mode != other.Mode {
-		return false
-	}
-	if resource.Sort != other.Sort {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `VizTooltipOptions` fields for violations and returns them.
-func (resource VizTooltipOptions) Validate() error {
-	return nil
-}
 
 type Labels map[string]string
 
@@ -6247,12 +6445,6 @@ func NewTableCellOptions() *TableCellOptions {
 	return NewTableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableJsonViewCellOptions()
 }
 
-// Use UTC/GMT timezone
-const TimeZoneUtc = "utc"
-
-// Use the timezone defined by end user web browser
-const TimeZoneBrowser = "browser"
-
 // Optional formats for the template variable replace functions
 // See also https://grafana.com/docs/grafana/latest/dashboards/variables/variable-syntax/#advanced-variable-format-options
 type VariableFormatID string
@@ -6379,195 +6571,6 @@ func (resource ResourceDimensionConfig) Equals(other ResourceDimensionConfig) bo
 
 // Validate checks all the validation constraints that may be defined on `ResourceDimensionConfig` fields for violations and returns them.
 func (resource ResourceDimensionConfig) Validate() error {
-	return nil
-}
-
-type FrameGeometrySource struct {
-	Mode FrameGeometrySourceMode `json:"mode"`
-	// Field mappings
-	Geohash   *string `json:"geohash,omitempty"`
-	Latitude  *string `json:"latitude,omitempty"`
-	Longitude *string `json:"longitude,omitempty"`
-	Wkt       *string `json:"wkt,omitempty"`
-	Lookup    *string `json:"lookup,omitempty"`
-	// Path to Gazetteer
-	Gazetteer *string `json:"gazetteer,omitempty"`
-}
-
-// NewFrameGeometrySource creates a new FrameGeometrySource object.
-func NewFrameGeometrySource() *FrameGeometrySource {
-	return &FrameGeometrySource{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FrameGeometrySource` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *FrameGeometrySource) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "mode"
-	if fields["mode"] != nil {
-		if string(fields["mode"]) != "null" {
-			if err := json.Unmarshal(fields["mode"], &resource.Mode); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("mode", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "mode")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is missing from input"))...)
-	}
-	// Field "geohash"
-	if fields["geohash"] != nil {
-		if string(fields["geohash"]) != "null" {
-			if err := json.Unmarshal(fields["geohash"], &resource.Geohash); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("geohash", err)...)
-			}
-
-		}
-		delete(fields, "geohash")
-
-	}
-	// Field "latitude"
-	if fields["latitude"] != nil {
-		if string(fields["latitude"]) != "null" {
-			if err := json.Unmarshal(fields["latitude"], &resource.Latitude); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("latitude", err)...)
-			}
-
-		}
-		delete(fields, "latitude")
-
-	}
-	// Field "longitude"
-	if fields["longitude"] != nil {
-		if string(fields["longitude"]) != "null" {
-			if err := json.Unmarshal(fields["longitude"], &resource.Longitude); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("longitude", err)...)
-			}
-
-		}
-		delete(fields, "longitude")
-
-	}
-	// Field "wkt"
-	if fields["wkt"] != nil {
-		if string(fields["wkt"]) != "null" {
-			if err := json.Unmarshal(fields["wkt"], &resource.Wkt); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("wkt", err)...)
-			}
-
-		}
-		delete(fields, "wkt")
-
-	}
-	// Field "lookup"
-	if fields["lookup"] != nil {
-		if string(fields["lookup"]) != "null" {
-			if err := json.Unmarshal(fields["lookup"], &resource.Lookup); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("lookup", err)...)
-			}
-
-		}
-		delete(fields, "lookup")
-
-	}
-	// Field "gazetteer"
-	if fields["gazetteer"] != nil {
-		if string(fields["gazetteer"]) != "null" {
-			if err := json.Unmarshal(fields["gazetteer"], &resource.Gazetteer); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("gazetteer", err)...)
-			}
-
-		}
-		delete(fields, "gazetteer")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("FrameGeometrySource", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `FrameGeometrySource` objects.
-func (resource FrameGeometrySource) Equals(other FrameGeometrySource) bool {
-	if resource.Mode != other.Mode {
-		return false
-	}
-	if resource.Geohash == nil && other.Geohash != nil || resource.Geohash != nil && other.Geohash == nil {
-		return false
-	}
-
-	if resource.Geohash != nil {
-		if *resource.Geohash != *other.Geohash {
-			return false
-		}
-	}
-	if resource.Latitude == nil && other.Latitude != nil || resource.Latitude != nil && other.Latitude == nil {
-		return false
-	}
-
-	if resource.Latitude != nil {
-		if *resource.Latitude != *other.Latitude {
-			return false
-		}
-	}
-	if resource.Longitude == nil && other.Longitude != nil || resource.Longitude != nil && other.Longitude == nil {
-		return false
-	}
-
-	if resource.Longitude != nil {
-		if *resource.Longitude != *other.Longitude {
-			return false
-		}
-	}
-	if resource.Wkt == nil && other.Wkt != nil || resource.Wkt != nil && other.Wkt == nil {
-		return false
-	}
-
-	if resource.Wkt != nil {
-		if *resource.Wkt != *other.Wkt {
-			return false
-		}
-	}
-	if resource.Lookup == nil && other.Lookup != nil || resource.Lookup != nil && other.Lookup == nil {
-		return false
-	}
-
-	if resource.Lookup != nil {
-		if *resource.Lookup != *other.Lookup {
-			return false
-		}
-	}
-	if resource.Gazetteer == nil && other.Gazetteer != nil || resource.Gazetteer != nil && other.Gazetteer == nil {
-		return false
-	}
-
-	if resource.Gazetteer != nil {
-		if *resource.Gazetteer != *other.Gazetteer {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `FrameGeometrySource` fields for violations and returns them.
-func (resource FrameGeometrySource) Validate() error {
 	return nil
 }
 
@@ -6943,9 +6946,6 @@ func (resource TableFieldOptions) Validate() error {
 
 	return errs
 }
-
-// A specific timezone from https://en.wikipedia.org/wiki/Tz_database
-type TimeZone string
 
 type LineStyleFill string
 

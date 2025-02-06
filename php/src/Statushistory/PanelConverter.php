@@ -483,7 +483,7 @@ final class PanelConverter
     
     }
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Statushistory\Options && $input->options->rowHeight !== 0.9) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Statushistory\Options && $input->options->rowHeight !== (float) 0.9) {
     
         
     $buffer = 'rowHeight(';
@@ -553,7 +553,7 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Statushistory\Options && $input->options->colWidth !== null && $input->options->colWidth !== 0.9) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Statushistory\Options && $input->options->colWidth !== null && $input->options->colWidth !== (float) 0.9) {
     
         
     $buffer = 'colWidth(';

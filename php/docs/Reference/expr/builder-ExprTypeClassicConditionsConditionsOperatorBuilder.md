@@ -21,7 +21,7 @@ build()
 ### <span class="badge object-method"></span> type
 
 ```php
-type(\Grafana\Foundation\Expr\TypeClassicConditionsType $type)
+type(\Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsOperatorType $type)
 ```
 
 ## See also

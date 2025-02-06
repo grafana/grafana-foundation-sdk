@@ -10,37 +10,37 @@ public class FrameGeometrySourceBuilder implements com.grafana.foundation.cog.Bu
         this.internal = new FrameGeometrySource();
     }
     public FrameGeometrySourceBuilder mode(FrameGeometrySourceMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     
     public FrameGeometrySourceBuilder geohash(String geohash) {
-    this.internal.geohash = geohash;
+        this.internal.geohash = geohash;
         return this;
     }
     
     public FrameGeometrySourceBuilder latitude(String latitude) {
-    this.internal.latitude = latitude;
+        this.internal.latitude = latitude;
         return this;
     }
     
     public FrameGeometrySourceBuilder longitude(String longitude) {
-    this.internal.longitude = longitude;
+        this.internal.longitude = longitude;
         return this;
     }
     
     public FrameGeometrySourceBuilder wkt(String wkt) {
-    this.internal.wkt = wkt;
+        this.internal.wkt = wkt;
         return this;
     }
     
     public FrameGeometrySourceBuilder lookup(String lookup) {
-    this.internal.lookup = lookup;
+        this.internal.lookup = lookup;
         return this;
     }
     
     public FrameGeometrySourceBuilder gazetteer(String gazetteer) {
-    this.internal.gazetteer = gazetteer;
+        this.internal.gazetteer = gazetteer;
         return this;
     }
     public FrameGeometrySource build() {

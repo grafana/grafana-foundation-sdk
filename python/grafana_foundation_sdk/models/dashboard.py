@@ -178,1068 +178,30 @@ class Dashboard:
         if "version" in data:
             args["version"] = data["version"]
         if "panels" in data:
-            decoding_map: dict[str, typing.Union[typing.Type[RowPanel]]] = {"row": RowPanel}
-            args["panels"] = [decoding_map.get(item["type"], Panel).from_json(item) for item in data["panels"]]
+            decoding_map_panels_array_union: dict[str, typing.Union[typing.Type[RowPanel]]] = {"row": RowPanel}
+            args["panels"] = [decoding_map_panels_array_union.get(item["type"], Panel).from_json(item) for item in data["panels"]]
         if "templating" in data:
             args["templating"] = DashboardDashboardTemplating.from_json(data["templating"])
         if "annotations" in data:
             args["annotations"] = AnnotationContainer.from_json(data["annotations"])
         if "links" in data:
-            args["links"] = data["links"]
+            args["links"] = [DashboardLink.from_json(item) for item in data["links"]]
         if "snapshot" in data:
             args["snapshot"] = Snapshot.from_json(data["snapshot"])        
 
         return cls(**args)
 
 
-class AnnotationTarget:
+class DashboardCursorSync(enum.IntEnum):
     """
-    TODO: this should be a regular DataQuery that depends on the selected dashboard
-    these match the properties of the "grafana" datasouce that is default in most dashboards
-    """
-
-    # Only required/valid for the grafana datasource...
-    # but code+tests is already depending on it so hard to change
-    limit: int
-    # Only required/valid for the grafana datasource...
-    # but code+tests is already depending on it so hard to change
-    match_any: bool
-    # Only required/valid for the grafana datasource...
-    # but code+tests is already depending on it so hard to change
-    tags: list[str]
-    # Only required/valid for the grafana datasource...
-    # but code+tests is already depending on it so hard to change
-    type_val: str
-
-    def __init__(self, limit: int = 0, match_any: bool = False, tags: typing.Optional[list[str]] = None, type_val: str = ""):
-        self.limit = limit
-        self.match_any = match_any
-        self.tags = tags if tags is not None else []
-        self.type_val = type_val
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "limit": self.limit,
-            "matchAny": self.match_any,
-            "tags": self.tags,
-            "type": self.type_val,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "limit" in data:
-            args["limit"] = data["limit"]
-        if "matchAny" in data:
-            args["match_any"] = data["matchAny"]
-        if "tags" in data:
-            args["tags"] = data["tags"]
-        if "type" in data:
-            args["type_val"] = data["type"]        
-
-        return cls(**args)
-
-
-class AnnotationPanelFilter:
-    # Should the specified panels be included or excluded
-    exclude: typing.Optional[bool]
-    # Panel IDs that should be included or excluded
-    ids: list[int]
-
-    def __init__(self, exclude: typing.Optional[bool] = False, ids: typing.Optional[list[int]] = None):
-        self.exclude = exclude
-        self.ids = ids if ids is not None else []
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "ids": self.ids,
-        }
-        if self.exclude is not None:
-            payload["exclude"] = self.exclude
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "exclude" in data:
-            args["exclude"] = data["exclude"]
-        if "ids" in data:
-            args["ids"] = data["ids"]        
-
-        return cls(**args)
-
-
-class AnnotationContainer:
-    """
-    Contains the list of annotations that are associated with the dashboard.
-    Annotations are used to overlay event markers and overlay event tags on graphs.
-    Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
-    See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
+    0 for no shared crosshair or tooltip (default).
+    1 for shared crosshair.
+    2 for shared crosshair AND shared tooltip.
     """
 
-    # List of annotations
-    list_val: typing.Optional[list['AnnotationQuery']]
-
-    def __init__(self, list_val: typing.Optional[list['AnnotationQuery']] = None):
-        self.list_val = list_val
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.list_val is not None:
-            payload["list"] = self.list_val
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "list" in data:
-            args["list_val"] = data["list"]        
-
-        return cls(**args)
-
-
-class AnnotationQuery:
-    """
-    TODO docs
-    FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
-    """
-
-    # Name of annotation.
-    name: str
-    # Datasource where the annotations data is
-    datasource: 'DataSourceRef'
-    # When enabled the annotation query is issued with every dashboard refresh
-    enable: bool
-    # Annotation queries can be toggled on or off at the top of the dashboard.
-    # When hide is true, the toggle is not shown in the dashboard.
-    hide: typing.Optional[bool]
-    # Color to use for the annotation event markers
-    icon_color: str
-    # Filters to apply when fetching annotations
-    filter_val: typing.Optional['AnnotationPanelFilter']
-    # TODO.. this should just be a normal query target
-    target: typing.Optional['AnnotationTarget']
-    # TODO -- this should not exist here, it is based on the --grafana-- datasource
-    type_val: typing.Optional[str]
-    # Set to 1 for the standard annotation query all dashboards have by default.
-    built_in: typing.Optional[float]
-    expr: typing.Optional[str]
-
-    def __init__(self, name: str = "", datasource: typing.Optional['DataSourceRef'] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional['AnnotationTarget'] = None, type_val: typing.Optional[str] = None, built_in: typing.Optional[float] = 0, expr: typing.Optional[str] = None):
-        self.name = name
-        self.datasource = datasource if datasource is not None else DataSourceRef()
-        self.enable = enable
-        self.hide = hide
-        self.icon_color = icon_color
-        self.filter_val = filter_val
-        self.target = target
-        self.type_val = type_val
-        self.built_in = built_in
-        self.expr = expr
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "name": self.name,
-            "datasource": self.datasource,
-            "enable": self.enable,
-            "iconColor": self.icon_color,
-        }
-        if self.hide is not None:
-            payload["hide"] = self.hide
-        if self.filter_val is not None:
-            payload["filter"] = self.filter_val
-        if self.target is not None:
-            payload["target"] = self.target
-        if self.type_val is not None:
-            payload["type"] = self.type_val
-        if self.built_in is not None:
-            payload["builtIn"] = self.built_in
-        if self.expr is not None:
-            payload["expr"] = self.expr
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "name" in data:
-            args["name"] = data["name"]
-        if "datasource" in data:
-            args["datasource"] = DataSourceRef.from_json(data["datasource"])
-        if "enable" in data:
-            args["enable"] = data["enable"]
-        if "hide" in data:
-            args["hide"] = data["hide"]
-        if "iconColor" in data:
-            args["icon_color"] = data["iconColor"]
-        if "filter" in data:
-            args["filter_val"] = AnnotationPanelFilter.from_json(data["filter"])
-        if "target" in data:
-            args["target"] = AnnotationTarget.from_json(data["target"])
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "builtIn" in data:
-            args["built_in"] = data["builtIn"]
-        if "expr" in data:
-            args["expr"] = data["expr"]        
-
-        return cls(**args)
-
-
-class VariableModel:
-    """
-    A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
-    """
-
-    # Type of variable
-    type_val: 'VariableType'
-    # Name of variable
-    name: str
-    # Optional display name
-    label: typing.Optional[str]
-    # Visibility configuration for the variable
-    hide: typing.Optional['VariableHide']
-    # Whether the variable value should be managed by URL query params or not
-    skip_url_sync: typing.Optional[bool]
-    # Description of variable. It can be defined but `null`.
-    description: typing.Optional[str]
-    # Query used to fetch values for a variable
-    query: typing.Optional[typing.Union[str, dict[str, object]]]
-    # Data source used to fetch values for a variable. It can be defined but `null`.
-    datasource: typing.Optional['DataSourceRef']
-    # Shows current selected variable text/value on the dashboard
-    current: typing.Optional['VariableOption']
-    # Whether multiple values can be selected or not from variable value list
-    multi: typing.Optional[bool]
-    # Options that can be selected for a variable.
-    options: typing.Optional[list['VariableOption']]
-    refresh: typing.Optional['VariableRefresh']
-    # Options sort order
-    sort: typing.Optional['VariableSort']
-    # Dynamically calculates interval by dividing time range by the count specified.
-    auto: typing.Optional[bool]
-    # The minimum threshold below which the step count intervals will not divide the time.
-    auto_min: typing.Optional[str]
-    # How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
-    # For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
-    auto_count: typing.Optional[int]
-
-    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional['DataSourceRef'] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, auto: typing.Optional[bool] = False, auto_min: typing.Optional[str] = "10s", auto_count: typing.Optional[int] = 30):
-        self.type_val = type_val if type_val is not None else VariableType.QUERY
-        self.name = name
-        self.label = label
-        self.hide = hide
-        self.skip_url_sync = skip_url_sync
-        self.description = description
-        self.query = query
-        self.datasource = datasource
-        self.current = current
-        self.multi = multi
-        self.options = options
-        self.refresh = refresh
-        self.sort = sort
-        self.auto = auto
-        self.auto_min = auto_min
-        self.auto_count = auto_count
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-            "name": self.name,
-        }
-        if self.label is not None:
-            payload["label"] = self.label
-        if self.hide is not None:
-            payload["hide"] = self.hide
-        if self.skip_url_sync is not None:
-            payload["skipUrlSync"] = self.skip_url_sync
-        if self.description is not None:
-            payload["description"] = self.description
-        if self.query is not None:
-            payload["query"] = self.query
-        if self.datasource is not None:
-            payload["datasource"] = self.datasource
-        if self.current is not None:
-            payload["current"] = self.current
-        if self.multi is not None:
-            payload["multi"] = self.multi
-        if self.options is not None:
-            payload["options"] = self.options
-        if self.refresh is not None:
-            payload["refresh"] = self.refresh
-        if self.sort is not None:
-            payload["sort"] = self.sort
-        if self.auto is not None:
-            payload["auto"] = self.auto
-        if self.auto_min is not None:
-            payload["auto_min"] = self.auto_min
-        if self.auto_count is not None:
-            payload["auto_count"] = self.auto_count
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "name" in data:
-            args["name"] = data["name"]
-        if "label" in data:
-            args["label"] = data["label"]
-        if "hide" in data:
-            args["hide"] = data["hide"]
-        if "skipUrlSync" in data:
-            args["skip_url_sync"] = data["skipUrlSync"]
-        if "description" in data:
-            args["description"] = data["description"]
-        if "query" in data:
-            args["query"] = data["query"]
-        if "datasource" in data:
-            args["datasource"] = DataSourceRef.from_json(data["datasource"])
-        if "current" in data:
-            args["current"] = VariableOption.from_json(data["current"])
-        if "multi" in data:
-            args["multi"] = data["multi"]
-        if "options" in data:
-            args["options"] = data["options"]
-        if "refresh" in data:
-            args["refresh"] = data["refresh"]
-        if "sort" in data:
-            args["sort"] = data["sort"]
-        if "auto" in data:
-            args["auto"] = data["auto"]
-        if "auto_min" in data:
-            args["auto_min"] = data["auto_min"]
-        if "auto_count" in data:
-            args["auto_count"] = data["auto_count"]        
-
-        return cls(**args)
-
-
-class VariableOption:
-    """
-    Option to be selected in a variable.
-    """
-
-    # Whether the option is selected or not
-    selected: typing.Optional[bool]
-    # Text to be displayed for the option
-    text: typing.Union[str, list[str]]
-    # Value of the option
-    value: typing.Union[str, list[str]]
-
-    def __init__(self, selected: typing.Optional[bool] = None, text: typing.Union[str, list[str]] = "", value: typing.Union[str, list[str]] = ""):
-        self.selected = selected
-        self.text = text
-        self.value = value
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "text": self.text,
-            "value": self.value,
-        }
-        if self.selected is not None:
-            payload["selected"] = self.selected
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "selected" in data:
-            args["selected"] = data["selected"]
-        if "text" in data:
-            args["text"] = data["text"]
-        if "value" in data:
-            args["value"] = data["value"]        
-
-        return cls(**args)
-
-
-class VariableRefresh(enum.IntEnum):
-    """
-    Options to config when to refresh a variable
-    `0`: Never refresh the variable
-    `1`: Queries the data source every time the dashboard loads.
-    `2`: Queries the data source when the dashboard time range changes.
-    """
-
-    NEVER = 0
-    ON_DASHBOARD_LOAD = 1
-    ON_TIME_RANGE_CHANGED = 2
-
-
-class VariableHide(enum.IntEnum):
-    """
-    Determine if the variable shows on dashboard
-    Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing).
-    """
-
-    DONT_HIDE = 0
-    HIDE_LABEL = 1
-    HIDE_VARIABLE = 2
-
-
-class VariableSort(enum.IntEnum):
-    """
-    Sort variable options
-    Accepted values are:
-    `0`: No sorting
-    `1`: Alphabetical ASC
-    `2`: Alphabetical DESC
-    `3`: Numerical ASC
-    `4`: Numerical DESC
-    `5`: Alphabetical Case Insensitive ASC
-    `6`: Alphabetical Case Insensitive DESC
-    `7`: Natural ASC
-    `8`: Natural DESC
-    """
-
-    DISABLED = 0
-    ALPHABETICAL_ASC = 1
-    ALPHABETICAL_DESC = 2
-    NUMERICAL_ASC = 3
-    NUMERICAL_DESC = 4
-    ALPHABETICAL_CASE_INSENSITIVE_ASC = 5
-    ALPHABETICAL_CASE_INSENSITIVE_DESC = 6
-    NATURAL_ASC = 7
-    NATURAL_DESC = 8
-
-
-class DataSourceRef:
-    """
-    Ref to a DataSource instance
-    """
-
-    # The plugin type-id
-    type_val: typing.Optional[str]
-    # Specific datasource instance
-    uid: typing.Optional[str]
-
-    def __init__(self, type_val: typing.Optional[str] = None, uid: typing.Optional[str] = None):
-        self.type_val = type_val
-        self.uid = uid
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.type_val is not None:
-            payload["type"] = self.type_val
-        if self.uid is not None:
-            payload["uid"] = self.uid
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "uid" in data:
-            args["uid"] = data["uid"]        
-
-        return cls(**args)
-
-
-class DashboardLink:
-    """
-    Links with references to other dashboards or external resources
-    """
-
-    # Title to display with the link
-    title: str
-    # Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
-    type_val: 'DashboardLinkType'
-    # Icon name to be displayed with the link
-    icon: str
-    # Tooltip to display when the user hovers their mouse over it
-    tooltip: str
-    # Link URL. Only required/valid if the type is link
-    url: typing.Optional[str]
-    # List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
-    tags: list[str]
-    # If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
-    as_dropdown: bool
-    # If true, the link will be opened in a new tab
-    target_blank: bool
-    # If true, includes current template variables values in the link as query params
-    include_vars: bool
-    # If true, includes current time range in the link as query params
-    keep_time: bool
-
-    def __init__(self, title: str = "", type_val: typing.Optional['DashboardLinkType'] = None, icon: str = "", tooltip: str = "", url: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, as_dropdown: bool = False, target_blank: bool = False, include_vars: bool = False, keep_time: bool = False):
-        self.title = title
-        self.type_val = type_val if type_val is not None else DashboardLinkType.LINK
-        self.icon = icon
-        self.tooltip = tooltip
-        self.url = url
-        self.tags = tags if tags is not None else []
-        self.as_dropdown = as_dropdown
-        self.target_blank = target_blank
-        self.include_vars = include_vars
-        self.keep_time = keep_time
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "title": self.title,
-            "type": self.type_val,
-            "icon": self.icon,
-            "tooltip": self.tooltip,
-            "tags": self.tags,
-            "asDropdown": self.as_dropdown,
-            "targetBlank": self.target_blank,
-            "includeVars": self.include_vars,
-            "keepTime": self.keep_time,
-        }
-        if self.url is not None:
-            payload["url"] = self.url
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "title" in data:
-            args["title"] = data["title"]
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "icon" in data:
-            args["icon"] = data["icon"]
-        if "tooltip" in data:
-            args["tooltip"] = data["tooltip"]
-        if "url" in data:
-            args["url"] = data["url"]
-        if "tags" in data:
-            args["tags"] = data["tags"]
-        if "asDropdown" in data:
-            args["as_dropdown"] = data["asDropdown"]
-        if "targetBlank" in data:
-            args["target_blank"] = data["targetBlank"]
-        if "includeVars" in data:
-            args["include_vars"] = data["includeVars"]
-        if "keepTime" in data:
-            args["keep_time"] = data["keepTime"]        
-
-        return cls(**args)
-
-
-class DashboardLinkType(enum.StrEnum):
-    """
-    Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
-    """
-
-    LINK = "link"
-    DASHBOARDS = "dashboards"
-
-
-class VariableType(enum.StrEnum):
-    """
-    Dashboard variable type
-    `query`: Query-generated list of values such as metric names, server names, sensor IDs, data centers, and so on.
-    `adhoc`: Key/value filters that are automatically added to all metric queries for a data source (Prometheus, Loki, InfluxDB, and Elasticsearch only).
-    `constant`: 	Define a hidden constant.
-    `datasource`: Quickly change the data source for an entire dashboard.
-    `interval`: Interval variables represent time spans.
-    `textbox`: Display a free text input field with an optional default value.
-    `custom`: Define the variable options manually using a comma-separated list.
-    `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
-    """
-
-    QUERY = "query"
-    ADHOC = "adhoc"
-    CONSTANT = "constant"
-    DATASOURCE = "datasource"
-    INTERVAL = "interval"
-    TEXTBOX = "textbox"
-    CUSTOM = "custom"
-    SYSTEM = "system"
-
-
-class FieldColorModeId(enum.StrEnum):
-    """
-    Color mode for a field. You can specify a single color, or select a continuous (gradient) color schemes, based on a value.
-    Continuous color interpolates a color using the percentage of a value relative to min and max.
-    Accepted values are:
-    `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
-    `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
-    `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
-    `continuous-GrYlRd`: ontinuous Green-Yellow-Red palette mode
-    `continuous-RdYlGr`: Continuous Red-Yellow-Green palette mode
-    `continuous-BlYlRd`: Continuous Blue-Yellow-Red palette mode
-    `continuous-YlRd`: Continuous Yellow-Red palette mode
-    `continuous-BlPu`: Continuous Blue-Purple palette mode
-    `continuous-YlBl`: Continuous Yellow-Blue palette mode
-    `continuous-blues`: Continuous Blue palette mode
-    `continuous-reds`: Continuous Red palette mode
-    `continuous-greens`: Continuous Green palette mode
-    `continuous-purples`: Continuous Purple palette mode
-    `shades`: Shades of a single color. Specify a single color, useful in an override rule.
-    `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
-    """
-
-    THRESHOLDS = "thresholds"
-    PALETTE_CLASSIC = "palette-classic"
-    PALETTE_CLASSIC_BY_NAME = "palette-classic-by-name"
-    CONTINUOUS_GR_YL_RD = "continuous-GrYlRd"
-    CONTINUOUS_RD_YL_GR = "continuous-RdYlGr"
-    CONTINUOUS_BL_YL_RD = "continuous-BlYlRd"
-    CONTINUOUS_YL_RD = "continuous-YlRd"
-    CONTINUOUS_BL_PU = "continuous-BlPu"
-    CONTINUOUS_YL_BL = "continuous-YlBl"
-    CONTINUOUS_BLUES = "continuous-blues"
-    CONTINUOUS_REDS = "continuous-reds"
-    CONTINUOUS_GREENS = "continuous-greens"
-    CONTINUOUS_PURPLES = "continuous-purples"
-    FIXED = "fixed"
-    SHADES = "shades"
-
-
-class FieldColorSeriesByMode(enum.StrEnum):
-    """
-    Defines how to assign a series color from "by value" color schemes. For example for an aggregated data points like a timeseries, the color can be assigned by the min, max or last value.
-    """
-
-    MIN = "min"
-    MAX = "max"
-    LAST = "last"
-
-
-class FieldColor:
-    """
-    Map a field to a color.
-    """
-
-    # The main color scheme mode.
-    mode: 'FieldColorModeId'
-    # The fixed color value for fixed or shades color modes.
-    fixed_color: typing.Optional[str]
-    # Some visualizations need to know how to assign a series color from by value color schemes.
-    series_by: typing.Optional['FieldColorSeriesByMode']
-
-    def __init__(self, mode: typing.Optional['FieldColorModeId'] = None, fixed_color: typing.Optional[str] = None, series_by: typing.Optional['FieldColorSeriesByMode'] = None):
-        self.mode = mode if mode is not None else FieldColorModeId.THRESHOLDS
-        self.fixed_color = fixed_color
-        self.series_by = series_by
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "mode": self.mode,
-        }
-        if self.fixed_color is not None:
-            payload["fixedColor"] = self.fixed_color
-        if self.series_by is not None:
-            payload["seriesBy"] = self.series_by
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "mode" in data:
-            args["mode"] = data["mode"]
-        if "fixedColor" in data:
-            args["fixed_color"] = data["fixedColor"]
-        if "seriesBy" in data:
-            args["series_by"] = data["seriesBy"]        
-
-        return cls(**args)
-
-
-class GridPos:
-    """
-    Position and dimensions of a panel in the grid
-    """
-
-    # Panel height. The height is the number of rows from the top edge of the panel.
-    h: int
-    # Panel width. The width is the number of columns from the left edge of the panel.
-    w: int
-    # Panel x. The x coordinate is the number of columns from the left edge of the grid
-    x: int
-    # Panel y. The y coordinate is the number of rows from the top edge of the grid
-    y: int
-    # Whether the panel is fixed within the grid. If true, the panel will not be affected by other panels' interactions
-    static: typing.Optional[bool]
-
-    def __init__(self, h: int = 9, w: int = 12, x: int = 0, y: int = 0, static: typing.Optional[bool] = None):
-        self.h = h
-        self.w = w
-        self.x = x
-        self.y = y
-        self.static = static
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "h": self.h,
-            "w": self.w,
-            "x": self.x,
-            "y": self.y,
-        }
-        if self.static is not None:
-            payload["static"] = self.static
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "h" in data:
-            args["h"] = data["h"]
-        if "w" in data:
-            args["w"] = data["w"]
-        if "x" in data:
-            args["x"] = data["x"]
-        if "y" in data:
-            args["y"] = data["y"]
-        if "static" in data:
-            args["static"] = data["static"]        
-
-        return cls(**args)
-
-
-class Threshold:
-    """
-    User-defined value for a metric that triggers visual changes in a panel when this value is met or exceeded
-    They are used to conditionally style and color visualizations based on query results , and can be applied to most visualizations.
-    """
-
-    # Value represents a specified metric for the threshold, which triggers a visual change in the dashboard when this value is met or exceeded.
-    # Nulls currently appear here when serializing -Infinity to JSON.
-    value: typing.Optional[float]
-    # Color represents the color of the visual change that will occur in the dashboard when the threshold value is met or exceeded.
-    color: str
-
-    def __init__(self, value: typing.Optional[float] = None, color: str = ""):
-        self.value = value
-        self.color = color
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "value": self.value,
-            "color": self.color,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "value" in data:
-            args["value"] = data["value"]
-        if "color" in data:
-            args["color"] = data["color"]        
-
-        return cls(**args)
-
-
-class ThresholdsMode(enum.StrEnum):
-    """
-    Thresholds can either be `absolute` (specific number) or `percentage` (relative to min or max, it will be values between 0 and 1).
-    """
-
-    ABSOLUTE = "absolute"
-    PERCENTAGE = "percentage"
-
-
-class ThresholdsConfig:
-    """
-    Thresholds configuration for the panel
-    """
-
-    # Thresholds mode.
-    mode: 'ThresholdsMode'
-    # Must be sorted by 'value', first value is always -Infinity
-    steps: list['Threshold']
-
-    def __init__(self, mode: typing.Optional['ThresholdsMode'] = None, steps: typing.Optional[list['Threshold']] = None):
-        self.mode = mode if mode is not None else ThresholdsMode.ABSOLUTE
-        self.steps = steps if steps is not None else []
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "mode": self.mode,
-            "steps": self.steps,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "mode" in data:
-            args["mode"] = data["mode"]
-        if "steps" in data:
-            args["steps"] = data["steps"]        
-
-        return cls(**args)
-
-
-# Allow to transform the visual representation of specific data values in a visualization, irrespective of their original units
-ValueMapping: typing.TypeAlias = typing.Union['ValueMap', 'RangeMap', 'RegexMap', 'SpecialValueMap']
-
-
-class MappingType(enum.StrEnum):
-    """
-    Supported value mapping types
-    `value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
-    `range`: Maps numerical ranges to a display text and color. For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
-    `regex`: Maps regular expressions to replacement text and a color. For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
-    `special`: Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color. See SpecialValueMatch to see the list of special values. For example, you can configure a special value mapping so that null values appear as N/A.
-    """
-
-    VALUE_TO_TEXT = "value"
-    RANGE_TO_TEXT = "range"
-    REGEX_TO_TEXT = "regex"
-    SPECIAL_VALUE = "special"
-
-
-class ValueMap:
-    """
-    Maps text values to a color or different display text and color.
-    For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
-    """
-
-    type_val: typing.Literal["value"]
-    # Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
-    options: dict[str, 'ValueMappingResult']
-
-    def __init__(self, options: typing.Optional[dict[str, 'ValueMappingResult']] = None):
-        self.type_val = "value"
-        self.options = options if options is not None else {}
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-            "options": self.options,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "options" in data:
-            args["options"] = data["options"]        
-
-        return cls(**args)
-
-
-class RangeMap:
-    """
-    Maps numerical ranges to a display text and color.
-    For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
-    """
-
-    type_val: typing.Literal["range"]
-    # Range to match against and the result to apply when the value is within the range
-    options: 'DashboardRangeMapOptions'
-
-    def __init__(self, options: typing.Optional['DashboardRangeMapOptions'] = None):
-        self.type_val = "range"
-        self.options = options if options is not None else DashboardRangeMapOptions()
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-            "options": self.options,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "options" in data:
-            args["options"] = DashboardRangeMapOptions.from_json(data["options"])        
-
-        return cls(**args)
-
-
-class RegexMap:
-    """
-    Maps regular expressions to replacement text and a color.
-    For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
-    """
-
-    type_val: typing.Literal["regex"]
-    # Regular expression to match against and the result to apply when the value matches the regex
-    options: 'DashboardRegexMapOptions'
-
-    def __init__(self, options: typing.Optional['DashboardRegexMapOptions'] = None):
-        self.type_val = "regex"
-        self.options = options if options is not None else DashboardRegexMapOptions()
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-            "options": self.options,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "options" in data:
-            args["options"] = DashboardRegexMapOptions.from_json(data["options"])        
-
-        return cls(**args)
-
-
-class SpecialValueMap:
-    """
-    Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color.
-    See SpecialValueMatch to see the list of special values.
-    For example, you can configure a special value mapping so that null values appear as N/A.
-    """
-
-    type_val: typing.Literal["special"]
-    options: 'DashboardSpecialValueMapOptions'
-
-    def __init__(self, options: typing.Optional['DashboardSpecialValueMapOptions'] = None):
-        self.type_val = "special"
-        self.options = options if options is not None else DashboardSpecialValueMapOptions()
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-            "options": self.options,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "options" in data:
-            args["options"] = DashboardSpecialValueMapOptions.from_json(data["options"])        
-
-        return cls(**args)
-
-
-class SpecialValueMatch(enum.StrEnum):
-    """
-    Special value types supported by the `SpecialValueMap`
-    """
-
-    TRUE = "true"
-    FALSE = "false"
-    NULL = "null"
-    NA_N = "nan"
-    NULL_AND_NAN = "null+nan"
-    EMPTY = "empty"
-
-
-class ValueMappingResult:
-    """
-    Result used as replacement with text and color when the value matches
-    """
-
-    # Text to display when the value matches
-    text: typing.Optional[str]
-    # Text to use when the value matches
-    color: typing.Optional[str]
-    # Icon to display when the value matches. Only specific visualizations.
-    icon: typing.Optional[str]
-    # Position in the mapping array. Only used internally.
-    index: typing.Optional[int]
-
-    def __init__(self, text: typing.Optional[str] = None, color: typing.Optional[str] = None, icon: typing.Optional[str] = None, index: typing.Optional[int] = None):
-        self.text = text
-        self.color = color
-        self.icon = icon
-        self.index = index
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.text is not None:
-            payload["text"] = self.text
-        if self.color is not None:
-            payload["color"] = self.color
-        if self.icon is not None:
-            payload["icon"] = self.icon
-        if self.index is not None:
-            payload["index"] = self.index
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "text" in data:
-            args["text"] = data["text"]
-        if "color" in data:
-            args["color"] = data["color"]
-        if "icon" in data:
-            args["icon"] = data["icon"]
-        if "index" in data:
-            args["index"] = data["index"]        
-
-        return cls(**args)
-
-
-class DataTransformerConfig:
-    """
-    Transformations allow to manipulate data returned by a query before the system applies a visualization.
-    Using transformations you can: rename fields, join time series data, perform mathematical operations across queries,
-    use the output of one transformation as the input to another transformation, etc.
-    """
-
-    # Unique identifier of transformer
-    id_val: str
-    # Disabled transformations are skipped
-    disabled: typing.Optional[bool]
-    # Optional frame matcher. When missing it will be applied to all results
-    filter_val: typing.Optional['MatcherConfig']
-    # Where to pull DataFrames from as input to transformation
-    topic: typing.Optional[typing.Literal["series", "annotations", "alertStates"]]
-    # Options to be passed to the transformer
-    # Valid options depend on the transformer id
-    options: object
-
-    def __init__(self, id_val: str = "", disabled: typing.Optional[bool] = None, filter_val: typing.Optional['MatcherConfig'] = None, topic: typing.Optional[typing.Literal["series", "annotations", "alertStates"]] = None, options: object = None):
-        self.id_val = id_val
-        self.disabled = disabled
-        self.filter_val = filter_val
-        self.topic = topic
-        self.options = options
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "id": self.id_val,
-            "options": self.options,
-        }
-        if self.disabled is not None:
-            payload["disabled"] = self.disabled
-        if self.filter_val is not None:
-            payload["filter"] = self.filter_val
-        if self.topic is not None:
-            payload["topic"] = self.topic
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "id" in data:
-            args["id_val"] = data["id"]
-        if "disabled" in data:
-            args["disabled"] = data["disabled"]
-        if "filter" in data:
-            args["filter_val"] = MatcherConfig.from_json(data["filter"])
-        if "topic" in data:
-            args["topic"] = data["topic"]
-        if "options" in data:
-            args["options"] = data["options"]        
-
-        return cls(**args)
+    OFF = 0
+    CROSSHAIR = 1
+    TOOLTIP = 2
 
 
 class TimePickerConfig:
@@ -1278,116 +240,6 @@ class TimePickerConfig:
             args["refresh_intervals"] = data["refresh_intervals"]
         if "time_options" in data:
             args["time_options"] = data["time_options"]        
-
-        return cls(**args)
-
-
-class DashboardCursorSync(enum.IntEnum):
-    """
-    0 for no shared crosshair or tooltip (default).
-    1 for shared crosshair.
-    2 for shared crosshair AND shared tooltip.
-    """
-
-    OFF = 0
-    CROSSHAIR = 1
-    TOOLTIP = 2
-
-
-class Snapshot:
-    """
-    A dashboard snapshot shares an interactive dashboard publicly.
-    It is a read-only version of a dashboard, and is not editable.
-    It is possible to create a snapshot of a snapshot.
-    Grafana strips away all sensitive information from the dashboard.
-    Sensitive information stripped: queries (metric, template,annotation) and panel links.
-    """
-
-    # Time when the snapshot was created
-    created: str
-    # Time when the snapshot expires, default is never to expire
-    expires: str
-    # Is the snapshot saved in an external grafana instance
-    external: bool
-    # external url, if snapshot was shared in external grafana instance
-    external_url: str
-    # Unique identifier of the snapshot
-    id_val: int
-    # Optional, defined the unique key of the snapshot, required if external is true
-    key: str
-    # Optional, name of the snapshot
-    name: str
-    # org id of the snapshot
-    org_id: int
-    # last time when the snapshot was updated
-    updated: str
-    # url of the snapshot, if snapshot was shared internally
-    url: typing.Optional[str]
-    # user id of the snapshot creator
-    user_id: int
-    dashboard: typing.Optional['Dashboard']
-
-    def __init__(self, created: str = "", expires: str = "", external: bool = False, external_url: str = "", id_val: int = 0, key: str = "", name: str = "", org_id: int = 0, updated: str = "", url: typing.Optional[str] = None, user_id: int = 0, dashboard: typing.Optional['Dashboard'] = None):
-        self.created = created
-        self.expires = expires
-        self.external = external
-        self.external_url = external_url
-        self.id_val = id_val
-        self.key = key
-        self.name = name
-        self.org_id = org_id
-        self.updated = updated
-        self.url = url
-        self.user_id = user_id
-        self.dashboard = dashboard
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "created": self.created,
-            "expires": self.expires,
-            "external": self.external,
-            "externalUrl": self.external_url,
-            "id": self.id_val,
-            "key": self.key,
-            "name": self.name,
-            "orgId": self.org_id,
-            "updated": self.updated,
-            "userId": self.user_id,
-        }
-        if self.url is not None:
-            payload["url"] = self.url
-        if self.dashboard is not None:
-            payload["dashboard"] = self.dashboard
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "created" in data:
-            args["created"] = data["created"]
-        if "expires" in data:
-            args["expires"] = data["expires"]
-        if "external" in data:
-            args["external"] = data["external"]
-        if "externalUrl" in data:
-            args["external_url"] = data["externalUrl"]
-        if "id" in data:
-            args["id_val"] = data["id"]
-        if "key" in data:
-            args["key"] = data["key"]
-        if "name" in data:
-            args["name"] = data["name"]
-        if "orgId" in data:
-            args["org_id"] = data["orgId"]
-        if "updated" in data:
-            args["updated"] = data["updated"]
-        if "url" in data:
-            args["url"] = data["url"]
-        if "userId" in data:
-            args["user_id"] = data["userId"]
-        if "dashboard" in data:
-            args["dashboard"] = Dashboard.from_json(data["dashboard"])        
 
         return cls(**args)
 
@@ -1593,82 +445,247 @@ class Panel:
         if "fieldConfig" in data:
             config = cogruntime.panelcfg_config(data.get("type", ""))
             field_config = FieldConfigSource.from_json(data["fieldConfig"])
-
+    
             if config is not None and config.field_config_from_json_hook is not None:
                 custom_field_config = data["fieldConfig"].get("defaults", {}).get("custom", {})
                 field_config.defaults.custom = config.field_config_from_json_hook(custom_field_config)
-
+    
             args["field_config"] = field_config
-
+    
         return cls(**args)
 
 
-class FieldConfigSource:
+class DataSourceRef:
     """
-    The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
-    Each column within this structure is called a field. A field can represent a single time series or table column.
-    Field options allow you to change how the data is displayed in your visualizations.
+    Ref to a DataSource instance
     """
 
-    # Defaults are the options applied to all fields.
-    defaults: 'FieldConfig'
-    # Overrides are the options applied to specific fields overriding the defaults.
-    overrides: list['DashboardFieldConfigSourceOverrides']
+    # The plugin type-id
+    type_val: typing.Optional[str]
+    # Specific datasource instance
+    uid: typing.Optional[str]
 
-    def __init__(self, defaults: typing.Optional['FieldConfig'] = None, overrides: typing.Optional[list['DashboardFieldConfigSourceOverrides']] = None):
-        self.defaults = defaults if defaults is not None else FieldConfig()
-        self.overrides = overrides if overrides is not None else []
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "defaults": self.defaults,
-            "overrides": self.overrides,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "defaults" in data:
-            args["defaults"] = FieldConfig.from_json(data["defaults"])
-        if "overrides" in data:
-            args["overrides"] = data["overrides"]        
-
-        return cls(**args)
-
-
-class LibraryPanelRef:
-    """
-    A library panel is a reusable panel that you can use in any dashboard.
-    When you make a change to a library panel, that change propagates to all instances of where the panel is used.
-    Library panels streamline reuse of panels across multiple dashboards.
-    """
-
-    # Library panel name
-    name: str
-    # Library panel uid
-    uid: str
-
-    def __init__(self, name: str = "", uid: str = ""):
-        self.name = name
+    def __init__(self, type_val: typing.Optional[str] = None, uid: typing.Optional[str] = None):
+        self.type_val = type_val
         self.uid = uid
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
-            "name": self.name,
-            "uid": self.uid,
         }
+        if self.type_val is not None:
+            payload["type"] = self.type_val
+        if self.uid is not None:
+            payload["uid"] = self.uid
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
-        if "name" in data:
-            args["name"] = data["name"]
+        if "type" in data:
+            args["type_val"] = data["type"]
         if "uid" in data:
             args["uid"] = data["uid"]        
+
+        return cls(**args)
+
+
+class GridPos:
+    """
+    Position and dimensions of a panel in the grid
+    """
+
+    # Panel height. The height is the number of rows from the top edge of the panel.
+    h: int
+    # Panel width. The width is the number of columns from the left edge of the panel.
+    w: int
+    # Panel x. The x coordinate is the number of columns from the left edge of the grid
+    x: int
+    # Panel y. The y coordinate is the number of rows from the top edge of the grid
+    y: int
+    # Whether the panel is fixed within the grid. If true, the panel will not be affected by other panels' interactions
+    static: typing.Optional[bool]
+
+    def __init__(self, h: int = 9, w: int = 12, x: int = 0, y: int = 0, static: typing.Optional[bool] = None):
+        self.h = h
+        self.w = w
+        self.x = x
+        self.y = y
+        self.static = static
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "h": self.h,
+            "w": self.w,
+            "x": self.x,
+            "y": self.y,
+        }
+        if self.static is not None:
+            payload["static"] = self.static
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "h" in data:
+            args["h"] = data["h"]
+        if "w" in data:
+            args["w"] = data["w"]
+        if "x" in data:
+            args["x"] = data["x"]
+        if "y" in data:
+            args["y"] = data["y"]
+        if "static" in data:
+            args["static"] = data["static"]        
+
+        return cls(**args)
+
+
+class DashboardLink:
+    """
+    Links with references to other dashboards or external resources
+    """
+
+    # Title to display with the link
+    title: str
+    # Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
+    type_val: 'DashboardLinkType'
+    # Icon name to be displayed with the link
+    icon: str
+    # Tooltip to display when the user hovers their mouse over it
+    tooltip: str
+    # Link URL. Only required/valid if the type is link
+    url: typing.Optional[str]
+    # List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
+    tags: list[str]
+    # If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
+    as_dropdown: bool
+    # If true, the link will be opened in a new tab
+    target_blank: bool
+    # If true, includes current template variables values in the link as query params
+    include_vars: bool
+    # If true, includes current time range in the link as query params
+    keep_time: bool
+
+    def __init__(self, title: str = "", type_val: typing.Optional['DashboardLinkType'] = None, icon: str = "", tooltip: str = "", url: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, as_dropdown: bool = False, target_blank: bool = False, include_vars: bool = False, keep_time: bool = False):
+        self.title = title
+        self.type_val = type_val if type_val is not None else DashboardLinkType.LINK
+        self.icon = icon
+        self.tooltip = tooltip
+        self.url = url
+        self.tags = tags if tags is not None else []
+        self.as_dropdown = as_dropdown
+        self.target_blank = target_blank
+        self.include_vars = include_vars
+        self.keep_time = keep_time
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "title": self.title,
+            "type": self.type_val,
+            "icon": self.icon,
+            "tooltip": self.tooltip,
+            "tags": self.tags,
+            "asDropdown": self.as_dropdown,
+            "targetBlank": self.target_blank,
+            "includeVars": self.include_vars,
+            "keepTime": self.keep_time,
+        }
+        if self.url is not None:
+            payload["url"] = self.url
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "title" in data:
+            args["title"] = data["title"]
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "icon" in data:
+            args["icon"] = data["icon"]
+        if "tooltip" in data:
+            args["tooltip"] = data["tooltip"]
+        if "url" in data:
+            args["url"] = data["url"]
+        if "tags" in data:
+            args["tags"] = data["tags"]
+        if "asDropdown" in data:
+            args["as_dropdown"] = data["asDropdown"]
+        if "targetBlank" in data:
+            args["target_blank"] = data["targetBlank"]
+        if "includeVars" in data:
+            args["include_vars"] = data["includeVars"]
+        if "keepTime" in data:
+            args["keep_time"] = data["keepTime"]        
+
+        return cls(**args)
+
+
+class DashboardLinkType(enum.StrEnum):
+    """
+    Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
+    """
+
+    LINK = "link"
+    DASHBOARDS = "dashboards"
+
+
+class DataTransformerConfig:
+    """
+    Transformations allow to manipulate data returned by a query before the system applies a visualization.
+    Using transformations you can: rename fields, join time series data, perform mathematical operations across queries,
+    use the output of one transformation as the input to another transformation, etc.
+    """
+
+    # Unique identifier of transformer
+    id_val: str
+    # Disabled transformations are skipped
+    disabled: typing.Optional[bool]
+    # Optional frame matcher. When missing it will be applied to all results
+    filter_val: typing.Optional['MatcherConfig']
+    # Where to pull DataFrames from as input to transformation
+    topic: typing.Optional[typing.Literal["series", "annotations", "alertStates"]]
+    # Options to be passed to the transformer
+    # Valid options depend on the transformer id
+    options: object
+
+    def __init__(self, id_val: str = "", disabled: typing.Optional[bool] = None, filter_val: typing.Optional['MatcherConfig'] = None, topic: typing.Optional[typing.Literal["series", "annotations", "alertStates"]] = None, options: object = None):
+        self.id_val = id_val
+        self.disabled = disabled
+        self.filter_val = filter_val
+        self.topic = topic
+        self.options = options
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "id": self.id_val,
+            "options": self.options,
+        }
+        if self.disabled is not None:
+            payload["disabled"] = self.disabled
+        if self.filter_val is not None:
+            payload["filter"] = self.filter_val
+        if self.topic is not None:
+            payload["topic"] = self.topic
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "id" in data:
+            args["id_val"] = data["id"]
+        if "disabled" in data:
+            args["disabled"] = data["disabled"]
+        if "filter" in data:
+            args["filter_val"] = MatcherConfig.from_json(data["filter"])
+        if "topic" in data:
+            args["topic"] = data["topic"]
+        if "options" in data:
+            args["options"] = data["options"]        
 
         return cls(**args)
 
@@ -1708,30 +725,72 @@ class MatcherConfig:
         return cls(**args)
 
 
-class DynamicConfigValue:
-    id_val: str
-    value: typing.Optional[object]
+class LibraryPanelRef:
+    """
+    A library panel is a reusable panel that you can use in any dashboard.
+    When you make a change to a library panel, that change propagates to all instances of where the panel is used.
+    Library panels streamline reuse of panels across multiple dashboards.
+    """
 
-    def __init__(self, id_val: str = "", value: typing.Optional[object] = None):
-        self.id_val = id_val
-        self.value = value
+    # Library panel name
+    name: str
+    # Library panel uid
+    uid: str
+
+    def __init__(self, name: str = "", uid: str = ""):
+        self.name = name
+        self.uid = uid
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
-            "id": self.id_val,
+            "name": self.name,
+            "uid": self.uid,
         }
-        if self.value is not None:
-            payload["value"] = self.value
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
-        if "id" in data:
-            args["id_val"] = data["id"]
-        if "value" in data:
-            args["value"] = data["value"]        
+        if "name" in data:
+            args["name"] = data["name"]
+        if "uid" in data:
+            args["uid"] = data["uid"]        
+
+        return cls(**args)
+
+
+class FieldConfigSource:
+    """
+    The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
+    Each column within this structure is called a field. A field can represent a single time series or table column.
+    Field options allow you to change how the data is displayed in your visualizations.
+    """
+
+    # Defaults are the options applied to all fields.
+    defaults: 'FieldConfig'
+    # Overrides are the options applied to specific fields overriding the defaults.
+    overrides: list['DashboardFieldConfigSourceOverrides']
+
+    def __init__(self, defaults: typing.Optional['FieldConfig'] = None, overrides: typing.Optional[list['DashboardFieldConfigSourceOverrides']] = None):
+        self.defaults = defaults if defaults is not None else FieldConfig()
+        self.overrides = overrides if overrides is not None else []
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "defaults": self.defaults,
+            "overrides": self.overrides,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "defaults" in data:
+            args["defaults"] = FieldConfig.from_json(data["defaults"])
+        if "overrides" in data:
+            args["overrides"] = [DashboardFieldConfigSourceOverrides.from_json(item) for item in data["overrides"]]        
 
         return cls(**args)
 
@@ -1874,17 +933,403 @@ class FieldConfig:
         if "max" in data:
             args["max_val"] = data["max"]
         if "mappings" in data:
-            args["mappings"] = data["mappings"]
+            decoding_map_mappings_array_ref_union: dict[str, typing.Union[typing.Type[RangeMap], typing.Type[RegexMap], typing.Type[SpecialValueMap], typing.Type[ValueMap]]] = {"range": RangeMap, "regex": RegexMap, "special": SpecialValueMap, "value": ValueMap}
+            args["mappings"] = [decoding_map_mappings_array_ref_union[item["type"]].from_json(item) for item in data["mappings"]]
         if "thresholds" in data:
             args["thresholds"] = ThresholdsConfig.from_json(data["thresholds"])
         if "color" in data:
             args["color"] = FieldColor.from_json(data["color"])
         if "links" in data:
-            args["links"] = data["links"]
+            args["links"] = [DashboardLink.from_json(item) for item in data["links"]]
         if "noValue" in data:
             args["no_value"] = data["noValue"]
         if "custom" in data:
             args["custom"] = data["custom"]        
+
+        return cls(**args)
+
+
+# Allow to transform the visual representation of specific data values in a visualization, irrespective of their original units
+ValueMapping: typing.TypeAlias = typing.Union['ValueMap', 'RangeMap', 'RegexMap', 'SpecialValueMap']
+
+
+class ValueMap:
+    """
+    Maps text values to a color or different display text and color.
+    For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
+    """
+
+    type_val: typing.Literal["value"]
+    # Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
+    options: dict[str, 'ValueMappingResult']
+
+    def __init__(self, options: typing.Optional[dict[str, 'ValueMappingResult']] = None):
+        self.type_val = "value"
+        self.options = options if options is not None else {}
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "options": self.options,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "options" in data:
+            args["options"] = {key: ValueMappingResult.from_json(data["options"][key]) for key in data["options"].keys()}        
+
+        return cls(**args)
+
+
+class ValueMappingResult:
+    """
+    Result used as replacement with text and color when the value matches
+    """
+
+    # Text to display when the value matches
+    text: typing.Optional[str]
+    # Text to use when the value matches
+    color: typing.Optional[str]
+    # Icon to display when the value matches. Only specific visualizations.
+    icon: typing.Optional[str]
+    # Position in the mapping array. Only used internally.
+    index: typing.Optional[int]
+
+    def __init__(self, text: typing.Optional[str] = None, color: typing.Optional[str] = None, icon: typing.Optional[str] = None, index: typing.Optional[int] = None):
+        self.text = text
+        self.color = color
+        self.icon = icon
+        self.index = index
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.text is not None:
+            payload["text"] = self.text
+        if self.color is not None:
+            payload["color"] = self.color
+        if self.icon is not None:
+            payload["icon"] = self.icon
+        if self.index is not None:
+            payload["index"] = self.index
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "text" in data:
+            args["text"] = data["text"]
+        if "color" in data:
+            args["color"] = data["color"]
+        if "icon" in data:
+            args["icon"] = data["icon"]
+        if "index" in data:
+            args["index"] = data["index"]        
+
+        return cls(**args)
+
+
+class RangeMap:
+    """
+    Maps numerical ranges to a display text and color.
+    For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
+    """
+
+    type_val: typing.Literal["range"]
+    # Range to match against and the result to apply when the value is within the range
+    options: 'DashboardRangeMapOptions'
+
+    def __init__(self, options: typing.Optional['DashboardRangeMapOptions'] = None):
+        self.type_val = "range"
+        self.options = options if options is not None else DashboardRangeMapOptions()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "options": self.options,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "options" in data:
+            args["options"] = DashboardRangeMapOptions.from_json(data["options"])        
+
+        return cls(**args)
+
+
+class RegexMap:
+    """
+    Maps regular expressions to replacement text and a color.
+    For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
+    """
+
+    type_val: typing.Literal["regex"]
+    # Regular expression to match against and the result to apply when the value matches the regex
+    options: 'DashboardRegexMapOptions'
+
+    def __init__(self, options: typing.Optional['DashboardRegexMapOptions'] = None):
+        self.type_val = "regex"
+        self.options = options if options is not None else DashboardRegexMapOptions()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "options": self.options,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "options" in data:
+            args["options"] = DashboardRegexMapOptions.from_json(data["options"])        
+
+        return cls(**args)
+
+
+class SpecialValueMap:
+    """
+    Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color.
+    See SpecialValueMatch to see the list of special values.
+    For example, you can configure a special value mapping so that null values appear as N/A.
+    """
+
+    type_val: typing.Literal["special"]
+    options: 'DashboardSpecialValueMapOptions'
+
+    def __init__(self, options: typing.Optional['DashboardSpecialValueMapOptions'] = None):
+        self.type_val = "special"
+        self.options = options if options is not None else DashboardSpecialValueMapOptions()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "options": self.options,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "options" in data:
+            args["options"] = DashboardSpecialValueMapOptions.from_json(data["options"])        
+
+        return cls(**args)
+
+
+class SpecialValueMatch(enum.StrEnum):
+    """
+    Special value types supported by the `SpecialValueMap`
+    """
+
+    TRUE = "true"
+    FALSE = "false"
+    NULL = "null"
+    NA_N = "nan"
+    NULL_AND_NAN = "null+nan"
+    EMPTY = "empty"
+
+
+class ThresholdsConfig:
+    """
+    Thresholds configuration for the panel
+    """
+
+    # Thresholds mode.
+    mode: 'ThresholdsMode'
+    # Must be sorted by 'value', first value is always -Infinity
+    steps: list['Threshold']
+
+    def __init__(self, mode: typing.Optional['ThresholdsMode'] = None, steps: typing.Optional[list['Threshold']] = None):
+        self.mode = mode if mode is not None else ThresholdsMode.ABSOLUTE
+        self.steps = steps if steps is not None else []
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "mode": self.mode,
+            "steps": self.steps,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "mode" in data:
+            args["mode"] = data["mode"]
+        if "steps" in data:
+            args["steps"] = [Threshold.from_json(item) for item in data["steps"]]        
+
+        return cls(**args)
+
+
+class ThresholdsMode(enum.StrEnum):
+    """
+    Thresholds can either be `absolute` (specific number) or `percentage` (relative to min or max, it will be values between 0 and 1).
+    """
+
+    ABSOLUTE = "absolute"
+    PERCENTAGE = "percentage"
+
+
+class Threshold:
+    """
+    User-defined value for a metric that triggers visual changes in a panel when this value is met or exceeded
+    They are used to conditionally style and color visualizations based on query results , and can be applied to most visualizations.
+    """
+
+    # Value represents a specified metric for the threshold, which triggers a visual change in the dashboard when this value is met or exceeded.
+    # Nulls currently appear here when serializing -Infinity to JSON.
+    value: typing.Optional[float]
+    # Color represents the color of the visual change that will occur in the dashboard when the threshold value is met or exceeded.
+    color: str
+
+    def __init__(self, value: typing.Optional[float] = None, color: str = ""):
+        self.value = value
+        self.color = color
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "value": self.value,
+            "color": self.color,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "value" in data:
+            args["value"] = data["value"]
+        if "color" in data:
+            args["color"] = data["color"]        
+
+        return cls(**args)
+
+
+class FieldColor:
+    """
+    Map a field to a color.
+    """
+
+    # The main color scheme mode.
+    mode: 'FieldColorModeId'
+    # The fixed color value for fixed or shades color modes.
+    fixed_color: typing.Optional[str]
+    # Some visualizations need to know how to assign a series color from by value color schemes.
+    series_by: typing.Optional['FieldColorSeriesByMode']
+
+    def __init__(self, mode: typing.Optional['FieldColorModeId'] = None, fixed_color: typing.Optional[str] = None, series_by: typing.Optional['FieldColorSeriesByMode'] = None):
+        self.mode = mode if mode is not None else FieldColorModeId.THRESHOLDS
+        self.fixed_color = fixed_color
+        self.series_by = series_by
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "mode": self.mode,
+        }
+        if self.fixed_color is not None:
+            payload["fixedColor"] = self.fixed_color
+        if self.series_by is not None:
+            payload["seriesBy"] = self.series_by
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "mode" in data:
+            args["mode"] = data["mode"]
+        if "fixedColor" in data:
+            args["fixed_color"] = data["fixedColor"]
+        if "seriesBy" in data:
+            args["series_by"] = data["seriesBy"]        
+
+        return cls(**args)
+
+
+class FieldColorModeId(enum.StrEnum):
+    """
+    Color mode for a field. You can specify a single color, or select a continuous (gradient) color schemes, based on a value.
+    Continuous color interpolates a color using the percentage of a value relative to min and max.
+    Accepted values are:
+    `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
+    `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
+    `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
+    `continuous-GrYlRd`: ontinuous Green-Yellow-Red palette mode
+    `continuous-RdYlGr`: Continuous Red-Yellow-Green palette mode
+    `continuous-BlYlRd`: Continuous Blue-Yellow-Red palette mode
+    `continuous-YlRd`: Continuous Yellow-Red palette mode
+    `continuous-BlPu`: Continuous Blue-Purple palette mode
+    `continuous-YlBl`: Continuous Yellow-Blue palette mode
+    `continuous-blues`: Continuous Blue palette mode
+    `continuous-reds`: Continuous Red palette mode
+    `continuous-greens`: Continuous Green palette mode
+    `continuous-purples`: Continuous Purple palette mode
+    `shades`: Shades of a single color. Specify a single color, useful in an override rule.
+    `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
+    """
+
+    THRESHOLDS = "thresholds"
+    PALETTE_CLASSIC = "palette-classic"
+    PALETTE_CLASSIC_BY_NAME = "palette-classic-by-name"
+    CONTINUOUS_GR_YL_RD = "continuous-GrYlRd"
+    CONTINUOUS_RD_YL_GR = "continuous-RdYlGr"
+    CONTINUOUS_BL_YL_RD = "continuous-BlYlRd"
+    CONTINUOUS_YL_RD = "continuous-YlRd"
+    CONTINUOUS_BL_PU = "continuous-BlPu"
+    CONTINUOUS_YL_BL = "continuous-YlBl"
+    CONTINUOUS_BLUES = "continuous-blues"
+    CONTINUOUS_REDS = "continuous-reds"
+    CONTINUOUS_GREENS = "continuous-greens"
+    CONTINUOUS_PURPLES = "continuous-purples"
+    FIXED = "fixed"
+    SHADES = "shades"
+
+
+class FieldColorSeriesByMode(enum.StrEnum):
+    """
+    Defines how to assign a series color from "by value" color schemes. For example for an aggregated data points like a timeseries, the color can be assigned by the min, max or last value.
+    """
+
+    MIN = "min"
+    MAX = "max"
+    LAST = "last"
+
+
+class DynamicConfigValue:
+    id_val: str
+    value: typing.Optional[object]
+
+    def __init__(self, id_val: str = "", value: typing.Optional[object] = None):
+        self.id_val = id_val
+        self.value = value
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "id": self.id_val,
+        }
+        if self.value is not None:
+            payload["value"] = self.value
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "id" in data:
+            args["id_val"] = data["id"]
+        if "value" in data:
+            args["value"] = data["value"]        
 
         return cls(**args)
 
@@ -1953,11 +1398,567 @@ class RowPanel:
         if "id" in data:
             args["id_val"] = data["id"]
         if "panels" in data:
-            args["panels"] = data["panels"]
+            args["panels"] = [Panel.from_json(item) for item in data["panels"]]
         if "repeat" in data:
             args["repeat"] = data["repeat"]        
 
         return cls(**args)
+
+
+class VariableModel:
+    """
+    A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
+    """
+
+    # Type of variable
+    type_val: 'VariableType'
+    # Name of variable
+    name: str
+    # Optional display name
+    label: typing.Optional[str]
+    # Visibility configuration for the variable
+    hide: typing.Optional['VariableHide']
+    # Whether the variable value should be managed by URL query params or not
+    skip_url_sync: typing.Optional[bool]
+    # Description of variable. It can be defined but `null`.
+    description: typing.Optional[str]
+    # Query used to fetch values for a variable
+    query: typing.Optional[typing.Union[str, dict[str, object]]]
+    # Data source used to fetch values for a variable. It can be defined but `null`.
+    datasource: typing.Optional['DataSourceRef']
+    # Shows current selected variable text/value on the dashboard
+    current: typing.Optional['VariableOption']
+    # Whether multiple values can be selected or not from variable value list
+    multi: typing.Optional[bool]
+    # Options that can be selected for a variable.
+    options: typing.Optional[list['VariableOption']]
+    refresh: typing.Optional['VariableRefresh']
+    # Options sort order
+    sort: typing.Optional['VariableSort']
+    # Dynamically calculates interval by dividing time range by the count specified.
+    auto: typing.Optional[bool]
+    # The minimum threshold below which the step count intervals will not divide the time.
+    auto_min: typing.Optional[str]
+    # How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
+    # For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
+    auto_count: typing.Optional[int]
+
+    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional['DataSourceRef'] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, auto: typing.Optional[bool] = False, auto_min: typing.Optional[str] = "10s", auto_count: typing.Optional[int] = 30):
+        self.type_val = type_val if type_val is not None else VariableType.QUERY
+        self.name = name
+        self.label = label
+        self.hide = hide
+        self.skip_url_sync = skip_url_sync
+        self.description = description
+        self.query = query
+        self.datasource = datasource
+        self.current = current
+        self.multi = multi
+        self.options = options
+        self.refresh = refresh
+        self.sort = sort
+        self.auto = auto
+        self.auto_min = auto_min
+        self.auto_count = auto_count
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "name": self.name,
+        }
+        if self.label is not None:
+            payload["label"] = self.label
+        if self.hide is not None:
+            payload["hide"] = self.hide
+        if self.skip_url_sync is not None:
+            payload["skipUrlSync"] = self.skip_url_sync
+        if self.description is not None:
+            payload["description"] = self.description
+        if self.query is not None:
+            payload["query"] = self.query
+        if self.datasource is not None:
+            payload["datasource"] = self.datasource
+        if self.current is not None:
+            payload["current"] = self.current
+        if self.multi is not None:
+            payload["multi"] = self.multi
+        if self.options is not None:
+            payload["options"] = self.options
+        if self.refresh is not None:
+            payload["refresh"] = self.refresh
+        if self.sort is not None:
+            payload["sort"] = self.sort
+        if self.auto is not None:
+            payload["auto"] = self.auto
+        if self.auto_min is not None:
+            payload["auto_min"] = self.auto_min
+        if self.auto_count is not None:
+            payload["auto_count"] = self.auto_count
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "name" in data:
+            args["name"] = data["name"]
+        if "label" in data:
+            args["label"] = data["label"]
+        if "hide" in data:
+            args["hide"] = data["hide"]
+        if "skipUrlSync" in data:
+            args["skip_url_sync"] = data["skipUrlSync"]
+        if "description" in data:
+            args["description"] = data["description"]
+        if "query" in data:
+            args["query"] = data["query"]
+        if "datasource" in data:
+            args["datasource"] = DataSourceRef.from_json(data["datasource"])
+        if "current" in data:
+            args["current"] = VariableOption.from_json(data["current"])
+        if "multi" in data:
+            args["multi"] = data["multi"]
+        if "options" in data:
+            args["options"] = [VariableOption.from_json(item) for item in data["options"]]
+        if "refresh" in data:
+            args["refresh"] = data["refresh"]
+        if "sort" in data:
+            args["sort"] = data["sort"]
+        if "auto" in data:
+            args["auto"] = data["auto"]
+        if "auto_min" in data:
+            args["auto_min"] = data["auto_min"]
+        if "auto_count" in data:
+            args["auto_count"] = data["auto_count"]        
+
+        return cls(**args)
+
+
+class VariableType(enum.StrEnum):
+    """
+    Dashboard variable type
+    `query`: Query-generated list of values such as metric names, server names, sensor IDs, data centers, and so on.
+    `adhoc`: Key/value filters that are automatically added to all metric queries for a data source (Prometheus, Loki, InfluxDB, and Elasticsearch only).
+    `constant`: 	Define a hidden constant.
+    `datasource`: Quickly change the data source for an entire dashboard.
+    `interval`: Interval variables represent time spans.
+    `textbox`: Display a free text input field with an optional default value.
+    `custom`: Define the variable options manually using a comma-separated list.
+    `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
+    """
+
+    QUERY = "query"
+    ADHOC = "adhoc"
+    CONSTANT = "constant"
+    DATASOURCE = "datasource"
+    INTERVAL = "interval"
+    TEXTBOX = "textbox"
+    CUSTOM = "custom"
+    SYSTEM = "system"
+
+
+class VariableHide(enum.IntEnum):
+    """
+    Determine if the variable shows on dashboard
+    Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing).
+    """
+
+    DONT_HIDE = 0
+    HIDE_LABEL = 1
+    HIDE_VARIABLE = 2
+
+
+class VariableOption:
+    """
+    Option to be selected in a variable.
+    """
+
+    # Whether the option is selected or not
+    selected: typing.Optional[bool]
+    # Text to be displayed for the option
+    text: typing.Union[str, list[str]]
+    # Value of the option
+    value: typing.Union[str, list[str]]
+
+    def __init__(self, selected: typing.Optional[bool] = None, text: typing.Union[str, list[str]] = "", value: typing.Union[str, list[str]] = ""):
+        self.selected = selected
+        self.text = text
+        self.value = value
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "text": self.text,
+            "value": self.value,
+        }
+        if self.selected is not None:
+            payload["selected"] = self.selected
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "selected" in data:
+            args["selected"] = data["selected"]
+        if "text" in data:
+            args["text"] = data["text"]
+        if "value" in data:
+            args["value"] = data["value"]        
+
+        return cls(**args)
+
+
+class VariableRefresh(enum.IntEnum):
+    """
+    Options to config when to refresh a variable
+    `0`: Never refresh the variable
+    `1`: Queries the data source every time the dashboard loads.
+    `2`: Queries the data source when the dashboard time range changes.
+    """
+
+    NEVER = 0
+    ON_DASHBOARD_LOAD = 1
+    ON_TIME_RANGE_CHANGED = 2
+
+
+class VariableSort(enum.IntEnum):
+    """
+    Sort variable options
+    Accepted values are:
+    `0`: No sorting
+    `1`: Alphabetical ASC
+    `2`: Alphabetical DESC
+    `3`: Numerical ASC
+    `4`: Numerical DESC
+    `5`: Alphabetical Case Insensitive ASC
+    `6`: Alphabetical Case Insensitive DESC
+    `7`: Natural ASC
+    `8`: Natural DESC
+    """
+
+    DISABLED = 0
+    ALPHABETICAL_ASC = 1
+    ALPHABETICAL_DESC = 2
+    NUMERICAL_ASC = 3
+    NUMERICAL_DESC = 4
+    ALPHABETICAL_CASE_INSENSITIVE_ASC = 5
+    ALPHABETICAL_CASE_INSENSITIVE_DESC = 6
+    NATURAL_ASC = 7
+    NATURAL_DESC = 8
+
+
+class AnnotationContainer:
+    """
+    Contains the list of annotations that are associated with the dashboard.
+    Annotations are used to overlay event markers and overlay event tags on graphs.
+    Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
+    See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
+    """
+
+    # List of annotations
+    list_val: typing.Optional[list['AnnotationQuery']]
+
+    def __init__(self, list_val: typing.Optional[list['AnnotationQuery']] = None):
+        self.list_val = list_val
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.list_val is not None:
+            payload["list"] = self.list_val
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "list" in data:
+            args["list_val"] = [AnnotationQuery.from_json(item) for item in data["list"]]        
+
+        return cls(**args)
+
+
+class AnnotationQuery:
+    """
+    TODO docs
+    FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+    """
+
+    # Name of annotation.
+    name: str
+    # Datasource where the annotations data is
+    datasource: 'DataSourceRef'
+    # When enabled the annotation query is issued with every dashboard refresh
+    enable: bool
+    # Annotation queries can be toggled on or off at the top of the dashboard.
+    # When hide is true, the toggle is not shown in the dashboard.
+    hide: typing.Optional[bool]
+    # Color to use for the annotation event markers
+    icon_color: str
+    # Filters to apply when fetching annotations
+    filter_val: typing.Optional['AnnotationPanelFilter']
+    # TODO.. this should just be a normal query target
+    target: typing.Optional['AnnotationTarget']
+    # TODO -- this should not exist here, it is based on the --grafana-- datasource
+    type_val: typing.Optional[str]
+    # Set to 1 for the standard annotation query all dashboards have by default.
+    built_in: typing.Optional[float]
+    expr: typing.Optional[str]
+
+    def __init__(self, name: str = "", datasource: typing.Optional['DataSourceRef'] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional['AnnotationTarget'] = None, type_val: typing.Optional[str] = None, built_in: typing.Optional[float] = 0, expr: typing.Optional[str] = None):
+        self.name = name
+        self.datasource = datasource if datasource is not None else DataSourceRef()
+        self.enable = enable
+        self.hide = hide
+        self.icon_color = icon_color
+        self.filter_val = filter_val
+        self.target = target
+        self.type_val = type_val
+        self.built_in = built_in
+        self.expr = expr
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "name": self.name,
+            "datasource": self.datasource,
+            "enable": self.enable,
+            "iconColor": self.icon_color,
+        }
+        if self.hide is not None:
+            payload["hide"] = self.hide
+        if self.filter_val is not None:
+            payload["filter"] = self.filter_val
+        if self.target is not None:
+            payload["target"] = self.target
+        if self.type_val is not None:
+            payload["type"] = self.type_val
+        if self.built_in is not None:
+            payload["builtIn"] = self.built_in
+        if self.expr is not None:
+            payload["expr"] = self.expr
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "name" in data:
+            args["name"] = data["name"]
+        if "datasource" in data:
+            args["datasource"] = DataSourceRef.from_json(data["datasource"])
+        if "enable" in data:
+            args["enable"] = data["enable"]
+        if "hide" in data:
+            args["hide"] = data["hide"]
+        if "iconColor" in data:
+            args["icon_color"] = data["iconColor"]
+        if "filter" in data:
+            args["filter_val"] = AnnotationPanelFilter.from_json(data["filter"])
+        if "target" in data:
+            args["target"] = AnnotationTarget.from_json(data["target"])
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "builtIn" in data:
+            args["built_in"] = data["builtIn"]
+        if "expr" in data:
+            args["expr"] = data["expr"]        
+
+        return cls(**args)
+
+
+class AnnotationPanelFilter:
+    # Should the specified panels be included or excluded
+    exclude: typing.Optional[bool]
+    # Panel IDs that should be included or excluded
+    ids: list[int]
+
+    def __init__(self, exclude: typing.Optional[bool] = False, ids: typing.Optional[list[int]] = None):
+        self.exclude = exclude
+        self.ids = ids if ids is not None else []
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "ids": self.ids,
+        }
+        if self.exclude is not None:
+            payload["exclude"] = self.exclude
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "exclude" in data:
+            args["exclude"] = data["exclude"]
+        if "ids" in data:
+            args["ids"] = data["ids"]        
+
+        return cls(**args)
+
+
+class AnnotationTarget:
+    """
+    TODO: this should be a regular DataQuery that depends on the selected dashboard
+    these match the properties of the "grafana" datasouce that is default in most dashboards
+    """
+
+    # Only required/valid for the grafana datasource...
+    # but code+tests is already depending on it so hard to change
+    limit: int
+    # Only required/valid for the grafana datasource...
+    # but code+tests is already depending on it so hard to change
+    match_any: bool
+    # Only required/valid for the grafana datasource...
+    # but code+tests is already depending on it so hard to change
+    tags: list[str]
+    # Only required/valid for the grafana datasource...
+    # but code+tests is already depending on it so hard to change
+    type_val: str
+
+    def __init__(self, limit: int = 0, match_any: bool = False, tags: typing.Optional[list[str]] = None, type_val: str = ""):
+        self.limit = limit
+        self.match_any = match_any
+        self.tags = tags if tags is not None else []
+        self.type_val = type_val
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "limit": self.limit,
+            "matchAny": self.match_any,
+            "tags": self.tags,
+            "type": self.type_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "limit" in data:
+            args["limit"] = data["limit"]
+        if "matchAny" in data:
+            args["match_any"] = data["matchAny"]
+        if "tags" in data:
+            args["tags"] = data["tags"]
+        if "type" in data:
+            args["type_val"] = data["type"]        
+
+        return cls(**args)
+
+
+class Snapshot:
+    """
+    A dashboard snapshot shares an interactive dashboard publicly.
+    It is a read-only version of a dashboard, and is not editable.
+    It is possible to create a snapshot of a snapshot.
+    Grafana strips away all sensitive information from the dashboard.
+    Sensitive information stripped: queries (metric, template,annotation) and panel links.
+    """
+
+    # Time when the snapshot was created
+    created: str
+    # Time when the snapshot expires, default is never to expire
+    expires: str
+    # Is the snapshot saved in an external grafana instance
+    external: bool
+    # external url, if snapshot was shared in external grafana instance
+    external_url: str
+    # Unique identifier of the snapshot
+    id_val: int
+    # Optional, defined the unique key of the snapshot, required if external is true
+    key: str
+    # Optional, name of the snapshot
+    name: str
+    # org id of the snapshot
+    org_id: int
+    # last time when the snapshot was updated
+    updated: str
+    # url of the snapshot, if snapshot was shared internally
+    url: typing.Optional[str]
+    # user id of the snapshot creator
+    user_id: int
+    dashboard: typing.Optional['Dashboard']
+
+    def __init__(self, created: str = "", expires: str = "", external: bool = False, external_url: str = "", id_val: int = 0, key: str = "", name: str = "", org_id: int = 0, updated: str = "", url: typing.Optional[str] = None, user_id: int = 0, dashboard: typing.Optional['Dashboard'] = None):
+        self.created = created
+        self.expires = expires
+        self.external = external
+        self.external_url = external_url
+        self.id_val = id_val
+        self.key = key
+        self.name = name
+        self.org_id = org_id
+        self.updated = updated
+        self.url = url
+        self.user_id = user_id
+        self.dashboard = dashboard
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "created": self.created,
+            "expires": self.expires,
+            "external": self.external,
+            "externalUrl": self.external_url,
+            "id": self.id_val,
+            "key": self.key,
+            "name": self.name,
+            "orgId": self.org_id,
+            "updated": self.updated,
+            "userId": self.user_id,
+        }
+        if self.url is not None:
+            payload["url"] = self.url
+        if self.dashboard is not None:
+            payload["dashboard"] = self.dashboard
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "created" in data:
+            args["created"] = data["created"]
+        if "expires" in data:
+            args["expires"] = data["expires"]
+        if "external" in data:
+            args["external"] = data["external"]
+        if "externalUrl" in data:
+            args["external_url"] = data["externalUrl"]
+        if "id" in data:
+            args["id_val"] = data["id"]
+        if "key" in data:
+            args["key"] = data["key"]
+        if "name" in data:
+            args["name"] = data["name"]
+        if "orgId" in data:
+            args["org_id"] = data["orgId"]
+        if "updated" in data:
+            args["updated"] = data["updated"]
+        if "url" in data:
+            args["url"] = data["url"]
+        if "userId" in data:
+            args["user_id"] = data["userId"]
+        if "dashboard" in data:
+            args["dashboard"] = Dashboard.from_json(data["dashboard"])        
+
+        return cls(**args)
+
+
+class MappingType(enum.StrEnum):
+    """
+    Supported value mapping types
+    `value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
+    `range`: Maps numerical ranges to a display text and color. For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
+    `regex`: Maps regular expressions to replacement text and a color. For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
+    `special`: Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color. See SpecialValueMatch to see the list of special values. For example, you can configure a special value mapping so that null values appear as N/A.
+    """
+
+    VALUE_TO_TEXT = "value"
+    RANGE_TO_TEXT = "range"
+    REGEX_TO_TEXT = "regex"
+    SPECIAL_VALUE = "special"
 
 
 class AnnotationActions:
@@ -2250,7 +2251,34 @@ class DashboardDashboardTemplating:
         args: dict[str, typing.Any] = {}
         
         if "list" in data:
-            args["list_val"] = data["list"]        
+            args["list_val"] = [VariableModel.from_json(item) for item in data["list"]]        
+
+        return cls(**args)
+
+
+class DashboardFieldConfigSourceOverrides:
+    matcher: 'MatcherConfig'
+    properties: list['DynamicConfigValue']
+
+    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None, properties: typing.Optional[list['DynamicConfigValue']] = None):
+        self.matcher = matcher if matcher is not None else MatcherConfig()
+        self.properties = properties if properties is not None else []
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "matcher": self.matcher,
+            "properties": self.properties,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "matcher" in data:
+            args["matcher"] = MatcherConfig.from_json(data["matcher"])
+        if "properties" in data:
+            args["properties"] = [DynamicConfigValue.from_json(item) for item in data["properties"]]        
 
         return cls(**args)
 
@@ -2344,33 +2372,6 @@ class DashboardSpecialValueMapOptions:
             args["match"] = data["match"]
         if "result" in data:
             args["result"] = ValueMappingResult.from_json(data["result"])        
-
-        return cls(**args)
-
-
-class DashboardFieldConfigSourceOverrides:
-    matcher: 'MatcherConfig'
-    properties: list['DynamicConfigValue']
-
-    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None, properties: typing.Optional[list['DynamicConfigValue']] = None):
-        self.matcher = matcher if matcher is not None else MatcherConfig()
-        self.properties = properties if properties is not None else []
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "matcher": self.matcher,
-            "properties": self.properties,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "matcher" in data:
-            args["matcher"] = MatcherConfig.from_json(data["matcher"])
-        if "properties" in data:
-            args["properties"] = data["properties"]        
 
         return cls(**args)
 

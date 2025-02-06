@@ -10,7 +10,7 @@ class ExprTypeReduceSettings implements \JsonSerializable
      *  - `"dropNN"` Drop non-numbers
      *  - `"replaceNN"` Replace non-numbers
      */
-    public \Grafana\Foundation\Expr\TypeReduceMode $mode;
+    public \Grafana\Foundation\Expr\ExprTypeReduceSettingsMode $mode;
 
     /**
      * Only valid when mode is replace
@@ -18,12 +18,12 @@ class ExprTypeReduceSettings implements \JsonSerializable
     public ?float $replaceWithValue;
 
     /**
-     * @param \Grafana\Foundation\Expr\TypeReduceMode|null $mode
+     * @param \Grafana\Foundation\Expr\ExprTypeReduceSettingsMode|null $mode
      * @param float|null $replaceWithValue
      */
-    public function __construct(?\Grafana\Foundation\Expr\TypeReduceMode $mode = null, ?float $replaceWithValue = null)
+    public function __construct(?\Grafana\Foundation\Expr\ExprTypeReduceSettingsMode $mode = null, ?float $replaceWithValue = null)
     {
-        $this->mode = $mode ?: \Grafana\Foundation\Expr\TypeReduceMode::DropNN();
+        $this->mode = $mode ?: \Grafana\Foundation\Expr\ExprTypeReduceSettingsMode::DropNN();
         $this->replaceWithValue = $replaceWithValue;
     }
 
@@ -35,7 +35,7 @@ class ExprTypeReduceSettings implements \JsonSerializable
         /** @var array{mode?: string, replaceWithValue?: float} $inputData */
         $data = $inputData;
         return new self(
-            mode: isset($data["mode"]) ? (function($input) { return \Grafana\Foundation\Expr\TypeReduceMode::fromValue($input); })($data["mode"]) : null,
+            mode: isset($data["mode"]) ? (function($input) { return \Grafana\Foundation\Expr\ExprTypeReduceSettingsMode::fromValue($input); })($data["mode"]) : null,
             replaceWithValue: $data["replaceWithValue"] ?? null,
         );
     }

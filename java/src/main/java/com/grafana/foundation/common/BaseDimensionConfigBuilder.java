@@ -10,7 +10,7 @@ public class BaseDimensionConfigBuilder implements com.grafana.foundation.cog.Bu
         this.internal = new BaseDimensionConfig();
     }
     public BaseDimensionConfigBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     public BaseDimensionConfig build() {

@@ -114,7 +114,7 @@ final class AnnotationQueryConverter
     
     
     }
-            if ($input->builtIn !== null && $input->builtIn !== 0) {
+            if ($input->builtIn !== null && $input->builtIn !== (float) 0) {
     
         
     $buffer = 'builtIn(';

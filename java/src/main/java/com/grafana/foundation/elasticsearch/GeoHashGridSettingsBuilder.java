@@ -10,7 +10,7 @@ public class GeoHashGridSettingsBuilder implements com.grafana.foundation.cog.Bu
         this.internal = new GeoHashGridSettings();
     }
     public GeoHashGridSettingsBuilder precision(String precision) {
-    this.internal.precision = precision;
+        this.internal.precision = precision;
         return this;
     }
     public GeoHashGridSettings build() {

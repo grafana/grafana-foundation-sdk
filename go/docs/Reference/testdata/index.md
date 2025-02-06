@@ -53,6 +53,14 @@ NewSimulationQuery creates a new SimulationQuery object.
 func NewSimulationQuery() *SimulationQuery
 ```
 
+### <span class="badge function"></span> NewCSVWave
+
+NewCSVWave creates a new CSVWave object.
+
+```go
+func NewCSVWave() *CSVWave
+```
+
 ### <span class="badge function"></span> NewNodesQuery
 
 NewNodesQuery creates a new NodesQuery object.
@@ -67,14 +75,6 @@ NewUSAQuery creates a new USAQuery object.
 
 ```go
 func NewUSAQuery() *USAQuery
-```
-
-### <span class="badge function"></span> NewCSVWave
-
-NewCSVWave creates a new CSVWave object.
-
-```go
-func NewCSVWave() *CSVWave
 ```
 
 ### <span class="badge function"></span> NewScenario
@@ -143,6 +143,14 @@ SimulationQueryConverter accepts a `SimulationQuery` object and generates the Go
 func SimulationQueryConverter(input SimulationQuery) string
 ```
 
+### <span class="badge function"></span> CSVWaveConverter
+
+CSVWaveConverter accepts a `CSVWave` object and generates the Go code to build this object using builders.
+
+```go
+func CSVWaveConverter(input CSVWave) string
+```
+
 ### <span class="badge function"></span> NodesQueryConverter
 
 NodesQueryConverter accepts a `NodesQuery` object and generates the Go code to build this object using builders.
@@ -157,14 +165,6 @@ USAQueryConverter accepts a `USAQuery` object and generates the Go code to build
 
 ```go
 func USAQueryConverter(input USAQuery) string
-```
-
-### <span class="badge function"></span> CSVWaveConverter
-
-CSVWaveConverter accepts a `CSVWave` object and generates the Go code to build this object using builders.
-
-```go
-func CSVWaveConverter(input CSVWave) string
 ```
 
 ### <span class="badge function"></span> ScenarioConverter

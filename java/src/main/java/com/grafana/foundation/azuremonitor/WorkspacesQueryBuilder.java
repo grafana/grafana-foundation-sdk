@@ -8,15 +8,15 @@ public class WorkspacesQueryBuilder implements com.grafana.foundation.cog.Builde
     
     public WorkspacesQueryBuilder() {
         this.internal = new WorkspacesQuery();
-    this.internal.kind = "WorkspacesQuery";
+        this.internal.kind = "WorkspacesQuery";
     }
     public WorkspacesQueryBuilder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
+        this.internal.rawQuery = rawQuery;
         return this;
     }
     
     public WorkspacesQueryBuilder subscription(String subscription) {
-    this.internal.subscription = subscription;
+        this.internal.subscription = subscription;
         return this;
     }
     public WorkspacesQuery build() {

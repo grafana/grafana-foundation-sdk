@@ -11,22 +11,22 @@ public class USAQueryBuilder implements com.grafana.foundation.cog.Builder<USAQu
         this.internal = new USAQuery();
     }
     public USAQueryBuilder mode(String mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     
     public USAQueryBuilder period(String period) {
-    this.internal.period = period;
+        this.internal.period = period;
         return this;
     }
     
     public USAQueryBuilder fields(List<String> fields) {
-    this.internal.fields = fields;
+        this.internal.fields = fields;
         return this;
     }
     
     public USAQueryBuilder states(List<String> states) {
-    this.internal.states = states;
+        this.internal.states = states;
         return this;
     }
     public USAQuery build() {

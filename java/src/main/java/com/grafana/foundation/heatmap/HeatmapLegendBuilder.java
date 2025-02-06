@@ -10,7 +10,7 @@ public class HeatmapLegendBuilder implements com.grafana.foundation.cog.Builder<
         this.internal = new HeatmapLegend();
     }
     public HeatmapLegendBuilder show(Boolean show) {
-    this.internal.show = show;
+        this.internal.show = show;
         return this;
     }
     public HeatmapLegend build() {

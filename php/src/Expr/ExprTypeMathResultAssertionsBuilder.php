@@ -47,7 +47,7 @@ class ExprTypeMathResultAssertionsBuilder implements \Grafana\Foundation\Cog\Bui
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public function type(\Grafana\Foundation\Expr\TypeMathType $type): static
+    public function type(\Grafana\Foundation\Expr\ExprTypeMathResultAssertionsType $type): static
     {
         $this->internal->type = $type;
     

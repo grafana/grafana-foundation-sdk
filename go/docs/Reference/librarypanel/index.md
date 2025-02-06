@@ -23,20 +23,20 @@ NewLibraryPanel creates a new LibraryPanel object.
 func NewLibraryPanel() *LibraryPanel
 ```
 
-### <span class="badge function"></span> NewLibraryElementDTOMetaUser
-
-NewLibraryElementDTOMetaUser creates a new LibraryElementDTOMetaUser object.
-
-```go
-func NewLibraryElementDTOMetaUser() *LibraryElementDTOMetaUser
-```
-
 ### <span class="badge function"></span> NewLibraryElementDTOMeta
 
 NewLibraryElementDTOMeta creates a new LibraryElementDTOMeta object.
 
 ```go
 func NewLibraryElementDTOMeta() *LibraryElementDTOMeta
+```
+
+### <span class="badge function"></span> NewLibraryElementDTOMetaUser
+
+NewLibraryElementDTOMetaUser creates a new LibraryElementDTOMetaUser object.
+
+```go
+func NewLibraryElementDTOMetaUser() *LibraryElementDTOMetaUser
 ```
 
 ### <span class="badge function"></span> NewPanelModel
@@ -55,20 +55,20 @@ LibraryPanelConverter accepts a `LibraryPanel` object and generates the Go code 
 func LibraryPanelConverter(input LibraryPanel) string
 ```
 
-### <span class="badge function"></span> LibraryElementDTOMetaUserConverter
-
-LibraryElementDTOMetaUserConverter accepts a `LibraryElementDTOMetaUser` object and generates the Go code to build this object using builders.
-
-```go
-func LibraryElementDTOMetaUserConverter(input LibraryElementDTOMetaUser) string
-```
-
 ### <span class="badge function"></span> LibraryElementDTOMetaConverter
 
 LibraryElementDTOMetaConverter accepts a `LibraryElementDTOMeta` object and generates the Go code to build this object using builders.
 
 ```go
 func LibraryElementDTOMetaConverter(input LibraryElementDTOMeta) string
+```
+
+### <span class="badge function"></span> LibraryElementDTOMetaUserConverter
+
+LibraryElementDTOMetaUserConverter accepts a `LibraryElementDTOMetaUser` object and generates the Go code to build this object using builders.
+
+```go
+func LibraryElementDTOMetaUserConverter(input LibraryElementDTOMetaUser) string
 ```
 
 ### <span class="badge function"></span> PanelModelConverter

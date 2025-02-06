@@ -155,7 +155,7 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
     })($data["azureTraces"]) : null,
             grafanaTemplateVariableFn: isset($data["grafanaTemplateVariableFn"]) ? (function($input) {
         \assert(is_array($input), 'expected disjunction value to be an array');
-    
+        /** @var array<string, mixed> $input */
         switch ($input["kind"]) {
         case "AppInsightsGroupByQuery":
             return AppInsightsGroupByQuery::fromArray($input);

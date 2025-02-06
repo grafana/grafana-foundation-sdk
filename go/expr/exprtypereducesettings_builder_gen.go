@@ -35,7 +35,7 @@ func (builder *ExprTypeReduceSettingsBuilder) Build() (ExprTypeReduceSettings, e
 // Possible enum values:
 //   - `"dropNN"` Drop non-numbers
 //   - `"replaceNN"` Replace non-numbers
-func (builder *ExprTypeReduceSettingsBuilder) Mode(mode TypeReduceMode) *ExprTypeReduceSettingsBuilder {
+func (builder *ExprTypeReduceSettingsBuilder) Mode(mode ExprTypeReduceSettingsMode) *ExprTypeReduceSettingsBuilder {
 	builder.internal.Mode = mode
 
 	return builder
