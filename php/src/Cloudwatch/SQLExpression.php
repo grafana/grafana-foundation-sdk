@@ -75,7 +75,7 @@ class SQLExpression implements \JsonSerializable
     })($data["select"]) : null,
             from: isset($data["from"]) ? (function($input) {
         \assert(is_array($input), 'expected disjunction value to be an array');
-    
+        /** @var array<string, mixed> $input */
         switch ($input["type"]) {
         case "function":
             return QueryEditorFunctionExpression::fromArray($input);

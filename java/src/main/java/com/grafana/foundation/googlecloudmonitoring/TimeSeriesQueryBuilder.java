@@ -10,17 +10,17 @@ public class TimeSeriesQueryBuilder implements com.grafana.foundation.cog.Builde
         this.internal = new TimeSeriesQuery();
     }
     public TimeSeriesQueryBuilder projectName(String projectName) {
-    this.internal.projectName = projectName;
+        this.internal.projectName = projectName;
         return this;
     }
     
     public TimeSeriesQueryBuilder query(String query) {
-    this.internal.query = query;
+        this.internal.query = query;
         return this;
     }
     
     public TimeSeriesQueryBuilder graphPeriod(String graphPeriod) {
-    this.internal.graphPeriod = graphPeriod;
+        this.internal.graphPeriod = graphPeriod;
         return this;
     }
     public TimeSeriesQuery build() {

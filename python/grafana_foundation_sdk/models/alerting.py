@@ -96,7 +96,7 @@ class RuleGroup:
         if "interval" in data:
             args["interval"] = data["interval"]
         if "rules" in data:
-            args["rules"] = data["rules"]
+            args["rules"] = [Rule.from_json(item) for item in data["rules"]]
         if "title" in data:
             args["title"] = data["title"]        
 
@@ -316,7 +316,7 @@ class MuteTiming:
         if "name" in data:
             args["name"] = data["name"]
         if "time_intervals" in data:
-            args["time_intervals"] = data["time_intervals"]        
+            args["time_intervals"] = [TimeInterval.from_json(item) for item in data["time_intervals"]]        
 
         return cls(**args)
 
@@ -454,7 +454,7 @@ class Rule:
         if "condition" in data:
             args["condition"] = data["condition"]
         if "data" in data:
-            args["data"] = data["data"]
+            args["data"] = [Query.from_json(item) for item in data["data"]]
         if "execErrState" in data:
             args["exec_err_state"] = data["execErrState"]
         if "folderUID" in data:
@@ -651,11 +651,11 @@ class NotificationPolicy:
         if "match_re" in data:
             args["match_re"] = data["match_re"]
         if "matchers" in data:
-            args["matchers"] = data["matchers"]
+            args["matchers"] = [Matcher.from_json(item) for item in data["matchers"]]
         if "mute_time_intervals" in data:
             args["mute_time_intervals"] = data["mute_time_intervals"]
         if "object_matchers" in data:
-            args["object_matchers"] = data["object_matchers"]
+            args["object_matchers"] = [item for item in data["object_matchers"]]
         if "provenance" in data:
             args["provenance"] = data["provenance"]
         if "receiver" in data:
@@ -663,7 +663,7 @@ class NotificationPolicy:
         if "repeat_interval" in data:
             args["repeat_interval"] = data["repeat_interval"]
         if "routes" in data:
-            args["routes"] = data["routes"]        
+            args["routes"] = [NotificationPolicy.from_json(item) for item in data["routes"]]        
 
         return cls(**args)
 
@@ -692,7 +692,7 @@ class TimeInterval:
         if "name" in data:
             args["name"] = data["name"]
         if "time_intervals" in data:
-            args["time_intervals"] = data["time_intervals"]        
+            args["time_intervals"] = [TimeIntervalItem.from_json(item) for item in data["time_intervals"]]        
 
         return cls(**args)
 
@@ -741,7 +741,7 @@ class TimeIntervalItem:
         if "months" in data:
             args["months"] = data["months"]
         if "times" in data:
-            args["times"] = data["times"]
+            args["times"] = [TimeIntervalTimeRange.from_json(item) for item in data["times"]]
         if "weekdays" in data:
             args["weekdays"] = data["weekdays"]
         if "years" in data:

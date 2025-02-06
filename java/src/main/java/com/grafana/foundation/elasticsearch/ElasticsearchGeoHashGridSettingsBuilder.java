@@ -10,7 +10,7 @@ public class ElasticsearchGeoHashGridSettingsBuilder implements com.grafana.foun
         this.internal = new ElasticsearchGeoHashGridSettings();
     }
     public ElasticsearchGeoHashGridSettingsBuilder precision(String precision) {
-    this.internal.precision = precision;
+        this.internal.precision = precision;
         return this;
     }
     public ElasticsearchGeoHashGridSettings build() {

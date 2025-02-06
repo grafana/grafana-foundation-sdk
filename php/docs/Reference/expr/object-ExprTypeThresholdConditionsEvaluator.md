@@ -16,7 +16,7 @@ class ExprTypeThresholdConditionsEvaluator implements \JsonSerializable
     /**
      * e.g. "gt"
      */
-    public \Grafana\Foundation\Expr\TypeThresholdType $type;
+    public \Grafana\Foundation\Expr\ExprTypeThresholdConditionsEvaluatorType $type;
 
 }
 ```

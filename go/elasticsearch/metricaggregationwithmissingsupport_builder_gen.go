@@ -42,13 +42,8 @@ func (builder *MetricAggregationWithMissingSupportBuilder) Settings(settings cog
 	return builder
 }
 
-func (builder *MetricAggregationWithMissingSupportBuilder) Type(typeArg cog.Builder[MetricAggregationType]) *MetricAggregationWithMissingSupportBuilder {
-	typeArgResource, err := typeArg.Build()
-	if err != nil {
-		builder.errors["type"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Type = typeArgResource
+func (builder *MetricAggregationWithMissingSupportBuilder) Type(typeArg MetricAggregationType) *MetricAggregationWithMissingSupportBuilder {
+	builder.internal.Type = typeArg
 
 	return builder
 }

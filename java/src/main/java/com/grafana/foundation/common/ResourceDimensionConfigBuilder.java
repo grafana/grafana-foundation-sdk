@@ -10,17 +10,17 @@ public class ResourceDimensionConfigBuilder implements com.grafana.foundation.co
         this.internal = new ResourceDimensionConfig();
     }
     public ResourceDimensionConfigBuilder mode(ResourceDimensionMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     
     public ResourceDimensionConfigBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public ResourceDimensionConfigBuilder fixed(String fixed) {
-    this.internal.fixed = fixed;
+        this.internal.fixed = fixed;
         return this;
     }
     public ResourceDimensionConfig build() {

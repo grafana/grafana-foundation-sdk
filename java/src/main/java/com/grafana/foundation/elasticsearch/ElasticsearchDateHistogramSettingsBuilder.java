@@ -10,27 +10,27 @@ public class ElasticsearchDateHistogramSettingsBuilder implements com.grafana.fo
         this.internal = new ElasticsearchDateHistogramSettings();
     }
     public ElasticsearchDateHistogramSettingsBuilder interval(String interval) {
-    this.internal.interval = interval;
+        this.internal.interval = interval;
         return this;
     }
     
     public ElasticsearchDateHistogramSettingsBuilder minDocCount(String minDocCount) {
-    this.internal.minDocCount = minDocCount;
+        this.internal.minDocCount = minDocCount;
         return this;
     }
     
     public ElasticsearchDateHistogramSettingsBuilder trimEdges(String trimEdges) {
-    this.internal.trimEdges = trimEdges;
+        this.internal.trimEdges = trimEdges;
         return this;
     }
     
     public ElasticsearchDateHistogramSettingsBuilder offset(String offset) {
-    this.internal.offset = offset;
+        this.internal.offset = offset;
         return this;
     }
     
     public ElasticsearchDateHistogramSettingsBuilder timeZone(String timeZone) {
-    this.internal.timeZone = timeZone;
+        this.internal.timeZone = timeZone;
         return this;
     }
     public ElasticsearchDateHistogramSettings build() {

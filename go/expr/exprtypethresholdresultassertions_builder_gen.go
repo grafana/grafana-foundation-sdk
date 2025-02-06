@@ -51,7 +51,7 @@ func (builder *ExprTypeThresholdResultAssertionsBuilder) MaxFrames(maxFrames int
 //   - `"numeric-multi"`
 //   - `"numeric-long"`
 //   - `"log-lines"`
-func (builder *ExprTypeThresholdResultAssertionsBuilder) Type(typeArg TypeThresholdType) *ExprTypeThresholdResultAssertionsBuilder {
+func (builder *ExprTypeThresholdResultAssertionsBuilder) Type(typeArg ExprTypeThresholdResultAssertionsType) *ExprTypeThresholdResultAssertionsBuilder {
 	builder.internal.Type = &typeArg
 
 	return builder

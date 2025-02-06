@@ -29,7 +29,7 @@ Possible enum values:
  - `"replaceNN"` Replace non-numbers
 
 ```php
-mode(\Grafana\Foundation\Expr\TypeReduceMode $mode)
+mode(\Grafana\Foundation\Expr\ExprTypeReduceSettingsMode $mode)
 ```
 
 ### <span class="badge object-method"></span> replaceWithValue

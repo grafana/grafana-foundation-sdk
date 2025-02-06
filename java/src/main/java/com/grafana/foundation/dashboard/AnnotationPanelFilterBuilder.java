@@ -11,12 +11,12 @@ public class AnnotationPanelFilterBuilder implements com.grafana.foundation.cog.
         this.internal = new AnnotationPanelFilter();
     }
     public AnnotationPanelFilterBuilder exclude(Boolean exclude) {
-    this.internal.exclude = exclude;
+        this.internal.exclude = exclude;
         return this;
     }
     
     public AnnotationPanelFilterBuilder ids(List<Integer> ids) {
-    this.internal.ids = ids;
+        this.internal.ids = ids;
         return this;
     }
     public AnnotationPanelFilter build() {

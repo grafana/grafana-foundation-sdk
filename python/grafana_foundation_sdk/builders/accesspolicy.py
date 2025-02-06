@@ -52,6 +52,29 @@ class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):
         return self
     
 
+class ResourceRef(cogbuilder.Builder[accesspolicy.ResourceRef]):    
+    _internal: accesspolicy.ResourceRef
+
+    def __init__(self):
+        self._internal = accesspolicy.ResourceRef()
+
+    def build(self) -> accesspolicy.ResourceRef:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def kind(self, kind: str) -> typing.Self:        
+        self._internal.kind = kind
+    
+        return self
+    
+    def name(self, name: str) -> typing.Self:        
+        self._internal.name = name
+    
+        return self
+    
+
 class RoleRef(cogbuilder.Builder[accesspolicy.RoleRef]):    
     _internal: accesspolicy.RoleRef
 
@@ -81,29 +104,6 @@ class RoleRef(cogbuilder.Builder[accesspolicy.RoleRef]):
     
     def xname(self, xname: str) -> typing.Self:        
         self._internal.xname = xname
-    
-        return self
-    
-
-class ResourceRef(cogbuilder.Builder[accesspolicy.ResourceRef]):    
-    _internal: accesspolicy.ResourceRef
-
-    def __init__(self):
-        self._internal = accesspolicy.ResourceRef()
-
-    def build(self) -> accesspolicy.ResourceRef:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def kind(self, kind: str) -> typing.Self:        
-        self._internal.kind = kind
-    
-        return self
-    
-    def name(self, name: str) -> typing.Self:        
-        self._internal.name = name
     
         return self
     

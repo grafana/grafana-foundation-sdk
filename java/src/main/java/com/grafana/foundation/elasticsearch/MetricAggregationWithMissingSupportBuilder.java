@@ -10,22 +10,22 @@ public class MetricAggregationWithMissingSupportBuilder implements com.grafana.f
         this.internal = new MetricAggregationWithMissingSupport();
     }
     public MetricAggregationWithMissingSupportBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMetricAggregationWithMissingSupportSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     
-    public MetricAggregationWithMissingSupportBuilder type(com.grafana.foundation.cog.Builder<MetricAggregationType> type) {
-    this.internal.type = type.build();
+    public MetricAggregationWithMissingSupportBuilder type(MetricAggregationType type) {
+        this.internal.type = type;
         return this;
     }
     
     public MetricAggregationWithMissingSupportBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public MetricAggregationWithMissingSupportBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public MetricAggregationWithMissingSupport build() {

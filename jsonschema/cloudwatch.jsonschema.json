@@ -256,17 +256,6 @@
         }
       }
     },
-    "QueryEditorExpressionType": {
-      "enum": [
-        "property",
-        "operator",
-        "or",
-        "and",
-        "groupBy",
-        "function",
-        "functionParameter"
-      ]
-    },
     "QueryEditorFunctionParameterExpression": {
       "type": "object",
       "additionalProperties": false,
@@ -299,6 +288,70 @@
           "$ref": "#/definitions/QueryEditorProperty"
         }
       }
+    },
+    "QueryEditorProperty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/QueryEditorPropertyType"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "QueryEditorPropertyType": {
+      "enum": [
+        "string"
+      ]
+    },
+    "QueryEditorArrayExpression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "expressions"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "and",
+            "or"
+          ]
+        },
+        "expressions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QueryEditorExpression"
+          }
+        }
+      }
+    },
+    "QueryEditorExpression": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/QueryEditorArrayExpression"
+        },
+        {
+          "$ref": "#/definitions/QueryEditorPropertyExpression"
+        },
+        {
+          "$ref": "#/definitions/QueryEditorGroupByExpression"
+        },
+        {
+          "$ref": "#/definitions/QueryEditorFunctionExpression"
+        },
+        {
+          "$ref": "#/definitions/QueryEditorFunctionParameterExpression"
+        },
+        {
+          "$ref": "#/definitions/QueryEditorOperatorExpression"
+        }
+      ]
     },
     "QueryEditorGroupByExpression": {
       "type": "object",
@@ -362,19 +415,6 @@
       },
       "description": "TS type is QueryEditorOperator\u003cT extends QueryEditorOperatorValueType\u003e, extended in veneer"
     },
-    "QueryEditorOperatorValueType": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/QueryEditorOperatorType"
-        },
-        {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/QueryEditorOperatorType"
-          }
-        }
-      ]
-    },
     "QueryEditorOperatorType": {
       "anyOf": [
         {
@@ -388,67 +428,27 @@
         }
       ]
     },
-    "QueryEditorProperty": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type"
-      ],
-      "properties": {
-        "type": {
-          "$ref": "#/definitions/QueryEditorPropertyType"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "QueryEditorPropertyType": {
+    "QueryEditorExpressionType": {
       "enum": [
-        "string"
+        "property",
+        "operator",
+        "or",
+        "and",
+        "groupBy",
+        "function",
+        "functionParameter"
       ]
     },
-    "QueryEditorArrayExpression": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "expressions"
-      ],
-      "properties": {
-        "type": {
-          "enum": [
-            "and",
-            "or"
-          ]
-        },
-        "expressions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/QueryEditorExpression"
-          }
-        }
-      }
-    },
-    "QueryEditorExpression": {
+    "QueryEditorOperatorValueType": {
       "anyOf": [
         {
-          "$ref": "#/definitions/QueryEditorArrayExpression"
+          "$ref": "#/definitions/QueryEditorOperatorType"
         },
         {
-          "$ref": "#/definitions/QueryEditorPropertyExpression"
-        },
-        {
-          "$ref": "#/definitions/QueryEditorGroupByExpression"
-        },
-        {
-          "$ref": "#/definitions/QueryEditorFunctionExpression"
-        },
-        {
-          "$ref": "#/definitions/QueryEditorFunctionParameterExpression"
-        },
-        {
-          "$ref": "#/definitions/QueryEditorOperatorExpression"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QueryEditorOperatorType"
+          }
         }
       ]
     },

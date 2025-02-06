@@ -11,12 +11,12 @@ public class LineStyleBuilder implements com.grafana.foundation.cog.Builder<Line
         this.internal = new LineStyle();
     }
     public LineStyleBuilder fill(LineStyleFill fill) {
-    this.internal.fill = fill;
+        this.internal.fill = fill;
         return this;
     }
     
     public LineStyleBuilder dash(List<Double> dash) {
-    this.internal.dash = dash;
+        this.internal.dash = dash;
         return this;
     }
     public LineStyle build() {

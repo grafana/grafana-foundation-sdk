@@ -16,22 +16,22 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
         if (!(type.length() >= 1)) {
             throw new IllegalArgumentException("type.length() must be >= 1");
         }
-    this.internal.type = type;
+        this.internal.type = type;
         return (T) this;
     }
     
     public T id(Integer id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return (T) this;
     }
     
     public T pluginVersion(String pluginVersion) {
-    this.internal.pluginVersion = pluginVersion;
+        this.internal.pluginVersion = pluginVersion;
         return (T) this;
     }
     
     public T targets(com.grafana.foundation.cog.Builder<List<Dataquery>> targets) {
-    this.internal.targets = targets.build();
+        this.internal.targets = targets.build();
         return (T) this;
     }
     
@@ -39,32 +39,32 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.targets == null) {
 			this.internal.targets = new LinkedList<>();
 		}
-    this.internal.targets.add(target.build());
+        this.internal.targets.add(target.build());
         return (T) this;
     }
     
     public T title(String title) {
-    this.internal.title = title;
+        this.internal.title = title;
         return (T) this;
     }
     
     public T description(String description) {
-    this.internal.description = description;
+        this.internal.description = description;
         return (T) this;
     }
     
     public T transparent(Boolean transparent) {
-    this.internal.transparent = transparent;
+        this.internal.transparent = transparent;
         return (T) this;
     }
     
     public T datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
+        this.internal.datasource = datasource;
         return (T) this;
     }
     
     public T gridPos(GridPos gridPos) {
-    this.internal.gridPos = gridPos;
+        this.internal.gridPos = gridPos;
         return (T) this;
     }
     
@@ -75,7 +75,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.gridPos == null) {
 			this.internal.gridPos = new com.grafana.foundation.dashboard.GridPos();
 		}
-    this.internal.gridPos.h = h;
+        this.internal.gridPos.h = h;
         return (T) this;
     }
     
@@ -89,37 +89,37 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.gridPos == null) {
 			this.internal.gridPos = new com.grafana.foundation.dashboard.GridPos();
 		}
-    this.internal.gridPos.w = w;
+        this.internal.gridPos.w = w;
         return (T) this;
     }
     
     public T links(com.grafana.foundation.cog.Builder<List<DashboardLink>> links) {
-    this.internal.links = links.build();
+        this.internal.links = links.build();
         return (T) this;
     }
     
     public T repeat(String repeat) {
-    this.internal.repeat = repeat;
+        this.internal.repeat = repeat;
         return (T) this;
     }
     
     public T repeatDirection(PanelRepeatDirection repeatDirection) {
-    this.internal.repeatDirection = repeatDirection;
+        this.internal.repeatDirection = repeatDirection;
         return (T) this;
     }
     
     public T maxPerRow(Double maxPerRow) {
-    this.internal.maxPerRow = maxPerRow;
+        this.internal.maxPerRow = maxPerRow;
         return (T) this;
     }
     
     public T maxDataPoints(Double maxDataPoints) {
-    this.internal.maxDataPoints = maxDataPoints;
+        this.internal.maxDataPoints = maxDataPoints;
         return (T) this;
     }
     
     public T transformations(List<DataTransformerConfig> transformations) {
-    this.internal.transformations = transformations;
+        this.internal.transformations = transformations;
         return (T) this;
     }
     
@@ -127,52 +127,52 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.transformations == null) {
 			this.internal.transformations = new LinkedList<>();
 		}
-    this.internal.transformations.add(transformation);
+        this.internal.transformations.add(transformation);
         return (T) this;
     }
     
     public T interval(String interval) {
-    this.internal.interval = interval;
+        this.internal.interval = interval;
         return (T) this;
     }
     
     public T timeFrom(String timeFrom) {
-    this.internal.timeFrom = timeFrom;
+        this.internal.timeFrom = timeFrom;
         return (T) this;
     }
     
     public T timeShift(String timeShift) {
-    this.internal.timeShift = timeShift;
+        this.internal.timeShift = timeShift;
         return (T) this;
     }
     
     public T hideTimeOverride(Boolean hideTimeOverride) {
-    this.internal.hideTimeOverride = hideTimeOverride;
+        this.internal.hideTimeOverride = hideTimeOverride;
         return (T) this;
     }
     
     public T libraryPanel(LibraryPanelRef libraryPanel) {
-    this.internal.libraryPanel = libraryPanel;
+        this.internal.libraryPanel = libraryPanel;
         return (T) this;
     }
     
     public T cacheTimeout(String cacheTimeout) {
-    this.internal.cacheTimeout = cacheTimeout;
+        this.internal.cacheTimeout = cacheTimeout;
         return (T) this;
     }
     
     public T queryCachingTTL(Double queryCachingTTL) {
-    this.internal.queryCachingTTL = queryCachingTTL;
+        this.internal.queryCachingTTL = queryCachingTTL;
         return (T) this;
     }
     
     public T options(Object options) {
-    this.internal.options = options;
+        this.internal.options = options;
         return (T) this;
     }
     
     public T fieldConfig(FieldConfigSource fieldConfig) {
-    this.internal.fieldConfig = fieldConfig;
+        this.internal.fieldConfig = fieldConfig;
         return (T) this;
     }
     
@@ -183,7 +183,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-    this.internal.fieldConfig.defaults.displayName = displayName;
+        this.internal.fieldConfig.defaults.displayName = displayName;
         return (T) this;
     }
     
@@ -194,7 +194,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-    this.internal.fieldConfig.defaults.unit = unit;
+        this.internal.fieldConfig.defaults.unit = unit;
         return (T) this;
     }
     
@@ -205,7 +205,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-    this.internal.fieldConfig.defaults.decimals = decimals;
+        this.internal.fieldConfig.defaults.decimals = decimals;
         return (T) this;
     }
     
@@ -216,7 +216,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-    this.internal.fieldConfig.defaults.min = min;
+        this.internal.fieldConfig.defaults.min = min;
         return (T) this;
     }
     
@@ -227,7 +227,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-    this.internal.fieldConfig.defaults.max = max;
+        this.internal.fieldConfig.defaults.max = max;
         return (T) this;
     }
     
@@ -238,7 +238,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-    this.internal.fieldConfig.defaults.mappings = mappings;
+        this.internal.fieldConfig.defaults.mappings = mappings;
         return (T) this;
     }
     
@@ -249,7 +249,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-    this.internal.fieldConfig.defaults.thresholds = thresholds.build();
+        this.internal.fieldConfig.defaults.thresholds = thresholds.build();
         return (T) this;
     }
     
@@ -260,7 +260,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-    this.internal.fieldConfig.defaults.color = color.build();
+        this.internal.fieldConfig.defaults.color = color.build();
         return (T) this;
     }
     
@@ -271,7 +271,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-    this.internal.fieldConfig.defaults.links = links.build();
+        this.internal.fieldConfig.defaults.links = links.build();
         return (T) this;
     }
     
@@ -282,7 +282,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-    this.internal.fieldConfig.defaults.noValue = noValue;
+        this.internal.fieldConfig.defaults.noValue = noValue;
         return (T) this;
     }
     
@@ -293,7 +293,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-    this.internal.fieldConfig.defaults.custom = custom;
+        this.internal.fieldConfig.defaults.custom = custom;
         return (T) this;
     }
     
@@ -301,7 +301,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
-    this.internal.fieldConfig.defaults = defaults;
+        this.internal.fieldConfig.defaults = defaults;
         return (T) this;
     }
     
@@ -309,7 +309,7 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
-    this.internal.fieldConfig.overrides = overrides.build();
+        this.internal.fieldConfig.overrides = overrides.build();
         return (T) this;
     }
     
@@ -320,7 +320,75 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
 		if (this.internal.fieldConfig.overrides == null) {
 			this.internal.fieldConfig.overrides = new LinkedList<>();
 		}
-    this.internal.fieldConfig.overrides.add(override.build());
+        this.internal.fieldConfig.overrides.add(override.build());
+        return (T) this;
+    }
+    
+    public T overrideByName(String name,List<DynamicConfigValue> properties) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.overrides == null) {
+			this.internal.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byName";
+        matcherConfig.options = name;
+    DashboardFieldConfigSourceOverrides dashboardFieldConfigSourceOverrides = new DashboardFieldConfigSourceOverrides();
+        dashboardFieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardFieldConfigSourceOverrides.properties = properties;
+        this.internal.fieldConfig.overrides.add(dashboardFieldConfigSourceOverrides);
+        return (T) this;
+    }
+    
+    public T overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.overrides == null) {
+			this.internal.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byRegexp";
+        matcherConfig.options = regexp;
+    DashboardFieldConfigSourceOverrides dashboardFieldConfigSourceOverrides = new DashboardFieldConfigSourceOverrides();
+        dashboardFieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardFieldConfigSourceOverrides.properties = properties;
+        this.internal.fieldConfig.overrides.add(dashboardFieldConfigSourceOverrides);
+        return (T) this;
+    }
+    
+    public T overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.overrides == null) {
+			this.internal.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byType";
+        matcherConfig.options = fieldType;
+    DashboardFieldConfigSourceOverrides dashboardFieldConfigSourceOverrides = new DashboardFieldConfigSourceOverrides();
+        dashboardFieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardFieldConfigSourceOverrides.properties = properties;
+        this.internal.fieldConfig.overrides.add(dashboardFieldConfigSourceOverrides);
+        return (T) this;
+    }
+    
+    public T overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.overrides == null) {
+			this.internal.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byFrameRefID";
+        matcherConfig.options = queryRefId;
+    DashboardFieldConfigSourceOverrides dashboardFieldConfigSourceOverrides = new DashboardFieldConfigSourceOverrides();
+        dashboardFieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardFieldConfigSourceOverrides.properties = properties;
+        this.internal.fieldConfig.overrides.add(dashboardFieldConfigSourceOverrides);
         return (T) this;
     }
     public Panel build() {

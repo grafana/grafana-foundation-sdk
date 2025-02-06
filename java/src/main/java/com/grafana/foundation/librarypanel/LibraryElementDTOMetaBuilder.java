@@ -10,37 +10,37 @@ public class LibraryElementDTOMetaBuilder implements com.grafana.foundation.cog.
         this.internal = new LibraryElementDTOMeta();
     }
     public LibraryElementDTOMetaBuilder folderName(String folderName) {
-    this.internal.folderName = folderName;
+        this.internal.folderName = folderName;
         return this;
     }
     
     public LibraryElementDTOMetaBuilder folderUid(String folderUid) {
-    this.internal.folderUid = folderUid;
+        this.internal.folderUid = folderUid;
         return this;
     }
     
     public LibraryElementDTOMetaBuilder connectedDashboards(Long connectedDashboards) {
-    this.internal.connectedDashboards = connectedDashboards;
+        this.internal.connectedDashboards = connectedDashboards;
         return this;
     }
     
     public LibraryElementDTOMetaBuilder created(String created) {
-    this.internal.created = created;
+        this.internal.created = created;
         return this;
     }
     
     public LibraryElementDTOMetaBuilder updated(String updated) {
-    this.internal.updated = updated;
+        this.internal.updated = updated;
         return this;
     }
     
     public LibraryElementDTOMetaBuilder createdBy(com.grafana.foundation.cog.Builder<LibraryElementDTOMetaUser> createdBy) {
-    this.internal.createdBy = createdBy.build();
+        this.internal.createdBy = createdBy.build();
         return this;
     }
     
     public LibraryElementDTOMetaBuilder updatedBy(com.grafana.foundation.cog.Builder<LibraryElementDTOMetaUser> updatedBy) {
-    this.internal.updatedBy = updatedBy.build();
+        this.internal.updatedBy = updatedBy.build();
         return this;
     }
     public LibraryElementDTOMeta build() {

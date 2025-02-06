@@ -10,7 +10,7 @@ public class ElasticsearchRawDocumentSettingsBuilder implements com.grafana.foun
         this.internal = new ElasticsearchRawDocumentSettings();
     }
     public ElasticsearchRawDocumentSettingsBuilder size(String size) {
-    this.internal.size = size;
+        this.internal.size = size;
         return this;
     }
     public ElasticsearchRawDocumentSettings build() {
