@@ -10,7 +10,7 @@ public class ElasticsearchDerivativeSettingsBuilder implements com.grafana.found
         this.internal = new ElasticsearchDerivativeSettings();
     }
     public ElasticsearchDerivativeSettingsBuilder unit(String unit) {
-    this.internal.unit = unit;
+        this.internal.unit = unit;
         return this;
     }
     public ElasticsearchDerivativeSettings build() {

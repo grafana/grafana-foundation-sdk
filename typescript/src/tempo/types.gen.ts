@@ -52,6 +52,43 @@ export const defaultTempoQuery = (): TempoQuery => ({
 	_implementsDataqueryVariant: () => {},
 });
 
+export interface TraceqlFilter {
+	// Uniquely identify the filter, will not be used in the query generation
+	id: string;
+	// The tag for the search filter, for example: .http.status_code, .service.name, status
+	tag?: string;
+	// The operator that connects the tag to the value, for example: =, >, !=, =~
+	operator?: string;
+	// The value for the search filter
+	value?: string | string[];
+	// The type of the value, used for example to check whether we need to wrap the value in quotes when generating the query
+	valueType?: string;
+	// The scope of the filter, can either be unscoped/all scopes, resource or span
+	scope?: TraceqlSearchScope;
+}
+
+export const defaultTraceqlFilter = (): TraceqlFilter => ({
+	id: "",
+});
+
+// static fields are pre-set in the UI, dynamic fields are added by the user
+export enum TraceqlSearchScope {
+	Intrinsic = "intrinsic",
+	Unscoped = "unscoped",
+	Resource = "resource",
+	Span = "span",
+}
+
+export const defaultTraceqlSearchScope = (): TraceqlSearchScope => (TraceqlSearchScope.Intrinsic);
+
+// The type of the table that is used to display the search results
+export enum SearchTableType {
+	Traces = "traces",
+	Spans = "spans",
+}
+
+export const defaultSearchTableType = (): SearchTableType => (SearchTableType.Traces);
+
 export enum TempoQueryType {
 	Traceql = "traceql",
 	TraceqlSearch = "traceqlSearch",
@@ -73,41 +110,4 @@ export enum SearchStreamingState {
 }
 
 export const defaultSearchStreamingState = (): SearchStreamingState => (SearchStreamingState.Pending);
-
-// The type of the table that is used to display the search results
-export enum SearchTableType {
-	Traces = "traces",
-	Spans = "spans",
-}
-
-export const defaultSearchTableType = (): SearchTableType => (SearchTableType.Traces);
-
-// static fields are pre-set in the UI, dynamic fields are added by the user
-export enum TraceqlSearchScope {
-	Intrinsic = "intrinsic",
-	Unscoped = "unscoped",
-	Resource = "resource",
-	Span = "span",
-}
-
-export const defaultTraceqlSearchScope = (): TraceqlSearchScope => (TraceqlSearchScope.Intrinsic);
-
-export interface TraceqlFilter {
-	// Uniquely identify the filter, will not be used in the query generation
-	id: string;
-	// The tag for the search filter, for example: .http.status_code, .service.name, status
-	tag?: string;
-	// The operator that connects the tag to the value, for example: =, >, !=, =~
-	operator?: string;
-	// The value for the search filter
-	value?: string | string[];
-	// The type of the value, used for example to check whether we need to wrap the value in quotes when generating the query
-	valueType?: string;
-	// The scope of the filter, can either be unscoped/all scopes, resource or span
-	scope?: TraceqlSearchScope;
-}
-
-export const defaultTraceqlFilter = (): TraceqlFilter => ({
-	id: "",
-});
 

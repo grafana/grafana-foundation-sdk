@@ -10,12 +10,12 @@ public class PipelineVariableBuilder implements com.grafana.foundation.cog.Build
         this.internal = new PipelineVariable();
     }
     public PipelineVariableBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public PipelineVariableBuilder pipelineAgg(String pipelineAgg) {
-    this.internal.pipelineAgg = pipelineAgg;
+        this.internal.pipelineAgg = pipelineAgg;
         return this;
     }
     public PipelineVariable build() {

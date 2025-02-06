@@ -10,7 +10,7 @@ public class ElasticsearchLogsSettingsBuilder implements com.grafana.foundation.
         this.internal = new ElasticsearchLogsSettings();
     }
     public ElasticsearchLogsSettingsBuilder limit(String limit) {
-    this.internal.limit = limit;
+        this.internal.limit = limit;
         return this;
     }
     public ElasticsearchLogsSettings build() {

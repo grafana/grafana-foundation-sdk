@@ -10,12 +10,12 @@ public class QueryEditorOperatorBuilder implements com.grafana.foundation.cog.Bu
         this.internal = new QueryEditorOperator();
     }
     public QueryEditorOperatorBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public QueryEditorOperatorBuilder value(QueryEditorOperatorValueType value) {
-    this.internal.value = value;
+        this.internal.value = value;
         return this;
     }
     public QueryEditorOperator build() {

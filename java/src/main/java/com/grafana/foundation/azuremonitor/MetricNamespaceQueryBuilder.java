@@ -8,30 +8,30 @@ public class MetricNamespaceQueryBuilder implements com.grafana.foundation.cog.B
     
     public MetricNamespaceQueryBuilder() {
         this.internal = new MetricNamespaceQuery();
-    this.internal.kind = "MetricNamespaceQuery";
+        this.internal.kind = "MetricNamespaceQuery";
     }
     public MetricNamespaceQueryBuilder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
+        this.internal.rawQuery = rawQuery;
         return this;
     }
     
     public MetricNamespaceQueryBuilder subscription(String subscription) {
-    this.internal.subscription = subscription;
+        this.internal.subscription = subscription;
         return this;
     }
     
     public MetricNamespaceQueryBuilder resourceGroup(String resourceGroup) {
-    this.internal.resourceGroup = resourceGroup;
+        this.internal.resourceGroup = resourceGroup;
         return this;
     }
     
     public MetricNamespaceQueryBuilder metricNamespace(String metricNamespace) {
-    this.internal.metricNamespace = metricNamespace;
+        this.internal.metricNamespace = metricNamespace;
         return this;
     }
     
     public MetricNamespaceQueryBuilder resourceName(String resourceName) {
-    this.internal.resourceName = resourceName;
+        this.internal.resourceName = resourceName;
         return this;
     }
     public MetricNamespaceQuery build() {

@@ -11,12 +11,12 @@ public class RowsHeatmapOptionsBuilder implements com.grafana.foundation.cog.Bui
         this.internal = new RowsHeatmapOptions();
     }
     public RowsHeatmapOptionsBuilder value(String value) {
-    this.internal.value = value;
+        this.internal.value = value;
         return this;
     }
     
     public RowsHeatmapOptionsBuilder layout(HeatmapCellLayout layout) {
-    this.internal.layout = layout;
+        this.internal.layout = layout;
         return this;
     }
     public RowsHeatmapOptions build() {

@@ -298,7 +298,13 @@ func (resource Dataquery) Validate() error {
 	return errs
 }
 
-const DefaultKey = "__default"
+type FormatOptions int64
+
+const (
+	FormatOptionsTimeSeries FormatOptions = 0
+	FormatOptionsTable      FormatOptions = 1
+	FormatOptionsLogs       FormatOptions = 2
+)
 
 type ConnectionArgs struct {
 	Region                     *string  `json:"region,omitempty"`
@@ -454,13 +460,7 @@ func (resource ConnectionArgs) Validate() error {
 	return nil
 }
 
-type FormatOptions int64
-
-const (
-	FormatOptionsTimeSeries FormatOptions = 0
-	FormatOptionsTable      FormatOptions = 1
-	FormatOptionsLogs       FormatOptions = 2
-)
+const DefaultKey = "__default"
 
 // VariantConfig returns the configuration related to grafana-athena-datasource dataqueries.
 // This configuration describes how to unmarshal it, convert it to code, …

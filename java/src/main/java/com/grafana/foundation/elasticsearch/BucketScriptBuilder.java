@@ -9,25 +9,25 @@ public class BucketScriptBuilder implements com.grafana.foundation.cog.Builder<B
     
     public BucketScriptBuilder() {
         this.internal = new BucketScript();
-    this.internal.type = "bucket_script";
+        this.internal.type = "bucket_script";
     }
     public BucketScriptBuilder pipelineVariables(com.grafana.foundation.cog.Builder<List<PipelineVariable>> pipelineVariables) {
-    this.internal.pipelineVariables = pipelineVariables.build();
+        this.internal.pipelineVariables = pipelineVariables.build();
         return this;
     }
     
     public BucketScriptBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public BucketScriptBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchBucketScriptSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     
     public BucketScriptBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public BucketScript build() {

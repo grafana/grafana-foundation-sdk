@@ -68,7 +68,7 @@ class NodeOptions:
         if "secondaryStatUnit" in data:
             args["secondary_stat_unit"] = data["secondaryStatUnit"]
         if "arcs" in data:
-            args["arcs"] = data["arcs"]        
+            args["arcs"] = [ArcOption.from_json(item) for item in data["arcs"]]        
 
         return cls(**args)
 

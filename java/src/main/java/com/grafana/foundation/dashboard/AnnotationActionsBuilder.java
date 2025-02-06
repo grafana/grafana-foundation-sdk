@@ -10,17 +10,17 @@ public class AnnotationActionsBuilder implements com.grafana.foundation.cog.Buil
         this.internal = new AnnotationActions();
     }
     public AnnotationActionsBuilder canAdd(Boolean canAdd) {
-    this.internal.canAdd = canAdd;
+        this.internal.canAdd = canAdd;
         return this;
     }
     
     public AnnotationActionsBuilder canDelete(Boolean canDelete) {
-    this.internal.canDelete = canDelete;
+        this.internal.canDelete = canDelete;
         return this;
     }
     
     public AnnotationActionsBuilder canEdit(Boolean canEdit) {
-    this.internal.canEdit = canEdit;
+        this.internal.canEdit = canEdit;
         return this;
     }
     public AnnotationActions build() {

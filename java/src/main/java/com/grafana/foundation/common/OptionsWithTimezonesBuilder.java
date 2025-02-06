@@ -11,7 +11,7 @@ public class OptionsWithTimezonesBuilder implements com.grafana.foundation.cog.B
         this.internal = new OptionsWithTimezones();
     }
     public OptionsWithTimezonesBuilder timezone(List<String> timezone) {
-    this.internal.timezone = timezone;
+        this.internal.timezone = timezone;
         return this;
     }
     public OptionsWithTimezones build() {

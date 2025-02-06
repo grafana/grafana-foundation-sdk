@@ -10,12 +10,12 @@ public class ExprTypeReduceTimeRangeBuilder implements com.grafana.foundation.co
         this.internal = new ExprTypeReduceTimeRange();
     }
     public ExprTypeReduceTimeRangeBuilder from(String from) {
-    this.internal.from = from;
+        this.internal.from = from;
         return this;
     }
     
     public ExprTypeReduceTimeRangeBuilder to(String to) {
-    this.internal.to = to;
+        this.internal.to = to;
         return this;
     }
     public ExprTypeReduceTimeRange build() {

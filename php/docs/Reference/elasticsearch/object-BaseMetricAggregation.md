@@ -8,10 +8,7 @@ title: <span class="badge object-type-class"></span> BaseMetricAggregation
 ```php
 class BaseMetricAggregation implements \JsonSerializable
 {
-    /**
-     * @var string|\Grafana\Foundation\Elasticsearch\PipelineMetricAggregationType
-     */
-    public $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public string $id;
 

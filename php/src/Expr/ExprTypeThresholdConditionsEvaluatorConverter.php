@@ -32,7 +32,7 @@ final class ExprTypeThresholdConditionsEvaluatorConverter
     
         {
     $buffer = 'type(';
-        $arg0 ='\Grafana\Foundation\Expr\TypeThresholdType::fromValue("'.$input->type.'")';
+        $arg0 ='\Grafana\Foundation\Expr\ExprTypeThresholdConditionsEvaluatorType::fromValue("'.$input->type.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

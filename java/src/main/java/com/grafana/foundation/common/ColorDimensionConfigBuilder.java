@@ -10,12 +10,12 @@ public class ColorDimensionConfigBuilder implements com.grafana.foundation.cog.B
         this.internal = new ColorDimensionConfig();
     }
     public ColorDimensionConfigBuilder fixed(String fixed) {
-    this.internal.fixed = fixed;
+        this.internal.fixed = fixed;
         return this;
     }
     
     public ColorDimensionConfigBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     public ColorDimensionConfig build() {

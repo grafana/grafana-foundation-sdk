@@ -13,52 +13,52 @@ public class PieChartLegendOptionsBuilder implements com.grafana.foundation.cog.
         this.internal = new PieChartLegendOptions();
     }
     public PieChartLegendOptionsBuilder values(List<PieChartLegendValues> values) {
-    this.internal.values = values;
+        this.internal.values = values;
         return this;
     }
     
     public PieChartLegendOptionsBuilder displayMode(LegendDisplayMode displayMode) {
-    this.internal.displayMode = displayMode;
+        this.internal.displayMode = displayMode;
         return this;
     }
     
     public PieChartLegendOptionsBuilder placement(LegendPlacement placement) {
-    this.internal.placement = placement;
+        this.internal.placement = placement;
         return this;
     }
     
     public PieChartLegendOptionsBuilder showLegend(Boolean showLegend) {
-    this.internal.showLegend = showLegend;
+        this.internal.showLegend = showLegend;
         return this;
     }
     
     public PieChartLegendOptionsBuilder asTable(Boolean asTable) {
-    this.internal.asTable = asTable;
+        this.internal.asTable = asTable;
         return this;
     }
     
     public PieChartLegendOptionsBuilder isVisible(Boolean isVisible) {
-    this.internal.isVisible = isVisible;
+        this.internal.isVisible = isVisible;
         return this;
     }
     
     public PieChartLegendOptionsBuilder sortBy(String sortBy) {
-    this.internal.sortBy = sortBy;
+        this.internal.sortBy = sortBy;
         return this;
     }
     
     public PieChartLegendOptionsBuilder sortDesc(Boolean sortDesc) {
-    this.internal.sortDesc = sortDesc;
+        this.internal.sortDesc = sortDesc;
         return this;
     }
     
     public PieChartLegendOptionsBuilder width(Double width) {
-    this.internal.width = width;
+        this.internal.width = width;
         return this;
     }
     
     public PieChartLegendOptionsBuilder calcs(List<String> calcs) {
-    this.internal.calcs = calcs;
+        this.internal.calcs = calcs;
         return this;
     }
     public PieChartLegendOptions build() {

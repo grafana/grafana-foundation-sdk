@@ -8,25 +8,25 @@ public class MaxBuilder implements com.grafana.foundation.cog.Builder<Max> {
     
     public MaxBuilder() {
         this.internal = new Max();
-    this.internal.type = "max";
+        this.internal.type = "max";
     }
     public MaxBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public MaxBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public MaxBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMaxSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     
     public MaxBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public Max build() {

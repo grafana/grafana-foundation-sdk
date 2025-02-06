@@ -168,7 +168,7 @@ class FieldConfig implements \JsonSerializable
             max: $data["max"] ?? null,
             mappings: !empty($data["mappings"]) ? array_map((function($input) {
         \assert(is_array($input), 'expected disjunction value to be an array');
-    
+        /** @var array<string, mixed> $input */
         switch ($input["type"]) {
         case "range":
             return RangeMap::fromArray($input);
