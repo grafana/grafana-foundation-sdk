@@ -264,17 +264,6 @@
           }
         }
       },
-      "QueryEditorExpressionType": {
-        "enum": [
-          "property",
-          "operator",
-          "or",
-          "and",
-          "groupBy",
-          "function",
-          "functionParameter"
-        ]
-      },
       "QueryEditorFunctionParameterExpression": {
         "type": "object",
         "additionalProperties": false,
@@ -307,6 +296,70 @@
             "$ref": "#/components/schemas/QueryEditorProperty"
           }
         }
+      },
+      "QueryEditorProperty": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/QueryEditorPropertyType"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "QueryEditorPropertyType": {
+        "enum": [
+          "string"
+        ]
+      },
+      "QueryEditorArrayExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "expressions"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "and",
+              "or"
+            ]
+          },
+          "expressions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryEditorExpression"
+            }
+          }
+        }
+      },
+      "QueryEditorExpression": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/QueryEditorArrayExpression"
+          },
+          {
+            "$ref": "#/components/schemas/QueryEditorPropertyExpression"
+          },
+          {
+            "$ref": "#/components/schemas/QueryEditorGroupByExpression"
+          },
+          {
+            "$ref": "#/components/schemas/QueryEditorFunctionExpression"
+          },
+          {
+            "$ref": "#/components/schemas/QueryEditorFunctionParameterExpression"
+          },
+          {
+            "$ref": "#/components/schemas/QueryEditorOperatorExpression"
+          }
+        ]
       },
       "QueryEditorGroupByExpression": {
         "type": "object",
@@ -370,19 +423,6 @@
         },
         "description": "TS type is QueryEditorOperator\u003cT extends QueryEditorOperatorValueType\u003e, extended in veneer"
       },
-      "QueryEditorOperatorValueType": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/QueryEditorOperatorType"
-          },
-          {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/QueryEditorOperatorType"
-            }
-          }
-        ]
-      },
       "QueryEditorOperatorType": {
         "anyOf": [
           {
@@ -396,67 +436,27 @@
           }
         ]
       },
-      "QueryEditorProperty": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "type"
-        ],
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/QueryEditorPropertyType"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "QueryEditorPropertyType": {
+      "QueryEditorExpressionType": {
         "enum": [
-          "string"
+          "property",
+          "operator",
+          "or",
+          "and",
+          "groupBy",
+          "function",
+          "functionParameter"
         ]
       },
-      "QueryEditorArrayExpression": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "type",
-          "expressions"
-        ],
-        "properties": {
-          "type": {
-            "enum": [
-              "and",
-              "or"
-            ]
-          },
-          "expressions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/QueryEditorExpression"
-            }
-          }
-        }
-      },
-      "QueryEditorExpression": {
+      "QueryEditorOperatorValueType": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/QueryEditorArrayExpression"
+            "$ref": "#/components/schemas/QueryEditorOperatorType"
           },
           {
-            "$ref": "#/components/schemas/QueryEditorPropertyExpression"
-          },
-          {
-            "$ref": "#/components/schemas/QueryEditorGroupByExpression"
-          },
-          {
-            "$ref": "#/components/schemas/QueryEditorFunctionExpression"
-          },
-          {
-            "$ref": "#/components/schemas/QueryEditorFunctionParameterExpression"
-          },
-          {
-            "$ref": "#/components/schemas/QueryEditorOperatorExpression"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryEditorOperatorType"
+            }
           }
         ]
       },

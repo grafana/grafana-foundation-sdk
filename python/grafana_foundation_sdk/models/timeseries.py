@@ -33,7 +33,7 @@ class Options:
         args: dict[str, typing.Any] = {}
         
         if "timezone" in data:
-            args["timezone"] = data["timezone"]
+            args["timezone"] = [item for item in data["timezone"]]
         if "legend" in data:
             args["legend"] = common.VizLegendOptions.from_json(data["legend"])
         if "tooltip" in data:

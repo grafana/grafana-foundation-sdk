@@ -11,42 +11,42 @@ public class SQLExpressionBuilder implements com.grafana.foundation.cog.Builder<
         this.internal = new SQLExpression();
     }
     public SQLExpressionBuilder columns(com.grafana.foundation.cog.Builder<List<QueryEditorFunctionExpression>> columns) {
-    this.internal.columns = columns.build();
+        this.internal.columns = columns.build();
         return this;
     }
     
     public SQLExpressionBuilder from(String from) {
-    this.internal.from = from;
+        this.internal.from = from;
         return this;
     }
     
     public SQLExpressionBuilder whereString(String whereString) {
-    this.internal.whereString = whereString;
+        this.internal.whereString = whereString;
         return this;
     }
     
     public SQLExpressionBuilder groupBy(com.grafana.foundation.cog.Builder<List<QueryEditorGroupByExpression>> groupBy) {
-    this.internal.groupBy = groupBy.build();
+        this.internal.groupBy = groupBy.build();
         return this;
     }
     
     public SQLExpressionBuilder orderBy(com.grafana.foundation.cog.Builder<QueryEditorPropertyExpression> orderBy) {
-    this.internal.orderBy = orderBy.build();
+        this.internal.orderBy = orderBy.build();
         return this;
     }
     
     public SQLExpressionBuilder orderByDirection(OrderByDirection orderByDirection) {
-    this.internal.orderByDirection = orderByDirection;
+        this.internal.orderByDirection = orderByDirection;
         return this;
     }
     
     public SQLExpressionBuilder limit(Long limit) {
-    this.internal.limit = limit;
+        this.internal.limit = limit;
         return this;
     }
     
     public SQLExpressionBuilder offset(Long offset) {
-    this.internal.offset = offset;
+        this.internal.offset = offset;
         return this;
     }
     public SQLExpression build() {

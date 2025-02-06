@@ -8,30 +8,30 @@ public class ExtendedStatsBuilder implements com.grafana.foundation.cog.Builder<
     
     public ExtendedStatsBuilder() {
         this.internal = new ExtendedStats();
-    this.internal.type = "extended_stats";
+        this.internal.type = "extended_stats";
     }
     public ExtendedStatsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchExtendedStatsSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     
     public ExtendedStatsBuilder field(String field) {
-    this.internal.field = field;
+        this.internal.field = field;
         return this;
     }
     
     public ExtendedStatsBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public ExtendedStatsBuilder meta(Object meta) {
-    this.internal.meta = meta;
+        this.internal.meta = meta;
         return this;
     }
     
     public ExtendedStatsBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public ExtendedStats build() {

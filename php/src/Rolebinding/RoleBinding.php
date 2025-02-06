@@ -35,7 +35,7 @@ class RoleBinding implements \JsonSerializable
         return new self(
             role: isset($data["role"]) ? (function($input) {
         \assert(is_array($input), 'expected disjunction value to be an array');
-    
+        /** @var array<string, mixed> $input */
         switch ($input["kind"]) {
         case "BuiltinRole":
             return BuiltinRoleRef::fromArray($input);

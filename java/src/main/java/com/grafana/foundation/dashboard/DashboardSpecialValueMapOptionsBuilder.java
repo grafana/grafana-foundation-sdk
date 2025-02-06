@@ -10,12 +10,12 @@ public class DashboardSpecialValueMapOptionsBuilder implements com.grafana.found
         this.internal = new DashboardSpecialValueMapOptions();
     }
     public DashboardSpecialValueMapOptionsBuilder match(SpecialValueMatch match) {
-    this.internal.match = match;
+        this.internal.match = match;
         return this;
     }
     
     public DashboardSpecialValueMapOptionsBuilder result(ValueMappingResult result) {
-    this.internal.result = result;
+        this.internal.result = result;
         return this;
     }
     public DashboardSpecialValueMapOptions build() {

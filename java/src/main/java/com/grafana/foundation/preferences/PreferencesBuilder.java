@@ -10,42 +10,42 @@ public class PreferencesBuilder implements com.grafana.foundation.cog.Builder<Pr
         this.internal = new Preferences();
     }
     public PreferencesBuilder homeDashboardUID(String homeDashboardUID) {
-    this.internal.homeDashboardUID = homeDashboardUID;
+        this.internal.homeDashboardUID = homeDashboardUID;
         return this;
     }
     
     public PreferencesBuilder timezone(String timezone) {
-    this.internal.timezone = timezone;
+        this.internal.timezone = timezone;
         return this;
     }
     
     public PreferencesBuilder weekStart(String weekStart) {
-    this.internal.weekStart = weekStart;
+        this.internal.weekStart = weekStart;
         return this;
     }
     
     public PreferencesBuilder theme(String theme) {
-    this.internal.theme = theme;
+        this.internal.theme = theme;
         return this;
     }
     
     public PreferencesBuilder language(String language) {
-    this.internal.language = language;
+        this.internal.language = language;
         return this;
     }
     
     public PreferencesBuilder queryHistory(com.grafana.foundation.cog.Builder<QueryHistoryPreference> queryHistory) {
-    this.internal.queryHistory = queryHistory.build();
+        this.internal.queryHistory = queryHistory.build();
         return this;
     }
     
     public PreferencesBuilder cookiePreferences(com.grafana.foundation.cog.Builder<CookiePreferences> cookiePreferences) {
-    this.internal.cookiePreferences = cookiePreferences.build();
+        this.internal.cookiePreferences = cookiePreferences.build();
         return this;
     }
     
     public PreferencesBuilder navbar(com.grafana.foundation.cog.Builder<NavbarPreference> navbar) {
-    this.internal.navbar = navbar.build();
+        this.internal.navbar = navbar.build();
         return this;
     }
     public Preferences build() {

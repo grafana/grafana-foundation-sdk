@@ -10,7 +10,7 @@ final class VariantConfig
             identifier: '__expr__',
             fromArray: (function($input) {
     \assert(is_array($input), 'expected disjunction value to be an array');
-
+    /** @var array<string, mixed> $input */
     switch ($input["type"]) {
     case "classic_conditions":
         return TypeClassicConditions::fromArray($input);

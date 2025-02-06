@@ -27,7 +27,7 @@ final class ExprTypeMathResultAssertionsConverter
     
         
     $buffer = 'type(';
-        $arg0 ='\Grafana\Foundation\Expr\TypeMathType::fromValue("'.$input->type.'")';
+        $arg0 ='\Grafana\Foundation\Expr\ExprTypeMathResultAssertionsType::fromValue("'.$input->type.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

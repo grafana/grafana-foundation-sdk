@@ -86,7 +86,21 @@ class MetricStat implements \JsonSerializable
             region: $data["region"] ?? null,
             namespace: $data["namespace"] ?? null,
             metricName: $data["metricName"] ?? null,
-            dimensions: $data["dimensions"] ?? null,
+            dimensions: isset($data["dimensions"]) ? (function($input) {
+        /** @var array<string, string|array<string>> $results */
+        $results = [];
+        foreach ($input as $key => $val) {
+            $results[$key] = isset($val) ? (function($input) {
+        switch (true) {
+        case is_string($input):
+            return $input;
+        default:
+            return $input;
+    }
+    })($val) : null;
+        }
+        return array_filter($results);
+    })($data["dimensions"]) : null,
             matchExact: $data["matchExact"] ?? null,
             period: $data["period"] ?? null,
             accountId: $data["accountId"] ?? null,

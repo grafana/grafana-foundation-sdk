@@ -24,6 +24,224 @@
         }
       ]
     },
+    "DateHistogram": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "date_histogram"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "interval": {
+              "type": "string"
+            },
+            "min_doc_count": {
+              "type": "string"
+            },
+            "trimEdges": {
+              "type": "string"
+            },
+            "offset": {
+              "type": "string"
+            },
+            "timeZone": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Histogram": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "histogram"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "interval": {
+              "type": "string"
+            },
+            "min_doc_count": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Terms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "terms"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "order": {
+              "$ref": "#/definitions/TermsOrder"
+            },
+            "size": {
+              "type": "string"
+            },
+            "min_doc_count": {
+              "type": "string"
+            },
+            "orderBy": {
+              "type": "string"
+            },
+            "missing": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "TermsOrder": {
+      "enum": [
+        "desc",
+        "asc"
+      ]
+    },
+    "Filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "filters"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "filters": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Filter"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Filter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "query",
+        "label"
+      ],
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "GeoHashGrid": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "geohash_grid"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "precision": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Nested": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "nested"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      }
+    },
     "MetricAggregation": {
       "anyOf": [
         {
@@ -36,6 +254,765 @@
           "$ref": "#/definitions/MetricAggregationWithSettings"
         }
       ]
+    },
+    "Count": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "count"
+        },
+        "id": {
+          "type": "string"
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PipelineMetricAggregation": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/MovingAverage"
+        },
+        {
+          "$ref": "#/definitions/Derivative"
+        },
+        {
+          "$ref": "#/definitions/CumulativeSum"
+        },
+        {
+          "$ref": "#/definitions/BucketScript"
+        }
+      ]
+    },
+    "MovingAverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "pipelineAgg": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "moving_avg"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {}
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      },
+      "description": "#MovingAverage's settings are overridden in types.ts"
+    },
+    "Derivative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "pipelineAgg": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "derivative"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "CumulativeSum": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "pipelineAgg": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "cumulative_sum"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "format": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "BucketScript": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "bucket_script"
+        },
+        "pipelineVariables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PipelineVariable"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "script": {
+              "$ref": "#/definitions/InlineScript"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PipelineVariable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "pipelineAgg"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "pipelineAgg": {
+          "type": "string"
+        }
+      }
+    },
+    "InlineScript": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "inline": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "MetricAggregationWithSettings": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/BucketScript"
+        },
+        {
+          "$ref": "#/definitions/CumulativeSum"
+        },
+        {
+          "$ref": "#/definitions/Derivative"
+        },
+        {
+          "$ref": "#/definitions/SerialDiff"
+        },
+        {
+          "$ref": "#/definitions/RawData"
+        },
+        {
+          "$ref": "#/definitions/RawDocument"
+        },
+        {
+          "$ref": "#/definitions/UniqueCount"
+        },
+        {
+          "$ref": "#/definitions/Percentiles"
+        },
+        {
+          "$ref": "#/definitions/ExtendedStats"
+        },
+        {
+          "$ref": "#/definitions/Min"
+        },
+        {
+          "$ref": "#/definitions/Max"
+        },
+        {
+          "$ref": "#/definitions/Sum"
+        },
+        {
+          "$ref": "#/definitions/Average"
+        },
+        {
+          "$ref": "#/definitions/MovingAverage"
+        },
+        {
+          "$ref": "#/definitions/MovingFunction"
+        },
+        {
+          "$ref": "#/definitions/Logs"
+        },
+        {
+          "$ref": "#/definitions/Rate"
+        },
+        {
+          "$ref": "#/definitions/TopMetrics"
+        }
+      ]
+    },
+    "SerialDiff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "pipelineAgg": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "serial_diff"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "lag": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "RawData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "raw_data"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "size": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "RawDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "raw_document"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "size": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "UniqueCount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "cardinality"
+        },
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "precision_threshold": {
+              "type": "string"
+            },
+            "missing": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Percentiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "percentiles"
+        },
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "script": {
+              "$ref": "#/definitions/InlineScript"
+            },
+            "missing": {
+              "type": "string"
+            },
+            "percents": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ExtendedStats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "extended_stats"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "script": {
+              "$ref": "#/definitions/InlineScript"
+            },
+            "missing": {
+              "type": "string"
+            },
+            "sigma": {
+              "type": "string"
+            }
+          }
+        },
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Min": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "min"
+        },
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "script": {
+              "$ref": "#/definitions/InlineScript"
+            },
+            "missing": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Max": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "max"
+        },
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "script": {
+              "$ref": "#/definitions/InlineScript"
+            },
+            "missing": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Sum": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "sum"
+        },
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "script": {
+              "$ref": "#/definitions/InlineScript"
+            },
+            "missing": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Average": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "avg"
+        },
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "script": {
+              "$ref": "#/definitions/InlineScript"
+            },
+            "missing": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "MovingFunction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "pipelineAgg": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "moving_fn"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "window": {
+              "type": "string"
+            },
+            "script": {
+              "$ref": "#/definitions/InlineScript"
+            },
+            "shift": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Logs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "logs"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "limit": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Rate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "rate"
+        },
+        "field": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "type": "string"
+            },
+            "mode": {
+              "type": "string"
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
+    },
+    "TopMetrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "top_metrics"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "order": {
+              "type": "string"
+            },
+            "orderBy": {
+              "type": "string"
+            },
+            "metrics": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "hide": {
+          "type": "boolean"
+        }
+      }
     },
     "BucketAggregationType": {
       "enum": [
@@ -90,47 +1067,6 @@
         }
       }
     },
-    "DateHistogram": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "id",
-        "type"
-      ],
-      "properties": {
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "date_histogram"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "interval": {
-              "type": "string"
-            },
-            "min_doc_count": {
-              "type": "string"
-            },
-            "trimEdges": {
-              "type": "string"
-            },
-            "offset": {
-              "type": "string"
-            },
-            "timeZone": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    },
     "DateHistogramSettings": {
       "type": "object",
       "additionalProperties": false,
@@ -152,38 +1088,6 @@
         }
       }
     },
-    "Histogram": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "id",
-        "type"
-      ],
-      "properties": {
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "histogram"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "interval": {
-              "type": "string"
-            },
-            "min_doc_count": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    },
     "HistogramSettings": {
       "type": "object",
       "additionalProperties": false,
@@ -193,77 +1097,6 @@
         },
         "min_doc_count": {
           "type": "string"
-        }
-      }
-    },
-    "TermsOrder": {
-      "enum": [
-        "desc",
-        "asc"
-      ]
-    },
-    "Nested": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "id",
-        "type"
-      ],
-      "properties": {
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "nested"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": {}
-        }
-      }
-    },
-    "Terms": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "id",
-        "type"
-      ],
-      "properties": {
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "terms"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "order": {
-              "$ref": "#/definitions/TermsOrder"
-            },
-            "size": {
-              "type": "string"
-            },
-            "min_doc_count": {
-              "type": "string"
-            },
-            "orderBy": {
-              "type": "string"
-            },
-            "missing": {
-              "type": "string"
-            }
-          }
         }
       }
     },
@@ -288,51 +1121,6 @@
         }
       }
     },
-    "Filters": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "id",
-        "type"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "filters"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "filters": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Filter"
-              }
-            }
-          }
-        }
-      }
-    },
-    "Filter": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "query",
-        "label"
-      ],
-      "properties": {
-        "query": {
-          "type": "string"
-        },
-        "label": {
-          "type": "string"
-        }
-      }
-    },
     "FiltersSettings": {
       "type": "object",
       "additionalProperties": false,
@@ -341,35 +1129,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Filter"
-          }
-        }
-      }
-    },
-    "GeoHashGrid": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "id",
-        "type"
-      ],
-      "properties": {
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "geohash_grid"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "precision": {
-              "type": "string"
-            }
           }
         }
       }
@@ -471,22 +1230,6 @@
         }
       }
     },
-    "PipelineVariable": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "name",
-        "pipelineAgg"
-      ],
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "pipelineAgg": {
-          "type": "string"
-        }
-      }
-    },
     "MetricAggregationWithField": {
       "type": "object",
       "additionalProperties": false,
@@ -537,22 +1280,6 @@
         }
       }
     },
-    "InlineScript": {
-      "anyOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "inline": {
-              "type": "string"
-            }
-          }
-        }
-      ]
-    },
     "MetricAggregationWithInlineScript": {
       "type": "object",
       "additionalProperties": false,
@@ -575,166 +1302,6 @@
         },
         "id": {
           "type": "string"
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Count": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "count"
-        },
-        "id": {
-          "type": "string"
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Average": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "avg"
-        },
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "script": {
-              "$ref": "#/definitions/InlineScript"
-            },
-            "missing": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Sum": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "sum"
-        },
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "script": {
-              "$ref": "#/definitions/InlineScript"
-            },
-            "missing": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Max": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "max"
-        },
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "script": {
-              "$ref": "#/definitions/InlineScript"
-            },
-            "missing": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Min": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "min"
-        },
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "script": {
-              "$ref": "#/definitions/InlineScript"
-            },
-            "missing": {
-              "type": "string"
-            }
-          }
         },
         "hide": {
           "type": "boolean"
@@ -766,246 +1333,6 @@
         },
         "value": {
           "$ref": "#/definitions/ExtendedStatMetaType"
-        }
-      }
-    },
-    "ExtendedStats": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "extended_stats"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "script": {
-              "$ref": "#/definitions/InlineScript"
-            },
-            "missing": {
-              "type": "string"
-            },
-            "sigma": {
-              "type": "string"
-            }
-          }
-        },
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "meta": {
-          "type": "object",
-          "additionalProperties": {}
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Percentiles": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "percentiles"
-        },
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "script": {
-              "$ref": "#/definitions/InlineScript"
-            },
-            "missing": {
-              "type": "string"
-            },
-            "percents": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "UniqueCount": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "cardinality"
-        },
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "precision_threshold": {
-              "type": "string"
-            },
-            "missing": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "RawDocument": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "raw_document"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "size": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "RawData": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "raw_data"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "size": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Logs": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "logs"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "limit": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Rate": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "rate"
-        },
-        "field": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "unit": {
-              "type": "string"
-            },
-            "mode": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
         }
       }
     },
@@ -1264,333 +1591,6 @@
           "type": "string"
         }
       }
-    },
-    "MovingAverage": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "pipelineAgg": {
-          "type": "string"
-        },
-        "field": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "moving_avg"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object",
-            "additionalProperties": {}
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      },
-      "description": "#MovingAverage's settings are overridden in types.ts"
-    },
-    "MovingFunction": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "pipelineAgg": {
-          "type": "string"
-        },
-        "field": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "moving_fn"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "window": {
-              "type": "string"
-            },
-            "script": {
-              "$ref": "#/definitions/InlineScript"
-            },
-            "shift": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Derivative": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "pipelineAgg": {
-          "type": "string"
-        },
-        "field": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "derivative"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "unit": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "SerialDiff": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "pipelineAgg": {
-          "type": "string"
-        },
-        "field": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "serial_diff"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "lag": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "CumulativeSum": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "pipelineAgg": {
-          "type": "string"
-        },
-        "field": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "const": "cumulative_sum"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "format": {
-              "type": "string"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "BucketScript": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "bucket_script"
-        },
-        "pipelineVariables": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/PipelineVariable"
-          }
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "script": {
-              "$ref": "#/definitions/InlineScript"
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "TopMetrics": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "id"
-      ],
-      "properties": {
-        "type": {
-          "type": "string",
-          "const": "top_metrics"
-        },
-        "id": {
-          "type": "string"
-        },
-        "settings": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "order": {
-              "type": "string"
-            },
-            "orderBy": {
-              "type": "string"
-            },
-            "metrics": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "hide": {
-          "type": "boolean"
-        }
-      }
-    },
-    "PipelineMetricAggregation": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/MovingAverage"
-        },
-        {
-          "$ref": "#/definitions/Derivative"
-        },
-        {
-          "$ref": "#/definitions/CumulativeSum"
-        },
-        {
-          "$ref": "#/definitions/BucketScript"
-        }
-      ]
-    },
-    "MetricAggregationWithSettings": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/BucketScript"
-        },
-        {
-          "$ref": "#/definitions/CumulativeSum"
-        },
-        {
-          "$ref": "#/definitions/Derivative"
-        },
-        {
-          "$ref": "#/definitions/SerialDiff"
-        },
-        {
-          "$ref": "#/definitions/RawData"
-        },
-        {
-          "$ref": "#/definitions/RawDocument"
-        },
-        {
-          "$ref": "#/definitions/UniqueCount"
-        },
-        {
-          "$ref": "#/definitions/Percentiles"
-        },
-        {
-          "$ref": "#/definitions/ExtendedStats"
-        },
-        {
-          "$ref": "#/definitions/Min"
-        },
-        {
-          "$ref": "#/definitions/Max"
-        },
-        {
-          "$ref": "#/definitions/Sum"
-        },
-        {
-          "$ref": "#/definitions/Average"
-        },
-        {
-          "$ref": "#/definitions/MovingAverage"
-        },
-        {
-          "$ref": "#/definitions/MovingFunction"
-        },
-        {
-          "$ref": "#/definitions/Logs"
-        },
-        {
-          "$ref": "#/definitions/Rate"
-        },
-        {
-          "$ref": "#/definitions/TopMetrics"
-        }
-      ]
     },
     "dataquery": {
       "type": "object",

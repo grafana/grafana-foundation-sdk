@@ -10,12 +10,12 @@ public class RoleBindingBuilder implements com.grafana.foundation.cog.Builder<Ro
         this.internal = new RoleBinding();
     }
     public RoleBindingBuilder role(BuiltinRoleRefOrCustomRoleRef role) {
-    this.internal.role = role;
+        this.internal.role = role;
         return this;
     }
     
     public RoleBindingBuilder subject(com.grafana.foundation.cog.Builder<RoleBindingSubject> subject) {
-    this.internal.subject = subject.build();
+        this.internal.subject = subject.build();
         return this;
     }
     public RoleBinding build() {

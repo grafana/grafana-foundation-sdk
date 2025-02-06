@@ -9,15 +9,15 @@ public class CanvasOptionsRootBuilder implements com.grafana.foundation.cog.Buil
     
     public CanvasOptionsRootBuilder() {
         this.internal = new CanvasOptionsRoot();
-    this.internal.type = "frame";
+        this.internal.type = "frame";
     }
     public CanvasOptionsRootBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public CanvasOptionsRootBuilder elements(com.grafana.foundation.cog.Builder<List<CanvasElementOptions>> elements) {
-    this.internal.elements = elements.build();
+        this.internal.elements = elements.build();
         return this;
     }
     public CanvasOptionsRoot build() {

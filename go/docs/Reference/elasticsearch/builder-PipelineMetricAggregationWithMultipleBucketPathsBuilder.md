@@ -39,7 +39,7 @@ func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) Pipeline
 ### <span class="badge object-method"></span> Type
 
 ```go
-func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) Type(typeArg cog.Builder[elasticsearch.MetricAggregationType]) *PipelineMetricAggregationWithMultipleBucketPathsBuilder
+func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) Type(typeArg elasticsearch.MetricAggregationType) *PipelineMetricAggregationWithMultipleBucketPathsBuilder
 ```
 
 ## See also

@@ -10,32 +10,32 @@ public class StreamingQueryBuilder implements com.grafana.foundation.cog.Builder
         this.internal = new StreamingQuery();
     }
     public StreamingQueryBuilder bands(Long bands) {
-    this.internal.bands = bands;
+        this.internal.bands = bands;
         return this;
     }
     
     public StreamingQueryBuilder noise(Double noise) {
-    this.internal.noise = noise;
+        this.internal.noise = noise;
         return this;
     }
     
     public StreamingQueryBuilder speed(Double speed) {
-    this.internal.speed = speed;
+        this.internal.speed = speed;
         return this;
     }
     
     public StreamingQueryBuilder spread(Double spread) {
-    this.internal.spread = spread;
+        this.internal.spread = spread;
         return this;
     }
     
     public StreamingQueryBuilder type(StreamingQueryType type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public StreamingQueryBuilder url(String url) {
-    this.internal.url = url;
+        this.internal.url = url;
         return this;
     }
     public StreamingQuery build() {

@@ -58,7 +58,7 @@
  * <span class="badge object-type-class"></span> [Logs](./object-Logs.md)
  * <span class="badge object-type-class"></span> [Max](./object-Max.md)
  * <span class="badge object-type-disjunction"></span> [MetricAggregation](./object-MetricAggregation.md)
- * <span class="badge object-type-disjunction"></span> [MetricAggregationType](./object-MetricAggregationType.md)
+ * <span class="badge object-type-enum"></span> [MetricAggregationType](./object-MetricAggregationType.md)
  * <span class="badge object-type-class"></span> [MetricAggregationWithField](./object-MetricAggregationWithField.md)
  * <span class="badge object-type-class"></span> [MetricAggregationWithInlineScript](./object-MetricAggregationWithInlineScript.md)
  * <span class="badge object-type-class"></span> [MetricAggregationWithMissingSupport](./object-MetricAggregationWithMissingSupport.md)

@@ -35,7 +35,7 @@ class ExprTypeThresholdConditionsEvaluatorBuilder implements \Grafana\Foundation
     /**
      * e.g. "gt"
      */
-    public function type(\Grafana\Foundation\Expr\TypeThresholdType $type): static
+    public function type(\Grafana\Foundation\Expr\ExprTypeThresholdConditionsEvaluatorType $type): static
     {
         $this->internal->type = $type;
     

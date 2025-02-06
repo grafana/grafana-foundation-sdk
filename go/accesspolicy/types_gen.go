@@ -156,6 +156,85 @@ func (resource AccessPolicy) Validate() error {
 	return errs
 }
 
+type ResourceRef struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+}
+
+// NewResourceRef creates a new ResourceRef object.
+func NewResourceRef() *ResourceRef {
+	return &ResourceRef{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResourceRef` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ResourceRef) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "name")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ResourceRef", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ResourceRef` objects.
+func (resource ResourceRef) Equals(other ResourceRef) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ResourceRef` fields for violations and returns them.
+func (resource ResourceRef) Validate() error {
+	return nil
+}
+
 type RoleRef struct {
 	// Policies can apply to roles, teams, or users
 	// Applying policies to individual users is supported, but discouraged
@@ -252,85 +331,6 @@ func (resource RoleRef) Equals(other RoleRef) bool {
 
 // Validate checks all the validation constraints that may be defined on `RoleRef` fields for violations and returns them.
 func (resource RoleRef) Validate() error {
-	return nil
-}
-
-type ResourceRef struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-}
-
-// NewResourceRef creates a new ResourceRef object.
-func NewResourceRef() *ResourceRef {
-	return &ResourceRef{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResourceRef` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *ResourceRef) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "kind"
-	if fields["kind"] != nil {
-		if string(fields["kind"]) != "null" {
-			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "kind")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
-	}
-	// Field "name"
-	if fields["name"] != nil {
-		if string(fields["name"]) != "null" {
-			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("name", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "name")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("ResourceRef", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `ResourceRef` objects.
-func (resource ResourceRef) Equals(other ResourceRef) bool {
-	if resource.Kind != other.Kind {
-		return false
-	}
-	if resource.Name != other.Name {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `ResourceRef` fields for violations and returns them.
-func (resource ResourceRef) Validate() error {
 	return nil
 }
 
