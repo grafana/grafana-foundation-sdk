@@ -11,17 +11,17 @@ public class AzureTracesFilterBuilder implements com.grafana.foundation.cog.Buil
         this.internal = new AzureTracesFilter();
     }
     public AzureTracesFilterBuilder property(String property) {
-    this.internal.property = property;
+        this.internal.property = property;
         return this;
     }
     
     public AzureTracesFilterBuilder operation(String operation) {
-    this.internal.operation = operation;
+        this.internal.operation = operation;
         return this;
     }
     
     public AzureTracesFilterBuilder filters(List<String> filters) {
-    this.internal.filters = filters;
+        this.internal.filters = filters;
         return this;
     }
     public AzureTracesFilter build() {

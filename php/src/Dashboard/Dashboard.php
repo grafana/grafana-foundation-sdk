@@ -239,7 +239,7 @@ class Dashboard implements \JsonSerializable
             version: $data["version"] ?? null,
             panels: !empty($data["panels"]) ? array_map((function($input) {
         \assert(is_array($input), 'expected disjunction value to be an array');
-    
+        /** @var array<string, mixed> $input */
         switch ($input["type"]) {
         case "row":
             return RowPanel::fromArray($input);

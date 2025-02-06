@@ -15,7 +15,7 @@ public class ExprTypeReduceSettings {
     //  - `"replaceNN"` Replace non-numbers
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("mode")
-    public TypeReduceMode mode;
+    public ExprTypeReduceSettingsMode mode;
     // Only valid when mode is replace
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("replaceWithValue")
@@ -23,7 +23,7 @@ public class ExprTypeReduceSettings {
     public ExprTypeReduceSettings() {
     }
     
-    public ExprTypeReduceSettings(TypeReduceMode mode,Double replaceWithValue) {
+    public ExprTypeReduceSettings(ExprTypeReduceSettingsMode mode,Double replaceWithValue) {
         this.mode = mode;
         this.replaceWithValue = replaceWithValue;
     }

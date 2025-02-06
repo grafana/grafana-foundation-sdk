@@ -120,7 +120,8 @@ class AzureMonitorQuery(cogvariants.Dataquery):
         if "azureTraces" in data:
             args["azure_traces"] = AzureTracesQuery.from_json(data["azureTraces"])
         if "grafanaTemplateVariableFn" in data:
-            args["grafana_template_variable_fn"] = data["grafanaTemplateVariableFn"]
+            decoding_map_grafanaTemplateVariableFn_ref_union: dict[str, typing.Union[typing.Type[AppInsightsGroupByQuery], typing.Type[AppInsightsMetricNameQuery], typing.Type[MetricDefinitionsQuery], typing.Type[MetricNamesQuery], typing.Type[MetricNamespaceQuery], typing.Type[ResourceGroupsQuery], typing.Type[ResourceNamesQuery], typing.Type[SubscriptionsQuery], typing.Type[UnknownQuery], typing.Type[WorkspacesQuery]]] = {"AppInsightsGroupByQuery": AppInsightsGroupByQuery, "AppInsightsMetricNameQuery": AppInsightsMetricNameQuery, "MetricDefinitionsQuery": MetricDefinitionsQuery, "MetricNamesQuery": MetricNamesQuery, "MetricNamespaceQuery": MetricNamespaceQuery, "ResourceGroupsQuery": ResourceGroupsQuery, "ResourceNamesQuery": ResourceNamesQuery, "SubscriptionsQuery": SubscriptionsQuery, "UnknownQuery": UnknownQuery, "WorkspacesQuery": WorkspacesQuery}
+            args["grafana_template_variable_fn"] = decoding_map_grafanaTemplateVariableFn_ref_union[data["grafanaTemplateVariableFn"]["kind"]].from_json(data["grafanaTemplateVariableFn"])
         if "resourceGroup" in data:
             args["resource_group"] = data["resourceGroup"]
         if "namespace" in data:
@@ -133,25 +134,6 @@ class AzureMonitorQuery(cogvariants.Dataquery):
             args["region"] = data["region"]        
 
         return cls(**args)
-
-
-class AzureQueryType(enum.StrEnum):
-    """
-    Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
-    """
-
-    AZURE_MONITOR = "Azure Monitor"
-    LOG_ANALYTICS = "Azure Log Analytics"
-    AZURE_RESOURCE_GRAPH = "Azure Resource Graph"
-    AZURE_TRACES = "Azure Traces"
-    SUBSCRIPTIONS_QUERY = "Azure Subscriptions"
-    RESOURCE_GROUPS_QUERY = "Azure Resource Groups"
-    NAMESPACES_QUERY = "Azure Namespaces"
-    RESOURCE_NAMES_QUERY = "Azure Resource Names"
-    METRIC_NAMES_QUERY = "Azure Metric Names"
-    WORKSPACES_QUERY = "Azure Workspaces"
-    LOCATIONS_QUERY = "Azure Regions"
-    GRAFANA_TEMPLATE_VARIABLE_FN = "Grafana Template Variable Function"
 
 
 class AzureMetricQuery:
@@ -260,7 +242,7 @@ class AzureMetricQuery:
         args: dict[str, typing.Any] = {}
         
         if "resources" in data:
-            args["resources"] = data["resources"]
+            args["resources"] = [AzureMonitorResource.from_json(item) for item in data["resources"]]
         if "metricNamespace" in data:
             args["metric_namespace"] = data["metricNamespace"]
         if "customNamespace" in data:
@@ -274,7 +256,7 @@ class AzureMetricQuery:
         if "aggregation" in data:
             args["aggregation"] = data["aggregation"]
         if "dimensionFilters" in data:
-            args["dimension_filters"] = data["dimensionFilters"]
+            args["dimension_filters"] = [AzureMetricDimension.from_json(item) for item in data["dimensionFilters"]]
         if "top" in data:
             args["top"] = data["top"]
         if "allowedTimeGrainsMs" in data:
@@ -295,204 +277,6 @@ class AzureMetricQuery:
             args["resource_group"] = data["resourceGroup"]
         if "resourceName" in data:
             args["resource_name"] = data["resourceName"]        
-
-        return cls(**args)
-
-
-class AzureLogsQuery:
-    """
-    Azure Monitor Logs sub-query properties
-    """
-
-    # KQL query to be executed.
-    query: typing.Optional[str]
-    # Specifies the format results should be returned as.
-    result_format: typing.Optional['ResultFormat']
-    # Array of resource URIs to be queried.
-    resources: typing.Optional[list[str]]
-    # If set to true the intersection of time ranges specified in the query and Grafana will be used. Otherwise the query time ranges will be used. Defaults to false
-    intersect_time: typing.Optional[bool]
-    # Workspace ID. This was removed in Grafana 8, but remains for backwards compat
-    workspace: typing.Optional[str]
-    # @deprecated Use resources instead
-    resource: typing.Optional[str]
-
-    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, intersect_time: typing.Optional[bool] = None, workspace: typing.Optional[str] = None, resource: typing.Optional[str] = None):
-        self.query = query
-        self.result_format = result_format
-        self.resources = resources
-        self.intersect_time = intersect_time
-        self.workspace = workspace
-        self.resource = resource
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.query is not None:
-            payload["query"] = self.query
-        if self.result_format is not None:
-            payload["resultFormat"] = self.result_format
-        if self.resources is not None:
-            payload["resources"] = self.resources
-        if self.intersect_time is not None:
-            payload["intersectTime"] = self.intersect_time
-        if self.workspace is not None:
-            payload["workspace"] = self.workspace
-        if self.resource is not None:
-            payload["resource"] = self.resource
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "query" in data:
-            args["query"] = data["query"]
-        if "resultFormat" in data:
-            args["result_format"] = data["resultFormat"]
-        if "resources" in data:
-            args["resources"] = data["resources"]
-        if "intersectTime" in data:
-            args["intersect_time"] = data["intersectTime"]
-        if "workspace" in data:
-            args["workspace"] = data["workspace"]
-        if "resource" in data:
-            args["resource"] = data["resource"]        
-
-        return cls(**args)
-
-
-class AzureTracesQuery:
-    """
-    Application Insights Traces sub-query properties
-    """
-
-    # Specifies the format results should be returned as.
-    result_format: typing.Optional['ResultFormat']
-    # Array of resource URIs to be queried.
-    resources: typing.Optional[list[str]]
-    # Operation ID. Used only for Traces queries.
-    operation_id: typing.Optional[str]
-    # Types of events to filter by.
-    trace_types: typing.Optional[list[str]]
-    # Filters for property values.
-    filters: typing.Optional[list['AzureTracesFilter']]
-    # KQL query to be executed.
-    query: typing.Optional[str]
-
-    def __init__(self, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, operation_id: typing.Optional[str] = None, trace_types: typing.Optional[list[str]] = None, filters: typing.Optional[list['AzureTracesFilter']] = None, query: typing.Optional[str] = None):
-        self.result_format = result_format
-        self.resources = resources
-        self.operation_id = operation_id
-        self.trace_types = trace_types
-        self.filters = filters
-        self.query = query
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.result_format is not None:
-            payload["resultFormat"] = self.result_format
-        if self.resources is not None:
-            payload["resources"] = self.resources
-        if self.operation_id is not None:
-            payload["operationId"] = self.operation_id
-        if self.trace_types is not None:
-            payload["traceTypes"] = self.trace_types
-        if self.filters is not None:
-            payload["filters"] = self.filters
-        if self.query is not None:
-            payload["query"] = self.query
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "resultFormat" in data:
-            args["result_format"] = data["resultFormat"]
-        if "resources" in data:
-            args["resources"] = data["resources"]
-        if "operationId" in data:
-            args["operation_id"] = data["operationId"]
-        if "traceTypes" in data:
-            args["trace_types"] = data["traceTypes"]
-        if "filters" in data:
-            args["filters"] = data["filters"]
-        if "query" in data:
-            args["query"] = data["query"]        
-
-        return cls(**args)
-
-
-class AzureTracesFilter:
-    # Property name, auto-populated based on available traces.
-    property_val: str
-    # Comparison operator to use. Either equals or not equals.
-    operation: str
-    # Values to filter by.
-    filters: list[str]
-
-    def __init__(self, property_val: str = "", operation: str = "", filters: typing.Optional[list[str]] = None):
-        self.property_val = property_val
-        self.operation = operation
-        self.filters = filters if filters is not None else []
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "property": self.property_val,
-            "operation": self.operation,
-            "filters": self.filters,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "property" in data:
-            args["property_val"] = data["property"]
-        if "operation" in data:
-            args["operation"] = data["operation"]
-        if "filters" in data:
-            args["filters"] = data["filters"]        
-
-        return cls(**args)
-
-
-class ResultFormat(enum.StrEnum):
-    TABLE = "table"
-    TIME_SERIES = "time_series"
-    TRACE = "trace"
-
-
-class AzureResourceGraphQuery:
-    # Azure Resource Graph KQL query to be executed.
-    query: typing.Optional[str]
-    # Specifies the format results should be returned as. Defaults to table.
-    result_format: typing.Optional[str]
-
-    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional[str] = None):
-        self.query = query
-        self.result_format = result_format
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.query is not None:
-            payload["query"] = self.query
-        if self.result_format is not None:
-            payload["resultFormat"] = self.result_format
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "query" in data:
-            args["query"] = data["query"]
-        if "resultFormat" in data:
-            args["result_format"] = data["resultFormat"]        
 
         return cls(**args)
 
@@ -589,65 +373,205 @@ class AzureMetricDimension:
         return cls(**args)
 
 
-class GrafanaTemplateVariableQueryType(enum.StrEnum):
-    APP_INSIGHTS_METRIC_NAME_QUERY = "AppInsightsMetricNameQuery"
-    APP_INSIGHTS_GROUP_BY_QUERY = "AppInsightsGroupByQuery"
-    SUBSCRIPTIONS_QUERY = "SubscriptionsQuery"
-    RESOURCE_GROUPS_QUERY = "ResourceGroupsQuery"
-    RESOURCE_NAMES_QUERY = "ResourceNamesQuery"
-    METRIC_NAMESPACE_QUERY = "MetricNamespaceQuery"
-    METRIC_NAMES_QUERY = "MetricNamesQuery"
-    WORKSPACES_QUERY = "WorkspacesQuery"
-    UNKNOWN_QUERY = "UnknownQuery"
+class AzureLogsQuery:
+    """
+    Azure Monitor Logs sub-query properties
+    """
 
+    # KQL query to be executed.
+    query: typing.Optional[str]
+    # Specifies the format results should be returned as.
+    result_format: typing.Optional['ResultFormat']
+    # Array of resource URIs to be queried.
+    resources: typing.Optional[list[str]]
+    # If set to true the intersection of time ranges specified in the query and Grafana will be used. Otherwise the query time ranges will be used. Defaults to false
+    intersect_time: typing.Optional[bool]
+    # Workspace ID. This was removed in Grafana 8, but remains for backwards compat
+    workspace: typing.Optional[str]
+    # @deprecated Use resources instead
+    resource: typing.Optional[str]
 
-class BaseGrafanaTemplateVariableQuery:
-    raw_query: typing.Optional[str]
-
-    def __init__(self, raw_query: typing.Optional[str] = None):
-        self.raw_query = raw_query
+    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, intersect_time: typing.Optional[bool] = None, workspace: typing.Optional[str] = None, resource: typing.Optional[str] = None):
+        self.query = query
+        self.result_format = result_format
+        self.resources = resources
+        self.intersect_time = intersect_time
+        self.workspace = workspace
+        self.resource = resource
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
         }
-        if self.raw_query is not None:
-            payload["rawQuery"] = self.raw_query
+        if self.query is not None:
+            payload["query"] = self.query
+        if self.result_format is not None:
+            payload["resultFormat"] = self.result_format
+        if self.resources is not None:
+            payload["resources"] = self.resources
+        if self.intersect_time is not None:
+            payload["intersectTime"] = self.intersect_time
+        if self.workspace is not None:
+            payload["workspace"] = self.workspace
+        if self.resource is not None:
+            payload["resource"] = self.resource
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
-        if "rawQuery" in data:
-            args["raw_query"] = data["rawQuery"]        
+        if "query" in data:
+            args["query"] = data["query"]
+        if "resultFormat" in data:
+            args["result_format"] = data["resultFormat"]
+        if "resources" in data:
+            args["resources"] = data["resources"]
+        if "intersectTime" in data:
+            args["intersect_time"] = data["intersectTime"]
+        if "workspace" in data:
+            args["workspace"] = data["workspace"]
+        if "resource" in data:
+            args["resource"] = data["resource"]        
 
         return cls(**args)
 
 
-class UnknownQuery:
-    raw_query: typing.Optional[str]
-    kind: typing.Literal["UnknownQuery"]
+class ResultFormat(enum.StrEnum):
+    TABLE = "table"
+    TIME_SERIES = "time_series"
+    TRACE = "trace"
 
-    def __init__(self, raw_query: typing.Optional[str] = None):
-        self.raw_query = raw_query
-        self.kind = "UnknownQuery"
+
+class AzureResourceGraphQuery:
+    # Azure Resource Graph KQL query to be executed.
+    query: typing.Optional[str]
+    # Specifies the format results should be returned as. Defaults to table.
+    result_format: typing.Optional[str]
+
+    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional[str] = None):
+        self.query = query
+        self.result_format = result_format
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
-            "kind": self.kind,
         }
-        if self.raw_query is not None:
-            payload["rawQuery"] = self.raw_query
+        if self.query is not None:
+            payload["query"] = self.query
+        if self.result_format is not None:
+            payload["resultFormat"] = self.result_format
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
-        if "rawQuery" in data:
-            args["raw_query"] = data["rawQuery"]        
+        if "query" in data:
+            args["query"] = data["query"]
+        if "resultFormat" in data:
+            args["result_format"] = data["resultFormat"]        
 
         return cls(**args)
+
+
+class AzureTracesQuery:
+    """
+    Application Insights Traces sub-query properties
+    """
+
+    # Specifies the format results should be returned as.
+    result_format: typing.Optional['ResultFormat']
+    # Array of resource URIs to be queried.
+    resources: typing.Optional[list[str]]
+    # Operation ID. Used only for Traces queries.
+    operation_id: typing.Optional[str]
+    # Types of events to filter by.
+    trace_types: typing.Optional[list[str]]
+    # Filters for property values.
+    filters: typing.Optional[list['AzureTracesFilter']]
+    # KQL query to be executed.
+    query: typing.Optional[str]
+
+    def __init__(self, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, operation_id: typing.Optional[str] = None, trace_types: typing.Optional[list[str]] = None, filters: typing.Optional[list['AzureTracesFilter']] = None, query: typing.Optional[str] = None):
+        self.result_format = result_format
+        self.resources = resources
+        self.operation_id = operation_id
+        self.trace_types = trace_types
+        self.filters = filters
+        self.query = query
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.result_format is not None:
+            payload["resultFormat"] = self.result_format
+        if self.resources is not None:
+            payload["resources"] = self.resources
+        if self.operation_id is not None:
+            payload["operationId"] = self.operation_id
+        if self.trace_types is not None:
+            payload["traceTypes"] = self.trace_types
+        if self.filters is not None:
+            payload["filters"] = self.filters
+        if self.query is not None:
+            payload["query"] = self.query
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "resultFormat" in data:
+            args["result_format"] = data["resultFormat"]
+        if "resources" in data:
+            args["resources"] = data["resources"]
+        if "operationId" in data:
+            args["operation_id"] = data["operationId"]
+        if "traceTypes" in data:
+            args["trace_types"] = data["traceTypes"]
+        if "filters" in data:
+            args["filters"] = [AzureTracesFilter.from_json(item) for item in data["filters"]]
+        if "query" in data:
+            args["query"] = data["query"]        
+
+        return cls(**args)
+
+
+class AzureTracesFilter:
+    # Property name, auto-populated based on available traces.
+    property_val: str
+    # Comparison operator to use. Either equals or not equals.
+    operation: str
+    # Values to filter by.
+    filters: list[str]
+
+    def __init__(self, property_val: str = "", operation: str = "", filters: typing.Optional[list[str]] = None):
+        self.property_val = property_val
+        self.operation = operation
+        self.filters = filters if filters is not None else []
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "property": self.property_val,
+            "operation": self.operation,
+            "filters": self.filters,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "property" in data:
+            args["property_val"] = data["property"]
+        if "operation" in data:
+            args["operation"] = data["operation"]
+        if "filters" in data:
+            args["filters"] = data["filters"]        
+
+        return cls(**args)
+
+
+GrafanaTemplateVariableQuery: typing.TypeAlias = typing.Union['AppInsightsMetricNameQuery', 'AppInsightsGroupByQuery', 'SubscriptionsQuery', 'ResourceGroupsQuery', 'ResourceNamesQuery', 'MetricNamespaceQuery', 'MetricDefinitionsQuery', 'MetricNamesQuery', 'WorkspacesQuery', 'UnknownQuery']
 
 
 class AppInsightsMetricNameQuery:
@@ -982,7 +906,84 @@ class WorkspacesQuery:
         return cls(**args)
 
 
-GrafanaTemplateVariableQuery: typing.TypeAlias = typing.Union['AppInsightsMetricNameQuery', 'AppInsightsGroupByQuery', 'SubscriptionsQuery', 'ResourceGroupsQuery', 'ResourceNamesQuery', 'MetricNamespaceQuery', 'MetricDefinitionsQuery', 'MetricNamesQuery', 'WorkspacesQuery', 'UnknownQuery']
+class UnknownQuery:
+    raw_query: typing.Optional[str]
+    kind: typing.Literal["UnknownQuery"]
+
+    def __init__(self, raw_query: typing.Optional[str] = None):
+        self.raw_query = raw_query
+        self.kind = "UnknownQuery"
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "kind": self.kind,
+        }
+        if self.raw_query is not None:
+            payload["rawQuery"] = self.raw_query
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "rawQuery" in data:
+            args["raw_query"] = data["rawQuery"]        
+
+        return cls(**args)
+
+
+class AzureQueryType(enum.StrEnum):
+    """
+    Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
+    """
+
+    AZURE_MONITOR = "Azure Monitor"
+    LOG_ANALYTICS = "Azure Log Analytics"
+    AZURE_RESOURCE_GRAPH = "Azure Resource Graph"
+    AZURE_TRACES = "Azure Traces"
+    SUBSCRIPTIONS_QUERY = "Azure Subscriptions"
+    RESOURCE_GROUPS_QUERY = "Azure Resource Groups"
+    NAMESPACES_QUERY = "Azure Namespaces"
+    RESOURCE_NAMES_QUERY = "Azure Resource Names"
+    METRIC_NAMES_QUERY = "Azure Metric Names"
+    WORKSPACES_QUERY = "Azure Workspaces"
+    LOCATIONS_QUERY = "Azure Regions"
+    GRAFANA_TEMPLATE_VARIABLE_FN = "Grafana Template Variable Function"
+
+
+class GrafanaTemplateVariableQueryType(enum.StrEnum):
+    APP_INSIGHTS_METRIC_NAME_QUERY = "AppInsightsMetricNameQuery"
+    APP_INSIGHTS_GROUP_BY_QUERY = "AppInsightsGroupByQuery"
+    SUBSCRIPTIONS_QUERY = "SubscriptionsQuery"
+    RESOURCE_GROUPS_QUERY = "ResourceGroupsQuery"
+    RESOURCE_NAMES_QUERY = "ResourceNamesQuery"
+    METRIC_NAMESPACE_QUERY = "MetricNamespaceQuery"
+    METRIC_NAMES_QUERY = "MetricNamesQuery"
+    WORKSPACES_QUERY = "WorkspacesQuery"
+    UNKNOWN_QUERY = "UnknownQuery"
+
+
+class BaseGrafanaTemplateVariableQuery:
+    raw_query: typing.Optional[str]
+
+    def __init__(self, raw_query: typing.Optional[str] = None):
+        self.raw_query = raw_query
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.raw_query is not None:
+            payload["rawQuery"] = self.raw_query
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "rawQuery" in data:
+            args["raw_query"] = data["rawQuery"]        
+
+        return cls(**args)
 
 
 

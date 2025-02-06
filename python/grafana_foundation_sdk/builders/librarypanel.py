@@ -108,34 +108,6 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
         return self
     
 
-class LibraryElementDTOMetaUser(cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]):    
-    _internal: librarypanel.LibraryElementDTOMetaUser
-
-    def __init__(self):
-        self._internal = librarypanel.LibraryElementDTOMetaUser()
-
-    def build(self) -> librarypanel.LibraryElementDTOMetaUser:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def id_val(self, id_val: int) -> typing.Self:        
-        self._internal.id_val = id_val
-    
-        return self
-    
-    def name(self, name: str) -> typing.Self:        
-        self._internal.name = name
-    
-        return self
-    
-    def avatar_url(self, avatar_url: str) -> typing.Self:        
-        self._internal.avatar_url = avatar_url
-    
-        return self
-    
-
 class LibraryElementDTOMeta(cogbuilder.Builder[librarypanel.LibraryElementDTOMeta]):    
     _internal: librarypanel.LibraryElementDTOMeta
 
@@ -182,6 +154,34 @@ class LibraryElementDTOMeta(cogbuilder.Builder[librarypanel.LibraryElementDTOMet
     def updated_by(self, updated_by: cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]) -> typing.Self:        
         updated_by_resource = updated_by.build()
         self._internal.updated_by = updated_by_resource
+    
+        return self
+    
+
+class LibraryElementDTOMetaUser(cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]):    
+    _internal: librarypanel.LibraryElementDTOMetaUser
+
+    def __init__(self):
+        self._internal = librarypanel.LibraryElementDTOMetaUser()
+
+    def build(self) -> librarypanel.LibraryElementDTOMetaUser:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def id_val(self, id_val: int) -> typing.Self:        
+        self._internal.id_val = id_val
+    
+        return self
+    
+    def name(self, name: str) -> typing.Self:        
+        self._internal.name = name
+    
+        return self
+    
+    def avatar_url(self, avatar_url: str) -> typing.Self:        
+        self._internal.avatar_url = avatar_url
     
         return self
     

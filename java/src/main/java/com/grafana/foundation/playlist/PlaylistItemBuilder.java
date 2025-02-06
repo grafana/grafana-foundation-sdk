@@ -10,17 +10,17 @@ public class PlaylistItemBuilder implements com.grafana.foundation.cog.Builder<P
         this.internal = new PlaylistItem();
     }
     public PlaylistItemBuilder type(PlaylistItemType type) {
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public PlaylistItemBuilder value(String value) {
-    this.internal.value = value;
+        this.internal.value = value;
         return this;
     }
     
     public PlaylistItemBuilder title(String title) {
-    this.internal.title = title;
+        this.internal.title = title;
         return this;
     }
     public PlaylistItem build() {

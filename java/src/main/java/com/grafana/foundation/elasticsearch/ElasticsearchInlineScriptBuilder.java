@@ -10,7 +10,7 @@ public class ElasticsearchInlineScriptBuilder implements com.grafana.foundation.
         this.internal = new ElasticsearchInlineScript();
     }
     public ElasticsearchInlineScriptBuilder inline(String inline) {
-    this.internal.inline = inline;
+        this.internal.inline = inline;
         return this;
     }
     public ElasticsearchInlineScript build() {

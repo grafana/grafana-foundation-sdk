@@ -11,22 +11,22 @@ public class PlaylistBuilder implements com.grafana.foundation.cog.Builder<Playl
         this.internal = new Playlist();
     }
     public PlaylistBuilder uid(String uid) {
-    this.internal.uid = uid;
+        this.internal.uid = uid;
         return this;
     }
     
     public PlaylistBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public PlaylistBuilder interval(String interval) {
-    this.internal.interval = interval;
+        this.internal.interval = interval;
         return this;
     }
     
     public PlaylistBuilder items(com.grafana.foundation.cog.Builder<List<PlaylistItem>> items) {
-    this.internal.items = items.build();
+        this.internal.items = items.build();
         return this;
     }
     public Playlist build() {

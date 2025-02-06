@@ -11,12 +11,12 @@ public class ExprTypeThresholdConditionsEvaluatorBuilder implements com.grafana.
         this.internal = new ExprTypeThresholdConditionsEvaluator();
     }
     public ExprTypeThresholdConditionsEvaluatorBuilder params(List<Double> params) {
-    this.internal.params = params;
+        this.internal.params = params;
         return this;
     }
     
-    public ExprTypeThresholdConditionsEvaluatorBuilder type(TypeThresholdType type) {
-    this.internal.type = type;
+    public ExprTypeThresholdConditionsEvaluatorBuilder type(ExprTypeThresholdConditionsEvaluatorType type) {
+        this.internal.type = type;
         return this;
     }
     public ExprTypeThresholdConditionsEvaluator build() {

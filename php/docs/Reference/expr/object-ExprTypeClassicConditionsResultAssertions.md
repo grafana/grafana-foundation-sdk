@@ -28,7 +28,7 @@ class ExprTypeClassicConditionsResultAssertions implements \JsonSerializable
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public ?\Grafana\Foundation\Expr\TypeClassicConditionsType $type;
+    public ?\Grafana\Foundation\Expr\ExprTypeClassicConditionsResultAssertionsType $type;
 
     /**
      * TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane

@@ -10,17 +10,17 @@ public class DashboardGraphPanelLegendBuilder implements com.grafana.foundation.
         this.internal = new DashboardGraphPanelLegend();
     }
     public DashboardGraphPanelLegendBuilder show(Boolean show) {
-    this.internal.show = show;
+        this.internal.show = show;
         return this;
     }
     
     public DashboardGraphPanelLegendBuilder sort(String sort) {
-    this.internal.sort = sort;
+        this.internal.sort = sort;
         return this;
     }
     
     public DashboardGraphPanelLegendBuilder sortDesc(Boolean sortDesc) {
-    this.internal.sortDesc = sortDesc;
+        this.internal.sortDesc = sortDesc;
         return this;
     }
     public DashboardGraphPanelLegend build() {

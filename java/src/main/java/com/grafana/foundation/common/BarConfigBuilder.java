@@ -10,17 +10,17 @@ public class BarConfigBuilder implements com.grafana.foundation.cog.Builder<BarC
         this.internal = new BarConfig();
     }
     public BarConfigBuilder barAlignment(BarAlignment barAlignment) {
-    this.internal.barAlignment = barAlignment;
+        this.internal.barAlignment = barAlignment;
         return this;
     }
     
     public BarConfigBuilder barWidthFactor(Double barWidthFactor) {
-    this.internal.barWidthFactor = barWidthFactor;
+        this.internal.barWidthFactor = barWidthFactor;
         return this;
     }
     
     public BarConfigBuilder barMaxWidth(Double barMaxWidth) {
-    this.internal.barMaxWidth = barMaxWidth;
+        this.internal.barMaxWidth = barMaxWidth;
         return this;
     }
     public BarConfig build() {

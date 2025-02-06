@@ -23,7 +23,7 @@ class ExprTypeClassicConditionsConditionsOperatorBuilder implements \Grafana\Fou
         return $this->internal;
     }
 
-    public function type(\Grafana\Foundation\Expr\TypeClassicConditionsType $type): static
+    public function type(\Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsOperatorType $type): static
     {
         $this->internal->type = $type;
     

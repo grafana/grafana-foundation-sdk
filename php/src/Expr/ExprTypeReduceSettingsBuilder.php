@@ -29,7 +29,7 @@ class ExprTypeReduceSettingsBuilder implements \Grafana\Foundation\Cog\Builder
      *  - `"dropNN"` Drop non-numbers
      *  - `"replaceNN"` Replace non-numbers
      */
-    public function mode(\Grafana\Foundation\Expr\TypeReduceMode $mode): static
+    public function mode(\Grafana\Foundation\Expr\ExprTypeReduceSettingsMode $mode): static
     {
         $this->internal->mode = $mode;
     

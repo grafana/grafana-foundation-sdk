@@ -27,7 +27,7 @@ final class ExprTypeSqlResultAssertionsConverter
     
         
     $buffer = 'type(';
-        $arg0 ='\Grafana\Foundation\Expr\TypeSqlType::fromValue("'.$input->type.'")';
+        $arg0 ='\Grafana\Foundation\Expr\ExprTypeSqlResultAssertionsType::fromValue("'.$input->type.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

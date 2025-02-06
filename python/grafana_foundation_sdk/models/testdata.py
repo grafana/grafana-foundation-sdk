@@ -174,6 +174,47 @@ class SimulationQuery:
         return cls(**args)
 
 
+class CSVWave:
+    time_step: typing.Optional[int]
+    name: typing.Optional[str]
+    values_csv: typing.Optional[str]
+    labels: typing.Optional[str]
+
+    def __init__(self, time_step: typing.Optional[int] = None, name: typing.Optional[str] = None, values_csv: typing.Optional[str] = None, labels: typing.Optional[str] = None):
+        self.time_step = time_step
+        self.name = name
+        self.values_csv = values_csv
+        self.labels = labels
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.time_step is not None:
+            payload["timeStep"] = self.time_step
+        if self.name is not None:
+            payload["name"] = self.name
+        if self.values_csv is not None:
+            payload["valuesCSV"] = self.values_csv
+        if self.labels is not None:
+            payload["labels"] = self.labels
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "timeStep" in data:
+            args["time_step"] = data["timeStep"]
+        if "name" in data:
+            args["name"] = data["name"]
+        if "valuesCSV" in data:
+            args["values_csv"] = data["valuesCSV"]
+        if "labels" in data:
+            args["labels"] = data["labels"]        
+
+        return cls(**args)
+
+
 class NodesQuery:
     type_val: typing.Optional[typing.Literal["random", "response", "random edges"]]
     count: typing.Optional[int]
@@ -240,47 +281,6 @@ class USAQuery:
             args["fields"] = data["fields"]
         if "states" in data:
             args["states"] = data["states"]        
-
-        return cls(**args)
-
-
-class CSVWave:
-    time_step: typing.Optional[int]
-    name: typing.Optional[str]
-    values_csv: typing.Optional[str]
-    labels: typing.Optional[str]
-
-    def __init__(self, time_step: typing.Optional[int] = None, name: typing.Optional[str] = None, values_csv: typing.Optional[str] = None, labels: typing.Optional[str] = None):
-        self.time_step = time_step
-        self.name = name
-        self.values_csv = values_csv
-        self.labels = labels
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.time_step is not None:
-            payload["timeStep"] = self.time_step
-        if self.name is not None:
-            payload["name"] = self.name
-        if self.values_csv is not None:
-            payload["valuesCSV"] = self.values_csv
-        if self.labels is not None:
-            payload["labels"] = self.labels
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "timeStep" in data:
-            args["time_step"] = data["timeStep"]
-        if "name" in data:
-            args["name"] = data["name"]
-        if "valuesCSV" in data:
-            args["values_csv"] = data["valuesCSV"]
-        if "labels" in data:
-            args["labels"] = data["labels"]        
 
         return cls(**args)
 
@@ -471,7 +471,7 @@ class Dataquery(cogvariants.Dataquery):
         if "sim" in data:
             args["sim"] = SimulationQuery.from_json(data["sim"])
         if "csvWave" in data:
-            args["csv_wave"] = data["csvWave"]
+            args["csv_wave"] = [CSVWave.from_json(item) for item in data["csvWave"]]
         if "labels" in data:
             args["labels"] = data["labels"]
         if "lines" in data:
@@ -497,7 +497,7 @@ class Dataquery(cogvariants.Dataquery):
         if "spanCount" in data:
             args["span_count"] = data["spanCount"]
         if "points" in data:
-            args["points"] = data["points"]
+            args["points"] = [[item for item in item] for item in data["points"]]
         if "dropPercent" in data:
             args["drop_percent"] = data["dropPercent"]
         if "refId" in data:

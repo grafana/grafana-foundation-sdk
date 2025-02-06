@@ -19,97 +19,97 @@ public class PanelModelBuilder implements com.grafana.foundation.cog.Builder<Pan
         if (!(type.length() >= 1)) {
             throw new IllegalArgumentException("type.length() must be >= 1");
         }
-    this.internal.type = type;
+        this.internal.type = type;
         return this;
     }
     
     public PanelModelBuilder pluginVersion(String pluginVersion) {
-    this.internal.pluginVersion = pluginVersion;
+        this.internal.pluginVersion = pluginVersion;
         return this;
     }
     
     public PanelModelBuilder tags(List<String> tags) {
-    this.internal.tags = tags;
+        this.internal.tags = tags;
         return this;
     }
     
     public PanelModelBuilder targets(com.grafana.foundation.cog.Builder<List<Dataquery>> targets) {
-    this.internal.targets = targets.build();
+        this.internal.targets = targets.build();
         return this;
     }
     
     public PanelModelBuilder title(String title) {
-    this.internal.title = title;
+        this.internal.title = title;
         return this;
     }
     
     public PanelModelBuilder description(String description) {
-    this.internal.description = description;
+        this.internal.description = description;
         return this;
     }
     
     public PanelModelBuilder transparent(Boolean transparent) {
-    this.internal.transparent = transparent;
+        this.internal.transparent = transparent;
         return this;
     }
     
     public PanelModelBuilder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
+        this.internal.datasource = datasource;
         return this;
     }
     
     public PanelModelBuilder links(com.grafana.foundation.cog.Builder<List<DashboardLink>> links) {
-    this.internal.links = links.build();
+        this.internal.links = links.build();
         return this;
     }
     
     public PanelModelBuilder repeat(String repeat) {
-    this.internal.repeat = repeat;
+        this.internal.repeat = repeat;
         return this;
     }
     
     public PanelModelBuilder repeatDirection(PanelModelRepeatDirection repeatDirection) {
-    this.internal.repeatDirection = repeatDirection;
+        this.internal.repeatDirection = repeatDirection;
         return this;
     }
     
     public PanelModelBuilder repeatPanelId(Long repeatPanelId) {
-    this.internal.repeatPanelId = repeatPanelId;
+        this.internal.repeatPanelId = repeatPanelId;
         return this;
     }
     
     public PanelModelBuilder maxDataPoints(Double maxDataPoints) {
-    this.internal.maxDataPoints = maxDataPoints;
+        this.internal.maxDataPoints = maxDataPoints;
         return this;
     }
     
     public PanelModelBuilder transformations(List<DataTransformerConfig> transformations) {
-    this.internal.transformations = transformations;
+        this.internal.transformations = transformations;
         return this;
     }
     
     public PanelModelBuilder interval(String interval) {
-    this.internal.interval = interval;
+        this.internal.interval = interval;
         return this;
     }
     
     public PanelModelBuilder timeFrom(String timeFrom) {
-    this.internal.timeFrom = timeFrom;
+        this.internal.timeFrom = timeFrom;
         return this;
     }
     
     public PanelModelBuilder timeShift(String timeShift) {
-    this.internal.timeShift = timeShift;
+        this.internal.timeShift = timeShift;
         return this;
     }
     
     public PanelModelBuilder options(Object options) {
-    this.internal.options = options;
+        this.internal.options = options;
         return this;
     }
     
     public PanelModelBuilder fieldConfig(FieldConfigSource fieldConfig) {
-    this.internal.fieldConfig = fieldConfig;
+        this.internal.fieldConfig = fieldConfig;
         return this;
     }
     public PanelModel build() {

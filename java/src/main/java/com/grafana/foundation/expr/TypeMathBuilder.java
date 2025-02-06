@@ -9,10 +9,10 @@ public class TypeMathBuilder implements com.grafana.foundation.cog.Builder<com.g
     
     public TypeMathBuilder() {
         this.internal = new TypeMath();
-    this.internal.type = "math";
+        this.internal.type = "math";
     }
     public TypeMathBuilder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
+        this.internal.datasource = datasource;
         return this;
     }
     
@@ -20,42 +20,42 @@ public class TypeMathBuilder implements com.grafana.foundation.cog.Builder<com.g
         if (!(expression.length() >= 1)) {
             throw new IllegalArgumentException("expression.length() must be >= 1");
         }
-    this.internal.expression = expression;
+        this.internal.expression = expression;
         return this;
     }
     
     public TypeMathBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     
     public TypeMathBuilder intervalMs(Double intervalMs) {
-    this.internal.intervalMs = intervalMs;
+        this.internal.intervalMs = intervalMs;
         return this;
     }
     
     public TypeMathBuilder maxDataPoints(Long maxDataPoints) {
-    this.internal.maxDataPoints = maxDataPoints;
+        this.internal.maxDataPoints = maxDataPoints;
         return this;
     }
     
     public TypeMathBuilder queryType(String queryType) {
-    this.internal.queryType = queryType;
+        this.internal.queryType = queryType;
         return this;
     }
     
     public TypeMathBuilder refId(String refId) {
-    this.internal.refId = refId;
+        this.internal.refId = refId;
         return this;
     }
     
     public TypeMathBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeMathResultAssertions> resultAssertions) {
-    this.internal.resultAssertions = resultAssertions.build();
+        this.internal.resultAssertions = resultAssertions.build();
         return this;
     }
     
     public TypeMathBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeMathTimeRange> timeRange) {
-    this.internal.timeRange = timeRange.build();
+        this.internal.timeRange = timeRange.build();
         return this;
     }
     public TypeMath build() {

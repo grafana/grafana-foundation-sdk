@@ -28,7 +28,7 @@ class ExprTypeResampleResultAssertions implements \JsonSerializable
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public ?\Grafana\Foundation\Expr\TypeResampleType $type;
+    public ?\Grafana\Foundation\Expr\ExprTypeResampleResultAssertionsType $type;
 
     /**
      * TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane

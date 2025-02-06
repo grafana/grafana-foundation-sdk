@@ -31,7 +31,7 @@ public class ExprTypeMathResultAssertions {
     //  - `"log-lines"` 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("type")
-    public TypeMathType type;
+    public ExprTypeMathResultAssertionsType type;
     // TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
     // contract documentation https://grafana.github.io/dataplane/contract/.
     @JsonSetter(nulls = Nulls.AS_EMPTY)
@@ -40,7 +40,7 @@ public class ExprTypeMathResultAssertions {
     public ExprTypeMathResultAssertions() {
     }
     
-    public ExprTypeMathResultAssertions(Long maxFrames,TypeMathType type,List<Long> typeVersion) {
+    public ExprTypeMathResultAssertions(Long maxFrames,ExprTypeMathResultAssertionsType type,List<Long> typeVersion) {
         this.maxFrames = maxFrames;
         this.type = type;
         this.typeVersion = typeVersion;

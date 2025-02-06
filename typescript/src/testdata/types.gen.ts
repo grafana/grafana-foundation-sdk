@@ -72,6 +72,16 @@ export const defaultSimulationQuery = (): SimulationQuery => ({
 	key: defaultKey(),
 });
 
+export interface CSVWave {
+	timeStep?: number;
+	name?: string;
+	valuesCSV?: string;
+	labels?: string;
+}
+
+export const defaultCSVWave = (): CSVWave => ({
+});
+
 export interface NodesQuery {
 	type?: "random" | "response" | "random edges";
 	count?: number;
@@ -88,16 +98,6 @@ export interface USAQuery {
 }
 
 export const defaultUSAQuery = (): USAQuery => ({
-});
-
-export interface CSVWave {
-	timeStep?: number;
-	name?: string;
-	valuesCSV?: string;
-	labels?: string;
-}
-
-export const defaultCSVWave = (): CSVWave => ({
 });
 
 // TODO: Should this live here given it's not used in the dataquery?

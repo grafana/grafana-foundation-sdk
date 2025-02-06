@@ -121,45 +121,9 @@ class TempoQuery(cogvariants.Dataquery):
         if "datasource" in data:
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "filters" in data:
-            args["filters"] = data["filters"]        
+            args["filters"] = [TraceqlFilter.from_json(item) for item in data["filters"]]        
 
         return cls(**args)
-
-
-class TempoQueryType(enum.StrEnum):
-    """
-    search = Loki search, nativeSearch = Tempo search for backwards compatibility
-    """
-
-    TRACEQL = "traceql"
-    TRACEQL_SEARCH = "traceqlSearch"
-    SEARCH = "search"
-    SERVICE_MAP = "serviceMap"
-    UPLOAD = "upload"
-    NATIVE_SEARCH = "nativeSearch"
-    TRACE_ID = "traceId"
-    CLEAR = "clear"
-
-
-class SearchStreamingState(enum.StrEnum):
-    """
-    The state of the TraceQL streaming search query
-    """
-
-    PENDING = "pending"
-    STREAMING = "streaming"
-    DONE = "done"
-    ERROR = "error"
-
-
-class TraceqlSearchScope(enum.StrEnum):
-    """
-    static fields are pre-set in the UI, dynamic fields are added by the user
-    """
-
-    UNSCOPED = "unscoped"
-    RESOURCE = "resource"
-    SPAN = "span"
 
 
 class TraceqlFilter:
@@ -218,6 +182,42 @@ class TraceqlFilter:
             args["scope"] = data["scope"]        
 
         return cls(**args)
+
+
+class TraceqlSearchScope(enum.StrEnum):
+    """
+    static fields are pre-set in the UI, dynamic fields are added by the user
+    """
+
+    UNSCOPED = "unscoped"
+    RESOURCE = "resource"
+    SPAN = "span"
+
+
+class TempoQueryType(enum.StrEnum):
+    """
+    search = Loki search, nativeSearch = Tempo search for backwards compatibility
+    """
+
+    TRACEQL = "traceql"
+    TRACEQL_SEARCH = "traceqlSearch"
+    SEARCH = "search"
+    SERVICE_MAP = "serviceMap"
+    UPLOAD = "upload"
+    NATIVE_SEARCH = "nativeSearch"
+    TRACE_ID = "traceId"
+    CLEAR = "clear"
+
+
+class SearchStreamingState(enum.StrEnum):
+    """
+    The state of the TraceQL streaming search query
+    """
+
+    PENDING = "pending"
+    STREAMING = "streaming"
+    DONE = "done"
+    ERROR = "error"
 
 
 

@@ -457,7 +457,7 @@ final class PanelConverter
     
     }
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Table\Options && $input->options->frameIndex !== 0) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Table\Options && $input->options->frameIndex !== (float) 0) {
     
         
     $buffer = 'frameIndex(';

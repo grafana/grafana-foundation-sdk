@@ -8,10 +8,10 @@ public class GraphPanelBuilder implements com.grafana.foundation.cog.Builder<Gra
     
     public GraphPanelBuilder() {
         this.internal = new GraphPanel();
-    this.internal.type = "graph";
+        this.internal.type = "graph";
     }
     public GraphPanelBuilder legend(com.grafana.foundation.cog.Builder<DashboardGraphPanelLegend> legend) {
-    this.internal.legend = legend.build();
+        this.internal.legend = legend.build();
         return this;
     }
     public GraphPanel build() {

@@ -5,6 +5,8 @@ package elasticsearch
 import (
 	"fmt"
 	"strings"
+
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
 // MetricAggregationWithInlineScriptConverter accepts a `MetricAggregationWithInlineScript` object and generates the Go code to build this object using builders.
@@ -28,7 +30,7 @@ func MetricAggregationWithInlineScriptConverter(input MetricAggregationWithInlin
 
 	{
 		buffer.WriteString(`Type(`)
-		arg0 := MetricAggregationTypeConverter(input.Type)
+		arg0 := cog.Dump(input.Type)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

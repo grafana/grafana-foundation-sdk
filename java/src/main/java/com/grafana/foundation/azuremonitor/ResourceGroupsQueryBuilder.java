@@ -8,15 +8,15 @@ public class ResourceGroupsQueryBuilder implements com.grafana.foundation.cog.Bu
     
     public ResourceGroupsQueryBuilder() {
         this.internal = new ResourceGroupsQuery();
-    this.internal.kind = "ResourceGroupsQuery";
+        this.internal.kind = "ResourceGroupsQuery";
     }
     public ResourceGroupsQueryBuilder rawQuery(String rawQuery) {
-    this.internal.rawQuery = rawQuery;
+        this.internal.rawQuery = rawQuery;
         return this;
     }
     
     public ResourceGroupsQueryBuilder subscription(String subscription) {
-    this.internal.subscription = subscription;
+        this.internal.subscription = subscription;
         return this;
     }
     public ResourceGroupsQuery build() {

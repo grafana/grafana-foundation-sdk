@@ -25,20 +25,20 @@ NewRoleBinding creates a new RoleBinding object.
 func NewRoleBinding() *RoleBinding
 ```
 
-### <span class="badge function"></span> NewCustomRoleRef
-
-NewCustomRoleRef creates a new CustomRoleRef object.
-
-```go
-func NewCustomRoleRef() *CustomRoleRef
-```
-
 ### <span class="badge function"></span> NewBuiltinRoleRef
 
 NewBuiltinRoleRef creates a new BuiltinRoleRef object.
 
 ```go
 func NewBuiltinRoleRef() *BuiltinRoleRef
+```
+
+### <span class="badge function"></span> NewCustomRoleRef
+
+NewCustomRoleRef creates a new CustomRoleRef object.
+
+```go
+func NewCustomRoleRef() *CustomRoleRef
 ```
 
 ### <span class="badge function"></span> NewRoleBindingSubject
@@ -65,20 +65,20 @@ RoleBindingConverter accepts a `RoleBinding` object and generates the Go code to
 func RoleBindingConverter(input RoleBinding) string
 ```
 
-### <span class="badge function"></span> CustomRoleRefConverter
-
-CustomRoleRefConverter accepts a `CustomRoleRef` object and generates the Go code to build this object using builders.
-
-```go
-func CustomRoleRefConverter(input CustomRoleRef) string
-```
-
 ### <span class="badge function"></span> BuiltinRoleRefConverter
 
 BuiltinRoleRefConverter accepts a `BuiltinRoleRef` object and generates the Go code to build this object using builders.
 
 ```go
 func BuiltinRoleRefConverter(input BuiltinRoleRef) string
+```
+
+### <span class="badge function"></span> CustomRoleRefConverter
+
+CustomRoleRefConverter accepts a `CustomRoleRef` object and generates the Go code to build this object using builders.
+
+```go
+func CustomRoleRefConverter(input CustomRoleRef) string
 ```
 
 ### <span class="badge function"></span> RoleBindingSubjectConverter

@@ -11,12 +11,12 @@ public class MuteTimingBuilder implements com.grafana.foundation.cog.Builder<Mut
         this.internal = new MuteTiming();
     }
     public MuteTimingBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public MuteTimingBuilder timeIntervals(com.grafana.foundation.cog.Builder<List<TimeInterval>> timeIntervals) {
-    this.internal.timeIntervals = timeIntervals.build();
+        this.internal.timeIntervals = timeIntervals.build();
         return this;
     }
     public MuteTiming build() {
