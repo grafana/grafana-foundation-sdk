@@ -82,38 +82,6 @@ class LibraryPanel:
         return cls(**args)
 
 
-class LibraryElementDTOMetaUser:
-    id_val: int
-    name: str
-    avatar_url: str
-
-    def __init__(self, id_val: int = 0, name: str = "", avatar_url: str = ""):
-        self.id_val = id_val
-        self.name = name
-        self.avatar_url = avatar_url
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "id": self.id_val,
-            "name": self.name,
-            "avatarUrl": self.avatar_url,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "id" in data:
-            args["id_val"] = data["id"]
-        if "name" in data:
-            args["name"] = data["name"]
-        if "avatarUrl" in data:
-            args["avatar_url"] = data["avatarUrl"]        
-
-        return cls(**args)
-
-
 class LibraryElementDTOMeta:
     folder_name: str
     folder_uid: str
@@ -162,6 +130,38 @@ class LibraryElementDTOMeta:
             args["created_by"] = LibraryElementDTOMetaUser.from_json(data["createdBy"])
         if "updatedBy" in data:
             args["updated_by"] = LibraryElementDTOMetaUser.from_json(data["updatedBy"])        
+
+        return cls(**args)
+
+
+class LibraryElementDTOMetaUser:
+    id_val: int
+    name: str
+    avatar_url: str
+
+    def __init__(self, id_val: int = 0, name: str = "", avatar_url: str = ""):
+        self.id_val = id_val
+        self.name = name
+        self.avatar_url = avatar_url
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "id": self.id_val,
+            "name": self.name,
+            "avatarUrl": self.avatar_url,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "id" in data:
+            args["id_val"] = data["id"]
+        if "name" in data:
+            args["name"] = data["name"]
+        if "avatarUrl" in data:
+            args["avatar_url"] = data["avatarUrl"]        
 
         return cls(**args)
 
@@ -306,7 +306,7 @@ class PanelModel:
         if "datasource" in data:
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "links" in data:
-            args["links"] = data["links"]
+            args["links"] = [dashboard.DashboardLink.from_json(item) for item in data["links"]]
         if "repeat" in data:
             args["repeat"] = data["repeat"]
         if "repeatDirection" in data:
@@ -316,7 +316,7 @@ class PanelModel:
         if "maxDataPoints" in data:
             args["max_data_points"] = data["maxDataPoints"]
         if "transformations" in data:
-            args["transformations"] = data["transformations"]
+            args["transformations"] = [dashboard.DataTransformerConfig.from_json(item) for item in data["transformations"]]
         if "interval" in data:
             args["interval"] = data["interval"]
         if "timeFrom" in data:

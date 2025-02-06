@@ -383,6 +383,66 @@ class MapLayerOptions:
         return cls(**args)
 
 
+class FrameGeometrySource:
+    mode: 'FrameGeometrySourceMode'
+    # Field mappings
+    geohash: typing.Optional[str]
+    latitude: typing.Optional[str]
+    longitude: typing.Optional[str]
+    wkt: typing.Optional[str]
+    lookup: typing.Optional[str]
+    # Path to Gazetteer
+    gazetteer: typing.Optional[str]
+
+    def __init__(self, mode: typing.Optional['FrameGeometrySourceMode'] = None, geohash: typing.Optional[str] = None, latitude: typing.Optional[str] = None, longitude: typing.Optional[str] = None, wkt: typing.Optional[str] = None, lookup: typing.Optional[str] = None, gazetteer: typing.Optional[str] = None):
+        self.mode = mode if mode is not None else FrameGeometrySourceMode.AUTO
+        self.geohash = geohash
+        self.latitude = latitude
+        self.longitude = longitude
+        self.wkt = wkt
+        self.lookup = lookup
+        self.gazetteer = gazetteer
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "mode": self.mode,
+        }
+        if self.geohash is not None:
+            payload["geohash"] = self.geohash
+        if self.latitude is not None:
+            payload["latitude"] = self.latitude
+        if self.longitude is not None:
+            payload["longitude"] = self.longitude
+        if self.wkt is not None:
+            payload["wkt"] = self.wkt
+        if self.lookup is not None:
+            payload["lookup"] = self.lookup
+        if self.gazetteer is not None:
+            payload["gazetteer"] = self.gazetteer
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "mode" in data:
+            args["mode"] = data["mode"]
+        if "geohash" in data:
+            args["geohash"] = data["geohash"]
+        if "latitude" in data:
+            args["latitude"] = data["latitude"]
+        if "longitude" in data:
+            args["longitude"] = data["longitude"]
+        if "wkt" in data:
+            args["wkt"] = data["wkt"]
+        if "lookup" in data:
+            args["lookup"] = data["lookup"]
+        if "gazetteer" in data:
+            args["gazetteer"] = data["gazetteer"]        
+
+        return cls(**args)
+
+
 class FrameGeometrySourceMode(enum.StrEnum):
     AUTO = "auto"
     GEOHASH = "geohash"
@@ -438,6 +498,55 @@ class HeatmapCalculationBucketConfig:
             args["scale"] = ScaleDistributionConfig.from_json(data["scale"])        
 
         return cls(**args)
+
+
+class ScaleDistributionConfig:
+    """
+    TODO docs
+    """
+
+    type_val: 'ScaleDistribution'
+    log: typing.Optional[float]
+    linear_threshold: typing.Optional[float]
+
+    def __init__(self, type_val: typing.Optional['ScaleDistribution'] = None, log: typing.Optional[float] = None, linear_threshold: typing.Optional[float] = None):
+        self.type_val = type_val if type_val is not None else ScaleDistribution.LINEAR
+        self.log = log
+        self.linear_threshold = linear_threshold
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+        }
+        if self.log is not None:
+            payload["log"] = self.log
+        if self.linear_threshold is not None:
+            payload["linearThreshold"] = self.linear_threshold
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "log" in data:
+            args["log"] = data["log"]
+        if "linearThreshold" in data:
+            args["linear_threshold"] = data["linearThreshold"]        
+
+        return cls(**args)
+
+
+class ScaleDistribution(enum.StrEnum):
+    """
+    TODO docs
+    """
+
+    LINEAR = "linear"
+    LOG = "log"
+    ORDINAL = "ordinal"
+    SYMLOG = "symlog"
 
 
 class LogsSortOrder(enum.StrEnum):
@@ -505,17 +614,6 @@ class LineInterpolation(enum.StrEnum):
     SMOOTH = "smooth"
     STEP_BEFORE = "stepBefore"
     STEP_AFTER = "stepAfter"
-
-
-class ScaleDistribution(enum.StrEnum):
-    """
-    TODO docs
-    """
-
-    LINEAR = "linear"
-    LOG = "log"
-    ORDINAL = "ordinal"
-    SYMLOG = "symlog"
 
 
 class GraphGradientMode(enum.StrEnum):
@@ -775,44 +873,6 @@ class PointsConfig:
             args["point_color"] = data["pointColor"]
         if "pointSymbol" in data:
             args["point_symbol"] = data["pointSymbol"]        
-
-        return cls(**args)
-
-
-class ScaleDistributionConfig:
-    """
-    TODO docs
-    """
-
-    type_val: 'ScaleDistribution'
-    log: typing.Optional[float]
-    linear_threshold: typing.Optional[float]
-
-    def __init__(self, type_val: typing.Optional['ScaleDistribution'] = None, log: typing.Optional[float] = None, linear_threshold: typing.Optional[float] = None):
-        self.type_val = type_val if type_val is not None else ScaleDistribution.LINEAR
-        self.log = log
-        self.linear_threshold = linear_threshold
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "type": self.type_val,
-        }
-        if self.log is not None:
-            payload["log"] = self.log
-        if self.linear_threshold is not None:
-            payload["linearThreshold"] = self.linear_threshold
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "log" in data:
-            args["log"] = data["log"]
-        if "linearThreshold" in data:
-            args["linear_threshold"] = data["linearThreshold"]        
 
         return cls(**args)
 
@@ -1160,6 +1220,41 @@ class ReduceDataOptions:
         return cls(**args)
 
 
+class VizTextDisplayOptions:
+    """
+    TODO docs
+    """
+
+    # Explicit title text size
+    title_size: typing.Optional[float]
+    # Explicit value text size
+    value_size: typing.Optional[float]
+
+    def __init__(self, title_size: typing.Optional[float] = None, value_size: typing.Optional[float] = None):
+        self.title_size = title_size
+        self.value_size = value_size
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.title_size is not None:
+            payload["titleSize"] = self.title_size
+        if self.value_size is not None:
+            payload["valueSize"] = self.value_size
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "titleSize" in data:
+            args["title_size"] = data["titleSize"]
+        if "valueSize" in data:
+            args["value_size"] = data["valueSize"]        
+
+        return cls(**args)
+
+
 class VizOrientation(enum.StrEnum):
     """
     TODO docs
@@ -1196,6 +1291,57 @@ class OptionsWithTooltip:
         return cls(**args)
 
 
+class VizTooltipOptions:
+    """
+    TODO docs
+    """
+
+    mode: 'TooltipDisplayMode'
+    sort: 'SortOrder'
+
+    def __init__(self, mode: typing.Optional['TooltipDisplayMode'] = None, sort: typing.Optional['SortOrder'] = None):
+        self.mode = mode if mode is not None else TooltipDisplayMode.SINGLE
+        self.sort = sort if sort is not None else SortOrder.ASCENDING
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "mode": self.mode,
+            "sort": self.sort,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "mode" in data:
+            args["mode"] = data["mode"]
+        if "sort" in data:
+            args["sort"] = data["sort"]        
+
+        return cls(**args)
+
+
+class TooltipDisplayMode(enum.StrEnum):
+    """
+    TODO docs
+    """
+
+    SINGLE = "single"
+    MULTI = "multi"
+    NONE = "none"
+
+
+class SortOrder(enum.StrEnum):
+    """
+    TODO docs
+    """
+
+    ASCENDING = "asc"
+    DESCENDING = "desc"
+    NONE = "none"
+
+
 class OptionsWithLegend:
     """
     TODO docs
@@ -1222,6 +1368,77 @@ class OptionsWithLegend:
         return cls(**args)
 
 
+class VizLegendOptions:
+    """
+    TODO docs
+    """
+
+    display_mode: 'LegendDisplayMode'
+    placement: 'LegendPlacement'
+    show_legend: bool
+    as_table: typing.Optional[bool]
+    is_visible: typing.Optional[bool]
+    sort_by: typing.Optional[str]
+    sort_desc: typing.Optional[bool]
+    width: typing.Optional[float]
+    calcs: list[str]
+
+    def __init__(self, display_mode: typing.Optional['LegendDisplayMode'] = None, placement: typing.Optional['LegendPlacement'] = None, show_legend: bool = False, as_table: typing.Optional[bool] = None, is_visible: typing.Optional[bool] = None, sort_by: typing.Optional[str] = None, sort_desc: typing.Optional[bool] = None, width: typing.Optional[float] = None, calcs: typing.Optional[list[str]] = None):
+        self.display_mode = display_mode if display_mode is not None else LegendDisplayMode.LIST
+        self.placement = placement if placement is not None else LegendPlacement.BOTTOM
+        self.show_legend = show_legend
+        self.as_table = as_table
+        self.is_visible = is_visible
+        self.sort_by = sort_by
+        self.sort_desc = sort_desc
+        self.width = width
+        self.calcs = calcs if calcs is not None else []
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "displayMode": self.display_mode,
+            "placement": self.placement,
+            "showLegend": self.show_legend,
+            "calcs": self.calcs,
+        }
+        if self.as_table is not None:
+            payload["asTable"] = self.as_table
+        if self.is_visible is not None:
+            payload["isVisible"] = self.is_visible
+        if self.sort_by is not None:
+            payload["sortBy"] = self.sort_by
+        if self.sort_desc is not None:
+            payload["sortDesc"] = self.sort_desc
+        if self.width is not None:
+            payload["width"] = self.width
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "displayMode" in data:
+            args["display_mode"] = data["displayMode"]
+        if "placement" in data:
+            args["placement"] = data["placement"]
+        if "showLegend" in data:
+            args["show_legend"] = data["showLegend"]
+        if "asTable" in data:
+            args["as_table"] = data["asTable"]
+        if "isVisible" in data:
+            args["is_visible"] = data["isVisible"]
+        if "sortBy" in data:
+            args["sort_by"] = data["sortBy"]
+        if "sortDesc" in data:
+            args["sort_desc"] = data["sortDesc"]
+        if "width" in data:
+            args["width"] = data["width"]
+        if "calcs" in data:
+            args["calcs"] = data["calcs"]        
+
+        return cls(**args)
+
+
 class OptionsWithTimezones:
     """
     TODO docs
@@ -1244,9 +1461,21 @@ class OptionsWithTimezones:
         args: dict[str, typing.Any] = {}
         
         if "timezone" in data:
-            args["timezone"] = data["timezone"]        
+            args["timezone"] = [item for item in data["timezone"]]        
 
         return cls(**args)
+
+
+# A specific timezone from https://en.wikipedia.org/wiki/Tz_database
+TimeZone: typing.TypeAlias = str
+
+
+# Use UTC/GMT timezone
+TimeZoneUtc: typing.Literal["utc"] = "utc"
+
+
+# Use the timezone defined by end user web browser
+TimeZoneBrowser: typing.Literal["browser"] = "browser"
 
 
 class OptionsWithTextFormatting:
@@ -1338,61 +1567,6 @@ class TimelineValueAlignment(enum.StrEnum):
     CENTER = "center"
     LEFT = "left"
     RIGHT = "right"
-
-
-class VizTextDisplayOptions:
-    """
-    TODO docs
-    """
-
-    # Explicit title text size
-    title_size: typing.Optional[float]
-    # Explicit value text size
-    value_size: typing.Optional[float]
-
-    def __init__(self, title_size: typing.Optional[float] = None, value_size: typing.Optional[float] = None):
-        self.title_size = title_size
-        self.value_size = value_size
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.title_size is not None:
-            payload["titleSize"] = self.title_size
-        if self.value_size is not None:
-            payload["valueSize"] = self.value_size
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "titleSize" in data:
-            args["title_size"] = data["titleSize"]
-        if "valueSize" in data:
-            args["value_size"] = data["valueSize"]        
-
-        return cls(**args)
-
-
-class TooltipDisplayMode(enum.StrEnum):
-    """
-    TODO docs
-    """
-
-    SINGLE = "single"
-    MULTI = "multi"
-    NONE = "none"
-
-
-class SortOrder(enum.StrEnum):
-    """
-    TODO docs
-    """
-
-    ASCENDING = "asc"
-    DESCENDING = "desc"
-    NONE = "none"
 
 
 class GraphFieldConfig:
@@ -1605,77 +1779,6 @@ class GraphFieldConfig:
         return cls(**args)
 
 
-class VizLegendOptions:
-    """
-    TODO docs
-    """
-
-    display_mode: 'LegendDisplayMode'
-    placement: 'LegendPlacement'
-    show_legend: bool
-    as_table: typing.Optional[bool]
-    is_visible: typing.Optional[bool]
-    sort_by: typing.Optional[str]
-    sort_desc: typing.Optional[bool]
-    width: typing.Optional[float]
-    calcs: list[str]
-
-    def __init__(self, display_mode: typing.Optional['LegendDisplayMode'] = None, placement: typing.Optional['LegendPlacement'] = None, show_legend: bool = False, as_table: typing.Optional[bool] = None, is_visible: typing.Optional[bool] = None, sort_by: typing.Optional[str] = None, sort_desc: typing.Optional[bool] = None, width: typing.Optional[float] = None, calcs: typing.Optional[list[str]] = None):
-        self.display_mode = display_mode if display_mode is not None else LegendDisplayMode.LIST
-        self.placement = placement if placement is not None else LegendPlacement.BOTTOM
-        self.show_legend = show_legend
-        self.as_table = as_table
-        self.is_visible = is_visible
-        self.sort_by = sort_by
-        self.sort_desc = sort_desc
-        self.width = width
-        self.calcs = calcs if calcs is not None else []
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "displayMode": self.display_mode,
-            "placement": self.placement,
-            "showLegend": self.show_legend,
-            "calcs": self.calcs,
-        }
-        if self.as_table is not None:
-            payload["asTable"] = self.as_table
-        if self.is_visible is not None:
-            payload["isVisible"] = self.is_visible
-        if self.sort_by is not None:
-            payload["sortBy"] = self.sort_by
-        if self.sort_desc is not None:
-            payload["sortDesc"] = self.sort_desc
-        if self.width is not None:
-            payload["width"] = self.width
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "displayMode" in data:
-            args["display_mode"] = data["displayMode"]
-        if "placement" in data:
-            args["placement"] = data["placement"]
-        if "showLegend" in data:
-            args["show_legend"] = data["showLegend"]
-        if "asTable" in data:
-            args["as_table"] = data["asTable"]
-        if "isVisible" in data:
-            args["is_visible"] = data["isVisible"]
-        if "sortBy" in data:
-            args["sort_by"] = data["sortBy"]
-        if "sortDesc" in data:
-            args["sort_desc"] = data["sortDesc"]
-        if "width" in data:
-            args["width"] = data["width"]
-        if "calcs" in data:
-            args["calcs"] = data["calcs"]        
-
-        return cls(**args)
-
-
 class BarGaugeDisplayMode(enum.StrEnum):
     """
     Enum expressing the possible display modes
@@ -1695,37 +1798,6 @@ class BarGaugeValueMode(enum.StrEnum):
     COLOR = "color"
     TEXT = "text"
     HIDDEN = "hidden"
-
-
-class VizTooltipOptions:
-    """
-    TODO docs
-    """
-
-    mode: 'TooltipDisplayMode'
-    sort: 'SortOrder'
-
-    def __init__(self, mode: typing.Optional['TooltipDisplayMode'] = None, sort: typing.Optional['SortOrder'] = None):
-        self.mode = mode if mode is not None else TooltipDisplayMode.SINGLE
-        self.sort = sort if sort is not None else SortOrder.ASCENDING
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "mode": self.mode,
-            "sort": self.sort,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "mode" in data:
-            args["mode"] = data["mode"]
-        if "sort" in data:
-            args["sort"] = data["sort"]        
-
-        return cls(**args)
 
 
 Labels: typing.TypeAlias = dict[str, str]
@@ -2224,14 +2296,6 @@ class TableCellHeight(enum.StrEnum):
 TableCellOptions: typing.TypeAlias = typing.Union['TableAutoCellOptions', 'TableSparklineCellOptions', 'TableBarGaugeCellOptions', 'TableColoredBackgroundCellOptions', 'TableColorTextCellOptions', 'TableImageCellOptions', 'TableJsonViewCellOptions']
 
 
-# Use UTC/GMT timezone
-TimeZoneUtc: typing.Literal["utc"] = "utc"
-
-
-# Use the timezone defined by end user web browser
-TimeZoneBrowser: typing.Literal["browser"] = "browser"
-
-
 class VariableFormatID(enum.StrEnum):
     """
     Optional formats for the template variable replace functions
@@ -2292,66 +2356,6 @@ class ResourceDimensionConfig:
             args["field"] = data["field"]
         if "fixed" in data:
             args["fixed"] = data["fixed"]        
-
-        return cls(**args)
-
-
-class FrameGeometrySource:
-    mode: 'FrameGeometrySourceMode'
-    # Field mappings
-    geohash: typing.Optional[str]
-    latitude: typing.Optional[str]
-    longitude: typing.Optional[str]
-    wkt: typing.Optional[str]
-    lookup: typing.Optional[str]
-    # Path to Gazetteer
-    gazetteer: typing.Optional[str]
-
-    def __init__(self, mode: typing.Optional['FrameGeometrySourceMode'] = None, geohash: typing.Optional[str] = None, latitude: typing.Optional[str] = None, longitude: typing.Optional[str] = None, wkt: typing.Optional[str] = None, lookup: typing.Optional[str] = None, gazetteer: typing.Optional[str] = None):
-        self.mode = mode if mode is not None else FrameGeometrySourceMode.AUTO
-        self.geohash = geohash
-        self.latitude = latitude
-        self.longitude = longitude
-        self.wkt = wkt
-        self.lookup = lookup
-        self.gazetteer = gazetteer
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "mode": self.mode,
-        }
-        if self.geohash is not None:
-            payload["geohash"] = self.geohash
-        if self.latitude is not None:
-            payload["latitude"] = self.latitude
-        if self.longitude is not None:
-            payload["longitude"] = self.longitude
-        if self.wkt is not None:
-            payload["wkt"] = self.wkt
-        if self.lookup is not None:
-            payload["lookup"] = self.lookup
-        if self.gazetteer is not None:
-            payload["gazetteer"] = self.gazetteer
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "mode" in data:
-            args["mode"] = data["mode"]
-        if "geohash" in data:
-            args["geohash"] = data["geohash"]
-        if "latitude" in data:
-            args["latitude"] = data["latitude"]
-        if "longitude" in data:
-            args["longitude"] = data["longitude"]
-        if "wkt" in data:
-            args["wkt"] = data["wkt"]
-        if "lookup" in data:
-            args["lookup"] = data["lookup"]
-        if "gazetteer" in data:
-            args["gazetteer"] = data["gazetteer"]        
 
         return cls(**args)
 
@@ -2471,7 +2475,8 @@ class TableFieldOptions:
         if "displayMode" in data:
             args["display_mode"] = data["displayMode"]
         if "cellOptions" in data:
-            args["cell_options"] = data["cellOptions"]
+            decoding_map_cellOptions_ref_union: dict[str, typing.Union[typing.Type[TableAutoCellOptions], typing.Type[TableColoredBackgroundCellOptions], typing.Type[TableColorTextCellOptions], typing.Type[TableBarGaugeCellOptions], typing.Type[TableImageCellOptions], typing.Type[TableJsonViewCellOptions], typing.Type[TableSparklineCellOptions]]] = {"auto": TableAutoCellOptions, "color-background": TableColoredBackgroundCellOptions, "color-text": TableColorTextCellOptions, "gauge": TableBarGaugeCellOptions, "image": TableImageCellOptions, "json-view": TableJsonViewCellOptions, "sparkline": TableSparklineCellOptions}
+            args["cell_options"] = decoding_map_cellOptions_ref_union[data["cellOptions"]["type"]].from_json(data["cellOptions"])
         if "hidden" in data:
             args["hidden"] = data["hidden"]
         if "inspect" in data:
@@ -2482,10 +2487,6 @@ class TableFieldOptions:
             args["hide_header"] = data["hideHeader"]        
 
         return cls(**args)
-
-
-# A specific timezone from https://en.wikipedia.org/wiki/Tz_database
-TimeZone: typing.TypeAlias = str
 
 
 

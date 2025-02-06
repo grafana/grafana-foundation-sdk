@@ -414,39 +414,6 @@ func (resource TempoQuery) Validate() error {
 	return errs
 }
 
-// search = Loki search, nativeSearch = Tempo search for backwards compatibility
-type TempoQueryType string
-
-const (
-	TempoQueryTypeTraceql       TempoQueryType = "traceql"
-	TempoQueryTypeTraceqlSearch TempoQueryType = "traceqlSearch"
-	TempoQueryTypeSearch        TempoQueryType = "search"
-	TempoQueryTypeServiceMap    TempoQueryType = "serviceMap"
-	TempoQueryTypeUpload        TempoQueryType = "upload"
-	TempoQueryTypeNativeSearch  TempoQueryType = "nativeSearch"
-	TempoQueryTypeTraceId       TempoQueryType = "traceId"
-	TempoQueryTypeClear         TempoQueryType = "clear"
-)
-
-// The state of the TraceQL streaming search query
-type SearchStreamingState string
-
-const (
-	SearchStreamingStatePending   SearchStreamingState = "pending"
-	SearchStreamingStateStreaming SearchStreamingState = "streaming"
-	SearchStreamingStateDone      SearchStreamingState = "done"
-	SearchStreamingStateError     SearchStreamingState = "error"
-)
-
-// static fields are pre-set in the UI, dynamic fields are added by the user
-type TraceqlSearchScope string
-
-const (
-	TraceqlSearchScopeUnscoped TraceqlSearchScope = "unscoped"
-	TraceqlSearchScopeResource TraceqlSearchScope = "resource"
-	TraceqlSearchScopeSpan     TraceqlSearchScope = "span"
-)
-
 type TraceqlFilter struct {
 	// Uniquely identify the filter, will not be used in the query generation
 	Id string `json:"id"`
@@ -631,6 +598,39 @@ func (resource TraceqlFilter) Validate() error {
 
 	return errs
 }
+
+// static fields are pre-set in the UI, dynamic fields are added by the user
+type TraceqlSearchScope string
+
+const (
+	TraceqlSearchScopeUnscoped TraceqlSearchScope = "unscoped"
+	TraceqlSearchScopeResource TraceqlSearchScope = "resource"
+	TraceqlSearchScopeSpan     TraceqlSearchScope = "span"
+)
+
+// search = Loki search, nativeSearch = Tempo search for backwards compatibility
+type TempoQueryType string
+
+const (
+	TempoQueryTypeTraceql       TempoQueryType = "traceql"
+	TempoQueryTypeTraceqlSearch TempoQueryType = "traceqlSearch"
+	TempoQueryTypeSearch        TempoQueryType = "search"
+	TempoQueryTypeServiceMap    TempoQueryType = "serviceMap"
+	TempoQueryTypeUpload        TempoQueryType = "upload"
+	TempoQueryTypeNativeSearch  TempoQueryType = "nativeSearch"
+	TempoQueryTypeTraceId       TempoQueryType = "traceId"
+	TempoQueryTypeClear         TempoQueryType = "clear"
+)
+
+// The state of the TraceQL streaming search query
+type SearchStreamingState string
+
+const (
+	SearchStreamingStatePending   SearchStreamingState = "pending"
+	SearchStreamingStateStreaming SearchStreamingState = "streaming"
+	SearchStreamingStateDone      SearchStreamingState = "done"
+	SearchStreamingStateError     SearchStreamingState = "error"
+)
 
 type StringOrArrayOfString struct {
 	String        *string  `json:"String,omitempty"`

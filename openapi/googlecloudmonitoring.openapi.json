@@ -55,15 +55,6 @@
           }
         }
       },
-      "QueryType": {
-        "enum": [
-          "timeSeriesList",
-          "timeSeriesQuery",
-          "slo",
-          "annotation"
-        ],
-        "description": "Defines the supported queryTypes."
-      },
       "TimeSeriesList": {
         "type": "object",
         "additionalProperties": false,
@@ -302,6 +293,15 @@
           }
         },
         "description": "SLO sub-query properties."
+      },
+      "QueryType": {
+        "enum": [
+          "timeSeriesList",
+          "timeSeriesQuery",
+          "slo",
+          "annotation"
+        ],
+        "description": "Defines the supported queryTypes."
       },
       "MetricQuery": {
         "type": "object",

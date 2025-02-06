@@ -397,6 +397,69 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * Adds override rules for a specific field, referred to by its name.
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByName(string $name,array $properties): static
+    {
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byName",
+            options: $name,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
+     * Adds override rules for the fields whose name match the given regexp.
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByRegexp(string $regexp,array $properties): static
+    {
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byRegexp",
+            options: $regexp,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
+     * Adds override rules for all the fields of the given type.
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByFieldType(string $fieldType,array $properties): static
+    {
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byType",
+            options: $fieldType,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByQuery(string $queryRefId,array $properties): static
+    {
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byFrameRefID",
+            options: $queryRefId,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
      * Enable inline editing
      */
     public function inlineEditing(bool $inlineEditing): static

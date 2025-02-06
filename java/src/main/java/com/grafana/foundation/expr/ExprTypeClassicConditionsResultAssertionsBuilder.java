@@ -11,17 +11,17 @@ public class ExprTypeClassicConditionsResultAssertionsBuilder implements com.gra
         this.internal = new ExprTypeClassicConditionsResultAssertions();
     }
     public ExprTypeClassicConditionsResultAssertionsBuilder maxFrames(Long maxFrames) {
-    this.internal.maxFrames = maxFrames;
+        this.internal.maxFrames = maxFrames;
         return this;
     }
     
-    public ExprTypeClassicConditionsResultAssertionsBuilder type(TypeClassicConditionsType type) {
-    this.internal.type = type;
+    public ExprTypeClassicConditionsResultAssertionsBuilder type(ExprTypeClassicConditionsResultAssertionsType type) {
+        this.internal.type = type;
         return this;
     }
     
     public ExprTypeClassicConditionsResultAssertionsBuilder typeVersion(List<Long> typeVersion) {
-    this.internal.typeVersion = typeVersion;
+        this.internal.typeVersion = typeVersion;
         return this;
     }
     public ExprTypeClassicConditionsResultAssertions build() {

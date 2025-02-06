@@ -10,27 +10,27 @@ public class ElasticsearchTermsSettingsBuilder implements com.grafana.foundation
         this.internal = new ElasticsearchTermsSettings();
     }
     public ElasticsearchTermsSettingsBuilder order(TermsOrder order) {
-    this.internal.order = order;
+        this.internal.order = order;
         return this;
     }
     
     public ElasticsearchTermsSettingsBuilder size(String size) {
-    this.internal.size = size;
+        this.internal.size = size;
         return this;
     }
     
     public ElasticsearchTermsSettingsBuilder minDocCount(String minDocCount) {
-    this.internal.minDocCount = minDocCount;
+        this.internal.minDocCount = minDocCount;
         return this;
     }
     
     public ElasticsearchTermsSettingsBuilder orderBy(String orderBy) {
-    this.internal.orderBy = orderBy;
+        this.internal.orderBy = orderBy;
         return this;
     }
     
     public ElasticsearchTermsSettingsBuilder missing(String missing) {
-    this.internal.missing = missing;
+        this.internal.missing = missing;
         return this;
     }
     public ElasticsearchTermsSettings build() {

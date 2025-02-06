@@ -11,22 +11,22 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
         this.internal = new Dataquery();
     }
     public DataqueryBuilder panelId(Integer panelId) {
-    this.internal.panelId = panelId;
+        this.internal.panelId = panelId;
         return this;
     }
     
     public DataqueryBuilder refId(String refId) {
-    this.internal.refId = refId;
+        this.internal.refId = refId;
         return this;
     }
     
     public DataqueryBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     
     public DataqueryBuilder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
+        this.internal.datasource = datasource;
         return this;
     }
     public Dataquery build() {

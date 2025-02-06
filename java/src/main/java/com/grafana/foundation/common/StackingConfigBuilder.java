@@ -10,12 +10,12 @@ public class StackingConfigBuilder implements com.grafana.foundation.cog.Builder
         this.internal = new StackingConfig();
     }
     public StackingConfigBuilder mode(StackingMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     
     public StackingConfigBuilder group(String group) {
-    this.internal.group = group;
+        this.internal.group = group;
         return this;
     }
     public StackingConfig build() {

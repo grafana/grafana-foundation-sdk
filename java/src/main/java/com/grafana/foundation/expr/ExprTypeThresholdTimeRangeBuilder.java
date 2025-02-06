@@ -10,12 +10,12 @@ public class ExprTypeThresholdTimeRangeBuilder implements com.grafana.foundation
         this.internal = new ExprTypeThresholdTimeRange();
     }
     public ExprTypeThresholdTimeRangeBuilder from(String from) {
-    this.internal.from = from;
+        this.internal.from = from;
         return this;
     }
     
     public ExprTypeThresholdTimeRangeBuilder to(String to) {
-    this.internal.to = to;
+        this.internal.to = to;
         return this;
     }
     public ExprTypeThresholdTimeRange build() {

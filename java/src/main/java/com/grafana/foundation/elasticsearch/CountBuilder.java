@@ -8,15 +8,15 @@ public class CountBuilder implements com.grafana.foundation.cog.Builder<Count> {
     
     public CountBuilder() {
         this.internal = new Count();
-    this.internal.type = "count";
+        this.internal.type = "count";
     }
     public CountBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public CountBuilder hide(Boolean hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     public Count build() {

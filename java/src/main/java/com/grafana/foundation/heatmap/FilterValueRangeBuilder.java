@@ -10,12 +10,12 @@ public class FilterValueRangeBuilder implements com.grafana.foundation.cog.Build
         this.internal = new FilterValueRange();
     }
     public FilterValueRangeBuilder le(Float le) {
-    this.internal.le = le;
+        this.internal.le = le;
         return this;
     }
     
     public FilterValueRangeBuilder ge(Float ge) {
-    this.internal.ge = ge;
+        this.internal.ge = ge;
         return this;
     }
     public FilterValueRange build() {

@@ -11,27 +11,27 @@ public class TimePickerBuilder implements com.grafana.foundation.cog.Builder<Tim
         this.internal = new TimePicker();
     }
     public TimePickerBuilder hidden(Boolean hidden) {
-    this.internal.hidden = hidden;
+        this.internal.hidden = hidden;
         return this;
     }
     
     public TimePickerBuilder refreshIntervals(List<String> refreshIntervals) {
-    this.internal.refreshIntervals = refreshIntervals;
+        this.internal.refreshIntervals = refreshIntervals;
         return this;
     }
     
     public TimePickerBuilder collapse(Boolean collapse) {
-    this.internal.collapse = collapse;
+        this.internal.collapse = collapse;
         return this;
     }
     
     public TimePickerBuilder enable(Boolean enable) {
-    this.internal.enable = enable;
+        this.internal.enable = enable;
         return this;
     }
     
     public TimePickerBuilder timeOptions(List<String> timeOptions) {
-    this.internal.timeOptions = timeOptions;
+        this.internal.timeOptions = timeOptions;
         return this;
     }
     public TimePicker build() {

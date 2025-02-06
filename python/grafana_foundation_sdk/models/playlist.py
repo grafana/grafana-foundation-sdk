@@ -43,7 +43,7 @@ class Playlist:
         if "interval" in data:
             args["interval"] = data["interval"]
         if "items" in data:
-            args["items"] = data["items"]        
+            args["items"] = [PlaylistItem.from_json(item) for item in data["items"]]        
 
         return cls(**args)
 

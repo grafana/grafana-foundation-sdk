@@ -102,52 +102,12 @@ NewDashboard creates a new Dashboard object.
 func NewDashboard() *Dashboard
 ```
 
-### <span class="badge function"></span> NewAnnotationTarget
+### <span class="badge function"></span> NewPanel
 
-NewAnnotationTarget creates a new AnnotationTarget object.
-
-```go
-func NewAnnotationTarget() *AnnotationTarget
-```
-
-### <span class="badge function"></span> NewAnnotationPanelFilter
-
-NewAnnotationPanelFilter creates a new AnnotationPanelFilter object.
+NewPanel creates a new Panel object.
 
 ```go
-func NewAnnotationPanelFilter() *AnnotationPanelFilter
-```
-
-### <span class="badge function"></span> NewAnnotationContainer
-
-NewAnnotationContainer creates a new AnnotationContainer object.
-
-```go
-func NewAnnotationContainer() *AnnotationContainer
-```
-
-### <span class="badge function"></span> NewAnnotationQuery
-
-NewAnnotationQuery creates a new AnnotationQuery object.
-
-```go
-func NewAnnotationQuery() *AnnotationQuery
-```
-
-### <span class="badge function"></span> NewVariableModel
-
-NewVariableModel creates a new VariableModel object.
-
-```go
-func NewVariableModel() *VariableModel
-```
-
-### <span class="badge function"></span> NewVariableOption
-
-NewVariableOption creates a new VariableOption object.
-
-```go
-func NewVariableOption() *VariableOption
+func NewPanel() *Panel
 ```
 
 ### <span class="badge function"></span> NewDataSourceRef
@@ -158,22 +118,6 @@ NewDataSourceRef creates a new DataSourceRef object.
 func NewDataSourceRef() *DataSourceRef
 ```
 
-### <span class="badge function"></span> NewDashboardLink
-
-NewDashboardLink creates a new DashboardLink object.
-
-```go
-func NewDashboardLink() *DashboardLink
-```
-
-### <span class="badge function"></span> NewFieldColor
-
-NewFieldColor creates a new FieldColor object.
-
-```go
-func NewFieldColor() *FieldColor
-```
-
 ### <span class="badge function"></span> NewGridPos
 
 NewGridPos creates a new GridPos object.
@@ -182,20 +126,52 @@ NewGridPos creates a new GridPos object.
 func NewGridPos() *GridPos
 ```
 
-### <span class="badge function"></span> NewThreshold
+### <span class="badge function"></span> NewDashboardLink
 
-NewThreshold creates a new Threshold object.
+NewDashboardLink creates a new DashboardLink object.
 
 ```go
-func NewThreshold() *Threshold
+func NewDashboardLink() *DashboardLink
 ```
 
-### <span class="badge function"></span> NewThresholdsConfig
+### <span class="badge function"></span> NewDataTransformerConfig
 
-NewThresholdsConfig creates a new ThresholdsConfig object.
+NewDataTransformerConfig creates a new DataTransformerConfig object.
 
 ```go
-func NewThresholdsConfig() *ThresholdsConfig
+func NewDataTransformerConfig() *DataTransformerConfig
+```
+
+### <span class="badge function"></span> NewMatcherConfig
+
+NewMatcherConfig creates a new MatcherConfig object.
+
+```go
+func NewMatcherConfig() *MatcherConfig
+```
+
+### <span class="badge function"></span> NewLibraryPanelRef
+
+NewLibraryPanelRef creates a new LibraryPanelRef object.
+
+```go
+func NewLibraryPanelRef() *LibraryPanelRef
+```
+
+### <span class="badge function"></span> NewFieldConfigSource
+
+NewFieldConfigSource creates a new FieldConfigSource object.
+
+```go
+func NewFieldConfigSource() *FieldConfigSource
+```
+
+### <span class="badge function"></span> NewFieldConfig
+
+NewFieldConfig creates a new FieldConfig object.
+
+```go
+func NewFieldConfig() *FieldConfig
 ```
 
 ### <span class="badge function"></span> NewValueMapping
@@ -212,6 +188,14 @@ NewValueMap creates a new ValueMap object.
 
 ```go
 func NewValueMap() *ValueMap
+```
+
+### <span class="badge function"></span> NewValueMappingResult
+
+NewValueMappingResult creates a new ValueMappingResult object.
+
+```go
+func NewValueMappingResult() *ValueMappingResult
 ```
 
 ### <span class="badge function"></span> NewRangeMap
@@ -238,60 +222,28 @@ NewSpecialValueMap creates a new SpecialValueMap object.
 func NewSpecialValueMap() *SpecialValueMap
 ```
 
-### <span class="badge function"></span> NewValueMappingResult
+### <span class="badge function"></span> NewThresholdsConfig
 
-NewValueMappingResult creates a new ValueMappingResult object.
+NewThresholdsConfig creates a new ThresholdsConfig object.
 
 ```go
-func NewValueMappingResult() *ValueMappingResult
+func NewThresholdsConfig() *ThresholdsConfig
 ```
 
-### <span class="badge function"></span> NewDataTransformerConfig
+### <span class="badge function"></span> NewThreshold
 
-NewDataTransformerConfig creates a new DataTransformerConfig object.
+NewThreshold creates a new Threshold object.
 
 ```go
-func NewDataTransformerConfig() *DataTransformerConfig
+func NewThreshold() *Threshold
 ```
 
-### <span class="badge function"></span> NewSnapshot
+### <span class="badge function"></span> NewFieldColor
 
-NewSnapshot creates a new Snapshot object.
-
-```go
-func NewSnapshot() *Snapshot
-```
-
-### <span class="badge function"></span> NewPanel
-
-NewPanel creates a new Panel object.
+NewFieldColor creates a new FieldColor object.
 
 ```go
-func NewPanel() *Panel
-```
-
-### <span class="badge function"></span> NewFieldConfigSource
-
-NewFieldConfigSource creates a new FieldConfigSource object.
-
-```go
-func NewFieldConfigSource() *FieldConfigSource
-```
-
-### <span class="badge function"></span> NewLibraryPanelRef
-
-NewLibraryPanelRef creates a new LibraryPanelRef object.
-
-```go
-func NewLibraryPanelRef() *LibraryPanelRef
-```
-
-### <span class="badge function"></span> NewMatcherConfig
-
-NewMatcherConfig creates a new MatcherConfig object.
-
-```go
-func NewMatcherConfig() *MatcherConfig
+func NewFieldColor() *FieldColor
 ```
 
 ### <span class="badge function"></span> NewDynamicConfigValue
@@ -300,14 +252,6 @@ NewDynamicConfigValue creates a new DynamicConfigValue object.
 
 ```go
 func NewDynamicConfigValue() *DynamicConfigValue
-```
-
-### <span class="badge function"></span> NewFieldConfig
-
-NewFieldConfig creates a new FieldConfig object.
-
-```go
-func NewFieldConfig() *FieldConfig
 ```
 
 ### <span class="badge function"></span> NewRowPanel
@@ -324,6 +268,62 @@ NewGraphPanel creates a new GraphPanel object.
 
 ```go
 func NewGraphPanel() *GraphPanel
+```
+
+### <span class="badge function"></span> NewVariableModel
+
+NewVariableModel creates a new VariableModel object.
+
+```go
+func NewVariableModel() *VariableModel
+```
+
+### <span class="badge function"></span> NewVariableOption
+
+NewVariableOption creates a new VariableOption object.
+
+```go
+func NewVariableOption() *VariableOption
+```
+
+### <span class="badge function"></span> NewAnnotationContainer
+
+NewAnnotationContainer creates a new AnnotationContainer object.
+
+```go
+func NewAnnotationContainer() *AnnotationContainer
+```
+
+### <span class="badge function"></span> NewAnnotationQuery
+
+NewAnnotationQuery creates a new AnnotationQuery object.
+
+```go
+func NewAnnotationQuery() *AnnotationQuery
+```
+
+### <span class="badge function"></span> NewAnnotationPanelFilter
+
+NewAnnotationPanelFilter creates a new AnnotationPanelFilter object.
+
+```go
+func NewAnnotationPanelFilter() *AnnotationPanelFilter
+```
+
+### <span class="badge function"></span> NewAnnotationTarget
+
+NewAnnotationTarget creates a new AnnotationTarget object.
+
+```go
+func NewAnnotationTarget() *AnnotationTarget
+```
+
+### <span class="badge function"></span> NewSnapshot
+
+NewSnapshot creates a new Snapshot object.
+
+```go
+func NewSnapshot() *Snapshot
 ```
 
 ### <span class="badge function"></span> NewTimePicker
@@ -374,6 +374,14 @@ NewDashboardDashboardTemplating creates a new DashboardDashboardTemplating objec
 func NewDashboardDashboardTemplating() *DashboardDashboardTemplating
 ```
 
+### <span class="badge function"></span> NewDashboardFieldConfigSourceOverrides
+
+NewDashboardFieldConfigSourceOverrides creates a new DashboardFieldConfigSourceOverrides object.
+
+```go
+func NewDashboardFieldConfigSourceOverrides() *DashboardFieldConfigSourceOverrides
+```
+
 ### <span class="badge function"></span> NewDashboardRangeMapOptions
 
 NewDashboardRangeMapOptions creates a new DashboardRangeMapOptions object.
@@ -396,14 +404,6 @@ NewDashboardSpecialValueMapOptions creates a new DashboardSpecialValueMapOptions
 
 ```go
 func NewDashboardSpecialValueMapOptions() *DashboardSpecialValueMapOptions
-```
-
-### <span class="badge function"></span> NewDashboardFieldConfigSourceOverrides
-
-NewDashboardFieldConfigSourceOverrides creates a new DashboardFieldConfigSourceOverrides object.
-
-```go
-func NewDashboardFieldConfigSourceOverrides() *DashboardFieldConfigSourceOverrides
 ```
 
 ### <span class="badge function"></span> NewDashboardGraphPanelLegend
@@ -430,6 +430,14 @@ NewPanelOrRowPanel creates a new PanelOrRowPanel object.
 func NewPanelOrRowPanel() *PanelOrRowPanel
 ```
 
+### <span class="badge function"></span> NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap
+
+NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap creates a new ValueMapOrRangeMapOrRegexMapOrSpecialValueMap object.
+
+```go
+func NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap() *ValueMapOrRangeMapOrRegexMapOrSpecialValueMap
+```
+
 ### <span class="badge function"></span> NewStringOrMap
 
 NewStringOrMap creates a new StringOrMap object.
@@ -446,14 +454,6 @@ NewStringOrArrayOfString creates a new StringOrArrayOfString object.
 func NewStringOrArrayOfString() *StringOrArrayOfString
 ```
 
-### <span class="badge function"></span> NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap
-
-NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap creates a new ValueMapOrRangeMapOrRegexMapOrSpecialValueMap object.
-
-```go
-func NewValueMapOrRangeMapOrRegexMapOrSpecialValueMap() *ValueMapOrRangeMapOrRegexMapOrSpecialValueMap
-```
-
 ### <span class="badge function"></span> DashboardConverter
 
 DashboardConverter accepts a `Dashboard` object and generates the Go code to build this object using builders.
@@ -462,28 +462,12 @@ DashboardConverter accepts a `Dashboard` object and generates the Go code to bui
 func DashboardConverter(input Dashboard) string
 ```
 
-### <span class="badge function"></span> AnnotationTargetConverter
+### <span class="badge function"></span> PanelConverter
 
-AnnotationTargetConverter accepts a `AnnotationTarget` object and generates the Go code to build this object using builders.
-
-```go
-func AnnotationTargetConverter(input AnnotationTarget) string
-```
-
-### <span class="badge function"></span> AnnotationPanelFilterConverter
-
-AnnotationPanelFilterConverter accepts a `AnnotationPanelFilter` object and generates the Go code to build this object using builders.
+PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
 
 ```go
-func AnnotationPanelFilterConverter(input AnnotationPanelFilter) string
-```
-
-### <span class="badge function"></span> AnnotationQueryConverter
-
-AnnotationQueryConverter accepts a `AnnotationQuery` object and generates the Go code to build this object using builders.
-
-```go
-func AnnotationQueryConverter(input AnnotationQuery) string
+func PanelConverter(input Panel) string
 ```
 
 ### <span class="badge function"></span> DashboardLinkConverter
@@ -494,14 +478,6 @@ DashboardLinkConverter accepts a `DashboardLink` object and generates the Go cod
 func DashboardLinkConverter(input DashboardLink) string
 ```
 
-### <span class="badge function"></span> FieldColorConverter
-
-FieldColorConverter accepts a `FieldColor` object and generates the Go code to build this object using builders.
-
-```go
-func FieldColorConverter(input FieldColor) string
-```
-
 ### <span class="badge function"></span> ThresholdsConfigConverter
 
 ThresholdsConfigConverter accepts a `ThresholdsConfig` object and generates the Go code to build this object using builders.
@@ -510,20 +486,12 @@ ThresholdsConfigConverter accepts a `ThresholdsConfig` object and generates the 
 func ThresholdsConfigConverter(input ThresholdsConfig) string
 ```
 
-### <span class="badge function"></span> SnapshotConverter
+### <span class="badge function"></span> FieldColorConverter
 
-SnapshotConverter accepts a `Snapshot` object and generates the Go code to build this object using builders.
-
-```go
-func SnapshotConverter(input Snapshot) string
-```
-
-### <span class="badge function"></span> PanelConverter
-
-PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+FieldColorConverter accepts a `FieldColor` object and generates the Go code to build this object using builders.
 
 ```go
-func PanelConverter(input Panel) string
+func FieldColorConverter(input FieldColor) string
 ```
 
 ### <span class="badge function"></span> RowConverter
@@ -540,6 +508,38 @@ GraphPanelConverter accepts a `GraphPanel` object and generates the Go code to b
 
 ```go
 func GraphPanelConverter(input GraphPanel) string
+```
+
+### <span class="badge function"></span> AnnotationQueryConverter
+
+AnnotationQueryConverter accepts a `AnnotationQuery` object and generates the Go code to build this object using builders.
+
+```go
+func AnnotationQueryConverter(input AnnotationQuery) string
+```
+
+### <span class="badge function"></span> AnnotationPanelFilterConverter
+
+AnnotationPanelFilterConverter accepts a `AnnotationPanelFilter` object and generates the Go code to build this object using builders.
+
+```go
+func AnnotationPanelFilterConverter(input AnnotationPanelFilter) string
+```
+
+### <span class="badge function"></span> AnnotationTargetConverter
+
+AnnotationTargetConverter accepts a `AnnotationTarget` object and generates the Go code to build this object using builders.
+
+```go
+func AnnotationTargetConverter(input AnnotationTarget) string
+```
+
+### <span class="badge function"></span> SnapshotConverter
+
+SnapshotConverter accepts a `Snapshot` object and generates the Go code to build this object using builders.
+
+```go
+func SnapshotConverter(input Snapshot) string
 ```
 
 ### <span class="badge function"></span> TimePickerConverter
@@ -590,6 +590,14 @@ DashboardDashboardTemplatingConverter accepts a `DashboardDashboardTemplating` o
 func DashboardDashboardTemplatingConverter(input DashboardDashboardTemplating) string
 ```
 
+### <span class="badge function"></span> DashboardFieldConfigSourceOverridesConverter
+
+DashboardFieldConfigSourceOverridesConverter accepts a `DashboardFieldConfigSourceOverrides` object and generates the Go code to build this object using builders.
+
+```go
+func DashboardFieldConfigSourceOverridesConverter(input DashboardFieldConfigSourceOverrides) string
+```
+
 ### <span class="badge function"></span> DashboardRangeMapOptionsConverter
 
 DashboardRangeMapOptionsConverter accepts a `DashboardRangeMapOptions` object and generates the Go code to build this object using builders.
@@ -612,14 +620,6 @@ DashboardSpecialValueMapOptionsConverter accepts a `DashboardSpecialValueMapOpti
 
 ```go
 func DashboardSpecialValueMapOptionsConverter(input DashboardSpecialValueMapOptions) string
-```
-
-### <span class="badge function"></span> DashboardFieldConfigSourceOverridesConverter
-
-DashboardFieldConfigSourceOverridesConverter accepts a `DashboardFieldConfigSourceOverrides` object and generates the Go code to build this object using builders.
-
-```go
-func DashboardFieldConfigSourceOverridesConverter(input DashboardFieldConfigSourceOverrides) string
 ```
 
 ### <span class="badge function"></span> DashboardGraphPanelLegendConverter

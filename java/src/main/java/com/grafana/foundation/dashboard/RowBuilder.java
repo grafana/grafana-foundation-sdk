@@ -9,31 +9,31 @@ public class RowBuilder implements com.grafana.foundation.cog.Builder<RowPanel> 
     
     public RowBuilder(String title) {
         this.internal = new RowPanel();
-    this.internal.type = "row";
-    this.internal.title = title;
+        this.internal.type = "row";
+        this.internal.title = title;
     }
     public RowBuilder collapsed(Boolean collapsed) {
-    this.internal.collapsed = collapsed;
+        this.internal.collapsed = collapsed;
         return this;
     }
     
     public RowBuilder title(String title) {
-    this.internal.title = title;
+        this.internal.title = title;
         return this;
     }
     
     public RowBuilder datasource(DataSourceRef datasource) {
-    this.internal.datasource = datasource;
+        this.internal.datasource = datasource;
         return this;
     }
     
     public RowBuilder gridPos(GridPos gridPos) {
-    this.internal.gridPos = gridPos;
+        this.internal.gridPos = gridPos;
         return this;
     }
     
     public RowBuilder id(Integer id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
@@ -41,13 +41,13 @@ public class RowBuilder implements com.grafana.foundation.cog.Builder<RowPanel> 
 		if (this.internal.panels == null) {
 			this.internal.panels = new LinkedList<>();
 		}
-    this.internal.panels.add(panel.build());
-    this.internal.collapsed = true;
+        this.internal.panels.add(panel.build());
+        this.internal.collapsed = true;
         return this;
     }
     
     public RowBuilder repeat(String repeat) {
-    this.internal.repeat = repeat;
+        this.internal.repeat = repeat;
         return this;
     }
     public RowPanel build() {

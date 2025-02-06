@@ -10,17 +10,17 @@ public class ElasticsearchExtendedStatsSettingsBuilder implements com.grafana.fo
         this.internal = new ElasticsearchExtendedStatsSettings();
     }
     public ElasticsearchExtendedStatsSettingsBuilder script(InlineScript script) {
-    this.internal.script = script;
+        this.internal.script = script;
         return this;
     }
     
     public ElasticsearchExtendedStatsSettingsBuilder missing(String missing) {
-    this.internal.missing = missing;
+        this.internal.missing = missing;
         return this;
     }
     
     public ElasticsearchExtendedStatsSettingsBuilder sigma(String sigma) {
-    this.internal.sigma = sigma;
+        this.internal.sigma = sigma;
         return this;
     }
     public ElasticsearchExtendedStatsSettings build() {

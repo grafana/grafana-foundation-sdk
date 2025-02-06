@@ -308,16 +308,6 @@ func (resource CloudMonitoringQuery) Validate() error {
 	return errs
 }
 
-// Defines the supported queryTypes.
-type QueryType string
-
-const (
-	QueryTypeTIMESERIESLIST  QueryType = "timeSeriesList"
-	QueryTypeTIMESERIESQUERY QueryType = "timeSeriesQuery"
-	QueryTypeSLO             QueryType = "slo"
-	QueryTypeANNOTATION      QueryType = "annotation"
-)
-
 // Time Series List sub-query properties.
 type TimeSeriesList struct {
 	// GCP project to execute the query against.
@@ -1382,6 +1372,16 @@ func (resource SLOQuery) Equals(other SLOQuery) bool {
 func (resource SLOQuery) Validate() error {
 	return nil
 }
+
+// Defines the supported queryTypes.
+type QueryType string
+
+const (
+	QueryTypeTIMESERIESLIST  QueryType = "timeSeriesList"
+	QueryTypeTIMESERIESQUERY QueryType = "timeSeriesQuery"
+	QueryTypeSLO             QueryType = "slo"
+	QueryTypeANNOTATION      QueryType = "annotation"
+)
 
 // @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
 type MetricQuery struct {

@@ -10,12 +10,12 @@ public class AnnotationPermissionBuilder implements com.grafana.foundation.cog.B
         this.internal = new AnnotationPermission();
     }
     public AnnotationPermissionBuilder dashboard(com.grafana.foundation.cog.Builder<AnnotationActions> dashboard) {
-    this.internal.dashboard = dashboard.build();
+        this.internal.dashboard = dashboard.build();
         return this;
     }
     
     public AnnotationPermissionBuilder organization(com.grafana.foundation.cog.Builder<AnnotationActions> organization) {
-    this.internal.organization = organization.build();
+        this.internal.organization = organization.build();
         return this;
     }
     public AnnotationPermission build() {

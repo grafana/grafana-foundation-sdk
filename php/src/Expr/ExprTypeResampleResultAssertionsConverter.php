@@ -27,7 +27,7 @@ final class ExprTypeResampleResultAssertionsConverter
     
         
     $buffer = 'type(';
-        $arg0 ='\Grafana\Foundation\Expr\TypeResampleType::fromValue("'.$input->type.'")';
+        $arg0 ='\Grafana\Foundation\Expr\ExprTypeResampleResultAssertionsType::fromValue("'.$input->type.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

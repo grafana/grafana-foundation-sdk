@@ -96,17 +96,6 @@ class CloudMonitoringQuery(cogvariants.Dataquery):
         return cls(**args)
 
 
-class QueryType(enum.StrEnum):
-    """
-    Defines the supported queryTypes.
-    """
-
-    TIME_SERIES_LIST = "timeSeriesList"
-    TIME_SERIES_QUERY = "timeSeriesQuery"
-    SLO = "slo"
-    ANNOTATION = "annotation"
-
-
 class TimeSeriesList:
     """
     Time Series List sub-query properties.
@@ -474,6 +463,17 @@ class SLOQuery:
             args["lookback_period"] = data["lookbackPeriod"]        
 
         return cls(**args)
+
+
+class QueryType(enum.StrEnum):
+    """
+    Defines the supported queryTypes.
+    """
+
+    TIME_SERIES_LIST = "timeSeriesList"
+    TIME_SERIES_QUERY = "timeSeriesQuery"
+    SLO = "slo"
+    ANNOTATION = "annotation"
 
 
 class MetricQuery:

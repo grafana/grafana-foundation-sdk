@@ -352,6 +352,36 @@ Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> OverrideByFieldType
+
+Adds override rules for all the fields of the given type.
+
+```go
+func (builder *PanelBuilder) OverrideByFieldType(fieldType string, properties []dashboard.DynamicConfigValue) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> OverrideByName
+
+Adds override rules for a specific field, referred to by its name.
+
+```go
+func (builder *PanelBuilder) OverrideByName(name string, properties []dashboard.DynamicConfigValue) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> OverrideByQuery
+
+```go
+func (builder *PanelBuilder) OverrideByQuery(queryRefId string, properties []dashboard.DynamicConfigValue) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> OverrideByRegexp
+
+Adds override rules for the fields whose name match the given regexp.
+
+```go
+func (builder *PanelBuilder) OverrideByRegexp(regexp string, properties []dashboard.DynamicConfigValue) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> Overrides
 
 Overrides are the options applied to specific fields overriding the defaults.

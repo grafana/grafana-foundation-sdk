@@ -9,66 +9,66 @@ public class CustomVariableBuilder implements com.grafana.foundation.cog.Builder
     
     public CustomVariableBuilder(String name) {
         this.internal = new VariableModel();
-    this.internal.name = name;
-    this.internal.type = VariableType.CUSTOM;
+        this.internal.name = name;
+        this.internal.type = VariableType.CUSTOM;
     }
     public CustomVariableBuilder id(String id) {
-    this.internal.id = id;
+        this.internal.id = id;
         return this;
     }
     
     public CustomVariableBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public CustomVariableBuilder label(String label) {
-    this.internal.label = label;
+        this.internal.label = label;
         return this;
     }
     
     public CustomVariableBuilder hide(VariableHide hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     
     public CustomVariableBuilder description(String description) {
-    this.internal.description = description;
+        this.internal.description = description;
         return this;
     }
     
     public CustomVariableBuilder values(StringOrMap query) {
-    this.internal.query = query;
+        this.internal.query = query;
         return this;
     }
     
     public CustomVariableBuilder allFormat(String allFormat) {
-    this.internal.allFormat = allFormat;
+        this.internal.allFormat = allFormat;
         return this;
     }
     
     public CustomVariableBuilder current(VariableOption current) {
-    this.internal.current = current;
+        this.internal.current = current;
         return this;
     }
     
     public CustomVariableBuilder multi(Boolean multi) {
-    this.internal.multi = multi;
+        this.internal.multi = multi;
         return this;
     }
     
     public CustomVariableBuilder options(List<VariableOption> options) {
-    this.internal.options = options;
+        this.internal.options = options;
         return this;
     }
     
     public CustomVariableBuilder includeAll(Boolean includeAll) {
-    this.internal.includeAll = includeAll;
+        this.internal.includeAll = includeAll;
         return this;
     }
     
     public CustomVariableBuilder allValue(String allValue) {
-    this.internal.allValue = allValue;
+        this.internal.allValue = allValue;
         return this;
     }
     public VariableModel build() {

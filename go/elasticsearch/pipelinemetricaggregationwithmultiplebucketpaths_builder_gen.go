@@ -46,13 +46,8 @@ func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) Pipeline
 	return builder
 }
 
-func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) Type(typeArg cog.Builder[MetricAggregationType]) *PipelineMetricAggregationWithMultipleBucketPathsBuilder {
-	typeArgResource, err := typeArg.Build()
-	if err != nil {
-		builder.errors["type"] = err.(cog.BuildErrors)
-		return builder
-	}
-	builder.internal.Type = typeArgResource
+func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) Type(typeArg MetricAggregationType) *PipelineMetricAggregationWithMultipleBucketPathsBuilder {
+	builder.internal.Type = typeArg
 
 	return builder
 }

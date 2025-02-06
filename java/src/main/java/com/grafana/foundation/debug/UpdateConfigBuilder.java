@@ -10,17 +10,17 @@ public class UpdateConfigBuilder implements com.grafana.foundation.cog.Builder<U
         this.internal = new UpdateConfig();
     }
     public UpdateConfigBuilder render(Boolean render) {
-    this.internal.render = render;
+        this.internal.render = render;
         return this;
     }
     
     public UpdateConfigBuilder dataChanged(Boolean dataChanged) {
-    this.internal.dataChanged = dataChanged;
+        this.internal.dataChanged = dataChanged;
         return this;
     }
     
     public UpdateConfigBuilder schemaChanged(Boolean schemaChanged) {
-    this.internal.schemaChanged = schemaChanged;
+        this.internal.schemaChanged = schemaChanged;
         return this;
     }
     public UpdateConfig build() {

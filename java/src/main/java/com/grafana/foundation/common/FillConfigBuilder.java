@@ -10,17 +10,17 @@ public class FillConfigBuilder implements com.grafana.foundation.cog.Builder<Fil
         this.internal = new FillConfig();
     }
     public FillConfigBuilder fillColor(String fillColor) {
-    this.internal.fillColor = fillColor;
+        this.internal.fillColor = fillColor;
         return this;
     }
     
     public FillConfigBuilder fillOpacity(Double fillOpacity) {
-    this.internal.fillOpacity = fillOpacity;
+        this.internal.fillOpacity = fillOpacity;
         return this;
     }
     
     public FillConfigBuilder fillBelowTo(String fillBelowTo) {
-    this.internal.fillBelowTo = fillBelowTo;
+        this.internal.fillBelowTo = fillBelowTo;
         return this;
     }
     public FillConfig build() {

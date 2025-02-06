@@ -39,7 +39,7 @@ func (builder *MetricAggregationWithMissingSupportBuilder) Settings(settings cog
 ### <span class="badge object-method"></span> Type
 
 ```go
-func (builder *MetricAggregationWithMissingSupportBuilder) Type(typeArg cog.Builder[elasticsearch.MetricAggregationType]) *MetricAggregationWithMissingSupportBuilder
+func (builder *MetricAggregationWithMissingSupportBuilder) Type(typeArg elasticsearch.MetricAggregationType) *MetricAggregationWithMissingSupportBuilder
 ```
 
 ## See also

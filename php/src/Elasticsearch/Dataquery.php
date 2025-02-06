@@ -96,7 +96,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             timeField: $data["timeField"] ?? null,
             bucketAggs: !empty($data["bucketAggs"]) ? array_map((function($input) {
         \assert(is_array($input), 'expected disjunction value to be an array');
-    
+        /** @var array<string, mixed> $input */
         switch ($input["type"]) {
         case "date_histogram":
             return DateHistogram::fromArray($input);
@@ -116,7 +116,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     }), $data["bucketAggs"]) : null,
             metrics: !empty($data["metrics"]) ? array_map((function($input) {
         \assert(is_array($input), 'expected disjunction value to be an array');
-    
+        /** @var array<string, mixed> $input */
         switch ($input["type"]) {
         case "avg":
             return Average::fromArray($input);

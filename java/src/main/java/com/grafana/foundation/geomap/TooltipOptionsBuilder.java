@@ -10,7 +10,7 @@ public class TooltipOptionsBuilder implements com.grafana.foundation.cog.Builder
         this.internal = new TooltipOptions();
     }
     public TooltipOptionsBuilder mode(TooltipMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     public TooltipOptions build() {
