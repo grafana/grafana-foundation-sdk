@@ -26,6 +26,7 @@ public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Da
     @JsonProperty("queryType")
     public String queryType;
     // Azure subscription containing the resource(s) to be queried.
+    // Also used for template variable queries
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("subscription")
     public String subscription;
@@ -53,19 +54,26 @@ public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Da
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("grafanaTemplateVariableFn")
     public GrafanaTemplateVariableQuery grafanaTemplateVariableFn;
-    // Template variables params. These exist for backwards compatiblity with legacy template variables.
+    // Resource group used in template variable queries
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("resourceGroup")
     public String resourceGroup;
+    // Namespace used in template variable queries
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("namespace")
     public String namespace;
+    // Resource used in template variable queries
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("resource")
     public String resource;
+    // Region used in template variable queries
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("region")
     public String region;
+    // Custom namespace used in template variable queries
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("customNamespace")
+    public String customNamespace;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
@@ -80,7 +88,7 @@ public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Da
     public AzureMonitorQuery() {
     }
     
-    public AzureMonitorQuery(String refId,Boolean hide,String queryType,String subscription,List<String> subscriptions,AzureMetricQuery azureMonitor,AzureLogsQuery azureLogAnalytics,AzureResourceGraphQuery azureResourceGraph,AzureTracesQuery azureTraces,GrafanaTemplateVariableQuery grafanaTemplateVariableFn,String resourceGroup,String namespace,String resource,String region,DataSourceRef datasource,String query) {
+    public AzureMonitorQuery(String refId,Boolean hide,String queryType,String subscription,List<String> subscriptions,AzureMetricQuery azureMonitor,AzureLogsQuery azureLogAnalytics,AzureResourceGraphQuery azureResourceGraph,AzureTracesQuery azureTraces,GrafanaTemplateVariableQuery grafanaTemplateVariableFn,String resourceGroup,String namespace,String resource,String region,String customNamespace,DataSourceRef datasource,String query) {
         this.refId = refId;
         this.hide = hide;
         this.queryType = queryType;
@@ -95,6 +103,7 @@ public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Da
         this.namespace = namespace;
         this.resource = resource;
         this.region = region;
+        this.customNamespace = customNamespace;
         this.datasource = datasource;
         this.query = query;
     }

@@ -172,6 +172,13 @@ func (builder *TempoQueryBuilder) Step(step string) *TempoQueryBuilder {
 	return builder
 }
 
+// For metric queries, how many exemplars to request, 0 means no exemplars
+func (builder *TempoQueryBuilder) Exemplars(exemplars int64) *TempoQueryBuilder {
+	builder.internal.Exemplars = &exemplars
+
+	return builder
+}
+
 // For mixed data sources the selected datasource is on the query level.
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
@@ -182,9 +189,9 @@ func (builder *TempoQueryBuilder) Datasource(datasource dashboard.DataSourceRef)
 	return builder
 }
 
-// For metric queries, how many exemplars to request, 0 means no exemplars
-func (builder *TempoQueryBuilder) Exemplars(exemplars int64) *TempoQueryBuilder {
-	builder.internal.Exemplars = &exemplars
+// For metric queries, whether to run instant or range queries
+func (builder *TempoQueryBuilder) MetricsQueryType(metricsQueryType MetricsQueryType) *TempoQueryBuilder {
+	builder.internal.MetricsQueryType = &metricsQueryType
 
 	return builder
 }

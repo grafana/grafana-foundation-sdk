@@ -33,7 +33,7 @@ func (builder *BaseMetricAggregationBuilder) Id(id string) *BaseMetricAggregatio
 ### <span class="badge object-method"></span> Type
 
 ```go
-func (builder *BaseMetricAggregationBuilder) Type(typeArg cog.Builder[elasticsearch.MetricAggregationType]) *BaseMetricAggregationBuilder
+func (builder *BaseMetricAggregationBuilder) Type(typeArg elasticsearch.MetricAggregationType) *BaseMetricAggregationBuilder
 ```
 
 ## See also

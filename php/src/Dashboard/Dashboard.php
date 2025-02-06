@@ -215,7 +215,7 @@ class Dashboard implements \JsonSerializable
     	return \Grafana\Foundation\Dashboard\DashboardDashboardTime::fromArray($val);
     })($data["time"]) : null,
             timepicker: isset($data["timepicker"]) ? (function($input) {
-    	/** @var array{hidden?: bool, refresh_intervals?: array<string>, time_options?: array<string>, nowDelay?: string} */
+    	/** @var array{hidden?: bool, refresh_intervals?: array<string>, time_options?: array<string>, quick_ranges?: array<mixed>, nowDelay?: string} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\TimePickerConfig::fromArray($val);
     })($data["timepicker"]) : null,
@@ -227,7 +227,7 @@ class Dashboard implements \JsonSerializable
             version: $data["version"] ?? null,
             panels: !empty($data["panels"]) ? array_map((function($input) {
         \assert(is_array($input), 'expected disjunction value to be an array');
-    
+        /** @var array<string, mixed> $input */
         switch ($input["type"]) {
         case "row":
             return RowPanel::fromArray($input);

@@ -78,6 +78,14 @@ func (builder *TempoQueryBuilder) Limit(limit int64) *TempoQueryBuilder
 func (builder *TempoQueryBuilder) MaxDuration(maxDuration string) *TempoQueryBuilder
 ```
 
+### <span class="badge object-method"></span> MetricsQueryType
+
+For metric queries, whether to run instant or range queries
+
+```go
+func (builder *TempoQueryBuilder) MetricsQueryType(metricsQueryType tempo.MetricsQueryType) *TempoQueryBuilder
+```
+
 ### <span class="badge object-method"></span> MinDuration
 
 @deprecated Define the minimum duration to select traces. Use duration format, for example: 1.2s, 100ms

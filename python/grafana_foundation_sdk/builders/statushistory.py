@@ -477,6 +477,86 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def override_by_name(self, name: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for a specific field, referred to by its name.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byName",
+            options=name,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_regexp(self, regexp: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for the fields whose name match the given regexp.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byRegexp",
+            options=regexp,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_field_type(self, field_type: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for all the fields of the given type.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byType",
+            options=field_type,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_query(self, query_ref_id: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:        
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.overrides is None:
+            self._internal.field_config.overrides = []
+        
+        self._internal.field_config.overrides.append(dashboard.DashboardFieldConfigSourceOverrides(
+            matcher=dashboard.MatcherConfig(
+            id_val="byFrameRefID",
+            options=query_ref_id,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
     def row_height(self, row_height: float) -> typing.Self:    
         """
         Set the height of the rows
@@ -502,6 +582,20 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             self._internal.options = statushistory.Options()
         assert isinstance(self._internal.options, statushistory.Options)
         self._internal.options.show_value = show_value
+    
+        return self
+    
+    def col_width(self, col_width: float) -> typing.Self:    
+        """
+        Controls the column width
+        """
+            
+        if not col_width <= 1:
+            raise ValueError("col_width must be <= 1")
+        if self._internal.options is None:
+            self._internal.options = statushistory.Options()
+        assert isinstance(self._internal.options, statushistory.Options)
+        self._internal.options.col_width = col_width
     
         return self
     
@@ -531,17 +625,17 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def col_width(self, col_width: float) -> typing.Self:    
+    def per_page(self, per_page: float) -> typing.Self:    
         """
-        Controls the column width
+        Enables pagination when > 0
         """
             
-        if not col_width <= 1:
-            raise ValueError("col_width must be <= 1")
+        if not per_page >= 1:
+            raise ValueError("per_page must be >= 1")
         if self._internal.options is None:
             self._internal.options = statushistory.Options()
         assert isinstance(self._internal.options, statushistory.Options)
-        self._internal.options.col_width = col_width
+        self._internal.options.per_page = per_page
     
         return self
     

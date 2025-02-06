@@ -8,10 +8,10 @@ public class BuiltinRoleRefBuilder implements com.grafana.foundation.cog.Builder
     
     public BuiltinRoleRefBuilder() {
         this.internal = new BuiltinRoleRef();
-    this.internal.kind = "BuiltinRole";
+        this.internal.kind = "BuiltinRole";
     }
     public BuiltinRoleRefBuilder name(BuiltinRoleRefName name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     public BuiltinRoleRef build() {

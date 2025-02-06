@@ -10,17 +10,17 @@ public class VizTextDisplayOptionsBuilder implements com.grafana.foundation.cog.
         this.internal = new VizTextDisplayOptions();
     }
     public VizTextDisplayOptionsBuilder titleSize(Double titleSize) {
-    this.internal.titleSize = titleSize;
+        this.internal.titleSize = titleSize;
         return this;
     }
     
     public VizTextDisplayOptionsBuilder valueSize(Double valueSize) {
-    this.internal.valueSize = valueSize;
+        this.internal.valueSize = valueSize;
         return this;
     }
     
     public VizTextDisplayOptionsBuilder percentSize(Double percentSize) {
-    this.internal.percentSize = percentSize;
+        this.internal.percentSize = percentSize;
         return this;
     }
     public VizTextDisplayOptions build() {

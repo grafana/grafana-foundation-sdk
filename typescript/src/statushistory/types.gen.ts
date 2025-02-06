@@ -8,19 +8,22 @@ export interface Options {
 	rowHeight: number;
 	// Show values on the columns
 	showValue: common.VisibilityMode;
+	// Controls the column width
+	colWidth?: number;
 	legend: common.VizLegendOptions;
 	tooltip: common.VizTooltipOptions;
 	timezone?: common.TimeZone[];
-	// Controls the column width
-	colWidth?: number;
+	// Enables pagination when > 0
+	perPage?: number;
 }
 
 export const defaultOptions = (): Options => ({
 	rowHeight: 0.9,
 	showValue: common.VisibilityMode.Auto,
+	colWidth: 0.9,
 	legend: common.defaultVizLegendOptions(),
 	tooltip: common.defaultVizTooltipOptions(),
-	colWidth: 0.9,
+	perPage: 20,
 });
 
 export interface FieldConfig {

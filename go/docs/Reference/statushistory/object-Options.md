@@ -11,11 +11,13 @@ type Options struct {
     RowHeight float32 `json:"rowHeight"`
     // Show values on the columns
     ShowValue common.VisibilityMode `json:"showValue"`
+    // Controls the column width
+    ColWidth *float64 `json:"colWidth,omitempty"`
     Legend common.VizLegendOptions `json:"legend"`
     Tooltip common.VizTooltipOptions `json:"tooltip"`
     Timezone []common.TimeZone `json:"timezone,omitempty"`
-    // Controls the column width
-    ColWidth *float64 `json:"colWidth,omitempty"`
+    // Enables pagination when > 0
+    PerPage *float64 `json:"perPage,omitempty"`
 }
 ```
 ## Methods

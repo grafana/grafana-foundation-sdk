@@ -50,13 +50,15 @@ type TempoQuery struct {
 	TableType *SearchTableType `json:"tableType,omitempty"`
 	// For metric queries, the step size to use
 	Step *string `json:"step,omitempty"`
+	// For metric queries, how many exemplars to request, 0 means no exemplars
+	Exemplars *int64 `json:"exemplars,omitempty"`
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
-	// For metric queries, how many exemplars to request, 0 means no exemplars
-	Exemplars *int64 `json:"exemplars,omitempty"`
+	// For metric queries, whether to run instant or range queries
+	MetricsQueryType *MetricsQueryType `json:"metricsQueryType,omitempty"`
 }
 
 func (resource TempoQuery) ImplementsDataqueryVariant() {}
@@ -301,6 +303,17 @@ func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "step")
 
 	}
+	// Field "exemplars"
+	if fields["exemplars"] != nil {
+		if string(fields["exemplars"]) != "null" {
+			if err := json.Unmarshal(fields["exemplars"], &resource.Exemplars); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("exemplars", err)...)
+			}
+
+		}
+		delete(fields, "exemplars")
+
+	}
 	// Field "datasource"
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
@@ -314,15 +327,15 @@ func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "datasource")
 
 	}
-	// Field "exemplars"
-	if fields["exemplars"] != nil {
-		if string(fields["exemplars"]) != "null" {
-			if err := json.Unmarshal(fields["exemplars"], &resource.Exemplars); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("exemplars", err)...)
+	// Field "metricsQueryType"
+	if fields["metricsQueryType"] != nil {
+		if string(fields["metricsQueryType"]) != "null" {
+			if err := json.Unmarshal(fields["metricsQueryType"], &resource.MetricsQueryType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metricsQueryType", err)...)
 			}
 
 		}
-		delete(fields, "exemplars")
+		delete(fields, "metricsQueryType")
 
 	}
 
@@ -496,6 +509,15 @@ func (resource TempoQuery) Equals(otherCandidate variants.Dataquery) bool {
 			return false
 		}
 	}
+	if resource.Exemplars == nil && other.Exemplars != nil || resource.Exemplars != nil && other.Exemplars == nil {
+		return false
+	}
+
+	if resource.Exemplars != nil {
+		if *resource.Exemplars != *other.Exemplars {
+			return false
+		}
+	}
 	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
 	}
@@ -505,12 +527,12 @@ func (resource TempoQuery) Equals(otherCandidate variants.Dataquery) bool {
 			return false
 		}
 	}
-	if resource.Exemplars == nil && other.Exemplars != nil || resource.Exemplars != nil && other.Exemplars == nil {
+	if resource.MetricsQueryType == nil && other.MetricsQueryType != nil || resource.MetricsQueryType != nil && other.MetricsQueryType == nil {
 		return false
 	}
 
-	if resource.Exemplars != nil {
-		if *resource.Exemplars != *other.Exemplars {
+	if resource.MetricsQueryType != nil {
+		if *resource.MetricsQueryType != *other.MetricsQueryType {
 			return false
 		}
 	}
@@ -550,50 +572,6 @@ func (resource TempoQuery) Validate() error {
 
 	return errs
 }
-
-type TempoQueryType string
-
-const (
-	TempoQueryTypeTraceql       TempoQueryType = "traceql"
-	TempoQueryTypeTraceqlSearch TempoQueryType = "traceqlSearch"
-	TempoQueryTypeServiceMap    TempoQueryType = "serviceMap"
-	TempoQueryTypeUpload        TempoQueryType = "upload"
-	TempoQueryTypeNativeSearch  TempoQueryType = "nativeSearch"
-	TempoQueryTypeTraceId       TempoQueryType = "traceId"
-	TempoQueryTypeClear         TempoQueryType = "clear"
-)
-
-// The state of the TraceQL streaming search query
-type SearchStreamingState string
-
-const (
-	SearchStreamingStatePending   SearchStreamingState = "pending"
-	SearchStreamingStateStreaming SearchStreamingState = "streaming"
-	SearchStreamingStateDone      SearchStreamingState = "done"
-	SearchStreamingStateError     SearchStreamingState = "error"
-)
-
-// The type of the table that is used to display the search results
-type SearchTableType string
-
-const (
-	SearchTableTypeTraces SearchTableType = "traces"
-	SearchTableTypeSpans  SearchTableType = "spans"
-	SearchTableTypeRaw    SearchTableType = "raw"
-)
-
-// static fields are pre-set in the UI, dynamic fields are added by the user
-type TraceqlSearchScope string
-
-const (
-	TraceqlSearchScopeIntrinsic       TraceqlSearchScope = "intrinsic"
-	TraceqlSearchScopeUnscoped        TraceqlSearchScope = "unscoped"
-	TraceqlSearchScopeEvent           TraceqlSearchScope = "event"
-	TraceqlSearchScopeInstrumentation TraceqlSearchScope = "instrumentation"
-	TraceqlSearchScopeLink            TraceqlSearchScope = "link"
-	TraceqlSearchScopeResource        TraceqlSearchScope = "resource"
-	TraceqlSearchScopeSpan            TraceqlSearchScope = "span"
-)
 
 type TraceqlFilter struct {
 	// Uniquely identify the filter, will not be used in the query generation
@@ -779,6 +757,57 @@ func (resource TraceqlFilter) Validate() error {
 
 	return errs
 }
+
+// static fields are pre-set in the UI, dynamic fields are added by the user
+type TraceqlSearchScope string
+
+const (
+	TraceqlSearchScopeIntrinsic       TraceqlSearchScope = "intrinsic"
+	TraceqlSearchScopeUnscoped        TraceqlSearchScope = "unscoped"
+	TraceqlSearchScopeEvent           TraceqlSearchScope = "event"
+	TraceqlSearchScopeInstrumentation TraceqlSearchScope = "instrumentation"
+	TraceqlSearchScopeLink            TraceqlSearchScope = "link"
+	TraceqlSearchScopeResource        TraceqlSearchScope = "resource"
+	TraceqlSearchScopeSpan            TraceqlSearchScope = "span"
+)
+
+// The type of the table that is used to display the search results
+type SearchTableType string
+
+const (
+	SearchTableTypeTraces SearchTableType = "traces"
+	SearchTableTypeSpans  SearchTableType = "spans"
+	SearchTableTypeRaw    SearchTableType = "raw"
+)
+
+type MetricsQueryType string
+
+const (
+	MetricsQueryTypeRange   MetricsQueryType = "range"
+	MetricsQueryTypeInstant MetricsQueryType = "instant"
+)
+
+type TempoQueryType string
+
+const (
+	TempoQueryTypeTraceql       TempoQueryType = "traceql"
+	TempoQueryTypeTraceqlSearch TempoQueryType = "traceqlSearch"
+	TempoQueryTypeServiceMap    TempoQueryType = "serviceMap"
+	TempoQueryTypeUpload        TempoQueryType = "upload"
+	TempoQueryTypeNativeSearch  TempoQueryType = "nativeSearch"
+	TempoQueryTypeTraceId       TempoQueryType = "traceId"
+	TempoQueryTypeClear         TempoQueryType = "clear"
+)
+
+// The state of the TraceQL streaming search query
+type SearchStreamingState string
+
+const (
+	SearchStreamingStatePending   SearchStreamingState = "pending"
+	SearchStreamingStateStreaming SearchStreamingState = "streaming"
+	SearchStreamingStateDone      SearchStreamingState = "done"
+	SearchStreamingStateError     SearchStreamingState = "error"
+)
 
 type StringOrArrayOfString struct {
 	String        *string  `json:"String,omitempty"`

@@ -50,6 +50,14 @@ Application Insights Traces sub-query properties.
 func (builder *AzureMonitorQueryBuilder) AzureTraces(azureTraces cog.Builder[azuremonitor.AzureTracesQuery]) *AzureMonitorQueryBuilder
 ```
 
+### <span class="badge object-method"></span> CustomNamespace
+
+Custom namespace used in template variable queries
+
+```go
+func (builder *AzureMonitorQueryBuilder) CustomNamespace(customNamespace string) *AzureMonitorQueryBuilder
+```
+
 ### <span class="badge object-method"></span> Datasource
 
 For mixed data sources the selected datasource is on the query level.
@@ -81,6 +89,8 @@ func (builder *AzureMonitorQueryBuilder) Hide(hide bool) *AzureMonitorQueryBuild
 ```
 
 ### <span class="badge object-method"></span> Namespace
+
+Namespace used in template variable queries
 
 ```go
 func (builder *AzureMonitorQueryBuilder) Namespace(namespace string) *AzureMonitorQueryBuilder
@@ -118,11 +128,15 @@ func (builder *AzureMonitorQueryBuilder) RefId(refId string) *AzureMonitorQueryB
 
 ### <span class="badge object-method"></span> Region
 
+Region used in template variable queries
+
 ```go
 func (builder *AzureMonitorQueryBuilder) Region(region string) *AzureMonitorQueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Resource
+
+Resource used in template variable queries
 
 ```go
 func (builder *AzureMonitorQueryBuilder) Resource(resource string) *AzureMonitorQueryBuilder
@@ -130,7 +144,7 @@ func (builder *AzureMonitorQueryBuilder) Resource(resource string) *AzureMonitor
 
 ### <span class="badge object-method"></span> ResourceGroup
 
-Template variables params. These exist for backwards compatiblity with legacy template variables.
+Resource group used in template variable queries
 
 ```go
 func (builder *AzureMonitorQueryBuilder) ResourceGroup(resourceGroup string) *AzureMonitorQueryBuilder
@@ -139,6 +153,8 @@ func (builder *AzureMonitorQueryBuilder) ResourceGroup(resourceGroup string) *Az
 ### <span class="badge object-method"></span> Subscription
 
 Azure subscription containing the resource(s) to be queried.
+
+Also used for template variable queries
 
 ```go
 func (builder *AzureMonitorQueryBuilder) Subscription(subscription string) *AzureMonitorQueryBuilder

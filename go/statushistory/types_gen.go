@@ -17,12 +17,14 @@ type Options struct {
 	// Set the height of the rows
 	RowHeight float32 `json:"rowHeight"`
 	// Show values on the columns
-	ShowValue common.VisibilityMode    `json:"showValue"`
-	Legend    common.VizLegendOptions  `json:"legend"`
-	Tooltip   common.VizTooltipOptions `json:"tooltip"`
-	Timezone  []common.TimeZone        `json:"timezone,omitempty"`
+	ShowValue common.VisibilityMode `json:"showValue"`
 	// Controls the column width
-	ColWidth *float64 `json:"colWidth,omitempty"`
+	ColWidth *float64                 `json:"colWidth,omitempty"`
+	Legend   common.VizLegendOptions  `json:"legend"`
+	Tooltip  common.VizTooltipOptions `json:"tooltip"`
+	Timezone []common.TimeZone        `json:"timezone,omitempty"`
+	// Enables pagination when > 0
+	PerPage *float64 `json:"perPage,omitempty"`
 }
 
 // NewOptions creates a new Options object.
@@ -30,9 +32,10 @@ func NewOptions() *Options {
 	return &Options{
 		RowHeight: 0.9,
 		ShowValue: common.VisibilityModeAuto,
+		ColWidth:  (func(input float64) *float64 { return &input })(0.9),
 		Legend:    *common.NewVizLegendOptions(),
 		Tooltip:   *common.NewVizTooltipOptions(),
-		ColWidth:  (func(input float64) *float64 { return &input })(0.9),
+		PerPage:   (func(input float64) *float64 { return &input })(20),
 	}
 }
 
@@ -72,6 +75,17 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showValue")
+
+	}
+	// Field "colWidth"
+	if fields["colWidth"] != nil {
+		if string(fields["colWidth"]) != "null" {
+			if err := json.Unmarshal(fields["colWidth"], &resource.ColWidth); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("colWidth", err)...)
+			}
+
+		}
+		delete(fields, "colWidth")
 
 	}
 	// Field "legend"
@@ -118,15 +132,15 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "timezone")
 
 	}
-	// Field "colWidth"
-	if fields["colWidth"] != nil {
-		if string(fields["colWidth"]) != "null" {
-			if err := json.Unmarshal(fields["colWidth"], &resource.ColWidth); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("colWidth", err)...)
+	// Field "perPage"
+	if fields["perPage"] != nil {
+		if string(fields["perPage"]) != "null" {
+			if err := json.Unmarshal(fields["perPage"], &resource.PerPage); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("perPage", err)...)
 			}
 
 		}
-		delete(fields, "colWidth")
+		delete(fields, "perPage")
 
 	}
 
@@ -149,6 +163,15 @@ func (resource Options) Equals(other Options) bool {
 	if resource.ShowValue != other.ShowValue {
 		return false
 	}
+	if resource.ColWidth == nil && other.ColWidth != nil || resource.ColWidth != nil && other.ColWidth == nil {
+		return false
+	}
+
+	if resource.ColWidth != nil {
+		if *resource.ColWidth != *other.ColWidth {
+			return false
+		}
+	}
 	if !resource.Legend.Equals(other.Legend) {
 		return false
 	}
@@ -165,12 +188,12 @@ func (resource Options) Equals(other Options) bool {
 			return false
 		}
 	}
-	if resource.ColWidth == nil && other.ColWidth != nil || resource.ColWidth != nil && other.ColWidth == nil {
+	if resource.PerPage == nil && other.PerPage != nil || resource.PerPage != nil && other.PerPage == nil {
 		return false
 	}
 
-	if resource.ColWidth != nil {
-		if *resource.ColWidth != *other.ColWidth {
+	if resource.PerPage != nil {
+		if *resource.PerPage != *other.PerPage {
 			return false
 		}
 	}
@@ -193,17 +216,25 @@ func (resource Options) Validate() error {
 			errors.New("must be <= 1"),
 		)...)
 	}
+	if resource.ColWidth != nil {
+		if !(*resource.ColWidth <= 1) {
+			errs = append(errs, cog.MakeBuildErrors(
+				"colWidth",
+				errors.New("must be <= 1"),
+			)...)
+		}
+	}
 	if err := resource.Legend.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("legend", err)...)
 	}
 	if err := resource.Tooltip.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("tooltip", err)...)
 	}
-	if resource.ColWidth != nil {
-		if !(*resource.ColWidth <= 1) {
+	if resource.PerPage != nil {
+		if !(*resource.PerPage >= 1) {
 			errs = append(errs, cog.MakeBuildErrors(
-				"colWidth",
-				errors.New("must be <= 1"),
+				"perPage",
+				errors.New("must be >= 1"),
 			)...)
 		}
 	}

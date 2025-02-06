@@ -78,6 +78,14 @@ def limit(limit: int) -> typing.Self
 def max_duration(max_duration: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> metrics_query_type
+
+For metric queries, whether to run instant or range queries
+
+```python
+def metrics_query_type(metrics_query_type: tempo.MetricsQueryType) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> min_duration
 
 @deprecated Define the minimum duration to select traces. Use duration format, for example: 1.2s, 100ms

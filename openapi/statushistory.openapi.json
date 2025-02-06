@@ -32,6 +32,12 @@
             "description": "Show values on the columns",
             "default": "auto"
           },
+          "colWidth": {
+            "type": "number",
+            "maximum": 1,
+            "description": "Controls the column width",
+            "default": 0.9
+          },
           "legend": {
             "$ref": "#/components/schemas/VizLegendOptions"
           },
@@ -44,11 +50,11 @@
               "$ref": "#/components/schemas/TimeZone"
             }
           },
-          "colWidth": {
+          "perPage": {
             "type": "number",
-            "maximum": 1,
-            "description": "Controls the column width",
-            "default": 0.9
+            "minimum": 1,
+            "description": "Enables pagination when \u003e 0",
+            "default": 20
           }
         }
       },

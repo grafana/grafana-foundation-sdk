@@ -24,6 +24,7 @@ type AzureMonitorQuery struct {
 	// TODO make this required and give it a default
 	QueryType *string `json:"queryType,omitempty"`
 	// Azure subscription containing the resource(s) to be queried.
+	// Also used for template variable queries
 	Subscription *string `json:"subscription,omitempty"`
 	// Subscriptions to be queried via Azure Resource Graph.
 	Subscriptions []string `json:"subscriptions,omitempty"`
@@ -37,11 +38,16 @@ type AzureMonitorQuery struct {
 	AzureTraces *AzureTracesQuery `json:"azureTraces,omitempty"`
 	// @deprecated Legacy template variable support.
 	GrafanaTemplateVariableFn *GrafanaTemplateVariableQuery `json:"grafanaTemplateVariableFn,omitempty"`
-	// Template variables params. These exist for backwards compatiblity with legacy template variables.
+	// Resource group used in template variable queries
 	ResourceGroup *string `json:"resourceGroup,omitempty"`
-	Namespace     *string `json:"namespace,omitempty"`
-	Resource      *string `json:"resource,omitempty"`
-	Region        *string `json:"region,omitempty"`
+	// Namespace used in template variable queries
+	Namespace *string `json:"namespace,omitempty"`
+	// Resource used in template variable queries
+	Resource *string `json:"resource,omitempty"`
+	// Region used in template variable queries
+	Region *string `json:"region,omitempty"`
+	// Custom namespace used in template variable queries
+	CustomNamespace *string `json:"customNamespace,omitempty"`
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
@@ -242,6 +248,17 @@ func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "region")
 
 	}
+	// Field "customNamespace"
+	if fields["customNamespace"] != nil {
+		if string(fields["customNamespace"]) != "null" {
+			if err := json.Unmarshal(fields["customNamespace"], &resource.CustomNamespace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("customNamespace", err)...)
+			}
+
+		}
+		delete(fields, "customNamespace")
+
+	}
 	// Field "datasource"
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
@@ -409,6 +426,15 @@ func (resource AzureMonitorQuery) Equals(otherCandidate variants.Dataquery) bool
 			return false
 		}
 	}
+	if resource.CustomNamespace == nil && other.CustomNamespace != nil || resource.CustomNamespace != nil && other.CustomNamespace == nil {
+		return false
+	}
+
+	if resource.CustomNamespace != nil {
+		if *resource.CustomNamespace != *other.CustomNamespace {
+			return false
+		}
+	}
 	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
 	}
@@ -471,25 +497,6 @@ func (resource AzureMonitorQuery) Validate() error {
 
 	return errs
 }
-
-// Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
-type AzureQueryType string
-
-const (
-	AzureQueryTypeAzureMonitor              AzureQueryType = "Azure Monitor"
-	AzureQueryTypeLogAnalytics              AzureQueryType = "Azure Log Analytics"
-	AzureQueryTypeAzureResourceGraph        AzureQueryType = "Azure Resource Graph"
-	AzureQueryTypeAzureTraces               AzureQueryType = "Azure Traces"
-	AzureQueryTypeSubscriptionsQuery        AzureQueryType = "Azure Subscriptions"
-	AzureQueryTypeResourceGroupsQuery       AzureQueryType = "Azure Resource Groups"
-	AzureQueryTypeNamespacesQuery           AzureQueryType = "Azure Namespaces"
-	AzureQueryTypeResourceNamesQuery        AzureQueryType = "Azure Resource Names"
-	AzureQueryTypeMetricNamesQuery          AzureQueryType = "Azure Metric Names"
-	AzureQueryTypeWorkspacesQuery           AzureQueryType = "Azure Workspaces"
-	AzureQueryTypeLocationsQuery            AzureQueryType = "Azure Regions"
-	AzureQueryTypeGrafanaTemplateVariableFn AzureQueryType = "Grafana Template Variable Function"
-	AzureQueryTypeTraceExemplar             AzureQueryType = "traceql"
-)
 
 type AzureMetricQuery struct {
 	// Array of resource URIs to be queried.
@@ -978,6 +985,287 @@ func (resource AzureMetricQuery) Validate() error {
 	return errs
 }
 
+type AzureMonitorResource struct {
+	Subscription    *string `json:"subscription,omitempty"`
+	ResourceGroup   *string `json:"resourceGroup,omitempty"`
+	ResourceName    *string `json:"resourceName,omitempty"`
+	MetricNamespace *string `json:"metricNamespace,omitempty"`
+	Region          *string `json:"region,omitempty"`
+}
+
+// NewAzureMonitorResource creates a new AzureMonitorResource object.
+func NewAzureMonitorResource() *AzureMonitorResource {
+	return &AzureMonitorResource{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMonitorResource` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *AzureMonitorResource) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "subscription"
+	if fields["subscription"] != nil {
+		if string(fields["subscription"]) != "null" {
+			if err := json.Unmarshal(fields["subscription"], &resource.Subscription); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subscription", err)...)
+			}
+
+		}
+		delete(fields, "subscription")
+
+	}
+	// Field "resourceGroup"
+	if fields["resourceGroup"] != nil {
+		if string(fields["resourceGroup"]) != "null" {
+			if err := json.Unmarshal(fields["resourceGroup"], &resource.ResourceGroup); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceGroup", err)...)
+			}
+
+		}
+		delete(fields, "resourceGroup")
+
+	}
+	// Field "resourceName"
+	if fields["resourceName"] != nil {
+		if string(fields["resourceName"]) != "null" {
+			if err := json.Unmarshal(fields["resourceName"], &resource.ResourceName); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resourceName", err)...)
+			}
+
+		}
+		delete(fields, "resourceName")
+
+	}
+	// Field "metricNamespace"
+	if fields["metricNamespace"] != nil {
+		if string(fields["metricNamespace"]) != "null" {
+			if err := json.Unmarshal(fields["metricNamespace"], &resource.MetricNamespace); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("metricNamespace", err)...)
+			}
+
+		}
+		delete(fields, "metricNamespace")
+
+	}
+	// Field "region"
+	if fields["region"] != nil {
+		if string(fields["region"]) != "null" {
+			if err := json.Unmarshal(fields["region"], &resource.Region); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("region", err)...)
+			}
+
+		}
+		delete(fields, "region")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AzureMonitorResource", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `AzureMonitorResource` objects.
+func (resource AzureMonitorResource) Equals(other AzureMonitorResource) bool {
+	if resource.Subscription == nil && other.Subscription != nil || resource.Subscription != nil && other.Subscription == nil {
+		return false
+	}
+
+	if resource.Subscription != nil {
+		if *resource.Subscription != *other.Subscription {
+			return false
+		}
+	}
+	if resource.ResourceGroup == nil && other.ResourceGroup != nil || resource.ResourceGroup != nil && other.ResourceGroup == nil {
+		return false
+	}
+
+	if resource.ResourceGroup != nil {
+		if *resource.ResourceGroup != *other.ResourceGroup {
+			return false
+		}
+	}
+	if resource.ResourceName == nil && other.ResourceName != nil || resource.ResourceName != nil && other.ResourceName == nil {
+		return false
+	}
+
+	if resource.ResourceName != nil {
+		if *resource.ResourceName != *other.ResourceName {
+			return false
+		}
+	}
+	if resource.MetricNamespace == nil && other.MetricNamespace != nil || resource.MetricNamespace != nil && other.MetricNamespace == nil {
+		return false
+	}
+
+	if resource.MetricNamespace != nil {
+		if *resource.MetricNamespace != *other.MetricNamespace {
+			return false
+		}
+	}
+	if resource.Region == nil && other.Region != nil || resource.Region != nil && other.Region == nil {
+		return false
+	}
+
+	if resource.Region != nil {
+		if *resource.Region != *other.Region {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `AzureMonitorResource` fields for violations and returns them.
+func (resource AzureMonitorResource) Validate() error {
+	return nil
+}
+
+type AzureMetricDimension struct {
+	// Name of Dimension to be filtered on.
+	Dimension *string `json:"dimension,omitempty"`
+	// String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators.
+	Operator *string `json:"operator,omitempty"`
+	// Values to match with the filter.
+	Filters []string `json:"filters,omitempty"`
+	// @deprecated filter is deprecated in favour of filters to support multiselect.
+	Filter *string `json:"filter,omitempty"`
+}
+
+// NewAzureMetricDimension creates a new AzureMetricDimension object.
+func NewAzureMetricDimension() *AzureMetricDimension {
+	return &AzureMetricDimension{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMetricDimension` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *AzureMetricDimension) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "dimension"
+	if fields["dimension"] != nil {
+		if string(fields["dimension"]) != "null" {
+			if err := json.Unmarshal(fields["dimension"], &resource.Dimension); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("dimension", err)...)
+			}
+
+		}
+		delete(fields, "dimension")
+
+	}
+	// Field "operator"
+	if fields["operator"] != nil {
+		if string(fields["operator"]) != "null" {
+			if err := json.Unmarshal(fields["operator"], &resource.Operator); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("operator", err)...)
+			}
+
+		}
+		delete(fields, "operator")
+
+	}
+	// Field "filters"
+	if fields["filters"] != nil {
+		if string(fields["filters"]) != "null" {
+
+			if err := json.Unmarshal(fields["filters"], &resource.Filters); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("filters", err)...)
+			}
+
+		}
+		delete(fields, "filters")
+
+	}
+	// Field "filter"
+	if fields["filter"] != nil {
+		if string(fields["filter"]) != "null" {
+			if err := json.Unmarshal(fields["filter"], &resource.Filter); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("filter", err)...)
+			}
+
+		}
+		delete(fields, "filter")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AzureMetricDimension", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `AzureMetricDimension` objects.
+func (resource AzureMetricDimension) Equals(other AzureMetricDimension) bool {
+	if resource.Dimension == nil && other.Dimension != nil || resource.Dimension != nil && other.Dimension == nil {
+		return false
+	}
+
+	if resource.Dimension != nil {
+		if *resource.Dimension != *other.Dimension {
+			return false
+		}
+	}
+	if resource.Operator == nil && other.Operator != nil || resource.Operator != nil && other.Operator == nil {
+		return false
+	}
+
+	if resource.Operator != nil {
+		if *resource.Operator != *other.Operator {
+			return false
+		}
+	}
+
+	if len(resource.Filters) != len(other.Filters) {
+		return false
+	}
+
+	for i1 := range resource.Filters {
+		if resource.Filters[i1] != other.Filters[i1] {
+			return false
+		}
+	}
+	if resource.Filter == nil && other.Filter != nil || resource.Filter != nil && other.Filter == nil {
+		return false
+	}
+
+	if resource.Filter != nil {
+		if *resource.Filter != *other.Filter {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `AzureMetricDimension` fields for violations and returns them.
+func (resource AzureMetricDimension) Validate() error {
+	return nil
+}
+
 // Azure Monitor Logs sub-query properties
 type AzureLogsQuery struct {
 	// KQL query to be executed.
@@ -1219,6 +1507,102 @@ func (resource AzureLogsQuery) Equals(other AzureLogsQuery) bool {
 
 // Validate checks all the validation constraints that may be defined on `AzureLogsQuery` fields for violations and returns them.
 func (resource AzureLogsQuery) Validate() error {
+	return nil
+}
+
+type ResultFormat string
+
+const (
+	ResultFormatTable      ResultFormat = "table"
+	ResultFormatTimeSeries ResultFormat = "time_series"
+	ResultFormatTrace      ResultFormat = "trace"
+	ResultFormatLogs       ResultFormat = "logs"
+)
+
+type AzureResourceGraphQuery struct {
+	// Azure Resource Graph KQL query to be executed.
+	Query *string `json:"query,omitempty"`
+	// Specifies the format results should be returned as. Defaults to table.
+	ResultFormat *string `json:"resultFormat,omitempty"`
+}
+
+// NewAzureResourceGraphQuery creates a new AzureResourceGraphQuery object.
+func NewAzureResourceGraphQuery() *AzureResourceGraphQuery {
+	return &AzureResourceGraphQuery{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureResourceGraphQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *AzureResourceGraphQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "query"
+	if fields["query"] != nil {
+		if string(fields["query"]) != "null" {
+			if err := json.Unmarshal(fields["query"], &resource.Query); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("query", err)...)
+			}
+
+		}
+		delete(fields, "query")
+
+	}
+	// Field "resultFormat"
+	if fields["resultFormat"] != nil {
+		if string(fields["resultFormat"]) != "null" {
+			if err := json.Unmarshal(fields["resultFormat"], &resource.ResultFormat); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("resultFormat", err)...)
+			}
+
+		}
+		delete(fields, "resultFormat")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AzureResourceGraphQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `AzureResourceGraphQuery` objects.
+func (resource AzureResourceGraphQuery) Equals(other AzureResourceGraphQuery) bool {
+	if resource.Query == nil && other.Query != nil || resource.Query != nil && other.Query == nil {
+		return false
+	}
+
+	if resource.Query != nil {
+		if *resource.Query != *other.Query {
+			return false
+		}
+	}
+	if resource.ResultFormat == nil && other.ResultFormat != nil || resource.ResultFormat != nil && other.ResultFormat == nil {
+		return false
+	}
+
+	if resource.ResultFormat != nil {
+		if *resource.ResultFormat != *other.ResultFormat {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `AzureResourceGraphQuery` fields for violations and returns them.
+func (resource AzureResourceGraphQuery) Validate() error {
 	return nil
 }
 
@@ -1535,555 +1919,11 @@ func (resource AzureTracesFilter) Validate() error {
 	return nil
 }
 
-type ResultFormat string
-
-const (
-	ResultFormatTable      ResultFormat = "table"
-	ResultFormatTimeSeries ResultFormat = "time_series"
-	ResultFormatTrace      ResultFormat = "trace"
-	ResultFormatLogs       ResultFormat = "logs"
-)
-
-type AzureResourceGraphQuery struct {
-	// Azure Resource Graph KQL query to be executed.
-	Query *string `json:"query,omitempty"`
-	// Specifies the format results should be returned as. Defaults to table.
-	ResultFormat *string `json:"resultFormat,omitempty"`
-}
-
-// NewAzureResourceGraphQuery creates a new AzureResourceGraphQuery object.
-func NewAzureResourceGraphQuery() *AzureResourceGraphQuery {
-	return &AzureResourceGraphQuery{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureResourceGraphQuery` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AzureResourceGraphQuery) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "query"
-	if fields["query"] != nil {
-		if string(fields["query"]) != "null" {
-			if err := json.Unmarshal(fields["query"], &resource.Query); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("query", err)...)
-			}
-
-		}
-		delete(fields, "query")
-
-	}
-	// Field "resultFormat"
-	if fields["resultFormat"] != nil {
-		if string(fields["resultFormat"]) != "null" {
-			if err := json.Unmarshal(fields["resultFormat"], &resource.ResultFormat); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("resultFormat", err)...)
-			}
-
-		}
-		delete(fields, "resultFormat")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AzureResourceGraphQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `AzureResourceGraphQuery` objects.
-func (resource AzureResourceGraphQuery) Equals(other AzureResourceGraphQuery) bool {
-	if resource.Query == nil && other.Query != nil || resource.Query != nil && other.Query == nil {
-		return false
-	}
-
-	if resource.Query != nil {
-		if *resource.Query != *other.Query {
-			return false
-		}
-	}
-	if resource.ResultFormat == nil && other.ResultFormat != nil || resource.ResultFormat != nil && other.ResultFormat == nil {
-		return false
-	}
-
-	if resource.ResultFormat != nil {
-		if *resource.ResultFormat != *other.ResultFormat {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `AzureResourceGraphQuery` fields for violations and returns them.
-func (resource AzureResourceGraphQuery) Validate() error {
-	return nil
-}
-
-type AzureMonitorResource struct {
-	Subscription    *string `json:"subscription,omitempty"`
-	ResourceGroup   *string `json:"resourceGroup,omitempty"`
-	ResourceName    *string `json:"resourceName,omitempty"`
-	MetricNamespace *string `json:"metricNamespace,omitempty"`
-	Region          *string `json:"region,omitempty"`
-}
-
-// NewAzureMonitorResource creates a new AzureMonitorResource object.
-func NewAzureMonitorResource() *AzureMonitorResource {
-	return &AzureMonitorResource{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMonitorResource` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AzureMonitorResource) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "subscription"
-	if fields["subscription"] != nil {
-		if string(fields["subscription"]) != "null" {
-			if err := json.Unmarshal(fields["subscription"], &resource.Subscription); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("subscription", err)...)
-			}
-
-		}
-		delete(fields, "subscription")
-
-	}
-	// Field "resourceGroup"
-	if fields["resourceGroup"] != nil {
-		if string(fields["resourceGroup"]) != "null" {
-			if err := json.Unmarshal(fields["resourceGroup"], &resource.ResourceGroup); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("resourceGroup", err)...)
-			}
-
-		}
-		delete(fields, "resourceGroup")
-
-	}
-	// Field "resourceName"
-	if fields["resourceName"] != nil {
-		if string(fields["resourceName"]) != "null" {
-			if err := json.Unmarshal(fields["resourceName"], &resource.ResourceName); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("resourceName", err)...)
-			}
-
-		}
-		delete(fields, "resourceName")
-
-	}
-	// Field "metricNamespace"
-	if fields["metricNamespace"] != nil {
-		if string(fields["metricNamespace"]) != "null" {
-			if err := json.Unmarshal(fields["metricNamespace"], &resource.MetricNamespace); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("metricNamespace", err)...)
-			}
-
-		}
-		delete(fields, "metricNamespace")
-
-	}
-	// Field "region"
-	if fields["region"] != nil {
-		if string(fields["region"]) != "null" {
-			if err := json.Unmarshal(fields["region"], &resource.Region); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("region", err)...)
-			}
-
-		}
-		delete(fields, "region")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AzureMonitorResource", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `AzureMonitorResource` objects.
-func (resource AzureMonitorResource) Equals(other AzureMonitorResource) bool {
-	if resource.Subscription == nil && other.Subscription != nil || resource.Subscription != nil && other.Subscription == nil {
-		return false
-	}
-
-	if resource.Subscription != nil {
-		if *resource.Subscription != *other.Subscription {
-			return false
-		}
-	}
-	if resource.ResourceGroup == nil && other.ResourceGroup != nil || resource.ResourceGroup != nil && other.ResourceGroup == nil {
-		return false
-	}
-
-	if resource.ResourceGroup != nil {
-		if *resource.ResourceGroup != *other.ResourceGroup {
-			return false
-		}
-	}
-	if resource.ResourceName == nil && other.ResourceName != nil || resource.ResourceName != nil && other.ResourceName == nil {
-		return false
-	}
-
-	if resource.ResourceName != nil {
-		if *resource.ResourceName != *other.ResourceName {
-			return false
-		}
-	}
-	if resource.MetricNamespace == nil && other.MetricNamespace != nil || resource.MetricNamespace != nil && other.MetricNamespace == nil {
-		return false
-	}
-
-	if resource.MetricNamespace != nil {
-		if *resource.MetricNamespace != *other.MetricNamespace {
-			return false
-		}
-	}
-	if resource.Region == nil && other.Region != nil || resource.Region != nil && other.Region == nil {
-		return false
-	}
-
-	if resource.Region != nil {
-		if *resource.Region != *other.Region {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `AzureMonitorResource` fields for violations and returns them.
-func (resource AzureMonitorResource) Validate() error {
-	return nil
-}
-
-type AzureMetricDimension struct {
-	// Name of Dimension to be filtered on.
-	Dimension *string `json:"dimension,omitempty"`
-	// String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators.
-	Operator *string `json:"operator,omitempty"`
-	// Values to match with the filter.
-	Filters []string `json:"filters,omitempty"`
-	// @deprecated filter is deprecated in favour of filters to support multiselect.
-	Filter *string `json:"filter,omitempty"`
-}
-
-// NewAzureMetricDimension creates a new AzureMetricDimension object.
-func NewAzureMetricDimension() *AzureMetricDimension {
-	return &AzureMetricDimension{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMetricDimension` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AzureMetricDimension) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "dimension"
-	if fields["dimension"] != nil {
-		if string(fields["dimension"]) != "null" {
-			if err := json.Unmarshal(fields["dimension"], &resource.Dimension); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("dimension", err)...)
-			}
-
-		}
-		delete(fields, "dimension")
-
-	}
-	// Field "operator"
-	if fields["operator"] != nil {
-		if string(fields["operator"]) != "null" {
-			if err := json.Unmarshal(fields["operator"], &resource.Operator); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("operator", err)...)
-			}
-
-		}
-		delete(fields, "operator")
-
-	}
-	// Field "filters"
-	if fields["filters"] != nil {
-		if string(fields["filters"]) != "null" {
-
-			if err := json.Unmarshal(fields["filters"], &resource.Filters); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("filters", err)...)
-			}
-
-		}
-		delete(fields, "filters")
-
-	}
-	// Field "filter"
-	if fields["filter"] != nil {
-		if string(fields["filter"]) != "null" {
-			if err := json.Unmarshal(fields["filter"], &resource.Filter); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("filter", err)...)
-			}
-
-		}
-		delete(fields, "filter")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AzureMetricDimension", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `AzureMetricDimension` objects.
-func (resource AzureMetricDimension) Equals(other AzureMetricDimension) bool {
-	if resource.Dimension == nil && other.Dimension != nil || resource.Dimension != nil && other.Dimension == nil {
-		return false
-	}
-
-	if resource.Dimension != nil {
-		if *resource.Dimension != *other.Dimension {
-			return false
-		}
-	}
-	if resource.Operator == nil && other.Operator != nil || resource.Operator != nil && other.Operator == nil {
-		return false
-	}
-
-	if resource.Operator != nil {
-		if *resource.Operator != *other.Operator {
-			return false
-		}
-	}
-
-	if len(resource.Filters) != len(other.Filters) {
-		return false
-	}
-
-	for i1 := range resource.Filters {
-		if resource.Filters[i1] != other.Filters[i1] {
-			return false
-		}
-	}
-	if resource.Filter == nil && other.Filter != nil || resource.Filter != nil && other.Filter == nil {
-		return false
-	}
-
-	if resource.Filter != nil {
-		if *resource.Filter != *other.Filter {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `AzureMetricDimension` fields for violations and returns them.
-func (resource AzureMetricDimension) Validate() error {
-	return nil
-}
-
-type GrafanaTemplateVariableQueryType string
-
-const (
-	GrafanaTemplateVariableQueryTypeAppInsightsMetricNameQuery GrafanaTemplateVariableQueryType = "AppInsightsMetricNameQuery"
-	GrafanaTemplateVariableQueryTypeAppInsightsGroupByQuery    GrafanaTemplateVariableQueryType = "AppInsightsGroupByQuery"
-	GrafanaTemplateVariableQueryTypeSubscriptionsQuery         GrafanaTemplateVariableQueryType = "SubscriptionsQuery"
-	GrafanaTemplateVariableQueryTypeResourceGroupsQuery        GrafanaTemplateVariableQueryType = "ResourceGroupsQuery"
-	GrafanaTemplateVariableQueryTypeResourceNamesQuery         GrafanaTemplateVariableQueryType = "ResourceNamesQuery"
-	GrafanaTemplateVariableQueryTypeMetricNamespaceQuery       GrafanaTemplateVariableQueryType = "MetricNamespaceQuery"
-	GrafanaTemplateVariableQueryTypeMetricNamesQuery           GrafanaTemplateVariableQueryType = "MetricNamesQuery"
-	GrafanaTemplateVariableQueryTypeWorkspacesQuery            GrafanaTemplateVariableQueryType = "WorkspacesQuery"
-	GrafanaTemplateVariableQueryTypeUnknownQuery               GrafanaTemplateVariableQueryType = "UnknownQuery"
-)
-
-type BaseGrafanaTemplateVariableQuery struct {
-	RawQuery *string `json:"rawQuery,omitempty"`
-}
-
-// NewBaseGrafanaTemplateVariableQuery creates a new BaseGrafanaTemplateVariableQuery object.
-func NewBaseGrafanaTemplateVariableQuery() *BaseGrafanaTemplateVariableQuery {
-	return &BaseGrafanaTemplateVariableQuery{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseGrafanaTemplateVariableQuery` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *BaseGrafanaTemplateVariableQuery) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "rawQuery"
-	if fields["rawQuery"] != nil {
-		if string(fields["rawQuery"]) != "null" {
-			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
-			}
-
-		}
-		delete(fields, "rawQuery")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("BaseGrafanaTemplateVariableQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `BaseGrafanaTemplateVariableQuery` objects.
-func (resource BaseGrafanaTemplateVariableQuery) Equals(other BaseGrafanaTemplateVariableQuery) bool {
-	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
-		return false
-	}
-
-	if resource.RawQuery != nil {
-		if *resource.RawQuery != *other.RawQuery {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `BaseGrafanaTemplateVariableQuery` fields for violations and returns them.
-func (resource BaseGrafanaTemplateVariableQuery) Validate() error {
-	return nil
-}
-
-type UnknownQuery struct {
-	RawQuery *string `json:"rawQuery,omitempty"`
-	Kind     string  `json:"kind"`
-}
-
-// NewUnknownQuery creates a new UnknownQuery object.
-func NewUnknownQuery() *UnknownQuery {
-	return &UnknownQuery{
-		Kind: "UnknownQuery",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `UnknownQuery` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *UnknownQuery) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "rawQuery"
-	if fields["rawQuery"] != nil {
-		if string(fields["rawQuery"]) != "null" {
-			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
-			}
-
-		}
-		delete(fields, "rawQuery")
-
-	}
-	// Field "kind"
-	if fields["kind"] != nil {
-		if string(fields["kind"]) != "null" {
-			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "kind")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("UnknownQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `UnknownQuery` objects.
-func (resource UnknownQuery) Equals(other UnknownQuery) bool {
-	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
-		return false
-	}
-
-	if resource.RawQuery != nil {
-		if *resource.RawQuery != *other.RawQuery {
-			return false
-		}
-	}
-	if resource.Kind != other.Kind {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `UnknownQuery` fields for violations and returns them.
-func (resource UnknownQuery) Validate() error {
-	var errs cog.BuildErrors
-	if !(resource.Kind == "UnknownQuery") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"kind",
-			errors.New("must be == UnknownQuery"),
-		)...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
+type GrafanaTemplateVariableQuery = AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery
+
+// NewGrafanaTemplateVariableQuery creates a new GrafanaTemplateVariableQuery object.
+func NewGrafanaTemplateVariableQuery() *GrafanaTemplateVariableQuery {
+	return NewAppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery()
 }
 
 type AppInsightsMetricNameQuery struct {
@@ -3287,11 +3127,199 @@ func (resource WorkspacesQuery) Validate() error {
 	return errs
 }
 
-type GrafanaTemplateVariableQuery = AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery
+type UnknownQuery struct {
+	RawQuery *string `json:"rawQuery,omitempty"`
+	Kind     string  `json:"kind"`
+}
 
-// NewGrafanaTemplateVariableQuery creates a new GrafanaTemplateVariableQuery object.
-func NewGrafanaTemplateVariableQuery() *GrafanaTemplateVariableQuery {
-	return NewAppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery()
+// NewUnknownQuery creates a new UnknownQuery object.
+func NewUnknownQuery() *UnknownQuery {
+	return &UnknownQuery{
+		Kind: "UnknownQuery",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `UnknownQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *UnknownQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("UnknownQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `UnknownQuery` objects.
+func (resource UnknownQuery) Equals(other UnknownQuery) bool {
+	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
+		return false
+	}
+
+	if resource.RawQuery != nil {
+		if *resource.RawQuery != *other.RawQuery {
+			return false
+		}
+	}
+	if resource.Kind != other.Kind {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `UnknownQuery` fields for violations and returns them.
+func (resource UnknownQuery) Validate() error {
+	var errs cog.BuildErrors
+	if !(resource.Kind == "UnknownQuery") {
+		errs = append(errs, cog.MakeBuildErrors(
+			"kind",
+			errors.New("must be == UnknownQuery"),
+		)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
+type AzureQueryType string
+
+const (
+	AzureQueryTypeAzureMonitor              AzureQueryType = "Azure Monitor"
+	AzureQueryTypeLogAnalytics              AzureQueryType = "Azure Log Analytics"
+	AzureQueryTypeAzureResourceGraph        AzureQueryType = "Azure Resource Graph"
+	AzureQueryTypeAzureTraces               AzureQueryType = "Azure Traces"
+	AzureQueryTypeSubscriptionsQuery        AzureQueryType = "Azure Subscriptions"
+	AzureQueryTypeResourceGroupsQuery       AzureQueryType = "Azure Resource Groups"
+	AzureQueryTypeNamespacesQuery           AzureQueryType = "Azure Namespaces"
+	AzureQueryTypeResourceNamesQuery        AzureQueryType = "Azure Resource Names"
+	AzureQueryTypeMetricNamesQuery          AzureQueryType = "Azure Metric Names"
+	AzureQueryTypeWorkspacesQuery           AzureQueryType = "Azure Workspaces"
+	AzureQueryTypeLocationsQuery            AzureQueryType = "Azure Regions"
+	AzureQueryTypeGrafanaTemplateVariableFn AzureQueryType = "Grafana Template Variable Function"
+	AzureQueryTypeTraceExemplar             AzureQueryType = "traceql"
+	AzureQueryTypeCustomNamespacesQuery     AzureQueryType = "Azure Custom Namespaces"
+	AzureQueryTypeCustomMetricNamesQuery    AzureQueryType = "Azure Custom Metric Names"
+)
+
+type GrafanaTemplateVariableQueryType string
+
+const (
+	GrafanaTemplateVariableQueryTypeAppInsightsMetricNameQuery GrafanaTemplateVariableQueryType = "AppInsightsMetricNameQuery"
+	GrafanaTemplateVariableQueryTypeAppInsightsGroupByQuery    GrafanaTemplateVariableQueryType = "AppInsightsGroupByQuery"
+	GrafanaTemplateVariableQueryTypeSubscriptionsQuery         GrafanaTemplateVariableQueryType = "SubscriptionsQuery"
+	GrafanaTemplateVariableQueryTypeResourceGroupsQuery        GrafanaTemplateVariableQueryType = "ResourceGroupsQuery"
+	GrafanaTemplateVariableQueryTypeResourceNamesQuery         GrafanaTemplateVariableQueryType = "ResourceNamesQuery"
+	GrafanaTemplateVariableQueryTypeMetricNamespaceQuery       GrafanaTemplateVariableQueryType = "MetricNamespaceQuery"
+	GrafanaTemplateVariableQueryTypeMetricNamesQuery           GrafanaTemplateVariableQueryType = "MetricNamesQuery"
+	GrafanaTemplateVariableQueryTypeWorkspacesQuery            GrafanaTemplateVariableQueryType = "WorkspacesQuery"
+	GrafanaTemplateVariableQueryTypeUnknownQuery               GrafanaTemplateVariableQueryType = "UnknownQuery"
+)
+
+type BaseGrafanaTemplateVariableQuery struct {
+	RawQuery *string `json:"rawQuery,omitempty"`
+}
+
+// NewBaseGrafanaTemplateVariableQuery creates a new BaseGrafanaTemplateVariableQuery object.
+func NewBaseGrafanaTemplateVariableQuery() *BaseGrafanaTemplateVariableQuery {
+	return &BaseGrafanaTemplateVariableQuery{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BaseGrafanaTemplateVariableQuery` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BaseGrafanaTemplateVariableQuery) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "rawQuery"
+	if fields["rawQuery"] != nil {
+		if string(fields["rawQuery"]) != "null" {
+			if err := json.Unmarshal(fields["rawQuery"], &resource.RawQuery); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("rawQuery", err)...)
+			}
+
+		}
+		delete(fields, "rawQuery")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BaseGrafanaTemplateVariableQuery", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BaseGrafanaTemplateVariableQuery` objects.
+func (resource BaseGrafanaTemplateVariableQuery) Equals(other BaseGrafanaTemplateVariableQuery) bool {
+	if resource.RawQuery == nil && other.RawQuery != nil || resource.RawQuery != nil && other.RawQuery == nil {
+		return false
+	}
+
+	if resource.RawQuery != nil {
+		if *resource.RawQuery != *other.RawQuery {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BaseGrafanaTemplateVariableQuery` fields for violations and returns them.
+func (resource BaseGrafanaTemplateVariableQuery) Validate() error {
+	return nil
 }
 
 type AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery struct {

@@ -24,6 +24,10 @@ public class TimePickerConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("time_options")
     public List<String> timeOptions;
+    // Quick ranges for time picker.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("quick_ranges")
+    public List<TimeOption> quickRanges;
     // Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("nowDelay")
@@ -34,10 +38,11 @@ public class TimePickerConfig {
         this.timeOptions = List.of("5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d");
     }
     
-    public TimePickerConfig(Boolean hidden,List<String> refreshIntervals,List<String> timeOptions,String nowDelay) {
+    public TimePickerConfig(Boolean hidden,List<String> refreshIntervals,List<String> timeOptions,List<TimeOption> quickRanges,String nowDelay) {
         this.hidden = hidden;
         this.refreshIntervals = refreshIntervals;
         this.timeOptions = timeOptions;
+        this.quickRanges = quickRanges;
         this.nowDelay = nowDelay;
     }
     

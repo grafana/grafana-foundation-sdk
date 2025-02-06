@@ -55,6 +55,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
     /**
      * Azure subscription containing the resource(s) to be queried.
+     * Also used for template variable queries
      */
     public function subscription(string $subscription): static
     {
@@ -128,7 +129,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * Template variables params. These exist for backwards compatiblity with legacy template variables.
+     * Resource group used in template variable queries
      */
     public function resourceGroup(string $resourceGroup): static
     {
@@ -136,21 +137,39 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * Namespace used in template variable queries
+     */
     public function namespace(string $namespace): static
     {
         $this->internal->namespace = $namespace;
     
         return $this;
     }
+    /**
+     * Resource used in template variable queries
+     */
     public function resource(string $resource): static
     {
         $this->internal->resource = $resource;
     
         return $this;
     }
+    /**
+     * Region used in template variable queries
+     */
     public function region(string $region): static
     {
         $this->internal->region = $region;
+    
+        return $this;
+    }
+    /**
+     * Custom namespace used in template variable queries
+     */
+    public function customNamespace(string $customNamespace): static
+    {
+        $this->internal->customNamespace = $customNamespace;
     
         return $this;
     }

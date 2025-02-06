@@ -43,13 +43,15 @@ export interface TempoQuery {
 	tableType?: tempo.SearchTableType;
 	// For metric queries, the step size to use
 	step?: string;
+	// For metric queries, how many exemplars to request, 0 means no exemplars
+	exemplars?: number;
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	datasource?: dashboard.DataSourceRef;
-	// For metric queries, how many exemplars to request, 0 means no exemplars
-	exemplars?: number;
+	// For metric queries, whether to run instant or range queries
+	metricsQueryType?: tempo.MetricsQueryType;
 	_implementsDataqueryVariant(): void;
 }
 

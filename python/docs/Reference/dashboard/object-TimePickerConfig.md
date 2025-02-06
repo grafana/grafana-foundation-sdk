@@ -22,6 +22,8 @@ class TimePickerConfig:
     refresh_intervals: typing.Optional[list[str]]
     # Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
     time_options: typing.Optional[list[str]]
+    # Quick ranges for time picker.
+    quick_ranges: typing.Optional[list[dashboard.TimeOption]]
     # Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
     now_delay: typing.Optional[str]
 ```

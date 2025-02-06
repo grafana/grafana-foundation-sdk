@@ -33,10 +33,7 @@ class MetricAggregationWithInlineScriptBuilder implements \Grafana\Foundation\Co
     
         return $this;
     }
-    /**
-     * @param string|\Grafana\Foundation\Elasticsearch\PipelineMetricAggregationType $type
-     */
-    public function type( $type): static
+    public function type(\Grafana\Foundation\Elasticsearch\MetricAggregationType $type): static
     {
         $this->internal->type = $type;
     

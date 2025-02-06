@@ -188,6 +188,18 @@ func AzureMonitorQueryConverter(input AzureMonitorQuery) string {
 		buffer.Reset()
 
 	}
+	if input.CustomNamespace != nil && *input.CustomNamespace != "" {
+
+		buffer.WriteString(`CustomNamespace(`)
+		arg0 := fmt.Sprintf("%#v", *input.CustomNamespace)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Datasource != nil {
 
 		buffer.WriteString(`Datasource(`)

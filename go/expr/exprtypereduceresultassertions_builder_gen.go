@@ -51,7 +51,7 @@ func (builder *ExprTypeReduceResultAssertionsBuilder) MaxFrames(maxFrames int64)
 //   - `"numeric-multi"`
 //   - `"numeric-long"`
 //   - `"log-lines"`
-func (builder *ExprTypeReduceResultAssertionsBuilder) Type(typeArg TypeReduceType) *ExprTypeReduceResultAssertionsBuilder {
+func (builder *ExprTypeReduceResultAssertionsBuilder) Type(typeArg ExprTypeReduceResultAssertionsType) *ExprTypeReduceResultAssertionsBuilder {
 	builder.internal.Type = &typeArg
 
 	return builder

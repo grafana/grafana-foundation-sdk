@@ -82,6 +82,10 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("step")
     public String step;
+    // For metric queries, how many exemplars to request, 0 means no exemplars
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("exemplars")
+    public Long exemplars;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
@@ -89,14 +93,14 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
-    // For metric queries, how many exemplars to request, 0 means no exemplars
+    // For metric queries, whether to run instant or range queries
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("exemplars")
-    public Long exemplars;
+    @JsonProperty("metricsQueryType")
+    public MetricsQueryType metricsQueryType;
     public TempoQuery() {
     }
     
-    public TempoQuery(String refId,Boolean hide,String queryType,String query,String search,String serviceName,String spanName,String minDuration,String maxDuration,StringOrArrayOfString serviceMapQuery,Boolean serviceMapIncludeNamespace,Long limit,Long spss,List<TraceqlFilter> filters,List<TraceqlFilter> groupBy,SearchTableType tableType,String step,DataSourceRef datasource,Long exemplars) {
+    public TempoQuery(String refId,Boolean hide,String queryType,String query,String search,String serviceName,String spanName,String minDuration,String maxDuration,StringOrArrayOfString serviceMapQuery,Boolean serviceMapIncludeNamespace,Long limit,Long spss,List<TraceqlFilter> filters,List<TraceqlFilter> groupBy,SearchTableType tableType,String step,Long exemplars,DataSourceRef datasource,MetricsQueryType metricsQueryType) {
         this.refId = refId;
         this.hide = hide;
         this.queryType = queryType;
@@ -114,8 +118,9 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
         this.groupBy = groupBy;
         this.tableType = tableType;
         this.step = step;
-        this.datasource = datasource;
         this.exemplars = exemplars;
+        this.datasource = datasource;
+        this.metricsQueryType = metricsQueryType;
     }
     public String dataqueryName() {
         return "tempo";

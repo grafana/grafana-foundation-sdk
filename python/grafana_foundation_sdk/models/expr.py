@@ -398,7 +398,7 @@ class TypeClassicConditions(cogvariants.Dataquery):
         args: dict[str, typing.Any] = {}
         
         if "conditions" in data:
-            args["conditions"] = data["conditions"]
+            args["conditions"] = [ExprTypeClassicConditionsConditions.from_json(item) for item in data["conditions"]]
         if "datasource" in data:
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "hide" in data:
@@ -492,7 +492,7 @@ class TypeThreshold(cogvariants.Dataquery):
         args: dict[str, typing.Any] = {}
         
         if "conditions" in data:
-            args["conditions"] = data["conditions"]
+            args["conditions"] = [ExprTypeThresholdConditions.from_json(item) for item in data["conditions"]]
         if "datasource" in data:
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "expression" in data:
@@ -1389,9 +1389,9 @@ class ExprTypeSqlTimeRange:
 
 
 def variant_config() -> cogruntime.DataqueryConfig:
-    decoding_map: dict[str, typing.Union[typing.Type[TypeClassicConditions], typing.Type[TypeMath], typing.Type[TypeReduce], typing.Type[TypeResample], typing.Type[TypeSql], typing.Type[TypeThreshold]]] = {"classic_conditions": TypeClassicConditions, "math": TypeMath, "reduce": TypeReduce, "resample": TypeResample, "sql": TypeSql, "threshold": TypeThreshold}
+    decoding_map_entrypoint_ref_union: dict[str, typing.Union[typing.Type[TypeClassicConditions], typing.Type[TypeMath], typing.Type[TypeReduce], typing.Type[TypeResample], typing.Type[TypeSql], typing.Type[TypeThreshold]]] = {"classic_conditions": TypeClassicConditions, "math": TypeMath, "reduce": TypeReduce, "resample": TypeResample, "sql": TypeSql, "threshold": TypeThreshold}
     return cogruntime.DataqueryConfig(
         identifier="__expr__",
-        from_json_hook=lambda data: decoding_map[data["type"]].from_json(data),
+        from_json_hook=lambda data: decoding_map_entrypoint_ref_union[data["type"]].from_json(data),
     )
 

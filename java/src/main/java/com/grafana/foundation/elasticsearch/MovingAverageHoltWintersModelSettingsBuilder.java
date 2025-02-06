@@ -8,25 +8,25 @@ public class MovingAverageHoltWintersModelSettingsBuilder implements com.grafana
     
     public MovingAverageHoltWintersModelSettingsBuilder() {
         this.internal = new MovingAverageHoltWintersModelSettings();
-    this.internal.model = "holt_winters";
+        this.internal.model = "holt_winters";
     }
     public MovingAverageHoltWintersModelSettingsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageHoltWintersModelSettingsSettings> settings) {
-    this.internal.settings = settings.build();
+        this.internal.settings = settings.build();
         return this;
     }
     
     public MovingAverageHoltWintersModelSettingsBuilder window(String window) {
-    this.internal.window = window;
+        this.internal.window = window;
         return this;
     }
     
     public MovingAverageHoltWintersModelSettingsBuilder minimize(Boolean minimize) {
-    this.internal.minimize = minimize;
+        this.internal.minimize = minimize;
         return this;
     }
     
     public MovingAverageHoltWintersModelSettingsBuilder predict(String predict) {
-    this.internal.predict = predict;
+        this.internal.predict = predict;
         return this;
     }
     public MovingAverageHoltWintersModelSettings build() {

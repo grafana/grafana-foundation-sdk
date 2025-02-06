@@ -172,6 +172,15 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
     
         return self
     
+    def exemplars(self, exemplars: int) -> typing.Self:    
+        """
+        For metric queries, how many exemplars to request, 0 means no exemplars
+        """
+            
+        self._internal.exemplars = exemplars
+    
+        return self
+    
     def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
@@ -184,12 +193,12 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
     
         return self
     
-    def exemplars(self, exemplars: int) -> typing.Self:    
+    def metrics_query_type(self, metrics_query_type: tempo.MetricsQueryType) -> typing.Self:    
         """
-        For metric queries, how many exemplars to request, 0 means no exemplars
+        For metric queries, whether to run instant or range queries
         """
             
-        self._internal.exemplars = exemplars
+        self._internal.metrics_query_type = metrics_query_type
     
         return self
     

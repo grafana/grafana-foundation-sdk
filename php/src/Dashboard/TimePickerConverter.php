@@ -59,6 +59,24 @@ final class TimePickerConverter
     
     
     }
+            if ($input->quickRanges !== null && count($input->quickRanges) >= 1) {
+    
+        
+    $buffer = 'quickRanges(';
+        $tmparg0 = [];
+        foreach ($input->quickRanges as $arg1) {
+        $tmpquick_rangesarg1 = \Grafana\Foundation\Dashboard\TimeOptionConverter::convert($arg1);
+        $tmparg0[] = $tmpquick_rangesarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->nowDelay !== null && $input->nowDelay !== "") {
     
         

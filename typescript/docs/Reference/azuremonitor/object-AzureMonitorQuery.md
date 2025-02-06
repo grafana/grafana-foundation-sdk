@@ -17,6 +17,7 @@ export interface AzureMonitorQuery {
 	// TODO make this required and give it a default
 	queryType?: string;
 	// Azure subscription containing the resource(s) to be queried.
+	// Also used for template variable queries
 	subscription?: string;
 	// Subscriptions to be queried via Azure Resource Graph.
 	subscriptions?: string[];
@@ -30,11 +31,16 @@ export interface AzureMonitorQuery {
 	azureTraces?: azuremonitor.AzureTracesQuery;
 	// @deprecated Legacy template variable support.
 	grafanaTemplateVariableFn?: azuremonitor.GrafanaTemplateVariableQuery;
-	// Template variables params. These exist for backwards compatiblity with legacy template variables.
+	// Resource group used in template variable queries
 	resourceGroup?: string;
+	// Namespace used in template variable queries
 	namespace?: string;
+	// Resource used in template variable queries
 	resource?: string;
+	// Region used in template variable queries
 	region?: string;
+	// Custom namespace used in template variable queries
+	customNamespace?: string;
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema

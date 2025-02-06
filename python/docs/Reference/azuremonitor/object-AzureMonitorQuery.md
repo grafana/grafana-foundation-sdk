@@ -17,6 +17,7 @@ class AzureMonitorQuery(cogvariants.Dataquery):
     # TODO make this required and give it a default
     query_type: typing.Optional[str]
     # Azure subscription containing the resource(s) to be queried.
+    # Also used for template variable queries
     subscription: typing.Optional[str]
     # Subscriptions to be queried via Azure Resource Graph.
     subscriptions: typing.Optional[list[str]]
@@ -30,11 +31,16 @@ class AzureMonitorQuery(cogvariants.Dataquery):
     azure_traces: typing.Optional[azuremonitor.AzureTracesQuery]
     # @deprecated Legacy template variable support.
     grafana_template_variable_fn: typing.Optional[azuremonitor.GrafanaTemplateVariableQuery]
-    # Template variables params. These exist for backwards compatiblity with legacy template variables.
+    # Resource group used in template variable queries
     resource_group: typing.Optional[str]
+    # Namespace used in template variable queries
     namespace: typing.Optional[str]
+    # Resource used in template variable queries
     resource: typing.Optional[str]
+    # Region used in template variable queries
     region: typing.Optional[str]
+    # Custom namespace used in template variable queries
+    custom_namespace: typing.Optional[str]
     # For mixed data sources the selected datasource is on the query level.
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema

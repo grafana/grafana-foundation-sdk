@@ -54,6 +54,22 @@ func (builder *TimePickerBuilder) TimeOptions(timeOptions []string) *TimePickerB
 	return builder
 }
 
+// Quick ranges for time picker.
+func (builder *TimePickerBuilder) QuickRanges(quickRanges []cog.Builder[TimeOption]) *TimePickerBuilder {
+	quickRangesResources := make([]TimeOption, 0, len(quickRanges))
+	for _, r1 := range quickRanges {
+		quickRangesDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors["quick_ranges"] = err.(cog.BuildErrors)
+			return builder
+		}
+		quickRangesResources = append(quickRangesResources, quickRangesDepth1)
+	}
+	builder.internal.QuickRanges = quickRangesResources
+
+	return builder
+}
+
 // Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
 func (builder *TimePickerBuilder) NowDelay(nowDelay string) *TimePickerBuilder {
 	builder.internal.NowDelay = &nowDelay

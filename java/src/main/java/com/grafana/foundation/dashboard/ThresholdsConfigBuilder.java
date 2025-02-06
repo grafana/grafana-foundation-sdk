@@ -11,12 +11,12 @@ public class ThresholdsConfigBuilder implements com.grafana.foundation.cog.Build
         this.internal = new ThresholdsConfig();
     }
     public ThresholdsConfigBuilder mode(ThresholdsMode mode) {
-    this.internal.mode = mode;
+        this.internal.mode = mode;
         return this;
     }
     
     public ThresholdsConfigBuilder steps(List<Threshold> steps) {
-    this.internal.steps = steps;
+        this.internal.steps = steps;
         return this;
     }
     public ThresholdsConfig build() {

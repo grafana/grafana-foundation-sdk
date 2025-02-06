@@ -10,7 +10,7 @@ public class ElasticsearchCumulativeSumSettingsBuilder implements com.grafana.fo
         this.internal = new ElasticsearchCumulativeSumSettings();
     }
     public ElasticsearchCumulativeSumSettingsBuilder format(String format) {
-    this.internal.format = format;
+        this.internal.format = format;
         return this;
     }
     public ElasticsearchCumulativeSumSettings build() {

@@ -1,0 +1,60 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "logsnew",
+    "version": "0.0.0",
+    "x-schema-identifier": "logsnew",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "showTime",
+          "wrapLogMessage",
+          "enableLogDetails",
+          "sortOrder",
+          "dedupStrategy"
+        ],
+        "properties": {
+          "showTime": {
+            "type": "boolean"
+          },
+          "wrapLogMessage": {
+            "type": "boolean"
+          },
+          "enableLogDetails": {
+            "type": "boolean"
+          },
+          "sortOrder": {
+            "$ref": "#/components/schemas/LogsSortOrder"
+          },
+          "dedupStrategy": {
+            "$ref": "#/components/schemas/LogsDedupStrategy"
+          },
+          "enableInfiniteScrolling": {
+            "type": "boolean"
+          }
+        }
+      },
+      "LogsSortOrder": {
+        "enum": [
+          "Descending",
+          "Ascending"
+        ]
+      },
+      "LogsDedupStrategy": {
+        "enum": [
+          "none",
+          "exact",
+          "numbers",
+          "signature"
+        ]
+      }
+    }
+  }
+}

@@ -43,6 +43,7 @@
  * <span class="badge object-type-class"></span> [Threshold](./object-Threshold.md)
  * <span class="badge object-type-class"></span> [ThresholdsConfig](./object-ThresholdsConfig.md)
  * <span class="badge object-type-enum"></span> [ThresholdsMode](./object-ThresholdsMode.md)
+ * <span class="badge object-type-class"></span> [TimeOption](./object-TimeOption.md)
  * <span class="badge object-type-class"></span> [TimePickerConfig](./object-TimePickerConfig.md)
  * <span class="badge object-type-class"></span> [ValueMap](./object-ValueMap.md)
  * <span class="badge object-type-class"></span> [ValueMappingResult](./object-ValueMappingResult.md)
@@ -80,6 +81,7 @@
  * <span class="badge builder"></span> [SnapshotBuilder](./builder-SnapshotBuilder.md)
  * <span class="badge builder"></span> [TextBoxVariableBuilder](./builder-TextBoxVariableBuilder.md)
  * <span class="badge builder"></span> [ThresholdsConfigBuilder](./builder-ThresholdsConfigBuilder.md)
+ * <span class="badge builder"></span> [TimeOptionBuilder](./builder-TimeOptionBuilder.md)
  * <span class="badge builder"></span> [TimePickerBuilder](./builder-TimePickerBuilder.md)
 ## Examples
 

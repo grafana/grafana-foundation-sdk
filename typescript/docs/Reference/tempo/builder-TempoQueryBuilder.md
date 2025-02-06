@@ -78,6 +78,14 @@ limit(limit: number)
 maxDuration(maxDuration: string)
 ```
 
+### <span class="badge object-method"></span> metricsQueryType
+
+For metric queries, whether to run instant or range queries
+
+```typescript
+metricsQueryType(metricsQueryType: tempo.MetricsQueryType)
+```
+
 ### <span class="badge object-method"></span> minDuration
 
 @deprecated Define the minimum duration to select traces. Use duration format, for example: 1.2s, 100ms

@@ -58,6 +58,14 @@ Application Insights Traces sub-query properties.
 azureTraces(\Grafana\Foundation\Cog\Builder $azureTraces)
 ```
 
+### <span class="badge object-method"></span> customNamespace
+
+Custom namespace used in template variable queries
+
+```php
+customNamespace(string $customNamespace)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 For mixed data sources the selected datasource is on the query level.
@@ -91,6 +99,8 @@ hide(bool $hide)
 ```
 
 ### <span class="badge object-method"></span> namespace
+
+Namespace used in template variable queries
 
 ```php
 namespace(string $namespace)
@@ -128,11 +138,15 @@ refId(string $refId)
 
 ### <span class="badge object-method"></span> region
 
+Region used in template variable queries
+
 ```php
 region(string $region)
 ```
 
 ### <span class="badge object-method"></span> resource
+
+Resource used in template variable queries
 
 ```php
 resource(string $resource)
@@ -140,7 +154,7 @@ resource(string $resource)
 
 ### <span class="badge object-method"></span> resourceGroup
 
-Template variables params. These exist for backwards compatiblity with legacy template variables.
+Resource group used in template variable queries
 
 ```php
 resourceGroup(string $resourceGroup)
@@ -149,6 +163,8 @@ resourceGroup(string $resourceGroup)
 ### <span class="badge object-method"></span> subscription
 
 Azure subscription containing the resource(s) to be queried.
+
+Also used for template variable queries
 
 ```php
 subscription(string $subscription)

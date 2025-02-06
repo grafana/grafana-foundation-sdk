@@ -17,6 +17,7 @@ type AzureMonitorQuery struct {
     // TODO make this required and give it a default
     QueryType *string `json:"queryType,omitempty"`
     // Azure subscription containing the resource(s) to be queried.
+    // Also used for template variable queries
     Subscription *string `json:"subscription,omitempty"`
     // Subscriptions to be queried via Azure Resource Graph.
     Subscriptions []string `json:"subscriptions,omitempty"`
@@ -30,11 +31,16 @@ type AzureMonitorQuery struct {
     AzureTraces *azuremonitor.AzureTracesQuery `json:"azureTraces,omitempty"`
     // @deprecated Legacy template variable support.
     GrafanaTemplateVariableFn *azuremonitor.GrafanaTemplateVariableQuery `json:"grafanaTemplateVariableFn,omitempty"`
-    // Template variables params. These exist for backwards compatiblity with legacy template variables.
+    // Resource group used in template variable queries
     ResourceGroup *string `json:"resourceGroup,omitempty"`
+    // Namespace used in template variable queries
     Namespace *string `json:"namespace,omitempty"`
+    // Resource used in template variable queries
     Resource *string `json:"resource,omitempty"`
+    // Region used in template variable queries
     Region *string `json:"region,omitempty"`
+    // Custom namespace used in template variable queries
+    CustomNamespace *string `json:"customNamespace,omitempty"`
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema

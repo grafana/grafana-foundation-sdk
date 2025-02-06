@@ -47,7 +47,7 @@ class ExprTypeClassicConditionsResultAssertionsBuilder implements \Grafana\Found
      *  - `"numeric-long"` 
      *  - `"log-lines"` 
      */
-    public function type(\Grafana\Foundation\Expr\TypeClassicConditionsType $type): static
+    public function type(\Grafana\Foundation\Expr\ExprTypeClassicConditionsResultAssertionsType $type): static
     {
         $this->internal->type = $type;
     

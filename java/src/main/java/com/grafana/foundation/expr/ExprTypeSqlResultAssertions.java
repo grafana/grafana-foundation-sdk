@@ -31,7 +31,7 @@ public class ExprTypeSqlResultAssertions {
     //  - `"log-lines"` 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("type")
-    public TypeSqlType type;
+    public ExprTypeSqlResultAssertionsType type;
     // TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
     // contract documentation https://grafana.github.io/dataplane/contract/.
     @JsonSetter(nulls = Nulls.AS_EMPTY)
@@ -40,7 +40,7 @@ public class ExprTypeSqlResultAssertions {
     public ExprTypeSqlResultAssertions() {
     }
     
-    public ExprTypeSqlResultAssertions(Long maxFrames,TypeSqlType type,List<Long> typeVersion) {
+    public ExprTypeSqlResultAssertions(Long maxFrames,ExprTypeSqlResultAssertionsType type,List<Long> typeVersion) {
         this.maxFrames = maxFrames;
         this.type = type;
         this.typeVersion = typeVersion;

@@ -22,6 +22,8 @@ public enum AzureQueryType {
     LOCATIONS_QUERY("Azure Regions"),
     GRAFANA_TEMPLATE_VARIABLE_FN("Grafana Template Variable Function"),
     TRACE_EXEMPLAR("traceql"),
+    CUSTOM_NAMESPACES_QUERY("Azure Custom Namespaces"),
+    CUSTOM_METRIC_NAMES_QUERY("Azure Custom Metric Names"),
     _EMPTY("");
 
     private final String value;

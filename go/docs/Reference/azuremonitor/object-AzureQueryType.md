@@ -23,6 +23,8 @@ const (
 	AzureQueryTypeLocationsQuery AzureQueryType = "Azure Regions"
 	AzureQueryTypeGrafanaTemplateVariableFn AzureQueryType = "Grafana Template Variable Function"
 	AzureQueryTypeTraceExemplar AzureQueryType = "traceql"
+	AzureQueryTypeCustomNamespacesQuery AzureQueryType = "Azure Custom Namespaces"
+	AzureQueryTypeCustomMetricNamesQuery AzureQueryType = "Azure Custom Metric Names"
 )
 
 ```

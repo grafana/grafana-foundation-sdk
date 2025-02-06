@@ -11,7 +11,7 @@ public class ExprTypeClassicConditionsConditionsQueryBuilder implements com.graf
         this.internal = new ExprTypeClassicConditionsConditionsQuery();
     }
     public ExprTypeClassicConditionsConditionsQueryBuilder params(List<String> params) {
-    this.internal.params = params;
+        this.internal.params = params;
         return this;
     }
     public ExprTypeClassicConditionsConditionsQuery build() {

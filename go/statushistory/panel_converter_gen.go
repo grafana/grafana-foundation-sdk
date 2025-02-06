@@ -489,6 +489,18 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
+	if input.Options != nil && input.Options.(*Options).ColWidth != nil && *input.Options.(*Options).ColWidth != 0.9 {
+
+		buffer.WriteString(`ColWidth(`)
+		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).ColWidth)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Options != nil {
 
 		buffer.WriteString(`Legend(`)
@@ -530,10 +542,10 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
-	if input.Options != nil && input.Options.(*Options).ColWidth != nil && *input.Options.(*Options).ColWidth != 0.9 {
+	if input.Options != nil && input.Options.(*Options).PerPage != nil && *input.Options.(*Options).PerPage != 20 {
 
-		buffer.WriteString(`ColWidth(`)
-		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).ColWidth)
+		buffer.WriteString(`PerPage(`)
+		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).PerPage)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

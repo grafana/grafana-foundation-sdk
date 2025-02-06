@@ -11,12 +11,12 @@ public class TimeIntervalBuilder implements com.grafana.foundation.cog.Builder<T
         this.internal = new TimeInterval();
     }
     public TimeIntervalBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public TimeIntervalBuilder timeIntervals(com.grafana.foundation.cog.Builder<List<TimeIntervalItem>> timeIntervals) {
-    this.internal.timeIntervals = timeIntervals.build();
+        this.internal.timeIntervals = timeIntervals.build();
         return this;
     }
     public TimeInterval build() {

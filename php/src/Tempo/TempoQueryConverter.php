@@ -257,6 +257,19 @@ final class TempoQueryConverter
     
     
     }
+            if ($input->exemplars !== null) {
+    
+        
+    $buffer = 'exemplars(';
+        $arg0 =\var_export($input->exemplars, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->datasource !== null) {
     
         
@@ -270,11 +283,11 @@ final class TempoQueryConverter
     
     
     }
-            if ($input->exemplars !== null) {
+            if ($input->metricsQueryType !== null) {
     
         
-    $buffer = 'exemplars(';
-        $arg0 =\var_export($input->exemplars, true);
+    $buffer = 'metricsQueryType(';
+        $arg0 ='\Grafana\Foundation\Tempo\MetricsQueryType::fromValue("'.$input->metricsQueryType.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

@@ -486,6 +486,85 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * Adds override rules for a specific field, referred to by its name.
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByName(string $name,array $properties): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byName",
+            options: $name,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
+     * Adds override rules for the fields whose name match the given regexp.
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByRegexp(string $regexp,array $properties): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byRegexp",
+            options: $regexp,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
+     * Adds override rules for all the fields of the given type.
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByFieldType(string $fieldType,array $properties): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byType",
+            options: $fieldType,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
+     * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
+     */
+    public function overrideByQuery(string $queryRefId,array $properties): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboard\MatcherConfig(
+            id: "byFrameRefID",
+            options: $queryRefId,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+    /**
      * Set the height of the rows
      */
     public function rowHeight(float $rowHeight): static
@@ -514,6 +593,22 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Statushistory\Options);
         $this->internal->options->showValue = $showValue;
+    
+        return $this;
+    }
+    /**
+     * Controls the column width
+     */
+    public function colWidth(float $colWidth): static
+    {
+        if (!($colWidth <= 1)) {
+            throw new \ValueError('$colWidth must be <= 1');
+        }    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Statushistory\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Statushistory\Options);
+        $this->internal->options->colWidth = $colWidth;
     
         return $this;
     }
@@ -559,18 +654,18 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * Controls the column width
+     * Enables pagination when > 0
      */
-    public function colWidth(float $colWidth): static
+    public function perPage(float $perPage): static
     {
-        if (!($colWidth <= 1)) {
-            throw new \ValueError('$colWidth must be <= 1');
+        if (!($perPage >= 1)) {
+            throw new \ValueError('$perPage must be >= 1');
         }    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Statushistory\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Statushistory\Options);
-        $this->internal->options->colWidth = $colWidth;
+        $this->internal->options->perPage = $perPage;
     
         return $this;
     }

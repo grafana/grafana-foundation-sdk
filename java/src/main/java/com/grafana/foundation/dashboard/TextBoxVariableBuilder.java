@@ -9,46 +9,46 @@ public class TextBoxVariableBuilder implements com.grafana.foundation.cog.Builde
     
     public TextBoxVariableBuilder(String name) {
         this.internal = new VariableModel();
-    this.internal.name = name;
-    this.internal.type = VariableType.TEXTBOX;
+        this.internal.name = name;
+        this.internal.type = VariableType.TEXTBOX;
     }
     public TextBoxVariableBuilder name(String name) {
-    this.internal.name = name;
+        this.internal.name = name;
         return this;
     }
     
     public TextBoxVariableBuilder label(String label) {
-    this.internal.label = label;
+        this.internal.label = label;
         return this;
     }
     
     public TextBoxVariableBuilder hide(VariableHide hide) {
-    this.internal.hide = hide;
+        this.internal.hide = hide;
         return this;
     }
     
     public TextBoxVariableBuilder description(String description) {
-    this.internal.description = description;
+        this.internal.description = description;
         return this;
     }
     
     public TextBoxVariableBuilder defaultValue(StringOrMap query) {
-    this.internal.query = query;
+        this.internal.query = query;
         return this;
     }
     
     public TextBoxVariableBuilder current(VariableOption current) {
-    this.internal.current = current;
+        this.internal.current = current;
         return this;
     }
     
     public TextBoxVariableBuilder allowCustomValue(Boolean allowCustomValue) {
-    this.internal.allowCustomValue = allowCustomValue;
+        this.internal.allowCustomValue = allowCustomValue;
         return this;
     }
     
     public TextBoxVariableBuilder options(List<VariableOption> options) {
-    this.internal.options = options;
+        this.internal.options = options;
         return this;
     }
     public VariableModel build() {

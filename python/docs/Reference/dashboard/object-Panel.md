@@ -114,6 +114,7 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
  * <span class="badge builder"></span> [heatmap.Panel](../heatmap/builder-Panel.md)
  * <span class="badge builder"></span> [histogram.Panel](../histogram/builder-Panel.md)
  * <span class="badge builder"></span> [logs.Panel](../logs/builder-Panel.md)
+ * <span class="badge builder"></span> [logsnew.Panel](../logsnew/builder-Panel.md)
  * <span class="badge builder"></span> [news.Panel](../news/builder-Panel.md)
  * <span class="badge builder"></span> [nodegraph.Panel](../nodegraph/builder-Panel.md)
  * <span class="badge builder"></span> [piechart.Panel](../piechart/builder-Panel.md)

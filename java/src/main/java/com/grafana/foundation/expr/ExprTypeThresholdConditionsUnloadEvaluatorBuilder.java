@@ -11,12 +11,12 @@ public class ExprTypeThresholdConditionsUnloadEvaluatorBuilder implements com.gr
         this.internal = new ExprTypeThresholdConditionsUnloadEvaluator();
     }
     public ExprTypeThresholdConditionsUnloadEvaluatorBuilder params(List<Double> params) {
-    this.internal.params = params;
+        this.internal.params = params;
         return this;
     }
     
-    public ExprTypeThresholdConditionsUnloadEvaluatorBuilder type(TypeThresholdType type) {
-    this.internal.type = type;
+    public ExprTypeThresholdConditionsUnloadEvaluatorBuilder type(ExprTypeThresholdConditionsUnloadEvaluatorType type) {
+        this.internal.type = type;
         return this;
     }
     public ExprTypeThresholdConditionsUnloadEvaluator build() {

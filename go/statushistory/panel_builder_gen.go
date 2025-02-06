@@ -415,6 +415,69 @@ func (builder *PanelBuilder) WithOverride(matcher dashboard.MatcherConfig, prope
 	return builder
 }
 
+// Adds override rules for a specific field, referred to by its name.
+func (builder *PanelBuilder) OverrideByName(name string, properties []dashboard.DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
+		Matcher: dashboard.MatcherConfig{
+			Id:      "byName",
+			Options: &name,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+// Adds override rules for the fields whose name match the given regexp.
+func (builder *PanelBuilder) OverrideByRegexp(regexp string, properties []dashboard.DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
+		Matcher: dashboard.MatcherConfig{
+			Id:      "byRegexp",
+			Options: &regexp,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+// Adds override rules for all the fields of the given type.
+func (builder *PanelBuilder) OverrideByFieldType(fieldType string, properties []dashboard.DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
+		Matcher: dashboard.MatcherConfig{
+			Id:      "byType",
+			Options: &fieldType,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+func (builder *PanelBuilder) OverrideByQuery(queryRefId string, properties []dashboard.DynamicConfigValue) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
+		Matcher: dashboard.MatcherConfig{
+			Id:      "byFrameRefID",
+			Options: &queryRefId,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
 // Set the height of the rows
 func (builder *PanelBuilder) RowHeight(rowHeight float32) *PanelBuilder {
 	if builder.internal.Options == nil {
@@ -431,6 +494,16 @@ func (builder *PanelBuilder) ShowValue(showValue common.VisibilityMode) *PanelBu
 		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).ShowValue = showValue
+
+	return builder
+}
+
+// Controls the column width
+func (builder *PanelBuilder) ColWidth(colWidth float64) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).ColWidth = &colWidth
 
 	return builder
 }
@@ -472,12 +545,12 @@ func (builder *PanelBuilder) Timezone(timezone []common.TimeZone) *PanelBuilder 
 	return builder
 }
 
-// Controls the column width
-func (builder *PanelBuilder) ColWidth(colWidth float64) *PanelBuilder {
+// Enables pagination when > 0
+func (builder *PanelBuilder) PerPage(perPage float64) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	builder.internal.Options.(*Options).ColWidth = &colWidth
+	builder.internal.Options.(*Options).PerPage = &perPage
 
 	return builder
 }

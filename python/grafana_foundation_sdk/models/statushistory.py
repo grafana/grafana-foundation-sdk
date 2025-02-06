@@ -10,19 +10,22 @@ class Options:
     row_height: float
     # Show values on the columns
     show_value: common.VisibilityMode
+    # Controls the column width
+    col_width: typing.Optional[float]
     legend: common.VizLegendOptions
     tooltip: common.VizTooltipOptions
     timezone: typing.Optional[list[common.TimeZone]]
-    # Controls the column width
-    col_width: typing.Optional[float]
+    # Enables pagination when > 0
+    per_page: typing.Optional[float]
 
-    def __init__(self, row_height: float = 0.9, show_value: typing.Optional[common.VisibilityMode] = None, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, timezone: typing.Optional[list[common.TimeZone]] = None, col_width: typing.Optional[float] = 0.9):
+    def __init__(self, row_height: float = 0.9, show_value: typing.Optional[common.VisibilityMode] = None, col_width: typing.Optional[float] = 0.9, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, timezone: typing.Optional[list[common.TimeZone]] = None, per_page: typing.Optional[float] = 20):
         self.row_height = row_height
         self.show_value = show_value if show_value is not None else common.VisibilityMode.AUTO
+        self.col_width = col_width
         self.legend = legend if legend is not None else common.VizLegendOptions()
         self.tooltip = tooltip if tooltip is not None else common.VizTooltipOptions()
         self.timezone = timezone
-        self.col_width = col_width
+        self.per_page = per_page
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -31,10 +34,12 @@ class Options:
             "legend": self.legend,
             "tooltip": self.tooltip,
         }
-        if self.timezone is not None:
-            payload["timezone"] = self.timezone
         if self.col_width is not None:
             payload["colWidth"] = self.col_width
+        if self.timezone is not None:
+            payload["timezone"] = self.timezone
+        if self.per_page is not None:
+            payload["perPage"] = self.per_page
         return payload
 
     @classmethod
@@ -45,14 +50,16 @@ class Options:
             args["row_height"] = data["rowHeight"]
         if "showValue" in data:
             args["show_value"] = data["showValue"]
+        if "colWidth" in data:
+            args["col_width"] = data["colWidth"]
         if "legend" in data:
             args["legend"] = common.VizLegendOptions.from_json(data["legend"])
         if "tooltip" in data:
             args["tooltip"] = common.VizTooltipOptions.from_json(data["tooltip"])
         if "timezone" in data:
-            args["timezone"] = data["timezone"]
-        if "colWidth" in data:
-            args["col_width"] = data["colWidth"]        
+            args["timezone"] = [item for item in data["timezone"]]
+        if "perPage" in data:
+            args["per_page"] = data["perPage"]        
 
         return cls(**args)
 
