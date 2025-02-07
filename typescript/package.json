@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "11.3.0-cogv0.0.x.1738846246",
+  "version": "11.3.0-cogv0.0.x.1738930936",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
