@@ -4,7 +4,7 @@ name: Python Release
 on:
   push:
     branches:
-      - 'next+cog-v0.0.x'
+      - 'next\+cog-v0.0.x'
 
 env:
   PYTHON_VERSION: '3.12'
