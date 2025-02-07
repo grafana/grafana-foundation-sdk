@@ -4,7 +4,7 @@ name: Java Release
 on:
   push:
     branches:
-      - 'v11.1.x+cog-v0.0.x'
+      - 'v11.1.x\+cog-v0.0.x'
 
 env:
   JAVA_VERSION: '17'
