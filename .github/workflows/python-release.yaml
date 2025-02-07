@@ -2,19 +2,15 @@
 
 name: Python Release
 on:
-  pull_request_target:
-    types: [ closed ]
-    paths:
-      - 'python/pyproject.toml'
-      - 'python/grafana_foundation_sdk/**'
+  push:
+    branches:
+      - 'next+cog-v0.0.x'
 
 env:
   PYTHON_VERSION: '3.12'
 
 jobs:
   release:
-    if: github.event.pull_request.merged == true && github.base_ref == 'next+cog-v0.0.x'
-
     name: Build and release
     runs-on: ubuntu-latest
 

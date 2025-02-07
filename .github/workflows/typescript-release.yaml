@@ -2,19 +2,15 @@
 
 name: TypeScript Release
 on:
-  pull_request_target:
-    types: [closed]
-    paths:
-      - 'typescript/package.json'
-      - 'typescript/src/**'
+  push:
+    branches:
+      - 'next+cog-v0.0.x'
 
 env:
   NODE_VERSION: '18'
 
 jobs:
   release:
-    if: github.event.pull_request.merged == true && github.base_ref == 'next+cog-v0.0.x'
-
     name: Build and release
     runs-on: ubuntu-latest
 
