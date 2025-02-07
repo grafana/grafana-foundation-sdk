@@ -1,5 +1,5 @@
 # Installing
 
 ```shell
-python3 -m pip install 'grafana_foundation_sdk==1738846282!11.2.0'
+python3 -m pip install 'grafana_foundation_sdk==1738930954!11.2.0'
 ```
