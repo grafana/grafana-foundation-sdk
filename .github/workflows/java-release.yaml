@@ -1,0 +1,48 @@
+name: Java Release
+on:
+  push:
+    branches:
+      - 'next+cog-v0.0.x'
+
+env:
+  JAVA_VERSION: '17'
+
+jobs:
+  release:
+    name: Build and release
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./java
+
+    steps:
+      # This should checkout the pushed reference
+      # https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#push
+      - uses: actions/checkout@v4
+
+      - name: Uses Java SDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          check-latest: true
+
+      - name: Java setup gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.8'
+          
+      - name: Publish package 📦
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+        run:
+          gradle publishToSonatype closeAndReleaseSonatypeStagingRepository
+  
