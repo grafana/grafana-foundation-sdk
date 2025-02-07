@@ -2,7 +2,7 @@ name: Python Release
 on:
   push:
     branches:
-      - '{{ .Extra.ReleaseBranch }}'
+      - '{{ .Extra.ReleaseBranch|replace "+" "\\+" }}'
 
 env:
   PYTHON_VERSION: '3.12'
