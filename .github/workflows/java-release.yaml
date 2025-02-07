@@ -2,19 +2,15 @@
 
 name: Java Release
 on:
-  pull_request_target:
-    types: [ closed ]
-    paths:
-      - 'java/gradle.properties'
-      - 'java/src/**'
+  push:
+    branches:
+      - 'v10.2.x+cog-v0.0.x'
 
 env:
   JAVA_VERSION: '17'
 
 jobs:
   release:
-    if: github.event.pull_request.merged == true && github.base_ref == 'v10.2.x+cog-v0.0.x'
-
     name: Build and release
     runs-on: ubuntu-latest
 
