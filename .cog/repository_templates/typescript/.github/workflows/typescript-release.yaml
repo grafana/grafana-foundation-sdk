@@ -2,7 +2,7 @@ name: TypeScript Release
 on:
   push:
     branches:
-      - '{{ .Extra.ReleaseBranch }}'
+      - '{{ .Extra.ReleaseBranch|replace "+" "\\+" }}'
 
 env:
   NODE_VERSION: '18'

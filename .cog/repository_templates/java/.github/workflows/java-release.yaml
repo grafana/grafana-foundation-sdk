@@ -2,7 +2,7 @@ name: Java Release
 on:
   push:
     branches:
-      - '{{ .Extra.ReleaseBranch }}'
+      - '{{ .Extra.ReleaseBranch|replace "+" "\\+" }}'
 
 env:
   JAVA_VERSION: '17'
