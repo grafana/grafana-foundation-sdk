@@ -1140,9 +1140,9 @@ class ExprTypeClassicConditionsTimeRange:
 class ExprTypeThresholdConditionsEvaluator:
     params: list[float]
     # e.g. "gt"
-    type_val: typing.Literal["gt", "lt", "within_range", "outside_range"]
+    type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]
 
-    def __init__(self, params: typing.Optional[list[float]] = None, type_val: typing.Optional[typing.Literal["gt", "lt", "within_range", "outside_range"]] = None):
+    def __init__(self, params: typing.Optional[list[float]] = None, type_val: typing.Optional[typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]] = None):
         self.params = params if params is not None else []
         self.type_val = type_val if type_val is not None else "gt"
 
@@ -1168,9 +1168,9 @@ class ExprTypeThresholdConditionsEvaluator:
 class ExprTypeThresholdConditionsUnloadEvaluator:
     params: list[float]
     # e.g. "gt"
-    type_val: typing.Literal["gt", "lt", "within_range", "outside_range"]
+    type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]
 
-    def __init__(self, params: typing.Optional[list[float]] = None, type_val: typing.Optional[typing.Literal["gt", "lt", "within_range", "outside_range"]] = None):
+    def __init__(self, params: typing.Optional[list[float]] = None, type_val: typing.Optional[typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]] = None):
         self.params = params if params is not None else []
         self.type_val = type_val if type_val is not None else "gt"
 
