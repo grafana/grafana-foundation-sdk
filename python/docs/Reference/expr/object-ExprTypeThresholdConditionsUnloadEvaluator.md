@@ -9,7 +9,7 @@ title: <span class="badge object-type-class"></span> ExprTypeThresholdConditions
 class ExprTypeThresholdConditionsUnloadEvaluator:
     params: list[float]
     # e.g. "gt"
-    type_val: typing.Literal["gt", "lt", "within_range", "outside_range"]
+    type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]
 ```
 ## Methods
 

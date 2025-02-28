@@ -24,13 +24,13 @@ export class TypeThresholdBuilder implements cog.Builder<cog.Dataquery> {
 	evaluator: {
 		params: number[];
 		// e.g. "gt"
-		type: "gt" | "lt" | "within_range" | "outside_range";
+		type: "gt" | "lt" | "eq" | "ne" | "gte" | "lte" | "within_range" | "outside_range" | "within_range_included" | "outside_range_included";
 	};
 	loadedDimensions?: any;
 	unloadEvaluator?: {
 		params: number[];
 		// e.g. "gt"
-		type: "gt" | "lt" | "within_range" | "outside_range";
+		type: "gt" | "lt" | "eq" | "ne" | "gte" | "lte" | "within_range" | "outside_range" | "within_range_included" | "outside_range_included";
 	};
 }[]): this {
         this.internal.conditions = conditions;
