@@ -488,4 +488,12 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         this.internal.options.enableInfiniteScrolling = enableInfiniteScrolling;
         return this;
     }
+
+    onNewLogsReceived(onNewLogsReceived: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logsnew.defaultOptions();
+        }
+        this.internal.options.onNewLogsReceived = onNewLogsReceived;
+        return this;
+    }
 }

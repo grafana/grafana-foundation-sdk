@@ -1,6 +1,5 @@
 # Packages
 
- * <span class="badge package-core"></span> [accesspolicy](./accesspolicy/index.md)
  * <span class="badge package-core"></span> [alerting](./alerting/index.md)
  * <span class="badge package-variant-panelcfg"></span> [annotationslist](./annotationslist/index.md)
  * <span class="badge package-variant-dataquery"></span> [athena](./athena/index.md)
@@ -36,8 +35,6 @@
  * <span class="badge package-core"></span> [preferences](./preferences/index.md)
  * <span class="badge package-variant-dataquery"></span> [prometheus](./prometheus/index.md)
  * <span class="badge package-core"></span> [publicdashboard](./publicdashboard/index.md)
- * <span class="badge package-core"></span> [role](./role/index.md)
- * <span class="badge package-core"></span> [rolebinding](./rolebinding/index.md)
  * <span class="badge package-variant-panelcfg"></span> [stat](./stat/index.md)
  * <span class="badge package-variant-panelcfg"></span> [statetimeline](./statetimeline/index.md)
  * <span class="badge package-variant-panelcfg"></span> [statushistory](./statushistory/index.md)

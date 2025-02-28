@@ -42,23 +42,6 @@ func TimePickerConverter(input TimePickerConfig) string {
 		buffer.Reset()
 
 	}
-	if input.TimeOptions != nil && len(input.TimeOptions) >= 1 {
-
-		buffer.WriteString(`TimeOptions(`)
-		tmparg0 := []string{}
-		for _, arg1 := range input.TimeOptions {
-			tmptime_optionsarg1 := fmt.Sprintf("%#v", arg1)
-			tmparg0 = append(tmparg0, tmptime_optionsarg1)
-		}
-		arg0 := "[]string{" + strings.Join(tmparg0, ",\n") + "}"
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
 	if input.QuickRanges != nil && len(input.QuickRanges) >= 1 {
 
 		buffer.WriteString(`QuickRanges(`)

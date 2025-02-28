@@ -101,7 +101,7 @@
         "schemaVersion": {
           "type": "integer",
           "description": "Version of the JSON schema, incremented each time a Grafana update brings\nchanges to said schema.",
-          "default": 39
+          "default": 41
         },
         "version": {
           "type": "integer",
@@ -190,24 +190,6 @@
             "1h",
             "2h",
             "1d"
-          ]
-        },
-        "time_options": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.",
-          "default": [
-            "5m",
-            "15m",
-            "1h",
-            "6h",
-            "12h",
-            "24h",
-            "2d",
-            "7d",
-            "30d"
           ]
         },
         "quick_ranges": {

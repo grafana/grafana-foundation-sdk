@@ -120,7 +120,7 @@ public class Dashboard {
         this.editable = true;
         this.graphTooltip = DashboardCursorSync.OFF;
         this.fiscalYearStartMonth = 0;
-        this.schemaVersion = 39;
+        this.schemaVersion = 41;
     }
     
     public Dashboard(Long id,String uid,String title,String description,Long revision,String gnetId,List<String> tags,String timezone,Boolean editable,DashboardCursorSync graphTooltip,DashboardDashboardTime time,TimePickerConfig timepicker,Integer fiscalYearStartMonth,Boolean liveNow,String weekStart,String refresh,Short schemaVersion,Integer version,List<PanelOrRowPanel> panels,DashboardDashboardTemplating templating,AnnotationContainer annotations,List<DashboardLink> links,Snapshot snapshot,Boolean preload) {

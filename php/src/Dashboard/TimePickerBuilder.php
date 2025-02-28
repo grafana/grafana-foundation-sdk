@@ -45,16 +45,6 @@ class TimePickerBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-     * @param array<string> $timeOptions
-     */
-    public function timeOptions(array $timeOptions): static
-    {
-        $this->internal->timeOptions = $timeOptions;
-    
-        return $this;
-    }
-    /**
      * Quick ranges for time picker.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\TimeOption>> $quickRanges
      */

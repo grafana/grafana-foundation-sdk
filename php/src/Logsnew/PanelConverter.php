@@ -587,6 +587,19 @@ final class PanelConverter
     
     
     }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logsnew\Options && $input->options->onNewLogsReceived !== null) {
+    
+        
+    $buffer = 'onNewLogsReceived(';
+        $arg0 =\var_export($input->options->onNewLogsReceived, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

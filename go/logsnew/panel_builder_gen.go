@@ -531,3 +531,12 @@ func (builder *PanelBuilder) EnableInfiniteScrolling(enableInfiniteScrolling boo
 
 	return builder
 }
+
+func (builder *PanelBuilder) OnNewLogsReceived(onNewLogsReceived any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).OnNewLogsReceived = &onNewLogsReceived
+
+	return builder
+}

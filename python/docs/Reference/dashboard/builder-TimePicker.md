@@ -50,14 +50,6 @@ Interval options available in the refresh picker dropdown.
 def refresh_intervals(refresh_intervals: list[str]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> time_options
-
-Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-
-```python
-def time_options(time_options: list[str]) -> typing.Self
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [TimePickerConfig](./object-TimePickerConfig.md)

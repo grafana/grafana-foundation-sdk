@@ -82,7 +82,7 @@ func NewDashboard() *Dashboard {
 		Editable:             (func(input bool) *bool { return &input })(true),
 		GraphTooltip:         (func(input DashboardCursorSync) *DashboardCursorSync { return &input })(DashboardCursorSyncOff),
 		FiscalYearStartMonth: (func(input uint8) *uint8 { return &input })(0),
-		SchemaVersion:        39,
+		SchemaVersion:        41,
 		Templating:           *NewDashboardDashboardTemplating(),
 		Annotations:          *NewAnnotationContainer(),
 	}
@@ -696,8 +696,6 @@ type TimePickerConfig struct {
 	Hidden *bool `json:"hidden,omitempty"`
 	// Interval options available in the refresh picker dropdown.
 	RefreshIntervals []string `json:"refresh_intervals,omitempty"`
-	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-	TimeOptions []string `json:"time_options,omitempty"`
 	// Quick ranges for time picker.
 	QuickRanges []TimeOption `json:"quick_ranges,omitempty"`
 	// Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
@@ -709,7 +707,6 @@ func NewTimePickerConfig() *TimePickerConfig {
 	return &TimePickerConfig{
 		Hidden:           (func(input bool) *bool { return &input })(false),
 		RefreshIntervals: []string{"5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"},
-		TimeOptions:      []string{"5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"},
 	}
 }
 
@@ -746,18 +743,6 @@ func (resource *TimePickerConfig) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "refresh_intervals")
-
-	}
-	// Field "time_options"
-	if fields["time_options"] != nil {
-		if string(fields["time_options"]) != "null" {
-
-			if err := json.Unmarshal(fields["time_options"], &resource.TimeOptions); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("time_options", err)...)
-			}
-
-		}
-		delete(fields, "time_options")
 
 	}
 	// Field "quick_ranges"
@@ -824,16 +809,6 @@ func (resource TimePickerConfig) Equals(other TimePickerConfig) bool {
 
 	for i1 := range resource.RefreshIntervals {
 		if resource.RefreshIntervals[i1] != other.RefreshIntervals[i1] {
-			return false
-		}
-	}
-
-	if len(resource.TimeOptions) != len(other.TimeOptions) {
-		return false
-	}
-
-	for i1 := range resource.TimeOptions {
-		if resource.TimeOptions[i1] != other.TimeOptions[i1] {
 			return false
 		}
 	}

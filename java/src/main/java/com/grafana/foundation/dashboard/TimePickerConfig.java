@@ -20,10 +20,6 @@ public class TimePickerConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refresh_intervals")
     public List<String> refreshIntervals;
-    // Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("time_options")
-    public List<String> timeOptions;
     // Quick ranges for time picker.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("quick_ranges")
@@ -35,13 +31,11 @@ public class TimePickerConfig {
     public TimePickerConfig() {
         this.hidden = false;
         this.refreshIntervals = List.of("5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d");
-        this.timeOptions = List.of("5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d");
     }
     
-    public TimePickerConfig(Boolean hidden,List<String> refreshIntervals,List<String> timeOptions,List<TimeOption> quickRanges,String nowDelay) {
+    public TimePickerConfig(Boolean hidden,List<String> refreshIntervals,List<TimeOption> quickRanges,String nowDelay) {
         this.hidden = hidden;
         this.refreshIntervals = refreshIntervals;
-        this.timeOptions = timeOptions;
         this.quickRanges = quickRanges;
         this.nowDelay = nowDelay;
     }

@@ -218,6 +218,14 @@ Alternative to empty string
 noValue(string $noValue)
 ```
 
+### <span class="badge object-method"></span> onNewLogsReceived
+
+@param mixed $onNewLogsReceived
+
+```php
+onNewLogsReceived($onNewLogsReceived)
+```
+
 ### <span class="badge object-method"></span> overrideByFieldType
 
 Adds override rules for all the fields of the given type.

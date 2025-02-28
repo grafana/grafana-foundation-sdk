@@ -210,6 +210,12 @@ Alternative to empty string
 noValue(noValue: string)
 ```
 
+### <span class="badge object-method"></span> onNewLogsReceived
+
+```typescript
+onNewLogsReceived(onNewLogsReceived: any)
+```
+
 ### <span class="badge object-method"></span> overrideByFieldType
 
 Adds override rules for all the fields of the given type.

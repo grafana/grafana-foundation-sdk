@@ -47,13 +47,6 @@ func (builder *TimePickerBuilder) RefreshIntervals(refreshIntervals []string) *T
 	return builder
 }
 
-// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-func (builder *TimePickerBuilder) TimeOptions(timeOptions []string) *TimePickerBuilder {
-	builder.internal.TimeOptions = timeOptions
-
-	return builder
-}
-
 // Quick ranges for time picker.
 func (builder *TimePickerBuilder) QuickRanges(quickRanges []cog.Builder[TimeOption]) *TimePickerBuilder {
 	quickRangesResources := make([]TimeOption, 0, len(quickRanges))

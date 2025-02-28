@@ -31,12 +31,6 @@ export class TimePickerBuilder implements cog.Builder<dashboard.TimePickerConfig
         return this;
     }
 
-    // Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-    timeOptions(timeOptions: string[]): this {
-        this.internal.time_options = timeOptions;
-        return this;
-    }
-
     // Quick ranges for time picker.
     quickRanges(quickRanges: cog.Builder<dashboard.TimeOption>[]): this {
         const quickRangesResources = quickRanges.map(builder1 => builder1.build());
