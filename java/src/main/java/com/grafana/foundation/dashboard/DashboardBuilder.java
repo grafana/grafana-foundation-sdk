@@ -14,8 +14,6 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
     public DashboardBuilder(String title) {
         this.internal = new Dashboard();
         this.internal.title = title;
-        this.internal.schemaVersion = 39;
-        this.internal.editable = true;
     this.currentY = 0;
     this.currentX = 0;
     this.lastPanelHeight = 0;
