@@ -251,10 +251,6 @@ builders:
       by_object: DashboardLink
       options: [title]
 
-  - default_to_constant:
-      by_object: Dashboard
-      options: [schemaVersion, editable]
-
 options:
   ##############
   # Dashboards #
