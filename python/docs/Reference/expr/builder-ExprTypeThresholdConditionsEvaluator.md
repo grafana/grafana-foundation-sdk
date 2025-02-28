@@ -29,7 +29,7 @@ def params(params: list[float]) -> typing.Self
 e.g. "gt"
 
 ```python
-def type_val(type_val: typing.Literal["gt", "lt", "within_range", "outside_range"]) -> typing.Self
+def type_val(type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]) -> typing.Self
 ```
 
 ## See also
