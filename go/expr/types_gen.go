@@ -4549,19 +4549,31 @@ const (
 type ExprTypeThresholdConditionsEvaluatorType string
 
 const (
-	ExprTypeThresholdConditionsEvaluatorTypeGt           ExprTypeThresholdConditionsEvaluatorType = "gt"
-	ExprTypeThresholdConditionsEvaluatorTypeLt           ExprTypeThresholdConditionsEvaluatorType = "lt"
-	ExprTypeThresholdConditionsEvaluatorTypeWithinRange  ExprTypeThresholdConditionsEvaluatorType = "within_range"
-	ExprTypeThresholdConditionsEvaluatorTypeOutsideRange ExprTypeThresholdConditionsEvaluatorType = "outside_range"
+	ExprTypeThresholdConditionsEvaluatorTypeGt                   ExprTypeThresholdConditionsEvaluatorType = "gt"
+	ExprTypeThresholdConditionsEvaluatorTypeLt                   ExprTypeThresholdConditionsEvaluatorType = "lt"
+	ExprTypeThresholdConditionsEvaluatorTypeEq                   ExprTypeThresholdConditionsEvaluatorType = "eq"
+	ExprTypeThresholdConditionsEvaluatorTypeNe                   ExprTypeThresholdConditionsEvaluatorType = "ne"
+	ExprTypeThresholdConditionsEvaluatorTypeGte                  ExprTypeThresholdConditionsEvaluatorType = "gte"
+	ExprTypeThresholdConditionsEvaluatorTypeLte                  ExprTypeThresholdConditionsEvaluatorType = "lte"
+	ExprTypeThresholdConditionsEvaluatorTypeWithinRange          ExprTypeThresholdConditionsEvaluatorType = "within_range"
+	ExprTypeThresholdConditionsEvaluatorTypeOutsideRange         ExprTypeThresholdConditionsEvaluatorType = "outside_range"
+	ExprTypeThresholdConditionsEvaluatorTypeWithinRangeIncluded  ExprTypeThresholdConditionsEvaluatorType = "within_range_included"
+	ExprTypeThresholdConditionsEvaluatorTypeOutsideRangeIncluded ExprTypeThresholdConditionsEvaluatorType = "outside_range_included"
 )
 
 type ExprTypeThresholdConditionsUnloadEvaluatorType string
 
 const (
-	ExprTypeThresholdConditionsUnloadEvaluatorTypeGt           ExprTypeThresholdConditionsUnloadEvaluatorType = "gt"
-	ExprTypeThresholdConditionsUnloadEvaluatorTypeLt           ExprTypeThresholdConditionsUnloadEvaluatorType = "lt"
-	ExprTypeThresholdConditionsUnloadEvaluatorTypeWithinRange  ExprTypeThresholdConditionsUnloadEvaluatorType = "within_range"
-	ExprTypeThresholdConditionsUnloadEvaluatorTypeOutsideRange ExprTypeThresholdConditionsUnloadEvaluatorType = "outside_range"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeGt                   ExprTypeThresholdConditionsUnloadEvaluatorType = "gt"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeLt                   ExprTypeThresholdConditionsUnloadEvaluatorType = "lt"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeEq                   ExprTypeThresholdConditionsUnloadEvaluatorType = "eq"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeNe                   ExprTypeThresholdConditionsUnloadEvaluatorType = "ne"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeGte                  ExprTypeThresholdConditionsUnloadEvaluatorType = "gte"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeLte                  ExprTypeThresholdConditionsUnloadEvaluatorType = "lte"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeWithinRange          ExprTypeThresholdConditionsUnloadEvaluatorType = "within_range"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeOutsideRange         ExprTypeThresholdConditionsUnloadEvaluatorType = "outside_range"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeWithinRangeIncluded  ExprTypeThresholdConditionsUnloadEvaluatorType = "within_range_included"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeOutsideRangeIncluded ExprTypeThresholdConditionsUnloadEvaluatorType = "outside_range_included"
 )
 
 type ExprTypeThresholdResultAssertionsType string
