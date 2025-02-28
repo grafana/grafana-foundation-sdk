@@ -10,6 +10,7 @@ export interface Options {
 	sortOrder: common.LogsSortOrder;
 	dedupStrategy: common.LogsDedupStrategy;
 	enableInfiniteScrolling?: boolean;
+	onNewLogsReceived?: any;
 }
 
 export const defaultOptions = (): Options => ({

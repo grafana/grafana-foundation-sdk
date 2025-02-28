@@ -41,24 +41,6 @@ final class TimePickerConverter
     
     
     }
-            if ($input->timeOptions !== null && count($input->timeOptions) >= 1) {
-    
-        
-    $buffer = 'timeOptions(';
-        $tmparg0 = [];
-        foreach ($input->timeOptions as $arg1) {
-        $tmptime_optionsarg1 =\var_export($arg1, true);
-        $tmparg0[] = $tmptime_optionsarg1;
-        }
-        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
             if ($input->quickRanges !== null && count($input->quickRanges) >= 1) {
     
         

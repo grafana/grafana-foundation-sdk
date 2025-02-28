@@ -75,7 +75,7 @@ export const defaultDashboard = (): Dashboard => ({
 	editable: true,
 	graphTooltip: DashboardCursorSync.Off,
 	fiscalYearStartMonth: 0,
-	schemaVersion: 39,
+	schemaVersion: 41,
 	templating: {
 },
 	annotations: defaultAnnotationContainer(),
@@ -99,8 +99,6 @@ export interface TimePickerConfig {
 	hidden?: boolean;
 	// Interval options available in the refresh picker dropdown.
 	refresh_intervals?: string[];
-	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-	time_options?: string[];
 	// Quick ranges for time picker.
 	quick_ranges?: TimeOption[];
 	// Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
@@ -120,17 +118,6 @@ export const defaultTimePickerConfig = (): TimePickerConfig => ({
 "1h",
 "2h",
 "1d",
-],
-	time_options: [
-"5m",
-"15m",
-"1h",
-"6h",
-"12h",
-"24h",
-"2d",
-"7d",
-"30d",
 ],
 });
 

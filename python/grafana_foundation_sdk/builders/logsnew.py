@@ -605,3 +605,11 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def on_new_logs_received(self, on_new_logs_received: object) -> typing.Self:        
+        if self._internal.options is None:
+            self._internal.options = logsnew.Options()
+        assert isinstance(self._internal.options, logsnew.Options)
+        self._internal.options.on_new_logs_received = on_new_logs_received
+    
+        return self
+    

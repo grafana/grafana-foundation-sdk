@@ -13,6 +13,7 @@ type Options struct {
     SortOrder common.LogsSortOrder `json:"sortOrder"`
     DedupStrategy common.LogsDedupStrategy `json:"dedupStrategy"`
     EnableInfiniteScrolling *bool `json:"enableInfiniteScrolling,omitempty"`
+    OnNewLogsReceived any `json:"onNewLogsReceived,omitempty"`
 }
 ```
 ## Methods

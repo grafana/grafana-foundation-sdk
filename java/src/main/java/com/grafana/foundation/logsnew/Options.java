@@ -26,16 +26,20 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("enableInfiniteScrolling")
     public Boolean enableInfiniteScrolling;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("onNewLogsReceived")
+    public Object onNewLogsReceived;
     public Options() {
     }
     
-    public Options(Boolean showTime,Boolean wrapLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy,Boolean enableInfiniteScrolling) {
+    public Options(Boolean showTime,Boolean wrapLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy,Boolean enableInfiniteScrolling,Object onNewLogsReceived) {
         this.showTime = showTime;
         this.wrapLogMessage = wrapLogMessage;
         this.enableLogDetails = enableLogDetails;
         this.sortOrder = sortOrder;
         this.dedupStrategy = dedupStrategy;
         this.enableInfiniteScrolling = enableInfiniteScrolling;
+        this.onNewLogsReceived = onNewLogsReceived;
     }
     
     public String toJSON() throws JsonProcessingException {

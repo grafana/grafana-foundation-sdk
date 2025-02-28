@@ -50,14 +50,6 @@ Interval options available in the refresh picker dropdown.
 func (builder *TimePickerBuilder) RefreshIntervals(refreshIntervals []string) *TimePickerBuilder
 ```
 
-### <span class="badge object-method"></span> TimeOptions
-
-Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-
-```go
-func (builder *TimePickerBuilder) TimeOptions(timeOptions []string) *TimePickerBuilder
-```
-
 ## See also
 
  * <span class="badge object-type-struct"></span> [TimePickerConfig](./object-TimePickerConfig.md)

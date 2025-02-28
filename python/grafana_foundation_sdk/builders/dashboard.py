@@ -14,9 +14,7 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
 
     def __init__(self, title: str):
         self._internal = dashboard.Dashboard()        
-        self._internal.title = title        
-        self._internal.schema_version = 39        
-        self._internal.editable = True
+        self._internal.title = title
 
     def build(self) -> dashboard.Dashboard:
         """
@@ -411,15 +409,6 @@ class TimePicker(cogbuilder.Builder[dashboard.TimePickerConfig]):
         """
             
         self._internal.refresh_intervals = refresh_intervals
-    
-        return self
-    
-    def time_options(self, time_options: list[str]) -> typing.Self:    
-        """
-        Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-        """
-            
-        self._internal.time_options = time_options
     
         return self
     

@@ -413,6 +413,14 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         ((Options) this.internal.options).enableInfiniteScrolling = enableInfiniteScrolling;
         return this;
     }
+    
+    public PanelBuilder onNewLogsReceived(Object onNewLogsReceived) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.options).onNewLogsReceived = onNewLogsReceived;
+        return this;
+    }
     public Panel build() {
         return this.internal;
     }

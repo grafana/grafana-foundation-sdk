@@ -50,14 +50,6 @@ Interval options available in the refresh picker dropdown.
 refreshIntervals(refreshIntervals: string[])
 ```
 
-### <span class="badge object-method"></span> timeOptions
-
-Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-
-```typescript
-timeOptions(timeOptions: string[])
-```
-
 ## See also
 
  * <span class="badge object-type-interface"></span> [TimePickerConfig](./object-TimePickerConfig.md)

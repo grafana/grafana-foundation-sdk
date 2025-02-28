@@ -12,14 +12,16 @@ class Options:
     sort_order: common.LogsSortOrder
     dedup_strategy: common.LogsDedupStrategy
     enable_infinite_scrolling: typing.Optional[bool]
+    on_new_logs_received: typing.Optional[object]
 
-    def __init__(self, show_time: bool = False, wrap_log_message: bool = False, enable_log_details: bool = False, sort_order: typing.Optional[common.LogsSortOrder] = None, dedup_strategy: typing.Optional[common.LogsDedupStrategy] = None, enable_infinite_scrolling: typing.Optional[bool] = None):
+    def __init__(self, show_time: bool = False, wrap_log_message: bool = False, enable_log_details: bool = False, sort_order: typing.Optional[common.LogsSortOrder] = None, dedup_strategy: typing.Optional[common.LogsDedupStrategy] = None, enable_infinite_scrolling: typing.Optional[bool] = None, on_new_logs_received: typing.Optional[object] = None):
         self.show_time = show_time
         self.wrap_log_message = wrap_log_message
         self.enable_log_details = enable_log_details
         self.sort_order = sort_order if sort_order is not None else common.LogsSortOrder.DESCENDING
         self.dedup_strategy = dedup_strategy if dedup_strategy is not None else common.LogsDedupStrategy.NONE
         self.enable_infinite_scrolling = enable_infinite_scrolling
+        self.on_new_logs_received = on_new_logs_received
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -31,6 +33,8 @@ class Options:
         }
         if self.enable_infinite_scrolling is not None:
             payload["enableInfiniteScrolling"] = self.enable_infinite_scrolling
+        if self.on_new_logs_received is not None:
+            payload["onNewLogsReceived"] = self.on_new_logs_received
         return payload
 
     @classmethod
@@ -48,7 +52,9 @@ class Options:
         if "dedupStrategy" in data:
             args["dedup_strategy"] = data["dedupStrategy"]
         if "enableInfiniteScrolling" in data:
-            args["enable_infinite_scrolling"] = data["enableInfiniteScrolling"]        
+            args["enable_infinite_scrolling"] = data["enableInfiniteScrolling"]
+        if "onNewLogsReceived" in data:
+            args["on_new_logs_received"] = data["onNewLogsReceived"]        
 
         return cls(**args)
 

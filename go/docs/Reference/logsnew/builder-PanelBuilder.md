@@ -210,6 +210,12 @@ Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> OnNewLogsReceived
+
+```go
+func (builder *PanelBuilder) OnNewLogsReceived(onNewLogsReceived any) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> OverrideByFieldType
 
 Adds override rules for all the fields of the given type.
