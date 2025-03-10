@@ -24,12 +24,6 @@ class TimePickerConfig implements \JsonSerializable
     public ?array $refreshIntervals;
 
     /**
-     * Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-     * @var array<string>|null
-     */
-    public ?array $timeOptions;
-
-    /**
      * Quick ranges for time picker.
      * @var array<\Grafana\Foundation\Dashboard\TimeOption>|null
      */

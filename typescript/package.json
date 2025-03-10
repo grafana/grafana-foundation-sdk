@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "next-cogv0.0.x.1738936430",
+  "version": "next-cogv0.0.x.1740757600",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -34,10 +34,6 @@
     "./cog": {
       "types": "./dist/cog/index.d.ts",
       "default": "./dist/cog/index.js"
-    },
-    "./accesspolicy": {
-      "types": "./dist/accesspolicy/index.d.ts",
-      "default": "./dist/accesspolicy/index.js"
     },
     "./alerting": {
       "types": "./dist/alerting/index.d.ts",
@@ -178,14 +174,6 @@
     "./publicdashboard": {
       "types": "./dist/publicdashboard/index.d.ts",
       "default": "./dist/publicdashboard/index.js"
-    },
-    "./role": {
-      "types": "./dist/role/index.d.ts",
-      "default": "./dist/role/index.js"
-    },
-    "./rolebinding": {
-      "types": "./dist/rolebinding/index.d.ts",
-      "default": "./dist/rolebinding/index.js"
     },
     "./stat": {
       "types": "./dist/stat/index.d.ts",

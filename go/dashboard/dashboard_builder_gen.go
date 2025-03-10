@@ -23,9 +23,6 @@ func NewDashboardBuilder(title string) *DashboardBuilder {
 		errors:   make(map[string]cog.BuildErrors),
 	}
 	builder.internal.Title = &title
-	builder.internal.SchemaVersion = 39
-	valEditable := true
-	builder.internal.Editable = &valEditable
 
 	return builder
 }

@@ -54,16 +54,6 @@ Interval options available in the refresh picker dropdown.
 refreshIntervals(array $refreshIntervals)
 ```
 
-### <span class="badge object-method"></span> timeOptions
-
-Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-
-@param array<string> $timeOptions
-
-```php
-timeOptions(array $timeOptions)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [TimePickerConfig](./object-TimePickerConfig.md)

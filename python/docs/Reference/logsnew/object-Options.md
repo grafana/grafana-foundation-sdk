@@ -13,6 +13,7 @@ class Options:
     sort_order: common.LogsSortOrder
     dedup_strategy: common.LogsDedupStrategy
     enable_infinite_scrolling: typing.Optional[bool]
+    on_new_logs_received: typing.Optional[object]
 ```
 ## Methods
 

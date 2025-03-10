@@ -624,5 +624,18 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * @param mixed $onNewLogsReceived
+     */
+    public function onNewLogsReceived( $onNewLogsReceived): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Logsnew\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Logsnew\Options);
+        $this->internal->options->onNewLogsReceived = $onNewLogsReceived;
+    
+        return $this;
+    }
 
 }

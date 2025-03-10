@@ -29,6 +29,10 @@
         },
         "enableInfiniteScrolling": {
           "type": "boolean"
+        },
+        "onNewLogsReceived": {
+          "type": "object",
+          "additionalProperties": {}
         }
       }
     },

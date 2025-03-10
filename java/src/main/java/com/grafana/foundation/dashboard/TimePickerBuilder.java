@@ -20,11 +20,6 @@ public class TimePickerBuilder implements com.grafana.foundation.cog.Builder<Tim
         return this;
     }
     
-    public TimePickerBuilder timeOptions(List<String> timeOptions) {
-        this.internal.timeOptions = timeOptions;
-        return this;
-    }
-    
     public TimePickerBuilder quickRanges(com.grafana.foundation.cog.Builder<List<TimeOption>> quickRanges) {
         this.internal.quickRanges = quickRanges.build();
         return this;

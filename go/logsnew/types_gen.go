@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"reflect"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
@@ -20,6 +21,7 @@ type Options struct {
 	SortOrder               common.LogsSortOrder     `json:"sortOrder"`
 	DedupStrategy           common.LogsDedupStrategy `json:"dedupStrategy"`
 	EnableInfiniteScrolling *bool                    `json:"enableInfiniteScrolling,omitempty"`
+	OnNewLogsReceived       any                      `json:"onNewLogsReceived,omitempty"`
 }
 
 // NewOptions creates a new Options object.
@@ -120,6 +122,17 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "enableInfiniteScrolling")
 
 	}
+	// Field "onNewLogsReceived"
+	if fields["onNewLogsReceived"] != nil {
+		if string(fields["onNewLogsReceived"]) != "null" {
+			if err := json.Unmarshal(fields["onNewLogsReceived"], &resource.OnNewLogsReceived); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("onNewLogsReceived", err)...)
+			}
+
+		}
+		delete(fields, "onNewLogsReceived")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
@@ -157,6 +170,10 @@ func (resource Options) Equals(other Options) bool {
 		if *resource.EnableInfiniteScrolling != *other.EnableInfiniteScrolling {
 			return false
 		}
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.OnNewLogsReceived, other.OnNewLogsReceived) {
+		return false
 	}
 
 	return true

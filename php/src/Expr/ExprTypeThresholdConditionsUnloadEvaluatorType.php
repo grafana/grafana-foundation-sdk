@@ -36,6 +36,42 @@ final class ExprTypeThresholdConditionsUnloadEvaluatorType implements \JsonSeria
         return self::$instances["Lt"];
     }
 
+    public static function eq(): self
+    {
+        if (!isset(self::$instances["Eq"])) {
+            self::$instances["Eq"] = new self("eq");
+        }
+
+        return self::$instances["Eq"];
+    }
+
+    public static function ne(): self
+    {
+        if (!isset(self::$instances["Ne"])) {
+            self::$instances["Ne"] = new self("ne");
+        }
+
+        return self::$instances["Ne"];
+    }
+
+    public static function gte(): self
+    {
+        if (!isset(self::$instances["Gte"])) {
+            self::$instances["Gte"] = new self("gte");
+        }
+
+        return self::$instances["Gte"];
+    }
+
+    public static function lte(): self
+    {
+        if (!isset(self::$instances["Lte"])) {
+            self::$instances["Lte"] = new self("lte");
+        }
+
+        return self::$instances["Lte"];
+    }
+
     public static function withinRange(): self
     {
         if (!isset(self::$instances["WithinRange"])) {
@@ -54,6 +90,24 @@ final class ExprTypeThresholdConditionsUnloadEvaluatorType implements \JsonSeria
         return self::$instances["OutsideRange"];
     }
 
+    public static function withinRangeIncluded(): self
+    {
+        if (!isset(self::$instances["WithinRangeIncluded"])) {
+            self::$instances["WithinRangeIncluded"] = new self("within_range_included");
+        }
+
+        return self::$instances["WithinRangeIncluded"];
+    }
+
+    public static function outsideRangeIncluded(): self
+    {
+        if (!isset(self::$instances["OutsideRangeIncluded"])) {
+            self::$instances["OutsideRangeIncluded"] = new self("outside_range_included");
+        }
+
+        return self::$instances["OutsideRangeIncluded"];
+    }
+
     public static function fromValue(string $value): self
     {
         if ($value === "gt") {
@@ -64,12 +118,36 @@ final class ExprTypeThresholdConditionsUnloadEvaluatorType implements \JsonSeria
             return self::lt();
         }
 
+        if ($value === "eq") {
+            return self::eq();
+        }
+
+        if ($value === "ne") {
+            return self::ne();
+        }
+
+        if ($value === "gte") {
+            return self::gte();
+        }
+
+        if ($value === "lte") {
+            return self::lte();
+        }
+
         if ($value === "within_range") {
             return self::withinRange();
         }
 
         if ($value === "outside_range") {
             return self::outsideRange();
+        }
+
+        if ($value === "within_range_included") {
+            return self::withinRangeIncluded();
+        }
+
+        if ($value === "outside_range_included") {
+            return self::outsideRangeIncluded();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum ExprTypeThresholdConditionsUnloadEvaluatorType");

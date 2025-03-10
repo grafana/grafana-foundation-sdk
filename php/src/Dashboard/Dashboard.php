@@ -181,7 +181,7 @@ class Dashboard implements \JsonSerializable
         $this->liveNow = $liveNow;
         $this->weekStart = $weekStart;
         $this->refresh = $refresh;
-        $this->schemaVersion = $schemaVersion ?: 39;
+        $this->schemaVersion = $schemaVersion ?: 41;
         $this->version = $version;
         $this->panels = $panels;
         $this->templating = $templating ?: new \Grafana\Foundation\Dashboard\DashboardDashboardTemplating();
@@ -215,7 +215,7 @@ class Dashboard implements \JsonSerializable
     	return \Grafana\Foundation\Dashboard\DashboardDashboardTime::fromArray($val);
     })($data["time"]) : null,
             timepicker: isset($data["timepicker"]) ? (function($input) {
-    	/** @var array{hidden?: bool, refresh_intervals?: array<string>, time_options?: array<string>, quick_ranges?: array<mixed>, nowDelay?: string} */
+    	/** @var array{hidden?: bool, refresh_intervals?: array<string>, quick_ranges?: array<mixed>, nowDelay?: string} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\TimePickerConfig::fromArray($val);
     })($data["timepicker"]) : null,

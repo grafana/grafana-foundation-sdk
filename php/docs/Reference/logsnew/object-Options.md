@@ -20,6 +20,11 @@ class Options implements \JsonSerializable
 
     public ?bool $enableInfiniteScrolling;
 
+    /**
+     * @var mixed|null
+     */
+    public $onNewLogsReceived;
+
 }
 ```
 ## Methods

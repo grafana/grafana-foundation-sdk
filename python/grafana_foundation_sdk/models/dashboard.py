@@ -66,7 +66,7 @@ class Dashboard:
     # When set to true, the dashboard will load all panels in the dashboard when it's loaded.
     preload: typing.Optional[bool]
 
-    def __init__(self, id_val: typing.Optional[int] = None, uid: typing.Optional[str] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, revision: typing.Optional[int] = None, gnet_id: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, timezone: typing.Optional[str] = "browser", editable: typing.Optional[bool] = True, graph_tooltip: typing.Optional['DashboardCursorSync'] = None, time: typing.Optional['DashboardDashboardTime'] = None, timepicker: typing.Optional['TimePickerConfig'] = None, fiscal_year_start_month: typing.Optional[int] = 0, live_now: typing.Optional[bool] = None, week_start: typing.Optional[str] = None, refresh: typing.Optional[str] = None, schema_version: int = 39, version: typing.Optional[int] = None, panels: typing.Optional[list[typing.Union['Panel', 'RowPanel']]] = None, templating: typing.Optional['DashboardDashboardTemplating'] = None, annotations: typing.Optional['AnnotationContainer'] = None, links: typing.Optional[list['DashboardLink']] = None, snapshot: typing.Optional['Snapshot'] = None, preload: typing.Optional[bool] = None):
+    def __init__(self, id_val: typing.Optional[int] = None, uid: typing.Optional[str] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, revision: typing.Optional[int] = None, gnet_id: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, timezone: typing.Optional[str] = "browser", editable: typing.Optional[bool] = True, graph_tooltip: typing.Optional['DashboardCursorSync'] = None, time: typing.Optional['DashboardDashboardTime'] = None, timepicker: typing.Optional['TimePickerConfig'] = None, fiscal_year_start_month: typing.Optional[int] = 0, live_now: typing.Optional[bool] = None, week_start: typing.Optional[str] = None, refresh: typing.Optional[str] = None, schema_version: int = 41, version: typing.Optional[int] = None, panels: typing.Optional[list[typing.Union['Panel', 'RowPanel']]] = None, templating: typing.Optional['DashboardDashboardTemplating'] = None, annotations: typing.Optional['AnnotationContainer'] = None, links: typing.Optional[list['DashboardLink']] = None, snapshot: typing.Optional['Snapshot'] = None, preload: typing.Optional[bool] = None):
         self.id_val = id_val
         self.uid = uid
         self.title = title
@@ -221,17 +221,14 @@ class TimePickerConfig:
     hidden: typing.Optional[bool]
     # Interval options available in the refresh picker dropdown.
     refresh_intervals: typing.Optional[list[str]]
-    # Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-    time_options: typing.Optional[list[str]]
     # Quick ranges for time picker.
     quick_ranges: typing.Optional[list['TimeOption']]
     # Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
     now_delay: typing.Optional[str]
 
-    def __init__(self, hidden: typing.Optional[bool] = False, refresh_intervals: typing.Optional[list[str]] = None, time_options: typing.Optional[list[str]] = None, quick_ranges: typing.Optional[list['TimeOption']] = None, now_delay: typing.Optional[str] = None):
+    def __init__(self, hidden: typing.Optional[bool] = False, refresh_intervals: typing.Optional[list[str]] = None, quick_ranges: typing.Optional[list['TimeOption']] = None, now_delay: typing.Optional[str] = None):
         self.hidden = hidden
         self.refresh_intervals = refresh_intervals if refresh_intervals is not None else ["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"]
-        self.time_options = time_options if time_options is not None else ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
         self.quick_ranges = quick_ranges
         self.now_delay = now_delay
 
@@ -242,8 +239,6 @@ class TimePickerConfig:
             payload["hidden"] = self.hidden
         if self.refresh_intervals is not None:
             payload["refresh_intervals"] = self.refresh_intervals
-        if self.time_options is not None:
-            payload["time_options"] = self.time_options
         if self.quick_ranges is not None:
             payload["quick_ranges"] = self.quick_ranges
         if self.now_delay is not None:
@@ -258,8 +253,6 @@ class TimePickerConfig:
             args["hidden"] = data["hidden"]
         if "refresh_intervals" in data:
             args["refresh_intervals"] = data["refresh_intervals"]
-        if "time_options" in data:
-            args["time_options"] = data["time_options"]
         if "quick_ranges" in data:
             args["quick_ranges"] = [TimeOption.from_json(item) for item in data["quick_ranges"]]
         if "nowDelay" in data:

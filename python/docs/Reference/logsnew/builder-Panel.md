@@ -210,6 +210,12 @@ Alternative to empty string
 def no_value(no_value: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> on_new_logs_received
+
+```python
+def on_new_logs_received(on_new_logs_received: object) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> override_by_field_type
 
 Adds override rules for all the fields of the given type.
