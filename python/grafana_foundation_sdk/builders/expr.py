@@ -1228,7 +1228,7 @@ class ExprTypeThresholdConditionsEvaluator(cogbuilder.Builder[expr.ExprTypeThres
     
         return self
     
-    def type_val(self, type_val: typing.Literal["gt", "lt", "within_range", "outside_range"]) -> typing.Self:    
+    def type_val(self, type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]) -> typing.Self:    
         """
         e.g. "gt"
         """
@@ -1255,7 +1255,7 @@ class ExprTypeThresholdConditionsUnloadEvaluator(cogbuilder.Builder[expr.ExprTyp
     
         return self
     
-    def type_val(self, type_val: typing.Literal["gt", "lt", "within_range", "outside_range"]) -> typing.Self:    
+    def type_val(self, type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]) -> typing.Self:    
         """
         e.g. "gt"
         """
