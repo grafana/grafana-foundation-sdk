@@ -12,8 +12,6 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     constructor(title: string) {
         this.internal = dashboard.defaultDashboard();
         this.internal.title = title;
-        this.internal.schemaVersion = 39;
-        this.internal.editable = true;
     }
 
     /**
