@@ -129,6 +129,10 @@ inputs:
       cue_imports:
         - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
 
+  # The schema for units
+  - cue:
+      entrypoint: '%__config_dir%/schemas/units'
+
 transformations:
   schemas:
     - '%__config_dir%/compiler/common_passes.yaml'
