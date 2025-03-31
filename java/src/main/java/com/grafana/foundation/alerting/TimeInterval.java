@@ -11,17 +11,33 @@ import java.util.List;
 
 public class TimeInterval {
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("name")
-    public String name;
+    @JsonProperty("times")
+    public List<TimeRange> times;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("time_intervals")
-    public List<TimeIntervalItem> timeIntervals;
+    @JsonProperty("weekdays")
+    public List<WeekdayRange> weekdays;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("days_of_month")
+    public List<DayOfMonthRange> daysOfMonth;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("months")
+    public List<MonthRange> months;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("years")
+    public List<YearRange> years;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("location")
+    public String location;
     public TimeInterval() {
     }
     
-    public TimeInterval(String name,List<TimeIntervalItem> timeIntervals) {
-        this.name = name;
-        this.timeIntervals = timeIntervals;
+    public TimeInterval(List<TimeRange> times,List<WeekdayRange> weekdays,List<DayOfMonthRange> daysOfMonth,List<MonthRange> months,List<YearRange> years,String location) {
+        this.times = times;
+        this.weekdays = weekdays;
+        this.daysOfMonth = daysOfMonth;
+        this.months = months;
+        this.years = years;
+        this.location = location;
     }
     
     public String toJSON() throws JsonProcessingException {
