@@ -168,7 +168,9 @@ export interface Rule {
 	for: string;
 	id?: number;
 	isPaused?: boolean;
+	keep_firing_for?: string;
 	labels?: Record<string, string>;
+	missingSeriesEvalsToResolve?: number;
 	noDataState: "Alerting" | "NoData" | "OK";
 	notification_settings?: NotificationSettings;
 	orgID: number;
@@ -197,6 +199,8 @@ export interface RecordRule {
 	from: string;
 	// Name of the recorded metric.
 	metric: string;
+	// Which data source should be used to write the output of the recording rule, specified by UID.
+	target_datasource_uid?: string;
 }
 
 export const defaultRecordRule = (): RecordRule => ({
@@ -247,30 +251,59 @@ export const defaultNotificationPolicy = (): NotificationPolicy => ({
 });
 
 export interface TimeInterval {
-	name?: string;
-	time_intervals?: TimeIntervalItem[];
+	times?: TimeRange[];
+	weekdays?: WeekdayRange[];
+	days_of_month?: DayOfMonthRange[];
+	months?: MonthRange[];
+	years?: YearRange[];
+	location?: Location;
 }
 
 export const defaultTimeInterval = (): TimeInterval => ({
 });
 
-export interface TimeIntervalItem {
-	days_of_month?: string[];
-	location?: string;
-	months?: string[];
-	times?: TimeIntervalTimeRange[];
-	weekdays?: string[];
-	years?: string[];
+// Redefining this to avoid an import cycle
+export interface TimeRange {
+	from?: string;
+	to?: string;
 }
 
-export const defaultTimeIntervalItem = (): TimeIntervalItem => ({
+export const defaultTimeRange = (): TimeRange => ({
 });
 
-export interface TimeIntervalTimeRange {
-	end_time?: string;
-	start_time?: string;
+export interface WeekdayRange {
+	begin?: number;
+	end?: number;
 }
 
-export const defaultTimeIntervalTimeRange = (): TimeIntervalTimeRange => ({
+export const defaultWeekdayRange = (): WeekdayRange => ({
 });
+
+export interface DayOfMonthRange {
+	begin?: number;
+	end?: number;
+}
+
+export const defaultDayOfMonthRange = (): DayOfMonthRange => ({
+});
+
+export interface YearRange {
+	begin?: number;
+	end?: number;
+}
+
+export const defaultYearRange = (): YearRange => ({
+});
+
+export interface MonthRange {
+	begin?: number;
+	end?: number;
+}
+
+export const defaultMonthRange = (): MonthRange => ({
+});
+
+export type Location = string;
+
+export const defaultLocation = (): Location => ("");
 

@@ -142,7 +142,7 @@ func (builder *TempoQueryBuilder) Filters(filters []cog.Builder[TraceqlFilter]) 
 	return builder
 }
 
-// Filters that are used to query the metrics summary
+// deprecated Filters that are used to query the metrics summary
 func (builder *TempoQueryBuilder) GroupBy(groupBy []cog.Builder[TraceqlFilter]) *TempoQueryBuilder {
 	groupByResources := make([]TraceqlFilter, 0, len(groupBy))
 	for _, r1 := range groupBy {

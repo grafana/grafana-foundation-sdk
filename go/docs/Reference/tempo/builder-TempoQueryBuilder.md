@@ -48,7 +48,7 @@ func (builder *TempoQueryBuilder) Filters(filters []cog.Builder[tempo.TraceqlFil
 
 ### <span class="badge object-method"></span> GroupBy
 
-Filters that are used to query the metrics summary
+deprecated Filters that are used to query the metrics summary
 
 ```go
 func (builder *TempoQueryBuilder) GroupBy(groupBy []cog.Builder[tempo.TraceqlFilter]) *TempoQueryBuilder

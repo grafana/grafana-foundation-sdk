@@ -8,6 +8,7 @@ import (
 
 var _ cog.Builder[AnnotationActions] = (*AnnotationActionsBuilder)(nil)
 
+// +k8s:deepcopy-gen=true
 type AnnotationActionsBuilder struct {
 	internal *AnnotationActions
 	errors   map[string]cog.BuildErrors

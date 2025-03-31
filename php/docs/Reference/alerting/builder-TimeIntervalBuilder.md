@@ -18,18 +18,50 @@ Builds the object.
 build()
 ```
 
-### <span class="badge object-method"></span> name
+### <span class="badge object-method"></span> daysOfMonth
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\DayOfMonthRange>> $daysOfMonth
 
 ```php
-name(string $name)
+daysOfMonth(array $daysOfMonth)
 ```
 
-### <span class="badge object-method"></span> timeIntervals
-
-@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\TimeIntervalItem>> $timeIntervals
+### <span class="badge object-method"></span> location
 
 ```php
-timeIntervals(array $timeIntervals)
+location(string $location)
+```
+
+### <span class="badge object-method"></span> months
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\MonthRange>> $months
+
+```php
+months(array $months)
+```
+
+### <span class="badge object-method"></span> times
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\TimeRange>> $times
+
+```php
+times(array $times)
+```
+
+### <span class="badge object-method"></span> weekdays
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\WeekdayRange>> $weekdays
+
+```php
+weekdays(array $weekdays)
+```
+
+### <span class="badge object-method"></span> years
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\YearRange>> $years
+
+```php
+years(array $years)
 ```
 
 ## See also

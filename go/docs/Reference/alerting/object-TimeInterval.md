@@ -7,8 +7,12 @@ title: <span class="badge object-type-struct"></span> TimeInterval
 
 ```go
 type TimeInterval struct {
-    Name *string `json:"name,omitempty"`
-    TimeIntervals []alerting.TimeIntervalItem `json:"time_intervals,omitempty"`
+    Times []alerting.TimeRange `json:"times,omitempty"`
+    Weekdays []alerting.WeekdayRange `json:"weekdays,omitempty"`
+    DaysOfMonth []alerting.DayOfMonthRange `json:"days_of_month,omitempty"`
+    Months []alerting.MonthRange `json:"months,omitempty"`
+    Years []alerting.YearRange `json:"years,omitempty"`
+    Location *alerting.Location `json:"location,omitempty"`
 }
 ```
 ## Methods

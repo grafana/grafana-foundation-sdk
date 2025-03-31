@@ -17,7 +17,9 @@ export interface Rule {
 	for: string;
 	id?: number;
 	isPaused?: boolean;
+	keep_firing_for?: string;
 	labels?: Record<string, string>;
+	missingSeriesEvalsToResolve?: number;
 	noDataState: "Alerting" | "NoData" | "OK";
 	notification_settings?: alerting.NotificationSettings;
 	orgID: number;

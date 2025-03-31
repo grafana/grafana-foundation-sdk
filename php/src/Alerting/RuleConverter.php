@@ -124,6 +124,19 @@ final class RuleConverter
     
     
     }
+            if ($input->keepFiringFor !== null && $input->keepFiringFor !== "") {
+    
+        
+    $buffer = 'keepFiringFor(';
+        $arg0 =\var_export($input->keepFiringFor, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->labels !== null) {
     
         
@@ -134,6 +147,19 @@ final class RuleConverter
             $arg0 .= "\t".var_export($key, true)." => $tmplabelsarg1,";
         }
         $arg0 .= "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->missingSeriesEvalsToResolve !== null) {
+    
+        
+    $buffer = 'missingSeriesEvalsToResolve(';
+        $arg0 =\var_export($input->missingSeriesEvalsToResolve, true);
         $buffer .= $arg0;
         
     $buffer .= ')';

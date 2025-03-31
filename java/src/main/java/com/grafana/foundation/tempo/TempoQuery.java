@@ -70,7 +70,7 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("filters")
     public List<TraceqlFilter> filters;
-    // Filters that are used to query the metrics summary
+    // deprecated Filters that are used to query the metrics summary
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("groupBy")
     public List<TraceqlFilter> groupBy;

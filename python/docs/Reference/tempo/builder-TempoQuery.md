@@ -48,7 +48,7 @@ def filters(filters: list[cogbuilder.Builder[tempo.TraceqlFilter]]) -> typing.Se
 
 ### <span class="badge object-method"></span> group_by
 
-Filters that are used to query the metrics summary
+deprecated Filters that are used to query the metrics summary
 
 ```python
 def group_by(group_by: list[cogbuilder.Builder[tempo.TraceqlFilter]]) -> typing.Self

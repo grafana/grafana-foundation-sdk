@@ -3,6 +3,7 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
+// +k8s:deepcopy-gen=true
 export class AnnotationActionsBuilder implements cog.Builder<dashboard.AnnotationActions> {
     protected readonly internal: dashboard.AnnotationActions;
 

@@ -24,12 +24,19 @@ class DashboardMetaBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * +k8s:deepcopy-gen=true
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationPermission> $annotationsPermissions
      */
     public function annotationsPermissions(\Grafana\Foundation\Cog\Builder $annotationsPermissions): static
     {
         $annotationsPermissionsResource = $annotationsPermissions->build();
         $this->internal->annotationsPermissions = $annotationsPermissionsResource;
+    
+        return $this;
+    }
+    public function apiVersion(string $apiVersion): static
+    {
+        $this->internal->apiVersion = $apiVersion;
     
         return $this;
     }

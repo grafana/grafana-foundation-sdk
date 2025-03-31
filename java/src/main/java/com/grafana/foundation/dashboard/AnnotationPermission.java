@@ -8,10 +8,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+// +k8s:deepcopy-gen=true
 public class AnnotationPermission {
+    // +k8s:deepcopy-gen=true
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("dashboard")
     public AnnotationActions dashboard;
+    // +k8s:deepcopy-gen=true
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("organization")
     public AnnotationActions organization;

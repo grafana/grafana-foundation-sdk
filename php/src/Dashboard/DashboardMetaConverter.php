@@ -23,6 +23,19 @@ final class DashboardMetaConverter
     
     
     }
+            if ($input->apiVersion !== null && $input->apiVersion !== "") {
+    
+        
+    $buffer = 'apiVersion(';
+        $arg0 =\var_export($input->apiVersion, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->canAdmin !== null) {
     
         

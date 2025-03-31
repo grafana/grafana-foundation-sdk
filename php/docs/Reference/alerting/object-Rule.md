@@ -34,10 +34,14 @@ class Rule implements \JsonSerializable
 
     public ?bool $isPaused;
 
+    public ?string $keepFiringFor;
+
     /**
      * @var array<string, string>|null
      */
     public ?array $labels;
+
+    public ?int $missingSeriesEvalsToResolve;
 
     public \Grafana\Foundation\Alerting\RuleNoDataState $noDataState;
 

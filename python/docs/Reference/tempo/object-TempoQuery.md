@@ -37,7 +37,7 @@ class TempoQuery(cogvariants.Dataquery):
     # Defines the maximum number of spans per spanset that are returned from Tempo
     spss: typing.Optional[int]
     filters: list[tempo.TraceqlFilter]
-    # Filters that are used to query the metrics summary
+    # deprecated Filters that are used to query the metrics summary
     group_by: typing.Optional[list[tempo.TraceqlFilter]]
     # The type of the table that is used to display the search results
     table_type: typing.Optional[tempo.SearchTableType]

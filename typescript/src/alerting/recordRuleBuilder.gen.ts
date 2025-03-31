@@ -28,4 +28,10 @@ export class RecordRuleBuilder implements cog.Builder<alerting.RecordRule> {
         this.internal.metric = metric;
         return this;
     }
+
+    // Which data source should be used to write the output of the recording rule, specified by UID.
+    targetDatasourceUid(targetDatasourceUid: string): this {
+        this.internal.target_datasource_uid = targetDatasourceUid;
+        return this;
+    }
 }

@@ -76,8 +76,18 @@ export class RuleBuilder implements cog.Builder<alerting.Rule> {
         return this;
     }
 
+    keepFiringFor(keepFiringFor: string): this {
+        this.internal.keep_firing_for = keepFiringFor;
+        return this;
+    }
+
     labels(labels: Record<string, string>): this {
         this.internal.labels = labels;
+        return this;
+    }
+
+    missingSeriesEvalsToResolve(missingSeriesEvalsToResolve: number): this {
+        this.internal.missingSeriesEvalsToResolve = missingSeriesEvalsToResolve;
         return this;
     }
 

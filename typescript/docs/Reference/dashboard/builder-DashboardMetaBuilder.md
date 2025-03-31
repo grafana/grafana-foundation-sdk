@@ -20,8 +20,16 @@ build()
 
 ### <span class="badge object-method"></span> annotationsPermissions
 
++k8s:deepcopy-gen=true
+
 ```typescript
 annotationsPermissions(annotationsPermissions: cog.Builder<dashboard.AnnotationPermission>)
+```
+
+### <span class="badge object-method"></span> apiVersion
+
+```typescript
+apiVersion(apiVersion: string)
 ```
 
 ### <span class="badge object-method"></span> canAdmin

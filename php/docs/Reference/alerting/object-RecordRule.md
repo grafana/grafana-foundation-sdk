@@ -18,6 +18,11 @@ class RecordRule implements \JsonSerializable
      */
     public string $metric;
 
+    /**
+     * Which data source should be used to write the output of the recording rule, specified by UID.
+     */
+    public ?string $targetDatasourceUid;
+
 }
 ```
 ## Methods

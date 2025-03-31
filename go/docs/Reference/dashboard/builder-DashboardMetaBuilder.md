@@ -20,8 +20,16 @@ func (builder *DashboardMetaBuilder) Build() (DashboardMeta, error)
 
 ### <span class="badge object-method"></span> AnnotationsPermissions
 
++k8s:deepcopy-gen=true
+
 ```go
 func (builder *DashboardMetaBuilder) AnnotationsPermissions(annotationsPermissions cog.Builder[dashboard.AnnotationPermission]) *DashboardMetaBuilder
+```
+
+### <span class="badge object-method"></span> ApiVersion
+
+```go
+func (builder *DashboardMetaBuilder) ApiVersion(apiVersion string) *DashboardMetaBuilder
 ```
 
 ### <span class="badge object-method"></span> CanAdmin

@@ -11,6 +11,8 @@ export interface RecordRule {
 	from: string;
 	// Name of the recorded metric.
 	metric: string;
+	// Which data source should be used to write the output of the recording rule, specified by UID.
+	target_datasource_uid?: string;
 }
 
 ```

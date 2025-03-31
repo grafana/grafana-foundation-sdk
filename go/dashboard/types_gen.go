@@ -6238,6 +6238,7 @@ const (
 	MappingTypeSpecialValue MappingType = "special"
 )
 
+// +k8s:deepcopy-gen=true
 type AnnotationActions struct {
 	CanAdd    *bool `json:"canAdd,omitempty"`
 	CanDelete *bool `json:"canDelete,omitempty"`
@@ -6344,8 +6345,11 @@ func (resource AnnotationActions) Validate() error {
 	return nil
 }
 
+// +k8s:deepcopy-gen=true
 type AnnotationPermission struct {
-	Dashboard    *AnnotationActions `json:"dashboard,omitempty"`
+	// +k8s:deepcopy-gen=true
+	Dashboard *AnnotationActions `json:"dashboard,omitempty"`
+	// +k8s:deepcopy-gen=true
 	Organization *AnnotationActions `json:"organization,omitempty"`
 }
 
@@ -6450,7 +6454,9 @@ func (resource AnnotationPermission) Validate() error {
 }
 
 type DashboardMeta struct {
+	// +k8s:deepcopy-gen=true
 	AnnotationsPermissions *AnnotationPermission `json:"annotationsPermissions,omitempty"`
+	ApiVersion             *string               `json:"apiVersion,omitempty"`
 	CanAdmin               *bool                 `json:"canAdmin,omitempty"`
 	CanDelete              *bool                 `json:"canDelete,omitempty"`
 	CanEdit                *bool                 `json:"canEdit,omitempty"`
@@ -6507,6 +6513,17 @@ func (resource *DashboardMeta) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "annotationsPermissions")
+
+	}
+	// Field "apiVersion"
+	if fields["apiVersion"] != nil {
+		if string(fields["apiVersion"]) != "null" {
+			if err := json.Unmarshal(fields["apiVersion"], &resource.ApiVersion); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("apiVersion", err)...)
+			}
+
+		}
+		delete(fields, "apiVersion")
 
 	}
 	// Field "canAdmin"
@@ -6804,6 +6821,15 @@ func (resource DashboardMeta) Equals(other DashboardMeta) bool {
 
 	if resource.AnnotationsPermissions != nil {
 		if !resource.AnnotationsPermissions.Equals(*other.AnnotationsPermissions) {
+			return false
+		}
+	}
+	if resource.ApiVersion == nil && other.ApiVersion != nil || resource.ApiVersion != nil && other.ApiVersion == nil {
+		return false
+	}
+
+	if resource.ApiVersion != nil {
+		if *resource.ApiVersion != *other.ApiVersion {
 			return false
 		}
 	}

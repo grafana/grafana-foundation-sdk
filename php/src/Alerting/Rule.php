@@ -30,10 +30,14 @@ class Rule implements \JsonSerializable
 
     public ?bool $isPaused;
 
+    public ?string $keepFiringFor;
+
     /**
      * @var array<string, string>|null
      */
     public ?array $labels;
+
+    public ?int $missingSeriesEvalsToResolve;
 
     public \Grafana\Foundation\Alerting\RuleNoDataState $noDataState;
 
@@ -62,7 +66,9 @@ class Rule implements \JsonSerializable
      * @param string|null $for
      * @param int|null $id
      * @param bool|null $isPaused
+     * @param string|null $keepFiringFor
      * @param array<string, string>|null $labels
+     * @param int|null $missingSeriesEvalsToResolve
      * @param \Grafana\Foundation\Alerting\RuleNoDataState|null $noDataState
      * @param \Grafana\Foundation\Alerting\NotificationSettings|null $notificationSettings
      * @param int|null $orgID
@@ -73,7 +79,7 @@ class Rule implements \JsonSerializable
      * @param string|null $uid
      * @param string|null $updated
      */
-    public function __construct(?array $annotations = null, ?string $condition = null, ?array $data = null, ?\Grafana\Foundation\Alerting\RuleExecErrState $execErrState = null, ?string $folderUID = null, ?string $for = null, ?int $id = null, ?bool $isPaused = null, ?array $labels = null, ?\Grafana\Foundation\Alerting\RuleNoDataState $noDataState = null, ?\Grafana\Foundation\Alerting\NotificationSettings $notificationSettings = null, ?int $orgID = null, ?string $provenance = null, ?\Grafana\Foundation\Alerting\RecordRule $record = null, ?string $ruleGroup = null, ?string $title = null, ?string $uid = null, ?string $updated = null)
+    public function __construct(?array $annotations = null, ?string $condition = null, ?array $data = null, ?\Grafana\Foundation\Alerting\RuleExecErrState $execErrState = null, ?string $folderUID = null, ?string $for = null, ?int $id = null, ?bool $isPaused = null, ?string $keepFiringFor = null, ?array $labels = null, ?int $missingSeriesEvalsToResolve = null, ?\Grafana\Foundation\Alerting\RuleNoDataState $noDataState = null, ?\Grafana\Foundation\Alerting\NotificationSettings $notificationSettings = null, ?int $orgID = null, ?string $provenance = null, ?\Grafana\Foundation\Alerting\RecordRule $record = null, ?string $ruleGroup = null, ?string $title = null, ?string $uid = null, ?string $updated = null)
     {
         $this->annotations = $annotations;
         $this->condition = $condition ?: "";
@@ -83,7 +89,9 @@ class Rule implements \JsonSerializable
         $this->for = $for ?: "";
         $this->id = $id;
         $this->isPaused = $isPaused;
+        $this->keepFiringFor = $keepFiringFor;
         $this->labels = $labels;
+        $this->missingSeriesEvalsToResolve = $missingSeriesEvalsToResolve;
         $this->noDataState = $noDataState ?: \Grafana\Foundation\Alerting\RuleNoDataState::Alerting();
         $this->notificationSettings = $notificationSettings;
         $this->orgID = $orgID ?: 0;
@@ -100,7 +108,7 @@ class Rule implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{annotations?: array<string, string>, condition?: string, data?: array<mixed>, execErrState?: string, folderUID?: string, for?: string, id?: int, isPaused?: bool, labels?: array<string, string>, noDataState?: string, notification_settings?: mixed, orgID?: int, provenance?: string, record?: mixed, ruleGroup?: string, title?: string, uid?: string, updated?: string} $inputData */
+        /** @var array{annotations?: array<string, string>, condition?: string, data?: array<mixed>, execErrState?: string, folderUID?: string, for?: string, id?: int, isPaused?: bool, keep_firing_for?: string, labels?: array<string, string>, missingSeriesEvalsToResolve?: int, noDataState?: string, notification_settings?: mixed, orgID?: int, provenance?: string, record?: mixed, ruleGroup?: string, title?: string, uid?: string, updated?: string} $inputData */
         $data = $inputData;
         return new self(
             annotations: $data["annotations"] ?? null,
@@ -115,7 +123,9 @@ class Rule implements \JsonSerializable
             for: $data["for"] ?? null,
             id: $data["id"] ?? null,
             isPaused: $data["isPaused"] ?? null,
+            keepFiringFor: $data["keep_firing_for"] ?? null,
             labels: $data["labels"] ?? null,
+            missingSeriesEvalsToResolve: $data["missingSeriesEvalsToResolve"] ?? null,
             noDataState: isset($data["noDataState"]) ? (function($input) { return \Grafana\Foundation\Alerting\RuleNoDataState::fromValue($input); })($data["noDataState"]) : null,
             notificationSettings: isset($data["notification_settings"]) ? (function($input) {
     	/** @var array{group_by?: array<string>, group_interval?: string, group_wait?: string, mute_time_intervals?: array<string>, receiver?: string, repeat_interval?: string} */
@@ -125,7 +135,7 @@ class Rule implements \JsonSerializable
             orgID: $data["orgID"] ?? null,
             provenance: $data["provenance"] ?? null,
             record: isset($data["record"]) ? (function($input) {
-    	/** @var array{from?: string, metric?: string} */
+    	/** @var array{from?: string, metric?: string, target_datasource_uid?: string} */
     $val = $input;
     	return \Grafana\Foundation\Alerting\RecordRule::fromArray($val);
     })($data["record"]) : null,
@@ -162,8 +172,14 @@ class Rule implements \JsonSerializable
         if (isset($this->isPaused)) {
             $data["isPaused"] = $this->isPaused;
         }
+        if (isset($this->keepFiringFor)) {
+            $data["keep_firing_for"] = $this->keepFiringFor;
+        }
         if (isset($this->labels)) {
             $data["labels"] = $this->labels;
+        }
+        if (isset($this->missingSeriesEvalsToResolve)) {
+            $data["missingSeriesEvalsToResolve"] = $this->missingSeriesEvalsToResolve;
         }
         if (isset($this->notificationSettings)) {
             $data["notification_settings"] = $this->notificationSettings;

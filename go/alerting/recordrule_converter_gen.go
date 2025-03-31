@@ -37,6 +37,18 @@ func RecordRuleConverter(input RecordRule) string {
 		buffer.Reset()
 
 	}
+	if input.TargetDatasourceUid != nil && *input.TargetDatasourceUid != "" {
+
+		buffer.WriteString(`TargetDatasourceUid(`)
+		arg0 := fmt.Sprintf("%#v", *input.TargetDatasourceUid)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }

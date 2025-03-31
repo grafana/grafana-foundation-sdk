@@ -943,6 +943,7 @@ export enum MappingType {
 
 export const defaultMappingType = (): MappingType => (MappingType.ValueToText);
 
+// +k8s:deepcopy-gen=true
 export interface AnnotationActions {
 	canAdd?: boolean;
 	canDelete?: boolean;
@@ -952,8 +953,11 @@ export interface AnnotationActions {
 export const defaultAnnotationActions = (): AnnotationActions => ({
 });
 
+// +k8s:deepcopy-gen=true
 export interface AnnotationPermission {
+	// +k8s:deepcopy-gen=true
 	dashboard?: AnnotationActions;
+	// +k8s:deepcopy-gen=true
 	organization?: AnnotationActions;
 }
 
@@ -961,7 +965,9 @@ export const defaultAnnotationPermission = (): AnnotationPermission => ({
 });
 
 export interface DashboardMeta {
+	// +k8s:deepcopy-gen=true
 	annotationsPermissions?: AnnotationPermission;
+	apiVersion?: string;
 	canAdmin?: boolean;
 	canDelete?: boolean;
 	canEdit?: boolean;

@@ -146,7 +146,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
     
     def group_by(self, group_by: list[cogbuilder.Builder[tempo.TraceqlFilter]]) -> typing.Self:    
         """
-        Filters that are used to query the metrics summary
+        deprecated Filters that are used to query the metrics summary
         """
             
         group_by_resources = [r1.build() for r1 in group_by]

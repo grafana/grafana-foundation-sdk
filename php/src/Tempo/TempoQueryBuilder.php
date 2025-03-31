@@ -158,7 +158,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * Filters that are used to query the metrics summary
+     * deprecated Filters that are used to query the metrics summary
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Tempo\TraceqlFilter>> $groupBy
      */
     public function groupBy(array $groupBy): static

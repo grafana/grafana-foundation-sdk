@@ -14,6 +14,11 @@ public class DashboardMetaBuilder implements com.grafana.foundation.cog.Builder<
         return this;
     }
     
+    public DashboardMetaBuilder apiVersion(String apiVersion) {
+        this.internal.apiVersion = apiVersion;
+        return this;
+    }
+    
     public DashboardMetaBuilder canAdmin(Boolean canAdmin) {
         this.internal.canAdmin = canAdmin;
         return this;

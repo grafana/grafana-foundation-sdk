@@ -25,6 +25,18 @@ func DashboardMetaConverter(input DashboardMeta) string {
 		buffer.Reset()
 
 	}
+	if input.ApiVersion != nil && *input.ApiVersion != "" {
+
+		buffer.WriteString(`ApiVersion(`)
+		arg0 := fmt.Sprintf("%#v", *input.ApiVersion)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.CanAdmin != nil {
 
 		buffer.WriteString(`CanAdmin(`)

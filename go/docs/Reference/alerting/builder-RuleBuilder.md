@@ -64,10 +64,22 @@ func (builder *RuleBuilder) Id(id int64) *RuleBuilder
 func (builder *RuleBuilder) IsPaused(isPaused bool) *RuleBuilder
 ```
 
+### <span class="badge object-method"></span> KeepFiringFor
+
+```go
+func (builder *RuleBuilder) KeepFiringFor(keepFiringFor string) *RuleBuilder
+```
+
 ### <span class="badge object-method"></span> Labels
 
 ```go
 func (builder *RuleBuilder) Labels(labels map[string]string) *RuleBuilder
+```
+
+### <span class="badge object-method"></span> MissingSeriesEvalsToResolve
+
+```go
+func (builder *RuleBuilder) MissingSeriesEvalsToResolve(missingSeriesEvalsToResolve int64) *RuleBuilder
 ```
 
 ### <span class="badge object-method"></span> NoDataState

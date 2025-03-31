@@ -102,12 +102,24 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    public function keepFiringFor(string $keepFiringFor): static
+    {
+        $this->internal->keepFiringFor = $keepFiringFor;
+    
+        return $this;
+    }
     /**
      * @param array<string, string> $labels
      */
     public function labels(array $labels): static
     {
         $this->internal->labels = $labels;
+    
+        return $this;
+    }
+    public function missingSeriesEvalsToResolve(int $missingSeriesEvalsToResolve): static
+    {
+        $this->internal->missingSeriesEvalsToResolve = $missingSeriesEvalsToResolve;
     
         return $this;
     }

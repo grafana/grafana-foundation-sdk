@@ -3,6 +3,8 @@ title: <span class="badge object-type-struct"></span> AnnotationActions
 ---
 # <span class="badge object-type-struct"></span> AnnotationActions
 
++k8s:deepcopy-gen=true
+
 ## Definition
 
 ```go

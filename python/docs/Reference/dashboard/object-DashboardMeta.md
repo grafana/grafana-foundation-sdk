@@ -7,7 +7,9 @@ title: <span class="badge object-type-class"></span> DashboardMeta
 
 ```python
 class DashboardMeta:
+    # +k8s:deepcopy-gen=true
     annotations_permissions: typing.Optional[dashboard.AnnotationPermission]
+    api_version: typing.Optional[str]
     can_admin: typing.Optional[bool]
     can_delete: typing.Optional[bool]
     can_edit: typing.Optional[bool]

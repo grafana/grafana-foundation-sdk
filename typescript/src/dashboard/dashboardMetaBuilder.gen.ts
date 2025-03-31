@@ -17,9 +17,15 @@ export class DashboardMetaBuilder implements cog.Builder<dashboard.DashboardMeta
         return this.internal;
     }
 
+    // +k8s:deepcopy-gen=true
     annotationsPermissions(annotationsPermissions: cog.Builder<dashboard.AnnotationPermission>): this {
         const annotationsPermissionsResource = annotationsPermissions.build();
         this.internal.annotationsPermissions = annotationsPermissionsResource;
+        return this;
+    }
+
+    apiVersion(apiVersion: string): this {
+        this.internal.apiVersion = apiVersion;
         return this;
     }
 
