@@ -3,8 +3,6 @@
 namespace Grafana\Foundation\Alerting;
 
 /**
- * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
- * within the interval.
  * @implements \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\TimeInterval>
  */
 class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
@@ -26,30 +24,6 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * @param array<string> $daysOfMonth
-     */
-    public function daysOfMonth(array $daysOfMonth): static
-    {
-        $this->internal->daysOfMonth = $daysOfMonth;
-    
-        return $this;
-    }
-    public function location(string $location): static
-    {
-        $this->internal->location = $location;
-    
-        return $this;
-    }
-    /**
-     * @param array<string> $months
-     */
-    public function months(array $months): static
-    {
-        $this->internal->months = $months;
-    
-        return $this;
-    }
-    /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\TimeRange>> $times
      */
     public function times(array $times): static
@@ -63,20 +37,60 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
-     * @param array<string> $weekdays
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\WeekdayRange>> $weekdays
      */
     public function weekdays(array $weekdays): static
     {
-        $this->internal->weekdays = $weekdays;
+            $weekdaysResources = [];
+            foreach ($weekdays as $r1) {
+                    $weekdaysResources[] = $r1->build();
+            }
+        $this->internal->weekdays = $weekdaysResources;
     
         return $this;
     }
     /**
-     * @param array<string> $years
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\DayOfMonthRange>> $daysOfMonth
+     */
+    public function daysOfMonth(array $daysOfMonth): static
+    {
+            $daysOfMonthResources = [];
+            foreach ($daysOfMonth as $r1) {
+                    $daysOfMonthResources[] = $r1->build();
+            }
+        $this->internal->daysOfMonth = $daysOfMonthResources;
+    
+        return $this;
+    }
+    /**
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\MonthRange>> $months
+     */
+    public function months(array $months): static
+    {
+            $monthsResources = [];
+            foreach ($months as $r1) {
+                    $monthsResources[] = $r1->build();
+            }
+        $this->internal->months = $monthsResources;
+    
+        return $this;
+    }
+    /**
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\YearRange>> $years
      */
     public function years(array $years): static
     {
-        $this->internal->years = $years;
+            $yearsResources = [];
+            foreach ($years as $r1) {
+                    $yearsResources[] = $r1->build();
+            }
+        $this->internal->years = $yearsResources;
+    
+        return $this;
+    }
+    public function location(string $location): static
+    {
+        $this->internal->location = $location;
     
         return $this;
     }
