@@ -23,22 +23,74 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
         return $this->internal;
     }
 
-    public function name(string $name): static
+    /**
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\TimeRange>> $times
+     */
+    public function times(array $times): static
     {
-        $this->internal->name = $name;
+            $timesResources = [];
+            foreach ($times as $r1) {
+                    $timesResources[] = $r1->build();
+            }
+        $this->internal->times = $timesResources;
     
         return $this;
     }
     /**
-     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\TimeIntervalItem>> $timeIntervals
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\WeekdayRange>> $weekdays
      */
-    public function timeIntervals(array $timeIntervals): static
+    public function weekdays(array $weekdays): static
     {
-            $timeIntervalsResources = [];
-            foreach ($timeIntervals as $r1) {
-                    $timeIntervalsResources[] = $r1->build();
+            $weekdaysResources = [];
+            foreach ($weekdays as $r1) {
+                    $weekdaysResources[] = $r1->build();
             }
-        $this->internal->timeIntervals = $timeIntervalsResources;
+        $this->internal->weekdays = $weekdaysResources;
+    
+        return $this;
+    }
+    /**
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\DayOfMonthRange>> $daysOfMonth
+     */
+    public function daysOfMonth(array $daysOfMonth): static
+    {
+            $daysOfMonthResources = [];
+            foreach ($daysOfMonth as $r1) {
+                    $daysOfMonthResources[] = $r1->build();
+            }
+        $this->internal->daysOfMonth = $daysOfMonthResources;
+    
+        return $this;
+    }
+    /**
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\MonthRange>> $months
+     */
+    public function months(array $months): static
+    {
+            $monthsResources = [];
+            foreach ($months as $r1) {
+                    $monthsResources[] = $r1->build();
+            }
+        $this->internal->months = $monthsResources;
+    
+        return $this;
+    }
+    /**
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\YearRange>> $years
+     */
+    public function years(array $years): static
+    {
+            $yearsResources = [];
+            foreach ($years as $r1) {
+                    $yearsResources[] = $r1->build();
+            }
+        $this->internal->years = $yearsResources;
+    
+        return $this;
+    }
+    public function location(string $location): static
+    {
+        $this->internal->location = $location;
     
         return $this;
     }

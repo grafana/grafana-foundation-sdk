@@ -4,12 +4,15 @@
 
  * <span class="badge object-type-struct"></span> [ContactPoint](./object-ContactPoint.md)
  * <span class="badge object-type-enum"></span> [ContactPointType](./object-ContactPointType.md)
+ * <span class="badge object-type-struct"></span> [DayOfMonthRange](./object-DayOfMonthRange.md)
  * <span class="badge object-type-scalar"></span> [Duration](./object-Duration.md)
  * <span class="badge object-type-scalar"></span> [Json](./object-Json.md)
+ * <span class="badge object-type-scalar"></span> [Location](./object-Location.md)
  * <span class="badge object-type-map"></span> [MatchRegexps](./object-MatchRegexps.md)
  * <span class="badge object-type-enum"></span> [MatchType](./object-MatchType.md)
  * <span class="badge object-type-struct"></span> [Matcher](./object-Matcher.md)
  * <span class="badge object-type-array"></span> [Matchers](./object-Matchers.md)
+ * <span class="badge object-type-struct"></span> [MonthRange](./object-MonthRange.md)
  * <span class="badge object-type-struct"></span> [MuteTiming](./object-MuteTiming.md)
  * <span class="badge object-type-struct"></span> [NotificationPolicy](./object-NotificationPolicy.md)
  * <span class="badge object-type-struct"></span> [NotificationSettings](./object-NotificationSettings.md)
@@ -24,12 +27,15 @@
  * <span class="badge object-type-struct"></span> [RuleGroup](./object-RuleGroup.md)
  * <span class="badge object-type-enum"></span> [RuleNoDataState](./object-RuleNoDataState.md)
  * <span class="badge object-type-struct"></span> [TimeInterval](./object-TimeInterval.md)
- * <span class="badge object-type-struct"></span> [TimeIntervalItem](./object-TimeIntervalItem.md)
- * <span class="badge object-type-struct"></span> [TimeIntervalTimeRange](./object-TimeIntervalTimeRange.md)
+ * <span class="badge object-type-struct"></span> [TimeRange](./object-TimeRange.md)
+ * <span class="badge object-type-struct"></span> [WeekdayRange](./object-WeekdayRange.md)
+ * <span class="badge object-type-struct"></span> [YearRange](./object-YearRange.md)
 ## Builders
 
  * <span class="badge builder"></span> [ContactPointBuilder](./builder-ContactPointBuilder.md)
+ * <span class="badge builder"></span> [DayOfMonthRangeBuilder](./builder-DayOfMonthRangeBuilder.md)
  * <span class="badge builder"></span> [MatcherBuilder](./builder-MatcherBuilder.md)
+ * <span class="badge builder"></span> [MonthRangeBuilder](./builder-MonthRangeBuilder.md)
  * <span class="badge builder"></span> [MuteTimingBuilder](./builder-MuteTimingBuilder.md)
  * <span class="badge builder"></span> [NotificationPolicyBuilder](./builder-NotificationPolicyBuilder.md)
  * <span class="badge builder"></span> [NotificationSettingsBuilder](./builder-NotificationSettingsBuilder.md)
@@ -38,8 +44,9 @@
  * <span class="badge builder"></span> [RuleBuilder](./builder-RuleBuilder.md)
  * <span class="badge builder"></span> [RuleGroupBuilder](./builder-RuleGroupBuilder.md)
  * <span class="badge builder"></span> [TimeIntervalBuilder](./builder-TimeIntervalBuilder.md)
- * <span class="badge builder"></span> [TimeIntervalItemBuilder](./builder-TimeIntervalItemBuilder.md)
- * <span class="badge builder"></span> [TimeIntervalTimeRangeBuilder](./builder-TimeIntervalTimeRangeBuilder.md)
+ * <span class="badge builder"></span> [TimeRangeBuilder](./builder-TimeRangeBuilder.md)
+ * <span class="badge builder"></span> [WeekdayRangeBuilder](./builder-WeekdayRangeBuilder.md)
+ * <span class="badge builder"></span> [YearRangeBuilder](./builder-YearRangeBuilder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewQuery
@@ -130,20 +137,44 @@ NewTimeInterval creates a new TimeInterval object.
 func NewTimeInterval() *TimeInterval
 ```
 
-### <span class="badge function"></span> NewTimeIntervalItem
+### <span class="badge function"></span> NewTimeRange
 
-NewTimeIntervalItem creates a new TimeIntervalItem object.
+NewTimeRange creates a new TimeRange object.
 
 ```go
-func NewTimeIntervalItem() *TimeIntervalItem
+func NewTimeRange() *TimeRange
 ```
 
-### <span class="badge function"></span> NewTimeIntervalTimeRange
+### <span class="badge function"></span> NewWeekdayRange
 
-NewTimeIntervalTimeRange creates a new TimeIntervalTimeRange object.
+NewWeekdayRange creates a new WeekdayRange object.
 
 ```go
-func NewTimeIntervalTimeRange() *TimeIntervalTimeRange
+func NewWeekdayRange() *WeekdayRange
+```
+
+### <span class="badge function"></span> NewDayOfMonthRange
+
+NewDayOfMonthRange creates a new DayOfMonthRange object.
+
+```go
+func NewDayOfMonthRange() *DayOfMonthRange
+```
+
+### <span class="badge function"></span> NewYearRange
+
+NewYearRange creates a new YearRange object.
+
+```go
+func NewYearRange() *YearRange
+```
+
+### <span class="badge function"></span> NewMonthRange
+
+NewMonthRange creates a new MonthRange object.
+
+```go
+func NewMonthRange() *MonthRange
 ```
 
 ### <span class="badge function"></span> QueryConverter
@@ -226,19 +257,43 @@ TimeIntervalConverter accepts a `TimeInterval` object and generates the Go code 
 func TimeIntervalConverter(input TimeInterval) string
 ```
 
-### <span class="badge function"></span> TimeIntervalItemConverter
+### <span class="badge function"></span> TimeRangeConverter
 
-TimeIntervalItemConverter accepts a `TimeIntervalItem` object and generates the Go code to build this object using builders.
+TimeRangeConverter accepts a `TimeRange` object and generates the Go code to build this object using builders.
 
 ```go
-func TimeIntervalItemConverter(input TimeIntervalItem) string
+func TimeRangeConverter(input TimeRange) string
 ```
 
-### <span class="badge function"></span> TimeIntervalTimeRangeConverter
+### <span class="badge function"></span> WeekdayRangeConverter
 
-TimeIntervalTimeRangeConverter accepts a `TimeIntervalTimeRange` object and generates the Go code to build this object using builders.
+WeekdayRangeConverter accepts a `WeekdayRange` object and generates the Go code to build this object using builders.
 
 ```go
-func TimeIntervalTimeRangeConverter(input TimeIntervalTimeRange) string
+func WeekdayRangeConverter(input WeekdayRange) string
+```
+
+### <span class="badge function"></span> DayOfMonthRangeConverter
+
+DayOfMonthRangeConverter accepts a `DayOfMonthRange` object and generates the Go code to build this object using builders.
+
+```go
+func DayOfMonthRangeConverter(input DayOfMonthRange) string
+```
+
+### <span class="badge function"></span> YearRangeConverter
+
+YearRangeConverter accepts a `YearRange` object and generates the Go code to build this object using builders.
+
+```go
+func YearRangeConverter(input YearRange) string
+```
+
+### <span class="badge function"></span> MonthRangeConverter
+
+MonthRangeConverter accepts a `MonthRange` object and generates the Go code to build this object using builders.
+
+```go
+func MonthRangeConverter(input MonthRange) string
 ```
 
