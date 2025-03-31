@@ -41,5 +41,14 @@ class RecordRuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+    /**
+     * Which data source should be used to write the output of the recording rule, specified by UID.
+     */
+    public function targetDatasourceUid(string $targetDatasourceUid): static
+    {
+        $this->internal->targetDatasourceUid = $targetDatasourceUid;
+    
+        return $this;
+    }
 
 }

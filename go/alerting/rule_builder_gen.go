@@ -104,8 +104,20 @@ func (builder *RuleBuilder) IsPaused(isPaused bool) *RuleBuilder {
 	return builder
 }
 
+func (builder *RuleBuilder) KeepFiringFor(keepFiringFor string) *RuleBuilder {
+	builder.internal.KeepFiringFor = &keepFiringFor
+
+	return builder
+}
+
 func (builder *RuleBuilder) Labels(labels map[string]string) *RuleBuilder {
 	builder.internal.Labels = labels
+
+	return builder
+}
+
+func (builder *RuleBuilder) MissingSeriesEvalsToResolve(missingSeriesEvalsToResolve int64) *RuleBuilder {
+	builder.internal.MissingSeriesEvalsToResolve = &missingSeriesEvalsToResolve
 
 	return builder
 }

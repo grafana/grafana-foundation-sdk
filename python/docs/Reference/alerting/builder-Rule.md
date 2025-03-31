@@ -64,10 +64,22 @@ def id_val(id_val: int) -> typing.Self
 def is_paused(is_paused: bool) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> keep_firing_for
+
+```python
+def keep_firing_for(keep_firing_for: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> labels
 
 ```python
 def labels(labels: dict[str, str]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> missing_series_evals_to_resolve
+
+```python
+def missing_series_evals_to_resolve(missing_series_evals_to_resolve: int) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> no_data_state

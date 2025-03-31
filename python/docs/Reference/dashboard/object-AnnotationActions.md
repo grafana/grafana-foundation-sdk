@@ -3,10 +3,16 @@ title: <span class="badge object-type-class"></span> AnnotationActions
 ---
 # <span class="badge object-type-class"></span> AnnotationActions
 
++k8s:deepcopy-gen=true
+
 ## Definition
 
 ```python
 class AnnotationActions:
+    """
+    +k8s:deepcopy-gen=true
+    """
+
     can_add: typing.Optional[bool]
     can_delete: typing.Optional[bool]
     can_edit: typing.Optional[bool]

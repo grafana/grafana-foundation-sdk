@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+// +k8s:deepcopy-gen=true
 public class AnnotationActions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("canAdd")

@@ -105,7 +105,7 @@ export class TempoQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
-    // Filters that are used to query the metrics summary
+    // deprecated Filters that are used to query the metrics summary
     groupBy(groupBy: cog.Builder<tempo.TraceqlFilter>[]): this {
         const groupByResources = groupBy.map(builder1 => builder1.build());
         this.internal.groupBy = groupByResources;

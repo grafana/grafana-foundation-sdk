@@ -44,3 +44,10 @@ func (builder *RecordRuleBuilder) Metric(metric string) *RecordRuleBuilder {
 
 	return builder
 }
+
+// Which data source should be used to write the output of the recording rule, specified by UID.
+func (builder *RecordRuleBuilder) TargetDatasourceUid(targetDatasourceUid string) *RecordRuleBuilder {
+	builder.internal.TargetDatasourceUid = &targetDatasourceUid
+
+	return builder
+}

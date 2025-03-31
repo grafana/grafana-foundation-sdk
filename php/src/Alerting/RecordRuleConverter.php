@@ -36,6 +36,19 @@ final class RecordRuleConverter
     
     
     }
+            if ($input->targetDatasourceUid !== null && $input->targetDatasourceUid !== "") {
+    
+        
+    $buffer = 'targetDatasourceUid(';
+        $arg0 =\var_export($input->targetDatasourceUid, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

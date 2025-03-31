@@ -20,11 +20,15 @@ build()
 
 ### <span class="badge object-method"></span> dashboard
 
++k8s:deepcopy-gen=true
+
 ```typescript
 dashboard(dashboard: cog.Builder<dashboard.AnnotationActions>)
 ```
 
 ### <span class="badge object-method"></span> organization
+
++k8s:deepcopy-gen=true
 
 ```typescript
 organization(organization: cog.Builder<dashboard.AnnotationActions>)

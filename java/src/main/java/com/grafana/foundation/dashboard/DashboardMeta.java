@@ -9,9 +9,13 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class DashboardMeta {
+    // +k8s:deepcopy-gen=true
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("annotationsPermissions")
     public AnnotationPermission annotationsPermissions;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("apiVersion")
+    public String apiVersion;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("canAdmin")
     public Boolean canAdmin;
@@ -91,8 +95,9 @@ public class DashboardMeta {
     public DashboardMeta() {
     }
     
-    public DashboardMeta(AnnotationPermission annotationsPermissions,Boolean canAdmin,Boolean canDelete,Boolean canEdit,Boolean canSave,Boolean canStar,String created,String createdBy,String expires,Long folderId,String folderTitle,String folderUid,String folderUrl,Boolean hasAcl,Boolean isFolder,Boolean isSnapshot,Boolean isStarred,Boolean provisioned,String provisionedExternalId,Boolean publicDashboardEnabled,String slug,String type,String updated,String updatedBy,String url,Long version) {
+    public DashboardMeta(AnnotationPermission annotationsPermissions,String apiVersion,Boolean canAdmin,Boolean canDelete,Boolean canEdit,Boolean canSave,Boolean canStar,String created,String createdBy,String expires,Long folderId,String folderTitle,String folderUid,String folderUrl,Boolean hasAcl,Boolean isFolder,Boolean isSnapshot,Boolean isStarred,Boolean provisioned,String provisionedExternalId,Boolean publicDashboardEnabled,String slug,String type,String updated,String updatedBy,String url,Long version) {
         this.annotationsPermissions = annotationsPermissions;
+        this.apiVersion = apiVersion;
         this.canAdmin = canAdmin;
         this.canDelete = canDelete;
         this.canEdit = canEdit;

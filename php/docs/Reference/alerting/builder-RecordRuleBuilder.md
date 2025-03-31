@@ -34,6 +34,14 @@ Name of the recorded metric.
 metric(string $metric)
 ```
 
+### <span class="badge object-method"></span> targetDatasourceUid
+
+Which data source should be used to write the output of the recording rule, specified by UID.
+
+```php
+targetDatasourceUid(string $targetDatasourceUid)
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [RecordRule](./object-RecordRule.md)

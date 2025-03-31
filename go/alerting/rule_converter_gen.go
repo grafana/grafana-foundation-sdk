@@ -121,6 +121,18 @@ func RuleConverter(input Rule) string {
 		buffer.Reset()
 
 	}
+	if input.KeepFiringFor != nil && *input.KeepFiringFor != "" {
+
+		buffer.WriteString(`KeepFiringFor(`)
+		arg0 := fmt.Sprintf("%#v", *input.KeepFiringFor)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Labels != nil {
 
 		buffer.WriteString(`Labels(`)
@@ -130,6 +142,18 @@ func RuleConverter(input Rule) string {
 			arg0 += "\t" + fmt.Sprintf("%#v", key) + ": " + tmplabelsarg1 + ","
 		}
 		arg0 += "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.MissingSeriesEvalsToResolve != nil {
+
+		buffer.WriteString(`MissingSeriesEvalsToResolve(`)
+		arg0 := fmt.Sprintf("%#v", *input.MissingSeriesEvalsToResolve)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

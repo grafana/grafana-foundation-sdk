@@ -20,8 +20,16 @@ def build() -> dashboard.DashboardMeta
 
 ### <span class="badge object-method"></span> annotations_permissions
 
++k8s:deepcopy-gen=true
+
 ```python
 def annotations_permissions(annotations_permissions: cogbuilder.Builder[dashboard.AnnotationPermission]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> api_version
+
+```python
+def api_version(api_version: str) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> can_admin

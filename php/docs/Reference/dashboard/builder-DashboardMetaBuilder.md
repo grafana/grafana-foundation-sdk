@@ -20,10 +20,18 @@ build()
 
 ### <span class="badge object-method"></span> annotationsPermissions
 
++k8s:deepcopy-gen=true
+
 @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationPermission> $annotationsPermissions
 
 ```php
 annotationsPermissions(\Grafana\Foundation\Cog\Builder $annotationsPermissions)
+```
+
+### <span class="badge object-method"></span> apiVersion
+
+```php
+apiVersion(string $apiVersion)
 ```
 
 ### <span class="badge object-method"></span> canAdmin

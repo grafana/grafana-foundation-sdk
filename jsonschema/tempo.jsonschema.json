@@ -83,7 +83,7 @@
           "items": {
             "$ref": "#/definitions/TraceqlFilter"
           },
-          "description": "Filters that are used to query the metrics summary"
+          "description": "deprecated Filters that are used to query the metrics summary"
         },
         "tableType": {
           "$ref": "#/definitions/SearchTableType",

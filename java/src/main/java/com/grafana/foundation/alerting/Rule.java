@@ -37,8 +37,14 @@ public class Rule {
     @JsonProperty("isPaused")
     public Boolean isPaused;
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("keep_firing_for")
+    public String keepFiringFor;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("labels")
     public Map<String, String> labels;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("missingSeriesEvalsToResolve")
+    public Long missingSeriesEvalsToResolve;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("noDataState")
     public RuleNoDataState noDataState;
@@ -66,7 +72,7 @@ public class Rule {
     public Rule() {
     }
     
-    public Rule(Map<String, String> annotations,String condition,List<Query> data,RuleExecErrState execErrState,String folderUID,String forArg,Long id,Boolean isPaused,Map<String, String> labels,RuleNoDataState noDataState,NotificationSettings notificationSettings,Long orgID,String provenance,RecordRule record,String ruleGroup,String title,String uid,String updated) {
+    public Rule(Map<String, String> annotations,String condition,List<Query> data,RuleExecErrState execErrState,String folderUID,String forArg,Long id,Boolean isPaused,String keepFiringFor,Map<String, String> labels,Long missingSeriesEvalsToResolve,RuleNoDataState noDataState,NotificationSettings notificationSettings,Long orgID,String provenance,RecordRule record,String ruleGroup,String title,String uid,String updated) {
         this.annotations = annotations;
         this.condition = condition;
         this.data = data;
@@ -75,7 +81,9 @@ public class Rule {
         this.forArg = forArg;
         this.id = id;
         this.isPaused = isPaused;
+        this.keepFiringFor = keepFiringFor;
         this.labels = labels;
+        this.missingSeriesEvalsToResolve = missingSeriesEvalsToResolve;
         this.noDataState = noDataState;
         this.notificationSettings = notificationSettings;
         this.orgID = orgID;

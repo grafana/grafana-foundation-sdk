@@ -4,7 +4,12 @@ namespace Grafana\Foundation\Dashboard;
 
 class DashboardMeta implements \JsonSerializable
 {
+    /**
+     * +k8s:deepcopy-gen=true
+     */
     public ?\Grafana\Foundation\Dashboard\AnnotationPermission $annotationsPermissions;
+
+    public ?string $apiVersion;
 
     public ?bool $canAdmin;
 
@@ -61,6 +66,7 @@ class DashboardMeta implements \JsonSerializable
 
     /**
      * @param \Grafana\Foundation\Dashboard\AnnotationPermission|null $annotationsPermissions
+     * @param string|null $apiVersion
      * @param bool|null $canAdmin
      * @param bool|null $canDelete
      * @param bool|null $canEdit
@@ -87,9 +93,10 @@ class DashboardMeta implements \JsonSerializable
      * @param string|null $url
      * @param int|null $version
      */
-    public function __construct(?\Grafana\Foundation\Dashboard\AnnotationPermission $annotationsPermissions = null, ?bool $canAdmin = null, ?bool $canDelete = null, ?bool $canEdit = null, ?bool $canSave = null, ?bool $canStar = null, ?string $created = null, ?string $createdBy = null, ?string $expires = null, ?int $folderId = null, ?string $folderTitle = null, ?string $folderUid = null, ?string $folderUrl = null, ?bool $hasAcl = null, ?bool $isFolder = null, ?bool $isSnapshot = null, ?bool $isStarred = null, ?bool $provisioned = null, ?string $provisionedExternalId = null, ?bool $publicDashboardEnabled = null, ?string $slug = null, ?string $type = null, ?string $updated = null, ?string $updatedBy = null, ?string $url = null, ?int $version = null)
+    public function __construct(?\Grafana\Foundation\Dashboard\AnnotationPermission $annotationsPermissions = null, ?string $apiVersion = null, ?bool $canAdmin = null, ?bool $canDelete = null, ?bool $canEdit = null, ?bool $canSave = null, ?bool $canStar = null, ?string $created = null, ?string $createdBy = null, ?string $expires = null, ?int $folderId = null, ?string $folderTitle = null, ?string $folderUid = null, ?string $folderUrl = null, ?bool $hasAcl = null, ?bool $isFolder = null, ?bool $isSnapshot = null, ?bool $isStarred = null, ?bool $provisioned = null, ?string $provisionedExternalId = null, ?bool $publicDashboardEnabled = null, ?string $slug = null, ?string $type = null, ?string $updated = null, ?string $updatedBy = null, ?string $url = null, ?int $version = null)
     {
         $this->annotationsPermissions = $annotationsPermissions;
+        $this->apiVersion = $apiVersion;
         $this->canAdmin = $canAdmin;
         $this->canDelete = $canDelete;
         $this->canEdit = $canEdit;
@@ -122,7 +129,7 @@ class DashboardMeta implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{annotationsPermissions?: mixed, canAdmin?: bool, canDelete?: bool, canEdit?: bool, canSave?: bool, canStar?: bool, created?: string, createdBy?: string, expires?: string, folderId?: int, folderTitle?: string, folderUid?: string, folderUrl?: string, hasAcl?: bool, isFolder?: bool, isSnapshot?: bool, isStarred?: bool, provisioned?: bool, provisionedExternalId?: string, publicDashboardEnabled?: bool, slug?: string, type?: string, updated?: string, updatedBy?: string, url?: string, version?: int} $inputData */
+        /** @var array{annotationsPermissions?: mixed, apiVersion?: string, canAdmin?: bool, canDelete?: bool, canEdit?: bool, canSave?: bool, canStar?: bool, created?: string, createdBy?: string, expires?: string, folderId?: int, folderTitle?: string, folderUid?: string, folderUrl?: string, hasAcl?: bool, isFolder?: bool, isSnapshot?: bool, isStarred?: bool, provisioned?: bool, provisionedExternalId?: string, publicDashboardEnabled?: bool, slug?: string, type?: string, updated?: string, updatedBy?: string, url?: string, version?: int} $inputData */
         $data = $inputData;
         return new self(
             annotationsPermissions: isset($data["annotationsPermissions"]) ? (function($input) {
@@ -130,6 +137,7 @@ class DashboardMeta implements \JsonSerializable
     $val = $input;
     	return \Grafana\Foundation\Dashboard\AnnotationPermission::fromArray($val);
     })($data["annotationsPermissions"]) : null,
+            apiVersion: $data["apiVersion"] ?? null,
             canAdmin: $data["canAdmin"] ?? null,
             canDelete: $data["canDelete"] ?? null,
             canEdit: $data["canEdit"] ?? null,
@@ -167,6 +175,9 @@ class DashboardMeta implements \JsonSerializable
         ];
         if (isset($this->annotationsPermissions)) {
             $data["annotationsPermissions"] = $this->annotationsPermissions;
+        }
+        if (isset($this->apiVersion)) {
+            $data["apiVersion"] = $this->apiVersion;
         }
         if (isset($this->canAdmin)) {
             $data["canAdmin"] = $this->canAdmin;

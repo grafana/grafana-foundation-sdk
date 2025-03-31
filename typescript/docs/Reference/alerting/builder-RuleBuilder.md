@@ -64,10 +64,22 @@ id(id: number)
 isPaused(isPaused: boolean)
 ```
 
+### <span class="badge object-method"></span> keepFiringFor
+
+```typescript
+keepFiringFor(keepFiringFor: string)
+```
+
 ### <span class="badge object-method"></span> labels
 
 ```typescript
 labels(labels: Record<string, string>)
+```
+
+### <span class="badge object-method"></span> missingSeriesEvalsToResolve
+
+```typescript
+missingSeriesEvalsToResolve(missingSeriesEvalsToResolve: number)
 ```
 
 ### <span class="badge object-method"></span> noDataState

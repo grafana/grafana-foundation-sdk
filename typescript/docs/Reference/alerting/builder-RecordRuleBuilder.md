@@ -34,6 +34,14 @@ Name of the recorded metric.
 metric(metric: string)
 ```
 
+### <span class="badge object-method"></span> targetDatasourceUid
+
+Which data source should be used to write the output of the recording rule, specified by UID.
+
+```typescript
+targetDatasourceUid(targetDatasourceUid: string)
+```
+
 ## See also
 
  * <span class="badge object-type-interface"></span> [RecordRule](./object-RecordRule.md)

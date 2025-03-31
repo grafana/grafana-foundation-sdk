@@ -83,7 +83,7 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public array $filters;
 
     /**
-     * Filters that are used to query the metrics summary
+     * deprecated Filters that are used to query the metrics summary
      * @var array<\Grafana\Foundation\Tempo\TraceqlFilter>|null
      */
     public ?array $groupBy;

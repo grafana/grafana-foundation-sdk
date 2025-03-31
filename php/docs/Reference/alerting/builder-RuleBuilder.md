@@ -66,12 +66,24 @@ id(int $id)
 isPaused(bool $isPaused)
 ```
 
+### <span class="badge object-method"></span> keepFiringFor
+
+```php
+keepFiringFor(string $keepFiringFor)
+```
+
 ### <span class="badge object-method"></span> labels
 
 @param array<string, string> $labels
 
 ```php
 labels(array $labels)
+```
+
+### <span class="badge object-method"></span> missingSeriesEvalsToResolve
+
+```php
+missingSeriesEvalsToResolve(int $missingSeriesEvalsToResolve)
 ```
 
 ### <span class="badge object-method"></span> noDataState

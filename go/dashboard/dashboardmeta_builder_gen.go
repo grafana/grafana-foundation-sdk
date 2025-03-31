@@ -33,6 +33,7 @@ func (builder *DashboardMetaBuilder) Build() (DashboardMeta, error) {
 	return *builder.internal, nil
 }
 
+// +k8s:deepcopy-gen=true
 func (builder *DashboardMetaBuilder) AnnotationsPermissions(annotationsPermissions cog.Builder[AnnotationPermission]) *DashboardMetaBuilder {
 	annotationsPermissionsResource, err := annotationsPermissions.Build()
 	if err != nil {
@@ -40,6 +41,12 @@ func (builder *DashboardMetaBuilder) AnnotationsPermissions(annotationsPermissio
 		return builder
 	}
 	builder.internal.AnnotationsPermissions = &annotationsPermissionsResource
+
+	return builder
+}
+
+func (builder *DashboardMetaBuilder) ApiVersion(apiVersion string) *DashboardMetaBuilder {
+	builder.internal.ApiVersion = &apiVersion
 
 	return builder
 }

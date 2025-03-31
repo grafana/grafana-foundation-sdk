@@ -17,7 +17,9 @@ class Rule:
     for_val: str
     id_val: typing.Optional[int]
     is_paused: typing.Optional[bool]
+    keep_firing_for: typing.Optional[str]
     labels: typing.Optional[dict[str, str]]
+    missing_series_evals_to_resolve: typing.Optional[int]
     no_data_state: typing.Literal["Alerting", "NoData", "OK"]
     notification_settings: typing.Optional[alerting.NotificationSettings]
     org_id: int

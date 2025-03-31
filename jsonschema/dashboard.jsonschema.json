@@ -1431,26 +1431,34 @@
         "canEdit": {
           "type": "boolean"
         }
-      }
+      },
+      "description": "+k8s:deepcopy-gen=true"
     },
     "AnnotationPermission": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "dashboard": {
-          "$ref": "#/definitions/AnnotationActions"
+          "$ref": "#/definitions/AnnotationActions",
+          "description": "+k8s:deepcopy-gen=true"
         },
         "organization": {
-          "$ref": "#/definitions/AnnotationActions"
+          "$ref": "#/definitions/AnnotationActions",
+          "description": "+k8s:deepcopy-gen=true"
         }
-      }
+      },
+      "description": "+k8s:deepcopy-gen=true"
     },
     "DashboardMeta": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "annotationsPermissions": {
-          "$ref": "#/definitions/AnnotationPermission"
+          "$ref": "#/definitions/AnnotationPermission",
+          "description": "+k8s:deepcopy-gen=true"
+        },
+        "apiVersion": {
+          "type": "string"
         },
         "canAdmin": {
           "type": "boolean"

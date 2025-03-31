@@ -34,7 +34,7 @@ export interface TempoQuery {
 	// Defines the maximum number of spans per spanset that are returned from Tempo
 	spss?: number;
 	filters: TraceqlFilter[];
-	// Filters that are used to query the metrics summary
+	// deprecated Filters that are used to query the metrics summary
 	groupBy?: TraceqlFilter[];
 	// The type of the table that is used to display the search results
 	tableType?: SearchTableType;

@@ -2,10 +2,19 @@
 
 namespace Grafana\Foundation\Dashboard;
 
+/**
+ * +k8s:deepcopy-gen=true
+ */
 class AnnotationPermission implements \JsonSerializable
 {
+    /**
+     * +k8s:deepcopy-gen=true
+     */
     public ?\Grafana\Foundation\Dashboard\AnnotationActions $dashboard;
 
+    /**
+     * +k8s:deepcopy-gen=true
+     */
     public ?\Grafana\Foundation\Dashboard\AnnotationActions $organization;
 
     /**

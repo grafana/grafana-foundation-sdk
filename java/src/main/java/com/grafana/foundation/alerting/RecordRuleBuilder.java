@@ -18,6 +18,11 @@ public class RecordRuleBuilder implements com.grafana.foundation.cog.Builder<Rec
         this.internal.metric = metric;
         return this;
     }
+    
+    public RecordRuleBuilder targetDatasourceUid(String targetDatasourceUid) {
+        this.internal.targetDatasourceUid = targetDatasourceUid;
+        return this;
+    }
     public RecordRule build() {
         return this.internal;
     }

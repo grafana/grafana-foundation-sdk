@@ -1661,6 +1661,10 @@ class Snapshot(cogbuilder.Builder[dashboard.Snapshot]):
     
 
 class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):    
+    """
+    +k8s:deepcopy-gen=true
+    """
+    
     _internal: dashboard.AnnotationActions
 
     def __init__(self):
@@ -1689,6 +1693,10 @@ class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):
     
 
 class AnnotationPermission(cogbuilder.Builder[dashboard.AnnotationPermission]):    
+    """
+    +k8s:deepcopy-gen=true
+    """
+    
     _internal: dashboard.AnnotationPermission
 
     def __init__(self):
@@ -1700,13 +1708,21 @@ class AnnotationPermission(cogbuilder.Builder[dashboard.AnnotationPermission]):
         """
         return self._internal    
     
-    def dashboard_permissions(self, dashboard: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:        
+    def dashboard_permissions(self, dashboard: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:    
+        """
+        +k8s:deepcopy-gen=true
+        """
+            
         dashboard_resource = dashboard.build()
         self._internal.dashboard = dashboard_resource
     
         return self
     
-    def organization_permissions(self, organization: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:        
+    def organization_permissions(self, organization: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:    
+        """
+        +k8s:deepcopy-gen=true
+        """
+            
         organization_resource = organization.build()
         self._internal.organization = organization_resource
     
@@ -1725,9 +1741,18 @@ class DashboardMeta(cogbuilder.Builder[dashboard.DashboardMeta]):
         """
         return self._internal    
     
-    def annotations_permissions(self, annotations_permissions: cogbuilder.Builder[dashboard.AnnotationPermission]) -> typing.Self:        
+    def annotations_permissions(self, annotations_permissions: cogbuilder.Builder[dashboard.AnnotationPermission]) -> typing.Self:    
+        """
+        +k8s:deepcopy-gen=true
+        """
+            
         annotations_permissions_resource = annotations_permissions.build()
         self._internal.annotations_permissions = annotations_permissions_resource
+    
+        return self
+    
+    def api_version(self, api_version: str) -> typing.Self:        
+        self._internal.api_version = api_version
     
         return self
     

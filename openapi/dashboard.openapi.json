@@ -1438,26 +1438,34 @@
           "canEdit": {
             "type": "boolean"
           }
-        }
+        },
+        "description": "+k8s:deepcopy-gen=true"
       },
       "AnnotationPermission": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
           "dashboard": {
-            "$ref": "#/components/schemas/AnnotationActions"
+            "$ref": "#/components/schemas/AnnotationActions",
+            "description": "+k8s:deepcopy-gen=true"
           },
           "organization": {
-            "$ref": "#/components/schemas/AnnotationActions"
+            "$ref": "#/components/schemas/AnnotationActions",
+            "description": "+k8s:deepcopy-gen=true"
           }
-        }
+        },
+        "description": "+k8s:deepcopy-gen=true"
       },
       "DashboardMeta": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
           "annotationsPermissions": {
-            "$ref": "#/components/schemas/AnnotationPermission"
+            "$ref": "#/components/schemas/AnnotationPermission",
+            "description": "+k8s:deepcopy-gen=true"
+          },
+          "apiVersion": {
+            "type": "string"
           },
           "canAdmin": {
             "type": "boolean"

@@ -48,7 +48,7 @@ filters(filters: cog.Builder<tempo.TraceqlFilter>[])
 
 ### <span class="badge object-method"></span> groupBy
 
-Filters that are used to query the metrics summary
+deprecated Filters that are used to query the metrics summary
 
 ```typescript
 groupBy(groupBy: cog.Builder<tempo.TraceqlFilter>[])

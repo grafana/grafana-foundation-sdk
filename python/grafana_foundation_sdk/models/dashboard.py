@@ -2060,6 +2060,10 @@ class MappingType(enum.StrEnum):
 
 
 class AnnotationActions:
+    """
+    +k8s:deepcopy-gen=true
+    """
+
     can_add: typing.Optional[bool]
     can_delete: typing.Optional[bool]
     can_edit: typing.Optional[bool]
@@ -2095,7 +2099,13 @@ class AnnotationActions:
 
 
 class AnnotationPermission:
+    """
+    +k8s:deepcopy-gen=true
+    """
+
+    # +k8s:deepcopy-gen=true
     dashboard: typing.Optional['AnnotationActions']
+    # +k8s:deepcopy-gen=true
     organization: typing.Optional['AnnotationActions']
 
     def __init__(self, dashboard: typing.Optional['AnnotationActions'] = None, organization: typing.Optional['AnnotationActions'] = None):
@@ -2124,7 +2134,9 @@ class AnnotationPermission:
 
 
 class DashboardMeta:
+    # +k8s:deepcopy-gen=true
     annotations_permissions: typing.Optional['AnnotationPermission']
+    api_version: typing.Optional[str]
     can_admin: typing.Optional[bool]
     can_delete: typing.Optional[bool]
     can_edit: typing.Optional[bool]
@@ -2152,8 +2164,9 @@ class DashboardMeta:
     url: typing.Optional[str]
     version: typing.Optional[int]
 
-    def __init__(self, annotations_permissions: typing.Optional['AnnotationPermission'] = None, can_admin: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None, can_save: typing.Optional[bool] = None, can_star: typing.Optional[bool] = None, created: typing.Optional[str] = None, created_by: typing.Optional[str] = None, expires: typing.Optional[str] = None, folder_id: typing.Optional[int] = None, folder_title: typing.Optional[str] = None, folder_uid: typing.Optional[str] = None, folder_url: typing.Optional[str] = None, has_acl: typing.Optional[bool] = None, is_folder: typing.Optional[bool] = None, is_snapshot: typing.Optional[bool] = None, is_starred: typing.Optional[bool] = None, provisioned: typing.Optional[bool] = None, provisioned_external_id: typing.Optional[str] = None, public_dashboard_enabled: typing.Optional[bool] = None, slug: typing.Optional[str] = None, type_val: typing.Optional[str] = None, updated: typing.Optional[str] = None, updated_by: typing.Optional[str] = None, url: typing.Optional[str] = None, version: typing.Optional[int] = None):
+    def __init__(self, annotations_permissions: typing.Optional['AnnotationPermission'] = None, api_version: typing.Optional[str] = None, can_admin: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None, can_save: typing.Optional[bool] = None, can_star: typing.Optional[bool] = None, created: typing.Optional[str] = None, created_by: typing.Optional[str] = None, expires: typing.Optional[str] = None, folder_id: typing.Optional[int] = None, folder_title: typing.Optional[str] = None, folder_uid: typing.Optional[str] = None, folder_url: typing.Optional[str] = None, has_acl: typing.Optional[bool] = None, is_folder: typing.Optional[bool] = None, is_snapshot: typing.Optional[bool] = None, is_starred: typing.Optional[bool] = None, provisioned: typing.Optional[bool] = None, provisioned_external_id: typing.Optional[str] = None, public_dashboard_enabled: typing.Optional[bool] = None, slug: typing.Optional[str] = None, type_val: typing.Optional[str] = None, updated: typing.Optional[str] = None, updated_by: typing.Optional[str] = None, url: typing.Optional[str] = None, version: typing.Optional[int] = None):
         self.annotations_permissions = annotations_permissions
+        self.api_version = api_version
         self.can_admin = can_admin
         self.can_delete = can_delete
         self.can_edit = can_edit
@@ -2185,6 +2198,8 @@ class DashboardMeta:
         }
         if self.annotations_permissions is not None:
             payload["annotationsPermissions"] = self.annotations_permissions
+        if self.api_version is not None:
+            payload["apiVersion"] = self.api_version
         if self.can_admin is not None:
             payload["canAdmin"] = self.can_admin
         if self.can_delete is not None:
@@ -2243,6 +2258,8 @@ class DashboardMeta:
         
         if "annotationsPermissions" in data:
             args["annotations_permissions"] = AnnotationPermission.from_json(data["annotationsPermissions"])
+        if "apiVersion" in data:
+            args["api_version"] = data["apiVersion"]
         if "canAdmin" in data:
             args["can_admin"] = data["canAdmin"]
         if "canDelete" in data:

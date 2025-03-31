@@ -3,6 +3,7 @@
 namespace Grafana\Foundation\Dashboard;
 
 /**
+ * +k8s:deepcopy-gen=true
  * @implements \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationPermission>
  */
 class AnnotationPermissionBuilder implements \Grafana\Foundation\Cog\Builder
@@ -24,6 +25,7 @@ class AnnotationPermissionBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * +k8s:deepcopy-gen=true
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationActions> $dashboard
      */
     public function dashboard(\Grafana\Foundation\Cog\Builder $dashboard): static
@@ -34,6 +36,7 @@ class AnnotationPermissionBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
     /**
+     * +k8s:deepcopy-gen=true
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationActions> $organization
      */
     public function organization(\Grafana\Foundation\Cog\Builder $organization): static
