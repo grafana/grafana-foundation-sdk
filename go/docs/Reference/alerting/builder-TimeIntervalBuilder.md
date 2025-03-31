@@ -21,19 +21,19 @@ func (builder *TimeIntervalBuilder) Build() (TimeInterval, error)
 ### <span class="badge object-method"></span> DaysOfMonth
 
 ```go
-func (builder *TimeIntervalBuilder) DaysOfMonth(daysOfMonth []string) *TimeIntervalBuilder
+func (builder *TimeIntervalBuilder) DaysOfMonth(daysOfMonth []cog.Builder[alerting.DayOfMonthRange]) *TimeIntervalBuilder
 ```
 
 ### <span class="badge object-method"></span> Location
 
 ```go
-func (builder *TimeIntervalBuilder) Location(location string) *TimeIntervalBuilder
+func (builder *TimeIntervalBuilder) Location(location alerting.Location) *TimeIntervalBuilder
 ```
 
 ### <span class="badge object-method"></span> Months
 
 ```go
-func (builder *TimeIntervalBuilder) Months(months []string) *TimeIntervalBuilder
+func (builder *TimeIntervalBuilder) Months(months []cog.Builder[alerting.MonthRange]) *TimeIntervalBuilder
 ```
 
 ### <span class="badge object-method"></span> Times
@@ -45,13 +45,13 @@ func (builder *TimeIntervalBuilder) Times(times []cog.Builder[alerting.TimeRange
 ### <span class="badge object-method"></span> Weekdays
 
 ```go
-func (builder *TimeIntervalBuilder) Weekdays(weekdays []string) *TimeIntervalBuilder
+func (builder *TimeIntervalBuilder) Weekdays(weekdays []cog.Builder[alerting.WeekdayRange]) *TimeIntervalBuilder
 ```
 
 ### <span class="badge object-method"></span> Years
 
 ```go
-func (builder *TimeIntervalBuilder) Years(years []string) *TimeIntervalBuilder
+func (builder *TimeIntervalBuilder) Years(years []cog.Builder[alerting.YearRange]) *TimeIntervalBuilder
 ```
 
 ## See also

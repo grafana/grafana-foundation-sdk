@@ -1844,15 +1844,13 @@ func (resource NotificationPolicy) Validate() error {
 	return errs
 }
 
-// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-// within the interval.
 type TimeInterval struct {
-	DaysOfMonth []string    `json:"days_of_month,omitempty"`
-	Location    *string     `json:"location,omitempty"`
-	Months      []string    `json:"months,omitempty"`
-	Times       []TimeRange `json:"times,omitempty"`
-	Weekdays    []string    `json:"weekdays,omitempty"`
-	Years       []string    `json:"years,omitempty"`
+	Times       []TimeRange       `json:"times,omitempty"`
+	Weekdays    []WeekdayRange    `json:"weekdays,omitempty"`
+	DaysOfMonth []DayOfMonthRange `json:"days_of_month,omitempty"`
+	Months      []MonthRange      `json:"months,omitempty"`
+	Years       []YearRange       `json:"years,omitempty"`
+	Location    *Location         `json:"location,omitempty"`
 }
 
 // NewTimeInterval creates a new TimeInterval object.
@@ -1871,41 +1869,6 @@ func (resource *TimeInterval) UnmarshalJSONStrict(raw []byte) error {
 	fields := make(map[string]json.RawMessage)
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
-	}
-	// Field "days_of_month"
-	if fields["days_of_month"] != nil {
-		if string(fields["days_of_month"]) != "null" {
-
-			if err := json.Unmarshal(fields["days_of_month"], &resource.DaysOfMonth); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("days_of_month", err)...)
-			}
-
-		}
-		delete(fields, "days_of_month")
-
-	}
-	// Field "location"
-	if fields["location"] != nil {
-		if string(fields["location"]) != "null" {
-			if err := json.Unmarshal(fields["location"], &resource.Location); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("location", err)...)
-			}
-
-		}
-		delete(fields, "location")
-
-	}
-	// Field "months"
-	if fields["months"] != nil {
-		if string(fields["months"]) != "null" {
-
-			if err := json.Unmarshal(fields["months"], &resource.Months); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("months", err)...)
-			}
-
-		}
-		delete(fields, "months")
-
 	}
 	// Field "times"
 	if fields["times"] != nil {
@@ -1934,24 +1897,103 @@ func (resource *TimeInterval) UnmarshalJSONStrict(raw []byte) error {
 	if fields["weekdays"] != nil {
 		if string(fields["weekdays"]) != "null" {
 
-			if err := json.Unmarshal(fields["weekdays"], &resource.Weekdays); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("weekdays", err)...)
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["weekdays"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 WeekdayRange
+
+				result1 = WeekdayRange{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("weekdays["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Weekdays = append(resource.Weekdays, result1)
 			}
 
 		}
 		delete(fields, "weekdays")
 
 	}
+	// Field "days_of_month"
+	if fields["days_of_month"] != nil {
+		if string(fields["days_of_month"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["days_of_month"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 DayOfMonthRange
+
+				result1 = DayOfMonthRange{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("days_of_month["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.DaysOfMonth = append(resource.DaysOfMonth, result1)
+			}
+
+		}
+		delete(fields, "days_of_month")
+
+	}
+	// Field "months"
+	if fields["months"] != nil {
+		if string(fields["months"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["months"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 MonthRange
+
+				result1 = MonthRange{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("months["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Months = append(resource.Months, result1)
+			}
+
+		}
+		delete(fields, "months")
+
+	}
 	// Field "years"
 	if fields["years"] != nil {
 		if string(fields["years"]) != "null" {
 
-			if err := json.Unmarshal(fields["years"], &resource.Years); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("years", err)...)
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["years"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 YearRange
+
+				result1 = YearRange{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("years["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Years = append(resource.Years, result1)
 			}
 
 		}
 		delete(fields, "years")
+
+	}
+	// Field "location"
+	if fields["location"] != nil {
+		if string(fields["location"]) != "null" {
+			if err := json.Unmarshal(fields["location"], &resource.Location); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("location", err)...)
+			}
+
+		}
+		delete(fields, "location")
 
 	}
 
@@ -1969,35 +2011,6 @@ func (resource *TimeInterval) UnmarshalJSONStrict(raw []byte) error {
 // Equals tests the equality of two `TimeInterval` objects.
 func (resource TimeInterval) Equals(other TimeInterval) bool {
 
-	if len(resource.DaysOfMonth) != len(other.DaysOfMonth) {
-		return false
-	}
-
-	for i1 := range resource.DaysOfMonth {
-		if resource.DaysOfMonth[i1] != other.DaysOfMonth[i1] {
-			return false
-		}
-	}
-	if resource.Location == nil && other.Location != nil || resource.Location != nil && other.Location == nil {
-		return false
-	}
-
-	if resource.Location != nil {
-		if *resource.Location != *other.Location {
-			return false
-		}
-	}
-
-	if len(resource.Months) != len(other.Months) {
-		return false
-	}
-
-	for i1 := range resource.Months {
-		if resource.Months[i1] != other.Months[i1] {
-			return false
-		}
-	}
-
 	if len(resource.Times) != len(other.Times) {
 		return false
 	}
@@ -2013,7 +2026,27 @@ func (resource TimeInterval) Equals(other TimeInterval) bool {
 	}
 
 	for i1 := range resource.Weekdays {
-		if resource.Weekdays[i1] != other.Weekdays[i1] {
+		if !resource.Weekdays[i1].Equals(other.Weekdays[i1]) {
+			return false
+		}
+	}
+
+	if len(resource.DaysOfMonth) != len(other.DaysOfMonth) {
+		return false
+	}
+
+	for i1 := range resource.DaysOfMonth {
+		if !resource.DaysOfMonth[i1].Equals(other.DaysOfMonth[i1]) {
+			return false
+		}
+	}
+
+	if len(resource.Months) != len(other.Months) {
+		return false
+	}
+
+	for i1 := range resource.Months {
+		if !resource.Months[i1].Equals(other.Months[i1]) {
 			return false
 		}
 	}
@@ -2023,7 +2056,16 @@ func (resource TimeInterval) Equals(other TimeInterval) bool {
 	}
 
 	for i1 := range resource.Years {
-		if resource.Years[i1] != other.Years[i1] {
+		if !resource.Years[i1].Equals(other.Years[i1]) {
+			return false
+		}
+	}
+	if resource.Location == nil && other.Location != nil || resource.Location != nil && other.Location == nil {
+		return false
+	}
+
+	if resource.Location != nil {
+		if *resource.Location != *other.Location {
 			return false
 		}
 	}
@@ -2041,205 +2083,27 @@ func (resource TimeInterval) Validate() error {
 		}
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type TimeIntervalItem struct {
-	DaysOfMonth []string                `json:"days_of_month,omitempty"`
-	Location    *string                 `json:"location,omitempty"`
-	Months      []string                `json:"months,omitempty"`
-	Times       []TimeIntervalTimeRange `json:"times,omitempty"`
-	Weekdays    []string                `json:"weekdays,omitempty"`
-	Years       []string                `json:"years,omitempty"`
-}
-
-// NewTimeIntervalItem creates a new TimeIntervalItem object.
-func NewTimeIntervalItem() *TimeIntervalItem {
-	return &TimeIntervalItem{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeIntervalItem` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *TimeIntervalItem) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "days_of_month"
-	if fields["days_of_month"] != nil {
-		if string(fields["days_of_month"]) != "null" {
-
-			if err := json.Unmarshal(fields["days_of_month"], &resource.DaysOfMonth); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("days_of_month", err)...)
-			}
-
+	for i1 := range resource.Weekdays {
+		if err := resource.Weekdays[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("weekdays["+strconv.Itoa(i1)+"]", err)...)
 		}
-		delete(fields, "days_of_month")
-
-	}
-	// Field "location"
-	if fields["location"] != nil {
-		if string(fields["location"]) != "null" {
-			if err := json.Unmarshal(fields["location"], &resource.Location); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("location", err)...)
-			}
-
-		}
-		delete(fields, "location")
-
-	}
-	// Field "months"
-	if fields["months"] != nil {
-		if string(fields["months"]) != "null" {
-
-			if err := json.Unmarshal(fields["months"], &resource.Months); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("months", err)...)
-			}
-
-		}
-		delete(fields, "months")
-
-	}
-	// Field "times"
-	if fields["times"] != nil {
-		if string(fields["times"]) != "null" {
-
-			partialArray := []json.RawMessage{}
-			if err := json.Unmarshal(fields["times"], &partialArray); err != nil {
-				return err
-			}
-
-			for i1 := range partialArray {
-				var result1 TimeIntervalTimeRange
-
-				result1 = TimeIntervalTimeRange{}
-				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
-					errs = append(errs, cog.MakeBuildErrors("times["+strconv.Itoa(i1)+"]", err)...)
-				}
-				resource.Times = append(resource.Times, result1)
-			}
-
-		}
-		delete(fields, "times")
-
-	}
-	// Field "weekdays"
-	if fields["weekdays"] != nil {
-		if string(fields["weekdays"]) != "null" {
-
-			if err := json.Unmarshal(fields["weekdays"], &resource.Weekdays); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("weekdays", err)...)
-			}
-
-		}
-		delete(fields, "weekdays")
-
-	}
-	// Field "years"
-	if fields["years"] != nil {
-		if string(fields["years"]) != "null" {
-
-			if err := json.Unmarshal(fields["years"], &resource.Years); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("years", err)...)
-			}
-
-		}
-		delete(fields, "years")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("TimeIntervalItem", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `TimeIntervalItem` objects.
-func (resource TimeIntervalItem) Equals(other TimeIntervalItem) bool {
-
-	if len(resource.DaysOfMonth) != len(other.DaysOfMonth) {
-		return false
 	}
 
 	for i1 := range resource.DaysOfMonth {
-		if resource.DaysOfMonth[i1] != other.DaysOfMonth[i1] {
-			return false
+		if err := resource.DaysOfMonth[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("days_of_month["+strconv.Itoa(i1)+"]", err)...)
 		}
-	}
-	if resource.Location == nil && other.Location != nil || resource.Location != nil && other.Location == nil {
-		return false
-	}
-
-	if resource.Location != nil {
-		if *resource.Location != *other.Location {
-			return false
-		}
-	}
-
-	if len(resource.Months) != len(other.Months) {
-		return false
 	}
 
 	for i1 := range resource.Months {
-		if resource.Months[i1] != other.Months[i1] {
-			return false
+		if err := resource.Months[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("months["+strconv.Itoa(i1)+"]", err)...)
 		}
-	}
-
-	if len(resource.Times) != len(other.Times) {
-		return false
-	}
-
-	for i1 := range resource.Times {
-		if !resource.Times[i1].Equals(other.Times[i1]) {
-			return false
-		}
-	}
-
-	if len(resource.Weekdays) != len(other.Weekdays) {
-		return false
-	}
-
-	for i1 := range resource.Weekdays {
-		if resource.Weekdays[i1] != other.Weekdays[i1] {
-			return false
-		}
-	}
-
-	if len(resource.Years) != len(other.Years) {
-		return false
 	}
 
 	for i1 := range resource.Years {
-		if resource.Years[i1] != other.Years[i1] {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `TimeIntervalItem` fields for violations and returns them.
-func (resource TimeIntervalItem) Validate() error {
-	var errs cog.BuildErrors
-
-	for i1 := range resource.Times {
-		if err := resource.Times[i1].Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("times["+strconv.Itoa(i1)+"]", err)...)
+		if err := resource.Years[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("years["+strconv.Itoa(i1)+"]", err)...)
 		}
 	}
 
@@ -2248,91 +2112,6 @@ func (resource TimeIntervalItem) Validate() error {
 	}
 
 	return errs
-}
-
-type TimeIntervalTimeRange struct {
-	EndTime   *string `json:"end_time,omitempty"`
-	StartTime *string `json:"start_time,omitempty"`
-}
-
-// NewTimeIntervalTimeRange creates a new TimeIntervalTimeRange object.
-func NewTimeIntervalTimeRange() *TimeIntervalTimeRange {
-	return &TimeIntervalTimeRange{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeIntervalTimeRange` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *TimeIntervalTimeRange) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "end_time"
-	if fields["end_time"] != nil {
-		if string(fields["end_time"]) != "null" {
-			if err := json.Unmarshal(fields["end_time"], &resource.EndTime); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("end_time", err)...)
-			}
-
-		}
-		delete(fields, "end_time")
-
-	}
-	// Field "start_time"
-	if fields["start_time"] != nil {
-		if string(fields["start_time"]) != "null" {
-			if err := json.Unmarshal(fields["start_time"], &resource.StartTime); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("start_time", err)...)
-			}
-
-		}
-		delete(fields, "start_time")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("TimeIntervalTimeRange", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `TimeIntervalTimeRange` objects.
-func (resource TimeIntervalTimeRange) Equals(other TimeIntervalTimeRange) bool {
-	if resource.EndTime == nil && other.EndTime != nil || resource.EndTime != nil && other.EndTime == nil {
-		return false
-	}
-
-	if resource.EndTime != nil {
-		if *resource.EndTime != *other.EndTime {
-			return false
-		}
-	}
-	if resource.StartTime == nil && other.StartTime != nil || resource.StartTime != nil && other.StartTime == nil {
-		return false
-	}
-
-	if resource.StartTime != nil {
-		if *resource.StartTime != *other.StartTime {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `TimeIntervalTimeRange` fields for violations and returns them.
-func (resource TimeIntervalTimeRange) Validate() error {
-	return nil
 }
 
 // Redefining this to avoid an import cycle
@@ -2420,6 +2199,348 @@ func (resource TimeRange) Equals(other TimeRange) bool {
 func (resource TimeRange) Validate() error {
 	return nil
 }
+
+type WeekdayRange struct {
+	Begin *int32 `json:"begin,omitempty"`
+	End   *int32 `json:"end,omitempty"`
+}
+
+// NewWeekdayRange creates a new WeekdayRange object.
+func NewWeekdayRange() *WeekdayRange {
+	return &WeekdayRange{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `WeekdayRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *WeekdayRange) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "begin"
+	if fields["begin"] != nil {
+		if string(fields["begin"]) != "null" {
+			if err := json.Unmarshal(fields["begin"], &resource.Begin); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("begin", err)...)
+			}
+
+		}
+		delete(fields, "begin")
+
+	}
+	// Field "end"
+	if fields["end"] != nil {
+		if string(fields["end"]) != "null" {
+			if err := json.Unmarshal(fields["end"], &resource.End); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("end", err)...)
+			}
+
+		}
+		delete(fields, "end")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("WeekdayRange", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `WeekdayRange` objects.
+func (resource WeekdayRange) Equals(other WeekdayRange) bool {
+	if resource.Begin == nil && other.Begin != nil || resource.Begin != nil && other.Begin == nil {
+		return false
+	}
+
+	if resource.Begin != nil {
+		if *resource.Begin != *other.Begin {
+			return false
+		}
+	}
+	if resource.End == nil && other.End != nil || resource.End != nil && other.End == nil {
+		return false
+	}
+
+	if resource.End != nil {
+		if *resource.End != *other.End {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `WeekdayRange` fields for violations and returns them.
+func (resource WeekdayRange) Validate() error {
+	return nil
+}
+
+type DayOfMonthRange struct {
+	Begin *int32 `json:"begin,omitempty"`
+	End   *int32 `json:"end,omitempty"`
+}
+
+// NewDayOfMonthRange creates a new DayOfMonthRange object.
+func NewDayOfMonthRange() *DayOfMonthRange {
+	return &DayOfMonthRange{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DayOfMonthRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *DayOfMonthRange) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "begin"
+	if fields["begin"] != nil {
+		if string(fields["begin"]) != "null" {
+			if err := json.Unmarshal(fields["begin"], &resource.Begin); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("begin", err)...)
+			}
+
+		}
+		delete(fields, "begin")
+
+	}
+	// Field "end"
+	if fields["end"] != nil {
+		if string(fields["end"]) != "null" {
+			if err := json.Unmarshal(fields["end"], &resource.End); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("end", err)...)
+			}
+
+		}
+		delete(fields, "end")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("DayOfMonthRange", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `DayOfMonthRange` objects.
+func (resource DayOfMonthRange) Equals(other DayOfMonthRange) bool {
+	if resource.Begin == nil && other.Begin != nil || resource.Begin != nil && other.Begin == nil {
+		return false
+	}
+
+	if resource.Begin != nil {
+		if *resource.Begin != *other.Begin {
+			return false
+		}
+	}
+	if resource.End == nil && other.End != nil || resource.End != nil && other.End == nil {
+		return false
+	}
+
+	if resource.End != nil {
+		if *resource.End != *other.End {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `DayOfMonthRange` fields for violations and returns them.
+func (resource DayOfMonthRange) Validate() error {
+	return nil
+}
+
+type YearRange struct {
+	Begin *int32 `json:"begin,omitempty"`
+	End   *int32 `json:"end,omitempty"`
+}
+
+// NewYearRange creates a new YearRange object.
+func NewYearRange() *YearRange {
+	return &YearRange{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `YearRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *YearRange) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "begin"
+	if fields["begin"] != nil {
+		if string(fields["begin"]) != "null" {
+			if err := json.Unmarshal(fields["begin"], &resource.Begin); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("begin", err)...)
+			}
+
+		}
+		delete(fields, "begin")
+
+	}
+	// Field "end"
+	if fields["end"] != nil {
+		if string(fields["end"]) != "null" {
+			if err := json.Unmarshal(fields["end"], &resource.End); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("end", err)...)
+			}
+
+		}
+		delete(fields, "end")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("YearRange", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `YearRange` objects.
+func (resource YearRange) Equals(other YearRange) bool {
+	if resource.Begin == nil && other.Begin != nil || resource.Begin != nil && other.Begin == nil {
+		return false
+	}
+
+	if resource.Begin != nil {
+		if *resource.Begin != *other.Begin {
+			return false
+		}
+	}
+	if resource.End == nil && other.End != nil || resource.End != nil && other.End == nil {
+		return false
+	}
+
+	if resource.End != nil {
+		if *resource.End != *other.End {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `YearRange` fields for violations and returns them.
+func (resource YearRange) Validate() error {
+	return nil
+}
+
+type MonthRange struct {
+	Begin *int32 `json:"begin,omitempty"`
+	End   *int32 `json:"end,omitempty"`
+}
+
+// NewMonthRange creates a new MonthRange object.
+func NewMonthRange() *MonthRange {
+	return &MonthRange{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MonthRange` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *MonthRange) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "begin"
+	if fields["begin"] != nil {
+		if string(fields["begin"]) != "null" {
+			if err := json.Unmarshal(fields["begin"], &resource.Begin); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("begin", err)...)
+			}
+
+		}
+		delete(fields, "begin")
+
+	}
+	// Field "end"
+	if fields["end"] != nil {
+		if string(fields["end"]) != "null" {
+			if err := json.Unmarshal(fields["end"], &resource.End); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("end", err)...)
+			}
+
+		}
+		delete(fields, "end")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("MonthRange", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `MonthRange` objects.
+func (resource MonthRange) Equals(other MonthRange) bool {
+	if resource.Begin == nil && other.Begin != nil || resource.Begin != nil && other.Begin == nil {
+		return false
+	}
+
+	if resource.Begin != nil {
+		if *resource.Begin != *other.Begin {
+			return false
+		}
+	}
+	if resource.End == nil && other.End != nil || resource.End != nil && other.End == nil {
+		return false
+	}
+
+	if resource.End != nil {
+		if *resource.End != *other.End {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `MonthRange` fields for violations and returns them.
+func (resource MonthRange) Validate() error {
+	return nil
+}
+
+type Location string
 
 type ContactPointType string
 
