@@ -427,67 +427,106 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "name": {
-          "type": "string"
-        },
-        "time_intervals": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TimeIntervalItem"
-          }
-        }
-      }
-    },
-    "TimeIntervalItem": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "days_of_month": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "location": {
-          "type": "string"
-        },
-        "months": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "times": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/TimeIntervalTimeRange"
+            "$ref": "#/definitions/TimeRange"
           }
         },
         "weekdays": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/WeekdayRange"
+          }
+        },
+        "days_of_month": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DayOfMonthRange"
+          }
+        },
+        "months": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MonthRange"
           }
         },
         "years": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/YearRange"
           }
+        },
+        "location": {
+          "$ref": "#/definitions/Location"
         }
       }
     },
-    "TimeIntervalTimeRange": {
+    "TimeRange": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "end_time": {
-          "type": "string"
+        "from": {
+          "type": "string",
+          "format": "date-time"
         },
-        "start_time": {
-          "type": "string"
+        "to": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "Redefining this to avoid an import cycle"
+    },
+    "WeekdayRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "begin": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
         }
       }
+    },
+    "DayOfMonthRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "begin": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
+        }
+      }
+    },
+    "YearRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "begin": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
+        }
+      }
+    },
+    "MonthRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "begin": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
+        }
+      }
+    },
+    "Location": {
+      "type": "string"
     }
   }
 }
