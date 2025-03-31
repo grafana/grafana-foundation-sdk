@@ -27,6 +27,121 @@ passes:
   - rename_object:
       from: alerting.MuteTimeInterval
       to: MuteTiming
+  - add_object:
+      object: alerting.TimeInterval
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: times
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: ref
+                    ref: { referred_pkg: alerting, referred_type: TimeRange }
+            - name: weekdays
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: ref
+                    ref: { referred_pkg: alerting, referred_type: WeekdayRange }
+            - name: days_of_month
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: ref
+                    ref: { referred_pkg: alerting, referred_type: DayOfMonthRange }
+            - name: months
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: ref
+                    ref: { referred_pkg: alerting, referred_type: MonthRange }
+            - name: years
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: ref
+                    ref: { referred_pkg: alerting, referred_type: YearRange }
+            - name: location
+              type:
+                kind: ref
+                ref: { referred_pkg: alerting, referred_type: Location }
+  - add_object:
+      object: alerting.WeekdayRange
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: begin
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+            - name: end
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+  - add_object:
+      object: alerting.DayOfMonthRange
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: begin
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+            - name: end
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+  - add_object:
+      object: alerting.YearRange
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: begin
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+            - name: end
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+  - add_object:
+      object: alerting.MonthRange
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: begin
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+            - name: end
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+  - add_object:
+      object: alerting.Location
+      as:
+        kind: scalar
+        scalar:
+          scalar_kind: string
 
   - retype_field:
       field: alerting.Query.model
