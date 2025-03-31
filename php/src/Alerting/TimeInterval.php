@@ -4,21 +4,49 @@ namespace Grafana\Foundation\Alerting;
 
 class TimeInterval implements \JsonSerializable
 {
-    public ?string $name;
+    /**
+     * @var array<\Grafana\Foundation\Alerting\TimeRange>|null
+     */
+    public ?array $times;
 
     /**
-     * @var array<\Grafana\Foundation\Alerting\TimeIntervalItem>|null
+     * @var array<\Grafana\Foundation\Alerting\WeekdayRange>|null
      */
-    public ?array $timeIntervals;
+    public ?array $weekdays;
 
     /**
-     * @param string|null $name
-     * @param array<\Grafana\Foundation\Alerting\TimeIntervalItem>|null $timeIntervals
+     * @var array<\Grafana\Foundation\Alerting\DayOfMonthRange>|null
      */
-    public function __construct(?string $name = null, ?array $timeIntervals = null)
+    public ?array $daysOfMonth;
+
+    /**
+     * @var array<\Grafana\Foundation\Alerting\MonthRange>|null
+     */
+    public ?array $months;
+
+    /**
+     * @var array<\Grafana\Foundation\Alerting\YearRange>|null
+     */
+    public ?array $years;
+
+    public string $location;
+
+    /**
+     * @param array<\Grafana\Foundation\Alerting\TimeRange>|null $times
+     * @param array<\Grafana\Foundation\Alerting\WeekdayRange>|null $weekdays
+     * @param array<\Grafana\Foundation\Alerting\DayOfMonthRange>|null $daysOfMonth
+     * @param array<\Grafana\Foundation\Alerting\MonthRange>|null $months
+     * @param array<\Grafana\Foundation\Alerting\YearRange>|null $years
+     * @param string|null $location
+     */
+    public function __construct(?array $times = null, ?array $weekdays = null, ?array $daysOfMonth = null, ?array $months = null, ?array $years = null, ?string $location = null)
     {
-        $this->name = $name;
-        $this->timeIntervals = $timeIntervals;
+        $this->times = $times;
+        $this->weekdays = $weekdays;
+        $this->daysOfMonth = $daysOfMonth;
+        $this->months = $months;
+        $this->years = $years;
+        $this->location = $location ?: "";
     }
 
     /**
@@ -26,15 +54,35 @@ class TimeInterval implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{name?: string, time_intervals?: array<mixed>} $inputData */
+        /** @var array{times?: array<mixed>, weekdays?: array<mixed>, days_of_month?: array<mixed>, months?: array<mixed>, years?: array<mixed>, location?: string} $inputData */
         $data = $inputData;
         return new self(
-            name: $data["name"] ?? null,
-            timeIntervals: array_filter(array_map((function($input) {
-    	/** @var array{days_of_month?: array<string>, location?: string, months?: array<string>, times?: array<mixed>, weekdays?: array<string>, years?: array<string>} */
+            times: array_filter(array_map((function($input) {
+    	/** @var array{from?: string, to?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Alerting\TimeIntervalItem::fromArray($val);
-    }), $data["time_intervals"] ?? [])),
+    	return \Grafana\Foundation\Alerting\TimeRange::fromArray($val);
+    }), $data["times"] ?? [])),
+            weekdays: array_filter(array_map((function($input) {
+    	/** @var array{begin?: int, end?: int} */
+    $val = $input;
+    	return \Grafana\Foundation\Alerting\WeekdayRange::fromArray($val);
+    }), $data["weekdays"] ?? [])),
+            daysOfMonth: array_filter(array_map((function($input) {
+    	/** @var array{begin?: int, end?: int} */
+    $val = $input;
+    	return \Grafana\Foundation\Alerting\DayOfMonthRange::fromArray($val);
+    }), $data["days_of_month"] ?? [])),
+            months: array_filter(array_map((function($input) {
+    	/** @var array{begin?: int, end?: int} */
+    $val = $input;
+    	return \Grafana\Foundation\Alerting\MonthRange::fromArray($val);
+    }), $data["months"] ?? [])),
+            years: array_filter(array_map((function($input) {
+    	/** @var array{begin?: int, end?: int} */
+    $val = $input;
+    	return \Grafana\Foundation\Alerting\YearRange::fromArray($val);
+    }), $data["years"] ?? [])),
+            location: $data["location"] ?? null,
         );
     }
 
@@ -44,12 +92,22 @@ class TimeInterval implements \JsonSerializable
     public function jsonSerialize(): array
     {
         $data = [
+            "location" => $this->location,
         ];
-        if (isset($this->name)) {
-            $data["name"] = $this->name;
+        if (isset($this->times)) {
+            $data["times"] = $this->times;
         }
-        if (isset($this->timeIntervals)) {
-            $data["time_intervals"] = $this->timeIntervals;
+        if (isset($this->weekdays)) {
+            $data["weekdays"] = $this->weekdays;
+        }
+        if (isset($this->daysOfMonth)) {
+            $data["days_of_month"] = $this->daysOfMonth;
+        }
+        if (isset($this->months)) {
+            $data["months"] = $this->months;
+        }
+        if (isset($this->years)) {
+            $data["years"] = $this->years;
         }
         return $data;
     }
