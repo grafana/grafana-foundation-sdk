@@ -18,16 +18,40 @@ Builds the object.
 def build() -> alerting.TimeInterval
 ```
 
-### <span class="badge object-method"></span> name
+### <span class="badge object-method"></span> days_of_month
 
 ```python
-def name(name: str) -> typing.Self
+def days_of_month(days_of_month: list[cogbuilder.Builder[alerting.DayOfMonthRange]]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> time_intervals
+### <span class="badge object-method"></span> location
 
 ```python
-def time_intervals(time_intervals: list[cogbuilder.Builder[alerting.TimeIntervalItem]]) -> typing.Self
+def location(location: alerting.Location) -> typing.Self
+```
+
+### <span class="badge object-method"></span> months
+
+```python
+def months(months: list[cogbuilder.Builder[alerting.MonthRange]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> times
+
+```python
+def times(times: list[cogbuilder.Builder[alerting.TimeRange]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> weekdays
+
+```python
+def weekdays(weekdays: list[cogbuilder.Builder[alerting.WeekdayRange]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> years
+
+```python
+def years(years: list[cogbuilder.Builder[alerting.YearRange]]) -> typing.Self
 ```
 
 ## See also
