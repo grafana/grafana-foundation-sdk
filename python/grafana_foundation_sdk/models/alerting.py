@@ -657,114 +657,208 @@ class NotificationPolicy:
 
 
 class TimeInterval:
-    name: typing.Optional[str]
-    time_intervals: typing.Optional[list['TimeIntervalItem']]
+    times: typing.Optional[list['TimeRange']]
+    weekdays: typing.Optional[list['WeekdayRange']]
+    days_of_month: typing.Optional[list['DayOfMonthRange']]
+    months: typing.Optional[list['MonthRange']]
+    years: typing.Optional[list['YearRange']]
+    location: typing.Optional['Location']
 
-    def __init__(self, name: typing.Optional[str] = None, time_intervals: typing.Optional[list['TimeIntervalItem']] = None):
-        self.name = name
-        self.time_intervals = time_intervals
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.name is not None:
-            payload["name"] = self.name
-        if self.time_intervals is not None:
-            payload["time_intervals"] = self.time_intervals
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "name" in data:
-            args["name"] = data["name"]
-        if "time_intervals" in data:
-            args["time_intervals"] = [TimeIntervalItem.from_json(item) for item in data["time_intervals"]]        
-
-        return cls(**args)
-
-
-class TimeIntervalItem:
-    days_of_month: typing.Optional[list[str]]
-    location: typing.Optional[str]
-    months: typing.Optional[list[str]]
-    times: typing.Optional[list['TimeIntervalTimeRange']]
-    weekdays: typing.Optional[list[str]]
-    years: typing.Optional[list[str]]
-
-    def __init__(self, days_of_month: typing.Optional[list[str]] = None, location: typing.Optional[str] = None, months: typing.Optional[list[str]] = None, times: typing.Optional[list['TimeIntervalTimeRange']] = None, weekdays: typing.Optional[list[str]] = None, years: typing.Optional[list[str]] = None):
-        self.days_of_month = days_of_month
-        self.location = location
-        self.months = months
+    def __init__(self, times: typing.Optional[list['TimeRange']] = None, weekdays: typing.Optional[list['WeekdayRange']] = None, days_of_month: typing.Optional[list['DayOfMonthRange']] = None, months: typing.Optional[list['MonthRange']] = None, years: typing.Optional[list['YearRange']] = None, location: typing.Optional['Location'] = None):
         self.times = times
         self.weekdays = weekdays
+        self.days_of_month = days_of_month
+        self.months = months
         self.years = years
+        self.location = location
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
         }
-        if self.days_of_month is not None:
-            payload["days_of_month"] = self.days_of_month
-        if self.location is not None:
-            payload["location"] = self.location
-        if self.months is not None:
-            payload["months"] = self.months
         if self.times is not None:
             payload["times"] = self.times
         if self.weekdays is not None:
             payload["weekdays"] = self.weekdays
+        if self.days_of_month is not None:
+            payload["days_of_month"] = self.days_of_month
+        if self.months is not None:
+            payload["months"] = self.months
         if self.years is not None:
             payload["years"] = self.years
+        if self.location is not None:
+            payload["location"] = self.location
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
-        if "days_of_month" in data:
-            args["days_of_month"] = data["days_of_month"]
-        if "location" in data:
-            args["location"] = data["location"]
-        if "months" in data:
-            args["months"] = data["months"]
         if "times" in data:
-            args["times"] = [TimeIntervalTimeRange.from_json(item) for item in data["times"]]
+            args["times"] = [TimeRange.from_json(item) for item in data["times"]]
         if "weekdays" in data:
-            args["weekdays"] = data["weekdays"]
+            args["weekdays"] = [WeekdayRange.from_json(item) for item in data["weekdays"]]
+        if "days_of_month" in data:
+            args["days_of_month"] = [DayOfMonthRange.from_json(item) for item in data["days_of_month"]]
+        if "months" in data:
+            args["months"] = [MonthRange.from_json(item) for item in data["months"]]
         if "years" in data:
-            args["years"] = data["years"]        
+            args["years"] = [YearRange.from_json(item) for item in data["years"]]
+        if "location" in data:
+            args["location"] = data["location"]        
 
         return cls(**args)
 
 
-class TimeIntervalTimeRange:
-    end_time: typing.Optional[str]
-    start_time: typing.Optional[str]
+class TimeRange:
+    """
+    Redefining this to avoid an import cycle
+    """
 
-    def __init__(self, end_time: typing.Optional[str] = None, start_time: typing.Optional[str] = None):
-        self.end_time = end_time
-        self.start_time = start_time
+    from_val: typing.Optional[str]
+    to: typing.Optional[str]
+
+    def __init__(self, from_val: typing.Optional[str] = None, to: typing.Optional[str] = None):
+        self.from_val = from_val
+        self.to = to
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
         }
-        if self.end_time is not None:
-            payload["end_time"] = self.end_time
-        if self.start_time is not None:
-            payload["start_time"] = self.start_time
+        if self.from_val is not None:
+            payload["from"] = self.from_val
+        if self.to is not None:
+            payload["to"] = self.to
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
-        if "end_time" in data:
-            args["end_time"] = data["end_time"]
-        if "start_time" in data:
-            args["start_time"] = data["start_time"]        
+        if "from" in data:
+            args["from_val"] = data["from"]
+        if "to" in data:
+            args["to"] = data["to"]        
 
         return cls(**args)
+
+
+class WeekdayRange:
+    begin: typing.Optional[int]
+    end: typing.Optional[int]
+
+    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None):
+        self.begin = begin
+        self.end = end
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.begin is not None:
+            payload["begin"] = self.begin
+        if self.end is not None:
+            payload["end"] = self.end
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "begin" in data:
+            args["begin"] = data["begin"]
+        if "end" in data:
+            args["end"] = data["end"]        
+
+        return cls(**args)
+
+
+class DayOfMonthRange:
+    begin: typing.Optional[int]
+    end: typing.Optional[int]
+
+    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None):
+        self.begin = begin
+        self.end = end
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.begin is not None:
+            payload["begin"] = self.begin
+        if self.end is not None:
+            payload["end"] = self.end
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "begin" in data:
+            args["begin"] = data["begin"]
+        if "end" in data:
+            args["end"] = data["end"]        
+
+        return cls(**args)
+
+
+class YearRange:
+    begin: typing.Optional[int]
+    end: typing.Optional[int]
+
+    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None):
+        self.begin = begin
+        self.end = end
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.begin is not None:
+            payload["begin"] = self.begin
+        if self.end is not None:
+            payload["end"] = self.end
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "begin" in data:
+            args["begin"] = data["begin"]
+        if "end" in data:
+            args["end"] = data["end"]        
+
+        return cls(**args)
+
+
+class MonthRange:
+    begin: typing.Optional[int]
+    end: typing.Optional[int]
+
+    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None):
+        self.begin = begin
+        self.end = end
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.begin is not None:
+            payload["begin"] = self.begin
+        if self.end is not None:
+            payload["end"] = self.end
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "begin" in data:
+            args["begin"] = data["begin"]
+        if "end" in data:
+            args["end"] = data["end"]        
+
+        return cls(**args)
+
+
+Location: typing.TypeAlias = str
 
 
 

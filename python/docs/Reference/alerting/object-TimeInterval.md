@@ -7,8 +7,12 @@ title: <span class="badge object-type-class"></span> TimeInterval
 
 ```python
 class TimeInterval:
-    name: typing.Optional[str]
-    time_intervals: typing.Optional[list[alerting.TimeIntervalItem]]
+    times: typing.Optional[list[alerting.TimeRange]]
+    weekdays: typing.Optional[list[alerting.WeekdayRange]]
+    days_of_month: typing.Optional[list[alerting.DayOfMonthRange]]
+    months: typing.Optional[list[alerting.MonthRange]]
+    years: typing.Optional[list[alerting.YearRange]]
+    location: typing.Optional[alerting.Location]
 ```
 ## Methods
 
