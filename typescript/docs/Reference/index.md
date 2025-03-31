@@ -48,4 +48,5 @@
  * <span class="badge package-variant-panelcfg"></span> [text](./text/index.md)
  * <span class="badge package-variant-panelcfg"></span> [timeseries](./timeseries/index.md)
  * <span class="badge package-variant-panelcfg"></span> [trend](./trend/index.md)
+ * [units](./units/index.md)
  * <span class="badge package-variant-panelcfg"></span> [xychart](./xychart/index.md)

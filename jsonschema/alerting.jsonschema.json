@@ -360,21 +360,6 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "days_of_month": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "location": {
-          "type": "string"
-        },
-        "months": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "times": {
           "type": "array",
           "items": {
@@ -384,66 +369,29 @@
         "weekdays": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/WeekdayRange"
           }
         },
-        "years": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "description": "TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained\nwithin the interval."
-    },
-    "TimeIntervalItem": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
         "days_of_month": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/DayOfMonthRange"
           }
-        },
-        "location": {
-          "type": "string"
         },
         "months": {
           "type": "array",
           "items": {
-            "type": "string"
-          }
-        },
-        "times": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TimeIntervalTimeRange"
-          }
-        },
-        "weekdays": {
-          "type": "array",
-          "items": {
-            "type": "string"
+            "$ref": "#/definitions/MonthRange"
           }
         },
         "years": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/YearRange"
           }
-        }
-      }
-    },
-    "TimeIntervalTimeRange": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "end_time": {
-          "type": "string"
         },
-        "start_time": {
-          "type": "string"
+        "location": {
+          "$ref": "#/definitions/Location"
         }
       }
     },
@@ -461,6 +409,57 @@
         }
       },
       "description": "Redefining this to avoid an import cycle"
+    },
+    "WeekdayRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "begin": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
+        }
+      }
+    },
+    "DayOfMonthRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "begin": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
+        }
+      }
+    },
+    "YearRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "begin": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
+        }
+      }
+    },
+    "MonthRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "begin": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
+        }
+      }
+    },
+    "Location": {
+      "type": "string"
     }
   }
 }

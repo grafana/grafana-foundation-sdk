@@ -21,19 +21,19 @@ build()
 ### <span class="badge object-method"></span> daysOfMonth
 
 ```typescript
-daysOfMonth(daysOfMonth: string[])
+daysOfMonth(daysOfMonth: cog.Builder<alerting.DayOfMonthRange>[])
 ```
 
 ### <span class="badge object-method"></span> location
 
 ```typescript
-location(location: string)
+location(location: alerting.Location)
 ```
 
 ### <span class="badge object-method"></span> months
 
 ```typescript
-months(months: string[])
+months(months: cog.Builder<alerting.MonthRange>[])
 ```
 
 ### <span class="badge object-method"></span> times
@@ -45,13 +45,13 @@ times(times: cog.Builder<alerting.TimeRange>[])
 ### <span class="badge object-method"></span> weekdays
 
 ```typescript
-weekdays(weekdays: string[])
+weekdays(weekdays: cog.Builder<alerting.WeekdayRange>[])
 ```
 
 ### <span class="badge object-method"></span> years
 
 ```typescript
-years(years: string[])
+years(years: cog.Builder<alerting.YearRange>[])
 ```
 
 ## See also

@@ -479,11 +479,6 @@ class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):
     
 
 class TimeInterval(cogbuilder.Builder[alerting.TimeInterval]):    
-    """
-    TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    within the interval.
-    """
-    
     _internal: alerting.TimeInterval
 
     def __init__(self):
@@ -495,101 +490,38 @@ class TimeInterval(cogbuilder.Builder[alerting.TimeInterval]):
         """
         return self._internal    
     
-    def days_of_month(self, days_of_month: list[str]) -> typing.Self:        
-        self._internal.days_of_month = days_of_month
-    
-        return self
-    
-    def location(self, location: str) -> typing.Self:        
-        self._internal.location = location
-    
-        return self
-    
-    def months(self, months: list[str]) -> typing.Self:        
-        self._internal.months = months
-    
-        return self
-    
     def times(self, times: list[cogbuilder.Builder[alerting.TimeRange]]) -> typing.Self:        
         times_resources = [r1.build() for r1 in times]
         self._internal.times = times_resources
     
         return self
     
-    def weekdays(self, weekdays: list[str]) -> typing.Self:        
-        self._internal.weekdays = weekdays
+    def weekdays(self, weekdays: list[cogbuilder.Builder[alerting.WeekdayRange]]) -> typing.Self:        
+        weekdays_resources = [r1.build() for r1 in weekdays]
+        self._internal.weekdays = weekdays_resources
     
         return self
     
-    def years(self, years: list[str]) -> typing.Self:        
-        self._internal.years = years
+    def days_of_month(self, days_of_month: list[cogbuilder.Builder[alerting.DayOfMonthRange]]) -> typing.Self:        
+        days_of_month_resources = [r1.build() for r1 in days_of_month]
+        self._internal.days_of_month = days_of_month_resources
     
         return self
     
-
-class TimeIntervalItem(cogbuilder.Builder[alerting.TimeIntervalItem]):    
-    _internal: alerting.TimeIntervalItem
-
-    def __init__(self):
-        self._internal = alerting.TimeIntervalItem()
-
-    def build(self) -> alerting.TimeIntervalItem:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def days_of_month(self, days_of_month: list[str]) -> typing.Self:        
-        self._internal.days_of_month = days_of_month
+    def months(self, months: list[cogbuilder.Builder[alerting.MonthRange]]) -> typing.Self:        
+        months_resources = [r1.build() for r1 in months]
+        self._internal.months = months_resources
     
         return self
     
-    def location(self, location: str) -> typing.Self:        
+    def years(self, years: list[cogbuilder.Builder[alerting.YearRange]]) -> typing.Self:        
+        years_resources = [r1.build() for r1 in years]
+        self._internal.years = years_resources
+    
+        return self
+    
+    def location(self, location: alerting.Location) -> typing.Self:        
         self._internal.location = location
-    
-        return self
-    
-    def months(self, months: list[str]) -> typing.Self:        
-        self._internal.months = months
-    
-        return self
-    
-    def times(self, times: list[cogbuilder.Builder[alerting.TimeIntervalTimeRange]]) -> typing.Self:        
-        times_resources = [r1.build() for r1 in times]
-        self._internal.times = times_resources
-    
-        return self
-    
-    def weekdays(self, weekdays: list[str]) -> typing.Self:        
-        self._internal.weekdays = weekdays
-    
-        return self
-    
-    def years(self, years: list[str]) -> typing.Self:        
-        self._internal.years = years
-    
-        return self
-    
-
-class TimeIntervalTimeRange(cogbuilder.Builder[alerting.TimeIntervalTimeRange]):    
-    _internal: alerting.TimeIntervalTimeRange
-
-    def __init__(self):
-        self._internal = alerting.TimeIntervalTimeRange()
-
-    def build(self) -> alerting.TimeIntervalTimeRange:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def end_time(self, end_time: str) -> typing.Self:        
-        self._internal.end_time = end_time
-    
-        return self
-    
-    def start_time(self, start_time: str) -> typing.Self:        
-        self._internal.start_time = start_time
     
         return self
     
@@ -617,6 +549,98 @@ class TimeRange(cogbuilder.Builder[alerting.TimeRange]):
     
     def to(self, to: str) -> typing.Self:        
         self._internal.to = to
+    
+        return self
+    
+
+class WeekdayRange(cogbuilder.Builder[alerting.WeekdayRange]):    
+    _internal: alerting.WeekdayRange
+
+    def __init__(self):
+        self._internal = alerting.WeekdayRange()
+
+    def build(self) -> alerting.WeekdayRange:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def begin(self, begin: int) -> typing.Self:        
+        self._internal.begin = begin
+    
+        return self
+    
+    def end(self, end: int) -> typing.Self:        
+        self._internal.end = end
+    
+        return self
+    
+
+class DayOfMonthRange(cogbuilder.Builder[alerting.DayOfMonthRange]):    
+    _internal: alerting.DayOfMonthRange
+
+    def __init__(self):
+        self._internal = alerting.DayOfMonthRange()
+
+    def build(self) -> alerting.DayOfMonthRange:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def begin(self, begin: int) -> typing.Self:        
+        self._internal.begin = begin
+    
+        return self
+    
+    def end(self, end: int) -> typing.Self:        
+        self._internal.end = end
+    
+        return self
+    
+
+class YearRange(cogbuilder.Builder[alerting.YearRange]):    
+    _internal: alerting.YearRange
+
+    def __init__(self):
+        self._internal = alerting.YearRange()
+
+    def build(self) -> alerting.YearRange:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def begin(self, begin: int) -> typing.Self:        
+        self._internal.begin = begin
+    
+        return self
+    
+    def end(self, end: int) -> typing.Self:        
+        self._internal.end = end
+    
+        return self
+    
+
+class MonthRange(cogbuilder.Builder[alerting.MonthRange]):    
+    _internal: alerting.MonthRange
+
+    def __init__(self):
+        self._internal = alerting.MonthRange()
+
+    def build(self) -> alerting.MonthRange:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def begin(self, begin: int) -> typing.Self:        
+        self._internal.begin = begin
+    
+        return self
+    
+    def end(self, end: int) -> typing.Self:        
+        self._internal.end = end
     
         return self
     
