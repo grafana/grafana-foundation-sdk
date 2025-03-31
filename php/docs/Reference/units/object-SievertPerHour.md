@@ -1,0 +1,12 @@
+---
+title: <span class="badge object-type-scalar"></span> SievertPerHour
+---
+# <span class="badge object-type-scalar"></span> SievertPerHour
+
+Radiation: Sievert/hour (Sv/h)
+
+## Definition
+
+```php
+unhandled type def kind: scalar
+```

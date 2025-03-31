@@ -20,7 +20,7 @@ build()
 
 ### <span class="badge object-method"></span> daysOfMonth
 
-@param array<string> $daysOfMonth
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\DayOfMonthRange>> $daysOfMonth
 
 ```php
 daysOfMonth(array $daysOfMonth)
@@ -34,7 +34,7 @@ location(string $location)
 
 ### <span class="badge object-method"></span> months
 
-@param array<string> $months
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\MonthRange>> $months
 
 ```php
 months(array $months)
@@ -50,7 +50,7 @@ times(array $times)
 
 ### <span class="badge object-method"></span> weekdays
 
-@param array<string> $weekdays
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\WeekdayRange>> $weekdays
 
 ```php
 weekdays(array $weekdays)
@@ -58,7 +58,7 @@ weekdays(array $weekdays)
 
 ### <span class="badge object-method"></span> years
 
-@param array<string> $years
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\YearRange>> $years
 
 ```php
 years(array $years)

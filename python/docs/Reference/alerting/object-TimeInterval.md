@@ -3,25 +3,16 @@ title: <span class="badge object-type-class"></span> TimeInterval
 ---
 # <span class="badge object-type-class"></span> TimeInterval
 
-TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-
-within the interval.
-
 ## Definition
 
 ```python
 class TimeInterval:
-    """
-    TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-    within the interval.
-    """
-
-    days_of_month: typing.Optional[list[str]]
-    location: typing.Optional[str]
-    months: typing.Optional[list[str]]
     times: typing.Optional[list[alerting.TimeRange]]
-    weekdays: typing.Optional[list[str]]
-    years: typing.Optional[list[str]]
+    weekdays: typing.Optional[list[alerting.WeekdayRange]]
+    days_of_month: typing.Optional[list[alerting.DayOfMonthRange]]
+    months: typing.Optional[list[alerting.MonthRange]]
+    years: typing.Optional[list[alerting.YearRange]]
+    location: typing.Optional[alerting.Location]
 ```
 ## Methods
 
