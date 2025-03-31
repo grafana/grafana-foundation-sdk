@@ -21,19 +21,19 @@ def build() -> alerting.TimeInterval
 ### <span class="badge object-method"></span> days_of_month
 
 ```python
-def days_of_month(days_of_month: list[str]) -> typing.Self
+def days_of_month(days_of_month: list[cogbuilder.Builder[alerting.DayOfMonthRange]]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> location
 
 ```python
-def location(location: str) -> typing.Self
+def location(location: alerting.Location) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> months
 
 ```python
-def months(months: list[str]) -> typing.Self
+def months(months: list[cogbuilder.Builder[alerting.MonthRange]]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> times
@@ -45,13 +45,13 @@ def times(times: list[cogbuilder.Builder[alerting.TimeRange]]) -> typing.Self
 ### <span class="badge object-method"></span> weekdays
 
 ```python
-def weekdays(weekdays: list[str]) -> typing.Self
+def weekdays(weekdays: list[cogbuilder.Builder[alerting.WeekdayRange]]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> years
 
 ```python
-def years(years: list[str]) -> typing.Self
+def years(years: list[cogbuilder.Builder[alerting.YearRange]]) -> typing.Self
 ```
 
 ## See also

@@ -202,15 +202,13 @@ export interface NotificationPolicy {
 export const defaultNotificationPolicy = (): NotificationPolicy => ({
 });
 
-// TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-// within the interval.
 export interface TimeInterval {
-	days_of_month?: string[];
-	location?: string;
-	months?: string[];
 	times?: TimeRange[];
-	weekdays?: string[];
-	years?: string[];
+	weekdays?: WeekdayRange[];
+	days_of_month?: DayOfMonthRange[];
+	months?: MonthRange[];
+	years?: YearRange[];
+	location?: Location;
 }
 
 export const defaultTimeInterval = (): TimeInterval => ({
@@ -224,4 +222,40 @@ export interface TimeRange {
 
 export const defaultTimeRange = (): TimeRange => ({
 });
+
+export interface WeekdayRange {
+	begin?: number;
+	end?: number;
+}
+
+export const defaultWeekdayRange = (): WeekdayRange => ({
+});
+
+export interface DayOfMonthRange {
+	begin?: number;
+	end?: number;
+}
+
+export const defaultDayOfMonthRange = (): DayOfMonthRange => ({
+});
+
+export interface YearRange {
+	begin?: number;
+	end?: number;
+}
+
+export const defaultYearRange = (): YearRange => ({
+});
+
+export interface MonthRange {
+	begin?: number;
+	end?: number;
+}
+
+export const defaultMonthRange = (): MonthRange => ({
+});
+
+export type Location = string;
+
+export const defaultLocation = (): Location => ("");
 

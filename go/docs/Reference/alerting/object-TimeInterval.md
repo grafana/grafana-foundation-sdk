@@ -3,20 +3,16 @@ title: <span class="badge object-type-struct"></span> TimeInterval
 ---
 # <span class="badge object-type-struct"></span> TimeInterval
 
-TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-
-within the interval.
-
 ## Definition
 
 ```go
 type TimeInterval struct {
-    DaysOfMonth []string `json:"days_of_month,omitempty"`
-    Location *string `json:"location,omitempty"`
-    Months []string `json:"months,omitempty"`
     Times []alerting.TimeRange `json:"times,omitempty"`
-    Weekdays []string `json:"weekdays,omitempty"`
-    Years []string `json:"years,omitempty"`
+    Weekdays []alerting.WeekdayRange `json:"weekdays,omitempty"`
+    DaysOfMonth []alerting.DayOfMonthRange `json:"days_of_month,omitempty"`
+    Months []alerting.MonthRange `json:"months,omitempty"`
+    Years []alerting.YearRange `json:"years,omitempty"`
+    Location *alerting.Location `json:"location,omitempty"`
 }
 ```
 ## Methods
