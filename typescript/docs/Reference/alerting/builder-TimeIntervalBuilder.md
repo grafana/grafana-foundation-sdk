@@ -18,16 +18,40 @@ Builds the object.
 build()
 ```
 
-### <span class="badge object-method"></span> name
+### <span class="badge object-method"></span> daysOfMonth
 
 ```typescript
-name(name: string)
+daysOfMonth(daysOfMonth: cog.Builder<alerting.DayOfMonthRange>[])
 ```
 
-### <span class="badge object-method"></span> timeIntervals
+### <span class="badge object-method"></span> location
 
 ```typescript
-timeIntervals(timeIntervals: cog.Builder<alerting.TimeIntervalItem>[])
+location(location: alerting.Location)
+```
+
+### <span class="badge object-method"></span> months
+
+```typescript
+months(months: cog.Builder<alerting.MonthRange>[])
+```
+
+### <span class="badge object-method"></span> times
+
+```typescript
+times(times: cog.Builder<alerting.TimeRange>[])
+```
+
+### <span class="badge object-method"></span> weekdays
+
+```typescript
+weekdays(weekdays: cog.Builder<alerting.WeekdayRange>[])
+```
+
+### <span class="badge object-method"></span> years
+
+```typescript
+years(years: cog.Builder<alerting.YearRange>[])
 ```
 
 ## See also

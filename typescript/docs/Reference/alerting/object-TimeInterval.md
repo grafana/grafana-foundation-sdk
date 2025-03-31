@@ -7,8 +7,12 @@ title: <span class="badge object-type-interface"></span> TimeInterval
 
 ```typescript
 export interface TimeInterval {
-	name?: string;
-	time_intervals?: alerting.TimeIntervalItem[];
+	times?: alerting.TimeRange[];
+	weekdays?: alerting.WeekdayRange[];
+	days_of_month?: alerting.DayOfMonthRange[];
+	months?: alerting.MonthRange[];
+	years?: alerting.YearRange[];
+	location?: alerting.Location;
 }
 
 ```
