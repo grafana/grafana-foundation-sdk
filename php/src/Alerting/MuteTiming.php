@@ -31,7 +31,7 @@ class MuteTiming implements \JsonSerializable
         return new self(
             name: $data["name"] ?? null,
             timeIntervals: array_filter(array_map((function($input) {
-    	/** @var array{days_of_month?: array<string>, location?: string, months?: array<string>, times?: array<mixed>, weekdays?: array<string>, years?: array<string>} */
+    	/** @var array{times?: array<mixed>, weekdays?: array<mixed>, days_of_month?: array<mixed>, months?: array<mixed>, years?: array<mixed>, location?: string} */
     $val = $input;
     	return \Grafana\Foundation\Alerting\TimeInterval::fromArray($val);
     }), $data["time_intervals"] ?? [])),

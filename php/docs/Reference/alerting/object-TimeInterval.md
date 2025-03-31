@@ -3,41 +3,37 @@ title: <span class="badge object-type-class"></span> TimeInterval
 ---
 # <span class="badge object-type-class"></span> TimeInterval
 
-TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
-
-within the interval.
-
 ## Definition
 
 ```php
 class TimeInterval implements \JsonSerializable
 {
     /**
-     * @var array<string>|null
-     */
-    public ?array $daysOfMonth;
-
-    public ?string $location;
-
-    /**
-     * @var array<string>|null
-     */
-    public ?array $months;
-
-    /**
      * @var array<\Grafana\Foundation\Alerting\TimeRange>|null
      */
     public ?array $times;
 
     /**
-     * @var array<string>|null
+     * @var array<\Grafana\Foundation\Alerting\WeekdayRange>|null
      */
     public ?array $weekdays;
 
     /**
-     * @var array<string>|null
+     * @var array<\Grafana\Foundation\Alerting\DayOfMonthRange>|null
+     */
+    public ?array $daysOfMonth;
+
+    /**
+     * @var array<\Grafana\Foundation\Alerting\MonthRange>|null
+     */
+    public ?array $months;
+
+    /**
+     * @var array<\Grafana\Foundation\Alerting\YearRange>|null
      */
     public ?array $years;
+
+    public string $location;
 
 }
 ```
