@@ -8,12 +8,32 @@ title: <span class="badge object-type-class"></span> TimeInterval
 ```php
 class TimeInterval implements \JsonSerializable
 {
-    public ?string $name;
+    /**
+     * @var array<\Grafana\Foundation\Alerting\TimeRange>|null
+     */
+    public ?array $times;
 
     /**
-     * @var array<\Grafana\Foundation\Alerting\TimeIntervalItem>|null
+     * @var array<\Grafana\Foundation\Alerting\WeekdayRange>|null
      */
-    public ?array $timeIntervals;
+    public ?array $weekdays;
+
+    /**
+     * @var array<\Grafana\Foundation\Alerting\DayOfMonthRange>|null
+     */
+    public ?array $daysOfMonth;
+
+    /**
+     * @var array<\Grafana\Foundation\Alerting\MonthRange>|null
+     */
+    public ?array $months;
+
+    /**
+     * @var array<\Grafana\Foundation\Alerting\YearRange>|null
+     */
+    public ?array $years;
+
+    public string $location;
 
 }
 ```
