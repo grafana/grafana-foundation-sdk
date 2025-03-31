@@ -3,12 +3,15 @@
 ## Objects
 
  * <span class="badge object-type-class"></span> [ContactPoint](./object-ContactPoint.md)
+ * <span class="badge object-type-class"></span> [DayOfMonthRange](./object-DayOfMonthRange.md)
  * <span class="badge object-type-scalar"></span> [Duration](./object-Duration.md)
  * <span class="badge object-type-scalar"></span> [Json](./object-Json.md)
+ * <span class="badge object-type-scalar"></span> [Location](./object-Location.md)
  * <span class="badge object-type-map"></span> [MatchRegexps](./object-MatchRegexps.md)
  * <span class="badge object-type-enum"></span> [MatchType](./object-MatchType.md)
  * <span class="badge object-type-class"></span> [Matcher](./object-Matcher.md)
  * <span class="badge object-type-array"></span> [Matchers](./object-Matchers.md)
+ * <span class="badge object-type-class"></span> [MonthRange](./object-MonthRange.md)
  * <span class="badge object-type-class"></span> [MuteTiming](./object-MuteTiming.md)
  * <span class="badge object-type-class"></span> [NotificationPolicy](./object-NotificationPolicy.md)
  * <span class="badge object-type-class"></span> [NotificationTemplate](./object-NotificationTemplate.md)
@@ -21,10 +24,14 @@
  * <span class="badge object-type-class"></span> [RuleGroup](./object-RuleGroup.md)
  * <span class="badge object-type-class"></span> [TimeInterval](./object-TimeInterval.md)
  * <span class="badge object-type-class"></span> [TimeRange](./object-TimeRange.md)
+ * <span class="badge object-type-class"></span> [WeekdayRange](./object-WeekdayRange.md)
+ * <span class="badge object-type-class"></span> [YearRange](./object-YearRange.md)
 ## Builders
 
  * <span class="badge builder"></span> [ContactPoint](./builder-ContactPoint.md)
+ * <span class="badge builder"></span> [DayOfMonthRange](./builder-DayOfMonthRange.md)
  * <span class="badge builder"></span> [Matcher](./builder-Matcher.md)
+ * <span class="badge builder"></span> [MonthRange](./builder-MonthRange.md)
  * <span class="badge builder"></span> [MuteTiming](./builder-MuteTiming.md)
  * <span class="badge builder"></span> [NotificationPolicy](./builder-NotificationPolicy.md)
  * <span class="badge builder"></span> [NotificationTemplate](./builder-NotificationTemplate.md)
@@ -33,3 +40,5 @@
  * <span class="badge builder"></span> [RuleGroup](./builder-RuleGroup.md)
  * <span class="badge builder"></span> [TimeInterval](./builder-TimeInterval.md)
  * <span class="badge builder"></span> [TimeRange](./builder-TimeRange.md)
+ * <span class="badge builder"></span> [WeekdayRange](./builder-WeekdayRange.md)
+ * <span class="badge builder"></span> [YearRange](./builder-YearRange.md)

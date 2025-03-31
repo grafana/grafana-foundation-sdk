@@ -2,55 +2,51 @@
 
 namespace Grafana\Foundation\Alerting;
 
-/**
- * TimeInterval describes intervals of time. ContainsTime will tell you if a golang time is contained
- * within the interval.
- */
 class TimeInterval implements \JsonSerializable
 {
-    /**
-     * @var array<string>|null
-     */
-    public ?array $daysOfMonth;
-
-    public ?string $location;
-
-    /**
-     * @var array<string>|null
-     */
-    public ?array $months;
-
     /**
      * @var array<\Grafana\Foundation\Alerting\TimeRange>|null
      */
     public ?array $times;
 
     /**
-     * @var array<string>|null
+     * @var array<\Grafana\Foundation\Alerting\WeekdayRange>|null
      */
     public ?array $weekdays;
 
     /**
-     * @var array<string>|null
+     * @var array<\Grafana\Foundation\Alerting\DayOfMonthRange>|null
+     */
+    public ?array $daysOfMonth;
+
+    /**
+     * @var array<\Grafana\Foundation\Alerting\MonthRange>|null
+     */
+    public ?array $months;
+
+    /**
+     * @var array<\Grafana\Foundation\Alerting\YearRange>|null
      */
     public ?array $years;
 
+    public string $location;
+
     /**
-     * @param array<string>|null $daysOfMonth
-     * @param string|null $location
-     * @param array<string>|null $months
      * @param array<\Grafana\Foundation\Alerting\TimeRange>|null $times
-     * @param array<string>|null $weekdays
-     * @param array<string>|null $years
+     * @param array<\Grafana\Foundation\Alerting\WeekdayRange>|null $weekdays
+     * @param array<\Grafana\Foundation\Alerting\DayOfMonthRange>|null $daysOfMonth
+     * @param array<\Grafana\Foundation\Alerting\MonthRange>|null $months
+     * @param array<\Grafana\Foundation\Alerting\YearRange>|null $years
+     * @param string|null $location
      */
-    public function __construct(?array $daysOfMonth = null, ?string $location = null, ?array $months = null, ?array $times = null, ?array $weekdays = null, ?array $years = null)
+    public function __construct(?array $times = null, ?array $weekdays = null, ?array $daysOfMonth = null, ?array $months = null, ?array $years = null, ?string $location = null)
     {
-        $this->daysOfMonth = $daysOfMonth;
-        $this->location = $location;
-        $this->months = $months;
         $this->times = $times;
         $this->weekdays = $weekdays;
+        $this->daysOfMonth = $daysOfMonth;
+        $this->months = $months;
         $this->years = $years;
+        $this->location = $location ?: "";
     }
 
     /**
@@ -58,19 +54,35 @@ class TimeInterval implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{days_of_month?: array<string>, location?: string, months?: array<string>, times?: array<mixed>, weekdays?: array<string>, years?: array<string>} $inputData */
+        /** @var array{times?: array<mixed>, weekdays?: array<mixed>, days_of_month?: array<mixed>, months?: array<mixed>, years?: array<mixed>, location?: string} $inputData */
         $data = $inputData;
         return new self(
-            daysOfMonth: $data["days_of_month"] ?? null,
-            location: $data["location"] ?? null,
-            months: $data["months"] ?? null,
             times: array_filter(array_map((function($input) {
     	/** @var array{from?: string, to?: string} */
     $val = $input;
     	return \Grafana\Foundation\Alerting\TimeRange::fromArray($val);
     }), $data["times"] ?? [])),
-            weekdays: $data["weekdays"] ?? null,
-            years: $data["years"] ?? null,
+            weekdays: array_filter(array_map((function($input) {
+    	/** @var array{begin?: int, end?: int} */
+    $val = $input;
+    	return \Grafana\Foundation\Alerting\WeekdayRange::fromArray($val);
+    }), $data["weekdays"] ?? [])),
+            daysOfMonth: array_filter(array_map((function($input) {
+    	/** @var array{begin?: int, end?: int} */
+    $val = $input;
+    	return \Grafana\Foundation\Alerting\DayOfMonthRange::fromArray($val);
+    }), $data["days_of_month"] ?? [])),
+            months: array_filter(array_map((function($input) {
+    	/** @var array{begin?: int, end?: int} */
+    $val = $input;
+    	return \Grafana\Foundation\Alerting\MonthRange::fromArray($val);
+    }), $data["months"] ?? [])),
+            years: array_filter(array_map((function($input) {
+    	/** @var array{begin?: int, end?: int} */
+    $val = $input;
+    	return \Grafana\Foundation\Alerting\YearRange::fromArray($val);
+    }), $data["years"] ?? [])),
+            location: $data["location"] ?? null,
         );
     }
 
@@ -80,21 +92,19 @@ class TimeInterval implements \JsonSerializable
     public function jsonSerialize(): array
     {
         $data = [
+            "location" => $this->location,
         ];
-        if (isset($this->daysOfMonth)) {
-            $data["days_of_month"] = $this->daysOfMonth;
-        }
-        if (isset($this->location)) {
-            $data["location"] = $this->location;
-        }
-        if (isset($this->months)) {
-            $data["months"] = $this->months;
-        }
         if (isset($this->times)) {
             $data["times"] = $this->times;
         }
         if (isset($this->weekdays)) {
             $data["weekdays"] = $this->weekdays;
+        }
+        if (isset($this->daysOfMonth)) {
+            $data["days_of_month"] = $this->daysOfMonth;
+        }
+        if (isset($this->months)) {
+            $data["months"] = $this->months;
         }
         if (isset($this->years)) {
             $data["years"] = $this->years;
