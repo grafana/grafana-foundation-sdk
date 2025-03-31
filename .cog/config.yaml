@@ -54,7 +54,7 @@ inputs:
         - Route
         - MuteTimeInterval
         - NotificationTemplate
-        - TimeIntervalItem
+        - TimeRange
       transformations:
         - '%__config_dir%/compiler/alerting.yaml'
 
