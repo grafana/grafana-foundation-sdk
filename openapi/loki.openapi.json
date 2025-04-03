@@ -1,0 +1,115 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "loki",
+    "version": "0.0.0",
+    "x-schema-identifier": "loki",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "dataquery"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "QueryEditorMode": {
+        "enum": [
+          "code",
+          "builder"
+        ]
+      },
+      "LokiQueryType": {
+        "enum": [
+          "range",
+          "instant",
+          "stream"
+        ]
+      },
+      "SupportingQueryType": {
+        "enum": [
+          "logsVolume",
+          "logsSample",
+          "dataSample",
+          "infiniteScroll"
+        ]
+      },
+      "LokiQueryDirection": {
+        "enum": [
+          "forward",
+          "backward",
+          "scan"
+        ]
+      },
+      "dataquery": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "expr",
+          "refId"
+        ],
+        "properties": {
+          "expr": {
+            "type": "string",
+            "description": "The LogQL query."
+          },
+          "legendFormat": {
+            "type": "string",
+            "description": "Used to override the name of the series."
+          },
+          "maxLines": {
+            "type": "integer",
+            "description": "Used to limit the number of log rows returned."
+          },
+          "resolution": {
+            "type": "integer",
+            "description": "@deprecated, now use step."
+          },
+          "editorMode": {
+            "$ref": "#/components/schemas/QueryEditorMode"
+          },
+          "range": {
+            "type": "boolean",
+            "description": "@deprecated, now use queryType."
+          },
+          "instant": {
+            "type": "boolean",
+            "description": "@deprecated, now use queryType."
+          },
+          "step": {
+            "type": "string",
+            "description": "Used to set step value for range queries."
+          },
+          "refId": {
+            "type": "string",
+            "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
+          },
+          "hide": {
+            "type": "boolean",
+            "description": "If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel."
+          },
+          "queryType": {
+            "type": "string",
+            "description": "Specify the query flavor\nTODO make this required and give it a default"
+          },
+          "datasource": {
+            "$ref": "#/components/schemas/DataSourceRef",
+            "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+          }
+        }
+      },
+      "DataSourceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The plugin type-id"
+          },
+          "uid": {
+            "type": "string",
+            "description": "Specific datasource instance"
+          }
+        },
+        "description": "Ref to a DataSource instance"
+      }
+    }
+  }
+}
