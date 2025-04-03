@@ -1,0 +1,18 @@
+{
+  "extends": "@grafana/tsconfig",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "lib": ["es2015", "es2016", "es2017", "es2018", "es2019", "es2020"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2020",
+    "declarationDir": "dist",
+    "importHelpers": true,
+    "outDir": "dist",
+    "rootDirs": ["."],
+    "useUnknownInCatchVariables": false
+  },
+  "exclude": ["dist", "node_modules"],
+  "include": ["**/*.ts"]
+}

@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TempoQuery",
+  "definitions": {
+    "TempoQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "refId",
+        "filters"
+      ],
+      "properties": {
+        "refId": {
+          "type": "string",
+          "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
+        },
+        "hide": {
+          "type": "boolean",
+          "description": "If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel."
+        },
+        "queryType": {
+          "type": "string",
+          "description": "Specify the query flavor\nTODO make this required and give it a default"
+        },
+        "query": {
+          "type": "string",
+          "description": "TraceQL query or trace ID"
+        },
+        "search": {
+          "type": "string",
+          "description": "@deprecated Logfmt query to filter traces by their tags. Example: http.status_code=200 error=true"
+        },
+        "serviceName": {
+          "type": "string",
+          "description": "@deprecated Query traces by service name"
+        },
+        "spanName": {
+          "type": "string",
+          "description": "@deprecated Query traces by span name"
+        },
+        "minDuration": {
+          "type": "string",
+          "description": "@deprecated Define the minimum duration to select traces. Use duration format, for example: 1.2s, 100ms"
+        },
+        "maxDuration": {
+          "type": "string",
+          "description": "@deprecated Define the maximum duration to select traces. Use duration format, for example: 1.2s, 100ms"
+        },
+        "serviceMapQuery": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "Filters to be included in a PromQL query to select data for the service graph. Example: {client=\"app\",service=\"app\"}. Providing multiple values will produce union of results for each filter, using PromQL OR operator internally."
+        },
+        "serviceMapIncludeNamespace": {
+          "type": "boolean",
+          "description": "Use service.namespace in addition to service.name to uniquely identify a service."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Defines the maximum number of traces that are returned from Tempo"
+        },
+        "spss": {
+          "type": "integer",
+          "description": "Defines the maximum number of spans per spanset that are returned from Tempo"
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TraceqlFilter"
+          }
+        },
+        "groupBy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TraceqlFilter"
+          },
+          "description": "Filters that are used to query the metrics summary"
+        },
+        "tableType": {
+          "$ref": "#/definitions/SearchTableType",
+          "description": "The type of the table that is used to display the search results"
+        },
+        "step": {
+          "type": "string",
+          "description": "For metric queries, the step size to use"
+        },
+        "exemplars": {
+          "type": "integer",
+          "description": "For metric queries, how many exemplars to request, 0 means no exemplars"
+        },
+        "datasource": {
+          "$ref": "#/definitions/DataSourceRef",
+          "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+        },
+        "metricsQueryType": {
+          "$ref": "#/definitions/MetricsQueryType",
+          "description": "For metric queries, whether to run instant or range queries"
+        }
+      }
+    },
+    "TraceqlFilter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Uniquely identify the filter, will not be used in the query generation"
+        },
+        "tag": {
+          "type": "string",
+          "description": "The tag for the search filter, for example: .http.status_code, .service.name, status"
+        },
+        "operator": {
+          "type": "string",
+          "description": "The operator that connects the tag to the value, for example: =, \u003e, !=, =~"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "The value for the search filter"
+        },
+        "valueType": {
+          "type": "string",
+          "description": "The type of the value, used for example to check whether we need to wrap the value in quotes when generating the query"
+        },
+        "scope": {
+          "$ref": "#/definitions/TraceqlSearchScope",
+          "description": "The scope of the filter, can either be unscoped/all scopes, resource or span"
+        }
+      }
+    },
+    "TraceqlSearchScope": {
+      "enum": [
+        "intrinsic",
+        "unscoped",
+        "event",
+        "instrumentation",
+        "link",
+        "resource",
+        "span"
+      ],
+      "description": "static fields are pre-set in the UI, dynamic fields are added by the user"
+    },
+    "SearchTableType": {
+      "enum": [
+        "traces",
+        "spans",
+        "raw"
+      ],
+      "description": "The type of the table that is used to display the search results"
+    },
+    "MetricsQueryType": {
+      "enum": [
+        "range",
+        "instant"
+      ]
+    },
+    "TempoQueryType": {
+      "enum": [
+        "traceql",
+        "traceqlSearch",
+        "serviceMap",
+        "upload",
+        "nativeSearch",
+        "traceId",
+        "clear"
+      ]
+    },
+    "SearchStreamingState": {
+      "enum": [
+        "pending",
+        "streaming",
+        "done",
+        "error"
+      ],
+      "description": "The state of the TraceQL streaming search query"
+    },
+    "DataSourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The plugin type-id"
+        },
+        "uid": {
+          "type": "string",
+          "description": "Specific datasource instance"
+        }
+      },
+      "description": "Ref to a DataSource instance"
+    }
+  }
+}

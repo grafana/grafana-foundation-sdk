@@ -1,0 +1,1372 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "units",
+    "version": "0.0.0",
+    "x-schema-identifier": "",
+    "x-schema-kind": ""
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "NoUnit": {
+        "type": "string",
+        "const": "none"
+      },
+      "Number": {
+        "type": "string",
+        "const": "none"
+      },
+      "String": {
+        "type": "string",
+        "const": "string"
+      },
+      "Short": {
+        "type": "string",
+        "const": "short"
+      },
+      "SiShort": {
+        "type": "string",
+        "const": "sishort",
+        "description": "SI short"
+      },
+      "Percent": {
+        "type": "string",
+        "const": "percent",
+        "description": "Percent (0-100)"
+      },
+      "PercentUnit": {
+        "type": "string",
+        "const": "percentunit",
+        "description": "Percent (0.0-1.0)"
+      },
+      "Humidity": {
+        "type": "string",
+        "const": "humidity",
+        "description": "Humidity (%H)"
+      },
+      "Decibel": {
+        "type": "string",
+        "const": "dB",
+        "description": "Decibel (dB)"
+      },
+      "Candela": {
+        "type": "string",
+        "const": "candela",
+        "description": "Candela (cd)"
+      },
+      "HexadecimalOx": {
+        "type": "string",
+        "const": "hex0x",
+        "description": "Hexadecimal (0x)"
+      },
+      "Hexadecimal": {
+        "type": "string",
+        "const": "hex"
+      },
+      "ScientificNotation": {
+        "type": "string",
+        "const": "sci"
+      },
+      "LocaleFormat": {
+        "type": "string",
+        "const": "locale"
+      },
+      "Pixels": {
+        "type": "string",
+        "const": "pixel",
+        "description": "Pixels (px)"
+      },
+      "MetersSecSquared": {
+        "type": "string",
+        "const": "accMS2",
+        "description": "Acceleration: Meters/sec² (m/sec²)"
+      },
+      "FeetSecSquared": {
+        "type": "string",
+        "const": "accFS2",
+        "description": "Acceleration: Feet/sec² (f/sec²)"
+      },
+      "GUnit": {
+        "type": "string",
+        "const": "accG",
+        "description": "G unit (g)"
+      },
+      "Degrees": {
+        "type": "string",
+        "const": "degree",
+        "description": "Angle: Degrees (°)"
+      },
+      "Radians": {
+        "type": "string",
+        "const": "radian",
+        "description": "Angle: Radians"
+      },
+      "Gradian": {
+        "type": "string",
+        "const": "grad",
+        "description": "Angle: Gradian"
+      },
+      "ArcMinutes": {
+        "type": "string",
+        "const": "arcmin",
+        "description": "Angle: Arc Minutes"
+      },
+      "ArcSeconds": {
+        "type": "string",
+        "const": "arcsec",
+        "description": "Angle: Arc Seconds"
+      },
+      "SquareMeters": {
+        "type": "string",
+        "const": "areaM2",
+        "description": "Area: Square Meters (m²)"
+      },
+      "SquareFeet": {
+        "type": "string",
+        "const": "areaF2",
+        "description": "Area: Square Feet (ft²)"
+      },
+      "SquareMiles": {
+        "type": "string",
+        "const": "areaMI2",
+        "description": "Area: Square Miles (mi²)"
+      },
+      "Acres": {
+        "type": "string",
+        "const": "acres",
+        "description": "Area: Acres (ac)"
+      },
+      "Hectares": {
+        "type": "string",
+        "const": "hectares",
+        "description": "Area: Hectares (ha)"
+      },
+      "FlopsPerSecond": {
+        "type": "string",
+        "const": "flops",
+        "description": "Computation: FLOP/s"
+      },
+      "MegaFlopsPerSecond": {
+        "type": "string",
+        "const": "mflops",
+        "description": "Computation: MFLOP/s"
+      },
+      "GigaFlopsPerSecond": {
+        "type": "string",
+        "const": "gflops",
+        "description": "Computation: GFLOP/s"
+      },
+      "TeraFlopsPerSecond": {
+        "type": "string",
+        "const": "tflops",
+        "description": "Computation: TFLOP/s"
+      },
+      "PetaFlopsPerSecond": {
+        "type": "string",
+        "const": "pflops",
+        "description": "Computation: PFLOP/s"
+      },
+      "ExaFlopsPerSecond": {
+        "type": "string",
+        "const": "eflops",
+        "description": "Computation: EFLOP/s"
+      },
+      "ZettaFlopsPerSecond": {
+        "type": "string",
+        "const": "zflops",
+        "description": "Computation: ZFLOP/s"
+      },
+      "YottaFlopsPerSecond": {
+        "type": "string",
+        "const": "yflops",
+        "description": "Computation: YFLOP/s"
+      },
+      "PartsPerMillion": {
+        "type": "string",
+        "const": "ppm",
+        "description": "Concentration: parts-per-million (ppm)"
+      },
+      "PartsPerBillion": {
+        "type": "string",
+        "const": "conppb",
+        "description": "Concentration: parts-per-billion (ppb)"
+      },
+      "NanogramPerCubicMeter": {
+        "type": "string",
+        "const": "conngm3",
+        "description": "Concentration: nanogram per cubic meter (ng/m³)"
+      },
+      "NanogramPerNormalCubicMeter": {
+        "type": "string",
+        "const": "conngNm3",
+        "description": "Concentration: nanogram per normal cubic meter (ng/Nm³)"
+      },
+      "MicrogramPerCubicMeter": {
+        "type": "string",
+        "const": "conμgm3",
+        "description": "Concentration: microgram per cubic meter (μg/m³)"
+      },
+      "MicrogramPerNormalCubicMeter": {
+        "type": "string",
+        "const": "conμgNm3",
+        "description": "Concentration: microgram per normal cubic meter (μg/Nm³)"
+      },
+      "MilligramPerCubicMeter": {
+        "type": "string",
+        "const": "conmgm3",
+        "description": "Concentration: milligram per cubic meter (mg/m³)"
+      },
+      "MilligramPerNormalCubicMeter": {
+        "type": "string",
+        "const": "conmgNm3",
+        "description": "Concentration: milligram per normal cubic meter (mg/Nm³)"
+      },
+      "GramPerCubicMeter": {
+        "type": "string",
+        "const": "congm3",
+        "description": "Concentration: gram per cubic meter (g/m³)"
+      },
+      "GramPerNormalCubicMeter": {
+        "type": "string",
+        "const": "congNm3",
+        "description": "Concentration: gram per normal cubic meter (g/Nm³)"
+      },
+      "MilligramsPerDecilitre": {
+        "type": "string",
+        "const": "conmgdL",
+        "description": "Concentration: milligrams per decilitre (mg/dL)"
+      },
+      "MillimolesPerLiter": {
+        "type": "string",
+        "const": "conmmolL",
+        "description": "Concentration: millimoles per litre (mmol/L)"
+      },
+      "Dollars": {
+        "type": "string",
+        "const": "currencyUSD",
+        "description": "Currency: Dollars ($)"
+      },
+      "Pounds": {
+        "type": "string",
+        "const": "currencyGBP",
+        "description": "Currency: Pounds (£)"
+      },
+      "Euro": {
+        "type": "string",
+        "const": "currencyEUR",
+        "description": "Currency: Euro (€)"
+      },
+      "Yen": {
+        "type": "string",
+        "const": "currencyJPY",
+        "description": "Currency: Yen (¥)"
+      },
+      "Rubles": {
+        "type": "string",
+        "const": "currencyRUB",
+        "description": "Currency: Rubles (₽)"
+      },
+      "Hryvnias": {
+        "type": "string",
+        "const": "currencyUAH",
+        "description": "Currency: Hryvnias (₴)"
+      },
+      "Real": {
+        "type": "string",
+        "const": "currencyBRL",
+        "description": "Currency: Real (R$)"
+      },
+      "DanishKrone": {
+        "type": "string",
+        "const": "currencyDKK",
+        "description": "Currency: Danish Krone (kr)"
+      },
+      "IcelandicKrona": {
+        "type": "string",
+        "const": "currencyISK",
+        "description": "Currency: Icelandic Króna (kr)"
+      },
+      "NorwegianKrone": {
+        "type": "string",
+        "const": "currencyNOK",
+        "description": "Currency: Norwegian Krone (kr)"
+      },
+      "SwedishKrona": {
+        "type": "string",
+        "const": "currencySEK",
+        "description": "Currency: Swedish Krona (kr)"
+      },
+      "CzechKoruna": {
+        "type": "string",
+        "const": "currencyCZK",
+        "description": "Currency: Czech koruna (czk)"
+      },
+      "SwissFranc": {
+        "type": "string",
+        "const": "currencyCHF",
+        "description": "Currency: Swiss franc (CHF)"
+      },
+      "PolishZloty": {
+        "type": "string",
+        "const": "currencyPLN",
+        "description": "Currency: Polish Złoty (PLN)"
+      },
+      "Bictoin": {
+        "type": "string",
+        "const": "currencyBTC",
+        "description": "Currency: Bitcoin (฿)"
+      },
+      "MilliBitcoin": {
+        "type": "string",
+        "const": "currencymBTC",
+        "description": "Currency: Milli Bitcoin (฿)"
+      },
+      "MicroBitcoin": {
+        "type": "string",
+        "const": "currencyμBTC",
+        "description": "Currency: Micro Bitcoin (฿)"
+      },
+      "SouthAfricanRand": {
+        "type": "string",
+        "const": "currencyZAR",
+        "description": "Currency: South African Rand (R)"
+      },
+      "IndianRupee": {
+        "type": "string",
+        "const": "currencyINR",
+        "description": "Currency: Indian Rupee (₹)"
+      },
+      "SouthKoreanWon": {
+        "type": "string",
+        "const": "currencyKRW",
+        "description": "Currency: South Korean Won (₩)"
+      },
+      "IndonesianRupiah": {
+        "type": "string",
+        "const": "currencyIDR",
+        "description": "Currency: Indonesian Rupiah (Rp)"
+      },
+      "PhilippinePeso": {
+        "type": "string",
+        "const": "currencyPHP",
+        "description": "Currency: Philippine Peso (PHP)"
+      },
+      "VietnameseDong": {
+        "type": "string",
+        "const": "currencyVND",
+        "description": "Currency: Vietnamese Dong (VND)"
+      },
+      "TurkishLira": {
+        "type": "string",
+        "const": "currencyTRY",
+        "description": "Currency: Turkish Lira (₺)"
+      },
+      "MalaysianRinggit": {
+        "type": "string",
+        "const": "currencyMYR",
+        "description": "Currency: Malaysian Ringgit (RM)"
+      },
+      "CFPFranc": {
+        "type": "string",
+        "const": "currencyXPF",
+        "description": "Currency: CFP franc (XPF)"
+      },
+      "BulgarianLev": {
+        "type": "string",
+        "const": "currencyBGN",
+        "description": "Currency: Bulgarian Lev (BGN)"
+      },
+      "Guarani": {
+        "type": "string",
+        "const": "currencyPYG",
+        "description": "Currency: Guaraní (₲)"
+      },
+      "UruguayPeso": {
+        "type": "string",
+        "const": "currencyUYU",
+        "description": "Currency: Uruguay Peso (UYU)"
+      },
+      "IsraeliNewShekels": {
+        "type": "string",
+        "const": "currencyILS",
+        "description": "Currency: Israeli New Shekels (₪)"
+      },
+      "BytesIEC": {
+        "type": "string",
+        "const": "bytes",
+        "description": "Data: bytes(IEC)"
+      },
+      "BytesSI": {
+        "type": "string",
+        "const": "decbytes",
+        "description": "Data: bytes(SI)"
+      },
+      "BitsIEC": {
+        "type": "string",
+        "const": "bits",
+        "description": "Data: bits(IEC)"
+      },
+      "BitsSI": {
+        "type": "string",
+        "const": "bydecbitstes",
+        "description": "Data: bits(SI)"
+      },
+      "Kibibytes": {
+        "type": "string",
+        "const": "kbytes",
+        "description": "Data: kibibytes"
+      },
+      "Kilobytes": {
+        "type": "string",
+        "const": "deckbytes",
+        "description": "Data: kilobytes"
+      },
+      "Mebibytes": {
+        "type": "string",
+        "const": "mbytes",
+        "description": "Data: mebibytes"
+      },
+      "Megabytes": {
+        "type": "string",
+        "const": "decmbytes",
+        "description": "Data: megabytes"
+      },
+      "Gibibytes": {
+        "type": "string",
+        "const": "gbytes",
+        "description": "Data: gibibytes"
+      },
+      "Gigabytes": {
+        "type": "string",
+        "const": "decgbytes",
+        "description": "Data: gigabytes"
+      },
+      "Tebibytes": {
+        "type": "string",
+        "const": "tbytes",
+        "description": "Data: tebibytes"
+      },
+      "Terabytes": {
+        "type": "string",
+        "const": "dectbytes",
+        "description": "Data: terabytes"
+      },
+      "Pebibytes": {
+        "type": "string",
+        "const": "pbytes",
+        "description": "Data: pebibytes"
+      },
+      "Petabytes": {
+        "type": "string",
+        "const": "decpbytes",
+        "description": "Data: petabytes"
+      },
+      "PacketsPerSecond": {
+        "type": "string",
+        "const": "pps",
+        "description": "Data rate: packets/sec"
+      },
+      "BytesPerSecondIEC": {
+        "type": "string",
+        "const": "binBps",
+        "description": "Data rate: bytes/sec(IEC)"
+      },
+      "BytesPerSecondSI": {
+        "type": "string",
+        "const": "Bps",
+        "description": "Data rate: bytes/sec(SI)"
+      },
+      "BitsPerSecondIEC": {
+        "type": "string",
+        "const": "binbps",
+        "description": "Data rate: bits/sec(IEC)"
+      },
+      "BitsPerSecondSI": {
+        "type": "string",
+        "const": "bps",
+        "description": "Data rate: bits/sec(SI)"
+      },
+      "KibibytesPerSecond": {
+        "type": "string",
+        "const": "KiBs",
+        "description": "Data rate: kibibytes/sec"
+      },
+      "KibibitsPerSecond": {
+        "type": "string",
+        "const": "Kibits",
+        "description": "Data rate: kibibits/sec"
+      },
+      "KilobytesPerSecond": {
+        "type": "string",
+        "const": "KBs",
+        "description": "Data rate: kilobytes/sec"
+      },
+      "KilobitsPerSecond": {
+        "type": "string",
+        "const": "Kbits",
+        "description": "Data rate: kilobits/sec"
+      },
+      "MebibytesPerSecond": {
+        "type": "string",
+        "const": "MiBs",
+        "description": "Data rate: mebibytes/sec"
+      },
+      "MebibitsPerSecond": {
+        "type": "string",
+        "const": "Mibits",
+        "description": "Data rate: mebibits/sec"
+      },
+      "MegabytesPerSecond": {
+        "type": "string",
+        "const": "MBs",
+        "description": "Data rate: megabytes/sec"
+      },
+      "MegabitsPerSecond": {
+        "type": "string",
+        "const": "Mbits",
+        "description": "Data rate: megabits/sec"
+      },
+      "GibibytesPerSecond": {
+        "type": "string",
+        "const": "GiBs",
+        "description": "Data rate: gibibytes/sec"
+      },
+      "GibibitsPerSecond": {
+        "type": "string",
+        "const": "Gibits",
+        "description": "Data rate: gibibits/sec"
+      },
+      "GigabytesPerSecond": {
+        "type": "string",
+        "const": "GBs",
+        "description": "Data rate: gigabytes/sec"
+      },
+      "GigabitsPerSecond": {
+        "type": "string",
+        "const": "Gbits",
+        "description": "Data rate: gigabits/sec"
+      },
+      "TebibytesPerSecond": {
+        "type": "string",
+        "const": "TiBs",
+        "description": "Data rate: tebibytes/sec"
+      },
+      "TebibitsPerSecond": {
+        "type": "string",
+        "const": "Tibits",
+        "description": "Data rate: tebibits/sec"
+      },
+      "TerabytesPerSecond": {
+        "type": "string",
+        "const": "TBs",
+        "description": "Data rate: terabytes/sec"
+      },
+      "TerabitsPerSecond": {
+        "type": "string",
+        "const": "Tbits",
+        "description": "Data rate: terabits/sec"
+      },
+      "PebibytesPerSecond": {
+        "type": "string",
+        "const": "PiBs",
+        "description": "Data rate: pebibytes/sec"
+      },
+      "PebibitsPerSecond": {
+        "type": "string",
+        "const": "Pibits",
+        "description": "Data rate: pebibits/sec"
+      },
+      "PetabytesPerSecond": {
+        "type": "string",
+        "const": "PBs",
+        "description": "Data rate: petabytes/sec"
+      },
+      "PetabitsPerSecond": {
+        "type": "string",
+        "const": "Pbits",
+        "description": "Data rate: petabits/sec"
+      },
+      "DatetimeISO": {
+        "type": "string",
+        "const": "dateTimeAsIso",
+        "description": "Date \u0026 time: Datetime ISO"
+      },
+      "DatetimeISONotToday": {
+        "type": "string",
+        "const": "dateTimeAsIsoNoDateIfToday",
+        "description": "Date \u0026 time: Datetime ISO (No date if today)"
+      },
+      "DatetimeUS": {
+        "type": "string",
+        "const": "dateTimeAsUS",
+        "description": "Date \u0026 time: Datetime US"
+      },
+      "DatetimeUSNotToday": {
+        "type": "string",
+        "const": "dateTimeAsUSNoDateIfToday",
+        "description": "Date \u0026 time: Datetime US (No date if today)"
+      },
+      "DatetimeLocal": {
+        "type": "string",
+        "const": "dateTimeAsLocal",
+        "description": "Date \u0026 time: Datetime local"
+      },
+      "DatetimeLocalNotToday": {
+        "type": "string",
+        "const": "dateTimeAsLocalNoDateIfToday",
+        "description": "Date \u0026 time: Datetime local (No date if today)"
+      },
+      "DatetimeDefault": {
+        "type": "string",
+        "const": "dateTimeAsSystem",
+        "description": "Date \u0026 time: Datetime default"
+      },
+      "DateTimeFromNow": {
+        "type": "string",
+        "const": "dateTimeFromNow",
+        "description": "Date \u0026 time: From Now"
+      },
+      "Watt": {
+        "type": "string",
+        "const": "watt",
+        "description": "Energy: Watt (W)"
+      },
+      "KiloWatt": {
+        "type": "string",
+        "const": "kwatt",
+        "description": "Energy: Kilowatt (kW)"
+      },
+      "MegaWatt": {
+        "type": "string",
+        "const": "megwatt",
+        "description": "Energy: Megawatt (MW)"
+      },
+      "GigaWatt": {
+        "type": "string",
+        "const": "gwatt",
+        "description": "Energy: Gigawatt (GW)"
+      },
+      "MilliWatt": {
+        "type": "string",
+        "const": "mwatt",
+        "description": "Energy: Milliwatt (mW)"
+      },
+      "WattPerSquareMeter": {
+        "type": "string",
+        "const": "Wm2",
+        "description": "Energy: Watt per square meter (W/m²)"
+      },
+      "VoltAmpere": {
+        "type": "string",
+        "const": "voltamp",
+        "description": "Energy: Volt-Ampere (VA)"
+      },
+      "KiloVoltAmpere": {
+        "type": "string",
+        "const": "kvoltamp",
+        "description": "Energy: Kilovolt-Ampere (kVA)"
+      },
+      "VoltAmpereReactive": {
+        "type": "string",
+        "const": "voltampreact",
+        "description": "Energy: Volt-Ampere reactive (VAr)"
+      },
+      "KiloVoltAmpereReactive": {
+        "type": "string",
+        "const": "kvoltampreact",
+        "description": "Energy: Kilovolt-Ampere reactive (kVAr)"
+      },
+      "WattHour": {
+        "type": "string",
+        "const": "watth",
+        "description": "Energy: Watt-hour (Wh)"
+      },
+      "WattHourPerKilogram": {
+        "type": "string",
+        "const": "watthperkg",
+        "description": "Energy: Watt-hour per Kilogram (Wh/kg)"
+      },
+      "KiloWattHour": {
+        "type": "string",
+        "const": "kwatth",
+        "description": "Energy: Kilowatt-hour (kWh)"
+      },
+      "KiloWattMinute": {
+        "type": "string",
+        "const": "kwattm",
+        "description": "Energy: Kilowatt-min (kWm)"
+      },
+      "MegaWattHour": {
+        "type": "string",
+        "const": "mwatth",
+        "description": "Energy: Megawatt-hour (MWh)"
+      },
+      "AmpereHour": {
+        "type": "string",
+        "const": "amph",
+        "description": "Energy: Ampere-hour (Ah)"
+      },
+      "KiloAmpereHour": {
+        "type": "string",
+        "const": "kamph",
+        "description": "Energy: Kiloampere-hour (kAh)"
+      },
+      "MilliAmpereHour": {
+        "type": "string",
+        "const": "mamph",
+        "description": "Energy: Milliampere-hour (mAh)"
+      },
+      "Joule": {
+        "type": "string",
+        "const": "joule",
+        "description": "Energy: Joule (J)"
+      },
+      "ElectronVolt": {
+        "type": "string",
+        "const": "ev",
+        "description": "Energy: Electron volt (eV)"
+      },
+      "Ampere": {
+        "type": "string",
+        "const": "amp",
+        "description": "Energy: Ampere (A)"
+      },
+      "KiloAmpere": {
+        "type": "string",
+        "const": "kamp",
+        "description": "Energy: Kiloampere (kA)"
+      },
+      "MilliAmpere": {
+        "type": "string",
+        "const": "mamp",
+        "description": "Energy: Milliampere (mA)"
+      },
+      "Volt": {
+        "type": "string",
+        "const": "volt",
+        "description": "Energy: Volt (V)"
+      },
+      "KiloVolt": {
+        "type": "string",
+        "const": "kvolt",
+        "description": "Energy: Kilovolt (kV)"
+      },
+      "MilliVolt": {
+        "type": "string",
+        "const": "mvolt",
+        "description": "Energy: Millivolt (mV)"
+      },
+      "DecibelMilliWatt": {
+        "type": "string",
+        "const": "dBm",
+        "description": "Energy: Decibel-milliwatt (dBm)"
+      },
+      "MilliOhm": {
+        "type": "string",
+        "const": "mohm",
+        "description": "Energy: Milliohm (mΩ)"
+      },
+      "Ohm": {
+        "type": "string",
+        "const": "ohm",
+        "description": "Energy: Ohm (Ω)"
+      },
+      "KiloOhm": {
+        "type": "string",
+        "const": "kohm",
+        "description": "Energy: Kiloohm (kΩ)"
+      },
+      "MegaOhm": {
+        "type": "string",
+        "const": "Mohm",
+        "description": "Energy: Megaohm (MΩ)"
+      },
+      "Farad": {
+        "type": "string",
+        "const": "farad",
+        "description": "Energy: Farad (F)"
+      },
+      "MicroFarad": {
+        "type": "string",
+        "const": "watt",
+        "description": "Energy: Microfarad (µF)"
+      },
+      "NanoFarad": {
+        "type": "string",
+        "const": "nfarad",
+        "description": "Energy: Nanofarad (nF)"
+      },
+      "PicoFarad": {
+        "type": "string",
+        "const": "pfarad",
+        "description": "Energy: Picofarad (pF)"
+      },
+      "FemtoFarad": {
+        "type": "string",
+        "const": "ffarad",
+        "description": "Energy: Femtofarad (fF)"
+      },
+      "Henry": {
+        "type": "string",
+        "const": "henry",
+        "description": "Energy: Henry (H)"
+      },
+      "MilliHenry": {
+        "type": "string",
+        "const": "mhenry",
+        "description": "Energy: Millihenry (mH)"
+      },
+      "MicroHenry": {
+        "type": "string",
+        "const": "µhenry",
+        "description": "Energy: Microhenry (µH)"
+      },
+      "Lumens": {
+        "type": "string",
+        "const": "lumens",
+        "description": "Energy: Lumens (Lm)"
+      },
+      "GallonsPerMinute": {
+        "type": "string",
+        "const": "flowgpm",
+        "description": "Flow: Gallons/min (gpm)"
+      },
+      "CubicMetersPerSecond": {
+        "type": "string",
+        "const": "flowcms",
+        "description": "Flow: Cubic meters/sec (cms)"
+      },
+      "CubicFeetPerSecond": {
+        "type": "string",
+        "const": "flowcms",
+        "description": "Flow: Cubic feet/sec (cfs)"
+      },
+      "CubicFeetPerMinute": {
+        "type": "string",
+        "const": "flowcms",
+        "description": "Flow: Cubic feet/min (cfm)"
+      },
+      "LitrePerHour": {
+        "type": "string",
+        "const": "litreh",
+        "description": "Flow: Litre/hour"
+      },
+      "LitrePerMinute": {
+        "type": "string",
+        "const": "flowlpm",
+        "description": "Flow: Litre/min (L/min)"
+      },
+      "MilliLitrePerMinute": {
+        "type": "string",
+        "const": "flowmlpm",
+        "description": "Flow: milliLitre/min (mL/min)"
+      },
+      "Lux": {
+        "type": "string",
+        "const": "lux",
+        "description": "Flow: Lux (lx)"
+      },
+      "NewtonMeters": {
+        "type": "string",
+        "const": "forceNm",
+        "description": "Force: Newton-meters (Nm)"
+      },
+      "KiloNewtonMeters": {
+        "type": "string",
+        "const": "forcekNm",
+        "description": "Force: Kilonewton-meters (kNm)"
+      },
+      "Newtons": {
+        "type": "string",
+        "const": "forceN",
+        "description": "Force: Newtons (N)"
+      },
+      "KiloNewtons": {
+        "type": "string",
+        "const": "forcekN",
+        "description": "Force: Kilonewtons (kN)"
+      },
+      "HashesPerSecond": {
+        "type": "string",
+        "const": "Hs",
+        "description": "Hash rate: hashes/sec"
+      },
+      "KiloHashesPerSecond": {
+        "type": "string",
+        "const": "KHs",
+        "description": "Hash rate: kilohashes/sec"
+      },
+      "MegaHashesPerSecond": {
+        "type": "string",
+        "const": "MHs",
+        "description": "Hash rate: megahashes/sec"
+      },
+      "GigaHashesPerSecond": {
+        "type": "string",
+        "const": "GHs",
+        "description": "Hash rate: gigahashes/sec"
+      },
+      "TeraHashesPerSecond": {
+        "type": "string",
+        "const": "THs",
+        "description": "Hash rate: terahashes/sec"
+      },
+      "PetaHashesPerSecond": {
+        "type": "string",
+        "const": "PHs",
+        "description": "Hash rate: petahashes/sec"
+      },
+      "ExaHashesPerSecond": {
+        "type": "string",
+        "const": "EHs",
+        "description": "Hash rate: exahashes/sec"
+      },
+      "Milligram": {
+        "type": "string",
+        "const": "massmg",
+        "description": "Mass: milligram (mg)"
+      },
+      "Gram": {
+        "type": "string",
+        "const": "massg",
+        "description": "Mass: gram (g)"
+      },
+      "Pound": {
+        "type": "string",
+        "const": "masslb",
+        "description": "Mass: pound (lb)"
+      },
+      "Kilogram": {
+        "type": "string",
+        "const": "masskg",
+        "description": "Mass: kilogram (kg)"
+      },
+      "MetricTon": {
+        "type": "string",
+        "const": "masst",
+        "description": "Mass: metric ton (t)"
+      },
+      "Millimeter": {
+        "type": "string",
+        "const": "lengthmm",
+        "description": "Length: millimeter (mm)"
+      },
+      "Inch": {
+        "type": "string",
+        "const": "lengthin",
+        "description": "Length: inch (in)"
+      },
+      "Feet": {
+        "type": "string",
+        "const": "lengthft",
+        "description": "Length: feet (ft)"
+      },
+      "Meter": {
+        "type": "string",
+        "const": "lengthm",
+        "description": "Length: meter (m)"
+      },
+      "Kilometer": {
+        "type": "string",
+        "const": "lengthkm",
+        "description": "Length: kilometer (km)"
+      },
+      "Mile": {
+        "type": "string",
+        "const": "lengthmi",
+        "description": "Length: mile (mi)"
+      },
+      "Millibars": {
+        "type": "string",
+        "const": "pressurembar",
+        "description": "Pressure: Millibars"
+      },
+      "Bars": {
+        "type": "string",
+        "const": "pressurebar",
+        "description": "Pressure: Bars"
+      },
+      "Kilobars": {
+        "type": "string",
+        "const": "pressurekbar",
+        "description": "Pressure: Kilobars"
+      },
+      "Pascals": {
+        "type": "string",
+        "const": "pressurepa",
+        "description": "Pressure: Pascals"
+      },
+      "Hectopascals": {
+        "type": "string",
+        "const": "pressurehpa",
+        "description": "Pressure: Hectopascals"
+      },
+      "Kilopascals": {
+        "type": "string",
+        "const": "pressurekpa",
+        "description": "Pressure: Kilopascals"
+      },
+      "InchesOfMercury": {
+        "type": "string",
+        "const": "pressurehg",
+        "description": "Pressure: Inches of mercury"
+      },
+      "PSI": {
+        "type": "string",
+        "const": "pressurepsi",
+        "description": "Pressure: PSI"
+      },
+      "Becquerel": {
+        "type": "string",
+        "const": "radbq",
+        "description": "Radiation: Becquerel (Bq)"
+      },
+      "Curie": {
+        "type": "string",
+        "const": "radci",
+        "description": "Radiation: curie (Ci)"
+      },
+      "Gray": {
+        "type": "string",
+        "const": "radgy",
+        "description": "Radiation: Gray (Gy)"
+      },
+      "Rad": {
+        "type": "string",
+        "const": "radrad",
+        "description": "Radiation: rad"
+      },
+      "Sievert": {
+        "type": "string",
+        "const": "radsv",
+        "description": "Radiation: Sievert (Sv)"
+      },
+      "Millisievert": {
+        "type": "string",
+        "const": "radmsv",
+        "description": "Radiation: milliSievert (mSv)"
+      },
+      "Microsievert": {
+        "type": "string",
+        "const": "radusv",
+        "description": "Radiation: microSievert (µSv)"
+      },
+      "Rem": {
+        "type": "string",
+        "const": "radrem",
+        "description": "Radiation: rem"
+      },
+      "Exposure": {
+        "type": "string",
+        "const": "radexpckg",
+        "description": "Radiation: Exposure (C/kg)"
+      },
+      "Roentgen": {
+        "type": "string",
+        "const": "radr",
+        "description": "Radiation: roentgen (R)"
+      },
+      "SievertPerHour": {
+        "type": "string",
+        "const": "radsvh",
+        "description": "Radiation: Sievert/hour (Sv/h)"
+      },
+      "MillisievertPerHour": {
+        "type": "string",
+        "const": "radmsvh",
+        "description": "Radiation: milliSievert/hour (mSv/h)"
+      },
+      "MicrosievertPerHour": {
+        "type": "string",
+        "const": "radusvh",
+        "description": "Radiation: microSievert/hour (µSv/h)"
+      },
+      "RevolutionsPerMinute": {
+        "type": "string",
+        "const": "rotrpm",
+        "description": "Rotational Speed: Revolutions per minute (rpm)"
+      },
+      "HertzRotation": {
+        "type": "string",
+        "const": "rothz",
+        "description": "Rotational Speed: Hertz (Hz)"
+      },
+      "KilohertzRotation": {
+        "type": "string",
+        "const": "rotkhz",
+        "description": "Rotational Speed: Kilohertz (kHz)"
+      },
+      "MegahertzRotation": {
+        "type": "string",
+        "const": "rotmhz",
+        "description": "Rotational Speed: Megahertz (MHz)"
+      },
+      "GigahertzRotation": {
+        "type": "string",
+        "const": "rotghz",
+        "description": "Rotational Speed: Gigahertz (GHz)"
+      },
+      "RadiansPerSecond": {
+        "type": "string",
+        "const": "rotrads",
+        "description": "Rotational Speed: Radians per second (rad/s)"
+      },
+      "DegreesPerSecond": {
+        "type": "string",
+        "const": "rotdegs",
+        "description": "Rotational Speed: Degrees per second (°/s)"
+      },
+      "Celsius": {
+        "type": "string",
+        "const": "celsius",
+        "description": "Temperature: Celsius (°C)"
+      },
+      "Fahrenheit": {
+        "type": "string",
+        "const": "fahrenheit",
+        "description": "Temperature: Fahrenheit (°F)"
+      },
+      "Kelvin": {
+        "type": "string",
+        "const": "kelvin",
+        "description": "Temperature: Kelvin (K)"
+      },
+      "Hertz": {
+        "type": "string",
+        "const": "hertz",
+        "description": "Time: Hertz (1/s)"
+      },
+      "Nanoseconds": {
+        "type": "string",
+        "const": "ns",
+        "description": "Time: nanoseconds (ns)"
+      },
+      "Microseconds": {
+        "type": "string",
+        "const": "µs",
+        "description": "Time: microseconds (µs)"
+      },
+      "Milliseconds": {
+        "type": "string",
+        "const": "ms",
+        "description": "Time: milliseconds (ms)"
+      },
+      "Seconds": {
+        "type": "string",
+        "const": "s",
+        "description": "Time: seconds (s)"
+      },
+      "Minutes": {
+        "type": "string",
+        "const": "m",
+        "description": "Time: minutes (m)"
+      },
+      "Hours": {
+        "type": "string",
+        "const": "h",
+        "description": "Time: hours (h)"
+      },
+      "Days": {
+        "type": "string",
+        "const": "d",
+        "description": "Time: days (d)"
+      },
+      "DurationMilliseconds": {
+        "type": "string",
+        "const": "dtdurationms",
+        "description": "Time: duration (ms)"
+      },
+      "DurationSeconds": {
+        "type": "string",
+        "const": "dtdurations",
+        "description": "Time: duration (s)"
+      },
+      "DurationInHoursMinutesSeconds": {
+        "type": "string",
+        "const": "dthms",
+        "description": "Time: duration (hh:mm:ss)"
+      },
+      "DurationInDaysHoursMinutesSeconds": {
+        "type": "string",
+        "const": "dtdhms",
+        "description": "Time: duration (d hh:mm:ss)"
+      },
+      "Timeticks": {
+        "type": "string",
+        "const": "timeticks",
+        "description": "Time: Timeticks (s/100)"
+      },
+      "ClockMilliseconds": {
+        "type": "string",
+        "const": "clockms",
+        "description": "Time: clock (ms)"
+      },
+      "ClockSeconds": {
+        "type": "string",
+        "const": "clocks",
+        "description": "Time: clock (s)"
+      },
+      "CountsPerSecond": {
+        "type": "string",
+        "const": "cps",
+        "description": "Throughput: counts/sec (cps)"
+      },
+      "OpsPerSecond": {
+        "type": "string",
+        "const": "ops",
+        "description": "Throughput: ops/sec (ops)"
+      },
+      "RequestsPerSecond": {
+        "type": "string",
+        "const": "reqps",
+        "description": "Throughput: requests/sec (rps)"
+      },
+      "ReadsPerSecond": {
+        "type": "string",
+        "const": "rps",
+        "description": "Throughput: reads/sec (rps)"
+      },
+      "WritesPerSecond": {
+        "type": "string",
+        "const": "wps",
+        "description": "Throughput: writes/sec (wps)"
+      },
+      "IOOpsPerSecond": {
+        "type": "string",
+        "const": "iops",
+        "description": "Throughput: I/O ops/sec (iops)"
+      },
+      "EventsPerSecond": {
+        "type": "string",
+        "const": "eps",
+        "description": "Throughput: events/sec (eps)"
+      },
+      "MessagesPerSecond": {
+        "type": "string",
+        "const": "mps",
+        "description": "Throughput: messages/sec (mps)"
+      },
+      "RecordsPerSecond": {
+        "type": "string",
+        "const": "recps",
+        "description": "Throughput: records/sec (rps)"
+      },
+      "RowsPerSecond": {
+        "type": "string",
+        "const": "rowsps",
+        "description": "Throughput: rows/sec (rps)"
+      },
+      "CountsPerMinute": {
+        "type": "string",
+        "const": "cpm",
+        "description": "Throughput: counts/min (cpm)"
+      },
+      "OpsPerMinute": {
+        "type": "string",
+        "const": "opm",
+        "description": "Throughput: ops/min (opm)"
+      },
+      "RequestsPerMinute": {
+        "type": "string",
+        "const": "reqpm",
+        "description": "Throughput: requests/min (rpm)"
+      },
+      "ReadsPerMinute": {
+        "type": "string",
+        "const": "rpm",
+        "description": "Throughput: reads/min (rpm)"
+      },
+      "WritesPerMinute": {
+        "type": "string",
+        "const": "wpm",
+        "description": "Throughput: writes/min (wpm)"
+      },
+      "EventsPerMinute": {
+        "type": "string",
+        "const": "epm",
+        "description": "Throughput: events/min (epm)"
+      },
+      "MessagesPerMinute": {
+        "type": "string",
+        "const": "mpm",
+        "description": "Throughput: messages/min (mpm)"
+      },
+      "RecordsPerMinute": {
+        "type": "string",
+        "const": "recpm",
+        "description": "Throughput: records/min (rpm)"
+      },
+      "RowsPerMinute": {
+        "type": "string",
+        "const": "rowspm",
+        "description": "Throughput: rows/min (rpm)"
+      },
+      "MetersPerSecond": {
+        "type": "string",
+        "const": "velocityms",
+        "description": "Velocity: meters/second (m/s)"
+      },
+      "KilometersPerHour": {
+        "type": "string",
+        "const": "velocitykmh",
+        "description": "Velocity: kilometers/hour (km/h)"
+      },
+      "MilesPerHour": {
+        "type": "string",
+        "const": "velocitymph",
+        "description": "Velocity: miles/hour (mph)"
+      },
+      "Knot": {
+        "type": "string",
+        "const": "velocityknot",
+        "description": "Velocity: knot (kn)"
+      },
+      "Millilitre": {
+        "type": "string",
+        "const": "mlitre",
+        "description": "Volume: millilitre (mL)"
+      },
+      "Litre": {
+        "type": "string",
+        "const": "litre",
+        "description": "Volume: litre (L)"
+      },
+      "CubicMeter": {
+        "type": "string",
+        "const": "m3",
+        "description": "Volume: cubic meter"
+      },
+      "NormalCubicMeter": {
+        "type": "string",
+        "const": "Nm3",
+        "description": "Volume: Normal cubic meter"
+      },
+      "CubicDecimeter": {
+        "type": "string",
+        "const": "dm3",
+        "description": "Volume: cubic decimeter"
+      },
+      "Gallons": {
+        "type": "string",
+        "const": "gallons",
+        "description": "Volume: gallons"
+      },
+      "Bool": {
+        "type": "string",
+        "const": "bool",
+        "description": "Boolean: True / False"
+      },
+      "BoolYesNo": {
+        "type": "string",
+        "const": "bool_yes_no",
+        "description": "Boolean: Yes / No"
+      },
+      "BoolOnOff": {
+        "type": "string",
+        "const": "bool_on_off",
+        "description": "Boolean: On / Off"
+      }
+    }
+  }
+}

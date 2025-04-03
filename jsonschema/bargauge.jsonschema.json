@@ -1,0 +1,217 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "displayMode",
+        "valueMode",
+        "namePlacement",
+        "showUnfilled",
+        "sizing",
+        "minVizWidth",
+        "minVizHeight",
+        "legend",
+        "reduceOptions",
+        "maxVizHeight",
+        "orientation"
+      ],
+      "properties": {
+        "displayMode": {
+          "$ref": "#/definitions/BarGaugeDisplayMode",
+          "default": "gradient"
+        },
+        "valueMode": {
+          "$ref": "#/definitions/BarGaugeValueMode",
+          "default": "color"
+        },
+        "namePlacement": {
+          "$ref": "#/definitions/BarGaugeNamePlacement",
+          "default": "auto"
+        },
+        "showUnfilled": {
+          "type": "boolean",
+          "default": true
+        },
+        "sizing": {
+          "$ref": "#/definitions/BarGaugeSizing",
+          "default": "auto"
+        },
+        "minVizWidth": {
+          "type": "integer",
+          "default": 8
+        },
+        "minVizHeight": {
+          "type": "integer",
+          "default": 16
+        },
+        "legend": {
+          "$ref": "#/definitions/VizLegendOptions"
+        },
+        "reduceOptions": {
+          "$ref": "#/definitions/ReduceDataOptions"
+        },
+        "text": {
+          "$ref": "#/definitions/VizTextDisplayOptions"
+        },
+        "maxVizHeight": {
+          "type": "integer",
+          "default": 300
+        },
+        "orientation": {
+          "$ref": "#/definitions/VizOrientation"
+        }
+      }
+    },
+    "BarGaugeDisplayMode": {
+      "enum": [
+        "basic",
+        "lcd",
+        "gradient"
+      ],
+      "description": "Enum expressing the possible display modes\nfor the bar gauge component of Grafana UI"
+    },
+    "BarGaugeValueMode": {
+      "enum": [
+        "color",
+        "text",
+        "hidden"
+      ],
+      "description": "Allows for the table cell gauge display type to set the gauge mode."
+    },
+    "BarGaugeNamePlacement": {
+      "enum": [
+        "auto",
+        "top",
+        "left",
+        "hidden"
+      ],
+      "description": "Allows for the bar gauge name to be placed explicitly"
+    },
+    "BarGaugeSizing": {
+      "enum": [
+        "auto",
+        "manual"
+      ],
+      "description": "Allows for the bar gauge size to be set explicitly"
+    },
+    "VizLegendOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "displayMode",
+        "placement",
+        "showLegend",
+        "calcs"
+      ],
+      "properties": {
+        "displayMode": {
+          "$ref": "#/definitions/LegendDisplayMode",
+          "default": "list"
+        },
+        "placement": {
+          "$ref": "#/definitions/LegendPlacement",
+          "default": "bottom"
+        },
+        "showLegend": {
+          "type": "boolean"
+        },
+        "asTable": {
+          "type": "boolean"
+        },
+        "isVisible": {
+          "type": "boolean"
+        },
+        "sortBy": {
+          "type": "string"
+        },
+        "sortDesc": {
+          "type": "boolean"
+        },
+        "width": {
+          "type": "number"
+        },
+        "calcs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      },
+      "description": "TODO docs"
+    },
+    "ReduceDataOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calcs"
+      ],
+      "properties": {
+        "values": {
+          "type": "boolean",
+          "description": "If true show each row value"
+        },
+        "limit": {
+          "type": "number",
+          "description": "if showing all values limit"
+        },
+        "calcs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "When !values, pick one value for the whole field"
+        },
+        "fields": {
+          "type": "string",
+          "description": "Which fields to show.  By default this is only numeric fields"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizTextDisplayOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "titleSize": {
+          "type": "number",
+          "description": "Explicit title text size"
+        },
+        "valueSize": {
+          "type": "number",
+          "description": "Explicit value text size"
+        },
+        "percentSize": {
+          "type": "number",
+          "description": "Explicit percent text size"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizOrientation": {
+      "enum": [
+        "auto",
+        "vertical",
+        "horizontal"
+      ],
+      "description": "TODO docs"
+    },
+    "LegendDisplayMode": {
+      "enum": [
+        "list",
+        "table",
+        "hidden"
+      ],
+      "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
+    },
+    "LegendPlacement": {
+      "enum": [
+        "bottom",
+        "right"
+      ],
+      "description": "TODO docs"
+    }
+  }
+}
