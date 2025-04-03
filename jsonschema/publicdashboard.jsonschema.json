@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PublicDashboard",
+  "definitions": {
+    "PublicDashboard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uid",
+        "dashboardUid",
+        "isEnabled",
+        "annotationsEnabled",
+        "timeSelectionEnabled"
+      ],
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unique public dashboard identifier"
+        },
+        "dashboardUid": {
+          "type": "string",
+          "description": "Dashboard unique identifier referenced by this public dashboard"
+        },
+        "accessToken": {
+          "type": "string",
+          "description": "Unique public access token"
+        },
+        "isEnabled": {
+          "type": "boolean",
+          "description": "Flag that indicates if the public dashboard is enabled"
+        },
+        "annotationsEnabled": {
+          "type": "boolean",
+          "description": "Flag that indicates if annotations are enabled"
+        },
+        "timeSelectionEnabled": {
+          "type": "boolean",
+          "description": "Flag that indicates if the time range picker is enabled"
+        }
+      }
+    }
+  }
+}

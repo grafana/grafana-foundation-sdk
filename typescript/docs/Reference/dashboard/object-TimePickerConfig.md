@@ -1,0 +1,27 @@
+---
+title: <span class="badge object-type-interface"></span> TimePickerConfig
+---
+# <span class="badge object-type-interface"></span> TimePickerConfig
+
+Time picker configuration
+
+It defines the default config for the time picker and the refresh picker for the specific dashboard.
+
+## Definition
+
+```typescript
+export interface TimePickerConfig {
+	// Whether timepicker is visible or not.
+	hidden?: boolean;
+	// Interval options available in the refresh picker dropdown.
+	refresh_intervals?: string[];
+	// Quick ranges for time picker.
+	quick_ranges?: dashboard.TimeOption[];
+	// Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
+	nowDelay?: string;
+}
+
+```
+## See also
+
+ * <span class="badge builder"></span> [TimePickerBuilder](./builder-TimePickerBuilder.md)

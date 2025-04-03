@@ -1,0 +1,231 @@
+{
+  "name": "@grafana/grafana-foundation-sdk",
+  "version": "11.6.0-cogv0.0.x.1743724306",
+  "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
+  "keywords": [
+    "observability",
+    "sdk",
+    "grafana",
+    "logs",
+    "traces",
+    "metrics"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "provenance": true
+  },
+  "license": "Apache-2.0",
+  "author": "Grafana Labs",
+  "homepage": "https://github.com/grafana/grafana-foundation-sdk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grafana/grafana-foundation-sdk.git",
+    "directory": "typescript"
+  },
+  "sideEffects": false,
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*",
+    "package.json"
+  ],
+  "exports": {
+    "./cog": {
+      "types": "./dist/cog/index.d.ts",
+      "default": "./dist/cog/index.js"
+    },
+    "./alerting": {
+      "types": "./dist/alerting/index.d.ts",
+      "default": "./dist/alerting/index.js"
+    },
+    "./annotationslist": {
+      "types": "./dist/annotationslist/index.d.ts",
+      "default": "./dist/annotationslist/index.js"
+    },
+    "./athena": {
+      "types": "./dist/athena/index.d.ts",
+      "default": "./dist/athena/index.js"
+    },
+    "./azuremonitor": {
+      "types": "./dist/azuremonitor/index.d.ts",
+      "default": "./dist/azuremonitor/index.js"
+    },
+    "./barchart": {
+      "types": "./dist/barchart/index.d.ts",
+      "default": "./dist/barchart/index.js"
+    },
+    "./bargauge": {
+      "types": "./dist/bargauge/index.d.ts",
+      "default": "./dist/bargauge/index.js"
+    },
+    "./bigquery": {
+      "types": "./dist/bigquery/index.d.ts",
+      "default": "./dist/bigquery/index.js"
+    },
+    "./candlestick": {
+      "types": "./dist/candlestick/index.d.ts",
+      "default": "./dist/candlestick/index.js"
+    },
+    "./canvas": {
+      "types": "./dist/canvas/index.d.ts",
+      "default": "./dist/canvas/index.js"
+    },
+    "./cloudwatch": {
+      "types": "./dist/cloudwatch/index.d.ts",
+      "default": "./dist/cloudwatch/index.js"
+    },
+    "./common": {
+      "types": "./dist/common/index.d.ts",
+      "default": "./dist/common/index.js"
+    },
+    "./dashboard": {
+      "types": "./dist/dashboard/index.d.ts",
+      "default": "./dist/dashboard/index.js"
+    },
+    "./dashboardlist": {
+      "types": "./dist/dashboardlist/index.d.ts",
+      "default": "./dist/dashboardlist/index.js"
+    },
+    "./datagrid": {
+      "types": "./dist/datagrid/index.d.ts",
+      "default": "./dist/datagrid/index.js"
+    },
+    "./datasource": {
+      "types": "./dist/datasource/index.d.ts",
+      "default": "./dist/datasource/index.js"
+    },
+    "./debug": {
+      "types": "./dist/debug/index.d.ts",
+      "default": "./dist/debug/index.js"
+    },
+    "./elasticsearch": {
+      "types": "./dist/elasticsearch/index.d.ts",
+      "default": "./dist/elasticsearch/index.js"
+    },
+    "./expr": {
+      "types": "./dist/expr/index.d.ts",
+      "default": "./dist/expr/index.js"
+    },
+    "./gauge": {
+      "types": "./dist/gauge/index.d.ts",
+      "default": "./dist/gauge/index.js"
+    },
+    "./geomap": {
+      "types": "./dist/geomap/index.d.ts",
+      "default": "./dist/geomap/index.js"
+    },
+    "./googlecloudmonitoring": {
+      "types": "./dist/googlecloudmonitoring/index.d.ts",
+      "default": "./dist/googlecloudmonitoring/index.js"
+    },
+    "./grafanapyroscope": {
+      "types": "./dist/grafanapyroscope/index.d.ts",
+      "default": "./dist/grafanapyroscope/index.js"
+    },
+    "./heatmap": {
+      "types": "./dist/heatmap/index.d.ts",
+      "default": "./dist/heatmap/index.js"
+    },
+    "./histogram": {
+      "types": "./dist/histogram/index.d.ts",
+      "default": "./dist/histogram/index.js"
+    },
+    "./librarypanel": {
+      "types": "./dist/librarypanel/index.d.ts",
+      "default": "./dist/librarypanel/index.js"
+    },
+    "./logs": {
+      "types": "./dist/logs/index.d.ts",
+      "default": "./dist/logs/index.js"
+    },
+    "./logsnew": {
+      "types": "./dist/logsnew/index.d.ts",
+      "default": "./dist/logsnew/index.js"
+    },
+    "./loki": {
+      "types": "./dist/loki/index.d.ts",
+      "default": "./dist/loki/index.js"
+    },
+    "./news": {
+      "types": "./dist/news/index.d.ts",
+      "default": "./dist/news/index.js"
+    },
+    "./nodegraph": {
+      "types": "./dist/nodegraph/index.d.ts",
+      "default": "./dist/nodegraph/index.js"
+    },
+    "./parca": {
+      "types": "./dist/parca/index.d.ts",
+      "default": "./dist/parca/index.js"
+    },
+    "./piechart": {
+      "types": "./dist/piechart/index.d.ts",
+      "default": "./dist/piechart/index.js"
+    },
+    "./preferences": {
+      "types": "./dist/preferences/index.d.ts",
+      "default": "./dist/preferences/index.js"
+    },
+    "./publicdashboard": {
+      "types": "./dist/publicdashboard/index.d.ts",
+      "default": "./dist/publicdashboard/index.js"
+    },
+    "./stat": {
+      "types": "./dist/stat/index.d.ts",
+      "default": "./dist/stat/index.js"
+    },
+    "./statetimeline": {
+      "types": "./dist/statetimeline/index.d.ts",
+      "default": "./dist/statetimeline/index.js"
+    },
+    "./statushistory": {
+      "types": "./dist/statushistory/index.d.ts",
+      "default": "./dist/statushistory/index.js"
+    },
+    "./table": {
+      "types": "./dist/table/index.d.ts",
+      "default": "./dist/table/index.js"
+    },
+    "./tempo": {
+      "types": "./dist/tempo/index.d.ts",
+      "default": "./dist/tempo/index.js"
+    },
+    "./text": {
+      "types": "./dist/text/index.d.ts",
+      "default": "./dist/text/index.js"
+    },
+    "./timeseries": {
+      "types": "./dist/timeseries/index.d.ts",
+      "default": "./dist/timeseries/index.js"
+    },
+    "./trend": {
+      "types": "./dist/trend/index.d.ts",
+      "default": "./dist/trend/index.js"
+    },
+    "./units": {
+      "types": "./dist/units/index.d.ts",
+      "default": "./dist/units/index.js"
+    },
+    "./xychart": {
+      "types": "./dist/xychart/index.d.ts",
+      "default": "./dist/xychart/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-transform-classes": "7.10.4",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-typescript": "^7.12.7",
+    "@grafana/tsconfig": "^1.3.0-rc1",
+    "babel-loader": "^8.2.2",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.6.2"
+  }
+}
