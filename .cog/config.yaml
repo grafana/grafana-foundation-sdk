@@ -159,10 +159,11 @@ output:
 
   languages:
     - go:
-        package_root: '%go_package_root%'
+        generate_json_marshaller: true
         generate_strict_unmarshaller: true
         generate_equal: true
         generate_validate: true
+        package_root: '%go_package_root%'
         extra_files_templates:
           - '%__config_dir%/templates/go/extra'
         overrides_templates:
@@ -170,12 +171,14 @@ output:
     - jsonschema: {}
     - openapi: {}
     - php:
+        generate_json_marshaller: true
         namespace_root: '%php_namespace_root%'
         extra_files_templates:
           - '%__config_dir%/templates/php/extra'
         overrides_templates:
           - '%__config_dir%/templates/php/overrides'
     - python:
+        generate_json_marshaller: true
         path_prefix: grafana_foundation_sdk
         extra_files_templates:
           - '%__config_dir%/templates/python/extra'
@@ -187,6 +190,7 @@ output:
         overrides_templates:
           - '%__config_dir%/templates/typescript/overrides'
     - java:
+        generate_json_marshaller: true
         package_path: '%java_package_path%'
         extra_files_templates:
           - '%__config_dir%/templates/java/extra'
