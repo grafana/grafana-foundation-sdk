@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "UpdateConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "render",
+        "dataChanged",
+        "schemaChanged"
+      ],
+      "properties": {
+        "render": {
+          "type": "boolean"
+        },
+        "dataChanged": {
+          "type": "boolean"
+        },
+        "schemaChanged": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DebugMode": {
+      "enum": [
+        "render",
+        "events",
+        "cursor",
+        "State",
+        "ThrowError"
+      ]
+    },
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/DebugMode"
+        },
+        "counters": {
+          "$ref": "#/definitions/UpdateConfig"
+        }
+      }
+    }
+  }
+}

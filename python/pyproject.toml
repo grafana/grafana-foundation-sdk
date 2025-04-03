@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "grafana_foundation_sdk"
+description = "A set of tools, types and libraries for building and manipulating Grafana objects."
+keywords = [
+    "observability",
+    "sdk",
+    "grafana",
+    "logs",
+    "traces",
+    "metrics"
+]
+version = "1743724444!11.5.0"
+dependencies = []
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: System :: Monitoring",
+]
+readme = "README.md"
+authors = [
+    { name = "Grafana Labs" },
+]
+
+[project.urls]
+Homepage = "https://github.com/grafana/grafana-foundation-sdk"
+Repository = "https://github.com/grafana/grafana-foundation-sdk.git"
+Issues = "https://github.com/grafana/grafana-foundation-sdk/issues"

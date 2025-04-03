@@ -1,0 +1,97 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "rolebinding",
+    "version": "0.0.0",
+    "x-schema-identifier": "RoleBinding",
+    "x-schema-kind": "core"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "RoleBinding": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "subject"
+        ],
+        "properties": {
+          "role": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BuiltinRoleRef"
+              },
+              {
+                "$ref": "#/components/schemas/CustomRoleRef"
+              }
+            ],
+            "description": "The role we are discussing"
+          },
+          "subject": {
+            "$ref": "#/components/schemas/RoleBindingSubject",
+            "description": "The team or user that has the specified role"
+          }
+        }
+      },
+      "BuiltinRoleRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "name"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "BuiltinRole"
+          },
+          "name": {
+            "enum": [
+              "viewer",
+              "editor",
+              "admin"
+            ]
+          }
+        }
+      },
+      "CustomRoleRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "name"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "Role"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "RoleBindingSubject": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "name"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "Team",
+              "User"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "The team/user identifier name"
+          }
+        }
+      }
+    }
+  }
+}

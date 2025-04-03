@@ -1,0 +1,23 @@
+---
+title: <span class="badge object-type-enum"></span> ExprTypeThresholdConditionsUnloadEvaluatorType
+---
+# <span class="badge object-type-enum"></span> ExprTypeThresholdConditionsUnloadEvaluatorType
+
+## Definition
+
+```go
+type ExprTypeThresholdConditionsUnloadEvaluatorType string
+const (
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeGt ExprTypeThresholdConditionsUnloadEvaluatorType = "gt"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeLt ExprTypeThresholdConditionsUnloadEvaluatorType = "lt"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeEq ExprTypeThresholdConditionsUnloadEvaluatorType = "eq"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeNe ExprTypeThresholdConditionsUnloadEvaluatorType = "ne"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeGte ExprTypeThresholdConditionsUnloadEvaluatorType = "gte"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeLte ExprTypeThresholdConditionsUnloadEvaluatorType = "lte"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeWithinRange ExprTypeThresholdConditionsUnloadEvaluatorType = "within_range"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeOutsideRange ExprTypeThresholdConditionsUnloadEvaluatorType = "outside_range"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeWithinRangeIncluded ExprTypeThresholdConditionsUnloadEvaluatorType = "within_range_included"
+	ExprTypeThresholdConditionsUnloadEvaluatorTypeOutsideRangeIncluded ExprTypeThresholdConditionsUnloadEvaluatorType = "outside_range_included"
+)
+
+```
