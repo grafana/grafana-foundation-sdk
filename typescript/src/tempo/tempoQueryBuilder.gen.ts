@@ -127,3 +127,4 @@ export class TempoQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 }
+

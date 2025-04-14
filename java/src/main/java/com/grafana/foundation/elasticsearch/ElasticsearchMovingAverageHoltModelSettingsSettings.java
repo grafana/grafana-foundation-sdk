@@ -17,7 +17,6 @@ public class ElasticsearchMovingAverageHoltModelSettingsSettings {
     public String beta;
     public ElasticsearchMovingAverageHoltModelSettingsSettings() {
     }
-    
     public ElasticsearchMovingAverageHoltModelSettingsSettings(String alpha,String beta) {
         this.alpha = alpha;
         this.beta = beta;

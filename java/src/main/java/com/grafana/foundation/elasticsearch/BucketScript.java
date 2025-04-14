@@ -11,7 +11,7 @@ import java.util.List;
 
 public class BucketScript {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("pipelineVariables")
     public List<PipelineVariable> pipelineVariables;
@@ -24,10 +24,10 @@ public class BucketScript {
     @JsonProperty("hide")
     public Boolean hide;
     public BucketScript() {
+        this.type = MetricAggregationType.BUCKET_SCRIPT;
     }
-    
-    public BucketScript(String type,List<PipelineVariable> pipelineVariables,String id,ElasticsearchBucketScriptSettings settings,Boolean hide) {
-        this.type = type;
+    public BucketScript(List<PipelineVariable> pipelineVariables,String id,ElasticsearchBucketScriptSettings settings,Boolean hide) {
+        this.type = MetricAggregationType.BUCKET_SCRIPT;
         this.pipelineVariables = pipelineVariables;
         this.id = id;
         this.settings = settings;

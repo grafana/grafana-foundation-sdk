@@ -8,7 +8,6 @@ public class MovingFunctionBuilder implements com.grafana.foundation.cog.Builder
     
     public MovingFunctionBuilder() {
         this.internal = new MovingFunction();
-        this.internal.type = "moving_fn";
     }
     public MovingFunctionBuilder pipelineAgg(String pipelineAgg) {
         this.internal.pipelineAgg = pipelineAgg;

@@ -33,3 +33,4 @@ export class TextDimensionConfigBuilder implements cog.Builder<common.TextDimens
         return this;
     }
 }
+

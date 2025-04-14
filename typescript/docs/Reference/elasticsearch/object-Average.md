@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> Average
 
 ```typescript
 export interface Average {
-	type: "avg";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -18,9 +18,6 @@ export interface Average {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [AverageBuilder](./builder-AverageBuilder.md)

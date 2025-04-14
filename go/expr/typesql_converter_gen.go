@@ -39,6 +39,18 @@ func TypeSqlConverter(input TypeSql) string {
 		buffer.Reset()
 
 	}
+	if input.Format != "" {
+
+		buffer.WriteString(`Format(`)
+		arg0 := fmt.Sprintf("%#v", input.Format)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Hide != nil {
 
 		buffer.WriteString(`Hide(`)

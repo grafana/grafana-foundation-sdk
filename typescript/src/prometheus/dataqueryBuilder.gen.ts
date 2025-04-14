@@ -112,3 +112,4 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 }
+

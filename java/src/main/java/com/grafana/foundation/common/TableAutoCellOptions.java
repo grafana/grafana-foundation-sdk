@@ -11,15 +11,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 // Auto mode table cell options
 public class TableAutoCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("wrapText")
     public Boolean wrapText;
     public TableAutoCellOptions() {
+        this.type = TableCellDisplayMode.AUTO;
     }
-    
-    public TableAutoCellOptions(String type,Boolean wrapText) {
-        this.type = type;
+    public TableAutoCellOptions(Boolean wrapText) {
+        this.type = TableCellDisplayMode.AUTO;
         this.wrapText = wrapText;
     }
     

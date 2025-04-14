@@ -22,3 +22,4 @@ export class BaseGrafanaTemplateVariableQueryBuilder implements cog.Builder<azur
         return this;
     }
 }
+

@@ -33,12 +33,14 @@ class RoleRefBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function name(string $name): static
     {
         $this->internal->name = $name;
     
         return $this;
     }
+
     public function xname(string $xname): static
     {
         $this->internal->xname = $xname;

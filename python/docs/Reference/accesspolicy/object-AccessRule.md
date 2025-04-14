@@ -11,7 +11,7 @@ class AccessRule:
     kind: str
     # READ, WRITE, CREATE, DELETE, ...
     # should move to k8s style verbs like: "get", "list", "watch", "create", "update", "patch", "delete"
-    verb: typing.Union[typing.Literal["*"]]
+    verb: typing.Union[typing.Literal["*"], typing.Literal["none"], str]
     # Specific sub-elements like "alert.rules" or "dashboard.permissions"????
     target: typing.Optional[str]
 ```

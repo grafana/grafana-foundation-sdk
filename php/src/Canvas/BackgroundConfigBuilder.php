@@ -33,6 +33,7 @@ class BackgroundConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ResourceDimensionConfig> $image
      */
@@ -43,6 +44,7 @@ class BackgroundConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function size(\Grafana\Foundation\Canvas\BackgroundImageSize $size): static
     {
         $this->internal->size = $size;

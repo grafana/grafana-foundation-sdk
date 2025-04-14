@@ -19,7 +19,6 @@ func NewQueryEditorOperatorExpressionBuilder() *QueryEditorOperatorExpressionBui
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "operator"
 
 	return builder
 }

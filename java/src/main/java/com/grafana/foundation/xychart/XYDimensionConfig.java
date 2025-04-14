@@ -21,7 +21,6 @@ public class XYDimensionConfig {
     public List<String> exclude;
     public XYDimensionConfig() {
     }
-    
     public XYDimensionConfig(Integer frame,String x,List<String> exclude) {
         this.frame = frame;
         this.x = x;

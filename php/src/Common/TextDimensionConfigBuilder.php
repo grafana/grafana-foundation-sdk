@@ -29,6 +29,7 @@ class TextDimensionConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * fixed: T -- will be added by each element
      */
@@ -38,6 +39,7 @@ class TextDimensionConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function fixed(string $fixed): static
     {
         $this->internal->fixed = $fixed;

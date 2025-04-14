@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> Average
 ```php
 class Average implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public ?string $field;
 

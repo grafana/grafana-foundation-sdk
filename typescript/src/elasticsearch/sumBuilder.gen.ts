@@ -8,7 +8,6 @@ export class SumBuilder implements cog.Builder<elasticsearch.Sum> {
 
     constructor() {
         this.internal = elasticsearch.defaultSum();
-        this.internal.type = "sum";
     }
 
     /**
@@ -41,3 +40,4 @@ export class SumBuilder implements cog.Builder<elasticsearch.Sum> {
         return this;
     }
 }
+

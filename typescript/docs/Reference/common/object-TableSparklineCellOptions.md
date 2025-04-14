@@ -9,7 +9,7 @@ Sparkline cell options
 
 ```typescript
 export interface TableSparklineCellOptions {
-	type: "sparkline";
+	type: common.TableCellDisplayMode.Sparkline;
 	drawStyle?: common.GraphDrawStyle;
 	gradientMode?: common.GraphGradientMode;
 	thresholdsStyle?: common.GraphThresholdsStyleConfig;
@@ -49,6 +49,3 @@ export interface TableSparklineCellOptions {
 }
 
 ```
-## Methods
-
-No methods.

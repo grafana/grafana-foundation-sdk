@@ -36,3 +36,4 @@ export class FieldColorBuilder implements cog.Builder<dashboard.FieldColor> {
         return this;
     }
 }
+

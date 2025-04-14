@@ -20,7 +20,6 @@ public class ElasticsearchExtendedStatsSettings {
     public String sigma;
     public ElasticsearchExtendedStatsSettings() {
     }
-    
     public ElasticsearchExtendedStatsSettings(InlineScript script,String missing,String sigma) {
         this.script = script;
         this.missing = missing;

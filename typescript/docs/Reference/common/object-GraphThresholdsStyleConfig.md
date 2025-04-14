@@ -13,9 +13,6 @@ export interface GraphThresholdsStyleConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [GraphThresholdsStyleConfigBuilder](./builder-GraphThresholdsStyleConfigBuilder.md)

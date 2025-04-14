@@ -22,7 +22,6 @@ public class MetricAggregationWithField {
     public Boolean hide;
     public MetricAggregationWithField() {
     }
-    
     public MetricAggregationWithField(String field,MetricAggregationType type,String id,Boolean hide) {
         this.field = field;
         this.type = type;

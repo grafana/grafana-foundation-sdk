@@ -8,7 +8,6 @@ public class RawDataBuilder implements com.grafana.foundation.cog.Builder<RawDat
     
     public RawDataBuilder() {
         this.internal = new RawData();
-        this.internal.type = "raw_data";
     }
     public RawDataBuilder id(String id) {
         this.internal.id = id;

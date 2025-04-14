@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Elasticsearch;
 
 class BucketScript implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     /**
      * @var array<\Grafana\Foundation\Elasticsearch\PipelineVariable>|null
@@ -25,8 +25,7 @@ class BucketScript implements \JsonSerializable
      */
     public function __construct(?array $pipelineVariables = null, ?string $id = null, ?\Grafana\Foundation\Elasticsearch\ElasticsearchBucketScriptSettings $settings = null, ?bool $hide = null)
     {
-        $this->type = "bucket_script";
-    
+        $this->type = \Grafana\Foundation\Elasticsearch\MetricAggregationType::count();
         $this->pipelineVariables = $pipelineVariables;
         $this->id = $id ?: "";
         $this->settings = $settings;
@@ -38,7 +37,7 @@ class BucketScript implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, pipelineVariables?: array<mixed>, id?: string, settings?: mixed, hide?: bool} $inputData */
+        /** @var array{type?: "bucket_script", pipelineVariables?: array<mixed>, id?: string, settings?: mixed, hide?: bool} $inputData */
         $data = $inputData;
         return new self(
             pipelineVariables: array_filter(array_map((function($input) {

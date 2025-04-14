@@ -11,12 +11,9 @@ For example, you can configure a value mapping so that all instances of the valu
 
 ```typescript
 export interface ValueMap {
-	type: "value";
+	type: dashboard.MappingType.ValueToText;
 	// Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
 	options: Record<string, dashboard.ValueMappingResult>;
 }
 
 ```
-## Methods
-
-No methods.

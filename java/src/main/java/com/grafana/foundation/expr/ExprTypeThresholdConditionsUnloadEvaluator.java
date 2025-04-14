@@ -21,7 +21,6 @@ public class ExprTypeThresholdConditionsUnloadEvaluator {
     public ExprTypeThresholdConditionsUnloadEvaluatorType type;
     public ExprTypeThresholdConditionsUnloadEvaluator() {
     }
-    
     public ExprTypeThresholdConditionsUnloadEvaluator(List<Double> params,ExprTypeThresholdConditionsUnloadEvaluatorType type) {
         this.params = params;
         this.type = type;

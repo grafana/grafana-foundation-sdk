@@ -18,9 +18,6 @@ export interface LogGroup {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [LogGroupBuilder](./builder-LogGroupBuilder.md)

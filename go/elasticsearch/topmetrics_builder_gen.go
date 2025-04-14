@@ -19,7 +19,6 @@ func NewTopMetricsBuilder() *TopMetricsBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "top_metrics"
 
 	return builder
 }

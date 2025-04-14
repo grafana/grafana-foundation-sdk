@@ -32,6 +32,12 @@ datasource(datasource: dashboard.DataSourceRef)
 expression(expression: string)
 ```
 
+### <span class="badge object-method"></span> format
+
+```typescript
+format(format: string)
+```
+
 ### <span class="badge object-method"></span> hide
 
 true if query is disabled (ie should not be returned to the dashboard)

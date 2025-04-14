@@ -32,6 +32,7 @@ class LogGroupBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of the log group
      */
@@ -41,6 +42,7 @@ class LogGroupBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * AccountId of the log group
      */
@@ -50,6 +52,7 @@ class LogGroupBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Label of the log group
      */

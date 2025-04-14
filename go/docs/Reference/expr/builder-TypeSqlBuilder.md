@@ -32,6 +32,12 @@ func (builder *TypeSqlBuilder) Datasource(datasource dashboard.DataSourceRef) *T
 func (builder *TypeSqlBuilder) Expression(expression string) *TypeSqlBuilder
 ```
 
+### <span class="badge object-method"></span> Format
+
+```go
+func (builder *TypeSqlBuilder) Format(format string) *TypeSqlBuilder
+```
+
 ### <span class="badge object-method"></span> Hide
 
 true if query is disabled (ie should not be returned to the dashboard)

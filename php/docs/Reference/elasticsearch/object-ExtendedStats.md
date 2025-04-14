@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> ExtendedStats
 ```php
 class ExtendedStats implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public ?\Grafana\Foundation\Elasticsearch\ElasticsearchExtendedStatsSettings $settings;
 

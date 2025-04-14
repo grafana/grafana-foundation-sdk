@@ -8,7 +8,6 @@ export class QueryEditorFunctionParameterExpressionBuilder implements cog.Builde
 
     constructor() {
         this.internal = cloudwatch.defaultQueryEditorFunctionParameterExpression();
-        this.internal.type = "functionParameter";
     }
 
     /**
@@ -23,3 +22,4 @@ export class QueryEditorFunctionParameterExpressionBuilder implements cog.Builde
         return this;
     }
 }
+

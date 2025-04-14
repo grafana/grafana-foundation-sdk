@@ -17,9 +17,6 @@ export interface AccessRule {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [AccessRuleBuilder](./builder-AccessRuleBuilder.md)

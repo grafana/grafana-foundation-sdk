@@ -118,7 +118,6 @@ public class Dashboard {
         this.fiscalYearStartMonth = 0;
         this.schemaVersion = 39;
     }
-    
     public Dashboard(Long id,String uid,String title,String description,Long revision,String gnetId,List<String> tags,String timezone,Boolean editable,DashboardCursorSync graphTooltip,DashboardDashboardTime time,TimePickerConfig timepicker,Integer fiscalYearStartMonth,Boolean liveNow,String weekStart,String refresh,Short schemaVersion,Integer version,List<PanelOrRowPanel> panels,DashboardDashboardTemplating templating,AnnotationContainer annotations,List<DashboardLink> links,Snapshot snapshot) {
         this.id = id;
         this.uid = uid;

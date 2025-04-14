@@ -9,7 +9,7 @@ title: <span class="badge object-type-class"></span> SerialDiff
 class SerialDiff:
     pipeline_agg: typing.Optional[str]
     field: typing.Optional[str]
-    type_val: typing.Literal["serial_diff"]
+    type_val: str
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchSerialDiffSettings]
     hide: typing.Optional[bool]

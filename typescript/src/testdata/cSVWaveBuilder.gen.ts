@@ -37,3 +37,4 @@ export class CSVWaveBuilder implements cog.Builder<testdata.CSVWave> {
         return this;
     }
 }
+

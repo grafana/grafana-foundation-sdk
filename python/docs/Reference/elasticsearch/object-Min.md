@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> Min
 
 ```python
 class Min:
-    type_val: typing.Literal["min"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchMinSettings]

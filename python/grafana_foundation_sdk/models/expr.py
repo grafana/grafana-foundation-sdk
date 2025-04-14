@@ -519,6 +519,7 @@ class TypeSql(cogvariants.Dataquery):
     # The datasource
     datasource: typing.Optional[dashboard.DataSourceRef]
     expression: str
+    format_val: str
     # true if query is disabled (ie should not be returned to the dashboard)
     # NOTE: this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -544,9 +545,10 @@ class TypeSql(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeSqlTimeRange']
     type_val: typing.Literal["sql"]
 
-    def __init__(self, datasource: typing.Optional[dashboard.DataSourceRef] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeSqlResultAssertions'] = None, time_range: typing.Optional['ExprTypeSqlTimeRange'] = None):
+    def __init__(self, datasource: typing.Optional[dashboard.DataSourceRef] = None, expression: str = "", format_val: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeSqlResultAssertions'] = None, time_range: typing.Optional['ExprTypeSqlTimeRange'] = None):
         self.datasource = datasource
         self.expression = expression
+        self.format_val = format_val
         self.hide = hide
         self.interval_ms = interval_ms
         self.max_data_points = max_data_points
@@ -559,6 +561,7 @@ class TypeSql(cogvariants.Dataquery):
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "expression": self.expression,
+            "format": self.format_val,
             "refId": self.ref_id,
             "type": self.type_val,
         }
@@ -586,6 +589,8 @@ class TypeSql(cogvariants.Dataquery):
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
         if "expression" in data:
             args["expression"] = data["expression"]
+        if "format" in data:
+            args["format_val"] = data["format"]
         if "hide" in data:
             args["hide"] = data["hide"]
         if "intervalMs" in data:

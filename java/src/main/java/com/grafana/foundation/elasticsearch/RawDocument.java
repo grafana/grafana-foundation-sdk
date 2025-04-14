@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class RawDocument {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonProperty("id")
     public String id;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -20,10 +20,10 @@ public class RawDocument {
     @JsonProperty("hide")
     public Boolean hide;
     public RawDocument() {
+        this.type = MetricAggregationType.RAW_DOCUMENT;
     }
-    
-    public RawDocument(String type,String id,ElasticsearchRawDocumentSettings settings,Boolean hide) {
-        this.type = type;
+    public RawDocument(String id,ElasticsearchRawDocumentSettings settings,Boolean hide) {
+        this.type = MetricAggregationType.RAW_DOCUMENT;
         this.id = id;
         this.settings = settings;
         this.hide = hide;

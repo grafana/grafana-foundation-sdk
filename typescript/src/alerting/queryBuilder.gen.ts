@@ -51,3 +51,4 @@ export class QueryBuilder implements cog.Builder<alerting.Query> {
         return this;
     }
 }
+

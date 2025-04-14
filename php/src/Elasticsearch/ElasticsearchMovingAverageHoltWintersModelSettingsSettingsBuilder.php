@@ -29,24 +29,28 @@ class ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder implemen
     
         return $this;
     }
+
     public function beta(string $beta): static
     {
         $this->internal->beta = $beta;
     
         return $this;
     }
+
     public function gamma(string $gamma): static
     {
         $this->internal->gamma = $gamma;
     
         return $this;
     }
+
     public function period(string $period): static
     {
         $this->internal->period = $period;
     
         return $this;
     }
+
     public function pad(bool $pad): static
     {
         $this->internal->pad = $pad;

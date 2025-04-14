@@ -17,7 +17,6 @@ public class DayOfMonthRange {
     public Integer end;
     public DayOfMonthRange() {
     }
-    
     public DayOfMonthRange(Integer begin,Integer end) {
         this.begin = begin;
         this.end = end;

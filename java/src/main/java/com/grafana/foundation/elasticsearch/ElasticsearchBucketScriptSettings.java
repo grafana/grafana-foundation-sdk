@@ -14,7 +14,6 @@ public class ElasticsearchBucketScriptSettings {
     public InlineScript script;
     public ElasticsearchBucketScriptSettings() {
     }
-    
     public ElasticsearchBucketScriptSettings(InlineScript script) {
         this.script = script;
     }

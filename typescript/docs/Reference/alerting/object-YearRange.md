@@ -12,9 +12,6 @@ export interface YearRange {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [YearRangeBuilder](./builder-YearRangeBuilder.md)

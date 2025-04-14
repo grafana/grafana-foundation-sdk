@@ -8,7 +8,6 @@ export class MovingAverageSimpleModelSettingsBuilder implements cog.Builder<elas
 
     constructor() {
         this.internal = elasticsearch.defaultMovingAverageSimpleModelSettings();
-        this.internal.model = "simple";
     }
 
     /**
@@ -28,3 +27,4 @@ export class MovingAverageSimpleModelSettingsBuilder implements cog.Builder<elas
         return this;
     }
 }
+

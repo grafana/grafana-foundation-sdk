@@ -47,3 +47,4 @@ export class LineConfigBuilder implements cog.Builder<common.LineConfig> {
         return this;
     }
 }
+

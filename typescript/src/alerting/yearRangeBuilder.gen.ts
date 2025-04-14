@@ -27,3 +27,4 @@ export class YearRangeBuilder implements cog.Builder<alerting.YearRange> {
         return this;
     }
 }
+

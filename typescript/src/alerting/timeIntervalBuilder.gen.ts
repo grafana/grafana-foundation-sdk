@@ -52,3 +52,4 @@ export class TimeIntervalBuilder implements cog.Builder<alerting.TimeInterval> {
         return this;
     }
 }
+

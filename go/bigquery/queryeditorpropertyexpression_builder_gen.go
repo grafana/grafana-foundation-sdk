@@ -19,7 +19,6 @@ func NewQueryEditorPropertyExpressionBuilder() *QueryEditorPropertyExpressionBui
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "property"
 
 	return builder
 }

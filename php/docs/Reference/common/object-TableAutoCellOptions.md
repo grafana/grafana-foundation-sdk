@@ -10,7 +10,7 @@ Auto mode table cell options
 ```php
 class TableAutoCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
     public ?bool $wrapText;
 

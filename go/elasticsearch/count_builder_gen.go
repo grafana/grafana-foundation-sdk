@@ -19,7 +19,6 @@ func NewCountBuilder() *CountBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "count"
 
 	return builder
 }

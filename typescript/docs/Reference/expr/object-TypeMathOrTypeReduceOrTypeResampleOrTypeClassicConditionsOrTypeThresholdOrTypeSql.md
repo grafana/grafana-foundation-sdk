@@ -16,6 +16,3 @@ export interface TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrType
 }
 
 ```
-## Methods
-
-No methods.

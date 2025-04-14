@@ -43,7 +43,6 @@ public class Options {
         this.navigateBefore = "10m";
         this.navigateAfter = "10m";
     }
-    
     public Options(Boolean onlyFromThisDashboard,Boolean onlyInTimeRange,List<String> tags,Integer limit,Boolean showUser,Boolean showTime,Boolean showTags,Boolean navigateToPanel,String navigateBefore,String navigateAfter) {
         this.onlyFromThisDashboard = onlyFromThisDashboard;
         this.onlyInTimeRange = onlyInTimeRange;

@@ -23,7 +23,6 @@ public class SimulationQuery {
     public Boolean stream;
     public SimulationQuery() {
     }
-    
     public SimulationQuery(Object config,Key key,Boolean last,Boolean stream) {
         this.config = config;
         this.key = key;

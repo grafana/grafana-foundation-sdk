@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> UniqueCount
 
 ```typescript
 export interface UniqueCount {
-	type: "cardinality";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -18,9 +18,6 @@ export interface UniqueCount {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [UniqueCountBuilder](./builder-UniqueCountBuilder.md)

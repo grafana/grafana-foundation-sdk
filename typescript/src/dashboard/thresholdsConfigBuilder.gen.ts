@@ -30,3 +30,4 @@ export class ThresholdsConfigBuilder implements cog.Builder<dashboard.Thresholds
         return this;
     }
 }
+
