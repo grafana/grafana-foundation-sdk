@@ -65,6 +65,13 @@
           "greedy"
         ]
       },
+      "LayoutAlgorithm": {
+        "enum": [
+          "layered",
+          "force",
+          "grid"
+        ]
+      },
       "Options": {
         "type": "object",
         "additionalProperties": false,
@@ -78,6 +85,10 @@
           "zoomMode": {
             "$ref": "#/components/schemas/ZoomMode",
             "description": "How to handle zoom/scroll events in the node graph"
+          },
+          "layoutAlgorithm": {
+            "$ref": "#/components/schemas/LayoutAlgorithm",
+            "description": "How to layout the nodes in the node graph"
           }
         }
       }

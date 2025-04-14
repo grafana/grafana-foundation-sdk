@@ -17,7 +17,6 @@ public class Options {
     public UpdateConfig counters;
     public Options() {
     }
-    
     public Options(DebugMode mode,UpdateConfig counters) {
         this.mode = mode;
         this.counters = counters;

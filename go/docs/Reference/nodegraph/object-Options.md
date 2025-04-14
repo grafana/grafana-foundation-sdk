@@ -11,6 +11,8 @@ type Options struct {
     Edges *nodegraph.EdgeOptions `json:"edges,omitempty"`
     // How to handle zoom/scroll events in the node graph
     ZoomMode *nodegraph.ZoomMode `json:"zoomMode,omitempty"`
+    // How to layout the nodes in the node graph
+    LayoutAlgorithm *nodegraph.LayoutAlgorithm `json:"layoutAlgorithm,omitempty"`
 }
 ```
 ## Methods

@@ -23,7 +23,6 @@ public class NotificationTemplate {
     public String version;
     public NotificationTemplate() {
     }
-    
     public NotificationTemplate(String name,String provenance,String template,String version) {
         this.name = name;
         this.provenance = provenance;

@@ -29,12 +29,14 @@ class MatcherBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function type(\Grafana\Foundation\Alerting\MatchType $type): static
     {
         $this->internal->type = $type;
     
         return $this;
     }
+
     public function value(string $value): static
     {
         $this->internal->value = $value;

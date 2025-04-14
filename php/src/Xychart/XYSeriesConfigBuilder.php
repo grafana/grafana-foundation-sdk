@@ -33,6 +33,7 @@ class XYSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XychartXYSeriesConfigFrame> $frame
      */
@@ -43,6 +44,7 @@ class XYSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XychartXYSeriesConfigX> $x
      */
@@ -53,6 +55,7 @@ class XYSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XychartXYSeriesConfigY> $y
      */
@@ -63,6 +66,7 @@ class XYSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XychartXYSeriesConfigColor> $color
      */
@@ -73,6 +77,7 @@ class XYSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XychartXYSeriesConfigSize> $size
      */

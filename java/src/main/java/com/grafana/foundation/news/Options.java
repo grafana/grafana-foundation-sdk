@@ -19,7 +19,6 @@ public class Options {
     public Options() {
         this.showImage = true;
     }
-    
     public Options(String feedUrl,Boolean showImage) {
         this.feedUrl = feedUrl;
         this.showImage = showImage;

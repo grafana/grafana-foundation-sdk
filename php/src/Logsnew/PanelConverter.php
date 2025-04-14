@@ -512,6 +512,19 @@ final class PanelConverter
             if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logsnew\Options) {
     
         
+    $buffer = 'showControls(';
+        $arg0 =\var_export($input->options->showControls, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logsnew\Options) {
+    
+        
     $buffer = 'showTime(';
         $arg0 =\var_export($input->options->showTime, true);
         $buffer .= $arg0;
@@ -551,6 +564,19 @@ final class PanelConverter
             if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logsnew\Options) {
     
         
+    $buffer = 'syntaxHighlighting(';
+        $arg0 =\var_export($input->options->syntaxHighlighting, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logsnew\Options) {
+    
+        
     $buffer = 'sortOrder(';
         $arg0 ='\Grafana\Foundation\Common\LogsSortOrder::fromValue("'.$input->options->sortOrder.'")';
         $buffer .= $arg0;
@@ -574,11 +600,37 @@ final class PanelConverter
     
     
     }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logsnew\Options && $input->options->grammar !== null) {
+    
+        
+    $buffer = 'grammar(';
+        $arg0 =\var_export($input->options->grammar, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logsnew\Options && $input->options->enableInfiniteScrolling !== null) {
     
         
     $buffer = 'enableInfiniteScrolling(';
         $arg0 =\var_export($input->options->enableInfiniteScrolling, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logsnew\Options && $input->options->onLogOptionsChange !== null) {
+    
+        
+    $buffer = 'onLogOptionsChange(';
+        $arg0 =\var_export($input->options->onLogOptionsChange, true);
         $buffer .= $arg0;
         
     $buffer .= ')';

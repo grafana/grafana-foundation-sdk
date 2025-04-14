@@ -1282,6 +1282,10 @@ type AzureLogsQuery struct {
 	BasicLogsQuery *bool `json:"basicLogsQuery,omitempty"`
 	// Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
 	Workspace *string `json:"workspace,omitempty"`
+	// Denotes if logs query editor is in builder mode
+	Mode *LogsEditorMode `json:"mode,omitempty"`
+	// Builder query to be executed.
+	BuilderQuery *BuilderQueryExpression `json:"builderQuery,omitempty"`
 	// @deprecated Use resources instead
 	Resource *string `json:"resource,omitempty"`
 	// @deprecated Use dashboardTime instead
@@ -1381,6 +1385,30 @@ func (resource *AzureLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "workspace")
+
+	}
+	// Field "mode"
+	if fields["mode"] != nil {
+		if string(fields["mode"]) != "null" {
+			if err := json.Unmarshal(fields["mode"], &resource.Mode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("mode", err)...)
+			}
+
+		}
+		delete(fields, "mode")
+
+	}
+	// Field "builderQuery"
+	if fields["builderQuery"] != nil {
+		if string(fields["builderQuery"]) != "null" {
+
+			resource.BuilderQuery = &BuilderQueryExpression{}
+			if err := resource.BuilderQuery.UnmarshalJSONStrict(fields["builderQuery"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("builderQuery", err)...)
+			}
+
+		}
+		delete(fields, "builderQuery")
 
 	}
 	// Field "resource"
@@ -1483,6 +1511,24 @@ func (resource AzureLogsQuery) Equals(other AzureLogsQuery) bool {
 			return false
 		}
 	}
+	if resource.Mode == nil && other.Mode != nil || resource.Mode != nil && other.Mode == nil {
+		return false
+	}
+
+	if resource.Mode != nil {
+		if *resource.Mode != *other.Mode {
+			return false
+		}
+	}
+	if resource.BuilderQuery == nil && other.BuilderQuery != nil || resource.BuilderQuery != nil && other.BuilderQuery == nil {
+		return false
+	}
+
+	if resource.BuilderQuery != nil {
+		if !resource.BuilderQuery.Equals(*other.BuilderQuery) {
+			return false
+		}
+	}
 	if resource.Resource == nil && other.Resource != nil || resource.Resource != nil && other.Resource == nil {
 		return false
 	}
@@ -1507,7 +1553,18 @@ func (resource AzureLogsQuery) Equals(other AzureLogsQuery) bool {
 
 // Validate checks all the validation constraints that may be defined on `AzureLogsQuery` fields for violations and returns them.
 func (resource AzureLogsQuery) Validate() error {
-	return nil
+	var errs cog.BuildErrors
+	if resource.BuilderQuery != nil {
+		if err := resource.BuilderQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("builderQuery", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 type ResultFormat string
@@ -1517,6 +1574,1880 @@ const (
 	ResultFormatTimeSeries ResultFormat = "time_series"
 	ResultFormatTrace      ResultFormat = "trace"
 	ResultFormatLogs       ResultFormat = "logs"
+)
+
+type LogsEditorMode string
+
+const (
+	LogsEditorModeBuilder LogsEditorMode = "builder"
+	LogsEditorModeRaw     LogsEditorMode = "raw"
+)
+
+type BuilderQueryExpression struct {
+	From        *BuilderQueryEditorPropertyExpression     `json:"from,omitempty"`
+	Columns     *BuilderQueryEditorColumnsExpression      `json:"columns,omitempty"`
+	Where       *BuilderQueryEditorWhereExpressionArray   `json:"where,omitempty"`
+	Reduce      *BuilderQueryEditorReduceExpressionArray  `json:"reduce,omitempty"`
+	GroupBy     *BuilderQueryEditorGroupByExpressionArray `json:"groupBy,omitempty"`
+	Limit       *int64                                    `json:"limit,omitempty"`
+	OrderBy     *BuilderQueryEditorOrderByExpressionArray `json:"orderBy,omitempty"`
+	FuzzySearch *BuilderQueryEditorWhereExpressionArray   `json:"fuzzySearch,omitempty"`
+	TimeFilter  *BuilderQueryEditorWhereExpressionArray   `json:"timeFilter,omitempty"`
+}
+
+// NewBuilderQueryExpression creates a new BuilderQueryExpression object.
+func NewBuilderQueryExpression() *BuilderQueryExpression {
+	return &BuilderQueryExpression{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryExpression) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "from"
+	if fields["from"] != nil {
+		if string(fields["from"]) != "null" {
+
+			resource.From = &BuilderQueryEditorPropertyExpression{}
+			if err := resource.From.UnmarshalJSONStrict(fields["from"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("from", err)...)
+			}
+
+		}
+		delete(fields, "from")
+
+	}
+	// Field "columns"
+	if fields["columns"] != nil {
+		if string(fields["columns"]) != "null" {
+
+			resource.Columns = &BuilderQueryEditorColumnsExpression{}
+			if err := resource.Columns.UnmarshalJSONStrict(fields["columns"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("columns", err)...)
+			}
+
+		}
+		delete(fields, "columns")
+
+	}
+	// Field "where"
+	if fields["where"] != nil {
+		if string(fields["where"]) != "null" {
+
+			resource.Where = &BuilderQueryEditorWhereExpressionArray{}
+			if err := resource.Where.UnmarshalJSONStrict(fields["where"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("where", err)...)
+			}
+
+		}
+		delete(fields, "where")
+
+	}
+	// Field "reduce"
+	if fields["reduce"] != nil {
+		if string(fields["reduce"]) != "null" {
+
+			resource.Reduce = &BuilderQueryEditorReduceExpressionArray{}
+			if err := resource.Reduce.UnmarshalJSONStrict(fields["reduce"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("reduce", err)...)
+			}
+
+		}
+		delete(fields, "reduce")
+
+	}
+	// Field "groupBy"
+	if fields["groupBy"] != nil {
+		if string(fields["groupBy"]) != "null" {
+
+			resource.GroupBy = &BuilderQueryEditorGroupByExpressionArray{}
+			if err := resource.GroupBy.UnmarshalJSONStrict(fields["groupBy"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("groupBy", err)...)
+			}
+
+		}
+		delete(fields, "groupBy")
+
+	}
+	// Field "limit"
+	if fields["limit"] != nil {
+		if string(fields["limit"]) != "null" {
+			if err := json.Unmarshal(fields["limit"], &resource.Limit); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("limit", err)...)
+			}
+
+		}
+		delete(fields, "limit")
+
+	}
+	// Field "orderBy"
+	if fields["orderBy"] != nil {
+		if string(fields["orderBy"]) != "null" {
+
+			resource.OrderBy = &BuilderQueryEditorOrderByExpressionArray{}
+			if err := resource.OrderBy.UnmarshalJSONStrict(fields["orderBy"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("orderBy", err)...)
+			}
+
+		}
+		delete(fields, "orderBy")
+
+	}
+	// Field "fuzzySearch"
+	if fields["fuzzySearch"] != nil {
+		if string(fields["fuzzySearch"]) != "null" {
+
+			resource.FuzzySearch = &BuilderQueryEditorWhereExpressionArray{}
+			if err := resource.FuzzySearch.UnmarshalJSONStrict(fields["fuzzySearch"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fuzzySearch", err)...)
+			}
+
+		}
+		delete(fields, "fuzzySearch")
+
+	}
+	// Field "timeFilter"
+	if fields["timeFilter"] != nil {
+		if string(fields["timeFilter"]) != "null" {
+
+			resource.TimeFilter = &BuilderQueryEditorWhereExpressionArray{}
+			if err := resource.TimeFilter.UnmarshalJSONStrict(fields["timeFilter"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeFilter", err)...)
+			}
+
+		}
+		delete(fields, "timeFilter")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryExpression", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryExpression` objects.
+func (resource BuilderQueryExpression) Equals(other BuilderQueryExpression) bool {
+	if resource.From == nil && other.From != nil || resource.From != nil && other.From == nil {
+		return false
+	}
+
+	if resource.From != nil {
+		if !resource.From.Equals(*other.From) {
+			return false
+		}
+	}
+	if resource.Columns == nil && other.Columns != nil || resource.Columns != nil && other.Columns == nil {
+		return false
+	}
+
+	if resource.Columns != nil {
+		if !resource.Columns.Equals(*other.Columns) {
+			return false
+		}
+	}
+	if resource.Where == nil && other.Where != nil || resource.Where != nil && other.Where == nil {
+		return false
+	}
+
+	if resource.Where != nil {
+		if !resource.Where.Equals(*other.Where) {
+			return false
+		}
+	}
+	if resource.Reduce == nil && other.Reduce != nil || resource.Reduce != nil && other.Reduce == nil {
+		return false
+	}
+
+	if resource.Reduce != nil {
+		if !resource.Reduce.Equals(*other.Reduce) {
+			return false
+		}
+	}
+	if resource.GroupBy == nil && other.GroupBy != nil || resource.GroupBy != nil && other.GroupBy == nil {
+		return false
+	}
+
+	if resource.GroupBy != nil {
+		if !resource.GroupBy.Equals(*other.GroupBy) {
+			return false
+		}
+	}
+	if resource.Limit == nil && other.Limit != nil || resource.Limit != nil && other.Limit == nil {
+		return false
+	}
+
+	if resource.Limit != nil {
+		if *resource.Limit != *other.Limit {
+			return false
+		}
+	}
+	if resource.OrderBy == nil && other.OrderBy != nil || resource.OrderBy != nil && other.OrderBy == nil {
+		return false
+	}
+
+	if resource.OrderBy != nil {
+		if !resource.OrderBy.Equals(*other.OrderBy) {
+			return false
+		}
+	}
+	if resource.FuzzySearch == nil && other.FuzzySearch != nil || resource.FuzzySearch != nil && other.FuzzySearch == nil {
+		return false
+	}
+
+	if resource.FuzzySearch != nil {
+		if !resource.FuzzySearch.Equals(*other.FuzzySearch) {
+			return false
+		}
+	}
+	if resource.TimeFilter == nil && other.TimeFilter != nil || resource.TimeFilter != nil && other.TimeFilter == nil {
+		return false
+	}
+
+	if resource.TimeFilter != nil {
+		if !resource.TimeFilter.Equals(*other.TimeFilter) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryExpression` fields for violations and returns them.
+func (resource BuilderQueryExpression) Validate() error {
+	var errs cog.BuildErrors
+	if resource.From != nil {
+		if err := resource.From.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("from", err)...)
+		}
+	}
+	if resource.Columns != nil {
+		if err := resource.Columns.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("columns", err)...)
+		}
+	}
+	if resource.Where != nil {
+		if err := resource.Where.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("where", err)...)
+		}
+	}
+	if resource.Reduce != nil {
+		if err := resource.Reduce.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("reduce", err)...)
+		}
+	}
+	if resource.GroupBy != nil {
+		if err := resource.GroupBy.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("groupBy", err)...)
+		}
+	}
+	if resource.OrderBy != nil {
+		if err := resource.OrderBy.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("orderBy", err)...)
+		}
+	}
+	if resource.FuzzySearch != nil {
+		if err := resource.FuzzySearch.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("fuzzySearch", err)...)
+		}
+	}
+	if resource.TimeFilter != nil {
+		if err := resource.TimeFilter.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("timeFilter", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BuilderQueryEditorPropertyExpression struct {
+	Property BuilderQueryEditorProperty       `json:"property"`
+	Type     BuilderQueryEditorExpressionType `json:"type"`
+}
+
+// NewBuilderQueryEditorPropertyExpression creates a new BuilderQueryEditorPropertyExpression object.
+func NewBuilderQueryEditorPropertyExpression() *BuilderQueryEditorPropertyExpression {
+	return &BuilderQueryEditorPropertyExpression{
+		Property: *NewBuilderQueryEditorProperty(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorPropertyExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorPropertyExpression) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "property"
+	if fields["property"] != nil {
+		if string(fields["property"]) != "null" {
+
+			resource.Property = BuilderQueryEditorProperty{}
+			if err := resource.Property.UnmarshalJSONStrict(fields["property"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("property", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("property", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "property")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("property", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorPropertyExpression", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorPropertyExpression` objects.
+func (resource BuilderQueryEditorPropertyExpression) Equals(other BuilderQueryEditorPropertyExpression) bool {
+	if !resource.Property.Equals(other.Property) {
+		return false
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorPropertyExpression` fields for violations and returns them.
+func (resource BuilderQueryEditorPropertyExpression) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Property.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("property", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BuilderQueryEditorProperty struct {
+	Type BuilderQueryEditorPropertyType `json:"type"`
+	Name string                         `json:"name"`
+}
+
+// NewBuilderQueryEditorProperty creates a new BuilderQueryEditorProperty object.
+func NewBuilderQueryEditorProperty() *BuilderQueryEditorProperty {
+	return &BuilderQueryEditorProperty{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorProperty` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorProperty) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "name")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorProperty", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorProperty` objects.
+func (resource BuilderQueryEditorProperty) Equals(other BuilderQueryEditorProperty) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorProperty` fields for violations and returns them.
+func (resource BuilderQueryEditorProperty) Validate() error {
+	return nil
+}
+
+type BuilderQueryEditorPropertyType string
+
+const (
+	BuilderQueryEditorPropertyTypeNumber   BuilderQueryEditorPropertyType = "number"
+	BuilderQueryEditorPropertyTypeString   BuilderQueryEditorPropertyType = "string"
+	BuilderQueryEditorPropertyTypeBoolean  BuilderQueryEditorPropertyType = "boolean"
+	BuilderQueryEditorPropertyTypeDatetime BuilderQueryEditorPropertyType = "datetime"
+	BuilderQueryEditorPropertyTypeTimeSpan BuilderQueryEditorPropertyType = "time_span"
+	BuilderQueryEditorPropertyTypeFunction BuilderQueryEditorPropertyType = "function"
+	BuilderQueryEditorPropertyTypeInterval BuilderQueryEditorPropertyType = "interval"
+)
+
+type BuilderQueryEditorExpressionType string
+
+const (
+	BuilderQueryEditorExpressionTypeProperty          BuilderQueryEditorExpressionType = "property"
+	BuilderQueryEditorExpressionTypeOperator          BuilderQueryEditorExpressionType = "operator"
+	BuilderQueryEditorExpressionTypeReduce            BuilderQueryEditorExpressionType = "reduce"
+	BuilderQueryEditorExpressionTypeFunctionParameter BuilderQueryEditorExpressionType = "function_parameter"
+	BuilderQueryEditorExpressionTypeGroupBy           BuilderQueryEditorExpressionType = "group_by"
+	BuilderQueryEditorExpressionTypeOr                BuilderQueryEditorExpressionType = "or"
+	BuilderQueryEditorExpressionTypeAnd               BuilderQueryEditorExpressionType = "and"
+	BuilderQueryEditorExpressionTypeOrderBy           BuilderQueryEditorExpressionType = "order_by"
+)
+
+type BuilderQueryEditorColumnsExpression struct {
+	Columns []string                         `json:"columns,omitempty"`
+	Type    BuilderQueryEditorExpressionType `json:"type"`
+}
+
+// NewBuilderQueryEditorColumnsExpression creates a new BuilderQueryEditorColumnsExpression object.
+func NewBuilderQueryEditorColumnsExpression() *BuilderQueryEditorColumnsExpression {
+	return &BuilderQueryEditorColumnsExpression{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorColumnsExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorColumnsExpression) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "columns"
+	if fields["columns"] != nil {
+		if string(fields["columns"]) != "null" {
+
+			if err := json.Unmarshal(fields["columns"], &resource.Columns); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("columns", err)...)
+			}
+
+		}
+		delete(fields, "columns")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorColumnsExpression", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorColumnsExpression` objects.
+func (resource BuilderQueryEditorColumnsExpression) Equals(other BuilderQueryEditorColumnsExpression) bool {
+
+	if len(resource.Columns) != len(other.Columns) {
+		return false
+	}
+
+	for i1 := range resource.Columns {
+		if resource.Columns[i1] != other.Columns[i1] {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorColumnsExpression` fields for violations and returns them.
+func (resource BuilderQueryEditorColumnsExpression) Validate() error {
+	return nil
+}
+
+type BuilderQueryEditorWhereExpressionArray struct {
+	Expressions []BuilderQueryEditorWhereExpression `json:"expressions"`
+	Type        BuilderQueryEditorExpressionType    `json:"type"`
+}
+
+// NewBuilderQueryEditorWhereExpressionArray creates a new BuilderQueryEditorWhereExpressionArray object.
+func NewBuilderQueryEditorWhereExpressionArray() *BuilderQueryEditorWhereExpressionArray {
+	return &BuilderQueryEditorWhereExpressionArray{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorWhereExpressionArray` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorWhereExpressionArray) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "expressions"
+	if fields["expressions"] != nil {
+		if string(fields["expressions"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["expressions"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 BuilderQueryEditorWhereExpression
+
+				result1 = BuilderQueryEditorWhereExpression{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Expressions = append(resource.Expressions, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expressions")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorWhereExpressionArray", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorWhereExpressionArray` objects.
+func (resource BuilderQueryEditorWhereExpressionArray) Equals(other BuilderQueryEditorWhereExpressionArray) bool {
+
+	if len(resource.Expressions) != len(other.Expressions) {
+		return false
+	}
+
+	for i1 := range resource.Expressions {
+		if !resource.Expressions[i1].Equals(other.Expressions[i1]) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorWhereExpressionArray` fields for violations and returns them.
+func (resource BuilderQueryEditorWhereExpressionArray) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Expressions {
+		if err := resource.Expressions[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BuilderQueryEditorWhereExpression struct {
+	Type        BuilderQueryEditorExpressionType         `json:"type"`
+	Expressions []BuilderQueryEditorWhereExpressionItems `json:"expressions"`
+}
+
+// NewBuilderQueryEditorWhereExpression creates a new BuilderQueryEditorWhereExpression object.
+func NewBuilderQueryEditorWhereExpression() *BuilderQueryEditorWhereExpression {
+	return &BuilderQueryEditorWhereExpression{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorWhereExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorWhereExpression) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "expressions"
+	if fields["expressions"] != nil {
+		if string(fields["expressions"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["expressions"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 BuilderQueryEditorWhereExpressionItems
+
+				result1 = BuilderQueryEditorWhereExpressionItems{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Expressions = append(resource.Expressions, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expressions")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorWhereExpression", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorWhereExpression` objects.
+func (resource BuilderQueryEditorWhereExpression) Equals(other BuilderQueryEditorWhereExpression) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+
+	if len(resource.Expressions) != len(other.Expressions) {
+		return false
+	}
+
+	for i1 := range resource.Expressions {
+		if !resource.Expressions[i1].Equals(other.Expressions[i1]) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorWhereExpression` fields for violations and returns them.
+func (resource BuilderQueryEditorWhereExpression) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Expressions {
+		if err := resource.Expressions[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BuilderQueryEditorWhereExpressionItems struct {
+	Property BuilderQueryEditorProperty       `json:"property"`
+	Operator BuilderQueryEditorOperator       `json:"operator"`
+	Type     BuilderQueryEditorExpressionType `json:"type"`
+}
+
+// NewBuilderQueryEditorWhereExpressionItems creates a new BuilderQueryEditorWhereExpressionItems object.
+func NewBuilderQueryEditorWhereExpressionItems() *BuilderQueryEditorWhereExpressionItems {
+	return &BuilderQueryEditorWhereExpressionItems{
+		Property: *NewBuilderQueryEditorProperty(),
+		Operator: *NewBuilderQueryEditorOperator(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorWhereExpressionItems` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorWhereExpressionItems) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "property"
+	if fields["property"] != nil {
+		if string(fields["property"]) != "null" {
+
+			resource.Property = BuilderQueryEditorProperty{}
+			if err := resource.Property.UnmarshalJSONStrict(fields["property"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("property", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("property", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "property")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("property", errors.New("required field is missing from input"))...)
+	}
+	// Field "operator"
+	if fields["operator"] != nil {
+		if string(fields["operator"]) != "null" {
+
+			resource.Operator = BuilderQueryEditorOperator{}
+			if err := resource.Operator.UnmarshalJSONStrict(fields["operator"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("operator", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("operator", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "operator")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("operator", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorWhereExpressionItems", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorWhereExpressionItems` objects.
+func (resource BuilderQueryEditorWhereExpressionItems) Equals(other BuilderQueryEditorWhereExpressionItems) bool {
+	if !resource.Property.Equals(other.Property) {
+		return false
+	}
+	if !resource.Operator.Equals(other.Operator) {
+		return false
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorWhereExpressionItems` fields for violations and returns them.
+func (resource BuilderQueryEditorWhereExpressionItems) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Property.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("property", err)...)
+	}
+	if err := resource.Operator.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("operator", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BuilderQueryEditorOperator struct {
+	Name       string  `json:"name"`
+	Value      string  `json:"value"`
+	LabelValue *string `json:"labelValue,omitempty"`
+}
+
+// NewBuilderQueryEditorOperator creates a new BuilderQueryEditorOperator object.
+func NewBuilderQueryEditorOperator() *BuilderQueryEditorOperator {
+	return &BuilderQueryEditorOperator{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorOperator` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorOperator) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "name")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
+	}
+	// Field "value"
+	if fields["value"] != nil {
+		if string(fields["value"]) != "null" {
+			if err := json.Unmarshal(fields["value"], &resource.Value); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("value", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "value")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is missing from input"))...)
+	}
+	// Field "labelValue"
+	if fields["labelValue"] != nil {
+		if string(fields["labelValue"]) != "null" {
+			if err := json.Unmarshal(fields["labelValue"], &resource.LabelValue); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("labelValue", err)...)
+			}
+
+		}
+		delete(fields, "labelValue")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorOperator", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorOperator` objects.
+func (resource BuilderQueryEditorOperator) Equals(other BuilderQueryEditorOperator) bool {
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.Value != other.Value {
+		return false
+	}
+	if resource.LabelValue == nil && other.LabelValue != nil || resource.LabelValue != nil && other.LabelValue == nil {
+		return false
+	}
+
+	if resource.LabelValue != nil {
+		if *resource.LabelValue != *other.LabelValue {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorOperator` fields for violations and returns them.
+func (resource BuilderQueryEditorOperator) Validate() error {
+	return nil
+}
+
+type BuilderQueryEditorReduceExpressionArray struct {
+	Expressions []BuilderQueryEditorReduceExpression `json:"expressions"`
+	Type        BuilderQueryEditorExpressionType     `json:"type"`
+}
+
+// NewBuilderQueryEditorReduceExpressionArray creates a new BuilderQueryEditorReduceExpressionArray object.
+func NewBuilderQueryEditorReduceExpressionArray() *BuilderQueryEditorReduceExpressionArray {
+	return &BuilderQueryEditorReduceExpressionArray{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorReduceExpressionArray` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorReduceExpressionArray) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "expressions"
+	if fields["expressions"] != nil {
+		if string(fields["expressions"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["expressions"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 BuilderQueryEditorReduceExpression
+
+				result1 = BuilderQueryEditorReduceExpression{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Expressions = append(resource.Expressions, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expressions")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorReduceExpressionArray", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorReduceExpressionArray` objects.
+func (resource BuilderQueryEditorReduceExpressionArray) Equals(other BuilderQueryEditorReduceExpressionArray) bool {
+
+	if len(resource.Expressions) != len(other.Expressions) {
+		return false
+	}
+
+	for i1 := range resource.Expressions {
+		if !resource.Expressions[i1].Equals(other.Expressions[i1]) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorReduceExpressionArray` fields for violations and returns them.
+func (resource BuilderQueryEditorReduceExpressionArray) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Expressions {
+		if err := resource.Expressions[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BuilderQueryEditorReduceExpression struct {
+	Property   *BuilderQueryEditorProperty                     `json:"property,omitempty"`
+	Reduce     *BuilderQueryEditorProperty                     `json:"reduce,omitempty"`
+	Parameters []BuilderQueryEditorFunctionParameterExpression `json:"parameters,omitempty"`
+	Focus      *bool                                           `json:"focus,omitempty"`
+}
+
+// NewBuilderQueryEditorReduceExpression creates a new BuilderQueryEditorReduceExpression object.
+func NewBuilderQueryEditorReduceExpression() *BuilderQueryEditorReduceExpression {
+	return &BuilderQueryEditorReduceExpression{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorReduceExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorReduceExpression) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "property"
+	if fields["property"] != nil {
+		if string(fields["property"]) != "null" {
+
+			resource.Property = &BuilderQueryEditorProperty{}
+			if err := resource.Property.UnmarshalJSONStrict(fields["property"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("property", err)...)
+			}
+
+		}
+		delete(fields, "property")
+
+	}
+	// Field "reduce"
+	if fields["reduce"] != nil {
+		if string(fields["reduce"]) != "null" {
+
+			resource.Reduce = &BuilderQueryEditorProperty{}
+			if err := resource.Reduce.UnmarshalJSONStrict(fields["reduce"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("reduce", err)...)
+			}
+
+		}
+		delete(fields, "reduce")
+
+	}
+	// Field "parameters"
+	if fields["parameters"] != nil {
+		if string(fields["parameters"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["parameters"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 BuilderQueryEditorFunctionParameterExpression
+
+				result1 = BuilderQueryEditorFunctionParameterExpression{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("parameters["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Parameters = append(resource.Parameters, result1)
+			}
+
+		}
+		delete(fields, "parameters")
+
+	}
+	// Field "focus"
+	if fields["focus"] != nil {
+		if string(fields["focus"]) != "null" {
+			if err := json.Unmarshal(fields["focus"], &resource.Focus); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("focus", err)...)
+			}
+
+		}
+		delete(fields, "focus")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorReduceExpression", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorReduceExpression` objects.
+func (resource BuilderQueryEditorReduceExpression) Equals(other BuilderQueryEditorReduceExpression) bool {
+	if resource.Property == nil && other.Property != nil || resource.Property != nil && other.Property == nil {
+		return false
+	}
+
+	if resource.Property != nil {
+		if !resource.Property.Equals(*other.Property) {
+			return false
+		}
+	}
+	if resource.Reduce == nil && other.Reduce != nil || resource.Reduce != nil && other.Reduce == nil {
+		return false
+	}
+
+	if resource.Reduce != nil {
+		if !resource.Reduce.Equals(*other.Reduce) {
+			return false
+		}
+	}
+
+	if len(resource.Parameters) != len(other.Parameters) {
+		return false
+	}
+
+	for i1 := range resource.Parameters {
+		if !resource.Parameters[i1].Equals(other.Parameters[i1]) {
+			return false
+		}
+	}
+	if resource.Focus == nil && other.Focus != nil || resource.Focus != nil && other.Focus == nil {
+		return false
+	}
+
+	if resource.Focus != nil {
+		if *resource.Focus != *other.Focus {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorReduceExpression` fields for violations and returns them.
+func (resource BuilderQueryEditorReduceExpression) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Property != nil {
+		if err := resource.Property.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("property", err)...)
+		}
+	}
+	if resource.Reduce != nil {
+		if err := resource.Reduce.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("reduce", err)...)
+		}
+	}
+
+	for i1 := range resource.Parameters {
+		if err := resource.Parameters[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("parameters["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BuilderQueryEditorFunctionParameterExpression struct {
+	Value     string                           `json:"value"`
+	FieldType BuilderQueryEditorPropertyType   `json:"fieldType"`
+	Type      BuilderQueryEditorExpressionType `json:"type"`
+}
+
+// NewBuilderQueryEditorFunctionParameterExpression creates a new BuilderQueryEditorFunctionParameterExpression object.
+func NewBuilderQueryEditorFunctionParameterExpression() *BuilderQueryEditorFunctionParameterExpression {
+	return &BuilderQueryEditorFunctionParameterExpression{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorFunctionParameterExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorFunctionParameterExpression) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "value"
+	if fields["value"] != nil {
+		if string(fields["value"]) != "null" {
+			if err := json.Unmarshal(fields["value"], &resource.Value); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("value", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "value")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is missing from input"))...)
+	}
+	// Field "fieldType"
+	if fields["fieldType"] != nil {
+		if string(fields["fieldType"]) != "null" {
+			if err := json.Unmarshal(fields["fieldType"], &resource.FieldType); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fieldType", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("fieldType", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "fieldType")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("fieldType", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorFunctionParameterExpression", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorFunctionParameterExpression` objects.
+func (resource BuilderQueryEditorFunctionParameterExpression) Equals(other BuilderQueryEditorFunctionParameterExpression) bool {
+	if resource.Value != other.Value {
+		return false
+	}
+	if resource.FieldType != other.FieldType {
+		return false
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorFunctionParameterExpression` fields for violations and returns them.
+func (resource BuilderQueryEditorFunctionParameterExpression) Validate() error {
+	return nil
+}
+
+type BuilderQueryEditorGroupByExpressionArray struct {
+	Expressions []BuilderQueryEditorGroupByExpression `json:"expressions"`
+	Type        BuilderQueryEditorExpressionType      `json:"type"`
+}
+
+// NewBuilderQueryEditorGroupByExpressionArray creates a new BuilderQueryEditorGroupByExpressionArray object.
+func NewBuilderQueryEditorGroupByExpressionArray() *BuilderQueryEditorGroupByExpressionArray {
+	return &BuilderQueryEditorGroupByExpressionArray{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorGroupByExpressionArray` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorGroupByExpressionArray) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "expressions"
+	if fields["expressions"] != nil {
+		if string(fields["expressions"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["expressions"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 BuilderQueryEditorGroupByExpression
+
+				result1 = BuilderQueryEditorGroupByExpression{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Expressions = append(resource.Expressions, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expressions")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorGroupByExpressionArray", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorGroupByExpressionArray` objects.
+func (resource BuilderQueryEditorGroupByExpressionArray) Equals(other BuilderQueryEditorGroupByExpressionArray) bool {
+
+	if len(resource.Expressions) != len(other.Expressions) {
+		return false
+	}
+
+	for i1 := range resource.Expressions {
+		if !resource.Expressions[i1].Equals(other.Expressions[i1]) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorGroupByExpressionArray` fields for violations and returns them.
+func (resource BuilderQueryEditorGroupByExpressionArray) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Expressions {
+		if err := resource.Expressions[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BuilderQueryEditorGroupByExpression struct {
+	Property *BuilderQueryEditorProperty       `json:"property,omitempty"`
+	Interval *BuilderQueryEditorProperty       `json:"interval,omitempty"`
+	Focus    *bool                             `json:"focus,omitempty"`
+	Type     *BuilderQueryEditorExpressionType `json:"type,omitempty"`
+}
+
+// NewBuilderQueryEditorGroupByExpression creates a new BuilderQueryEditorGroupByExpression object.
+func NewBuilderQueryEditorGroupByExpression() *BuilderQueryEditorGroupByExpression {
+	return &BuilderQueryEditorGroupByExpression{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorGroupByExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorGroupByExpression) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "property"
+	if fields["property"] != nil {
+		if string(fields["property"]) != "null" {
+
+			resource.Property = &BuilderQueryEditorProperty{}
+			if err := resource.Property.UnmarshalJSONStrict(fields["property"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("property", err)...)
+			}
+
+		}
+		delete(fields, "property")
+
+	}
+	// Field "interval"
+	if fields["interval"] != nil {
+		if string(fields["interval"]) != "null" {
+
+			resource.Interval = &BuilderQueryEditorProperty{}
+			if err := resource.Interval.UnmarshalJSONStrict(fields["interval"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("interval", err)...)
+			}
+
+		}
+		delete(fields, "interval")
+
+	}
+	// Field "focus"
+	if fields["focus"] != nil {
+		if string(fields["focus"]) != "null" {
+			if err := json.Unmarshal(fields["focus"], &resource.Focus); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("focus", err)...)
+			}
+
+		}
+		delete(fields, "focus")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+
+		}
+		delete(fields, "type")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorGroupByExpression", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorGroupByExpression` objects.
+func (resource BuilderQueryEditorGroupByExpression) Equals(other BuilderQueryEditorGroupByExpression) bool {
+	if resource.Property == nil && other.Property != nil || resource.Property != nil && other.Property == nil {
+		return false
+	}
+
+	if resource.Property != nil {
+		if !resource.Property.Equals(*other.Property) {
+			return false
+		}
+	}
+	if resource.Interval == nil && other.Interval != nil || resource.Interval != nil && other.Interval == nil {
+		return false
+	}
+
+	if resource.Interval != nil {
+		if !resource.Interval.Equals(*other.Interval) {
+			return false
+		}
+	}
+	if resource.Focus == nil && other.Focus != nil || resource.Focus != nil && other.Focus == nil {
+		return false
+	}
+
+	if resource.Focus != nil {
+		if *resource.Focus != *other.Focus {
+			return false
+		}
+	}
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorGroupByExpression` fields for violations and returns them.
+func (resource BuilderQueryEditorGroupByExpression) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Property != nil {
+		if err := resource.Property.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("property", err)...)
+		}
+	}
+	if resource.Interval != nil {
+		if err := resource.Interval.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("interval", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BuilderQueryEditorOrderByExpressionArray struct {
+	Expressions []BuilderQueryEditorOrderByExpression `json:"expressions"`
+	Type        BuilderQueryEditorExpressionType      `json:"type"`
+}
+
+// NewBuilderQueryEditorOrderByExpressionArray creates a new BuilderQueryEditorOrderByExpressionArray object.
+func NewBuilderQueryEditorOrderByExpressionArray() *BuilderQueryEditorOrderByExpressionArray {
+	return &BuilderQueryEditorOrderByExpressionArray{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorOrderByExpressionArray` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorOrderByExpressionArray) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "expressions"
+	if fields["expressions"] != nil {
+		if string(fields["expressions"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["expressions"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 BuilderQueryEditorOrderByExpression
+
+				result1 = BuilderQueryEditorOrderByExpression{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Expressions = append(resource.Expressions, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "expressions")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("expressions", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorOrderByExpressionArray", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorOrderByExpressionArray` objects.
+func (resource BuilderQueryEditorOrderByExpressionArray) Equals(other BuilderQueryEditorOrderByExpressionArray) bool {
+
+	if len(resource.Expressions) != len(other.Expressions) {
+		return false
+	}
+
+	for i1 := range resource.Expressions {
+		if !resource.Expressions[i1].Equals(other.Expressions[i1]) {
+			return false
+		}
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorOrderByExpressionArray` fields for violations and returns them.
+func (resource BuilderQueryEditorOrderByExpressionArray) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Expressions {
+		if err := resource.Expressions[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("expressions["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BuilderQueryEditorOrderByExpression struct {
+	Property BuilderQueryEditorProperty       `json:"property"`
+	Order    BuilderQueryEditorOrderByOptions `json:"order"`
+	Type     BuilderQueryEditorExpressionType `json:"type"`
+}
+
+// NewBuilderQueryEditorOrderByExpression creates a new BuilderQueryEditorOrderByExpression object.
+func NewBuilderQueryEditorOrderByExpression() *BuilderQueryEditorOrderByExpression {
+	return &BuilderQueryEditorOrderByExpression{
+		Property: *NewBuilderQueryEditorProperty(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorOrderByExpression` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BuilderQueryEditorOrderByExpression) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "property"
+	if fields["property"] != nil {
+		if string(fields["property"]) != "null" {
+
+			resource.Property = BuilderQueryEditorProperty{}
+			if err := resource.Property.UnmarshalJSONStrict(fields["property"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("property", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("property", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "property")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("property", errors.New("required field is missing from input"))...)
+	}
+	// Field "order"
+	if fields["order"] != nil {
+		if string(fields["order"]) != "null" {
+			if err := json.Unmarshal(fields["order"], &resource.Order); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("order", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("order", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "order")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("order", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("BuilderQueryEditorOrderByExpression", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BuilderQueryEditorOrderByExpression` objects.
+func (resource BuilderQueryEditorOrderByExpression) Equals(other BuilderQueryEditorOrderByExpression) bool {
+	if !resource.Property.Equals(other.Property) {
+		return false
+	}
+	if resource.Order != other.Order {
+		return false
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BuilderQueryEditorOrderByExpression` fields for violations and returns them.
+func (resource BuilderQueryEditorOrderByExpression) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Property.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("property", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type BuilderQueryEditorOrderByOptions string
+
+const (
+	BuilderQueryEditorOrderByOptionsAsc  BuilderQueryEditorOrderByOptions = "asc"
+	BuilderQueryEditorOrderByOptionsDesc BuilderQueryEditorOrderByOptions = "desc"
 )
 
 type AzureResourceGraphQuery struct {
@@ -3244,6 +5175,92 @@ const (
 	AzureQueryTypeCustomMetricNamesQuery    AzureQueryType = "Azure Custom Metric Names"
 )
 
+type SelectableValue struct {
+	Label string `json:"label"`
+	Value string `json:"value"`
+}
+
+// NewSelectableValue creates a new SelectableValue object.
+func NewSelectableValue() *SelectableValue {
+	return &SelectableValue{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `SelectableValue` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *SelectableValue) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "label"
+	if fields["label"] != nil {
+		if string(fields["label"]) != "null" {
+			if err := json.Unmarshal(fields["label"], &resource.Label); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("label", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("label", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "label")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("label", errors.New("required field is missing from input"))...)
+	}
+	// Field "value"
+	if fields["value"] != nil {
+		if string(fields["value"]) != "null" {
+			if err := json.Unmarshal(fields["value"], &resource.Value); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("value", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "value")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("SelectableValue", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `SelectableValue` objects.
+func (resource SelectableValue) Equals(other SelectableValue) bool {
+	if resource.Label != other.Label {
+		return false
+	}
+	if resource.Value != other.Value {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `SelectableValue` fields for violations and returns them.
+func (resource SelectableValue) Validate() error {
+	return nil
+}
+
+type BuilderQueryEditorOperatorType = StringOrBoolOrFloat64OrSelectableValue
+
+// NewBuilderQueryEditorOperatorType creates a new BuilderQueryEditorOperatorType object.
+func NewBuilderQueryEditorOperatorType() *BuilderQueryEditorOperatorType {
+	return NewStringOrBoolOrFloat64OrSelectableValue()
+}
+
 type GrafanaTemplateVariableQueryType string
 
 const (
@@ -3372,7 +5389,6 @@ func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscription
 	if resource.UnknownQuery != nil {
 		return json.Marshal(resource.UnknownQuery)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
@@ -3729,6 +5745,146 @@ func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscription
 	if resource.UnknownQuery != nil {
 		if err := resource.UnknownQuery.Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("UnknownQuery", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type StringOrBoolOrFloat64OrSelectableValue struct {
+	String          *string          `json:"String,omitempty"`
+	Bool            *bool            `json:"Bool,omitempty"`
+	Float64         *float64         `json:"Float64,omitempty"`
+	SelectableValue *SelectableValue `json:"SelectableValue,omitempty"`
+}
+
+// NewStringOrBoolOrFloat64OrSelectableValue creates a new StringOrBoolOrFloat64OrSelectableValue object.
+func NewStringOrBoolOrFloat64OrSelectableValue() *StringOrBoolOrFloat64OrSelectableValue {
+	return &StringOrBoolOrFloat64OrSelectableValue{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrBoolOrFloat64OrSelectableValue` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *StringOrBoolOrFloat64OrSelectableValue) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "String"
+	if fields["String"] != nil {
+		if string(fields["String"]) != "null" {
+			if err := json.Unmarshal(fields["String"], &resource.String); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("String", err)...)
+			}
+
+		}
+		delete(fields, "String")
+
+	}
+	// Field "Bool"
+	if fields["Bool"] != nil {
+		if string(fields["Bool"]) != "null" {
+			if err := json.Unmarshal(fields["Bool"], &resource.Bool); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("Bool", err)...)
+			}
+
+		}
+		delete(fields, "Bool")
+
+	}
+	// Field "Float64"
+	if fields["Float64"] != nil {
+		if string(fields["Float64"]) != "null" {
+			if err := json.Unmarshal(fields["Float64"], &resource.Float64); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("Float64", err)...)
+			}
+
+		}
+		delete(fields, "Float64")
+
+	}
+	// Field "SelectableValue"
+	if fields["SelectableValue"] != nil {
+		if string(fields["SelectableValue"]) != "null" {
+
+			resource.SelectableValue = &SelectableValue{}
+			if err := resource.SelectableValue.UnmarshalJSONStrict(fields["SelectableValue"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("SelectableValue", err)...)
+			}
+
+		}
+		delete(fields, "SelectableValue")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("StringOrBoolOrFloat64OrSelectableValue", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `StringOrBoolOrFloat64OrSelectableValue` objects.
+func (resource StringOrBoolOrFloat64OrSelectableValue) Equals(other StringOrBoolOrFloat64OrSelectableValue) bool {
+	if resource.String == nil && other.String != nil || resource.String != nil && other.String == nil {
+		return false
+	}
+
+	if resource.String != nil {
+		if *resource.String != *other.String {
+			return false
+		}
+	}
+	if resource.Bool == nil && other.Bool != nil || resource.Bool != nil && other.Bool == nil {
+		return false
+	}
+
+	if resource.Bool != nil {
+		if *resource.Bool != *other.Bool {
+			return false
+		}
+	}
+	if resource.Float64 == nil && other.Float64 != nil || resource.Float64 != nil && other.Float64 == nil {
+		return false
+	}
+
+	if resource.Float64 != nil {
+		if *resource.Float64 != *other.Float64 {
+			return false
+		}
+	}
+	if resource.SelectableValue == nil && other.SelectableValue != nil || resource.SelectableValue != nil && other.SelectableValue == nil {
+		return false
+	}
+
+	if resource.SelectableValue != nil {
+		if !resource.SelectableValue.Equals(*other.SelectableValue) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `StringOrBoolOrFloat64OrSelectableValue` fields for violations and returns them.
+func (resource StringOrBoolOrFloat64OrSelectableValue) Validate() error {
+	var errs cog.BuildErrors
+	if resource.SelectableValue != nil {
+		if err := resource.SelectableValue.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("SelectableValue", err)...)
 		}
 	}
 

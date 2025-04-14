@@ -1183,10 +1183,7 @@
           "type"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "auto"
-          },
+          "type": {},
           "wrapText": {
             "type": "boolean"
           }
@@ -1200,10 +1197,7 @@
           "type"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "color-text"
-          },
+          "type": {},
           "wrapText": {
             "type": "boolean"
           }
@@ -1217,10 +1211,7 @@
           "type"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "json-view"
-          }
+          "type": {}
         },
         "description": "Json view cell options"
       },
@@ -1231,10 +1222,7 @@
           "type"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "image"
-          },
+          "type": {},
           "alt": {
             "type": "string"
           },
@@ -1251,10 +1239,7 @@
           "type"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "data-links"
-          }
+          "type": {}
         },
         "description": "Show data links in the cell"
       },
@@ -1265,10 +1250,7 @@
           "type"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "actions"
-          }
+          "type": {}
         },
         "description": "Show actions in the cell"
       },
@@ -1279,10 +1261,7 @@
           "type"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "gauge"
-          },
+          "type": {},
           "mode": {
             "$ref": "#/components/schemas/BarGaugeDisplayMode"
           },
@@ -1299,10 +1278,7 @@
           "type"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "sparkline"
-          },
+          "type": {},
           "drawStyle": {
             "$ref": "#/components/schemas/GraphDrawStyle"
           },
@@ -1427,10 +1403,7 @@
           "type"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "color-background"
-          },
+          "type": {},
           "mode": {
             "$ref": "#/components/schemas/TableCellBackgroundDisplayMode"
           },

@@ -35,6 +35,7 @@ class AnnotationPermissionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * +k8s:deepcopy-gen=true
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationActions> $organization

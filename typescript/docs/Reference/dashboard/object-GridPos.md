@@ -22,6 +22,3 @@ export interface GridPos {
 }
 
 ```
-## Methods
-
-No methods.

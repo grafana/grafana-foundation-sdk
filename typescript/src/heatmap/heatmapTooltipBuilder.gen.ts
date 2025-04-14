@@ -47,3 +47,4 @@ export class HeatmapTooltipBuilder implements cog.Builder<heatmap.HeatmapTooltip
         return this;
     }
 }
+

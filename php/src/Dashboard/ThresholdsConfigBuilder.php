@@ -33,6 +33,7 @@ class ThresholdsConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Must be sorted by 'value', first value is always -Infinity
      * @param array<\Grafana\Foundation\Dashboard\Threshold> $steps

@@ -98,6 +98,12 @@ def enable_infinite_scrolling(enable_infinite_scrolling: bool) -> typing.Self
 def enable_log_details(enable_log_details: bool) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> grammar
+
+```python
+def grammar(grammar: object) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> grid_pos
 
 Grid position.
@@ -210,6 +216,12 @@ Alternative to empty string
 def no_value(no_value: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> on_log_options_change
+
+```python
+def on_log_options_change(on_log_options_change: object) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> on_new_logs_received
 
 ```python
@@ -280,6 +292,12 @@ Direction to repeat in if 'repeat' is set.
 def repeat_direction(repeat_direction: typing.Literal["h", "v"]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> show_controls
+
+```python
+def show_controls(show_controls: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> show_time
 
 ```python
@@ -298,6 +316,12 @@ Panel width. The width is the number of columns from the left edge of the panel.
 
 ```python
 def span(w: int) -> typing.Self
+```
+
+### <span class="badge object-method"></span> syntax_highlighting
+
+```python
+def syntax_highlighting(syntax_highlighting: bool) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> targets

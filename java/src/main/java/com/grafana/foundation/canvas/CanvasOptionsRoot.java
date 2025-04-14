@@ -23,7 +23,6 @@ public class CanvasOptionsRoot {
     public List<CanvasElementOptions> elements;
     public CanvasOptionsRoot() {
     }
-    
     public CanvasOptionsRoot(String name,String type,List<CanvasElementOptions> elements) {
         this.name = name;
         this.type = type;

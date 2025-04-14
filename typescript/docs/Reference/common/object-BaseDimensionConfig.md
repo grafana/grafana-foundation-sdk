@@ -12,9 +12,6 @@ export interface BaseDimensionConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [BaseDimensionConfigBuilder](./builder-BaseDimensionConfigBuilder.md)

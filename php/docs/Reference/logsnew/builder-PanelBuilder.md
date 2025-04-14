@@ -102,6 +102,14 @@ enableInfiniteScrolling(bool $enableInfiniteScrolling)
 enableLogDetails(bool $enableLogDetails)
 ```
 
+### <span class="badge object-method"></span> grammar
+
+@param mixed $grammar
+
+```php
+grammar($grammar)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.
@@ -218,6 +226,14 @@ Alternative to empty string
 noValue(string $noValue)
 ```
 
+### <span class="badge object-method"></span> onLogOptionsChange
+
+@param mixed $onLogOptionsChange
+
+```php
+onLogOptionsChange($onLogOptionsChange)
+```
+
 ### <span class="badge object-method"></span> onNewLogsReceived
 
 @param mixed $onNewLogsReceived
@@ -300,6 +316,12 @@ Direction to repeat in if 'repeat' is set.
 repeatDirection(\Grafana\Foundation\Dashboard\PanelRepeatDirection $repeatDirection)
 ```
 
+### <span class="badge object-method"></span> showControls
+
+```php
+showControls(bool $showControls)
+```
+
 ### <span class="badge object-method"></span> showTime
 
 ```php
@@ -318,6 +340,12 @@ Panel width. The width is the number of columns from the left edge of the panel.
 
 ```php
 span(int $w)
+```
+
+### <span class="badge object-method"></span> syntaxHighlighting
+
+```php
+syntaxHighlighting(bool $syntaxHighlighting)
 ```
 
 ### <span class="badge object-method"></span> targets

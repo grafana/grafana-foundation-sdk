@@ -35,6 +35,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Optional display name
      */
@@ -44,6 +45,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Visibility configuration for the variable
      */
@@ -53,6 +55,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Description of variable. It can be defined but `null`.
      */
@@ -62,6 +65,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Query used to fetch values for a variable
      * @param string|array<string, mixed> $query
@@ -72,6 +76,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Data source used to fetch values for a variable. It can be defined but `null`.
      */
@@ -81,6 +86,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Shows current selected variable text/value on the dashboard
      */
@@ -90,6 +96,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Whether multiple values can be selected or not from variable value list
      */
@@ -99,6 +106,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Allow custom values to be entered in the variable
      */
@@ -108,6 +116,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Options that can be selected for a variable.
      * @param array<\Grafana\Foundation\Dashboard\VariableOption> $options
@@ -118,6 +127,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Options to config when to refresh a variable
      */
@@ -127,6 +137,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Options sort order
      */
@@ -136,6 +147,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Whether all value option is available or not
      */
@@ -145,6 +157,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Custom all value
      */
@@ -154,6 +167,7 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Optional field, if you want to extract part of a series name or metric node segment.
      * Named capture groups can be used to separate the display text and value.

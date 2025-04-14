@@ -29,6 +29,7 @@ class DashboardDashboardTimeBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function to(string $to): static
     {
         $this->internal->to = $to;

@@ -15,7 +15,6 @@ public class OptionsWithTextFormatting {
     public VizTextDisplayOptions text;
     public OptionsWithTextFormatting() {
     }
-    
     public OptionsWithTextFormatting(VizTextDisplayOptions text) {
         this.text = text;
     }

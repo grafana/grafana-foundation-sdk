@@ -27,6 +27,10 @@ class AzureLogsQuery:
     basic_logs_query: typing.Optional[bool]
     # Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
     workspace: typing.Optional[str]
+    # Denotes if logs query editor is in builder mode
+    mode: typing.Optional[azuremonitor.LogsEditorMode]
+    # Builder query to be executed.
+    builder_query: typing.Optional[azuremonitor.BuilderQueryExpression]
     # @deprecated Use resources instead
     resource: typing.Optional[str]
     # @deprecated Use dashboardTime instead

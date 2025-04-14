@@ -27,3 +27,4 @@ export class MonthRangeBuilder implements cog.Builder<alerting.MonthRange> {
         return this;
     }
 }
+

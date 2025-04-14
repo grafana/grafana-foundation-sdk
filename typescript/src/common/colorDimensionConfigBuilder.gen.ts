@@ -29,3 +29,4 @@ export class ColorDimensionConfigBuilder implements cog.Builder<common.ColorDime
         return this;
     }
 }
+

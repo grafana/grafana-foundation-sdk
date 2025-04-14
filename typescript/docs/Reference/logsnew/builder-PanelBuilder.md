@@ -98,6 +98,12 @@ enableInfiniteScrolling(enableInfiniteScrolling: boolean)
 enableLogDetails(enableLogDetails: boolean)
 ```
 
+### <span class="badge object-method"></span> grammar
+
+```typescript
+grammar(grammar: any)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.
@@ -210,6 +216,12 @@ Alternative to empty string
 noValue(noValue: string)
 ```
 
+### <span class="badge object-method"></span> onLogOptionsChange
+
+```typescript
+onLogOptionsChange(onLogOptionsChange: any)
+```
+
 ### <span class="badge object-method"></span> onNewLogsReceived
 
 ```typescript
@@ -283,6 +295,12 @@ Direction to repeat in if 'repeat' is set.
 repeatDirection(repeatDirection: "h" | "v")
 ```
 
+### <span class="badge object-method"></span> showControls
+
+```typescript
+showControls(showControls: boolean)
+```
+
 ### <span class="badge object-method"></span> showTime
 
 ```typescript
@@ -301,6 +319,12 @@ Panel width. The width is the number of columns from the left edge of the panel.
 
 ```typescript
 span(w: number)
+```
+
+### <span class="badge object-method"></span> syntaxHighlighting
+
+```typescript
+syntaxHighlighting(syntaxHighlighting: boolean)
 ```
 
 ### <span class="badge object-method"></span> targets

@@ -59,3 +59,4 @@ export class XYSeriesConfigBuilder implements cog.Builder<xychart.XYSeriesConfig
         return this;
     }
 }
+

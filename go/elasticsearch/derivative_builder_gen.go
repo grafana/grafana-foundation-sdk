@@ -19,7 +19,6 @@ func NewDerivativeBuilder() *DerivativeBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "derivative"
 
 	return builder
 }

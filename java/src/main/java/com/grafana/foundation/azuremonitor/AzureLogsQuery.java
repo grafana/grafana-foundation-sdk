@@ -39,6 +39,14 @@ public class AzureLogsQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("workspace")
     public String workspace;
+    // Denotes if logs query editor is in builder mode
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("mode")
+    public LogsEditorMode mode;
+    // Builder query to be executed.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("builderQuery")
+    public BuilderQueryExpression builderQuery;
     // @deprecated Use resources instead
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("resource")
@@ -49,8 +57,7 @@ public class AzureLogsQuery {
     public Boolean intersectTime;
     public AzureLogsQuery() {
     }
-    
-    public AzureLogsQuery(String query,ResultFormat resultFormat,List<String> resources,Boolean dashboardTime,String timeColumn,Boolean basicLogsQuery,String workspace,String resource,Boolean intersectTime) {
+    public AzureLogsQuery(String query,ResultFormat resultFormat,List<String> resources,Boolean dashboardTime,String timeColumn,Boolean basicLogsQuery,String workspace,LogsEditorMode mode,BuilderQueryExpression builderQuery,String resource,Boolean intersectTime) {
         this.query = query;
         this.resultFormat = resultFormat;
         this.resources = resources;
@@ -58,6 +65,8 @@ public class AzureLogsQuery {
         this.timeColumn = timeColumn;
         this.basicLogsQuery = basicLogsQuery;
         this.workspace = workspace;
+        this.mode = mode;
+        this.builderQuery = builderQuery;
         this.resource = resource;
         this.intersectTime = intersectTime;
     }

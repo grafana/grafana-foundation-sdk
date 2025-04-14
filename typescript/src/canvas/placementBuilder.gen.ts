@@ -52,3 +52,4 @@ export class PlacementBuilder implements cog.Builder<canvas.Placement> {
         return this;
     }
 }
+

@@ -98,6 +98,12 @@ func (builder *PanelBuilder) EnableInfiniteScrolling(enableInfiniteScrolling boo
 func (builder *PanelBuilder) EnableLogDetails(enableLogDetails bool) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> Grammar
+
+```go
+func (builder *PanelBuilder) Grammar(grammar any) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> GridPos
 
 Grid position.
@@ -210,6 +216,12 @@ Alternative to empty string
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> OnLogOptionsChange
+
+```go
+func (builder *PanelBuilder) OnLogOptionsChange(onLogOptionsChange any) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> OnNewLogsReceived
 
 ```go
@@ -280,6 +292,12 @@ Direction to repeat in if 'repeat' is set.
 func (builder *PanelBuilder) RepeatDirection(repeatDirection dashboard.PanelRepeatDirection) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> ShowControls
+
+```go
+func (builder *PanelBuilder) ShowControls(showControls bool) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> ShowTime
 
 ```go
@@ -298,6 +316,12 @@ Panel width. The width is the number of columns from the left edge of the panel.
 
 ```go
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> SyntaxHighlighting
+
+```go
+func (builder *PanelBuilder) SyntaxHighlighting(syntaxHighlighting bool) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Targets

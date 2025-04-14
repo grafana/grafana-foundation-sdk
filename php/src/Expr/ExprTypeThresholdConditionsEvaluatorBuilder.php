@@ -32,6 +32,7 @@ class ExprTypeThresholdConditionsEvaluatorBuilder implements \Grafana\Foundation
     
         return $this;
     }
+
     /**
      * e.g. "gt"
      */

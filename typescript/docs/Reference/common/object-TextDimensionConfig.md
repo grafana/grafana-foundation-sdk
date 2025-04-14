@@ -14,9 +14,6 @@ export interface TextDimensionConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TextDimensionConfigBuilder](./builder-TextDimensionConfigBuilder.md)

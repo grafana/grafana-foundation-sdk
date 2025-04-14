@@ -12,7 +12,6 @@ class QueryEditorOperatorExpressionBuilder implements \Grafana\Foundation\Cog\Bu
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Cloudwatch\QueryEditorOperatorExpression();
-    $this->internal->type = "operator";
     }
 
     /**
@@ -34,6 +33,7 @@ class QueryEditorOperatorExpressionBuilder implements \Grafana\Foundation\Cog\Bu
     
         return $this;
     }
+
     /**
      * TS type is operator: QueryEditorOperator<QueryEditorOperatorValueType>, extended in veneer
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorOperator> $operator

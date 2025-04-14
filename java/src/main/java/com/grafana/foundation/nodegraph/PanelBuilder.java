@@ -387,6 +387,14 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         ((Options) this.internal.options).zoomMode = zoomMode;
         return this;
     }
+    
+    public PanelBuilder layoutAlgorithm(LayoutAlgorithm layoutAlgorithm) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.nodegraph.Options();
+		}
+        ((Options) this.internal.options).layoutAlgorithm = layoutAlgorithm;
+        return this;
+    }
     public Panel build() {
         return this.internal;
     }

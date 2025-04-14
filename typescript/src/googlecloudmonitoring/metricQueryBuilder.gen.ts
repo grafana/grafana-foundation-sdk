@@ -103,3 +103,4 @@ export class MetricQueryBuilder implements cog.Builder<googlecloudmonitoring.Met
         return this;
     }
 }
+

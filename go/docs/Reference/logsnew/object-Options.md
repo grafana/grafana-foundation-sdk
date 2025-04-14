@@ -7,12 +7,16 @@ title: <span class="badge object-type-struct"></span> Options
 
 ```go
 type Options struct {
+    ShowControls bool `json:"showControls"`
     ShowTime bool `json:"showTime"`
     WrapLogMessage bool `json:"wrapLogMessage"`
     EnableLogDetails bool `json:"enableLogDetails"`
+    SyntaxHighlighting bool `json:"syntaxHighlighting"`
     SortOrder common.LogsSortOrder `json:"sortOrder"`
     DedupStrategy common.LogsDedupStrategy `json:"dedupStrategy"`
+    Grammar any `json:"grammar,omitempty"`
     EnableInfiniteScrolling *bool `json:"enableInfiniteScrolling,omitempty"`
+    OnLogOptionsChange any `json:"onLogOptionsChange,omitempty"`
     OnNewLogsReceived any `json:"onNewLogsReceived,omitempty"`
 }
 ```

@@ -16,7 +16,6 @@ public class UpdateConfig {
     public Boolean schemaChanged;
     public UpdateConfig() {
     }
-    
     public UpdateConfig(Boolean render,Boolean dataChanged,Boolean schemaChanged) {
         this.render = render;
         this.dataChanged = dataChanged;

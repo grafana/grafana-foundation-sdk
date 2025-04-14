@@ -30,12 +30,14 @@ class TimeOptionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function from(string $from): static
     {
         $this->internal->from = $from;
     
         return $this;
     }
+
     public function to(string $to): static
     {
         $this->internal->to = $to;

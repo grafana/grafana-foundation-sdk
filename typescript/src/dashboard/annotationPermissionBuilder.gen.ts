@@ -32,3 +32,4 @@ export class AnnotationPermissionBuilder implements cog.Builder<dashboard.Annota
         return this;
     }
 }
+

@@ -11,6 +11,8 @@ class Options:
     edges: typing.Optional[nodegraph.EdgeOptions]
     # How to handle zoom/scroll events in the node graph
     zoom_mode: typing.Optional[nodegraph.ZoomMode]
+    # How to layout the nodes in the node graph
+    layout_algorithm: typing.Optional[nodegraph.LayoutAlgorithm]
 ```
 ## Methods
 

@@ -16,9 +16,6 @@ export interface TableSortByFieldState {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TableSortByFieldStateBuilder](./builder-TableSortByFieldStateBuilder.md)

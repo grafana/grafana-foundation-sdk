@@ -50,6 +50,12 @@ export class PreferencesBuilder implements cog.Builder<preferences.Preferences> 
         return this;
     }
 
+    // Selected locale (beta)
+    locale(locale: string): this {
+        this.internal.locale = locale;
+        return this;
+    }
+
     // Explore query history preferences
     queryHistory(queryHistory: cog.Builder<preferences.QueryHistoryPreference>): this {
         const queryHistoryResource = queryHistory.build();
@@ -71,3 +77,4 @@ export class PreferencesBuilder implements cog.Builder<preferences.Preferences> 
         return this;
     }
 }
+

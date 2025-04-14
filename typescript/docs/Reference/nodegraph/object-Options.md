@@ -11,9 +11,8 @@ export interface Options {
 	edges?: nodegraph.EdgeOptions;
 	// How to handle zoom/scroll events in the node graph
 	zoomMode?: nodegraph.ZoomMode;
+	// How to layout the nodes in the node graph
+	layoutAlgorithm?: nodegraph.LayoutAlgorithm;
 }
 
 ```
-## Methods
-
-No methods.

@@ -18,7 +18,6 @@ public class DashboardRegexMapOptions {
     public ValueMappingResult result;
     public DashboardRegexMapOptions() {
     }
-    
     public DashboardRegexMapOptions(String pattern,ValueMappingResult result) {
         this.pattern = pattern;
         this.result = result;

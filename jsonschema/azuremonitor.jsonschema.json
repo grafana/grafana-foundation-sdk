@@ -250,6 +250,14 @@
           "type": "string",
           "description": "Workspace ID. This was removed in Grafana 8, but remains for backwards compat."
         },
+        "mode": {
+          "$ref": "#/definitions/LogsEditorMode",
+          "description": "Denotes if logs query editor is in builder mode"
+        },
+        "builderQuery": {
+          "$ref": "#/definitions/BuilderQueryExpression",
+          "description": "Builder query to be executed."
+        },
         "resource": {
           "type": "string",
           "description": "@deprecated Use resources instead"
@@ -267,6 +275,337 @@
         "time_series",
         "trace",
         "logs"
+      ]
+    },
+    "LogsEditorMode": {
+      "enum": [
+        "builder",
+        "raw"
+      ]
+    },
+    "BuilderQueryExpression": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/BuilderQueryEditorPropertyExpression"
+        },
+        "columns": {
+          "$ref": "#/definitions/BuilderQueryEditorColumnsExpression"
+        },
+        "where": {
+          "$ref": "#/definitions/BuilderQueryEditorWhereExpressionArray"
+        },
+        "reduce": {
+          "$ref": "#/definitions/BuilderQueryEditorReduceExpressionArray"
+        },
+        "groupBy": {
+          "$ref": "#/definitions/BuilderQueryEditorGroupByExpressionArray"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "orderBy": {
+          "$ref": "#/definitions/BuilderQueryEditorOrderByExpressionArray"
+        },
+        "fuzzySearch": {
+          "$ref": "#/definitions/BuilderQueryEditorWhereExpressionArray"
+        },
+        "timeFilter": {
+          "$ref": "#/definitions/BuilderQueryEditorWhereExpressionArray"
+        }
+      }
+    },
+    "BuilderQueryEditorPropertyExpression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "property",
+        "type"
+      ],
+      "properties": {
+        "property": {
+          "$ref": "#/definitions/BuilderQueryEditorProperty"
+        },
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorExpressionType"
+        }
+      }
+    },
+    "BuilderQueryEditorProperty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorPropertyType"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "BuilderQueryEditorPropertyType": {
+      "enum": [
+        "number",
+        "string",
+        "boolean",
+        "datetime",
+        "time_span",
+        "function",
+        "interval"
+      ]
+    },
+    "BuilderQueryEditorExpressionType": {
+      "enum": [
+        "property",
+        "operator",
+        "reduce",
+        "function_parameter",
+        "group_by",
+        "or",
+        "and",
+        "order_by"
+      ]
+    },
+    "BuilderQueryEditorColumnsExpression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorExpressionType"
+        }
+      }
+    },
+    "BuilderQueryEditorWhereExpressionArray": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expressions",
+        "type"
+      ],
+      "properties": {
+        "expressions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BuilderQueryEditorWhereExpression"
+          }
+        },
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorExpressionType"
+        }
+      }
+    },
+    "BuilderQueryEditorWhereExpression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "expressions"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorExpressionType"
+        },
+        "expressions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BuilderQueryEditorWhereExpressionItems"
+          }
+        }
+      }
+    },
+    "BuilderQueryEditorWhereExpressionItems": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "property",
+        "operator",
+        "type"
+      ],
+      "properties": {
+        "property": {
+          "$ref": "#/definitions/BuilderQueryEditorProperty"
+        },
+        "operator": {
+          "$ref": "#/definitions/BuilderQueryEditorOperator"
+        },
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorExpressionType"
+        }
+      }
+    },
+    "BuilderQueryEditorOperator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "value"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "labelValue": {
+          "type": "string"
+        }
+      }
+    },
+    "BuilderQueryEditorReduceExpressionArray": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expressions",
+        "type"
+      ],
+      "properties": {
+        "expressions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BuilderQueryEditorReduceExpression"
+          }
+        },
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorExpressionType"
+        }
+      }
+    },
+    "BuilderQueryEditorReduceExpression": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "property": {
+          "$ref": "#/definitions/BuilderQueryEditorProperty"
+        },
+        "reduce": {
+          "$ref": "#/definitions/BuilderQueryEditorProperty"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BuilderQueryEditorFunctionParameterExpression"
+          }
+        },
+        "focus": {
+          "type": "boolean"
+        }
+      }
+    },
+    "BuilderQueryEditorFunctionParameterExpression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "fieldType",
+        "type"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "fieldType": {
+          "$ref": "#/definitions/BuilderQueryEditorPropertyType"
+        },
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorExpressionType"
+        }
+      }
+    },
+    "BuilderQueryEditorGroupByExpressionArray": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expressions",
+        "type"
+      ],
+      "properties": {
+        "expressions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BuilderQueryEditorGroupByExpression"
+          }
+        },
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorExpressionType"
+        }
+      }
+    },
+    "BuilderQueryEditorGroupByExpression": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "property": {
+          "$ref": "#/definitions/BuilderQueryEditorProperty"
+        },
+        "interval": {
+          "$ref": "#/definitions/BuilderQueryEditorProperty"
+        },
+        "focus": {
+          "type": "boolean"
+        },
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorExpressionType"
+        }
+      }
+    },
+    "BuilderQueryEditorOrderByExpressionArray": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expressions",
+        "type"
+      ],
+      "properties": {
+        "expressions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BuilderQueryEditorOrderByExpression"
+          }
+        },
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorExpressionType"
+        }
+      }
+    },
+    "BuilderQueryEditorOrderByExpression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "property",
+        "order",
+        "type"
+      ],
+      "properties": {
+        "property": {
+          "$ref": "#/definitions/BuilderQueryEditorProperty"
+        },
+        "order": {
+          "$ref": "#/definitions/BuilderQueryEditorOrderByOptions"
+        },
+        "type": {
+          "$ref": "#/definitions/BuilderQueryEditorExpressionType"
+        }
+      }
+    },
+    "BuilderQueryEditorOrderByOptions": {
+      "enum": [
+        "asc",
+        "desc"
       ]
     },
     "AzureResourceGraphQuery": {
@@ -631,6 +970,38 @@
         "Azure Custom Metric Names"
       ],
       "description": "Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated"
+    },
+    "SelectableValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "value"
+      ],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "BuilderQueryEditorOperatorType": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "$ref": "#/definitions/SelectableValue"
+        }
+      ]
     },
     "GrafanaTemplateVariableQueryType": {
       "enum": [

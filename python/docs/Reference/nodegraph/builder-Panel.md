@@ -132,6 +132,14 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 def interval(interval: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> layout_algorithm
+
+How to layout the nodes in the node graph
+
+```python
+def layout_algorithm(layout_algorithm: nodegraph.LayoutAlgorithm) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> library_panel
 
 Dynamically load the panel

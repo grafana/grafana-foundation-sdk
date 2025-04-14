@@ -32,6 +32,7 @@ class TimeRangeBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * To is the end time of the query.
      */

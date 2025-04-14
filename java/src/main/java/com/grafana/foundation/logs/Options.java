@@ -71,7 +71,6 @@ public class Options {
     public List<String> displayedFields;
     public Options() {
     }
-    
     public Options(Boolean showLabels,Boolean showCommonLabels,Boolean showTime,Boolean showLogContextToggle,Boolean wrapLogMessage,Boolean prettifyLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy,Boolean enableInfiniteScrolling,Object onClickFilterLabel,Object onClickFilterOutLabel,Object isFilterLabelActive,Object onClickFilterString,Object onClickFilterOutString,Object onClickShowField,Object onClickHideField,Object logRowMenuIconsBefore,Object logRowMenuIconsAfter,Object onNewLogsReceived,List<String> displayedFields) {
         this.showLabels = showLabels;
         this.showCommonLabels = showCommonLabels;

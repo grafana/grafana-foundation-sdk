@@ -15,12 +15,16 @@ import (
 )
 
 type Options struct {
+	ShowControls            bool                     `json:"showControls"`
 	ShowTime                bool                     `json:"showTime"`
 	WrapLogMessage          bool                     `json:"wrapLogMessage"`
 	EnableLogDetails        bool                     `json:"enableLogDetails"`
+	SyntaxHighlighting      bool                     `json:"syntaxHighlighting"`
 	SortOrder               common.LogsSortOrder     `json:"sortOrder"`
 	DedupStrategy           common.LogsDedupStrategy `json:"dedupStrategy"`
+	Grammar                 any                      `json:"grammar,omitempty"`
 	EnableInfiniteScrolling *bool                    `json:"enableInfiniteScrolling,omitempty"`
+	OnLogOptionsChange      any                      `json:"onLogOptionsChange,omitempty"`
 	OnNewLogsReceived       any                      `json:"onNewLogsReceived,omitempty"`
 }
 
@@ -40,6 +44,20 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	fields := make(map[string]json.RawMessage)
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
+	}
+	// Field "showControls"
+	if fields["showControls"] != nil {
+		if string(fields["showControls"]) != "null" {
+			if err := json.Unmarshal(fields["showControls"], &resource.ShowControls); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showControls", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("showControls", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "showControls")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showControls", errors.New("required field is missing from input"))...)
 	}
 	// Field "showTime"
 	if fields["showTime"] != nil {
@@ -83,6 +101,20 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("enableLogDetails", errors.New("required field is missing from input"))...)
 	}
+	// Field "syntaxHighlighting"
+	if fields["syntaxHighlighting"] != nil {
+		if string(fields["syntaxHighlighting"]) != "null" {
+			if err := json.Unmarshal(fields["syntaxHighlighting"], &resource.SyntaxHighlighting); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("syntaxHighlighting", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("syntaxHighlighting", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "syntaxHighlighting")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("syntaxHighlighting", errors.New("required field is missing from input"))...)
+	}
 	// Field "sortOrder"
 	if fields["sortOrder"] != nil {
 		if string(fields["sortOrder"]) != "null" {
@@ -111,6 +143,17 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("dedupStrategy", errors.New("required field is missing from input"))...)
 	}
+	// Field "grammar"
+	if fields["grammar"] != nil {
+		if string(fields["grammar"]) != "null" {
+			if err := json.Unmarshal(fields["grammar"], &resource.Grammar); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("grammar", err)...)
+			}
+
+		}
+		delete(fields, "grammar")
+
+	}
 	// Field "enableInfiniteScrolling"
 	if fields["enableInfiniteScrolling"] != nil {
 		if string(fields["enableInfiniteScrolling"]) != "null" {
@@ -120,6 +163,17 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "enableInfiniteScrolling")
+
+	}
+	// Field "onLogOptionsChange"
+	if fields["onLogOptionsChange"] != nil {
+		if string(fields["onLogOptionsChange"]) != "null" {
+			if err := json.Unmarshal(fields["onLogOptionsChange"], &resource.OnLogOptionsChange); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("onLogOptionsChange", err)...)
+			}
+
+		}
+		delete(fields, "onLogOptionsChange")
 
 	}
 	// Field "onNewLogsReceived"
@@ -147,6 +201,9 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 // Equals tests the equality of two `Options` objects.
 func (resource Options) Equals(other Options) bool {
+	if resource.ShowControls != other.ShowControls {
+		return false
+	}
 	if resource.ShowTime != other.ShowTime {
 		return false
 	}
@@ -156,10 +213,17 @@ func (resource Options) Equals(other Options) bool {
 	if resource.EnableLogDetails != other.EnableLogDetails {
 		return false
 	}
+	if resource.SyntaxHighlighting != other.SyntaxHighlighting {
+		return false
+	}
 	if resource.SortOrder != other.SortOrder {
 		return false
 	}
 	if resource.DedupStrategy != other.DedupStrategy {
+		return false
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Grammar, other.Grammar) {
 		return false
 	}
 	if resource.EnableInfiniteScrolling == nil && other.EnableInfiniteScrolling != nil || resource.EnableInfiniteScrolling != nil && other.EnableInfiniteScrolling == nil {
@@ -170,6 +234,10 @@ func (resource Options) Equals(other Options) bool {
 		if *resource.EnableInfiniteScrolling != *other.EnableInfiniteScrolling {
 			return false
 		}
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.OnLogOptionsChange, other.OnLogOptionsChange) {
+		return false
 	}
 	// is DeepEqual good enough here?
 	if !reflect.DeepEqual(resource.OnNewLogsReceived, other.OnNewLogsReceived) {

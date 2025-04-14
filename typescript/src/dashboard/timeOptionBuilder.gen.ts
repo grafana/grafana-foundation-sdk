@@ -33,3 +33,4 @@ export class TimeOptionBuilder implements cog.Builder<dashboard.TimeOption> {
         return this;
     }
 }
+

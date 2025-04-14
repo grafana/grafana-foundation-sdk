@@ -23,6 +23,10 @@ type AzureLogsQuery struct {
     BasicLogsQuery *bool `json:"basicLogsQuery,omitempty"`
     // Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
     Workspace *string `json:"workspace,omitempty"`
+    // Denotes if logs query editor is in builder mode
+    Mode *azuremonitor.LogsEditorMode `json:"mode,omitempty"`
+    // Builder query to be executed.
+    BuilderQuery *azuremonitor.BuilderQueryExpression `json:"builderQuery,omitempty"`
     // @deprecated Use resources instead
     Resource *string `json:"resource,omitempty"`
     // @deprecated Use dashboardTime instead

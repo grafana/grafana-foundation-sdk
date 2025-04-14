@@ -8,17 +8,31 @@ title: <span class="badge object-type-class"></span> Options
 ```php
 class Options implements \JsonSerializable
 {
+    public bool $showControls;
+
     public bool $showTime;
 
     public bool $wrapLogMessage;
 
     public bool $enableLogDetails;
 
+    public bool $syntaxHighlighting;
+
     public \Grafana\Foundation\Common\LogsSortOrder $sortOrder;
 
     public \Grafana\Foundation\Common\LogsDedupStrategy $dedupStrategy;
 
+    /**
+     * @var mixed|null
+     */
+    public $grammar;
+
     public ?bool $enableInfiniteScrolling;
+
+    /**
+     * @var mixed|null
+     */
+    public $onLogOptionsChange;
 
     /**
      * @var mixed|null

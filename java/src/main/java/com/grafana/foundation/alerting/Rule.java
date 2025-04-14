@@ -71,7 +71,6 @@ public class Rule {
     public String updated;
     public Rule() {
     }
-    
     public Rule(Map<String, String> annotations,String condition,List<Query> data,RuleExecErrState execErrState,String folderUID,String forArg,Long id,Boolean isPaused,String keepFiringFor,Map<String, String> labels,Long missingSeriesEvalsToResolve,RuleNoDataState noDataState,NotificationSettings notificationSettings,Long orgID,String provenance,RecordRule record,String ruleGroup,String title,String uid,String updated) {
         this.annotations = annotations;
         this.condition = condition;

@@ -14,7 +14,6 @@ public class XychartXYSeriesConfigFrame {
     public MatcherConfig matcher;
     public XychartXYSeriesConfigFrame() {
     }
-    
     public XychartXYSeriesConfigFrame(MatcherConfig matcher) {
         this.matcher = matcher;
     }

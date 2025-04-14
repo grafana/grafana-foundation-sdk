@@ -59,7 +59,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public Dataquery() {
         this.labelSelector = "{}";
     }
-    
     public Dataquery(String labelSelector,List<String> spanSelector,String profileTypeId,List<String> groupBy,Long limit,Long maxNodes,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
         this.labelSelector = labelSelector;
         this.spanSelector = spanSelector;

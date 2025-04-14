@@ -77,9 +77,6 @@ export interface Panel {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [annotationslist.PanelBuilder](../annotationslist/builder-PanelBuilder.md)

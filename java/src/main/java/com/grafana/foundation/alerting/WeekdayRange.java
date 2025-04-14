@@ -17,7 +17,6 @@ public class WeekdayRange {
     public Integer end;
     public WeekdayRange() {
     }
-    
     public WeekdayRange(Integer begin,Integer end) {
         this.begin = begin;
         this.end = end;

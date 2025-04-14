@@ -13,7 +13,7 @@ class TableActionsCellOptions:
     Show actions in the cell
     """
 
-    type_val: typing.Literal["actions"]
+    type_val: str
 ```
 ## Methods
 

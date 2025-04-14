@@ -106,6 +106,32 @@ final class AzureLogsQueryConverter
     
     
     }
+            if ($input->mode !== null) {
+    
+        
+    $buffer = 'mode(';
+        $arg0 ='\Grafana\Foundation\Azuremonitor\LogsEditorMode::fromValue("'.$input->mode.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->builderQuery !== null) {
+    
+        
+    $buffer = 'builderQuery(';
+        $arg0 = \Grafana\Foundation\Azuremonitor\BuilderQueryExpressionConverter::convert($input->builderQuery);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->resource !== null && $input->resource !== "") {
     
         

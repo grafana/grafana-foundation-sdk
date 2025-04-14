@@ -138,6 +138,14 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 interval(string $interval)
 ```
 
+### <span class="badge object-method"></span> layoutAlgorithm
+
+How to layout the nodes in the node graph
+
+```php
+layoutAlgorithm(\Grafana\Foundation\Nodegraph\LayoutAlgorithm $layoutAlgorithm)
+```
+
 ### <span class="badge object-method"></span> libraryPanel
 
 Dynamically load the panel

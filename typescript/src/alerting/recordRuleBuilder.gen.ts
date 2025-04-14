@@ -35,3 +35,4 @@ export class RecordRuleBuilder implements cog.Builder<alerting.RecordRule> {
         return this;
     }
 }
+

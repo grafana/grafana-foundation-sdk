@@ -32,6 +32,7 @@ class XychartFieldConfigPointSizeBuilder implements \Grafana\Foundation\Cog\Buil
     
         return $this;
     }
+
     public function min(int $min): static
     {
         if (!($min >= 0)) {
@@ -41,6 +42,7 @@ class XychartFieldConfigPointSizeBuilder implements \Grafana\Foundation\Cog\Buil
     
         return $this;
     }
+
     public function max(int $max): static
     {
         if (!($max >= 0)) {

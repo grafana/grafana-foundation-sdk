@@ -14,9 +14,6 @@ export interface StackingConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [StackingConfigBuilder](./builder-StackingConfigBuilder.md)

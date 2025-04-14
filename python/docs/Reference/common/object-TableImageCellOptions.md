@@ -13,7 +13,7 @@ class TableImageCellOptions:
     Json view cell options
     """
 
-    type_val: typing.Literal["image"]
+    type_val: str
     alt: typing.Optional[str]
     title: typing.Optional[str]
 ```

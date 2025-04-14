@@ -7,14 +7,11 @@ title: <span class="badge object-type-interface"></span> QueryEditorPropertyExpr
 
 ```typescript
 export interface QueryEditorPropertyExpression {
-	type: "property";
+	type: bigquery.QueryEditorExpressionType.Property;
 	property: bigquery.QueryEditorProperty;
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [QueryEditorPropertyExpressionBuilder](./builder-QueryEditorPropertyExpressionBuilder.md)

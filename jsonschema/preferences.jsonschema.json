@@ -26,6 +26,10 @@
           "type": "string",
           "description": "Selected language (beta)"
         },
+        "locale": {
+          "type": "string",
+          "description": "Selected locale (beta)"
+        },
         "queryHistory": {
           "$ref": "#/definitions/QueryHistoryPreference",
           "description": "Explore query history preferences"

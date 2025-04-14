@@ -72,7 +72,6 @@ public class FieldConfig {
         this.show = XYShowMode.POINTS;
         this.fillOpacity = 50;
     }
-    
     public FieldConfig(XYShowMode show,XychartFieldConfigPointSize pointSize,PointShape pointShape,Integer pointStrokeWidth,Integer fillOpacity,Integer lineWidth,HideSeriesConfig hideFrom,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero,LineStyle lineStyle,Boolean axisBorderShow) {
         this.show = show;
         this.pointSize = pointSize;

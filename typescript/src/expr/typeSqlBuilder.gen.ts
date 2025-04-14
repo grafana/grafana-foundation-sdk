@@ -33,6 +33,11 @@ export class TypeSqlBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 
+    format(format: string): this {
+        this.internal.format = format;
+        return this;
+    }
+
     // true if query is disabled (ie should not be returned to the dashboard)
     // NOTE: this does not always imply that the query should not be executed since
     // the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -109,3 +114,4 @@ export class TypeSqlBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 }
+

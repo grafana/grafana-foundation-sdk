@@ -104,6 +104,30 @@ func AzureLogsQueryConverter(input AzureLogsQuery) string {
 		buffer.Reset()
 
 	}
+	if input.Mode != nil {
+
+		buffer.WriteString(`Mode(`)
+		arg0 := cog.Dump(*input.Mode)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.BuilderQuery != nil {
+
+		buffer.WriteString(`BuilderQuery(`)
+		arg0 := BuilderQueryExpressionConverter(*input.BuilderQuery)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Resource != nil && *input.Resource != "" {
 
 		buffer.WriteString(`Resource(`)

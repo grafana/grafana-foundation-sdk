@@ -29,18 +29,21 @@ class NotificationTemplateBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function provenance(string $provenance): static
     {
         $this->internal->provenance = $provenance;
     
         return $this;
     }
+
     public function template(string $template): static
     {
         $this->internal->template = $template;
     
         return $this;
     }
+
     public function version(string $version): static
     {
         $this->internal->version = $version;

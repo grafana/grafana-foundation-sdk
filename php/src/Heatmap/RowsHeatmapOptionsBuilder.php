@@ -33,6 +33,7 @@ class RowsHeatmapOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Controls tick alignment when not calculating from data
      */

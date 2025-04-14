@@ -22,3 +22,4 @@ export class NavbarPreferenceBuilder implements cog.Builder<preferences.NavbarPr
         return this;
     }
 }
+

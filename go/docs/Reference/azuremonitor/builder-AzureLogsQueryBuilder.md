@@ -26,6 +26,14 @@ If set to true the query will be run as a basic logs query
 func (builder *AzureLogsQueryBuilder) BasicLogsQuery(basicLogsQuery bool) *AzureLogsQueryBuilder
 ```
 
+### <span class="badge object-method"></span> BuilderQuery
+
+Builder query to be executed.
+
+```go
+func (builder *AzureLogsQueryBuilder) BuilderQuery(builderQuery cog.Builder[azuremonitor.BuilderQueryExpression]) *AzureLogsQueryBuilder
+```
+
 ### <span class="badge object-method"></span> DashboardTime
 
 If set to true the dashboard time range will be used as a filter for the query. Otherwise the query time ranges will be used. Defaults to false.
@@ -40,6 +48,14 @@ func (builder *AzureLogsQueryBuilder) DashboardTime(dashboardTime bool) *AzureLo
 
 ```go
 func (builder *AzureLogsQueryBuilder) IntersectTime(intersectTime bool) *AzureLogsQueryBuilder
+```
+
+### <span class="badge object-method"></span> Mode
+
+Denotes if logs query editor is in builder mode
+
+```go
+func (builder *AzureLogsQueryBuilder) Mode(mode azuremonitor.LogsEditorMode) *AzureLogsQueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Query

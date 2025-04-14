@@ -37,6 +37,7 @@ class TypeClassicConditionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The datasource
      */
@@ -46,6 +47,7 @@ class TypeClassicConditionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
      * NOTE: this does not always imply that the query should not be executed since
@@ -57,6 +59,7 @@ class TypeClassicConditionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Interval is the suggested duration between time points in a time series query.
      * NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
@@ -68,6 +71,7 @@ class TypeClassicConditionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * MaxDataPoints is the maximum number of data points that should be returned from a time series query.
      * NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
@@ -79,6 +83,7 @@ class TypeClassicConditionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * QueryType is an optional identifier for the type of query.
      * It can be used to distinguish different types of queries.
@@ -89,6 +94,7 @@ class TypeClassicConditionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
@@ -98,6 +104,7 @@ class TypeClassicConditionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Optionally define expected query result behavior
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\ExprTypeClassicConditionsResultAssertions> $resultAssertions
@@ -109,6 +116,7 @@ class TypeClassicConditionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * TimeRange represents the query range
      * NOTE: unlike generic /ds/query, we can now send explicit time values in each query

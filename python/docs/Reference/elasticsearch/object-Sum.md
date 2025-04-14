@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> Sum
 
 ```python
 class Sum:
-    type_val: typing.Literal["sum"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchSumSettings]

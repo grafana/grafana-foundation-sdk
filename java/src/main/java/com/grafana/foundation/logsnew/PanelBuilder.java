@@ -366,6 +366,14 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
+    public PanelBuilder showControls(Boolean showControls) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.options).showControls = showControls;
+        return this;
+    }
+    
     public PanelBuilder showTime(Boolean showTime) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.logsnew.Options();
@@ -390,6 +398,14 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
+    public PanelBuilder syntaxHighlighting(Boolean syntaxHighlighting) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.options).syntaxHighlighting = syntaxHighlighting;
+        return this;
+    }
+    
     public PanelBuilder sortOrder(LogsSortOrder sortOrder) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.logsnew.Options();
@@ -406,11 +422,27 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
+    public PanelBuilder grammar(Object grammar) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.options).grammar = grammar;
+        return this;
+    }
+    
     public PanelBuilder enableInfiniteScrolling(Boolean enableInfiniteScrolling) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.logsnew.Options();
 		}
         ((Options) this.internal.options).enableInfiniteScrolling = enableInfiniteScrolling;
+        return this;
+    }
+    
+    public PanelBuilder onLogOptionsChange(Object onLogOptionsChange) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.options).onLogOptionsChange = onLogOptionsChange;
         return this;
     }
     

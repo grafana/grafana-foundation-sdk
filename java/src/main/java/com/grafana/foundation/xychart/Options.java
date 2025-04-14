@@ -28,7 +28,6 @@ public class Options {
     public List<XYSeriesConfig> series;
     public Options() {
     }
-    
     public Options(SeriesMapping mapping,VizLegendOptions legend,VizTooltipOptions tooltip,List<XYSeriesConfig> series) {
         this.mapping = mapping;
         this.legend = legend;

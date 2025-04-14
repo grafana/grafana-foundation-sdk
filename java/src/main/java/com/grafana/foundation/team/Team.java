@@ -16,7 +16,6 @@ public class Team {
     public String name;
     public Team() {
     }
-    
     public Team(String email,String name) {
         this.email = email;
         this.name = name;

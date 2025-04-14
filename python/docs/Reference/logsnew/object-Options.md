@@ -7,12 +7,16 @@ title: <span class="badge object-type-class"></span> Options
 
 ```python
 class Options:
+    show_controls: bool
     show_time: bool
     wrap_log_message: bool
     enable_log_details: bool
+    syntax_highlighting: bool
     sort_order: common.LogsSortOrder
     dedup_strategy: common.LogsDedupStrategy
+    grammar: typing.Optional[object]
     enable_infinite_scrolling: typing.Optional[bool]
+    on_log_options_change: typing.Optional[object]
     on_new_logs_received: typing.Optional[object]
 ```
 ## Methods

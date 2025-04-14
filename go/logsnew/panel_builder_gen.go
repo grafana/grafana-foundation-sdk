@@ -478,6 +478,15 @@ func (builder *PanelBuilder) OverrideByQuery(queryRefId string, properties []das
 	return builder
 }
 
+func (builder *PanelBuilder) ShowControls(showControls bool) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).ShowControls = showControls
+
+	return builder
+}
+
 func (builder *PanelBuilder) ShowTime(showTime bool) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
@@ -505,6 +514,15 @@ func (builder *PanelBuilder) EnableLogDetails(enableLogDetails bool) *PanelBuild
 	return builder
 }
 
+func (builder *PanelBuilder) SyntaxHighlighting(syntaxHighlighting bool) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).SyntaxHighlighting = syntaxHighlighting
+
+	return builder
+}
+
 func (builder *PanelBuilder) SortOrder(sortOrder common.LogsSortOrder) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
@@ -523,11 +541,29 @@ func (builder *PanelBuilder) DedupStrategy(dedupStrategy common.LogsDedupStrateg
 	return builder
 }
 
+func (builder *PanelBuilder) Grammar(grammar any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).Grammar = &grammar
+
+	return builder
+}
+
 func (builder *PanelBuilder) EnableInfiniteScrolling(enableInfiniteScrolling bool) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).EnableInfiniteScrolling = &enableInfiniteScrolling
+
+	return builder
+}
+
+func (builder *PanelBuilder) OnLogOptionsChange(onLogOptionsChange any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).OnLogOptionsChange = &onLogOptionsChange
 
 	return builder
 }

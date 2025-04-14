@@ -9,7 +9,7 @@ Show data links in the cell
 
 ```go
 type TableDataLinksCellOptions struct {
-    Type string `json:"type"`
+    Type common.TableCellDisplayMode `json:"type"`
 }
 ```
 ## Methods

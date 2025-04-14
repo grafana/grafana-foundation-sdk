@@ -56,9 +56,6 @@ export interface TempoQuery {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TempoQueryBuilder](./builder-TempoQueryBuilder.md)

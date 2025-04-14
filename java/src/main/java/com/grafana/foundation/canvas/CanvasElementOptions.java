@@ -35,7 +35,6 @@ public class CanvasElementOptions {
     public List<CanvasConnection> connections;
     public CanvasElementOptions() {
     }
-    
     public CanvasElementOptions(String name,String type,Object config,Constraint constraint,Placement placement,BackgroundConfig background,LineConfig border,List<CanvasConnection> connections) {
         this.name = name;
         this.type = type;

@@ -17,7 +17,6 @@ public class ElasticsearchMinSettings {
     public String missing;
     public ElasticsearchMinSettings() {
     }
-    
     public ElasticsearchMinSettings(InlineScript script,String missing) {
         this.script = script;
         this.missing = missing;

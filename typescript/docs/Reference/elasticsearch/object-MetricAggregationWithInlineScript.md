@@ -16,9 +16,6 @@ export interface MetricAggregationWithInlineScript {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MetricAggregationWithInlineScriptBuilder](./builder-MetricAggregationWithInlineScriptBuilder.md)

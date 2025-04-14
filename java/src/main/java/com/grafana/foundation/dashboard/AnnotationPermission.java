@@ -20,7 +20,6 @@ public class AnnotationPermission {
     public AnnotationActions organization;
     public AnnotationPermission() {
     }
-    
     public AnnotationPermission(AnnotationActions dashboard,AnnotationActions organization) {
         this.dashboard = dashboard;
         this.organization = organization;

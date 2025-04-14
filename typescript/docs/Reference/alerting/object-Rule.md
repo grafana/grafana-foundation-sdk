@@ -32,9 +32,6 @@ export interface Rule {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [RuleBuilder](./builder-RuleBuilder.md)

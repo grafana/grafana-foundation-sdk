@@ -35,3 +35,4 @@ export class AzureTracesFilterBuilder implements cog.Builder<azuremonitor.AzureT
         return this;
     }
 }
+

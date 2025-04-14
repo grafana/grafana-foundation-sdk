@@ -10,7 +10,7 @@ Show actions in the cell
 ```php
 class TableActionsCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
 }
 ```

@@ -39,7 +39,6 @@ public class ResultAssertions {
     public List<Long> typeVersion;
     public ResultAssertions() {
     }
-    
     public ResultAssertions(Long maxFrames,ResultAssertionsType type,List<Long> typeVersion) {
         this.maxFrames = maxFrames;
         this.type = type;

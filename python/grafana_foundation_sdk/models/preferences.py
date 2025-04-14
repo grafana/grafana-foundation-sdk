@@ -20,6 +20,8 @@ class Preferences:
     theme: typing.Optional[str]
     # Selected language (beta)
     language: typing.Optional[str]
+    # Selected locale (beta)
+    locale: typing.Optional[str]
     # Explore query history preferences
     query_history: typing.Optional['QueryHistoryPreference']
     # Cookie preferences
@@ -27,12 +29,13 @@ class Preferences:
     # Navigation preferences
     navbar: typing.Optional['NavbarPreference']
 
-    def __init__(self, home_dashboard_uid: typing.Optional[str] = None, timezone: typing.Optional[str] = None, week_start: typing.Optional[str] = None, theme: typing.Optional[str] = None, language: typing.Optional[str] = None, query_history: typing.Optional['QueryHistoryPreference'] = None, cookie_preferences: typing.Optional['CookiePreferences'] = None, navbar: typing.Optional['NavbarPreference'] = None):
+    def __init__(self, home_dashboard_uid: typing.Optional[str] = None, timezone: typing.Optional[str] = None, week_start: typing.Optional[str] = None, theme: typing.Optional[str] = None, language: typing.Optional[str] = None, locale: typing.Optional[str] = None, query_history: typing.Optional['QueryHistoryPreference'] = None, cookie_preferences: typing.Optional['CookiePreferences'] = None, navbar: typing.Optional['NavbarPreference'] = None):
         self.home_dashboard_uid = home_dashboard_uid
         self.timezone = timezone
         self.week_start = week_start
         self.theme = theme
         self.language = language
+        self.locale = locale
         self.query_history = query_history
         self.cookie_preferences = cookie_preferences
         self.navbar = navbar
@@ -50,6 +53,8 @@ class Preferences:
             payload["theme"] = self.theme
         if self.language is not None:
             payload["language"] = self.language
+        if self.locale is not None:
+            payload["locale"] = self.locale
         if self.query_history is not None:
             payload["queryHistory"] = self.query_history
         if self.cookie_preferences is not None:
@@ -72,6 +77,8 @@ class Preferences:
             args["theme"] = data["theme"]
         if "language" in data:
             args["language"] = data["language"]
+        if "locale" in data:
+            args["locale"] = data["locale"]
         if "queryHistory" in data:
             args["query_history"] = QueryHistoryPreference.from_json(data["queryHistory"])
         if "cookiePreferences" in data:

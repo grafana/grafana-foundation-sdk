@@ -17,6 +17,11 @@ class Options implements \JsonSerializable
      */
     public ?\Grafana\Foundation\Nodegraph\ZoomMode $zoomMode;
 
+    /**
+     * How to layout the nodes in the node graph
+     */
+    public ?\Grafana\Foundation\Nodegraph\LayoutAlgorithm $layoutAlgorithm;
+
 }
 ```
 ## Methods

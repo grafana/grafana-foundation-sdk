@@ -15,7 +15,6 @@ public class BaseDimensionConfig {
     public String field;
     public BaseDimensionConfig() {
     }
-    
     public BaseDimensionConfig(String field) {
         this.field = field;
     }

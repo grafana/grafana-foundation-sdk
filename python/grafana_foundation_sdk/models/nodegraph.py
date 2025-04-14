@@ -110,16 +110,25 @@ class ZoomMode(enum.StrEnum):
     GREEDY = "greedy"
 
 
+class LayoutAlgorithm(enum.StrEnum):
+    LAYERED = "layered"
+    FORCE = "force"
+    GRID = "grid"
+
+
 class Options:
     nodes: typing.Optional['NodeOptions']
     edges: typing.Optional['EdgeOptions']
     # How to handle zoom/scroll events in the node graph
     zoom_mode: typing.Optional['ZoomMode']
+    # How to layout the nodes in the node graph
+    layout_algorithm: typing.Optional['LayoutAlgorithm']
 
-    def __init__(self, nodes: typing.Optional['NodeOptions'] = None, edges: typing.Optional['EdgeOptions'] = None, zoom_mode: typing.Optional['ZoomMode'] = None):
+    def __init__(self, nodes: typing.Optional['NodeOptions'] = None, edges: typing.Optional['EdgeOptions'] = None, zoom_mode: typing.Optional['ZoomMode'] = None, layout_algorithm: typing.Optional['LayoutAlgorithm'] = None):
         self.nodes = nodes
         self.edges = edges
         self.zoom_mode = zoom_mode
+        self.layout_algorithm = layout_algorithm
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -130,6 +139,8 @@ class Options:
             payload["edges"] = self.edges
         if self.zoom_mode is not None:
             payload["zoomMode"] = self.zoom_mode
+        if self.layout_algorithm is not None:
+            payload["layoutAlgorithm"] = self.layout_algorithm
         return payload
 
     @classmethod
@@ -141,7 +152,9 @@ class Options:
         if "edges" in data:
             args["edges"] = EdgeOptions.from_json(data["edges"])
         if "zoomMode" in data:
-            args["zoom_mode"] = data["zoomMode"]        
+            args["zoom_mode"] = data["zoomMode"]
+        if "layoutAlgorithm" in data:
+            args["layout_algorithm"] = data["layoutAlgorithm"]        
 
         return cls(**args)
 

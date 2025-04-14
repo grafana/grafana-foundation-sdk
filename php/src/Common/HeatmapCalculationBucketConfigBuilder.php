@@ -32,6 +32,7 @@ class HeatmapCalculationBucketConfigBuilder implements \Grafana\Foundation\Cog\B
     
         return $this;
     }
+
     /**
      * The number of buckets to use for the axis in the heatmap
      */
@@ -41,6 +42,7 @@ class HeatmapCalculationBucketConfigBuilder implements \Grafana\Foundation\Cog\B
     
         return $this;
     }
+
     /**
      * Controls the scale of the buckets
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDistributionConfig> $scale

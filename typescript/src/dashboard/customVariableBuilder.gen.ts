@@ -86,3 +86,4 @@ export class CustomVariableBuilder implements cog.Builder<dashboard.VariableMode
         return this;
     }
 }
+

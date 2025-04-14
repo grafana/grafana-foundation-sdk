@@ -27,3 +27,4 @@ export class QueryEditorPropertyBuilder implements cog.Builder<cloudwatch.QueryE
         return this;
     }
 }
+

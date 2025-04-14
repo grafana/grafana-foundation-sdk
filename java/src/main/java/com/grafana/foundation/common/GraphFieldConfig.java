@@ -111,7 +111,6 @@ public class GraphFieldConfig {
     public Double barMaxWidth;
     public GraphFieldConfig() {
     }
-    
     public GraphFieldConfig(GraphDrawStyle drawStyle,GraphGradientMode gradientMode,GraphThresholdsStyleConfig thresholdsStyle,GraphTransform transform,String lineColor,Double lineWidth,LineInterpolation lineInterpolation,LineStyle lineStyle,String fillColor,Double fillOpacity,VisibilityMode showPoints,Double pointSize,String pointColor,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero,BarAlignment barAlignment,Double barWidthFactor,StackingConfig stacking,HideSeriesConfig hideFrom,BoolOrFloat64 insertNulls,BoolOrFloat64 spanNulls,String fillBelowTo,String pointSymbol,Boolean axisBorderShow,Double barMaxWidth) {
         this.drawStyle = drawStyle;
         this.gradientMode = gradientMode;

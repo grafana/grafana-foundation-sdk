@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> MovingAverageEWMAModelSetti
 
 ```python
 class MovingAverageEWMAModelSettings:
-    model: typing.Literal["ewma"]
+    model: str
     settings: typing.Optional[elasticsearch.ElasticsearchMovingAverageEWMAModelSettingsSettings]
     window: str
     minimize: bool

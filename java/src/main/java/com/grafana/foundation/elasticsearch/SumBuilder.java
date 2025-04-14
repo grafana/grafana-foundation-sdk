@@ -8,7 +8,6 @@ public class SumBuilder implements com.grafana.foundation.cog.Builder<Sum> {
     
     public SumBuilder() {
         this.internal = new Sum();
-        this.internal.type = "sum";
     }
     public SumBuilder field(String field) {
         this.internal.field = field;

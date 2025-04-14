@@ -20,7 +20,6 @@ public class XychartFieldConfigPointSize {
     public Integer max;
     public XychartFieldConfigPointSize() {
     }
-    
     public XychartFieldConfigPointSize(Integer fixed,Integer min,Integer max) {
         this.fixed = fixed;
         this.min = min;

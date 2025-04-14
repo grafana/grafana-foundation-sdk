@@ -14,7 +14,6 @@ public class XychartXYSeriesConfigName {
     public String fixed;
     public XychartXYSeriesConfigName() {
     }
-    
     public XychartXYSeriesConfigName(String fixed) {
         this.fixed = fixed;
     }

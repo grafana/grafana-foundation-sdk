@@ -19,7 +19,6 @@ func NewSumBuilder() *SumBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "sum"
 
 	return builder
 }

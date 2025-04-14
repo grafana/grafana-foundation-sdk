@@ -9,7 +9,7 @@ Show actions in the cell
 
 ```go
 type TableActionsCellOptions struct {
-    Type string `json:"type"`
+    Type common.TableCellDisplayMode `json:"type"`
 }
 ```
 ## Methods

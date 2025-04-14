@@ -31,7 +31,6 @@ public class StreamingQuery {
     public String url;
     public StreamingQuery() {
     }
-    
     public StreamingQuery(Long bands,Double noise,Double speed,Double spread,StreamingQueryType type,String url) {
         this.bands = bands;
         this.noise = noise;

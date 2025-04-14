@@ -16,9 +16,6 @@ export interface RecordRule {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [RecordRuleBuilder](./builder-RecordRuleBuilder.md)

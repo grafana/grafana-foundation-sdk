@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> MovingAverageHoltModelSetti
 ```php
 class MovingAverageHoltModelSettings implements \JsonSerializable
 {
-    public string $model;
+    public \Grafana\Foundation\Elasticsearch\MovingAverageModel $model;
 
     public \Grafana\Foundation\Elasticsearch\ElasticsearchMovingAverageHoltModelSettingsSettings $settings;
 

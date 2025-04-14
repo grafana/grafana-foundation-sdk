@@ -466,6 +466,18 @@ func PanelConverter(input dashboard.Panel) string {
 	}
 	if input.Options != nil {
 
+		buffer.WriteString(`ShowControls(`)
+		arg0 := fmt.Sprintf("%#v", input.Options.(*Options).ShowControls)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Options != nil {
+
 		buffer.WriteString(`ShowTime(`)
 		arg0 := fmt.Sprintf("%#v", input.Options.(*Options).ShowTime)
 		buffer.WriteString(arg0)
@@ -502,6 +514,18 @@ func PanelConverter(input dashboard.Panel) string {
 	}
 	if input.Options != nil {
 
+		buffer.WriteString(`SyntaxHighlighting(`)
+		arg0 := fmt.Sprintf("%#v", input.Options.(*Options).SyntaxHighlighting)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Options != nil {
+
 		buffer.WriteString(`SortOrder(`)
 		arg0 := cog.Dump(input.Options.(*Options).SortOrder)
 		buffer.WriteString(arg0)
@@ -524,10 +548,34 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
+	if input.Options != nil && input.Options.(*Options).Grammar != nil {
+
+		buffer.WriteString(`Grammar(`)
+		arg0 := cog.Dump(input.Options.(*Options).Grammar)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Options != nil && input.Options.(*Options).EnableInfiniteScrolling != nil {
 
 		buffer.WriteString(`EnableInfiniteScrolling(`)
 		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).EnableInfiniteScrolling)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Options != nil && input.Options.(*Options).OnLogOptionsChange != nil {
+
+		buffer.WriteString(`OnLogOptionsChange(`)
+		arg0 := cog.Dump(input.Options.(*Options).OnLogOptionsChange)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

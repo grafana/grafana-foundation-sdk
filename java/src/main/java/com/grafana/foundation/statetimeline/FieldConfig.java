@@ -56,7 +56,6 @@ public class FieldConfig {
         this.lineWidth = 0;
         this.fillOpacity = 70;
     }
-    
     public FieldConfig(Integer lineWidth,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero,HideSeriesConfig hideFrom,Integer fillOpacity,Boolean axisBorderShow) {
         this.lineWidth = lineWidth;
         this.axisPlacement = axisPlacement;

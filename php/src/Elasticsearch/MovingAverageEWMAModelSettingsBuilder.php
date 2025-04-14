@@ -12,7 +12,6 @@ class MovingAverageEWMAModelSettingsBuilder implements \Grafana\Foundation\Cog\B
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\MovingAverageEWMAModelSettings();
-    $this->internal->model = "ewma";
     }
 
     /**
@@ -34,18 +33,21 @@ class MovingAverageEWMAModelSettingsBuilder implements \Grafana\Foundation\Cog\B
     
         return $this;
     }
+
     public function window(string $window): static
     {
         $this->internal->window = $window;
     
         return $this;
     }
+
     public function minimize(bool $minimize): static
     {
         $this->internal->minimize = $minimize;
     
         return $this;
     }
+
     public function predict(string $predict): static
     {
         $this->internal->predict = $predict;

@@ -23,6 +23,10 @@ export interface AzureLogsQuery {
 	basicLogsQuery?: boolean;
 	// Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
 	workspace?: string;
+	// Denotes if logs query editor is in builder mode
+	mode?: azuremonitor.LogsEditorMode;
+	// Builder query to be executed.
+	builderQuery?: azuremonitor.BuilderQueryExpression;
 	// @deprecated Use resources instead
 	resource?: string;
 	// @deprecated Use dashboardTime instead
@@ -30,9 +34,6 @@ export interface AzureLogsQuery {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [AzureLogsQueryBuilder](./builder-AzureLogsQueryBuilder.md)

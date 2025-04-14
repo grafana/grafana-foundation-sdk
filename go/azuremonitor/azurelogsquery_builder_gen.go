@@ -81,6 +81,25 @@ func (builder *AzureLogsQueryBuilder) Workspace(workspace string) *AzureLogsQuer
 	return builder
 }
 
+// Denotes if logs query editor is in builder mode
+func (builder *AzureLogsQueryBuilder) Mode(mode LogsEditorMode) *AzureLogsQueryBuilder {
+	builder.internal.Mode = &mode
+
+	return builder
+}
+
+// Builder query to be executed.
+func (builder *AzureLogsQueryBuilder) BuilderQuery(builderQuery cog.Builder[BuilderQueryExpression]) *AzureLogsQueryBuilder {
+	builderQueryResource, err := builderQuery.Build()
+	if err != nil {
+		builder.errors["builderQuery"] = err.(cog.BuildErrors)
+		return builder
+	}
+	builder.internal.BuilderQuery = &builderQueryResource
+
+	return builder
+}
+
 // @deprecated Use resources instead
 func (builder *AzureLogsQueryBuilder) Resource(resource string) *AzureLogsQueryBuilder {
 	builder.internal.Resource = &resource

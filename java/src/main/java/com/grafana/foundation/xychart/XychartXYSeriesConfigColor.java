@@ -14,7 +14,6 @@ public class XychartXYSeriesConfigColor {
     public MatcherConfig matcher;
     public XychartXYSeriesConfigColor() {
     }
-    
     public XychartXYSeriesConfigColor(MatcherConfig matcher) {
         this.matcher = matcher;
     }

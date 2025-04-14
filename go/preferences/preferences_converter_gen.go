@@ -73,6 +73,18 @@ func PreferencesConverter(input Preferences) string {
 		buffer.Reset()
 
 	}
+	if input.Locale != nil && *input.Locale != "" {
+
+		buffer.WriteString(`Locale(`)
+		arg0 := fmt.Sprintf("%#v", *input.Locale)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.QueryHistory != nil {
 
 		buffer.WriteString(`QueryHistory(`)

@@ -25,6 +25,8 @@ type Preferences struct {
 	Theme *string `json:"theme,omitempty"`
 	// Selected language (beta)
 	Language *string `json:"language,omitempty"`
+	// Selected locale (beta)
+	Locale *string `json:"locale,omitempty"`
 	// Explore query history preferences
 	QueryHistory *QueryHistoryPreference `json:"queryHistory,omitempty"`
 	// Cookie preferences
@@ -103,6 +105,17 @@ func (resource *Preferences) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "language")
+
+	}
+	// Field "locale"
+	if fields["locale"] != nil {
+		if string(fields["locale"]) != "null" {
+			if err := json.Unmarshal(fields["locale"], &resource.Locale); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("locale", err)...)
+			}
+
+		}
+		delete(fields, "locale")
 
 	}
 	// Field "queryHistory"
@@ -200,6 +213,15 @@ func (resource Preferences) Equals(other Preferences) bool {
 
 	if resource.Language != nil {
 		if *resource.Language != *other.Language {
+			return false
+		}
+	}
+	if resource.Locale == nil && other.Locale != nil || resource.Locale != nil && other.Locale == nil {
+		return false
+	}
+
+	if resource.Locale != nil {
+		if *resource.Locale != *other.Locale {
 			return false
 		}
 	}

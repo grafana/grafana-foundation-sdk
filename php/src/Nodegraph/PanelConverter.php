@@ -548,6 +548,19 @@ final class PanelConverter
     
     
     }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Nodegraph\Options && $input->options->layoutAlgorithm !== null) {
+    
+        
+    $buffer = 'layoutAlgorithm(';
+        $arg0 ='\Grafana\Foundation\Nodegraph\LayoutAlgorithm::fromValue("'.$input->options->layoutAlgorithm.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

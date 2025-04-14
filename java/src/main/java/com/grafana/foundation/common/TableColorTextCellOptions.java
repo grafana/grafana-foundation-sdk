@@ -11,15 +11,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 // Colored text cell options
 public class TableColorTextCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("wrapText")
     public Boolean wrapText;
     public TableColorTextCellOptions() {
+        this.type = TableCellDisplayMode.COLOR_TEXT;
     }
-    
-    public TableColorTextCellOptions(String type,Boolean wrapText) {
-        this.type = type;
+    public TableColorTextCellOptions(Boolean wrapText) {
+        this.type = TableCellDisplayMode.COLOR_TEXT;
         this.wrapText = wrapText;
     }
     

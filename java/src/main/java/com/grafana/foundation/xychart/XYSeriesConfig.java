@@ -29,7 +29,6 @@ public class XYSeriesConfig {
     public XychartXYSeriesConfigSize size;
     public XYSeriesConfig() {
     }
-    
     public XYSeriesConfig(XychartXYSeriesConfigName name,XychartXYSeriesConfigFrame frame,XychartXYSeriesConfigX x,XychartXYSeriesConfigY y,XychartXYSeriesConfigColor color,XychartXYSeriesConfigSize size) {
         this.name = name;
         this.frame = frame;
