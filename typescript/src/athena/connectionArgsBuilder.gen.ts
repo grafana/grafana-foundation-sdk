@@ -42,3 +42,4 @@ export class ConnectionArgsBuilder implements cog.Builder<athena.ConnectionArgs>
         return this;
     }
 }
+

@@ -2,12 +2,12 @@
 
 package com.grafana.foundation.statetimeline;
 
-import com.grafana.foundation.common.VisibilityMode;
-import com.grafana.foundation.common.TimelineValueAlignment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.VisibilityMode;
+import com.grafana.foundation.common.TimelineValueAlignment;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.grafana.foundation.common.VizTooltipOptions;
@@ -49,7 +49,6 @@ public class Options {
         this.alignValue = TimelineValueAlignment.LEFT;
         this.perPage = 20.0;
     }
-    
     public Options(VisibilityMode showValue,Double rowHeight,Boolean mergeValues,TimelineValueAlignment alignValue,VizLegendOptions legend,VizTooltipOptions tooltip,List<String> timezone,Double perPage) {
         this.showValue = showValue;
         this.rowHeight = rowHeight;

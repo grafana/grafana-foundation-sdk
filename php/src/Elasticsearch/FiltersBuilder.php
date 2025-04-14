@@ -12,7 +12,6 @@ class FiltersBuilder implements \Grafana\Foundation\Cog\Builder
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\Filters();
-    $this->internal->type = "filters";
     }
 
     /**
@@ -30,6 +29,7 @@ class FiltersBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\ElasticsearchFiltersSettings> $settings
      */

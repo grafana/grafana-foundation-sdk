@@ -48,7 +48,6 @@ public class Options {
         this.colors = new CandlestickColors("green", "red", "gray");
         this.includeAllFields = false;
     }
-    
     public Options(VizDisplayMode mode,CandleStyle candleStyle,ColorStrategy colorStrategy,CandlestickFieldMap fields,CandlestickColors colors,VizLegendOptions legend,VizTooltipOptions tooltip,Boolean includeAllFields) {
         this.mode = mode;
         this.candleStyle = candleStyle;

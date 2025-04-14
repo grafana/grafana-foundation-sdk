@@ -27,3 +27,4 @@ export class MovingAverageModelOptionBuilder implements cog.Builder<elasticsearc
         return this;
     }
 }
+

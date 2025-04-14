@@ -29,6 +29,7 @@ class ElasticsearchHistogramSettingsBuilder implements \Grafana\Foundation\Cog\B
     
         return $this;
     }
+
     public function minDocCount(string $minDocCount): static
     {
         $this->internal->minDocCount = $minDocCount;

@@ -30,12 +30,14 @@ class HideSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function legend(bool $legend): static
     {
         $this->internal->legend = $legend;
     
         return $this;
     }
+
     public function viz(bool $viz): static
     {
         $this->internal->viz = $viz;

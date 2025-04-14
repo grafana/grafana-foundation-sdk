@@ -19,7 +19,6 @@ public class CandlestickColors {
         this.down = "red";
         this.flat = "gray";
     }
-    
     public CandlestickColors(String up,String down,String flat) {
         this.up = up;
         this.down = down;

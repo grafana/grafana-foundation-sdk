@@ -72,3 +72,4 @@ export class MapViewConfigBuilder implements cog.Builder<geomap.MapViewConfig> {
         return this;
     }
 }
+

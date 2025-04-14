@@ -29,12 +29,14 @@ class UpdateConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function dataChanged(bool $dataChanged): static
     {
         $this->internal->dataChanged = $dataChanged;
     
         return $this;
     }
+
     public function schemaChanged(bool $schemaChanged): static
     {
         $this->internal->schemaChanged = $schemaChanged;

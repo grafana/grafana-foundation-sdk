@@ -8,7 +8,6 @@ public class HistogramBuilder implements com.grafana.foundation.cog.Builder<Hist
     
     public HistogramBuilder() {
         this.internal = new Histogram();
-        this.internal.type = "histogram";
     }
     public HistogramBuilder field(String field) {
         this.internal.field = field;

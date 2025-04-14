@@ -19,7 +19,6 @@ public class LibraryPanelRef {
     public String uid;
     public LibraryPanelRef() {
     }
-    
     public LibraryPanelRef(String name,String uid) {
         this.name = name;
         this.uid = uid;

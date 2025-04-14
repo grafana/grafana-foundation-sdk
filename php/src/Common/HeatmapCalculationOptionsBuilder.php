@@ -34,6 +34,7 @@ class HeatmapCalculationOptionsBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * The number of buckets to use for the yAxis in the heatmap
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\HeatmapCalculationBucketConfig> $yBuckets

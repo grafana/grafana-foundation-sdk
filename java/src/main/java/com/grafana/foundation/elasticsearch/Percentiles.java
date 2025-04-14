@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Percentiles {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("field")
     public String field;
@@ -23,10 +23,10 @@ public class Percentiles {
     @JsonProperty("hide")
     public Boolean hide;
     public Percentiles() {
+        this.type = MetricAggregationType.PERCENTILES;
     }
-    
-    public Percentiles(String type,String field,String id,ElasticsearchPercentilesSettings settings,Boolean hide) {
-        this.type = type;
+    public Percentiles(String field,String id,ElasticsearchPercentilesSettings settings,Boolean hide) {
+        this.type = MetricAggregationType.PERCENTILES;
         this.field = field;
         this.id = id;
         this.settings = settings;

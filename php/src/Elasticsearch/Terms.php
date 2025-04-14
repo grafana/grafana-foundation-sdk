@@ -8,7 +8,7 @@ class Terms implements \JsonSerializable
 
     public string $id;
 
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\BucketAggregationType $type;
 
     public ?\Grafana\Foundation\Elasticsearch\ElasticsearchTermsSettings $settings;
 
@@ -21,8 +21,7 @@ class Terms implements \JsonSerializable
     {
         $this->field = $field;
         $this->id = $id ?: "";
-        $this->type = "terms";
-    
+        $this->type = \Grafana\Foundation\Elasticsearch\BucketAggregationType::terms();
         $this->settings = $settings;
     }
 
@@ -31,7 +30,7 @@ class Terms implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{field?: string, id?: string, type?: string, settings?: mixed} $inputData */
+        /** @var array{field?: string, id?: string, type?: "terms", settings?: mixed} $inputData */
         $data = $inputData;
         return new self(
             field: $data["field"] ?? null,

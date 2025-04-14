@@ -25,7 +25,6 @@ public class RelativeTimeRange {
     public Long to;
     public RelativeTimeRange() {
     }
-    
     public RelativeTimeRange(Long from,Long to) {
         this.from = from;
         this.to = to;

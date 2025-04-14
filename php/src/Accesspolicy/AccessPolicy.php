@@ -52,7 +52,7 @@ class AccessPolicy implements \JsonSerializable
     	return \Grafana\Foundation\Accesspolicy\RoleRef::fromArray($val);
     })($data["role"]) : null,
             rules: array_filter(array_map((function($input) {
-    	/** @var array{kind?: string, verb?: string, target?: string} */
+    	/** @var array{kind?: string, verb?: string|string|string, target?: string} */
     $val = $input;
     	return \Grafana\Foundation\Accesspolicy\AccessRule::fromArray($val);
     }), $data["rules"] ?? [])),

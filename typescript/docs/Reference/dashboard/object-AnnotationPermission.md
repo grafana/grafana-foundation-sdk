@@ -12,9 +12,6 @@ export interface AnnotationPermission {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [AnnotationPermissionBuilder](./builder-AnnotationPermissionBuilder.md)

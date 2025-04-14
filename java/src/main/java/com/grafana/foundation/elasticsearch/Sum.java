@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Sum {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("field")
     public String field;
@@ -23,10 +23,10 @@ public class Sum {
     @JsonProperty("hide")
     public Boolean hide;
     public Sum() {
+        this.type = MetricAggregationType.SUM;
     }
-    
-    public Sum(String type,String field,String id,ElasticsearchSumSettings settings,Boolean hide) {
-        this.type = type;
+    public Sum(String field,String id,ElasticsearchSumSettings settings,Boolean hide) {
+        this.type = MetricAggregationType.SUM;
         this.field = field;
         this.id = id;
         this.settings = settings;

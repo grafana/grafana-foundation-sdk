@@ -19,7 +19,6 @@ func NewPercentilesBuilder() *PercentilesBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "percentiles"
 
 	return builder
 }

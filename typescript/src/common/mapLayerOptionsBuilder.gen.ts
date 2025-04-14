@@ -61,3 +61,4 @@ export class MapLayerOptionsBuilder implements cog.Builder<common.MapLayerOption
         return this;
     }
 }
+

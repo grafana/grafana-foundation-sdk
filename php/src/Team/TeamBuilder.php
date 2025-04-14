@@ -30,6 +30,7 @@ class TeamBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function name(string $name): static
     {
         $this->internal->name = $name;

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Average {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("field")
     public String field;
@@ -23,10 +23,10 @@ public class Average {
     @JsonProperty("hide")
     public Boolean hide;
     public Average() {
+        this.type = MetricAggregationType.AVG;
     }
-    
-    public Average(String type,String field,String id,ElasticsearchAverageSettings settings,Boolean hide) {
-        this.type = type;
+    public Average(String field,String id,ElasticsearchAverageSettings settings,Boolean hide) {
+        this.type = MetricAggregationType.AVG;
         this.field = field;
         this.id = id;
         this.settings = settings;

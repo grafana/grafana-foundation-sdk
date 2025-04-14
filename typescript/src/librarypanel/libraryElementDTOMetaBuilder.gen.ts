@@ -54,3 +54,4 @@ export class LibraryElementDTOMetaBuilder implements cog.Builder<librarypanel.Li
         return this;
     }
 }
+

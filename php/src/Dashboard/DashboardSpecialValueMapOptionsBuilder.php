@@ -32,6 +32,7 @@ class DashboardSpecialValueMapOptionsBuilder implements \Grafana\Foundation\Cog\
     
         return $this;
     }
+
     /**
      * Config to apply when the value matches the special value
      */

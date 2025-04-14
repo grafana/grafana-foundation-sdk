@@ -241,10 +241,7 @@
         "type"
       ],
       "properties": {
-        "type": {
-          "type": "string",
-          "const": "function"
-        },
+        "type": {},
         "name": {
           "type": "string"
         },
@@ -256,6 +253,17 @@
         }
       }
     },
+    "QueryEditorExpressionType": {
+      "enum": [
+        "property",
+        "operator",
+        "or",
+        "and",
+        "groupBy",
+        "function",
+        "functionParameter"
+      ]
+    },
     "QueryEditorFunctionParameterExpression": {
       "type": "object",
       "additionalProperties": false,
@@ -263,10 +271,7 @@
         "type"
       ],
       "properties": {
-        "type": {
-          "type": "string",
-          "const": "functionParameter"
-        },
+        "type": {},
         "name": {
           "type": "string"
         }
@@ -280,10 +285,7 @@
         "property"
       ],
       "properties": {
-        "type": {
-          "type": "string",
-          "const": "property"
-        },
+        "type": {},
         "property": {
           "$ref": "#/definitions/QueryEditorProperty"
         }
@@ -361,10 +363,7 @@
         "property"
       ],
       "properties": {
-        "type": {
-          "type": "string",
-          "const": "groupBy"
-        },
+        "type": {},
         "property": {
           "$ref": "#/definitions/QueryEditorProperty"
         }
@@ -379,10 +378,7 @@
         "operator"
       ],
       "properties": {
-        "type": {
-          "type": "string",
-          "const": "operator"
-        },
+        "type": {},
         "property": {
           "$ref": "#/definitions/QueryEditorProperty"
         },
@@ -426,17 +422,6 @@
         {
           "type": "integer"
         }
-      ]
-    },
-    "QueryEditorExpressionType": {
-      "enum": [
-        "property",
-        "operator",
-        "or",
-        "and",
-        "groupBy",
-        "function",
-        "functionParameter"
       ]
     },
     "QueryEditorOperatorValueType": {

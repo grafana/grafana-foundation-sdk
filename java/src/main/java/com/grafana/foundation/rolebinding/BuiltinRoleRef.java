@@ -16,7 +16,6 @@ public class BuiltinRoleRef {
     public BuiltinRoleRefName name;
     public BuiltinRoleRef() {
     }
-    
     public BuiltinRoleRef(String kind,BuiltinRoleRefName name) {
         this.kind = kind;
         this.name = name;

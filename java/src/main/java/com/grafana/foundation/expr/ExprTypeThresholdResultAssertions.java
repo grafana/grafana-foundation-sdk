@@ -39,7 +39,6 @@ public class ExprTypeThresholdResultAssertions {
     public List<Long> typeVersion;
     public ExprTypeThresholdResultAssertions() {
     }
-    
     public ExprTypeThresholdResultAssertions(Long maxFrames,ExprTypeThresholdResultAssertionsType type,List<Long> typeVersion) {
         this.maxFrames = maxFrames;
         this.type = type;

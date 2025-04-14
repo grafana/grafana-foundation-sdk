@@ -33,6 +33,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specifies the format results should be returned as.
      */
@@ -42,6 +43,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Array of resource URIs to be queried.
      * @param array<string> $resources
@@ -52,6 +54,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If set to true the dashboard time range will be used as a filter for the query. Otherwise the query time ranges will be used. Defaults to false.
      */
@@ -61,6 +64,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If dashboardTime is set to true this value dictates which column the time filter will be applied to. Defaults to the first tables timeSpan column, the first datetime column found, or TimeGenerated
      */
@@ -70,6 +74,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If set to true the query will be run as a basic logs query
      */
@@ -79,6 +84,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
      */
@@ -88,6 +94,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Use resources instead
      */
@@ -97,6 +104,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Use dashboardTime instead
      */

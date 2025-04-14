@@ -19,7 +19,6 @@ func NewMinBuilder() *MinBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "min"
 
 	return builder
 }

@@ -53,3 +53,4 @@ export class ControlsOptionsBuilder implements cog.Builder<geomap.ControlsOption
         return this;
     }
 }
+

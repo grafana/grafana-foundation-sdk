@@ -11,6 +11,8 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
 
     public string $expression;
 
+    public string $format;
+
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
      * NOTE: this does not always imply that the query should not be executed since
@@ -60,6 +62,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     /**
      * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      * @param string|null $expression
+     * @param string|null $format
      * @param bool|null $hide
      * @param float|null $intervalMs
      * @param int|null $maxDataPoints
@@ -68,10 +71,11 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param \Grafana\Foundation\Expr\ExprTypeSqlResultAssertions|null $resultAssertions
      * @param \Grafana\Foundation\Expr\ExprTypeSqlTimeRange|null $timeRange
      */
-    public function __construct(?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeSqlResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeSqlTimeRange $timeRange = null)
+    public function __construct(?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $expression = null, ?string $format = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeSqlResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeSqlTimeRange $timeRange = null)
     {
         $this->datasource = $datasource;
         $this->expression = $expression ?: "";
+        $this->format = $format ?: "";
         $this->hide = $hide;
         $this->intervalMs = $intervalMs;
         $this->maxDataPoints = $maxDataPoints;
@@ -88,7 +92,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{datasource?: mixed, expression?: string, hide?: bool, intervalMs?: float, maxDataPoints?: int, queryType?: string, refId?: string, resultAssertions?: mixed, timeRange?: mixed, type?: string} $inputData */
+        /** @var array{datasource?: mixed, expression?: string, format?: string, hide?: bool, intervalMs?: float, maxDataPoints?: int, queryType?: string, refId?: string, resultAssertions?: mixed, timeRange?: mixed, type?: string} $inputData */
         $data = $inputData;
         return new self(
             datasource: isset($data["datasource"]) ? (function($input) {
@@ -97,6 +101,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             expression: $data["expression"] ?? null,
+            format: $data["format"] ?? null,
             hide: $data["hide"] ?? null,
             intervalMs: $data["intervalMs"] ?? null,
             maxDataPoints: $data["maxDataPoints"] ?? null,
@@ -122,6 +127,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     {
         $data = [
             "expression" => $this->expression,
+            "format" => $this->format,
             "refId" => $this->refId,
             "type" => $this->type,
         ];

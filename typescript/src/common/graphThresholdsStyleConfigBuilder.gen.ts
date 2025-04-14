@@ -23,3 +23,4 @@ export class GraphThresholdsStyleConfigBuilder implements cog.Builder<common.Gra
         return this;
     }
 }
+

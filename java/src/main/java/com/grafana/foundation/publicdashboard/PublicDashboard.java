@@ -30,7 +30,6 @@ public class PublicDashboard {
     public Boolean timeSelectionEnabled;
     public PublicDashboard() {
     }
-    
     public PublicDashboard(String uid,String dashboardUid,String accessToken,Boolean isEnabled,Boolean annotationsEnabled,Boolean timeSelectionEnabled) {
         this.uid = uid;
         this.dashboardUid = dashboardUid;

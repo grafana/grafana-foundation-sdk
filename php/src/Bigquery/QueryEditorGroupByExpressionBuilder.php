@@ -12,7 +12,6 @@ class QueryEditorGroupByExpressionBuilder implements \Grafana\Foundation\Cog\Bui
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Bigquery\QueryEditorGroupByExpression();
-    $this->internal->type = "groupBy";
     }
 
     /**

@@ -24,7 +24,6 @@ public class BasePipelineMetricAggregation {
     public Boolean hide;
     public BasePipelineMetricAggregation() {
     }
-    
     public BasePipelineMetricAggregation(String pipelineAgg,String field,String type,String id,Boolean hide) {
         this.pipelineAgg = pipelineAgg;
         this.field = field;

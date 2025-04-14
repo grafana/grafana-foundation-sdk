@@ -22,9 +22,6 @@ export interface TimePickerConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TimePickerBuilder](./builder-TimePickerBuilder.md)

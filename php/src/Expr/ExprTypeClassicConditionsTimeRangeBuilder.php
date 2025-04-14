@@ -32,6 +32,7 @@ class ExprTypeClassicConditionsTimeRangeBuilder implements \Grafana\Foundation\C
     
         return $this;
     }
+
     /**
      * To is the end time of the query.
      */

@@ -78,7 +78,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public DataSourceRef datasource;
     public Dataquery() {
     }
-    
     public Dataquery(String dataset,String table,String project,QueryFormat format,Boolean rawQuery,String rawSql,String location,Boolean partitioned,String partitionedField,Boolean convertToUTC,Boolean sharded,QueryPriority queryPriority,String timeShift,EditorMode editorMode,SQLExpression sql,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
         this.dataset = dataset;
         this.table = table;

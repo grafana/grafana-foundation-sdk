@@ -14,7 +14,6 @@ public class ResourceRef {
     public String name;
     public ResourceRef() {
     }
-    
     public ResourceRef(String kind,String name) {
         this.kind = kind;
         this.name = name;

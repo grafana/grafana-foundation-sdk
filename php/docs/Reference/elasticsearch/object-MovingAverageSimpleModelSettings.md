@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> MovingAverageSimpleModelSet
 ```php
 class MovingAverageSimpleModelSettings implements \JsonSerializable
 {
-    public string $model;
+    public \Grafana\Foundation\Elasticsearch\MovingAverageModel $model;
 
     public string $window;
 

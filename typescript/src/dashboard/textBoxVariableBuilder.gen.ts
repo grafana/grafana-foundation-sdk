@@ -62,3 +62,4 @@ export class TextBoxVariableBuilder implements cog.Builder<dashboard.VariableMod
         return this;
     }
 }
+

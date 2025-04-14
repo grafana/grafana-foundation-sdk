@@ -8,7 +8,6 @@ public class RawDocumentBuilder implements com.grafana.foundation.cog.Builder<Ra
     
     public RawDocumentBuilder() {
         this.internal = new RawDocument();
-        this.internal.type = "raw_document";
     }
     public RawDocumentBuilder id(String id) {
         this.internal.id = id;

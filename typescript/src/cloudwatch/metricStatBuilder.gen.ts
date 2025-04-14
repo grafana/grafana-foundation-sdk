@@ -71,3 +71,4 @@ export class MetricStatBuilder implements cog.Builder<cloudwatch.MetricStat> {
         return this;
     }
 }
+

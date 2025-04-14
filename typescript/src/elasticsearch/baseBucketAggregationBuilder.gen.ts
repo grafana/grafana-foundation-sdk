@@ -32,3 +32,4 @@ export class BaseBucketAggregationBuilder implements cog.Builder<elasticsearch.B
         return this;
     }
 }
+

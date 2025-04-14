@@ -20,7 +20,6 @@ public class Matcher {
     public String value;
     public Matcher() {
     }
-    
     public Matcher(String name,MatchType type,String value) {
         this.name = name;
         this.type = type;

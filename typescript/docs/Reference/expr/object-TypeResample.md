@@ -82,9 +82,6 @@ export interface TypeResample {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TypeResampleBuilder](./builder-TypeResampleBuilder.md)

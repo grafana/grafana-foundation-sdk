@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> MovingAverageHoltModelSetti
 
 ```python
 class MovingAverageHoltModelSettings:
-    model: typing.Literal["holt"]
+    model: str
     settings: elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettings
     window: str
     minimize: bool

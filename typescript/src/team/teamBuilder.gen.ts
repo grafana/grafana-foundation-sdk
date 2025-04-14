@@ -28,3 +28,4 @@ export class TeamBuilder implements cog.Builder<team.Team> {
         return this;
     }
 }
+

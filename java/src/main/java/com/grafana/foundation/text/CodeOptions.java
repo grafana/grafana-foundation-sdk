@@ -22,7 +22,6 @@ public class CodeOptions {
         this.showLineNumbers = false;
         this.showMiniMap = false;
     }
-    
     public CodeOptions(CodeLanguage language,Boolean showLineNumbers,Boolean showMiniMap) {
         this.language = language;
         this.showLineNumbers = showLineNumbers;

@@ -22,7 +22,6 @@ public class MetricAggregationWithInlineScript {
     public Boolean hide;
     public MetricAggregationWithInlineScript() {
     }
-    
     public MetricAggregationWithInlineScript(ElasticsearchMetricAggregationWithInlineScriptSettings settings,MetricAggregationType type,String id,Boolean hide) {
         this.settings = settings;
         this.type = type;

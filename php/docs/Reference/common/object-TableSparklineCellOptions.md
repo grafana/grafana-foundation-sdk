@@ -10,7 +10,7 @@ Sparkline cell options
 ```php
 class TableSparklineCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
     public ?\Grafana\Foundation\Common\GraphDrawStyle $drawStyle;
 

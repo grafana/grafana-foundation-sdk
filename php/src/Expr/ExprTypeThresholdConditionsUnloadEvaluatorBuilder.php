@@ -32,6 +32,7 @@ class ExprTypeThresholdConditionsUnloadEvaluatorBuilder implements \Grafana\Foun
     
         return $this;
     }
+
     /**
      * e.g. "gt"
      */
