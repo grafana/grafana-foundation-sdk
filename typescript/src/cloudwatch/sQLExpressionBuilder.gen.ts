@@ -64,3 +64,4 @@ export class SQLExpressionBuilder implements cog.Builder<cloudwatch.SQLExpressio
         return this;
     }
 }
+

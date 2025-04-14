@@ -10,15 +10,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class QueryEditorFunctionParameterExpression {
     @JsonProperty("type")
-    public String type;
+    public QueryEditorExpressionType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("name")
     public String name;
     public QueryEditorFunctionParameterExpression() {
+        this.type = QueryEditorExpressionType.FUNCTION_PARAMETER;
     }
-    
-    public QueryEditorFunctionParameterExpression(String type,String name) {
-        this.type = type;
+    public QueryEditorFunctionParameterExpression(String name) {
+        this.type = QueryEditorExpressionType.FUNCTION_PARAMETER;
         this.name = name;
     }
     

@@ -9,7 +9,7 @@ title: <span class="badge object-type-class"></span> Terms
 class Terms:
     field: typing.Optional[str]
     id_val: str
-    type_val: typing.Literal["terms"]
+    type_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchTermsSettings]
 ```
 ## Methods

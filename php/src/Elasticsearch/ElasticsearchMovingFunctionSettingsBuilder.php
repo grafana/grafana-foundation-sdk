@@ -29,6 +29,7 @@ class ElasticsearchMovingFunctionSettingsBuilder implements \Grafana\Foundation\
     
         return $this;
     }
+
     /**
      * @param string|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\ElasticsearchInlineScript> $script
      */
@@ -40,6 +41,7 @@ class ElasticsearchMovingFunctionSettingsBuilder implements \Grafana\Foundation\
     
         return $this;
     }
+
     public function shift(string $shift): static
     {
         $this->internal->shift = $shift;

@@ -16,7 +16,6 @@ public class RecordRule {
     public String metric;
     public RecordRule() {
     }
-    
     public RecordRule(String from,String metric) {
         this.from = from;
         this.metric = metric;

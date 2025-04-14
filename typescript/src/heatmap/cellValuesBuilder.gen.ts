@@ -30,3 +30,4 @@ export class CellValuesBuilder implements cog.Builder<heatmap.CellValues> {
         return this;
     }
 }
+

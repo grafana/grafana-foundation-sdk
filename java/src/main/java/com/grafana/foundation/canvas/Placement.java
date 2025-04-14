@@ -32,7 +32,6 @@ public class Placement {
     public Double rotation;
     public Placement() {
     }
-    
     public Placement(Double top,Double left,Double right,Double bottom,Double width,Double height,Double rotation) {
         this.top = top;
         this.left = left;

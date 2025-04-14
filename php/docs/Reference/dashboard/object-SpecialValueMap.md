@@ -14,7 +14,7 @@ For example, you can configure a special value mapping so that null values appea
 ```php
 class SpecialValueMap implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Dashboard\MappingType $type;
 
     public \Grafana\Foundation\Dashboard\DashboardSpecialValueMapOptions $options;
 

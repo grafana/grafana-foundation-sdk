@@ -21,7 +21,6 @@ public class ExprTypeThresholdConditionsEvaluator {
     public ExprTypeThresholdConditionsEvaluatorType type;
     public ExprTypeThresholdConditionsEvaluator() {
     }
-    
     public ExprTypeThresholdConditionsEvaluator(List<Double> params,ExprTypeThresholdConditionsEvaluatorType type) {
         this.params = params;
         this.type = type;

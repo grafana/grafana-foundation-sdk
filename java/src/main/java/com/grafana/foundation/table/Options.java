@@ -2,13 +2,13 @@
 
 package com.grafana.foundation.table;
 
-import java.util.LinkedList;
-import com.grafana.foundation.common.TableFooterOptions;
-import com.grafana.foundation.common.TableCellHeight;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
+import com.grafana.foundation.common.TableFooterOptions;
+import com.grafana.foundation.common.TableCellHeight;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 import com.grafana.foundation.common.TableSortByFieldState;
@@ -43,7 +43,6 @@ public class Options {
         this.footer = new TableFooterOptions(false, List.of(), new LinkedList<>(), false, false);
         this.cellHeight = TableCellHeight.SM;
     }
-    
     public Options(Double frameIndex,Boolean showHeader,Boolean showTypeIcons,List<TableSortByFieldState> sortBy,TableFooterOptions footer,TableCellHeight cellHeight) {
         this.frameIndex = frameIndex;
         this.showHeader = showHeader;

@@ -46,7 +46,6 @@ public class Preferences {
     public NavbarPreference navbar;
     public Preferences() {
     }
-    
     public Preferences(String homeDashboardUID,String timezone,String weekStart,String theme,String language,QueryHistoryPreference queryHistory,CookiePreferences cookiePreferences,NavbarPreference navbar) {
         this.homeDashboardUID = homeDashboardUID;
         this.timezone = timezone;

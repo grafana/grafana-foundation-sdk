@@ -15,9 +15,6 @@ export interface ConnectionArgs {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [ConnectionArgsBuilder](./builder-ConnectionArgsBuilder.md)

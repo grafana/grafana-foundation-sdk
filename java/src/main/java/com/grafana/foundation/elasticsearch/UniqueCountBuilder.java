@@ -8,7 +8,6 @@ public class UniqueCountBuilder implements com.grafana.foundation.cog.Builder<Un
     
     public UniqueCountBuilder() {
         this.internal = new UniqueCount();
-        this.internal.type = "cardinality";
     }
     public UniqueCountBuilder field(String field) {
         this.internal.field = field;

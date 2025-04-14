@@ -14,9 +14,6 @@ export interface PipelineMetricAggregationWithMultipleBucketPaths {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [PipelineMetricAggregationWithMultipleBucketPathsBuilder](./builder-PipelineMetricAggregationWithMultipleBucketPathsBuilder.md)

@@ -37,3 +37,4 @@ export class MetricAggregationWithFieldBuilder implements cog.Builder<elasticsea
         return this;
     }
 }
+

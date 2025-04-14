@@ -12,7 +12,6 @@ class MovingAverageLinearModelSettingsBuilder implements \Grafana\Foundation\Cog
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\MovingAverageLinearModelSettings();
-    $this->internal->model = "linear";
     }
 
     /**
@@ -30,6 +29,7 @@ class MovingAverageLinearModelSettingsBuilder implements \Grafana\Foundation\Cog
     
         return $this;
     }
+
     public function predict(string $predict): static
     {
         $this->internal->predict = $predict;

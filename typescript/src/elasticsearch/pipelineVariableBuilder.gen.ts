@@ -27,3 +27,4 @@ export class PipelineVariableBuilder implements cog.Builder<elasticsearch.Pipeli
         return this;
     }
 }
+

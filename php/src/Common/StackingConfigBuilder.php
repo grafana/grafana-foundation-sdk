@@ -30,6 +30,7 @@ class StackingConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function group(string $group): static
     {
         $this->internal->group = $group;

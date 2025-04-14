@@ -32,6 +32,7 @@ class RoleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Optional display
      */
@@ -41,6 +42,7 @@ class RoleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of the team.
      */
@@ -50,6 +52,7 @@ class RoleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Role description
      */
@@ -59,6 +62,7 @@ class RoleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Do not show this role
      */

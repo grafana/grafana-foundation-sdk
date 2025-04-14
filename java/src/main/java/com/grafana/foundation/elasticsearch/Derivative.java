@@ -16,7 +16,7 @@ public class Derivative {
     @JsonProperty("field")
     public String field;
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonProperty("id")
     public String id;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -26,12 +26,12 @@ public class Derivative {
     @JsonProperty("hide")
     public Boolean hide;
     public Derivative() {
+        this.type = MetricAggregationType.DERIVATIVE;
     }
-    
-    public Derivative(String pipelineAgg,String field,String type,String id,ElasticsearchDerivativeSettings settings,Boolean hide) {
+    public Derivative(String pipelineAgg,String field,String id,ElasticsearchDerivativeSettings settings,Boolean hide) {
         this.pipelineAgg = pipelineAgg;
         this.field = field;
-        this.type = type;
+        this.type = MetricAggregationType.DERIVATIVE;
         this.id = id;
         this.settings = settings;
         this.hide = hide;

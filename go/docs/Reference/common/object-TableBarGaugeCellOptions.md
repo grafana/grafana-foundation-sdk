@@ -9,7 +9,7 @@ Gauge cell options
 
 ```go
 type TableBarGaugeCellOptions struct {
-    Type string `json:"type"`
+    Type common.TableCellDisplayMode `json:"type"`
     Mode *common.BarGaugeDisplayMode `json:"mode,omitempty"`
     ValueDisplayMode *common.BarGaugeValueMode `json:"valueDisplayMode,omitempty"`
 }

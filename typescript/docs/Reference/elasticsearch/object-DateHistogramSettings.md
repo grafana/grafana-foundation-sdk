@@ -15,9 +15,6 @@ export interface DateHistogramSettings {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [DateHistogramSettingsBuilder](./builder-DateHistogramSettingsBuilder.md)

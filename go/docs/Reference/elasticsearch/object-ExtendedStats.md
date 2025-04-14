@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> ExtendedStats
 
 ```go
 type ExtendedStats struct {
-    Type string `json:"type"`
+    Type elasticsearch.MetricAggregationType `json:"type"`
     Settings *elasticsearch.ElasticsearchExtendedStatsSettings `json:"settings,omitempty"`
     Field *string `json:"field,omitempty"`
     Id string `json:"id"`

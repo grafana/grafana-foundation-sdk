@@ -14,9 +14,6 @@ export interface LineStyle {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [LineStyleBuilder](./builder-LineStyleBuilder.md)

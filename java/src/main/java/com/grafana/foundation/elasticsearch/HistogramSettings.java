@@ -17,7 +17,6 @@ public class HistogramSettings {
     public String minDocCount;
     public HistogramSettings() {
     }
-    
     public HistogramSettings(String interval,String minDocCount) {
         this.interval = interval;
         this.minDocCount = minDocCount;

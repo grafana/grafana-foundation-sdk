@@ -18,7 +18,6 @@ public class StackingConfig {
     public String group;
     public StackingConfig() {
     }
-    
     public StackingConfig(StackingMode mode,String group) {
         this.mode = mode;
         this.group = group;

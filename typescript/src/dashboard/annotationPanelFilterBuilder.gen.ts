@@ -29,3 +29,4 @@ export class AnnotationPanelFilterBuilder implements cog.Builder<dashboard.Annot
         return this;
     }
 }
+

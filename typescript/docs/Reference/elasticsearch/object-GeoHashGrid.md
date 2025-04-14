@@ -9,16 +9,13 @@ title: <span class="badge object-type-interface"></span> GeoHashGrid
 export interface GeoHashGrid {
 	field?: string;
 	id: string;
-	type: "geohash_grid";
+	type: elasticsearch.BucketAggregationType.GeohashGrid;
 	settings?: {
 		precision?: string;
 	};
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [GeoHashGridBuilder](./builder-GeoHashGridBuilder.md)

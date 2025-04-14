@@ -16,7 +16,6 @@ public class OptionsWithTimezones {
     public List<String> timezone;
     public OptionsWithTimezones() {
     }
-    
     public OptionsWithTimezones(List<String> timezone) {
         this.timezone = timezone;
     }

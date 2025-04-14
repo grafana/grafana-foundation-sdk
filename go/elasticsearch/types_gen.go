@@ -24,14 +24,14 @@ func NewBucketAggregation() *BucketAggregation {
 type DateHistogram struct {
 	Field    *string                             `json:"field,omitempty"`
 	Id       string                              `json:"id"`
-	Type     string                              `json:"type"`
+	Type     BucketAggregationType               `json:"type"`
 	Settings *ElasticsearchDateHistogramSettings `json:"settings,omitempty"`
 }
 
 // NewDateHistogram creates a new DateHistogram object.
 func NewDateHistogram() *DateHistogram {
 	return &DateHistogram{
-		Type: "date_histogram",
+		Type: BucketAggregationTypeDateHistogram,
 	}
 }
 
@@ -144,11 +144,8 @@ func (resource DateHistogram) Equals(other DateHistogram) bool {
 // Validate checks all the validation constraints that may be defined on `DateHistogram` fields for violations and returns them.
 func (resource DateHistogram) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "date_histogram") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == date_histogram"),
-		)...)
+	if resource.Type != "date_histogram" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be date_histogram"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -163,17 +160,28 @@ func (resource DateHistogram) Validate() error {
 	return errs
 }
 
+type BucketAggregationType string
+
+const (
+	BucketAggregationTypeTerms         BucketAggregationType = "terms"
+	BucketAggregationTypeFilters       BucketAggregationType = "filters"
+	BucketAggregationTypeGeohashGrid   BucketAggregationType = "geohash_grid"
+	BucketAggregationTypeDateHistogram BucketAggregationType = "date_histogram"
+	BucketAggregationTypeHistogram     BucketAggregationType = "histogram"
+	BucketAggregationTypeNested        BucketAggregationType = "nested"
+)
+
 type Histogram struct {
 	Field    *string                         `json:"field,omitempty"`
 	Id       string                          `json:"id"`
-	Type     string                          `json:"type"`
+	Type     BucketAggregationType           `json:"type"`
 	Settings *ElasticsearchHistogramSettings `json:"settings,omitempty"`
 }
 
 // NewHistogram creates a new Histogram object.
 func NewHistogram() *Histogram {
 	return &Histogram{
-		Type: "histogram",
+		Type: BucketAggregationTypeHistogram,
 	}
 }
 
@@ -286,11 +294,8 @@ func (resource Histogram) Equals(other Histogram) bool {
 // Validate checks all the validation constraints that may be defined on `Histogram` fields for violations and returns them.
 func (resource Histogram) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "histogram") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == histogram"),
-		)...)
+	if resource.Type != "histogram" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be histogram"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -308,14 +313,14 @@ func (resource Histogram) Validate() error {
 type Terms struct {
 	Field    *string                     `json:"field,omitempty"`
 	Id       string                      `json:"id"`
-	Type     string                      `json:"type"`
+	Type     BucketAggregationType       `json:"type"`
 	Settings *ElasticsearchTermsSettings `json:"settings,omitempty"`
 }
 
 // NewTerms creates a new Terms object.
 func NewTerms() *Terms {
 	return &Terms{
-		Type: "terms",
+		Type: BucketAggregationTypeTerms,
 	}
 }
 
@@ -428,11 +433,8 @@ func (resource Terms) Equals(other Terms) bool {
 // Validate checks all the validation constraints that may be defined on `Terms` fields for violations and returns them.
 func (resource Terms) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "terms") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == terms"),
-		)...)
+	if resource.Type != "terms" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be terms"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -456,14 +458,14 @@ const (
 
 type Filters struct {
 	Id       string                        `json:"id"`
-	Type     string                        `json:"type"`
+	Type     BucketAggregationType         `json:"type"`
 	Settings *ElasticsearchFiltersSettings `json:"settings,omitempty"`
 }
 
 // NewFilters creates a new Filters object.
 func NewFilters() *Filters {
 	return &Filters{
-		Type: "filters",
+		Type: BucketAggregationTypeFilters,
 	}
 }
 
@@ -556,11 +558,8 @@ func (resource Filters) Equals(other Filters) bool {
 // Validate checks all the validation constraints that may be defined on `Filters` fields for violations and returns them.
 func (resource Filters) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "filters") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == filters"),
-		)...)
+	if resource.Type != "filters" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be filters"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -657,14 +656,14 @@ func (resource Filter) Validate() error {
 type GeoHashGrid struct {
 	Field    *string                           `json:"field,omitempty"`
 	Id       string                            `json:"id"`
-	Type     string                            `json:"type"`
+	Type     BucketAggregationType             `json:"type"`
 	Settings *ElasticsearchGeoHashGridSettings `json:"settings,omitempty"`
 }
 
 // NewGeoHashGrid creates a new GeoHashGrid object.
 func NewGeoHashGrid() *GeoHashGrid {
 	return &GeoHashGrid{
-		Type: "geohash_grid",
+		Type: BucketAggregationTypeGeohashGrid,
 	}
 }
 
@@ -777,11 +776,8 @@ func (resource GeoHashGrid) Equals(other GeoHashGrid) bool {
 // Validate checks all the validation constraints that may be defined on `GeoHashGrid` fields for violations and returns them.
 func (resource GeoHashGrid) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "geohash_grid") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == geohash_grid"),
-		)...)
+	if resource.Type != "geohash_grid" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be geohash_grid"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -797,16 +793,16 @@ func (resource GeoHashGrid) Validate() error {
 }
 
 type Nested struct {
-	Field    *string `json:"field,omitempty"`
-	Id       string  `json:"id"`
-	Type     string  `json:"type"`
-	Settings any     `json:"settings,omitempty"`
+	Field    *string               `json:"field,omitempty"`
+	Id       string                `json:"id"`
+	Type     BucketAggregationType `json:"type"`
+	Settings any                   `json:"settings,omitempty"`
 }
 
 // NewNested creates a new Nested object.
 func NewNested() *Nested {
 	return &Nested{
-		Type: "nested",
+		Type: BucketAggregationTypeNested,
 	}
 }
 
@@ -912,11 +908,8 @@ func (resource Nested) Equals(other Nested) bool {
 // Validate checks all the validation constraints that may be defined on `Nested` fields for violations and returns them.
 func (resource Nested) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "nested") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == nested"),
-		)...)
+	if resource.Type != "nested" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be nested"))...)
 	}
 
 	if len(errs) == 0 {
@@ -934,15 +927,15 @@ func NewMetricAggregation() *MetricAggregation {
 }
 
 type Count struct {
-	Type string `json:"type"`
-	Id   string `json:"id"`
-	Hide *bool  `json:"hide,omitempty"`
+	Type MetricAggregationType `json:"type"`
+	Id   string                `json:"id"`
+	Hide *bool                 `json:"hide,omitempty"`
 }
 
 // NewCount creates a new Count object.
 func NewCount() *Count {
 	return &Count{
-		Type: "count",
+		Type: MetricAggregationTypeCount,
 	}
 }
 
@@ -1033,11 +1026,8 @@ func (resource Count) Equals(other Count) bool {
 // Validate checks all the validation constraints that may be defined on `Count` fields for violations and returns them.
 func (resource Count) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "count") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == count"),
-		)...)
+	if resource.Type != "count" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be count"))...)
 	}
 
 	if len(errs) == 0 {
@@ -1046,6 +1036,41 @@ func (resource Count) Validate() error {
 
 	return errs
 }
+
+type MetricAggregationType string
+
+const (
+	MetricAggregationTypeCount         MetricAggregationType = "count"
+	MetricAggregationTypeAvg           MetricAggregationType = "avg"
+	MetricAggregationTypeSum           MetricAggregationType = "sum"
+	MetricAggregationTypeMin           MetricAggregationType = "min"
+	MetricAggregationTypeMax           MetricAggregationType = "max"
+	MetricAggregationTypeExtendedStats MetricAggregationType = "extended_stats"
+	MetricAggregationTypePercentiles   MetricAggregationType = "percentiles"
+	MetricAggregationTypeCardinality   MetricAggregationType = "cardinality"
+	MetricAggregationTypeRawDocument   MetricAggregationType = "raw_document"
+	MetricAggregationTypeRawData       MetricAggregationType = "raw_data"
+	MetricAggregationTypeLogs          MetricAggregationType = "logs"
+	MetricAggregationTypeRate          MetricAggregationType = "rate"
+	MetricAggregationTypeTopMetrics    MetricAggregationType = "top_metrics"
+	MetricAggregationTypeMovingAvg     MetricAggregationType = "moving_avg"
+	MetricAggregationTypeMovingFn      MetricAggregationType = "moving_fn"
+	MetricAggregationTypeDerivative    MetricAggregationType = "derivative"
+	MetricAggregationTypeSerialDiff    MetricAggregationType = "serial_diff"
+	MetricAggregationTypeCumulativeSum MetricAggregationType = "cumulative_sum"
+	MetricAggregationTypeBucketScript  MetricAggregationType = "bucket_script"
+)
+
+type PipelineMetricAggregationType string
+
+const (
+	PipelineMetricAggregationTypeMovingAvg     PipelineMetricAggregationType = "moving_avg"
+	PipelineMetricAggregationTypeMovingFn      PipelineMetricAggregationType = "moving_fn"
+	PipelineMetricAggregationTypeDerivative    PipelineMetricAggregationType = "derivative"
+	PipelineMetricAggregationTypeSerialDiff    PipelineMetricAggregationType = "serial_diff"
+	PipelineMetricAggregationTypeCumulativeSum PipelineMetricAggregationType = "cumulative_sum"
+	PipelineMetricAggregationTypeBucketScript  PipelineMetricAggregationType = "bucket_script"
+)
 
 type PipelineMetricAggregation = MovingAverageOrDerivativeOrCumulativeSumOrBucketScript
 
@@ -1056,18 +1081,18 @@ func NewPipelineMetricAggregation() *PipelineMetricAggregation {
 
 // #MovingAverage's settings are overridden in types.ts
 type MovingAverage struct {
-	PipelineAgg *string        `json:"pipelineAgg,omitempty"`
-	Field       *string        `json:"field,omitempty"`
-	Type        string         `json:"type"`
-	Id          string         `json:"id"`
-	Settings    map[string]any `json:"settings,omitempty"`
-	Hide        *bool          `json:"hide,omitempty"`
+	PipelineAgg *string               `json:"pipelineAgg,omitempty"`
+	Field       *string               `json:"field,omitempty"`
+	Type        MetricAggregationType `json:"type"`
+	Id          string                `json:"id"`
+	Settings    map[string]any        `json:"settings,omitempty"`
+	Hide        *bool                 `json:"hide,omitempty"`
 }
 
 // NewMovingAverage creates a new MovingAverage object.
 func NewMovingAverage() *MovingAverage {
 	return &MovingAverage{
-		Type: "moving_avg",
+		Type: MetricAggregationTypeMovingAvg,
 	}
 }
 
@@ -1221,11 +1246,8 @@ func (resource MovingAverage) Equals(other MovingAverage) bool {
 // Validate checks all the validation constraints that may be defined on `MovingAverage` fields for violations and returns them.
 func (resource MovingAverage) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "moving_avg") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == moving_avg"),
-		)...)
+	if resource.Type != "moving_avg" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be moving_avg"))...)
 	}
 
 	if len(errs) == 0 {
@@ -1238,7 +1260,7 @@ func (resource MovingAverage) Validate() error {
 type Derivative struct {
 	PipelineAgg *string                          `json:"pipelineAgg,omitempty"`
 	Field       *string                          `json:"field,omitempty"`
-	Type        string                           `json:"type"`
+	Type        MetricAggregationType            `json:"type"`
 	Id          string                           `json:"id"`
 	Settings    *ElasticsearchDerivativeSettings `json:"settings,omitempty"`
 	Hide        *bool                            `json:"hide,omitempty"`
@@ -1247,7 +1269,7 @@ type Derivative struct {
 // NewDerivative creates a new Derivative object.
 func NewDerivative() *Derivative {
 	return &Derivative{
-		Type: "derivative",
+		Type: MetricAggregationTypeDerivative,
 	}
 }
 
@@ -1400,11 +1422,8 @@ func (resource Derivative) Equals(other Derivative) bool {
 // Validate checks all the validation constraints that may be defined on `Derivative` fields for violations and returns them.
 func (resource Derivative) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "derivative") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == derivative"),
-		)...)
+	if resource.Type != "derivative" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be derivative"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -1422,7 +1441,7 @@ func (resource Derivative) Validate() error {
 type CumulativeSum struct {
 	PipelineAgg *string                             `json:"pipelineAgg,omitempty"`
 	Field       *string                             `json:"field,omitempty"`
-	Type        string                              `json:"type"`
+	Type        MetricAggregationType               `json:"type"`
 	Id          string                              `json:"id"`
 	Settings    *ElasticsearchCumulativeSumSettings `json:"settings,omitempty"`
 	Hide        *bool                               `json:"hide,omitempty"`
@@ -1431,7 +1450,7 @@ type CumulativeSum struct {
 // NewCumulativeSum creates a new CumulativeSum object.
 func NewCumulativeSum() *CumulativeSum {
 	return &CumulativeSum{
-		Type: "cumulative_sum",
+		Type: MetricAggregationTypeCumulativeSum,
 	}
 }
 
@@ -1584,11 +1603,8 @@ func (resource CumulativeSum) Equals(other CumulativeSum) bool {
 // Validate checks all the validation constraints that may be defined on `CumulativeSum` fields for violations and returns them.
 func (resource CumulativeSum) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "cumulative_sum") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == cumulative_sum"),
-		)...)
+	if resource.Type != "cumulative_sum" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be cumulative_sum"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -1604,7 +1620,7 @@ func (resource CumulativeSum) Validate() error {
 }
 
 type BucketScript struct {
-	Type              string                             `json:"type"`
+	Type              MetricAggregationType              `json:"type"`
 	PipelineVariables []PipelineVariable                 `json:"pipelineVariables,omitempty"`
 	Id                string                             `json:"id"`
 	Settings          *ElasticsearchBucketScriptSettings `json:"settings,omitempty"`
@@ -1614,7 +1630,7 @@ type BucketScript struct {
 // NewBucketScript creates a new BucketScript object.
 func NewBucketScript() *BucketScript {
 	return &BucketScript{
-		Type: "bucket_script",
+		Type: MetricAggregationTypeBucketScript,
 	}
 }
 
@@ -1760,11 +1776,8 @@ func (resource BucketScript) Equals(other BucketScript) bool {
 // Validate checks all the validation constraints that may be defined on `BucketScript` fields for violations and returns them.
 func (resource BucketScript) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "bucket_script") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == bucket_script"),
-		)...)
+	if resource.Type != "bucket_script" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be bucket_script"))...)
 	}
 
 	for i1 := range resource.PipelineVariables {
@@ -1881,7 +1894,7 @@ func NewMetricAggregationWithSettings() *MetricAggregationWithSettings {
 type SerialDiff struct {
 	PipelineAgg *string                          `json:"pipelineAgg,omitempty"`
 	Field       *string                          `json:"field,omitempty"`
-	Type        string                           `json:"type"`
+	Type        MetricAggregationType            `json:"type"`
 	Id          string                           `json:"id"`
 	Settings    *ElasticsearchSerialDiffSettings `json:"settings,omitempty"`
 	Hide        *bool                            `json:"hide,omitempty"`
@@ -1890,7 +1903,7 @@ type SerialDiff struct {
 // NewSerialDiff creates a new SerialDiff object.
 func NewSerialDiff() *SerialDiff {
 	return &SerialDiff{
-		Type: "serial_diff",
+		Type: MetricAggregationTypeSerialDiff,
 	}
 }
 
@@ -2043,11 +2056,8 @@ func (resource SerialDiff) Equals(other SerialDiff) bool {
 // Validate checks all the validation constraints that may be defined on `SerialDiff` fields for violations and returns them.
 func (resource SerialDiff) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "serial_diff") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == serial_diff"),
-		)...)
+	if resource.Type != "serial_diff" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be serial_diff"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -2063,7 +2073,7 @@ func (resource SerialDiff) Validate() error {
 }
 
 type RawData struct {
-	Type     string                        `json:"type"`
+	Type     MetricAggregationType         `json:"type"`
 	Id       string                        `json:"id"`
 	Settings *ElasticsearchRawDataSettings `json:"settings,omitempty"`
 	Hide     *bool                         `json:"hide,omitempty"`
@@ -2072,7 +2082,7 @@ type RawData struct {
 // NewRawData creates a new RawData object.
 func NewRawData() *RawData {
 	return &RawData{
-		Type: "raw_data",
+		Type: MetricAggregationTypeRawData,
 	}
 }
 
@@ -2185,11 +2195,8 @@ func (resource RawData) Equals(other RawData) bool {
 // Validate checks all the validation constraints that may be defined on `RawData` fields for violations and returns them.
 func (resource RawData) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "raw_data") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == raw_data"),
-		)...)
+	if resource.Type != "raw_data" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be raw_data"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -2205,7 +2212,7 @@ func (resource RawData) Validate() error {
 }
 
 type RawDocument struct {
-	Type     string                            `json:"type"`
+	Type     MetricAggregationType             `json:"type"`
 	Id       string                            `json:"id"`
 	Settings *ElasticsearchRawDocumentSettings `json:"settings,omitempty"`
 	Hide     *bool                             `json:"hide,omitempty"`
@@ -2214,7 +2221,7 @@ type RawDocument struct {
 // NewRawDocument creates a new RawDocument object.
 func NewRawDocument() *RawDocument {
 	return &RawDocument{
-		Type: "raw_document",
+		Type: MetricAggregationTypeRawDocument,
 	}
 }
 
@@ -2327,11 +2334,8 @@ func (resource RawDocument) Equals(other RawDocument) bool {
 // Validate checks all the validation constraints that may be defined on `RawDocument` fields for violations and returns them.
 func (resource RawDocument) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "raw_document") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == raw_document"),
-		)...)
+	if resource.Type != "raw_document" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be raw_document"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -2347,7 +2351,7 @@ func (resource RawDocument) Validate() error {
 }
 
 type UniqueCount struct {
-	Type     string                            `json:"type"`
+	Type     MetricAggregationType             `json:"type"`
 	Field    *string                           `json:"field,omitempty"`
 	Id       string                            `json:"id"`
 	Settings *ElasticsearchUniqueCountSettings `json:"settings,omitempty"`
@@ -2357,7 +2361,7 @@ type UniqueCount struct {
 // NewUniqueCount creates a new UniqueCount object.
 func NewUniqueCount() *UniqueCount {
 	return &UniqueCount{
-		Type: "cardinality",
+		Type: MetricAggregationTypeCardinality,
 	}
 }
 
@@ -2490,11 +2494,8 @@ func (resource UniqueCount) Equals(other UniqueCount) bool {
 // Validate checks all the validation constraints that may be defined on `UniqueCount` fields for violations and returns them.
 func (resource UniqueCount) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "cardinality") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == cardinality"),
-		)...)
+	if resource.Type != "cardinality" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be cardinality"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -2510,7 +2511,7 @@ func (resource UniqueCount) Validate() error {
 }
 
 type Percentiles struct {
-	Type     string                            `json:"type"`
+	Type     MetricAggregationType             `json:"type"`
 	Field    *string                           `json:"field,omitempty"`
 	Id       string                            `json:"id"`
 	Settings *ElasticsearchPercentilesSettings `json:"settings,omitempty"`
@@ -2520,7 +2521,7 @@ type Percentiles struct {
 // NewPercentiles creates a new Percentiles object.
 func NewPercentiles() *Percentiles {
 	return &Percentiles{
-		Type: "percentiles",
+		Type: MetricAggregationTypePercentiles,
 	}
 }
 
@@ -2653,11 +2654,8 @@ func (resource Percentiles) Equals(other Percentiles) bool {
 // Validate checks all the validation constraints that may be defined on `Percentiles` fields for violations and returns them.
 func (resource Percentiles) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "percentiles") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == percentiles"),
-		)...)
+	if resource.Type != "percentiles" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be percentiles"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -2673,7 +2671,7 @@ func (resource Percentiles) Validate() error {
 }
 
 type ExtendedStats struct {
-	Type     string                              `json:"type"`
+	Type     MetricAggregationType               `json:"type"`
 	Settings *ElasticsearchExtendedStatsSettings `json:"settings,omitempty"`
 	Field    *string                             `json:"field,omitempty"`
 	Id       string                              `json:"id"`
@@ -2684,7 +2682,7 @@ type ExtendedStats struct {
 // NewExtendedStats creates a new ExtendedStats object.
 func NewExtendedStats() *ExtendedStats {
 	return &ExtendedStats{
-		Type: "extended_stats",
+		Type: MetricAggregationTypeExtendedStats,
 	}
 }
 
@@ -2832,11 +2830,8 @@ func (resource ExtendedStats) Equals(other ExtendedStats) bool {
 // Validate checks all the validation constraints that may be defined on `ExtendedStats` fields for violations and returns them.
 func (resource ExtendedStats) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "extended_stats") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == extended_stats"),
-		)...)
+	if resource.Type != "extended_stats" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be extended_stats"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -2852,7 +2847,7 @@ func (resource ExtendedStats) Validate() error {
 }
 
 type Min struct {
-	Type     string                    `json:"type"`
+	Type     MetricAggregationType     `json:"type"`
 	Field    *string                   `json:"field,omitempty"`
 	Id       string                    `json:"id"`
 	Settings *ElasticsearchMinSettings `json:"settings,omitempty"`
@@ -2862,7 +2857,7 @@ type Min struct {
 // NewMin creates a new Min object.
 func NewMin() *Min {
 	return &Min{
-		Type: "min",
+		Type: MetricAggregationTypeMin,
 	}
 }
 
@@ -2995,11 +2990,8 @@ func (resource Min) Equals(other Min) bool {
 // Validate checks all the validation constraints that may be defined on `Min` fields for violations and returns them.
 func (resource Min) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "min") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == min"),
-		)...)
+	if resource.Type != "min" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be min"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -3015,7 +3007,7 @@ func (resource Min) Validate() error {
 }
 
 type Max struct {
-	Type     string                    `json:"type"`
+	Type     MetricAggregationType     `json:"type"`
 	Field    *string                   `json:"field,omitempty"`
 	Id       string                    `json:"id"`
 	Settings *ElasticsearchMaxSettings `json:"settings,omitempty"`
@@ -3025,7 +3017,7 @@ type Max struct {
 // NewMax creates a new Max object.
 func NewMax() *Max {
 	return &Max{
-		Type: "max",
+		Type: MetricAggregationTypeMax,
 	}
 }
 
@@ -3158,11 +3150,8 @@ func (resource Max) Equals(other Max) bool {
 // Validate checks all the validation constraints that may be defined on `Max` fields for violations and returns them.
 func (resource Max) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "max") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == max"),
-		)...)
+	if resource.Type != "max" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be max"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -3178,7 +3167,7 @@ func (resource Max) Validate() error {
 }
 
 type Sum struct {
-	Type     string                    `json:"type"`
+	Type     MetricAggregationType     `json:"type"`
 	Field    *string                   `json:"field,omitempty"`
 	Id       string                    `json:"id"`
 	Settings *ElasticsearchSumSettings `json:"settings,omitempty"`
@@ -3188,7 +3177,7 @@ type Sum struct {
 // NewSum creates a new Sum object.
 func NewSum() *Sum {
 	return &Sum{
-		Type: "sum",
+		Type: MetricAggregationTypeSum,
 	}
 }
 
@@ -3321,11 +3310,8 @@ func (resource Sum) Equals(other Sum) bool {
 // Validate checks all the validation constraints that may be defined on `Sum` fields for violations and returns them.
 func (resource Sum) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "sum") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == sum"),
-		)...)
+	if resource.Type != "sum" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be sum"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -3341,7 +3327,7 @@ func (resource Sum) Validate() error {
 }
 
 type Average struct {
-	Type     string                        `json:"type"`
+	Type     MetricAggregationType         `json:"type"`
 	Field    *string                       `json:"field,omitempty"`
 	Id       string                        `json:"id"`
 	Settings *ElasticsearchAverageSettings `json:"settings,omitempty"`
@@ -3351,7 +3337,7 @@ type Average struct {
 // NewAverage creates a new Average object.
 func NewAverage() *Average {
 	return &Average{
-		Type: "avg",
+		Type: MetricAggregationTypeAvg,
 	}
 }
 
@@ -3484,11 +3470,8 @@ func (resource Average) Equals(other Average) bool {
 // Validate checks all the validation constraints that may be defined on `Average` fields for violations and returns them.
 func (resource Average) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "avg") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == avg"),
-		)...)
+	if resource.Type != "avg" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be avg"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -3506,7 +3489,7 @@ func (resource Average) Validate() error {
 type MovingFunction struct {
 	PipelineAgg *string                              `json:"pipelineAgg,omitempty"`
 	Field       *string                              `json:"field,omitempty"`
-	Type        string                               `json:"type"`
+	Type        MetricAggregationType                `json:"type"`
 	Id          string                               `json:"id"`
 	Settings    *ElasticsearchMovingFunctionSettings `json:"settings,omitempty"`
 	Hide        *bool                                `json:"hide,omitempty"`
@@ -3515,7 +3498,7 @@ type MovingFunction struct {
 // NewMovingFunction creates a new MovingFunction object.
 func NewMovingFunction() *MovingFunction {
 	return &MovingFunction{
-		Type: "moving_fn",
+		Type: MetricAggregationTypeMovingFn,
 	}
 }
 
@@ -3668,11 +3651,8 @@ func (resource MovingFunction) Equals(other MovingFunction) bool {
 // Validate checks all the validation constraints that may be defined on `MovingFunction` fields for violations and returns them.
 func (resource MovingFunction) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "moving_fn") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == moving_fn"),
-		)...)
+	if resource.Type != "moving_fn" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be moving_fn"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -3688,7 +3668,7 @@ func (resource MovingFunction) Validate() error {
 }
 
 type Logs struct {
-	Type     string                     `json:"type"`
+	Type     MetricAggregationType      `json:"type"`
 	Id       string                     `json:"id"`
 	Settings *ElasticsearchLogsSettings `json:"settings,omitempty"`
 	Hide     *bool                      `json:"hide,omitempty"`
@@ -3697,7 +3677,7 @@ type Logs struct {
 // NewLogs creates a new Logs object.
 func NewLogs() *Logs {
 	return &Logs{
-		Type: "logs",
+		Type: MetricAggregationTypeLogs,
 	}
 }
 
@@ -3810,11 +3790,8 @@ func (resource Logs) Equals(other Logs) bool {
 // Validate checks all the validation constraints that may be defined on `Logs` fields for violations and returns them.
 func (resource Logs) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "logs") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == logs"),
-		)...)
+	if resource.Type != "logs" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be logs"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -3830,7 +3807,7 @@ func (resource Logs) Validate() error {
 }
 
 type Rate struct {
-	Type     string                     `json:"type"`
+	Type     MetricAggregationType      `json:"type"`
 	Field    *string                    `json:"field,omitempty"`
 	Id       string                     `json:"id"`
 	Settings *ElasticsearchRateSettings `json:"settings,omitempty"`
@@ -3840,7 +3817,7 @@ type Rate struct {
 // NewRate creates a new Rate object.
 func NewRate() *Rate {
 	return &Rate{
-		Type: "rate",
+		Type: MetricAggregationTypeRate,
 	}
 }
 
@@ -3973,11 +3950,8 @@ func (resource Rate) Equals(other Rate) bool {
 // Validate checks all the validation constraints that may be defined on `Rate` fields for violations and returns them.
 func (resource Rate) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "rate") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == rate"),
-		)...)
+	if resource.Type != "rate" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be rate"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -3993,7 +3967,7 @@ func (resource Rate) Validate() error {
 }
 
 type TopMetrics struct {
-	Type     string                           `json:"type"`
+	Type     MetricAggregationType            `json:"type"`
 	Id       string                           `json:"id"`
 	Settings *ElasticsearchTopMetricsSettings `json:"settings,omitempty"`
 	Hide     *bool                            `json:"hide,omitempty"`
@@ -4002,7 +3976,7 @@ type TopMetrics struct {
 // NewTopMetrics creates a new TopMetrics object.
 func NewTopMetrics() *TopMetrics {
 	return &TopMetrics{
-		Type: "top_metrics",
+		Type: MetricAggregationTypeTopMetrics,
 	}
 }
 
@@ -4115,11 +4089,8 @@ func (resource TopMetrics) Equals(other TopMetrics) bool {
 // Validate checks all the validation constraints that may be defined on `TopMetrics` fields for violations and returns them.
 func (resource TopMetrics) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "top_metrics") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == top_metrics"),
-		)...)
+	if resource.Type != "top_metrics" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be top_metrics"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -4133,17 +4104,6 @@ func (resource TopMetrics) Validate() error {
 
 	return errs
 }
-
-type BucketAggregationType string
-
-const (
-	BucketAggregationTypeTerms         BucketAggregationType = "terms"
-	BucketAggregationTypeFilters       BucketAggregationType = "filters"
-	BucketAggregationTypeGeohashGrid   BucketAggregationType = "geohash_grid"
-	BucketAggregationTypeDateHistogram BucketAggregationType = "date_histogram"
-	BucketAggregationTypeHistogram     BucketAggregationType = "histogram"
-	BucketAggregationTypeNested        BucketAggregationType = "nested"
-)
 
 type BaseBucketAggregation struct {
 	Id       string                `json:"id"`
@@ -4889,41 +4849,6 @@ func (resource GeoHashGridSettings) Equals(other GeoHashGridSettings) bool {
 func (resource GeoHashGridSettings) Validate() error {
 	return nil
 }
-
-type PipelineMetricAggregationType string
-
-const (
-	PipelineMetricAggregationTypeMovingAvg     PipelineMetricAggregationType = "moving_avg"
-	PipelineMetricAggregationTypeMovingFn      PipelineMetricAggregationType = "moving_fn"
-	PipelineMetricAggregationTypeDerivative    PipelineMetricAggregationType = "derivative"
-	PipelineMetricAggregationTypeSerialDiff    PipelineMetricAggregationType = "serial_diff"
-	PipelineMetricAggregationTypeCumulativeSum PipelineMetricAggregationType = "cumulative_sum"
-	PipelineMetricAggregationTypeBucketScript  PipelineMetricAggregationType = "bucket_script"
-)
-
-type MetricAggregationType string
-
-const (
-	MetricAggregationTypeCount         MetricAggregationType = "count"
-	MetricAggregationTypeAvg           MetricAggregationType = "avg"
-	MetricAggregationTypeSum           MetricAggregationType = "sum"
-	MetricAggregationTypeMin           MetricAggregationType = "min"
-	MetricAggregationTypeMax           MetricAggregationType = "max"
-	MetricAggregationTypeExtendedStats MetricAggregationType = "extended_stats"
-	MetricAggregationTypePercentiles   MetricAggregationType = "percentiles"
-	MetricAggregationTypeCardinality   MetricAggregationType = "cardinality"
-	MetricAggregationTypeRawDocument   MetricAggregationType = "raw_document"
-	MetricAggregationTypeRawData       MetricAggregationType = "raw_data"
-	MetricAggregationTypeLogs          MetricAggregationType = "logs"
-	MetricAggregationTypeRate          MetricAggregationType = "rate"
-	MetricAggregationTypeTopMetrics    MetricAggregationType = "top_metrics"
-	MetricAggregationTypeMovingAvg     MetricAggregationType = "moving_avg"
-	MetricAggregationTypeMovingFn      MetricAggregationType = "moving_fn"
-	MetricAggregationTypeDerivative    MetricAggregationType = "derivative"
-	MetricAggregationTypeSerialDiff    MetricAggregationType = "serial_diff"
-	MetricAggregationTypeCumulativeSum MetricAggregationType = "cumulative_sum"
-	MetricAggregationTypeBucketScript  MetricAggregationType = "bucket_script"
-)
 
 type BaseMetricAggregation struct {
 	Type MetricAggregationType `json:"type"`
@@ -5981,15 +5906,15 @@ func (resource BaseMovingAverageModelSettings) Validate() error {
 }
 
 type MovingAverageSimpleModelSettings struct {
-	Model   string `json:"model"`
-	Window  string `json:"window"`
-	Predict string `json:"predict"`
+	Model   MovingAverageModel `json:"model"`
+	Window  string             `json:"window"`
+	Predict string             `json:"predict"`
 }
 
 // NewMovingAverageSimpleModelSettings creates a new MovingAverageSimpleModelSettings object.
 func NewMovingAverageSimpleModelSettings() *MovingAverageSimpleModelSettings {
 	return &MovingAverageSimpleModelSettings{
-		Model: "simple",
+		Model: MovingAverageModelSimple,
 	}
 }
 
@@ -6077,11 +6002,8 @@ func (resource MovingAverageSimpleModelSettings) Equals(other MovingAverageSimpl
 // Validate checks all the validation constraints that may be defined on `MovingAverageSimpleModelSettings` fields for violations and returns them.
 func (resource MovingAverageSimpleModelSettings) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Model == "simple") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"model",
-			errors.New("must be == simple"),
-		)...)
+	if resource.Model != "simple" {
+		errs = append(errs, cog.MakeBuildErrors("model", errors.New("must be simple"))...)
 	}
 
 	if len(errs) == 0 {
@@ -6092,15 +6014,15 @@ func (resource MovingAverageSimpleModelSettings) Validate() error {
 }
 
 type MovingAverageLinearModelSettings struct {
-	Model   string `json:"model"`
-	Window  string `json:"window"`
-	Predict string `json:"predict"`
+	Model   MovingAverageModel `json:"model"`
+	Window  string             `json:"window"`
+	Predict string             `json:"predict"`
 }
 
 // NewMovingAverageLinearModelSettings creates a new MovingAverageLinearModelSettings object.
 func NewMovingAverageLinearModelSettings() *MovingAverageLinearModelSettings {
 	return &MovingAverageLinearModelSettings{
-		Model: "linear",
+		Model: MovingAverageModelLinear,
 	}
 }
 
@@ -6188,11 +6110,8 @@ func (resource MovingAverageLinearModelSettings) Equals(other MovingAverageLinea
 // Validate checks all the validation constraints that may be defined on `MovingAverageLinearModelSettings` fields for violations and returns them.
 func (resource MovingAverageLinearModelSettings) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Model == "linear") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"model",
-			errors.New("must be == linear"),
-		)...)
+	if resource.Model != "linear" {
+		errs = append(errs, cog.MakeBuildErrors("model", errors.New("must be linear"))...)
 	}
 
 	if len(errs) == 0 {
@@ -6203,7 +6122,7 @@ func (resource MovingAverageLinearModelSettings) Validate() error {
 }
 
 type MovingAverageEWMAModelSettings struct {
-	Model    string                                               `json:"model"`
+	Model    MovingAverageModel                                   `json:"model"`
 	Settings *ElasticsearchMovingAverageEWMAModelSettingsSettings `json:"settings,omitempty"`
 	Window   string                                               `json:"window"`
 	Minimize bool                                                 `json:"minimize"`
@@ -6213,7 +6132,7 @@ type MovingAverageEWMAModelSettings struct {
 // NewMovingAverageEWMAModelSettings creates a new MovingAverageEWMAModelSettings object.
 func NewMovingAverageEWMAModelSettings() *MovingAverageEWMAModelSettings {
 	return &MovingAverageEWMAModelSettings{
-		Model: "ewma",
+		Model: MovingAverageModelEwma,
 	}
 }
 
@@ -6340,11 +6259,8 @@ func (resource MovingAverageEWMAModelSettings) Equals(other MovingAverageEWMAMod
 // Validate checks all the validation constraints that may be defined on `MovingAverageEWMAModelSettings` fields for violations and returns them.
 func (resource MovingAverageEWMAModelSettings) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Model == "ewma") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"model",
-			errors.New("must be == ewma"),
-		)...)
+	if resource.Model != "ewma" {
+		errs = append(errs, cog.MakeBuildErrors("model", errors.New("must be ewma"))...)
 	}
 	if resource.Settings != nil {
 		if err := resource.Settings.Validate(); err != nil {
@@ -6360,7 +6276,7 @@ func (resource MovingAverageEWMAModelSettings) Validate() error {
 }
 
 type MovingAverageHoltModelSettings struct {
-	Model    string                                              `json:"model"`
+	Model    MovingAverageModel                                  `json:"model"`
 	Settings ElasticsearchMovingAverageHoltModelSettingsSettings `json:"settings"`
 	Window   string                                              `json:"window"`
 	Minimize bool                                                `json:"minimize"`
@@ -6370,7 +6286,7 @@ type MovingAverageHoltModelSettings struct {
 // NewMovingAverageHoltModelSettings creates a new MovingAverageHoltModelSettings object.
 func NewMovingAverageHoltModelSettings() *MovingAverageHoltModelSettings {
 	return &MovingAverageHoltModelSettings{
-		Model:    "holt",
+		Model:    MovingAverageModelHolt,
 		Settings: *NewElasticsearchMovingAverageHoltModelSettingsSettings(),
 	}
 }
@@ -6495,11 +6411,8 @@ func (resource MovingAverageHoltModelSettings) Equals(other MovingAverageHoltMod
 // Validate checks all the validation constraints that may be defined on `MovingAverageHoltModelSettings` fields for violations and returns them.
 func (resource MovingAverageHoltModelSettings) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Model == "holt") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"model",
-			errors.New("must be == holt"),
-		)...)
+	if resource.Model != "holt" {
+		errs = append(errs, cog.MakeBuildErrors("model", errors.New("must be holt"))...)
 	}
 	if err := resource.Settings.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("settings", err)...)
@@ -6513,7 +6426,7 @@ func (resource MovingAverageHoltModelSettings) Validate() error {
 }
 
 type MovingAverageHoltWintersModelSettings struct {
-	Model    string                                                     `json:"model"`
+	Model    MovingAverageModel                                         `json:"model"`
 	Settings ElasticsearchMovingAverageHoltWintersModelSettingsSettings `json:"settings"`
 	Window   string                                                     `json:"window"`
 	Minimize bool                                                       `json:"minimize"`
@@ -6523,7 +6436,7 @@ type MovingAverageHoltWintersModelSettings struct {
 // NewMovingAverageHoltWintersModelSettings creates a new MovingAverageHoltWintersModelSettings object.
 func NewMovingAverageHoltWintersModelSettings() *MovingAverageHoltWintersModelSettings {
 	return &MovingAverageHoltWintersModelSettings{
-		Model:    "holt_winters",
+		Model:    MovingAverageModelHoltWinters,
 		Settings: *NewElasticsearchMovingAverageHoltWintersModelSettingsSettings(),
 	}
 }
@@ -6648,11 +6561,8 @@ func (resource MovingAverageHoltWintersModelSettings) Equals(other MovingAverage
 // Validate checks all the validation constraints that may be defined on `MovingAverageHoltWintersModelSettings` fields for violations and returns them.
 func (resource MovingAverageHoltWintersModelSettings) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Model == "holt_winters") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"model",
-			errors.New("must be == holt_winters"),
-		)...)
+	if resource.Model != "holt_winters" {
+		errs = append(errs, cog.MakeBuildErrors("model", errors.New("must be holt_winters"))...)
 	}
 	if err := resource.Settings.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("settings", err)...)
@@ -9534,7 +9444,6 @@ func (resource DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested) Ma
 	if resource.Nested != nil {
 		return json.Marshal(resource.Nested)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
@@ -9867,7 +9776,6 @@ func (resource CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSe
 	if resource.TopMetrics != nil {
 		return json.Marshal(resource.TopMetrics)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
@@ -10530,7 +10438,6 @@ func (resource MovingAverageOrDerivativeOrCumulativeSumOrBucketScript) MarshalJS
 	if resource.BucketScript != nil {
 		return json.Marshal(resource.BucketScript)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
@@ -10897,7 +10804,6 @@ func (resource BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRaw
 	if resource.TopMetrics != nil {
 		return json.Marshal(resource.TopMetrics)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 

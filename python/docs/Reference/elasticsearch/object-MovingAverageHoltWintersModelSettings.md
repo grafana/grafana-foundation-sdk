@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> MovingAverageHoltWintersMod
 
 ```python
 class MovingAverageHoltWintersModelSettings:
-    model: typing.Literal["holt_winters"]
+    model: str
     settings: elasticsearch.ElasticsearchMovingAverageHoltWintersModelSettingsSettings
     window: str
     minimize: bool

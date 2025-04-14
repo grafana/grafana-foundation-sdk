@@ -9,7 +9,7 @@ title: <span class="badge object-type-interface"></span> Histogram
 export interface Histogram {
 	field?: string;
 	id: string;
-	type: "histogram";
+	type: elasticsearch.BucketAggregationType.Histogram;
 	settings?: {
 		interval?: string;
 		min_doc_count?: string;
@@ -17,9 +17,6 @@ export interface Histogram {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [HistogramBuilder](./builder-HistogramBuilder.md)

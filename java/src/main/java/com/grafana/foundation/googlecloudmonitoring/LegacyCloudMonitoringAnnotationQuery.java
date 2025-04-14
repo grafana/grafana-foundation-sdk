@@ -38,7 +38,6 @@ public class LegacyCloudMonitoringAnnotationQuery {
     public String text;
     public LegacyCloudMonitoringAnnotationQuery() {
     }
-    
     public LegacyCloudMonitoringAnnotationQuery(String projectName,String metricType,String refId,List<String> filters,MetricKind metricKind,String valueType,String title,String text) {
         this.projectName = projectName;
         this.metricType = metricType;

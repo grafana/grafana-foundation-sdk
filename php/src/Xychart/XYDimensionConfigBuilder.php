@@ -33,12 +33,14 @@ class XYDimensionConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function x(string $x): static
     {
         $this->internal->x = $x;
     
         return $this;
     }
+
     /**
      * @param array<string> $exclude
      */

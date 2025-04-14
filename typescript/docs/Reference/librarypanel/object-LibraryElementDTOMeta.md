@@ -17,9 +17,6 @@ export interface LibraryElementDTOMeta {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [LibraryElementDTOMetaBuilder](./builder-LibraryElementDTOMetaBuilder.md)

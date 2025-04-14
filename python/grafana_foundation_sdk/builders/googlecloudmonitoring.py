@@ -6,7 +6,7 @@ from ..models import googlecloudmonitoring
 from ..models import dashboard
 
 
-class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitoringQuery]):    
+class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitoringQuery]):
     _internal: googlecloudmonitoring.CloudMonitoringQuery
 
     def __init__(self):
@@ -120,6 +120,7 @@ class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitor
     
         return self
     
+
 
 class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):    
     """
@@ -264,6 +265,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
         return self
     
 
+
 class TimeSeriesQuery(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesQuery]):    
     """
     Time Series sub-query properties.
@@ -307,6 +309,7 @@ class TimeSeriesQuery(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesQuery])
     
         return self
     
+
 
 class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):    
     """
@@ -415,6 +418,7 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
         return self
     
 
+
 class PromQLQuery(cogbuilder.Builder[googlecloudmonitoring.PromQLQuery]):    
     """
     PromQL sub-query properties.
@@ -458,6 +462,7 @@ class PromQLQuery(cogbuilder.Builder[googlecloudmonitoring.PromQLQuery]):
     
         return self
     
+
 
 class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):    
     """
@@ -511,12 +516,12 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
     
         return self
     
-    def editor_mode(self, editor_mode: str) -> typing.Self:        
+    def editor_mode(self, editor_mode: str) -> typing.Self:    
         self._internal.editor_mode = editor_mode
     
         return self
     
-    def metric_type(self, metric_type: str) -> typing.Self:        
+    def metric_type(self, metric_type: str) -> typing.Self:    
         self._internal.metric_type = metric_type
     
         return self
@@ -548,17 +553,17 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
     
         return self
     
-    def metric_kind(self, metric_kind: googlecloudmonitoring.MetricKind) -> typing.Self:        
+    def metric_kind(self, metric_kind: googlecloudmonitoring.MetricKind) -> typing.Self:    
         self._internal.metric_kind = metric_kind
     
         return self
     
-    def value_type(self, value_type: str) -> typing.Self:        
+    def value_type(self, value_type: str) -> typing.Self:    
         self._internal.value_type = value_type
     
         return self
     
-    def view(self, view: str) -> typing.Self:        
+    def view(self, view: str) -> typing.Self:    
         self._internal.view = view
     
         return self
@@ -591,6 +596,7 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
         return self
     
 
+
 class LegacyCloudMonitoringAnnotationQuery(cogbuilder.Builder[googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery]):    
     """
     @deprecated Use TimeSeriesList instead. Legacy annotation query properties for migration purposes.
@@ -616,7 +622,7 @@ class LegacyCloudMonitoringAnnotationQuery(cogbuilder.Builder[googlecloudmonitor
     
         return self
     
-    def metric_type(self, metric_type: str) -> typing.Self:        
+    def metric_type(self, metric_type: str) -> typing.Self:    
         self._internal.metric_type = metric_type
     
         return self
@@ -639,12 +645,12 @@ class LegacyCloudMonitoringAnnotationQuery(cogbuilder.Builder[googlecloudmonitor
     
         return self
     
-    def metric_kind(self, metric_kind: googlecloudmonitoring.MetricKind) -> typing.Self:        
+    def metric_kind(self, metric_kind: googlecloudmonitoring.MetricKind) -> typing.Self:    
         self._internal.metric_kind = metric_kind
     
         return self
     
-    def value_type(self, value_type: str) -> typing.Self:        
+    def value_type(self, value_type: str) -> typing.Self:    
         self._internal.value_type = value_type
     
         return self
@@ -667,6 +673,7 @@ class LegacyCloudMonitoringAnnotationQuery(cogbuilder.Builder[googlecloudmonitor
     
         return self
     
+
 
 class Filter(cogbuilder.Builder[googlecloudmonitoring.Filter]):    
     """

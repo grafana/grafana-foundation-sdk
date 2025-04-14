@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> TopMetrics
 
 ```go
 type TopMetrics struct {
-    Type string `json:"type"`
+    Type elasticsearch.MetricAggregationType `json:"type"`
     Id string `json:"id"`
     Settings *elasticsearch.ElasticsearchTopMetricsSettings `json:"settings,omitempty"`
     Hide *bool `json:"hide,omitempty"`

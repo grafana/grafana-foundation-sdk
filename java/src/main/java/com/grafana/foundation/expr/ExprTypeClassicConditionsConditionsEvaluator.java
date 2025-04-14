@@ -19,7 +19,6 @@ public class ExprTypeClassicConditionsConditionsEvaluator {
     public String type;
     public ExprTypeClassicConditionsConditionsEvaluator() {
     }
-    
     public ExprTypeClassicConditionsConditionsEvaluator(List<Double> params,String type) {
         this.params = params;
         this.type = type;

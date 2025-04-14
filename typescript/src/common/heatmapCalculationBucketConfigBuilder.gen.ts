@@ -36,3 +36,4 @@ export class HeatmapCalculationBucketConfigBuilder implements cog.Builder<common
         return this;
     }
 }
+

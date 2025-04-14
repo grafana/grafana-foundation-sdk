@@ -13,7 +13,7 @@ class TableBarGaugeCellOptions:
     Gauge cell options
     """
 
-    type_val: typing.Literal["gauge"]
+    type_val: str
     mode: typing.Optional[common.BarGaugeDisplayMode]
     value_display_mode: typing.Optional[common.BarGaugeValueMode]
 ```

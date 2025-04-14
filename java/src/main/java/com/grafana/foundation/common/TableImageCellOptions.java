@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 // Json view cell options
 public class TableImageCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("alt")
     public String alt;
@@ -19,10 +19,10 @@ public class TableImageCellOptions {
     @JsonProperty("title")
     public String title;
     public TableImageCellOptions() {
+        this.type = TableCellDisplayMode.IMAGE;
     }
-    
-    public TableImageCellOptions(String type,String alt,String title) {
-        this.type = type;
+    public TableImageCellOptions(String alt,String title) {
+        this.type = TableCellDisplayMode.IMAGE;
         this.alt = alt;
         this.title = title;
     }

@@ -14,7 +14,6 @@ public class PipelineVariable {
     public String pipelineAgg;
     public PipelineVariable() {
     }
-    
     public PipelineVariable(String name,String pipelineAgg) {
         this.name = name;
         this.pipelineAgg = pipelineAgg;

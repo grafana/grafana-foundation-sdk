@@ -13,7 +13,7 @@ class TableDataLinksCellOptions:
     Show data links in the cell
     """
 
-    type_val: typing.Literal["data-links"]
+    type_val: str
 ```
 ## Methods
 

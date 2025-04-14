@@ -37,7 +37,6 @@ public class AzureTracesQuery {
     public String query;
     public AzureTracesQuery() {
     }
-    
     public AzureTracesQuery(ResultFormat resultFormat,List<String> resources,String operationId,List<String> traceTypes,List<AzureTracesFilter> filters,String query) {
         this.resultFormat = resultFormat;
         this.resources = resources;

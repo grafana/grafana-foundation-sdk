@@ -35,3 +35,4 @@ export class SingleStatBaseOptionsBuilder implements cog.Builder<common.SingleSt
         return this;
     }
 }
+

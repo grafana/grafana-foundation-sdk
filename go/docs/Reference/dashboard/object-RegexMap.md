@@ -11,7 +11,7 @@ For example, if a value is www.example.com, you can configure a regex value mapp
 
 ```go
 type RegexMap struct {
-    Type string `json:"type"`
+    Type dashboard.MappingType `json:"type"`
     // Regular expression to match against and the result to apply when the value matches the regex
     Options dashboard.DashboardRegexMapOptions `json:"options"`
 }

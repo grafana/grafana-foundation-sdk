@@ -13,9 +13,6 @@ export interface AnnotationActions {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [AnnotationActionsBuilder](./builder-AnnotationActionsBuilder.md)

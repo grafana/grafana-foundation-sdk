@@ -21,7 +21,6 @@ public class LineConfig {
     public Double radius;
     public LineConfig() {
     }
-    
     public LineConfig(ColorDimensionConfig color,Double width,Double radius) {
         this.color = color;
         this.width = width;

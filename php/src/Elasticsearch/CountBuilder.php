@@ -12,7 +12,6 @@ class CountBuilder implements \Grafana\Foundation\Cog\Builder
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\Count();
-    $this->internal->type = "count";
     }
 
     /**
@@ -30,6 +29,7 @@ class CountBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function hide(bool $hide): static
     {
         $this->internal->hide = $hide;
