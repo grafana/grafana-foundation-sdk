@@ -2138,7 +2138,6 @@ func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeTh
 	if resource.TypeSql != nil {
 		return json.Marshal(resource.TypeSql)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 

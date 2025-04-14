@@ -54,7 +54,9 @@ final class Runtime
         $this->registerDataqueryVariant(\Grafana\Foundation\Grafanapyroscope\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Loki\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Parca\VariantConfig::get());
+        $this->registerDataqueryVariant(\Grafana\Foundation\Prometheus\VariantConfig::get());
         $this->registerDataqueryVariant(\Grafana\Foundation\Tempo\VariantConfig::get());
+        $this->registerDataqueryVariant(\Grafana\Foundation\Testdata\VariantConfig::get());
     }
 
     public static function get(): self

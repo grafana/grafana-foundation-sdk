@@ -32,11 +32,13 @@ import (
 	nodegraph "github.com/grafana/grafana-foundation-sdk/go/nodegraph"
 	parca "github.com/grafana/grafana-foundation-sdk/go/parca"
 	piechart "github.com/grafana/grafana-foundation-sdk/go/piechart"
+	prometheus "github.com/grafana/grafana-foundation-sdk/go/prometheus"
 	stat "github.com/grafana/grafana-foundation-sdk/go/stat"
 	statetimeline "github.com/grafana/grafana-foundation-sdk/go/statetimeline"
 	statushistory "github.com/grafana/grafana-foundation-sdk/go/statushistory"
 	table "github.com/grafana/grafana-foundation-sdk/go/table"
 	tempo "github.com/grafana/grafana-foundation-sdk/go/tempo"
+	testdata "github.com/grafana/grafana-foundation-sdk/go/testdata"
 	text "github.com/grafana/grafana-foundation-sdk/go/text"
 	timeseries "github.com/grafana/grafana-foundation-sdk/go/timeseries"
 	trend "github.com/grafana/grafana-foundation-sdk/go/trend"
@@ -85,5 +87,7 @@ func RegisterDefaultPlugins() {
 	runtime.RegisterDataqueryVariant(grafanapyroscope.VariantConfig())
 	runtime.RegisterDataqueryVariant(loki.VariantConfig())
 	runtime.RegisterDataqueryVariant(parca.VariantConfig())
+	runtime.RegisterDataqueryVariant(prometheus.VariantConfig())
 	runtime.RegisterDataqueryVariant(tempo.VariantConfig())
+	runtime.RegisterDataqueryVariant(testdata.VariantConfig())
 }

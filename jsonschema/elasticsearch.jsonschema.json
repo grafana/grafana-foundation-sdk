@@ -62,6 +62,16 @@
         }
       }
     },
+    "BucketAggregationType": {
+      "enum": [
+        "terms",
+        "filters",
+        "geohash_grid",
+        "date_histogram",
+        "histogram",
+        "nested"
+      ]
+    },
     "Histogram": {
       "type": "object",
       "additionalProperties": false,
@@ -253,6 +263,75 @@
           "type": "boolean"
         }
       }
+    },
+    "MetricAggregationType": {
+      "anyOf": [
+        {
+          "type": "string",
+          "const": "count"
+        },
+        {
+          "type": "string",
+          "const": "avg"
+        },
+        {
+          "type": "string",
+          "const": "sum"
+        },
+        {
+          "type": "string",
+          "const": "min"
+        },
+        {
+          "type": "string",
+          "const": "max"
+        },
+        {
+          "type": "string",
+          "const": "extended_stats"
+        },
+        {
+          "type": "string",
+          "const": "percentiles"
+        },
+        {
+          "type": "string",
+          "const": "cardinality"
+        },
+        {
+          "type": "string",
+          "const": "raw_document"
+        },
+        {
+          "type": "string",
+          "const": "raw_data"
+        },
+        {
+          "type": "string",
+          "const": "logs"
+        },
+        {
+          "type": "string",
+          "const": "rate"
+        },
+        {
+          "type": "string",
+          "const": "top_metrics"
+        },
+        {
+          "$ref": "#/definitions/PipelineMetricAggregationType"
+        }
+      ]
+    },
+    "PipelineMetricAggregationType": {
+      "enum": [
+        "moving_avg",
+        "moving_fn",
+        "derivative",
+        "serial_diff",
+        "cumulative_sum",
+        "bucket_script"
+      ]
     },
     "PipelineMetricAggregation": {
       "anyOf": [
@@ -939,16 +1018,6 @@
         }
       }
     },
-    "BucketAggregationType": {
-      "enum": [
-        "terms",
-        "filters",
-        "geohash_grid",
-        "date_histogram",
-        "histogram",
-        "nested"
-      ]
-    },
     "BaseBucketAggregation": {
       "type": "object",
       "additionalProperties": false,
@@ -1066,75 +1135,6 @@
           "type": "string"
         }
       }
-    },
-    "PipelineMetricAggregationType": {
-      "enum": [
-        "moving_avg",
-        "moving_fn",
-        "derivative",
-        "serial_diff",
-        "cumulative_sum",
-        "bucket_script"
-      ]
-    },
-    "MetricAggregationType": {
-      "anyOf": [
-        {
-          "type": "string",
-          "const": "count"
-        },
-        {
-          "type": "string",
-          "const": "avg"
-        },
-        {
-          "type": "string",
-          "const": "sum"
-        },
-        {
-          "type": "string",
-          "const": "min"
-        },
-        {
-          "type": "string",
-          "const": "max"
-        },
-        {
-          "type": "string",
-          "const": "extended_stats"
-        },
-        {
-          "type": "string",
-          "const": "percentiles"
-        },
-        {
-          "type": "string",
-          "const": "cardinality"
-        },
-        {
-          "type": "string",
-          "const": "raw_document"
-        },
-        {
-          "type": "string",
-          "const": "raw_data"
-        },
-        {
-          "type": "string",
-          "const": "logs"
-        },
-        {
-          "type": "string",
-          "const": "rate"
-        },
-        {
-          "type": "string",
-          "const": "top_metrics"
-        },
-        {
-          "$ref": "#/definitions/PipelineMetricAggregationType"
-        }
-      ]
     },
     "BaseMetricAggregation": {
       "type": "object",
