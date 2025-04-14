@@ -20,7 +20,6 @@ public class AnnotationContainer {
     public List<AnnotationQuery> list;
     public AnnotationContainer() {
     }
-    
     public AnnotationContainer(List<AnnotationQuery> list) {
         this.list = list;
     }

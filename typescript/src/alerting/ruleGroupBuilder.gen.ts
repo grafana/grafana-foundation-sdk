@@ -50,3 +50,4 @@ export class RuleGroupBuilder implements cog.Builder<alerting.RuleGroup> {
         return this;
     }
 }
+

@@ -43,3 +43,4 @@ export class ScalarDimensionConfigBuilder implements cog.Builder<common.ScalarDi
         return this;
     }
 }
+

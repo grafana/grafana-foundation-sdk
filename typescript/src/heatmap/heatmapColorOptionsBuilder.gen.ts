@@ -78,3 +78,4 @@ export class HeatmapColorOptionsBuilder implements cog.Builder<heatmap.HeatmapCo
         return this;
     }
 }
+

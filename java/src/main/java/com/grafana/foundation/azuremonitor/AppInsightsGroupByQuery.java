@@ -18,7 +18,6 @@ public class AppInsightsGroupByQuery {
     public String metricName;
     public AppInsightsGroupByQuery() {
     }
-    
     public AppInsightsGroupByQuery(String rawQuery,String kind,String metricName) {
         this.rawQuery = rawQuery;
         this.kind = kind;

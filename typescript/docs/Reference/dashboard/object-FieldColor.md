@@ -18,9 +18,6 @@ export interface FieldColor {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [FieldColorBuilder](./builder-FieldColorBuilder.md)

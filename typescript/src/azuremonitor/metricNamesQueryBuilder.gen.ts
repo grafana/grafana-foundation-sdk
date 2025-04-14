@@ -43,3 +43,4 @@ export class MetricNamesQueryBuilder implements cog.Builder<azuremonitor.MetricN
         return this;
     }
 }
+

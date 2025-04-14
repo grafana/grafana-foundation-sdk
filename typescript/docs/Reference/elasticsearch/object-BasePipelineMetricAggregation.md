@@ -15,9 +15,6 @@ export interface BasePipelineMetricAggregation {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [BasePipelineMetricAggregationBuilder](./builder-BasePipelineMetricAggregationBuilder.md)

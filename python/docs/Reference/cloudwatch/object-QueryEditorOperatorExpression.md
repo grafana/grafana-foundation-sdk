@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> QueryEditorOperatorExpressi
 
 ```python
 class QueryEditorOperatorExpression:
-    type_val: typing.Literal["operator"]
+    type_val: str
     property_val: cloudwatch.QueryEditorProperty
     # TS type is operator: QueryEditorOperator<QueryEditorOperatorValueType>, extended in veneer
     operator: cloudwatch.QueryEditorOperator

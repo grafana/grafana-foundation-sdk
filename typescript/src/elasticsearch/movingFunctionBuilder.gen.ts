@@ -8,7 +8,6 @@ export class MovingFunctionBuilder implements cog.Builder<elasticsearch.MovingFu
 
     constructor() {
         this.internal = elasticsearch.defaultMovingFunction();
-        this.internal.type = "moving_fn";
     }
 
     /**
@@ -47,3 +46,4 @@ export class MovingFunctionBuilder implements cog.Builder<elasticsearch.MovingFu
         return this;
     }
 }
+

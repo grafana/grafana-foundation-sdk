@@ -63,3 +63,4 @@ export class CanvasElementOptionsBuilder implements cog.Builder<canvas.CanvasEle
         return this;
     }
 }
+

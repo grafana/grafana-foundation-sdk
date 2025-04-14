@@ -18,7 +18,6 @@ public class WorkspacesQuery {
     public String subscription;
     public WorkspacesQuery() {
     }
-    
     public WorkspacesQuery(String rawQuery,String kind,String subscription) {
         this.rawQuery = rawQuery;
         this.kind = kind;

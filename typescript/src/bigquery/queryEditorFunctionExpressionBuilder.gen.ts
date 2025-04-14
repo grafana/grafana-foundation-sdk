@@ -8,7 +8,6 @@ export class QueryEditorFunctionExpressionBuilder implements cog.Builder<bigquer
 
     constructor() {
         this.internal = bigquery.defaultQueryEditorFunctionExpression();
-        this.internal.type = "function";
     }
 
     /**
@@ -29,3 +28,4 @@ export class QueryEditorFunctionExpressionBuilder implements cog.Builder<bigquer
         return this;
     }
 }
+

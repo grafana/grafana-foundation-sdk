@@ -9,7 +9,7 @@ namespace Grafana\Foundation\Dashboard;
  */
 class SpecialValueMap implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Dashboard\MappingType $type;
 
     public \Grafana\Foundation\Dashboard\DashboardSpecialValueMapOptions $options;
 
@@ -18,8 +18,7 @@ class SpecialValueMap implements \JsonSerializable
      */
     public function __construct(?\Grafana\Foundation\Dashboard\DashboardSpecialValueMapOptions $options = null)
     {
-        $this->type = "special";
-    
+        $this->type = \Grafana\Foundation\Dashboard\MappingType::valueToText();
         $this->options = $options ?: new \Grafana\Foundation\Dashboard\DashboardSpecialValueMapOptions();
     }
 
@@ -28,7 +27,7 @@ class SpecialValueMap implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, options?: mixed} $inputData */
+        /** @var array{type?: "special", options?: mixed} $inputData */
         $data = $inputData;
         return new self(
             options: isset($data["options"]) ? (function($input) {

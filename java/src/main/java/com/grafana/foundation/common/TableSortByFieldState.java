@@ -19,7 +19,6 @@ public class TableSortByFieldState {
     public Boolean desc;
     public TableSortByFieldState() {
     }
-    
     public TableSortByFieldState(String displayName,Boolean desc) {
         this.displayName = displayName;
         this.desc = desc;

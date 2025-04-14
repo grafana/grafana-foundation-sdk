@@ -33,7 +33,6 @@ public class Options {
     public LogsDedupStrategy dedupStrategy;
     public Options() {
     }
-    
     public Options(Boolean showLabels,Boolean showCommonLabels,Boolean showTime,Boolean showLogContextToggle,Boolean wrapLogMessage,Boolean prettifyLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy) {
         this.showLabels = showLabels;
         this.showCommonLabels = showCommonLabels;

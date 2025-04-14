@@ -12,7 +12,6 @@ class QueryEditorGroupByExpressionBuilder implements \Grafana\Foundation\Cog\Bui
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Cloudwatch\QueryEditorGroupByExpression();
-    $this->internal->type = "groupBy";
     }
 
     /**

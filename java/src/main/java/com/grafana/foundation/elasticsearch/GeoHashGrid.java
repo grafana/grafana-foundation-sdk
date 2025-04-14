@@ -15,17 +15,17 @@ public class GeoHashGrid {
     @JsonProperty("id")
     public String id;
     @JsonProperty("type")
-    public String type;
+    public BucketAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("settings")
     public ElasticsearchGeoHashGridSettings settings;
     public GeoHashGrid() {
+        this.type = BucketAggregationType.GEOHASH_GRID;
     }
-    
-    public GeoHashGrid(String field,String id,String type,ElasticsearchGeoHashGridSettings settings) {
+    public GeoHashGrid(String field,String id,ElasticsearchGeoHashGridSettings settings) {
         this.field = field;
         this.id = id;
-        this.type = type;
+        this.type = BucketAggregationType.GEOHASH_GRID;
         this.settings = settings;
     }
     

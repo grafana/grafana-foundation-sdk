@@ -10,12 +10,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 // Show data links in the cell
 public class TableDataLinksCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     public TableDataLinksCellOptions() {
-    }
-    
-    public TableDataLinksCellOptions(String type) {
-        this.type = type;
+        this.type = TableCellDisplayMode.DATA_LINKS;
     }
     
     public String toJSON() throws JsonProcessingException {

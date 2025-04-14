@@ -24,3 +24,4 @@ export class StackableFieldConfigBuilder implements cog.Builder<common.Stackable
         return this;
     }
 }
+

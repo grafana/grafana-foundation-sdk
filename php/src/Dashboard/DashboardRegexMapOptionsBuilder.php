@@ -32,6 +32,7 @@ class DashboardRegexMapOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Config to apply when the value matches the regex
      */

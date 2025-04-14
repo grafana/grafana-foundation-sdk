@@ -10,7 +10,7 @@ Show data links in the cell
 ```php
 class TableDataLinksCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
 }
 ```

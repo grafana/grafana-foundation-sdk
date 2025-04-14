@@ -12,7 +12,6 @@ public class PrometheusDataqueryScope {
     public String matchers;
     public PrometheusDataqueryScope() {
     }
-    
     public PrometheusDataqueryScope(String matchers) {
         this.matchers = matchers;
     }

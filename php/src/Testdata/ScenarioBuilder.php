@@ -30,24 +30,28 @@ class ScenarioBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function name(string $name): static
     {
         $this->internal->name = $name;
     
         return $this;
     }
+
     public function stringInput(string $stringInput): static
     {
         $this->internal->stringInput = $stringInput;
     
         return $this;
     }
+
     public function description(string $description): static
     {
         $this->internal->description = $description;
     
         return $this;
     }
+
     public function hideAliasField(bool $hideAliasField): static
     {
         $this->internal->hideAliasField = $hideAliasField;

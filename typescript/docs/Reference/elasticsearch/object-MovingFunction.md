@@ -9,7 +9,7 @@ title: <span class="badge object-type-interface"></span> MovingFunction
 export interface MovingFunction {
 	pipelineAgg?: string;
 	field?: string;
-	type: "moving_fn";
+	type: unknown;
 	id: string;
 	settings?: {
 		window?: string;
@@ -20,9 +20,6 @@ export interface MovingFunction {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MovingFunctionBuilder](./builder-MovingFunctionBuilder.md)

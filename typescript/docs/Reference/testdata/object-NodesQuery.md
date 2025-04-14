@@ -13,9 +13,6 @@ export interface NodesQuery {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [NodesQueryBuilder](./builder-NodesQueryBuilder.md)

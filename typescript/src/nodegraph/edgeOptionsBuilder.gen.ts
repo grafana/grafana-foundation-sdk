@@ -29,3 +29,4 @@ export class EdgeOptionsBuilder implements cog.Builder<nodegraph.EdgeOptions> {
         return this;
     }
 }
+

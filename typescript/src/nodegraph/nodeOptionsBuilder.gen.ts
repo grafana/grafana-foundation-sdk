@@ -36,3 +36,4 @@ export class NodeOptionsBuilder implements cog.Builder<nodegraph.NodeOptions> {
         return this;
     }
 }
+

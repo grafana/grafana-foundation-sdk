@@ -15,9 +15,6 @@ export interface HideSeriesConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [HideSeriesConfigBuilder](./builder-HideSeriesConfigBuilder.md)

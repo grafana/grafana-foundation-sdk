@@ -14,9 +14,6 @@ export interface CSVWave {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [CSVWaveBuilder](./builder-CSVWaveBuilder.md)

@@ -32,6 +32,7 @@ class CandlestickFieldMapBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Corresponds to the highest value of the given period
      */
@@ -41,6 +42,7 @@ class CandlestickFieldMapBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Corresponds to the lowest value of the given period
      */
@@ -50,6 +52,7 @@ class CandlestickFieldMapBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Corresponds to the final (end) value of the given period
      */
@@ -59,6 +62,7 @@ class CandlestickFieldMapBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Corresponds to the sample count in the given period. (e.g. number of trades)
      */

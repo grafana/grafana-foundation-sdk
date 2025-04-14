@@ -28,3 +28,4 @@ export class WorkspacesQueryBuilder implements cog.Builder<azuremonitor.Workspac
         return this;
     }
 }
+

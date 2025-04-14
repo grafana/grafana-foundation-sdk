@@ -32,6 +32,7 @@ class CookiePreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param mixed $performance
      */
@@ -41,6 +42,7 @@ class CookiePreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param mixed $functional
      */

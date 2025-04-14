@@ -33,6 +33,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * JSON is the raw JSON query and includes the above properties as well as custom properties.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cog\Dataquery> $model
@@ -44,6 +45,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * QueryType is an optional identifier for the type of query.
      * It can be used to distinguish different types of queries.
@@ -54,6 +56,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
@@ -63,6 +66,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * RelativeTimeRange is the per query start and end time
      * for requests.

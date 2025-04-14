@@ -10,6 +10,7 @@ class TypeSql(cogvariants.Dataquery):
     # The datasource
     datasource: typing.Optional[dashboard.DataSourceRef]
     expression: str
+    format_val: str
     # true if query is disabled (ie should not be returned to the dashboard)
     # NOTE: this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)

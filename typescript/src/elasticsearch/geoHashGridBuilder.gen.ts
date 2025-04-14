@@ -8,7 +8,6 @@ export class GeoHashGridBuilder implements cog.Builder<elasticsearch.GeoHashGrid
 
     constructor() {
         this.internal = elasticsearch.defaultGeoHashGrid();
-        this.internal.type = "geohash_grid";
     }
 
     /**
@@ -35,3 +34,4 @@ export class GeoHashGridBuilder implements cog.Builder<elasticsearch.GeoHashGrid
         return this;
     }
 }
+

@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> BucketScript
 
 ```go
 type BucketScript struct {
-    Type string `json:"type"`
+    Type elasticsearch.MetricAggregationType `json:"type"`
     PipelineVariables []elasticsearch.PipelineVariable `json:"pipelineVariables,omitempty"`
     Id string `json:"id"`
     Settings *elasticsearch.ElasticsearchBucketScriptSettings `json:"settings,omitempty"`

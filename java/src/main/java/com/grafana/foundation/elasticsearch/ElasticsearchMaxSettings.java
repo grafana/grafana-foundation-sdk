@@ -17,7 +17,6 @@ public class ElasticsearchMaxSettings {
     public String missing;
     public ElasticsearchMaxSettings() {
     }
-    
     public ElasticsearchMaxSettings(InlineScript script,String missing) {
         this.script = script;
         this.missing = missing;

@@ -14,9 +14,6 @@ export interface ColorDimensionConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [ColorDimensionConfigBuilder](./builder-ColorDimensionConfigBuilder.md)

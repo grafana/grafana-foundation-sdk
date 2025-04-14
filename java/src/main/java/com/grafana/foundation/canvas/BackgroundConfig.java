@@ -22,7 +22,6 @@ public class BackgroundConfig {
     public BackgroundImageSize size;
     public BackgroundConfig() {
     }
-    
     public BackgroundConfig(ColorDimensionConfig color,ResourceDimensionConfig image,BackgroundImageSize size) {
         this.color = color;
         this.image = image;

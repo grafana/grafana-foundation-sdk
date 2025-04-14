@@ -19,7 +19,6 @@ public class ArcOption {
     public String color;
     public ArcOption() {
     }
-    
     public ArcOption(String field,String color) {
         this.field = field;
         this.color = color;

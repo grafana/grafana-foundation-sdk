@@ -14,7 +14,6 @@ public class ElasticsearchMetricAggregationWithInlineScriptSettings {
     public InlineScript script;
     public ElasticsearchMetricAggregationWithInlineScriptSettings() {
     }
-    
     public ElasticsearchMetricAggregationWithInlineScriptSettings(InlineScript script) {
         this.script = script;
     }

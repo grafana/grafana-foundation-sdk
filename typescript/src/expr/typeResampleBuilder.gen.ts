@@ -143,3 +143,4 @@ export class TypeResampleBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 }
+

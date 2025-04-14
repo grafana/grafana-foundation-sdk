@@ -12,9 +12,6 @@ export interface Constraint {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [ConstraintBuilder](./builder-ConstraintBuilder.md)

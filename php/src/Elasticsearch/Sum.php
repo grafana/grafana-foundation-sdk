@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Elasticsearch;
 
 class Sum implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public ?string $field;
 
@@ -22,8 +22,7 @@ class Sum implements \JsonSerializable
      */
     public function __construct(?string $field = null, ?string $id = null, ?\Grafana\Foundation\Elasticsearch\ElasticsearchSumSettings $settings = null, ?bool $hide = null)
     {
-        $this->type = "sum";
-    
+        $this->type = \Grafana\Foundation\Elasticsearch\MetricAggregationType::count();
         $this->field = $field;
         $this->id = $id ?: "";
         $this->settings = $settings;
@@ -35,7 +34,7 @@ class Sum implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, field?: string, id?: string, settings?: mixed, hide?: bool} $inputData */
+        /** @var array{type?: "sum", field?: string, id?: string, settings?: mixed, hide?: bool} $inputData */
         $data = $inputData;
         return new self(
             field: $data["field"] ?? null,

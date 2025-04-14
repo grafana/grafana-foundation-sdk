@@ -14,7 +14,6 @@ public class ExemplarConfig {
     public String color;
     public ExemplarConfig() {
     }
-    
     public ExemplarConfig(String color) {
         this.color = color;
     }

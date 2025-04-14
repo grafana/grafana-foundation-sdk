@@ -32,3 +32,4 @@ export class CandlestickColorsBuilder implements cog.Builder<candlestick.Candles
         return this;
     }
 }
+

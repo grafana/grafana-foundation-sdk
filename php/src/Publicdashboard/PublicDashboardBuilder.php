@@ -32,6 +32,7 @@ class PublicDashboardBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Dashboard unique identifier referenced by this public dashboard
      */
@@ -41,6 +42,7 @@ class PublicDashboardBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Unique public access token
      */
@@ -50,6 +52,7 @@ class PublicDashboardBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Flag that indicates if the public dashboard is enabled
      */
@@ -59,6 +62,7 @@ class PublicDashboardBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Flag that indicates if annotations are enabled
      */
@@ -68,6 +72,7 @@ class PublicDashboardBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Flag that indicates if the time range picker is enabled
      */

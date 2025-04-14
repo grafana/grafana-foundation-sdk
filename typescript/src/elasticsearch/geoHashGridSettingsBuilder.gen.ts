@@ -22,3 +22,4 @@ export class GeoHashGridSettingsBuilder implements cog.Builder<elasticsearch.Geo
         return this;
     }
 }
+

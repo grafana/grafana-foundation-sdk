@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class ExtendedStats {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("settings")
     public ElasticsearchExtendedStatsSettings settings;
@@ -26,10 +26,10 @@ public class ExtendedStats {
     @JsonProperty("hide")
     public Boolean hide;
     public ExtendedStats() {
+        this.type = MetricAggregationType.EXTENDED_STATS;
     }
-    
-    public ExtendedStats(String type,ElasticsearchExtendedStatsSettings settings,String field,String id,Object meta,Boolean hide) {
-        this.type = type;
+    public ExtendedStats(ElasticsearchExtendedStatsSettings settings,String field,String id,Object meta,Boolean hide) {
+        this.type = MetricAggregationType.EXTENDED_STATS;
         this.settings = settings;
         this.field = field;
         this.id = id;

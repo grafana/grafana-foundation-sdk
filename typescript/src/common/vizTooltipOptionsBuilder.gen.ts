@@ -38,3 +38,4 @@ export class VizTooltipOptionsBuilder implements cog.Builder<common.VizTooltipOp
         return this;
     }
 }
+

@@ -39,7 +39,6 @@ public class ExprTypeResampleResultAssertions {
     public List<Long> typeVersion;
     public ExprTypeResampleResultAssertions() {
     }
-    
     public ExprTypeResampleResultAssertions(Long maxFrames,ExprTypeResampleResultAssertionsType type,List<Long> typeVersion) {
         this.maxFrames = maxFrames;
         this.type = type;

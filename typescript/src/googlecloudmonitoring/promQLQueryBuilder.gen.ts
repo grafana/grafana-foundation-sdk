@@ -36,3 +36,4 @@ export class PromQLQueryBuilder implements cog.Builder<googlecloudmonitoring.Pro
         return this;
     }
 }
+

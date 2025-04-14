@@ -61,7 +61,6 @@ public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants
     public Double intervalMs;
     public CloudMonitoringQuery() {
     }
-    
     public CloudMonitoringQuery(String refId,Boolean hide,String queryType,String aliasBy,TimeSeriesList timeSeriesList,TimeSeriesQuery timeSeriesQuery,SLOQuery sloQuery,PromQLQuery promQLQuery,DataSourceRef datasource,Double intervalMs) {
         this.refId = refId;
         this.hide = hide;

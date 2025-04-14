@@ -32,6 +32,12 @@ def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
 def expression(expression: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> format_val
+
+```python
+def format_val(format_val: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> hide
 
 true if query is disabled (ie should not be returned to the dashboard)

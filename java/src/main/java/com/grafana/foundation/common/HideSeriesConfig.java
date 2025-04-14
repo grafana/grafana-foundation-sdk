@@ -17,7 +17,6 @@ public class HideSeriesConfig {
     public Boolean viz;
     public HideSeriesConfig() {
     }
-    
     public HideSeriesConfig(Boolean tooltip,Boolean legend,Boolean viz) {
         this.tooltip = tooltip;
         this.legend = legend;
