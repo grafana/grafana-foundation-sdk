@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> Count
 
 ```python
 class Count:
-    type_val: typing.Literal["count"]
+    type_val: str
     id_val: str
     hide: typing.Optional[bool]
 ```

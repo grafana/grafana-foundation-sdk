@@ -36,6 +36,7 @@ class ConstantVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Optional display name
      */
@@ -45,6 +46,7 @@ class ConstantVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Description of variable. It can be defined but `null`.
      */
@@ -54,6 +56,7 @@ class ConstantVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Query used to fetch values for a variable
      * @param string|array<string, mixed> $query

@@ -18,7 +18,6 @@ public class VizTooltipOptions {
     public SortOrder sort;
     public VizTooltipOptions() {
     }
-    
     public VizTooltipOptions(TooltipDisplayMode mode,SortOrder sort) {
         this.mode = mode;
         this.sort = sort;

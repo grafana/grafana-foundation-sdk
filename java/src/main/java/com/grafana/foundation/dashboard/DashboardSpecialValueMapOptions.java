@@ -19,7 +19,6 @@ public class DashboardSpecialValueMapOptions {
     public ValueMappingResult result;
     public DashboardSpecialValueMapOptions() {
     }
-    
     public DashboardSpecialValueMapOptions(SpecialValueMatch match,ValueMappingResult result) {
         this.match = match;
         this.result = result;

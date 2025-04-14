@@ -8,7 +8,7 @@ title: <span class="badge object-type-struct"></span> Filters
 ```go
 type Filters struct {
     Id string `json:"id"`
-    Type string `json:"type"`
+    Type elasticsearch.BucketAggregationType `json:"type"`
     Settings *elasticsearch.ElasticsearchFiltersSettings `json:"settings,omitempty"`
 }
 ```

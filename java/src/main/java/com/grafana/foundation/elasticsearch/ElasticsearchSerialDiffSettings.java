@@ -14,7 +14,6 @@ public class ElasticsearchSerialDiffSettings {
     public String lag;
     public ElasticsearchSerialDiffSettings() {
     }
-    
     public ElasticsearchSerialDiffSettings(String lag) {
         this.lag = lag;
     }

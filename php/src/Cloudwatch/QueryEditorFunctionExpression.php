@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Cloudwatch;
 
 class QueryEditorFunctionExpression implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Cloudwatch\QueryEditorExpressionType $type;
 
     public ?string $name;
 
@@ -19,8 +19,7 @@ class QueryEditorFunctionExpression implements \JsonSerializable
      */
     public function __construct(?string $name = null, ?array $parameters = null)
     {
-        $this->type = "function";
-    
+        $this->type = \Grafana\Foundation\Cloudwatch\QueryEditorExpressionType::property();
         $this->name = $name;
         $this->parameters = $parameters;
     }
@@ -30,12 +29,12 @@ class QueryEditorFunctionExpression implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, name?: string, parameters?: array<mixed>} $inputData */
+        /** @var array{type?: "function", name?: string, parameters?: array<mixed>} $inputData */
         $data = $inputData;
         return new self(
             name: $data["name"] ?? null,
             parameters: array_filter(array_map((function($input) {
-    	/** @var array{type?: string, name?: string} */
+    	/** @var array{type?: "functionParameter", name?: string} */
     $val = $input;
     	return \Grafana\Foundation\Cloudwatch\QueryEditorFunctionParameterExpression::fromArray($val);
     }), $data["parameters"] ?? [])),

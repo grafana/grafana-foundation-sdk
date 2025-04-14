@@ -89,7 +89,6 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     public SearchTableType tableType;
     public TempoQuery() {
     }
-    
     public TempoQuery(String refId,Boolean hide,String queryType,String query,String search,String serviceName,String spanName,String minDuration,String maxDuration,String serviceMapQuery,Boolean serviceMapIncludeNamespace,Long limit,Long spss,List<TraceqlFilter> filters,List<TraceqlFilter> groupBy,DataSourceRef datasource,SearchTableType tableType) {
         this.refId = refId;
         this.hide = hide;

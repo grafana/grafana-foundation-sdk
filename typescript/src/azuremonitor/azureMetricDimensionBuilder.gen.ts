@@ -41,3 +41,4 @@ export class AzureMetricDimensionBuilder implements cog.Builder<azuremonitor.Azu
         return this;
     }
 }
+

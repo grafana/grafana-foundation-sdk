@@ -13,7 +13,7 @@ class TableJsonViewCellOptions:
     Json view cell options
     """
 
-    type_val: typing.Literal["json-view"]
+    type_val: str
 ```
 ## Methods
 

@@ -34,6 +34,7 @@ class AccessPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The role that must apply this policy
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Accesspolicy\RoleRef> $role
@@ -45,6 +46,7 @@ class AccessPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The set of rules to apply.  Note that * is required to modify
      * access policy rules, and that "none" will reject all actions

@@ -12,7 +12,6 @@ class QueryEditorFunctionParameterExpressionBuilder implements \Grafana\Foundati
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Cloudwatch\QueryEditorFunctionParameterExpression();
-    $this->internal->type = "functionParameter";
     }
 
     /**

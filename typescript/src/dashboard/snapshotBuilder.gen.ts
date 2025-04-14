@@ -76,3 +76,4 @@ export class SnapshotBuilder implements cog.Builder<dashboard.Snapshot> {
         return this;
     }
 }
+

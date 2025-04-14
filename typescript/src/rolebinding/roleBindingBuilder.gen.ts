@@ -31,3 +31,4 @@ export class RoleBindingBuilder implements cog.Builder<rolebinding.RoleBinding> 
         return this;
     }
 }
+

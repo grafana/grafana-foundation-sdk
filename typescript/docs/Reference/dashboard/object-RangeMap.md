@@ -11,7 +11,7 @@ For example, if a value is within a certain range, you can configure a range val
 
 ```typescript
 export interface RangeMap {
-	type: "range";
+	type: dashboard.MappingType.RangeToText;
 	// Range to match against and the result to apply when the value is within the range
 	options: {
 		// Min value of the range. It can be null which means -Infinity
@@ -24,6 +24,3 @@ export interface RangeMap {
 }
 
 ```
-## Methods
-
-No methods.

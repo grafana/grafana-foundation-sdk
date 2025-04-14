@@ -21,7 +21,6 @@ public class ScaleDistributionConfig {
     public Double linearThreshold;
     public ScaleDistributionConfig() {
     }
-    
     public ScaleDistributionConfig(ScaleDistribution type,Double log,Double linearThreshold) {
         this.type = type;
         this.log = log;

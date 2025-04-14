@@ -29,30 +29,35 @@ class StreamingQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function speed(int $speed): static
     {
         $this->internal->speed = $speed;
     
         return $this;
     }
+
     public function spread(int $spread): static
     {
         $this->internal->spread = $spread;
     
         return $this;
     }
+
     public function noise(int $noise): static
     {
         $this->internal->noise = $noise;
     
         return $this;
     }
+
     public function bands(int $bands): static
     {
         $this->internal->bands = $bands;
     
         return $this;
     }
+
     public function url(string $url): static
     {
         $this->internal->url = $url;

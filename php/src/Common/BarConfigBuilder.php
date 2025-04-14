@@ -30,12 +30,14 @@ class BarConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function barWidthFactor(float $barWidthFactor): static
     {
         $this->internal->barWidthFactor = $barWidthFactor;
     
         return $this;
     }
+
     public function barMaxWidth(float $barMaxWidth): static
     {
         $this->internal->barMaxWidth = $barMaxWidth;

@@ -12,9 +12,6 @@ export interface ResourceRef {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [ResourceRefBuilder](./builder-ResourceRefBuilder.md)

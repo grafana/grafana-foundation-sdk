@@ -9,7 +9,7 @@ title: <span class="badge object-type-class"></span> Histogram
 class Histogram:
     field: typing.Optional[str]
     id_val: str
-    type_val: typing.Literal["histogram"]
+    type_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchHistogramSettings]
 ```
 ## Methods

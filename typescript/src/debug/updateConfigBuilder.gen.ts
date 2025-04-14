@@ -32,3 +32,4 @@ export class UpdateConfigBuilder implements cog.Builder<debug.UpdateConfig> {
         return this;
     }
 }
+

@@ -26,7 +26,6 @@ public class AzureMonitorResource {
     public String region;
     public AzureMonitorResource() {
     }
-    
     public AzureMonitorResource(String subscription,String resourceGroup,String resourceName,String metricNamespace,String region) {
         this.subscription = subscription;
         this.resourceGroup = resourceGroup;

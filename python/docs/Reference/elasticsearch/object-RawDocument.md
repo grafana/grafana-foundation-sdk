@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> RawDocument
 
 ```python
 class RawDocument:
-    type_val: typing.Literal["raw_document"]
+    type_val: str
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchRawDocumentSettings]
     hide: typing.Optional[bool]

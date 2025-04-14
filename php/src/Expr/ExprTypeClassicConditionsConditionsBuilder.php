@@ -33,6 +33,7 @@ class ExprTypeClassicConditionsConditionsBuilder implements \Grafana\Foundation\
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsOperator> $operator
      */
@@ -43,6 +44,7 @@ class ExprTypeClassicConditionsConditionsBuilder implements \Grafana\Foundation\
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsQuery> $query
      */
@@ -53,6 +55,7 @@ class ExprTypeClassicConditionsConditionsBuilder implements \Grafana\Foundation\
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\ExprTypeClassicConditionsConditionsReducer> $reducer
      */

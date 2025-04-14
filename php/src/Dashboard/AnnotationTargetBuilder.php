@@ -35,6 +35,7 @@ class AnnotationTargetBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Only required/valid for the grafana datasource...
      * but code+tests is already depending on it so hard to change
@@ -45,6 +46,7 @@ class AnnotationTargetBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Only required/valid for the grafana datasource...
      * but code+tests is already depending on it so hard to change
@@ -56,6 +58,7 @@ class AnnotationTargetBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Only required/valid for the grafana datasource...
      * but code+tests is already depending on it so hard to change

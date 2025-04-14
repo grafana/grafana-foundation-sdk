@@ -103,7 +103,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public Dataquery() {
         this.scenarioId = TestDataQueryType.RANDOM_WALK;
     }
-    
     public Dataquery(String alias,TestDataQueryType scenarioId,String stringInput,StreamingQuery stream,PulseWaveQuery pulseWave,SimulationQuery sim,List<CSVWave> csvWave,String labels,Long lines,Boolean levelColumn,String channel,NodesQuery nodes,String csvFileName,String csvContent,String rawFrameContent,Integer seriesCount,USAQuery usa,DataqueryErrorType errorType,Integer spanCount,List<List<StringOrInt64>> points,Double dropPercent,Boolean flamegraphDiff,String refId,Boolean hide,String queryType,Object datasource) {
         this.alias = alias;
         this.scenarioId = scenarioId;

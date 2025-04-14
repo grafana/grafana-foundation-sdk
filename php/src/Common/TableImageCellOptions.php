@@ -7,12 +7,11 @@ namespace Grafana\Foundation\Common;
  */
 class TableImageCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
     public function __construct()
     {
-        $this->type = "image";
-    
+        $this->type = \Grafana\Foundation\Common\TableCellDisplayMode::auto();
     }
 
     /**

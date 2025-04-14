@@ -6,7 +6,7 @@ from ..models import parca
 from ..models import dashboard
 
 
-class Dataquery(cogbuilder.Builder[parca.Dataquery]):    
+class Dataquery(cogbuilder.Builder[parca.Dataquery]):
     _internal: parca.Dataquery
 
     def __init__(self):

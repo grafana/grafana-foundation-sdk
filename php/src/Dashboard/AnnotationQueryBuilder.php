@@ -34,6 +34,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Datasource where the annotations data is
      */
@@ -43,6 +44,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * When enabled the annotation query is issued with every dashboard refresh
      */
@@ -52,6 +54,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Annotation queries can be toggled on or off at the top of the dashboard.
      * When hide is true, the toggle is not shown in the dashboard.
@@ -62,6 +65,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Color to use for the annotation event markers
      */
@@ -71,6 +75,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Filters to apply when fetching annotations
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationPanelFilter> $filter
@@ -82,6 +87,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * TODO.. this should just be a normal query target
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationTarget> $target
@@ -93,6 +99,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * TODO -- this should not exist here, it is based on the --grafana-- datasource
      */
@@ -102,6 +109,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Set to 1 for the standard annotation query all dashboards have by default.
      */
@@ -111,6 +119,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function expr(string $expr): static
     {
         $this->internal->expr = $expr;

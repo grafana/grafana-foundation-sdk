@@ -13,9 +13,6 @@ export interface StackableFieldConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [StackableFieldConfigBuilder](./builder-StackableFieldConfigBuilder.md)

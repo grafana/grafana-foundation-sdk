@@ -8,7 +8,6 @@ export class BucketScriptBuilder implements cog.Builder<elasticsearch.BucketScri
 
     constructor() {
         this.internal = elasticsearch.defaultBucketScript();
-        this.internal.type = "bucket_script";
     }
 
     /**
@@ -41,3 +40,4 @@ export class BucketScriptBuilder implements cog.Builder<elasticsearch.BucketScri
         return this;
     }
 }
+

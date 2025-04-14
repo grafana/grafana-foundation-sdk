@@ -42,3 +42,4 @@ export class AccessPolicyBuilder implements cog.Builder<accesspolicy.AccessPolic
         return this;
     }
 }
+

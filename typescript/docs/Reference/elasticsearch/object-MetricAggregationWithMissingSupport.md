@@ -16,9 +16,6 @@ export interface MetricAggregationWithMissingSupport {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MetricAggregationWithMissingSupportBuilder](./builder-MetricAggregationWithMissingSupportBuilder.md)

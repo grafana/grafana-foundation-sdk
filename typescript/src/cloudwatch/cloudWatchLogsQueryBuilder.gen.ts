@@ -93,3 +93,4 @@ export class CloudWatchLogsQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 }
+

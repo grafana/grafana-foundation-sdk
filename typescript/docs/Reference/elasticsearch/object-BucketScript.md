@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> BucketScript
 
 ```typescript
 export interface BucketScript {
-	type: "bucket_script";
+	type: unknown;
 	pipelineVariables?: elasticsearch.PipelineVariable[];
 	id: string;
 	settings?: {
@@ -17,9 +17,6 @@ export interface BucketScript {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [BucketScriptBuilder](./builder-BucketScriptBuilder.md)

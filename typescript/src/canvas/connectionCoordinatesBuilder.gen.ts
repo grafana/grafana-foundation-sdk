@@ -27,3 +27,4 @@ export class ConnectionCoordinatesBuilder implements cog.Builder<canvas.Connecti
         return this;
     }
 }
+

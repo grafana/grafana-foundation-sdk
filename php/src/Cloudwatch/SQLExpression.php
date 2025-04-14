@@ -69,7 +69,7 @@ class SQLExpression implements \JsonSerializable
         $data = $inputData;
         return new self(
             select: isset($data["select"]) ? (function($input) {
-    	/** @var array{type?: string, name?: string, parameters?: array<mixed>} */
+    	/** @var array{type?: "function", name?: string, parameters?: array<mixed>} */
     $val = $input;
     	return \Grafana\Foundation\Cloudwatch\QueryEditorFunctionExpression::fromArray($val);
     })($data["select"]) : null,
@@ -96,7 +96,7 @@ class SQLExpression implements \JsonSerializable
     	return \Grafana\Foundation\Cloudwatch\QueryEditorArrayExpression::fromArray($val);
     })($data["groupBy"]) : null,
             orderBy: isset($data["orderBy"]) ? (function($input) {
-    	/** @var array{type?: string, name?: string, parameters?: array<mixed>} */
+    	/** @var array{type?: "function", name?: string, parameters?: array<mixed>} */
     $val = $input;
     	return \Grafana\Foundation\Cloudwatch\QueryEditorFunctionExpression::fromArray($val);
     })($data["orderBy"]) : null,

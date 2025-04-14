@@ -63,7 +63,6 @@ public class NotificationPolicy {
     public List<NotificationPolicy> routes;
     public NotificationPolicy() {
     }
-    
     public NotificationPolicy(Boolean continueArg,List<String> groupBy,String groupInterval,String groupWait,Map<String, String> match,Map<String, String> matchRe,List<Matcher> matchers,List<String> muteTimeIntervals,List<Matcher> objectMatchers,String provenance,String receiver,String repeatInterval,List<NotificationPolicy> routes) {
         this.continueArg = continueArg;
         this.groupBy = groupBy;

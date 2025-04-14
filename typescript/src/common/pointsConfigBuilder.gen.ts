@@ -38,3 +38,4 @@ export class PointsConfigBuilder implements cog.Builder<common.PointsConfig> {
         return this;
     }
 }
+

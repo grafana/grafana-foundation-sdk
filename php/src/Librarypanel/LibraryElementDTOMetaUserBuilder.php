@@ -29,12 +29,14 @@ class LibraryElementDTOMetaUserBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     public function name(string $name): static
     {
         $this->internal->name = $name;
     
         return $this;
     }
+
     public function avatarUrl(string $avatarUrl): static
     {
         $this->internal->avatarUrl = $avatarUrl;

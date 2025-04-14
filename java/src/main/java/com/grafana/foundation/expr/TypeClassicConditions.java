@@ -60,7 +60,6 @@ public class TypeClassicConditions implements com.grafana.foundation.cog.variant
     public String type;
     public TypeClassicConditions() {
     }
-    
     public TypeClassicConditions(List<ExprTypeClassicConditionsConditions> conditions,DataSourceRef datasource,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeClassicConditionsResultAssertions resultAssertions,ExprTypeClassicConditionsTimeRange timeRange,String type) {
         this.conditions = conditions;
         this.datasource = datasource;

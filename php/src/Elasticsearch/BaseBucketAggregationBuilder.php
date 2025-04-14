@@ -29,12 +29,14 @@ class BaseBucketAggregationBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function type(\Grafana\Foundation\Elasticsearch\BucketAggregationType $type): static
     {
         $this->internal->type = $type;
     
         return $this;
     }
+
     /**
      * @param mixed $settings
      */

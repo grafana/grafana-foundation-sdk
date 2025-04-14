@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> Average
 
 ```python
 class Average:
-    type_val: typing.Literal["avg"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchAverageSettings]

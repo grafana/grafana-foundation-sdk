@@ -15,7 +15,6 @@ public class FiltersSettings {
     public List<Filter> filters;
     public FiltersSettings() {
     }
-    
     public FiltersSettings(List<Filter> filters) {
         this.filters = filters;
     }

@@ -29,30 +29,35 @@ class PlacementBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function left(float $left): static
     {
         $this->internal->left = $left;
     
         return $this;
     }
+
     public function right(float $right): static
     {
         $this->internal->right = $right;
     
         return $this;
     }
+
     public function bottom(float $bottom): static
     {
         $this->internal->bottom = $bottom;
     
         return $this;
     }
+
     public function width(float $width): static
     {
         $this->internal->width = $width;
     
         return $this;
     }
+
     public function height(float $height): static
     {
         $this->internal->height = $height;

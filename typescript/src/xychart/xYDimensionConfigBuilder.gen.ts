@@ -35,3 +35,4 @@ export class XYDimensionConfigBuilder implements cog.Builder<xychart.XYDimension
         return this;
     }
 }
+

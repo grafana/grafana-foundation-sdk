@@ -17,7 +17,6 @@ public class ElasticsearchUniqueCountSettings {
     public String missing;
     public ElasticsearchUniqueCountSettings() {
     }
-    
     public ElasticsearchUniqueCountSettings(String precisionThreshold,String missing) {
         this.precisionThreshold = precisionThreshold;
         this.missing = missing;

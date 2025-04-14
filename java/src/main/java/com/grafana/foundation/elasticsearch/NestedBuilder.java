@@ -8,7 +8,6 @@ public class NestedBuilder implements com.grafana.foundation.cog.Builder<Nested>
     
     public NestedBuilder() {
         this.internal = new Nested();
-        this.internal.type = "nested";
     }
     public NestedBuilder field(String field) {
         this.internal.field = field;

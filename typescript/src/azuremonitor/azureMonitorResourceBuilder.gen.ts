@@ -42,3 +42,4 @@ export class AzureMonitorResourceBuilder implements cog.Builder<azuremonitor.Azu
         return this;
     }
 }
+

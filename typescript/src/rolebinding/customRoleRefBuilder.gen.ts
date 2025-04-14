@@ -23,3 +23,4 @@ export class CustomRoleRefBuilder implements cog.Builder<rolebinding.CustomRoleR
         return this;
     }
 }
+

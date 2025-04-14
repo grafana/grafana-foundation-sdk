@@ -29,18 +29,21 @@ class CSVWaveBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function name(string $name): static
     {
         $this->internal->name = $name;
     
         return $this;
     }
+
     public function valuesCSV(string $valuesCSV): static
     {
         $this->internal->valuesCSV = $valuesCSV;
     
         return $this;
     }
+
     public function labels(string $labels): static
     {
         $this->internal->labels = $labels;

@@ -31,3 +31,4 @@ export class RowsHeatmapOptionsBuilder implements cog.Builder<heatmap.RowsHeatma
         return this;
     }
 }
+

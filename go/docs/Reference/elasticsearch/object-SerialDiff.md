@@ -9,7 +9,7 @@ title: <span class="badge object-type-struct"></span> SerialDiff
 type SerialDiff struct {
     PipelineAgg *string `json:"pipelineAgg,omitempty"`
     Field *string `json:"field,omitempty"`
-    Type string `json:"type"`
+    Type elasticsearch.MetricAggregationType `json:"type"`
     Id string `json:"id"`
     Settings *elasticsearch.ElasticsearchSerialDiffSettings `json:"settings,omitempty"`
     Hide *bool `json:"hide,omitempty"`
