@@ -25,7 +25,6 @@ public class Filter {
     public String condition;
     public Filter() {
     }
-    
     public Filter(String key,String operator,String value,String condition) {
         this.key = key;
         this.operator = operator;

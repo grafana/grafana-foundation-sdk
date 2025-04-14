@@ -35,3 +35,4 @@ export class BackgroundConfigBuilder implements cog.Builder<canvas.BackgroundCon
         return this;
     }
 }
+

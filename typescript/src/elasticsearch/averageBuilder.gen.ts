@@ -8,7 +8,6 @@ export class AverageBuilder implements cog.Builder<elasticsearch.Average> {
 
     constructor() {
         this.internal = elasticsearch.defaultAverage();
-        this.internal.type = "avg";
     }
 
     /**
@@ -41,3 +40,4 @@ export class AverageBuilder implements cog.Builder<elasticsearch.Average> {
         return this;
     }
 }
+

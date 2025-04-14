@@ -13,7 +13,7 @@ class TableAutoCellOptions:
     Auto mode table cell options
     """
 
-    type_val: typing.Literal["auto"]
+    type_val: str
     wrap_text: typing.Optional[bool]
 ```
 ## Methods

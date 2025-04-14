@@ -41,3 +41,4 @@ export class LogGroupBuilder implements cog.Builder<cloudwatch.LogGroup> {
         return this;
     }
 }
+

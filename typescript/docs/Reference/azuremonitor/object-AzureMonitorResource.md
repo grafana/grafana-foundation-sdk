@@ -15,9 +15,6 @@ export interface AzureMonitorResource {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [AzureMonitorResourceBuilder](./builder-AzureMonitorResourceBuilder.md)

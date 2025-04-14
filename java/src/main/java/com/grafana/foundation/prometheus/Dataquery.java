@@ -70,7 +70,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public String interval;
     public Dataquery() {
     }
-    
     public Dataquery(String expr,Boolean instant,Boolean range,Boolean exemplar,QueryEditorMode editorMode,PromQueryFormat format,String legendFormat,Double intervalFactor,String refId,Boolean hide,String queryType,DataSourceRef datasource,String interval) {
         this.expr = expr;
         this.instant = instant;

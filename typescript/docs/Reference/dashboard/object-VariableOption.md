@@ -18,6 +18,3 @@ export interface VariableOption {
 }
 
 ```
-## Methods
-
-No methods.

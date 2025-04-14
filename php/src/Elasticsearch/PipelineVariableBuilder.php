@@ -29,6 +29,7 @@ class PipelineVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function pipelineAgg(string $pipelineAgg): static
     {
         $this->internal->pipelineAgg = $pipelineAgg;

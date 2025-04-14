@@ -29,6 +29,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Used for live query
      */
@@ -38,18 +39,21 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function csvContent(string $csvContent): static
     {
         $this->internal->csvContent = $csvContent;
     
         return $this;
     }
+
     public function csvFileName(string $csvFileName): static
     {
         $this->internal->csvFileName = $csvFileName;
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\CSVWave>> $csvWave
      */
@@ -63,6 +67,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The datasource
      */
@@ -72,6 +77,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Drop percentage (the chance we will lose a point 0-100)
      */
@@ -81,6 +87,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Possible enum values:
      *  - `"frontend_exception"` 
@@ -93,12 +100,14 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function flamegraphDiff(bool $flamegraphDiff): static
     {
         $this->internal->flamegraphDiff = $flamegraphDiff;
     
         return $this;
     }
+
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
      * NOTE: this does not always imply that the query should not be executed since
@@ -110,6 +119,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Interval is the suggested duration between time points in a time series query.
      * NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
@@ -121,30 +131,35 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function labels(string $labels): static
     {
         $this->internal->labels = $labels;
     
         return $this;
     }
+
     public function levelColumn(bool $levelColumn): static
     {
         $this->internal->levelColumn = $levelColumn;
     
         return $this;
     }
+
     public function lines(int $lines): static
     {
         $this->internal->lines = $lines;
     
         return $this;
     }
+
     public function max(float $max): static
     {
         $this->internal->max = $max;
     
         return $this;
     }
+
     /**
      * MaxDataPoints is the maximum number of data points that should be returned from a time series query.
      * NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
@@ -156,12 +171,14 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function min(float $min): static
     {
         $this->internal->min = $min;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\NodesQuery> $nodes
      */
@@ -172,12 +189,14 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function noise(float $noise): static
     {
         $this->internal->noise = $noise;
     
         return $this;
     }
+
     /**
      * @param array<array<mixed>> $points
      */
@@ -187,6 +206,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\PulseWaveQuery> $pulseWave
      */
@@ -197,6 +217,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * QueryType is an optional identifier for the type of query.
      * It can be used to distinguish different types of queries.
@@ -207,12 +228,14 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function rawFrameContent(string $rawFrameContent): static
     {
         $this->internal->rawFrameContent = $rawFrameContent;
     
         return $this;
     }
+
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
@@ -222,6 +245,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Optionally define expected query result behavior
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\ResultAssertions> $resultAssertions
@@ -233,6 +257,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Possible enum values:
      *  - `"annotations"` 
@@ -271,12 +296,14 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function seriesCount(int $seriesCount): static
     {
         $this->internal->seriesCount = $seriesCount;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\SimulationQuery> $sim
      */
@@ -287,24 +314,28 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function spanCount(int $spanCount): static
     {
         $this->internal->spanCount = $spanCount;
     
         return $this;
     }
+
     public function spread(float $spread): static
     {
         $this->internal->spread = $spread;
     
         return $this;
     }
+
     public function startValue(float $startValue): static
     {
         $this->internal->startValue = $startValue;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\StreamingQuery> $stream
      */
@@ -315,6 +346,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * common parameter used by many query types
      */
@@ -324,6 +356,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * TimeRange represents the query range
      * NOTE: unlike generic /ds/query, we can now send explicit time values in each query
@@ -337,6 +370,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\USAQuery> $usa
      */
@@ -347,6 +381,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function withNil(bool $withNil): static
     {
         $this->internal->withNil = $withNil;

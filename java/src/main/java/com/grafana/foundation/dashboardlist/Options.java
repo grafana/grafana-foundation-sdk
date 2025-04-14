@@ -51,7 +51,6 @@ public class Options {
         this.maxItems = 10L;
         this.query = "";
     }
-    
     public Options(Boolean keepTime,Boolean includeVars,Boolean showStarred,Boolean showRecentlyViewed,Boolean showSearch,Boolean showHeadings,Boolean showFolderNames,Long maxItems,String query,List<String> tags,Long folderId,String folderUID) {
         this.keepTime = keepTime;
         this.includeVars = includeVars;

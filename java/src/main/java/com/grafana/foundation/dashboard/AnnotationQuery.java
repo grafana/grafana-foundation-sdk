@@ -53,7 +53,6 @@ public class AnnotationQuery {
         this.hide = false;
         this.builtIn = 0.0;
     }
-    
     public AnnotationQuery(String name,DataSourceRef datasource,Boolean enable,Boolean hide,String iconColor,AnnotationPanelFilter filter,AnnotationTarget target,String type,Double builtIn,String expr) {
         this.name = name;
         this.datasource = datasource;

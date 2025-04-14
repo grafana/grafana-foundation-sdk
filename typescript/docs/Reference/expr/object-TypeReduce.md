@@ -84,9 +84,6 @@ export interface TypeReduce {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TypeReduceBuilder](./builder-TypeReduceBuilder.md)

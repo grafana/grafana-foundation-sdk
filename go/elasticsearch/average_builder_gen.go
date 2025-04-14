@@ -19,7 +19,6 @@ func NewAverageBuilder() *AverageBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "avg"
 
 	return builder
 }

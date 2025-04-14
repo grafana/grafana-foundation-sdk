@@ -1773,6 +1773,7 @@ type TypeSql struct {
 	// The datasource
 	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
 	Expression string                   `json:"expression"`
+	Format     string                   `json:"format"`
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// NOTE: this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -1850,6 +1851,20 @@ func (resource *TypeSql) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "expression")
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("expression", errors.New("required field is missing from input"))...)
+	}
+	// Field "format"
+	if fields["format"] != nil {
+		if string(fields["format"]) != "null" {
+			if err := json.Unmarshal(fields["format"], &resource.Format); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("format", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("format", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "format")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("format", errors.New("required field is missing from input"))...)
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -1981,6 +1996,9 @@ func (resource TypeSql) Equals(otherCandidate variants.Dataquery) bool {
 		}
 	}
 	if resource.Expression != other.Expression {
+		return false
+	}
+	if resource.Format != other.Format {
 		return false
 	}
 	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
@@ -2120,7 +2138,6 @@ func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeTh
 	if resource.TypeSql != nil {
 		return json.Marshal(resource.TypeSql)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 

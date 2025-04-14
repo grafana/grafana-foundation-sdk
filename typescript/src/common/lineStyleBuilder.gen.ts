@@ -28,3 +28,4 @@ export class LineStyleBuilder implements cog.Builder<common.LineStyle> {
         return this;
     }
 }
+

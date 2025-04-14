@@ -31,3 +31,4 @@ export class HeatmapCalculationOptionsBuilder implements cog.Builder<common.Heat
         return this;
     }
 }
+

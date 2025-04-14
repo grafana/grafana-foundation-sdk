@@ -8,7 +8,7 @@ namespace Grafana\Foundation\Dashboard;
  */
 class RegexMap implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Dashboard\MappingType $type;
 
     /**
      * Regular expression to match against and the result to apply when the value matches the regex
@@ -20,8 +20,7 @@ class RegexMap implements \JsonSerializable
      */
     public function __construct(?\Grafana\Foundation\Dashboard\DashboardRegexMapOptions $options = null)
     {
-        $this->type = "regex";
-    
+        $this->type = \Grafana\Foundation\Dashboard\MappingType::valueToText();
         $this->options = $options ?: new \Grafana\Foundation\Dashboard\DashboardRegexMapOptions();
     }
 
@@ -30,7 +29,7 @@ class RegexMap implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, options?: mixed} $inputData */
+        /** @var array{type?: "regex", options?: mixed} $inputData */
         $data = $inputData;
         return new self(
             options: isset($data["options"]) ? (function($input) {

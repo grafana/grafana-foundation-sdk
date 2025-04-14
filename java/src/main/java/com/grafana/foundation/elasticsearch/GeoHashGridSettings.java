@@ -14,7 +14,6 @@ public class GeoHashGridSettings {
     public String precision;
     public GeoHashGridSettings() {
     }
-    
     public GeoHashGridSettings(String precision) {
         this.precision = precision;
     }

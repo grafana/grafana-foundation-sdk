@@ -32,3 +32,4 @@ export class MatcherBuilder implements cog.Builder<alerting.Matcher> {
         return this;
     }
 }
+

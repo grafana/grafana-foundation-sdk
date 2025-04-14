@@ -32,6 +32,7 @@ class MetricStatBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * A namespace is a container for CloudWatch metrics. Metrics in different namespaces are isolated from each other, so that metrics from different applications are not mistakenly aggregated into the same statistics. For example, Amazon EC2 uses the AWS/EC2 namespace.
      */
@@ -41,6 +42,7 @@ class MetricStatBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of the metric
      */
@@ -50,6 +52,7 @@ class MetricStatBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The dimensions of the metric
      * @param array<string, string|array<string>> $dimensions
@@ -60,6 +63,7 @@ class MetricStatBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Only show metrics that exactly match all defined dimension names.
      */
@@ -69,6 +73,7 @@ class MetricStatBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The length of time associated with a specific Amazon CloudWatch statistic. Can be specified by a number of seconds, 'auto', or as a duration string e.g. '15m' being 15 minutes
      */
@@ -78,6 +83,7 @@ class MetricStatBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The ID of the AWS account to query for the metric, specifying `all` will query all accounts that the monitoring account is permitted to query.
      */
@@ -87,6 +93,7 @@ class MetricStatBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Metric data aggregations over specified periods of time. For detailed definitions of the statistics supported by CloudWatch, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.
      */
@@ -96,6 +103,7 @@ class MetricStatBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated use statistic
      * @param array<string> $statistics

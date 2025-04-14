@@ -30,3 +30,4 @@ export class FilterValueRangeBuilder implements cog.Builder<heatmap.FilterValueR
         return this;
     }
 }
+

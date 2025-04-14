@@ -39,7 +39,6 @@ public class SQLExpression {
     public Long limit;
     public SQLExpression() {
     }
-    
     public SQLExpression(QueryEditorFunctionExpression select,QueryEditorPropertyExpressionOrQueryEditorFunctionExpression from,QueryEditorArrayExpression where,QueryEditorArrayExpression groupBy,QueryEditorFunctionExpression orderBy,String orderByDirection,Long limit) {
         this.select = select;
         this.from = from;

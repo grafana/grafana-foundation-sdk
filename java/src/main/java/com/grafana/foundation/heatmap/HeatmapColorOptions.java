@@ -43,7 +43,6 @@ public class HeatmapColorOptions {
     public Float max;
     public HeatmapColorOptions() {
     }
-    
     public HeatmapColorOptions(HeatmapColorMode mode,String scheme,String fill,HeatmapColorScale scale,Float exponent,Long steps,Boolean reverse,Float min,Float max) {
         this.mode = mode;
         this.scheme = scheme;

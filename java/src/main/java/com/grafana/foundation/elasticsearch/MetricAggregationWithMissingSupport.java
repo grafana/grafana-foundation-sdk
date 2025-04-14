@@ -22,7 +22,6 @@ public class MetricAggregationWithMissingSupport {
     public Boolean hide;
     public MetricAggregationWithMissingSupport() {
     }
-    
     public MetricAggregationWithMissingSupport(ElasticsearchMetricAggregationWithMissingSupportSettings settings,MetricAggregationType type,String id,Boolean hide) {
         this.settings = settings;
         this.type = type;

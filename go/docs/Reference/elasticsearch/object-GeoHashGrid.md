@@ -9,7 +9,7 @@ title: <span class="badge object-type-struct"></span> GeoHashGrid
 type GeoHashGrid struct {
     Field *string `json:"field,omitempty"`
     Id string `json:"id"`
-    Type string `json:"type"`
+    Type elasticsearch.BucketAggregationType `json:"type"`
     Settings *elasticsearch.ElasticsearchGeoHashGridSettings `json:"settings,omitempty"`
 }
 ```

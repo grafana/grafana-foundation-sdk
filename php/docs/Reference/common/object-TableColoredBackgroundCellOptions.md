@@ -10,7 +10,7 @@ Colored background cell options
 ```php
 class TableColoredBackgroundCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
     public ?\Grafana\Foundation\Common\TableCellBackgroundDisplayMode $mode;
 

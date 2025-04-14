@@ -26,7 +26,6 @@ public class DateHistogramSettings {
     public String timeZone;
     public DateHistogramSettings() {
     }
-    
     public DateHistogramSettings(String interval,String minDocCount,String trimEdges,String offset,String timeZone) {
         this.interval = interval;
         this.minDocCount = minDocCount;

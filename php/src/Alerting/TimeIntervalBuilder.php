@@ -36,6 +36,7 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\WeekdayRange>> $weekdays
      */
@@ -49,6 +50,7 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\DayOfMonthRange>> $daysOfMonth
      */
@@ -62,6 +64,7 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\MonthRange>> $months
      */
@@ -75,6 +78,7 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\YearRange>> $years
      */
@@ -88,6 +92,7 @@ class TimeIntervalBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function location(string $location): static
     {
         $this->internal->location = $location;

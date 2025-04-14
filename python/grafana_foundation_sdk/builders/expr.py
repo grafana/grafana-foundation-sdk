@@ -6,7 +6,7 @@ from ..models import expr
 from ..models import dashboard
 
 
-class TypeMath(cogbuilder.Builder[expr.TypeMath]):    
+class TypeMath(cogbuilder.Builder[expr.TypeMath]):
     _internal: expr.TypeMath
 
     def __init__(self):
@@ -114,7 +114,8 @@ class TypeMath(cogbuilder.Builder[expr.TypeMath]):
         return self
     
 
-class TypeReduce(cogbuilder.Builder[expr.TypeReduce]):    
+
+class TypeReduce(cogbuilder.Builder[expr.TypeReduce]):
     _internal: expr.TypeReduce
 
     def __init__(self):
@@ -249,7 +250,8 @@ class TypeReduce(cogbuilder.Builder[expr.TypeReduce]):
         return self
     
 
-class TypeResample(cogbuilder.Builder[expr.TypeResample]):    
+
+class TypeResample(cogbuilder.Builder[expr.TypeResample]):
     _internal: expr.TypeResample
 
     def __init__(self):
@@ -398,7 +400,8 @@ class TypeResample(cogbuilder.Builder[expr.TypeResample]):
         return self
     
 
-class TypeClassicConditions(cogbuilder.Builder[expr.TypeClassicConditions]):    
+
+class TypeClassicConditions(cogbuilder.Builder[expr.TypeClassicConditions]):
     _internal: expr.TypeClassicConditions
 
     def __init__(self):
@@ -411,7 +414,7 @@ class TypeClassicConditions(cogbuilder.Builder[expr.TypeClassicConditions]):
         """
         return self._internal    
     
-    def conditions(self, conditions: list[cogbuilder.Builder[expr.ExprTypeClassicConditionsConditions]]) -> typing.Self:        
+    def conditions(self, conditions: list[cogbuilder.Builder[expr.ExprTypeClassicConditionsConditions]]) -> typing.Self:    
         conditions_resources = [r1.build() for r1 in conditions]
         self._internal.conditions = conditions_resources
     
@@ -501,7 +504,8 @@ class TypeClassicConditions(cogbuilder.Builder[expr.TypeClassicConditions]):
         return self
     
 
-class TypeThreshold(cogbuilder.Builder[expr.TypeThreshold]):    
+
+class TypeThreshold(cogbuilder.Builder[expr.TypeThreshold]):
     _internal: expr.TypeThreshold
 
     def __init__(self):
@@ -619,7 +623,8 @@ class TypeThreshold(cogbuilder.Builder[expr.TypeThreshold]):
         return self
     
 
-class TypeSql(cogbuilder.Builder[expr.TypeSql]):    
+
+class TypeSql(cogbuilder.Builder[expr.TypeSql]):
     _internal: expr.TypeSql
 
     def __init__(self):
@@ -641,10 +646,15 @@ class TypeSql(cogbuilder.Builder[expr.TypeSql]):
     
         return self
     
-    def expression(self, expression: str) -> typing.Self:        
+    def expression(self, expression: str) -> typing.Self:    
         if not len(expression) >= 1:
             raise ValueError("len(expression) must be >= 1")
         self._internal.expression = expression
+    
+        return self
+    
+    def format(self, format_val: str) -> typing.Self:    
+        self._internal.format_val = format_val
     
         return self
     
@@ -723,7 +733,8 @@ class TypeSql(cogbuilder.Builder[expr.TypeSql]):
         return self
     
 
-class ExprTypeMathResultAssertions(cogbuilder.Builder[expr.ExprTypeMathResultAssertions]):    
+
+class ExprTypeMathResultAssertions(cogbuilder.Builder[expr.ExprTypeMathResultAssertions]):
     _internal: expr.ExprTypeMathResultAssertions
 
     def __init__(self):
@@ -744,7 +755,7 @@ class ExprTypeMathResultAssertions(cogbuilder.Builder[expr.ExprTypeMathResultAss
     
         return self
     
-    def type_val(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
+    def type(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
         """
         Type asserts that the frame matches a known type structure.
         Possible enum values:
@@ -776,7 +787,8 @@ class ExprTypeMathResultAssertions(cogbuilder.Builder[expr.ExprTypeMathResultAss
         return self
     
 
-class ExprTypeMathTimeRange(cogbuilder.Builder[expr.ExprTypeMathTimeRange]):    
+
+class ExprTypeMathTimeRange(cogbuilder.Builder[expr.ExprTypeMathTimeRange]):
     _internal: expr.ExprTypeMathTimeRange
 
     def __init__(self):
@@ -807,7 +819,8 @@ class ExprTypeMathTimeRange(cogbuilder.Builder[expr.ExprTypeMathTimeRange]):
         return self
     
 
-class ExprTypeReduceResultAssertions(cogbuilder.Builder[expr.ExprTypeReduceResultAssertions]):    
+
+class ExprTypeReduceResultAssertions(cogbuilder.Builder[expr.ExprTypeReduceResultAssertions]):
     _internal: expr.ExprTypeReduceResultAssertions
 
     def __init__(self):
@@ -828,7 +841,7 @@ class ExprTypeReduceResultAssertions(cogbuilder.Builder[expr.ExprTypeReduceResul
     
         return self
     
-    def type_val(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
+    def type(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
         """
         Type asserts that the frame matches a known type structure.
         Possible enum values:
@@ -860,7 +873,8 @@ class ExprTypeReduceResultAssertions(cogbuilder.Builder[expr.ExprTypeReduceResul
         return self
     
 
-class ExprTypeReduceSettings(cogbuilder.Builder[expr.ExprTypeReduceSettings]):    
+
+class ExprTypeReduceSettings(cogbuilder.Builder[expr.ExprTypeReduceSettings]):
     _internal: expr.ExprTypeReduceSettings
 
     def __init__(self):
@@ -894,7 +908,8 @@ class ExprTypeReduceSettings(cogbuilder.Builder[expr.ExprTypeReduceSettings]):
         return self
     
 
-class ExprTypeReduceTimeRange(cogbuilder.Builder[expr.ExprTypeReduceTimeRange]):    
+
+class ExprTypeReduceTimeRange(cogbuilder.Builder[expr.ExprTypeReduceTimeRange]):
     _internal: expr.ExprTypeReduceTimeRange
 
     def __init__(self):
@@ -925,7 +940,8 @@ class ExprTypeReduceTimeRange(cogbuilder.Builder[expr.ExprTypeReduceTimeRange]):
         return self
     
 
-class ExprTypeResampleResultAssertions(cogbuilder.Builder[expr.ExprTypeResampleResultAssertions]):    
+
+class ExprTypeResampleResultAssertions(cogbuilder.Builder[expr.ExprTypeResampleResultAssertions]):
     _internal: expr.ExprTypeResampleResultAssertions
 
     def __init__(self):
@@ -946,7 +962,7 @@ class ExprTypeResampleResultAssertions(cogbuilder.Builder[expr.ExprTypeResampleR
     
         return self
     
-    def type_val(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
+    def type(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
         """
         Type asserts that the frame matches a known type structure.
         Possible enum values:
@@ -978,7 +994,8 @@ class ExprTypeResampleResultAssertions(cogbuilder.Builder[expr.ExprTypeResampleR
         return self
     
 
-class ExprTypeResampleTimeRange(cogbuilder.Builder[expr.ExprTypeResampleTimeRange]):    
+
+class ExprTypeResampleTimeRange(cogbuilder.Builder[expr.ExprTypeResampleTimeRange]):
     _internal: expr.ExprTypeResampleTimeRange
 
     def __init__(self):
@@ -1009,7 +1026,8 @@ class ExprTypeResampleTimeRange(cogbuilder.Builder[expr.ExprTypeResampleTimeRang
         return self
     
 
-class ExprTypeClassicConditionsConditionsEvaluator(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsEvaluator]):    
+
+class ExprTypeClassicConditionsConditionsEvaluator(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsEvaluator]):
     _internal: expr.ExprTypeClassicConditionsConditionsEvaluator
 
     def __init__(self):
@@ -1021,12 +1039,12 @@ class ExprTypeClassicConditionsConditionsEvaluator(cogbuilder.Builder[expr.ExprT
         """
         return self._internal    
     
-    def params(self, params: list[float]) -> typing.Self:        
+    def params(self, params: list[float]) -> typing.Self:    
         self._internal.params = params
     
         return self
     
-    def type_val(self, type_val: str) -> typing.Self:    
+    def type(self, type_val: str) -> typing.Self:    
         """
         e.g. "gt"
         """
@@ -1036,7 +1054,8 @@ class ExprTypeClassicConditionsConditionsEvaluator(cogbuilder.Builder[expr.ExprT
         return self
     
 
-class ExprTypeClassicConditionsConditionsOperator(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsOperator]):    
+
+class ExprTypeClassicConditionsConditionsOperator(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsOperator]):
     _internal: expr.ExprTypeClassicConditionsConditionsOperator
 
     def __init__(self):
@@ -1048,13 +1067,14 @@ class ExprTypeClassicConditionsConditionsOperator(cogbuilder.Builder[expr.ExprTy
         """
         return self._internal    
     
-    def type_val(self, type_val: typing.Literal["and", "or", "logic-or"]) -> typing.Self:        
+    def type(self, type_val: typing.Literal["and", "or", "logic-or"]) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
 
-class ExprTypeClassicConditionsConditionsQuery(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsQuery]):    
+
+class ExprTypeClassicConditionsConditionsQuery(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsQuery]):
     _internal: expr.ExprTypeClassicConditionsConditionsQuery
 
     def __init__(self):
@@ -1066,13 +1086,14 @@ class ExprTypeClassicConditionsConditionsQuery(cogbuilder.Builder[expr.ExprTypeC
         """
         return self._internal    
     
-    def params(self, params: list[str]) -> typing.Self:        
+    def params(self, params: list[str]) -> typing.Self:    
         self._internal.params = params
     
         return self
     
 
-class ExprTypeClassicConditionsConditionsReducer(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsReducer]):    
+
+class ExprTypeClassicConditionsConditionsReducer(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsReducer]):
     _internal: expr.ExprTypeClassicConditionsConditionsReducer
 
     def __init__(self):
@@ -1084,13 +1105,14 @@ class ExprTypeClassicConditionsConditionsReducer(cogbuilder.Builder[expr.ExprTyp
         """
         return self._internal    
     
-    def type_val(self, type_val: str) -> typing.Self:        
+    def type(self, type_val: str) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
 
-class ExprTypeClassicConditionsConditions(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditions]):    
+
+class ExprTypeClassicConditionsConditions(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditions]):
     _internal: expr.ExprTypeClassicConditionsConditions
 
     def __init__(self):
@@ -1102,32 +1124,33 @@ class ExprTypeClassicConditionsConditions(cogbuilder.Builder[expr.ExprTypeClassi
         """
         return self._internal    
     
-    def evaluator(self, evaluator: cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsEvaluator]) -> typing.Self:        
+    def evaluator(self, evaluator: cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsEvaluator]) -> typing.Self:    
         evaluator_resource = evaluator.build()
         self._internal.evaluator = evaluator_resource
     
         return self
     
-    def operator(self, operator: cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsOperator]) -> typing.Self:        
+    def operator(self, operator: cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsOperator]) -> typing.Self:    
         operator_resource = operator.build()
         self._internal.operator = operator_resource
     
         return self
     
-    def query(self, query: cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsQuery]) -> typing.Self:        
+    def query(self, query: cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsQuery]) -> typing.Self:    
         query_resource = query.build()
         self._internal.query = query_resource
     
         return self
     
-    def reducer(self, reducer: cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsReducer]) -> typing.Self:        
+    def reducer(self, reducer: cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsReducer]) -> typing.Self:    
         reducer_resource = reducer.build()
         self._internal.reducer = reducer_resource
     
         return self
     
 
-class ExprTypeClassicConditionsResultAssertions(cogbuilder.Builder[expr.ExprTypeClassicConditionsResultAssertions]):    
+
+class ExprTypeClassicConditionsResultAssertions(cogbuilder.Builder[expr.ExprTypeClassicConditionsResultAssertions]):
     _internal: expr.ExprTypeClassicConditionsResultAssertions
 
     def __init__(self):
@@ -1148,7 +1171,7 @@ class ExprTypeClassicConditionsResultAssertions(cogbuilder.Builder[expr.ExprType
     
         return self
     
-    def type_val(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
+    def type(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
         """
         Type asserts that the frame matches a known type structure.
         Possible enum values:
@@ -1180,7 +1203,8 @@ class ExprTypeClassicConditionsResultAssertions(cogbuilder.Builder[expr.ExprType
         return self
     
 
-class ExprTypeClassicConditionsTimeRange(cogbuilder.Builder[expr.ExprTypeClassicConditionsTimeRange]):    
+
+class ExprTypeClassicConditionsTimeRange(cogbuilder.Builder[expr.ExprTypeClassicConditionsTimeRange]):
     _internal: expr.ExprTypeClassicConditionsTimeRange
 
     def __init__(self):
@@ -1211,7 +1235,8 @@ class ExprTypeClassicConditionsTimeRange(cogbuilder.Builder[expr.ExprTypeClassic
         return self
     
 
-class ExprTypeThresholdConditionsEvaluator(cogbuilder.Builder[expr.ExprTypeThresholdConditionsEvaluator]):    
+
+class ExprTypeThresholdConditionsEvaluator(cogbuilder.Builder[expr.ExprTypeThresholdConditionsEvaluator]):
     _internal: expr.ExprTypeThresholdConditionsEvaluator
 
     def __init__(self):
@@ -1223,12 +1248,12 @@ class ExprTypeThresholdConditionsEvaluator(cogbuilder.Builder[expr.ExprTypeThres
         """
         return self._internal    
     
-    def params(self, params: list[float]) -> typing.Self:        
+    def params(self, params: list[float]) -> typing.Self:    
         self._internal.params = params
     
         return self
     
-    def type_val(self, type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]) -> typing.Self:    
+    def type(self, type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]) -> typing.Self:    
         """
         e.g. "gt"
         """
@@ -1238,7 +1263,8 @@ class ExprTypeThresholdConditionsEvaluator(cogbuilder.Builder[expr.ExprTypeThres
         return self
     
 
-class ExprTypeThresholdConditionsUnloadEvaluator(cogbuilder.Builder[expr.ExprTypeThresholdConditionsUnloadEvaluator]):    
+
+class ExprTypeThresholdConditionsUnloadEvaluator(cogbuilder.Builder[expr.ExprTypeThresholdConditionsUnloadEvaluator]):
     _internal: expr.ExprTypeThresholdConditionsUnloadEvaluator
 
     def __init__(self):
@@ -1250,12 +1276,12 @@ class ExprTypeThresholdConditionsUnloadEvaluator(cogbuilder.Builder[expr.ExprTyp
         """
         return self._internal    
     
-    def params(self, params: list[float]) -> typing.Self:        
+    def params(self, params: list[float]) -> typing.Self:    
         self._internal.params = params
     
         return self
     
-    def type_val(self, type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]) -> typing.Self:    
+    def type(self, type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]) -> typing.Self:    
         """
         e.g. "gt"
         """
@@ -1265,7 +1291,8 @@ class ExprTypeThresholdConditionsUnloadEvaluator(cogbuilder.Builder[expr.ExprTyp
         return self
     
 
-class ExprTypeThresholdConditions(cogbuilder.Builder[expr.ExprTypeThresholdConditions]):    
+
+class ExprTypeThresholdConditions(cogbuilder.Builder[expr.ExprTypeThresholdConditions]):
     _internal: expr.ExprTypeThresholdConditions
 
     def __init__(self):
@@ -1277,25 +1304,26 @@ class ExprTypeThresholdConditions(cogbuilder.Builder[expr.ExprTypeThresholdCondi
         """
         return self._internal    
     
-    def evaluator(self, evaluator: cogbuilder.Builder[expr.ExprTypeThresholdConditionsEvaluator]) -> typing.Self:        
+    def evaluator(self, evaluator: cogbuilder.Builder[expr.ExprTypeThresholdConditionsEvaluator]) -> typing.Self:    
         evaluator_resource = evaluator.build()
         self._internal.evaluator = evaluator_resource
     
         return self
     
-    def loaded_dimensions(self, loaded_dimensions: object) -> typing.Self:        
+    def loaded_dimensions(self, loaded_dimensions: object) -> typing.Self:    
         self._internal.loaded_dimensions = loaded_dimensions
     
         return self
     
-    def unload_evaluator(self, unload_evaluator: cogbuilder.Builder[expr.ExprTypeThresholdConditionsUnloadEvaluator]) -> typing.Self:        
+    def unload_evaluator(self, unload_evaluator: cogbuilder.Builder[expr.ExprTypeThresholdConditionsUnloadEvaluator]) -> typing.Self:    
         unload_evaluator_resource = unload_evaluator.build()
         self._internal.unload_evaluator = unload_evaluator_resource
     
         return self
     
 
-class ExprTypeThresholdResultAssertions(cogbuilder.Builder[expr.ExprTypeThresholdResultAssertions]):    
+
+class ExprTypeThresholdResultAssertions(cogbuilder.Builder[expr.ExprTypeThresholdResultAssertions]):
     _internal: expr.ExprTypeThresholdResultAssertions
 
     def __init__(self):
@@ -1316,7 +1344,7 @@ class ExprTypeThresholdResultAssertions(cogbuilder.Builder[expr.ExprTypeThreshol
     
         return self
     
-    def type_val(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
+    def type(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
         """
         Type asserts that the frame matches a known type structure.
         Possible enum values:
@@ -1348,7 +1376,8 @@ class ExprTypeThresholdResultAssertions(cogbuilder.Builder[expr.ExprTypeThreshol
         return self
     
 
-class ExprTypeThresholdTimeRange(cogbuilder.Builder[expr.ExprTypeThresholdTimeRange]):    
+
+class ExprTypeThresholdTimeRange(cogbuilder.Builder[expr.ExprTypeThresholdTimeRange]):
     _internal: expr.ExprTypeThresholdTimeRange
 
     def __init__(self):
@@ -1379,7 +1408,8 @@ class ExprTypeThresholdTimeRange(cogbuilder.Builder[expr.ExprTypeThresholdTimeRa
         return self
     
 
-class ExprTypeSqlResultAssertions(cogbuilder.Builder[expr.ExprTypeSqlResultAssertions]):    
+
+class ExprTypeSqlResultAssertions(cogbuilder.Builder[expr.ExprTypeSqlResultAssertions]):
     _internal: expr.ExprTypeSqlResultAssertions
 
     def __init__(self):
@@ -1400,7 +1430,7 @@ class ExprTypeSqlResultAssertions(cogbuilder.Builder[expr.ExprTypeSqlResultAsser
     
         return self
     
-    def type_val(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
+    def type(self, type_val: typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]) -> typing.Self:    
         """
         Type asserts that the frame matches a known type structure.
         Possible enum values:
@@ -1432,7 +1462,8 @@ class ExprTypeSqlResultAssertions(cogbuilder.Builder[expr.ExprTypeSqlResultAsser
         return self
     
 
-class ExprTypeSqlTimeRange(cogbuilder.Builder[expr.ExprTypeSqlTimeRange]):    
+
+class ExprTypeSqlTimeRange(cogbuilder.Builder[expr.ExprTypeSqlTimeRange]):
     _internal: expr.ExprTypeSqlTimeRange
 
     def __init__(self):

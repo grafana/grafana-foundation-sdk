@@ -8,7 +8,6 @@ export class QueryEditorGroupByExpressionBuilder implements cog.Builder<bigquery
 
     constructor() {
         this.internal = bigquery.defaultQueryEditorGroupByExpression();
-        this.internal.type = "groupBy";
     }
 
     /**
@@ -24,3 +23,4 @@ export class QueryEditorGroupByExpressionBuilder implements cog.Builder<bigquery
         return this;
     }
 }
+

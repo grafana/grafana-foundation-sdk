@@ -12,7 +12,6 @@ class NestedBuilder implements \Grafana\Foundation\Cog\Builder
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\Nested();
-    $this->internal->type = "nested";
     }
 
     /**
@@ -30,12 +29,14 @@ class NestedBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function id(string $id): static
     {
         $this->internal->id = $id;
     
         return $this;
     }
+
     /**
      * @param mixed $settings
      */

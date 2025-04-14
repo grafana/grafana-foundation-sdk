@@ -32,6 +32,7 @@ class AzureTracesFilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Comparison operator to use. Either equals or not equals.
      */
@@ -41,6 +42,7 @@ class AzureTracesFilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Values to filter by.
      * @param array<string> $filters

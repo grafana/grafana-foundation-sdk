@@ -34,6 +34,7 @@ class SingleStatBaseOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\VizTextDisplayOptions> $text
      */
@@ -44,6 +45,7 @@ class SingleStatBaseOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function orientation(\Grafana\Foundation\Common\VizOrientation $orientation): static
     {
         $this->internal->orientation = $orientation;

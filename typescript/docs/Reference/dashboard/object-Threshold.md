@@ -19,6 +19,3 @@ export interface Threshold {
 }
 
 ```
-## Methods
-
-No methods.

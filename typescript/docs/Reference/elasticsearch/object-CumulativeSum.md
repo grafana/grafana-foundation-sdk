@@ -9,7 +9,7 @@ title: <span class="badge object-type-interface"></span> CumulativeSum
 export interface CumulativeSum {
 	pipelineAgg?: string;
 	field?: string;
-	type: "cumulative_sum";
+	type: unknown;
 	id: string;
 	settings?: {
 		format?: string;
@@ -18,9 +18,6 @@ export interface CumulativeSum {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [CumulativeSumBuilder](./builder-CumulativeSumBuilder.md)

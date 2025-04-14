@@ -13,7 +13,7 @@ class TableColorTextCellOptions:
     Colored text cell options
     """
 
-    type_val: typing.Literal["color-text"]
+    type_val: str
     wrap_text: typing.Optional[bool]
 ```
 ## Methods

@@ -18,7 +18,6 @@ public class ExprTypeThresholdTimeRange {
         this.from = "now-6h";
         this.to = "now";
     }
-    
     public ExprTypeThresholdTimeRange(String from,String to) {
         this.from = from;
         this.to = to;

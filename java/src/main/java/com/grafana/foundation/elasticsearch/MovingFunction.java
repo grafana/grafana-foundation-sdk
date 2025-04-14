@@ -16,7 +16,7 @@ public class MovingFunction {
     @JsonProperty("field")
     public String field;
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonProperty("id")
     public String id;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -26,12 +26,12 @@ public class MovingFunction {
     @JsonProperty("hide")
     public Boolean hide;
     public MovingFunction() {
+        this.type = MetricAggregationType.MOVING_FN;
     }
-    
-    public MovingFunction(String pipelineAgg,String field,String type,String id,ElasticsearchMovingFunctionSettings settings,Boolean hide) {
+    public MovingFunction(String pipelineAgg,String field,String id,ElasticsearchMovingFunctionSettings settings,Boolean hide) {
         this.pipelineAgg = pipelineAgg;
         this.field = field;
-        this.type = type;
+        this.type = MetricAggregationType.MOVING_FN;
         this.id = id;
         this.settings = settings;
         this.hide = hide;

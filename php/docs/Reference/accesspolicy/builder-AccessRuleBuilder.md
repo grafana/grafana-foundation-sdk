@@ -40,7 +40,7 @@ READ, WRITE, CREATE, DELETE, ...
 
 should move to k8s style verbs like: "get", "list", "watch", "create", "update", "patch", "delete"
 
-@param string $verb
+@param string|string|string $verb
 
 ```php
 verb($verb)
