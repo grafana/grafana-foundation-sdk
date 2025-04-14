@@ -16,9 +16,6 @@ export interface ResourceDimensionConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [ResourceDimensionConfigBuilder](./builder-ResourceDimensionConfigBuilder.md)

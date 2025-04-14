@@ -21,9 +21,6 @@ export interface GraphPanel {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [GraphPanelBuilder](./builder-GraphPanelBuilder.md)

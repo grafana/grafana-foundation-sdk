@@ -29,3 +29,4 @@ export class AzureResourceGraphQueryBuilder implements cog.Builder<azuremonitor.
         return this;
     }
 }
+

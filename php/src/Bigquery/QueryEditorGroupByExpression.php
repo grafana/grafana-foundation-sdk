@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Bigquery;
 
 class QueryEditorGroupByExpression implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Bigquery\QueryEditorExpressionType $type;
 
     public \Grafana\Foundation\Bigquery\QueryEditorProperty $property;
 
@@ -13,8 +13,7 @@ class QueryEditorGroupByExpression implements \JsonSerializable
      */
     public function __construct(?\Grafana\Foundation\Bigquery\QueryEditorProperty $property = null)
     {
-        $this->type = "groupBy";
-    
+        $this->type = \Grafana\Foundation\Bigquery\QueryEditorExpressionType::property();
         $this->property = $property ?: new \Grafana\Foundation\Bigquery\QueryEditorProperty();
     }
 
@@ -23,7 +22,7 @@ class QueryEditorGroupByExpression implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, property?: mixed} $inputData */
+        /** @var array{type?: "groupBy", property?: mixed} $inputData */
         $data = $inputData;
         return new self(
             property: isset($data["property"]) ? (function($input) {

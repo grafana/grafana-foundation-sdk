@@ -5,7 +5,7 @@ from ..cog import builder as cogbuilder
 from ..models import playlist
 
 
-class Playlist(cogbuilder.Builder[playlist.Playlist]):    
+class Playlist(cogbuilder.Builder[playlist.Playlist]):
     _internal: playlist.Playlist
 
     def __init__(self):
@@ -58,7 +58,8 @@ class Playlist(cogbuilder.Builder[playlist.Playlist]):
         return self
     
 
-class PlaylistItem(cogbuilder.Builder[playlist.PlaylistItem]):    
+
+class PlaylistItem(cogbuilder.Builder[playlist.PlaylistItem]):
     _internal: playlist.PlaylistItem
 
     def __init__(self):
@@ -70,7 +71,7 @@ class PlaylistItem(cogbuilder.Builder[playlist.PlaylistItem]):
         """
         return self._internal    
     
-    def type_val(self, type_val: typing.Literal["dashboard_by_uid", "dashboard_by_id", "dashboard_by_tag"]) -> typing.Self:    
+    def type(self, type_val: typing.Literal["dashboard_by_uid", "dashboard_by_id", "dashboard_by_tag"]) -> typing.Self:    
         """
         Type of the item.
         """

@@ -12,7 +12,7 @@ For example, if a value is within a certain range, you can configure a range val
 ```php
 class RangeMap implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Dashboard\MappingType $type;
 
     /**
      * Range to match against and the result to apply when the value is within the range

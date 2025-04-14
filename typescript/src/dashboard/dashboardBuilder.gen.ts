@@ -308,3 +308,4 @@ export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
         return this;
     }
 }
+

@@ -32,7 +32,6 @@ public class AnnotationTarget {
     public String type;
     public AnnotationTarget() {
     }
-    
     public AnnotationTarget(Long limit,Boolean matchAny,List<String> tags,String type) {
         this.limit = limit;
         this.matchAny = matchAny;

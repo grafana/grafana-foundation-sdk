@@ -29,12 +29,14 @@ class BaseMovingAverageModelSettingsBuilder implements \Grafana\Foundation\Cog\B
     
         return $this;
     }
+
     public function window(string $window): static
     {
         $this->internal->window = $window;
     
         return $this;
     }
+
     public function predict(string $predict): static
     {
         $this->internal->predict = $predict;

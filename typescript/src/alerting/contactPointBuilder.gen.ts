@@ -53,3 +53,4 @@ export class ContactPointBuilder implements cog.Builder<alerting.ContactPoint> {
         return this;
     }
 }
+

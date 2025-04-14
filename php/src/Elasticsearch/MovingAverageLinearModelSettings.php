@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Elasticsearch;
 
 class MovingAverageLinearModelSettings implements \JsonSerializable
 {
-    public string $model;
+    public \Grafana\Foundation\Elasticsearch\MovingAverageModel $model;
 
     public string $window;
 
@@ -16,8 +16,7 @@ class MovingAverageLinearModelSettings implements \JsonSerializable
      */
     public function __construct(?string $window = null, ?string $predict = null)
     {
-        $this->model = "linear";
-    
+        $this->model = \Grafana\Foundation\Elasticsearch\MovingAverageModel::simple();
         $this->window = $window ?: "";
         $this->predict = $predict ?: "";
     }
@@ -27,7 +26,7 @@ class MovingAverageLinearModelSettings implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{model?: string, window?: string, predict?: string} $inputData */
+        /** @var array{model?: "linear", window?: string, predict?: string} $inputData */
         $data = $inputData;
         return new self(
             window: $data["window"] ?? null,

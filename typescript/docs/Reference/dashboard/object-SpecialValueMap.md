@@ -13,7 +13,7 @@ For example, you can configure a special value mapping so that null values appea
 
 ```typescript
 export interface SpecialValueMap {
-	type: "special";
+	type: dashboard.MappingType.SpecialValue;
 	options: {
 		// Special value to match against
 		match: dashboard.SpecialValueMatch;
@@ -23,6 +23,3 @@ export interface SpecialValueMap {
 }
 
 ```
-## Methods
-
-No methods.

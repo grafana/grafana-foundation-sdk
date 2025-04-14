@@ -36,12 +36,14 @@ class SQLExpressionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function from(string $from): static
     {
         $this->internal->from = $from;
     
         return $this;
     }
+
     /**
      * whereJsonTree?: _
      */
@@ -51,6 +53,7 @@ class SQLExpressionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Bigquery\QueryEditorGroupByExpression>> $groupBy
      */
@@ -64,6 +67,7 @@ class SQLExpressionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Bigquery\QueryEditorPropertyExpression> $orderBy
      */
@@ -74,18 +78,21 @@ class SQLExpressionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function orderByDirection(\Grafana\Foundation\Bigquery\OrderByDirection $orderByDirection): static
     {
         $this->internal->orderByDirection = $orderByDirection;
     
         return $this;
     }
+
     public function limit(int $limit): static
     {
         $this->internal->limit = $limit;
     
         return $this;
     }
+
     public function offset(int $offset): static
     {
         $this->internal->offset = $offset;

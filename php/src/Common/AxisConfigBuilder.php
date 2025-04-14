@@ -30,42 +30,49 @@ class AxisConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisColorMode(\Grafana\Foundation\Common\AxisColorMode $axisColorMode): static
     {
         $this->internal->axisColorMode = $axisColorMode;
     
         return $this;
     }
+
     public function axisLabel(string $axisLabel): static
     {
         $this->internal->axisLabel = $axisLabel;
     
         return $this;
     }
+
     public function axisWidth(float $axisWidth): static
     {
         $this->internal->axisWidth = $axisWidth;
     
         return $this;
     }
+
     public function axisSoftMin(float $axisSoftMin): static
     {
         $this->internal->axisSoftMin = $axisSoftMin;
     
         return $this;
     }
+
     public function axisSoftMax(float $axisSoftMax): static
     {
         $this->internal->axisSoftMax = $axisSoftMax;
     
         return $this;
     }
+
     public function axisGridShow(bool $axisGridShow): static
     {
         $this->internal->axisGridShow = $axisGridShow;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDistributionConfig> $scaleDistribution
      */
@@ -76,6 +83,7 @@ class AxisConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisCenteredZero(bool $axisCenteredZero): static
     {
         $this->internal->axisCenteredZero = $axisCenteredZero;

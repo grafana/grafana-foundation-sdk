@@ -24,7 +24,6 @@ public class Scenario {
     public Boolean hideAliasField;
     public Scenario() {
     }
-    
     public Scenario(String id,String name,String stringInput,String description,Boolean hideAliasField) {
         this.id = id;
         this.name = name;

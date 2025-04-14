@@ -20,9 +20,6 @@ export interface Role {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [RoleBuilder](./builder-RoleBuilder.md)

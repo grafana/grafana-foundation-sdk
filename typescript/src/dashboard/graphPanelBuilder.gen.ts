@@ -30,3 +30,4 @@ export class GraphPanelBuilder implements cog.Builder<dashboard.GraphPanel> {
         return this;
     }
 }
+

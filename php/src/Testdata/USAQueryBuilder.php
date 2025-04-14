@@ -29,12 +29,14 @@ class USAQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function period(string $period): static
     {
         $this->internal->period = $period;
     
         return $this;
     }
+
     /**
      * @param array<string> $fields
      */
@@ -44,6 +46,7 @@ class USAQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<string> $states
      */

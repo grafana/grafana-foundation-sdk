@@ -62,3 +62,4 @@ export class AdHocVariableBuilder implements cog.Builder<dashboard.VariableModel
         return this;
     }
 }
+

@@ -34,6 +34,7 @@ class ElasticsearchAverageSettingsBuilder implements \Grafana\Foundation\Cog\Bui
     
         return $this;
     }
+
     public function missing(string $missing): static
     {
         $this->internal->missing = $missing;

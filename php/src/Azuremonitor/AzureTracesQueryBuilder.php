@@ -33,6 +33,7 @@ class AzureTracesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Array of resource URIs to be queried.
      * @param array<string> $resources
@@ -43,6 +44,7 @@ class AzureTracesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Operation ID. Used only for Traces queries.
      */
@@ -52,6 +54,7 @@ class AzureTracesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Types of events to filter by.
      * @param array<string> $traceTypes
@@ -62,6 +65,7 @@ class AzureTracesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Filters for property values.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureTracesFilter>> $filters
@@ -76,6 +80,7 @@ class AzureTracesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * KQL query to be executed.
      */

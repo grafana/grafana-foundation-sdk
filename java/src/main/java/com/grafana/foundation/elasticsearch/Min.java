@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Min {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("field")
     public String field;
@@ -23,10 +23,10 @@ public class Min {
     @JsonProperty("hide")
     public Boolean hide;
     public Min() {
+        this.type = MetricAggregationType.MIN;
     }
-    
-    public Min(String type,String field,String id,ElasticsearchMinSettings settings,Boolean hide) {
-        this.type = type;
+    public Min(String field,String id,ElasticsearchMinSettings settings,Boolean hide) {
+        this.type = MetricAggregationType.MIN;
         this.field = field;
         this.id = id;
         this.settings = settings;

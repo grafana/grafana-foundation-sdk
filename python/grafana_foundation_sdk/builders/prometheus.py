@@ -5,7 +5,7 @@ from ..cog import builder as cogbuilder
 from ..models import prometheus
 
 
-class Dataquery(cogbuilder.Builder[prometheus.Dataquery]):    
+class Dataquery(cogbuilder.Builder[prometheus.Dataquery]):
     _internal: prometheus.Dataquery
 
     def __init__(self):
@@ -36,7 +36,7 @@ class Dataquery(cogbuilder.Builder[prometheus.Dataquery]):
     
         return self
     
-    def range_val(self) -> typing.Self:    
+    def range(self) -> typing.Self:    
         """
         Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
         """
@@ -64,7 +64,7 @@ class Dataquery(cogbuilder.Builder[prometheus.Dataquery]):
     
         return self
     
-    def format_val(self, format_val: prometheus.PromQueryFormat) -> typing.Self:    
+    def format(self, format_val: prometheus.PromQueryFormat) -> typing.Self:    
         """
         Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
         """
@@ -146,7 +146,7 @@ class Dataquery(cogbuilder.Builder[prometheus.Dataquery]):
     
         return self
     
-    def range_and_instant(self) -> typing.Self:        
+    def range_and_instant(self) -> typing.Self:    
         self._internal.range_val = True    
         self._internal.instant = True
     

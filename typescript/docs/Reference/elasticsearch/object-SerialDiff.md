@@ -9,7 +9,7 @@ title: <span class="badge object-type-interface"></span> SerialDiff
 export interface SerialDiff {
 	pipelineAgg?: string;
 	field?: string;
-	type: "serial_diff";
+	type: unknown;
 	id: string;
 	settings?: {
 		lag?: string;
@@ -18,9 +18,6 @@ export interface SerialDiff {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [SerialDiffBuilder](./builder-SerialDiffBuilder.md)

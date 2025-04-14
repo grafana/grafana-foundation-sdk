@@ -27,3 +27,4 @@ export class NodesQueryBuilder implements cog.Builder<testdata.NodesQuery> {
         return this;
     }
 }
+

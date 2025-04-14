@@ -64,9 +64,6 @@ export interface TypeMath {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TypeMathBuilder](./builder-TypeMathBuilder.md)

@@ -67,7 +67,6 @@ public class AnnotationQuery {
     public String text;
     public AnnotationQuery() {
     }
-    
     public AnnotationQuery(String projectName,String crossSeriesReducer,String alignmentPeriod,String perSeriesAligner,List<String> groupBys,List<String> filters,String view,String secondaryCrossSeriesReducer,String secondaryAlignmentPeriod,String secondaryPerSeriesAligner,List<String> secondaryGroupBys,String title,PreprocessorType preprocessor,String text) {
         this.projectName = projectName;
         this.crossSeriesReducer = crossSeriesReducer;

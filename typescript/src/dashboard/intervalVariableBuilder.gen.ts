@@ -96,3 +96,4 @@ export class IntervalVariableBuilder implements cog.Builder<dashboard.VariableMo
         return this;
     }
 }
+

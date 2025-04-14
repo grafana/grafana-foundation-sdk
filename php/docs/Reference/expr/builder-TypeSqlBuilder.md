@@ -32,6 +32,12 @@ datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
 expression(string $expression)
 ```
 
+### <span class="badge object-method"></span> format
+
+```php
+format(string $format)
+```
+
 ### <span class="badge object-method"></span> hide
 
 true if query is disabled (ie should not be returned to the dashboard)

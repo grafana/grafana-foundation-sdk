@@ -352,12 +352,12 @@ class SQLExpression:
 
 
 class QueryEditorFunctionExpression:
-    type_val: typing.Literal["function"]
+    type_val: str
     name: typing.Optional[str]
     parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']]
 
     def __init__(self, name: typing.Optional[str] = None, parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']] = None):
-        self.type_val = "function"
+        self.type_val = QueryEditorExpressionType.FUNCTION
         self.name = name
         self.parameters = parameters
 
@@ -383,12 +383,22 @@ class QueryEditorFunctionExpression:
         return cls(**args)
 
 
+class QueryEditorExpressionType(enum.StrEnum):
+    PROPERTY = "property"
+    OPERATOR = "operator"
+    OR = "or"
+    AND = "and"
+    GROUP_BY = "groupBy"
+    FUNCTION = "function"
+    FUNCTION_PARAMETER = "functionParameter"
+
+
 class QueryEditorFunctionParameterExpression:
-    type_val: typing.Literal["functionParameter"]
+    type_val: str
     name: typing.Optional[str]
 
     def __init__(self, name: typing.Optional[str] = None):
-        self.type_val = "functionParameter"
+        self.type_val = QueryEditorExpressionType.FUNCTION_PARAMETER
         self.name = name
 
     def to_json(self) -> dict[str, object]:
@@ -410,11 +420,11 @@ class QueryEditorFunctionParameterExpression:
 
 
 class QueryEditorPropertyExpression:
-    type_val: typing.Literal["property"]
+    type_val: str
     property_val: 'QueryEditorProperty'
 
     def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None):
-        self.type_val = "property"
+        self.type_val = QueryEditorExpressionType.PROPERTY
         self.property_val = property_val if property_val is not None else QueryEditorProperty()
 
     def to_json(self) -> dict[str, object]:
@@ -498,11 +508,11 @@ QueryEditorExpression: typing.TypeAlias = typing.Union['QueryEditorArrayExpressi
 
 
 class QueryEditorGroupByExpression:
-    type_val: typing.Literal["groupBy"]
+    type_val: str
     property_val: 'QueryEditorProperty'
 
     def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None):
-        self.type_val = "groupBy"
+        self.type_val = QueryEditorExpressionType.GROUP_BY
         self.property_val = property_val if property_val is not None else QueryEditorProperty()
 
     def to_json(self) -> dict[str, object]:
@@ -523,13 +533,13 @@ class QueryEditorGroupByExpression:
 
 
 class QueryEditorOperatorExpression:
-    type_val: typing.Literal["operator"]
+    type_val: str
     property_val: 'QueryEditorProperty'
     # TS type is operator: QueryEditorOperator<QueryEditorOperatorValueType>, extended in veneer
     operator: 'QueryEditorOperator'
 
     def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None, operator: typing.Optional['QueryEditorOperator'] = None):
-        self.type_val = "operator"
+        self.type_val = QueryEditorExpressionType.OPERATOR
         self.property_val = property_val if property_val is not None else QueryEditorProperty()
         self.operator = operator if operator is not None else QueryEditorOperator()
 
@@ -587,16 +597,6 @@ class QueryEditorOperator:
 
 
 QueryEditorOperatorType: typing.TypeAlias = typing.Union[str, bool, int]
-
-
-class QueryEditorExpressionType(enum.StrEnum):
-    PROPERTY = "property"
-    OPERATOR = "operator"
-    OR = "or"
-    AND = "and"
-    GROUP_BY = "groupBy"
-    FUNCTION = "function"
-    FUNCTION_PARAMETER = "functionParameter"
 
 
 QueryEditorOperatorValueType: typing.TypeAlias = typing.Union[str, bool, int, list['QueryEditorOperatorType']]

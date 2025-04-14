@@ -21,7 +21,6 @@ public class TextDimensionConfig {
     public String fixed;
     public TextDimensionConfig() {
     }
-    
     public TextDimensionConfig(TextDimensionMode mode,String field,String fixed) {
         this.mode = mode;
         this.field = field;

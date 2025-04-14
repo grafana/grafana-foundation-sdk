@@ -9,7 +9,7 @@ title: <span class="badge object-type-class"></span> CumulativeSum
 class CumulativeSum:
     pipeline_agg: typing.Optional[str]
     field: typing.Optional[str]
-    type_val: typing.Literal["cumulative_sum"]
+    type_val: str
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchCumulativeSumSettings]
     hide: typing.Optional[bool]

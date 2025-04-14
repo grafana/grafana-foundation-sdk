@@ -24,7 +24,6 @@ public class USAQuery {
     public List<String> states;
     public USAQuery() {
     }
-    
     public USAQuery(String mode,String period,List<String> fields,List<String> states) {
         this.mode = mode;
         this.period = period;

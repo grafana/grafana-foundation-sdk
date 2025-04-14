@@ -19,7 +19,6 @@ func NewMovingAverageLinearModelSettingsBuilder() *MovingAverageLinearModelSetti
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Model = "linear"
 
 	return builder
 }

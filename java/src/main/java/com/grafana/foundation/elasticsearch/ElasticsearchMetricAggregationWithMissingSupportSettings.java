@@ -14,7 +14,6 @@ public class ElasticsearchMetricAggregationWithMissingSupportSettings {
     public String missing;
     public ElasticsearchMetricAggregationWithMissingSupportSettings() {
     }
-    
     public ElasticsearchMetricAggregationWithMissingSupportSettings(String missing) {
         this.missing = missing;
     }

@@ -54,3 +54,4 @@ export class AzureLogsQueryBuilder implements cog.Builder<azuremonitor.AzureLogs
         return this;
     }
 }
+

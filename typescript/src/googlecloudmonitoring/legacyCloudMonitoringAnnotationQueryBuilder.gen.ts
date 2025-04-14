@@ -63,3 +63,4 @@ export class LegacyCloudMonitoringAnnotationQueryBuilder implements cog.Builder<
         return this;
     }
 }
+

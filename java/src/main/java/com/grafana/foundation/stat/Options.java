@@ -2,14 +2,14 @@
 
 package com.grafana.foundation.stat;
 
-import com.grafana.foundation.common.BigValueGraphMode;
-import com.grafana.foundation.common.BigValueColorMode;
-import com.grafana.foundation.common.BigValueJustifyMode;
-import com.grafana.foundation.common.BigValueTextMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.BigValueGraphMode;
+import com.grafana.foundation.common.BigValueColorMode;
+import com.grafana.foundation.common.BigValueJustifyMode;
+import com.grafana.foundation.common.BigValueTextMode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.ReduceDataOptions;
 import com.grafana.foundation.common.VizTextDisplayOptions;
@@ -43,7 +43,6 @@ public class Options {
         this.justifyMode = BigValueJustifyMode.AUTO;
         this.textMode = BigValueTextMode.AUTO;
     }
-    
     public Options(BigValueGraphMode graphMode,BigValueColorMode colorMode,BigValueJustifyMode justifyMode,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,BigValueTextMode textMode,VizOrientation orientation) {
         this.graphMode = graphMode;
         this.colorMode = colorMode;

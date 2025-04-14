@@ -17,7 +17,6 @@ public class Constraint {
     public VerticalConstraint vertical;
     public Constraint() {
     }
-    
     public Constraint(HorizontalConstraint horizontal,VerticalConstraint vertical) {
         this.horizontal = horizontal;
         this.vertical = vertical;

@@ -25,9 +25,6 @@ export interface Preferences {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [PreferencesBuilder](./builder-PreferencesBuilder.md)

@@ -14,9 +14,6 @@ export interface HeatmapCalculationOptions {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [HeatmapCalculationOptionsBuilder](./builder-HeatmapCalculationOptionsBuilder.md)

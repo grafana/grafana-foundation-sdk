@@ -20,7 +20,6 @@ public class DashboardGraphPanelLegend {
     public DashboardGraphPanelLegend() {
         this.show = true;
     }
-    
     public DashboardGraphPanelLegend(Boolean show,String sort,Boolean sortDesc) {
         this.show = show;
         this.sort = sort;

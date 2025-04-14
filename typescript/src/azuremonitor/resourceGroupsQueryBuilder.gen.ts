@@ -28,3 +28,4 @@ export class ResourceGroupsQueryBuilder implements cog.Builder<azuremonitor.Reso
         return this;
     }
 }
+

@@ -8,7 +8,6 @@ export class MovingAverageHoltWintersModelSettingsBuilder implements cog.Builder
 
     constructor() {
         this.internal = elasticsearch.defaultMovingAverageHoltWintersModelSettings();
-        this.internal.model = "holt_winters";
     }
 
     /**
@@ -44,3 +43,4 @@ export class MovingAverageHoltWintersModelSettingsBuilder implements cog.Builder
         return this;
     }
 }
+

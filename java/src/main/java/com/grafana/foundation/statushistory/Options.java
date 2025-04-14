@@ -2,11 +2,11 @@
 
 package com.grafana.foundation.statushistory;
 
-import com.grafana.foundation.common.VisibilityMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.VisibilityMode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.grafana.foundation.common.VizTooltipOptions;
@@ -38,7 +38,6 @@ public class Options {
         this.showValue = VisibilityMode.AUTO;
         this.colWidth = 0.9;
     }
-    
     public Options(Float rowHeight,VisibilityMode showValue,VizLegendOptions legend,VizTooltipOptions tooltip,List<String> timezone,Double colWidth) {
         this.rowHeight = rowHeight;
         this.showValue = showValue;

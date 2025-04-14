@@ -102,3 +102,4 @@ export class AnnotationQueryBuilder implements cog.Builder<googlecloudmonitoring
         return this;
     }
 }
+

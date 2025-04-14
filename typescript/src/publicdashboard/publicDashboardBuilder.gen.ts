@@ -53,3 +53,4 @@ export class PublicDashboardBuilder implements cog.Builder<publicdashboard.Publi
         return this;
     }
 }
+

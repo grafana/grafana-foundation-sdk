@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> Sum
 
 ```typescript
 export interface Sum {
-	type: "sum";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -18,9 +18,6 @@ export interface Sum {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [SumBuilder](./builder-SumBuilder.md)

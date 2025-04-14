@@ -78,3 +78,4 @@ export class SLOQueryBuilder implements cog.Builder<googlecloudmonitoring.SLOQue
         return this;
     }
 }
+

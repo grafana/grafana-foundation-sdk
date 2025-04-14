@@ -19,7 +19,6 @@ public class GraphPanel {
     public DashboardGraphPanelLegend legend;
     public GraphPanel() {
     }
-    
     public GraphPanel(String type,DashboardGraphPanelLegend legend) {
         this.type = type;
         this.legend = legend;

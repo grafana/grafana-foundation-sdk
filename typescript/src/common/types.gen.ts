@@ -806,54 +806,54 @@ export const defaultTableFooterOptions = (): TableFooterOptions => ({
 
 // Auto mode table cell options
 export interface TableAutoCellOptions {
-	type: "auto";
+	type: TableCellDisplayMode.Auto;
 }
 
 export const defaultTableAutoCellOptions = (): TableAutoCellOptions => ({
-	type: "auto",
+	type: TableCellDisplayMode.Auto,
 });
 
 // Colored text cell options
 export interface TableColorTextCellOptions {
-	type: "color-text";
+	type: TableCellDisplayMode.ColorText;
 }
 
 export const defaultTableColorTextCellOptions = (): TableColorTextCellOptions => ({
-	type: "color-text",
+	type: TableCellDisplayMode.ColorText,
 });
 
 // Json view cell options
 export interface TableJsonViewCellOptions {
-	type: "json-view";
+	type: TableCellDisplayMode.JSONView;
 }
 
 export const defaultTableJsonViewCellOptions = (): TableJsonViewCellOptions => ({
-	type: "json-view",
+	type: TableCellDisplayMode.JSONView,
 });
 
 // Json view cell options
 export interface TableImageCellOptions {
-	type: "image";
+	type: TableCellDisplayMode.Image;
 }
 
 export const defaultTableImageCellOptions = (): TableImageCellOptions => ({
-	type: "image",
+	type: TableCellDisplayMode.Image,
 });
 
 // Gauge cell options
 export interface TableBarGaugeCellOptions {
-	type: "gauge";
+	type: TableCellDisplayMode.Gauge;
 	mode?: BarGaugeDisplayMode;
 	valueDisplayMode?: BarGaugeValueMode;
 }
 
 export const defaultTableBarGaugeCellOptions = (): TableBarGaugeCellOptions => ({
-	type: "gauge",
+	type: TableCellDisplayMode.Gauge,
 });
 
 // Sparkline cell options
 export interface TableSparklineCellOptions {
-	type: "sparkline";
+	type: TableCellDisplayMode.Sparkline;
 	drawStyle?: GraphDrawStyle;
 	gradientMode?: GraphGradientMode;
 	thresholdsStyle?: GraphThresholdsStyleConfig;
@@ -890,17 +890,17 @@ export interface TableSparklineCellOptions {
 }
 
 export const defaultTableSparklineCellOptions = (): TableSparklineCellOptions => ({
-	type: "sparkline",
+	type: TableCellDisplayMode.Sparkline,
 });
 
 // Colored background cell options
 export interface TableColoredBackgroundCellOptions {
-	type: "color-background";
+	type: TableCellDisplayMode.ColorBackground;
 	mode?: TableCellBackgroundDisplayMode;
 }
 
 export const defaultTableColoredBackgroundCellOptions = (): TableColoredBackgroundCellOptions => ({
-	type: "color-background",
+	type: TableCellDisplayMode.ColorBackground,
 });
 
 // Height of a table cell

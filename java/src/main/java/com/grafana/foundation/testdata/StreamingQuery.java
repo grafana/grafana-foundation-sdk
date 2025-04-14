@@ -26,7 +26,6 @@ public class StreamingQuery {
     public String url;
     public StreamingQuery() {
     }
-    
     public StreamingQuery(StreamingQueryType type,Integer speed,Integer spread,Integer noise,Integer bands,String url) {
         this.type = type;
         this.speed = speed;

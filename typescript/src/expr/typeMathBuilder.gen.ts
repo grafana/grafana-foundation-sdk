@@ -110,3 +110,4 @@ export class TypeMathBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 }
+

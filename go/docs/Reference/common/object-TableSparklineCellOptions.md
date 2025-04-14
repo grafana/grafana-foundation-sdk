@@ -9,7 +9,7 @@ Sparkline cell options
 
 ```go
 type TableSparklineCellOptions struct {
-    Type string `json:"type"`
+    Type common.TableCellDisplayMode `json:"type"`
     DrawStyle *common.GraphDrawStyle `json:"drawStyle,omitempty"`
     GradientMode *common.GraphGradientMode `json:"gradientMode,omitempty"`
     ThresholdsStyle *common.GraphThresholdsStyleConfig `json:"thresholdsStyle,omitempty"`

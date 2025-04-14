@@ -5,7 +5,7 @@ from ..cog import builder as cogbuilder
 from ..models import testdata
 
 
-class StreamingQuery(cogbuilder.Builder[testdata.StreamingQuery]):    
+class StreamingQuery(cogbuilder.Builder[testdata.StreamingQuery]):
     _internal: testdata.StreamingQuery
 
     def __init__(self):
@@ -17,38 +17,39 @@ class StreamingQuery(cogbuilder.Builder[testdata.StreamingQuery]):
         """
         return self._internal    
     
-    def type_val(self, type_val: typing.Literal["signal", "logs", "fetch"]) -> typing.Self:        
+    def type(self, type_val: typing.Literal["signal", "logs", "fetch"]) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def speed(self, speed: int) -> typing.Self:        
+    def speed(self, speed: int) -> typing.Self:    
         self._internal.speed = speed
     
         return self
     
-    def spread(self, spread: int) -> typing.Self:        
+    def spread(self, spread: int) -> typing.Self:    
         self._internal.spread = spread
     
         return self
     
-    def noise(self, noise: int) -> typing.Self:        
+    def noise(self, noise: int) -> typing.Self:    
         self._internal.noise = noise
     
         return self
     
-    def bands(self, bands: int) -> typing.Self:        
+    def bands(self, bands: int) -> typing.Self:    
         self._internal.bands = bands
     
         return self
     
-    def url(self, url: str) -> typing.Self:        
+    def url(self, url: str) -> typing.Self:    
         self._internal.url = url
     
         return self
     
 
-class PulseWaveQuery(cogbuilder.Builder[testdata.PulseWaveQuery]):    
+
+class PulseWaveQuery(cogbuilder.Builder[testdata.PulseWaveQuery]):
     _internal: testdata.PulseWaveQuery
 
     def __init__(self):
@@ -60,33 +61,34 @@ class PulseWaveQuery(cogbuilder.Builder[testdata.PulseWaveQuery]):
         """
         return self._internal    
     
-    def time_step(self, time_step: int) -> typing.Self:        
+    def time_step(self, time_step: int) -> typing.Self:    
         self._internal.time_step = time_step
     
         return self
     
-    def on_count(self, on_count: int) -> typing.Self:        
+    def on_count(self, on_count: int) -> typing.Self:    
         self._internal.on_count = on_count
     
         return self
     
-    def off_count(self, off_count: int) -> typing.Self:        
+    def off_count(self, off_count: int) -> typing.Self:    
         self._internal.off_count = off_count
     
         return self
     
-    def on_value(self, on_value: float) -> typing.Self:        
+    def on_value(self, on_value: float) -> typing.Self:    
         self._internal.on_value = on_value
     
         return self
     
-    def off_value(self, off_value: float) -> typing.Self:        
+    def off_value(self, off_value: float) -> typing.Self:    
         self._internal.off_value = off_value
     
         return self
     
 
-class SimulationQuery(cogbuilder.Builder[testdata.SimulationQuery]):    
+
+class SimulationQuery(cogbuilder.Builder[testdata.SimulationQuery]):
     _internal: testdata.SimulationQuery
 
     def __init__(self):
@@ -98,29 +100,30 @@ class SimulationQuery(cogbuilder.Builder[testdata.SimulationQuery]):
         """
         return self._internal    
     
-    def key(self, key: cogbuilder.Builder[testdata.Key]) -> typing.Self:        
+    def key(self, key: cogbuilder.Builder[testdata.Key]) -> typing.Self:    
         key_resource = key.build()
         self._internal.key = key_resource
     
         return self
     
-    def config(self, config: dict[str, object]) -> typing.Self:        
+    def config(self, config: dict[str, object]) -> typing.Self:    
         self._internal.config = config
     
         return self
     
-    def stream(self, stream: bool) -> typing.Self:        
+    def stream(self, stream: bool) -> typing.Self:    
         self._internal.stream = stream
     
         return self
     
-    def last(self, last: bool) -> typing.Self:        
+    def last(self, last: bool) -> typing.Self:    
         self._internal.last = last
     
         return self
     
 
-class CSVWave(cogbuilder.Builder[testdata.CSVWave]):    
+
+class CSVWave(cogbuilder.Builder[testdata.CSVWave]):
     _internal: testdata.CSVWave
 
     def __init__(self):
@@ -132,28 +135,29 @@ class CSVWave(cogbuilder.Builder[testdata.CSVWave]):
         """
         return self._internal    
     
-    def time_step(self, time_step: int) -> typing.Self:        
+    def time_step(self, time_step: int) -> typing.Self:    
         self._internal.time_step = time_step
     
         return self
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def values_csv(self, values_csv: str) -> typing.Self:        
+    def values_csv(self, values_csv: str) -> typing.Self:    
         self._internal.values_csv = values_csv
     
         return self
     
-    def labels(self, labels: str) -> typing.Self:        
+    def labels(self, labels: str) -> typing.Self:    
         self._internal.labels = labels
     
         return self
     
 
-class NodesQuery(cogbuilder.Builder[testdata.NodesQuery]):    
+
+class NodesQuery(cogbuilder.Builder[testdata.NodesQuery]):
     _internal: testdata.NodesQuery
 
     def __init__(self):
@@ -165,18 +169,19 @@ class NodesQuery(cogbuilder.Builder[testdata.NodesQuery]):
         """
         return self._internal    
     
-    def type_val(self, type_val: typing.Literal["random", "response", "random edges"]) -> typing.Self:        
+    def type(self, type_val: typing.Literal["random", "response", "random edges"]) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def count(self, count: int) -> typing.Self:        
+    def count(self, count: int) -> typing.Self:    
         self._internal.count = count
     
         return self
     
 
-class USAQuery(cogbuilder.Builder[testdata.USAQuery]):    
+
+class USAQuery(cogbuilder.Builder[testdata.USAQuery]):
     _internal: testdata.USAQuery
 
     def __init__(self):
@@ -188,26 +193,27 @@ class USAQuery(cogbuilder.Builder[testdata.USAQuery]):
         """
         return self._internal    
     
-    def mode(self, mode: str) -> typing.Self:        
+    def mode(self, mode: str) -> typing.Self:    
         self._internal.mode = mode
     
         return self
     
-    def period(self, period: str) -> typing.Self:        
+    def period(self, period: str) -> typing.Self:    
         self._internal.period = period
     
         return self
     
-    def fields(self, fields: list[str]) -> typing.Self:        
+    def fields(self, fields: list[str]) -> typing.Self:    
         self._internal.fields = fields
     
         return self
     
-    def states(self, states: list[str]) -> typing.Self:        
+    def states(self, states: list[str]) -> typing.Self:    
         self._internal.states = states
     
         return self
     
+
 
 class Scenario(cogbuilder.Builder[testdata.Scenario]):    
     """
@@ -225,33 +231,34 @@ class Scenario(cogbuilder.Builder[testdata.Scenario]):
         """
         return self._internal    
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def string_input(self, string_input: str) -> typing.Self:        
+    def string_input(self, string_input: str) -> typing.Self:    
         self._internal.string_input = string_input
     
         return self
     
-    def description(self, description: str) -> typing.Self:        
+    def description(self, description: str) -> typing.Self:    
         self._internal.description = description
     
         return self
     
-    def hide_alias_field(self, hide_alias_field: bool) -> typing.Self:        
+    def hide_alias_field(self, hide_alias_field: bool) -> typing.Self:    
         self._internal.hide_alias_field = hide_alias_field
     
         return self
     
 
-class Dataquery(cogbuilder.Builder[testdata.Dataquery]):    
+
+class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
     _internal: testdata.Dataquery
 
     def __init__(self):
@@ -263,108 +270,108 @@ class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
         """
         return self._internal    
     
-    def alias(self, alias: str) -> typing.Self:        
+    def alias(self, alias: str) -> typing.Self:    
         self._internal.alias = alias
     
         return self
     
-    def scenario_id(self, scenario_id: testdata.TestDataQueryType) -> typing.Self:        
+    def scenario_id(self, scenario_id: testdata.TestDataQueryType) -> typing.Self:    
         self._internal.scenario_id = scenario_id
     
         return self
     
-    def string_input(self, string_input: str) -> typing.Self:        
+    def string_input(self, string_input: str) -> typing.Self:    
         self._internal.string_input = string_input
     
         return self
     
-    def stream(self, stream: cogbuilder.Builder[testdata.StreamingQuery]) -> typing.Self:        
+    def stream(self, stream: cogbuilder.Builder[testdata.StreamingQuery]) -> typing.Self:    
         stream_resource = stream.build()
         self._internal.stream = stream_resource
     
         return self
     
-    def pulse_wave(self, pulse_wave: cogbuilder.Builder[testdata.PulseWaveQuery]) -> typing.Self:        
+    def pulse_wave(self, pulse_wave: cogbuilder.Builder[testdata.PulseWaveQuery]) -> typing.Self:    
         pulse_wave_resource = pulse_wave.build()
         self._internal.pulse_wave = pulse_wave_resource
     
         return self
     
-    def sim(self, sim: cogbuilder.Builder[testdata.SimulationQuery]) -> typing.Self:        
+    def sim(self, sim: cogbuilder.Builder[testdata.SimulationQuery]) -> typing.Self:    
         sim_resource = sim.build()
         self._internal.sim = sim_resource
     
         return self
     
-    def csv_wave(self, csv_wave: list[cogbuilder.Builder[testdata.CSVWave]]) -> typing.Self:        
+    def csv_wave(self, csv_wave: list[cogbuilder.Builder[testdata.CSVWave]]) -> typing.Self:    
         csv_wave_resources = [r1.build() for r1 in csv_wave]
         self._internal.csv_wave = csv_wave_resources
     
         return self
     
-    def labels(self, labels: str) -> typing.Self:        
+    def labels(self, labels: str) -> typing.Self:    
         self._internal.labels = labels
     
         return self
     
-    def lines(self, lines: int) -> typing.Self:        
+    def lines(self, lines: int) -> typing.Self:    
         self._internal.lines = lines
     
         return self
     
-    def level_column(self, level_column: bool) -> typing.Self:        
+    def level_column(self, level_column: bool) -> typing.Self:    
         self._internal.level_column = level_column
     
         return self
     
-    def channel(self, channel: str) -> typing.Self:        
+    def channel(self, channel: str) -> typing.Self:    
         self._internal.channel = channel
     
         return self
     
-    def nodes(self, nodes: cogbuilder.Builder[testdata.NodesQuery]) -> typing.Self:        
+    def nodes(self, nodes: cogbuilder.Builder[testdata.NodesQuery]) -> typing.Self:    
         nodes_resource = nodes.build()
         self._internal.nodes = nodes_resource
     
         return self
     
-    def csv_file_name(self, csv_file_name: str) -> typing.Self:        
+    def csv_file_name(self, csv_file_name: str) -> typing.Self:    
         self._internal.csv_file_name = csv_file_name
     
         return self
     
-    def csv_content(self, csv_content: str) -> typing.Self:        
+    def csv_content(self, csv_content: str) -> typing.Self:    
         self._internal.csv_content = csv_content
     
         return self
     
-    def raw_frame_content(self, raw_frame_content: str) -> typing.Self:        
+    def raw_frame_content(self, raw_frame_content: str) -> typing.Self:    
         self._internal.raw_frame_content = raw_frame_content
     
         return self
     
-    def series_count(self, series_count: int) -> typing.Self:        
+    def series_count(self, series_count: int) -> typing.Self:    
         self._internal.series_count = series_count
     
         return self
     
-    def usa(self, usa: cogbuilder.Builder[testdata.USAQuery]) -> typing.Self:        
+    def usa(self, usa: cogbuilder.Builder[testdata.USAQuery]) -> typing.Self:    
         usa_resource = usa.build()
         self._internal.usa = usa_resource
     
         return self
     
-    def error_type(self, error_type: typing.Literal["server_panic", "frontend_exception", "frontend_observable"]) -> typing.Self:        
+    def error_type(self, error_type: typing.Literal["server_panic", "frontend_exception", "frontend_observable"]) -> typing.Self:    
         self._internal.error_type = error_type
     
         return self
     
-    def span_count(self, span_count: int) -> typing.Self:        
+    def span_count(self, span_count: int) -> typing.Self:    
         self._internal.span_count = span_count
     
         return self
     
-    def points(self, points: list[list[typing.Union[str, int]]]) -> typing.Self:        
+    def points(self, points: list[list[typing.Union[str, int]]]) -> typing.Self:    
         self._internal.points = points
     
         return self
@@ -423,7 +430,8 @@ class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
         return self
     
 
-class Key(cogbuilder.Builder[testdata.Key]):    
+
+class Key(cogbuilder.Builder[testdata.Key]):
     _internal: testdata.Key
 
     def __init__(self):
@@ -435,17 +443,17 @@ class Key(cogbuilder.Builder[testdata.Key]):
         """
         return self._internal    
     
-    def type_val(self, type_val: str) -> typing.Self:        
+    def type(self, type_val: str) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def tick(self, tick: float) -> typing.Self:        
+    def tick(self, tick: float) -> typing.Self:    
         self._internal.tick = tick
     
         return self
     
-    def uid(self, uid: str) -> typing.Self:        
+    def uid(self, uid: str) -> typing.Self:    
         self._internal.uid = uid
     
         return self

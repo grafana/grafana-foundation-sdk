@@ -29,12 +29,14 @@ class DashboardGraphPanelLegendBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     public function sort(string $sort): static
     {
         $this->internal->sort = $sort;
     
         return $this;
     }
+
     public function sortDesc(bool $sortDesc): static
     {
         $this->internal->sortDesc = $sortDesc;

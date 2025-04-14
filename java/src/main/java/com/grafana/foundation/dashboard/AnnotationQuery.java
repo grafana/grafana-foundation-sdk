@@ -48,7 +48,6 @@ public class AnnotationQuery {
         this.enable = true;
         this.hide = false;
     }
-    
     public AnnotationQuery(String name,DataSourceRef datasource,Boolean enable,Boolean hide,String iconColor,AnnotationPanelFilter filter,AnnotationTarget target,String type,String expr) {
         this.name = name;
         this.datasource = datasource;

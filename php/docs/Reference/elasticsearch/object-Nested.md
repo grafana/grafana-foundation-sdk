@@ -12,7 +12,7 @@ class Nested implements \JsonSerializable
 
     public string $id;
 
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\BucketAggregationType $type;
 
     /**
      * @var mixed|null

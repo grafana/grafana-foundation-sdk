@@ -14,9 +14,6 @@ export interface SimulationQuery {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [SimulationQueryBuilder](./builder-SimulationQueryBuilder.md)

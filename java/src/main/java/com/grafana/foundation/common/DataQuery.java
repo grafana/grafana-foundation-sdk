@@ -37,7 +37,6 @@ public class DataQuery {
     public Object datasource;
     public DataQuery() {
     }
-    
     public DataQuery(String refId,Boolean hide,String queryType,Object datasource) {
         this.refId = refId;
         this.hide = hide;

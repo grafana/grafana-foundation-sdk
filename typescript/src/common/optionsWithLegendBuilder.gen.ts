@@ -24,3 +24,4 @@ export class OptionsWithLegendBuilder implements cog.Builder<common.OptionsWithL
         return this;
     }
 }
+

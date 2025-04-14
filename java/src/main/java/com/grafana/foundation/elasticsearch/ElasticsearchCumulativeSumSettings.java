@@ -14,7 +14,6 @@ public class ElasticsearchCumulativeSumSettings {
     public String format;
     public ElasticsearchCumulativeSumSettings() {
     }
-    
     public ElasticsearchCumulativeSumSettings(String format) {
         this.format = format;
     }

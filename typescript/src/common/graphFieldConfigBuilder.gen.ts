@@ -181,3 +181,4 @@ export class GraphFieldConfigBuilder implements cog.Builder<common.GraphFieldCon
         return this;
     }
 }
+

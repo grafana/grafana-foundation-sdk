@@ -29,6 +29,7 @@ class QueryEditorArrayExpressionBuilder implements \Grafana\Foundation\Cog\Build
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorArrayExpression>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorPropertyExpression>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorGroupByExpression>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorFunctionExpression>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorFunctionParameterExpression>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorOperatorExpression>> $expressions
      */

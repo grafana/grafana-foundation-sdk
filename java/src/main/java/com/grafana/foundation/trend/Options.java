@@ -24,7 +24,6 @@ public class Options {
     public String xField;
     public Options() {
     }
-    
     public Options(VizLegendOptions legend,VizTooltipOptions tooltip,String xField) {
         this.legend = legend;
         this.tooltip = tooltip;

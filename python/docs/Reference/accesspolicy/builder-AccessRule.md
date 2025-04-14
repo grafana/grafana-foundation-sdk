@@ -41,7 +41,7 @@ READ, WRITE, CREATE, DELETE, ...
 should move to k8s style verbs like: "get", "list", "watch", "create", "update", "patch", "delete"
 
 ```python
-def verb(verb: typing.Union[typing.Literal["*"]]) -> typing.Self
+def verb(verb: typing.Union[typing.Literal["*"], typing.Literal["none"], str]) -> typing.Self
 ```
 
 ## See also

@@ -128,3 +128,4 @@ export class TypeThresholdBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 }
+

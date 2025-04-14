@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> QueryEditorFunctionParamete
 
 ```python
 class QueryEditorFunctionParameterExpression:
-    type_val: typing.Literal["functionParameter"]
+    type_val: str
     name: typing.Optional[str]
 ```
 ## Methods

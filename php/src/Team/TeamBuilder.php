@@ -33,6 +33,7 @@ class TeamBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Email of the team.
      */

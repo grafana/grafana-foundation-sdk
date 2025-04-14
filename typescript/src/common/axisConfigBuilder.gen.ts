@@ -64,3 +64,4 @@ export class AxisConfigBuilder implements cog.Builder<common.AxisConfig> {
         return this;
     }
 }
+

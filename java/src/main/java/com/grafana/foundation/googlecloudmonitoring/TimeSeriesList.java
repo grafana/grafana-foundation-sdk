@@ -67,7 +67,6 @@ public class TimeSeriesList {
     public String text;
     public TimeSeriesList() {
     }
-    
     public TimeSeriesList(String projectName,String crossSeriesReducer,String alignmentPeriod,String perSeriesAligner,List<String> groupBys,List<String> filters,String view,String secondaryCrossSeriesReducer,String secondaryAlignmentPeriod,String secondaryPerSeriesAligner,List<String> secondaryGroupBys,PreprocessorType preprocessor,String title,String text) {
         this.projectName = projectName;
         this.crossSeriesReducer = crossSeriesReducer;

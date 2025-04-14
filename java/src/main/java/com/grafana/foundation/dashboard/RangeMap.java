@@ -12,16 +12,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 // For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
 public class RangeMap {
     @JsonProperty("type")
-    public String type;
+    public MappingType type;
     // Range to match against and the result to apply when the value is within the range
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("options")
     public DashboardRangeMapOptions options;
     public RangeMap() {
+        this.type = MappingType.RANGE_TO_TEXT;
     }
-    
-    public RangeMap(String type,DashboardRangeMapOptions options) {
-        this.type = type;
+    public RangeMap(DashboardRangeMapOptions options) {
+        this.type = MappingType.RANGE_TO_TEXT;
         this.options = options;
     }
     

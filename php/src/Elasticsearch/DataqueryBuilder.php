@@ -32,6 +32,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Lucene query
      */
@@ -41,6 +42,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of time field
      */
@@ -50,6 +52,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * List of bucket aggregations
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\DateHistogram>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Histogram>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Terms>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Filters>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\GeoHashGrid>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Nested>> $bucketAggs
@@ -64,6 +67,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * List of metric aggregations
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Count>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\MovingAverage>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Derivative>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\CumulativeSum>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\BucketScript>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\SerialDiff>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\RawData>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\RawDocument>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\UniqueCount>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Percentiles>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\ExtendedStats>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Min>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Max>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Sum>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Average>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\MovingFunction>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Logs>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\Rate>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\TopMetrics>> $metrics
@@ -78,6 +82,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * A unique identifier for the query within the list of targets.
      * In server side expressions, the refId is used as a variable name to identify results.
@@ -89,6 +94,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
      * Note this does not always imply that the query should not be executed since
@@ -100,6 +106,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -110,6 +117,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.

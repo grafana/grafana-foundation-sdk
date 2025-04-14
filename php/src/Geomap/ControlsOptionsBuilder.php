@@ -32,6 +32,7 @@ class ControlsOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * let the mouse wheel zoom
      */
@@ -41,6 +42,7 @@ class ControlsOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Lower right
      */
@@ -50,6 +52,7 @@ class ControlsOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Scale options
      */
@@ -59,6 +62,7 @@ class ControlsOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Show debug
      */
@@ -68,6 +72,7 @@ class ControlsOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Show measure
      */

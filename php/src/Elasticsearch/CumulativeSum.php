@@ -8,7 +8,7 @@ class CumulativeSum implements \JsonSerializable
 
     public ?string $field;
 
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public string $id;
 
@@ -27,8 +27,7 @@ class CumulativeSum implements \JsonSerializable
     {
         $this->pipelineAgg = $pipelineAgg;
         $this->field = $field;
-        $this->type = "cumulative_sum";
-    
+        $this->type = \Grafana\Foundation\Elasticsearch\MetricAggregationType::count();
         $this->id = $id ?: "";
         $this->settings = $settings;
         $this->hide = $hide;
@@ -39,7 +38,7 @@ class CumulativeSum implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{pipelineAgg?: string, field?: string, type?: string, id?: string, settings?: mixed, hide?: bool} $inputData */
+        /** @var array{pipelineAgg?: string, field?: string, type?: "cumulative_sum", id?: string, settings?: mixed, hide?: bool} $inputData */
         $data = $inputData;
         return new self(
             pipelineAgg: $data["pipelineAgg"] ?? null,

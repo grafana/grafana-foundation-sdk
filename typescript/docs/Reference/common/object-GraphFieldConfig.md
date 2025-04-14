@@ -46,9 +46,6 @@ export interface GraphFieldConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [GraphFieldConfigBuilder](./builder-GraphFieldConfigBuilder.md)

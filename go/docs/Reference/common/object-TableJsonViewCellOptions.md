@@ -9,7 +9,7 @@ Json view cell options
 
 ```go
 type TableJsonViewCellOptions struct {
-    Type string `json:"type"`
+    Type common.TableCellDisplayMode `json:"type"`
 }
 ```
 ## Methods

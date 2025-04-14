@@ -117,3 +117,4 @@ export class QueryVariableBuilder implements cog.Builder<dashboard.VariableModel
         return this;
     }
 }
+

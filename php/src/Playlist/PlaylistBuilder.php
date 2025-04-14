@@ -33,6 +33,7 @@ class PlaylistBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of the playlist.
      */
@@ -42,6 +43,7 @@ class PlaylistBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Interval sets the time between switching views in a playlist.
      * FIXME: Is this based on a standardized format or what options are available? Can datemath be used?
@@ -52,6 +54,7 @@ class PlaylistBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The ordered list of items that the playlist will iterate over.
      * FIXME! This should not be optional, but changing it makes the godegen awkward
