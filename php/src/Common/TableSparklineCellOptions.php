@@ -7,7 +7,7 @@ namespace Grafana\Foundation\Common;
  */
 class TableSparklineCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
     public ?\Grafana\Foundation\Common\GraphDrawStyle $drawStyle;
 
@@ -115,8 +115,7 @@ class TableSparklineCellOptions implements \JsonSerializable
      */
     public function __construct(?\Grafana\Foundation\Common\GraphDrawStyle $drawStyle = null, ?\Grafana\Foundation\Common\GraphGradientMode $gradientMode = null, ?\Grafana\Foundation\Common\GraphThresholdsStyleConfig $thresholdsStyle = null, ?string $lineColor = null, ?float $lineWidth = null, ?\Grafana\Foundation\Common\LineInterpolation $lineInterpolation = null, ?\Grafana\Foundation\Common\LineStyle $lineStyle = null, ?string $fillColor = null, ?float $fillOpacity = null, ?\Grafana\Foundation\Common\VisibilityMode $showPoints = null, ?float $pointSize = null, ?string $pointColor = null, ?\Grafana\Foundation\Common\AxisPlacement $axisPlacement = null, ?\Grafana\Foundation\Common\AxisColorMode $axisColorMode = null, ?string $axisLabel = null, ?float $axisWidth = null, ?float $axisSoftMin = null, ?float $axisSoftMax = null, ?bool $axisGridShow = null, ?\Grafana\Foundation\Common\ScaleDistributionConfig $scaleDistribution = null, ?bool $axisCenteredZero = null, ?\Grafana\Foundation\Common\BarAlignment $barAlignment = null, ?float $barWidthFactor = null, ?\Grafana\Foundation\Common\StackingConfig $stacking = null, ?\Grafana\Foundation\Common\HideSeriesConfig $hideFrom = null, ?bool $hideValue = null, ?\Grafana\Foundation\Common\GraphTransform $transform = null,  $spanNulls = null, ?string $fillBelowTo = null, ?string $pointSymbol = null, ?bool $axisBorderShow = null, ?float $barMaxWidth = null)
     {
-        $this->type = "sparkline";
-    
+        $this->type = \Grafana\Foundation\Common\TableCellDisplayMode::auto();
         $this->drawStyle = $drawStyle;
         $this->gradientMode = $gradientMode;
         $this->thresholdsStyle = $thresholdsStyle;
@@ -156,7 +155,7 @@ class TableSparklineCellOptions implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, drawStyle?: string, gradientMode?: string, thresholdsStyle?: mixed, lineColor?: string, lineWidth?: float, lineInterpolation?: string, lineStyle?: mixed, fillColor?: string, fillOpacity?: float, showPoints?: string, pointSize?: float, pointColor?: string, axisPlacement?: string, axisColorMode?: string, axisLabel?: string, axisWidth?: float, axisSoftMin?: float, axisSoftMax?: float, axisGridShow?: bool, scaleDistribution?: mixed, axisCenteredZero?: bool, barAlignment?: int, barWidthFactor?: float, stacking?: mixed, hideFrom?: mixed, hideValue?: bool, transform?: string, spanNulls?: bool|float, fillBelowTo?: string, pointSymbol?: string, axisBorderShow?: bool, barMaxWidth?: float} $inputData */
+        /** @var array{type?: "sparkline", drawStyle?: string, gradientMode?: string, thresholdsStyle?: mixed, lineColor?: string, lineWidth?: float, lineInterpolation?: string, lineStyle?: mixed, fillColor?: string, fillOpacity?: float, showPoints?: string, pointSize?: float, pointColor?: string, axisPlacement?: string, axisColorMode?: string, axisLabel?: string, axisWidth?: float, axisSoftMin?: float, axisSoftMax?: float, axisGridShow?: bool, scaleDistribution?: mixed, axisCenteredZero?: bool, barAlignment?: int, barWidthFactor?: float, stacking?: mixed, hideFrom?: mixed, hideValue?: bool, transform?: string, spanNulls?: bool|float, fillBelowTo?: string, pointSymbol?: string, axisBorderShow?: bool, barMaxWidth?: float} $inputData */
         $data = $inputData;
         return new self(
             drawStyle: isset($data["drawStyle"]) ? (function($input) { return \Grafana\Foundation\Common\GraphDrawStyle::fromValue($input); })($data["drawStyle"]) : null,

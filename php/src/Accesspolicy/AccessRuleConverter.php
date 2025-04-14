@@ -32,6 +32,14 @@ final class AccessRuleConverter
                 $disjunctionverb =\var_export($input->verb, true);
                 $arg0 = $disjunctionverb;
                 break;
+            case is_string($input->verb):
+                $disjunctionverb =\var_export($input->verb, true);
+                $arg0 = $disjunctionverb;
+                break;
+            case is_string($input->verb):
+                $disjunctionverb =\var_export($input->verb, true);
+                $arg0 = $disjunctionverb;
+                break;
             default:
                 throw new \ValueError('disjunction branch not handled');
         }

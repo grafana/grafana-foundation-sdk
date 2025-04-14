@@ -24,7 +24,6 @@ public class SimulationQuery {
     public Boolean last;
     public SimulationQuery() {
     }
-    
     public SimulationQuery(Key key,Map<String, Object> config,Boolean stream,Boolean last) {
         this.key = key;
         this.config = config;

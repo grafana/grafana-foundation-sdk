@@ -46,10 +46,7 @@
           "id": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "const": "date_histogram"
-          },
+          "type": {},
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -73,6 +70,16 @@
           }
         }
       },
+      "BucketAggregationType": {
+        "enum": [
+          "terms",
+          "filters",
+          "geohash_grid",
+          "date_histogram",
+          "histogram",
+          "nested"
+        ]
+      },
       "Histogram": {
         "type": "object",
         "additionalProperties": false,
@@ -87,10 +94,7 @@
           "id": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "const": "histogram"
-          },
+          "type": {},
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -119,10 +123,7 @@
           "id": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "const": "terms"
-          },
+          "type": {},
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -163,10 +164,7 @@
           "id": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "const": "filters"
-          },
+          "type": {},
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -211,10 +209,7 @@
           "id": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "const": "geohash_grid"
-          },
+          "type": {},
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -240,10 +235,7 @@
           "id": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "const": "nested"
-          },
+          "type": {},
           "settings": {
             "type": "object",
             "additionalProperties": {}
@@ -271,10 +263,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "count"
-          },
+          "type": {},
           "id": {
             "type": "string"
           },
@@ -282,6 +271,75 @@
             "type": "boolean"
           }
         }
+      },
+      "MetricAggregationType": {
+        "anyOf": [
+          {
+            "type": "string",
+            "const": "count"
+          },
+          {
+            "type": "string",
+            "const": "avg"
+          },
+          {
+            "type": "string",
+            "const": "sum"
+          },
+          {
+            "type": "string",
+            "const": "min"
+          },
+          {
+            "type": "string",
+            "const": "max"
+          },
+          {
+            "type": "string",
+            "const": "extended_stats"
+          },
+          {
+            "type": "string",
+            "const": "percentiles"
+          },
+          {
+            "type": "string",
+            "const": "cardinality"
+          },
+          {
+            "type": "string",
+            "const": "raw_document"
+          },
+          {
+            "type": "string",
+            "const": "raw_data"
+          },
+          {
+            "type": "string",
+            "const": "logs"
+          },
+          {
+            "type": "string",
+            "const": "rate"
+          },
+          {
+            "type": "string",
+            "const": "top_metrics"
+          },
+          {
+            "$ref": "#/components/schemas/PipelineMetricAggregationType"
+          }
+        ]
+      },
+      "PipelineMetricAggregationType": {
+        "enum": [
+          "moving_avg",
+          "moving_fn",
+          "derivative",
+          "serial_diff",
+          "cumulative_sum",
+          "bucket_script"
+        ]
       },
       "PipelineMetricAggregation": {
         "anyOf": [
@@ -313,10 +371,7 @@
           "field": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "const": "moving_avg"
-          },
+          "type": {},
           "id": {
             "type": "string"
           },
@@ -347,10 +402,7 @@
           "field": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "const": "derivative"
-          },
+          "type": {},
           "id": {
             "type": "string"
           },
@@ -382,10 +434,7 @@
           "field": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "const": "cumulative_sum"
-          },
+          "type": {},
           "id": {
             "type": "string"
           },
@@ -411,10 +460,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "bucket_script"
-          },
+          "type": {},
           "pipelineVariables": {
             "type": "array",
             "items": {
@@ -542,10 +588,7 @@
           "field": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "const": "serial_diff"
-          },
+          "type": {},
           "id": {
             "type": "string"
           },
@@ -571,10 +614,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "raw_data"
-          },
+          "type": {},
           "id": {
             "type": "string"
           },
@@ -600,10 +640,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "raw_document"
-          },
+          "type": {},
           "id": {
             "type": "string"
           },
@@ -629,10 +666,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "cardinality"
-          },
+          "type": {},
           "field": {
             "type": "string"
           },
@@ -664,10 +698,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "percentiles"
-          },
+          "type": {},
           "field": {
             "type": "string"
           },
@@ -705,10 +736,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "extended_stats"
-          },
+          "type": {},
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -747,10 +775,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "min"
-          },
+          "type": {},
           "field": {
             "type": "string"
           },
@@ -782,10 +807,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "max"
-          },
+          "type": {},
           "field": {
             "type": "string"
           },
@@ -817,10 +839,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "sum"
-          },
+          "type": {},
           "field": {
             "type": "string"
           },
@@ -852,10 +871,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "avg"
-          },
+          "type": {},
           "field": {
             "type": "string"
           },
@@ -893,10 +909,7 @@
           "field": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "const": "moving_fn"
-          },
+          "type": {},
           "id": {
             "type": "string"
           },
@@ -928,10 +941,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "logs"
-          },
+          "type": {},
           "id": {
             "type": "string"
           },
@@ -957,10 +967,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "rate"
-          },
+          "type": {},
           "field": {
             "type": "string"
           },
@@ -992,10 +999,7 @@
           "id"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "top_metrics"
-          },
+          "type": {},
           "id": {
             "type": "string"
           },
@@ -1021,16 +1025,6 @@
             "type": "boolean"
           }
         }
-      },
-      "BucketAggregationType": {
-        "enum": [
-          "terms",
-          "filters",
-          "geohash_grid",
-          "date_histogram",
-          "histogram",
-          "nested"
-        ]
       },
       "BaseBucketAggregation": {
         "type": "object",
@@ -1149,75 +1143,6 @@
             "type": "string"
           }
         }
-      },
-      "PipelineMetricAggregationType": {
-        "enum": [
-          "moving_avg",
-          "moving_fn",
-          "derivative",
-          "serial_diff",
-          "cumulative_sum",
-          "bucket_script"
-        ]
-      },
-      "MetricAggregationType": {
-        "anyOf": [
-          {
-            "type": "string",
-            "const": "count"
-          },
-          {
-            "type": "string",
-            "const": "avg"
-          },
-          {
-            "type": "string",
-            "const": "sum"
-          },
-          {
-            "type": "string",
-            "const": "min"
-          },
-          {
-            "type": "string",
-            "const": "max"
-          },
-          {
-            "type": "string",
-            "const": "extended_stats"
-          },
-          {
-            "type": "string",
-            "const": "percentiles"
-          },
-          {
-            "type": "string",
-            "const": "cardinality"
-          },
-          {
-            "type": "string",
-            "const": "raw_document"
-          },
-          {
-            "type": "string",
-            "const": "raw_data"
-          },
-          {
-            "type": "string",
-            "const": "logs"
-          },
-          {
-            "type": "string",
-            "const": "rate"
-          },
-          {
-            "type": "string",
-            "const": "top_metrics"
-          },
-          {
-            "$ref": "#/components/schemas/PipelineMetricAggregationType"
-          }
-        ]
       },
       "BaseMetricAggregation": {
         "type": "object",
@@ -1448,10 +1373,7 @@
           "predict"
         ],
         "properties": {
-          "model": {
-            "type": "string",
-            "const": "simple"
-          },
+          "model": {},
           "window": {
             "type": "string"
           },
@@ -1469,10 +1391,7 @@
           "predict"
         ],
         "properties": {
-          "model": {
-            "type": "string",
-            "const": "linear"
-          },
+          "model": {},
           "window": {
             "type": "string"
           },
@@ -1491,10 +1410,7 @@
           "predict"
         ],
         "properties": {
-          "model": {
-            "type": "string",
-            "const": "ewma"
-          },
+          "model": {},
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -1526,10 +1442,7 @@
           "predict"
         ],
         "properties": {
-          "model": {
-            "type": "string",
-            "const": "holt"
-          },
+          "model": {},
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -1564,10 +1477,7 @@
           "predict"
         ],
         "properties": {
-          "model": {
-            "type": "string",
-            "const": "holt_winters"
-          },
+          "model": {},
           "settings": {
             "type": "object",
             "additionalProperties": false,

@@ -6,7 +6,7 @@ from ..models import loki
 from ..models import dashboard
 
 
-class Dataquery(cogbuilder.Builder[loki.Dataquery]):    
+class Dataquery(cogbuilder.Builder[loki.Dataquery]):
     _internal: loki.Dataquery
 
     def __init__(self):
@@ -54,12 +54,12 @@ class Dataquery(cogbuilder.Builder[loki.Dataquery]):
     
         return self
     
-    def editor_mode(self, editor_mode: loki.QueryEditorMode) -> typing.Self:        
+    def editor_mode(self, editor_mode: loki.QueryEditorMode) -> typing.Self:    
         self._internal.editor_mode = editor_mode
     
         return self
     
-    def range_val(self, range_val: bool) -> typing.Self:    
+    def range(self, range_val: bool) -> typing.Self:    
         """
         @deprecated, now use queryType.
         """

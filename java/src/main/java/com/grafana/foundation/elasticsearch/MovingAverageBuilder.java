@@ -9,7 +9,6 @@ public class MovingAverageBuilder implements com.grafana.foundation.cog.Builder<
     
     public MovingAverageBuilder() {
         this.internal = new MovingAverage();
-        this.internal.type = "moving_avg";
     }
     public MovingAverageBuilder pipelineAgg(String pipelineAgg) {
         this.internal.pipelineAgg = pipelineAgg;

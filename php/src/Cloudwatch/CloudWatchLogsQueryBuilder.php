@@ -33,12 +33,14 @@ class CloudWatchLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function id(string $id): static
     {
         $this->internal->id = $id;
     
         return $this;
     }
+
     /**
      * AWS region to query for the logs
      */
@@ -48,6 +50,7 @@ class CloudWatchLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The CloudWatch Logs Insights query to execute
      */
@@ -57,6 +60,7 @@ class CloudWatchLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Fields to group the results by, this field is automatically populated whenever the query is updated
      * @param array<string> $statsGroups
@@ -67,6 +71,7 @@ class CloudWatchLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Log groups to query
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\LogGroup>> $logGroups
@@ -81,6 +86,7 @@ class CloudWatchLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * A unique identifier for the query within the list of targets.
      * In server side expressions, the refId is used as a variable name to identify results.
@@ -92,6 +98,7 @@ class CloudWatchLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
      * Note this does not always imply that the query should not be executed since
@@ -103,6 +110,7 @@ class CloudWatchLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -113,6 +121,7 @@ class CloudWatchLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated use logGroups
      * @param array<string> $logGroupNames
@@ -123,6 +132,7 @@ class CloudWatchLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.

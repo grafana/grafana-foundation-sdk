@@ -33,6 +33,7 @@ class FilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Filter operator.
      */
@@ -42,6 +43,7 @@ class FilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Filter value.
      */
@@ -51,6 +53,7 @@ class FilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Filter condition.
      */

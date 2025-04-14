@@ -9,7 +9,7 @@ Colored background cell options
 
 ```go
 type TableColoredBackgroundCellOptions struct {
-    Type string `json:"type"`
+    Type common.TableCellDisplayMode `json:"type"`
     Mode *common.TableCellBackgroundDisplayMode `json:"mode,omitempty"`
 }
 ```

@@ -12,7 +12,6 @@ class BucketScriptBuilder implements \Grafana\Foundation\Cog\Builder
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\BucketScript();
-    $this->internal->type = "bucket_script";
     }
 
     /**
@@ -37,12 +36,14 @@ class BucketScriptBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function id(string $id): static
     {
         $this->internal->id = $id;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\ElasticsearchBucketScriptSettings> $settings
      */
@@ -53,6 +54,7 @@ class BucketScriptBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function hide(bool $hide): static
     {
         $this->internal->hide = $hide;

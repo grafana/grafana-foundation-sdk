@@ -27,3 +27,4 @@ export class DayOfMonthRangeBuilder implements cog.Builder<alerting.DayOfMonthRa
         return this;
     }
 }
+

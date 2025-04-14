@@ -6,7 +6,7 @@ from ..models import azuremonitor
 from ..models import dashboard
 
 
-class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):    
+class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     _internal: azuremonitor.AzureMonitorQuery
 
     def __init__(self):
@@ -127,12 +127,12 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     
         return self
     
-    def namespace(self, namespace: str) -> typing.Self:        
+    def namespace(self, namespace: str) -> typing.Self:    
         self._internal.namespace = namespace
     
         return self
     
-    def resource(self, resource: str) -> typing.Self:        
+    def resource(self, resource: str) -> typing.Self:    
         self._internal.resource = resource
     
         return self
@@ -160,7 +160,8 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
         return self
     
 
-class AzureMetricQuery(cogbuilder.Builder[azuremonitor.AzureMetricQuery]):    
+
+class AzureMetricQuery(cogbuilder.Builder[azuremonitor.AzureMetricQuery]):
     _internal: azuremonitor.AzureMetricQuery
 
     def __init__(self):
@@ -339,7 +340,8 @@ class AzureMetricQuery(cogbuilder.Builder[azuremonitor.AzureMetricQuery]):
         return self
     
 
-class AzureMonitorResource(cogbuilder.Builder[azuremonitor.AzureMonitorResource]):    
+
+class AzureMonitorResource(cogbuilder.Builder[azuremonitor.AzureMonitorResource]):
     _internal: azuremonitor.AzureMonitorResource
 
     def __init__(self):
@@ -351,33 +353,34 @@ class AzureMonitorResource(cogbuilder.Builder[azuremonitor.AzureMonitorResource]
         """
         return self._internal    
     
-    def subscription(self, subscription: str) -> typing.Self:        
+    def subscription(self, subscription: str) -> typing.Self:    
         self._internal.subscription = subscription
     
         return self
     
-    def resource_group(self, resource_group: str) -> typing.Self:        
+    def resource_group(self, resource_group: str) -> typing.Self:    
         self._internal.resource_group = resource_group
     
         return self
     
-    def resource_name(self, resource_name: str) -> typing.Self:        
+    def resource_name(self, resource_name: str) -> typing.Self:    
         self._internal.resource_name = resource_name
     
         return self
     
-    def metric_namespace(self, metric_namespace: str) -> typing.Self:        
+    def metric_namespace(self, metric_namespace: str) -> typing.Self:    
         self._internal.metric_namespace = metric_namespace
     
         return self
     
-    def region(self, region: str) -> typing.Self:        
+    def region(self, region: str) -> typing.Self:    
         self._internal.region = region
     
         return self
     
 
-class AzureMetricDimension(cogbuilder.Builder[azuremonitor.AzureMetricDimension]):    
+
+class AzureMetricDimension(cogbuilder.Builder[azuremonitor.AzureMetricDimension]):
     _internal: azuremonitor.AzureMetricDimension
 
     def __init__(self):
@@ -416,7 +419,7 @@ class AzureMetricDimension(cogbuilder.Builder[azuremonitor.AzureMetricDimension]
     
         return self
     
-    def filter_val(self, filter_val: str) -> typing.Self:    
+    def filter(self, filter_val: str) -> typing.Self:    
         """
         @deprecated filter is deprecated in favour of filters to support multiselect.
         """
@@ -425,6 +428,7 @@ class AzureMetricDimension(cogbuilder.Builder[azuremonitor.AzureMetricDimension]
     
         return self
     
+
 
 class AzureLogsQuery(cogbuilder.Builder[azuremonitor.AzureLogsQuery]):    
     """
@@ -515,7 +519,8 @@ class AzureLogsQuery(cogbuilder.Builder[azuremonitor.AzureLogsQuery]):
         return self
     
 
-class AzureResourceGraphQuery(cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]):    
+
+class AzureResourceGraphQuery(cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]):
     _internal: azuremonitor.AzureResourceGraphQuery
 
     def __init__(self):
@@ -545,6 +550,7 @@ class AzureResourceGraphQuery(cogbuilder.Builder[azuremonitor.AzureResourceGraph
     
         return self
     
+
 
 class AzureTracesQuery(cogbuilder.Builder[azuremonitor.AzureTracesQuery]):    
     """
@@ -618,7 +624,8 @@ class AzureTracesQuery(cogbuilder.Builder[azuremonitor.AzureTracesQuery]):
         return self
     
 
-class AzureTracesFilter(cogbuilder.Builder[azuremonitor.AzureTracesFilter]):    
+
+class AzureTracesFilter(cogbuilder.Builder[azuremonitor.AzureTracesFilter]):
     _internal: azuremonitor.AzureTracesFilter
 
     def __init__(self):
@@ -630,7 +637,7 @@ class AzureTracesFilter(cogbuilder.Builder[azuremonitor.AzureTracesFilter]):
         """
         return self._internal    
     
-    def property_val(self, property_val: str) -> typing.Self:    
+    def property(self, property_val: str) -> typing.Self:    
         """
         Property name, auto-populated based on available traces.
         """
@@ -658,7 +665,8 @@ class AzureTracesFilter(cogbuilder.Builder[azuremonitor.AzureTracesFilter]):
         return self
     
 
-class AppInsightsMetricNameQuery(cogbuilder.Builder[azuremonitor.AppInsightsMetricNameQuery]):    
+
+class AppInsightsMetricNameQuery(cogbuilder.Builder[azuremonitor.AppInsightsMetricNameQuery]):
     _internal: azuremonitor.AppInsightsMetricNameQuery
 
     def __init__(self):
@@ -671,13 +679,14 @@ class AppInsightsMetricNameQuery(cogbuilder.Builder[azuremonitor.AppInsightsMetr
         """
         return self._internal    
     
-    def raw_query(self, raw_query: str) -> typing.Self:        
+    def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self
     
 
-class AppInsightsGroupByQuery(cogbuilder.Builder[azuremonitor.AppInsightsGroupByQuery]):    
+
+class AppInsightsGroupByQuery(cogbuilder.Builder[azuremonitor.AppInsightsGroupByQuery]):
     _internal: azuremonitor.AppInsightsGroupByQuery
 
     def __init__(self):
@@ -690,18 +699,19 @@ class AppInsightsGroupByQuery(cogbuilder.Builder[azuremonitor.AppInsightsGroupBy
         """
         return self._internal    
     
-    def raw_query(self, raw_query: str) -> typing.Self:        
+    def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self
     
-    def metric_name(self, metric_name: str) -> typing.Self:        
+    def metric_name(self, metric_name: str) -> typing.Self:    
         self._internal.metric_name = metric_name
     
         return self
     
 
-class SubscriptionsQuery(cogbuilder.Builder[azuremonitor.SubscriptionsQuery]):    
+
+class SubscriptionsQuery(cogbuilder.Builder[azuremonitor.SubscriptionsQuery]):
     _internal: azuremonitor.SubscriptionsQuery
 
     def __init__(self):
@@ -714,13 +724,14 @@ class SubscriptionsQuery(cogbuilder.Builder[azuremonitor.SubscriptionsQuery]):
         """
         return self._internal    
     
-    def raw_query(self, raw_query: str) -> typing.Self:        
+    def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self
     
 
-class ResourceGroupsQuery(cogbuilder.Builder[azuremonitor.ResourceGroupsQuery]):    
+
+class ResourceGroupsQuery(cogbuilder.Builder[azuremonitor.ResourceGroupsQuery]):
     _internal: azuremonitor.ResourceGroupsQuery
 
     def __init__(self):
@@ -733,18 +744,19 @@ class ResourceGroupsQuery(cogbuilder.Builder[azuremonitor.ResourceGroupsQuery]):
         """
         return self._internal    
     
-    def raw_query(self, raw_query: str) -> typing.Self:        
+    def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self
     
-    def subscription(self, subscription: str) -> typing.Self:        
+    def subscription(self, subscription: str) -> typing.Self:    
         self._internal.subscription = subscription
     
         return self
     
 
-class ResourceNamesQuery(cogbuilder.Builder[azuremonitor.ResourceNamesQuery]):    
+
+class ResourceNamesQuery(cogbuilder.Builder[azuremonitor.ResourceNamesQuery]):
     _internal: azuremonitor.ResourceNamesQuery
 
     def __init__(self):
@@ -757,28 +769,29 @@ class ResourceNamesQuery(cogbuilder.Builder[azuremonitor.ResourceNamesQuery]):
         """
         return self._internal    
     
-    def raw_query(self, raw_query: str) -> typing.Self:        
+    def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self
     
-    def subscription(self, subscription: str) -> typing.Self:        
+    def subscription(self, subscription: str) -> typing.Self:    
         self._internal.subscription = subscription
     
         return self
     
-    def resource_group(self, resource_group: str) -> typing.Self:        
+    def resource_group(self, resource_group: str) -> typing.Self:    
         self._internal.resource_group = resource_group
     
         return self
     
-    def metric_namespace(self, metric_namespace: str) -> typing.Self:        
+    def metric_namespace(self, metric_namespace: str) -> typing.Self:    
         self._internal.metric_namespace = metric_namespace
     
         return self
     
 
-class MetricNamespaceQuery(cogbuilder.Builder[azuremonitor.MetricNamespaceQuery]):    
+
+class MetricNamespaceQuery(cogbuilder.Builder[azuremonitor.MetricNamespaceQuery]):
     _internal: azuremonitor.MetricNamespaceQuery
 
     def __init__(self):
@@ -791,31 +804,32 @@ class MetricNamespaceQuery(cogbuilder.Builder[azuremonitor.MetricNamespaceQuery]
         """
         return self._internal    
     
-    def raw_query(self, raw_query: str) -> typing.Self:        
+    def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self
     
-    def subscription(self, subscription: str) -> typing.Self:        
+    def subscription(self, subscription: str) -> typing.Self:    
         self._internal.subscription = subscription
     
         return self
     
-    def resource_group(self, resource_group: str) -> typing.Self:        
+    def resource_group(self, resource_group: str) -> typing.Self:    
         self._internal.resource_group = resource_group
     
         return self
     
-    def metric_namespace(self, metric_namespace: str) -> typing.Self:        
+    def metric_namespace(self, metric_namespace: str) -> typing.Self:    
         self._internal.metric_namespace = metric_namespace
     
         return self
     
-    def resource_name(self, resource_name: str) -> typing.Self:        
+    def resource_name(self, resource_name: str) -> typing.Self:    
         self._internal.resource_name = resource_name
     
         return self
     
+
 
 class MetricDefinitionsQuery(cogbuilder.Builder[azuremonitor.MetricDefinitionsQuery]):    
     """
@@ -834,33 +848,34 @@ class MetricDefinitionsQuery(cogbuilder.Builder[azuremonitor.MetricDefinitionsQu
         """
         return self._internal    
     
-    def raw_query(self, raw_query: str) -> typing.Self:        
+    def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self
     
-    def subscription(self, subscription: str) -> typing.Self:        
+    def subscription(self, subscription: str) -> typing.Self:    
         self._internal.subscription = subscription
     
         return self
     
-    def resource_group(self, resource_group: str) -> typing.Self:        
+    def resource_group(self, resource_group: str) -> typing.Self:    
         self._internal.resource_group = resource_group
     
         return self
     
-    def metric_namespace(self, metric_namespace: str) -> typing.Self:        
+    def metric_namespace(self, metric_namespace: str) -> typing.Self:    
         self._internal.metric_namespace = metric_namespace
     
         return self
     
-    def resource_name(self, resource_name: str) -> typing.Self:        
+    def resource_name(self, resource_name: str) -> typing.Self:    
         self._internal.resource_name = resource_name
     
         return self
     
 
-class MetricNamesQuery(cogbuilder.Builder[azuremonitor.MetricNamesQuery]):    
+
+class MetricNamesQuery(cogbuilder.Builder[azuremonitor.MetricNamesQuery]):
     _internal: azuremonitor.MetricNamesQuery
 
     def __init__(self):
@@ -873,33 +888,34 @@ class MetricNamesQuery(cogbuilder.Builder[azuremonitor.MetricNamesQuery]):
         """
         return self._internal    
     
-    def raw_query(self, raw_query: str) -> typing.Self:        
+    def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self
     
-    def subscription(self, subscription: str) -> typing.Self:        
+    def subscription(self, subscription: str) -> typing.Self:    
         self._internal.subscription = subscription
     
         return self
     
-    def resource_group(self, resource_group: str) -> typing.Self:        
+    def resource_group(self, resource_group: str) -> typing.Self:    
         self._internal.resource_group = resource_group
     
         return self
     
-    def resource_name(self, resource_name: str) -> typing.Self:        
+    def resource_name(self, resource_name: str) -> typing.Self:    
         self._internal.resource_name = resource_name
     
         return self
     
-    def metric_namespace(self, metric_namespace: str) -> typing.Self:        
+    def metric_namespace(self, metric_namespace: str) -> typing.Self:    
         self._internal.metric_namespace = metric_namespace
     
         return self
     
 
-class WorkspacesQuery(cogbuilder.Builder[azuremonitor.WorkspacesQuery]):    
+
+class WorkspacesQuery(cogbuilder.Builder[azuremonitor.WorkspacesQuery]):
     _internal: azuremonitor.WorkspacesQuery
 
     def __init__(self):
@@ -912,18 +928,19 @@ class WorkspacesQuery(cogbuilder.Builder[azuremonitor.WorkspacesQuery]):
         """
         return self._internal    
     
-    def raw_query(self, raw_query: str) -> typing.Self:        
+    def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self
     
-    def subscription(self, subscription: str) -> typing.Self:        
+    def subscription(self, subscription: str) -> typing.Self:    
         self._internal.subscription = subscription
     
         return self
     
 
-class UnknownQuery(cogbuilder.Builder[azuremonitor.UnknownQuery]):    
+
+class UnknownQuery(cogbuilder.Builder[azuremonitor.UnknownQuery]):
     _internal: azuremonitor.UnknownQuery
 
     def __init__(self):
@@ -936,13 +953,14 @@ class UnknownQuery(cogbuilder.Builder[azuremonitor.UnknownQuery]):
         """
         return self._internal    
     
-    def raw_query(self, raw_query: str) -> typing.Self:        
+    def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self
     
 
-class BaseGrafanaTemplateVariableQuery(cogbuilder.Builder[azuremonitor.BaseGrafanaTemplateVariableQuery]):    
+
+class BaseGrafanaTemplateVariableQuery(cogbuilder.Builder[azuremonitor.BaseGrafanaTemplateVariableQuery]):
     _internal: azuremonitor.BaseGrafanaTemplateVariableQuery
 
     def __init__(self):
@@ -954,7 +972,7 @@ class BaseGrafanaTemplateVariableQuery(cogbuilder.Builder[azuremonitor.BaseGrafa
         """
         return self._internal    
     
-    def raw_query(self, raw_query: str) -> typing.Self:        
+    def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self

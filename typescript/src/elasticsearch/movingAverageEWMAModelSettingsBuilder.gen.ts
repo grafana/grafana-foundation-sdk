@@ -8,7 +8,6 @@ export class MovingAverageEWMAModelSettingsBuilder implements cog.Builder<elasti
 
     constructor() {
         this.internal = elasticsearch.defaultMovingAverageEWMAModelSettings();
-        this.internal.model = "ewma";
     }
 
     /**
@@ -40,3 +39,4 @@ export class MovingAverageEWMAModelSettingsBuilder implements cog.Builder<elasti
         return this;
     }
 }
+

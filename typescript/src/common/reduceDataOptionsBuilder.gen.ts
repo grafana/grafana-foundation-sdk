@@ -42,3 +42,4 @@ export class ReduceDataOptionsBuilder implements cog.Builder<common.ReduceDataOp
         return this;
     }
 }
+

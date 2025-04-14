@@ -8,7 +8,6 @@ public class DerivativeBuilder implements com.grafana.foundation.cog.Builder<Der
     
     public DerivativeBuilder() {
         this.internal = new Derivative();
-        this.internal.type = "derivative";
     }
     public DerivativeBuilder pipelineAgg(String pipelineAgg) {
         this.internal.pipelineAgg = pipelineAgg;

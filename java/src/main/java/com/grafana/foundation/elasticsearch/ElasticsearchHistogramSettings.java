@@ -17,7 +17,6 @@ public class ElasticsearchHistogramSettings {
     public String minDocCount;
     public ElasticsearchHistogramSettings() {
     }
-    
     public ElasticsearchHistogramSettings(String interval,String minDocCount) {
         this.interval = interval;
         this.minDocCount = minDocCount;

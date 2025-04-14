@@ -97,7 +97,6 @@ public class FieldConfig {
     public Object custom;
     public FieldConfig() {
     }
-    
     public FieldConfig(String displayName,String displayNameFromDS,String description,String path,Boolean writeable,Boolean filterable,String unit,Double decimals,Double min,Double max,List<ValueMapping> mappings,ThresholdsConfig thresholds,FieldColor color,List<DashboardLink> links,String noValue,Object custom) {
         this.displayName = displayName;
         this.displayNameFromDS = displayNameFromDS;

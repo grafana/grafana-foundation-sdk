@@ -16,7 +16,6 @@ public class UnknownQuery {
     public String kind;
     public UnknownQuery() {
     }
-    
     public UnknownQuery(String rawQuery,String kind) {
         this.rawQuery = rawQuery;
         this.kind = kind;

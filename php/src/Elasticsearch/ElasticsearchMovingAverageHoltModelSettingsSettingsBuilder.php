@@ -29,6 +29,7 @@ class ElasticsearchMovingAverageHoltModelSettingsSettingsBuilder implements \Gra
     
         return $this;
     }
+
     public function beta(string $beta): static
     {
         $this->internal->beta = $beta;

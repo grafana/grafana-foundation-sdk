@@ -89,3 +89,4 @@ export class NotificationPolicyBuilder implements cog.Builder<alerting.Notificat
         return this;
     }
 }
+

@@ -8,7 +8,6 @@ export class PercentilesBuilder implements cog.Builder<elasticsearch.Percentiles
 
     constructor() {
         this.internal = elasticsearch.defaultPercentiles();
-        this.internal.type = "percentiles";
     }
 
     /**
@@ -42,3 +41,4 @@ export class PercentilesBuilder implements cog.Builder<elasticsearch.Percentiles
         return this;
     }
 }
+

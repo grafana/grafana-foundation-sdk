@@ -11,7 +11,7 @@ class MovingAverage implements \JsonSerializable
 
     public ?string $field;
 
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public string $id;
 
@@ -33,8 +33,7 @@ class MovingAverage implements \JsonSerializable
     {
         $this->pipelineAgg = $pipelineAgg;
         $this->field = $field;
-        $this->type = "moving_avg";
-    
+        $this->type = \Grafana\Foundation\Elasticsearch\MetricAggregationType::count();
         $this->id = $id ?: "";
         $this->settings = $settings;
         $this->hide = $hide;
@@ -45,7 +44,7 @@ class MovingAverage implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{pipelineAgg?: string, field?: string, type?: string, id?: string, settings?: array<string, mixed>, hide?: bool} $inputData */
+        /** @var array{pipelineAgg?: string, field?: string, type?: "moving_avg", id?: string, settings?: array<string, mixed>, hide?: bool} $inputData */
         $data = $inputData;
         return new self(
             pipelineAgg: $data["pipelineAgg"] ?? null,

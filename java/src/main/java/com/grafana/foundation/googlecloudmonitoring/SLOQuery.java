@@ -46,7 +46,6 @@ public class SLOQuery {
     public String lookbackPeriod;
     public SLOQuery() {
     }
-    
     public SLOQuery(String projectName,String perSeriesAligner,String alignmentPeriod,String selectorName,String serviceId,String serviceName,String sloId,String sloName,Double goal,String lookbackPeriod) {
         this.projectName = projectName;
         this.perSeriesAligner = perSeriesAligner;

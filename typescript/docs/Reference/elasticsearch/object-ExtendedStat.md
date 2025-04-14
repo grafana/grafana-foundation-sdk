@@ -12,9 +12,6 @@ export interface ExtendedStat {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [ExtendedStatBuilder](./builder-ExtendedStatBuilder.md)

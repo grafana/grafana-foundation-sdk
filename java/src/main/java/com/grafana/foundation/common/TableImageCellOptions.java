@@ -10,12 +10,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 // Json view cell options
 public class TableImageCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     public TableImageCellOptions() {
-    }
-    
-    public TableImageCellOptions(String type) {
-        this.type = type;
+        this.type = TableCellDisplayMode.IMAGE;
     }
     
     public String toJSON() throws JsonProcessingException {

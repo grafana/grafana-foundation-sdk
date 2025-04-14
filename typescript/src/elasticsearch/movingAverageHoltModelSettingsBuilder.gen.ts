@@ -8,7 +8,6 @@ export class MovingAverageHoltModelSettingsBuilder implements cog.Builder<elasti
 
     constructor() {
         this.internal = elasticsearch.defaultMovingAverageHoltModelSettings();
-        this.internal.model = "holt";
     }
 
     /**
@@ -41,3 +40,4 @@ export class MovingAverageHoltModelSettingsBuilder implements cog.Builder<elasti
         return this;
     }
 }
+

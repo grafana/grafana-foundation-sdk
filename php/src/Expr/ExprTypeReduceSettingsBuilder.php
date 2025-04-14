@@ -35,6 +35,7 @@ class ExprTypeReduceSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Only valid when mode is replace
      */

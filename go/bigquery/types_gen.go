@@ -778,7 +778,7 @@ func (resource SQLExpression) Validate() error {
 }
 
 type QueryEditorFunctionExpression struct {
-	Type       string                                   `json:"type"`
+	Type       QueryEditorExpressionType                `json:"type"`
 	Name       *string                                  `json:"name,omitempty"`
 	Parameters []QueryEditorFunctionParameterExpression `json:"parameters,omitempty"`
 }
@@ -786,7 +786,7 @@ type QueryEditorFunctionExpression struct {
 // NewQueryEditorFunctionExpression creates a new QueryEditorFunctionExpression object.
 func NewQueryEditorFunctionExpression() *QueryEditorFunctionExpression {
 	return &QueryEditorFunctionExpression{
-		Type: "function",
+		Type: QueryEditorExpressionTypeFunction,
 	}
 }
 
@@ -893,11 +893,8 @@ func (resource QueryEditorFunctionExpression) Equals(other QueryEditorFunctionEx
 // Validate checks all the validation constraints that may be defined on `QueryEditorFunctionExpression` fields for violations and returns them.
 func (resource QueryEditorFunctionExpression) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "function") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == function"),
-		)...)
+	if resource.Type != "function" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be function"))...)
 	}
 
 	for i1 := range resource.Parameters {
@@ -913,15 +910,27 @@ func (resource QueryEditorFunctionExpression) Validate() error {
 	return errs
 }
 
+type QueryEditorExpressionType string
+
+const (
+	QueryEditorExpressionTypeProperty          QueryEditorExpressionType = "property"
+	QueryEditorExpressionTypeOperator          QueryEditorExpressionType = "operator"
+	QueryEditorExpressionTypeOr                QueryEditorExpressionType = "or"
+	QueryEditorExpressionTypeAnd               QueryEditorExpressionType = "and"
+	QueryEditorExpressionTypeGroupBy           QueryEditorExpressionType = "groupBy"
+	QueryEditorExpressionTypeFunction          QueryEditorExpressionType = "function"
+	QueryEditorExpressionTypeFunctionParameter QueryEditorExpressionType = "functionParameter"
+)
+
 type QueryEditorFunctionParameterExpression struct {
-	Type string  `json:"type"`
-	Name *string `json:"name,omitempty"`
+	Type QueryEditorExpressionType `json:"type"`
+	Name *string                   `json:"name,omitempty"`
 }
 
 // NewQueryEditorFunctionParameterExpression creates a new QueryEditorFunctionParameterExpression object.
 func NewQueryEditorFunctionParameterExpression() *QueryEditorFunctionParameterExpression {
 	return &QueryEditorFunctionParameterExpression{
-		Type: "functionParameter",
+		Type: QueryEditorExpressionTypeFunctionParameter,
 	}
 }
 
@@ -995,11 +1004,8 @@ func (resource QueryEditorFunctionParameterExpression) Equals(other QueryEditorF
 // Validate checks all the validation constraints that may be defined on `QueryEditorFunctionParameterExpression` fields for violations and returns them.
 func (resource QueryEditorFunctionParameterExpression) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "functionParameter") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == functionParameter"),
-		)...)
+	if resource.Type != "functionParameter" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be functionParameter"))...)
 	}
 
 	if len(errs) == 0 {
@@ -1010,14 +1016,14 @@ func (resource QueryEditorFunctionParameterExpression) Validate() error {
 }
 
 type QueryEditorGroupByExpression struct {
-	Type     string              `json:"type"`
-	Property QueryEditorProperty `json:"property"`
+	Type     QueryEditorExpressionType `json:"type"`
+	Property QueryEditorProperty       `json:"property"`
 }
 
 // NewQueryEditorGroupByExpression creates a new QueryEditorGroupByExpression object.
 func NewQueryEditorGroupByExpression() *QueryEditorGroupByExpression {
 	return &QueryEditorGroupByExpression{
-		Type:     "groupBy",
+		Type:     QueryEditorExpressionTypeGroupBy,
 		Property: *NewQueryEditorProperty(),
 	}
 }
@@ -1091,11 +1097,8 @@ func (resource QueryEditorGroupByExpression) Equals(other QueryEditorGroupByExpr
 // Validate checks all the validation constraints that may be defined on `QueryEditorGroupByExpression` fields for violations and returns them.
 func (resource QueryEditorGroupByExpression) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "groupBy") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == groupBy"),
-		)...)
+	if resource.Type != "groupBy" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be groupBy"))...)
 	}
 	if err := resource.Property.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("property", err)...)
@@ -1197,14 +1200,14 @@ const (
 )
 
 type QueryEditorPropertyExpression struct {
-	Type     string              `json:"type"`
-	Property QueryEditorProperty `json:"property"`
+	Type     QueryEditorExpressionType `json:"type"`
+	Property QueryEditorProperty       `json:"property"`
 }
 
 // NewQueryEditorPropertyExpression creates a new QueryEditorPropertyExpression object.
 func NewQueryEditorPropertyExpression() *QueryEditorPropertyExpression {
 	return &QueryEditorPropertyExpression{
-		Type:     "property",
+		Type:     QueryEditorExpressionTypeProperty,
 		Property: *NewQueryEditorProperty(),
 	}
 }
@@ -1278,11 +1281,8 @@ func (resource QueryEditorPropertyExpression) Equals(other QueryEditorPropertyEx
 // Validate checks all the validation constraints that may be defined on `QueryEditorPropertyExpression` fields for violations and returns them.
 func (resource QueryEditorPropertyExpression) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "property") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == property"),
-		)...)
+	if resource.Type != "property" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be property"))...)
 	}
 	if err := resource.Property.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("property", err)...)
@@ -1300,18 +1300,6 @@ type OrderByDirection string
 const (
 	OrderByDirectionASC  OrderByDirection = "ASC"
 	OrderByDirectionDESC OrderByDirection = "DESC"
-)
-
-type QueryEditorExpressionType string
-
-const (
-	QueryEditorExpressionTypeProperty          QueryEditorExpressionType = "property"
-	QueryEditorExpressionTypeOperator          QueryEditorExpressionType = "operator"
-	QueryEditorExpressionTypeOr                QueryEditorExpressionType = "or"
-	QueryEditorExpressionTypeAnd               QueryEditorExpressionType = "and"
-	QueryEditorExpressionTypeGroupBy           QueryEditorExpressionType = "groupBy"
-	QueryEditorExpressionTypeFunction          QueryEditorExpressionType = "function"
-	QueryEditorExpressionTypeFunctionParameter QueryEditorExpressionType = "functionParameter"
 )
 
 // VariantConfig returns the configuration related to grafana-bigquery-datasource dataqueries.

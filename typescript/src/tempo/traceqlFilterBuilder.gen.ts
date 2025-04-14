@@ -53,3 +53,4 @@ export class TraceqlFilterBuilder implements cog.Builder<tempo.TraceqlFilter> {
         return this;
     }
 }
+

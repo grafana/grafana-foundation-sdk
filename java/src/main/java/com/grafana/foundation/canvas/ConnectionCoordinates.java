@@ -14,7 +14,6 @@ public class ConnectionCoordinates {
     public Double y;
     public ConnectionCoordinates() {
     }
-    
     public ConnectionCoordinates(Double x,Double y) {
         this.x = x;
         this.y = y;

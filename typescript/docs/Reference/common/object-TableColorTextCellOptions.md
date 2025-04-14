@@ -9,10 +9,7 @@ Colored text cell options
 
 ```typescript
 export interface TableColorTextCellOptions {
-	type: "color-text";
+	type: common.TableCellDisplayMode.ColorText;
 }
 
 ```
-## Methods
-
-No methods.

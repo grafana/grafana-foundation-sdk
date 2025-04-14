@@ -100,3 +100,4 @@ export class YAxisConfigBuilder implements cog.Builder<heatmap.YAxisConfig> {
         return this;
     }
 }
+

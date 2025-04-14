@@ -23,3 +23,4 @@ export class FiltersSettingsBuilder implements cog.Builder<elasticsearch.Filters
         return this;
     }
 }
+

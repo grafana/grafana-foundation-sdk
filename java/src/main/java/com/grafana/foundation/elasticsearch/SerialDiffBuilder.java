@@ -8,7 +8,6 @@ public class SerialDiffBuilder implements com.grafana.foundation.cog.Builder<Ser
     
     public SerialDiffBuilder() {
         this.internal = new SerialDiff();
-        this.internal.type = "serial_diff";
     }
     public SerialDiffBuilder pipelineAgg(String pipelineAgg) {
         this.internal.pipelineAgg = pipelineAgg;

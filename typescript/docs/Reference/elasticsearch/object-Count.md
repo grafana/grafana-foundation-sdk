@@ -7,15 +7,12 @@ title: <span class="badge object-type-interface"></span> Count
 
 ```typescript
 export interface Count {
-	type: "count";
+	type: unknown;
 	id: string;
 	hide?: boolean;
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [CountBuilder](./builder-CountBuilder.md)

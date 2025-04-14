@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class MovingAverageHoltModelSettings {
     @JsonProperty("model")
-    public String model;
+    public MovingAverageModel model;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("settings")
     public ElasticsearchMovingAverageHoltModelSettingsSettings settings;
@@ -21,10 +21,10 @@ public class MovingAverageHoltModelSettings {
     @JsonProperty("predict")
     public String predict;
     public MovingAverageHoltModelSettings() {
+        this.model = MovingAverageModel.HOLT;
     }
-    
-    public MovingAverageHoltModelSettings(String model,ElasticsearchMovingAverageHoltModelSettingsSettings settings,String window,Boolean minimize,String predict) {
-        this.model = model;
+    public MovingAverageHoltModelSettings(ElasticsearchMovingAverageHoltModelSettingsSettings settings,String window,Boolean minimize,String predict) {
+        this.model = MovingAverageModel.HOLT;
         this.settings = settings;
         this.window = window;
         this.minimize = minimize;

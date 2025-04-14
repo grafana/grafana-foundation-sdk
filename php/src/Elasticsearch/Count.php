@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Elasticsearch;
 
 class Count implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public string $id;
 
@@ -16,8 +16,7 @@ class Count implements \JsonSerializable
      */
     public function __construct(?string $id = null, ?bool $hide = null)
     {
-        $this->type = "count";
-    
+        $this->type = \Grafana\Foundation\Elasticsearch\MetricAggregationType::count();
         $this->id = $id ?: "";
         $this->hide = $hide;
     }
@@ -27,7 +26,7 @@ class Count implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, id?: string, hide?: bool} $inputData */
+        /** @var array{type?: "count", id?: string, hide?: bool} $inputData */
         $data = $inputData;
         return new self(
             id: $data["id"] ?? null,

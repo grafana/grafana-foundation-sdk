@@ -18,7 +18,6 @@ public class MuteTiming {
     public List<TimeInterval> timeIntervals;
     public MuteTiming() {
     }
-    
     public MuteTiming(String name,List<TimeInterval> timeIntervals) {
         this.name = name;
         this.timeIntervals = timeIntervals;

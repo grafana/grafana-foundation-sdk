@@ -23,3 +23,4 @@ export class SubscriptionsQueryBuilder implements cog.Builder<azuremonitor.Subsc
         return this;
     }
 }
+

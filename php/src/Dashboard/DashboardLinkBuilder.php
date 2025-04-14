@@ -34,6 +34,7 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
      */
@@ -43,6 +44,7 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Icon name to be displayed with the link
      */
@@ -52,6 +54,7 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Tooltip to display when the user hovers their mouse over it
      */
@@ -61,6 +64,7 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Link URL. Only required/valid if the type is link
      */
@@ -70,6 +74,7 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
      * @param array<string> $tags
@@ -80,6 +85,7 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
      */
@@ -89,6 +95,7 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If true, the link will be opened in a new tab
      */
@@ -98,6 +105,7 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If true, includes current template variables values in the link as query params
      */
@@ -107,6 +115,7 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If true, includes current time range in the link as query params
      */

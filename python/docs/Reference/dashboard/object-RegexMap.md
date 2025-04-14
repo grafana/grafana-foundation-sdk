@@ -16,7 +16,7 @@ class RegexMap:
     For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
     """
 
-    type_val: typing.Literal["regex"]
+    type_val: str
     # Regular expression to match against and the result to apply when the value matches the regex
     options: dashboard.DashboardRegexMapOptions
 ```

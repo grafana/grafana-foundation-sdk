@@ -3303,7 +3303,6 @@ func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscription
 	if resource.UnknownQuery != nil {
 		return json.Marshal(resource.UnknownQuery)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 

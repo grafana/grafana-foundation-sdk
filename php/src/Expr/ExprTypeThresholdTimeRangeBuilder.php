@@ -32,6 +32,7 @@ class ExprTypeThresholdTimeRangeBuilder implements \Grafana\Foundation\Cog\Build
     
         return $this;
     }
+
     /**
      * To is the end time of the query.
      */

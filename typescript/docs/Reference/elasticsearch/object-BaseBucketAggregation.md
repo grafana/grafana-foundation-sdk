@@ -13,9 +13,6 @@ export interface BaseBucketAggregation {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [BaseBucketAggregationBuilder](./builder-BaseBucketAggregationBuilder.md)

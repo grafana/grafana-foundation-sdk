@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> ExtendedStats
 
 ```typescript
 export interface ExtendedStats {
-	type: "extended_stats";
+	type: unknown;
 	settings?: {
 		script?: elasticsearch.InlineScript;
 		missing?: string;
@@ -20,9 +20,6 @@ export interface ExtendedStats {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [ExtendedStatsBuilder](./builder-ExtendedStatsBuilder.md)

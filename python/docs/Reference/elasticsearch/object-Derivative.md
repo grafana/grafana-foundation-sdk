@@ -9,7 +9,7 @@ title: <span class="badge object-type-class"></span> Derivative
 class Derivative:
     pipeline_agg: typing.Optional[str]
     field: typing.Optional[str]
-    type_val: typing.Literal["derivative"]
+    type_val: str
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchDerivativeSettings]
     hide: typing.Optional[bool]

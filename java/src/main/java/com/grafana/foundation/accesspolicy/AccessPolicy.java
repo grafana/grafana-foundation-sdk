@@ -27,7 +27,6 @@ public class AccessPolicy {
     public List<AccessRule> rules;
     public AccessPolicy() {
     }
-    
     public AccessPolicy(ResourceRef scope,RoleRef role,List<AccessRule> rules) {
         this.scope = scope;
         this.role = role;

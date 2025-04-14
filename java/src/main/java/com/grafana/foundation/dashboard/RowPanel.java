@@ -45,7 +45,6 @@ public class RowPanel {
     public RowPanel() {
         this.collapsed = false;
     }
-    
     public RowPanel(String type,Boolean collapsed,String title,DataSourceRef datasource,GridPos gridPos,Integer id,List<Panel> panels,String repeat) {
         this.type = type;
         this.collapsed = collapsed;

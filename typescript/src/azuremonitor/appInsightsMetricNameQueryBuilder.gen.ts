@@ -23,3 +23,4 @@ export class AppInsightsMetricNameQueryBuilder implements cog.Builder<azuremonit
         return this;
     }
 }
+

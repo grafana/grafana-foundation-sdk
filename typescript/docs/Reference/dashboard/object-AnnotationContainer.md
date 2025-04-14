@@ -20,6 +20,3 @@ export interface AnnotationContainer {
 }
 
 ```
-## Methods
-
-No methods.

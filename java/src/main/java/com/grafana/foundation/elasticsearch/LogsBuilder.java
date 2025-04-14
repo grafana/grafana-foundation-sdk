@@ -8,7 +8,6 @@ public class LogsBuilder implements com.grafana.foundation.cog.Builder<Logs> {
     
     public LogsBuilder() {
         this.internal = new Logs();
-        this.internal.type = "logs";
     }
     public LogsBuilder id(String id) {
         this.internal.id = id;

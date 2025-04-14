@@ -47,3 +47,4 @@ export class AnnotationTargetBuilder implements cog.Builder<dashboard.Annotation
         return this;
     }
 }
+

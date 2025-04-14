@@ -21,7 +21,6 @@ public class SingleStatBaseOptions {
     public VizOrientation orientation;
     public SingleStatBaseOptions() {
     }
-    
     public SingleStatBaseOptions(ReduceDataOptions reduceOptions,VizTextDisplayOptions text,VizOrientation orientation) {
         this.reduceOptions = reduceOptions;
         this.text = text;

@@ -14,7 +14,6 @@ public class CustomRoleRef {
     public String name;
     public CustomRoleRef() {
     }
-    
     public CustomRoleRef(String kind,String name) {
         this.kind = kind;
         this.name = name;

@@ -161,3 +161,4 @@ export class CloudWatchMetricsQueryBuilder implements cog.Builder<cog.Dataquery>
         return this;
     }
 }
+

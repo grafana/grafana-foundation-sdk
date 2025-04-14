@@ -29,12 +29,14 @@ class NodesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function count(int $count): static
     {
         $this->internal->count = $count;
     
         return $this;
     }
+
     public function seed(int $seed): static
     {
         $this->internal->seed = $seed;

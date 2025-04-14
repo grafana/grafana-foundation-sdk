@@ -37,7 +37,6 @@ public class Options {
         this.bucketCount = 30;
         this.bucketOffset = 0.0f;
     }
-    
     public Options(Integer bucketCount,Integer bucketSize,Float bucketOffset,VizLegendOptions legend,VizTooltipOptions tooltip,Boolean combine) {
         this.bucketCount = bucketCount;
         this.bucketSize = bucketSize;

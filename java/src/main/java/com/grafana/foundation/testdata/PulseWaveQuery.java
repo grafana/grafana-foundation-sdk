@@ -26,7 +26,6 @@ public class PulseWaveQuery {
     public Double offValue;
     public PulseWaveQuery() {
     }
-    
     public PulseWaveQuery(Long timeStep,Long onCount,Long offCount,Double onValue,Double offValue) {
         this.timeStep = timeStep;
         this.onCount = onCount;

@@ -31,7 +31,6 @@ public class CanvasConnection {
     public ScaleDimensionConfig size;
     public CanvasConnection() {
     }
-    
     public CanvasConnection(ConnectionCoordinates source,ConnectionCoordinates target,String targetName,ConnectionPath path,ColorDimensionConfig color,ScaleDimensionConfig size) {
         this.source = source;
         this.target = target;

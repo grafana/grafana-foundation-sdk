@@ -8,7 +8,6 @@ export class RawDocumentBuilder implements cog.Builder<elasticsearch.RawDocument
 
     constructor() {
         this.internal = elasticsearch.defaultRawDocument();
-        this.internal.type = "raw_document";
     }
 
     /**
@@ -35,3 +34,4 @@ export class RawDocumentBuilder implements cog.Builder<elasticsearch.RawDocument
         return this;
     }
 }
+

@@ -19,7 +19,7 @@ class SpecialValueMap:
     For example, you can configure a special value mapping so that null values appear as N/A.
     """
 
-    type_val: typing.Literal["special"]
+    type_val: str
     options: dashboard.DashboardSpecialValueMapOptions
 ```
 ## Methods

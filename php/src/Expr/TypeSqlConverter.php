@@ -36,6 +36,19 @@ final class TypeSqlConverter
     
     
     }
+            if ($input->format !== "") {
+    
+        
+    $buffer = 'format(';
+        $arg0 =\var_export($input->format, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->hide !== null) {
     
         

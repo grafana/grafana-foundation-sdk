@@ -10,12 +10,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 // Json view cell options
 public class TableJsonViewCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     public TableJsonViewCellOptions() {
-    }
-    
-    public TableJsonViewCellOptions(String type) {
-        this.type = type;
+        this.type = TableCellDisplayMode.JSON_VIEW;
     }
     
     public String toJSON() throws JsonProcessingException {
