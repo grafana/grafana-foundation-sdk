@@ -7500,7 +7500,6 @@ func (resource TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCel
 	if resource.TableJsonViewCellOptions != nil {
 		return json.Marshal(resource.TableJsonViewCellOptions)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 

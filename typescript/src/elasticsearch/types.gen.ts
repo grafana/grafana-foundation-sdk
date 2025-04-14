@@ -25,6 +25,17 @@ export const defaultDateHistogram = (): DateHistogram => ({
 	type: BucketAggregationType.DateHistogram,
 });
 
+export enum BucketAggregationType {
+	Terms = "terms",
+	Filters = "filters",
+	GeohashGrid = "geohash_grid",
+	DateHistogram = "date_histogram",
+	Histogram = "histogram",
+	Nested = "nested",
+}
+
+export const defaultBucketAggregationType = (): BucketAggregationType => (BucketAggregationType.Terms);
+
 export interface Histogram {
 	field?: string;
 	id: string;
@@ -128,6 +139,21 @@ export const defaultCount = (): Count => ({
 	type: "unknown",
 	id: "",
 });
+
+export type MetricAggregationType = "count" | "avg" | "sum" | "min" | "max" | "extended_stats" | "percentiles" | "cardinality" | "raw_document" | "raw_data" | "logs" | "rate" | "top_metrics" | PipelineMetricAggregationType;
+
+export const defaultMetricAggregationType = (): MetricAggregationType => ("count");
+
+export enum PipelineMetricAggregationType {
+	MovingAvg = "moving_avg",
+	MovingFn = "moving_fn",
+	Derivative = "derivative",
+	SerialDiff = "serial_diff",
+	CumulativeSum = "cumulative_sum",
+	BucketScript = "bucket_script",
+}
+
+export const defaultPipelineMetricAggregationType = (): PipelineMetricAggregationType => (PipelineMetricAggregationType.MovingAvg);
 
 export type PipelineMetricAggregation = MovingAverage | Derivative | CumulativeSum | BucketScript;
 
@@ -438,17 +464,6 @@ export const defaultTopMetrics = (): TopMetrics => ({
 	id: "",
 });
 
-export enum BucketAggregationType {
-	Terms = "terms",
-	Filters = "filters",
-	GeohashGrid = "geohash_grid",
-	DateHistogram = "date_histogram",
-	Histogram = "histogram",
-	Nested = "nested",
-}
-
-export const defaultBucketAggregationType = (): BucketAggregationType => (BucketAggregationType.Terms);
-
 export interface BaseBucketAggregation {
 	id: string;
 	type: BucketAggregationType;
@@ -515,21 +530,6 @@ export interface GeoHashGridSettings {
 
 export const defaultGeoHashGridSettings = (): GeoHashGridSettings => ({
 });
-
-export enum PipelineMetricAggregationType {
-	MovingAvg = "moving_avg",
-	MovingFn = "moving_fn",
-	Derivative = "derivative",
-	SerialDiff = "serial_diff",
-	CumulativeSum = "cumulative_sum",
-	BucketScript = "bucket_script",
-}
-
-export const defaultPipelineMetricAggregationType = (): PipelineMetricAggregationType => (PipelineMetricAggregationType.MovingAvg);
-
-export type MetricAggregationType = "count" | "avg" | "sum" | "min" | "max" | "extended_stats" | "percentiles" | "cardinality" | "raw_document" | "raw_data" | "logs" | "rate" | "top_metrics" | PipelineMetricAggregationType;
-
-export const defaultMetricAggregationType = (): MetricAggregationType => ("count");
 
 export interface BaseMetricAggregation {
 	type: MetricAggregationType;
