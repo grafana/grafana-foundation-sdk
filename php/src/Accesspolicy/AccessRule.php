@@ -12,7 +12,7 @@ class AccessRule implements \JsonSerializable
     /**
      * READ, WRITE, CREATE, DELETE, ...
      * should move to k8s style verbs like: "get", "list", "watch", "create", "update", "patch", "delete"
-     * @var string
+     * @var string|string|string
      */
     public $verb;
 
@@ -23,7 +23,7 @@ class AccessRule implements \JsonSerializable
 
     /**
      * @param string|null $kind
-     * @param string|null $verb
+     * @param string|string|string|null $verb
      * @param string|null $target
      */
     public function __construct(?string $kind = null,  $verb = null, ?string $target = null)
@@ -38,12 +38,16 @@ class AccessRule implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{kind?: string, verb?: string, target?: string} $inputData */
+        /** @var array{kind?: string, verb?: string|string|string, target?: string} $inputData */
         $data = $inputData;
         return new self(
             kind: $data["kind"] ?? null,
             verb: isset($data["verb"]) ? (function($input) {
         switch (true) {
+        case is_string($input):
+            return $input;
+        case is_string($input):
+            return $input;
         case is_string($input):
             return $input;
         default:

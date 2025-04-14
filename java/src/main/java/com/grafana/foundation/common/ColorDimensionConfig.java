@@ -19,7 +19,6 @@ public class ColorDimensionConfig {
     public String field;
     public ColorDimensionConfig() {
     }
-    
     public ColorDimensionConfig(String fixed,String field) {
         this.fixed = fixed;
         this.field = field;

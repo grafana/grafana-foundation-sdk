@@ -12,7 +12,6 @@ class QueryEditorFunctionParameterExpressionBuilder implements \Grafana\Foundati
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Bigquery\QueryEditorFunctionParameterExpression();
-    $this->internal->type = "functionParameter";
     }
 
     /**

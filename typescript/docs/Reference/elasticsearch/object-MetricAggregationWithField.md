@@ -14,9 +14,6 @@ export interface MetricAggregationWithField {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MetricAggregationWithFieldBuilder](./builder-MetricAggregationWithFieldBuilder.md)

@@ -12,7 +12,6 @@ class RawDataBuilder implements \Grafana\Foundation\Cog\Builder
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\RawData();
-    $this->internal->type = "raw_data";
     }
 
     /**
@@ -30,6 +29,7 @@ class RawDataBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\ElasticsearchRawDataSettings> $settings
      */
@@ -40,6 +40,7 @@ class RawDataBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function hide(bool $hide): static
     {
         $this->internal->hide = $hide;

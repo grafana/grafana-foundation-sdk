@@ -15,17 +15,17 @@ public class DateHistogram {
     @JsonProperty("id")
     public String id;
     @JsonProperty("type")
-    public String type;
+    public BucketAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("settings")
     public ElasticsearchDateHistogramSettings settings;
     public DateHistogram() {
+        this.type = BucketAggregationType.DATE_HISTOGRAM;
     }
-    
-    public DateHistogram(String field,String id,String type,ElasticsearchDateHistogramSettings settings) {
+    public DateHistogram(String field,String id,ElasticsearchDateHistogramSettings settings) {
         this.field = field;
         this.id = id;
-        this.type = type;
+        this.type = BucketAggregationType.DATE_HISTOGRAM;
         this.settings = settings;
     }
     

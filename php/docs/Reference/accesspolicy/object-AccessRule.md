@@ -16,7 +16,7 @@ class AccessRule implements \JsonSerializable
     /**
      * READ, WRITE, CREATE, DELETE, ...
      * should move to k8s style verbs like: "get", "list", "watch", "create", "update", "patch", "delete"
-     * @var string
+     * @var string|string|string
      */
     public $verb;
 

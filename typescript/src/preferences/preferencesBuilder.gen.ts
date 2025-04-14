@@ -71,3 +71,4 @@ export class PreferencesBuilder implements cog.Builder<preferences.Preferences> 
         return this;
     }
 }
+

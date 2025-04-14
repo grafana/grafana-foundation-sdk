@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> Rate
 
 ```python
 class Rate:
-    type_val: typing.Literal["rate"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchRateSettings]

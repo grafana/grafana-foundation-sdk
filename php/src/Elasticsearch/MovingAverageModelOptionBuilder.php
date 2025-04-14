@@ -29,6 +29,7 @@ class MovingAverageModelOptionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function value(\Grafana\Foundation\Elasticsearch\MovingAverageModel $value): static
     {
         $this->internal->value = $value;

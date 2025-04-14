@@ -56,7 +56,6 @@ public class Snapshot {
     public Dashboard dashboard;
     public Snapshot() {
     }
-    
     public Snapshot(String created,String expires,Boolean external,String externalUrl,String originalUrl,Integer id,String key,String name,Integer orgId,String updated,String url,Integer userId,Dashboard dashboard) {
         this.created = created;
         this.expires = expires;

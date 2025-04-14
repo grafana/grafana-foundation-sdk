@@ -20,6 +20,3 @@ export interface ValueMappingResult {
 }
 
 ```
-## Methods
-
-No methods.

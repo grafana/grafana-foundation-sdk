@@ -22,3 +22,4 @@ export class TooltipOptionsBuilder implements cog.Builder<geomap.TooltipOptions>
         return this;
     }
 }
+

@@ -48,7 +48,6 @@ public class MapViewConfig {
         this.zoom = 1L;
         this.allLayers = true;
     }
-    
     public MapViewConfig(String id,Long lat,Long lon,Long zoom,Long minZoom,Long maxZoom,Long padding,Boolean allLayers,Boolean lastOnly,String layer,Boolean shared) {
         this.id = id;
         this.lat = lat;

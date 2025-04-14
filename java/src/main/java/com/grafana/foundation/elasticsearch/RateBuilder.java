@@ -8,7 +8,6 @@ public class RateBuilder implements com.grafana.foundation.cog.Builder<Rate> {
     
     public RateBuilder() {
         this.internal = new Rate();
-        this.internal.type = "rate";
     }
     public RateBuilder field(String field) {
         this.internal.field = field;

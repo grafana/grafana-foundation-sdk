@@ -30,18 +30,21 @@ class LineConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function lineWidth(float $lineWidth): static
     {
         $this->internal->lineWidth = $lineWidth;
     
         return $this;
     }
+
     public function lineInterpolation(\Grafana\Foundation\Common\LineInterpolation $lineInterpolation): static
     {
         $this->internal->lineInterpolation = $lineInterpolation;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\LineStyle> $lineStyle
      */
@@ -52,6 +55,7 @@ class LineConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Indicate if null values should be treated as gaps or connected.
      * When the value is a number, it represents the maximum delta in the

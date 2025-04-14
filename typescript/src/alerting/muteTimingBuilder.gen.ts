@@ -28,3 +28,4 @@ export class MuteTimingBuilder implements cog.Builder<alerting.MuteTiming> {
         return this;
     }
 }
+

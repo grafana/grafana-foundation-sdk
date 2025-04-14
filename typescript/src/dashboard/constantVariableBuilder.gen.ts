@@ -45,3 +45,4 @@ export class ConstantVariableBuilder implements cog.Builder<dashboard.VariableMo
         return this;
     }
 }
+

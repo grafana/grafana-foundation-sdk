@@ -20,7 +20,6 @@ public class ElasticsearchMovingFunctionSettings {
     public String shift;
     public ElasticsearchMovingFunctionSettings() {
     }
-    
     public ElasticsearchMovingFunctionSettings(String window,InlineScript script,String shift) {
         this.window = window;
         this.script = script;

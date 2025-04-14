@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> TopMetrics
 
 ```typescript
 export interface TopMetrics {
-	type: "top_metrics";
+	type: unknown;
 	id: string;
 	settings?: {
 		order?: string;
@@ -18,9 +18,6 @@ export interface TopMetrics {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TopMetricsBuilder](./builder-TopMetricsBuilder.md)

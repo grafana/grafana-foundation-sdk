@@ -16,7 +16,7 @@ class ValueMap:
     For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
     """
 
-    type_val: typing.Literal["value"]
+    type_val: str
     # Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
     options: dict[str, dashboard.ValueMappingResult]
 ```

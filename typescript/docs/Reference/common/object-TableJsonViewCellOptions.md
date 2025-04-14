@@ -9,10 +9,7 @@ Json view cell options
 
 ```typescript
 export interface TableJsonViewCellOptions {
-	type: "json-view";
+	type: common.TableCellDisplayMode.JSONView;
 }
 
 ```
-## Methods
-
-No methods.

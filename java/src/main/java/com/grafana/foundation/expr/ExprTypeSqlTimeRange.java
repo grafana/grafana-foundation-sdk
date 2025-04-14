@@ -18,7 +18,6 @@ public class ExprTypeSqlTimeRange {
         this.from = "now-6h";
         this.to = "now";
     }
-    
     public ExprTypeSqlTimeRange(String from,String to) {
         this.from = from;
         this.to = to;

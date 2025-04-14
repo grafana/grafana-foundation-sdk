@@ -29,6 +29,7 @@ class MapLayerOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * configured unique display name
      */
@@ -38,6 +39,7 @@ class MapLayerOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Custom options depending on the type
      * @param mixed $config
@@ -48,6 +50,7 @@ class MapLayerOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Common method to define geometry fields
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\FrameGeometrySource> $location
@@ -59,6 +62,7 @@ class MapLayerOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Defines a frame MatcherConfig that may filter data for the given layer
      * @param mixed $filterData
@@ -69,6 +73,7 @@ class MapLayerOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Common properties:
      * https://openlayers.org/en/latest/apidoc/module-ol_layer_Base-BaseLayer.html
@@ -80,6 +85,7 @@ class MapLayerOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Check tooltip (defaults to true)
      */

@@ -20,7 +20,6 @@ public class CookiePreferences {
     public Object functional;
     public CookiePreferences() {
     }
-    
     public CookiePreferences(Object analytics,Object performance,Object functional) {
         this.analytics = analytics;
         this.performance = performance;

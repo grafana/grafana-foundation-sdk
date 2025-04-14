@@ -2,15 +2,15 @@
 
 package com.grafana.foundation.stat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.grafana.foundation.common.BigValueGraphMode;
 import com.grafana.foundation.common.BigValueColorMode;
 import com.grafana.foundation.common.BigValueJustifyMode;
 import com.grafana.foundation.common.BigValueTextMode;
 import com.grafana.foundation.common.PercentChangeColorMode;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.ReduceDataOptions;
 import com.grafana.foundation.common.VizTextDisplayOptions;
@@ -54,7 +54,6 @@ public class Options {
         this.showPercentChange = false;
         this.percentChangeColorMode = PercentChangeColorMode.STANDARD;
     }
-    
     public Options(BigValueGraphMode graphMode,BigValueColorMode colorMode,BigValueJustifyMode justifyMode,BigValueTextMode textMode,Boolean wideLayout,Boolean showPercentChange,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,PercentChangeColorMode percentChangeColorMode,VizOrientation orientation) {
         this.graphMode = graphMode;
         this.colorMode = colorMode;

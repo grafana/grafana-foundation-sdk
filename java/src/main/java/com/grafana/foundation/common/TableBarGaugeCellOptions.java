@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 // Gauge cell options
 public class TableBarGaugeCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("mode")
     public BarGaugeDisplayMode mode;
@@ -19,10 +19,10 @@ public class TableBarGaugeCellOptions {
     @JsonProperty("valueDisplayMode")
     public BarGaugeValueMode valueDisplayMode;
     public TableBarGaugeCellOptions() {
+        this.type = TableCellDisplayMode.GAUGE;
     }
-    
-    public TableBarGaugeCellOptions(String type,BarGaugeDisplayMode mode,BarGaugeValueMode valueDisplayMode) {
-        this.type = type;
+    public TableBarGaugeCellOptions(BarGaugeDisplayMode mode,BarGaugeValueMode valueDisplayMode) {
+        this.type = TableCellDisplayMode.GAUGE;
         this.mode = mode;
         this.valueDisplayMode = valueDisplayMode;
     }

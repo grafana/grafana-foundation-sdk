@@ -20,7 +20,6 @@ public class RoleRef {
     public String xname;
     public RoleRef() {
     }
-    
     public RoleRef(RoleRefKind kind,String name,String xname) {
         this.kind = kind;
         this.name = name;

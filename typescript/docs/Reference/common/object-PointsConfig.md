@@ -16,9 +16,6 @@ export interface PointsConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [PointsConfigBuilder](./builder-PointsConfigBuilder.md)

@@ -14,7 +14,6 @@ public class TooltipOptions {
     public TooltipMode mode;
     public TooltipOptions() {
     }
-    
     public TooltipOptions(TooltipMode mode) {
         this.mode = mode;
     }

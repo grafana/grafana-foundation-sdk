@@ -14,7 +14,7 @@ class MovingAverage implements \JsonSerializable
 
     public ?string $field;
 
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public string $id;
 

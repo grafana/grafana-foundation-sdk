@@ -15,9 +15,6 @@ export interface TermsSettings {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TermsSettingsBuilder](./builder-TermsSettingsBuilder.md)

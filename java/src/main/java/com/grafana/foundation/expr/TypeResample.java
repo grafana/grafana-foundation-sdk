@@ -80,7 +80,6 @@ public class TypeResample implements com.grafana.foundation.cog.variants.Dataque
     public String window;
     public TypeResample() {
     }
-    
     public TypeResample(DataSourceRef datasource,TypeResampleDownsampler downsampler,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeResampleResultAssertions resultAssertions,ExprTypeResampleTimeRange timeRange,String type,TypeResampleUpsampler upsampler,String window) {
         this.datasource = datasource;
         this.downsampler = downsampler;

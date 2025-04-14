@@ -9,11 +9,8 @@ Auto mode table cell options
 
 ```typescript
 export interface TableAutoCellOptions {
-	type: "auto";
+	type: common.TableCellDisplayMode.Auto;
 	wrapText?: boolean;
 }
 
 ```
-## Methods
-
-No methods.

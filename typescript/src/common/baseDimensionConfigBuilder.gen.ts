@@ -23,3 +23,4 @@ export class BaseDimensionConfigBuilder implements cog.Builder<common.BaseDimens
         return this;
     }
 }
+

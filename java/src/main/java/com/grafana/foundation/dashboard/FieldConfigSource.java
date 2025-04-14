@@ -25,7 +25,6 @@ public class FieldConfigSource {
     public List<DashboardFieldConfigSourceOverrides> overrides;
     public FieldConfigSource() {
     }
-    
     public FieldConfigSource(FieldConfig defaults,List<DashboardFieldConfigSourceOverrides> overrides) {
         this.defaults = defaults;
         this.overrides = overrides;

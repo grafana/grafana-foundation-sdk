@@ -24,3 +24,4 @@ export class OptionsWithTextFormattingBuilder implements cog.Builder<common.Opti
         return this;
     }
 }
+

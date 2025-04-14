@@ -23,7 +23,6 @@ public class CSVWave {
     public String valuesCSV;
     public CSVWave() {
     }
-    
     public CSVWave(String labels,String name,Long timeStep,String valuesCSV) {
         this.labels = labels;
         this.name = name;

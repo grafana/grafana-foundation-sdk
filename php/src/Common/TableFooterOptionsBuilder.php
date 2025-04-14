@@ -30,6 +30,7 @@ class TableFooterOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * actually 1 value
      * @param array<string> $reducer
@@ -40,6 +41,7 @@ class TableFooterOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<string> $fields
      */
@@ -49,12 +51,14 @@ class TableFooterOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function enablePagination(bool $enablePagination): static
     {
         $this->internal->enablePagination = $enablePagination;
     
         return $this;
     }
+
     public function countRows(bool $countRows): static
     {
         $this->internal->countRows = $countRows;

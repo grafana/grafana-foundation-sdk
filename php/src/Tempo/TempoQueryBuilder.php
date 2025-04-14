@@ -34,6 +34,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
      */
@@ -43,6 +44,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -53,6 +55,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * TraceQL query or trace ID
      */
@@ -62,6 +65,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Logfmt query to filter traces by their tags. Example: http.status_code=200 error=true
      */
@@ -71,6 +75,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Query traces by service name
      */
@@ -80,6 +85,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Query traces by span name
      */
@@ -89,6 +95,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Define the minimum duration to select traces. Use duration format, for example: 1.2s, 100ms
      */
@@ -98,6 +105,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Define the maximum duration to select traces. Use duration format, for example: 1.2s, 100ms
      */
@@ -107,6 +115,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Filters to be included in a PromQL query to select data for the service graph. Example: {client="app",service="app"}. Providing multiple values will produce union of results for each filter, using PromQL OR operator internally.
      * @param string|array<string> $serviceMapQuery
@@ -117,6 +126,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Use service.namespace in addition to service.name to uniquely identify a service.
      */
@@ -126,6 +136,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Defines the maximum number of traces that are returned from Tempo
      */
@@ -135,6 +146,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Defines the maximum number of spans per spanset that are returned from Tempo
      */
@@ -144,6 +156,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Tempo\TraceqlFilter>> $filters
      */
@@ -157,6 +170,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Filters that are used to query the metrics summary
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Tempo\TraceqlFilter>> $groupBy
@@ -171,6 +185,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The type of the table that is used to display the search results
      */
@@ -180,6 +195,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.
@@ -192,6 +208,7 @@ class TempoQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For metric queries, the step size to use
      */

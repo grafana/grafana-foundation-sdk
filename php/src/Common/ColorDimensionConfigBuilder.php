@@ -32,6 +32,7 @@ class ColorDimensionConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * fixed: T -- will be added by each element
      */

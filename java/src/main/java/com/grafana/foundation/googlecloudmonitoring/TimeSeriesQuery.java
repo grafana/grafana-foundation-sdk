@@ -23,7 +23,6 @@ public class TimeSeriesQuery {
     public TimeSeriesQuery() {
         this.graphPeriod = "disabled";
     }
-    
     public TimeSeriesQuery(String projectName,String query,String graphPeriod) {
         this.projectName = projectName;
         this.query = query;
