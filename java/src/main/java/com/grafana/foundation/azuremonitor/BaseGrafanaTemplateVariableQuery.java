@@ -14,7 +14,6 @@ public class BaseGrafanaTemplateVariableQuery {
     public String rawQuery;
     public BaseGrafanaTemplateVariableQuery() {
     }
-    
     public BaseGrafanaTemplateVariableQuery(String rawQuery) {
         this.rawQuery = rawQuery;
     }

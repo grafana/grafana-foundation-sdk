@@ -15,7 +15,6 @@ public class ElasticsearchFiltersSettings {
     public List<Filter> filters;
     public ElasticsearchFiltersSettings() {
     }
-    
     public ElasticsearchFiltersSettings(List<Filter> filters) {
         this.filters = filters;
     }

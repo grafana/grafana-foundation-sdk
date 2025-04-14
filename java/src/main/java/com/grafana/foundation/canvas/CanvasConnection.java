@@ -41,7 +41,6 @@ public class CanvasConnection {
     public ConnectionCoordinates targetOriginal;
     public CanvasConnection() {
     }
-    
     public CanvasConnection(ConnectionCoordinates source,ConnectionCoordinates target,String targetName,ConnectionPath path,ColorDimensionConfig color,ScaleDimensionConfig size,List<ConnectionCoordinates> vertices,ConnectionCoordinates sourceOriginal,ConnectionCoordinates targetOriginal) {
         this.source = source;
         this.target = target;

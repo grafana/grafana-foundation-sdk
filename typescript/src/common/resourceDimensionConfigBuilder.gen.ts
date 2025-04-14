@@ -34,3 +34,4 @@ export class ResourceDimensionConfigBuilder implements cog.Builder<common.Resour
         return this;
     }
 }
+

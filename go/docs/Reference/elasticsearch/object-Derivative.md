@@ -9,7 +9,7 @@ title: <span class="badge object-type-struct"></span> Derivative
 type Derivative struct {
     PipelineAgg *string `json:"pipelineAgg,omitempty"`
     Field *string `json:"field,omitempty"`
-    Type string `json:"type"`
+    Type elasticsearch.MetricAggregationType `json:"type"`
     Id string `json:"id"`
     Settings *elasticsearch.ElasticsearchDerivativeSettings `json:"settings,omitempty"`
     Hide *bool `json:"hide,omitempty"`

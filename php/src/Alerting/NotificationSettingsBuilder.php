@@ -38,6 +38,7 @@ class NotificationSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Override how long to wait before sending a notification about new alerts that are added to a group of alerts for
      * which an initial notification has already been sent. (Usually ~5m or more.)
@@ -48,6 +49,7 @@ class NotificationSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Override how long to initially wait to send a notification for a group of alerts. Allows to wait for an
      * inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.)
@@ -58,6 +60,7 @@ class NotificationSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Override the times when notifications should be muted. These must match the name of a mute time interval defined
      * in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
@@ -70,6 +73,7 @@ class NotificationSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of the receiver to send notifications to.
      */
@@ -79,6 +83,7 @@ class NotificationSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Override how long to wait before sending a notification again if it has already been sent successfully for an
      * alert. (Usually ~3h or more).

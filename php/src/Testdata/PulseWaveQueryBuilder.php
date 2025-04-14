@@ -29,24 +29,28 @@ class PulseWaveQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function offValue(float $offValue): static
     {
         $this->internal->offValue = $offValue;
     
         return $this;
     }
+
     public function onCount(int $onCount): static
     {
         $this->internal->onCount = $onCount;
     
         return $this;
     }
+
     public function onValue(float $onValue): static
     {
         $this->internal->onValue = $onValue;
     
         return $this;
     }
+
     public function timeStep(int $timeStep): static
     {
         $this->internal->timeStep = $timeStep;

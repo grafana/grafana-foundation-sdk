@@ -30,12 +30,14 @@ class FillConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function fillOpacity(float $fillOpacity): static
     {
         $this->internal->fillOpacity = $fillOpacity;
     
         return $this;
     }
+
     public function fillBelowTo(string $fillBelowTo): static
     {
         $this->internal->fillBelowTo = $fillBelowTo;

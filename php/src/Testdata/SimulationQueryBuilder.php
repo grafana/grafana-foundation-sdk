@@ -32,6 +32,7 @@ class SimulationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\Key> $key
      */
@@ -42,12 +43,14 @@ class SimulationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function last(bool $last): static
     {
         $this->internal->last = $last;
     
         return $this;
     }
+
     public function stream(bool $stream): static
     {
         $this->internal->stream = $stream;

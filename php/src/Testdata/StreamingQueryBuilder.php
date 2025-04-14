@@ -29,24 +29,28 @@ class StreamingQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function noise(float $noise): static
     {
         $this->internal->noise = $noise;
     
         return $this;
     }
+
     public function speed(float $speed): static
     {
         $this->internal->speed = $speed;
     
         return $this;
     }
+
     public function spread(float $spread): static
     {
         $this->internal->spread = $spread;
     
         return $this;
     }
+
     /**
      * Possible enum values:
      *  - `"fetch"` 
@@ -60,6 +64,7 @@ class StreamingQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function url(string $url): static
     {
         $this->internal->url = $url;

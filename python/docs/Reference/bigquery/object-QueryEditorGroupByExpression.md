@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> QueryEditorGroupByExpressio
 
 ```python
 class QueryEditorGroupByExpression:
-    type_val: typing.Literal["groupBy"]
+    type_val: str
     property_val: bigquery.QueryEditorProperty
 ```
 ## Methods

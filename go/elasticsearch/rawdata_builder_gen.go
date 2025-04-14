@@ -19,7 +19,6 @@ func NewRawDataBuilder() *RawDataBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "raw_data"
 
 	return builder
 }

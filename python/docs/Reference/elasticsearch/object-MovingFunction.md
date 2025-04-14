@@ -9,7 +9,7 @@ title: <span class="badge object-type-class"></span> MovingFunction
 class MovingFunction:
     pipeline_agg: typing.Optional[str]
     field: typing.Optional[str]
-    type_val: typing.Literal["moving_fn"]
+    type_val: str
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchMovingFunctionSettings]
     hide: typing.Optional[bool]

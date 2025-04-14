@@ -32,6 +32,7 @@ class AnnotationPanelFilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel IDs that should be included or excluded
      * @param array<int> $ids

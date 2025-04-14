@@ -44,7 +44,6 @@ public class VizLegendOptions {
         this.placement = LegendPlacement.BOTTOM;
         this.calcs = List.of();
     }
-    
     public VizLegendOptions(LegendDisplayMode displayMode,LegendPlacement placement,Boolean showLegend,Boolean asTable,Boolean isVisible,String sortBy,Boolean sortDesc,Double width,List<String> calcs) {
         this.displayMode = displayMode;
         this.placement = placement;

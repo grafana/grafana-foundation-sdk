@@ -10,7 +10,7 @@ Json view cell options
 ```php
 class TableJsonViewCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
 }
 ```

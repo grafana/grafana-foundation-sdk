@@ -13,9 +13,6 @@ export interface HideableFieldConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [HideableFieldConfigBuilder](./builder-HideableFieldConfigBuilder.md)

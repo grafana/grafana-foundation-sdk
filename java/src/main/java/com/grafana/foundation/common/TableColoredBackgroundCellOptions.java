@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 // Colored background cell options
 public class TableColoredBackgroundCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("mode")
     public TableCellBackgroundDisplayMode mode;
@@ -19,10 +19,10 @@ public class TableColoredBackgroundCellOptions {
     @JsonProperty("applyToRow")
     public Boolean applyToRow;
     public TableColoredBackgroundCellOptions() {
+        this.type = TableCellDisplayMode.COLOR_BACKGROUND;
     }
-    
-    public TableColoredBackgroundCellOptions(String type,TableCellBackgroundDisplayMode mode,Boolean applyToRow) {
-        this.type = type;
+    public TableColoredBackgroundCellOptions(TableCellBackgroundDisplayMode mode,Boolean applyToRow) {
+        this.type = TableCellDisplayMode.COLOR_BACKGROUND;
         this.mode = mode;
         this.applyToRow = applyToRow;
     }

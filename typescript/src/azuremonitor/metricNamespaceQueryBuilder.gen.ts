@@ -43,3 +43,4 @@ export class MetricNamespaceQueryBuilder implements cog.Builder<azuremonitor.Met
         return this;
     }
 }
+

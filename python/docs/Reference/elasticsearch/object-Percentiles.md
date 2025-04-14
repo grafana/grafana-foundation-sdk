@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> Percentiles
 
 ```python
 class Percentiles:
-    type_val: typing.Literal["percentiles"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchPercentilesSettings]

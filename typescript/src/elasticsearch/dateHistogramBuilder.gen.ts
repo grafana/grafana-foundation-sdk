@@ -8,7 +8,6 @@ export class DateHistogramBuilder implements cog.Builder<elasticsearch.DateHisto
 
     constructor() {
         this.internal = elasticsearch.defaultDateHistogram();
-        this.internal.type = "date_histogram";
     }
 
     /**
@@ -39,3 +38,4 @@ export class DateHistogramBuilder implements cog.Builder<elasticsearch.DateHisto
         return this;
     }
 }
+

@@ -28,3 +28,4 @@ export class TimeRangeBuilder implements cog.Builder<alerting.TimeRange> {
         return this;
     }
 }
+

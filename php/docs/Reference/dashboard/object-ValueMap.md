@@ -12,7 +12,7 @@ For example, you can configure a value mapping so that all instances of the valu
 ```php
 class ValueMap implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Dashboard\MappingType $type;
 
     /**
      * Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }

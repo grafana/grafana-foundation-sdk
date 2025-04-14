@@ -8,7 +8,6 @@ public class MovingAverageLinearModelSettingsBuilder implements com.grafana.foun
     
     public MovingAverageLinearModelSettingsBuilder() {
         this.internal = new MovingAverageLinearModelSettings();
-        this.internal.model = "linear";
     }
     public MovingAverageLinearModelSettingsBuilder window(String window) {
         this.internal.window = window;

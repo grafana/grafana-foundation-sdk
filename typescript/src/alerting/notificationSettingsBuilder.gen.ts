@@ -66,3 +66,4 @@ export class NotificationSettingsBuilder implements cog.Builder<alerting.Notific
         return this;
     }
 }
+

@@ -23,7 +23,6 @@ public class HeatmapCalculationBucketConfig {
     public ScaleDistributionConfig scale;
     public HeatmapCalculationBucketConfig() {
     }
-    
     public HeatmapCalculationBucketConfig(HeatmapCalculationMode mode,String value,ScaleDistributionConfig scale) {
         this.mode = mode;
         this.value = value;

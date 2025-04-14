@@ -22,9 +22,6 @@ export interface Query {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)

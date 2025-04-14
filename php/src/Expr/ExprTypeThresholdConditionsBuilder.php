@@ -33,6 +33,7 @@ class ExprTypeThresholdConditionsBuilder implements \Grafana\Foundation\Cog\Buil
     
         return $this;
     }
+
     /**
      * @param mixed $loadedDimensions
      */
@@ -42,6 +43,7 @@ class ExprTypeThresholdConditionsBuilder implements \Grafana\Foundation\Cog\Buil
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\ExprTypeThresholdConditionsUnloadEvaluator> $unloadEvaluator
      */

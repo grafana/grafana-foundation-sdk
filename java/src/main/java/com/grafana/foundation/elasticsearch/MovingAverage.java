@@ -18,7 +18,7 @@ public class MovingAverage {
     @JsonProperty("field")
     public String field;
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonProperty("id")
     public String id;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -28,12 +28,12 @@ public class MovingAverage {
     @JsonProperty("hide")
     public Boolean hide;
     public MovingAverage() {
+        this.type = MetricAggregationType.MOVING_AVG;
     }
-    
-    public MovingAverage(String pipelineAgg,String field,String type,String id,Map<String, Object> settings,Boolean hide) {
+    public MovingAverage(String pipelineAgg,String field,String id,Map<String, Object> settings,Boolean hide) {
         this.pipelineAgg = pipelineAgg;
         this.field = field;
-        this.type = type;
+        this.type = MetricAggregationType.MOVING_AVG;
         this.id = id;
         this.settings = settings;
         this.hide = hide;

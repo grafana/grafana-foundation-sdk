@@ -39,3 +39,4 @@ export class MetricAggregationWithMissingSupportBuilder implements cog.Builder<e
         return this;
     }
 }
+

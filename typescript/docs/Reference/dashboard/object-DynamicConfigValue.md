@@ -12,6 +12,3 @@ export interface DynamicConfigValue {
 }
 
 ```
-## Methods
-
-No methods.

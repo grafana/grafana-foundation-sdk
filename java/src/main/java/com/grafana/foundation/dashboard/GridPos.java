@@ -32,7 +32,6 @@ public class GridPos {
         this.x = 0;
         this.y = 0;
     }
-    
     public GridPos(Integer h,Integer w,Integer x,Integer y,Boolean staticArg) {
         this.h = h;
         this.w = w;

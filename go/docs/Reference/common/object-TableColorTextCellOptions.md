@@ -9,7 +9,7 @@ Colored text cell options
 
 ```go
 type TableColorTextCellOptions struct {
-    Type string `json:"type"`
+    Type common.TableCellDisplayMode `json:"type"`
 }
 ```
 ## Methods

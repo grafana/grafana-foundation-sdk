@@ -32,18 +32,21 @@ class USAQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function mode(string $mode): static
     {
         $this->internal->mode = $mode;
     
         return $this;
     }
+
     public function period(string $period): static
     {
         $this->internal->period = $period;
     
         return $this;
     }
+
     /**
      * @param array<string> $states
      */

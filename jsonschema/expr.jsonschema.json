@@ -754,6 +754,7 @@
       "additionalProperties": false,
       "required": [
         "expression",
+        "format",
         "refId",
         "type"
       ],
@@ -765,6 +766,9 @@
         "expression": {
           "type": "string",
           "minLength": 1
+        },
+        "format": {
+          "type": "string"
         },
         "hide": {
           "type": "boolean",

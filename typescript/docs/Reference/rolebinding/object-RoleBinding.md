@@ -14,9 +14,6 @@ export interface RoleBinding {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [RoleBindingBuilder](./builder-RoleBindingBuilder.md)

@@ -16,9 +16,6 @@ export interface CellValues {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [CellValuesBuilder](./builder-CellValuesBuilder.md)

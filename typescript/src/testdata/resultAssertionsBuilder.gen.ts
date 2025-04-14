@@ -48,3 +48,4 @@ export class ResultAssertionsBuilder implements cog.Builder<testdata.ResultAsser
         return this;
     }
 }
+

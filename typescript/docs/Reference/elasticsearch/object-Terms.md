@@ -9,7 +9,7 @@ title: <span class="badge object-type-interface"></span> Terms
 export interface Terms {
 	field?: string;
 	id: string;
-	type: "terms";
+	type: elasticsearch.BucketAggregationType.Terms;
 	settings?: {
 		order?: elasticsearch.TermsOrder;
 		size?: string;
@@ -20,9 +20,6 @@ export interface Terms {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TermsBuilder](./builder-TermsBuilder.md)

@@ -22,6 +22,3 @@ export interface RelativeTimeRange {
 }
 
 ```
-## Methods
-
-No methods.

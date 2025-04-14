@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> MovingAverageEWMAModelS
 
 ```typescript
 export interface MovingAverageEWMAModelSettings {
-	model: "ewma";
+	model: elasticsearch.MovingAverageModel.Ewma;
 	settings?: {
 		alpha?: string;
 	};
@@ -17,9 +17,6 @@ export interface MovingAverageEWMAModelSettings {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MovingAverageEWMAModelSettingsBuilder](./builder-MovingAverageEWMAModelSettingsBuilder.md)

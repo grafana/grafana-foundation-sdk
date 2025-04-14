@@ -9,7 +9,7 @@ title: <span class="badge object-type-interface"></span> DateHistogram
 export interface DateHistogram {
 	field?: string;
 	id: string;
-	type: "date_histogram";
+	type: elasticsearch.BucketAggregationType.DateHistogram;
 	settings?: {
 		interval?: string;
 		min_doc_count?: string;
@@ -20,9 +20,6 @@ export interface DateHistogram {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [DateHistogramBuilder](./builder-DateHistogramBuilder.md)

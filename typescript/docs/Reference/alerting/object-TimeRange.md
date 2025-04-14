@@ -14,9 +14,6 @@ export interface TimeRange {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TimeRangeBuilder](./builder-TimeRangeBuilder.md)

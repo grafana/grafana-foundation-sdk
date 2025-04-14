@@ -15,7 +15,6 @@ public class HideableFieldConfig {
     public HideSeriesConfig hideFrom;
     public HideableFieldConfig() {
     }
-    
     public HideableFieldConfig(HideSeriesConfig hideFrom) {
         this.hideFrom = hideFrom;
     }

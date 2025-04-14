@@ -37,3 +37,4 @@ export class BucketAggregationWithFieldBuilder implements cog.Builder<elasticsea
         return this;
     }
 }
+

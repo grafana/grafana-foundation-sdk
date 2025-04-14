@@ -2,11 +2,11 @@
 
 package com.grafana.foundation.heatmap;
 
-import com.grafana.foundation.common.VisibilityMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.VisibilityMode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.HeatmapCalculationOptions;
 
@@ -78,7 +78,6 @@ public class Options {
         this.legend = new HeatmapLegend(true);
         this.exemplars = new ExemplarConfig("rgba(255,0,255,0.7)");
     }
-    
     public Options(Boolean calculate,HeatmapCalculationOptions calculation,HeatmapColorOptions color,FilterValueRange filterValues,RowsHeatmapOptions rowsFrame,VisibilityMode showValue,Integer cellGap,Float cellRadius,CellValues cellValues,YAxisConfig yAxis,HeatmapLegend legend,HeatmapTooltip tooltip,ExemplarConfig exemplars) {
         this.calculate = calculate;
         this.calculation = calculation;

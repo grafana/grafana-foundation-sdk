@@ -33,6 +33,7 @@ class FilterValueRangeBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Sets the filter range to values greater than or equal to the given value
      */

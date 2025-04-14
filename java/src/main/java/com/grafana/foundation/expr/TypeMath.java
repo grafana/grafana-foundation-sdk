@@ -57,7 +57,6 @@ public class TypeMath implements com.grafana.foundation.cog.variants.Dataquery {
     public String type;
     public TypeMath() {
     }
-    
     public TypeMath(DataSourceRef datasource,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeMathResultAssertions resultAssertions,ExprTypeMathTimeRange timeRange,String type) {
         this.datasource = datasource;
         this.expression = expression;

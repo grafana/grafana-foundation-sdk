@@ -19,7 +19,6 @@ public class RoleBinding {
     public RoleBindingSubject subject;
     public RoleBinding() {
     }
-    
     public RoleBinding(BuiltinRoleRefOrCustomRoleRef role,RoleBindingSubject subject) {
         this.role = role;
         this.subject = subject;

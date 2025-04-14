@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> Sum
 
 ```go
 type Sum struct {
-    Type string `json:"type"`
+    Type elasticsearch.MetricAggregationType `json:"type"`
     Field *string `json:"field,omitempty"`
     Id string `json:"id"`
     Settings *elasticsearch.ElasticsearchSumSettings `json:"settings,omitempty"`

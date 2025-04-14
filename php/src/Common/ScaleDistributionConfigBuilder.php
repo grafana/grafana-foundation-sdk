@@ -30,12 +30,14 @@ class ScaleDistributionConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function log(float $log): static
     {
         $this->internal->log = $log;
     
         return $this;
     }
+
     public function linearThreshold(float $linearThreshold): static
     {
         $this->internal->linearThreshold = $linearThreshold;

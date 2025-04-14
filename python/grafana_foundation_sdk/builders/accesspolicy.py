@@ -5,7 +5,7 @@ from ..cog import builder as cogbuilder
 from ..models import accesspolicy
 
 
-class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):    
+class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):
     _internal: accesspolicy.AccessPolicy
 
     def __init__(self):
@@ -52,7 +52,8 @@ class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):
         return self
     
 
-class ResourceRef(cogbuilder.Builder[accesspolicy.ResourceRef]):    
+
+class ResourceRef(cogbuilder.Builder[accesspolicy.ResourceRef]):
     _internal: accesspolicy.ResourceRef
 
     def __init__(self):
@@ -64,18 +65,19 @@ class ResourceRef(cogbuilder.Builder[accesspolicy.ResourceRef]):
         """
         return self._internal    
     
-    def kind(self, kind: str) -> typing.Self:        
+    def kind(self, kind: str) -> typing.Self:    
         self._internal.kind = kind
     
         return self
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
 
-class RoleRef(cogbuilder.Builder[accesspolicy.RoleRef]):    
+
+class RoleRef(cogbuilder.Builder[accesspolicy.RoleRef]):
     _internal: accesspolicy.RoleRef
 
     def __init__(self):
@@ -97,18 +99,19 @@ class RoleRef(cogbuilder.Builder[accesspolicy.RoleRef]):
     
         return self
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def xname(self, xname: str) -> typing.Self:        
+    def xname(self, xname: str) -> typing.Self:    
         self._internal.xname = xname
     
         return self
     
 
-class AccessRule(cogbuilder.Builder[accesspolicy.AccessRule]):    
+
+class AccessRule(cogbuilder.Builder[accesspolicy.AccessRule]):
     _internal: accesspolicy.AccessRule
 
     def __init__(self):
@@ -129,7 +132,7 @@ class AccessRule(cogbuilder.Builder[accesspolicy.AccessRule]):
     
         return self
     
-    def verb(self, verb: typing.Union[typing.Literal["*"]]) -> typing.Self:    
+    def verb(self, verb: typing.Union[typing.Literal["*"], typing.Literal["none"], str]) -> typing.Self:    
         """
         READ, WRITE, CREATE, DELETE, ...
         should move to k8s style verbs like: "get", "list", "watch", "create", "update", "patch", "delete"

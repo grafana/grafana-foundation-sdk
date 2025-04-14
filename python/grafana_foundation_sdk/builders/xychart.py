@@ -24,25 +24,26 @@ class XYDimensionConfig(cogbuilder.Builder[xychart.XYDimensionConfig]):
         """
         return self._internal    
     
-    def frame(self, frame: int) -> typing.Self:        
+    def frame(self, frame: int) -> typing.Self:    
         if not frame >= 0:
             raise ValueError("frame must be >= 0")
         self._internal.frame = frame
     
         return self
     
-    def x(self, x: str) -> typing.Self:        
+    def x(self, x: str) -> typing.Self:    
         self._internal.x = x
     
         return self
     
-    def exclude(self, exclude: list[str]) -> typing.Self:        
+    def exclude(self, exclude: list[str]) -> typing.Self:    
         self._internal.exclude = exclude
     
         return self
     
 
-class ScatterSeriesConfig(cogbuilder.Builder[xychart.ScatterSeriesConfig]):    
+
+class ScatterSeriesConfig(cogbuilder.Builder[xychart.ScatterSeriesConfig]):
     _internal: xychart.ScatterSeriesConfig
 
     def __init__(self):
@@ -54,130 +55,131 @@ class ScatterSeriesConfig(cogbuilder.Builder[xychart.ScatterSeriesConfig]):
         """
         return self._internal    
     
-    def x(self, x: str) -> typing.Self:        
+    def x(self, x: str) -> typing.Self:    
         self._internal.x = x
     
         return self
     
-    def y(self, y: str) -> typing.Self:        
+    def y(self, y: str) -> typing.Self:    
         self._internal.y = y
     
         return self
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def show(self, show: xychart.ScatterShow) -> typing.Self:        
+    def show(self, show: xychart.ScatterShow) -> typing.Self:    
         self._internal.show = show
     
         return self
     
-    def point_size(self, point_size: cogbuilder.Builder[common.ScaleDimensionConfig]) -> typing.Self:        
+    def point_size(self, point_size: cogbuilder.Builder[common.ScaleDimensionConfig]) -> typing.Self:    
         point_size_resource = point_size.build()
         self._internal.point_size = point_size_resource
     
         return self
     
-    def point_color(self, point_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:        
+    def point_color(self, point_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:    
         point_color_resource = point_color.build()
         self._internal.point_color = point_color_resource
     
         return self
     
-    def line_color(self, line_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:        
+    def line_color(self, line_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:    
         line_color_resource = line_color.build()
         self._internal.line_color = line_color_resource
     
         return self
     
-    def line_width(self, line_width: int) -> typing.Self:        
+    def line_width(self, line_width: int) -> typing.Self:    
         if not line_width >= 0:
             raise ValueError("line_width must be >= 0")
         self._internal.line_width = line_width
     
         return self
     
-    def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:        
+    def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:    
         line_style_resource = line_style.build()
         self._internal.line_style = line_style_resource
     
         return self
     
-    def label(self, label: common.VisibilityMode) -> typing.Self:        
+    def label(self, label: common.VisibilityMode) -> typing.Self:    
         self._internal.label = label
     
         return self
     
-    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:        
+    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:    
         hide_from_resource = hide_from.build()
         self._internal.hide_from = hide_from_resource
     
         return self
     
-    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:        
+    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:    
         self._internal.axis_placement = axis_placement
     
         return self
     
-    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:        
+    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:    
         self._internal.axis_color_mode = axis_color_mode
     
         return self
     
-    def axis_label(self, axis_label: str) -> typing.Self:        
+    def axis_label(self, axis_label: str) -> typing.Self:    
         self._internal.axis_label = axis_label
     
         return self
     
-    def axis_width(self, axis_width: float) -> typing.Self:        
+    def axis_width(self, axis_width: float) -> typing.Self:    
         self._internal.axis_width = axis_width
     
         return self
     
-    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:        
+    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:    
         self._internal.axis_soft_min = axis_soft_min
     
         return self
     
-    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:        
+    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:    
         self._internal.axis_soft_max = axis_soft_max
     
         return self
     
-    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:        
+    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:    
         self._internal.axis_grid_show = axis_grid_show
     
         return self
     
-    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:        
+    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:    
         scale_distribution_resource = scale_distribution.build()
         self._internal.scale_distribution = scale_distribution_resource
     
         return self
     
-    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:        
+    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:    
         self._internal.axis_centered_zero = axis_centered_zero
     
         return self
     
-    def frame(self, frame: float) -> typing.Self:        
+    def frame(self, frame: float) -> typing.Self:    
         self._internal.frame = frame
     
         return self
     
-    def label_value(self, label_value: cogbuilder.Builder[common.TextDimensionConfig]) -> typing.Self:        
+    def label_value(self, label_value: cogbuilder.Builder[common.TextDimensionConfig]) -> typing.Self:    
         label_value_resource = label_value.build()
         self._internal.label_value = label_value_resource
     
         return self
     
-    def axis_border_show(self, axis_border_show: bool) -> typing.Self:        
+    def axis_border_show(self, axis_border_show: bool) -> typing.Self:    
         self._internal.axis_border_show = axis_border_show
     
         return self
     
+
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
     """
@@ -196,7 +198,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         """
         return self._internal    
     
-    def id_val(self, id_val: int) -> typing.Self:    
+    def id(self, id_val: int) -> typing.Self:    
         """
         Unique identifier of the panel. Generated by Grafana when creating a new panel. It must be unique within a dashboard, but not globally.
         """
@@ -509,7 +511,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def min_val(self, min_val: float) -> typing.Self:    
+    def min(self, min_val: float) -> typing.Self:    
         """
         The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
         """
@@ -524,7 +526,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def max_val(self, max_val: float) -> typing.Self:    
+    def max(self, max_val: float) -> typing.Self:    
         """
         The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
         """
@@ -711,7 +713,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def override_by_query(self, query_ref_id: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:        
+    def override_by_query(self, query_ref_id: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -728,7 +730,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def show(self, show: xychart.ScatterShow) -> typing.Self:        
+    def show(self, show: xychart.ScatterShow) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -742,7 +744,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def point_size(self, point_size: cogbuilder.Builder[common.ScaleDimensionConfig]) -> typing.Self:        
+    def point_size(self, point_size: cogbuilder.Builder[common.ScaleDimensionConfig]) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -757,7 +759,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def point_color(self, point_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:        
+    def point_color(self, point_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -772,7 +774,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def line_color(self, line_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:        
+    def line_color(self, line_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -787,7 +789,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def line_width(self, line_width: int) -> typing.Self:        
+    def line_width(self, line_width: int) -> typing.Self:    
         if not line_width >= 0:
             raise ValueError("line_width must be >= 0")
         if self._internal.field_config is None:
@@ -803,7 +805,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:        
+    def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -818,7 +820,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def label(self, label: common.VisibilityMode) -> typing.Self:        
+    def label(self, label: common.VisibilityMode) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -832,7 +834,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:        
+    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -847,7 +849,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:        
+    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -861,7 +863,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:        
+    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -875,7 +877,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def axis_label(self, axis_label: str) -> typing.Self:        
+    def axis_label(self, axis_label: str) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -889,7 +891,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def axis_width(self, axis_width: float) -> typing.Self:        
+    def axis_width(self, axis_width: float) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -903,7 +905,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:        
+    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -917,7 +919,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:        
+    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -931,7 +933,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:        
+    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -945,7 +947,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:        
+    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -960,7 +962,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:        
+    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -974,7 +976,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def label_value(self, label_value: cogbuilder.Builder[common.TextDimensionConfig]) -> typing.Self:        
+    def label_value(self, label_value: cogbuilder.Builder[common.TextDimensionConfig]) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -989,7 +991,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def axis_border_show(self, axis_border_show: bool) -> typing.Self:        
+    def axis_border_show(self, axis_border_show: bool) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -1003,7 +1005,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def series_mapping(self, series_mapping: xychart.SeriesMapping) -> typing.Self:        
+    def series_mapping(self, series_mapping: xychart.SeriesMapping) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = xychart.Options()
         assert isinstance(self._internal.options, xychart.Options)
@@ -1024,7 +1026,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:        
+    def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = xychart.Options()
         assert isinstance(self._internal.options, xychart.Options)
@@ -1033,7 +1035,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def tooltip(self, tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self:        
+    def tooltip(self, tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = xychart.Options()
         assert isinstance(self._internal.options, xychart.Options)

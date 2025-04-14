@@ -2,14 +2,14 @@
 
 package com.grafana.foundation.bargauge;
 
-import com.grafana.foundation.common.BarGaugeDisplayMode;
-import com.grafana.foundation.common.BarGaugeValueMode;
-import com.grafana.foundation.common.BarGaugeNamePlacement;
-import com.grafana.foundation.common.BarGaugeSizing;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.BarGaugeDisplayMode;
+import com.grafana.foundation.common.BarGaugeValueMode;
+import com.grafana.foundation.common.BarGaugeNamePlacement;
+import com.grafana.foundation.common.BarGaugeSizing;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.ReduceDataOptions;
 import com.grafana.foundation.common.VizTextDisplayOptions;
@@ -55,7 +55,6 @@ public class Options {
         this.minVizHeight = 16;
         this.maxVizHeight = 300;
     }
-    
     public Options(BarGaugeDisplayMode displayMode,BarGaugeValueMode valueMode,BarGaugeNamePlacement namePlacement,Boolean showUnfilled,BarGaugeSizing sizing,Integer minVizWidth,Integer minVizHeight,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,Integer maxVizHeight,VizOrientation orientation) {
         this.displayMode = displayMode;
         this.valueMode = valueMode;

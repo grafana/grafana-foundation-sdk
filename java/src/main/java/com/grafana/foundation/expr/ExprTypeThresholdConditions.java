@@ -20,7 +20,6 @@ public class ExprTypeThresholdConditions {
     public ExprTypeThresholdConditionsUnloadEvaluator unloadEvaluator;
     public ExprTypeThresholdConditions() {
     }
-    
     public ExprTypeThresholdConditions(ExprTypeThresholdConditionsEvaluator evaluator,Object loadedDimensions,ExprTypeThresholdConditionsUnloadEvaluator unloadEvaluator) {
         this.evaluator = evaluator;
         this.loadedDimensions = loadedDimensions;

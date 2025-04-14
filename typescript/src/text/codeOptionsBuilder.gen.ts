@@ -33,3 +33,4 @@ export class CodeOptionsBuilder implements cog.Builder<text.CodeOptions> {
         return this;
     }
 }
+

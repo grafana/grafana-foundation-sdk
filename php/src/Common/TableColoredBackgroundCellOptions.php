@@ -7,7 +7,7 @@ namespace Grafana\Foundation\Common;
  */
 class TableColoredBackgroundCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
     public ?\Grafana\Foundation\Common\TableCellBackgroundDisplayMode $mode;
 
@@ -19,8 +19,7 @@ class TableColoredBackgroundCellOptions implements \JsonSerializable
      */
     public function __construct(?\Grafana\Foundation\Common\TableCellBackgroundDisplayMode $mode = null, ?bool $applyToRow = null)
     {
-        $this->type = "color-background";
-    
+        $this->type = \Grafana\Foundation\Common\TableCellDisplayMode::auto();
         $this->mode = $mode;
         $this->applyToRow = $applyToRow;
     }
@@ -30,7 +29,7 @@ class TableColoredBackgroundCellOptions implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, mode?: string, applyToRow?: bool} $inputData */
+        /** @var array{type?: "color-background", mode?: string, applyToRow?: bool} $inputData */
         $data = $inputData;
         return new self(
             mode: isset($data["mode"]) ? (function($input) { return \Grafana\Foundation\Common\TableCellBackgroundDisplayMode::fromValue($input); })($data["mode"]) : null,

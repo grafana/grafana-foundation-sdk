@@ -8,7 +8,6 @@ export class SerialDiffBuilder implements cog.Builder<elasticsearch.SerialDiff> 
 
     constructor() {
         this.internal = elasticsearch.defaultSerialDiff();
-        this.internal.type = "serial_diff";
     }
 
     /**
@@ -45,3 +44,4 @@ export class SerialDiffBuilder implements cog.Builder<elasticsearch.SerialDiff> 
         return this;
     }
 }
+
