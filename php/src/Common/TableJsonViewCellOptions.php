@@ -7,12 +7,11 @@ namespace Grafana\Foundation\Common;
  */
 class TableJsonViewCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
     public function __construct()
     {
-        $this->type = "json-view";
-    
+        $this->type = \Grafana\Foundation\Common\TableCellDisplayMode::auto();
     }
 
     /**

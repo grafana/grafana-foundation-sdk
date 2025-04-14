@@ -19,7 +19,6 @@ func NewGeoHashGridBuilder() *GeoHashGridBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "geohash_grid"
 
 	return builder
 }

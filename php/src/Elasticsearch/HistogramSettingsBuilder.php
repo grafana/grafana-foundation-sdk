@@ -29,6 +29,7 @@ class HistogramSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function minDocCount(string $minDocCount): static
     {
         $this->internal->minDocCount = $minDocCount;

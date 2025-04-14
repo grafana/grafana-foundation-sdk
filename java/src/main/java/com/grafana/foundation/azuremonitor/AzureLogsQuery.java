@@ -45,7 +45,6 @@ public class AzureLogsQuery {
     public Boolean intersectTime;
     public AzureLogsQuery() {
     }
-    
     public AzureLogsQuery(String query,ResultFormat resultFormat,List<String> resources,Boolean dashboardTime,String timeColumn,String workspace,String resource,Boolean intersectTime) {
         this.query = query;
         this.resultFormat = resultFormat;

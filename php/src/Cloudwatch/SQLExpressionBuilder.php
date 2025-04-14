@@ -34,6 +34,7 @@ class SQLExpressionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * FROM part of the SQL expression
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorPropertyExpression>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorFunctionExpression> $from
@@ -45,6 +46,7 @@ class SQLExpressionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * WHERE part of the SQL expression
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorArrayExpression> $where
@@ -56,6 +58,7 @@ class SQLExpressionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * GROUP BY part of the SQL expression
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorArrayExpression> $groupBy
@@ -67,6 +70,7 @@ class SQLExpressionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * ORDER BY part of the SQL expression
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorFunctionExpression> $orderBy
@@ -78,6 +82,7 @@ class SQLExpressionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The sort order of the SQL expression, `ASC` or `DESC`
      */
@@ -87,6 +92,7 @@ class SQLExpressionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * LIMIT part of the SQL expression
      */

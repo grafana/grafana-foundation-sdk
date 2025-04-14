@@ -16,7 +16,7 @@ public class SerialDiff {
     @JsonProperty("field")
     public String field;
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonProperty("id")
     public String id;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -26,12 +26,12 @@ public class SerialDiff {
     @JsonProperty("hide")
     public Boolean hide;
     public SerialDiff() {
+        this.type = MetricAggregationType.SERIAL_DIFF;
     }
-    
-    public SerialDiff(String pipelineAgg,String field,String type,String id,ElasticsearchSerialDiffSettings settings,Boolean hide) {
+    public SerialDiff(String pipelineAgg,String field,String id,ElasticsearchSerialDiffSettings settings,Boolean hide) {
         this.pipelineAgg = pipelineAgg;
         this.field = field;
-        this.type = type;
+        this.type = MetricAggregationType.SERIAL_DIFF;
         this.id = id;
         this.settings = settings;
         this.hide = hide;

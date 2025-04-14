@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Elasticsearch;
 
 class MovingAverageHoltWintersModelSettings implements \JsonSerializable
 {
-    public string $model;
+    public \Grafana\Foundation\Elasticsearch\MovingAverageModel $model;
 
     public \Grafana\Foundation\Elasticsearch\ElasticsearchMovingAverageHoltWintersModelSettingsSettings $settings;
 
@@ -22,8 +22,7 @@ class MovingAverageHoltWintersModelSettings implements \JsonSerializable
      */
     public function __construct(?\Grafana\Foundation\Elasticsearch\ElasticsearchMovingAverageHoltWintersModelSettingsSettings $settings = null, ?string $window = null, ?bool $minimize = null, ?string $predict = null)
     {
-        $this->model = "holt_winters";
-    
+        $this->model = \Grafana\Foundation\Elasticsearch\MovingAverageModel::simple();
         $this->settings = $settings ?: new \Grafana\Foundation\Elasticsearch\ElasticsearchMovingAverageHoltWintersModelSettingsSettings();
         $this->window = $window ?: "";
         $this->minimize = $minimize ?: false;
@@ -35,7 +34,7 @@ class MovingAverageHoltWintersModelSettings implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{model?: string, settings?: mixed, window?: string, minimize?: bool, predict?: string} $inputData */
+        /** @var array{model?: "holt_winters", settings?: mixed, window?: string, minimize?: bool, predict?: string} $inputData */
         $data = $inputData;
         return new self(
             settings: isset($data["settings"]) ? (function($input) {

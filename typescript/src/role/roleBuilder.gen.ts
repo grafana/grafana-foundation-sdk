@@ -47,3 +47,4 @@ export class RoleBuilder implements cog.Builder<role.Role> {
         return this;
     }
 }
+

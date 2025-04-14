@@ -12,9 +12,6 @@ export interface MovingAverageModelOption {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MovingAverageModelOptionBuilder](./builder-MovingAverageModelOptionBuilder.md)

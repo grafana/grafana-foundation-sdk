@@ -30,6 +30,7 @@ class LineStyleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<float> $dash
      */

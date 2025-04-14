@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Bigquery;
 
 class QueryEditorFunctionParameterExpression implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Bigquery\QueryEditorExpressionType $type;
 
     public ?string $name;
 
@@ -13,8 +13,7 @@ class QueryEditorFunctionParameterExpression implements \JsonSerializable
      */
     public function __construct(?string $name = null)
     {
-        $this->type = "functionParameter";
-    
+        $this->type = \Grafana\Foundation\Bigquery\QueryEditorExpressionType::property();
         $this->name = $name;
     }
 
@@ -23,7 +22,7 @@ class QueryEditorFunctionParameterExpression implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, name?: string} $inputData */
+        /** @var array{type?: "functionParameter", name?: string} $inputData */
         $data = $inputData;
         return new self(
             name: $data["name"] ?? null,

@@ -43,3 +43,4 @@ export class ScenarioBuilder implements cog.Builder<testdata.Scenario> {
         return this;
     }
 }
+

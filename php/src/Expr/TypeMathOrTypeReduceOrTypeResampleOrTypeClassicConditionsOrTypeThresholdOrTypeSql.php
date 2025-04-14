@@ -68,7 +68,7 @@ class TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOr
     	return \Grafana\Foundation\Expr\TypeThreshold::fromArray($val);
     })($data["TypeThreshold"]) : null,
             typeSql: isset($data["TypeSql"]) ? (function($input) {
-    	/** @var array{datasource?: mixed, expression?: string, hide?: bool, intervalMs?: float, maxDataPoints?: int, queryType?: string, refId?: string, resultAssertions?: mixed, timeRange?: mixed, type?: string} */
+    	/** @var array{datasource?: mixed, expression?: string, format?: string, hide?: bool, intervalMs?: float, maxDataPoints?: int, queryType?: string, refId?: string, resultAssertions?: mixed, timeRange?: mixed, type?: string} */
     $val = $input;
     	return \Grafana\Foundation\Expr\TypeSql::fromArray($val);
     })($data["TypeSql"]) : null,

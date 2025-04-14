@@ -11,9 +11,6 @@ export interface FiltersSettings {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [FiltersSettingsBuilder](./builder-FiltersSettingsBuilder.md)

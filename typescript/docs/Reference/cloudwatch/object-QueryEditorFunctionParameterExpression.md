@@ -7,14 +7,11 @@ title: <span class="badge object-type-interface"></span> QueryEditorFunctionPara
 
 ```typescript
 export interface QueryEditorFunctionParameterExpression {
-	type: "functionParameter";
+	type: cloudwatch.QueryEditorExpressionType.FunctionParameter;
 	name?: string;
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [QueryEditorFunctionParameterExpressionBuilder](./builder-QueryEditorFunctionParameterExpressionBuilder.md)

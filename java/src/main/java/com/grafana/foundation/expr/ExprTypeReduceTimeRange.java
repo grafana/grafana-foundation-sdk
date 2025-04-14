@@ -18,7 +18,6 @@ public class ExprTypeReduceTimeRange {
         this.from = "now-6h";
         this.to = "now";
     }
-    
     public ExprTypeReduceTimeRange(String from,String to) {
         this.from = from;
         this.to = to;

@@ -8,7 +8,6 @@ public class DateHistogramBuilder implements com.grafana.foundation.cog.Builder<
     
     public DateHistogramBuilder() {
         this.internal = new DateHistogram();
-        this.internal.type = "date_histogram";
     }
     public DateHistogramBuilder field(String field) {
         this.internal.field = field;

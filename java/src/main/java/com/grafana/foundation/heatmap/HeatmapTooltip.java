@@ -25,7 +25,6 @@ public class HeatmapTooltip {
     public Boolean showColorScale;
     public HeatmapTooltip() {
     }
-    
     public HeatmapTooltip(TooltipDisplayMode mode,Boolean yHistogram,Boolean showColorScale) {
         this.mode = mode;
         this.yHistogram = yHistogram;

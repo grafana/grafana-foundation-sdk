@@ -9,7 +9,7 @@ Auto mode table cell options
 
 ```go
 type TableAutoCellOptions struct {
-    Type string `json:"type"`
+    Type common.TableCellDisplayMode `json:"type"`
 }
 ```
 ## Methods

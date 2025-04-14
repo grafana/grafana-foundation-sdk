@@ -26,7 +26,6 @@ public class TermsSettings {
     public String missing;
     public TermsSettings() {
     }
-    
     public TermsSettings(TermsOrder order,String size,String minDocCount,String orderBy,String missing) {
         this.order = order;
         this.size = size;

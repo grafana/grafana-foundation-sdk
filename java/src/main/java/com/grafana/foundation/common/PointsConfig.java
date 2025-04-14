@@ -24,7 +24,6 @@ public class PointsConfig {
     public String pointSymbol;
     public PointsConfig() {
     }
-    
     public PointsConfig(VisibilityMode showPoints,Double pointSize,String pointColor,String pointSymbol) {
         this.showPoints = showPoints;
         this.pointSize = pointSize;

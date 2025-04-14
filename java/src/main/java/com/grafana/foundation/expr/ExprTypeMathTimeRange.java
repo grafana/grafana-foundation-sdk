@@ -18,7 +18,6 @@ public class ExprTypeMathTimeRange {
         this.from = "now-6h";
         this.to = "now";
     }
-    
     public ExprTypeMathTimeRange(String from,String to) {
         this.from = from;
         this.to = to;

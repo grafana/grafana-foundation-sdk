@@ -27,3 +27,4 @@ export class HistogramSettingsBuilder implements cog.Builder<elasticsearch.Histo
         return this;
     }
 }
+

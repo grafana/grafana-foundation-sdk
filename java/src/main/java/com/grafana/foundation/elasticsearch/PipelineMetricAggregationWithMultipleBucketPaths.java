@@ -23,7 +23,6 @@ public class PipelineMetricAggregationWithMultipleBucketPaths {
     public Boolean hide;
     public PipelineMetricAggregationWithMultipleBucketPaths() {
     }
-    
     public PipelineMetricAggregationWithMultipleBucketPaths(List<PipelineVariable> pipelineVariables,MetricAggregationType type,String id,Boolean hide) {
         this.pipelineVariables = pipelineVariables;
         this.type = type;

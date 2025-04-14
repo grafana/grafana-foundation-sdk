@@ -29,3 +29,4 @@ export class LineConfigBuilder implements cog.Builder<canvas.LineConfig> {
         return this;
     }
 }
+

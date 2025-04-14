@@ -22,7 +22,6 @@ public class ExprTypeReduceSettings {
     public Double replaceWithValue;
     public ExprTypeReduceSettings() {
     }
-    
     public ExprTypeReduceSettings(ExprTypeReduceSettingsMode mode,Double replaceWithValue) {
         this.mode = mode;
         this.replaceWithValue = replaceWithValue;

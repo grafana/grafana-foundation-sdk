@@ -8,7 +8,6 @@ public class MinBuilder implements com.grafana.foundation.cog.Builder<Min> {
     
     public MinBuilder() {
         this.internal = new Min();
-        this.internal.type = "min";
     }
     public MinBuilder field(String field) {
         this.internal.field = field;

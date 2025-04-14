@@ -21,7 +21,6 @@ public class Threshold {
     public String color;
     public Threshold() {
     }
-    
     public Threshold(Double value,String color) {
         this.value = value;
         this.color = color;

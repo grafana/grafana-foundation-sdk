@@ -47,7 +47,6 @@ public class MetricStat {
     public List<String> statistics;
     public MetricStat() {
     }
-    
     public MetricStat(String region,String namespace,String metricName,Map<String, StringOrArrayOfString> dimensions,Boolean matchExact,String period,String accountId,String statistic,List<String> statistics) {
         this.region = region;
         this.namespace = namespace;

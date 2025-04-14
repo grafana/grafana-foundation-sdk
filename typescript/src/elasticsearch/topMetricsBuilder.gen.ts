@@ -8,7 +8,6 @@ export class TopMetricsBuilder implements cog.Builder<elasticsearch.TopMetrics> 
 
     constructor() {
         this.internal = elasticsearch.defaultTopMetrics();
-        this.internal.type = "top_metrics";
     }
 
     /**
@@ -37,3 +36,4 @@ export class TopMetricsBuilder implements cog.Builder<elasticsearch.TopMetrics> 
         return this;
     }
 }
+

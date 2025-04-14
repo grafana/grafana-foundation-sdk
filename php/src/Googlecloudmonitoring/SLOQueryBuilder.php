@@ -33,6 +33,7 @@ class SLOQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Alignment function to be used. Defaults to ALIGN_MEAN.
      */
@@ -42,6 +43,7 @@ class SLOQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
      */
@@ -51,6 +53,7 @@ class SLOQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * SLO selector.
      */
@@ -60,6 +63,7 @@ class SLOQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * ID for the service the SLO is in.
      */
@@ -69,6 +73,7 @@ class SLOQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name for the service the SLO is in.
      */
@@ -78,6 +83,7 @@ class SLOQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * ID for the SLO.
      */
@@ -87,6 +93,7 @@ class SLOQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of the SLO.
      */
@@ -96,6 +103,7 @@ class SLOQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * SLO goal value.
      */
@@ -105,6 +113,7 @@ class SLOQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specific lookback period for the SLO.
      */

@@ -30,24 +30,28 @@ class DataSourceJsonDataBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function defaultRegion(string $defaultRegion): static
     {
         $this->internal->defaultRegion = $defaultRegion;
     
         return $this;
     }
+
     public function profile(string $profile): static
     {
         $this->internal->profile = $profile;
     
         return $this;
     }
+
     public function manageAlerts(bool $manageAlerts): static
     {
         $this->internal->manageAlerts = $manageAlerts;
     
         return $this;
     }
+
     public function alertmanagerUid(string $alertmanagerUid): static
     {
         $this->internal->alertmanagerUid = $alertmanagerUid;

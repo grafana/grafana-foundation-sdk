@@ -67,3 +67,4 @@ export class TableFieldOptionsBuilder implements cog.Builder<common.TableFieldOp
         return this;
     }
 }
+

@@ -47,3 +47,4 @@ export class StreamingQueryBuilder implements cog.Builder<testdata.StreamingQuer
         return this;
     }
 }
+

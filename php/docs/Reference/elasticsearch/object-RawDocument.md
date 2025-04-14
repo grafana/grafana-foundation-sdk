@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> RawDocument
 ```php
 class RawDocument implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public string $id;
 

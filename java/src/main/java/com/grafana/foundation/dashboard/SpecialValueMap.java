@@ -13,15 +13,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 // For example, you can configure a special value mapping so that null values appear as N/A.
 public class SpecialValueMap {
     @JsonProperty("type")
-    public String type;
+    public MappingType type;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("options")
     public DashboardSpecialValueMapOptions options;
     public SpecialValueMap() {
+        this.type = MappingType.SPECIAL_VALUE;
     }
-    
-    public SpecialValueMap(String type,DashboardSpecialValueMapOptions options) {
-        this.type = type;
+    public SpecialValueMap(DashboardSpecialValueMapOptions options) {
+        this.type = MappingType.SPECIAL_VALUE;
         this.options = options;
     }
     

@@ -8,7 +8,6 @@ export class DerivativeBuilder implements cog.Builder<elasticsearch.Derivative> 
 
     constructor() {
         this.internal = elasticsearch.defaultDerivative();
-        this.internal.type = "derivative";
     }
 
     /**
@@ -45,3 +44,4 @@ export class DerivativeBuilder implements cog.Builder<elasticsearch.Derivative> 
         return this;
     }
 }
+

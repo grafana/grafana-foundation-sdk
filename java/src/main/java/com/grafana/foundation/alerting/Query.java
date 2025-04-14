@@ -36,7 +36,6 @@ public class Query {
     public RelativeTimeRange relativeTimeRange;
     public Query() {
     }
-    
     public Query(String datasourceUid,Dataquery model,String queryType,String refId,RelativeTimeRange relativeTimeRange) {
         this.datasourceUid = datasourceUid;
         this.model = model;

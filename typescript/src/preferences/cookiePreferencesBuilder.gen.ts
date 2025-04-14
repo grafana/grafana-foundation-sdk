@@ -32,3 +32,4 @@ export class CookiePreferencesBuilder implements cog.Builder<preferences.CookieP
         return this;
     }
 }
+

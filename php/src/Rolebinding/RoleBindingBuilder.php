@@ -34,6 +34,7 @@ class RoleBindingBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The team or user that has the specified role
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Rolebinding\RoleBindingSubject> $subject

@@ -385,7 +385,6 @@ func (resource BuiltinRoleRefOrCustomRoleRef) MarshalJSON() ([]byte, error) {
 	if resource.CustomRoleRef != nil {
 		return json.Marshal(resource.CustomRoleRef)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 

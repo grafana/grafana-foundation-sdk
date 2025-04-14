@@ -6,7 +6,7 @@ from ..models import datasource
 from ..models import dashboard
 
 
-class Dataquery(cogbuilder.Builder[datasource.Dataquery]):    
+class Dataquery(cogbuilder.Builder[datasource.Dataquery]):
     _internal: datasource.Dataquery
 
     def __init__(self):

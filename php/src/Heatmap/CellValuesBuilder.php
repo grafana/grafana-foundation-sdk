@@ -33,6 +33,7 @@ class CellValuesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Controls the number of decimals for cell values
      */

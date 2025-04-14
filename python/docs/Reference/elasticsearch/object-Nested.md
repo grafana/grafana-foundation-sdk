@@ -9,7 +9,7 @@ title: <span class="badge object-type-class"></span> Nested
 class Nested:
     field: typing.Optional[str]
     id_val: str
-    type_val: typing.Literal["nested"]
+    type_val: str
     settings: typing.Optional[object]
 ```
 ## Methods

@@ -23,7 +23,6 @@ public class DashboardRangeMapOptions {
     public ValueMappingResult result;
     public DashboardRangeMapOptions() {
     }
-    
     public DashboardRangeMapOptions(Double from,Double to,ValueMappingResult result) {
         this.from = from;
         this.to = to;

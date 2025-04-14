@@ -36,3 +36,4 @@ export class TimeSeriesQueryBuilder implements cog.Builder<googlecloudmonitoring
         return this;
     }
 }
+

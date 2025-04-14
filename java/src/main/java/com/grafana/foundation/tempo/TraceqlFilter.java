@@ -34,7 +34,6 @@ public class TraceqlFilter {
     public TraceqlSearchScope scope;
     public TraceqlFilter() {
     }
-    
     public TraceqlFilter(String id,String tag,String operator,StringOrArrayOfString value,String valueType,TraceqlSearchScope scope) {
         this.id = id;
         this.tag = tag;

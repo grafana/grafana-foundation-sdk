@@ -15,6 +15,8 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
 
     public string $expression;
 
+    public string $format;
+
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
      * NOTE: this does not always imply that the query should not be executed since

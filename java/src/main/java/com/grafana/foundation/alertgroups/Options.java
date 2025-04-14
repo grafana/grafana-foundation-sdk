@@ -19,7 +19,6 @@ public class Options {
     public Boolean expandAll;
     public Options() {
     }
-    
     public Options(String labels,String alertmanager,Boolean expandAll) {
         this.labels = labels;
         this.alertmanager = alertmanager;

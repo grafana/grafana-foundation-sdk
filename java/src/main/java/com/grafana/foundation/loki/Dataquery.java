@@ -65,7 +65,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public DataSourceRef datasource;
     public Dataquery() {
     }
-    
     public Dataquery(String expr,String legendFormat,Long maxLines,Long resolution,QueryEditorMode editorMode,Boolean range,Boolean instant,String step,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
         this.expr = expr;
         this.legendFormat = legendFormat;

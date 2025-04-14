@@ -25,7 +25,6 @@ public class ScalarDimensionConfig {
     public ScalarDimensionMode mode;
     public ScalarDimensionConfig() {
     }
-    
     public ScalarDimensionConfig(Double min,Double max,Double fixed,String field,ScalarDimensionMode mode) {
         this.min = min;
         this.max = max;

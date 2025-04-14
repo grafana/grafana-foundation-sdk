@@ -12,9 +12,6 @@ export interface MonthRange {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MonthRangeBuilder](./builder-MonthRangeBuilder.md)

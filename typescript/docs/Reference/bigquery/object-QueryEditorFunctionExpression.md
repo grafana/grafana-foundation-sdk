@@ -7,15 +7,12 @@ title: <span class="badge object-type-interface"></span> QueryEditorFunctionExpr
 
 ```typescript
 export interface QueryEditorFunctionExpression {
-	type: "function";
+	type: bigquery.QueryEditorExpressionType.Function;
 	name?: string;
 	parameters?: bigquery.QueryEditorFunctionParameterExpression[];
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [QueryEditorFunctionExpressionBuilder](./builder-QueryEditorFunctionExpressionBuilder.md)

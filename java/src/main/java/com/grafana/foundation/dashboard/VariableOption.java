@@ -24,7 +24,6 @@ public class VariableOption {
     public StringOrArrayOfString value;
     public VariableOption() {
     }
-    
     public VariableOption(Boolean selected,StringOrArrayOfString text,StringOrArrayOfString value) {
         this.selected = selected;
         this.text = text;

@@ -21,7 +21,6 @@ public class ElasticsearchTopMetricsSettings {
     public List<String> metrics;
     public ElasticsearchTopMetricsSettings() {
     }
-    
     public ElasticsearchTopMetricsSettings(String order,String orderBy,List<String> metrics) {
         this.order = order;
         this.orderBy = orderBy;

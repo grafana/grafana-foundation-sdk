@@ -30,6 +30,7 @@ class VizTooltipOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function sort(\Grafana\Foundation\Common\SortOrder $sort): static
     {
         $this->internal->sort = $sort;

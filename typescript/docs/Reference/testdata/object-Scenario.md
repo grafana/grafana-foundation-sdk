@@ -17,9 +17,6 @@ export interface Scenario {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [ScenarioBuilder](./builder-ScenarioBuilder.md)

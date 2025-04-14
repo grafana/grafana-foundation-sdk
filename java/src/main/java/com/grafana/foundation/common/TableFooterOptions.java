@@ -30,7 +30,6 @@ public class TableFooterOptions {
     public Boolean countRows;
     public TableFooterOptions() {
     }
-    
     public TableFooterOptions(Boolean show,List<String> reducer,List<String> fields,Boolean enablePagination,Boolean countRows) {
         this.show = show;
         this.reducer = reducer;

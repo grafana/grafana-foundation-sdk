@@ -21,7 +21,6 @@ public class MatcherConfig {
     public MatcherConfig() {
         this.id = "";
     }
-    
     public MatcherConfig(String id,Object options) {
         this.id = id;
         this.options = options;

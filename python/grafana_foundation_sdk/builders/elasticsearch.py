@@ -6,12 +6,11 @@ from ..models import elasticsearch
 from ..models import dashboard
 
 
-class DateHistogram(cogbuilder.Builder[elasticsearch.DateHistogram]):    
+class DateHistogram(cogbuilder.Builder[elasticsearch.DateHistogram]):
     _internal: elasticsearch.DateHistogram
 
     def __init__(self):
-        self._internal = elasticsearch.DateHistogram()        
-        self._internal.type_val = "date_histogram"
+        self._internal = elasticsearch.DateHistogram()
 
     def build(self) -> elasticsearch.DateHistogram:
         """
@@ -19,29 +18,29 @@ class DateHistogram(cogbuilder.Builder[elasticsearch.DateHistogram]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchDateHistogramSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchDateHistogramSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
 
-class Histogram(cogbuilder.Builder[elasticsearch.Histogram]):    
+
+class Histogram(cogbuilder.Builder[elasticsearch.Histogram]):
     _internal: elasticsearch.Histogram
 
     def __init__(self):
-        self._internal = elasticsearch.Histogram()        
-        self._internal.type_val = "histogram"
+        self._internal = elasticsearch.Histogram()
 
     def build(self) -> elasticsearch.Histogram:
         """
@@ -49,29 +48,29 @@ class Histogram(cogbuilder.Builder[elasticsearch.Histogram]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchHistogramSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchHistogramSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
 
-class Terms(cogbuilder.Builder[elasticsearch.Terms]):    
+
+class Terms(cogbuilder.Builder[elasticsearch.Terms]):
     _internal: elasticsearch.Terms
 
     def __init__(self):
-        self._internal = elasticsearch.Terms()        
-        self._internal.type_val = "terms"
+        self._internal = elasticsearch.Terms()
 
     def build(self) -> elasticsearch.Terms:
         """
@@ -79,29 +78,29 @@ class Terms(cogbuilder.Builder[elasticsearch.Terms]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchTermsSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchTermsSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
 
-class Filters(cogbuilder.Builder[elasticsearch.Filters]):    
+
+class Filters(cogbuilder.Builder[elasticsearch.Filters]):
     _internal: elasticsearch.Filters
 
     def __init__(self):
-        self._internal = elasticsearch.Filters()        
-        self._internal.type_val = "filters"
+        self._internal = elasticsearch.Filters()
 
     def build(self) -> elasticsearch.Filters:
         """
@@ -109,19 +108,20 @@ class Filters(cogbuilder.Builder[elasticsearch.Filters]):
         """
         return self._internal    
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchFiltersSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchFiltersSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
 
-class Filter(cogbuilder.Builder[elasticsearch.Filter]):    
+
+class Filter(cogbuilder.Builder[elasticsearch.Filter]):
     _internal: elasticsearch.Filter
 
     def __init__(self):
@@ -133,23 +133,23 @@ class Filter(cogbuilder.Builder[elasticsearch.Filter]):
         """
         return self._internal    
     
-    def query(self, query: str) -> typing.Self:        
+    def query(self, query: str) -> typing.Self:    
         self._internal.query = query
     
         return self
     
-    def label(self, label: str) -> typing.Self:        
+    def label(self, label: str) -> typing.Self:    
         self._internal.label = label
     
         return self
     
 
-class GeoHashGrid(cogbuilder.Builder[elasticsearch.GeoHashGrid]):    
+
+class GeoHashGrid(cogbuilder.Builder[elasticsearch.GeoHashGrid]):
     _internal: elasticsearch.GeoHashGrid
 
     def __init__(self):
-        self._internal = elasticsearch.GeoHashGrid()        
-        self._internal.type_val = "geohash_grid"
+        self._internal = elasticsearch.GeoHashGrid()
 
     def build(self) -> elasticsearch.GeoHashGrid:
         """
@@ -157,29 +157,29 @@ class GeoHashGrid(cogbuilder.Builder[elasticsearch.GeoHashGrid]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchGeoHashGridSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchGeoHashGridSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
 
-class Nested(cogbuilder.Builder[elasticsearch.Nested]):    
+
+class Nested(cogbuilder.Builder[elasticsearch.Nested]):
     _internal: elasticsearch.Nested
 
     def __init__(self):
-        self._internal = elasticsearch.Nested()        
-        self._internal.type_val = "nested"
+        self._internal = elasticsearch.Nested()
 
     def build(self) -> elasticsearch.Nested:
         """
@@ -187,28 +187,28 @@ class Nested(cogbuilder.Builder[elasticsearch.Nested]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: object) -> typing.Self:        
+    def settings(self, settings: object) -> typing.Self:    
         self._internal.settings = settings
     
         return self
     
 
-class Count(cogbuilder.Builder[elasticsearch.Count]):    
+
+class Count(cogbuilder.Builder[elasticsearch.Count]):
     _internal: elasticsearch.Count
 
     def __init__(self):
-        self._internal = elasticsearch.Count()        
-        self._internal.type_val = "count"
+        self._internal = elasticsearch.Count()
 
     def build(self) -> elasticsearch.Count:
         """
@@ -216,16 +216,17 @@ class Count(cogbuilder.Builder[elasticsearch.Count]):
         """
         return self._internal    
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
+
 
 class MovingAverage(cogbuilder.Builder[elasticsearch.MovingAverage]):    
     """
@@ -235,8 +236,7 @@ class MovingAverage(cogbuilder.Builder[elasticsearch.MovingAverage]):
     _internal: elasticsearch.MovingAverage
 
     def __init__(self):
-        self._internal = elasticsearch.MovingAverage()        
-        self._internal.type_val = "moving_avg"
+        self._internal = elasticsearch.MovingAverage()
 
     def build(self) -> elasticsearch.MovingAverage:
         """
@@ -244,38 +244,38 @@ class MovingAverage(cogbuilder.Builder[elasticsearch.MovingAverage]):
         """
         return self._internal    
     
-    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:        
+    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:    
         self._internal.pipeline_agg = pipeline_agg
     
         return self
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: dict[str, object]) -> typing.Self:        
+    def settings(self, settings: dict[str, object]) -> typing.Self:    
         self._internal.settings = settings
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class Derivative(cogbuilder.Builder[elasticsearch.Derivative]):    
+
+class Derivative(cogbuilder.Builder[elasticsearch.Derivative]):
     _internal: elasticsearch.Derivative
 
     def __init__(self):
-        self._internal = elasticsearch.Derivative()        
-        self._internal.type_val = "derivative"
+        self._internal = elasticsearch.Derivative()
 
     def build(self) -> elasticsearch.Derivative:
         """
@@ -283,39 +283,39 @@ class Derivative(cogbuilder.Builder[elasticsearch.Derivative]):
         """
         return self._internal    
     
-    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:        
+    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:    
         self._internal.pipeline_agg = pipeline_agg
     
         return self
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchDerivativeSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchDerivativeSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class CumulativeSum(cogbuilder.Builder[elasticsearch.CumulativeSum]):    
+
+class CumulativeSum(cogbuilder.Builder[elasticsearch.CumulativeSum]):
     _internal: elasticsearch.CumulativeSum
 
     def __init__(self):
-        self._internal = elasticsearch.CumulativeSum()        
-        self._internal.type_val = "cumulative_sum"
+        self._internal = elasticsearch.CumulativeSum()
 
     def build(self) -> elasticsearch.CumulativeSum:
         """
@@ -323,39 +323,39 @@ class CumulativeSum(cogbuilder.Builder[elasticsearch.CumulativeSum]):
         """
         return self._internal    
     
-    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:        
+    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:    
         self._internal.pipeline_agg = pipeline_agg
     
         return self
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchCumulativeSumSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchCumulativeSumSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class BucketScript(cogbuilder.Builder[elasticsearch.BucketScript]):    
+
+class BucketScript(cogbuilder.Builder[elasticsearch.BucketScript]):
     _internal: elasticsearch.BucketScript
 
     def __init__(self):
-        self._internal = elasticsearch.BucketScript()        
-        self._internal.type_val = "bucket_script"
+        self._internal = elasticsearch.BucketScript()
 
     def build(self) -> elasticsearch.BucketScript:
         """
@@ -363,30 +363,31 @@ class BucketScript(cogbuilder.Builder[elasticsearch.BucketScript]):
         """
         return self._internal    
     
-    def pipeline_variables(self, pipeline_variables: list[cogbuilder.Builder[elasticsearch.PipelineVariable]]) -> typing.Self:        
+    def pipeline_variables(self, pipeline_variables: list[cogbuilder.Builder[elasticsearch.PipelineVariable]]) -> typing.Self:    
         pipeline_variables_resources = [r1.build() for r1 in pipeline_variables]
         self._internal.pipeline_variables = pipeline_variables_resources
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchBucketScriptSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchBucketScriptSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class PipelineVariable(cogbuilder.Builder[elasticsearch.PipelineVariable]):    
+
+class PipelineVariable(cogbuilder.Builder[elasticsearch.PipelineVariable]):
     _internal: elasticsearch.PipelineVariable
 
     def __init__(self):
@@ -398,23 +399,23 @@ class PipelineVariable(cogbuilder.Builder[elasticsearch.PipelineVariable]):
         """
         return self._internal    
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:        
+    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:    
         self._internal.pipeline_agg = pipeline_agg
     
         return self
     
 
-class SerialDiff(cogbuilder.Builder[elasticsearch.SerialDiff]):    
+
+class SerialDiff(cogbuilder.Builder[elasticsearch.SerialDiff]):
     _internal: elasticsearch.SerialDiff
 
     def __init__(self):
-        self._internal = elasticsearch.SerialDiff()        
-        self._internal.type_val = "serial_diff"
+        self._internal = elasticsearch.SerialDiff()
 
     def build(self) -> elasticsearch.SerialDiff:
         """
@@ -422,39 +423,39 @@ class SerialDiff(cogbuilder.Builder[elasticsearch.SerialDiff]):
         """
         return self._internal    
     
-    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:        
+    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:    
         self._internal.pipeline_agg = pipeline_agg
     
         return self
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchSerialDiffSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchSerialDiffSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class RawData(cogbuilder.Builder[elasticsearch.RawData]):    
+
+class RawData(cogbuilder.Builder[elasticsearch.RawData]):
     _internal: elasticsearch.RawData
 
     def __init__(self):
-        self._internal = elasticsearch.RawData()        
-        self._internal.type_val = "raw_data"
+        self._internal = elasticsearch.RawData()
 
     def build(self) -> elasticsearch.RawData:
         """
@@ -462,29 +463,29 @@ class RawData(cogbuilder.Builder[elasticsearch.RawData]):
         """
         return self._internal    
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchRawDataSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchRawDataSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class RawDocument(cogbuilder.Builder[elasticsearch.RawDocument]):    
+
+class RawDocument(cogbuilder.Builder[elasticsearch.RawDocument]):
     _internal: elasticsearch.RawDocument
 
     def __init__(self):
-        self._internal = elasticsearch.RawDocument()        
-        self._internal.type_val = "raw_document"
+        self._internal = elasticsearch.RawDocument()
 
     def build(self) -> elasticsearch.RawDocument:
         """
@@ -492,29 +493,29 @@ class RawDocument(cogbuilder.Builder[elasticsearch.RawDocument]):
         """
         return self._internal    
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchRawDocumentSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchRawDocumentSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class UniqueCount(cogbuilder.Builder[elasticsearch.UniqueCount]):    
+
+class UniqueCount(cogbuilder.Builder[elasticsearch.UniqueCount]):
     _internal: elasticsearch.UniqueCount
 
     def __init__(self):
-        self._internal = elasticsearch.UniqueCount()        
-        self._internal.type_val = "cardinality"
+        self._internal = elasticsearch.UniqueCount()
 
     def build(self) -> elasticsearch.UniqueCount:
         """
@@ -522,34 +523,34 @@ class UniqueCount(cogbuilder.Builder[elasticsearch.UniqueCount]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchUniqueCountSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchUniqueCountSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class Percentiles(cogbuilder.Builder[elasticsearch.Percentiles]):    
+
+class Percentiles(cogbuilder.Builder[elasticsearch.Percentiles]):
     _internal: elasticsearch.Percentiles
 
     def __init__(self):
-        self._internal = elasticsearch.Percentiles()        
-        self._internal.type_val = "percentiles"
+        self._internal = elasticsearch.Percentiles()
 
     def build(self) -> elasticsearch.Percentiles:
         """
@@ -557,34 +558,34 @@ class Percentiles(cogbuilder.Builder[elasticsearch.Percentiles]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchPercentilesSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchPercentilesSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class ExtendedStats(cogbuilder.Builder[elasticsearch.ExtendedStats]):    
+
+class ExtendedStats(cogbuilder.Builder[elasticsearch.ExtendedStats]):
     _internal: elasticsearch.ExtendedStats
 
     def __init__(self):
-        self._internal = elasticsearch.ExtendedStats()        
-        self._internal.type_val = "extended_stats"
+        self._internal = elasticsearch.ExtendedStats()
 
     def build(self) -> elasticsearch.ExtendedStats:
         """
@@ -592,39 +593,39 @@ class ExtendedStats(cogbuilder.Builder[elasticsearch.ExtendedStats]):
         """
         return self._internal    
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchExtendedStatsSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchExtendedStatsSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def meta(self, meta: object) -> typing.Self:        
+    def meta(self, meta: object) -> typing.Self:    
         self._internal.meta = meta
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class Min(cogbuilder.Builder[elasticsearch.Min]):    
+
+class Min(cogbuilder.Builder[elasticsearch.Min]):
     _internal: elasticsearch.Min
 
     def __init__(self):
-        self._internal = elasticsearch.Min()        
-        self._internal.type_val = "min"
+        self._internal = elasticsearch.Min()
 
     def build(self) -> elasticsearch.Min:
         """
@@ -632,34 +633,34 @@ class Min(cogbuilder.Builder[elasticsearch.Min]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMinSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMinSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class Max(cogbuilder.Builder[elasticsearch.Max]):    
+
+class Max(cogbuilder.Builder[elasticsearch.Max]):
     _internal: elasticsearch.Max
 
     def __init__(self):
-        self._internal = elasticsearch.Max()        
-        self._internal.type_val = "max"
+        self._internal = elasticsearch.Max()
 
     def build(self) -> elasticsearch.Max:
         """
@@ -667,34 +668,34 @@ class Max(cogbuilder.Builder[elasticsearch.Max]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMaxSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMaxSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class Sum(cogbuilder.Builder[elasticsearch.Sum]):    
+
+class Sum(cogbuilder.Builder[elasticsearch.Sum]):
     _internal: elasticsearch.Sum
 
     def __init__(self):
-        self._internal = elasticsearch.Sum()        
-        self._internal.type_val = "sum"
+        self._internal = elasticsearch.Sum()
 
     def build(self) -> elasticsearch.Sum:
         """
@@ -702,34 +703,34 @@ class Sum(cogbuilder.Builder[elasticsearch.Sum]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchSumSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchSumSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class Average(cogbuilder.Builder[elasticsearch.Average]):    
+
+class Average(cogbuilder.Builder[elasticsearch.Average]):
     _internal: elasticsearch.Average
 
     def __init__(self):
-        self._internal = elasticsearch.Average()        
-        self._internal.type_val = "avg"
+        self._internal = elasticsearch.Average()
 
     def build(self) -> elasticsearch.Average:
         """
@@ -737,34 +738,34 @@ class Average(cogbuilder.Builder[elasticsearch.Average]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchAverageSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchAverageSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class MovingFunction(cogbuilder.Builder[elasticsearch.MovingFunction]):    
+
+class MovingFunction(cogbuilder.Builder[elasticsearch.MovingFunction]):
     _internal: elasticsearch.MovingFunction
 
     def __init__(self):
-        self._internal = elasticsearch.MovingFunction()        
-        self._internal.type_val = "moving_fn"
+        self._internal = elasticsearch.MovingFunction()
 
     def build(self) -> elasticsearch.MovingFunction:
         """
@@ -772,39 +773,39 @@ class MovingFunction(cogbuilder.Builder[elasticsearch.MovingFunction]):
         """
         return self._internal    
     
-    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:        
+    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:    
         self._internal.pipeline_agg = pipeline_agg
     
         return self
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMovingFunctionSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMovingFunctionSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class Logs(cogbuilder.Builder[elasticsearch.Logs]):    
+
+class Logs(cogbuilder.Builder[elasticsearch.Logs]):
     _internal: elasticsearch.Logs
 
     def __init__(self):
-        self._internal = elasticsearch.Logs()        
-        self._internal.type_val = "logs"
+        self._internal = elasticsearch.Logs()
 
     def build(self) -> elasticsearch.Logs:
         """
@@ -812,29 +813,29 @@ class Logs(cogbuilder.Builder[elasticsearch.Logs]):
         """
         return self._internal    
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchLogsSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchLogsSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class Rate(cogbuilder.Builder[elasticsearch.Rate]):    
+
+class Rate(cogbuilder.Builder[elasticsearch.Rate]):
     _internal: elasticsearch.Rate
 
     def __init__(self):
-        self._internal = elasticsearch.Rate()        
-        self._internal.type_val = "rate"
+        self._internal = elasticsearch.Rate()
 
     def build(self) -> elasticsearch.Rate:
         """
@@ -842,34 +843,34 @@ class Rate(cogbuilder.Builder[elasticsearch.Rate]):
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchRateSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchRateSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class TopMetrics(cogbuilder.Builder[elasticsearch.TopMetrics]):    
+
+class TopMetrics(cogbuilder.Builder[elasticsearch.TopMetrics]):
     _internal: elasticsearch.TopMetrics
 
     def __init__(self):
-        self._internal = elasticsearch.TopMetrics()        
-        self._internal.type_val = "top_metrics"
+        self._internal = elasticsearch.TopMetrics()
 
     def build(self) -> elasticsearch.TopMetrics:
         """
@@ -877,24 +878,25 @@ class TopMetrics(cogbuilder.Builder[elasticsearch.TopMetrics]):
         """
         return self._internal    
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchTopMetricsSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchTopMetricsSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class BaseBucketAggregation(cogbuilder.Builder[elasticsearch.BaseBucketAggregation]):    
+
+class BaseBucketAggregation(cogbuilder.Builder[elasticsearch.BaseBucketAggregation]):
     _internal: elasticsearch.BaseBucketAggregation
 
     def __init__(self):
@@ -906,23 +908,24 @@ class BaseBucketAggregation(cogbuilder.Builder[elasticsearch.BaseBucketAggregati
         """
         return self._internal    
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def type_val(self, type_val: elasticsearch.BucketAggregationType) -> typing.Self:        
+    def type(self, type_val: elasticsearch.BucketAggregationType) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def settings(self, settings: object) -> typing.Self:        
+    def settings(self, settings: object) -> typing.Self:    
         self._internal.settings = settings
     
         return self
     
 
-class BucketAggregationWithField(cogbuilder.Builder[elasticsearch.BucketAggregationWithField]):    
+
+class BucketAggregationWithField(cogbuilder.Builder[elasticsearch.BucketAggregationWithField]):
     _internal: elasticsearch.BucketAggregationWithField
 
     def __init__(self):
@@ -934,28 +937,29 @@ class BucketAggregationWithField(cogbuilder.Builder[elasticsearch.BucketAggregat
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def type_val(self, type_val: elasticsearch.BucketAggregationType) -> typing.Self:        
+    def type(self, type_val: elasticsearch.BucketAggregationType) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def settings(self, settings: object) -> typing.Self:        
+    def settings(self, settings: object) -> typing.Self:    
         self._internal.settings = settings
     
         return self
     
 
-class DateHistogramSettings(cogbuilder.Builder[elasticsearch.DateHistogramSettings]):    
+
+class DateHistogramSettings(cogbuilder.Builder[elasticsearch.DateHistogramSettings]):
     _internal: elasticsearch.DateHistogramSettings
 
     def __init__(self):
@@ -967,33 +971,34 @@ class DateHistogramSettings(cogbuilder.Builder[elasticsearch.DateHistogramSettin
         """
         return self._internal    
     
-    def interval(self, interval: str) -> typing.Self:        
+    def interval(self, interval: str) -> typing.Self:    
         self._internal.interval = interval
     
         return self
     
-    def min_doc_count(self, min_doc_count: str) -> typing.Self:        
+    def min_doc_count(self, min_doc_count: str) -> typing.Self:    
         self._internal.min_doc_count = min_doc_count
     
         return self
     
-    def trim_edges(self, trim_edges: str) -> typing.Self:        
+    def trim_edges(self, trim_edges: str) -> typing.Self:    
         self._internal.trim_edges = trim_edges
     
         return self
     
-    def offset(self, offset: str) -> typing.Self:        
+    def offset(self, offset: str) -> typing.Self:    
         self._internal.offset = offset
     
         return self
     
-    def time_zone(self, time_zone: str) -> typing.Self:        
+    def time_zone(self, time_zone: str) -> typing.Self:    
         self._internal.time_zone = time_zone
     
         return self
     
 
-class HistogramSettings(cogbuilder.Builder[elasticsearch.HistogramSettings]):    
+
+class HistogramSettings(cogbuilder.Builder[elasticsearch.HistogramSettings]):
     _internal: elasticsearch.HistogramSettings
 
     def __init__(self):
@@ -1005,18 +1010,19 @@ class HistogramSettings(cogbuilder.Builder[elasticsearch.HistogramSettings]):
         """
         return self._internal    
     
-    def interval(self, interval: str) -> typing.Self:        
+    def interval(self, interval: str) -> typing.Self:    
         self._internal.interval = interval
     
         return self
     
-    def min_doc_count(self, min_doc_count: str) -> typing.Self:        
+    def min_doc_count(self, min_doc_count: str) -> typing.Self:    
         self._internal.min_doc_count = min_doc_count
     
         return self
     
 
-class TermsSettings(cogbuilder.Builder[elasticsearch.TermsSettings]):    
+
+class TermsSettings(cogbuilder.Builder[elasticsearch.TermsSettings]):
     _internal: elasticsearch.TermsSettings
 
     def __init__(self):
@@ -1028,33 +1034,34 @@ class TermsSettings(cogbuilder.Builder[elasticsearch.TermsSettings]):
         """
         return self._internal    
     
-    def order(self, order: elasticsearch.TermsOrder) -> typing.Self:        
+    def order(self, order: elasticsearch.TermsOrder) -> typing.Self:    
         self._internal.order = order
     
         return self
     
-    def size(self, size: str) -> typing.Self:        
+    def size(self, size: str) -> typing.Self:    
         self._internal.size = size
     
         return self
     
-    def min_doc_count(self, min_doc_count: str) -> typing.Self:        
+    def min_doc_count(self, min_doc_count: str) -> typing.Self:    
         self._internal.min_doc_count = min_doc_count
     
         return self
     
-    def order_by(self, order_by: str) -> typing.Self:        
+    def order_by(self, order_by: str) -> typing.Self:    
         self._internal.order_by = order_by
     
         return self
     
-    def missing(self, missing: str) -> typing.Self:        
+    def missing(self, missing: str) -> typing.Self:    
         self._internal.missing = missing
     
         return self
     
 
-class FiltersSettings(cogbuilder.Builder[elasticsearch.FiltersSettings]):    
+
+class FiltersSettings(cogbuilder.Builder[elasticsearch.FiltersSettings]):
     _internal: elasticsearch.FiltersSettings
 
     def __init__(self):
@@ -1066,14 +1073,15 @@ class FiltersSettings(cogbuilder.Builder[elasticsearch.FiltersSettings]):
         """
         return self._internal    
     
-    def filters(self, filters: list[cogbuilder.Builder[elasticsearch.Filter]]) -> typing.Self:        
+    def filters(self, filters: list[cogbuilder.Builder[elasticsearch.Filter]]) -> typing.Self:    
         filters_resources = [r1.build() for r1 in filters]
         self._internal.filters = filters_resources
     
         return self
     
 
-class GeoHashGridSettings(cogbuilder.Builder[elasticsearch.GeoHashGridSettings]):    
+
+class GeoHashGridSettings(cogbuilder.Builder[elasticsearch.GeoHashGridSettings]):
     _internal: elasticsearch.GeoHashGridSettings
 
     def __init__(self):
@@ -1085,13 +1093,14 @@ class GeoHashGridSettings(cogbuilder.Builder[elasticsearch.GeoHashGridSettings])
         """
         return self._internal    
     
-    def precision(self, precision: str) -> typing.Self:        
+    def precision(self, precision: str) -> typing.Self:    
         self._internal.precision = precision
     
         return self
     
 
-class BaseMetricAggregation(cogbuilder.Builder[elasticsearch.BaseMetricAggregation]):    
+
+class BaseMetricAggregation(cogbuilder.Builder[elasticsearch.BaseMetricAggregation]):
     _internal: elasticsearch.BaseMetricAggregation
 
     def __init__(self):
@@ -1103,23 +1112,24 @@ class BaseMetricAggregation(cogbuilder.Builder[elasticsearch.BaseMetricAggregati
         """
         return self._internal    
     
-    def type_val(self, type_val: elasticsearch.MetricAggregationType) -> typing.Self:        
+    def type(self, type_val: elasticsearch.MetricAggregationType) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class MetricAggregationWithField(cogbuilder.Builder[elasticsearch.MetricAggregationWithField]):    
+
+class MetricAggregationWithField(cogbuilder.Builder[elasticsearch.MetricAggregationWithField]):
     _internal: elasticsearch.MetricAggregationWithField
 
     def __init__(self):
@@ -1131,28 +1141,29 @@ class MetricAggregationWithField(cogbuilder.Builder[elasticsearch.MetricAggregat
         """
         return self._internal    
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def type_val(self, type_val: elasticsearch.MetricAggregationType) -> typing.Self:        
+    def type(self, type_val: elasticsearch.MetricAggregationType) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class MetricAggregationWithMissingSupport(cogbuilder.Builder[elasticsearch.MetricAggregationWithMissingSupport]):    
+
+class MetricAggregationWithMissingSupport(cogbuilder.Builder[elasticsearch.MetricAggregationWithMissingSupport]):
     _internal: elasticsearch.MetricAggregationWithMissingSupport
 
     def __init__(self):
@@ -1164,29 +1175,30 @@ class MetricAggregationWithMissingSupport(cogbuilder.Builder[elasticsearch.Metri
         """
         return self._internal    
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMetricAggregationWithMissingSupportSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMetricAggregationWithMissingSupportSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def type_val(self, type_val: elasticsearch.MetricAggregationType) -> typing.Self:        
+    def type(self, type_val: elasticsearch.MetricAggregationType) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class MetricAggregationWithInlineScript(cogbuilder.Builder[elasticsearch.MetricAggregationWithInlineScript]):    
+
+class MetricAggregationWithInlineScript(cogbuilder.Builder[elasticsearch.MetricAggregationWithInlineScript]):
     _internal: elasticsearch.MetricAggregationWithInlineScript
 
     def __init__(self):
@@ -1198,29 +1210,30 @@ class MetricAggregationWithInlineScript(cogbuilder.Builder[elasticsearch.MetricA
         """
         return self._internal    
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMetricAggregationWithInlineScriptSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMetricAggregationWithInlineScriptSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def type_val(self, type_val: elasticsearch.MetricAggregationType) -> typing.Self:        
+    def type(self, type_val: elasticsearch.MetricAggregationType) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class ExtendedStat(cogbuilder.Builder[elasticsearch.ExtendedStat]):    
+
+class ExtendedStat(cogbuilder.Builder[elasticsearch.ExtendedStat]):
     _internal: elasticsearch.ExtendedStat
 
     def __init__(self):
@@ -1232,18 +1245,19 @@ class ExtendedStat(cogbuilder.Builder[elasticsearch.ExtendedStat]):
         """
         return self._internal    
     
-    def label(self, label: str) -> typing.Self:        
+    def label(self, label: str) -> typing.Self:    
         self._internal.label = label
     
         return self
     
-    def value(self, value: elasticsearch.ExtendedStatMetaType) -> typing.Self:        
+    def value(self, value: elasticsearch.ExtendedStatMetaType) -> typing.Self:    
         self._internal.value = value
     
         return self
     
 
-class BasePipelineMetricAggregation(cogbuilder.Builder[elasticsearch.BasePipelineMetricAggregation]):    
+
+class BasePipelineMetricAggregation(cogbuilder.Builder[elasticsearch.BasePipelineMetricAggregation]):
     _internal: elasticsearch.BasePipelineMetricAggregation
 
     def __init__(self):
@@ -1255,33 +1269,34 @@ class BasePipelineMetricAggregation(cogbuilder.Builder[elasticsearch.BasePipelin
         """
         return self._internal    
     
-    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:        
+    def pipeline_agg(self, pipeline_agg: str) -> typing.Self:    
         self._internal.pipeline_agg = pipeline_agg
     
         return self
     
-    def field(self, field: str) -> typing.Self:        
+    def field(self, field: str) -> typing.Self:    
         self._internal.field = field
     
         return self
     
-    def type_val(self, type_val: str) -> typing.Self:        
+    def type(self, type_val: str) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class PipelineMetricAggregationWithMultipleBucketPaths(cogbuilder.Builder[elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths]):    
+
+class PipelineMetricAggregationWithMultipleBucketPaths(cogbuilder.Builder[elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths]):
     _internal: elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths
 
     def __init__(self):
@@ -1293,29 +1308,30 @@ class PipelineMetricAggregationWithMultipleBucketPaths(cogbuilder.Builder[elasti
         """
         return self._internal    
     
-    def pipeline_variables(self, pipeline_variables: list[cogbuilder.Builder[elasticsearch.PipelineVariable]]) -> typing.Self:        
+    def pipeline_variables(self, pipeline_variables: list[cogbuilder.Builder[elasticsearch.PipelineVariable]]) -> typing.Self:    
         pipeline_variables_resources = [r1.build() for r1 in pipeline_variables]
         self._internal.pipeline_variables = pipeline_variables_resources
     
         return self
     
-    def type_val(self, type_val: elasticsearch.MetricAggregationType) -> typing.Self:        
+    def type(self, type_val: elasticsearch.MetricAggregationType) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def hide(self, hide: bool) -> typing.Self:        
+    def hide(self, hide: bool) -> typing.Self:    
         self._internal.hide = hide
     
         return self
     
 
-class MovingAverageModelOption(cogbuilder.Builder[elasticsearch.MovingAverageModelOption]):    
+
+class MovingAverageModelOption(cogbuilder.Builder[elasticsearch.MovingAverageModelOption]):
     _internal: elasticsearch.MovingAverageModelOption
 
     def __init__(self):
@@ -1327,18 +1343,19 @@ class MovingAverageModelOption(cogbuilder.Builder[elasticsearch.MovingAverageMod
         """
         return self._internal    
     
-    def label(self, label: str) -> typing.Self:        
+    def label(self, label: str) -> typing.Self:    
         self._internal.label = label
     
         return self
     
-    def value(self, value: elasticsearch.MovingAverageModel) -> typing.Self:        
+    def value(self, value: elasticsearch.MovingAverageModel) -> typing.Self:    
         self._internal.value = value
     
         return self
     
 
-class BaseMovingAverageModelSettings(cogbuilder.Builder[elasticsearch.BaseMovingAverageModelSettings]):    
+
+class BaseMovingAverageModelSettings(cogbuilder.Builder[elasticsearch.BaseMovingAverageModelSettings]):
     _internal: elasticsearch.BaseMovingAverageModelSettings
 
     def __init__(self):
@@ -1350,28 +1367,28 @@ class BaseMovingAverageModelSettings(cogbuilder.Builder[elasticsearch.BaseMoving
         """
         return self._internal    
     
-    def model(self, model: elasticsearch.MovingAverageModel) -> typing.Self:        
+    def model(self, model: elasticsearch.MovingAverageModel) -> typing.Self:    
         self._internal.model = model
     
         return self
     
-    def window(self, window: str) -> typing.Self:        
+    def window(self, window: str) -> typing.Self:    
         self._internal.window = window
     
         return self
     
-    def predict(self, predict: str) -> typing.Self:        
+    def predict(self, predict: str) -> typing.Self:    
         self._internal.predict = predict
     
         return self
     
 
-class MovingAverageSimpleModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageSimpleModelSettings]):    
+
+class MovingAverageSimpleModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageSimpleModelSettings]):
     _internal: elasticsearch.MovingAverageSimpleModelSettings
 
     def __init__(self):
-        self._internal = elasticsearch.MovingAverageSimpleModelSettings()        
-        self._internal.model = "simple"
+        self._internal = elasticsearch.MovingAverageSimpleModelSettings()
 
     def build(self) -> elasticsearch.MovingAverageSimpleModelSettings:
         """
@@ -1379,23 +1396,23 @@ class MovingAverageSimpleModelSettings(cogbuilder.Builder[elasticsearch.MovingAv
         """
         return self._internal    
     
-    def window(self, window: str) -> typing.Self:        
+    def window(self, window: str) -> typing.Self:    
         self._internal.window = window
     
         return self
     
-    def predict(self, predict: str) -> typing.Self:        
+    def predict(self, predict: str) -> typing.Self:    
         self._internal.predict = predict
     
         return self
     
 
-class MovingAverageLinearModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageLinearModelSettings]):    
+
+class MovingAverageLinearModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageLinearModelSettings]):
     _internal: elasticsearch.MovingAverageLinearModelSettings
 
     def __init__(self):
-        self._internal = elasticsearch.MovingAverageLinearModelSettings()        
-        self._internal.model = "linear"
+        self._internal = elasticsearch.MovingAverageLinearModelSettings()
 
     def build(self) -> elasticsearch.MovingAverageLinearModelSettings:
         """
@@ -1403,23 +1420,23 @@ class MovingAverageLinearModelSettings(cogbuilder.Builder[elasticsearch.MovingAv
         """
         return self._internal    
     
-    def window(self, window: str) -> typing.Self:        
+    def window(self, window: str) -> typing.Self:    
         self._internal.window = window
     
         return self
     
-    def predict(self, predict: str) -> typing.Self:        
+    def predict(self, predict: str) -> typing.Self:    
         self._internal.predict = predict
     
         return self
     
 
-class MovingAverageEWMAModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageEWMAModelSettings]):    
+
+class MovingAverageEWMAModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageEWMAModelSettings]):
     _internal: elasticsearch.MovingAverageEWMAModelSettings
 
     def __init__(self):
-        self._internal = elasticsearch.MovingAverageEWMAModelSettings()        
-        self._internal.model = "ewma"
+        self._internal = elasticsearch.MovingAverageEWMAModelSettings()
 
     def build(self) -> elasticsearch.MovingAverageEWMAModelSettings:
         """
@@ -1427,34 +1444,34 @@ class MovingAverageEWMAModelSettings(cogbuilder.Builder[elasticsearch.MovingAver
         """
         return self._internal    
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageEWMAModelSettingsSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageEWMAModelSettingsSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def window(self, window: str) -> typing.Self:        
+    def window(self, window: str) -> typing.Self:    
         self._internal.window = window
     
         return self
     
-    def minimize(self, minimize: bool) -> typing.Self:        
+    def minimize(self, minimize: bool) -> typing.Self:    
         self._internal.minimize = minimize
     
         return self
     
-    def predict(self, predict: str) -> typing.Self:        
+    def predict(self, predict: str) -> typing.Self:    
         self._internal.predict = predict
     
         return self
     
 
-class MovingAverageHoltModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageHoltModelSettings]):    
+
+class MovingAverageHoltModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageHoltModelSettings]):
     _internal: elasticsearch.MovingAverageHoltModelSettings
 
     def __init__(self):
-        self._internal = elasticsearch.MovingAverageHoltModelSettings()        
-        self._internal.model = "holt"
+        self._internal = elasticsearch.MovingAverageHoltModelSettings()
 
     def build(self) -> elasticsearch.MovingAverageHoltModelSettings:
         """
@@ -1462,34 +1479,34 @@ class MovingAverageHoltModelSettings(cogbuilder.Builder[elasticsearch.MovingAver
         """
         return self._internal    
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def window(self, window: str) -> typing.Self:        
+    def window(self, window: str) -> typing.Self:    
         self._internal.window = window
     
         return self
     
-    def minimize(self, minimize: bool) -> typing.Self:        
+    def minimize(self, minimize: bool) -> typing.Self:    
         self._internal.minimize = minimize
     
         return self
     
-    def predict(self, predict: str) -> typing.Self:        
+    def predict(self, predict: str) -> typing.Self:    
         self._internal.predict = predict
     
         return self
     
 
-class MovingAverageHoltWintersModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageHoltWintersModelSettings]):    
+
+class MovingAverageHoltWintersModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageHoltWintersModelSettings]):
     _internal: elasticsearch.MovingAverageHoltWintersModelSettings
 
     def __init__(self):
-        self._internal = elasticsearch.MovingAverageHoltWintersModelSettings()        
-        self._internal.model = "holt_winters"
+        self._internal = elasticsearch.MovingAverageHoltWintersModelSettings()
 
     def build(self) -> elasticsearch.MovingAverageHoltWintersModelSettings:
         """
@@ -1497,29 +1514,30 @@ class MovingAverageHoltWintersModelSettings(cogbuilder.Builder[elasticsearch.Mov
         """
         return self._internal    
     
-    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageHoltWintersModelSettingsSettings]) -> typing.Self:        
+    def settings(self, settings: cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageHoltWintersModelSettingsSettings]) -> typing.Self:    
         settings_resource = settings.build()
         self._internal.settings = settings_resource
     
         return self
     
-    def window(self, window: str) -> typing.Self:        
+    def window(self, window: str) -> typing.Self:    
         self._internal.window = window
     
         return self
     
-    def minimize(self, minimize: bool) -> typing.Self:        
+    def minimize(self, minimize: bool) -> typing.Self:    
         self._internal.minimize = minimize
     
         return self
     
-    def predict(self, predict: str) -> typing.Self:        
+    def predict(self, predict: str) -> typing.Self:    
         self._internal.predict = predict
     
         return self
     
 
-class Dataquery(cogbuilder.Builder[elasticsearch.Dataquery]):    
+
+class Dataquery(cogbuilder.Builder[elasticsearch.Dataquery]):
     _internal: elasticsearch.Dataquery
 
     def __init__(self):
@@ -1623,7 +1641,8 @@ class Dataquery(cogbuilder.Builder[elasticsearch.Dataquery]):
         return self
     
 
-class ElasticsearchDateHistogramSettings(cogbuilder.Builder[elasticsearch.ElasticsearchDateHistogramSettings]):    
+
+class ElasticsearchDateHistogramSettings(cogbuilder.Builder[elasticsearch.ElasticsearchDateHistogramSettings]):
     _internal: elasticsearch.ElasticsearchDateHistogramSettings
 
     def __init__(self):
@@ -1635,33 +1654,34 @@ class ElasticsearchDateHistogramSettings(cogbuilder.Builder[elasticsearch.Elasti
         """
         return self._internal    
     
-    def interval(self, interval: str) -> typing.Self:        
+    def interval(self, interval: str) -> typing.Self:    
         self._internal.interval = interval
     
         return self
     
-    def min_doc_count(self, min_doc_count: str) -> typing.Self:        
+    def min_doc_count(self, min_doc_count: str) -> typing.Self:    
         self._internal.min_doc_count = min_doc_count
     
         return self
     
-    def trim_edges(self, trim_edges: str) -> typing.Self:        
+    def trim_edges(self, trim_edges: str) -> typing.Self:    
         self._internal.trim_edges = trim_edges
     
         return self
     
-    def offset(self, offset: str) -> typing.Self:        
+    def offset(self, offset: str) -> typing.Self:    
         self._internal.offset = offset
     
         return self
     
-    def time_zone(self, time_zone: str) -> typing.Self:        
+    def time_zone(self, time_zone: str) -> typing.Self:    
         self._internal.time_zone = time_zone
     
         return self
     
 
-class ElasticsearchHistogramSettings(cogbuilder.Builder[elasticsearch.ElasticsearchHistogramSettings]):    
+
+class ElasticsearchHistogramSettings(cogbuilder.Builder[elasticsearch.ElasticsearchHistogramSettings]):
     _internal: elasticsearch.ElasticsearchHistogramSettings
 
     def __init__(self):
@@ -1673,18 +1693,19 @@ class ElasticsearchHistogramSettings(cogbuilder.Builder[elasticsearch.Elasticsea
         """
         return self._internal    
     
-    def interval(self, interval: str) -> typing.Self:        
+    def interval(self, interval: str) -> typing.Self:    
         self._internal.interval = interval
     
         return self
     
-    def min_doc_count(self, min_doc_count: str) -> typing.Self:        
+    def min_doc_count(self, min_doc_count: str) -> typing.Self:    
         self._internal.min_doc_count = min_doc_count
     
         return self
     
 
-class ElasticsearchTermsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchTermsSettings]):    
+
+class ElasticsearchTermsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchTermsSettings]):
     _internal: elasticsearch.ElasticsearchTermsSettings
 
     def __init__(self):
@@ -1696,33 +1717,34 @@ class ElasticsearchTermsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchT
         """
         return self._internal    
     
-    def order(self, order: elasticsearch.TermsOrder) -> typing.Self:        
+    def order(self, order: elasticsearch.TermsOrder) -> typing.Self:    
         self._internal.order = order
     
         return self
     
-    def size(self, size: str) -> typing.Self:        
+    def size(self, size: str) -> typing.Self:    
         self._internal.size = size
     
         return self
     
-    def min_doc_count(self, min_doc_count: str) -> typing.Self:        
+    def min_doc_count(self, min_doc_count: str) -> typing.Self:    
         self._internal.min_doc_count = min_doc_count
     
         return self
     
-    def order_by(self, order_by: str) -> typing.Self:        
+    def order_by(self, order_by: str) -> typing.Self:    
         self._internal.order_by = order_by
     
         return self
     
-    def missing(self, missing: str) -> typing.Self:        
+    def missing(self, missing: str) -> typing.Self:    
         self._internal.missing = missing
     
         return self
     
 
-class ElasticsearchFiltersSettings(cogbuilder.Builder[elasticsearch.ElasticsearchFiltersSettings]):    
+
+class ElasticsearchFiltersSettings(cogbuilder.Builder[elasticsearch.ElasticsearchFiltersSettings]):
     _internal: elasticsearch.ElasticsearchFiltersSettings
 
     def __init__(self):
@@ -1734,14 +1756,15 @@ class ElasticsearchFiltersSettings(cogbuilder.Builder[elasticsearch.Elasticsearc
         """
         return self._internal    
     
-    def filters(self, filters: list[cogbuilder.Builder[elasticsearch.Filter]]) -> typing.Self:        
+    def filters(self, filters: list[cogbuilder.Builder[elasticsearch.Filter]]) -> typing.Self:    
         filters_resources = [r1.build() for r1 in filters]
         self._internal.filters = filters_resources
     
         return self
     
 
-class ElasticsearchGeoHashGridSettings(cogbuilder.Builder[elasticsearch.ElasticsearchGeoHashGridSettings]):    
+
+class ElasticsearchGeoHashGridSettings(cogbuilder.Builder[elasticsearch.ElasticsearchGeoHashGridSettings]):
     _internal: elasticsearch.ElasticsearchGeoHashGridSettings
 
     def __init__(self):
@@ -1753,13 +1776,14 @@ class ElasticsearchGeoHashGridSettings(cogbuilder.Builder[elasticsearch.Elastics
         """
         return self._internal    
     
-    def precision(self, precision: str) -> typing.Self:        
+    def precision(self, precision: str) -> typing.Self:    
         self._internal.precision = precision
     
         return self
     
 
-class ElasticsearchDerivativeSettings(cogbuilder.Builder[elasticsearch.ElasticsearchDerivativeSettings]):    
+
+class ElasticsearchDerivativeSettings(cogbuilder.Builder[elasticsearch.ElasticsearchDerivativeSettings]):
     _internal: elasticsearch.ElasticsearchDerivativeSettings
 
     def __init__(self):
@@ -1771,13 +1795,14 @@ class ElasticsearchDerivativeSettings(cogbuilder.Builder[elasticsearch.Elasticse
         """
         return self._internal    
     
-    def unit(self, unit: str) -> typing.Self:        
+    def unit(self, unit: str) -> typing.Self:    
         self._internal.unit = unit
     
         return self
     
 
-class ElasticsearchCumulativeSumSettings(cogbuilder.Builder[elasticsearch.ElasticsearchCumulativeSumSettings]):    
+
+class ElasticsearchCumulativeSumSettings(cogbuilder.Builder[elasticsearch.ElasticsearchCumulativeSumSettings]):
     _internal: elasticsearch.ElasticsearchCumulativeSumSettings
 
     def __init__(self):
@@ -1789,13 +1814,14 @@ class ElasticsearchCumulativeSumSettings(cogbuilder.Builder[elasticsearch.Elasti
         """
         return self._internal    
     
-    def format_val(self, format_val: str) -> typing.Self:        
+    def format(self, format_val: str) -> typing.Self:    
         self._internal.format_val = format_val
     
         return self
     
 
-class ElasticsearchBucketScriptSettings(cogbuilder.Builder[elasticsearch.ElasticsearchBucketScriptSettings]):    
+
+class ElasticsearchBucketScriptSettings(cogbuilder.Builder[elasticsearch.ElasticsearchBucketScriptSettings]):
     _internal: elasticsearch.ElasticsearchBucketScriptSettings
 
     def __init__(self):
@@ -1807,14 +1833,15 @@ class ElasticsearchBucketScriptSettings(cogbuilder.Builder[elasticsearch.Elastic
         """
         return self._internal    
     
-    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:    
         script_resource = script.build()
         self._internal.script = script_resource
     
         return self
     
 
-class ElasticsearchInlineScript(cogbuilder.Builder[elasticsearch.ElasticsearchInlineScript]):    
+
+class ElasticsearchInlineScript(cogbuilder.Builder[elasticsearch.ElasticsearchInlineScript]):
     _internal: elasticsearch.ElasticsearchInlineScript
 
     def __init__(self):
@@ -1826,13 +1853,14 @@ class ElasticsearchInlineScript(cogbuilder.Builder[elasticsearch.ElasticsearchIn
         """
         return self._internal    
     
-    def inline(self, inline: str) -> typing.Self:        
+    def inline(self, inline: str) -> typing.Self:    
         self._internal.inline = inline
     
         return self
     
 
-class ElasticsearchSerialDiffSettings(cogbuilder.Builder[elasticsearch.ElasticsearchSerialDiffSettings]):    
+
+class ElasticsearchSerialDiffSettings(cogbuilder.Builder[elasticsearch.ElasticsearchSerialDiffSettings]):
     _internal: elasticsearch.ElasticsearchSerialDiffSettings
 
     def __init__(self):
@@ -1844,13 +1872,14 @@ class ElasticsearchSerialDiffSettings(cogbuilder.Builder[elasticsearch.Elasticse
         """
         return self._internal    
     
-    def lag(self, lag: str) -> typing.Self:        
+    def lag(self, lag: str) -> typing.Self:    
         self._internal.lag = lag
     
         return self
     
 
-class ElasticsearchRawDataSettings(cogbuilder.Builder[elasticsearch.ElasticsearchRawDataSettings]):    
+
+class ElasticsearchRawDataSettings(cogbuilder.Builder[elasticsearch.ElasticsearchRawDataSettings]):
     _internal: elasticsearch.ElasticsearchRawDataSettings
 
     def __init__(self):
@@ -1862,13 +1891,14 @@ class ElasticsearchRawDataSettings(cogbuilder.Builder[elasticsearch.Elasticsearc
         """
         return self._internal    
     
-    def size(self, size: str) -> typing.Self:        
+    def size(self, size: str) -> typing.Self:    
         self._internal.size = size
     
         return self
     
 
-class ElasticsearchRawDocumentSettings(cogbuilder.Builder[elasticsearch.ElasticsearchRawDocumentSettings]):    
+
+class ElasticsearchRawDocumentSettings(cogbuilder.Builder[elasticsearch.ElasticsearchRawDocumentSettings]):
     _internal: elasticsearch.ElasticsearchRawDocumentSettings
 
     def __init__(self):
@@ -1880,13 +1910,14 @@ class ElasticsearchRawDocumentSettings(cogbuilder.Builder[elasticsearch.Elastics
         """
         return self._internal    
     
-    def size(self, size: str) -> typing.Self:        
+    def size(self, size: str) -> typing.Self:    
         self._internal.size = size
     
         return self
     
 
-class ElasticsearchUniqueCountSettings(cogbuilder.Builder[elasticsearch.ElasticsearchUniqueCountSettings]):    
+
+class ElasticsearchUniqueCountSettings(cogbuilder.Builder[elasticsearch.ElasticsearchUniqueCountSettings]):
     _internal: elasticsearch.ElasticsearchUniqueCountSettings
 
     def __init__(self):
@@ -1898,18 +1929,19 @@ class ElasticsearchUniqueCountSettings(cogbuilder.Builder[elasticsearch.Elastics
         """
         return self._internal    
     
-    def precision_threshold(self, precision_threshold: str) -> typing.Self:        
+    def precision_threshold(self, precision_threshold: str) -> typing.Self:    
         self._internal.precision_threshold = precision_threshold
     
         return self
     
-    def missing(self, missing: str) -> typing.Self:        
+    def missing(self, missing: str) -> typing.Self:    
         self._internal.missing = missing
     
         return self
     
 
-class ElasticsearchPercentilesSettings(cogbuilder.Builder[elasticsearch.ElasticsearchPercentilesSettings]):    
+
+class ElasticsearchPercentilesSettings(cogbuilder.Builder[elasticsearch.ElasticsearchPercentilesSettings]):
     _internal: elasticsearch.ElasticsearchPercentilesSettings
 
     def __init__(self):
@@ -1921,24 +1953,25 @@ class ElasticsearchPercentilesSettings(cogbuilder.Builder[elasticsearch.Elastics
         """
         return self._internal    
     
-    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:    
         script_resource = script.build()
         self._internal.script = script_resource
     
         return self
     
-    def missing(self, missing: str) -> typing.Self:        
+    def missing(self, missing: str) -> typing.Self:    
         self._internal.missing = missing
     
         return self
     
-    def percents(self, percents: list[str]) -> typing.Self:        
+    def percents(self, percents: list[str]) -> typing.Self:    
         self._internal.percents = percents
     
         return self
     
 
-class ElasticsearchExtendedStatsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchExtendedStatsSettings]):    
+
+class ElasticsearchExtendedStatsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchExtendedStatsSettings]):
     _internal: elasticsearch.ElasticsearchExtendedStatsSettings
 
     def __init__(self):
@@ -1950,24 +1983,25 @@ class ElasticsearchExtendedStatsSettings(cogbuilder.Builder[elasticsearch.Elasti
         """
         return self._internal    
     
-    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:    
         script_resource = script.build()
         self._internal.script = script_resource
     
         return self
     
-    def missing(self, missing: str) -> typing.Self:        
+    def missing(self, missing: str) -> typing.Self:    
         self._internal.missing = missing
     
         return self
     
-    def sigma(self, sigma: str) -> typing.Self:        
+    def sigma(self, sigma: str) -> typing.Self:    
         self._internal.sigma = sigma
     
         return self
     
 
-class ElasticsearchMinSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMinSettings]):    
+
+class ElasticsearchMinSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMinSettings]):
     _internal: elasticsearch.ElasticsearchMinSettings
 
     def __init__(self):
@@ -1979,19 +2013,20 @@ class ElasticsearchMinSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMin
         """
         return self._internal    
     
-    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:    
         script_resource = script.build()
         self._internal.script = script_resource
     
         return self
     
-    def missing(self, missing: str) -> typing.Self:        
+    def missing(self, missing: str) -> typing.Self:    
         self._internal.missing = missing
     
         return self
     
 
-class ElasticsearchMaxSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMaxSettings]):    
+
+class ElasticsearchMaxSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMaxSettings]):
     _internal: elasticsearch.ElasticsearchMaxSettings
 
     def __init__(self):
@@ -2003,19 +2038,20 @@ class ElasticsearchMaxSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMax
         """
         return self._internal    
     
-    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:    
         script_resource = script.build()
         self._internal.script = script_resource
     
         return self
     
-    def missing(self, missing: str) -> typing.Self:        
+    def missing(self, missing: str) -> typing.Self:    
         self._internal.missing = missing
     
         return self
     
 
-class ElasticsearchSumSettings(cogbuilder.Builder[elasticsearch.ElasticsearchSumSettings]):    
+
+class ElasticsearchSumSettings(cogbuilder.Builder[elasticsearch.ElasticsearchSumSettings]):
     _internal: elasticsearch.ElasticsearchSumSettings
 
     def __init__(self):
@@ -2027,19 +2063,20 @@ class ElasticsearchSumSettings(cogbuilder.Builder[elasticsearch.ElasticsearchSum
         """
         return self._internal    
     
-    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:    
         script_resource = script.build()
         self._internal.script = script_resource
     
         return self
     
-    def missing(self, missing: str) -> typing.Self:        
+    def missing(self, missing: str) -> typing.Self:    
         self._internal.missing = missing
     
         return self
     
 
-class ElasticsearchAverageSettings(cogbuilder.Builder[elasticsearch.ElasticsearchAverageSettings]):    
+
+class ElasticsearchAverageSettings(cogbuilder.Builder[elasticsearch.ElasticsearchAverageSettings]):
     _internal: elasticsearch.ElasticsearchAverageSettings
 
     def __init__(self):
@@ -2051,19 +2088,20 @@ class ElasticsearchAverageSettings(cogbuilder.Builder[elasticsearch.Elasticsearc
         """
         return self._internal    
     
-    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:    
         script_resource = script.build()
         self._internal.script = script_resource
     
         return self
     
-    def missing(self, missing: str) -> typing.Self:        
+    def missing(self, missing: str) -> typing.Self:    
         self._internal.missing = missing
     
         return self
     
 
-class ElasticsearchMovingFunctionSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingFunctionSettings]):    
+
+class ElasticsearchMovingFunctionSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingFunctionSettings]):
     _internal: elasticsearch.ElasticsearchMovingFunctionSettings
 
     def __init__(self):
@@ -2075,24 +2113,25 @@ class ElasticsearchMovingFunctionSettings(cogbuilder.Builder[elasticsearch.Elast
         """
         return self._internal    
     
-    def window(self, window: str) -> typing.Self:        
+    def window(self, window: str) -> typing.Self:    
         self._internal.window = window
     
         return self
     
-    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:    
         script_resource = script.build()
         self._internal.script = script_resource
     
         return self
     
-    def shift(self, shift: str) -> typing.Self:        
+    def shift(self, shift: str) -> typing.Self:    
         self._internal.shift = shift
     
         return self
     
 
-class ElasticsearchLogsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchLogsSettings]):    
+
+class ElasticsearchLogsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchLogsSettings]):
     _internal: elasticsearch.ElasticsearchLogsSettings
 
     def __init__(self):
@@ -2104,13 +2143,14 @@ class ElasticsearchLogsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchLo
         """
         return self._internal    
     
-    def limit(self, limit: str) -> typing.Self:        
+    def limit(self, limit: str) -> typing.Self:    
         self._internal.limit = limit
     
         return self
     
 
-class ElasticsearchRateSettings(cogbuilder.Builder[elasticsearch.ElasticsearchRateSettings]):    
+
+class ElasticsearchRateSettings(cogbuilder.Builder[elasticsearch.ElasticsearchRateSettings]):
     _internal: elasticsearch.ElasticsearchRateSettings
 
     def __init__(self):
@@ -2122,18 +2162,19 @@ class ElasticsearchRateSettings(cogbuilder.Builder[elasticsearch.ElasticsearchRa
         """
         return self._internal    
     
-    def unit(self, unit: str) -> typing.Self:        
+    def unit(self, unit: str) -> typing.Self:    
         self._internal.unit = unit
     
         return self
     
-    def mode(self, mode: str) -> typing.Self:        
+    def mode(self, mode: str) -> typing.Self:    
         self._internal.mode = mode
     
         return self
     
 
-class ElasticsearchTopMetricsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchTopMetricsSettings]):    
+
+class ElasticsearchTopMetricsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchTopMetricsSettings]):
     _internal: elasticsearch.ElasticsearchTopMetricsSettings
 
     def __init__(self):
@@ -2145,23 +2186,24 @@ class ElasticsearchTopMetricsSettings(cogbuilder.Builder[elasticsearch.Elasticse
         """
         return self._internal    
     
-    def order(self, order: str) -> typing.Self:        
+    def order(self, order: str) -> typing.Self:    
         self._internal.order = order
     
         return self
     
-    def order_by(self, order_by: str) -> typing.Self:        
+    def order_by(self, order_by: str) -> typing.Self:    
         self._internal.order_by = order_by
     
         return self
     
-    def metrics(self, metrics: list[str]) -> typing.Self:        
+    def metrics(self, metrics: list[str]) -> typing.Self:    
         self._internal.metrics = metrics
     
         return self
     
 
-class ElasticsearchMetricAggregationWithMissingSupportSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMetricAggregationWithMissingSupportSettings]):    
+
+class ElasticsearchMetricAggregationWithMissingSupportSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMetricAggregationWithMissingSupportSettings]):
     _internal: elasticsearch.ElasticsearchMetricAggregationWithMissingSupportSettings
 
     def __init__(self):
@@ -2173,13 +2215,14 @@ class ElasticsearchMetricAggregationWithMissingSupportSettings(cogbuilder.Builde
         """
         return self._internal    
     
-    def missing(self, missing: str) -> typing.Self:        
+    def missing(self, missing: str) -> typing.Self:    
         self._internal.missing = missing
     
         return self
     
 
-class ElasticsearchMetricAggregationWithInlineScriptSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMetricAggregationWithInlineScriptSettings]):    
+
+class ElasticsearchMetricAggregationWithInlineScriptSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMetricAggregationWithInlineScriptSettings]):
     _internal: elasticsearch.ElasticsearchMetricAggregationWithInlineScriptSettings
 
     def __init__(self):
@@ -2191,14 +2234,15 @@ class ElasticsearchMetricAggregationWithInlineScriptSettings(cogbuilder.Builder[
         """
         return self._internal    
     
-    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:        
+    def script(self, script: cogbuilder.Builder[elasticsearch.InlineScript]) -> typing.Self:    
         script_resource = script.build()
         self._internal.script = script_resource
     
         return self
     
 
-class ElasticsearchMovingAverageEWMAModelSettingsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageEWMAModelSettingsSettings]):    
+
+class ElasticsearchMovingAverageEWMAModelSettingsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageEWMAModelSettingsSettings]):
     _internal: elasticsearch.ElasticsearchMovingAverageEWMAModelSettingsSettings
 
     def __init__(self):
@@ -2210,13 +2254,14 @@ class ElasticsearchMovingAverageEWMAModelSettingsSettings(cogbuilder.Builder[ela
         """
         return self._internal    
     
-    def alpha(self, alpha: str) -> typing.Self:        
+    def alpha(self, alpha: str) -> typing.Self:    
         self._internal.alpha = alpha
     
         return self
     
 
-class ElasticsearchMovingAverageHoltModelSettingsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettings]):    
+
+class ElasticsearchMovingAverageHoltModelSettingsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettings]):
     _internal: elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettings
 
     def __init__(self):
@@ -2228,18 +2273,19 @@ class ElasticsearchMovingAverageHoltModelSettingsSettings(cogbuilder.Builder[ela
         """
         return self._internal    
     
-    def alpha(self, alpha: str) -> typing.Self:        
+    def alpha(self, alpha: str) -> typing.Self:    
         self._internal.alpha = alpha
     
         return self
     
-    def beta(self, beta: str) -> typing.Self:        
+    def beta(self, beta: str) -> typing.Self:    
         self._internal.beta = beta
     
         return self
     
 
-class ElasticsearchMovingAverageHoltWintersModelSettingsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageHoltWintersModelSettingsSettings]):    
+
+class ElasticsearchMovingAverageHoltWintersModelSettingsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageHoltWintersModelSettingsSettings]):
     _internal: elasticsearch.ElasticsearchMovingAverageHoltWintersModelSettingsSettings
 
     def __init__(self):
@@ -2251,27 +2297,27 @@ class ElasticsearchMovingAverageHoltWintersModelSettingsSettings(cogbuilder.Buil
         """
         return self._internal    
     
-    def alpha(self, alpha: str) -> typing.Self:        
+    def alpha(self, alpha: str) -> typing.Self:    
         self._internal.alpha = alpha
     
         return self
     
-    def beta(self, beta: str) -> typing.Self:        
+    def beta(self, beta: str) -> typing.Self:    
         self._internal.beta = beta
     
         return self
     
-    def gamma(self, gamma: str) -> typing.Self:        
+    def gamma(self, gamma: str) -> typing.Self:    
         self._internal.gamma = gamma
     
         return self
     
-    def period(self, period: str) -> typing.Self:        
+    def period(self, period: str) -> typing.Self:    
         self._internal.period = period
     
         return self
     
-    def pad(self, pad: bool) -> typing.Self:        
+    def pad(self, pad: bool) -> typing.Self:    
         self._internal.pad = pad
     
         return self

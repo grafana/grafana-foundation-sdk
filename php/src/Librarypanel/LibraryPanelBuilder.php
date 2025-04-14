@@ -32,6 +32,7 @@ class LibraryPanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Library element UID
      */
@@ -41,6 +42,7 @@ class LibraryPanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel name (also saved in the model)
      */
@@ -53,6 +55,7 @@ class LibraryPanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel description
      */
@@ -62,6 +65,7 @@ class LibraryPanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The panel type (from inside the model)
      */
@@ -74,6 +78,7 @@ class LibraryPanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Dashboard version when this was saved (zero if unknown)
      */
@@ -83,6 +88,7 @@ class LibraryPanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * panel version, incremented each time the dashboard is updated.
      */
@@ -92,6 +98,7 @@ class LibraryPanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * TODO: should be the same panel schema defined in dashboard
      * Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
@@ -104,6 +111,7 @@ class LibraryPanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Object storage metadata
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Librarypanel\LibraryElementDTOMeta> $meta

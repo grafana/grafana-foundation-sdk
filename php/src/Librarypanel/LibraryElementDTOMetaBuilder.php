@@ -29,30 +29,35 @@ class LibraryElementDTOMetaBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function folderUid(string $folderUid): static
     {
         $this->internal->folderUid = $folderUid;
     
         return $this;
     }
+
     public function connectedDashboards(int $connectedDashboards): static
     {
         $this->internal->connectedDashboards = $connectedDashboards;
     
         return $this;
     }
+
     public function created(string $created): static
     {
         $this->internal->created = $created;
     
         return $this;
     }
+
     public function updated(string $updated): static
     {
         $this->internal->updated = $updated;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Librarypanel\LibraryElementDTOMetaUser> $createdBy
      */
@@ -63,6 +68,7 @@ class LibraryElementDTOMetaBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Librarypanel\LibraryElementDTOMetaUser> $updatedBy
      */

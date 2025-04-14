@@ -16,7 +16,6 @@ public class AppInsightsMetricNameQuery {
     public String kind;
     public AppInsightsMetricNameQuery() {
     }
-    
     public AppInsightsMetricNameQuery(String rawQuery,String kind) {
         this.rawQuery = rawQuery;
         this.kind = kind;
