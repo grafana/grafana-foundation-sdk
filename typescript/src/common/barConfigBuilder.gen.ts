@@ -33,3 +33,4 @@ export class BarConfigBuilder implements cog.Builder<common.BarConfig> {
         return this;
     }
 }
+

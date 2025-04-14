@@ -15,7 +15,6 @@ public class OptionsWithLegend {
     public VizLegendOptions legend;
     public OptionsWithLegend() {
     }
-    
     public OptionsWithLegend(VizLegendOptions legend) {
         this.legend = legend;
     }

@@ -36,3 +36,4 @@ export class AccessRuleBuilder implements cog.Builder<accesspolicy.AccessRule> {
         return this;
     }
 }
+

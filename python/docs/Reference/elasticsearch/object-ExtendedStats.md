@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> ExtendedStats
 
 ```python
 class ExtendedStats:
-    type_val: typing.Literal["extended_stats"]
+    type_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchExtendedStatsSettings]
     field: typing.Optional[str]
     id_val: str

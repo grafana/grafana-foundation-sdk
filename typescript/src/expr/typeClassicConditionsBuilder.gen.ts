@@ -121,3 +121,4 @@ export class TypeClassicConditionsBuilder implements cog.Builder<cog.Dataquery> 
         return this;
     }
 }
+

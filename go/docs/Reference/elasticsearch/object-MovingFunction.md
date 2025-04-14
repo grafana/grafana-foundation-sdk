@@ -9,7 +9,7 @@ title: <span class="badge object-type-struct"></span> MovingFunction
 type MovingFunction struct {
     PipelineAgg *string `json:"pipelineAgg,omitempty"`
     Field *string `json:"field,omitempty"`
-    Type string `json:"type"`
+    Type elasticsearch.MetricAggregationType `json:"type"`
     Id string `json:"id"`
     Settings *elasticsearch.ElasticsearchMovingFunctionSettings `json:"settings,omitempty"`
     Hide *bool `json:"hide,omitempty"`

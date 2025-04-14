@@ -32,6 +32,7 @@ class NodeOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Unit for the secondary stat to override what ever is set in the data frame.
      */
@@ -41,6 +42,7 @@ class NodeOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Define which fields are shown as part of the node arc (colored circle around the node).
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Nodegraph\ArcOption>> $arcs

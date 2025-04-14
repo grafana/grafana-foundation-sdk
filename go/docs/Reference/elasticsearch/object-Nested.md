@@ -9,7 +9,7 @@ title: <span class="badge object-type-struct"></span> Nested
 type Nested struct {
     Field *string `json:"field,omitempty"`
     Id string `json:"id"`
-    Type string `json:"type"`
+    Type elasticsearch.BucketAggregationType `json:"type"`
     Settings any `json:"settings,omitempty"`
 }
 ```

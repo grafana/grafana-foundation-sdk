@@ -27,3 +27,4 @@ export class ResourceRefBuilder implements cog.Builder<accesspolicy.ResourceRef>
         return this;
     }
 }
+

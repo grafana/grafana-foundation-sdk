@@ -20,7 +20,6 @@ public class QueryEditorArrayExpression {
     public List<QueryEditorExpression> expressions;
     public QueryEditorArrayExpression() {
     }
-    
     public QueryEditorArrayExpression(QueryEditorArrayExpressionType type,List<QueryEditorExpression> expressions) {
         this.type = type;
         this.expressions = expressions;

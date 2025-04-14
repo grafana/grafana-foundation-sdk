@@ -44,3 +44,4 @@ export class TableFooterOptionsBuilder implements cog.Builder<common.TableFooter
         return this;
     }
 }
+

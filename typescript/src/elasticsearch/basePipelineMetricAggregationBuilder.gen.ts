@@ -42,3 +42,4 @@ export class BasePipelineMetricAggregationBuilder implements cog.Builder<elastic
         return this;
     }
 }
+

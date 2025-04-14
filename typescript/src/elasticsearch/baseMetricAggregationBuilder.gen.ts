@@ -32,3 +32,4 @@ export class BaseMetricAggregationBuilder implements cog.Builder<elasticsearch.B
         return this;
     }
 }
+

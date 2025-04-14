@@ -15,7 +15,7 @@ class MovingAverage:
 
     pipeline_agg: typing.Optional[str]
     field: typing.Optional[str]
-    type_val: typing.Literal["moving_avg"]
+    type_val: str
     id_val: str
     settings: typing.Optional[dict[str, object]]
     hide: typing.Optional[bool]

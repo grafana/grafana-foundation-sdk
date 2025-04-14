@@ -33,6 +33,7 @@ class HeatmapColorOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Controls the color scheme used
      */
@@ -42,6 +43,7 @@ class HeatmapColorOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Controls the color fill when in opacity mode
      */
@@ -51,6 +53,7 @@ class HeatmapColorOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Controls the color scale
      */
@@ -60,6 +63,7 @@ class HeatmapColorOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Controls the exponent when scale is set to exponential
      */
@@ -69,6 +73,7 @@ class HeatmapColorOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Controls the number of color steps
      */
@@ -84,6 +89,7 @@ class HeatmapColorOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Reverses the color scheme
      */
@@ -93,6 +99,7 @@ class HeatmapColorOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Sets the minimum value for the color scale
      */
@@ -102,6 +109,7 @@ class HeatmapColorOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Sets the maximum value for the color scale
      */

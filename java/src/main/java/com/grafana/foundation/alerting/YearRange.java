@@ -17,7 +17,6 @@ public class YearRange {
     public Integer end;
     public YearRange() {
     }
-    
     public YearRange(Integer begin,Integer end) {
         this.begin = begin;
         this.end = end;

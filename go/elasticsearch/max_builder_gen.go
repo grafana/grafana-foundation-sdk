@@ -19,7 +19,6 @@ func NewMaxBuilder() *MaxBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "max"
 
 	return builder
 }

@@ -33,6 +33,7 @@ class MetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Alignment function to be used. Defaults to ALIGN_MEAN.
      */
@@ -42,6 +43,7 @@ class MetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
      */
@@ -51,6 +53,7 @@ class MetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Aliases can be set to modify the legend labels. e.g. {{metric.label.xxx}}. See docs for more detail.
      */
@@ -60,18 +63,21 @@ class MetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function editorMode(string $editorMode): static
     {
         $this->internal->editorMode = $editorMode;
     
         return $this;
     }
+
     public function metricType(string $metricType): static
     {
         $this->internal->metricType = $metricType;
     
         return $this;
     }
+
     /**
      * Reducer applied across a set of time-series values. Defaults to REDUCE_NONE.
      */
@@ -81,6 +87,7 @@ class MetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Array of labels to group data by.
      * @param array<string> $groupBys
@@ -91,6 +98,7 @@ class MetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Array of filters to query data by. Labels that can be filtered on are defined by the metric.
      * @param array<string> $filters
@@ -101,24 +109,28 @@ class MetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function metricKind(\Grafana\Foundation\Googlecloudmonitoring\MetricKind $metricKind): static
     {
         $this->internal->metricKind = $metricKind;
     
         return $this;
     }
+
     public function valueType(string $valueType): static
     {
         $this->internal->valueType = $valueType;
     
         return $this;
     }
+
     public function view(string $view): static
     {
         $this->internal->view = $view;
     
         return $this;
     }
+
     /**
      * MQL query to be executed.
      */
@@ -128,6 +140,7 @@ class MetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters
      */
@@ -137,6 +150,7 @@ class MetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * To disable the graphPeriod, it should explictly be set to 'disabled'.
      */

@@ -8,7 +8,6 @@ public class QueryEditorFunctionParameterExpressionBuilder implements com.grafan
     
     public QueryEditorFunctionParameterExpressionBuilder() {
         this.internal = new QueryEditorFunctionParameterExpression();
-        this.internal.type = "functionParameter";
     }
     public QueryEditorFunctionParameterExpressionBuilder name(String name) {
         this.internal.name = name;

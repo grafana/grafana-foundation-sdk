@@ -17,7 +17,6 @@ public class QueryEditorProperty {
     public String name;
     public QueryEditorProperty() {
     }
-    
     public QueryEditorProperty(QueryEditorPropertyType type,String name) {
         this.type = type;
         this.name = name;

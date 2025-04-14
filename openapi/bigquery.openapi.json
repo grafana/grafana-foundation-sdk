@@ -145,10 +145,7 @@
           "type"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "function"
-          },
+          "type": {},
           "name": {
             "type": "string"
           },
@@ -160,6 +157,17 @@
           }
         }
       },
+      "QueryEditorExpressionType": {
+        "enum": [
+          "property",
+          "operator",
+          "or",
+          "and",
+          "groupBy",
+          "function",
+          "functionParameter"
+        ]
+      },
       "QueryEditorFunctionParameterExpression": {
         "type": "object",
         "additionalProperties": false,
@@ -167,10 +175,7 @@
           "type"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "functionParameter"
-          },
+          "type": {},
           "name": {
             "type": "string"
           }
@@ -184,10 +189,7 @@
           "property"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "groupBy"
-          },
+          "type": {},
           "property": {
             "$ref": "#/components/schemas/QueryEditorProperty"
           }
@@ -221,10 +223,7 @@
           "property"
         ],
         "properties": {
-          "type": {
-            "type": "string",
-            "const": "property"
-          },
+          "type": {},
           "property": {
             "$ref": "#/components/schemas/QueryEditorProperty"
           }
@@ -234,17 +233,6 @@
         "enum": [
           "ASC",
           "DESC"
-        ]
-      },
-      "QueryEditorExpressionType": {
-        "enum": [
-          "property",
-          "operator",
-          "or",
-          "and",
-          "groupBy",
-          "function",
-          "functionParameter"
         ]
       },
       "DataSourceRef": {

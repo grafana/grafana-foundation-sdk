@@ -8,7 +8,6 @@ public class PercentilesBuilder implements com.grafana.foundation.cog.Builder<Pe
     
     public PercentilesBuilder() {
         this.internal = new Percentiles();
-        this.internal.type = "percentiles";
     }
     public PercentilesBuilder field(String field) {
         this.internal.field = field;

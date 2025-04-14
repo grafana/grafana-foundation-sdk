@@ -12,7 +12,6 @@ class LogsBuilder implements \Grafana\Foundation\Cog\Builder
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\Logs();
-    $this->internal->type = "logs";
     }
 
     /**
@@ -30,6 +29,7 @@ class LogsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\ElasticsearchLogsSettings> $settings
      */
@@ -40,6 +40,7 @@ class LogsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function hide(bool $hide): static
     {
         $this->internal->hide = $hide;

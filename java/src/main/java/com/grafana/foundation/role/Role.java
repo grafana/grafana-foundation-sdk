@@ -30,7 +30,6 @@ public class Role {
     public Role() {
         this.hidden = false;
     }
-    
     public Role(String name,String displayName,String groupName,String description,Boolean hidden) {
         this.name = name;
         this.displayName = displayName;

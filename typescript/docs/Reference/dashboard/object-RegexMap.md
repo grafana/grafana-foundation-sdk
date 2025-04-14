@@ -11,7 +11,7 @@ For example, if a value is www.example.com, you can configure a regex value mapp
 
 ```typescript
 export interface RegexMap {
-	type: "regex";
+	type: dashboard.MappingType.RegexToText;
 	// Regular expression to match against and the result to apply when the value matches the regex
 	options: {
 		// Regular expression to match against
@@ -22,6 +22,3 @@ export interface RegexMap {
 }
 
 ```
-## Methods
-
-No methods.

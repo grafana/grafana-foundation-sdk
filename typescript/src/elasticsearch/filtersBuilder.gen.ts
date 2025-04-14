@@ -8,7 +8,6 @@ export class FiltersBuilder implements cog.Builder<elasticsearch.Filters> {
 
     constructor() {
         this.internal = elasticsearch.defaultFilters();
-        this.internal.type = "filters";
     }
 
     /**
@@ -30,3 +29,4 @@ export class FiltersBuilder implements cog.Builder<elasticsearch.Filters> {
         return this;
     }
 }
+

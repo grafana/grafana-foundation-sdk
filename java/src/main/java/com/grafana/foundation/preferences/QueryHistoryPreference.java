@@ -15,7 +15,6 @@ public class QueryHistoryPreference {
     public String homeTab;
     public QueryHistoryPreference() {
     }
-    
     public QueryHistoryPreference(String homeTab) {
         this.homeTab = homeTab;
     }

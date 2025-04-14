@@ -6,7 +6,7 @@ class Filters implements \JsonSerializable
 {
     public string $id;
 
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\BucketAggregationType $type;
 
     public ?\Grafana\Foundation\Elasticsearch\ElasticsearchFiltersSettings $settings;
 
@@ -17,8 +17,7 @@ class Filters implements \JsonSerializable
     public function __construct(?string $id = null, ?\Grafana\Foundation\Elasticsearch\ElasticsearchFiltersSettings $settings = null)
     {
         $this->id = $id ?: "";
-        $this->type = "filters";
-    
+        $this->type = \Grafana\Foundation\Elasticsearch\BucketAggregationType::terms();
         $this->settings = $settings;
     }
 
@@ -27,7 +26,7 @@ class Filters implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{id?: string, type?: string, settings?: mixed} $inputData */
+        /** @var array{id?: string, type?: "filters", settings?: mixed} $inputData */
         $data = $inputData;
         return new self(
             id: $data["id"] ?? null,

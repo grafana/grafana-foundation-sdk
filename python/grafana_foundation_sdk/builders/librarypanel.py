@@ -7,7 +7,7 @@ from ..cog import variants as cogvariants
 from ..models import dashboard
 
 
-class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):    
+class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
     _internal: librarypanel.LibraryPanel
 
     def __init__(self):
@@ -57,7 +57,7 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
     
         return self
     
-    def type_val(self, type_val: str) -> typing.Self:    
+    def type(self, type_val: str) -> typing.Self:    
         """
         The panel type (from inside the model)
         """
@@ -108,7 +108,8 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
         return self
     
 
-class LibraryElementDTOMeta(cogbuilder.Builder[librarypanel.LibraryElementDTOMeta]):    
+
+class LibraryElementDTOMeta(cogbuilder.Builder[librarypanel.LibraryElementDTOMeta]):
     _internal: librarypanel.LibraryElementDTOMeta
 
     def __init__(self):
@@ -120,45 +121,46 @@ class LibraryElementDTOMeta(cogbuilder.Builder[librarypanel.LibraryElementDTOMet
         """
         return self._internal    
     
-    def folder_name(self, folder_name: str) -> typing.Self:        
+    def folder_name(self, folder_name: str) -> typing.Self:    
         self._internal.folder_name = folder_name
     
         return self
     
-    def folder_uid(self, folder_uid: str) -> typing.Self:        
+    def folder_uid(self, folder_uid: str) -> typing.Self:    
         self._internal.folder_uid = folder_uid
     
         return self
     
-    def connected_dashboards(self, connected_dashboards: int) -> typing.Self:        
+    def connected_dashboards(self, connected_dashboards: int) -> typing.Self:    
         self._internal.connected_dashboards = connected_dashboards
     
         return self
     
-    def created(self, created: str) -> typing.Self:        
+    def created(self, created: str) -> typing.Self:    
         self._internal.created = created
     
         return self
     
-    def updated(self, updated: str) -> typing.Self:        
+    def updated(self, updated: str) -> typing.Self:    
         self._internal.updated = updated
     
         return self
     
-    def created_by(self, created_by: cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]) -> typing.Self:        
+    def created_by(self, created_by: cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]) -> typing.Self:    
         created_by_resource = created_by.build()
         self._internal.created_by = created_by_resource
     
         return self
     
-    def updated_by(self, updated_by: cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]) -> typing.Self:        
+    def updated_by(self, updated_by: cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]) -> typing.Self:    
         updated_by_resource = updated_by.build()
         self._internal.updated_by = updated_by_resource
     
         return self
     
 
-class LibraryElementDTOMetaUser(cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]):    
+
+class LibraryElementDTOMetaUser(cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]):
     _internal: librarypanel.LibraryElementDTOMetaUser
 
     def __init__(self):
@@ -170,21 +172,22 @@ class LibraryElementDTOMetaUser(cogbuilder.Builder[librarypanel.LibraryElementDT
         """
         return self._internal    
     
-    def id_val(self, id_val: int) -> typing.Self:        
+    def id(self, id_val: int) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def avatar_url(self, avatar_url: str) -> typing.Self:        
+    def avatar_url(self, avatar_url: str) -> typing.Self:    
         self._internal.avatar_url = avatar_url
     
         return self
     
+
 
 class PanelModel(cogbuilder.Builder[librarypanel.PanelModel]):    
     """
@@ -202,7 +205,7 @@ class PanelModel(cogbuilder.Builder[librarypanel.PanelModel]):
         """
         return self._internal    
     
-    def type_val(self, type_val: str) -> typing.Self:    
+    def type(self, type_val: str) -> typing.Self:    
         """
         The panel plugin type id. This is used to find the plugin to display the panel.
         """

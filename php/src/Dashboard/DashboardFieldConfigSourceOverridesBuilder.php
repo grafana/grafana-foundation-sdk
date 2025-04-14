@@ -29,6 +29,7 @@ class DashboardFieldConfigSourceOverridesBuilder implements \Grafana\Foundation\
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
      */

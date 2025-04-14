@@ -34,6 +34,7 @@ class CloudMonitoringQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
      */
@@ -43,6 +44,7 @@ class CloudMonitoringQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -53,6 +55,7 @@ class CloudMonitoringQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Aliases can be set to modify the legend labels. e.g. {{metric.label.xxx}}. See docs for more detail.
      */
@@ -62,6 +65,7 @@ class CloudMonitoringQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * GCM query type.
      * queryType: #QueryType
@@ -75,6 +79,7 @@ class CloudMonitoringQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Time Series sub-query properties.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Googlecloudmonitoring\TimeSeriesQuery> $timeSeriesQuery
@@ -86,6 +91,7 @@ class CloudMonitoringQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * SLO sub-query properties.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Googlecloudmonitoring\SLOQuery> $sloQuery
@@ -97,6 +103,7 @@ class CloudMonitoringQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * PromQL sub-query properties.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Googlecloudmonitoring\PromQLQuery> $promQLQuery
@@ -108,6 +115,7 @@ class CloudMonitoringQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.
@@ -120,6 +128,7 @@ class CloudMonitoringQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Time interval in milliseconds.
      */

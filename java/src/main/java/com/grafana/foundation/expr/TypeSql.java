@@ -16,6 +16,8 @@ public class TypeSql implements com.grafana.foundation.cog.variants.Dataquery {
     public DataSourceRef datasource;
     @JsonProperty("expression")
     public String expression;
+    @JsonProperty("format")
+    public String format;
     // true if query is disabled (ie should not be returned to the dashboard)
     // NOTE: this does not always imply that the query should not be executed since
     // the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -56,10 +58,10 @@ public class TypeSql implements com.grafana.foundation.cog.variants.Dataquery {
     public String type;
     public TypeSql() {
     }
-    
-    public TypeSql(DataSourceRef datasource,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeSqlResultAssertions resultAssertions,ExprTypeSqlTimeRange timeRange,String type) {
+    public TypeSql(DataSourceRef datasource,String expression,String format,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeSqlResultAssertions resultAssertions,ExprTypeSqlTimeRange timeRange,String type) {
         this.datasource = datasource;
         this.expression = expression;
+        this.format = format;
         this.hide = hide;
         this.intervalMs = intervalMs;
         this.maxDataPoints = maxDataPoints;

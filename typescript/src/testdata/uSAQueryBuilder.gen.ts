@@ -37,3 +37,4 @@ export class USAQueryBuilder implements cog.Builder<testdata.USAQuery> {
         return this;
     }
 }
+

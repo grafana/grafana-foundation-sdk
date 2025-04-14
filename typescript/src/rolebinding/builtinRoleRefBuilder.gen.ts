@@ -23,3 +23,4 @@ export class BuiltinRoleRefBuilder implements cog.Builder<rolebinding.BuiltinRol
         return this;
     }
 }
+

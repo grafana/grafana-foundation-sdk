@@ -33,3 +33,4 @@ export class FillConfigBuilder implements cog.Builder<common.FillConfig> {
         return this;
     }
 }
+

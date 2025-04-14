@@ -99,7 +99,8 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
         return self
     
 
-class QueryHistoryPreference(cogbuilder.Builder[preferences.QueryHistoryPreference]):    
+
+class QueryHistoryPreference(cogbuilder.Builder[preferences.QueryHistoryPreference]):
     _internal: preferences.QueryHistoryPreference
 
     def __init__(self):
@@ -121,7 +122,8 @@ class QueryHistoryPreference(cogbuilder.Builder[preferences.QueryHistoryPreferen
         return self
     
 
-class CookiePreferences(cogbuilder.Builder[preferences.CookiePreferences]):    
+
+class CookiePreferences(cogbuilder.Builder[preferences.CookiePreferences]):
     _internal: preferences.CookiePreferences
 
     def __init__(self):
@@ -133,23 +135,24 @@ class CookiePreferences(cogbuilder.Builder[preferences.CookiePreferences]):
         """
         return self._internal    
     
-    def analytics(self, analytics: object) -> typing.Self:        
+    def analytics(self, analytics: object) -> typing.Self:    
         self._internal.analytics = analytics
     
         return self
     
-    def performance(self, performance: object) -> typing.Self:        
+    def performance(self, performance: object) -> typing.Self:    
         self._internal.performance = performance
     
         return self
     
-    def functional(self, functional: object) -> typing.Self:        
+    def functional(self, functional: object) -> typing.Self:    
         self._internal.functional = functional
     
         return self
     
 
-class NavbarPreference(cogbuilder.Builder[preferences.NavbarPreference]):    
+
+class NavbarPreference(cogbuilder.Builder[preferences.NavbarPreference]):
     _internal: preferences.NavbarPreference
 
     def __init__(self):
@@ -161,7 +164,7 @@ class NavbarPreference(cogbuilder.Builder[preferences.NavbarPreference]):
         """
         return self._internal    
     
-    def bookmark_urls(self, bookmark_urls: list[str]) -> typing.Self:        
+    def bookmark_urls(self, bookmark_urls: list[str]) -> typing.Self:    
         self._internal.bookmark_urls = bookmark_urls
     
         return self

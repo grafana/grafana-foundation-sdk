@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> QueryEditorFunctionExpress
 
 ```go
 type QueryEditorFunctionExpression struct {
-    Type string `json:"type"`
+    Type cloudwatch.QueryEditorExpressionType `json:"type"`
     Name *string `json:"name,omitempty"`
     Parameters []cloudwatch.QueryEditorFunctionParameterExpression `json:"parameters,omitempty"`
 }

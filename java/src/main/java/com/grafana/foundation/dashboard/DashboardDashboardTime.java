@@ -16,7 +16,6 @@ public class DashboardDashboardTime {
         this.from = "now-6h";
         this.to = "now";
     }
-    
     public DashboardDashboardTime(String from,String to) {
         this.from = from;
         this.to = to;

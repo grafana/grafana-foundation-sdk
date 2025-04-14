@@ -31,7 +31,6 @@ public class HeatmapTooltip {
     public Boolean showColorScale;
     public HeatmapTooltip() {
     }
-    
     public HeatmapTooltip(TooltipDisplayMode mode,Double maxHeight,Double maxWidth,Boolean yHistogram,Boolean showColorScale) {
         this.mode = mode;
         this.maxHeight = maxHeight;

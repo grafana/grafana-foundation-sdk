@@ -17,7 +17,6 @@ public class RoleBindingSubject {
     public String name;
     public RoleBindingSubject() {
     }
-    
     public RoleBindingSubject(RoleBindingSubjectKind kind,String name) {
         this.kind = kind;
         this.name = name;

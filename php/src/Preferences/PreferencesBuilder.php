@@ -34,6 +34,7 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The timezone selection
      * TODO: this should use the timezone defined in common
@@ -44,6 +45,7 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * day of the week (sunday, monday, etc)
      */
@@ -53,6 +55,7 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * light, dark, empty is default
      */
@@ -62,6 +65,7 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Selected language (beta)
      */
@@ -71,6 +75,7 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Explore query history preferences
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Preferences\QueryHistoryPreference> $queryHistory
@@ -82,6 +87,7 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Cookie preferences
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Preferences\CookiePreferences> $cookiePreferences
@@ -93,6 +99,7 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Navigation preferences
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Preferences\NavbarPreference> $navbar

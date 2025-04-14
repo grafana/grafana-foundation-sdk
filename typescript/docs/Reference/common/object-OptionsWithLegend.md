@@ -13,9 +13,6 @@ export interface OptionsWithLegend {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [OptionsWithLegendBuilder](./builder-OptionsWithLegendBuilder.md)

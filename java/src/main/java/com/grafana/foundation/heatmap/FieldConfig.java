@@ -19,7 +19,6 @@ public class FieldConfig {
     public HideSeriesConfig hideFrom;
     public FieldConfig() {
     }
-    
     public FieldConfig(ScaleDistributionConfig scaleDistribution,HideSeriesConfig hideFrom) {
         this.scaleDistribution = scaleDistribution;
         this.hideFrom = hideFrom;

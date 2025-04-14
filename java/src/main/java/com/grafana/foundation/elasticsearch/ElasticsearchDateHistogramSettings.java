@@ -26,7 +26,6 @@ public class ElasticsearchDateHistogramSettings {
     public String timeZone;
     public ElasticsearchDateHistogramSettings() {
     }
-    
     public ElasticsearchDateHistogramSettings(String interval,String minDocCount,String trimEdges,String offset,String timeZone) {
         this.interval = interval;
         this.minDocCount = minDocCount;

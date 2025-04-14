@@ -18,7 +18,6 @@ public class Key {
     public String uid;
     public Key() {
     }
-    
     public Key(Double tick,String type,String uid) {
         this.tick = tick;
         this.type = type;

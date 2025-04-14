@@ -20,7 +20,6 @@ public class FilterValueRange {
     public Float ge;
     public FilterValueRange() {
     }
-    
     public FilterValueRange(Float le,Float ge) {
         this.le = le;
         this.ge = ge;

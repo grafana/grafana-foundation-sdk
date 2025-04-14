@@ -12,7 +12,6 @@ class DerivativeBuilder implements \Grafana\Foundation\Cog\Builder
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\Derivative();
-    $this->internal->type = "derivative";
     }
 
     /**
@@ -30,18 +29,21 @@ class DerivativeBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function field(string $field): static
     {
         $this->internal->field = $field;
     
         return $this;
     }
+
     public function id(string $id): static
     {
         $this->internal->id = $id;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\ElasticsearchDerivativeSettings> $settings
      */
@@ -52,6 +54,7 @@ class DerivativeBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function hide(bool $hide): static
     {
         $this->internal->hide = $hide;

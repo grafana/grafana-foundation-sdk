@@ -13,7 +13,6 @@ public class Options {
     public Options() {
         this.selectedSeries = 0;
     }
-    
     public Options(Integer selectedSeries) {
         this.selectedSeries = selectedSeries;
     }
