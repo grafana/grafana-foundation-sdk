@@ -24,7 +24,6 @@ public class VizTooltipOptions {
     public Double maxHeight;
     public VizTooltipOptions() {
     }
-    
     public VizTooltipOptions(TooltipDisplayMode mode,SortOrder sort,Double maxWidth,Double maxHeight) {
         this.mode = mode;
         this.sort = sort;

@@ -18,9 +18,6 @@ export interface TableFooterOptions {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TableFooterOptionsBuilder](./builder-TableFooterOptionsBuilder.md)

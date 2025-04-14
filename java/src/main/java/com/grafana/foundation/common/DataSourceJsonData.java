@@ -27,7 +27,6 @@ public class DataSourceJsonData {
     public String alertmanagerUid;
     public DataSourceJsonData() {
     }
-    
     public DataSourceJsonData(String authType,String defaultRegion,String profile,Boolean manageAlerts,String alertmanagerUid) {
         this.authType = authType;
         this.defaultRegion = defaultRegion;

@@ -12,7 +12,6 @@ class TermsBuilder implements \Grafana\Foundation\Cog\Builder
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\Terms();
-    $this->internal->type = "terms";
     }
 
     /**
@@ -30,12 +29,14 @@ class TermsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function id(string $id): static
     {
         $this->internal->id = $id;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\ElasticsearchTermsSettings> $settings
      */

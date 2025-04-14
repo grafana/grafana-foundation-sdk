@@ -29,12 +29,14 @@ class AnnotationActionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function canDelete(bool $canDelete): static
     {
         $this->internal->canDelete = $canDelete;
     
         return $this;
     }
+
     public function canEdit(bool $canEdit): static
     {
         $this->internal->canEdit = $canEdit;

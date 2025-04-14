@@ -52,7 +52,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public Dataquery() {
         this.rawSQL = "";
     }
-    
     public Dataquery(FormatOptions format,ConnectionArgs connectionArgs,String table,String column,String queryID,String refId,Boolean hide,String queryType,String rawSQL,DataSourceRef datasource) {
         this.format = format;
         this.connectionArgs = connectionArgs;

@@ -30,84 +30,98 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function table(string $table): static
     {
         $this->internal->table = $table;
     
         return $this;
     }
+
     public function project(string $project): static
     {
         $this->internal->project = $project;
     
         return $this;
     }
+
     public function format(\Grafana\Foundation\Bigquery\QueryFormat $format): static
     {
         $this->internal->format = $format;
     
         return $this;
     }
+
     public function rawQuery(bool $rawQuery): static
     {
         $this->internal->rawQuery = $rawQuery;
     
         return $this;
     }
+
     public function rawSql(string $rawSql): static
     {
         $this->internal->rawSql = $rawSql;
     
         return $this;
     }
+
     public function location(string $location): static
     {
         $this->internal->location = $location;
     
         return $this;
     }
+
     public function partitioned(bool $partitioned): static
     {
         $this->internal->partitioned = $partitioned;
     
         return $this;
     }
+
     public function partitionedField(string $partitionedField): static
     {
         $this->internal->partitionedField = $partitionedField;
     
         return $this;
     }
+
     public function convertToUTC(bool $convertToUTC): static
     {
         $this->internal->convertToUTC = $convertToUTC;
     
         return $this;
     }
+
     public function sharded(bool $sharded): static
     {
         $this->internal->sharded = $sharded;
     
         return $this;
     }
+
     public function queryPriority(\Grafana\Foundation\Bigquery\QueryPriority $queryPriority): static
     {
         $this->internal->queryPriority = $queryPriority;
     
         return $this;
     }
+
     public function timeShift(string $timeShift): static
     {
         $this->internal->timeShift = $timeShift;
     
         return $this;
     }
+
     public function editorMode(\Grafana\Foundation\Bigquery\EditorMode $editorMode): static
     {
         $this->internal->editorMode = $editorMode;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Bigquery\SQLExpression> $sql
      */
@@ -118,6 +132,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * A unique identifier for the query within the list of targets.
      * In server side expressions, the refId is used as a variable name to identify results.
@@ -129,6 +144,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
      */
@@ -138,6 +154,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -148,6 +165,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.

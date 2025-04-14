@@ -7,14 +7,11 @@ title: <span class="badge object-type-interface"></span> QueryEditorGroupByExpre
 
 ```typescript
 export interface QueryEditorGroupByExpression {
-	type: "groupBy";
+	type: bigquery.QueryEditorExpressionType.GroupBy;
 	property: bigquery.QueryEditorProperty;
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [QueryEditorGroupByExpressionBuilder](./builder-QueryEditorGroupByExpressionBuilder.md)

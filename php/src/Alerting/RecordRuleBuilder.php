@@ -32,6 +32,7 @@ class RecordRuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of the recorded metric.
      */

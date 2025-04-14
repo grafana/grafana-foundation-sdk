@@ -73,7 +73,6 @@ public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery
     public String type;
     public TypeReduce() {
     }
-    
     public TypeReduce(DataSourceRef datasource,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,TypeReduceReducer reducer,String refId,ExprTypeReduceResultAssertions resultAssertions,ExprTypeReduceSettings settings,ExprTypeReduceTimeRange timeRange,String type) {
         this.datasource = datasource;
         this.expression = expression;

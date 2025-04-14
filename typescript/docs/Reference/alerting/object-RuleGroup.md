@@ -16,9 +16,6 @@ export interface RuleGroup {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [RuleGroupBuilder](./builder-RuleGroupBuilder.md)

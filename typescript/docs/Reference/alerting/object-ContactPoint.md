@@ -24,9 +24,6 @@ export interface ContactPoint {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [ContactPointBuilder](./builder-ContactPointBuilder.md)

@@ -37,7 +37,6 @@ public class Options {
     public VizOrientation orientation;
     public Options() {
     }
-    
     public Options(PieChartType pieType,List<PieChartLabels> displayLabels,VizTooltipOptions tooltip,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,PieChartLegendOptions legend,VizOrientation orientation) {
         this.pieType = pieType;
         this.displayLabels = displayLabels;

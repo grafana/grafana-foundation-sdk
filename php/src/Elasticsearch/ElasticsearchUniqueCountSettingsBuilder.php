@@ -29,6 +29,7 @@ class ElasticsearchUniqueCountSettingsBuilder implements \Grafana\Foundation\Cog
     
         return $this;
     }
+
     public function missing(string $missing): static
     {
         $this->internal->missing = $missing;

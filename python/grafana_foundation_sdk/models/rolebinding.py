@@ -9,8 +9,8 @@ class RoleBinding:
     # The team or user that has the specified role
     subject: 'RoleBindingSubject'
 
-    def __init__(self, role: typing.Union['BuiltinRoleRef', 'CustomRoleRef'] = BuiltinRoleRef(), subject: typing.Optional['RoleBindingSubject'] = None):
-        self.role = role
+    def __init__(self, role: typing.Optional[typing.Union['BuiltinRoleRef', 'CustomRoleRef']] = None, subject: typing.Optional['RoleBindingSubject'] = None):
+        self.role = role if role is not None else BuiltinRoleRef()
         self.subject = subject if subject is not None else RoleBindingSubject()
 
     def to_json(self) -> dict[str, object]:

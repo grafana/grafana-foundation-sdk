@@ -38,3 +38,4 @@ export class ResourceNamesQueryBuilder implements cog.Builder<azuremonitor.Resou
         return this;
     }
 }
+

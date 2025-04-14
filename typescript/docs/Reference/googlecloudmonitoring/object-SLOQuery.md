@@ -32,9 +32,6 @@ export interface SLOQuery {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [SLOQueryBuilder](./builder-SLOQueryBuilder.md)

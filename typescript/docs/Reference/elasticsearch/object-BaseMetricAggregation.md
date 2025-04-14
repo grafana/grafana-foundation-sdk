@@ -13,9 +13,6 @@ export interface BaseMetricAggregation {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [BaseMetricAggregationBuilder](./builder-BaseMetricAggregationBuilder.md)

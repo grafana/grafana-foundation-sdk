@@ -22,7 +22,6 @@ public class BucketAggregationWithField {
     public Object settings;
     public BucketAggregationWithField() {
     }
-    
     public BucketAggregationWithField(String field,String id,BucketAggregationType type,Object settings) {
         this.field = field;
         this.id = id;

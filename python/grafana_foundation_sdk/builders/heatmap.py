@@ -91,7 +91,7 @@ class HeatmapColorOptions(cogbuilder.Builder[heatmap.HeatmapColorOptions]):
     
         return self
     
-    def min_val(self, min_val: float) -> typing.Self:    
+    def min(self, min_val: float) -> typing.Self:    
         """
         Sets the minimum value for the color scale
         """
@@ -100,7 +100,7 @@ class HeatmapColorOptions(cogbuilder.Builder[heatmap.HeatmapColorOptions]):
     
         return self
     
-    def max_val(self, max_val: float) -> typing.Self:    
+    def max(self, max_val: float) -> typing.Self:    
         """
         Sets the maximum value for the color scale
         """
@@ -109,6 +109,7 @@ class HeatmapColorOptions(cogbuilder.Builder[heatmap.HeatmapColorOptions]):
     
         return self
     
+
 
 class YAxisConfig(cogbuilder.Builder[heatmap.YAxisConfig]):    
     """
@@ -153,7 +154,7 @@ class YAxisConfig(cogbuilder.Builder[heatmap.YAxisConfig]):
     
         return self
     
-    def min_val(self, min_val: float) -> typing.Self:    
+    def min(self, min_val: float) -> typing.Self:    
         """
         Sets the minimum value for the yAxis
         """
@@ -162,53 +163,53 @@ class YAxisConfig(cogbuilder.Builder[heatmap.YAxisConfig]):
     
         return self
     
-    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:        
+    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:    
         self._internal.axis_placement = axis_placement
     
         return self
     
-    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:        
+    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:    
         self._internal.axis_color_mode = axis_color_mode
     
         return self
     
-    def axis_label(self, axis_label: str) -> typing.Self:        
+    def axis_label(self, axis_label: str) -> typing.Self:    
         self._internal.axis_label = axis_label
     
         return self
     
-    def axis_width(self, axis_width: float) -> typing.Self:        
+    def axis_width(self, axis_width: float) -> typing.Self:    
         self._internal.axis_width = axis_width
     
         return self
     
-    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:        
+    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:    
         self._internal.axis_soft_min = axis_soft_min
     
         return self
     
-    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:        
+    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:    
         self._internal.axis_soft_max = axis_soft_max
     
         return self
     
-    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:        
+    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:    
         self._internal.axis_grid_show = axis_grid_show
     
         return self
     
-    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:        
+    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:    
         scale_distribution_resource = scale_distribution.build()
         self._internal.scale_distribution = scale_distribution_resource
     
         return self
     
-    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:        
+    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:    
         self._internal.axis_centered_zero = axis_centered_zero
     
         return self
     
-    def max_val(self, max_val: float) -> typing.Self:    
+    def max(self, max_val: float) -> typing.Self:    
         """
         Sets the maximum value for the yAxis
         """
@@ -217,11 +218,12 @@ class YAxisConfig(cogbuilder.Builder[heatmap.YAxisConfig]):
     
         return self
     
-    def axis_border_show(self, axis_border_show: bool) -> typing.Self:        
+    def axis_border_show(self, axis_border_show: bool) -> typing.Self:    
         self._internal.axis_border_show = axis_border_show
     
         return self
     
+
 
 class CellValues(cogbuilder.Builder[heatmap.CellValues]):    
     """
@@ -258,6 +260,7 @@ class CellValues(cogbuilder.Builder[heatmap.CellValues]):
         return self
     
 
+
 class FilterValueRange(cogbuilder.Builder[heatmap.FilterValueRange]):    
     """
     Controls the value filter range
@@ -293,6 +296,7 @@ class FilterValueRange(cogbuilder.Builder[heatmap.FilterValueRange]):
         return self
     
 
+
 class HeatmapTooltip(cogbuilder.Builder[heatmap.HeatmapTooltip]):    
     """
     Controls tooltip options
@@ -318,12 +322,12 @@ class HeatmapTooltip(cogbuilder.Builder[heatmap.HeatmapTooltip]):
     
         return self
     
-    def max_height(self, max_height: float) -> typing.Self:        
+    def max_height(self, max_height: float) -> typing.Self:    
         self._internal.max_height = max_height
     
         return self
     
-    def max_width(self, max_width: float) -> typing.Self:        
+    def max_width(self, max_width: float) -> typing.Self:    
         self._internal.max_width = max_width
     
         return self
@@ -346,6 +350,7 @@ class HeatmapTooltip(cogbuilder.Builder[heatmap.HeatmapTooltip]):
     
         return self
     
+
 
 class HeatmapLegend(cogbuilder.Builder[heatmap.HeatmapLegend]):    
     """
@@ -373,6 +378,7 @@ class HeatmapLegend(cogbuilder.Builder[heatmap.HeatmapLegend]):
         return self
     
 
+
 class ExemplarConfig(cogbuilder.Builder[heatmap.ExemplarConfig]):    
     """
     Controls exemplar options
@@ -398,6 +404,7 @@ class ExemplarConfig(cogbuilder.Builder[heatmap.ExemplarConfig]):
     
         return self
     
+
 
 class RowsHeatmapOptions(cogbuilder.Builder[heatmap.RowsHeatmapOptions]):    
     """
@@ -434,6 +441,7 @@ class RowsHeatmapOptions(cogbuilder.Builder[heatmap.RowsHeatmapOptions]):
         return self
     
 
+
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
     """
     Dashboard panels are the basic visualization building blocks.
@@ -451,7 +459,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         """
         return self._internal    
     
-    def id_val(self, id_val: int) -> typing.Self:    
+    def id(self, id_val: int) -> typing.Self:    
         """
         Unique identifier of the panel. Generated by Grafana when creating a new panel. It must be unique within a dashboard, but not globally.
         """
@@ -764,7 +772,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def min_val(self, min_val: float) -> typing.Self:    
+    def min(self, min_val: float) -> typing.Self:    
         """
         The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
         """
@@ -779,7 +787,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def max_val(self, max_val: float) -> typing.Self:    
+    def max(self, max_val: float) -> typing.Self:    
         """
         The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
         """
@@ -966,7 +974,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def override_by_query(self, query_ref_id: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:        
+    def override_by_query(self, query_ref_id: str, properties: list[dashboard.DynamicConfigValue]) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -1165,7 +1173,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def max_height(self, max_height: float) -> typing.Self:        
+    def max_height(self, max_height: float) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
         assert isinstance(self._internal.options, heatmap.Options)
@@ -1176,7 +1184,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def max_width(self, max_width: float) -> typing.Self:        
+    def max_width(self, max_width: float) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
         assert isinstance(self._internal.options, heatmap.Options)
@@ -1259,7 +1267,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:        
+    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -1274,7 +1282,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:        
+    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)

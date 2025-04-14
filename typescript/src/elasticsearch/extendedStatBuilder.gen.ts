@@ -27,3 +27,4 @@ export class ExtendedStatBuilder implements cog.Builder<elasticsearch.ExtendedSt
         return this;
     }
 }
+

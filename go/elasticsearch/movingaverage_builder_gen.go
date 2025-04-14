@@ -20,7 +20,6 @@ func NewMovingAverageBuilder() *MovingAverageBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "moving_avg"
 
 	return builder
 }

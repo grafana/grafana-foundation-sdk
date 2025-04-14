@@ -143,3 +143,4 @@ export class ScatterSeriesConfigBuilder implements cog.Builder<xychart.ScatterSe
         return this;
     }
 }
+

@@ -13,13 +13,13 @@ BucketAggregation: typing.TypeAlias = typing.Union['DateHistogram', 'Histogram',
 class DateHistogram:
     field: typing.Optional[str]
     id_val: str
-    type_val: typing.Literal["date_histogram"]
+    type_val: str
     settings: typing.Optional['ElasticsearchDateHistogramSettings']
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchDateHistogramSettings'] = None):
         self.field = field
         self.id_val = id_val
-        self.type_val = "date_histogram"
+        self.type_val = BucketAggregationType.DATE_HISTOGRAM
         self.settings = settings
 
     def to_json(self) -> dict[str, object]:
@@ -47,16 +47,25 @@ class DateHistogram:
         return cls(**args)
 
 
+class BucketAggregationType(enum.StrEnum):
+    TERMS = "terms"
+    FILTERS = "filters"
+    GEOHASH_GRID = "geohash_grid"
+    DATE_HISTOGRAM = "date_histogram"
+    HISTOGRAM = "histogram"
+    NESTED = "nested"
+
+
 class Histogram:
     field: typing.Optional[str]
     id_val: str
-    type_val: typing.Literal["histogram"]
+    type_val: str
     settings: typing.Optional['ElasticsearchHistogramSettings']
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchHistogramSettings'] = None):
         self.field = field
         self.id_val = id_val
-        self.type_val = "histogram"
+        self.type_val = BucketAggregationType.HISTOGRAM
         self.settings = settings
 
     def to_json(self) -> dict[str, object]:
@@ -87,13 +96,13 @@ class Histogram:
 class Terms:
     field: typing.Optional[str]
     id_val: str
-    type_val: typing.Literal["terms"]
+    type_val: str
     settings: typing.Optional['ElasticsearchTermsSettings']
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchTermsSettings'] = None):
         self.field = field
         self.id_val = id_val
-        self.type_val = "terms"
+        self.type_val = BucketAggregationType.TERMS
         self.settings = settings
 
     def to_json(self) -> dict[str, object]:
@@ -128,12 +137,12 @@ class TermsOrder(enum.StrEnum):
 
 class Filters:
     id_val: str
-    type_val: typing.Literal["filters"]
+    type_val: str
     settings: typing.Optional['ElasticsearchFiltersSettings']
 
     def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchFiltersSettings'] = None):
         self.id_val = id_val
-        self.type_val = "filters"
+        self.type_val = BucketAggregationType.FILTERS
         self.settings = settings
 
     def to_json(self) -> dict[str, object]:
@@ -187,13 +196,13 @@ class Filter:
 class GeoHashGrid:
     field: typing.Optional[str]
     id_val: str
-    type_val: typing.Literal["geohash_grid"]
+    type_val: str
     settings: typing.Optional['ElasticsearchGeoHashGridSettings']
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchGeoHashGridSettings'] = None):
         self.field = field
         self.id_val = id_val
-        self.type_val = "geohash_grid"
+        self.type_val = BucketAggregationType.GEOHASH_GRID
         self.settings = settings
 
     def to_json(self) -> dict[str, object]:
@@ -224,13 +233,13 @@ class GeoHashGrid:
 class Nested:
     field: typing.Optional[str]
     id_val: str
-    type_val: typing.Literal["nested"]
+    type_val: str
     settings: typing.Optional[object]
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional[object] = None):
         self.field = field
         self.id_val = id_val
-        self.type_val = "nested"
+        self.type_val = BucketAggregationType.NESTED
         self.settings = settings
 
     def to_json(self) -> dict[str, object]:
@@ -262,12 +271,12 @@ MetricAggregation: typing.TypeAlias = typing.Union['Count', 'MovingAverage', 'De
 
 
 class Count:
-    type_val: typing.Literal["count"]
+    type_val: str
     id_val: str
     hide: typing.Optional[bool]
 
     def __init__(self, id_val: str = "", hide: typing.Optional[bool] = None):
-        self.type_val = "count"
+        self.type_val = MetricAggregationType.COUNT
         self.id_val = id_val
         self.hide = hide
 
@@ -292,6 +301,37 @@ class Count:
         return cls(**args)
 
 
+class MetricAggregationType(enum.StrEnum):
+    COUNT = "count"
+    AVG = "avg"
+    SUM = "sum"
+    MIN = "min"
+    MAX = "max"
+    EXTENDED_STATS = "extended_stats"
+    PERCENTILES = "percentiles"
+    CARDINALITY = "cardinality"
+    RAW_DOCUMENT = "raw_document"
+    RAW_DATA = "raw_data"
+    LOGS = "logs"
+    RATE = "rate"
+    TOP_METRICS = "top_metrics"
+    MOVING_AVG = "moving_avg"
+    MOVING_FN = "moving_fn"
+    DERIVATIVE = "derivative"
+    SERIAL_DIFF = "serial_diff"
+    CUMULATIVE_SUM = "cumulative_sum"
+    BUCKET_SCRIPT = "bucket_script"
+
+
+class PipelineMetricAggregationType(enum.StrEnum):
+    MOVING_AVG = "moving_avg"
+    MOVING_FN = "moving_fn"
+    DERIVATIVE = "derivative"
+    SERIAL_DIFF = "serial_diff"
+    CUMULATIVE_SUM = "cumulative_sum"
+    BUCKET_SCRIPT = "bucket_script"
+
+
 PipelineMetricAggregation: typing.TypeAlias = typing.Union['MovingAverage', 'Derivative', 'CumulativeSum', 'BucketScript']
 
 
@@ -302,7 +342,7 @@ class MovingAverage:
 
     pipeline_agg: typing.Optional[str]
     field: typing.Optional[str]
-    type_val: typing.Literal["moving_avg"]
+    type_val: str
     id_val: str
     settings: typing.Optional[dict[str, object]]
     hide: typing.Optional[bool]
@@ -310,7 +350,7 @@ class MovingAverage:
     def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional[dict[str, object]] = None, hide: typing.Optional[bool] = None):
         self.pipeline_agg = pipeline_agg
         self.field = field
-        self.type_val = "moving_avg"
+        self.type_val = MetricAggregationType.MOVING_AVG
         self.id_val = id_val
         self.settings = settings
         self.hide = hide
@@ -351,7 +391,7 @@ class MovingAverage:
 class Derivative:
     pipeline_agg: typing.Optional[str]
     field: typing.Optional[str]
-    type_val: typing.Literal["derivative"]
+    type_val: str
     id_val: str
     settings: typing.Optional['ElasticsearchDerivativeSettings']
     hide: typing.Optional[bool]
@@ -359,7 +399,7 @@ class Derivative:
     def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchDerivativeSettings'] = None, hide: typing.Optional[bool] = None):
         self.pipeline_agg = pipeline_agg
         self.field = field
-        self.type_val = "derivative"
+        self.type_val = MetricAggregationType.DERIVATIVE
         self.id_val = id_val
         self.settings = settings
         self.hide = hide
@@ -400,7 +440,7 @@ class Derivative:
 class CumulativeSum:
     pipeline_agg: typing.Optional[str]
     field: typing.Optional[str]
-    type_val: typing.Literal["cumulative_sum"]
+    type_val: str
     id_val: str
     settings: typing.Optional['ElasticsearchCumulativeSumSettings']
     hide: typing.Optional[bool]
@@ -408,7 +448,7 @@ class CumulativeSum:
     def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchCumulativeSumSettings'] = None, hide: typing.Optional[bool] = None):
         self.pipeline_agg = pipeline_agg
         self.field = field
-        self.type_val = "cumulative_sum"
+        self.type_val = MetricAggregationType.CUMULATIVE_SUM
         self.id_val = id_val
         self.settings = settings
         self.hide = hide
@@ -447,14 +487,14 @@ class CumulativeSum:
 
 
 class BucketScript:
-    type_val: typing.Literal["bucket_script"]
+    type_val: str
     pipeline_variables: typing.Optional[list['PipelineVariable']]
     id_val: str
     settings: typing.Optional['ElasticsearchBucketScriptSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, pipeline_variables: typing.Optional[list['PipelineVariable']] = None, id_val: str = "", settings: typing.Optional['ElasticsearchBucketScriptSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "bucket_script"
+        self.type_val = MetricAggregationType.BUCKET_SCRIPT
         self.pipeline_variables = pipeline_variables
         self.id_val = id_val
         self.settings = settings
@@ -525,7 +565,7 @@ MetricAggregationWithSettings: typing.TypeAlias = typing.Union['BucketScript', '
 class SerialDiff:
     pipeline_agg: typing.Optional[str]
     field: typing.Optional[str]
-    type_val: typing.Literal["serial_diff"]
+    type_val: str
     id_val: str
     settings: typing.Optional['ElasticsearchSerialDiffSettings']
     hide: typing.Optional[bool]
@@ -533,7 +573,7 @@ class SerialDiff:
     def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchSerialDiffSettings'] = None, hide: typing.Optional[bool] = None):
         self.pipeline_agg = pipeline_agg
         self.field = field
-        self.type_val = "serial_diff"
+        self.type_val = MetricAggregationType.SERIAL_DIFF
         self.id_val = id_val
         self.settings = settings
         self.hide = hide
@@ -572,13 +612,13 @@ class SerialDiff:
 
 
 class RawData:
-    type_val: typing.Literal["raw_data"]
+    type_val: str
     id_val: str
     settings: typing.Optional['ElasticsearchRawDataSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchRawDataSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "raw_data"
+        self.type_val = MetricAggregationType.RAW_DATA
         self.id_val = id_val
         self.settings = settings
         self.hide = hide
@@ -609,13 +649,13 @@ class RawData:
 
 
 class RawDocument:
-    type_val: typing.Literal["raw_document"]
+    type_val: str
     id_val: str
     settings: typing.Optional['ElasticsearchRawDocumentSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchRawDocumentSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "raw_document"
+        self.type_val = MetricAggregationType.RAW_DOCUMENT
         self.id_val = id_val
         self.settings = settings
         self.hide = hide
@@ -646,14 +686,14 @@ class RawDocument:
 
 
 class UniqueCount:
-    type_val: typing.Literal["cardinality"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional['ElasticsearchUniqueCountSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchUniqueCountSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "cardinality"
+        self.type_val = MetricAggregationType.CARDINALITY
         self.field = field
         self.id_val = id_val
         self.settings = settings
@@ -689,14 +729,14 @@ class UniqueCount:
 
 
 class Percentiles:
-    type_val: typing.Literal["percentiles"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional['ElasticsearchPercentilesSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchPercentilesSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "percentiles"
+        self.type_val = MetricAggregationType.PERCENTILES
         self.field = field
         self.id_val = id_val
         self.settings = settings
@@ -732,7 +772,7 @@ class Percentiles:
 
 
 class ExtendedStats:
-    type_val: typing.Literal["extended_stats"]
+    type_val: str
     settings: typing.Optional['ElasticsearchExtendedStatsSettings']
     field: typing.Optional[str]
     id_val: str
@@ -740,7 +780,7 @@ class ExtendedStats:
     hide: typing.Optional[bool]
 
     def __init__(self, settings: typing.Optional['ElasticsearchExtendedStatsSettings'] = None, field: typing.Optional[str] = None, id_val: str = "", meta: typing.Optional[object] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "extended_stats"
+        self.type_val = MetricAggregationType.EXTENDED_STATS
         self.settings = settings
         self.field = field
         self.id_val = id_val
@@ -781,14 +821,14 @@ class ExtendedStats:
 
 
 class Min:
-    type_val: typing.Literal["min"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional['ElasticsearchMinSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchMinSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "min"
+        self.type_val = MetricAggregationType.MIN
         self.field = field
         self.id_val = id_val
         self.settings = settings
@@ -824,14 +864,14 @@ class Min:
 
 
 class Max:
-    type_val: typing.Literal["max"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional['ElasticsearchMaxSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchMaxSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "max"
+        self.type_val = MetricAggregationType.MAX
         self.field = field
         self.id_val = id_val
         self.settings = settings
@@ -867,14 +907,14 @@ class Max:
 
 
 class Sum:
-    type_val: typing.Literal["sum"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional['ElasticsearchSumSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchSumSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "sum"
+        self.type_val = MetricAggregationType.SUM
         self.field = field
         self.id_val = id_val
         self.settings = settings
@@ -910,14 +950,14 @@ class Sum:
 
 
 class Average:
-    type_val: typing.Literal["avg"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional['ElasticsearchAverageSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchAverageSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "avg"
+        self.type_val = MetricAggregationType.AVG
         self.field = field
         self.id_val = id_val
         self.settings = settings
@@ -955,7 +995,7 @@ class Average:
 class MovingFunction:
     pipeline_agg: typing.Optional[str]
     field: typing.Optional[str]
-    type_val: typing.Literal["moving_fn"]
+    type_val: str
     id_val: str
     settings: typing.Optional['ElasticsearchMovingFunctionSettings']
     hide: typing.Optional[bool]
@@ -963,7 +1003,7 @@ class MovingFunction:
     def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchMovingFunctionSettings'] = None, hide: typing.Optional[bool] = None):
         self.pipeline_agg = pipeline_agg
         self.field = field
-        self.type_val = "moving_fn"
+        self.type_val = MetricAggregationType.MOVING_FN
         self.id_val = id_val
         self.settings = settings
         self.hide = hide
@@ -1002,13 +1042,13 @@ class MovingFunction:
 
 
 class Logs:
-    type_val: typing.Literal["logs"]
+    type_val: str
     id_val: str
     settings: typing.Optional['ElasticsearchLogsSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchLogsSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "logs"
+        self.type_val = MetricAggregationType.LOGS
         self.id_val = id_val
         self.settings = settings
         self.hide = hide
@@ -1039,14 +1079,14 @@ class Logs:
 
 
 class Rate:
-    type_val: typing.Literal["rate"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional['ElasticsearchRateSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchRateSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "rate"
+        self.type_val = MetricAggregationType.RATE
         self.field = field
         self.id_val = id_val
         self.settings = settings
@@ -1082,13 +1122,13 @@ class Rate:
 
 
 class TopMetrics:
-    type_val: typing.Literal["top_metrics"]
+    type_val: str
     id_val: str
     settings: typing.Optional['ElasticsearchTopMetricsSettings']
     hide: typing.Optional[bool]
 
     def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchTopMetricsSettings'] = None, hide: typing.Optional[bool] = None):
-        self.type_val = "top_metrics"
+        self.type_val = MetricAggregationType.TOP_METRICS
         self.id_val = id_val
         self.settings = settings
         self.hide = hide
@@ -1116,15 +1156,6 @@ class TopMetrics:
             args["hide"] = data["hide"]        
 
         return cls(**args)
-
-
-class BucketAggregationType(enum.StrEnum):
-    TERMS = "terms"
-    FILTERS = "filters"
-    GEOHASH_GRID = "geohash_grid"
-    DATE_HISTOGRAM = "date_histogram"
-    HISTOGRAM = "histogram"
-    NESTED = "nested"
 
 
 class BaseBucketAggregation:
@@ -1366,37 +1397,6 @@ class GeoHashGridSettings:
             args["precision"] = data["precision"]        
 
         return cls(**args)
-
-
-class PipelineMetricAggregationType(enum.StrEnum):
-    MOVING_AVG = "moving_avg"
-    MOVING_FN = "moving_fn"
-    DERIVATIVE = "derivative"
-    SERIAL_DIFF = "serial_diff"
-    CUMULATIVE_SUM = "cumulative_sum"
-    BUCKET_SCRIPT = "bucket_script"
-
-
-class MetricAggregationType(enum.StrEnum):
-    COUNT = "count"
-    AVG = "avg"
-    SUM = "sum"
-    MIN = "min"
-    MAX = "max"
-    EXTENDED_STATS = "extended_stats"
-    PERCENTILES = "percentiles"
-    CARDINALITY = "cardinality"
-    RAW_DOCUMENT = "raw_document"
-    RAW_DATA = "raw_data"
-    LOGS = "logs"
-    RATE = "rate"
-    TOP_METRICS = "top_metrics"
-    MOVING_AVG = "moving_avg"
-    MOVING_FN = "moving_fn"
-    DERIVATIVE = "derivative"
-    SERIAL_DIFF = "serial_diff"
-    CUMULATIVE_SUM = "cumulative_sum"
-    BUCKET_SCRIPT = "bucket_script"
 
 
 class BaseMetricAggregation:
@@ -1739,12 +1739,12 @@ class BaseMovingAverageModelSettings:
 
 
 class MovingAverageSimpleModelSettings:
-    model: typing.Literal["simple"]
+    model: str
     window: str
     predict: str
 
     def __init__(self, window: str = "", predict: str = ""):
-        self.model = "simple"
+        self.model = MovingAverageModel.SIMPLE
         self.window = window
         self.predict = predict
 
@@ -1769,12 +1769,12 @@ class MovingAverageSimpleModelSettings:
 
 
 class MovingAverageLinearModelSettings:
-    model: typing.Literal["linear"]
+    model: str
     window: str
     predict: str
 
     def __init__(self, window: str = "", predict: str = ""):
-        self.model = "linear"
+        self.model = MovingAverageModel.LINEAR
         self.window = window
         self.predict = predict
 
@@ -1799,14 +1799,14 @@ class MovingAverageLinearModelSettings:
 
 
 class MovingAverageEWMAModelSettings:
-    model: typing.Literal["ewma"]
+    model: str
     settings: typing.Optional['ElasticsearchMovingAverageEWMAModelSettingsSettings']
     window: str
     minimize: bool
     predict: str
 
     def __init__(self, settings: typing.Optional['ElasticsearchMovingAverageEWMAModelSettingsSettings'] = None, window: str = "", minimize: bool = False, predict: str = ""):
-        self.model = "ewma"
+        self.model = MovingAverageModel.EWMA
         self.settings = settings
         self.window = window
         self.minimize = minimize
@@ -1840,14 +1840,14 @@ class MovingAverageEWMAModelSettings:
 
 
 class MovingAverageHoltModelSettings:
-    model: typing.Literal["holt"]
+    model: str
     settings: 'ElasticsearchMovingAverageHoltModelSettingsSettings'
     window: str
     minimize: bool
     predict: str
 
     def __init__(self, settings: typing.Optional['ElasticsearchMovingAverageHoltModelSettingsSettings'] = None, window: str = "", minimize: bool = False, predict: str = ""):
-        self.model = "holt"
+        self.model = MovingAverageModel.HOLT
         self.settings = settings if settings is not None else ElasticsearchMovingAverageHoltModelSettingsSettings()
         self.window = window
         self.minimize = minimize
@@ -1880,14 +1880,14 @@ class MovingAverageHoltModelSettings:
 
 
 class MovingAverageHoltWintersModelSettings:
-    model: typing.Literal["holt_winters"]
+    model: str
     settings: 'ElasticsearchMovingAverageHoltWintersModelSettingsSettings'
     window: str
     minimize: bool
     predict: str
 
     def __init__(self, settings: typing.Optional['ElasticsearchMovingAverageHoltWintersModelSettingsSettings'] = None, window: str = "", minimize: bool = False, predict: str = ""):
-        self.model = "holt_winters"
+        self.model = MovingAverageModel.HOLT_WINTERS
         self.settings = settings if settings is not None else ElasticsearchMovingAverageHoltWintersModelSettingsSettings()
         self.window = window
         self.minimize = minimize

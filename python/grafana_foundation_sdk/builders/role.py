@@ -5,7 +5,7 @@ from ..cog import builder as cogbuilder
 from ..models import role
 
 
-class Role(cogbuilder.Builder[role.Role]):    
+class Role(cogbuilder.Builder[role.Role]):
     _internal: role.Role
 
     def __init__(self):

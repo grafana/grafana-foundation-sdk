@@ -19,7 +19,6 @@ func NewDateHistogramBuilder() *DateHistogramBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "date_histogram"
 
 	return builder
 }

@@ -10,6 +10,7 @@ type TypeSql struct {
     // The datasource
     Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
     Expression string `json:"expression"`
+    Format string `json:"format"`
     // true if query is disabled (ie should not be returned to the dashboard)
     // NOTE: this does not always imply that the query should not be executed since
     // the results from a hidden query may be used as the input to other queries (SSE etc)

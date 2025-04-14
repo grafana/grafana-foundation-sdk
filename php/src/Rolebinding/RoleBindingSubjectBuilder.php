@@ -29,6 +29,7 @@ class RoleBindingSubjectBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The team/user identifier name
      */

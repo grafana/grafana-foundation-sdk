@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> Rate
 
 ```typescript
 export interface Rate {
-	type: "rate";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -18,9 +18,6 @@ export interface Rate {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [RateBuilder](./builder-RateBuilder.md)

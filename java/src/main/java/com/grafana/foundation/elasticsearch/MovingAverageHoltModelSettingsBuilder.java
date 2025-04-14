@@ -8,7 +8,6 @@ public class MovingAverageHoltModelSettingsBuilder implements com.grafana.founda
     
     public MovingAverageHoltModelSettingsBuilder() {
         this.internal = new MovingAverageHoltModelSettings();
-        this.internal.model = "holt";
     }
     public MovingAverageHoltModelSettingsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageHoltModelSettingsSettings> settings) {
         this.internal.settings = settings.build();

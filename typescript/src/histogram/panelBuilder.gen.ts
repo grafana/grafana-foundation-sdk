@@ -721,3 +721,4 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 }
+

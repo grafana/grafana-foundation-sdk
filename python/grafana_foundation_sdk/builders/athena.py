@@ -22,28 +22,28 @@ class Dataquery(cogbuilder.Builder[athena.Dataquery]):
         """
         return self._internal    
     
-    def format_val(self, format_val: athena.FormatOptions) -> typing.Self:        
+    def format(self, format_val: athena.FormatOptions) -> typing.Self:    
         self._internal.format_val = format_val
     
         return self
     
-    def connection_args(self, connection_args: cogbuilder.Builder[athena.ConnectionArgs]) -> typing.Self:        
+    def connection_args(self, connection_args: cogbuilder.Builder[athena.ConnectionArgs]) -> typing.Self:    
         connection_args_resource = connection_args.build()
         self._internal.connection_args = connection_args_resource
     
         return self
     
-    def table(self, table: str) -> typing.Self:        
+    def table(self, table: str) -> typing.Self:    
         self._internal.table = table
     
         return self
     
-    def column(self, column: str) -> typing.Self:        
+    def column(self, column: str) -> typing.Self:    
         self._internal.column = column
     
         return self
     
-    def query_id(self, query_id: str) -> typing.Self:        
+    def query_id(self, query_id: str) -> typing.Self:    
         self._internal.query_id = query_id
     
         return self
@@ -78,7 +78,7 @@ class Dataquery(cogbuilder.Builder[athena.Dataquery]):
     
         return self
     
-    def raw_sql(self, raw_sql: str) -> typing.Self:        
+    def raw_sql(self, raw_sql: str) -> typing.Self:    
         self._internal.raw_sql = raw_sql
     
         return self
@@ -96,7 +96,8 @@ class Dataquery(cogbuilder.Builder[athena.Dataquery]):
         return self
     
 
-class ConnectionArgs(cogbuilder.Builder[athena.ConnectionArgs]):    
+
+class ConnectionArgs(cogbuilder.Builder[athena.ConnectionArgs]):
     _internal: athena.ConnectionArgs
 
     def __init__(self):
@@ -108,27 +109,27 @@ class ConnectionArgs(cogbuilder.Builder[athena.ConnectionArgs]):
         """
         return self._internal    
     
-    def region(self, region: str) -> typing.Self:        
+    def region(self, region: str) -> typing.Self:    
         self._internal.region = region
     
         return self
     
-    def catalog(self, catalog: str) -> typing.Self:        
+    def catalog(self, catalog: str) -> typing.Self:    
         self._internal.catalog = catalog
     
         return self
     
-    def database(self, database: str) -> typing.Self:        
+    def database(self, database: str) -> typing.Self:    
         self._internal.database = database
     
         return self
     
-    def result_reuse_enabled(self, result_reuse_enabled: bool) -> typing.Self:        
+    def result_reuse_enabled(self, result_reuse_enabled: bool) -> typing.Self:    
         self._internal.result_reuse_enabled = result_reuse_enabled
     
         return self
     
-    def result_reuse_max_age_in_minutes(self, result_reuse_max_age_in_minutes: float) -> typing.Self:        
+    def result_reuse_max_age_in_minutes(self, result_reuse_max_age_in_minutes: float) -> typing.Self:    
         self._internal.result_reuse_max_age_in_minutes = result_reuse_max_age_in_minutes
     
         return self

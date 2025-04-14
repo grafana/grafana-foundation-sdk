@@ -30,24 +30,28 @@ class MetricNamesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function subscription(string $subscription): static
     {
         $this->internal->subscription = $subscription;
     
         return $this;
     }
+
     public function resourceGroup(string $resourceGroup): static
     {
         $this->internal->resourceGroup = $resourceGroup;
     
         return $this;
     }
+
     public function resourceName(string $resourceName): static
     {
         $this->internal->resourceName = $resourceName;
     
         return $this;
     }
+
     public function metricNamespace(string $metricNamespace): static
     {
         $this->internal->metricNamespace = $metricNamespace;

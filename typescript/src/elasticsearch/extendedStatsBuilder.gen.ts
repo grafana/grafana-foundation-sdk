@@ -8,7 +8,6 @@ export class ExtendedStatsBuilder implements cog.Builder<elasticsearch.ExtendedS
 
     constructor() {
         this.internal = elasticsearch.defaultExtendedStats();
-        this.internal.type = "extended_stats";
     }
 
     /**
@@ -47,3 +46,4 @@ export class ExtendedStatsBuilder implements cog.Builder<elasticsearch.ExtendedS
         return this;
     }
 }
+

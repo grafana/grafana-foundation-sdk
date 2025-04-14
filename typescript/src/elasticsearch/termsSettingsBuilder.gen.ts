@@ -42,3 +42,4 @@ export class TermsSettingsBuilder implements cog.Builder<elasticsearch.TermsSett
         return this;
     }
 }
+

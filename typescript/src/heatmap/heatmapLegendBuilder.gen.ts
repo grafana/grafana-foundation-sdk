@@ -24,3 +24,4 @@ export class HeatmapLegendBuilder implements cog.Builder<heatmap.HeatmapLegend> 
         return this;
     }
 }
+

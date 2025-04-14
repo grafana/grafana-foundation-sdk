@@ -20,7 +20,6 @@ public class VizTextDisplayOptions {
     public Double valueSize;
     public VizTextDisplayOptions() {
     }
-    
     public VizTextDisplayOptions(Double titleSize,Double valueSize) {
         this.titleSize = titleSize;
         this.valueSize = valueSize;

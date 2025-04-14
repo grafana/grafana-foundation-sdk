@@ -29,24 +29,28 @@ class BasePipelineMetricAggregationBuilder implements \Grafana\Foundation\Cog\Bu
     
         return $this;
     }
+
     public function field(string $field): static
     {
         $this->internal->field = $field;
     
         return $this;
     }
+
     public function type(string $type): static
     {
         $this->internal->type = $type;
     
         return $this;
     }
+
     public function id(string $id): static
     {
         $this->internal->id = $id;
     
         return $this;
     }
+
     public function hide(bool $hide): static
     {
         $this->internal->hide = $hide;

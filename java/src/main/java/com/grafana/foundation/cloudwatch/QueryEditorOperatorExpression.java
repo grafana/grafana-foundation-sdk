@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class QueryEditorOperatorExpression {
     @JsonProperty("type")
-    public String type;
+    public QueryEditorExpressionType type;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("property")
     public QueryEditorProperty property;
@@ -19,10 +19,10 @@ public class QueryEditorOperatorExpression {
     @JsonProperty("operator")
     public QueryEditorOperator operator;
     public QueryEditorOperatorExpression() {
+        this.type = QueryEditorExpressionType.OPERATOR;
     }
-    
-    public QueryEditorOperatorExpression(String type,QueryEditorProperty property,QueryEditorOperator operator) {
-        this.type = type;
+    public QueryEditorOperatorExpression(QueryEditorProperty property,QueryEditorOperator operator) {
+        this.type = QueryEditorExpressionType.OPERATOR;
         this.property = property;
         this.operator = operator;
     }

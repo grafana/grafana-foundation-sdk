@@ -22,7 +22,6 @@ public class ResourceDimensionConfig {
     public String fixed;
     public ResourceDimensionConfig() {
     }
-    
     public ResourceDimensionConfig(ResourceDimensionMode mode,String field,String fixed) {
         this.mode = mode;
         this.field = field;

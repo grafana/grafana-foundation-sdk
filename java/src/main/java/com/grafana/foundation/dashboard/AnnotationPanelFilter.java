@@ -23,7 +23,6 @@ public class AnnotationPanelFilter {
     public AnnotationPanelFilter() {
         this.exclude = false;
     }
-    
     public AnnotationPanelFilter(Boolean exclude,List<Integer> ids) {
         this.exclude = exclude;
         this.ids = ids;

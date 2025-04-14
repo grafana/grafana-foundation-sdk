@@ -33,6 +33,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Whether to use a metric search or metric query. Metric query is referred to as "Metrics Insights" in the AWS console.
      */
@@ -42,6 +43,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Whether to use the query builder or code editor to create the query
      */
@@ -51,6 +53,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * ID can be used to reference other queries in math expressions. The ID can include numbers, letters, and underscore, and must start with a lowercase letter.
      */
@@ -60,6 +63,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Deprecated: use label
      * @deprecated use label
@@ -70,6 +74,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Change the time series legend names using dynamic labels. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html for more details.
      */
@@ -79,6 +84,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Math expression query
      */
@@ -88,6 +94,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * When the metric query type is `metricQueryType` is set to `Query`, this field is used to specify the query string.
      */
@@ -97,6 +104,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * A unique identifier for the query within the list of targets.
      * In server side expressions, the refId is used as a variable name to identify results.
@@ -108,6 +116,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
      */
@@ -117,6 +126,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -127,6 +137,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * AWS region to query for the metric
      */
@@ -136,6 +147,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * A namespace is a container for CloudWatch metrics. Metrics in different namespaces are isolated from each other, so that metrics from different applications are not mistakenly aggregated into the same statistics. For example, Amazon EC2 uses the AWS/EC2 namespace.
      */
@@ -145,6 +157,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of the metric
      */
@@ -154,6 +167,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The dimensions of the metric
      * @param array<string, string|array<string>> $dimensions
@@ -164,6 +178,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Only show metrics that exactly match all defined dimension names.
      */
@@ -173,6 +188,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The length of time associated with a specific Amazon CloudWatch statistic. Can be specified by a number of seconds, 'auto', or as a duration string e.g. '15m' being 15 minutes
      */
@@ -182,6 +198,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The ID of the AWS account to query for the metric, specifying `all` will query all accounts that the monitoring account is permitted to query.
      */
@@ -191,6 +208,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Metric data aggregations over specified periods of time. For detailed definitions of the statistics supported by CloudWatch, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.
      */
@@ -200,6 +218,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * When the metric query type is `metricQueryType` is set to `Query` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\SQLExpression> $sql
@@ -211,6 +230,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.
@@ -223,6 +243,7 @@ class CloudWatchMetricsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated use statistic
      * @param array<string> $statistics

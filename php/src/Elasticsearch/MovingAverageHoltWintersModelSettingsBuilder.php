@@ -12,7 +12,6 @@ class MovingAverageHoltWintersModelSettingsBuilder implements \Grafana\Foundatio
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\MovingAverageHoltWintersModelSettings();
-    $this->internal->model = "holt_winters";
     }
 
     /**
@@ -34,18 +33,21 @@ class MovingAverageHoltWintersModelSettingsBuilder implements \Grafana\Foundatio
     
         return $this;
     }
+
     public function window(string $window): static
     {
         $this->internal->window = $window;
     
         return $this;
     }
+
     public function minimize(bool $minimize): static
     {
         $this->internal->minimize = $minimize;
     
         return $this;
     }
+
     public function predict(string $predict): static
     {
         $this->internal->predict = $predict;

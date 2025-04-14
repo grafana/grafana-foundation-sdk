@@ -19,7 +19,6 @@ func NewHistogramBuilder() *HistogramBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "histogram"
 
 	return builder
 }

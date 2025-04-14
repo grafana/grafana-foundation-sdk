@@ -30,7 +30,6 @@ public class Options {
     public TooltipOptions tooltip;
     public Options() {
     }
-    
     public Options(MapViewConfig view,ControlsOptions controls,MapLayerOptions basemap,List<MapLayerOptions> layers,TooltipOptions tooltip) {
         this.view = view;
         this.controls = controls;

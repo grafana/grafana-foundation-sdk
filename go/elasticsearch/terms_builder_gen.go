@@ -19,7 +19,6 @@ func NewTermsBuilder() *TermsBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "terms"
 
 	return builder
 }

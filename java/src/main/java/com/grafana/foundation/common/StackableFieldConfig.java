@@ -15,7 +15,6 @@ public class StackableFieldConfig {
     public StackingConfig stacking;
     public StackableFieldConfig() {
     }
-    
     public StackableFieldConfig(StackingConfig stacking) {
         this.stacking = stacking;
     }

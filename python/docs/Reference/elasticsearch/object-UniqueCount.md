@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> UniqueCount
 
 ```python
 class UniqueCount:
-    type_val: typing.Literal["cardinality"]
+    type_val: str
     field: typing.Optional[str]
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchUniqueCountSettings]

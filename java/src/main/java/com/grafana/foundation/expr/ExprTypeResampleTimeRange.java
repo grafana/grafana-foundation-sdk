@@ -18,7 +18,6 @@ public class ExprTypeResampleTimeRange {
         this.from = "now-6h";
         this.to = "now";
     }
-    
     public ExprTypeResampleTimeRange(String from,String to) {
         this.from = from;
         this.to = to;
