@@ -5,7 +5,7 @@ from ..cog import builder as cogbuilder
 from ..models import preferences
 
 
-class Preferences(cogbuilder.Builder[preferences.Preferences]):    
+class Preferences(cogbuilder.Builder[preferences.Preferences]):
     _internal: preferences.Preferences
 
     def __init__(self):
@@ -84,7 +84,8 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
         return self
     
 
-class QueryHistoryPreference(cogbuilder.Builder[preferences.QueryHistoryPreference]):    
+
+class QueryHistoryPreference(cogbuilder.Builder[preferences.QueryHistoryPreference]):
     _internal: preferences.QueryHistoryPreference
 
     def __init__(self):
@@ -106,7 +107,8 @@ class QueryHistoryPreference(cogbuilder.Builder[preferences.QueryHistoryPreferen
         return self
     
 
-class CookiePreferences(cogbuilder.Builder[preferences.CookiePreferences]):    
+
+class CookiePreferences(cogbuilder.Builder[preferences.CookiePreferences]):
     _internal: preferences.CookiePreferences
 
     def __init__(self):
@@ -118,17 +120,17 @@ class CookiePreferences(cogbuilder.Builder[preferences.CookiePreferences]):
         """
         return self._internal    
     
-    def analytics(self, analytics: object) -> typing.Self:        
+    def analytics(self, analytics: object) -> typing.Self:    
         self._internal.analytics = analytics
     
         return self
     
-    def performance(self, performance: object) -> typing.Self:        
+    def performance(self, performance: object) -> typing.Self:    
         self._internal.performance = performance
     
         return self
     
-    def functional(self, functional: object) -> typing.Self:        
+    def functional(self, functional: object) -> typing.Self:    
         self._internal.functional = functional
     
         return self

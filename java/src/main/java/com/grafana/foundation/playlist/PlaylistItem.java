@@ -29,7 +29,6 @@ public class PlaylistItem {
     public String title;
     public PlaylistItem() {
     }
-    
     public PlaylistItem(PlaylistItemType type,String value,String title) {
         this.type = type;
         this.value = value;

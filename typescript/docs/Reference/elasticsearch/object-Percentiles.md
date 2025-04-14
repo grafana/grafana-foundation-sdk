@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> Percentiles
 
 ```typescript
 export interface Percentiles {
-	type: "percentiles";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -19,9 +19,6 @@ export interface Percentiles {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [PercentilesBuilder](./builder-PercentilesBuilder.md)

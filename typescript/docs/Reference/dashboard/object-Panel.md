@@ -72,9 +72,6 @@ export interface Panel {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [alertgroups.PanelBuilder](../alertgroups/builder-PanelBuilder.md)

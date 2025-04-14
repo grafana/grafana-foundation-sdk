@@ -9,7 +9,6 @@ public class QueryEditorFunctionExpressionBuilder implements com.grafana.foundat
     
     public QueryEditorFunctionExpressionBuilder() {
         this.internal = new QueryEditorFunctionExpression();
-        this.internal.type = "function";
     }
     public QueryEditorFunctionExpressionBuilder name(String name) {
         this.internal.name = name;

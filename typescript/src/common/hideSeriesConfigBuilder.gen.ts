@@ -33,3 +33,4 @@ export class HideSeriesConfigBuilder implements cog.Builder<common.HideSeriesCon
         return this;
     }
 }
+

@@ -30,6 +30,7 @@ class AppInsightsGroupByQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function metricName(string $metricName): static
     {
         $this->internal->metricName = $metricName;

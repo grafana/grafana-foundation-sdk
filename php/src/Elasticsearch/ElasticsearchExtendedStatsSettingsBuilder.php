@@ -34,12 +34,14 @@ class ElasticsearchExtendedStatsSettingsBuilder implements \Grafana\Foundation\C
     
         return $this;
     }
+
     public function missing(string $missing): static
     {
         $this->internal->missing = $missing;
     
         return $this;
     }
+
     public function sigma(string $sigma): static
     {
         $this->internal->sigma = $sigma;

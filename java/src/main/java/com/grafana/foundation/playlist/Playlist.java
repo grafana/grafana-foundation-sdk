@@ -29,7 +29,6 @@ public class Playlist {
     public Playlist() {
         this.interval = "5m";
     }
-    
     public Playlist(String uid,String name,String interval,List<PlaylistItem> items) {
         this.uid = uid;
         this.name = name;

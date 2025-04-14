@@ -31,6 +31,7 @@ class ContactPointBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name is used as grouping key in the UI. Contact points with the
      * same name will be grouped in the UI.
@@ -41,12 +42,14 @@ class ContactPointBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function provenance(string $provenance): static
     {
         $this->internal->provenance = $provenance;
     
         return $this;
     }
+
     /**
      * @param mixed $settings
      */
@@ -56,12 +59,14 @@ class ContactPointBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function type(\Grafana\Foundation\Alerting\ContactPointType $type): static
     {
         $this->internal->type = $type;
     
         return $this;
     }
+
     /**
      * UID is the unique identifier of the contact point. The UID can be
      * set by the user.

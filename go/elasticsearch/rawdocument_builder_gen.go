@@ -19,7 +19,6 @@ func NewRawDocumentBuilder() *RawDocumentBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "raw_document"
 
 	return builder
 }

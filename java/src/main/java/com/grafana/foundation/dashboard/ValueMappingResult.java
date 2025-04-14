@@ -28,7 +28,6 @@ public class ValueMappingResult {
     public Integer index;
     public ValueMappingResult() {
     }
-    
     public ValueMappingResult(String text,String color,String icon,Integer index) {
         this.text = text;
         this.color = color;

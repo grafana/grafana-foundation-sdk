@@ -9,16 +9,16 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class MovingAverageLinearModelSettings {
     @JsonProperty("model")
-    public String model;
+    public MovingAverageModel model;
     @JsonProperty("window")
     public String window;
     @JsonProperty("predict")
     public String predict;
     public MovingAverageLinearModelSettings() {
+        this.model = MovingAverageModel.LINEAR;
     }
-    
-    public MovingAverageLinearModelSettings(String model,String window,String predict) {
-        this.model = model;
+    public MovingAverageLinearModelSettings(String window,String predict) {
+        this.model = MovingAverageModel.LINEAR;
         this.window = window;
         this.predict = predict;
     }

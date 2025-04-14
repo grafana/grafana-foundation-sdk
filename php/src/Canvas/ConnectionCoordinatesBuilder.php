@@ -29,6 +29,7 @@ class ConnectionCoordinatesBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function y(float $y): static
     {
         $this->internal->y = $y;

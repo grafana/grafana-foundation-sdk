@@ -8,7 +8,6 @@ public class TermsBuilder implements com.grafana.foundation.cog.Builder<Terms> {
     
     public TermsBuilder() {
         this.internal = new Terms();
-        this.internal.type = "terms";
     }
     public TermsBuilder field(String field) {
         this.internal.field = field;

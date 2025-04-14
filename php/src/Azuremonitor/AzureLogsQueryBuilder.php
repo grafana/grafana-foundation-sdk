@@ -33,6 +33,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specifies the format results should be returned as.
      */
@@ -42,6 +43,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Array of resource URIs to be queried.
      * @param array<string> $resources
@@ -52,6 +54,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If set to true the intersection of time ranges specified in the query and Grafana will be used. Otherwise the query time ranges will be used. Defaults to false
      */
@@ -61,6 +64,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Workspace ID. This was removed in Grafana 8, but remains for backwards compat
      */
@@ -70,6 +74,7 @@ class AzureLogsQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Use resources instead
      */

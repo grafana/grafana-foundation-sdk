@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> Count
 
 ```go
 type Count struct {
-    Type string `json:"type"`
+    Type elasticsearch.MetricAggregationType `json:"type"`
     Id string `json:"id"`
     Hide *bool `json:"hide,omitempty"`
 }

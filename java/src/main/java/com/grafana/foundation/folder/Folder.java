@@ -23,7 +23,6 @@ public class Folder {
     public String description;
     public Folder() {
     }
-    
     public Folder(String uid,String title,String description) {
         this.uid = uid;
         this.title = title;

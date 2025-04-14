@@ -32,6 +32,7 @@ class PlaylistItemBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Value depends on type and describes the playlist item.
      * 
@@ -48,6 +49,7 @@ class PlaylistItemBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Title is an unused property -- it will be removed in the future
      */

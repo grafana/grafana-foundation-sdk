@@ -14,7 +14,6 @@ public class ElasticsearchGeoHashGridSettings {
     public String precision;
     public ElasticsearchGeoHashGridSettings() {
     }
-    
     public ElasticsearchGeoHashGridSettings(String precision) {
         this.precision = precision;
     }

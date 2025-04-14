@@ -32,6 +32,7 @@ class AzureResourceGraphQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specifies the format results should be returned as. Defaults to table.
      */

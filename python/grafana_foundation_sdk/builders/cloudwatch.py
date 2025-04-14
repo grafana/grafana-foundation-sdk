@@ -6,7 +6,7 @@ from ..models import cloudwatch
 from ..models import dashboard
 
 
-class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):    
+class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
     _internal: cloudwatch.MetricStat
 
     def __init__(self):
@@ -100,6 +100,7 @@ class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
         return self
     
 
+
 class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuery]):    
     """
     Shape of a CloudWatch Metrics query
@@ -143,7 +144,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:    
+    def id(self, id_val: str) -> typing.Self:    
         """
         ID can be used to reference other queries in math expressions. The ID can include numbers, letters, and underscore, and must start with a lowercase letter.
         """
@@ -325,7 +326,8 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
         return self
     
 
-class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):    
+
+class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
     _internal: cloudwatch.SQLExpression
 
     def __init__(self):
@@ -406,12 +408,12 @@ class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
         return self
     
 
-class QueryEditorFunctionExpression(cogbuilder.Builder[cloudwatch.QueryEditorFunctionExpression]):    
+
+class QueryEditorFunctionExpression(cogbuilder.Builder[cloudwatch.QueryEditorFunctionExpression]):
     _internal: cloudwatch.QueryEditorFunctionExpression
 
     def __init__(self):
-        self._internal = cloudwatch.QueryEditorFunctionExpression()        
-        self._internal.type_val = "function"
+        self._internal = cloudwatch.QueryEditorFunctionExpression()
 
     def build(self) -> cloudwatch.QueryEditorFunctionExpression:
         """
@@ -419,24 +421,24 @@ class QueryEditorFunctionExpression(cogbuilder.Builder[cloudwatch.QueryEditorFun
         """
         return self._internal    
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def parameters(self, parameters: list[cogbuilder.Builder[cloudwatch.QueryEditorFunctionParameterExpression]]) -> typing.Self:        
+    def parameters(self, parameters: list[cogbuilder.Builder[cloudwatch.QueryEditorFunctionParameterExpression]]) -> typing.Self:    
         parameters_resources = [r1.build() for r1 in parameters]
         self._internal.parameters = parameters_resources
     
         return self
     
 
-class QueryEditorFunctionParameterExpression(cogbuilder.Builder[cloudwatch.QueryEditorFunctionParameterExpression]):    
+
+class QueryEditorFunctionParameterExpression(cogbuilder.Builder[cloudwatch.QueryEditorFunctionParameterExpression]):
     _internal: cloudwatch.QueryEditorFunctionParameterExpression
 
     def __init__(self):
-        self._internal = cloudwatch.QueryEditorFunctionParameterExpression()        
-        self._internal.type_val = "functionParameter"
+        self._internal = cloudwatch.QueryEditorFunctionParameterExpression()
 
     def build(self) -> cloudwatch.QueryEditorFunctionParameterExpression:
         """
@@ -444,18 +446,18 @@ class QueryEditorFunctionParameterExpression(cogbuilder.Builder[cloudwatch.Query
         """
         return self._internal    
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
 
-class QueryEditorPropertyExpression(cogbuilder.Builder[cloudwatch.QueryEditorPropertyExpression]):    
+
+class QueryEditorPropertyExpression(cogbuilder.Builder[cloudwatch.QueryEditorPropertyExpression]):
     _internal: cloudwatch.QueryEditorPropertyExpression
 
     def __init__(self):
-        self._internal = cloudwatch.QueryEditorPropertyExpression()        
-        self._internal.type_val = "property"
+        self._internal = cloudwatch.QueryEditorPropertyExpression()
 
     def build(self) -> cloudwatch.QueryEditorPropertyExpression:
         """
@@ -463,14 +465,15 @@ class QueryEditorPropertyExpression(cogbuilder.Builder[cloudwatch.QueryEditorPro
         """
         return self._internal    
     
-    def property_val(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:        
+    def property(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:    
         property_val_resource = property_val.build()
         self._internal.property_val = property_val_resource
     
         return self
     
 
-class QueryEditorProperty(cogbuilder.Builder[cloudwatch.QueryEditorProperty]):    
+
+class QueryEditorProperty(cogbuilder.Builder[cloudwatch.QueryEditorProperty]):
     _internal: cloudwatch.QueryEditorProperty
 
     def __init__(self):
@@ -482,18 +485,19 @@ class QueryEditorProperty(cogbuilder.Builder[cloudwatch.QueryEditorProperty]):
         """
         return self._internal    
     
-    def type_val(self, type_val: cloudwatch.QueryEditorPropertyType) -> typing.Self:        
+    def type(self, type_val: cloudwatch.QueryEditorPropertyType) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
 
-class QueryEditorArrayExpression(cogbuilder.Builder[cloudwatch.QueryEditorArrayExpression]):    
+
+class QueryEditorArrayExpression(cogbuilder.Builder[cloudwatch.QueryEditorArrayExpression]):
     _internal: cloudwatch.QueryEditorArrayExpression
 
     def __init__(self):
@@ -505,24 +509,24 @@ class QueryEditorArrayExpression(cogbuilder.Builder[cloudwatch.QueryEditorArrayE
         """
         return self._internal    
     
-    def type_val(self, type_val: typing.Literal["and", "or"]) -> typing.Self:        
+    def type(self, type_val: typing.Literal["and", "or"]) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def expressions(self, expressions: list[cogbuilder.Builder[cloudwatch.QueryEditorExpression]]) -> typing.Self:        
+    def expressions(self, expressions: list[cogbuilder.Builder[cloudwatch.QueryEditorExpression]]) -> typing.Self:    
         expressions_resources = [r1.build() for r1 in expressions]
         self._internal.expressions = expressions_resources
     
         return self
     
 
-class QueryEditorGroupByExpression(cogbuilder.Builder[cloudwatch.QueryEditorGroupByExpression]):    
+
+class QueryEditorGroupByExpression(cogbuilder.Builder[cloudwatch.QueryEditorGroupByExpression]):
     _internal: cloudwatch.QueryEditorGroupByExpression
 
     def __init__(self):
-        self._internal = cloudwatch.QueryEditorGroupByExpression()        
-        self._internal.type_val = "groupBy"
+        self._internal = cloudwatch.QueryEditorGroupByExpression()
 
     def build(self) -> cloudwatch.QueryEditorGroupByExpression:
         """
@@ -530,19 +534,19 @@ class QueryEditorGroupByExpression(cogbuilder.Builder[cloudwatch.QueryEditorGrou
         """
         return self._internal    
     
-    def property_val(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:        
+    def property(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:    
         property_val_resource = property_val.build()
         self._internal.property_val = property_val_resource
     
         return self
     
 
-class QueryEditorOperatorExpression(cogbuilder.Builder[cloudwatch.QueryEditorOperatorExpression]):    
+
+class QueryEditorOperatorExpression(cogbuilder.Builder[cloudwatch.QueryEditorOperatorExpression]):
     _internal: cloudwatch.QueryEditorOperatorExpression
 
     def __init__(self):
-        self._internal = cloudwatch.QueryEditorOperatorExpression()        
-        self._internal.type_val = "operator"
+        self._internal = cloudwatch.QueryEditorOperatorExpression()
 
     def build(self) -> cloudwatch.QueryEditorOperatorExpression:
         """
@@ -550,7 +554,7 @@ class QueryEditorOperatorExpression(cogbuilder.Builder[cloudwatch.QueryEditorOpe
         """
         return self._internal    
     
-    def property_val(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:        
+    def property(self, property_val: cogbuilder.Builder[cloudwatch.QueryEditorProperty]) -> typing.Self:    
         property_val_resource = property_val.build()
         self._internal.property_val = property_val_resource
     
@@ -566,6 +570,7 @@ class QueryEditorOperatorExpression(cogbuilder.Builder[cloudwatch.QueryEditorOpe
     
         return self
     
+
 
 class QueryEditorOperator(cogbuilder.Builder[cloudwatch.QueryEditorOperator]):    
     """
@@ -583,16 +588,17 @@ class QueryEditorOperator(cogbuilder.Builder[cloudwatch.QueryEditorOperator]):
         """
         return self._internal    
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def value(self, value: typing.Union[str, bool, int, list[cloudwatch.QueryEditorOperatorType]]) -> typing.Self:        
+    def value(self, value: typing.Union[str, bool, int, list[cloudwatch.QueryEditorOperatorType]]) -> typing.Self:    
         self._internal.value = value
     
         return self
     
+
 
 class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):    
     """
@@ -619,7 +625,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
     
         return self
     
-    def id_val(self, id_val: str) -> typing.Self:        
+    def id(self, id_val: str) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
@@ -715,7 +721,8 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
         return self
     
 
-class LogGroup(cogbuilder.Builder[cloudwatch.LogGroup]):    
+
+class LogGroup(cogbuilder.Builder[cloudwatch.LogGroup]):
     _internal: cloudwatch.LogGroup
 
     def __init__(self):
@@ -763,6 +770,7 @@ class LogGroup(cogbuilder.Builder[cloudwatch.LogGroup]):
     
         return self
     
+
 
 class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotationQuery]):    
     """

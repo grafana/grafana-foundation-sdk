@@ -45,7 +45,6 @@ public class PieChartLegendOptions {
     public List<String> calcs;
     public PieChartLegendOptions() {
     }
-    
     public PieChartLegendOptions(List<PieChartLegendValues> values,LegendDisplayMode displayMode,LegendPlacement placement,Boolean showLegend,Boolean asTable,Boolean isVisible,String sortBy,Boolean sortDesc,Double width,List<String> calcs) {
         this.values = values;
         this.displayMode = displayMode;

@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> BucketScript
 
 ```python
 class BucketScript:
-    type_val: typing.Literal["bucket_script"]
+    type_val: str
     pipeline_variables: typing.Optional[list[elasticsearch.PipelineVariable]]
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchBucketScriptSettings]

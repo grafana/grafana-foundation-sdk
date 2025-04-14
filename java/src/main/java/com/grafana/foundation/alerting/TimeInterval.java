@@ -30,7 +30,6 @@ public class TimeInterval {
     public String location;
     public TimeInterval() {
     }
-    
     public TimeInterval(List<TimeRange> times,List<WeekdayRange> weekdays,List<DayOfMonthRange> daysOfMonth,List<MonthRange> months,List<YearRange> years,String location) {
         this.times = times;
         this.weekdays = weekdays;

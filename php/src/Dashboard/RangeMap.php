@@ -8,7 +8,7 @@ namespace Grafana\Foundation\Dashboard;
  */
 class RangeMap implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Dashboard\MappingType $type;
 
     /**
      * Range to match against and the result to apply when the value is within the range
@@ -20,8 +20,7 @@ class RangeMap implements \JsonSerializable
      */
     public function __construct(?\Grafana\Foundation\Dashboard\DashboardRangeMapOptions $options = null)
     {
-        $this->type = "range";
-    
+        $this->type = \Grafana\Foundation\Dashboard\MappingType::valueToText();
         $this->options = $options ?: new \Grafana\Foundation\Dashboard\DashboardRangeMapOptions();
     }
 
@@ -30,7 +29,7 @@ class RangeMap implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, options?: mixed} $inputData */
+        /** @var array{type?: "range", options?: mixed} $inputData */
         $data = $inputData;
         return new self(
             options: isset($data["options"]) ? (function($input) {

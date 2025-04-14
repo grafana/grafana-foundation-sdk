@@ -121,7 +121,6 @@ public class Panel {
     public Panel() {
         this.transparent = false;
     }
-    
     public Panel(String type,Integer id,String pluginVersion,List<String> tags,List<Dataquery> targets,String title,String description,Boolean transparent,DataSourceRef datasource,GridPos gridPos,List<DashboardLink> links,String repeat,PanelRepeatDirection repeatDirection,Long repeatPanelId,Double maxDataPoints,List<DataTransformerConfig> transformations,String interval,String timeFrom,String timeShift,LibraryPanelRef libraryPanel,Object options,FieldConfigSource fieldConfig) {
         this.type = type;
         this.id = id;

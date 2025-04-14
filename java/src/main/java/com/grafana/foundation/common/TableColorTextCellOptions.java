@@ -10,12 +10,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 // Colored text cell options
 public class TableColorTextCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     public TableColorTextCellOptions() {
-    }
-    
-    public TableColorTextCellOptions(String type) {
-        this.type = type;
+        this.type = TableCellDisplayMode.COLOR_TEXT;
     }
     
     public String toJSON() throws JsonProcessingException {

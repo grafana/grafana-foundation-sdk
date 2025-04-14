@@ -19,7 +19,6 @@ public class HeatmapTooltip {
     public Boolean yHistogram;
     public HeatmapTooltip() {
     }
-    
     public HeatmapTooltip(Boolean show,Boolean yHistogram) {
         this.show = show;
         this.yHistogram = yHistogram;

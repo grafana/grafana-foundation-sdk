@@ -37,7 +37,6 @@ public class AzureLogsQuery {
     public String resource;
     public AzureLogsQuery() {
     }
-    
     public AzureLogsQuery(String query,ResultFormat resultFormat,List<String> resources,Boolean intersectTime,String workspace,String resource) {
         this.query = query;
         this.resultFormat = resultFormat;

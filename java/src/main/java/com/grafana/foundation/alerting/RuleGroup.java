@@ -26,7 +26,6 @@ public class RuleGroup {
     public String title;
     public RuleGroup() {
     }
-    
     public RuleGroup(String folderUid,Long interval,List<Rule> rules,String title) {
         this.folderUid = folderUid;
         this.interval = interval;

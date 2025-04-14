@@ -28,3 +28,4 @@ export class StackingConfigBuilder implements cog.Builder<common.StackingConfig>
         return this;
     }
 }
+

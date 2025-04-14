@@ -19,7 +19,6 @@ func NewSerialDiffBuilder() *SerialDiffBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "serial_diff"
 
 	return builder
 }

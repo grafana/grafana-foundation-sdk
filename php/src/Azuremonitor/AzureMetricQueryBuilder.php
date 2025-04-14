@@ -37,6 +37,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * metricNamespace is used as the resource type (or resource namespace).
      * It's usually equal to the target metric namespace. e.g. microsoft.storage/storageaccounts
@@ -48,6 +49,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Used as the value for the metricNamespace property when it's different from the resource namespace.
      */
@@ -57,6 +59,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The metric to query data for within the specified metricNamespace. e.g. UsedCapacity
      */
@@ -66,6 +69,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The Azure region containing the resource(s).
      */
@@ -75,6 +79,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The granularity of data points to be queried. Defaults to auto.
      */
@@ -84,6 +89,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The aggregation to be used within the query. Defaults to the primaryAggregationType defined by the metric.
      */
@@ -93,6 +99,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureMetricDimension>> $dimensionFilters
@@ -107,6 +114,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Maximum number of records to return. Defaults to 10.
      */
@@ -116,6 +124,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Time grains that are supported by the metric.
      * @param array<int> $allowedTimeGrainsMs
@@ -126,6 +135,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Aliases can be set to modify the legend labels. e.g. {{ resourceGroup }}. See docs for more detail.
      */
@@ -135,6 +145,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated
      */
@@ -144,6 +155,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated This property was migrated to dimensionFilters and should only be accessed in the migration
      */
@@ -153,6 +165,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated This property was migrated to dimensionFilters and should only be accessed in the migration
      */
@@ -162,6 +175,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Use metricNamespace instead
      */
@@ -171,6 +185,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Use resourceGroup, resourceName and metricNamespace instead
      */
@@ -180,6 +195,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Use resources instead
      */
@@ -189,6 +205,7 @@ class AzureMetricQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Use resources instead
      */

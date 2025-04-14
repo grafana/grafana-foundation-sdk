@@ -32,6 +32,7 @@ class AzureMetricDimensionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators.
      */
@@ -41,6 +42,7 @@ class AzureMetricDimensionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Values to match with the filter.
      * @param array<string> $filters
@@ -51,6 +53,7 @@ class AzureMetricDimensionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated filter is deprecated in favour of filters to support multiselect.
      */

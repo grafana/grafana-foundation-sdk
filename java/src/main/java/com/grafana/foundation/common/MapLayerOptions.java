@@ -38,7 +38,6 @@ public class MapLayerOptions {
     public Boolean tooltip;
     public MapLayerOptions() {
     }
-    
     public MapLayerOptions(String type,String name,Object config,FrameGeometrySource location,Object filterData,Long opacity,Boolean tooltip) {
         this.type = type;
         this.name = name;

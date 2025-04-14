@@ -29,12 +29,14 @@ class CanvasElementOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function type(string $type): static
     {
         $this->internal->type = $type;
     
         return $this;
     }
+
     /**
      * TODO: figure out how to define this (element config(s))
      * @param mixed $config
@@ -45,6 +47,7 @@ class CanvasElementOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Canvas\Constraint> $constraint
      */
@@ -55,6 +58,7 @@ class CanvasElementOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Canvas\Placement> $placement
      */
@@ -65,6 +69,7 @@ class CanvasElementOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Canvas\BackgroundConfig> $background
      */
@@ -75,6 +80,7 @@ class CanvasElementOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Canvas\LineConfig> $border
      */
@@ -85,6 +91,7 @@ class CanvasElementOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Canvas\CanvasConnection>> $connections
      */

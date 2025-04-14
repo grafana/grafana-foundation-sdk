@@ -14,7 +14,6 @@ public class ElasticsearchInlineScript {
     public String inline;
     public ElasticsearchInlineScript() {
     }
-    
     public ElasticsearchInlineScript(String inline) {
         this.inline = inline;
     }

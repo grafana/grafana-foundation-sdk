@@ -30,6 +30,7 @@ class QueryEditorOperatorBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param string|bool|int|array<string|bool|int> $value
      */

@@ -2,11 +2,11 @@
 
 package com.grafana.foundation.barchart;
 
-import com.grafana.foundation.common.GraphGradientMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.GraphGradientMode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.AxisPlacement;
 import com.grafana.foundation.common.AxisColorMode;
@@ -67,7 +67,6 @@ public class FieldConfig {
         this.fillOpacity = 80;
         this.gradientMode = GraphGradientMode.NONE;
     }
-    
     public FieldConfig(Integer lineWidth,Integer fillOpacity,GraphGradientMode gradientMode,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,HideSeriesConfig hideFrom,GraphThresholdsStyleConfig thresholdsStyle,Boolean axisCenteredZero) {
         this.lineWidth = lineWidth;
         this.fillOpacity = fillOpacity;

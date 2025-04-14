@@ -15,9 +15,6 @@ export interface RoleRef {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [RoleRefBuilder](./builder-RoleRefBuilder.md)

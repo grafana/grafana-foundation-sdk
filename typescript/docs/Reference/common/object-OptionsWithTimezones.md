@@ -13,9 +13,6 @@ export interface OptionsWithTimezones {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [OptionsWithTimezonesBuilder](./builder-OptionsWithTimezonesBuilder.md)

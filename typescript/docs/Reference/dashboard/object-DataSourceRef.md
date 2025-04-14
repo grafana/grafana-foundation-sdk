@@ -16,6 +16,3 @@ export interface DataSourceRef {
 }
 
 ```
-## Methods
-
-No methods.

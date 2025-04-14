@@ -30,7 +30,6 @@ public class LineConfig {
     public BoolOrFloat64 spanNulls;
     public LineConfig() {
     }
-    
     public LineConfig(String lineColor,Double lineWidth,LineInterpolation lineInterpolation,LineStyle lineStyle,BoolOrFloat64 spanNulls) {
         this.lineColor = lineColor;
         this.lineWidth = lineWidth;

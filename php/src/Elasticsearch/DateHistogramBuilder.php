@@ -12,7 +12,6 @@ class DateHistogramBuilder implements \Grafana\Foundation\Cog\Builder
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\DateHistogram();
-    $this->internal->type = "date_histogram";
     }
 
     /**
@@ -30,12 +29,14 @@ class DateHistogramBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function id(string $id): static
     {
         $this->internal->id = $id;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\ElasticsearchDateHistogramSettings> $settings
      */

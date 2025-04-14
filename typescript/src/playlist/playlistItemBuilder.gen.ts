@@ -42,3 +42,4 @@ export class PlaylistItemBuilder implements cog.Builder<playlist.PlaylistItem> {
         return this;
     }
 }
+

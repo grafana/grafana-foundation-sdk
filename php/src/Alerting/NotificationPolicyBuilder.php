@@ -31,6 +31,7 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<string> $groupBy
      */
@@ -40,18 +41,21 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function groupInterval(string $groupInterval): static
     {
         $this->internal->groupInterval = $groupInterval;
     
         return $this;
     }
+
     public function groupWait(string $groupWait): static
     {
         $this->internal->groupWait = $groupWait;
     
         return $this;
     }
+
     /**
      * Deprecated. Remove before v1.0 release.
      * @param array<string, string> $match
@@ -62,6 +66,7 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<string, mixed> $matchRe
      */
@@ -71,6 +76,7 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Matchers is a slice of Matchers that is sortable, implements Stringer, and
      * provides a Matches method to match a LabelSet against all Matchers in the
@@ -87,6 +93,7 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<string> $muteTimeIntervals
      */
@@ -96,6 +103,7 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Matchers is a slice of Matchers that is sortable, implements Stringer, and
      * provides a Matches method to match a LabelSet against all Matchers in the
@@ -112,24 +120,28 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function provenance(string $provenance): static
     {
         $this->internal->provenance = $provenance;
     
         return $this;
     }
+
     public function receiver(string $receiver): static
     {
         $this->internal->receiver = $receiver;
     
         return $this;
     }
+
     public function repeatInterval(string $repeatInterval): static
     {
         $this->internal->repeatInterval = $repeatInterval;
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\NotificationPolicy>> $routes
      */

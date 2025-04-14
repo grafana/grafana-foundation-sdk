@@ -66,9 +66,6 @@ export interface PanelModel {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [PanelModelBuilder](./builder-PanelModelBuilder.md)

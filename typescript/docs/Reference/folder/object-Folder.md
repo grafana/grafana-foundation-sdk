@@ -20,9 +20,6 @@ export interface Folder {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [FolderBuilder](./builder-FolderBuilder.md)

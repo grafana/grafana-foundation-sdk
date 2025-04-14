@@ -8,7 +8,6 @@ export class HistogramBuilder implements cog.Builder<elasticsearch.Histogram> {
 
     constructor() {
         this.internal = elasticsearch.defaultHistogram();
-        this.internal.type = "histogram";
     }
 
     /**
@@ -36,3 +35,4 @@ export class HistogramBuilder implements cog.Builder<elasticsearch.Histogram> {
         return this;
     }
 }
+

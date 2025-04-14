@@ -8,7 +8,6 @@ export class UniqueCountBuilder implements cog.Builder<elasticsearch.UniqueCount
 
     constructor() {
         this.internal = elasticsearch.defaultUniqueCount();
-        this.internal.type = "cardinality";
     }
 
     /**
@@ -41,3 +40,4 @@ export class UniqueCountBuilder implements cog.Builder<elasticsearch.UniqueCount
         return this;
     }
 }
+

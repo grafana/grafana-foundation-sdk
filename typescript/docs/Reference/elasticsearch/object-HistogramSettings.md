@@ -12,9 +12,6 @@ export interface HistogramSettings {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [HistogramSettingsBuilder](./builder-HistogramSettingsBuilder.md)

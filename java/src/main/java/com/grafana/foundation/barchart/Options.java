@@ -2,13 +2,13 @@
 
 package com.grafana.foundation.barchart;
 
-import com.grafana.foundation.common.VizOrientation;
-import com.grafana.foundation.common.StackingMode;
-import com.grafana.foundation.common.VisibilityMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.VizOrientation;
+import com.grafana.foundation.common.StackingMode;
+import com.grafana.foundation.common.VisibilityMode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.grafana.foundation.common.VizTooltipOptions;
@@ -80,7 +80,6 @@ public class Options {
         this.groupWidth = 0.7;
         this.fullHighlight = false;
     }
-    
     public Options(String xField,String colorByField,VizOrientation orientation,Double barRadius,Integer xTickLabelRotation,Integer xTickLabelMaxLength,Integer xTickLabelSpacing,StackingMode stacking,VisibilityMode showValue,Double barWidth,Double groupWidth,VizLegendOptions legend,VizTooltipOptions tooltip,VizTextDisplayOptions text,Boolean fullHighlight) {
         this.xField = xField;
         this.colorByField = colorByField;

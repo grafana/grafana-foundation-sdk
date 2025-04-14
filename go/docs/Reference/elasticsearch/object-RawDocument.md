@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> RawDocument
 
 ```go
 type RawDocument struct {
-    Type string `json:"type"`
+    Type elasticsearch.MetricAggregationType `json:"type"`
     Id string `json:"id"`
     Settings *elasticsearch.ElasticsearchRawDocumentSettings `json:"settings,omitempty"`
     Hide *bool `json:"hide,omitempty"`

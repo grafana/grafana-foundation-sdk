@@ -16,7 +16,6 @@ public class MovingAverageModelOption {
     public MovingAverageModel value;
     public MovingAverageModelOption() {
     }
-    
     public MovingAverageModelOption(String label,MovingAverageModel value) {
         this.label = label;
         this.value = value;

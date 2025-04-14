@@ -8,7 +8,6 @@ public class TopMetricsBuilder implements com.grafana.foundation.cog.Builder<Top
     
     public TopMetricsBuilder() {
         this.internal = new TopMetrics();
-        this.internal.type = "top_metrics";
     }
     public TopMetricsBuilder id(String id) {
         this.internal.id = id;

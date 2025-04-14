@@ -35,7 +35,6 @@ public class ContactPoint {
     public String uid;
     public ContactPoint() {
     }
-    
     public ContactPoint(Boolean disableResolveMessage,String name,String provenance,Object settings,ContactPointType type,String uid) {
         this.disableResolveMessage = disableResolveMessage;
         this.name = name;

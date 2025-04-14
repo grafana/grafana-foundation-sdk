@@ -44,7 +44,6 @@ public class TableFieldOptions {
         this.align = FieldTextAlignment.AUTO;
         this.inspect = false;
     }
-    
     public TableFieldOptions(Double width,Double minWidth,FieldTextAlignment align,TableCellDisplayMode displayMode,TableCellOptions cellOptions,Boolean hidden,Boolean inspect,Boolean filterable,Boolean hideHeader) {
         this.width = width;
         this.minWidth = minWidth;

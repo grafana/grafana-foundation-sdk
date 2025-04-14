@@ -86,7 +86,6 @@ public class AzureMetricQuery {
     public String resourceName;
     public AzureMetricQuery() {
     }
-    
     public AzureMetricQuery(List<AzureMonitorResource> resources,String metricNamespace,String customNamespace,String metricName,String region,String timeGrain,String aggregation,List<AzureMetricDimension> dimensionFilters,String top,List<Long> allowedTimeGrainsMs,String alias,String timeGrainUnit,String dimension,String dimensionFilter,String metricDefinition,String resourceUri,String resourceGroup,String resourceName) {
         this.resources = resources;
         this.metricNamespace = metricNamespace;

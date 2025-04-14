@@ -23,3 +23,4 @@ export class UnknownQueryBuilder implements cog.Builder<azuremonitor.UnknownQuer
         return this;
     }
 }
+

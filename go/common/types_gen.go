@@ -5048,13 +5048,13 @@ func (resource TableFooterOptions) Validate() error {
 
 // Auto mode table cell options
 type TableAutoCellOptions struct {
-	Type string `json:"type"`
+	Type TableCellDisplayMode `json:"type"`
 }
 
 // NewTableAutoCellOptions creates a new TableAutoCellOptions object.
 func NewTableAutoCellOptions() *TableAutoCellOptions {
 	return &TableAutoCellOptions{
-		Type: "auto",
+		Type: TableCellDisplayModeAuto,
 	}
 }
 
@@ -5108,11 +5108,8 @@ func (resource TableAutoCellOptions) Equals(other TableAutoCellOptions) bool {
 // Validate checks all the validation constraints that may be defined on `TableAutoCellOptions` fields for violations and returns them.
 func (resource TableAutoCellOptions) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "auto") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == auto"),
-		)...)
+	if resource.Type != "auto" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be auto"))...)
 	}
 
 	if len(errs) == 0 {
@@ -5124,13 +5121,13 @@ func (resource TableAutoCellOptions) Validate() error {
 
 // Colored text cell options
 type TableColorTextCellOptions struct {
-	Type string `json:"type"`
+	Type TableCellDisplayMode `json:"type"`
 }
 
 // NewTableColorTextCellOptions creates a new TableColorTextCellOptions object.
 func NewTableColorTextCellOptions() *TableColorTextCellOptions {
 	return &TableColorTextCellOptions{
-		Type: "color-text",
+		Type: TableCellDisplayModeColorText,
 	}
 }
 
@@ -5184,11 +5181,8 @@ func (resource TableColorTextCellOptions) Equals(other TableColorTextCellOptions
 // Validate checks all the validation constraints that may be defined on `TableColorTextCellOptions` fields for violations and returns them.
 func (resource TableColorTextCellOptions) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "color-text") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == color-text"),
-		)...)
+	if resource.Type != "color-text" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be color-text"))...)
 	}
 
 	if len(errs) == 0 {
@@ -5200,13 +5194,13 @@ func (resource TableColorTextCellOptions) Validate() error {
 
 // Json view cell options
 type TableJsonViewCellOptions struct {
-	Type string `json:"type"`
+	Type TableCellDisplayMode `json:"type"`
 }
 
 // NewTableJsonViewCellOptions creates a new TableJsonViewCellOptions object.
 func NewTableJsonViewCellOptions() *TableJsonViewCellOptions {
 	return &TableJsonViewCellOptions{
-		Type: "json-view",
+		Type: TableCellDisplayModeJSONView,
 	}
 }
 
@@ -5260,11 +5254,8 @@ func (resource TableJsonViewCellOptions) Equals(other TableJsonViewCellOptions) 
 // Validate checks all the validation constraints that may be defined on `TableJsonViewCellOptions` fields for violations and returns them.
 func (resource TableJsonViewCellOptions) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "json-view") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == json-view"),
-		)...)
+	if resource.Type != "json-view" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be json-view"))...)
 	}
 
 	if len(errs) == 0 {
@@ -5276,13 +5267,13 @@ func (resource TableJsonViewCellOptions) Validate() error {
 
 // Json view cell options
 type TableImageCellOptions struct {
-	Type string `json:"type"`
+	Type TableCellDisplayMode `json:"type"`
 }
 
 // NewTableImageCellOptions creates a new TableImageCellOptions object.
 func NewTableImageCellOptions() *TableImageCellOptions {
 	return &TableImageCellOptions{
-		Type: "image",
+		Type: TableCellDisplayModeImage,
 	}
 }
 
@@ -5336,11 +5327,8 @@ func (resource TableImageCellOptions) Equals(other TableImageCellOptions) bool {
 // Validate checks all the validation constraints that may be defined on `TableImageCellOptions` fields for violations and returns them.
 func (resource TableImageCellOptions) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "image") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == image"),
-		)...)
+	if resource.Type != "image" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be image"))...)
 	}
 
 	if len(errs) == 0 {
@@ -5352,7 +5340,7 @@ func (resource TableImageCellOptions) Validate() error {
 
 // Gauge cell options
 type TableBarGaugeCellOptions struct {
-	Type             string               `json:"type"`
+	Type             TableCellDisplayMode `json:"type"`
 	Mode             *BarGaugeDisplayMode `json:"mode,omitempty"`
 	ValueDisplayMode *BarGaugeValueMode   `json:"valueDisplayMode,omitempty"`
 }
@@ -5360,7 +5348,7 @@ type TableBarGaugeCellOptions struct {
 // NewTableBarGaugeCellOptions creates a new TableBarGaugeCellOptions object.
 func NewTableBarGaugeCellOptions() *TableBarGaugeCellOptions {
 	return &TableBarGaugeCellOptions{
-		Type: "gauge",
+		Type: TableCellDisplayModeGauge,
 	}
 }
 
@@ -5454,11 +5442,8 @@ func (resource TableBarGaugeCellOptions) Equals(other TableBarGaugeCellOptions) 
 // Validate checks all the validation constraints that may be defined on `TableBarGaugeCellOptions` fields for violations and returns them.
 func (resource TableBarGaugeCellOptions) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "gauge") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == gauge"),
-		)...)
+	if resource.Type != "gauge" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be gauge"))...)
 	}
 
 	if len(errs) == 0 {
@@ -5470,7 +5455,7 @@ func (resource TableBarGaugeCellOptions) Validate() error {
 
 // Sparkline cell options
 type TableSparklineCellOptions struct {
-	Type              string                      `json:"type"`
+	Type              TableCellDisplayMode        `json:"type"`
 	DrawStyle         *GraphDrawStyle             `json:"drawStyle,omitempty"`
 	GradientMode      *GraphGradientMode          `json:"gradientMode,omitempty"`
 	ThresholdsStyle   *GraphThresholdsStyleConfig `json:"thresholdsStyle,omitempty"`
@@ -5509,7 +5494,7 @@ type TableSparklineCellOptions struct {
 // NewTableSparklineCellOptions creates a new TableSparklineCellOptions object.
 func NewTableSparklineCellOptions() *TableSparklineCellOptions {
 	return &TableSparklineCellOptions{
-		Type: "sparkline",
+		Type: TableCellDisplayModeSparkline,
 	}
 }
 
@@ -6175,11 +6160,8 @@ func (resource TableSparklineCellOptions) Equals(other TableSparklineCellOptions
 // Validate checks all the validation constraints that may be defined on `TableSparklineCellOptions` fields for violations and returns them.
 func (resource TableSparklineCellOptions) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "sparkline") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == sparkline"),
-		)...)
+	if resource.Type != "sparkline" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be sparkline"))...)
 	}
 	if resource.ThresholdsStyle != nil {
 		if err := resource.ThresholdsStyle.Validate(); err != nil {
@@ -6221,14 +6203,14 @@ func (resource TableSparklineCellOptions) Validate() error {
 
 // Colored background cell options
 type TableColoredBackgroundCellOptions struct {
-	Type string                          `json:"type"`
+	Type TableCellDisplayMode            `json:"type"`
 	Mode *TableCellBackgroundDisplayMode `json:"mode,omitempty"`
 }
 
 // NewTableColoredBackgroundCellOptions creates a new TableColoredBackgroundCellOptions object.
 func NewTableColoredBackgroundCellOptions() *TableColoredBackgroundCellOptions {
 	return &TableColoredBackgroundCellOptions{
-		Type: "color-background",
+		Type: TableCellDisplayModeColorBackground,
 	}
 }
 
@@ -6302,11 +6284,8 @@ func (resource TableColoredBackgroundCellOptions) Equals(other TableColoredBackg
 // Validate checks all the validation constraints that may be defined on `TableColoredBackgroundCellOptions` fields for violations and returns them.
 func (resource TableColoredBackgroundCellOptions) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "color-background") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == color-background"),
-		)...)
+	if resource.Type != "color-background" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be color-background"))...)
 	}
 
 	if len(errs) == 0 {
@@ -7129,7 +7108,6 @@ func (resource TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCel
 	if resource.TableJsonViewCellOptions != nil {
 		return json.Marshal(resource.TableJsonViewCellOptions)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 

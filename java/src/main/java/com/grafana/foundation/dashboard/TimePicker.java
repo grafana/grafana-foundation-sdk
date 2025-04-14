@@ -35,7 +35,6 @@ public class TimePicker {
         this.enable = true;
         this.timeOptions = List.of("5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d");
     }
-    
     public TimePicker(Boolean hidden,List<String> refreshIntervals,Boolean collapse,Boolean enable,List<String> timeOptions) {
         this.hidden = hidden;
         this.refreshIntervals = refreshIntervals;

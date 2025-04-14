@@ -17,7 +17,6 @@ public class ElasticsearchSumSettings {
     public String missing;
     public ElasticsearchSumSettings() {
     }
-    
     public ElasticsearchSumSettings(InlineScript script,String missing) {
         this.script = script;
         this.missing = missing;

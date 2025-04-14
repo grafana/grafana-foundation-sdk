@@ -42,3 +42,4 @@ export class PulseWaveQueryBuilder implements cog.Builder<testdata.PulseWaveQuer
         return this;
     }
 }
+

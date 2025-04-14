@@ -75,3 +75,4 @@ export class AnnotationQueryBuilder implements cog.Builder<dashboard.AnnotationQ
         return this;
     }
 }
+

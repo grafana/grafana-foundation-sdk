@@ -75,9 +75,6 @@ export interface Dashboard {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [DashboardBuilder](./builder-DashboardBuilder.md)

@@ -21,7 +21,6 @@ public class RowsHeatmapOptions {
     public HeatmapCellLayout layout;
     public RowsHeatmapOptions() {
     }
-    
     public RowsHeatmapOptions(String value,HeatmapCellLayout layout) {
         this.value = value;
         this.layout = layout;

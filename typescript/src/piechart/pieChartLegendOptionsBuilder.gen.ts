@@ -68,3 +68,4 @@ export class PieChartLegendOptionsBuilder implements cog.Builder<piechart.PieCha
         return this;
     }
 }
+

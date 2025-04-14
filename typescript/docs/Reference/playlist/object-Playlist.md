@@ -21,9 +21,6 @@ export interface Playlist {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [PlaylistBuilder](./builder-PlaylistBuilder.md)

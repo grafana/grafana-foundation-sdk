@@ -39,7 +39,6 @@ public class AxisConfig {
     public Boolean axisCenteredZero;
     public AxisConfig() {
     }
-    
     public AxisConfig(AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero) {
         this.axisPlacement = axisPlacement;
         this.axisColorMode = axisColorMode;

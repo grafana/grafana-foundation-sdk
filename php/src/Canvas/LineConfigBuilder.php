@@ -33,6 +33,7 @@ class LineConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function width(float $width): static
     {
         $this->internal->width = $width;

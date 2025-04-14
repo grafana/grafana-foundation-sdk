@@ -43,9 +43,6 @@ export interface Snapshot {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [SnapshotBuilder](./builder-SnapshotBuilder.md)

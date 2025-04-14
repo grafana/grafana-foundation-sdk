@@ -33,6 +33,7 @@ class HeatmapTooltipBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Controls if the tooltip shows a histogram of the y-axis values
      */

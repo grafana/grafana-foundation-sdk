@@ -62,7 +62,6 @@ public class YAxisConfig {
     public Boolean axisCenteredZero;
     public YAxisConfig() {
     }
-    
     public YAxisConfig(String unit,Boolean reverse,Float decimals,Float min,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Float max,Boolean axisCenteredZero) {
         this.unit = unit;
         this.reverse = reverse;

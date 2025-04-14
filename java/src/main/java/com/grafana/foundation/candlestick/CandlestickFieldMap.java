@@ -31,7 +31,6 @@ public class CandlestickFieldMap {
     public String volume;
     public CandlestickFieldMap() {
     }
-    
     public CandlestickFieldMap(String open,String high,String low,String close,String volume) {
         this.open = open;
         this.high = high;

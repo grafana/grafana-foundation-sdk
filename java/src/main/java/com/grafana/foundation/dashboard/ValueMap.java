@@ -14,16 +14,16 @@ import java.util.Map;
 // For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
 public class ValueMap {
     @JsonProperty("type")
-    public String type;
+    public MappingType type;
     // Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("options")
     public Map<String, ValueMappingResult> options;
     public ValueMap() {
+        this.type = MappingType.VALUE_TO_TEXT;
     }
-    
-    public ValueMap(String type,Map<String, ValueMappingResult> options) {
-        this.type = type;
+    public ValueMap(Map<String, ValueMappingResult> options) {
+        this.type = MappingType.VALUE_TO_TEXT;
         this.options = options;
     }
     

@@ -34,6 +34,7 @@ class FolderBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Folder title
      */
@@ -43,6 +44,7 @@ class FolderBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Description of the folder.
      */

@@ -34,3 +34,4 @@ export class RoleRefBuilder implements cog.Builder<accesspolicy.RoleRef> {
         return this;
     }
 }
+

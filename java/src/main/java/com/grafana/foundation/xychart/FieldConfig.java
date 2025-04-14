@@ -2,11 +2,11 @@
 
 package com.grafana.foundation.xychart;
 
-import com.grafana.foundation.common.VisibilityMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.VisibilityMode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.ScaleDimensionConfig;
 import com.grafana.foundation.common.ColorDimensionConfig;
@@ -76,7 +76,6 @@ public class FieldConfig {
         this.show = ScatterShow.POINTS;
         this.label = VisibilityMode.AUTO;
     }
-    
     public FieldConfig(ScatterShow show,ScaleDimensionConfig pointSize,ColorDimensionConfig pointColor,ColorDimensionConfig lineColor,Integer lineWidth,LineStyle lineStyle,VisibilityMode label,HideSeriesConfig hideFrom,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,TextDimensionConfig labelValue,Boolean axisCenteredZero) {
         this.show = show;
         this.pointSize = pointSize;

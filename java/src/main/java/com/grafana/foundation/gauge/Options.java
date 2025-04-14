@@ -29,7 +29,6 @@ public class Options {
         this.showThresholdLabels = false;
         this.showThresholdMarkers = true;
     }
-    
     public Options(Boolean showThresholdLabels,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,Boolean showThresholdMarkers,VizOrientation orientation) {
         this.showThresholdLabels = showThresholdLabels;
         this.reduceOptions = reduceOptions;

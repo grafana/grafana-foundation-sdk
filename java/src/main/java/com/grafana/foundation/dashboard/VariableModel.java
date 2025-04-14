@@ -103,7 +103,6 @@ public class VariableModel {
         this.autoMin = "10s";
         this.autoCount = 30;
     }
-    
     public VariableModel(String id,VariableType type,String name,String label,VariableHide hide,Boolean skipUrlSync,String description,StringOrMap query,DataSourceRef datasource,String allFormat,VariableOption current,Boolean multi,List<VariableOption> options,VariableRefresh refresh,VariableSort sort,Boolean includeAll,String allValue,String regex,Boolean auto,String autoMin,Integer autoCount) {
         this.id = id;
         this.type = type;

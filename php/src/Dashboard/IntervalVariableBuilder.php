@@ -35,6 +35,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of variable
      */
@@ -44,6 +45,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Optional display name
      */
@@ -53,6 +55,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Visibility configuration for the variable
      */
@@ -62,6 +65,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Description of variable. It can be defined but `null`.
      */
@@ -71,6 +75,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Query used to fetch values for a variable
      * @param string|array<string, mixed> $query
@@ -81,6 +86,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Format to use while fetching all values from data source, eg: wildcard, glob, regex, pipe, etc.
      */
@@ -90,6 +96,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Shows current selected variable text/value on the dashboard
      */
@@ -99,6 +106,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Options that can be selected for a variable.
      * @param array<\Grafana\Foundation\Dashboard\VariableOption> $options
@@ -109,6 +117,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Dynamically calculates interval by dividing time range by the count specified.
      */
@@ -118,6 +127,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The minimum threshold below which the step count intervals will not divide the time.
      */
@@ -127,6 +137,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
      * For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.

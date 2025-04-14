@@ -33,6 +33,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Reducer applied across a set of time-series values. Defaults to REDUCE_NONE.
      */
@@ -42,6 +43,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
      */
@@ -51,6 +53,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Alignment function to be used. Defaults to ALIGN_MEAN.
      */
@@ -60,6 +63,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Array of labels to group data by.
      * @param array<string> $groupBys
@@ -70,6 +74,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Array of filters to query data by. Labels that can be filtered on are defined by the metric.
      * @param array<string> $filters
@@ -80,6 +85,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Data view, defaults to FULL.
      */
@@ -89,6 +95,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Only present if a preprocessor is selected. Reducer applied across a set of time-series values. Defaults to REDUCE_NONE.
      */
@@ -98,6 +105,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Only present if a preprocessor is selected. Alignment period to use when regularizing data. Defaults to cloud-monitoring-auto.
      */
@@ -107,6 +115,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Only present if a preprocessor is selected. Alignment function to be used. Defaults to ALIGN_MEAN.
      */
@@ -116,6 +125,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Only present if a preprocessor is selected. Array of labels to group data by.
      * @param array<string> $secondaryGroupBys
@@ -126,6 +136,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters
      */
@@ -135,6 +146,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Annotation title.
      */
@@ -144,6 +156,7 @@ class TimeSeriesListBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Annotation text.
      */

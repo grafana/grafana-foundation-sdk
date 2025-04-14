@@ -16,9 +16,6 @@ export interface VizTextDisplayOptions {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [VizTextDisplayOptionsBuilder](./builder-VizTextDisplayOptionsBuilder.md)

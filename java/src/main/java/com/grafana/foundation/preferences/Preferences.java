@@ -40,7 +40,6 @@ public class Preferences {
     public CookiePreferences cookiePreferences;
     public Preferences() {
     }
-    
     public Preferences(String homeDashboardUID,String timezone,String weekStart,String theme,String language,QueryHistoryPreference queryHistory,CookiePreferences cookiePreferences) {
         this.homeDashboardUID = homeDashboardUID;
         this.timezone = timezone;
