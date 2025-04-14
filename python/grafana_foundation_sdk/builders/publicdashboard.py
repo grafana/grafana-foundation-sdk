@@ -5,7 +5,7 @@ from ..cog import builder as cogbuilder
 from ..models import publicdashboard
 
 
-class PublicDashboard(cogbuilder.Builder[publicdashboard.PublicDashboard]):    
+class PublicDashboard(cogbuilder.Builder[publicdashboard.PublicDashboard]):
     _internal: publicdashboard.PublicDashboard
 
     def __init__(self):

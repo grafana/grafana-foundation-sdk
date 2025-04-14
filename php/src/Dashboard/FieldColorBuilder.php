@@ -33,6 +33,7 @@ class FieldColorBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The fixed color value for fixed or shades color modes.
      */
@@ -42,6 +43,7 @@ class FieldColorBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Some visualizations need to know how to assign a series color from by value color schemes.
      */

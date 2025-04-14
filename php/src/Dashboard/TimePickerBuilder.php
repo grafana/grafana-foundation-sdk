@@ -34,6 +34,7 @@ class TimePickerBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Interval options available in the refresh picker dropdown.
      * @param array<string> $refreshIntervals
@@ -44,6 +45,7 @@ class TimePickerBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Quick ranges for time picker.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\TimeOption>> $quickRanges
@@ -58,6 +60,7 @@ class TimePickerBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
      */

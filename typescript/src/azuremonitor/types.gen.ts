@@ -138,6 +138,10 @@ export interface AzureLogsQuery {
 	basicLogsQuery?: boolean;
 	// Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
 	workspace?: string;
+	// Denotes if logs query editor is in builder mode
+	mode?: LogsEditorMode;
+	// Builder query to be executed.
+	builderQuery?: BuilderQueryExpression;
 	// @deprecated Use resources instead
 	resource?: string;
 	// @deprecated Use dashboardTime instead
@@ -155,6 +159,206 @@ export enum ResultFormat {
 }
 
 export const defaultResultFormat = (): ResultFormat => (ResultFormat.Table);
+
+export enum LogsEditorMode {
+	Builder = "builder",
+	Raw = "raw",
+}
+
+export const defaultLogsEditorMode = (): LogsEditorMode => (LogsEditorMode.Builder);
+
+export interface BuilderQueryExpression {
+	from?: BuilderQueryEditorPropertyExpression;
+	columns?: BuilderQueryEditorColumnsExpression;
+	where?: BuilderQueryEditorWhereExpressionArray;
+	reduce?: BuilderQueryEditorReduceExpressionArray;
+	groupBy?: BuilderQueryEditorGroupByExpressionArray;
+	limit?: number;
+	orderBy?: BuilderQueryEditorOrderByExpressionArray;
+	fuzzySearch?: BuilderQueryEditorWhereExpressionArray;
+	timeFilter?: BuilderQueryEditorWhereExpressionArray;
+}
+
+export const defaultBuilderQueryExpression = (): BuilderQueryExpression => ({
+});
+
+export interface BuilderQueryEditorPropertyExpression {
+	property: BuilderQueryEditorProperty;
+	type: BuilderQueryEditorExpressionType;
+}
+
+export const defaultBuilderQueryEditorPropertyExpression = (): BuilderQueryEditorPropertyExpression => ({
+	property: defaultBuilderQueryEditorProperty(),
+	type: BuilderQueryEditorExpressionType.Property,
+});
+
+export interface BuilderQueryEditorProperty {
+	type: BuilderQueryEditorPropertyType;
+	name: string;
+}
+
+export const defaultBuilderQueryEditorProperty = (): BuilderQueryEditorProperty => ({
+	type: BuilderQueryEditorPropertyType.Number,
+	name: "",
+});
+
+export enum BuilderQueryEditorPropertyType {
+	Number = "number",
+	String = "string",
+	Boolean = "boolean",
+	Datetime = "datetime",
+	TimeSpan = "time_span",
+	Function = "function",
+	Interval = "interval",
+}
+
+export const defaultBuilderQueryEditorPropertyType = (): BuilderQueryEditorPropertyType => (BuilderQueryEditorPropertyType.Number);
+
+export enum BuilderQueryEditorExpressionType {
+	Property = "property",
+	Operator = "operator",
+	Reduce = "reduce",
+	FunctionParameter = "function_parameter",
+	GroupBy = "group_by",
+	Or = "or",
+	And = "and",
+	OrderBy = "order_by",
+}
+
+export const defaultBuilderQueryEditorExpressionType = (): BuilderQueryEditorExpressionType => (BuilderQueryEditorExpressionType.Property);
+
+export interface BuilderQueryEditorColumnsExpression {
+	columns?: string[];
+	type: BuilderQueryEditorExpressionType;
+}
+
+export const defaultBuilderQueryEditorColumnsExpression = (): BuilderQueryEditorColumnsExpression => ({
+	type: BuilderQueryEditorExpressionType.Property,
+});
+
+export interface BuilderQueryEditorWhereExpressionArray {
+	expressions: BuilderQueryEditorWhereExpression[];
+	type: BuilderQueryEditorExpressionType;
+}
+
+export const defaultBuilderQueryEditorWhereExpressionArray = (): BuilderQueryEditorWhereExpressionArray => ({
+	expressions: [],
+	type: BuilderQueryEditorExpressionType.Property,
+});
+
+export interface BuilderQueryEditorWhereExpression {
+	type: BuilderQueryEditorExpressionType;
+	expressions: BuilderQueryEditorWhereExpressionItems[];
+}
+
+export const defaultBuilderQueryEditorWhereExpression = (): BuilderQueryEditorWhereExpression => ({
+	type: BuilderQueryEditorExpressionType.Property,
+	expressions: [],
+});
+
+export interface BuilderQueryEditorWhereExpressionItems {
+	property: BuilderQueryEditorProperty;
+	operator: BuilderQueryEditorOperator;
+	type: BuilderQueryEditorExpressionType;
+}
+
+export const defaultBuilderQueryEditorWhereExpressionItems = (): BuilderQueryEditorWhereExpressionItems => ({
+	property: defaultBuilderQueryEditorProperty(),
+	operator: defaultBuilderQueryEditorOperator(),
+	type: BuilderQueryEditorExpressionType.Property,
+});
+
+export interface BuilderQueryEditorOperator {
+	name: string;
+	value: string;
+	labelValue?: string;
+}
+
+export const defaultBuilderQueryEditorOperator = (): BuilderQueryEditorOperator => ({
+	name: "",
+	value: "",
+});
+
+export interface BuilderQueryEditorReduceExpressionArray {
+	expressions: BuilderQueryEditorReduceExpression[];
+	type: BuilderQueryEditorExpressionType;
+}
+
+export const defaultBuilderQueryEditorReduceExpressionArray = (): BuilderQueryEditorReduceExpressionArray => ({
+	expressions: [],
+	type: BuilderQueryEditorExpressionType.Property,
+});
+
+export interface BuilderQueryEditorReduceExpression {
+	property?: BuilderQueryEditorProperty;
+	reduce?: BuilderQueryEditorProperty;
+	parameters?: BuilderQueryEditorFunctionParameterExpression[];
+	focus?: boolean;
+}
+
+export const defaultBuilderQueryEditorReduceExpression = (): BuilderQueryEditorReduceExpression => ({
+});
+
+export interface BuilderQueryEditorFunctionParameterExpression {
+	value: string;
+	fieldType: BuilderQueryEditorPropertyType;
+	type: BuilderQueryEditorExpressionType;
+}
+
+export const defaultBuilderQueryEditorFunctionParameterExpression = (): BuilderQueryEditorFunctionParameterExpression => ({
+	value: "",
+	fieldType: BuilderQueryEditorPropertyType.Number,
+	type: BuilderQueryEditorExpressionType.Property,
+});
+
+export interface BuilderQueryEditorGroupByExpressionArray {
+	expressions: BuilderQueryEditorGroupByExpression[];
+	type: BuilderQueryEditorExpressionType;
+}
+
+export const defaultBuilderQueryEditorGroupByExpressionArray = (): BuilderQueryEditorGroupByExpressionArray => ({
+	expressions: [],
+	type: BuilderQueryEditorExpressionType.Property,
+});
+
+export interface BuilderQueryEditorGroupByExpression {
+	property?: BuilderQueryEditorProperty;
+	interval?: BuilderQueryEditorProperty;
+	focus?: boolean;
+	type?: BuilderQueryEditorExpressionType;
+}
+
+export const defaultBuilderQueryEditorGroupByExpression = (): BuilderQueryEditorGroupByExpression => ({
+});
+
+export interface BuilderQueryEditorOrderByExpressionArray {
+	expressions: BuilderQueryEditorOrderByExpression[];
+	type: BuilderQueryEditorExpressionType;
+}
+
+export const defaultBuilderQueryEditorOrderByExpressionArray = (): BuilderQueryEditorOrderByExpressionArray => ({
+	expressions: [],
+	type: BuilderQueryEditorExpressionType.Property,
+});
+
+export interface BuilderQueryEditorOrderByExpression {
+	property: BuilderQueryEditorProperty;
+	order: BuilderQueryEditorOrderByOptions;
+	type: BuilderQueryEditorExpressionType;
+}
+
+export const defaultBuilderQueryEditorOrderByExpression = (): BuilderQueryEditorOrderByExpression => ({
+	property: defaultBuilderQueryEditorProperty(),
+	order: BuilderQueryEditorOrderByOptions.Asc,
+	type: BuilderQueryEditorExpressionType.Property,
+});
+
+export enum BuilderQueryEditorOrderByOptions {
+	Asc = "asc",
+	Desc = "desc",
+}
+
+export const defaultBuilderQueryEditorOrderByOptions = (): BuilderQueryEditorOrderByOptions => (BuilderQueryEditorOrderByOptions.Asc);
 
 export interface AzureResourceGraphQuery {
 	// Azure Resource Graph KQL query to be executed.
@@ -347,6 +551,20 @@ export enum AzureQueryType {
 }
 
 export const defaultAzureQueryType = (): AzureQueryType => (AzureQueryType.AzureMonitor);
+
+export interface SelectableValue {
+	label: string;
+	value: string;
+}
+
+export const defaultSelectableValue = (): SelectableValue => ({
+	label: "",
+	value: "",
+});
+
+export type BuilderQueryEditorOperatorType = string | boolean | number | SelectableValue;
+
+export const defaultBuilderQueryEditorOperatorType = (): BuilderQueryEditorOperatorType => ("");
 
 export enum GrafanaTemplateVariableQueryType {
 	AppInsightsMetricNameQuery = "AppInsightsMetricNameQuery",

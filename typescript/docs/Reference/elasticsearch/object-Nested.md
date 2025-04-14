@@ -9,14 +9,11 @@ title: <span class="badge object-type-interface"></span> Nested
 export interface Nested {
 	field?: string;
 	id: string;
-	type: "nested";
+	type: elasticsearch.BucketAggregationType.Nested;
 	settings?: any;
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [NestedBuilder](./builder-NestedBuilder.md)

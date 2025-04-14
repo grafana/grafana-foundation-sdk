@@ -42,6 +42,14 @@ Selected language (beta)
 language(language: string)
 ```
 
+### <span class="badge object-method"></span> locale
+
+Selected locale (beta)
+
+```typescript
+locale(locale: string)
+```
+
 ### <span class="badge object-method"></span> navbar
 
 Navigation preferences

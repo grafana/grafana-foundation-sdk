@@ -5,13 +5,18 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
+        "showControls",
         "showTime",
         "wrapLogMessage",
         "enableLogDetails",
+        "syntaxHighlighting",
         "sortOrder",
         "dedupStrategy"
       ],
       "properties": {
+        "showControls": {
+          "type": "boolean"
+        },
         "showTime": {
           "type": "boolean"
         },
@@ -21,14 +26,25 @@
         "enableLogDetails": {
           "type": "boolean"
         },
+        "syntaxHighlighting": {
+          "type": "boolean"
+        },
         "sortOrder": {
           "$ref": "#/definitions/LogsSortOrder"
         },
         "dedupStrategy": {
           "$ref": "#/definitions/LogsDedupStrategy"
         },
+        "grammar": {
+          "type": "object",
+          "additionalProperties": {}
+        },
         "enableInfiniteScrolling": {
           "type": "boolean"
+        },
+        "onLogOptionsChange": {
+          "type": "object",
+          "additionalProperties": {}
         },
         "onNewLogsReceived": {
           "type": "object",

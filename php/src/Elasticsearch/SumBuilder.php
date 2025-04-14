@@ -12,7 +12,6 @@ class SumBuilder implements \Grafana\Foundation\Cog\Builder
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Elasticsearch\Sum();
-    $this->internal->type = "sum";
     }
 
     /**
@@ -30,12 +29,14 @@ class SumBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function id(string $id): static
     {
         $this->internal->id = $id;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Elasticsearch\ElasticsearchSumSettings> $settings
      */
@@ -46,6 +47,7 @@ class SumBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function hide(bool $hide): static
     {
         $this->internal->hide = $hide;

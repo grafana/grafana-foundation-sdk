@@ -8,7 +8,6 @@ export class CountBuilder implements cog.Builder<elasticsearch.Count> {
 
     constructor() {
         this.internal = elasticsearch.defaultCount();
-        this.internal.type = "count";
     }
 
     /**
@@ -28,3 +27,4 @@ export class CountBuilder implements cog.Builder<elasticsearch.Count> {
         return this;
     }
 }
+

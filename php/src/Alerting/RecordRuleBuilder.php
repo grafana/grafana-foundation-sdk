@@ -32,6 +32,7 @@ class RecordRuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of the recorded metric.
      */
@@ -41,6 +42,7 @@ class RecordRuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Which data source should be used to write the output of the recording rule, specified by UID.
      */

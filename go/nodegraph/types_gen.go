@@ -327,11 +327,21 @@ const (
 	ZoomModeGreedy      ZoomMode = "greedy"
 )
 
+type LayoutAlgorithm string
+
+const (
+	LayoutAlgorithmLayered LayoutAlgorithm = "layered"
+	LayoutAlgorithmForce   LayoutAlgorithm = "force"
+	LayoutAlgorithmGrid    LayoutAlgorithm = "grid"
+)
+
 type Options struct {
 	Nodes *NodeOptions `json:"nodes,omitempty"`
 	Edges *EdgeOptions `json:"edges,omitempty"`
 	// How to handle zoom/scroll events in the node graph
 	ZoomMode *ZoomMode `json:"zoomMode,omitempty"`
+	// How to layout the nodes in the node graph
+	LayoutAlgorithm *LayoutAlgorithm `json:"layoutAlgorithm,omitempty"`
 }
 
 // NewOptions creates a new Options object.
@@ -388,6 +398,17 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "zoomMode")
 
 	}
+	// Field "layoutAlgorithm"
+	if fields["layoutAlgorithm"] != nil {
+		if string(fields["layoutAlgorithm"]) != "null" {
+			if err := json.Unmarshal(fields["layoutAlgorithm"], &resource.LayoutAlgorithm); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("layoutAlgorithm", err)...)
+			}
+
+		}
+		delete(fields, "layoutAlgorithm")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
@@ -426,6 +447,15 @@ func (resource Options) Equals(other Options) bool {
 
 	if resource.ZoomMode != nil {
 		if *resource.ZoomMode != *other.ZoomMode {
+			return false
+		}
+	}
+	if resource.LayoutAlgorithm == nil && other.LayoutAlgorithm != nil || resource.LayoutAlgorithm != nil && other.LayoutAlgorithm == nil {
+		return false
+	}
+
+	if resource.LayoutAlgorithm != nil {
+		if *resource.LayoutAlgorithm != *other.LayoutAlgorithm {
 			return false
 		}
 	}

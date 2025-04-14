@@ -19,7 +19,6 @@ func NewLogsBuilder() *LogsBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "logs"
 
 	return builder
 }

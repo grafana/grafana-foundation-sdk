@@ -34,6 +34,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
      */
@@ -43,6 +44,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -53,6 +55,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Azure subscription containing the resource(s) to be queried.
      * Also used for template variable queries
@@ -63,6 +66,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Subscriptions to be queried via Azure Resource Graph.
      * @param array<string> $subscriptions
@@ -73,6 +77,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Azure Monitor Metrics sub-query properties.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureMetricQuery> $azureMonitor
@@ -84,6 +89,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Azure Monitor Logs sub-query properties.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureLogsQuery> $azureLogAnalytics
@@ -95,6 +101,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Azure Resource Graph sub-query properties.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureResourceGraphQuery> $azureResourceGraph
@@ -106,6 +113,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Application Insights Traces sub-query properties.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureTracesQuery> $azureTraces
@@ -117,6 +125,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated Legacy template variable support.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AppInsightsMetricNameQuery>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AppInsightsGroupByQuery>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\SubscriptionsQuery>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\ResourceGroupsQuery>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\ResourceNamesQuery>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\MetricNamespaceQuery>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\MetricDefinitionsQuery>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\MetricNamesQuery>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\WorkspacesQuery>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\UnknownQuery> $grafanaTemplateVariableFn
@@ -128,6 +137,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Resource group used in template variable queries
      */
@@ -137,6 +147,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Namespace used in template variable queries
      */
@@ -146,6 +157,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Resource used in template variable queries
      */
@@ -155,6 +167,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Region used in template variable queries
      */
@@ -164,6 +177,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Custom namespace used in template variable queries
      */
@@ -173,6 +187,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.
@@ -185,6 +200,7 @@ class AzureMonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Used only for exemplar queries from Prometheus
      */

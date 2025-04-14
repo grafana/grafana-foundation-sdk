@@ -11,9 +11,6 @@ export interface BaseGrafanaTemplateVariableQuery {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [BaseGrafanaTemplateVariableQueryBuilder](./builder-BaseGrafanaTemplateVariableQueryBuilder.md)

@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Cloudwatch;
 
 class QueryEditorOperatorExpression implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Cloudwatch\QueryEditorExpressionType $type;
 
     public \Grafana\Foundation\Cloudwatch\QueryEditorProperty $property;
 
@@ -19,8 +19,7 @@ class QueryEditorOperatorExpression implements \JsonSerializable
      */
     public function __construct(?\Grafana\Foundation\Cloudwatch\QueryEditorProperty $property = null, ?\Grafana\Foundation\Cloudwatch\QueryEditorOperator $operator = null)
     {
-        $this->type = "operator";
-    
+        $this->type = \Grafana\Foundation\Cloudwatch\QueryEditorExpressionType::property();
         $this->property = $property ?: new \Grafana\Foundation\Cloudwatch\QueryEditorProperty();
         $this->operator = $operator ?: new \Grafana\Foundation\Cloudwatch\QueryEditorOperator();
     }
@@ -30,7 +29,7 @@ class QueryEditorOperatorExpression implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, property?: mixed, operator?: mixed} $inputData */
+        /** @var array{type?: "operator", property?: mixed, operator?: mixed} $inputData */
         $data = $inputData;
         return new self(
             property: isset($data["property"]) ? (function($input) {

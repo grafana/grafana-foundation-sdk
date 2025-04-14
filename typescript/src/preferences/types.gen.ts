@@ -14,6 +14,8 @@ export interface Preferences {
 	theme?: string;
 	// Selected language (beta)
 	language?: string;
+	// Selected locale (beta)
+	locale?: string;
 	// Explore query history preferences
 	queryHistory?: QueryHistoryPreference;
 	// Cookie preferences

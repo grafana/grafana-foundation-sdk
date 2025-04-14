@@ -23,7 +23,6 @@ public class ExprTypeClassicConditionsConditions {
     public ExprTypeClassicConditionsConditionsReducer reducer;
     public ExprTypeClassicConditionsConditions() {
     }
-    
     public ExprTypeClassicConditionsConditions(ExprTypeClassicConditionsConditionsEvaluator evaluator,ExprTypeClassicConditionsConditionsOperator operator,ExprTypeClassicConditionsConditionsQuery query,ExprTypeClassicConditionsConditionsReducer reducer) {
         this.evaluator = evaluator;
         this.operator = operator;

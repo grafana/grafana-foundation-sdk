@@ -39,11 +39,21 @@ export enum ZoomMode {
 
 export const defaultZoomMode = (): ZoomMode => (ZoomMode.Cooperative);
 
+export enum LayoutAlgorithm {
+	Layered = "layered",
+	Force = "force",
+	Grid = "grid",
+}
+
+export const defaultLayoutAlgorithm = (): LayoutAlgorithm => (LayoutAlgorithm.Layered);
+
 export interface Options {
 	nodes?: NodeOptions;
 	edges?: EdgeOptions;
 	// How to handle zoom/scroll events in the node graph
 	zoomMode?: ZoomMode;
+	// How to layout the nodes in the node graph
+	layoutAlgorithm?: LayoutAlgorithm;
 }
 
 export const defaultOptions = (): Options => ({

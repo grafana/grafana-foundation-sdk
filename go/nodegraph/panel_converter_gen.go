@@ -500,6 +500,18 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
+	if input.Options != nil && input.Options.(*Options).LayoutAlgorithm != nil {
+
+		buffer.WriteString(`LayoutAlgorithm(`)
+		arg0 := cog.Dump(*input.Options.(*Options).LayoutAlgorithm)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }

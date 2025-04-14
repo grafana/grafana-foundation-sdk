@@ -21,7 +21,6 @@ public class RecordRule {
     public String targetDatasourceUid;
     public RecordRule() {
     }
-    
     public RecordRule(String from,String metric,String targetDatasourceUid) {
         this.from = from;
         this.metric = metric;

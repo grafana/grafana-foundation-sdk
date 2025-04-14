@@ -12,7 +12,7 @@ class Terms implements \JsonSerializable
 
     public string $id;
 
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\BucketAggregationType $type;
 
     public ?\Grafana\Foundation\Elasticsearch\ElasticsearchTermsSettings $settings;
 

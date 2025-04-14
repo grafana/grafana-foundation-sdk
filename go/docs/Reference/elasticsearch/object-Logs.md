@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> Logs
 
 ```go
 type Logs struct {
-    Type string `json:"type"`
+    Type elasticsearch.MetricAggregationType `json:"type"`
     Id string `json:"id"`
     Settings *elasticsearch.ElasticsearchLogsSettings `json:"settings,omitempty"`
     Hide *bool `json:"hide,omitempty"`

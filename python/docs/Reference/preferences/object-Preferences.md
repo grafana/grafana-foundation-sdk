@@ -27,6 +27,8 @@ class Preferences:
     theme: typing.Optional[str]
     # Selected language (beta)
     language: typing.Optional[str]
+    # Selected locale (beta)
+    locale: typing.Optional[str]
     # Explore query history preferences
     query_history: typing.Optional[preferences.QueryHistoryPreference]
     # Cookie preferences

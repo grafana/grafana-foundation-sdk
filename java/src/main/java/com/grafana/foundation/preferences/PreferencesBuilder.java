@@ -34,6 +34,11 @@ public class PreferencesBuilder implements com.grafana.foundation.cog.Builder<Pr
         return this;
     }
     
+    public PreferencesBuilder locale(String locale) {
+        this.internal.locale = locale;
+        return this;
+    }
+    
     public PreferencesBuilder queryHistory(com.grafana.foundation.cog.Builder<QueryHistoryPreference> queryHistory) {
         this.internal.queryHistory = queryHistory.build();
         return this;

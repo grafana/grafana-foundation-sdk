@@ -16,7 +16,6 @@ public class NavbarPreference {
     public List<String> bookmarkUrls;
     public NavbarPreference() {
     }
-    
     public NavbarPreference(List<String> bookmarkUrls) {
         this.bookmarkUrls = bookmarkUrls;
     }

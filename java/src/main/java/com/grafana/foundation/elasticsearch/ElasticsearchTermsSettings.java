@@ -26,7 +26,6 @@ public class ElasticsearchTermsSettings {
     public String missing;
     public ElasticsearchTermsSettings() {
     }
-    
     public ElasticsearchTermsSettings(TermsOrder order,String size,String minDocCount,String orderBy,String missing) {
         this.order = order;
         this.size = size;

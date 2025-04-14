@@ -466,4 +466,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         this.internal.options.zoomMode = zoomMode;
         return this;
     }
+
+    // How to layout the nodes in the node graph
+    layoutAlgorithm(layoutAlgorithm: nodegraph.LayoutAlgorithm): this {
+        if (!this.internal.options) {
+            this.internal.options = nodegraph.defaultOptions();
+        }
+        this.internal.options.layoutAlgorithm = layoutAlgorithm;
+        return this;
+    }
 }
+

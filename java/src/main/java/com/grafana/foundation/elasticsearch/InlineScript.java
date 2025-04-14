@@ -17,7 +17,6 @@ public class InlineScript {
     public ElasticsearchInlineScript elasticsearchInlineScript;
     public InlineScript() {
     }
-    
     public InlineScript(String string,ElasticsearchInlineScript elasticsearchInlineScript) {
         this.string = string;
         this.elasticsearchInlineScript = elasticsearchInlineScript;

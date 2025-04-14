@@ -182,7 +182,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public Boolean withNil;
     public Dataquery() {
     }
-    
     public Dataquery(String alias,String channel,String csvContent,String csvFileName,List<CSVWave> csvWave,DataSourceRef datasource,Double dropPercent,DataqueryErrorSource errorSource,DataqueryErrorType errorType,Boolean flamegraphDiff,Boolean hide,Double intervalMs,String labels,Boolean levelColumn,Long lines,Double max,Long maxDataPoints,Double min,NodesQuery nodes,Double noise,List<List<Object>> points,PulseWaveQuery pulseWave,String queryType,String rawFrameContent,String refId,ResultAssertions resultAssertions,DataqueryScenarioId scenarioId,Long seriesCount,SimulationQuery sim,Long spanCount,Double spread,Double startValue,StreamingQuery stream,String stringInput,TimeRange timeRange,USAQuery usa,Boolean withNil) {
         this.alias = alias;
         this.channel = channel;

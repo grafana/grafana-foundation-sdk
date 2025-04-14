@@ -42,6 +42,14 @@ Selected language (beta)
 def language(language: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> locale
+
+Selected locale (beta)
+
+```python
+def locale(locale: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> navbar
 
 Navigation preferences

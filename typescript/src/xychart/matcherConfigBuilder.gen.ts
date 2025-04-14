@@ -32,3 +32,4 @@ export class MatcherConfigBuilder implements cog.Builder<xychart.MatcherConfig> 
         return this;
     }
 }
+

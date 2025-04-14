@@ -9,7 +9,6 @@ public class BucketScriptBuilder implements com.grafana.foundation.cog.Builder<B
     
     public BucketScriptBuilder() {
         this.internal = new BucketScript();
-        this.internal.type = "bucket_script";
     }
     public BucketScriptBuilder pipelineVariables(com.grafana.foundation.cog.Builder<List<PipelineVariable>> pipelineVariables) {
         this.internal.pipelineVariables = pipelineVariables.build();

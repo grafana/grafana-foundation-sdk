@@ -35,6 +35,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * Enable matching on the prefix of the action name or alarm name, specify the prefixes with actionPrefix and/or alarmNamePrefix
      */
@@ -44,6 +45,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * Use this parameter to filter the results of the operation to only those alarms
      * that use a certain alarm action. For example, you could specify the ARN of
@@ -57,6 +59,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * A unique identifier for the query within the list of targets.
      * In server side expressions, the refId is used as a variable name to identify results.
@@ -68,6 +71,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
      */
@@ -77,6 +81,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -87,6 +92,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * AWS region to query for the metric
      */
@@ -96,6 +102,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * A namespace is a container for CloudWatch metrics. Metrics in different namespaces are isolated from each other, so that metrics from different applications are not mistakenly aggregated into the same statistics. For example, Amazon EC2 uses the AWS/EC2 namespace.
      */
@@ -105,6 +112,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * Name of the metric
      */
@@ -114,6 +122,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * The dimensions of the metric
      * @param array<string, string|array<string>> $dimensions
@@ -124,6 +133,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * Only show metrics that exactly match all defined dimension names.
      */
@@ -133,6 +143,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * The length of time associated with a specific Amazon CloudWatch statistic. Can be specified by a number of seconds, 'auto', or as a duration string e.g. '15m' being 15 minutes
      */
@@ -142,6 +153,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * The ID of the AWS account to query for the metric, specifying `all` will query all accounts that the monitoring account is permitted to query.
      */
@@ -151,6 +163,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * Metric data aggregations over specified periods of time. For detailed definitions of the statistics supported by CloudWatch, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.
      */
@@ -160,6 +173,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * An alarm name prefix. If you specify this parameter, you receive information
      * about all alarms that have names that start with this prefix.
@@ -171,6 +185,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.
@@ -183,6 +198,7 @@ class CloudWatchAnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * @deprecated use statistic
      * @param array<string> $statistics

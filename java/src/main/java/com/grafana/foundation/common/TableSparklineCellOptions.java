@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 // Sparkline cell options
 public class TableSparklineCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("drawStyle")
     public GraphDrawStyle drawStyle;
@@ -115,10 +115,10 @@ public class TableSparklineCellOptions {
     @JsonProperty("barMaxWidth")
     public Double barMaxWidth;
     public TableSparklineCellOptions() {
+        this.type = TableCellDisplayMode.SPARKLINE;
     }
-    
-    public TableSparklineCellOptions(String type,GraphDrawStyle drawStyle,GraphGradientMode gradientMode,GraphThresholdsStyleConfig thresholdsStyle,GraphTransform transform,String lineColor,Double lineWidth,LineInterpolation lineInterpolation,LineStyle lineStyle,String fillColor,Double fillOpacity,VisibilityMode showPoints,Double pointSize,String pointColor,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero,BarAlignment barAlignment,Double barWidthFactor,StackingConfig stacking,HideSeriesConfig hideFrom,Boolean hideValue,BoolOrFloat64 insertNulls,BoolOrFloat64 spanNulls,String fillBelowTo,String pointSymbol,Boolean axisBorderShow,Double barMaxWidth) {
-        this.type = type;
+    public TableSparklineCellOptions(GraphDrawStyle drawStyle,GraphGradientMode gradientMode,GraphThresholdsStyleConfig thresholdsStyle,GraphTransform transform,String lineColor,Double lineWidth,LineInterpolation lineInterpolation,LineStyle lineStyle,String fillColor,Double fillOpacity,VisibilityMode showPoints,Double pointSize,String pointColor,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero,BarAlignment barAlignment,Double barWidthFactor,StackingConfig stacking,HideSeriesConfig hideFrom,Boolean hideValue,BoolOrFloat64 insertNulls,BoolOrFloat64 spanNulls,String fillBelowTo,String pointSymbol,Boolean axisBorderShow,Double barMaxWidth) {
+        this.type = TableCellDisplayMode.SPARKLINE;
         this.drawStyle = drawStyle;
         this.gradientMode = gradientMode;
         this.thresholdsStyle = thresholdsStyle;

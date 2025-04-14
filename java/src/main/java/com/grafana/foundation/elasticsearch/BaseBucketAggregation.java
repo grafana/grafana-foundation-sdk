@@ -19,7 +19,6 @@ public class BaseBucketAggregation {
     public Object settings;
     public BaseBucketAggregation() {
     }
-    
     public BaseBucketAggregation(String id,BucketAggregationType type,Object settings) {
         this.id = id;
         this.type = type;

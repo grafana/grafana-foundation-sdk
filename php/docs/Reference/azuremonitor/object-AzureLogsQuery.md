@@ -47,6 +47,16 @@ class AzureLogsQuery implements \JsonSerializable
     public ?string $workspace;
 
     /**
+     * Denotes if logs query editor is in builder mode
+     */
+    public ?\Grafana\Foundation\Azuremonitor\LogsEditorMode $mode;
+
+    /**
+     * Builder query to be executed.
+     */
+    public ?\Grafana\Foundation\Azuremonitor\BuilderQueryExpression $builderQuery;
+
+    /**
      * @deprecated Use resources instead
      */
     public ?string $resource;

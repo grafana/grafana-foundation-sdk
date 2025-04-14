@@ -19,7 +19,6 @@ func NewNestedBuilder() *NestedBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "nested"
 
 	return builder
 }

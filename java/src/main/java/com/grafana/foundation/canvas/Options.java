@@ -32,7 +32,6 @@ public class Options {
         this.panZoom = true;
         this.infinitePan = true;
     }
-    
     public Options(Boolean inlineEditing,Boolean showAdvancedTypes,Boolean panZoom,Boolean infinitePan,CanvasOptionsRoot root) {
         this.inlineEditing = inlineEditing;
         this.showAdvancedTypes = showAdvancedTypes;

@@ -406,12 +406,16 @@ class AzureLogsQuery:
     basic_logs_query: typing.Optional[bool]
     # Workspace ID. This was removed in Grafana 8, but remains for backwards compat.
     workspace: typing.Optional[str]
+    # Denotes if logs query editor is in builder mode
+    mode: typing.Optional['LogsEditorMode']
+    # Builder query to be executed.
+    builder_query: typing.Optional['BuilderQueryExpression']
     # @deprecated Use resources instead
     resource: typing.Optional[str]
     # @deprecated Use dashboardTime instead
     intersect_time: typing.Optional[bool]
 
-    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, dashboard_time: typing.Optional[bool] = None, time_column: typing.Optional[str] = None, basic_logs_query: typing.Optional[bool] = None, workspace: typing.Optional[str] = None, resource: typing.Optional[str] = None, intersect_time: typing.Optional[bool] = None):
+    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, dashboard_time: typing.Optional[bool] = None, time_column: typing.Optional[str] = None, basic_logs_query: typing.Optional[bool] = None, workspace: typing.Optional[str] = None, mode: typing.Optional['LogsEditorMode'] = None, builder_query: typing.Optional['BuilderQueryExpression'] = None, resource: typing.Optional[str] = None, intersect_time: typing.Optional[bool] = None):
         self.query = query
         self.result_format = result_format
         self.resources = resources
@@ -419,6 +423,8 @@ class AzureLogsQuery:
         self.time_column = time_column
         self.basic_logs_query = basic_logs_query
         self.workspace = workspace
+        self.mode = mode
+        self.builder_query = builder_query
         self.resource = resource
         self.intersect_time = intersect_time
 
@@ -439,6 +445,10 @@ class AzureLogsQuery:
             payload["basicLogsQuery"] = self.basic_logs_query
         if self.workspace is not None:
             payload["workspace"] = self.workspace
+        if self.mode is not None:
+            payload["mode"] = self.mode
+        if self.builder_query is not None:
+            payload["builderQuery"] = self.builder_query
         if self.resource is not None:
             payload["resource"] = self.resource
         if self.intersect_time is not None:
@@ -463,6 +473,10 @@ class AzureLogsQuery:
             args["basic_logs_query"] = data["basicLogsQuery"]
         if "workspace" in data:
             args["workspace"] = data["workspace"]
+        if "mode" in data:
+            args["mode"] = data["mode"]
+        if "builderQuery" in data:
+            args["builder_query"] = BuilderQueryExpression.from_json(data["builderQuery"])
         if "resource" in data:
             args["resource"] = data["resource"]
         if "intersectTime" in data:
@@ -476,6 +490,536 @@ class ResultFormat(enum.StrEnum):
     TIME_SERIES = "time_series"
     TRACE = "trace"
     LOGS = "logs"
+
+
+class LogsEditorMode(enum.StrEnum):
+    BUILDER = "builder"
+    RAW = "raw"
+
+
+class BuilderQueryExpression:
+    from_val: typing.Optional['BuilderQueryEditorPropertyExpression']
+    columns: typing.Optional['BuilderQueryEditorColumnsExpression']
+    where: typing.Optional['BuilderQueryEditorWhereExpressionArray']
+    reduce: typing.Optional['BuilderQueryEditorReduceExpressionArray']
+    group_by: typing.Optional['BuilderQueryEditorGroupByExpressionArray']
+    limit: typing.Optional[int]
+    order_by: typing.Optional['BuilderQueryEditorOrderByExpressionArray']
+    fuzzy_search: typing.Optional['BuilderQueryEditorWhereExpressionArray']
+    time_filter: typing.Optional['BuilderQueryEditorWhereExpressionArray']
+
+    def __init__(self, from_val: typing.Optional['BuilderQueryEditorPropertyExpression'] = None, columns: typing.Optional['BuilderQueryEditorColumnsExpression'] = None, where: typing.Optional['BuilderQueryEditorWhereExpressionArray'] = None, reduce: typing.Optional['BuilderQueryEditorReduceExpressionArray'] = None, group_by: typing.Optional['BuilderQueryEditorGroupByExpressionArray'] = None, limit: typing.Optional[int] = None, order_by: typing.Optional['BuilderQueryEditorOrderByExpressionArray'] = None, fuzzy_search: typing.Optional['BuilderQueryEditorWhereExpressionArray'] = None, time_filter: typing.Optional['BuilderQueryEditorWhereExpressionArray'] = None):
+        self.from_val = from_val
+        self.columns = columns
+        self.where = where
+        self.reduce = reduce
+        self.group_by = group_by
+        self.limit = limit
+        self.order_by = order_by
+        self.fuzzy_search = fuzzy_search
+        self.time_filter = time_filter
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.from_val is not None:
+            payload["from"] = self.from_val
+        if self.columns is not None:
+            payload["columns"] = self.columns
+        if self.where is not None:
+            payload["where"] = self.where
+        if self.reduce is not None:
+            payload["reduce"] = self.reduce
+        if self.group_by is not None:
+            payload["groupBy"] = self.group_by
+        if self.limit is not None:
+            payload["limit"] = self.limit
+        if self.order_by is not None:
+            payload["orderBy"] = self.order_by
+        if self.fuzzy_search is not None:
+            payload["fuzzySearch"] = self.fuzzy_search
+        if self.time_filter is not None:
+            payload["timeFilter"] = self.time_filter
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "from" in data:
+            args["from_val"] = BuilderQueryEditorPropertyExpression.from_json(data["from"])
+        if "columns" in data:
+            args["columns"] = BuilderQueryEditorColumnsExpression.from_json(data["columns"])
+        if "where" in data:
+            args["where"] = BuilderQueryEditorWhereExpressionArray.from_json(data["where"])
+        if "reduce" in data:
+            args["reduce"] = BuilderQueryEditorReduceExpressionArray.from_json(data["reduce"])
+        if "groupBy" in data:
+            args["group_by"] = BuilderQueryEditorGroupByExpressionArray.from_json(data["groupBy"])
+        if "limit" in data:
+            args["limit"] = data["limit"]
+        if "orderBy" in data:
+            args["order_by"] = BuilderQueryEditorOrderByExpressionArray.from_json(data["orderBy"])
+        if "fuzzySearch" in data:
+            args["fuzzy_search"] = BuilderQueryEditorWhereExpressionArray.from_json(data["fuzzySearch"])
+        if "timeFilter" in data:
+            args["time_filter"] = BuilderQueryEditorWhereExpressionArray.from_json(data["timeFilter"])        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorPropertyExpression:
+    property_val: 'BuilderQueryEditorProperty'
+    type_val: 'BuilderQueryEditorExpressionType'
+
+    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+        self.property_val = property_val if property_val is not None else BuilderQueryEditorProperty()
+        self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "property": self.property_val,
+            "type": self.type_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "property" in data:
+            args["property_val"] = BuilderQueryEditorProperty.from_json(data["property"])
+        if "type" in data:
+            args["type_val"] = data["type"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorProperty:
+    type_val: 'BuilderQueryEditorPropertyType'
+    name: str
+
+    def __init__(self, type_val: typing.Optional['BuilderQueryEditorPropertyType'] = None, name: str = ""):
+        self.type_val = type_val if type_val is not None else BuilderQueryEditorPropertyType.NUMBER
+        self.name = name
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "name": self.name,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "name" in data:
+            args["name"] = data["name"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorPropertyType(enum.StrEnum):
+    NUMBER = "number"
+    STRING = "string"
+    BOOLEAN = "boolean"
+    DATETIME = "datetime"
+    TIME_SPAN = "time_span"
+    FUNCTION = "function"
+    INTERVAL = "interval"
+
+
+class BuilderQueryEditorExpressionType(enum.StrEnum):
+    PROPERTY = "property"
+    OPERATOR = "operator"
+    REDUCE = "reduce"
+    FUNCTION_PARAMETER = "function_parameter"
+    GROUP_BY = "group_by"
+    OR = "or"
+    AND = "and"
+    ORDER_BY = "order_by"
+
+
+class BuilderQueryEditorColumnsExpression:
+    columns: typing.Optional[list[str]]
+    type_val: 'BuilderQueryEditorExpressionType'
+
+    def __init__(self, columns: typing.Optional[list[str]] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+        self.columns = columns
+        self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+        }
+        if self.columns is not None:
+            payload["columns"] = self.columns
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "columns" in data:
+            args["columns"] = data["columns"]
+        if "type" in data:
+            args["type_val"] = data["type"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorWhereExpressionArray:
+    expressions: list['BuilderQueryEditorWhereExpression']
+    type_val: 'BuilderQueryEditorExpressionType'
+
+    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorWhereExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+        self.expressions = expressions if expressions is not None else []
+        self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "expressions": self.expressions,
+            "type": self.type_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "expressions" in data:
+            args["expressions"] = [BuilderQueryEditorWhereExpression.from_json(item) for item in data["expressions"]]
+        if "type" in data:
+            args["type_val"] = data["type"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorWhereExpression:
+    type_val: 'BuilderQueryEditorExpressionType'
+    expressions: list['BuilderQueryEditorWhereExpressionItems']
+
+    def __init__(self, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None, expressions: typing.Optional[list['BuilderQueryEditorWhereExpressionItems']] = None):
+        self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
+        self.expressions = expressions if expressions is not None else []
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "expressions": self.expressions,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "expressions" in data:
+            args["expressions"] = [BuilderQueryEditorWhereExpressionItems.from_json(item) for item in data["expressions"]]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorWhereExpressionItems:
+    property_val: 'BuilderQueryEditorProperty'
+    operator: 'BuilderQueryEditorOperator'
+    type_val: 'BuilderQueryEditorExpressionType'
+
+    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, operator: typing.Optional['BuilderQueryEditorOperator'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+        self.property_val = property_val if property_val is not None else BuilderQueryEditorProperty()
+        self.operator = operator if operator is not None else BuilderQueryEditorOperator()
+        self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "property": self.property_val,
+            "operator": self.operator,
+            "type": self.type_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "property" in data:
+            args["property_val"] = BuilderQueryEditorProperty.from_json(data["property"])
+        if "operator" in data:
+            args["operator"] = BuilderQueryEditorOperator.from_json(data["operator"])
+        if "type" in data:
+            args["type_val"] = data["type"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorOperator:
+    name: str
+    value: str
+    label_value: typing.Optional[str]
+
+    def __init__(self, name: str = "", value: str = "", label_value: typing.Optional[str] = None):
+        self.name = name
+        self.value = value
+        self.label_value = label_value
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "name": self.name,
+            "value": self.value,
+        }
+        if self.label_value is not None:
+            payload["labelValue"] = self.label_value
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "name" in data:
+            args["name"] = data["name"]
+        if "value" in data:
+            args["value"] = data["value"]
+        if "labelValue" in data:
+            args["label_value"] = data["labelValue"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorReduceExpressionArray:
+    expressions: list['BuilderQueryEditorReduceExpression']
+    type_val: 'BuilderQueryEditorExpressionType'
+
+    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorReduceExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+        self.expressions = expressions if expressions is not None else []
+        self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "expressions": self.expressions,
+            "type": self.type_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "expressions" in data:
+            args["expressions"] = [BuilderQueryEditorReduceExpression.from_json(item) for item in data["expressions"]]
+        if "type" in data:
+            args["type_val"] = data["type"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorReduceExpression:
+    property_val: typing.Optional['BuilderQueryEditorProperty']
+    reduce: typing.Optional['BuilderQueryEditorProperty']
+    parameters: typing.Optional[list['BuilderQueryEditorFunctionParameterExpression']]
+    focus: typing.Optional[bool]
+
+    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, reduce: typing.Optional['BuilderQueryEditorProperty'] = None, parameters: typing.Optional[list['BuilderQueryEditorFunctionParameterExpression']] = None, focus: typing.Optional[bool] = None):
+        self.property_val = property_val
+        self.reduce = reduce
+        self.parameters = parameters
+        self.focus = focus
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.property_val is not None:
+            payload["property"] = self.property_val
+        if self.reduce is not None:
+            payload["reduce"] = self.reduce
+        if self.parameters is not None:
+            payload["parameters"] = self.parameters
+        if self.focus is not None:
+            payload["focus"] = self.focus
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "property" in data:
+            args["property_val"] = BuilderQueryEditorProperty.from_json(data["property"])
+        if "reduce" in data:
+            args["reduce"] = BuilderQueryEditorProperty.from_json(data["reduce"])
+        if "parameters" in data:
+            args["parameters"] = [BuilderQueryEditorFunctionParameterExpression.from_json(item) for item in data["parameters"]]
+        if "focus" in data:
+            args["focus"] = data["focus"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorFunctionParameterExpression:
+    value: str
+    field_type: 'BuilderQueryEditorPropertyType'
+    type_val: 'BuilderQueryEditorExpressionType'
+
+    def __init__(self, value: str = "", field_type: typing.Optional['BuilderQueryEditorPropertyType'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+        self.value = value
+        self.field_type = field_type if field_type is not None else BuilderQueryEditorPropertyType.NUMBER
+        self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "value": self.value,
+            "fieldType": self.field_type,
+            "type": self.type_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "value" in data:
+            args["value"] = data["value"]
+        if "fieldType" in data:
+            args["field_type"] = data["fieldType"]
+        if "type" in data:
+            args["type_val"] = data["type"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorGroupByExpressionArray:
+    expressions: list['BuilderQueryEditorGroupByExpression']
+    type_val: 'BuilderQueryEditorExpressionType'
+
+    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorGroupByExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+        self.expressions = expressions if expressions is not None else []
+        self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "expressions": self.expressions,
+            "type": self.type_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "expressions" in data:
+            args["expressions"] = [BuilderQueryEditorGroupByExpression.from_json(item) for item in data["expressions"]]
+        if "type" in data:
+            args["type_val"] = data["type"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorGroupByExpression:
+    property_val: typing.Optional['BuilderQueryEditorProperty']
+    interval: typing.Optional['BuilderQueryEditorProperty']
+    focus: typing.Optional[bool]
+    type_val: typing.Optional['BuilderQueryEditorExpressionType']
+
+    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, interval: typing.Optional['BuilderQueryEditorProperty'] = None, focus: typing.Optional[bool] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+        self.property_val = property_val
+        self.interval = interval
+        self.focus = focus
+        self.type_val = type_val
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.property_val is not None:
+            payload["property"] = self.property_val
+        if self.interval is not None:
+            payload["interval"] = self.interval
+        if self.focus is not None:
+            payload["focus"] = self.focus
+        if self.type_val is not None:
+            payload["type"] = self.type_val
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "property" in data:
+            args["property_val"] = BuilderQueryEditorProperty.from_json(data["property"])
+        if "interval" in data:
+            args["interval"] = BuilderQueryEditorProperty.from_json(data["interval"])
+        if "focus" in data:
+            args["focus"] = data["focus"]
+        if "type" in data:
+            args["type_val"] = data["type"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorOrderByExpressionArray:
+    expressions: list['BuilderQueryEditorOrderByExpression']
+    type_val: 'BuilderQueryEditorExpressionType'
+
+    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorOrderByExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+        self.expressions = expressions if expressions is not None else []
+        self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "expressions": self.expressions,
+            "type": self.type_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "expressions" in data:
+            args["expressions"] = [BuilderQueryEditorOrderByExpression.from_json(item) for item in data["expressions"]]
+        if "type" in data:
+            args["type_val"] = data["type"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorOrderByExpression:
+    property_val: 'BuilderQueryEditorProperty'
+    order: 'BuilderQueryEditorOrderByOptions'
+    type_val: 'BuilderQueryEditorExpressionType'
+
+    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, order: typing.Optional['BuilderQueryEditorOrderByOptions'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+        self.property_val = property_val if property_val is not None else BuilderQueryEditorProperty()
+        self.order = order if order is not None else BuilderQueryEditorOrderByOptions.ASC
+        self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "property": self.property_val,
+            "order": self.order,
+            "type": self.type_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "property" in data:
+            args["property_val"] = BuilderQueryEditorProperty.from_json(data["property"])
+        if "order" in data:
+            args["order"] = data["order"]
+        if "type" in data:
+            args["type_val"] = data["type"]        
+
+        return cls(**args)
+
+
+class BuilderQueryEditorOrderByOptions(enum.StrEnum):
+    ASC = "asc"
+    DESC = "desc"
 
 
 class AzureResourceGraphQuery:
@@ -988,6 +1532,36 @@ class AzureQueryType(enum.StrEnum):
     TRACE_EXEMPLAR = "traceql"
     CUSTOM_NAMESPACES_QUERY = "Azure Custom Namespaces"
     CUSTOM_METRIC_NAMES_QUERY = "Azure Custom Metric Names"
+
+
+class SelectableValue:
+    label: str
+    value: str
+
+    def __init__(self, label: str = "", value: str = ""):
+        self.label = label
+        self.value = value
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "label": self.label,
+            "value": self.value,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "label" in data:
+            args["label"] = data["label"]
+        if "value" in data:
+            args["value"] = data["value"]        
+
+        return cls(**args)
+
+
+BuilderQueryEditorOperatorType: typing.TypeAlias = typing.Union[str, bool, float, 'SelectableValue']
 
 
 class GrafanaTemplateVariableQueryType(enum.StrEnum):

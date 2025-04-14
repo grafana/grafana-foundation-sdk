@@ -28,7 +28,6 @@ public class AzureMetricDimension {
     public String filter;
     public AzureMetricDimension() {
     }
-    
     public AzureMetricDimension(String dimension,String operator,List<String> filters,String filter) {
         this.dimension = dimension;
         this.operator = operator;

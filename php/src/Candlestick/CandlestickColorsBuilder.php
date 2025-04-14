@@ -29,12 +29,14 @@ class CandlestickColorsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function down(string $down): static
     {
         $this->internal->down = $down;
     
         return $this;
     }
+
     public function flat(string $flat): static
     {
         $this->internal->flat = $flat;

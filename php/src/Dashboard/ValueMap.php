@@ -8,7 +8,7 @@ namespace Grafana\Foundation\Dashboard;
  */
 class ValueMap implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Dashboard\MappingType $type;
 
     /**
      * Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
@@ -21,8 +21,7 @@ class ValueMap implements \JsonSerializable
      */
     public function __construct(?array $options = null)
     {
-        $this->type = "value";
-    
+        $this->type = \Grafana\Foundation\Dashboard\MappingType::valueToText();
         $this->options = $options ?: [];
     }
 
@@ -31,7 +30,7 @@ class ValueMap implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, options?: array<string, mixed>} $inputData */
+        /** @var array{type?: "value", options?: array<string, mixed>} $inputData */
         $data = $inputData;
         return new self(
             options: isset($data["options"]) ? (function($input) {

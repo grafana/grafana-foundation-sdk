@@ -12,7 +12,6 @@ class QueryEditorFunctionExpressionBuilder implements \Grafana\Foundation\Cog\Bu
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Cloudwatch\QueryEditorFunctionExpression();
-    $this->internal->type = "function";
     }
 
     /**
@@ -30,6 +29,7 @@ class QueryEditorFunctionExpressionBuilder implements \Grafana\Foundation\Cog\Bu
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\QueryEditorFunctionParameterExpression>> $parameters
      */

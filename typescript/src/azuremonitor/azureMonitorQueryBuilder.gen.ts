@@ -132,3 +132,4 @@ export class AzureMonitorQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 }
+

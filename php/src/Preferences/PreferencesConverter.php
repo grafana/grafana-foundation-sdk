@@ -75,6 +75,19 @@ final class PreferencesConverter
     
     
     }
+            if ($input->locale !== null && $input->locale !== "") {
+    
+        
+    $buffer = 'locale(';
+        $arg0 =\var_export($input->locale, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->queryHistory !== null) {
     
         

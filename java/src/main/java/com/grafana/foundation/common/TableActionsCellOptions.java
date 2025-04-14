@@ -10,12 +10,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 // Show actions in the cell
 public class TableActionsCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     public TableActionsCellOptions() {
-    }
-    
-    public TableActionsCellOptions(String type) {
-        this.type = type;
+        this.type = TableCellDisplayMode.ACTIONS;
     }
     
     public String toJSON() throws JsonProcessingException {

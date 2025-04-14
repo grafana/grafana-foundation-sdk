@@ -8,7 +8,6 @@ export class RawDataBuilder implements cog.Builder<elasticsearch.RawData> {
 
     constructor() {
         this.internal = elasticsearch.defaultRawData();
-        this.internal.type = "raw_data";
     }
 
     /**
@@ -35,3 +34,4 @@ export class RawDataBuilder implements cog.Builder<elasticsearch.RawData> {
         return this;
     }
 }
+

@@ -36,3 +36,4 @@ export class VizTextDisplayOptionsBuilder implements cog.Builder<common.VizTextD
         return this;
     }
 }
+

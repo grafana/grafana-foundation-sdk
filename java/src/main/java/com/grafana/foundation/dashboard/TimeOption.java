@@ -17,7 +17,6 @@ public class TimeOption {
     public String to;
     public TimeOption() {
     }
-    
     public TimeOption(String display,String from,String to) {
         this.display = display;
         this.from = from;

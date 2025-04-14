@@ -39,6 +39,11 @@ class Preferences implements \JsonSerializable
     public ?string $language;
 
     /**
+     * Selected locale (beta)
+     */
+    public ?string $locale;
+
+    /**
      * Explore query history preferences
      */
     public ?\Grafana\Foundation\Preferences\QueryHistoryPreference $queryHistory;

@@ -8,7 +8,6 @@ public class MaxBuilder implements com.grafana.foundation.cog.Builder<Max> {
     
     public MaxBuilder() {
         this.internal = new Max();
-        this.internal.type = "max";
     }
     public MaxBuilder field(String field) {
         this.internal.field = field;

@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> RawData
 
 ```python
 class RawData:
-    type_val: typing.Literal["raw_data"]
+    type_val: str
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchRawDataSettings]
     hide: typing.Optional[bool]

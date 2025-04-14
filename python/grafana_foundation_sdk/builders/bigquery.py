@@ -22,77 +22,77 @@ class Dataquery(cogbuilder.Builder[bigquery.Dataquery]):
         """
         return self._internal    
     
-    def dataset(self, dataset: str) -> typing.Self:        
+    def dataset(self, dataset: str) -> typing.Self:    
         self._internal.dataset = dataset
     
         return self
     
-    def table(self, table: str) -> typing.Self:        
+    def table(self, table: str) -> typing.Self:    
         self._internal.table = table
     
         return self
     
-    def project(self, project: str) -> typing.Self:        
+    def project(self, project: str) -> typing.Self:    
         self._internal.project = project
     
         return self
     
-    def format_val(self, format_val: bigquery.QueryFormat) -> typing.Self:        
+    def format(self, format_val: bigquery.QueryFormat) -> typing.Self:    
         self._internal.format_val = format_val
     
         return self
     
-    def raw_query(self, raw_query: bool) -> typing.Self:        
+    def raw_query(self, raw_query: bool) -> typing.Self:    
         self._internal.raw_query = raw_query
     
         return self
     
-    def raw_sql(self, raw_sql: str) -> typing.Self:        
+    def raw_sql(self, raw_sql: str) -> typing.Self:    
         self._internal.raw_sql = raw_sql
     
         return self
     
-    def location(self, location: str) -> typing.Self:        
+    def location(self, location: str) -> typing.Self:    
         self._internal.location = location
     
         return self
     
-    def partitioned(self, partitioned: bool) -> typing.Self:        
+    def partitioned(self, partitioned: bool) -> typing.Self:    
         self._internal.partitioned = partitioned
     
         return self
     
-    def partitioned_field(self, partitioned_field: str) -> typing.Self:        
+    def partitioned_field(self, partitioned_field: str) -> typing.Self:    
         self._internal.partitioned_field = partitioned_field
     
         return self
     
-    def convert_to_utc(self, convert_to_utc: bool) -> typing.Self:        
+    def convert_to_utc(self, convert_to_utc: bool) -> typing.Self:    
         self._internal.convert_to_utc = convert_to_utc
     
         return self
     
-    def sharded(self, sharded: bool) -> typing.Self:        
+    def sharded(self, sharded: bool) -> typing.Self:    
         self._internal.sharded = sharded
     
         return self
     
-    def query_priority(self, query_priority: bigquery.QueryPriority) -> typing.Self:        
+    def query_priority(self, query_priority: bigquery.QueryPriority) -> typing.Self:    
         self._internal.query_priority = query_priority
     
         return self
     
-    def time_shift(self, time_shift: str) -> typing.Self:        
+    def time_shift(self, time_shift: str) -> typing.Self:    
         self._internal.time_shift = time_shift
     
         return self
     
-    def editor_mode(self, editor_mode: bigquery.EditorMode) -> typing.Self:        
+    def editor_mode(self, editor_mode: bigquery.EditorMode) -> typing.Self:    
         self._internal.editor_mode = editor_mode
     
         return self
     
-    def sql(self, sql: cogbuilder.Builder[bigquery.SQLExpression]) -> typing.Self:        
+    def sql(self, sql: cogbuilder.Builder[bigquery.SQLExpression]) -> typing.Self:    
         sql_resource = sql.build()
         self._internal.sql = sql_resource
     
@@ -141,7 +141,8 @@ class Dataquery(cogbuilder.Builder[bigquery.Dataquery]):
         return self
     
 
-class SQLExpression(cogbuilder.Builder[bigquery.SQLExpression]):    
+
+class SQLExpression(cogbuilder.Builder[bigquery.SQLExpression]):
     _internal: bigquery.SQLExpression
 
     def __init__(self):
@@ -153,13 +154,13 @@ class SQLExpression(cogbuilder.Builder[bigquery.SQLExpression]):
         """
         return self._internal    
     
-    def columns(self, columns: list[cogbuilder.Builder[bigquery.QueryEditorFunctionExpression]]) -> typing.Self:        
+    def columns(self, columns: list[cogbuilder.Builder[bigquery.QueryEditorFunctionExpression]]) -> typing.Self:    
         columns_resources = [r1.build() for r1 in columns]
         self._internal.columns = columns_resources
     
         return self
     
-    def from_val(self, from_val: str) -> typing.Self:        
+    def from_val(self, from_val: str) -> typing.Self:    
         self._internal.from_val = from_val
     
         return self
@@ -173,40 +174,40 @@ class SQLExpression(cogbuilder.Builder[bigquery.SQLExpression]):
     
         return self
     
-    def group_by(self, group_by: list[cogbuilder.Builder[bigquery.QueryEditorGroupByExpression]]) -> typing.Self:        
+    def group_by(self, group_by: list[cogbuilder.Builder[bigquery.QueryEditorGroupByExpression]]) -> typing.Self:    
         group_by_resources = [r1.build() for r1 in group_by]
         self._internal.group_by = group_by_resources
     
         return self
     
-    def order_by(self, order_by: cogbuilder.Builder[bigquery.QueryEditorPropertyExpression]) -> typing.Self:        
+    def order_by(self, order_by: cogbuilder.Builder[bigquery.QueryEditorPropertyExpression]) -> typing.Self:    
         order_by_resource = order_by.build()
         self._internal.order_by = order_by_resource
     
         return self
     
-    def order_by_direction(self, order_by_direction: bigquery.OrderByDirection) -> typing.Self:        
+    def order_by_direction(self, order_by_direction: bigquery.OrderByDirection) -> typing.Self:    
         self._internal.order_by_direction = order_by_direction
     
         return self
     
-    def limit(self, limit: int) -> typing.Self:        
+    def limit(self, limit: int) -> typing.Self:    
         self._internal.limit = limit
     
         return self
     
-    def offset(self, offset: int) -> typing.Self:        
+    def offset(self, offset: int) -> typing.Self:    
         self._internal.offset = offset
     
         return self
     
 
-class QueryEditorFunctionExpression(cogbuilder.Builder[bigquery.QueryEditorFunctionExpression]):    
+
+class QueryEditorFunctionExpression(cogbuilder.Builder[bigquery.QueryEditorFunctionExpression]):
     _internal: bigquery.QueryEditorFunctionExpression
 
     def __init__(self):
-        self._internal = bigquery.QueryEditorFunctionExpression()        
-        self._internal.type_val = "function"
+        self._internal = bigquery.QueryEditorFunctionExpression()
 
     def build(self) -> bigquery.QueryEditorFunctionExpression:
         """
@@ -214,24 +215,24 @@ class QueryEditorFunctionExpression(cogbuilder.Builder[bigquery.QueryEditorFunct
         """
         return self._internal    
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def parameters(self, parameters: list[cogbuilder.Builder[bigquery.QueryEditorFunctionParameterExpression]]) -> typing.Self:        
+    def parameters(self, parameters: list[cogbuilder.Builder[bigquery.QueryEditorFunctionParameterExpression]]) -> typing.Self:    
         parameters_resources = [r1.build() for r1 in parameters]
         self._internal.parameters = parameters_resources
     
         return self
     
 
-class QueryEditorFunctionParameterExpression(cogbuilder.Builder[bigquery.QueryEditorFunctionParameterExpression]):    
+
+class QueryEditorFunctionParameterExpression(cogbuilder.Builder[bigquery.QueryEditorFunctionParameterExpression]):
     _internal: bigquery.QueryEditorFunctionParameterExpression
 
     def __init__(self):
-        self._internal = bigquery.QueryEditorFunctionParameterExpression()        
-        self._internal.type_val = "functionParameter"
+        self._internal = bigquery.QueryEditorFunctionParameterExpression()
 
     def build(self) -> bigquery.QueryEditorFunctionParameterExpression:
         """
@@ -239,18 +240,18 @@ class QueryEditorFunctionParameterExpression(cogbuilder.Builder[bigquery.QueryEd
         """
         return self._internal    
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
 
-class QueryEditorGroupByExpression(cogbuilder.Builder[bigquery.QueryEditorGroupByExpression]):    
+
+class QueryEditorGroupByExpression(cogbuilder.Builder[bigquery.QueryEditorGroupByExpression]):
     _internal: bigquery.QueryEditorGroupByExpression
 
     def __init__(self):
-        self._internal = bigquery.QueryEditorGroupByExpression()        
-        self._internal.type_val = "groupBy"
+        self._internal = bigquery.QueryEditorGroupByExpression()
 
     def build(self) -> bigquery.QueryEditorGroupByExpression:
         """
@@ -258,14 +259,15 @@ class QueryEditorGroupByExpression(cogbuilder.Builder[bigquery.QueryEditorGroupB
         """
         return self._internal    
     
-    def property_val(self, property_val: cogbuilder.Builder[bigquery.QueryEditorProperty]) -> typing.Self:        
+    def property(self, property_val: cogbuilder.Builder[bigquery.QueryEditorProperty]) -> typing.Self:    
         property_val_resource = property_val.build()
         self._internal.property_val = property_val_resource
     
         return self
     
 
-class QueryEditorProperty(cogbuilder.Builder[bigquery.QueryEditorProperty]):    
+
+class QueryEditorProperty(cogbuilder.Builder[bigquery.QueryEditorProperty]):
     _internal: bigquery.QueryEditorProperty
 
     def __init__(self):
@@ -277,23 +279,23 @@ class QueryEditorProperty(cogbuilder.Builder[bigquery.QueryEditorProperty]):
         """
         return self._internal    
     
-    def type_val(self, type_val: bigquery.QueryEditorPropertyType) -> typing.Self:        
+    def type(self, type_val: bigquery.QueryEditorPropertyType) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
 
-class QueryEditorPropertyExpression(cogbuilder.Builder[bigquery.QueryEditorPropertyExpression]):    
+
+class QueryEditorPropertyExpression(cogbuilder.Builder[bigquery.QueryEditorPropertyExpression]):
     _internal: bigquery.QueryEditorPropertyExpression
 
     def __init__(self):
-        self._internal = bigquery.QueryEditorPropertyExpression()        
-        self._internal.type_val = "property"
+        self._internal = bigquery.QueryEditorPropertyExpression()
 
     def build(self) -> bigquery.QueryEditorPropertyExpression:
         """
@@ -301,7 +303,7 @@ class QueryEditorPropertyExpression(cogbuilder.Builder[bigquery.QueryEditorPrope
         """
         return self._internal    
     
-    def property_val(self, property_val: cogbuilder.Builder[bigquery.QueryEditorProperty]) -> typing.Self:        
+    def property(self, property_val: cogbuilder.Builder[bigquery.QueryEditorProperty]) -> typing.Self:    
         property_val_resource = property_val.build()
         self._internal.property_val = property_val_resource
     

@@ -8,7 +8,6 @@ export class MinBuilder implements cog.Builder<elasticsearch.Min> {
 
     constructor() {
         this.internal = elasticsearch.defaultMin();
-        this.internal.type = "min";
     }
 
     /**
@@ -41,3 +40,4 @@ export class MinBuilder implements cog.Builder<elasticsearch.Min> {
         return this;
     }
 }
+

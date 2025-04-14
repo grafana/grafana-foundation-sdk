@@ -132,6 +132,14 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 func (builder *PanelBuilder) Interval(interval string) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> LayoutAlgorithm
+
+How to layout the nodes in the node graph
+
+```go
+func (builder *PanelBuilder) LayoutAlgorithm(layoutAlgorithm nodegraph.LayoutAlgorithm) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> LibraryPanel
 
 Dynamically load the panel

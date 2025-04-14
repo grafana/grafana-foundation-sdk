@@ -44,7 +44,6 @@ public class LibraryPanel {
     public LibraryElementDTOMeta meta;
     public LibraryPanel() {
     }
-    
     public LibraryPanel(String folderUid,String uid,String name,String description,String type,Short schemaVersion,Long version,PanelModel model,LibraryElementDTOMeta meta) {
         this.folderUid = folderUid;
         this.uid = uid;

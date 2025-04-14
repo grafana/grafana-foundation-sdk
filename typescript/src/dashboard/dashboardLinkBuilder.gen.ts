@@ -79,3 +79,4 @@ export class DashboardLinkBuilder implements cog.Builder<dashboard.DashboardLink
         return this;
     }
 }
+

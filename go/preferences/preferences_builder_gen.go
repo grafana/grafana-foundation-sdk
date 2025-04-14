@@ -69,6 +69,13 @@ func (builder *PreferencesBuilder) Language(language string) *PreferencesBuilder
 	return builder
 }
 
+// Selected locale (beta)
+func (builder *PreferencesBuilder) Locale(locale string) *PreferencesBuilder {
+	builder.internal.Locale = &locale
+
+	return builder
+}
+
 // Explore query history preferences
 func (builder *PreferencesBuilder) QueryHistory(queryHistory cog.Builder[QueryHistoryPreference]) *PreferencesBuilder {
 	queryHistoryResource, err := queryHistory.Build()

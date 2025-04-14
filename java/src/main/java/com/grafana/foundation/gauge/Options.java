@@ -2,11 +2,11 @@
 
 package com.grafana.foundation.gauge;
 
-import com.grafana.foundation.common.BarGaugeSizing;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.grafana.foundation.common.BarGaugeSizing;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.ReduceDataOptions;
 import com.grafana.foundation.common.VizTextDisplayOptions;
@@ -40,7 +40,6 @@ public class Options {
         this.minVizWidth = 75;
         this.minVizHeight = 75;
     }
-    
     public Options(Boolean showThresholdLabels,Boolean showThresholdMarkers,BarGaugeSizing sizing,Integer minVizWidth,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,Integer minVizHeight,VizOrientation orientation) {
         this.showThresholdLabels = showThresholdLabels;
         this.showThresholdMarkers = showThresholdMarkers;

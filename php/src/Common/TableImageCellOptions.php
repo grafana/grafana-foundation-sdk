@@ -7,7 +7,7 @@ namespace Grafana\Foundation\Common;
  */
 class TableImageCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
     public ?string $alt;
 
@@ -19,8 +19,7 @@ class TableImageCellOptions implements \JsonSerializable
      */
     public function __construct(?string $alt = null, ?string $title = null)
     {
-        $this->type = "image";
-    
+        $this->type = \Grafana\Foundation\Common\TableCellDisplayMode::auto();
         $this->alt = $alt;
         $this->title = $title;
     }
@@ -30,7 +29,7 @@ class TableImageCellOptions implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, alt?: string, title?: string} $inputData */
+        /** @var array{type?: "image", alt?: string, title?: string} $inputData */
         $data = $inputData;
         return new self(
             alt: $data["alt"] ?? null,

@@ -27,7 +27,6 @@ public class VizTooltipOptions {
     public Boolean hideZeros;
     public VizTooltipOptions() {
     }
-    
     public VizTooltipOptions(TooltipDisplayMode mode,SortOrder sort,Double maxWidth,Double maxHeight,Boolean hideZeros) {
         this.mode = mode;
         this.sort = sort;

@@ -35,6 +35,7 @@ class MatcherConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The matcher options. This is specific to the matcher implementation.
      * @param mixed $options

@@ -4,6 +4,7 @@
 
  * <span class="badge object-type-struct"></span> [ArcOption](./object-ArcOption.md)
  * <span class="badge object-type-struct"></span> [EdgeOptions](./object-EdgeOptions.md)
+ * <span class="badge object-type-enum"></span> [LayoutAlgorithm](./object-LayoutAlgorithm.md)
  * <span class="badge object-type-struct"></span> [NodeOptions](./object-NodeOptions.md)
  * <span class="badge object-type-struct"></span> [Options](./object-Options.md)
  * <span class="badge object-type-enum"></span> [ZoomMode](./object-ZoomMode.md)

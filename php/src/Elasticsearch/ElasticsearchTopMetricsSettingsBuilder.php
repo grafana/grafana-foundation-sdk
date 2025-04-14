@@ -29,12 +29,14 @@ class ElasticsearchTopMetricsSettingsBuilder implements \Grafana\Foundation\Cog\
     
         return $this;
     }
+
     public function orderBy(string $orderBy): static
     {
         $this->internal->orderBy = $orderBy;
     
         return $this;
     }
+
     /**
      * @param array<string> $metrics
      */

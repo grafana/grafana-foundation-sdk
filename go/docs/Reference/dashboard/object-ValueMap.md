@@ -11,7 +11,7 @@ For example, you can configure a value mapping so that all instances of the valu
 
 ```go
 type ValueMap struct {
-    Type string `json:"type"`
+    Type dashboard.MappingType `json:"type"`
     // Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
     Options map[string]dashboard.ValueMappingResult `json:"options"`
 }

@@ -60,6 +60,19 @@ export class AzureLogsQueryBuilder implements cog.Builder<azuremonitor.AzureLogs
         return this;
     }
 
+    // Denotes if logs query editor is in builder mode
+    mode(mode: azuremonitor.LogsEditorMode): this {
+        this.internal.mode = mode;
+        return this;
+    }
+
+    // Builder query to be executed.
+    builderQuery(builderQuery: cog.Builder<azuremonitor.BuilderQueryExpression>): this {
+        const builderQueryResource = builderQuery.build();
+        this.internal.builderQuery = builderQueryResource;
+        return this;
+    }
+
     // @deprecated Use resources instead
     resource(resource: string): this {
         this.internal.resource = resource;
@@ -72,3 +85,4 @@ export class AzureLogsQueryBuilder implements cog.Builder<azuremonitor.AzureLogs
         return this;
     }
 }
+

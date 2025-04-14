@@ -17,9 +17,6 @@ export interface VizTooltipOptions {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [VizTooltipOptionsBuilder](./builder-VizTooltipOptionsBuilder.md)

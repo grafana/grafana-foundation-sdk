@@ -129,3 +129,4 @@ export class AzureMetricQueryBuilder implements cog.Builder<azuremonitor.AzureMe
         return this;
     }
 }
+

@@ -32,3 +32,4 @@ export class BaseMovingAverageModelSettingsBuilder implements cog.Builder<elasti
         return this;
     }
 }
+

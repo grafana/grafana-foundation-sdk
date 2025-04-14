@@ -19,7 +19,6 @@ func NewUniqueCountBuilder() *UniqueCountBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "cardinality"
 
 	return builder
 }

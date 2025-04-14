@@ -12,16 +12,16 @@ public class Filters {
     @JsonProperty("id")
     public String id;
     @JsonProperty("type")
-    public String type;
+    public BucketAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("settings")
     public ElasticsearchFiltersSettings settings;
     public Filters() {
+        this.type = BucketAggregationType.FILTERS;
     }
-    
-    public Filters(String id,String type,ElasticsearchFiltersSettings settings) {
+    public Filters(String id,ElasticsearchFiltersSettings settings) {
         this.id = id;
-        this.type = type;
+        this.type = BucketAggregationType.FILTERS;
         this.settings = settings;
     }
     

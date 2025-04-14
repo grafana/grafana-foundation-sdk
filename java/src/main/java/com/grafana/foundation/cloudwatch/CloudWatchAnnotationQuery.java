@@ -95,7 +95,6 @@ public class CloudWatchAnnotationQuery implements com.grafana.foundation.cog.var
     public CloudWatchAnnotationQuery() {
         this.queryMode = CloudWatchQueryMode.ANNOTATIONS;
     }
-    
     public CloudWatchAnnotationQuery(CloudWatchQueryMode queryMode,Boolean prefixMatching,String actionPrefix,String refId,Boolean hide,String queryType,String region,String namespace,String metricName,Map<String, StringOrArrayOfString> dimensions,Boolean matchExact,String period,String accountId,String statistic,String alarmNamePrefix,DataSourceRef datasource,List<String> statistics) {
         this.queryMode = queryMode;
         this.prefixMatching = prefixMatching;

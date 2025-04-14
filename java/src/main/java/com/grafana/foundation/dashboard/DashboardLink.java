@@ -52,7 +52,6 @@ public class DashboardLink {
         this.includeVars = false;
         this.keepTime = false;
     }
-    
     public DashboardLink(String title,DashboardLinkType type,String icon,String tooltip,String url,List<String> tags,Boolean asDropdown,Boolean targetBlank,Boolean includeVars,Boolean keepTime) {
         this.title = title;
         this.type = type;

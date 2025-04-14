@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Elasticsearch;
 
 class ExtendedStats implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public ?\Grafana\Foundation\Elasticsearch\ElasticsearchExtendedStatsSettings $settings;
 
@@ -28,8 +28,7 @@ class ExtendedStats implements \JsonSerializable
      */
     public function __construct(?\Grafana\Foundation\Elasticsearch\ElasticsearchExtendedStatsSettings $settings = null, ?string $field = null, ?string $id = null,  $meta = null, ?bool $hide = null)
     {
-        $this->type = "extended_stats";
-    
+        $this->type = \Grafana\Foundation\Elasticsearch\MetricAggregationType::count();
         $this->settings = $settings;
         $this->field = $field;
         $this->id = $id ?: "";
@@ -42,7 +41,7 @@ class ExtendedStats implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, settings?: mixed, field?: string, id?: string, meta?: mixed, hide?: bool} $inputData */
+        /** @var array{type?: "extended_stats", settings?: mixed, field?: string, id?: string, meta?: mixed, hide?: bool} $inputData */
         $data = $inputData;
         return new self(
             settings: isset($data["settings"]) ? (function($input) {

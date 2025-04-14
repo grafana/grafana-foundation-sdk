@@ -132,6 +132,14 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 interval(interval: string)
 ```
 
+### <span class="badge object-method"></span> layoutAlgorithm
+
+How to layout the nodes in the node graph
+
+```typescript
+layoutAlgorithm(layoutAlgorithm: nodegraph.LayoutAlgorithm)
+```
+
 ### <span class="badge object-method"></span> libraryPanel
 
 Dynamically load the panel

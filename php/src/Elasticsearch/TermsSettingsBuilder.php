@@ -29,24 +29,28 @@ class TermsSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function size(string $size): static
     {
         $this->internal->size = $size;
     
         return $this;
     }
+
     public function minDocCount(string $minDocCount): static
     {
         $this->internal->minDocCount = $minDocCount;
     
         return $this;
     }
+
     public function orderBy(string $orderBy): static
     {
         $this->internal->orderBy = $orderBy;
     
         return $this;
     }
+
     public function missing(string $missing): static
     {
         $this->internal->missing = $missing;

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Max {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("field")
     public String field;
@@ -23,10 +23,10 @@ public class Max {
     @JsonProperty("hide")
     public Boolean hide;
     public Max() {
+        this.type = MetricAggregationType.MAX;
     }
-    
-    public Max(String type,String field,String id,ElasticsearchMaxSettings settings,Boolean hide) {
-        this.type = type;
+    public Max(String field,String id,ElasticsearchMaxSettings settings,Boolean hide) {
+        this.type = MetricAggregationType.MAX;
         this.field = field;
         this.id = id;
         this.settings = settings;

@@ -31,18 +31,21 @@ class TableFieldOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function minWidth(float $minWidth): static
     {
         $this->internal->minWidth = $minWidth;
     
         return $this;
     }
+
     public function align(\Grafana\Foundation\Common\FieldTextAlignment $align): static
     {
         $this->internal->align = $align;
     
         return $this;
     }
+
     /**
      * This field is deprecated in favor of using cellOptions
      */
@@ -52,6 +55,7 @@ class TableFieldOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Common\TableAutoCellOptions|\Grafana\Foundation\Common\TableSparklineCellOptions|\Grafana\Foundation\Common\TableBarGaugeCellOptions|\Grafana\Foundation\Common\TableColoredBackgroundCellOptions|\Grafana\Foundation\Common\TableColorTextCellOptions|\Grafana\Foundation\Common\TableImageCellOptions|\Grafana\Foundation\Common\TableDataLinksCellOptions|\Grafana\Foundation\Common\TableActionsCellOptions|\Grafana\Foundation\Common\TableJsonViewCellOptions $cellOptions
      */
@@ -61,6 +65,7 @@ class TableFieldOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * ?? default is missing or false ??
      */
@@ -70,18 +75,21 @@ class TableFieldOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function inspect(bool $inspect): static
     {
         $this->internal->inspect = $inspect;
     
         return $this;
     }
+
     public function filterable(bool $filterable): static
     {
         $this->internal->filterable = $filterable;
     
         return $this;
     }
+
     /**
      * Hides any header for a column, useful for columns that show some static content or buttons.
      */

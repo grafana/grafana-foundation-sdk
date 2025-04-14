@@ -441,6 +441,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    showControls(showControls: boolean): this {
+        if (!this.internal.options) {
+            this.internal.options = logsnew.defaultOptions();
+        }
+        this.internal.options.showControls = showControls;
+        return this;
+    }
+
     showTime(showTime: boolean): this {
         if (!this.internal.options) {
             this.internal.options = logsnew.defaultOptions();
@@ -465,6 +473,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    syntaxHighlighting(syntaxHighlighting: boolean): this {
+        if (!this.internal.options) {
+            this.internal.options = logsnew.defaultOptions();
+        }
+        this.internal.options.syntaxHighlighting = syntaxHighlighting;
+        return this;
+    }
+
     sortOrder(sortOrder: common.LogsSortOrder): this {
         if (!this.internal.options) {
             this.internal.options = logsnew.defaultOptions();
@@ -481,11 +497,27 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    grammar(grammar: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logsnew.defaultOptions();
+        }
+        this.internal.options.grammar = grammar;
+        return this;
+    }
+
     enableInfiniteScrolling(enableInfiniteScrolling: boolean): this {
         if (!this.internal.options) {
             this.internal.options = logsnew.defaultOptions();
         }
         this.internal.options.enableInfiniteScrolling = enableInfiniteScrolling;
+        return this;
+    }
+
+    onLogOptionsChange(onLogOptionsChange: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logsnew.defaultOptions();
+        }
+        this.internal.options.onLogOptionsChange = onLogOptionsChange;
         return this;
     }
 
@@ -497,3 +529,4 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 }
+

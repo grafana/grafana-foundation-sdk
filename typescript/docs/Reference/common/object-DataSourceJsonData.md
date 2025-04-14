@@ -17,9 +17,6 @@ export interface DataSourceJsonData {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [DataSourceJsonDataBuilder](./builder-DataSourceJsonDataBuilder.md)

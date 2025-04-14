@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class UniqueCount {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("field")
     public String field;
@@ -23,10 +23,10 @@ public class UniqueCount {
     @JsonProperty("hide")
     public Boolean hide;
     public UniqueCount() {
+        this.type = MetricAggregationType.CARDINALITY;
     }
-    
-    public UniqueCount(String type,String field,String id,ElasticsearchUniqueCountSettings settings,Boolean hide) {
-        this.type = type;
+    public UniqueCount(String field,String id,ElasticsearchUniqueCountSettings settings,Boolean hide) {
+        this.type = MetricAggregationType.CARDINALITY;
         this.field = field;
         this.id = id;
         this.settings = settings;

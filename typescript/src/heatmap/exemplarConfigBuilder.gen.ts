@@ -24,3 +24,4 @@ export class ExemplarConfigBuilder implements cog.Builder<heatmap.ExemplarConfig
         return this;
     }
 }
+

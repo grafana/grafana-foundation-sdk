@@ -23,7 +23,6 @@ public class AzureTracesFilter {
     public List<String> filters;
     public AzureTracesFilter() {
     }
-    
     public AzureTracesFilter(String property,String operation,List<String> filters) {
         this.property = property;
         this.operation = operation;

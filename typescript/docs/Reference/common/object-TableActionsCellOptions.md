@@ -9,10 +9,7 @@ Show actions in the cell
 
 ```typescript
 export interface TableActionsCellOptions {
-	type: "actions";
+	type: common.TableCellDisplayMode.Actions;
 }
 
 ```
-## Methods
-
-No methods.

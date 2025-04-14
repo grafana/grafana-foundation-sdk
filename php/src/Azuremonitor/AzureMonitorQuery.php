@@ -157,7 +157,7 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
     	return \Grafana\Foundation\Azuremonitor\AzureMetricQuery::fromArray($val);
     })($data["azureMonitor"]) : null,
             azureLogAnalytics: isset($data["azureLogAnalytics"]) ? (function($input) {
-    	/** @var array{query?: string, resultFormat?: string, resources?: array<string>, dashboardTime?: bool, timeColumn?: string, basicLogsQuery?: bool, workspace?: string, resource?: string, intersectTime?: bool} */
+    	/** @var array{query?: string, resultFormat?: string, resources?: array<string>, dashboardTime?: bool, timeColumn?: string, basicLogsQuery?: bool, workspace?: string, mode?: string, builderQuery?: mixed, resource?: string, intersectTime?: bool} */
     $val = $input;
     	return \Grafana\Foundation\Azuremonitor\AzureLogsQuery::fromArray($val);
     })($data["azureLogAnalytics"]) : null,

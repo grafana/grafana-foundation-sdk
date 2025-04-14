@@ -26,6 +26,16 @@ If set to true the query will be run as a basic logs query
 basicLogsQuery(bool $basicLogsQuery)
 ```
 
+### <span class="badge object-method"></span> builderQuery
+
+Builder query to be executed.
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\BuilderQueryExpression> $builderQuery
+
+```php
+builderQuery(\Grafana\Foundation\Cog\Builder $builderQuery)
+```
+
 ### <span class="badge object-method"></span> dashboardTime
 
 If set to true the dashboard time range will be used as a filter for the query. Otherwise the query time ranges will be used. Defaults to false.
@@ -40,6 +50,14 @@ dashboardTime(bool $dashboardTime)
 
 ```php
 intersectTime(bool $intersectTime)
+```
+
+### <span class="badge object-method"></span> mode
+
+Denotes if logs query editor is in builder mode
+
+```php
+mode(\Grafana\Foundation\Azuremonitor\LogsEditorMode $mode)
 ```
 
 ### <span class="badge object-method"></span> query

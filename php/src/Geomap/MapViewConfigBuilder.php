@@ -29,60 +29,70 @@ class MapViewConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function lat(int $lat): static
     {
         $this->internal->lat = $lat;
     
         return $this;
     }
+
     public function lon(int $lon): static
     {
         $this->internal->lon = $lon;
     
         return $this;
     }
+
     public function zoom(int $zoom): static
     {
         $this->internal->zoom = $zoom;
     
         return $this;
     }
+
     public function minZoom(int $minZoom): static
     {
         $this->internal->minZoom = $minZoom;
     
         return $this;
     }
+
     public function maxZoom(int $maxZoom): static
     {
         $this->internal->maxZoom = $maxZoom;
     
         return $this;
     }
+
     public function padding(int $padding): static
     {
         $this->internal->padding = $padding;
     
         return $this;
     }
+
     public function allLayers(bool $allLayers): static
     {
         $this->internal->allLayers = $allLayers;
     
         return $this;
     }
+
     public function lastOnly(bool $lastOnly): static
     {
         $this->internal->lastOnly = $lastOnly;
     
         return $this;
     }
+
     public function layer(string $layer): static
     {
         $this->internal->layer = $layer;
     
         return $this;
     }
+
     public function shared(bool $shared): static
     {
         $this->internal->shared = $shared;

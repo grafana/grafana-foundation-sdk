@@ -2003,11 +2003,11 @@ class TableAutoCellOptions:
     Auto mode table cell options
     """
 
-    type_val: typing.Literal["auto"]
+    type_val: str
     wrap_text: typing.Optional[bool]
 
     def __init__(self, wrap_text: typing.Optional[bool] = None):
-        self.type_val = "auto"
+        self.type_val = TableCellDisplayMode.AUTO
         self.wrap_text = wrap_text
 
     def to_json(self) -> dict[str, object]:
@@ -2033,11 +2033,11 @@ class TableColorTextCellOptions:
     Colored text cell options
     """
 
-    type_val: typing.Literal["color-text"]
+    type_val: str
     wrap_text: typing.Optional[bool]
 
     def __init__(self, wrap_text: typing.Optional[bool] = None):
-        self.type_val = "color-text"
+        self.type_val = TableCellDisplayMode.COLOR_TEXT
         self.wrap_text = wrap_text
 
     def to_json(self) -> dict[str, object]:
@@ -2063,10 +2063,10 @@ class TableJsonViewCellOptions:
     Json view cell options
     """
 
-    type_val: typing.Literal["json-view"]
+    type_val: str
 
     def __init__(self, ):
-        self.type_val = "json-view"
+        self.type_val = TableCellDisplayMode.JSON_VIEW
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -2085,12 +2085,12 @@ class TableImageCellOptions:
     Json view cell options
     """
 
-    type_val: typing.Literal["image"]
+    type_val: str
     alt: typing.Optional[str]
     title: typing.Optional[str]
 
     def __init__(self, alt: typing.Optional[str] = None, title: typing.Optional[str] = None):
-        self.type_val = "image"
+        self.type_val = TableCellDisplayMode.IMAGE
         self.alt = alt
         self.title = title
 
@@ -2121,10 +2121,10 @@ class TableDataLinksCellOptions:
     Show data links in the cell
     """
 
-    type_val: typing.Literal["data-links"]
+    type_val: str
 
     def __init__(self, ):
-        self.type_val = "data-links"
+        self.type_val = TableCellDisplayMode.DATA_LINKS
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -2143,10 +2143,10 @@ class TableActionsCellOptions:
     Show actions in the cell
     """
 
-    type_val: typing.Literal["actions"]
+    type_val: str
 
     def __init__(self, ):
-        self.type_val = "actions"
+        self.type_val = TableCellDisplayMode.ACTIONS
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -2165,12 +2165,12 @@ class TableBarGaugeCellOptions:
     Gauge cell options
     """
 
-    type_val: typing.Literal["gauge"]
+    type_val: str
     mode: typing.Optional['BarGaugeDisplayMode']
     value_display_mode: typing.Optional['BarGaugeValueMode']
 
     def __init__(self, mode: typing.Optional['BarGaugeDisplayMode'] = None, value_display_mode: typing.Optional['BarGaugeValueMode'] = None):
-        self.type_val = "gauge"
+        self.type_val = TableCellDisplayMode.GAUGE
         self.mode = mode
         self.value_display_mode = value_display_mode
 
@@ -2201,7 +2201,7 @@ class TableSparklineCellOptions:
     Sparkline cell options
     """
 
-    type_val: typing.Literal["sparkline"]
+    type_val: str
     draw_style: typing.Optional['GraphDrawStyle']
     gradient_mode: typing.Optional['GraphGradientMode']
     thresholds_style: typing.Optional['GraphThresholdsStyleConfig']
@@ -2240,7 +2240,7 @@ class TableSparklineCellOptions:
     bar_max_width: typing.Optional[float]
 
     def __init__(self, draw_style: typing.Optional['GraphDrawStyle'] = None, gradient_mode: typing.Optional['GraphGradientMode'] = None, thresholds_style: typing.Optional['GraphThresholdsStyleConfig'] = None, transform: typing.Optional['GraphTransform'] = None, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, axis_centered_zero: typing.Optional[bool] = None, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, stacking: typing.Optional['StackingConfig'] = None, hide_from: typing.Optional['HideSeriesConfig'] = None, hide_value: typing.Optional[bool] = None, insert_nulls: typing.Optional[typing.Union[bool, float]] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None, fill_below_to: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None, axis_border_show: typing.Optional[bool] = None, bar_max_width: typing.Optional[float] = None):
-        self.type_val = "sparkline"
+        self.type_val = TableCellDisplayMode.SPARKLINE
         self.draw_style = draw_style
         self.gradient_mode = gradient_mode
         self.thresholds_style = thresholds_style
@@ -2426,13 +2426,13 @@ class TableColoredBackgroundCellOptions:
     Colored background cell options
     """
 
-    type_val: typing.Literal["color-background"]
+    type_val: str
     mode: typing.Optional['TableCellBackgroundDisplayMode']
     apply_to_row: typing.Optional[bool]
     wrap_text: typing.Optional[bool]
 
     def __init__(self, mode: typing.Optional['TableCellBackgroundDisplayMode'] = None, apply_to_row: typing.Optional[bool] = None, wrap_text: typing.Optional[bool] = None):
-        self.type_val = "color-background"
+        self.type_val = TableCellDisplayMode.COLOR_BACKGROUND
         self.mode = mode
         self.apply_to_row = apply_to_row
         self.wrap_text = wrap_text

@@ -35,6 +35,11 @@ class Preferences implements \JsonSerializable
     public ?string $language;
 
     /**
+     * Selected locale (beta)
+     */
+    public ?string $locale;
+
+    /**
      * Explore query history preferences
      */
     public ?\Grafana\Foundation\Preferences\QueryHistoryPreference $queryHistory;
@@ -55,17 +60,19 @@ class Preferences implements \JsonSerializable
      * @param string|null $weekStart
      * @param string|null $theme
      * @param string|null $language
+     * @param string|null $locale
      * @param \Grafana\Foundation\Preferences\QueryHistoryPreference|null $queryHistory
      * @param \Grafana\Foundation\Preferences\CookiePreferences|null $cookiePreferences
      * @param \Grafana\Foundation\Preferences\NavbarPreference|null $navbar
      */
-    public function __construct(?string $homeDashboardUID = null, ?string $timezone = null, ?string $weekStart = null, ?string $theme = null, ?string $language = null, ?\Grafana\Foundation\Preferences\QueryHistoryPreference $queryHistory = null, ?\Grafana\Foundation\Preferences\CookiePreferences $cookiePreferences = null, ?\Grafana\Foundation\Preferences\NavbarPreference $navbar = null)
+    public function __construct(?string $homeDashboardUID = null, ?string $timezone = null, ?string $weekStart = null, ?string $theme = null, ?string $language = null, ?string $locale = null, ?\Grafana\Foundation\Preferences\QueryHistoryPreference $queryHistory = null, ?\Grafana\Foundation\Preferences\CookiePreferences $cookiePreferences = null, ?\Grafana\Foundation\Preferences\NavbarPreference $navbar = null)
     {
         $this->homeDashboardUID = $homeDashboardUID;
         $this->timezone = $timezone;
         $this->weekStart = $weekStart;
         $this->theme = $theme;
         $this->language = $language;
+        $this->locale = $locale;
         $this->queryHistory = $queryHistory;
         $this->cookiePreferences = $cookiePreferences;
         $this->navbar = $navbar;
@@ -76,7 +83,7 @@ class Preferences implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{homeDashboardUID?: string, timezone?: string, weekStart?: string, theme?: string, language?: string, queryHistory?: mixed, cookiePreferences?: mixed, navbar?: mixed} $inputData */
+        /** @var array{homeDashboardUID?: string, timezone?: string, weekStart?: string, theme?: string, language?: string, locale?: string, queryHistory?: mixed, cookiePreferences?: mixed, navbar?: mixed} $inputData */
         $data = $inputData;
         return new self(
             homeDashboardUID: $data["homeDashboardUID"] ?? null,
@@ -84,6 +91,7 @@ class Preferences implements \JsonSerializable
             weekStart: $data["weekStart"] ?? null,
             theme: $data["theme"] ?? null,
             language: $data["language"] ?? null,
+            locale: $data["locale"] ?? null,
             queryHistory: isset($data["queryHistory"]) ? (function($input) {
     	/** @var array{homeTab?: string} */
     $val = $input;
@@ -123,6 +131,9 @@ class Preferences implements \JsonSerializable
         }
         if (isset($this->language)) {
             $data["language"] = $this->language;
+        }
+        if (isset($this->locale)) {
+            $data["locale"] = $this->locale;
         }
         if (isset($this->queryHistory)) {
             $data["queryHistory"] = $this->queryHistory;

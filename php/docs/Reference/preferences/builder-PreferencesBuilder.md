@@ -44,6 +44,14 @@ Selected language (beta)
 language(string $language)
 ```
 
+### <span class="badge object-method"></span> locale
+
+Selected locale (beta)
+
+```php
+locale(string $locale)
+```
+
 ### <span class="badge object-method"></span> navbar
 
 Navigation preferences

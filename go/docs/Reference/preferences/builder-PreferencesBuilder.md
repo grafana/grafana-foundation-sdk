@@ -42,6 +42,14 @@ Selected language (beta)
 func (builder *PreferencesBuilder) Language(language string) *PreferencesBuilder
 ```
 
+### <span class="badge object-method"></span> Locale
+
+Selected locale (beta)
+
+```go
+func (builder *PreferencesBuilder) Locale(locale string) *PreferencesBuilder
+```
+
 ### <span class="badge object-method"></span> Navbar
 
 Navigation preferences

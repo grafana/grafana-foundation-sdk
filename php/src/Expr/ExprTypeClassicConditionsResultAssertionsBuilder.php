@@ -32,6 +32,7 @@ class ExprTypeClassicConditionsResultAssertionsBuilder implements \Grafana\Found
     
         return $this;
     }
+
     /**
      * Type asserts that the frame matches a known type structure.
      * Possible enum values:
@@ -53,6 +54,7 @@ class ExprTypeClassicConditionsResultAssertionsBuilder implements \Grafana\Found
     
         return $this;
     }
+
     /**
      * TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane
      * contract documentation https://grafana.github.io/dataplane/contract/.

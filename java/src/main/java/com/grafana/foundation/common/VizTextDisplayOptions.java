@@ -24,7 +24,6 @@ public class VizTextDisplayOptions {
     public Double percentSize;
     public VizTextDisplayOptions() {
     }
-    
     public VizTextDisplayOptions(Double titleSize,Double valueSize,Double percentSize) {
         this.titleSize = titleSize;
         this.valueSize = valueSize;

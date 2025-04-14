@@ -25,7 +25,6 @@ public class LogGroup {
     public String accountLabel;
     public LogGroup() {
     }
-    
     public LogGroup(String arn,String name,String accountId,String accountLabel) {
         this.arn = arn;
         this.name = name;

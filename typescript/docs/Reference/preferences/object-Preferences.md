@@ -22,6 +22,8 @@ export interface Preferences {
 	theme?: string;
 	// Selected language (beta)
 	language?: string;
+	// Selected locale (beta)
+	locale?: string;
 	// Explore query history preferences
 	queryHistory?: preferences.QueryHistoryPreference;
 	// Cookie preferences
@@ -31,9 +33,6 @@ export interface Preferences {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [PreferencesBuilder](./builder-PreferencesBuilder.md)

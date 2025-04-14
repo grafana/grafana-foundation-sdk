@@ -14,7 +14,6 @@ public class ElasticsearchLogsSettings {
     public String limit;
     public ElasticsearchLogsSettings() {
     }
-    
     public ElasticsearchLogsSettings(String limit) {
         this.limit = limit;
     }

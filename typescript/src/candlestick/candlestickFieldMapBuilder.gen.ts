@@ -47,3 +47,4 @@ export class CandlestickFieldMapBuilder implements cog.Builder<candlestick.Candl
         return this;
     }
 }
+

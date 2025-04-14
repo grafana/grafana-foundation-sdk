@@ -32,12 +32,14 @@ class CodeOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function showLineNumbers(bool $showLineNumbers): static
     {
         $this->internal->showLineNumbers = $showLineNumbers;
     
         return $this;
     }
+
     public function showMiniMap(bool $showMiniMap): static
     {
         $this->internal->showMiniMap = $showMiniMap;

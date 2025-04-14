@@ -16,7 +16,6 @@ public class SubscriptionsQuery {
     public String kind;
     public SubscriptionsQuery() {
     }
-    
     public SubscriptionsQuery(String rawQuery,String kind) {
         this.rawQuery = rawQuery;
         this.kind = kind;

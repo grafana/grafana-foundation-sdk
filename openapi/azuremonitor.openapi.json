@@ -258,6 +258,14 @@
             "type": "string",
             "description": "Workspace ID. This was removed in Grafana 8, but remains for backwards compat."
           },
+          "mode": {
+            "$ref": "#/components/schemas/LogsEditorMode",
+            "description": "Denotes if logs query editor is in builder mode"
+          },
+          "builderQuery": {
+            "$ref": "#/components/schemas/BuilderQueryExpression",
+            "description": "Builder query to be executed."
+          },
           "resource": {
             "type": "string",
             "description": "@deprecated Use resources instead"
@@ -275,6 +283,337 @@
           "time_series",
           "trace",
           "logs"
+        ]
+      },
+      "LogsEditorMode": {
+        "enum": [
+          "builder",
+          "raw"
+        ]
+      },
+      "BuilderQueryExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "from": {
+            "$ref": "#/components/schemas/BuilderQueryEditorPropertyExpression"
+          },
+          "columns": {
+            "$ref": "#/components/schemas/BuilderQueryEditorColumnsExpression"
+          },
+          "where": {
+            "$ref": "#/components/schemas/BuilderQueryEditorWhereExpressionArray"
+          },
+          "reduce": {
+            "$ref": "#/components/schemas/BuilderQueryEditorReduceExpressionArray"
+          },
+          "groupBy": {
+            "$ref": "#/components/schemas/BuilderQueryEditorGroupByExpressionArray"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "orderBy": {
+            "$ref": "#/components/schemas/BuilderQueryEditorOrderByExpressionArray"
+          },
+          "fuzzySearch": {
+            "$ref": "#/components/schemas/BuilderQueryEditorWhereExpressionArray"
+          },
+          "timeFilter": {
+            "$ref": "#/components/schemas/BuilderQueryEditorWhereExpressionArray"
+          }
+        }
+      },
+      "BuilderQueryEditorPropertyExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "property",
+          "type"
+        ],
+        "properties": {
+          "property": {
+            "$ref": "#/components/schemas/BuilderQueryEditorProperty"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorExpressionType"
+          }
+        }
+      },
+      "BuilderQueryEditorProperty": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "name"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorPropertyType"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "BuilderQueryEditorPropertyType": {
+        "enum": [
+          "number",
+          "string",
+          "boolean",
+          "datetime",
+          "time_span",
+          "function",
+          "interval"
+        ]
+      },
+      "BuilderQueryEditorExpressionType": {
+        "enum": [
+          "property",
+          "operator",
+          "reduce",
+          "function_parameter",
+          "group_by",
+          "or",
+          "and",
+          "order_by"
+        ]
+      },
+      "BuilderQueryEditorColumnsExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorExpressionType"
+          }
+        }
+      },
+      "BuilderQueryEditorWhereExpressionArray": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "expressions",
+          "type"
+        ],
+        "properties": {
+          "expressions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuilderQueryEditorWhereExpression"
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorExpressionType"
+          }
+        }
+      },
+      "BuilderQueryEditorWhereExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "expressions"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorExpressionType"
+          },
+          "expressions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuilderQueryEditorWhereExpressionItems"
+            }
+          }
+        }
+      },
+      "BuilderQueryEditorWhereExpressionItems": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "property",
+          "operator",
+          "type"
+        ],
+        "properties": {
+          "property": {
+            "$ref": "#/components/schemas/BuilderQueryEditorProperty"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/BuilderQueryEditorOperator"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorExpressionType"
+          }
+        }
+      },
+      "BuilderQueryEditorOperator": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "labelValue": {
+            "type": "string"
+          }
+        }
+      },
+      "BuilderQueryEditorReduceExpressionArray": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "expressions",
+          "type"
+        ],
+        "properties": {
+          "expressions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuilderQueryEditorReduceExpression"
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorExpressionType"
+          }
+        }
+      },
+      "BuilderQueryEditorReduceExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "property": {
+            "$ref": "#/components/schemas/BuilderQueryEditorProperty"
+          },
+          "reduce": {
+            "$ref": "#/components/schemas/BuilderQueryEditorProperty"
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuilderQueryEditorFunctionParameterExpression"
+            }
+          },
+          "focus": {
+            "type": "boolean"
+          }
+        }
+      },
+      "BuilderQueryEditorFunctionParameterExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "value",
+          "fieldType",
+          "type"
+        ],
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "fieldType": {
+            "$ref": "#/components/schemas/BuilderQueryEditorPropertyType"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorExpressionType"
+          }
+        }
+      },
+      "BuilderQueryEditorGroupByExpressionArray": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "expressions",
+          "type"
+        ],
+        "properties": {
+          "expressions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuilderQueryEditorGroupByExpression"
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorExpressionType"
+          }
+        }
+      },
+      "BuilderQueryEditorGroupByExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "property": {
+            "$ref": "#/components/schemas/BuilderQueryEditorProperty"
+          },
+          "interval": {
+            "$ref": "#/components/schemas/BuilderQueryEditorProperty"
+          },
+          "focus": {
+            "type": "boolean"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorExpressionType"
+          }
+        }
+      },
+      "BuilderQueryEditorOrderByExpressionArray": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "expressions",
+          "type"
+        ],
+        "properties": {
+          "expressions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuilderQueryEditorOrderByExpression"
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorExpressionType"
+          }
+        }
+      },
+      "BuilderQueryEditorOrderByExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "property",
+          "order",
+          "type"
+        ],
+        "properties": {
+          "property": {
+            "$ref": "#/components/schemas/BuilderQueryEditorProperty"
+          },
+          "order": {
+            "$ref": "#/components/schemas/BuilderQueryEditorOrderByOptions"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BuilderQueryEditorExpressionType"
+          }
+        }
+      },
+      "BuilderQueryEditorOrderByOptions": {
+        "enum": [
+          "asc",
+          "desc"
         ]
       },
       "AzureResourceGraphQuery": {
@@ -639,6 +978,38 @@
           "Azure Custom Metric Names"
         ],
         "description": "Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated"
+      },
+      "SelectableValue": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "label",
+          "value"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "BuilderQueryEditorOperatorType": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "$ref": "#/components/schemas/SelectableValue"
+          }
+        ]
       },
       "GrafanaTemplateVariableQueryType": {
         "enum": [

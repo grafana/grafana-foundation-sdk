@@ -44,3 +44,4 @@ export class TimePickerBuilder implements cog.Builder<dashboard.TimePickerConfig
         return this;
     }
 }
+

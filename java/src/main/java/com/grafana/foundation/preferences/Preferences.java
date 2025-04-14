@@ -32,6 +32,10 @@ public class Preferences {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("language")
     public String language;
+    // Selected locale (beta)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("locale")
+    public String locale;
     // Explore query history preferences
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("queryHistory")
@@ -46,13 +50,13 @@ public class Preferences {
     public NavbarPreference navbar;
     public Preferences() {
     }
-    
-    public Preferences(String homeDashboardUID,String timezone,String weekStart,String theme,String language,QueryHistoryPreference queryHistory,CookiePreferences cookiePreferences,NavbarPreference navbar) {
+    public Preferences(String homeDashboardUID,String timezone,String weekStart,String theme,String language,String locale,QueryHistoryPreference queryHistory,CookiePreferences cookiePreferences,NavbarPreference navbar) {
         this.homeDashboardUID = homeDashboardUID;
         this.timezone = timezone;
         this.weekStart = weekStart;
         this.theme = theme;
         this.language = language;
+        this.locale = locale;
         this.queryHistory = queryHistory;
         this.cookiePreferences = cookiePreferences;
         this.navbar = navbar;

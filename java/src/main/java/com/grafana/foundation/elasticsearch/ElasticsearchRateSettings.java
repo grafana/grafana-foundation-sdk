@@ -17,7 +17,6 @@ public class ElasticsearchRateSettings {
     public String mode;
     public ElasticsearchRateSettings() {
     }
-    
     public ElasticsearchRateSettings(String unit,String mode) {
         this.unit = unit;
         this.mode = mode;

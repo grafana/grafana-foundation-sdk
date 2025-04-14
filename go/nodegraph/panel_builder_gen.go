@@ -514,3 +514,13 @@ func (builder *PanelBuilder) ZoomMode(zoomMode ZoomMode) *PanelBuilder {
 
 	return builder
 }
+
+// How to layout the nodes in the node graph
+func (builder *PanelBuilder) LayoutAlgorithm(layoutAlgorithm LayoutAlgorithm) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).LayoutAlgorithm = &layoutAlgorithm
+
+	return builder
+}

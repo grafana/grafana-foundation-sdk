@@ -6,7 +6,7 @@ from ..models import tempo
 from ..models import dashboard
 
 
-class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):    
+class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
     _internal: tempo.TempoQuery
 
     def __init__(self):
@@ -138,7 +138,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
     
         return self
     
-    def filters(self, filters: list[cogbuilder.Builder[tempo.TraceqlFilter]]) -> typing.Self:        
+    def filters(self, filters: list[cogbuilder.Builder[tempo.TraceqlFilter]]) -> typing.Self:    
         filters_resources = [r1.build() for r1 in filters]
         self._internal.filters = filters_resources
     
@@ -203,7 +203,8 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
         return self
     
 
-class TraceqlFilter(cogbuilder.Builder[tempo.TraceqlFilter]):    
+
+class TraceqlFilter(cogbuilder.Builder[tempo.TraceqlFilter]):
     _internal: tempo.TraceqlFilter
 
     def __init__(self):
@@ -215,7 +216,7 @@ class TraceqlFilter(cogbuilder.Builder[tempo.TraceqlFilter]):
         """
         return self._internal    
     
-    def id_val(self, id_val: str) -> typing.Self:    
+    def id(self, id_val: str) -> typing.Self:    
         """
         Uniquely identify the filter, will not be used in the query generation
         """

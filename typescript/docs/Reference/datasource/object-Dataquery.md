@@ -27,9 +27,6 @@ export interface Dataquery {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)

@@ -8,7 +8,6 @@ export class TermsBuilder implements cog.Builder<elasticsearch.Terms> {
 
     constructor() {
         this.internal = elasticsearch.defaultTerms();
-        this.internal.type = "terms";
     }
 
     /**
@@ -39,3 +38,4 @@ export class TermsBuilder implements cog.Builder<elasticsearch.Terms> {
         return this;
     }
 }
+

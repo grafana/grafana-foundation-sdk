@@ -33,18 +33,21 @@ class MetricAggregationWithInlineScriptBuilder implements \Grafana\Foundation\Co
     
         return $this;
     }
+
     public function type(\Grafana\Foundation\Elasticsearch\MetricAggregationType $type): static
     {
         $this->internal->type = $type;
     
         return $this;
     }
+
     public function id(string $id): static
     {
         $this->internal->id = $id;
     
         return $this;
     }
+
     public function hide(bool $hide): static
     {
         $this->internal->hide = $hide;

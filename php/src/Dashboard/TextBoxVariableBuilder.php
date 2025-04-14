@@ -35,6 +35,7 @@ class TextBoxVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Optional display name
      */
@@ -44,6 +45,7 @@ class TextBoxVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Visibility configuration for the variable
      */
@@ -53,6 +55,7 @@ class TextBoxVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Description of variable. It can be defined but `null`.
      */
@@ -62,6 +65,7 @@ class TextBoxVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Query used to fetch values for a variable
      * @param string|array<string, mixed> $query
@@ -72,6 +76,7 @@ class TextBoxVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Shows current selected variable text/value on the dashboard
      */
@@ -81,6 +86,7 @@ class TextBoxVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Allow custom values to be entered in the variable
      */
@@ -90,6 +96,7 @@ class TextBoxVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Options that can be selected for a variable.
      * @param array<\Grafana\Foundation\Dashboard\VariableOption> $options

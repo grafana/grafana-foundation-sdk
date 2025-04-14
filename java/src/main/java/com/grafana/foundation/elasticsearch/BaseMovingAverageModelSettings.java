@@ -18,7 +18,6 @@ public class BaseMovingAverageModelSettings {
     public String predict;
     public BaseMovingAverageModelSettings() {
     }
-    
     public BaseMovingAverageModelSettings(MovingAverageModel model,String window,String predict) {
         this.model = model;
         this.window = window;

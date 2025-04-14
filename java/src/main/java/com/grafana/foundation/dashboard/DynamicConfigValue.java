@@ -17,7 +17,6 @@ public class DynamicConfigValue {
     public DynamicConfigValue() {
         this.id = "";
     }
-    
     public DynamicConfigValue(String id,Object value) {
         this.id = id;
         this.value = value;

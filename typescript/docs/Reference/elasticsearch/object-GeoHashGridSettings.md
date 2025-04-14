@@ -11,9 +11,6 @@ export interface GeoHashGridSettings {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [GeoHashGridSettingsBuilder](./builder-GeoHashGridSettingsBuilder.md)

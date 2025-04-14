@@ -39,7 +39,6 @@ public class ExprTypeClassicConditionsResultAssertions {
     public List<Long> typeVersion;
     public ExprTypeClassicConditionsResultAssertions() {
     }
-    
     public ExprTypeClassicConditionsResultAssertions(Long maxFrames,ExprTypeClassicConditionsResultAssertionsType type,List<Long> typeVersion) {
         this.maxFrames = maxFrames;
         this.type = type;
