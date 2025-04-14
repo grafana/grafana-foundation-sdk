@@ -20,7 +20,6 @@ public class DashboardFieldConfigSourceOverrides {
     public List<DynamicConfigValue> properties;
     public DashboardFieldConfigSourceOverrides() {
     }
-    
     public DashboardFieldConfigSourceOverrides(MatcherConfig matcher,List<DynamicConfigValue> properties) {
         this.matcher = matcher;
         this.properties = properties;

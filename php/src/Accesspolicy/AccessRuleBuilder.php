@@ -32,10 +32,11 @@ class AccessRuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * READ, WRITE, CREATE, DELETE, ...
      * should move to k8s style verbs like: "get", "list", "watch", "create", "update", "patch", "delete"
-     * @param string $verb
+     * @param string|string|string $verb
      */
     public function verb( $verb): static
     {
@@ -43,6 +44,7 @@ class AccessRuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specific sub-elements like "alert.rules" or "dashboard.permissions"????
      */

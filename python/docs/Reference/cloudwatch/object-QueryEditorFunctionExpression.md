@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> QueryEditorFunctionExpressi
 
 ```python
 class QueryEditorFunctionExpression:
-    type_val: typing.Literal["function"]
+    type_val: str
     name: typing.Optional[str]
     parameters: typing.Optional[list[cloudwatch.QueryEditorFunctionParameterExpression]]
 ```

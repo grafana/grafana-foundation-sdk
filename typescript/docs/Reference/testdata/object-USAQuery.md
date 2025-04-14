@@ -14,9 +14,6 @@ export interface USAQuery {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [USAQueryBuilder](./builder-USAQueryBuilder.md)

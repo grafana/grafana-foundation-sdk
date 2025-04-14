@@ -52,3 +52,4 @@ export class CanvasConnectionBuilder implements cog.Builder<canvas.CanvasConnect
         return this;
     }
 }
+

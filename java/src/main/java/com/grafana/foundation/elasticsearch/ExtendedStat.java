@@ -16,7 +16,6 @@ public class ExtendedStat {
     public ExtendedStatMetaType value;
     public ExtendedStat() {
     }
-    
     public ExtendedStat(String label,ExtendedStatMetaType value) {
         this.label = label;
         this.value = value;

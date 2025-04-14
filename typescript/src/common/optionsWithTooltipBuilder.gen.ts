@@ -24,3 +24,4 @@ export class OptionsWithTooltipBuilder implements cog.Builder<common.OptionsWith
         return this;
     }
 }
+

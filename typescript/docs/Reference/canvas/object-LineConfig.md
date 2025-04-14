@@ -12,9 +12,6 @@ export interface LineConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [LineConfigBuilder](./builder-LineConfigBuilder.md)

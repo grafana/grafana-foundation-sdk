@@ -83,31 +83,43 @@ export const defaultSQLExpression = (): SQLExpression => ({
 });
 
 export interface QueryEditorFunctionExpression {
-	type: "function";
+	type: QueryEditorExpressionType.Function;
 	name?: string;
 	parameters?: QueryEditorFunctionParameterExpression[];
 }
 
 export const defaultQueryEditorFunctionExpression = (): QueryEditorFunctionExpression => ({
-	type: "function",
+	type: QueryEditorExpressionType.Function,
 });
 
+export enum QueryEditorExpressionType {
+	Property = "property",
+	Operator = "operator",
+	Or = "or",
+	And = "and",
+	GroupBy = "groupBy",
+	Function = "function",
+	FunctionParameter = "functionParameter",
+}
+
+export const defaultQueryEditorExpressionType = (): QueryEditorExpressionType => (QueryEditorExpressionType.Property);
+
 export interface QueryEditorFunctionParameterExpression {
-	type: "functionParameter";
+	type: QueryEditorExpressionType.FunctionParameter;
 	name?: string;
 }
 
 export const defaultQueryEditorFunctionParameterExpression = (): QueryEditorFunctionParameterExpression => ({
-	type: "functionParameter",
+	type: QueryEditorExpressionType.FunctionParameter,
 });
 
 export interface QueryEditorGroupByExpression {
-	type: "groupBy";
+	type: QueryEditorExpressionType.GroupBy;
 	property: QueryEditorProperty;
 }
 
 export const defaultQueryEditorGroupByExpression = (): QueryEditorGroupByExpression => ({
-	type: "groupBy",
+	type: QueryEditorExpressionType.GroupBy,
 	property: defaultQueryEditorProperty(),
 });
 
@@ -127,12 +139,12 @@ export enum QueryEditorPropertyType {
 export const defaultQueryEditorPropertyType = (): QueryEditorPropertyType => (QueryEditorPropertyType.String);
 
 export interface QueryEditorPropertyExpression {
-	type: "property";
+	type: QueryEditorExpressionType.Property;
 	property: QueryEditorProperty;
 }
 
 export const defaultQueryEditorPropertyExpression = (): QueryEditorPropertyExpression => ({
-	type: "property",
+	type: QueryEditorExpressionType.Property,
 	property: defaultQueryEditorProperty(),
 });
 
@@ -142,16 +154,4 @@ export enum OrderByDirection {
 }
 
 export const defaultOrderByDirection = (): OrderByDirection => (OrderByDirection.ASC);
-
-export enum QueryEditorExpressionType {
-	Property = "property",
-	Operator = "operator",
-	Or = "or",
-	And = "and",
-	GroupBy = "groupBy",
-	Function = "function",
-	FunctionParameter = "functionParameter",
-}
-
-export const defaultQueryEditorExpressionType = (): QueryEditorExpressionType => (QueryEditorExpressionType.Property);
 

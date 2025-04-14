@@ -29,12 +29,14 @@ class KeyBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function tick(float $tick): static
     {
         $this->internal->tick = $tick;
     
         return $this;
     }
+
     public function uid(string $uid): static
     {
         $this->internal->uid = $uid;

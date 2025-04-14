@@ -29,18 +29,21 @@ class ScaleDimensionConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function max(float $max): static
     {
         $this->internal->max = $max;
     
         return $this;
     }
+
     public function fixed(float $fixed): static
     {
         $this->internal->fixed = $fixed;
     
         return $this;
     }
+
     /**
      * fixed: T -- will be added by each element
      */
@@ -50,6 +53,7 @@ class ScaleDimensionConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * | *"linear"
      */

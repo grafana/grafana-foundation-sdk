@@ -7,15 +7,12 @@ title: <span class="badge object-type-interface"></span> MovingAverageLinearMode
 
 ```typescript
 export interface MovingAverageLinearModelSettings {
-	model: "linear";
+	model: elasticsearch.MovingAverageModel.Linear;
 	window: string;
 	predict: string;
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MovingAverageLinearModelSettingsBuilder](./builder-MovingAverageLinearModelSettingsBuilder.md)

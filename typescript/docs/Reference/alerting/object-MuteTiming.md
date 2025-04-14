@@ -12,9 +12,6 @@ export interface MuteTiming {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MuteTimingBuilder](./builder-MuteTimingBuilder.md)

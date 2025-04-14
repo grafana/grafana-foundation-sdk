@@ -31,7 +31,6 @@ public class ReduceDataOptions {
     public String fields;
     public ReduceDataOptions() {
     }
-    
     public ReduceDataOptions(Boolean values,Double limit,List<String> calcs,String fields) {
         this.values = values;
         this.limit = limit;

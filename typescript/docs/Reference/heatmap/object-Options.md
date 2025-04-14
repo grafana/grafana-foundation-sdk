@@ -42,6 +42,3 @@ export interface Options {
 }
 
 ```
-## Methods
-
-No methods.

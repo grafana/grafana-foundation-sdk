@@ -39,12 +39,14 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function condition(string $condition): static
     {
         $this->internal->condition = $condition;
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\Query>> $data
      */
@@ -58,6 +60,7 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\Query> $data
      */
@@ -68,18 +71,21 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function execErrState(\Grafana\Foundation\Alerting\RuleExecErrState $execErrState): static
     {
         $this->internal->execErrState = $execErrState;
     
         return $this;
     }
+
     public function folderUID(string $folderUID): static
     {
         $this->internal->folderUID = $folderUID;
     
         return $this;
     }
+
     /**
      * The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.
      * Before this time has elapsed, the rule is only considered to be Pending.
@@ -90,18 +96,21 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function id(int $id): static
     {
         $this->internal->id = $id;
     
         return $this;
     }
+
     public function isPaused(bool $isPaused): static
     {
         $this->internal->isPaused = $isPaused;
     
         return $this;
     }
+
     /**
      * @param array<string, string> $labels
      */
@@ -111,24 +120,28 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function noDataState(\Grafana\Foundation\Alerting\RuleNoDataState $noDataState): static
     {
         $this->internal->noDataState = $noDataState;
     
         return $this;
     }
+
     public function orgID(int $orgID): static
     {
         $this->internal->orgID = $orgID;
     
         return $this;
     }
+
     public function provenance(string $provenance): static
     {
         $this->internal->provenance = $provenance;
     
         return $this;
     }
+
     public function ruleGroup(string $ruleGroup): static
     {
         if (!(strlen($ruleGroup) >= 1)) {
@@ -141,6 +154,7 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function title(string $title): static
     {
         if (!(strlen($title) >= 1)) {
@@ -153,6 +167,7 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function uid(string $uid): static
     {
         if (!(strlen($uid) >= 1)) {
@@ -165,6 +180,7 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function updated(string $updated): static
     {
         $this->internal->updated = $updated;

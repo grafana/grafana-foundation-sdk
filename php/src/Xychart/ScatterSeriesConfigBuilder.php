@@ -29,18 +29,21 @@ class ScatterSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function y(string $y): static
     {
         $this->internal->y = $y;
     
         return $this;
     }
+
     public function show(\Grafana\Foundation\Xychart\ScatterShow $show): static
     {
         $this->internal->show = $show;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDimensionConfig> $pointSize
      */
@@ -51,6 +54,7 @@ class ScatterSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ColorDimensionConfig> $pointColor
      */
@@ -61,6 +65,7 @@ class ScatterSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ColorDimensionConfig> $lineColor
      */
@@ -71,6 +76,7 @@ class ScatterSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function lineWidth(int $lineWidth): static
     {
         if (!($lineWidth >= 0)) {
@@ -80,6 +86,7 @@ class ScatterSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\LineStyle> $lineStyle
      */
@@ -90,12 +97,14 @@ class ScatterSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function label(\Grafana\Foundation\Common\VisibilityMode $label): static
     {
         $this->internal->label = $label;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\HideSeriesConfig> $hideFrom
      */
@@ -106,48 +115,56 @@ class ScatterSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisPlacement(\Grafana\Foundation\Common\AxisPlacement $axisPlacement): static
     {
         $this->internal->axisPlacement = $axisPlacement;
     
         return $this;
     }
+
     public function axisColorMode(\Grafana\Foundation\Common\AxisColorMode $axisColorMode): static
     {
         $this->internal->axisColorMode = $axisColorMode;
     
         return $this;
     }
+
     public function axisLabel(string $axisLabel): static
     {
         $this->internal->axisLabel = $axisLabel;
     
         return $this;
     }
+
     public function axisWidth(float $axisWidth): static
     {
         $this->internal->axisWidth = $axisWidth;
     
         return $this;
     }
+
     public function axisSoftMin(float $axisSoftMin): static
     {
         $this->internal->axisSoftMin = $axisSoftMin;
     
         return $this;
     }
+
     public function axisSoftMax(float $axisSoftMax): static
     {
         $this->internal->axisSoftMax = $axisSoftMax;
     
         return $this;
     }
+
     public function axisGridShow(bool $axisGridShow): static
     {
         $this->internal->axisGridShow = $axisGridShow;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDistributionConfig> $scaleDistribution
      */
@@ -158,18 +175,21 @@ class ScatterSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisCenteredZero(bool $axisCenteredZero): static
     {
         $this->internal->axisCenteredZero = $axisCenteredZero;
     
         return $this;
     }
+
     public function name(string $name): static
     {
         $this->internal->name = $name;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\TextDimensionConfig> $labelValue
      */
@@ -180,6 +200,7 @@ class ScatterSeriesConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisBorderShow(bool $axisBorderShow): static
     {
         $this->internal->axisBorderShow = $axisBorderShow;

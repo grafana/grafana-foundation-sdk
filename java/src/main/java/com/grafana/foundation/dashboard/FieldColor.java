@@ -24,7 +24,6 @@ public class FieldColor {
     public FieldColorSeriesByMode seriesBy;
     public FieldColor() {
     }
-    
     public FieldColor(FieldColorModeId mode,String fixedColor,FieldColorSeriesByMode seriesBy) {
         this.mode = mode;
         this.fixedColor = fixedColor;

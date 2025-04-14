@@ -29,6 +29,7 @@ class ElasticsearchRateSettingsBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     public function mode(string $mode): static
     {
         $this->internal->mode = $mode;

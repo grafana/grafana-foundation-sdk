@@ -35,7 +35,6 @@ public class ControlsOptions {
     public Boolean showMeasure;
     public ControlsOptions() {
     }
-    
     public ControlsOptions(Boolean showZoom,Boolean mouseWheelZoom,Boolean showAttribution,Boolean showScale,Boolean showDebug,Boolean showMeasure) {
         this.showZoom = showZoom;
         this.mouseWheelZoom = mouseWheelZoom;

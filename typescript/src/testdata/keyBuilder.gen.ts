@@ -32,3 +32,4 @@ export class KeyBuilder implements cog.Builder<testdata.Key> {
         return this;
     }
 }
+

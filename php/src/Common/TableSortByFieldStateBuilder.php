@@ -33,6 +33,7 @@ class TableSortByFieldStateBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Flag used to indicate descending sort order
      */

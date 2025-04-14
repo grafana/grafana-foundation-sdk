@@ -23,7 +23,6 @@ public class HeatmapTooltip {
     public Boolean showColorScale;
     public HeatmapTooltip() {
     }
-    
     public HeatmapTooltip(Boolean show,Boolean yHistogram,Boolean showColorScale) {
         this.show = show;
         this.yHistogram = yHistogram;

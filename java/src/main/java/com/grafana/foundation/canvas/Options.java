@@ -24,7 +24,6 @@ public class Options {
         this.inlineEditing = true;
         this.showAdvancedTypes = true;
     }
-    
     public Options(Boolean inlineEditing,Boolean showAdvancedTypes,CanvasOptionsRoot root) {
         this.inlineEditing = inlineEditing;
         this.showAdvancedTypes = showAdvancedTypes;

@@ -29,7 +29,6 @@ public class Placement {
     public Double height;
     public Placement() {
     }
-    
     public Placement(Double top,Double left,Double right,Double bottom,Double width,Double height) {
         this.top = top;
         this.left = left;

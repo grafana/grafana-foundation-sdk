@@ -12,9 +12,6 @@ export interface WeekdayRange {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [WeekdayRangeBuilder](./builder-WeekdayRangeBuilder.md)

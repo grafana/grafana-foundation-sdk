@@ -30,6 +30,7 @@ class RuleGroupBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The interval, in seconds, at which all rules in the group are evaluated.
      * If a group contains many rules, the rules are evaluated sequentially.
@@ -40,6 +41,7 @@ class RuleGroupBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\Rule>> $rules
      */
@@ -53,6 +55,7 @@ class RuleGroupBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\Rule> $rule
      */
@@ -67,6 +70,7 @@ class RuleGroupBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function title(string $title): static
     {
         $this->internal->title = $title;

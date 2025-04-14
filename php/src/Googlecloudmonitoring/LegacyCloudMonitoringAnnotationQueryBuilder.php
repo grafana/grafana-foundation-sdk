@@ -33,12 +33,14 @@ class LegacyCloudMonitoringAnnotationQueryBuilder implements \Grafana\Foundation
     
         return $this;
     }
+
     public function metricType(string $metricType): static
     {
         $this->internal->metricType = $metricType;
     
         return $this;
     }
+
     /**
      * Query refId.
      */
@@ -48,6 +50,7 @@ class LegacyCloudMonitoringAnnotationQueryBuilder implements \Grafana\Foundation
     
         return $this;
     }
+
     /**
      * Array of filters to query data by. Labels that can be filtered on are defined by the metric.
      * @param array<string> $filters
@@ -58,18 +61,21 @@ class LegacyCloudMonitoringAnnotationQueryBuilder implements \Grafana\Foundation
     
         return $this;
     }
+
     public function metricKind(\Grafana\Foundation\Googlecloudmonitoring\MetricKind $metricKind): static
     {
         $this->internal->metricKind = $metricKind;
     
         return $this;
     }
+
     public function valueType(string $valueType): static
     {
         $this->internal->valueType = $valueType;
     
         return $this;
     }
+
     /**
      * Annotation title.
      */
@@ -79,6 +85,7 @@ class LegacyCloudMonitoringAnnotationQueryBuilder implements \Grafana\Foundation
     
         return $this;
     }
+
     /**
      * Annotation text.
      */

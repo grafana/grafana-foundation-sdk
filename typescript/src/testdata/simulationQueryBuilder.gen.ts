@@ -38,3 +38,4 @@ export class SimulationQueryBuilder implements cog.Builder<testdata.SimulationQu
         return this;
     }
 }
+

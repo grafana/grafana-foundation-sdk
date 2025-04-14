@@ -32,6 +32,7 @@ class ExprTypeClassicConditionsConditionsEvaluatorBuilder implements \Grafana\Fo
     
         return $this;
     }
+
     /**
      * e.g. "gt"
      */

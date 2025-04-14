@@ -79,7 +79,6 @@ public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Da
     public String region;
     public AzureMonitorQuery() {
     }
-    
     public AzureMonitorQuery(String refId,Boolean hide,String queryType,String subscription,List<String> subscriptions,AzureMetricQuery azureMonitor,AzureLogsQuery azureLogAnalytics,AzureResourceGraphQuery azureResourceGraph,AzureTracesQuery azureTraces,GrafanaTemplateVariableQuery grafanaTemplateVariableFn,String resourceGroup,String namespace,String resource,DataSourceRef datasource,String region) {
         this.refId = refId;
         this.hide = hide;

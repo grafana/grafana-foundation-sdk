@@ -29,18 +29,21 @@ class BucketAggregationWithFieldBuilder implements \Grafana\Foundation\Cog\Build
     
         return $this;
     }
+
     public function id(string $id): static
     {
         $this->internal->id = $id;
     
         return $this;
     }
+
     public function type(\Grafana\Foundation\Elasticsearch\BucketAggregationType $type): static
     {
         $this->internal->type = $type;
     
         return $this;
     }
+
     /**
      * @param mixed $settings
      */

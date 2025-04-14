@@ -32,3 +32,4 @@ export class AnnotationActionsBuilder implements cog.Builder<dashboard.Annotatio
         return this;
     }
 }
+

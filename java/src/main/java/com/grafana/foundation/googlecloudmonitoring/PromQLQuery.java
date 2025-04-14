@@ -20,7 +20,6 @@ public class PromQLQuery {
     public String step;
     public PromQLQuery() {
     }
-    
     public PromQLQuery(String projectName,String expr,String step) {
         this.projectName = projectName;
         this.expr = expr;

@@ -78,9 +78,6 @@ export interface TypeThreshold {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TypeThresholdBuilder](./builder-TypeThresholdBuilder.md)

@@ -8,7 +8,6 @@ public class FiltersBuilder implements com.grafana.foundation.cog.Builder<Filter
     
     public FiltersBuilder() {
         this.internal = new Filters();
-        this.internal.type = "filters";
     }
     public FiltersBuilder id(String id) {
         this.internal.id = id;

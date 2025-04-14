@@ -15,17 +15,17 @@ public class Terms {
     @JsonProperty("id")
     public String id;
     @JsonProperty("type")
-    public String type;
+    public BucketAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("settings")
     public ElasticsearchTermsSettings settings;
     public Terms() {
+        this.type = BucketAggregationType.TERMS;
     }
-    
-    public Terms(String field,String id,String type,ElasticsearchTermsSettings settings) {
+    public Terms(String field,String id,ElasticsearchTermsSettings settings) {
         this.field = field;
         this.id = id;
-        this.type = type;
+        this.type = BucketAggregationType.TERMS;
         this.settings = settings;
     }
     

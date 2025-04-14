@@ -32,3 +32,4 @@ export class NotificationTemplateBuilder implements cog.Builder<alerting.Notific
         return this;
     }
 }
+

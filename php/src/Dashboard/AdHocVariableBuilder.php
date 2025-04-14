@@ -35,6 +35,7 @@ class AdHocVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Optional display name
      */
@@ -44,6 +45,7 @@ class AdHocVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Visibility configuration for the variable
      */
@@ -53,6 +55,7 @@ class AdHocVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Description of variable. It can be defined but `null`.
      */
@@ -62,6 +65,7 @@ class AdHocVariableBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Data source used to fetch values for a variable. It can be defined but `null`.
      */

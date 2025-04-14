@@ -29,18 +29,21 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function scenarioId(\Grafana\Foundation\Testdata\TestDataQueryType $scenarioId): static
     {
         $this->internal->scenarioId = $scenarioId;
     
         return $this;
     }
+
     public function stringInput(string $stringInput): static
     {
         $this->internal->stringInput = $stringInput;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\StreamingQuery> $stream
      */
@@ -51,6 +54,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\PulseWaveQuery> $pulseWave
      */
@@ -61,6 +65,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\SimulationQuery> $sim
      */
@@ -71,6 +76,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\CSVWave>> $csvWave
      */
@@ -84,30 +90,35 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function labels(string $labels): static
     {
         $this->internal->labels = $labels;
     
         return $this;
     }
+
     public function lines(int $lines): static
     {
         $this->internal->lines = $lines;
     
         return $this;
     }
+
     public function levelColumn(bool $levelColumn): static
     {
         $this->internal->levelColumn = $levelColumn;
     
         return $this;
     }
+
     public function channel(string $channel): static
     {
         $this->internal->channel = $channel;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\NodesQuery> $nodes
      */
@@ -118,30 +129,35 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function csvFileName(string $csvFileName): static
     {
         $this->internal->csvFileName = $csvFileName;
     
         return $this;
     }
+
     public function csvContent(string $csvContent): static
     {
         $this->internal->csvContent = $csvContent;
     
         return $this;
     }
+
     public function rawFrameContent(string $rawFrameContent): static
     {
         $this->internal->rawFrameContent = $rawFrameContent;
     
         return $this;
     }
+
     public function seriesCount(int $seriesCount): static
     {
         $this->internal->seriesCount = $seriesCount;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Testdata\USAQuery> $usa
      */
@@ -152,18 +168,21 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function errorType(\Grafana\Foundation\Testdata\DataqueryErrorType $errorType): static
     {
         $this->internal->errorType = $errorType;
     
         return $this;
     }
+
     public function spanCount(int $spanCount): static
     {
         $this->internal->spanCount = $spanCount;
     
         return $this;
     }
+
     /**
      * @param array<array<string|int>> $points
      */
@@ -173,6 +192,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Drop percentage (the chance we will lose a point 0-100)
      */
@@ -182,12 +202,14 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function flamegraphDiff(bool $flamegraphDiff): static
     {
         $this->internal->flamegraphDiff = $flamegraphDiff;
     
         return $this;
     }
+
     /**
      * A unique identifier for the query within the list of targets.
      * In server side expressions, the refId is used as a variable name to identify results.
@@ -199,6 +221,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
      * Note this does not always imply that the query should not be executed since
@@ -210,6 +233,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -220,6 +244,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.

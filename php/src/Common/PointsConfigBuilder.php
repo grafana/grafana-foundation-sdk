@@ -30,18 +30,21 @@ class PointsConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function pointSize(float $pointSize): static
     {
         $this->internal->pointSize = $pointSize;
     
         return $this;
     }
+
     public function pointColor(string $pointColor): static
     {
         $this->internal->pointColor = $pointColor;
     
         return $this;
     }
+
     public function pointSymbol(string $pointSymbol): static
     {
         $this->internal->pointSymbol = $pointSymbol;

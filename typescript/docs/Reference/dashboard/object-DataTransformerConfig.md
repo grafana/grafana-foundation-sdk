@@ -25,6 +25,3 @@ export interface DataTransformerConfig {
 }
 
 ```
-## Methods
-
-No methods.

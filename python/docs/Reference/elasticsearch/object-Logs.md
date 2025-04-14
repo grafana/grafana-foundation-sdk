@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> Logs
 
 ```python
 class Logs:
-    type_val: typing.Literal["logs"]
+    type_val: str
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchLogsSettings]
     hide: typing.Optional[bool]

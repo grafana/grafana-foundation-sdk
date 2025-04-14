@@ -30,7 +30,6 @@ public class DataTransformerConfig {
     public Object options;
     public DataTransformerConfig() {
     }
-    
     public DataTransformerConfig(String id,Boolean disabled,MatcherConfig filter,Object options) {
         this.id = id;
         this.disabled = disabled;

@@ -15,7 +15,6 @@ public class GraphThresholdsStyleConfig {
     public GraphTresholdsStyleMode mode;
     public GraphThresholdsStyleConfig() {
     }
-    
     public GraphThresholdsStyleConfig(GraphTresholdsStyleMode mode) {
         this.mode = mode;
     }

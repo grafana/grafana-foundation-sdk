@@ -21,7 +21,6 @@ public class ElasticsearchPercentilesSettings {
     public List<String> percents;
     public ElasticsearchPercentilesSettings() {
     }
-    
     public ElasticsearchPercentilesSettings(InlineScript script,String missing,List<String> percents) {
         this.script = script;
         this.missing = missing;

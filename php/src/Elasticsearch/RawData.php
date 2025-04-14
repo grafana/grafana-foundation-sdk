@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Elasticsearch;
 
 class RawData implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\MetricAggregationType $type;
 
     public string $id;
 
@@ -19,8 +19,7 @@ class RawData implements \JsonSerializable
      */
     public function __construct(?string $id = null, ?\Grafana\Foundation\Elasticsearch\ElasticsearchRawDataSettings $settings = null, ?bool $hide = null)
     {
-        $this->type = "raw_data";
-    
+        $this->type = \Grafana\Foundation\Elasticsearch\MetricAggregationType::count();
         $this->id = $id ?: "";
         $this->settings = $settings;
         $this->hide = $hide;
@@ -31,7 +30,7 @@ class RawData implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, id?: string, settings?: mixed, hide?: bool} $inputData */
+        /** @var array{type?: "raw_data", id?: string, settings?: mixed, hide?: bool} $inputData */
         $data = $inputData;
         return new self(
             id: $data["id"] ?? null,

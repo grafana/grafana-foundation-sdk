@@ -64,7 +64,6 @@ public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataqu
     public String type;
     public TypeThreshold() {
     }
-    
     public TypeThreshold(List<ExprTypeThresholdConditions> conditions,DataSourceRef datasource,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeThresholdResultAssertions resultAssertions,ExprTypeThresholdTimeRange timeRange,String type) {
         this.conditions = conditions;
         this.datasource = datasource;

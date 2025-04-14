@@ -11,7 +11,7 @@ import java.util.List;
 
 public class QueryEditorFunctionExpression {
     @JsonProperty("type")
-    public String type;
+    public QueryEditorExpressionType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("name")
     public String name;
@@ -19,10 +19,10 @@ public class QueryEditorFunctionExpression {
     @JsonProperty("parameters")
     public List<QueryEditorFunctionParameterExpression> parameters;
     public QueryEditorFunctionExpression() {
+        this.type = QueryEditorExpressionType.FUNCTION;
     }
-    
-    public QueryEditorFunctionExpression(String type,String name,List<QueryEditorFunctionParameterExpression> parameters) {
-        this.type = type;
+    public QueryEditorFunctionExpression(String name,List<QueryEditorFunctionParameterExpression> parameters) {
+        this.type = QueryEditorExpressionType.FUNCTION;
         this.name = name;
         this.parameters = parameters;
     }

@@ -34,6 +34,7 @@ class TimePickerBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Interval options available in the refresh picker dropdown.
      * @param array<string> $refreshIntervals
@@ -44,6 +45,7 @@ class TimePickerBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
      * @param array<string> $timeOptions

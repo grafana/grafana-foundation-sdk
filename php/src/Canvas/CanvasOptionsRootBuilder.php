@@ -33,6 +33,7 @@ class CanvasOptionsRootBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The list of canvas elements attached to the root element
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Canvas\CanvasElementOptions>> $elements

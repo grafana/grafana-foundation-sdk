@@ -29,6 +29,7 @@ class ConstraintBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function vertical(\Grafana\Foundation\Canvas\VerticalConstraint $vertical): static
     {
         $this->internal->vertical = $vertical;

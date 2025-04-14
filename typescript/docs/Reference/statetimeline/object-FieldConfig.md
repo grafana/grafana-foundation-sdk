@@ -13,6 +13,3 @@ export interface FieldConfig {
 }
 
 ```
-## Methods
-
-No methods.

@@ -8,7 +8,6 @@ export class QueryEditorGroupByExpressionBuilder implements cog.Builder<cloudwat
 
     constructor() {
         this.internal = cloudwatch.defaultQueryEditorGroupByExpression();
-        this.internal.type = "groupBy";
     }
 
     /**
@@ -24,3 +23,4 @@ export class QueryEditorGroupByExpressionBuilder implements cog.Builder<cloudwat
         return this;
     }
 }
+

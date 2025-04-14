@@ -9,7 +9,7 @@ title: <span class="badge object-type-struct"></span> Histogram
 type Histogram struct {
     Field *string `json:"field,omitempty"`
     Id string `json:"id"`
-    Type string `json:"type"`
+    Type elasticsearch.BucketAggregationType `json:"type"`
     Settings *elasticsearch.ElasticsearchHistogramSettings `json:"settings,omitempty"`
 }
 ```

@@ -37,3 +37,4 @@ export class FolderBuilder implements cog.Builder<folder.Folder> {
         return this;
     }
 }
+

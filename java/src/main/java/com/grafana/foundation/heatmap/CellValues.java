@@ -20,7 +20,6 @@ public class CellValues {
     public Float decimals;
     public CellValues() {
     }
-    
     public CellValues(String unit,Float decimals) {
         this.unit = unit;
         this.decimals = decimals;

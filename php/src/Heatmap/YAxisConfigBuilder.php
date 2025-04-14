@@ -33,6 +33,7 @@ class YAxisConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Reverses the yAxis
      */
@@ -42,6 +43,7 @@ class YAxisConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Controls the number of decimals for yAxis values
      */
@@ -51,6 +53,7 @@ class YAxisConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Sets the minimum value for the yAxis
      */
@@ -60,48 +63,56 @@ class YAxisConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisPlacement(\Grafana\Foundation\Common\AxisPlacement $axisPlacement): static
     {
         $this->internal->axisPlacement = $axisPlacement;
     
         return $this;
     }
+
     public function axisColorMode(\Grafana\Foundation\Common\AxisColorMode $axisColorMode): static
     {
         $this->internal->axisColorMode = $axisColorMode;
     
         return $this;
     }
+
     public function axisLabel(string $axisLabel): static
     {
         $this->internal->axisLabel = $axisLabel;
     
         return $this;
     }
+
     public function axisWidth(float $axisWidth): static
     {
         $this->internal->axisWidth = $axisWidth;
     
         return $this;
     }
+
     public function axisSoftMin(float $axisSoftMin): static
     {
         $this->internal->axisSoftMin = $axisSoftMin;
     
         return $this;
     }
+
     public function axisSoftMax(float $axisSoftMax): static
     {
         $this->internal->axisSoftMax = $axisSoftMax;
     
         return $this;
     }
+
     public function axisGridShow(bool $axisGridShow): static
     {
         $this->internal->axisGridShow = $axisGridShow;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDistributionConfig> $scaleDistribution
      */
@@ -112,12 +123,14 @@ class YAxisConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisCenteredZero(bool $axisCenteredZero): static
     {
         $this->internal->axisCenteredZero = $axisCenteredZero;
     
         return $this;
     }
+
     /**
      * Sets the maximum value for the yAxis
      */
@@ -127,6 +140,7 @@ class YAxisConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisBorderShow(bool $axisBorderShow): static
     {
         $this->internal->axisBorderShow = $axisBorderShow;

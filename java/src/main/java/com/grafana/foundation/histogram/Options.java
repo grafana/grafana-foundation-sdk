@@ -32,7 +32,6 @@ public class Options {
     public Options() {
         this.bucketOffset = 0;
     }
-    
     public Options(Integer bucketSize,Integer bucketOffset,VizLegendOptions legend,VizTooltipOptions tooltip,Boolean combine) {
         this.bucketSize = bucketSize;
         this.bucketOffset = bucketOffset;

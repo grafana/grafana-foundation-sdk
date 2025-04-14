@@ -18,7 +18,6 @@ public class ResourceGroupsQuery {
     public String subscription;
     public ResourceGroupsQuery() {
     }
-    
     public ResourceGroupsQuery(String rawQuery,String kind,String subscription) {
         this.rawQuery = rawQuery;
         this.kind = kind;

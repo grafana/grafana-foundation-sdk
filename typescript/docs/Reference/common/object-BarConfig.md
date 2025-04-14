@@ -15,9 +15,6 @@ export interface BarConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [BarConfigBuilder](./builder-BarConfigBuilder.md)

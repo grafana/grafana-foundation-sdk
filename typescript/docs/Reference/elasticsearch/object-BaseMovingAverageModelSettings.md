@@ -13,9 +13,6 @@ export interface BaseMovingAverageModelSettings {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [BaseMovingAverageModelSettingsBuilder](./builder-BaseMovingAverageModelSettingsBuilder.md)

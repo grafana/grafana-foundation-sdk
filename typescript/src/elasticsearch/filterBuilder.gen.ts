@@ -27,3 +27,4 @@ export class FilterBuilder implements cog.Builder<elasticsearch.Filter> {
         return this;
     }
 }
+

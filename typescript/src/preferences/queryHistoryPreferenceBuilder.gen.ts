@@ -23,3 +23,4 @@ export class QueryHistoryPreferenceBuilder implements cog.Builder<preferences.Qu
         return this;
     }
 }
+

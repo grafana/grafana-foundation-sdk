@@ -19,7 +19,6 @@ func NewQueryEditorFunctionExpressionBuilder() *QueryEditorFunctionExpressionBui
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "function"
 
 	return builder
 }
