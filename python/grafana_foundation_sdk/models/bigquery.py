@@ -262,6 +262,16 @@ class QueryEditorFunctionExpression:
         return cls(**args)
 
 
+class QueryEditorExpressionType(enum.StrEnum):
+    PROPERTY = "property"
+    OPERATOR = "operator"
+    OR = "or"
+    AND = "and"
+    GROUP_BY = "groupBy"
+    FUNCTION = "function"
+    FUNCTION_PARAMETER = "functionParameter"
+
+
 class QueryEditorFunctionParameterExpression:
     type_val: str
     name: typing.Optional[str]
@@ -373,16 +383,6 @@ class QueryEditorPropertyExpression:
 class OrderByDirection(enum.StrEnum):
     ASC = "ASC"
     DESC = "DESC"
-
-
-class QueryEditorExpressionType(enum.StrEnum):
-    PROPERTY = "property"
-    OPERATOR = "operator"
-    OR = "or"
-    AND = "and"
-    GROUP_BY = "groupBy"
-    FUNCTION = "function"
-    FUNCTION_PARAMETER = "functionParameter"
 
 
 

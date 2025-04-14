@@ -908,6 +908,18 @@ func (resource QueryEditorFunctionExpression) Validate() error {
 	return errs
 }
 
+type QueryEditorExpressionType string
+
+const (
+	QueryEditorExpressionTypeProperty          QueryEditorExpressionType = "property"
+	QueryEditorExpressionTypeOperator          QueryEditorExpressionType = "operator"
+	QueryEditorExpressionTypeOr                QueryEditorExpressionType = "or"
+	QueryEditorExpressionTypeAnd               QueryEditorExpressionType = "and"
+	QueryEditorExpressionTypeGroupBy           QueryEditorExpressionType = "groupBy"
+	QueryEditorExpressionTypeFunction          QueryEditorExpressionType = "function"
+	QueryEditorExpressionTypeFunctionParameter QueryEditorExpressionType = "functionParameter"
+)
+
 type QueryEditorFunctionParameterExpression struct {
 	Type QueryEditorExpressionType `json:"type"`
 	Name *string                   `json:"name,omitempty"`
@@ -1286,18 +1298,6 @@ type OrderByDirection string
 const (
 	OrderByDirectionASC  OrderByDirection = "ASC"
 	OrderByDirectionDESC OrderByDirection = "DESC"
-)
-
-type QueryEditorExpressionType string
-
-const (
-	QueryEditorExpressionTypeProperty          QueryEditorExpressionType = "property"
-	QueryEditorExpressionTypeOperator          QueryEditorExpressionType = "operator"
-	QueryEditorExpressionTypeOr                QueryEditorExpressionType = "or"
-	QueryEditorExpressionTypeAnd               QueryEditorExpressionType = "and"
-	QueryEditorExpressionTypeGroupBy           QueryEditorExpressionType = "groupBy"
-	QueryEditorExpressionTypeFunction          QueryEditorExpressionType = "function"
-	QueryEditorExpressionTypeFunctionParameter QueryEditorExpressionType = "functionParameter"
 )
 
 // VariantConfig returns the configuration related to grafana-bigquery-datasource dataqueries.

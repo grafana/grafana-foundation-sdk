@@ -47,6 +47,15 @@ class DateHistogram:
         return cls(**args)
 
 
+class BucketAggregationType(enum.StrEnum):
+    TERMS = "terms"
+    FILTERS = "filters"
+    GEOHASH_GRID = "geohash_grid"
+    DATE_HISTOGRAM = "date_histogram"
+    HISTOGRAM = "histogram"
+    NESTED = "nested"
+
+
 class Histogram:
     field: typing.Optional[str]
     id_val: str
@@ -290,6 +299,37 @@ class Count:
             args["hide"] = data["hide"]        
 
         return cls(**args)
+
+
+class MetricAggregationType(enum.StrEnum):
+    COUNT = "count"
+    AVG = "avg"
+    SUM = "sum"
+    MIN = "min"
+    MAX = "max"
+    EXTENDED_STATS = "extended_stats"
+    PERCENTILES = "percentiles"
+    CARDINALITY = "cardinality"
+    RAW_DOCUMENT = "raw_document"
+    RAW_DATA = "raw_data"
+    LOGS = "logs"
+    RATE = "rate"
+    TOP_METRICS = "top_metrics"
+    MOVING_AVG = "moving_avg"
+    MOVING_FN = "moving_fn"
+    DERIVATIVE = "derivative"
+    SERIAL_DIFF = "serial_diff"
+    CUMULATIVE_SUM = "cumulative_sum"
+    BUCKET_SCRIPT = "bucket_script"
+
+
+class PipelineMetricAggregationType(enum.StrEnum):
+    MOVING_AVG = "moving_avg"
+    MOVING_FN = "moving_fn"
+    DERIVATIVE = "derivative"
+    SERIAL_DIFF = "serial_diff"
+    CUMULATIVE_SUM = "cumulative_sum"
+    BUCKET_SCRIPT = "bucket_script"
 
 
 PipelineMetricAggregation: typing.TypeAlias = typing.Union['MovingAverage', 'Derivative', 'CumulativeSum', 'BucketScript']
@@ -1118,15 +1158,6 @@ class TopMetrics:
         return cls(**args)
 
 
-class BucketAggregationType(enum.StrEnum):
-    TERMS = "terms"
-    FILTERS = "filters"
-    GEOHASH_GRID = "geohash_grid"
-    DATE_HISTOGRAM = "date_histogram"
-    HISTOGRAM = "histogram"
-    NESTED = "nested"
-
-
 class BaseBucketAggregation:
     id_val: str
     type_val: 'BucketAggregationType'
@@ -1366,37 +1397,6 @@ class GeoHashGridSettings:
             args["precision"] = data["precision"]        
 
         return cls(**args)
-
-
-class PipelineMetricAggregationType(enum.StrEnum):
-    MOVING_AVG = "moving_avg"
-    MOVING_FN = "moving_fn"
-    DERIVATIVE = "derivative"
-    SERIAL_DIFF = "serial_diff"
-    CUMULATIVE_SUM = "cumulative_sum"
-    BUCKET_SCRIPT = "bucket_script"
-
-
-class MetricAggregationType(enum.StrEnum):
-    COUNT = "count"
-    AVG = "avg"
-    SUM = "sum"
-    MIN = "min"
-    MAX = "max"
-    EXTENDED_STATS = "extended_stats"
-    PERCENTILES = "percentiles"
-    CARDINALITY = "cardinality"
-    RAW_DOCUMENT = "raw_document"
-    RAW_DATA = "raw_data"
-    LOGS = "logs"
-    RATE = "rate"
-    TOP_METRICS = "top_metrics"
-    MOVING_AVG = "moving_avg"
-    MOVING_FN = "moving_fn"
-    DERIVATIVE = "derivative"
-    SERIAL_DIFF = "serial_diff"
-    CUMULATIVE_SUM = "cumulative_sum"
-    BUCKET_SCRIPT = "bucket_script"
 
 
 class BaseMetricAggregation:

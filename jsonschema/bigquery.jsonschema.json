@@ -149,6 +149,17 @@
         }
       }
     },
+    "QueryEditorExpressionType": {
+      "enum": [
+        "property",
+        "operator",
+        "or",
+        "and",
+        "groupBy",
+        "function",
+        "functionParameter"
+      ]
+    },
     "QueryEditorFunctionParameterExpression": {
       "type": "object",
       "additionalProperties": false,
@@ -214,17 +225,6 @@
       "enum": [
         "ASC",
         "DESC"
-      ]
-    },
-    "QueryEditorExpressionType": {
-      "enum": [
-        "property",
-        "operator",
-        "or",
-        "and",
-        "groupBy",
-        "function",
-        "functionParameter"
       ]
     },
     "DataSourceRef": {

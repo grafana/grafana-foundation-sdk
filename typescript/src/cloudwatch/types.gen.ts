@@ -151,6 +151,18 @@ export const defaultQueryEditorFunctionExpression = (): QueryEditorFunctionExpre
 	type: QueryEditorExpressionType.Function,
 });
 
+export enum QueryEditorExpressionType {
+	Property = "property",
+	Operator = "operator",
+	Or = "or",
+	And = "and",
+	GroupBy = "groupBy",
+	Function = "function",
+	FunctionParameter = "functionParameter",
+}
+
+export const defaultQueryEditorExpressionType = (): QueryEditorExpressionType => (QueryEditorExpressionType.Property);
+
 export interface QueryEditorFunctionParameterExpression {
 	type: QueryEditorExpressionType.FunctionParameter;
 	name?: string;
@@ -234,18 +246,6 @@ export const defaultQueryEditorOperator = (): QueryEditorOperator => ({
 export type QueryEditorOperatorType = string | boolean | number;
 
 export const defaultQueryEditorOperatorType = (): QueryEditorOperatorType => ("");
-
-export enum QueryEditorExpressionType {
-	Property = "property",
-	Operator = "operator",
-	Or = "or",
-	And = "and",
-	GroupBy = "groupBy",
-	Function = "function",
-	FunctionParameter = "functionParameter",
-}
-
-export const defaultQueryEditorExpressionType = (): QueryEditorExpressionType => (QueryEditorExpressionType.Property);
 
 export type QueryEditorOperatorValueType = QueryEditorOperatorType | QueryEditorOperatorType[];
 

@@ -381,6 +381,16 @@ class QueryEditorFunctionExpression:
         return cls(**args)
 
 
+class QueryEditorExpressionType(enum.StrEnum):
+    PROPERTY = "property"
+    OPERATOR = "operator"
+    OR = "or"
+    AND = "and"
+    GROUP_BY = "groupBy"
+    FUNCTION = "function"
+    FUNCTION_PARAMETER = "functionParameter"
+
+
 class QueryEditorFunctionParameterExpression:
     type_val: str
     name: typing.Optional[str]
@@ -585,16 +595,6 @@ class QueryEditorOperator:
 
 
 QueryEditorOperatorType: typing.TypeAlias = typing.Union[str, bool, int]
-
-
-class QueryEditorExpressionType(enum.StrEnum):
-    PROPERTY = "property"
-    OPERATOR = "operator"
-    OR = "or"
-    AND = "and"
-    GROUP_BY = "groupBy"
-    FUNCTION = "function"
-    FUNCTION_PARAMETER = "functionParameter"
 
 
 QueryEditorOperatorValueType: typing.TypeAlias = typing.Union[str, bool, int, list['QueryEditorOperatorType']]

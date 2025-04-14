@@ -37,7 +37,9 @@ from ..models import googlecloudmonitoring
 from ..models import grafanapyroscope
 from ..models import loki
 from ..models import parca
+from ..models import prometheus
 from ..models import tempo
+from ..models import testdata
 from . import runtime as cogruntime
 
 
@@ -81,4 +83,6 @@ def register_default_plugins():
     cogruntime.register_dataquery_variant(grafanapyroscope.variant_config())
     cogruntime.register_dataquery_variant(loki.variant_config())
     cogruntime.register_dataquery_variant(parca.variant_config())
+    cogruntime.register_dataquery_variant(prometheus.variant_config())
     cogruntime.register_dataquery_variant(tempo.variant_config())
+    cogruntime.register_dataquery_variant(testdata.variant_config())

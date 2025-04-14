@@ -1243,6 +1243,18 @@ func (resource QueryEditorFunctionExpression) Validate() error {
 	return errs
 }
 
+type QueryEditorExpressionType string
+
+const (
+	QueryEditorExpressionTypeProperty          QueryEditorExpressionType = "property"
+	QueryEditorExpressionTypeOperator          QueryEditorExpressionType = "operator"
+	QueryEditorExpressionTypeOr                QueryEditorExpressionType = "or"
+	QueryEditorExpressionTypeAnd               QueryEditorExpressionType = "and"
+	QueryEditorExpressionTypeGroupBy           QueryEditorExpressionType = "groupBy"
+	QueryEditorExpressionTypeFunction          QueryEditorExpressionType = "function"
+	QueryEditorExpressionTypeFunctionParameter QueryEditorExpressionType = "functionParameter"
+)
+
 type QueryEditorFunctionParameterExpression struct {
 	Type QueryEditorExpressionType `json:"type"`
 	Name *string                   `json:"name,omitempty"`
@@ -1959,18 +1971,6 @@ type QueryEditorOperatorType = StringOrBoolOrInt64
 func NewQueryEditorOperatorType() *QueryEditorOperatorType {
 	return NewStringOrBoolOrInt64()
 }
-
-type QueryEditorExpressionType string
-
-const (
-	QueryEditorExpressionTypeProperty          QueryEditorExpressionType = "property"
-	QueryEditorExpressionTypeOperator          QueryEditorExpressionType = "operator"
-	QueryEditorExpressionTypeOr                QueryEditorExpressionType = "or"
-	QueryEditorExpressionTypeAnd               QueryEditorExpressionType = "and"
-	QueryEditorExpressionTypeGroupBy           QueryEditorExpressionType = "groupBy"
-	QueryEditorExpressionTypeFunction          QueryEditorExpressionType = "function"
-	QueryEditorExpressionTypeFunctionParameter QueryEditorExpressionType = "functionParameter"
-)
 
 type QueryEditorOperatorValueType = StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType
 
@@ -3090,7 +3090,6 @@ func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Mar
 	if resource.QueryEditorFunctionExpression != nil {
 		return json.Marshal(resource.QueryEditorFunctionExpression)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
@@ -3251,7 +3250,6 @@ func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryE
 	if resource.QueryEditorOperatorExpression != nil {
 		return json.Marshal(resource.QueryEditorOperatorExpression)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
@@ -3904,7 +3902,6 @@ func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotation
 	if resource.CloudWatchAnnotationQuery != nil {
 		return json.Marshal(resource.CloudWatchAnnotationQuery)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
