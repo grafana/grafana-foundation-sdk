@@ -37,6 +37,7 @@ class DataQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
      * Note this does not always imply that the query should not be executed since
@@ -48,6 +49,7 @@ class DataQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -58,6 +60,7 @@ class DataQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.

@@ -37,6 +37,7 @@ class SnapshotBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Is the snapshot saved in an external grafana instance
      */
@@ -46,6 +47,7 @@ class SnapshotBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * external url, if snapshot was shared in external grafana instance
      */
@@ -55,6 +57,7 @@ class SnapshotBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Unique identifier of the snapshot
      */
@@ -64,6 +67,7 @@ class SnapshotBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Optional, defined the unique key of the snapshot, required if external is true
      */
@@ -73,6 +77,7 @@ class SnapshotBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Optional, name of the snapshot
      */
@@ -82,6 +87,7 @@ class SnapshotBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * org id of the snapshot
      */
@@ -91,6 +97,7 @@ class SnapshotBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * url of the snapshot, if snapshot was shared internally
      */
@@ -100,6 +107,7 @@ class SnapshotBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\Dashboard> $dashboard
      */

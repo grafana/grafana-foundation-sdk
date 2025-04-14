@@ -12,9 +12,6 @@ export interface CustomRoleRef {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [CustomRoleRefBuilder](./builder-CustomRoleRefBuilder.md)

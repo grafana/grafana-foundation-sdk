@@ -8,7 +8,6 @@ export class QueryEditorOperatorExpressionBuilder implements cog.Builder<cloudwa
 
     constructor() {
         this.internal = cloudwatch.defaultQueryEditorOperatorExpression();
-        this.internal.type = "operator";
     }
 
     /**
@@ -31,3 +30,4 @@ export class QueryEditorOperatorExpressionBuilder implements cog.Builder<cloudwa
         return this;
     }
 }
+

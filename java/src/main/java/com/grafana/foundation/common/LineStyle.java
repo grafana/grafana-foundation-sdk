@@ -19,7 +19,6 @@ public class LineStyle {
     public List<Double> dash;
     public LineStyle() {
     }
-    
     public LineStyle(LineStyleFill fill,List<Double> dash) {
         this.fill = fill;
         this.dash = dash;

@@ -92,3 +92,4 @@ export class CloudMonitoringQueryBuilder implements cog.Builder<cog.Dataquery> {
         return this;
     }
 }
+

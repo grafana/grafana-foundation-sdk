@@ -13,7 +13,7 @@ For example, you can configure a special value mapping so that null values appea
 
 ```go
 type SpecialValueMap struct {
-    Type string `json:"type"`
+    Type dashboard.MappingType `json:"type"`
     Options dashboard.DashboardSpecialValueMapOptions `json:"options"`
 }
 ```

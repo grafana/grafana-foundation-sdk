@@ -8,7 +8,6 @@ export class NestedBuilder implements cog.Builder<elasticsearch.Nested> {
 
     constructor() {
         this.internal = elasticsearch.defaultNested();
-        this.internal.type = "nested";
     }
 
     /**
@@ -33,3 +32,4 @@ export class NestedBuilder implements cog.Builder<elasticsearch.Nested> {
         return this;
     }
 }
+

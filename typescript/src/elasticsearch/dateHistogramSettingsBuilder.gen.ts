@@ -42,3 +42,4 @@ export class DateHistogramSettingsBuilder implements cog.Builder<elasticsearch.D
         return this;
     }
 }
+

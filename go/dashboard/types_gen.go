@@ -3125,7 +3125,7 @@ func NewValueMapping() *ValueMapping {
 // Maps text values to a color or different display text and color.
 // For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
 type ValueMap struct {
-	Type string `json:"type"`
+	Type MappingType `json:"type"`
 	// Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
 	Options map[string]ValueMappingResult `json:"options"`
 }
@@ -3133,7 +3133,7 @@ type ValueMap struct {
 // NewValueMap creates a new ValueMap object.
 func NewValueMap() *ValueMap {
 	return &ValueMap{
-		Type: "value",
+		Type: MappingTypeValueToText,
 	}
 }
 
@@ -3224,11 +3224,8 @@ func (resource ValueMap) Equals(other ValueMap) bool {
 // Validate checks all the validation constraints that may be defined on `ValueMap` fields for violations and returns them.
 func (resource ValueMap) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "value") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == value"),
-		)...)
+	if resource.Type != "value" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be value"))...)
 	}
 
 	for key1 := range resource.Options {
@@ -3243,6 +3240,20 @@ func (resource ValueMap) Validate() error {
 
 	return errs
 }
+
+// Supported value mapping types
+// `value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
+// `range`: Maps numerical ranges to a display text and color. For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
+// `regex`: Maps regular expressions to replacement text and a color. For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
+// `special`: Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color. See SpecialValueMatch to see the list of special values. For example, you can configure a special value mapping so that null values appear as N/A.
+type MappingType string
+
+const (
+	MappingTypeValueToText  MappingType = "value"
+	MappingTypeRangeToText  MappingType = "range"
+	MappingTypeRegexToText  MappingType = "regex"
+	MappingTypeSpecialValue MappingType = "special"
+)
 
 // Result used as replacement with text and color when the value matches
 type ValueMappingResult struct {
@@ -3379,7 +3390,7 @@ func (resource ValueMappingResult) Validate() error {
 // Maps numerical ranges to a display text and color.
 // For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
 type RangeMap struct {
-	Type string `json:"type"`
+	Type MappingType `json:"type"`
 	// Range to match against and the result to apply when the value is within the range
 	Options DashboardRangeMapOptions `json:"options"`
 }
@@ -3387,7 +3398,7 @@ type RangeMap struct {
 // NewRangeMap creates a new RangeMap object.
 func NewRangeMap() *RangeMap {
 	return &RangeMap{
-		Type:    "range",
+		Type:    MappingTypeRangeToText,
 		Options: *NewDashboardRangeMapOptions(),
 	}
 }
@@ -3461,11 +3472,8 @@ func (resource RangeMap) Equals(other RangeMap) bool {
 // Validate checks all the validation constraints that may be defined on `RangeMap` fields for violations and returns them.
 func (resource RangeMap) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "range") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == range"),
-		)...)
+	if resource.Type != "range" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be range"))...)
 	}
 	if err := resource.Options.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("options", err)...)
@@ -3481,7 +3489,7 @@ func (resource RangeMap) Validate() error {
 // Maps regular expressions to replacement text and a color.
 // For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
 type RegexMap struct {
-	Type string `json:"type"`
+	Type MappingType `json:"type"`
 	// Regular expression to match against and the result to apply when the value matches the regex
 	Options DashboardRegexMapOptions `json:"options"`
 }
@@ -3489,7 +3497,7 @@ type RegexMap struct {
 // NewRegexMap creates a new RegexMap object.
 func NewRegexMap() *RegexMap {
 	return &RegexMap{
-		Type:    "regex",
+		Type:    MappingTypeRegexToText,
 		Options: *NewDashboardRegexMapOptions(),
 	}
 }
@@ -3563,11 +3571,8 @@ func (resource RegexMap) Equals(other RegexMap) bool {
 // Validate checks all the validation constraints that may be defined on `RegexMap` fields for violations and returns them.
 func (resource RegexMap) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "regex") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == regex"),
-		)...)
+	if resource.Type != "regex" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be regex"))...)
 	}
 	if err := resource.Options.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("options", err)...)
@@ -3584,14 +3589,14 @@ func (resource RegexMap) Validate() error {
 // See SpecialValueMatch to see the list of special values.
 // For example, you can configure a special value mapping so that null values appear as N/A.
 type SpecialValueMap struct {
-	Type    string                          `json:"type"`
+	Type    MappingType                     `json:"type"`
 	Options DashboardSpecialValueMapOptions `json:"options"`
 }
 
 // NewSpecialValueMap creates a new SpecialValueMap object.
 func NewSpecialValueMap() *SpecialValueMap {
 	return &SpecialValueMap{
-		Type:    "special",
+		Type:    MappingTypeSpecialValue,
 		Options: *NewDashboardSpecialValueMapOptions(),
 	}
 }
@@ -3665,11 +3670,8 @@ func (resource SpecialValueMap) Equals(other SpecialValueMap) bool {
 // Validate checks all the validation constraints that may be defined on `SpecialValueMap` fields for violations and returns them.
 func (resource SpecialValueMap) Validate() error {
 	var errs cog.BuildErrors
-	if !(resource.Type == "special") {
-		errs = append(errs, cog.MakeBuildErrors(
-			"type",
-			errors.New("must be == special"),
-		)...)
+	if resource.Type != "special" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be special"))...)
 	}
 	if err := resource.Options.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("options", err)...)
@@ -5929,20 +5931,6 @@ func (resource Snapshot) Validate() error {
 	return errs
 }
 
-// Supported value mapping types
-// `value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
-// `range`: Maps numerical ranges to a display text and color. For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
-// `regex`: Maps regular expressions to replacement text and a color. For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
-// `special`: Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color. See SpecialValueMatch to see the list of special values. For example, you can configure a special value mapping so that null values appear as N/A.
-type MappingType string
-
-const (
-	MappingTypeValueToText  MappingType = "value"
-	MappingTypeRangeToText  MappingType = "range"
-	MappingTypeRegexToText  MappingType = "regex"
-	MappingTypeSpecialValue MappingType = "special"
-)
-
 type AnnotationActions struct {
 	CanAdd    *bool `json:"canAdd,omitempty"`
 	CanDelete *bool `json:"canDelete,omitempty"`
@@ -7532,7 +7520,6 @@ func (resource PanelOrRowPanel) MarshalJSON() ([]byte, error) {
 	if resource.RowPanel != nil {
 		return json.Marshal(resource.RowPanel)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 
@@ -7685,7 +7672,6 @@ func (resource ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) MarshalJSON() ([]b
 	if resource.SpecialValueMap != nil {
 		return json.Marshal(resource.SpecialValueMap)
 	}
-
 	return nil, fmt.Errorf("no value for disjunction of refs")
 }
 

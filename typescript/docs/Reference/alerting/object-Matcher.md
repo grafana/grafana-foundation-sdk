@@ -13,9 +13,6 @@ export interface Matcher {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MatcherBuilder](./builder-MatcherBuilder.md)

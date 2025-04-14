@@ -37,7 +37,6 @@ public class SQLExpression {
     public Long offset;
     public SQLExpression() {
     }
-    
     public SQLExpression(List<QueryEditorFunctionExpression> columns,String from,String whereString,List<QueryEditorGroupByExpression> groupBy,QueryEditorPropertyExpression orderBy,OrderByDirection orderByDirection,Long limit,Long offset) {
         this.columns = columns;
         this.from = from;

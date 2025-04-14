@@ -14,9 +14,6 @@ export interface Team {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [TeamBuilder](./builder-TeamBuilder.md)

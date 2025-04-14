@@ -9,12 +9,9 @@ Gauge cell options
 
 ```typescript
 export interface TableBarGaugeCellOptions {
-	type: "gauge";
+	type: common.TableCellDisplayMode.Gauge;
 	mode?: common.BarGaugeDisplayMode;
 	valueDisplayMode?: common.BarGaugeValueMode;
 }
 
 ```
-## Methods
-
-No methods.

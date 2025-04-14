@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> QueryEditorFunctionExpressi
 ```php
 class QueryEditorFunctionExpression implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Bigquery\QueryEditorExpressionType $type;
 
     public ?string $name;
 

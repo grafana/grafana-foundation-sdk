@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> Logs
 
 ```typescript
 export interface Logs {
-	type: "logs";
+	type: unknown;
 	id: string;
 	settings?: {
 		limit?: string;
@@ -16,9 +16,6 @@ export interface Logs {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [LogsBuilder](./builder-LogsBuilder.md)

@@ -17,7 +17,6 @@ public class NodesQuery {
     public Long count;
     public NodesQuery() {
     }
-    
     public NodesQuery(NodesQueryType type,Long count) {
         this.type = type;
         this.count = count;

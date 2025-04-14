@@ -19,7 +19,6 @@ func NewMovingAverageHoltModelSettingsBuilder() *MovingAverageHoltModelSettingsB
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Model = "holt"
 
 	return builder
 }

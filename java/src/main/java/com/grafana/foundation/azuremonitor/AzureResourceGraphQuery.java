@@ -19,7 +19,6 @@ public class AzureResourceGraphQuery {
     public String resultFormat;
     public AzureResourceGraphQuery() {
     }
-    
     public AzureResourceGraphQuery(String query,String resultFormat) {
         this.query = query;
         this.resultFormat = resultFormat;

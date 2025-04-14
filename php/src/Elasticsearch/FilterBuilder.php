@@ -29,6 +29,7 @@ class FilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function label(string $label): static
     {
         $this->internal->label = $label;

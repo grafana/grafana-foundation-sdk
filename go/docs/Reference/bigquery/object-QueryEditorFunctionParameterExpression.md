@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> QueryEditorFunctionParamet
 
 ```go
 type QueryEditorFunctionParameterExpression struct {
-    Type string `json:"type"`
+    Type bigquery.QueryEditorExpressionType `json:"type"`
     Name *string `json:"name,omitempty"`
 }
 ```

@@ -12,7 +12,6 @@ class QueryEditorPropertyExpressionBuilder implements \Grafana\Foundation\Cog\Bu
     public function __construct()
     {
     	$this->internal = new \Grafana\Foundation\Cloudwatch\QueryEditorPropertyExpression();
-    $this->internal->type = "property";
     }
 
     /**

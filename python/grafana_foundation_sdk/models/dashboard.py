@@ -959,12 +959,12 @@ class ValueMap:
     For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
     """
 
-    type_val: typing.Literal["value"]
+    type_val: str
     # Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
     options: dict[str, 'ValueMappingResult']
 
     def __init__(self, options: typing.Optional[dict[str, 'ValueMappingResult']] = None):
-        self.type_val = "value"
+        self.type_val = MappingType.VALUE_TO_TEXT
         self.options = options if options is not None else {}
 
     def to_json(self) -> dict[str, object]:
@@ -982,6 +982,21 @@ class ValueMap:
             args["options"] = {key: ValueMappingResult.from_json(data["options"][key]) for key in data["options"].keys()}        
 
         return cls(**args)
+
+
+class MappingType(enum.StrEnum):
+    """
+    Supported value mapping types
+    `value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
+    `range`: Maps numerical ranges to a display text and color. For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
+    `regex`: Maps regular expressions to replacement text and a color. For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
+    `special`: Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color. See SpecialValueMatch to see the list of special values. For example, you can configure a special value mapping so that null values appear as N/A.
+    """
+
+    VALUE_TO_TEXT = "value"
+    RANGE_TO_TEXT = "range"
+    REGEX_TO_TEXT = "regex"
+    SPECIAL_VALUE = "special"
 
 
 class ValueMappingResult:
@@ -1039,12 +1054,12 @@ class RangeMap:
     For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
     """
 
-    type_val: typing.Literal["range"]
+    type_val: str
     # Range to match against and the result to apply when the value is within the range
     options: 'DashboardRangeMapOptions'
 
     def __init__(self, options: typing.Optional['DashboardRangeMapOptions'] = None):
-        self.type_val = "range"
+        self.type_val = MappingType.RANGE_TO_TEXT
         self.options = options if options is not None else DashboardRangeMapOptions()
 
     def to_json(self) -> dict[str, object]:
@@ -1070,12 +1085,12 @@ class RegexMap:
     For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
     """
 
-    type_val: typing.Literal["regex"]
+    type_val: str
     # Regular expression to match against and the result to apply when the value matches the regex
     options: 'DashboardRegexMapOptions'
 
     def __init__(self, options: typing.Optional['DashboardRegexMapOptions'] = None):
-        self.type_val = "regex"
+        self.type_val = MappingType.REGEX_TO_TEXT
         self.options = options if options is not None else DashboardRegexMapOptions()
 
     def to_json(self) -> dict[str, object]:
@@ -1102,11 +1117,11 @@ class SpecialValueMap:
     For example, you can configure a special value mapping so that null values appear as N/A.
     """
 
-    type_val: typing.Literal["special"]
+    type_val: str
     options: 'DashboardSpecialValueMapOptions'
 
     def __init__(self, options: typing.Optional['DashboardSpecialValueMapOptions'] = None):
-        self.type_val = "special"
+        self.type_val = MappingType.SPECIAL_VALUE
         self.options = options if options is not None else DashboardSpecialValueMapOptions()
 
     def to_json(self) -> dict[str, object]:
@@ -1582,10 +1597,10 @@ class VariableOption:
     # Value of the option
     value: typing.Union[str, list[str]]
 
-    def __init__(self, selected: typing.Optional[bool] = None, text: typing.Union[str, list[str]] = "", value: typing.Union[str, list[str]] = ""):
+    def __init__(self, selected: typing.Optional[bool] = None, text: typing.Optional[typing.Union[str, list[str]]] = None, value: typing.Optional[typing.Union[str, list[str]]] = None):
         self.selected = selected
-        self.text = text
-        self.value = value
+        self.text = text if text is not None else ""
+        self.value = value if value is not None else ""
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -1944,21 +1959,6 @@ class Snapshot:
             args["dashboard"] = Dashboard.from_json(data["dashboard"])        
 
         return cls(**args)
-
-
-class MappingType(enum.StrEnum):
-    """
-    Supported value mapping types
-    `value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
-    `range`: Maps numerical ranges to a display text and color. For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
-    `regex`: Maps regular expressions to replacement text and a color. For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
-    `special`: Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color. See SpecialValueMatch to see the list of special values. For example, you can configure a special value mapping so that null values appear as N/A.
-    """
-
-    VALUE_TO_TEXT = "value"
-    RANGE_TO_TEXT = "range"
-    REGEX_TO_TEXT = "regex"
-    SPECIAL_VALUE = "special"
 
 
 class AnnotationActions:

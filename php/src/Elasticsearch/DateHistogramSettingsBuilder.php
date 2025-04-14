@@ -29,24 +29,28 @@ class DateHistogramSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function minDocCount(string $minDocCount): static
     {
         $this->internal->minDocCount = $minDocCount;
     
         return $this;
     }
+
     public function trimEdges(string $trimEdges): static
     {
         $this->internal->trimEdges = $trimEdges;
     
         return $this;
     }
+
     public function offset(string $offset): static
     {
         $this->internal->offset = $offset;
     
         return $this;
     }
+
     public function timeZone(string $timeZone): static
     {
         $this->internal->timeZone = $timeZone;

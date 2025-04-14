@@ -13,9 +13,6 @@ export interface OptionsWithTextFormatting {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [OptionsWithTextFormattingBuilder](./builder-OptionsWithTextFormattingBuilder.md)

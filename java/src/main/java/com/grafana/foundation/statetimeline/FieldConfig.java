@@ -23,7 +23,6 @@ public class FieldConfig {
         this.lineWidth = 0;
         this.fillOpacity = 70;
     }
-    
     public FieldConfig(Integer lineWidth,HideSeriesConfig hideFrom,Integer fillOpacity) {
         this.lineWidth = lineWidth;
         this.hideFrom = hideFrom;

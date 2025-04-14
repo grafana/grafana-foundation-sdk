@@ -21,7 +21,6 @@ public class FillConfig {
     public String fillBelowTo;
     public FillConfig() {
     }
-    
     public FillConfig(String fillColor,Double fillOpacity,String fillBelowTo) {
         this.fillColor = fillColor;
         this.fillOpacity = fillOpacity;

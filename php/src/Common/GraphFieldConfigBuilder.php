@@ -30,12 +30,14 @@ class GraphFieldConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function gradientMode(\Grafana\Foundation\Common\GraphGradientMode $gradientMode): static
     {
         $this->internal->gradientMode = $gradientMode;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\GraphThresholdsStyleConfig> $thresholdsStyle
      */
@@ -46,24 +48,28 @@ class GraphFieldConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function lineColor(string $lineColor): static
     {
         $this->internal->lineColor = $lineColor;
     
         return $this;
     }
+
     public function lineWidth(float $lineWidth): static
     {
         $this->internal->lineWidth = $lineWidth;
     
         return $this;
     }
+
     public function lineInterpolation(\Grafana\Foundation\Common\LineInterpolation $lineInterpolation): static
     {
         $this->internal->lineInterpolation = $lineInterpolation;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\LineStyle> $lineStyle
      */
@@ -74,78 +80,91 @@ class GraphFieldConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function fillColor(string $fillColor): static
     {
         $this->internal->fillColor = $fillColor;
     
         return $this;
     }
+
     public function fillOpacity(float $fillOpacity): static
     {
         $this->internal->fillOpacity = $fillOpacity;
     
         return $this;
     }
+
     public function showPoints(\Grafana\Foundation\Common\VisibilityMode $showPoints): static
     {
         $this->internal->showPoints = $showPoints;
     
         return $this;
     }
+
     public function pointSize(float $pointSize): static
     {
         $this->internal->pointSize = $pointSize;
     
         return $this;
     }
+
     public function pointColor(string $pointColor): static
     {
         $this->internal->pointColor = $pointColor;
     
         return $this;
     }
+
     public function axisPlacement(\Grafana\Foundation\Common\AxisPlacement $axisPlacement): static
     {
         $this->internal->axisPlacement = $axisPlacement;
     
         return $this;
     }
+
     public function axisColorMode(\Grafana\Foundation\Common\AxisColorMode $axisColorMode): static
     {
         $this->internal->axisColorMode = $axisColorMode;
     
         return $this;
     }
+
     public function axisLabel(string $axisLabel): static
     {
         $this->internal->axisLabel = $axisLabel;
     
         return $this;
     }
+
     public function axisWidth(float $axisWidth): static
     {
         $this->internal->axisWidth = $axisWidth;
     
         return $this;
     }
+
     public function axisSoftMin(float $axisSoftMin): static
     {
         $this->internal->axisSoftMin = $axisSoftMin;
     
         return $this;
     }
+
     public function axisSoftMax(float $axisSoftMax): static
     {
         $this->internal->axisSoftMax = $axisSoftMax;
     
         return $this;
     }
+
     public function axisGridShow(bool $axisGridShow): static
     {
         $this->internal->axisGridShow = $axisGridShow;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDistributionConfig> $scaleDistribution
      */
@@ -156,24 +175,28 @@ class GraphFieldConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisCenteredZero(bool $axisCenteredZero): static
     {
         $this->internal->axisCenteredZero = $axisCenteredZero;
     
         return $this;
     }
+
     public function barAlignment(\Grafana\Foundation\Common\BarAlignment $barAlignment): static
     {
         $this->internal->barAlignment = $barAlignment;
     
         return $this;
     }
+
     public function barWidthFactor(float $barWidthFactor): static
     {
         $this->internal->barWidthFactor = $barWidthFactor;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\StackingConfig> $stacking
      */
@@ -184,6 +207,7 @@ class GraphFieldConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\HideSeriesConfig> $hideFrom
      */
@@ -194,12 +218,14 @@ class GraphFieldConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function transform(\Grafana\Foundation\Common\GraphTransform $transform): static
     {
         $this->internal->transform = $transform;
     
         return $this;
     }
+
     /**
      * Indicate if null values should be treated as gaps or connected.
      * When the value is a number, it represents the maximum delta in the
@@ -212,30 +238,35 @@ class GraphFieldConfigBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function fillBelowTo(string $fillBelowTo): static
     {
         $this->internal->fillBelowTo = $fillBelowTo;
     
         return $this;
     }
+
     public function pointSymbol(string $pointSymbol): static
     {
         $this->internal->pointSymbol = $pointSymbol;
     
         return $this;
     }
+
     public function axisBorderShow(bool $axisBorderShow): static
     {
         $this->internal->axisBorderShow = $axisBorderShow;
     
         return $this;
     }
+
     public function barMaxWidth(float $barMaxWidth): static
     {
         $this->internal->barMaxWidth = $barMaxWidth;
     
         return $this;
     }
+
     /**
      * @param bool|int $insertNulls
      */

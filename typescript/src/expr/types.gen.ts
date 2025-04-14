@@ -402,6 +402,7 @@ export interface TypeSql {
 	// The datasource
 	datasource?: dashboard.DataSourceRef;
 	expression: string;
+	format: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// NOTE: this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -456,6 +457,7 @@ export interface TypeSql {
 
 export const defaultTypeSql = (): TypeSql => ({
 	expression: "",
+	format: "",
 	refId: "",
 	type: "sql",
 	_implementsDataqueryVariant: () => {},

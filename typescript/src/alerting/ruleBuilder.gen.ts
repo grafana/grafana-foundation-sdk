@@ -134,3 +134,4 @@ export class RuleBuilder implements cog.Builder<alerting.Rule> {
         return this;
     }
 }
+

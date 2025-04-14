@@ -32,6 +32,7 @@ class ArcOptionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The color of the arc.
      */

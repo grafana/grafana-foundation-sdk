@@ -16,9 +16,6 @@ export interface Placement {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [PlacementBuilder](./builder-PlacementBuilder.md)

@@ -19,7 +19,6 @@ func NewCumulativeSumBuilder() *CumulativeSumBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "cumulative_sum"
 
 	return builder
 }

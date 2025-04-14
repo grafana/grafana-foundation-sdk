@@ -38,3 +38,4 @@ export class PipelineMetricAggregationWithMultipleBucketPathsBuilder implements 
         return this;
     }
 }
+

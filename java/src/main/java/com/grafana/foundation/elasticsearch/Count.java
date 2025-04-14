@@ -10,17 +10,17 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Count {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonProperty("id")
     public String id;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hide")
     public Boolean hide;
     public Count() {
+        this.type = MetricAggregationType.COUNT;
     }
-    
-    public Count(String type,String id,Boolean hide) {
-        this.type = type;
+    public Count(String id,Boolean hide) {
+        this.type = MetricAggregationType.COUNT;
         this.id = id;
         this.hide = hide;
     }

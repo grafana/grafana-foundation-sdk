@@ -14,7 +14,6 @@ public class ElasticsearchRawDataSettings {
     public String size;
     public ElasticsearchRawDataSettings() {
     }
-    
     public ElasticsearchRawDataSettings(String size) {
         this.size = size;
     }

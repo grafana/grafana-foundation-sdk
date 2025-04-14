@@ -12,9 +12,6 @@ export interface AppInsightsMetricNameQuery {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [AppInsightsMetricNameQueryBuilder](./builder-AppInsightsMetricNameQueryBuilder.md)

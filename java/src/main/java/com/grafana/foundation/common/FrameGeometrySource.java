@@ -34,7 +34,6 @@ public class FrameGeometrySource {
     public String gazetteer;
     public FrameGeometrySource() {
     }
-    
     public FrameGeometrySource(FrameGeometrySourceMode mode,String geohash,String latitude,String longitude,String wkt,String lookup,String gazetteer) {
         this.mode = mode;
         this.geohash = geohash;

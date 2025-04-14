@@ -18,7 +18,6 @@ public class QueryEditorOperator {
     public QueryEditorOperatorValueType value;
     public QueryEditorOperator() {
     }
-    
     public QueryEditorOperator(String name,QueryEditorOperatorValueType value) {
         this.name = name;
         this.value = value;

@@ -12,9 +12,6 @@ export interface DayOfMonthRange {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [DayOfMonthRangeBuilder](./builder-DayOfMonthRangeBuilder.md)

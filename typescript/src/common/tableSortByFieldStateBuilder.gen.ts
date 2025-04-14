@@ -30,3 +30,4 @@ export class TableSortByFieldStateBuilder implements cog.Builder<common.TableSor
         return this;
     }
 }
+

@@ -34,6 +34,7 @@ class ElasticsearchSumSettingsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function missing(string $missing): static
     {
         $this->internal->missing = $missing;

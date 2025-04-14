@@ -56,7 +56,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public DataSourceRef datasource;
     public Dataquery() {
     }
-    
     public Dataquery(String alias,String query,String timeField,List<BucketAggregation> bucketAggs,List<MetricAggregation> metrics,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
         this.alias = alias;
         this.query = query;

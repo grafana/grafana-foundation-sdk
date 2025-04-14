@@ -12,7 +12,7 @@ For example, if a value is www.example.com, you can configure a regex value mapp
 ```php
 class RegexMap implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Dashboard\MappingType $type;
 
     /**
      * Regular expression to match against and the result to apply when the value matches the regex

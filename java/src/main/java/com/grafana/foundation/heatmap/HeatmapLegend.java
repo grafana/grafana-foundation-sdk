@@ -14,7 +14,6 @@ public class HeatmapLegend {
     public Boolean show;
     public HeatmapLegend() {
     }
-    
     public HeatmapLegend(Boolean show) {
         this.show = show;
     }

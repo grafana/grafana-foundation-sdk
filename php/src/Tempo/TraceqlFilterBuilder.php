@@ -32,6 +32,7 @@ class TraceqlFilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The tag for the search filter, for example: .http.status_code, .service.name, status
      */
@@ -41,6 +42,7 @@ class TraceqlFilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The operator that connects the tag to the value, for example: =, >, !=, =~
      */
@@ -50,6 +52,7 @@ class TraceqlFilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The value for the search filter
      * @param string|array<string> $value
@@ -60,6 +63,7 @@ class TraceqlFilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The type of the value, used for example to check whether we need to wrap the value in quotes when generating the query
      */
@@ -69,6 +73,7 @@ class TraceqlFilterBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The scope of the filter, can either be unscoped/all scopes, resource or span
      */

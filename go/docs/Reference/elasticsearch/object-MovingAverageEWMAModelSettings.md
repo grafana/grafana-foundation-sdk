@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> MovingAverageEWMAModelSett
 
 ```go
 type MovingAverageEWMAModelSettings struct {
-    Model string `json:"model"`
+    Model elasticsearch.MovingAverageModel `json:"model"`
     Settings *elasticsearch.ElasticsearchMovingAverageEWMAModelSettingsSettings `json:"settings,omitempty"`
     Window string `json:"window"`
     Minimize bool `json:"minimize"`

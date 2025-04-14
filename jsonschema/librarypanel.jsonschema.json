@@ -566,10 +566,7 @@
         "options"
       ],
       "properties": {
-        "type": {
-          "type": "string",
-          "const": "value"
-        },
+        "type": {},
         "options": {
           "type": "object",
           "additionalProperties": {
@@ -588,10 +585,7 @@
         "options"
       ],
       "properties": {
-        "type": {
-          "type": "string",
-          "const": "range"
-        },
+        "type": {},
         "options": {
           "type": "object",
           "additionalProperties": false,
@@ -627,10 +621,7 @@
         "options"
       ],
       "properties": {
-        "type": {
-          "type": "string",
-          "const": "regex"
-        },
+        "type": {},
         "options": {
           "type": "object",
           "additionalProperties": false,
@@ -661,10 +652,7 @@
         "options"
       ],
       "properties": {
-        "type": {
-          "type": "string",
-          "const": "special"
-        },
+        "type": {},
         "options": {
           "type": "object",
           "additionalProperties": false,

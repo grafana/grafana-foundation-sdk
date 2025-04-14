@@ -19,7 +19,6 @@ func NewBucketScriptBuilder() *BucketScriptBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "bucket_script"
 
 	return builder
 }

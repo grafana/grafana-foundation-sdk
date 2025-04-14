@@ -18,7 +18,6 @@ public class LineConfig {
     public Double width;
     public LineConfig() {
     }
-    
     public LineConfig(ColorDimensionConfig color,Double width) {
         this.color = color;
         this.width = width;

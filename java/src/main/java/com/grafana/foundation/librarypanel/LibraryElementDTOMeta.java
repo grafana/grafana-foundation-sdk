@@ -27,7 +27,6 @@ public class LibraryElementDTOMeta {
     public LibraryElementDTOMetaUser updatedBy;
     public LibraryElementDTOMeta() {
     }
-    
     public LibraryElementDTOMeta(String folderName,String folderUid,Long connectedDashboards,String created,String updated,LibraryElementDTOMetaUser createdBy,LibraryElementDTOMetaUser updatedBy) {
         this.folderName = folderName;
         this.folderUid = folderUid;

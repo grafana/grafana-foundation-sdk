@@ -39,3 +39,4 @@ export class MetricAggregationWithInlineScriptBuilder implements cog.Builder<ela
         return this;
     }
 }
+

@@ -15,7 +15,6 @@ public class OptionsWithTooltip {
     public VizTooltipOptions tooltip;
     public OptionsWithTooltip() {
     }
-    
     public OptionsWithTooltip(VizTooltipOptions tooltip) {
         this.tooltip = tooltip;
     }

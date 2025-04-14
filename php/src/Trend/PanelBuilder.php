@@ -34,6 +34,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Depends on the panel plugin. See the plugin documentation for details.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cog\Dataquery>> $targets
@@ -48,6 +49,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Depends on the panel plugin. See the plugin documentation for details.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cog\Dataquery> $target
@@ -63,6 +65,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel title.
      */
@@ -72,6 +75,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel description.
      */
@@ -81,6 +85,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Whether to display the panel without a background.
      */
@@ -90,6 +95,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The datasource used in all targets.
      */
@@ -99,6 +105,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Grid position.
      */
@@ -108,6 +115,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel height. The height is the number of rows from the top edge of the panel.
      */
@@ -124,6 +132,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel width. The width is the number of columns from the left edge of the panel.
      */
@@ -143,6 +152,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel links.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink>> $links
@@ -157,6 +167,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of template variable to repeat for.
      */
@@ -166,6 +177,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Direction to repeat in if 'repeat' is set.
      * `h` for horizontal, `v` for vertical.
@@ -176,6 +188,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Option for repeated panels that controls max items per row
      * Only relevant for horizontally repeated panels
@@ -186,6 +199,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The maximum number of data points that the panel queries are retrieving.
      */
@@ -195,6 +209,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * List of transformations that are applied to the panel data before rendering.
      * When there are multiple transformations, Grafana applies them in the order they are listed.
@@ -207,6 +222,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * List of transformations that are applied to the panel data before rendering.
      * When there are multiple transformations, Grafana applies them in the order they are listed.
@@ -222,6 +238,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The min time interval setting defines a lower limit for the $__interval and $__interval_ms variables.
      * This value must be formatted as a number followed by a valid time
@@ -234,6 +251,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Overrides the relative time range for individual panels,
      * which causes them to be different than what is selected in
@@ -250,6 +268,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Overrides the time range for individual panels by shifting its start and end relative to the time picker.
      * For example, you can shift the time range for the panel to be two hours earlier than the dashboard time picker setting `2h`.
@@ -262,6 +281,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Controls if the timeFrom or timeShift overrides are shown in the panel header
      */
@@ -271,6 +291,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Dynamically load the panel
      */
@@ -280,6 +301,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The display value for this field.  This supports template variables blank is auto
      */
@@ -293,6 +315,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Unit a field should use. The unit you select is applied to all fields except time.
      * You can use the units ID availables in Grafana or a custom unit.
@@ -315,6 +338,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the number of decimals Grafana includes in the rendered value.
      * If you leave this field blank, Grafana automatically truncates the number of decimals based on the value.
@@ -331,6 +355,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
      */
@@ -344,6 +369,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
      */
@@ -357,6 +383,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Convert input values into a display string
      * @param array<\Grafana\Foundation\Dashboard\ValueMap|\Grafana\Foundation\Dashboard\RangeMap|\Grafana\Foundation\Dashboard\RegexMap|\Grafana\Foundation\Dashboard\SpecialValueMap> $mappings
@@ -371,6 +398,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Map numeric values to states
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\ThresholdsConfig> $thresholds
@@ -386,6 +414,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel color configuration
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\FieldColor> $color
@@ -401,6 +430,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The behavior when clicking on a result
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink>> $links
@@ -419,6 +449,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Alternative to empty string
      */
@@ -432,6 +463,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Overrides are the options applied to specific fields overriding the defaults.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides>> $overrides
@@ -450,11 +482,12 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Overrides are the options applied to specific fields overriding the defaults.
      * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
      */
-    public function withOverride(\Grafana\Foundation\Dashboard\MatcherConfig $matcher,array $properties): static
+    public function withOverride(\Grafana\Foundation\Dashboard\MatcherConfig $matcher, array $properties): static
     {    
         if ($this->internal->fieldConfig === null) {
             $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
@@ -467,11 +500,12 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Adds override rules for a specific field, referred to by its name.
      * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
      */
-    public function overrideByName(string $name,array $properties): static
+    public function overrideByName(string $name, array $properties): static
     {    
         if ($this->internal->fieldConfig === null) {
             $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
@@ -487,11 +521,12 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Adds override rules for the fields whose name match the given regexp.
      * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
      */
-    public function overrideByRegexp(string $regexp,array $properties): static
+    public function overrideByRegexp(string $regexp, array $properties): static
     {    
         if ($this->internal->fieldConfig === null) {
             $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
@@ -507,11 +542,12 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Adds override rules for all the fields of the given type.
      * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
      */
-    public function overrideByFieldType(string $fieldType,array $properties): static
+    public function overrideByFieldType(string $fieldType, array $properties): static
     {    
         if ($this->internal->fieldConfig === null) {
             $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
@@ -527,10 +563,11 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Dashboard\DynamicConfigValue> $properties
      */
-    public function overrideByQuery(string $queryRefId,array $properties): static
+    public function overrideByQuery(string $queryRefId, array $properties): static
     {    
         if ($this->internal->fieldConfig === null) {
             $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
@@ -546,6 +583,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\VizLegendOptions> $legend
      */
@@ -560,6 +598,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\VizTooltipOptions> $tooltip
      */
@@ -574,6 +613,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of the x field to use (defaults to first number)
      */
@@ -587,6 +627,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function drawStyle(\Grafana\Foundation\Common\GraphDrawStyle $drawStyle): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -601,6 +642,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function gradientMode(\Grafana\Foundation\Common\GraphGradientMode $gradientMode): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -615,6 +657,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\GraphThresholdsStyleConfig> $thresholdsStyle
      */
@@ -633,6 +676,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function lineColor(string $lineColor): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -647,6 +691,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function lineWidth(float $lineWidth): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -661,6 +706,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function lineInterpolation(\Grafana\Foundation\Common\LineInterpolation $lineInterpolation): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -675,6 +721,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\LineStyle> $lineStyle
      */
@@ -693,6 +740,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function fillColor(string $fillColor): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -707,6 +755,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function fillOpacity(float $fillOpacity): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -721,6 +770,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function showPoints(\Grafana\Foundation\Common\VisibilityMode $showPoints): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -735,6 +785,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function pointSize(float $pointSize): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -749,6 +800,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function pointColor(string $pointColor): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -763,6 +815,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisPlacement(\Grafana\Foundation\Common\AxisPlacement $axisPlacement): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -777,6 +830,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisColorMode(\Grafana\Foundation\Common\AxisColorMode $axisColorMode): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -791,6 +845,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisLabel(string $axisLabel): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -805,6 +860,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisWidth(float $axisWidth): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -819,6 +875,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisSoftMin(float $axisSoftMin): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -833,6 +890,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisSoftMax(float $axisSoftMax): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -847,6 +905,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisGridShow(bool $axisGridShow): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -861,6 +920,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDistributionConfig> $scaleDistribution
      */
@@ -879,6 +939,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisCenteredZero(bool $axisCenteredZero): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -893,6 +954,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function barAlignment(\Grafana\Foundation\Common\BarAlignment $barAlignment): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -907,6 +969,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function barWidthFactor(float $barWidthFactor): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -921,6 +984,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\StackingConfig> $stacking
      */
@@ -939,6 +1003,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\HideSeriesConfig> $hideFrom
      */
@@ -957,6 +1022,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function transform(\Grafana\Foundation\Common\GraphTransform $transform): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -971,6 +1037,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Indicate if null values should be treated as gaps or connected.
      * When the value is a number, it represents the maximum delta in the
@@ -991,6 +1058,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function fillBelowTo(string $fillBelowTo): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -1005,6 +1073,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function pointSymbol(string $pointSymbol): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -1019,6 +1088,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function axisBorderShow(bool $axisBorderShow): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -1033,6 +1103,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function barMaxWidth(float $barMaxWidth): static
     {    
         if ($this->internal->fieldConfig === null) {
@@ -1047,6 +1118,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param bool|int $insertNulls
      */

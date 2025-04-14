@@ -137,3 +137,4 @@ export class CloudWatchAnnotationQueryBuilder implements cog.Builder<cog.Dataque
         return this;
     }
 }
+

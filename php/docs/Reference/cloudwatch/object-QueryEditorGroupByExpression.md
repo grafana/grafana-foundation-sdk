@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> QueryEditorGroupByExpressio
 ```php
 class QueryEditorGroupByExpression implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Cloudwatch\QueryEditorExpressionType $type;
 
     public \Grafana\Foundation\Cloudwatch\QueryEditorProperty $property;
 

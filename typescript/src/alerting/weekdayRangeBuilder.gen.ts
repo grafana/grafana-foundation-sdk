@@ -27,3 +27,4 @@ export class WeekdayRangeBuilder implements cog.Builder<alerting.WeekdayRange> {
         return this;
     }
 }
+

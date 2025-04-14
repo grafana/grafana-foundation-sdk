@@ -33,6 +33,7 @@ class ReduceDataOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * if showing all values limit
      */
@@ -42,6 +43,7 @@ class ReduceDataOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * When !values, pick one value for the whole field
      * @param array<string> $calcs
@@ -52,6 +54,7 @@ class ReduceDataOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Which fields to show.  By default this is only numeric fields
      */

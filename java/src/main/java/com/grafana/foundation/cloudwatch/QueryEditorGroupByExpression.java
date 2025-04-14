@@ -10,15 +10,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class QueryEditorGroupByExpression {
     @JsonProperty("type")
-    public String type;
+    public QueryEditorExpressionType type;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("property")
     public QueryEditorProperty property;
     public QueryEditorGroupByExpression() {
+        this.type = QueryEditorExpressionType.GROUP_BY;
     }
-    
-    public QueryEditorGroupByExpression(String type,QueryEditorProperty property) {
-        this.type = type;
+    public QueryEditorGroupByExpression(QueryEditorProperty property) {
+        this.type = QueryEditorExpressionType.GROUP_BY;
         this.property = property;
     }
     

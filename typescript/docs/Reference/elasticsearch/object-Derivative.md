@@ -9,7 +9,7 @@ title: <span class="badge object-type-interface"></span> Derivative
 export interface Derivative {
 	pipelineAgg?: string;
 	field?: string;
-	type: "derivative";
+	type: unknown;
 	id: string;
 	settings?: {
 		unit?: string;
@@ -18,9 +18,6 @@ export interface Derivative {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [DerivativeBuilder](./builder-DerivativeBuilder.md)

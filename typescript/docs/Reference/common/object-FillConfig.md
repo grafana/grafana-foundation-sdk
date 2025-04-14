@@ -15,9 +15,6 @@ export interface FillConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [FillConfigBuilder](./builder-FillConfigBuilder.md)

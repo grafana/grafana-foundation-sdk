@@ -52,3 +52,4 @@ export class DataQueryBuilder implements cog.Builder<common.DataQuery> {
         return this;
     }
 }
+

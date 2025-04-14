@@ -26,7 +26,6 @@ public class ElasticsearchMovingAverageHoltWintersModelSettingsSettings {
     public Boolean pad;
     public ElasticsearchMovingAverageHoltWintersModelSettingsSettings() {
     }
-    
     public ElasticsearchMovingAverageHoltWintersModelSettingsSettings(String alpha,String beta,String gamma,String period,Boolean pad) {
         this.alpha = alpha;
         this.beta = beta;

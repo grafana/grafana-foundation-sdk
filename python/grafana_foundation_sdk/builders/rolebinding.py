@@ -5,7 +5,7 @@ from ..cog import builder as cogbuilder
 from ..models import rolebinding
 
 
-class RoleBinding(cogbuilder.Builder[rolebinding.RoleBinding]):    
+class RoleBinding(cogbuilder.Builder[rolebinding.RoleBinding]):
     _internal: rolebinding.RoleBinding
 
     def __init__(self):
@@ -38,7 +38,8 @@ class RoleBinding(cogbuilder.Builder[rolebinding.RoleBinding]):
         return self
     
 
-class BuiltinRoleRef(cogbuilder.Builder[rolebinding.BuiltinRoleRef]):    
+
+class BuiltinRoleRef(cogbuilder.Builder[rolebinding.BuiltinRoleRef]):
     _internal: rolebinding.BuiltinRoleRef
 
     def __init__(self):
@@ -51,13 +52,14 @@ class BuiltinRoleRef(cogbuilder.Builder[rolebinding.BuiltinRoleRef]):
         """
         return self._internal    
     
-    def name(self, name: typing.Literal["viewer", "editor", "admin"]) -> typing.Self:        
+    def name(self, name: typing.Literal["viewer", "editor", "admin"]) -> typing.Self:    
         self._internal.name = name
     
         return self
     
 
-class CustomRoleRef(cogbuilder.Builder[rolebinding.CustomRoleRef]):    
+
+class CustomRoleRef(cogbuilder.Builder[rolebinding.CustomRoleRef]):
     _internal: rolebinding.CustomRoleRef
 
     def __init__(self):
@@ -70,13 +72,14 @@ class CustomRoleRef(cogbuilder.Builder[rolebinding.CustomRoleRef]):
         """
         return self._internal    
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
 
-class RoleBindingSubject(cogbuilder.Builder[rolebinding.RoleBindingSubject]):    
+
+class RoleBindingSubject(cogbuilder.Builder[rolebinding.RoleBindingSubject]):
     _internal: rolebinding.RoleBindingSubject
 
     def __init__(self):
@@ -88,7 +91,7 @@ class RoleBindingSubject(cogbuilder.Builder[rolebinding.RoleBindingSubject]):
         """
         return self._internal    
     
-    def kind(self, kind: typing.Literal["Team", "User"]) -> typing.Self:        
+    def kind(self, kind: typing.Literal["Team", "User"]) -> typing.Self:    
         self._internal.kind = kind
     
         return self

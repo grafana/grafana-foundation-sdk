@@ -62,3 +62,4 @@ export class DatasourceVariableBuilder implements cog.Builder<dashboard.Variable
         return this;
     }
 }
+
