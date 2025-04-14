@@ -7,7 +7,7 @@ namespace Grafana\Foundation\Common;
  */
 class TableColorTextCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
     public ?bool $wrapText;
 
@@ -16,8 +16,7 @@ class TableColorTextCellOptions implements \JsonSerializable
      */
     public function __construct(?bool $wrapText = null)
     {
-        $this->type = "color-text";
-    
+        $this->type = \Grafana\Foundation\Common\TableCellDisplayMode::auto();
         $this->wrapText = $wrapText;
     }
 
@@ -26,7 +25,7 @@ class TableColorTextCellOptions implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, wrapText?: bool} $inputData */
+        /** @var array{type?: "color-text", wrapText?: bool} $inputData */
         $data = $inputData;
         return new self(
             wrapText: $data["wrapText"] ?? null,

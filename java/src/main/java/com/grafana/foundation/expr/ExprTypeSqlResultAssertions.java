@@ -39,7 +39,6 @@ public class ExprTypeSqlResultAssertions {
     public List<Long> typeVersion;
     public ExprTypeSqlResultAssertions() {
     }
-    
     public ExprTypeSqlResultAssertions(Long maxFrames,ExprTypeSqlResultAssertionsType type,List<Long> typeVersion) {
         this.maxFrames = maxFrames;
         this.type = type;

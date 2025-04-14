@@ -13,7 +13,7 @@ class TableSparklineCellOptions:
     Sparkline cell options
     """
 
-    type_val: typing.Literal["sparkline"]
+    type_val: str
     draw_style: typing.Optional[common.GraphDrawStyle]
     gradient_mode: typing.Optional[common.GraphGradientMode]
     thresholds_style: typing.Optional[common.GraphThresholdsStyleConfig]

@@ -14,7 +14,6 @@ public class Filter {
     public String label;
     public Filter() {
     }
-    
     public Filter(String query,String label) {
         this.query = query;
         this.label = label;

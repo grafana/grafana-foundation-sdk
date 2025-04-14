@@ -14,9 +14,6 @@ export interface BucketAggregationWithField {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [BucketAggregationWithFieldBuilder](./builder-BucketAggregationWithFieldBuilder.md)

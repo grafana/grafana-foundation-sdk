@@ -15,17 +15,17 @@ public class Histogram {
     @JsonProperty("id")
     public String id;
     @JsonProperty("type")
-    public String type;
+    public BucketAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("settings")
     public ElasticsearchHistogramSettings settings;
     public Histogram() {
+        this.type = BucketAggregationType.HISTOGRAM;
     }
-    
-    public Histogram(String field,String id,String type,ElasticsearchHistogramSettings settings) {
+    public Histogram(String field,String id,ElasticsearchHistogramSettings settings) {
         this.field = field;
         this.id = id;
-        this.type = type;
+        this.type = BucketAggregationType.HISTOGRAM;
         this.settings = settings;
     }
     

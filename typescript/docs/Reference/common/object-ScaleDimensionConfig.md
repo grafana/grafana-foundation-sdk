@@ -17,9 +17,6 @@ export interface ScaleDimensionConfig {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [ScaleDimensionConfigBuilder](./builder-ScaleDimensionConfigBuilder.md)

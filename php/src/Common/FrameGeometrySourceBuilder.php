@@ -29,6 +29,7 @@ class FrameGeometrySourceBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Field mappings
      */
@@ -38,30 +39,35 @@ class FrameGeometrySourceBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function latitude(string $latitude): static
     {
         $this->internal->latitude = $latitude;
     
         return $this;
     }
+
     public function longitude(string $longitude): static
     {
         $this->internal->longitude = $longitude;
     
         return $this;
     }
+
     public function wkt(string $wkt): static
     {
         $this->internal->wkt = $wkt;
     
         return $this;
     }
+
     public function lookup(string $lookup): static
     {
         $this->internal->lookup = $lookup;
     
         return $this;
     }
+
     /**
      * Path to Gazetteer
      */

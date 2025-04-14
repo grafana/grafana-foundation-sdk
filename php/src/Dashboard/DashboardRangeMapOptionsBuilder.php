@@ -32,6 +32,7 @@ class DashboardRangeMapOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Max value of the range. It can be null which means +Infinity
      */
@@ -41,6 +42,7 @@ class DashboardRangeMapOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Config to apply when the value is within the range
      */

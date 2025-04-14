@@ -121,7 +121,6 @@ public class PanelModel {
     public PanelModel() {
         this.transparent = false;
     }
-    
     public PanelModel(String type,String pluginVersion,List<Dataquery> targets,String title,String description,Boolean transparent,DataSourceRef datasource,List<DashboardLink> links,String repeat,PanelModelRepeatDirection repeatDirection,Double maxPerRow,Double maxDataPoints,List<DataTransformerConfig> transformations,String interval,String timeFrom,String timeShift,Boolean hideTimeOverride,String cacheTimeout,Double queryCachingTTL,Object options,FieldConfigSource fieldConfig) {
         this.type = type;
         this.pluginVersion = pluginVersion;

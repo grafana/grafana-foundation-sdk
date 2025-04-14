@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> Min
 
 ```typescript
 export interface Min {
-	type: "min";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -18,9 +18,6 @@ export interface Min {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MinBuilder](./builder-MinBuilder.md)

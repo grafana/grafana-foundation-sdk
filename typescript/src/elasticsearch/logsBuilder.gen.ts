@@ -8,7 +8,6 @@ export class LogsBuilder implements cog.Builder<elasticsearch.Logs> {
 
     constructor() {
         this.internal = elasticsearch.defaultLogs();
-        this.internal.type = "logs";
     }
 
     /**
@@ -35,3 +34,4 @@ export class LogsBuilder implements cog.Builder<elasticsearch.Logs> {
         return this;
     }
 }
+

@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> MovingAverageHoltModelS
 
 ```typescript
 export interface MovingAverageHoltModelSettings {
-	model: "holt";
+	model: elasticsearch.MovingAverageModel.Holt;
 	settings: {
 		alpha?: string;
 		beta?: string;
@@ -18,9 +18,6 @@ export interface MovingAverageHoltModelSettings {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MovingAverageHoltModelSettingsBuilder](./builder-MovingAverageHoltModelSettingsBuilder.md)

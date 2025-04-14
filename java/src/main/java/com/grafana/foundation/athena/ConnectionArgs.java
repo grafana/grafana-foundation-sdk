@@ -31,7 +31,6 @@ public class ConnectionArgs {
         this.resultReuseEnabled = false;
         this.resultReuseMaxAgeInMinutes = 60.0;
     }
-    
     public ConnectionArgs(String region,String catalog,String database,Boolean resultReuseEnabled,Double resultReuseMaxAgeInMinutes) {
         this.region = region;
         this.catalog = catalog;

@@ -17,7 +17,6 @@ public class Options {
     public EdgeOptions edges;
     public Options() {
     }
-    
     public Options(NodeOptions nodes,EdgeOptions edges) {
         this.nodes = nodes;
         this.edges = edges;

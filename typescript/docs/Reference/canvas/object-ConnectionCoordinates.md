@@ -12,9 +12,6 @@ export interface ConnectionCoordinates {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [ConnectionCoordinatesBuilder](./builder-ConnectionCoordinatesBuilder.md)

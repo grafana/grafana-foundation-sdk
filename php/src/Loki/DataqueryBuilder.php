@@ -32,6 +32,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Used to override the name of the series.
      */
@@ -41,6 +42,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Used to limit the number of log rows returned.
      */
@@ -50,6 +52,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated, now use step.
      */
@@ -59,12 +62,14 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function editorMode(\Grafana\Foundation\Loki\QueryEditorMode $editorMode): static
     {
         $this->internal->editorMode = $editorMode;
     
         return $this;
     }
+
     /**
      * @deprecated, now use queryType.
      */
@@ -74,6 +79,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @deprecated, now use queryType.
      */
@@ -83,6 +89,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Used to set step value for range queries.
      */
@@ -92,6 +99,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * A unique identifier for the query within the list of targets.
      * In server side expressions, the refId is used as a variable name to identify results.
@@ -103,6 +111,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
      */
@@ -112,6 +121,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -122,6 +132,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.

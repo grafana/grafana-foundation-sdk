@@ -20,6 +20,3 @@ export interface LibraryPanelRef {
 }
 
 ```
-## Methods
-
-No methods.

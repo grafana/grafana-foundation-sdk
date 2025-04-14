@@ -23,7 +23,6 @@ public class ThresholdsConfig {
     public List<Threshold> steps;
     public ThresholdsConfig() {
     }
-    
     public ThresholdsConfig(ThresholdsMode mode,List<Threshold> steps) {
         this.mode = mode;
         this.steps = steps;

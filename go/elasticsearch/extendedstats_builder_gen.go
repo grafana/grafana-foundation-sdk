@@ -19,7 +19,6 @@ func NewExtendedStatsBuilder() *ExtendedStatsBuilder {
 		internal: resource,
 		errors:   make(map[string]cog.BuildErrors),
 	}
-	builder.internal.Type = "extended_stats"
 
 	return builder
 }

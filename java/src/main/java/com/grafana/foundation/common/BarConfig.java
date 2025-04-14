@@ -21,7 +21,6 @@ public class BarConfig {
     public Double barMaxWidth;
     public BarConfig() {
     }
-    
     public BarConfig(BarAlignment barAlignment,Double barWidthFactor,Double barMaxWidth) {
         this.barAlignment = barAlignment;
         this.barWidthFactor = barWidthFactor;

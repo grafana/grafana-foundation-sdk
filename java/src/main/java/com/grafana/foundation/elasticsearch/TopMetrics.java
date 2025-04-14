@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class TopMetrics {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonProperty("id")
     public String id;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -20,10 +20,10 @@ public class TopMetrics {
     @JsonProperty("hide")
     public Boolean hide;
     public TopMetrics() {
+        this.type = MetricAggregationType.TOP_METRICS;
     }
-    
-    public TopMetrics(String type,String id,ElasticsearchTopMetricsSettings settings,Boolean hide) {
-        this.type = type;
+    public TopMetrics(String id,ElasticsearchTopMetricsSettings settings,Boolean hide) {
+        this.type = MetricAggregationType.TOP_METRICS;
         this.id = id;
         this.settings = settings;
         this.hide = hide;

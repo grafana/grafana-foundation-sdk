@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> Max
 
 ```typescript
 export interface Max {
-	type: "max";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -18,9 +18,6 @@ export interface Max {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MaxBuilder](./builder-MaxBuilder.md)

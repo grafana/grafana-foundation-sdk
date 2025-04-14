@@ -18,6 +18,3 @@ export interface MatcherConfig {
 }
 
 ```
-## Methods
-
-No methods.

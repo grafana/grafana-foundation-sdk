@@ -14,7 +14,6 @@ public class ElasticsearchMovingAverageEWMAModelSettingsSettings {
     public String alpha;
     public ElasticsearchMovingAverageEWMAModelSettingsSettings() {
     }
-    
     public ElasticsearchMovingAverageEWMAModelSettingsSettings(String alpha) {
         this.alpha = alpha;
     }

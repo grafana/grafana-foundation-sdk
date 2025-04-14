@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> RawData
 
 ```typescript
 export interface RawData {
-	type: "raw_data";
+	type: unknown;
 	id: string;
 	settings?: {
 		size?: string;
@@ -16,9 +16,6 @@ export interface RawData {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [RawDataBuilder](./builder-RawDataBuilder.md)

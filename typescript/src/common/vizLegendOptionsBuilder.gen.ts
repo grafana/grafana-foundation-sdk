@@ -63,3 +63,4 @@ export class VizLegendOptionsBuilder implements cog.Builder<common.VizLegendOpti
         return this;
     }
 }
+

@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> Average
 
 ```go
 type Average struct {
-    Type string `json:"type"`
+    Type elasticsearch.MetricAggregationType `json:"type"`
     Field *string `json:"field,omitempty"`
     Id string `json:"id"`
     Settings *elasticsearch.ElasticsearchAverageSettings `json:"settings,omitempty"`

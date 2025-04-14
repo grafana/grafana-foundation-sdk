@@ -33,6 +33,7 @@ class PromQLQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * PromQL expression/query to be executed.
      */
@@ -42,6 +43,7 @@ class PromQLQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * PromQL min step
      */

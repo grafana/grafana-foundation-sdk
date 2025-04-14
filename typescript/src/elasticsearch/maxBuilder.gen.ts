@@ -8,7 +8,6 @@ export class MaxBuilder implements cog.Builder<elasticsearch.Max> {
 
     constructor() {
         this.internal = elasticsearch.defaultMax();
-        this.internal.type = "max";
     }
 
     /**
@@ -41,3 +40,4 @@ export class MaxBuilder implements cog.Builder<elasticsearch.Max> {
         return this;
     }
 }
+

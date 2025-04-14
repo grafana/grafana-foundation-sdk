@@ -24,7 +24,6 @@ public class NodeOptions {
     public List<ArcOption> arcs;
     public NodeOptions() {
     }
-    
     public NodeOptions(String mainStatUnit,String secondaryStatUnit,List<ArcOption> arcs) {
         this.mainStatUnit = mainStatUnit;
         this.secondaryStatUnit = secondaryStatUnit;

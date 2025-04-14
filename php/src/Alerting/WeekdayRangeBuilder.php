@@ -29,6 +29,7 @@ class WeekdayRangeBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function end(int $end): static
     {
         $this->internal->end = $end;

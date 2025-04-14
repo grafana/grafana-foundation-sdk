@@ -8,7 +8,6 @@ public class CumulativeSumBuilder implements com.grafana.foundation.cog.Builder<
     
     public CumulativeSumBuilder() {
         this.internal = new CumulativeSum();
-        this.internal.type = "cumulative_sum";
     }
     public CumulativeSumBuilder pipelineAgg(String pipelineAgg) {
         this.internal.pipelineAgg = pipelineAgg;

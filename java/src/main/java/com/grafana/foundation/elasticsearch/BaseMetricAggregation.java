@@ -19,7 +19,6 @@ public class BaseMetricAggregation {
     public Boolean hide;
     public BaseMetricAggregation() {
     }
-    
     public BaseMetricAggregation(MetricAggregationType type,String id,Boolean hide) {
         this.type = type;
         this.id = id;

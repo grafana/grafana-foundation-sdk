@@ -37,9 +37,6 @@ export interface MetricQuery {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MetricQueryBuilder](./builder-MetricQueryBuilder.md)

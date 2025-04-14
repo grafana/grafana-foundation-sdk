@@ -8,7 +8,6 @@ export class RateBuilder implements cog.Builder<elasticsearch.Rate> {
 
     constructor() {
         this.internal = elasticsearch.defaultRate();
-        this.internal.type = "rate";
     }
 
     /**
@@ -41,3 +40,4 @@ export class RateBuilder implements cog.Builder<elasticsearch.Rate> {
         return this;
     }
 }
+

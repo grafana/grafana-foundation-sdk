@@ -65,7 +65,6 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
     public CloudWatchLogsQuery() {
         this.queryMode = CloudWatchQueryMode.LOGS;
     }
-    
     public CloudWatchLogsQuery(CloudWatchQueryMode queryMode,String id,String region,String expression,List<String> statsGroups,List<LogGroup> logGroups,List<String> logGroupNames,String refId,Boolean hide,String queryType,LogsQueryLanguage queryLanguage,DataSourceRef datasource) {
         this.queryMode = queryMode;
         this.id = id;

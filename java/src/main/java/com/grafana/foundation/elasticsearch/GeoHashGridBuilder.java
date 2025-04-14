@@ -8,7 +8,6 @@ public class GeoHashGridBuilder implements com.grafana.foundation.cog.Builder<Ge
     
     public GeoHashGridBuilder() {
         this.internal = new GeoHashGrid();
-        this.internal.type = "geohash_grid";
     }
     public GeoHashGridBuilder field(String field) {
         this.internal.field = field;

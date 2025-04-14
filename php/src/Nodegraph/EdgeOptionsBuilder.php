@@ -32,6 +32,7 @@ class EdgeOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Unit for the secondary stat to override what ever is set in the data frame.
      */

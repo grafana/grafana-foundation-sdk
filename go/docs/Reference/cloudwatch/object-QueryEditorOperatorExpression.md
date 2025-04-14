@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> QueryEditorOperatorExpress
 
 ```go
 type QueryEditorOperatorExpression struct {
-    Type string `json:"type"`
+    Type cloudwatch.QueryEditorExpressionType `json:"type"`
     Property cloudwatch.QueryEditorProperty `json:"property"`
     // TS type is operator: QueryEditorOperator<QueryEditorOperatorValueType>, extended in veneer
     Operator cloudwatch.QueryEditorOperator `json:"operator"`

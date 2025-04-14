@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> Filters
 ```python
 class Filters:
     id_val: str
-    type_val: typing.Literal["filters"]
+    type_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchFiltersSettings]
 ```
 ## Methods

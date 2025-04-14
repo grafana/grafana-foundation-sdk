@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> TopMetrics
 
 ```python
 class TopMetrics:
-    type_val: typing.Literal["top_metrics"]
+    type_val: str
     id_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchTopMetricsSettings]
     hide: typing.Optional[bool]

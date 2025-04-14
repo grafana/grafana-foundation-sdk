@@ -9,7 +9,7 @@ title: <span class="badge object-type-class"></span> DateHistogram
 class DateHistogram:
     field: typing.Optional[str]
     id_val: str
-    type_val: typing.Literal["date_histogram"]
+    type_val: str
     settings: typing.Optional[elasticsearch.ElasticsearchDateHistogramSettings]
 ```
 ## Methods

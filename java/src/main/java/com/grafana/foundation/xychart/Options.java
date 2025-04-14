@@ -33,7 +33,6 @@ public class Options {
     public List<ScatterSeriesConfig> series;
     public Options() {
     }
-    
     public Options(SeriesMapping seriesMapping,XYDimensionConfig dims,VizLegendOptions legend,VizTooltipOptions tooltip,List<ScatterSeriesConfig> series) {
         this.seriesMapping = seriesMapping;
         this.dims = dims;

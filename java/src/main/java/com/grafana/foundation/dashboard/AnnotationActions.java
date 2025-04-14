@@ -20,7 +20,6 @@ public class AnnotationActions {
     public Boolean canEdit;
     public AnnotationActions() {
     }
-    
     public AnnotationActions(Boolean canAdd,Boolean canDelete,Boolean canEdit) {
         this.canAdd = canAdd;
         this.canDelete = canDelete;

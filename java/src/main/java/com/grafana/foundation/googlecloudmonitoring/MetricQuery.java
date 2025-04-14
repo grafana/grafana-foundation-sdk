@@ -64,7 +64,6 @@ public class MetricQuery {
     public MetricQuery() {
         this.graphPeriod = "disabled";
     }
-    
     public MetricQuery(String projectName,String perSeriesAligner,String alignmentPeriod,String aliasBy,String editorMode,String metricType,String crossSeriesReducer,List<String> groupBys,List<String> filters,MetricKind metricKind,String valueType,String view,String query,PreprocessorType preprocessor,String graphPeriod) {
         this.projectName = projectName;
         this.perSeriesAligner = perSeriesAligner;

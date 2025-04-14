@@ -24,6 +24,11 @@ public class TypeSqlBuilder implements com.grafana.foundation.cog.Builder<com.gr
         return this;
     }
     
+    public TypeSqlBuilder format(String format) {
+        this.internal.format = format;
+        return this;
+    }
+    
     public TypeSqlBuilder hide(Boolean hide) {
         this.internal.hide = hide;
         return this;

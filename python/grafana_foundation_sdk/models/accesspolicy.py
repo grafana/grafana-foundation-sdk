@@ -105,13 +105,13 @@ class AccessRule:
     kind: str
     # READ, WRITE, CREATE, DELETE, ...
     # should move to k8s style verbs like: "get", "list", "watch", "create", "update", "patch", "delete"
-    verb: typing.Union[typing.Literal["*"]]
+    verb: typing.Union[typing.Literal["*"], typing.Literal["none"], str]
     # Specific sub-elements like "alert.rules" or "dashboard.permissions"????
     target: typing.Optional[str]
 
-    def __init__(self, kind: str = "*", verb: typing.Union[typing.Literal["*"]] = "*", target: typing.Optional[str] = None):
+    def __init__(self, kind: str = "*", verb: typing.Optional[typing.Union[typing.Literal["*"], typing.Literal["none"], str]] = None, target: typing.Optional[str] = None):
         self.kind = kind
-        self.verb = verb
+        self.verb = verb if verb is not None else "*"
         self.target = target
 
     def to_json(self) -> dict[str, object]:

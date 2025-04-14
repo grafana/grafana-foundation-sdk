@@ -29,24 +29,28 @@ class ConnectionArgsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function catalog(string $catalog): static
     {
         $this->internal->catalog = $catalog;
     
         return $this;
     }
+
     public function database(string $database): static
     {
         $this->internal->database = $database;
     
         return $this;
     }
+
     public function resultReuseEnabled(bool $resultReuseEnabled): static
     {
         $this->internal->resultReuseEnabled = $resultReuseEnabled;
     
         return $this;
     }
+
     public function resultReuseMaxAgeInMinutes(float $resultReuseMaxAgeInMinutes): static
     {
         $this->internal->resultReuseMaxAgeInMinutes = $resultReuseMaxAgeInMinutes;

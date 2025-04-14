@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Logs {
     @JsonProperty("type")
-    public String type;
+    public MetricAggregationType type;
     @JsonProperty("id")
     public String id;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -20,10 +20,10 @@ public class Logs {
     @JsonProperty("hide")
     public Boolean hide;
     public Logs() {
+        this.type = MetricAggregationType.LOGS;
     }
-    
-    public Logs(String type,String id,ElasticsearchLogsSettings settings,Boolean hide) {
-        this.type = type;
+    public Logs(String id,ElasticsearchLogsSettings settings,Boolean hide) {
+        this.type = MetricAggregationType.LOGS;
         this.id = id;
         this.settings = settings;
         this.hide = hide;

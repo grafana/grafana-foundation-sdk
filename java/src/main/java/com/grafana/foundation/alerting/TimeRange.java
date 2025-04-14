@@ -18,7 +18,6 @@ public class TimeRange {
     public String to;
     public TimeRange() {
     }
-    
     public TimeRange(String from,String to) {
         this.from = from;
         this.to = to;

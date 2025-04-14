@@ -8,7 +8,7 @@ class Nested implements \JsonSerializable
 
     public string $id;
 
-    public string $type;
+    public \Grafana\Foundation\Elasticsearch\BucketAggregationType $type;
 
     /**
      * @var mixed|null
@@ -24,8 +24,7 @@ class Nested implements \JsonSerializable
     {
         $this->field = $field;
         $this->id = $id ?: "";
-        $this->type = "nested";
-    
+        $this->type = \Grafana\Foundation\Elasticsearch\BucketAggregationType::terms();
         $this->settings = $settings;
     }
 
@@ -34,7 +33,7 @@ class Nested implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{field?: string, id?: string, type?: string, settings?: mixed} $inputData */
+        /** @var array{field?: string, id?: string, type?: "nested", settings?: mixed} $inputData */
         $data = $inputData;
         return new self(
             field: $data["field"] ?? null,

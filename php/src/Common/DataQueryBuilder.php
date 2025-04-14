@@ -37,6 +37,7 @@ class DataQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
      */
@@ -46,6 +47,7 @@ class DataQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Specify the query flavor
      * TODO make this required and give it a default
@@ -56,6 +58,7 @@ class DataQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.
