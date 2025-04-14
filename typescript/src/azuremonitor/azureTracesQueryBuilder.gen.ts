@@ -55,3 +55,4 @@ export class AzureTracesQueryBuilder implements cog.Builder<azuremonitor.AzureTr
         return this;
     }
 }
+

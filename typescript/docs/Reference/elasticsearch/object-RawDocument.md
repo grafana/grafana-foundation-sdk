@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> RawDocument
 
 ```typescript
 export interface RawDocument {
-	type: "raw_document";
+	type: unknown;
 	id: string;
 	settings?: {
 		size?: string;
@@ -16,9 +16,6 @@ export interface RawDocument {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [RawDocumentBuilder](./builder-RawDocumentBuilder.md)

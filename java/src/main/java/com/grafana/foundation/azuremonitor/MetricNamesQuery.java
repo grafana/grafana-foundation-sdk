@@ -24,7 +24,6 @@ public class MetricNamesQuery {
     public String metricNamespace;
     public MetricNamesQuery() {
     }
-    
     public MetricNamesQuery(String rawQuery,String kind,String subscription,String resourceGroup,String resourceName,String metricNamespace) {
         this.rawQuery = rawQuery;
         this.kind = kind;

@@ -29,3 +29,4 @@ export class TimeRangeBuilder implements cog.Builder<testdata.TimeRange> {
         return this;
     }
 }
+

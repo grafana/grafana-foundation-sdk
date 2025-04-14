@@ -13,7 +13,7 @@ class TableColoredBackgroundCellOptions:
     Colored background cell options
     """
 
-    type_val: typing.Literal["color-background"]
+    type_val: str
     mode: typing.Optional[common.TableCellBackgroundDisplayMode]
     apply_to_row: typing.Optional[bool]
 ```

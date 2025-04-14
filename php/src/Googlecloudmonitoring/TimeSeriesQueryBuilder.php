@@ -33,6 +33,7 @@ class TimeSeriesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * MQL query to be executed.
      */
@@ -42,6 +43,7 @@ class TimeSeriesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * To disable the graphPeriod, it should explictly be set to 'disabled'.
      */

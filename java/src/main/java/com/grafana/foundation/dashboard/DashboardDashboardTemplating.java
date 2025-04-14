@@ -16,7 +16,6 @@ public class DashboardDashboardTemplating {
     public List<VariableModel> list;
     public DashboardDashboardTemplating() {
     }
-    
     public DashboardDashboardTemplating(List<VariableModel> list) {
         this.list = list;
     }

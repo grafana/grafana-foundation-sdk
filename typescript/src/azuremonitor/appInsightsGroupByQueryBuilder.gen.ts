@@ -28,3 +28,4 @@ export class AppInsightsGroupByQueryBuilder implements cog.Builder<azuremonitor.
         return this;
     }
 }
+

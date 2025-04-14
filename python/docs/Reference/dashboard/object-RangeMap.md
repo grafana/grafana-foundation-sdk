@@ -16,7 +16,7 @@ class RangeMap:
     For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
     """
 
-    type_val: typing.Literal["range"]
+    type_val: str
     # Range to match against and the result to apply when the value is within the range
     options: dashboard.DashboardRangeMapOptions
 ```

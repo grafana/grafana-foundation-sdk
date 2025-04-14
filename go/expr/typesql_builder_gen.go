@@ -47,6 +47,12 @@ func (builder *TypeSqlBuilder) Expression(expression string) *TypeSqlBuilder {
 	return builder
 }
 
+func (builder *TypeSqlBuilder) Format(format string) *TypeSqlBuilder {
+	builder.internal.Format = format
+
+	return builder
+}
+
 // true if query is disabled (ie should not be returned to the dashboard)
 // NOTE: this does not always imply that the query should not be executed since
 // the results from a hidden query may be used as the input to other queries (SSE etc)

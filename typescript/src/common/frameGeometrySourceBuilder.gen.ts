@@ -54,3 +54,4 @@ export class FrameGeometrySourceBuilder implements cog.Builder<common.FrameGeome
         return this;
     }
 }
+

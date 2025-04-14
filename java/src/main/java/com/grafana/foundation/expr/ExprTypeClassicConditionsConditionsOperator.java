@@ -14,7 +14,6 @@ public class ExprTypeClassicConditionsConditionsOperator {
     public ExprTypeClassicConditionsConditionsOperatorType type;
     public ExprTypeClassicConditionsConditionsOperator() {
     }
-    
     public ExprTypeClassicConditionsConditionsOperator(ExprTypeClassicConditionsConditionsOperatorType type) {
         this.type = type;
     }

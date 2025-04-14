@@ -107,7 +107,6 @@ public class CloudWatchMetricsQuery implements com.grafana.foundation.cog.varian
     public CloudWatchMetricsQuery() {
         this.queryMode = CloudWatchQueryMode.METRICS;
     }
-    
     public CloudWatchMetricsQuery(CloudWatchQueryMode queryMode,MetricQueryType metricQueryType,MetricEditorMode metricEditorMode,String id,String alias,String label,String expression,String sqlExpression,String refId,Boolean hide,String queryType,String region,String namespace,String metricName,Map<String, StringOrArrayOfString> dimensions,Boolean matchExact,String period,String accountId,String statistic,SQLExpression sql,DataSourceRef datasource,List<String> statistics) {
         this.queryMode = queryMode;
         this.metricQueryType = metricQueryType;

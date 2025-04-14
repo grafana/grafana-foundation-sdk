@@ -154,3 +154,4 @@ export class DashboardMetaBuilder implements cog.Builder<dashboard.DashboardMeta
         return this;
     }
 }
+

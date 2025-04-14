@@ -29,6 +29,7 @@ class ExtendedStatBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function value(\Grafana\Foundation\Elasticsearch\ExtendedStatMetaType $value): static
     {
         $this->internal->value = $value;

@@ -8,7 +8,6 @@ public class AverageBuilder implements com.grafana.foundation.cog.Builder<Averag
     
     public AverageBuilder() {
         this.internal = new Average();
-        this.internal.type = "avg";
     }
     public AverageBuilder field(String field) {
         this.internal.field = field;

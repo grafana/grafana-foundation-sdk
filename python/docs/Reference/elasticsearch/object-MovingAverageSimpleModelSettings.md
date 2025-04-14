@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> MovingAverageSimpleModelSet
 
 ```python
 class MovingAverageSimpleModelSettings:
-    model: typing.Literal["simple"]
+    model: str
     window: str
     predict: str
 ```

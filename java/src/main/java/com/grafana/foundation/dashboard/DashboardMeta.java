@@ -93,7 +93,6 @@ public class DashboardMeta {
     public Long version;
     public DashboardMeta() {
     }
-    
     public DashboardMeta(AnnotationPermission annotationsPermissions,Boolean canAdmin,Boolean canDelete,Boolean canEdit,Boolean canSave,Boolean canStar,String created,String createdBy,String expires,Long folderId,String folderTitle,String folderUid,String folderUrl,Boolean hasAcl,Boolean isFolder,Boolean isSnapshot,Boolean isStarred,Boolean provisioned,String provisionedExternalId,Boolean publicDashboardEnabled,String publicDashboardUid,String slug,String type,String updated,String updatedBy,String url,Long version) {
         this.annotationsPermissions = annotationsPermissions;
         this.canAdmin = canAdmin;

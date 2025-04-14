@@ -19,7 +19,6 @@ public class HeatmapCalculationOptions {
     public HeatmapCalculationBucketConfig yBuckets;
     public HeatmapCalculationOptions() {
     }
-    
     public HeatmapCalculationOptions(HeatmapCalculationBucketConfig xBuckets,HeatmapCalculationBucketConfig yBuckets) {
         this.xBuckets = xBuckets;
         this.yBuckets = yBuckets;

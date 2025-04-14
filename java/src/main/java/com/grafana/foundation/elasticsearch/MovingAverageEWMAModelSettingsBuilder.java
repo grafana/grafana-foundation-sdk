@@ -8,7 +8,6 @@ public class MovingAverageEWMAModelSettingsBuilder implements com.grafana.founda
     
     public MovingAverageEWMAModelSettingsBuilder() {
         this.internal = new MovingAverageEWMAModelSettings();
-        this.internal.model = "ewma";
     }
     public MovingAverageEWMAModelSettingsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageEWMAModelSettingsSettings> settings) {
         this.internal.settings = settings.build();

@@ -7,12 +7,11 @@ namespace Grafana\Foundation\Common;
  */
 class TableColorTextCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
     public function __construct()
     {
-        $this->type = "color-text";
-    
+        $this->type = \Grafana\Foundation\Common\TableCellDisplayMode::auto();
     }
 
     /**

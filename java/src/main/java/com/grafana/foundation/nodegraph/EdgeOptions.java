@@ -19,7 +19,6 @@ public class EdgeOptions {
     public String secondaryStatUnit;
     public EdgeOptions() {
     }
-    
     public EdgeOptions(String mainStatUnit,String secondaryStatUnit) {
         this.mainStatUnit = mainStatUnit;
         this.secondaryStatUnit = secondaryStatUnit;

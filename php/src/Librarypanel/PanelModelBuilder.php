@@ -36,6 +36,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The version of the plugin that is used for this panel. This is used to find the plugin to display the panel and to migrate old panel configs.
      */
@@ -45,6 +46,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Depends on the panel plugin. See the plugin documentation for details.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cog\Dataquery>> $targets
@@ -59,6 +61,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel title.
      */
@@ -68,6 +71,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel description.
      */
@@ -77,6 +81,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Whether to display the panel without a background.
      */
@@ -86,6 +91,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The datasource used in all targets.
      */
@@ -95,6 +101,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Panel links.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardLink>> $links
@@ -109,6 +116,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Name of template variable to repeat for.
      */
@@ -118,6 +126,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Direction to repeat in if 'repeat' is set.
      * `h` for horizontal, `v` for vertical.
@@ -128,6 +137,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Option for repeated panels that controls max items per row
      * Only relevant for horizontally repeated panels
@@ -138,6 +148,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The maximum number of data points that the panel queries are retrieving.
      */
@@ -147,6 +158,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * List of transformations that are applied to the panel data before rendering.
      * When there are multiple transformations, Grafana applies them in the order they are listed.
@@ -159,6 +171,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * The min time interval setting defines a lower limit for the $__interval and $__interval_ms variables.
      * This value must be formatted as a number followed by a valid time
@@ -171,6 +184,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Overrides the relative time range for individual panels,
      * which causes them to be different than what is selected in
@@ -187,6 +201,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Overrides the time range for individual panels by shifting its start and end relative to the time picker.
      * For example, you can shift the time range for the panel to be two hours earlier than the dashboard time picker setting `2h`.
@@ -199,6 +214,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Controls if the timeFrom or timeShift overrides are shown in the panel header
      */
@@ -208,6 +224,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Sets panel queries cache timeout.
      */
@@ -217,6 +234,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Overrides the data source configured time-to-live for a query cache item in milliseconds
      */
@@ -226,6 +244,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * It depends on the panel plugin. They are specified by the Options field in panel plugin schemas.
      * @param mixed $options
@@ -236,6 +255,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Field options allow you to change how the data is displayed in your visualizations.
      */

@@ -16,7 +16,6 @@ public class LibraryElementDTOMetaUser {
     public String avatarUrl;
     public LibraryElementDTOMetaUser() {
     }
-    
     public LibraryElementDTOMetaUser(Long id,String name,String avatarUrl) {
         this.id = id;
         this.name = name;

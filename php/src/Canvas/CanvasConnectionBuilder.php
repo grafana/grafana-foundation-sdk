@@ -33,6 +33,7 @@ class CanvasConnectionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Canvas\ConnectionCoordinates> $target
      */
@@ -43,18 +44,21 @@ class CanvasConnectionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function targetName(string $targetName): static
     {
         $this->internal->targetName = $targetName;
     
         return $this;
     }
+
     public function path(\Grafana\Foundation\Canvas\ConnectionPath $path): static
     {
         $this->internal->path = $path;
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ColorDimensionConfig> $color
      */
@@ -65,6 +69,7 @@ class CanvasConnectionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDimensionConfig> $size
      */
@@ -75,6 +80,7 @@ class CanvasConnectionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Canvas\ConnectionCoordinates>> $vertices
      */
@@ -88,6 +94,7 @@ class CanvasConnectionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Canvas\ConnectionCoordinates> $sourceOriginal
      */
@@ -98,6 +105,7 @@ class CanvasConnectionBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Canvas\ConnectionCoordinates> $targetOriginal
      */

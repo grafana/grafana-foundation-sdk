@@ -25,9 +25,6 @@ export interface MapLayerOptions {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [MapLayerOptionsBuilder](./builder-MapLayerOptionsBuilder.md)

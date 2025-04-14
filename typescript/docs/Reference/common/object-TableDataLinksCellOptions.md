@@ -9,10 +9,7 @@ Show data links in the cell
 
 ```typescript
 export interface TableDataLinksCellOptions {
-	type: "data-links";
+	type: common.TableCellDisplayMode.DataLinks;
 }
 
 ```
-## Methods
-
-No methods.

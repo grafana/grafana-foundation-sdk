@@ -24,3 +24,4 @@ export class HideableFieldConfigBuilder implements cog.Builder<common.HideableFi
         return this;
     }
 }
+

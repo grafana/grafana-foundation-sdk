@@ -12,7 +12,6 @@ public class ExprTypeClassicConditionsConditionsReducer {
     public String type;
     public ExprTypeClassicConditionsConditionsReducer() {
     }
-    
     public ExprTypeClassicConditionsConditionsReducer(String type) {
         this.type = type;
     }

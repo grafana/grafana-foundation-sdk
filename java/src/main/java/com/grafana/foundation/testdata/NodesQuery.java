@@ -26,7 +26,6 @@ public class NodesQuery {
     public NodesQueryType type;
     public NodesQuery() {
     }
-    
     public NodesQuery(Long count,Long seed,NodesQueryType type) {
         this.count = count;
         this.seed = seed;

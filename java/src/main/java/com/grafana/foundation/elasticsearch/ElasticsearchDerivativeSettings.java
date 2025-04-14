@@ -14,7 +14,6 @@ public class ElasticsearchDerivativeSettings {
     public String unit;
     public ElasticsearchDerivativeSettings() {
     }
-    
     public ElasticsearchDerivativeSettings(String unit) {
         this.unit = unit;
     }

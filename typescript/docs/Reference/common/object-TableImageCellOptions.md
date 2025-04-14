@@ -9,10 +9,7 @@ Json view cell options
 
 ```typescript
 export interface TableImageCellOptions {
-	type: "image";
+	type: common.TableCellDisplayMode.Image;
 }
 
 ```
-## Methods
-
-No methods.

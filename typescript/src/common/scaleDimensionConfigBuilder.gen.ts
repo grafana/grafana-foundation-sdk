@@ -44,3 +44,4 @@ export class ScaleDimensionConfigBuilder implements cog.Builder<common.ScaleDime
         return this;
     }
 }
+

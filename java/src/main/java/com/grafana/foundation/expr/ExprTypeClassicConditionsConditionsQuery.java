@@ -16,7 +16,6 @@ public class ExprTypeClassicConditionsConditionsQuery {
     public List<String> params;
     public ExprTypeClassicConditionsConditionsQuery() {
     }
-    
     public ExprTypeClassicConditionsConditionsQuery(List<String> params) {
         this.params = params;
     }

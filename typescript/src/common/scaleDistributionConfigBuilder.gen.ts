@@ -33,3 +33,4 @@ export class ScaleDistributionConfigBuilder implements cog.Builder<common.ScaleD
         return this;
     }
 }
+

@@ -7,7 +7,7 @@ namespace Grafana\Foundation\Common;
  */
 class TableBarGaugeCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
     public ?\Grafana\Foundation\Common\BarGaugeDisplayMode $mode;
 
@@ -19,8 +19,7 @@ class TableBarGaugeCellOptions implements \JsonSerializable
      */
     public function __construct(?\Grafana\Foundation\Common\BarGaugeDisplayMode $mode = null, ?\Grafana\Foundation\Common\BarGaugeValueMode $valueDisplayMode = null)
     {
-        $this->type = "gauge";
-    
+        $this->type = \Grafana\Foundation\Common\TableCellDisplayMode::auto();
         $this->mode = $mode;
         $this->valueDisplayMode = $valueDisplayMode;
     }
@@ -30,7 +29,7 @@ class TableBarGaugeCellOptions implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, mode?: string, valueDisplayMode?: string} $inputData */
+        /** @var array{type?: "gauge", mode?: string, valueDisplayMode?: string} $inputData */
         $data = $inputData;
         return new self(
             mode: isset($data["mode"]) ? (function($input) { return \Grafana\Foundation\Common\BarGaugeDisplayMode::fromValue($input); })($data["mode"]) : null,

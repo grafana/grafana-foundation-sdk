@@ -5,7 +5,7 @@ from ..cog import builder as cogbuilder
 from ..models import team
 
 
-class Team(cogbuilder.Builder[team.Team]):    
+class Team(cogbuilder.Builder[team.Team]):
     _internal: team.Team
 
     def __init__(self, name: str):

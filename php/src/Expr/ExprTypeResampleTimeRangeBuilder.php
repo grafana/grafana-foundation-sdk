@@ -32,6 +32,7 @@ class ExprTypeResampleTimeRangeBuilder implements \Grafana\Foundation\Cog\Builde
     
         return $this;
     }
+
     /**
      * To is the end time of the query.
      */

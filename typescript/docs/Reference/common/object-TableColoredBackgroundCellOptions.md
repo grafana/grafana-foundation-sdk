@@ -9,12 +9,9 @@ Colored background cell options
 
 ```typescript
 export interface TableColoredBackgroundCellOptions {
-	type: "color-background";
+	type: common.TableCellDisplayMode.ColorBackground;
 	mode?: common.TableCellBackgroundDisplayMode;
 	applyToRow?: boolean;
 }
 
 ```
-## Methods
-
-No methods.

@@ -6,7 +6,7 @@ from ..models import alerting
 from ..cog import variants as cogvariants
 
 
-class Query(cogbuilder.Builder[alerting.Query]):    
+class Query(cogbuilder.Builder[alerting.Query]):
     _internal: alerting.Query
 
     def __init__(self, ref_id: str):
@@ -68,7 +68,8 @@ class Query(cogbuilder.Builder[alerting.Query]):
         return self
     
 
-class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):    
+
+class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):
     _internal: alerting.RuleGroup
 
     def __init__(self, title: str):
@@ -81,7 +82,7 @@ class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):
         """
         return self._internal    
     
-    def folder_uid(self, folder_uid: str) -> typing.Self:        
+    def folder_uid(self, folder_uid: str) -> typing.Self:    
         self._internal.folder_uid = folder_uid
     
         return self
@@ -96,13 +97,13 @@ class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):
     
         return self
     
-    def rules(self, rules: list[cogbuilder.Builder[alerting.Rule]]) -> typing.Self:        
+    def rules(self, rules: list[cogbuilder.Builder[alerting.Rule]]) -> typing.Self:    
         rules_resources = [r1.build() for r1 in rules]
         self._internal.rules = rules_resources
     
         return self
     
-    def with_rule(self, rule: cogbuilder.Builder[alerting.Rule]) -> typing.Self:        
+    def with_rule(self, rule: cogbuilder.Builder[alerting.Rule]) -> typing.Self:    
         if self._internal.rules is None:
             self._internal.rules = []
         
@@ -111,13 +112,14 @@ class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):
     
         return self
     
-    def title(self, title: str) -> typing.Self:        
+    def title(self, title: str) -> typing.Self:    
         self._internal.title = title
     
         return self
     
 
-class NotificationSettings(cogbuilder.Builder[alerting.NotificationSettings]):    
+
+class NotificationSettings(cogbuilder.Builder[alerting.NotificationSettings]):
     _internal: alerting.NotificationSettings
 
     def __init__(self):
@@ -197,6 +199,7 @@ class NotificationSettings(cogbuilder.Builder[alerting.NotificationSettings]):
         return self
     
 
+
 class ContactPoint(cogbuilder.Builder[alerting.ContactPoint]):    
     """
     EmbeddedContactPoint is the contact point type that is used
@@ -214,7 +217,7 @@ class ContactPoint(cogbuilder.Builder[alerting.ContactPoint]):
         """
         return self._internal    
     
-    def disable_resolve_message(self, disable_resolve_message: bool) -> typing.Self:        
+    def disable_resolve_message(self, disable_resolve_message: bool) -> typing.Self:    
         self._internal.disable_resolve_message = disable_resolve_message
     
         return self
@@ -229,17 +232,17 @@ class ContactPoint(cogbuilder.Builder[alerting.ContactPoint]):
     
         return self
     
-    def provenance(self, provenance: str) -> typing.Self:        
+    def provenance(self, provenance: str) -> typing.Self:    
         self._internal.provenance = provenance
     
         return self
     
-    def settings(self, settings: alerting.Json) -> typing.Self:        
+    def settings(self, settings: alerting.Json) -> typing.Self:    
         self._internal.settings = settings
     
         return self
     
-    def type_val(self, type_val: typing.Literal["alertmanager", "dingding", "discord", "email", "googlechat", "kafka", "line", "opsgenie", "pagerduty", "pushover", "sensugo", "slack", "teams", "telegram", "threema", "victorops", "webhook", "wecom"]) -> typing.Self:        
+    def type(self, type_val: typing.Literal["alertmanager", "dingding", "discord", "email", "googlechat", "kafka", "line", "opsgenie", "pagerduty", "pushover", "sensugo", "slack", "teams", "telegram", "threema", "victorops", "webhook", "wecom"]) -> typing.Self:    
         self._internal.type_val = type_val
     
         return self
@@ -259,7 +262,8 @@ class ContactPoint(cogbuilder.Builder[alerting.ContactPoint]):
         return self
     
 
-class Matcher(cogbuilder.Builder[alerting.Matcher]):    
+
+class Matcher(cogbuilder.Builder[alerting.Matcher]):
     _internal: alerting.Matcher
 
     def __init__(self):
@@ -271,23 +275,24 @@ class Matcher(cogbuilder.Builder[alerting.Matcher]):
         """
         return self._internal    
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def type(self, type: alerting.MatchType) -> typing.Self:        
+    def type(self, type: alerting.MatchType) -> typing.Self:    
         self._internal.type = type
     
         return self
     
-    def value(self, value: str) -> typing.Self:        
+    def value(self, value: str) -> typing.Self:    
         self._internal.value = value
     
         return self
     
 
-class MuteTiming(cogbuilder.Builder[alerting.MuteTiming]):    
+
+class MuteTiming(cogbuilder.Builder[alerting.MuteTiming]):
     _internal: alerting.MuteTiming
 
     def __init__(self):
@@ -299,19 +304,20 @@ class MuteTiming(cogbuilder.Builder[alerting.MuteTiming]):
         """
         return self._internal    
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def time_intervals(self, time_intervals: list[cogbuilder.Builder[alerting.TimeInterval]]) -> typing.Self:        
+    def time_intervals(self, time_intervals: list[cogbuilder.Builder[alerting.TimeInterval]]) -> typing.Self:    
         time_intervals_resources = [r1.build() for r1 in time_intervals]
         self._internal.time_intervals = time_intervals_resources
     
         return self
     
 
-class NotificationTemplate(cogbuilder.Builder[alerting.NotificationTemplate]):    
+
+class NotificationTemplate(cogbuilder.Builder[alerting.NotificationTemplate]):
     _internal: alerting.NotificationTemplate
 
     def __init__(self):
@@ -323,23 +329,24 @@ class NotificationTemplate(cogbuilder.Builder[alerting.NotificationTemplate]):
         """
         return self._internal    
     
-    def name(self, name: str) -> typing.Self:        
+    def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     
         return self
     
-    def provenance(self, provenance: alerting.Provenance) -> typing.Self:        
+    def provenance(self, provenance: alerting.Provenance) -> typing.Self:    
         self._internal.provenance = provenance
     
         return self
     
-    def template(self, template: str) -> typing.Self:        
+    def template(self, template: str) -> typing.Self:    
         self._internal.template = template
     
         return self
     
 
-class Rule(cogbuilder.Builder[alerting.Rule]):    
+
+class Rule(cogbuilder.Builder[alerting.Rule]):
     _internal: alerting.Rule
 
     def __init__(self, title: str):
@@ -356,23 +363,23 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
         """
         return self._internal    
     
-    def annotations(self, annotations: dict[str, str]) -> typing.Self:        
+    def annotations(self, annotations: dict[str, str]) -> typing.Self:    
         self._internal.annotations = annotations
     
         return self
     
-    def condition(self, condition: str) -> typing.Self:        
+    def condition(self, condition: str) -> typing.Self:    
         self._internal.condition = condition
     
         return self
     
-    def queries(self, data: list[cogbuilder.Builder[alerting.Query]]) -> typing.Self:        
+    def queries(self, data: list[cogbuilder.Builder[alerting.Query]]) -> typing.Self:    
         data_resources = [r1.build() for r1 in data]
         self._internal.data = data_resources
     
         return self
     
-    def with_query(self, data: cogbuilder.Builder[alerting.Query]) -> typing.Self:        
+    def with_query(self, data: cogbuilder.Builder[alerting.Query]) -> typing.Self:    
         if self._internal.data is None:
             self._internal.data = []
         
@@ -381,12 +388,12 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
         return self
     
-    def exec_err_state(self, exec_err_state: typing.Literal["OK", "Alerting", "Error"]) -> typing.Self:        
+    def exec_err_state(self, exec_err_state: typing.Literal["OK", "Alerting", "Error"]) -> typing.Self:    
         self._internal.exec_err_state = exec_err_state
     
         return self
     
-    def folder_uid(self, folder_uid: str) -> typing.Self:        
+    def folder_uid(self, folder_uid: str) -> typing.Self:    
         self._internal.folder_uid = folder_uid
     
         return self
@@ -401,43 +408,43 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
         return self
     
-    def id_val(self, id_val: int) -> typing.Self:        
+    def id(self, id_val: int) -> typing.Self:    
         self._internal.id_val = id_val
     
         return self
     
-    def is_paused(self, is_paused: bool) -> typing.Self:        
+    def is_paused(self, is_paused: bool) -> typing.Self:    
         self._internal.is_paused = is_paused
     
         return self
     
-    def labels(self, labels: dict[str, str]) -> typing.Self:        
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
         self._internal.labels = labels
     
         return self
     
-    def no_data_state(self, no_data_state: typing.Literal["Alerting", "NoData", "OK"]) -> typing.Self:        
+    def no_data_state(self, no_data_state: typing.Literal["Alerting", "NoData", "OK"]) -> typing.Self:    
         self._internal.no_data_state = no_data_state
     
         return self
     
-    def notification_settings(self, notification_settings: cogbuilder.Builder[alerting.NotificationSettings]) -> typing.Self:        
+    def notification_settings(self, notification_settings: cogbuilder.Builder[alerting.NotificationSettings]) -> typing.Self:    
         notification_settings_resource = notification_settings.build()
         self._internal.notification_settings = notification_settings_resource
     
         return self
     
-    def org_id(self, org_id: int) -> typing.Self:        
+    def org_id(self, org_id: int) -> typing.Self:    
         self._internal.org_id = org_id
     
         return self
     
-    def provenance(self, provenance: alerting.Provenance) -> typing.Self:        
+    def provenance(self, provenance: alerting.Provenance) -> typing.Self:    
         self._internal.provenance = provenance
     
         return self
     
-    def rule_group(self, rule_group: str) -> typing.Self:        
+    def rule_group(self, rule_group: str) -> typing.Self:    
         if not len(rule_group) >= 1:
             raise ValueError("len(rule_group) must be >= 1")
         if not len(rule_group) <= 190:
@@ -446,7 +453,7 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
         return self
     
-    def title(self, title: str) -> typing.Self:        
+    def title(self, title: str) -> typing.Self:    
         if not len(title) >= 1:
             raise ValueError("len(title) must be >= 1")
         if not len(title) <= 190:
@@ -455,7 +462,7 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
         return self
     
-    def uid(self, uid: str) -> typing.Self:        
+    def uid(self, uid: str) -> typing.Self:    
         if not len(uid) >= 1:
             raise ValueError("len(uid) must be >= 1")
         if not len(uid) <= 40:
@@ -464,11 +471,12 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
         return self
     
-    def updated(self, updated: str) -> typing.Self:        
+    def updated(self, updated: str) -> typing.Self:    
         self._internal.updated = updated
     
         return self
     
+
 
 class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):    
     """
@@ -487,22 +495,22 @@ class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):
         """
         return self._internal    
     
-    def continue_val(self, continue_val: bool) -> typing.Self:        
+    def continue_val(self, continue_val: bool) -> typing.Self:    
         self._internal.continue_val = continue_val
     
         return self
     
-    def group_by(self, group_by: list[str]) -> typing.Self:        
+    def group_by(self, group_by: list[str]) -> typing.Self:    
         self._internal.group_by = group_by
     
         return self
     
-    def group_interval(self, group_interval: str) -> typing.Self:        
+    def group_interval(self, group_interval: str) -> typing.Self:    
         self._internal.group_interval = group_interval
     
         return self
     
-    def group_wait(self, group_wait: str) -> typing.Self:        
+    def group_wait(self, group_wait: str) -> typing.Self:    
         self._internal.group_wait = group_wait
     
         return self
@@ -516,7 +524,7 @@ class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):
     
         return self
     
-    def match_re(self, match_re: alerting.MatchRegexps) -> typing.Self:        
+    def match_re(self, match_re: alerting.MatchRegexps) -> typing.Self:    
         self._internal.match_re = match_re
     
         return self
@@ -532,39 +540,40 @@ class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):
     
         return self
     
-    def mute_time_intervals(self, mute_time_intervals: list[str]) -> typing.Self:        
+    def mute_time_intervals(self, mute_time_intervals: list[str]) -> typing.Self:    
         self._internal.mute_time_intervals = mute_time_intervals
     
         return self
     
-    def object_matchers(self, object_matchers: alerting.ObjectMatchers) -> typing.Self:        
+    def object_matchers(self, object_matchers: alerting.ObjectMatchers) -> typing.Self:    
         self._internal.object_matchers = object_matchers
     
         return self
     
-    def provenance(self, provenance: alerting.Provenance) -> typing.Self:        
+    def provenance(self, provenance: alerting.Provenance) -> typing.Self:    
         self._internal.provenance = provenance
     
         return self
     
-    def receiver(self, receiver: str) -> typing.Self:        
+    def receiver(self, receiver: str) -> typing.Self:    
         self._internal.receiver = receiver
     
         return self
     
-    def repeat_interval(self, repeat_interval: str) -> typing.Self:        
+    def repeat_interval(self, repeat_interval: str) -> typing.Self:    
         self._internal.repeat_interval = repeat_interval
     
         return self
     
-    def routes(self, routes: list[cogbuilder.Builder[alerting.NotificationPolicy]]) -> typing.Self:        
+    def routes(self, routes: list[cogbuilder.Builder[alerting.NotificationPolicy]]) -> typing.Self:    
         routes_resources = [r1.build() for r1 in routes]
         self._internal.routes = routes_resources
     
         return self
     
 
-class TimeInterval(cogbuilder.Builder[alerting.TimeInterval]):    
+
+class TimeInterval(cogbuilder.Builder[alerting.TimeInterval]):
     _internal: alerting.TimeInterval
 
     def __init__(self):
@@ -576,41 +585,42 @@ class TimeInterval(cogbuilder.Builder[alerting.TimeInterval]):
         """
         return self._internal    
     
-    def times(self, times: list[cogbuilder.Builder[alerting.TimeRange]]) -> typing.Self:        
+    def times(self, times: list[cogbuilder.Builder[alerting.TimeRange]]) -> typing.Self:    
         times_resources = [r1.build() for r1 in times]
         self._internal.times = times_resources
     
         return self
     
-    def weekdays(self, weekdays: list[cogbuilder.Builder[alerting.WeekdayRange]]) -> typing.Self:        
+    def weekdays(self, weekdays: list[cogbuilder.Builder[alerting.WeekdayRange]]) -> typing.Self:    
         weekdays_resources = [r1.build() for r1 in weekdays]
         self._internal.weekdays = weekdays_resources
     
         return self
     
-    def days_of_month(self, days_of_month: list[cogbuilder.Builder[alerting.DayOfMonthRange]]) -> typing.Self:        
+    def days_of_month(self, days_of_month: list[cogbuilder.Builder[alerting.DayOfMonthRange]]) -> typing.Self:    
         days_of_month_resources = [r1.build() for r1 in days_of_month]
         self._internal.days_of_month = days_of_month_resources
     
         return self
     
-    def months(self, months: list[cogbuilder.Builder[alerting.MonthRange]]) -> typing.Self:        
+    def months(self, months: list[cogbuilder.Builder[alerting.MonthRange]]) -> typing.Self:    
         months_resources = [r1.build() for r1 in months]
         self._internal.months = months_resources
     
         return self
     
-    def years(self, years: list[cogbuilder.Builder[alerting.YearRange]]) -> typing.Self:        
+    def years(self, years: list[cogbuilder.Builder[alerting.YearRange]]) -> typing.Self:    
         years_resources = [r1.build() for r1 in years]
         self._internal.years = years_resources
     
         return self
     
-    def location(self, location: alerting.Location) -> typing.Self:        
+    def location(self, location: alerting.Location) -> typing.Self:    
         self._internal.location = location
     
         return self
     
+
 
 class TimeRange(cogbuilder.Builder[alerting.TimeRange]):    
     """
@@ -628,18 +638,19 @@ class TimeRange(cogbuilder.Builder[alerting.TimeRange]):
         """
         return self._internal    
     
-    def from_val(self, from_val: str) -> typing.Self:        
+    def from_val(self, from_val: str) -> typing.Self:    
         self._internal.from_val = from_val
     
         return self
     
-    def to(self, to: str) -> typing.Self:        
+    def to(self, to: str) -> typing.Self:    
         self._internal.to = to
     
         return self
     
 
-class WeekdayRange(cogbuilder.Builder[alerting.WeekdayRange]):    
+
+class WeekdayRange(cogbuilder.Builder[alerting.WeekdayRange]):
     _internal: alerting.WeekdayRange
 
     def __init__(self):
@@ -651,18 +662,19 @@ class WeekdayRange(cogbuilder.Builder[alerting.WeekdayRange]):
         """
         return self._internal    
     
-    def begin(self, begin: int) -> typing.Self:        
+    def begin(self, begin: int) -> typing.Self:    
         self._internal.begin = begin
     
         return self
     
-    def end(self, end: int) -> typing.Self:        
+    def end(self, end: int) -> typing.Self:    
         self._internal.end = end
     
         return self
     
 
-class DayOfMonthRange(cogbuilder.Builder[alerting.DayOfMonthRange]):    
+
+class DayOfMonthRange(cogbuilder.Builder[alerting.DayOfMonthRange]):
     _internal: alerting.DayOfMonthRange
 
     def __init__(self):
@@ -674,18 +686,19 @@ class DayOfMonthRange(cogbuilder.Builder[alerting.DayOfMonthRange]):
         """
         return self._internal    
     
-    def begin(self, begin: int) -> typing.Self:        
+    def begin(self, begin: int) -> typing.Self:    
         self._internal.begin = begin
     
         return self
     
-    def end(self, end: int) -> typing.Self:        
+    def end(self, end: int) -> typing.Self:    
         self._internal.end = end
     
         return self
     
 
-class YearRange(cogbuilder.Builder[alerting.YearRange]):    
+
+class YearRange(cogbuilder.Builder[alerting.YearRange]):
     _internal: alerting.YearRange
 
     def __init__(self):
@@ -697,18 +710,19 @@ class YearRange(cogbuilder.Builder[alerting.YearRange]):
         """
         return self._internal    
     
-    def begin(self, begin: int) -> typing.Self:        
+    def begin(self, begin: int) -> typing.Self:    
         self._internal.begin = begin
     
         return self
     
-    def end(self, end: int) -> typing.Self:        
+    def end(self, end: int) -> typing.Self:    
         self._internal.end = end
     
         return self
     
 
-class MonthRange(cogbuilder.Builder[alerting.MonthRange]):    
+
+class MonthRange(cogbuilder.Builder[alerting.MonthRange]):
     _internal: alerting.MonthRange
 
     def __init__(self):
@@ -720,12 +734,12 @@ class MonthRange(cogbuilder.Builder[alerting.MonthRange]):
         """
         return self._internal    
     
-    def begin(self, begin: int) -> typing.Self:        
+    def begin(self, begin: int) -> typing.Self:    
         self._internal.begin = begin
     
         return self
     
-    def end(self, end: int) -> typing.Self:        
+    def end(self, end: int) -> typing.Self:    
         self._internal.end = end
     
         return self

@@ -7,7 +7,7 @@ title: <span class="badge object-type-struct"></span> QueryEditorGroupByExpressi
 
 ```go
 type QueryEditorGroupByExpression struct {
-    Type string `json:"type"`
+    Type cloudwatch.QueryEditorExpressionType `json:"type"`
     Property cloudwatch.QueryEditorProperty `json:"property"`
 }
 ```

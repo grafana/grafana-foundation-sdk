@@ -10,7 +10,7 @@ export const defaultBucketAggregation = (): BucketAggregation => (defaultDateHis
 export interface DateHistogram {
 	field?: string;
 	id: string;
-	type: "date_histogram";
+	type: BucketAggregationType.DateHistogram;
 	settings?: {
 		interval?: string;
 		min_doc_count?: string;
@@ -22,13 +22,24 @@ export interface DateHistogram {
 
 export const defaultDateHistogram = (): DateHistogram => ({
 	id: "",
-	type: "date_histogram",
+	type: BucketAggregationType.DateHistogram,
 });
+
+export enum BucketAggregationType {
+	Terms = "terms",
+	Filters = "filters",
+	GeohashGrid = "geohash_grid",
+	DateHistogram = "date_histogram",
+	Histogram = "histogram",
+	Nested = "nested",
+}
+
+export const defaultBucketAggregationType = (): BucketAggregationType => (BucketAggregationType.Terms);
 
 export interface Histogram {
 	field?: string;
 	id: string;
-	type: "histogram";
+	type: BucketAggregationType.Histogram;
 	settings?: {
 		interval?: string;
 		min_doc_count?: string;
@@ -37,13 +48,13 @@ export interface Histogram {
 
 export const defaultHistogram = (): Histogram => ({
 	id: "",
-	type: "histogram",
+	type: BucketAggregationType.Histogram,
 });
 
 export interface Terms {
 	field?: string;
 	id: string;
-	type: "terms";
+	type: BucketAggregationType.Terms;
 	settings?: {
 		order?: TermsOrder;
 		size?: string;
@@ -55,7 +66,7 @@ export interface Terms {
 
 export const defaultTerms = (): Terms => ({
 	id: "",
-	type: "terms",
+	type: BucketAggregationType.Terms,
 });
 
 export enum TermsOrder {
@@ -67,7 +78,7 @@ export const defaultTermsOrder = (): TermsOrder => (TermsOrder.Desc);
 
 export interface Filters {
 	id: string;
-	type: "filters";
+	type: BucketAggregationType.Filters;
 	settings?: {
 		filters?: Filter[];
 	};
@@ -75,7 +86,7 @@ export interface Filters {
 
 export const defaultFilters = (): Filters => ({
 	id: "",
-	type: "filters",
+	type: BucketAggregationType.Filters,
 });
 
 export interface Filter {
@@ -91,7 +102,7 @@ export const defaultFilter = (): Filter => ({
 export interface GeoHashGrid {
 	field?: string;
 	id: string;
-	type: "geohash_grid";
+	type: BucketAggregationType.GeohashGrid;
 	settings?: {
 		precision?: string;
 	};
@@ -99,19 +110,19 @@ export interface GeoHashGrid {
 
 export const defaultGeoHashGrid = (): GeoHashGrid => ({
 	id: "",
-	type: "geohash_grid",
+	type: BucketAggregationType.GeohashGrid,
 });
 
 export interface Nested {
 	field?: string;
 	id: string;
-	type: "nested";
+	type: BucketAggregationType.Nested;
 	settings?: any;
 }
 
 export const defaultNested = (): Nested => ({
 	id: "",
-	type: "nested",
+	type: BucketAggregationType.Nested,
 });
 
 export type MetricAggregation = Count | PipelineMetricAggregation | MetricAggregationWithSettings;
@@ -119,15 +130,30 @@ export type MetricAggregation = Count | PipelineMetricAggregation | MetricAggreg
 export const defaultMetricAggregation = (): MetricAggregation => (defaultCount());
 
 export interface Count {
-	type: "count";
+	type: unknown;
 	id: string;
 	hide?: boolean;
 }
 
 export const defaultCount = (): Count => ({
-	type: "count",
+	type: "unknown",
 	id: "",
 });
+
+export type MetricAggregationType = "count" | "avg" | "sum" | "min" | "max" | "extended_stats" | "percentiles" | "cardinality" | "raw_document" | "raw_data" | "logs" | "rate" | "top_metrics" | PipelineMetricAggregationType;
+
+export const defaultMetricAggregationType = (): MetricAggregationType => ("count");
+
+export enum PipelineMetricAggregationType {
+	MovingAvg = "moving_avg",
+	MovingFn = "moving_fn",
+	Derivative = "derivative",
+	SerialDiff = "serial_diff",
+	CumulativeSum = "cumulative_sum",
+	BucketScript = "bucket_script",
+}
+
+export const defaultPipelineMetricAggregationType = (): PipelineMetricAggregationType => (PipelineMetricAggregationType.MovingAvg);
 
 export type PipelineMetricAggregation = MovingAverage | Derivative | CumulativeSum | BucketScript;
 
@@ -137,21 +163,21 @@ export const defaultPipelineMetricAggregation = (): PipelineMetricAggregation =>
 export interface MovingAverage {
 	pipelineAgg?: string;
 	field?: string;
-	type: "moving_avg";
+	type: unknown;
 	id: string;
 	settings?: Record<string, any>;
 	hide?: boolean;
 }
 
 export const defaultMovingAverage = (): MovingAverage => ({
-	type: "moving_avg",
+	type: "unknown",
 	id: "",
 });
 
 export interface Derivative {
 	pipelineAgg?: string;
 	field?: string;
-	type: "derivative";
+	type: unknown;
 	id: string;
 	settings?: {
 		unit?: string;
@@ -160,14 +186,14 @@ export interface Derivative {
 }
 
 export const defaultDerivative = (): Derivative => ({
-	type: "derivative",
+	type: "unknown",
 	id: "",
 });
 
 export interface CumulativeSum {
 	pipelineAgg?: string;
 	field?: string;
-	type: "cumulative_sum";
+	type: unknown;
 	id: string;
 	settings?: {
 		format?: string;
@@ -176,12 +202,12 @@ export interface CumulativeSum {
 }
 
 export const defaultCumulativeSum = (): CumulativeSum => ({
-	type: "cumulative_sum",
+	type: "unknown",
 	id: "",
 });
 
 export interface BucketScript {
-	type: "bucket_script";
+	type: unknown;
 	pipelineVariables?: PipelineVariable[];
 	id: string;
 	settings?: {
@@ -191,7 +217,7 @@ export interface BucketScript {
 }
 
 export const defaultBucketScript = (): BucketScript => ({
-	type: "bucket_script",
+	type: "unknown",
 	id: "",
 });
 
@@ -218,7 +244,7 @@ export const defaultMetricAggregationWithSettings = (): MetricAggregationWithSet
 export interface SerialDiff {
 	pipelineAgg?: string;
 	field?: string;
-	type: "serial_diff";
+	type: unknown;
 	id: string;
 	settings?: {
 		lag?: string;
@@ -227,12 +253,12 @@ export interface SerialDiff {
 }
 
 export const defaultSerialDiff = (): SerialDiff => ({
-	type: "serial_diff",
+	type: "unknown",
 	id: "",
 });
 
 export interface RawData {
-	type: "raw_data";
+	type: unknown;
 	id: string;
 	settings?: {
 		size?: string;
@@ -241,12 +267,12 @@ export interface RawData {
 }
 
 export const defaultRawData = (): RawData => ({
-	type: "raw_data",
+	type: "unknown",
 	id: "",
 });
 
 export interface RawDocument {
-	type: "raw_document";
+	type: unknown;
 	id: string;
 	settings?: {
 		size?: string;
@@ -255,12 +281,12 @@ export interface RawDocument {
 }
 
 export const defaultRawDocument = (): RawDocument => ({
-	type: "raw_document",
+	type: "unknown",
 	id: "",
 });
 
 export interface UniqueCount {
-	type: "cardinality";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -271,12 +297,12 @@ export interface UniqueCount {
 }
 
 export const defaultUniqueCount = (): UniqueCount => ({
-	type: "cardinality",
+	type: "unknown",
 	id: "",
 });
 
 export interface Percentiles {
-	type: "percentiles";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -288,12 +314,12 @@ export interface Percentiles {
 }
 
 export const defaultPercentiles = (): Percentiles => ({
-	type: "percentiles",
+	type: "unknown",
 	id: "",
 });
 
 export interface ExtendedStats {
-	type: "extended_stats";
+	type: unknown;
 	settings?: {
 		script?: InlineScript;
 		missing?: string;
@@ -306,12 +332,12 @@ export interface ExtendedStats {
 }
 
 export const defaultExtendedStats = (): ExtendedStats => ({
-	type: "extended_stats",
+	type: "unknown",
 	id: "",
 });
 
 export interface Min {
-	type: "min";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -322,12 +348,12 @@ export interface Min {
 }
 
 export const defaultMin = (): Min => ({
-	type: "min",
+	type: "unknown",
 	id: "",
 });
 
 export interface Max {
-	type: "max";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -338,12 +364,12 @@ export interface Max {
 }
 
 export const defaultMax = (): Max => ({
-	type: "max",
+	type: "unknown",
 	id: "",
 });
 
 export interface Sum {
-	type: "sum";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -354,12 +380,12 @@ export interface Sum {
 }
 
 export const defaultSum = (): Sum => ({
-	type: "sum",
+	type: "unknown",
 	id: "",
 });
 
 export interface Average {
-	type: "avg";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -370,14 +396,14 @@ export interface Average {
 }
 
 export const defaultAverage = (): Average => ({
-	type: "avg",
+	type: "unknown",
 	id: "",
 });
 
 export interface MovingFunction {
 	pipelineAgg?: string;
 	field?: string;
-	type: "moving_fn";
+	type: unknown;
 	id: string;
 	settings?: {
 		window?: string;
@@ -388,12 +414,12 @@ export interface MovingFunction {
 }
 
 export const defaultMovingFunction = (): MovingFunction => ({
-	type: "moving_fn",
+	type: "unknown",
 	id: "",
 });
 
 export interface Logs {
-	type: "logs";
+	type: unknown;
 	id: string;
 	settings?: {
 		limit?: string;
@@ -402,12 +428,12 @@ export interface Logs {
 }
 
 export const defaultLogs = (): Logs => ({
-	type: "logs",
+	type: "unknown",
 	id: "",
 });
 
 export interface Rate {
-	type: "rate";
+	type: unknown;
 	field?: string;
 	id: string;
 	settings?: {
@@ -418,12 +444,12 @@ export interface Rate {
 }
 
 export const defaultRate = (): Rate => ({
-	type: "rate",
+	type: "unknown",
 	id: "",
 });
 
 export interface TopMetrics {
-	type: "top_metrics";
+	type: unknown;
 	id: string;
 	settings?: {
 		order?: string;
@@ -434,20 +460,9 @@ export interface TopMetrics {
 }
 
 export const defaultTopMetrics = (): TopMetrics => ({
-	type: "top_metrics",
+	type: "unknown",
 	id: "",
 });
-
-export enum BucketAggregationType {
-	Terms = "terms",
-	Filters = "filters",
-	GeohashGrid = "geohash_grid",
-	DateHistogram = "date_histogram",
-	Histogram = "histogram",
-	Nested = "nested",
-}
-
-export const defaultBucketAggregationType = (): BucketAggregationType => (BucketAggregationType.Terms);
 
 export interface BaseBucketAggregation {
 	id: string;
@@ -515,21 +530,6 @@ export interface GeoHashGridSettings {
 
 export const defaultGeoHashGridSettings = (): GeoHashGridSettings => ({
 });
-
-export enum PipelineMetricAggregationType {
-	MovingAvg = "moving_avg",
-	MovingFn = "moving_fn",
-	Derivative = "derivative",
-	SerialDiff = "serial_diff",
-	CumulativeSum = "cumulative_sum",
-	BucketScript = "bucket_script",
-}
-
-export const defaultPipelineMetricAggregationType = (): PipelineMetricAggregationType => (PipelineMetricAggregationType.MovingAvg);
-
-export type MetricAggregationType = "count" | "avg" | "sum" | "min" | "max" | "extended_stats" | "percentiles" | "cardinality" | "raw_document" | "raw_data" | "logs" | "rate" | "top_metrics" | PipelineMetricAggregationType;
-
-export const defaultMetricAggregationType = (): MetricAggregationType => ("count");
 
 export interface BaseMetricAggregation {
 	type: MetricAggregationType;
@@ -663,31 +663,31 @@ export const defaultBaseMovingAverageModelSettings = (): BaseMovingAverageModelS
 });
 
 export interface MovingAverageSimpleModelSettings {
-	model: "simple";
+	model: MovingAverageModel.Simple;
 	window: string;
 	predict: string;
 }
 
 export const defaultMovingAverageSimpleModelSettings = (): MovingAverageSimpleModelSettings => ({
-	model: "simple",
+	model: MovingAverageModel.Simple,
 	window: "",
 	predict: "",
 });
 
 export interface MovingAverageLinearModelSettings {
-	model: "linear";
+	model: MovingAverageModel.Linear;
 	window: string;
 	predict: string;
 }
 
 export const defaultMovingAverageLinearModelSettings = (): MovingAverageLinearModelSettings => ({
-	model: "linear",
+	model: MovingAverageModel.Linear,
 	window: "",
 	predict: "",
 });
 
 export interface MovingAverageEWMAModelSettings {
-	model: "ewma";
+	model: MovingAverageModel.Ewma;
 	settings?: {
 		alpha?: string;
 	};
@@ -697,14 +697,14 @@ export interface MovingAverageEWMAModelSettings {
 }
 
 export const defaultMovingAverageEWMAModelSettings = (): MovingAverageEWMAModelSettings => ({
-	model: "ewma",
+	model: MovingAverageModel.Ewma,
 	window: "",
 	minimize: false,
 	predict: "",
 });
 
 export interface MovingAverageHoltModelSettings {
-	model: "holt";
+	model: MovingAverageModel.Holt;
 	settings: {
 		alpha?: string;
 		beta?: string;
@@ -715,7 +715,7 @@ export interface MovingAverageHoltModelSettings {
 }
 
 export const defaultMovingAverageHoltModelSettings = (): MovingAverageHoltModelSettings => ({
-	model: "holt",
+	model: MovingAverageModel.Holt,
 	settings: {
 },
 	window: "",
@@ -724,7 +724,7 @@ export const defaultMovingAverageHoltModelSettings = (): MovingAverageHoltModelS
 });
 
 export interface MovingAverageHoltWintersModelSettings {
-	model: "holt_winters";
+	model: MovingAverageModel.HoltWinters;
 	settings: {
 		alpha?: string;
 		beta?: string;
@@ -738,7 +738,7 @@ export interface MovingAverageHoltWintersModelSettings {
 }
 
 export const defaultMovingAverageHoltWintersModelSettings = (): MovingAverageHoltWintersModelSettings => ({
-	model: "holt_winters",
+	model: MovingAverageModel.HoltWinters,
 	settings: {
 },
 	window: "",

@@ -30,6 +30,7 @@ class WorkspacesQueryBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     public function subscription(string $subscription): static
     {
         $this->internal->subscription = $subscription;

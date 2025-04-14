@@ -28,3 +28,4 @@ export class QueryEditorArrayExpressionBuilder implements cog.Builder<cloudwatch
         return this;
     }
 }
+

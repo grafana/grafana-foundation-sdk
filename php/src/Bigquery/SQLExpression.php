@@ -60,19 +60,19 @@ class SQLExpression implements \JsonSerializable
         $data = $inputData;
         return new self(
             columns: array_filter(array_map((function($input) {
-    	/** @var array{type?: string, name?: string, parameters?: array<mixed>} */
+    	/** @var array{type?: "function", name?: string, parameters?: array<mixed>} */
     $val = $input;
     	return \Grafana\Foundation\Bigquery\QueryEditorFunctionExpression::fromArray($val);
     }), $data["columns"] ?? [])),
             from: $data["from"] ?? null,
             whereString: $data["whereString"] ?? null,
             groupBy: array_filter(array_map((function($input) {
-    	/** @var array{type?: string, property?: mixed} */
+    	/** @var array{type?: "groupBy", property?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Bigquery\QueryEditorGroupByExpression::fromArray($val);
     }), $data["groupBy"] ?? [])),
             orderBy: isset($data["orderBy"]) ? (function($input) {
-    	/** @var array{type?: string, property?: mixed} */
+    	/** @var array{type?: "property", property?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Bigquery\QueryEditorPropertyExpression::fromArray($val);
     })($data["orderBy"]) : null,

@@ -33,6 +33,7 @@ class VizTextDisplayOptionsBuilder implements \Grafana\Foundation\Cog\Builder
     
         return $this;
     }
+
     /**
      * Explicit value text size
      */

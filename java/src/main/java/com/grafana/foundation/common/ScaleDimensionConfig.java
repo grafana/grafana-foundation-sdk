@@ -26,7 +26,6 @@ public class ScaleDimensionConfig {
     public ScaleDimensionMode mode;
     public ScaleDimensionConfig() {
     }
-    
     public ScaleDimensionConfig(Double min,Double max,Double fixed,String field,ScaleDimensionMode mode) {
         this.min = min;
         this.max = max;

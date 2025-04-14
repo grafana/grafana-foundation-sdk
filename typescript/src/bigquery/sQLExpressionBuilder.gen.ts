@@ -61,3 +61,4 @@ export class SQLExpressionBuilder implements cog.Builder<bigquery.SQLExpression>
         return this;
     }
 }
+

@@ -10,12 +10,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 // Auto mode table cell options
 public class TableAutoCellOptions {
     @JsonProperty("type")
-    public String type;
+    public TableCellDisplayMode type;
     public TableAutoCellOptions() {
-    }
-    
-    public TableAutoCellOptions(String type) {
-        this.type = type;
+        this.type = TableCellDisplayMode.AUTO;
     }
     
     public String toJSON() throws JsonProcessingException {

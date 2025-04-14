@@ -10,7 +10,7 @@ Colored text cell options
 ```php
 class TableColorTextCellOptions implements \JsonSerializable
 {
-    public string $type;
+    public \Grafana\Foundation\Common\TableCellDisplayMode $type;
 
 }
 ```

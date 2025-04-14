@@ -21,9 +21,6 @@ export interface VizLegendOptions {
 }
 
 ```
-## Methods
-
-No methods.
 ## See also
 
  * <span class="badge builder"></span> [VizLegendOptionsBuilder](./builder-VizLegendOptionsBuilder.md)

@@ -70,3 +70,4 @@ export class RowBuilder implements cog.Builder<dashboard.RowPanel> {
         return this;
     }
 }
+

@@ -15,17 +15,17 @@ public class Nested {
     @JsonProperty("id")
     public String id;
     @JsonProperty("type")
-    public String type;
+    public BucketAggregationType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("settings")
     public Object settings;
     public Nested() {
+        this.type = BucketAggregationType.NESTED;
     }
-    
-    public Nested(String field,String id,String type,Object settings) {
+    public Nested(String field,String id,Object settings) {
         this.field = field;
         this.id = id;
-        this.type = type;
+        this.type = BucketAggregationType.NESTED;
         this.settings = settings;
     }
     
