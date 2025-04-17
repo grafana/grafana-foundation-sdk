@@ -85,27 +85,26 @@ class NotificationSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "receiver" => $this->receiver,
-        ];
+        $data = new \stdClass;
+        $data->receiver = $this->receiver;
         if (isset($this->groupBy)) {
-            $data["group_by"] = $this->groupBy;
+            $data->group_by = $this->groupBy;
         }
         if (isset($this->groupInterval)) {
-            $data["group_interval"] = $this->groupInterval;
+            $data->group_interval = $this->groupInterval;
         }
         if (isset($this->groupWait)) {
-            $data["group_wait"] = $this->groupWait;
+            $data->group_wait = $this->groupWait;
         }
         if (isset($this->muteTimeIntervals)) {
-            $data["mute_time_intervals"] = $this->muteTimeIntervals;
+            $data->mute_time_intervals = $this->muteTimeIntervals;
         }
         if (isset($this->repeatInterval)) {
-            $data["repeat_interval"] = $this->repeatInterval;
+            $data->repeat_interval = $this->repeatInterval;
         }
         return $data;
     }

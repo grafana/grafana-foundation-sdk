@@ -30,13 +30,12 @@ class ExprTypeClassicConditionsConditionsQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "params" => $this->params,
-        ];
+        $data = new \stdClass;
+        $data->params = $this->params;
         return $data;
     }
 }

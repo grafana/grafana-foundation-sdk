@@ -76,29 +76,28 @@ class TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOr
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->typeMath)) {
-            $data["TypeMath"] = $this->typeMath;
+            $data->TypeMath = $this->typeMath;
         }
         if (isset($this->typeReduce)) {
-            $data["TypeReduce"] = $this->typeReduce;
+            $data->TypeReduce = $this->typeReduce;
         }
         if (isset($this->typeResample)) {
-            $data["TypeResample"] = $this->typeResample;
+            $data->TypeResample = $this->typeResample;
         }
         if (isset($this->typeClassicConditions)) {
-            $data["TypeClassicConditions"] = $this->typeClassicConditions;
+            $data->TypeClassicConditions = $this->typeClassicConditions;
         }
         if (isset($this->typeThreshold)) {
-            $data["TypeThreshold"] = $this->typeThreshold;
+            $data->TypeThreshold = $this->typeThreshold;
         }
         if (isset($this->typeSql)) {
-            $data["TypeSql"] = $this->typeSql;
+            $data->TypeSql = $this->typeSql;
         }
         return $data;
     }

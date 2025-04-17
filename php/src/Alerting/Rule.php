@@ -137,45 +137,44 @@ class Rule implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "condition" => $this->condition,
-            "data" => $this->data,
-            "execErrState" => $this->execErrState,
-            "folderUID" => $this->folderUID,
-            "for" => $this->for,
-            "noDataState" => $this->noDataState,
-            "orgID" => $this->orgID,
-            "provenance" => $this->provenance,
-            "ruleGroup" => $this->ruleGroup,
-            "title" => $this->title,
-        ];
+        $data = new \stdClass;
+        $data->condition = $this->condition;
+        $data->data = $this->data;
+        $data->execErrState = $this->execErrState;
+        $data->folderUID = $this->folderUID;
+        $data->for = $this->for;
+        $data->noDataState = $this->noDataState;
+        $data->orgID = $this->orgID;
+        $data->provenance = $this->provenance;
+        $data->ruleGroup = $this->ruleGroup;
+        $data->title = $this->title;
         if (isset($this->annotations)) {
-            $data["annotations"] = $this->annotations;
+            $data->annotations = $this->annotations;
         }
         if (isset($this->id)) {
-            $data["id"] = $this->id;
+            $data->id = $this->id;
         }
         if (isset($this->isPaused)) {
-            $data["isPaused"] = $this->isPaused;
+            $data->isPaused = $this->isPaused;
         }
         if (isset($this->labels)) {
-            $data["labels"] = $this->labels;
+            $data->labels = $this->labels;
         }
         if (isset($this->notificationSettings)) {
-            $data["notification_settings"] = $this->notificationSettings;
+            $data->notification_settings = $this->notificationSettings;
         }
         if (isset($this->record)) {
-            $data["record"] = $this->record;
+            $data->record = $this->record;
         }
         if (isset($this->uid)) {
-            $data["uid"] = $this->uid;
+            $data->uid = $this->uid;
         }
         if (isset($this->updated)) {
-            $data["updated"] = $this->updated;
+            $data->updated = $this->updated;
         }
         return $data;
     }

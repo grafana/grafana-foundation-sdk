@@ -59,6 +59,7 @@ func (resource Dataquery) DataqueryType() string {
 func NewDataquery() *Dataquery {
 	return &Dataquery{
 		LabelSelector: "{}",
+		GroupBy:       []string{},
 	}
 }
 

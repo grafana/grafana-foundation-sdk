@@ -81,20 +81,19 @@ class LegacyCloudMonitoringAnnotationQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "projectName" => $this->projectName,
-            "metricType" => $this->metricType,
-            "refId" => $this->refId,
-            "filters" => $this->filters,
-            "metricKind" => $this->metricKind,
-            "valueType" => $this->valueType,
-            "title" => $this->title,
-            "text" => $this->text,
-        ];
+        $data = new \stdClass;
+        $data->projectName = $this->projectName;
+        $data->metricType = $this->metricType;
+        $data->refId = $this->refId;
+        $data->filters = $this->filters;
+        $data->metricKind = $this->metricKind;
+        $data->valueType = $this->valueType;
+        $data->title = $this->title;
+        $data->text = $this->text;
         return $data;
     }
 }
