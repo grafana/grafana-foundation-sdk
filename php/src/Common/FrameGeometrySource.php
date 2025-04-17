@@ -63,30 +63,29 @@ class FrameGeometrySource implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "mode" => $this->mode,
-        ];
+        $data = new \stdClass;
+        $data->mode = $this->mode;
         if (isset($this->geohash)) {
-            $data["geohash"] = $this->geohash;
+            $data->geohash = $this->geohash;
         }
         if (isset($this->latitude)) {
-            $data["latitude"] = $this->latitude;
+            $data->latitude = $this->latitude;
         }
         if (isset($this->longitude)) {
-            $data["longitude"] = $this->longitude;
+            $data->longitude = $this->longitude;
         }
         if (isset($this->wkt)) {
-            $data["wkt"] = $this->wkt;
+            $data->wkt = $this->wkt;
         }
         if (isset($this->lookup)) {
-            $data["lookup"] = $this->lookup;
+            $data->lookup = $this->lookup;
         }
         if (isset($this->gazetteer)) {
-            $data["gazetteer"] = $this->gazetteer;
+            $data->gazetteer = $this->gazetteer;
         }
         return $data;
     }

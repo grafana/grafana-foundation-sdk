@@ -1145,7 +1145,9 @@ type Rule struct {
 
 // NewRule creates a new Rule object.
 func NewRule() *Rule {
-	return &Rule{}
+	return &Rule{
+		Data: []Query{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Rule` from JSON.

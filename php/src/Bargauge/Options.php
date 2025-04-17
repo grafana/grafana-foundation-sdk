@@ -85,24 +85,23 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "displayMode" => $this->displayMode,
-            "valueMode" => $this->valueMode,
-            "namePlacement" => $this->namePlacement,
-            "showUnfilled" => $this->showUnfilled,
-            "sizing" => $this->sizing,
-            "minVizWidth" => $this->minVizWidth,
-            "minVizHeight" => $this->minVizHeight,
-            "reduceOptions" => $this->reduceOptions,
-            "maxVizHeight" => $this->maxVizHeight,
-            "orientation" => $this->orientation,
-        ];
+        $data = new \stdClass;
+        $data->displayMode = $this->displayMode;
+        $data->valueMode = $this->valueMode;
+        $data->namePlacement = $this->namePlacement;
+        $data->showUnfilled = $this->showUnfilled;
+        $data->sizing = $this->sizing;
+        $data->minVizWidth = $this->minVizWidth;
+        $data->minVizHeight = $this->minVizHeight;
+        $data->reduceOptions = $this->reduceOptions;
+        $data->maxVizHeight = $this->maxVizHeight;
+        $data->orientation = $this->orientation;
         if (isset($this->text)) {
-            $data["text"] = $this->text;
+            $data->text = $this->text;
         }
         return $data;
     }

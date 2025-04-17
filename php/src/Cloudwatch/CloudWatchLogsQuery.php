@@ -127,36 +127,35 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "queryMode" => $this->queryMode,
-            "id" => $this->id,
-            "region" => $this->region,
-            "refId" => $this->refId,
-        ];
+        $data = new \stdClass;
+        $data->queryMode = $this->queryMode;
+        $data->id = $this->id;
+        $data->region = $this->region;
+        $data->refId = $this->refId;
         if (isset($this->expression)) {
-            $data["expression"] = $this->expression;
+            $data->expression = $this->expression;
         }
         if (isset($this->statsGroups)) {
-            $data["statsGroups"] = $this->statsGroups;
+            $data->statsGroups = $this->statsGroups;
         }
         if (isset($this->logGroups)) {
-            $data["logGroups"] = $this->logGroups;
+            $data->logGroups = $this->logGroups;
         }
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->logGroupNames)) {
-            $data["logGroupNames"] = $this->logGroupNames;
+            $data->logGroupNames = $this->logGroupNames;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         return $data;
     }
