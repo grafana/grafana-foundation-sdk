@@ -37,6 +37,7 @@ func NewOptions() *Options {
 		ShowTypeIcons: (func(input bool) *bool { return &input })(false),
 		Footer: &common.TableFooterOptions{
 			Show:      false,
+			Reducer:   nil,
 			CountRows: (func(input bool) *bool { return &input })(false),
 		},
 		CellHeight: (func(input common.TableCellHeight) *common.TableCellHeight { return &input })(common.TableCellHeightSm),

@@ -60,23 +60,22 @@ class TimePickerConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->hidden)) {
-            $data["hidden"] = $this->hidden;
+            $data->hidden = $this->hidden;
         }
         if (isset($this->refreshIntervals)) {
-            $data["refresh_intervals"] = $this->refreshIntervals;
+            $data->refresh_intervals = $this->refreshIntervals;
         }
         if (isset($this->timeOptions)) {
-            $data["time_options"] = $this->timeOptions;
+            $data->time_options = $this->timeOptions;
         }
         if (isset($this->nowDelay)) {
-            $data["nowDelay"] = $this->nowDelay;
+            $data->nowDelay = $this->nowDelay;
         }
         return $data;
     }

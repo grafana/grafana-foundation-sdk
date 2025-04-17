@@ -55,23 +55,22 @@ class AzureMetricDimension implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->dimension)) {
-            $data["dimension"] = $this->dimension;
+            $data->dimension = $this->dimension;
         }
         if (isset($this->operator)) {
-            $data["operator"] = $this->operator;
+            $data->operator = $this->operator;
         }
         if (isset($this->filters)) {
-            $data["filters"] = $this->filters;
+            $data->filters = $this->filters;
         }
         if (isset($this->filter)) {
-            $data["filter"] = $this->filter;
+            $data->filter = $this->filter;
         }
         return $data;
     }

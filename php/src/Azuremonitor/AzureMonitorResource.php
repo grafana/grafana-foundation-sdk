@@ -47,26 +47,25 @@ class AzureMonitorResource implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->subscription)) {
-            $data["subscription"] = $this->subscription;
+            $data->subscription = $this->subscription;
         }
         if (isset($this->resourceGroup)) {
-            $data["resourceGroup"] = $this->resourceGroup;
+            $data->resourceGroup = $this->resourceGroup;
         }
         if (isset($this->resourceName)) {
-            $data["resourceName"] = $this->resourceName;
+            $data->resourceName = $this->resourceName;
         }
         if (isset($this->metricNamespace)) {
-            $data["metricNamespace"] = $this->metricNamespace;
+            $data->metricNamespace = $this->metricNamespace;
         }
         if (isset($this->region)) {
-            $data["region"] = $this->region;
+            $data->region = $this->region;
         }
         return $data;
     }

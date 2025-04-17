@@ -83,26 +83,25 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "keepTime" => $this->keepTime,
-            "includeVars" => $this->includeVars,
-            "showStarred" => $this->showStarred,
-            "showRecentlyViewed" => $this->showRecentlyViewed,
-            "showSearch" => $this->showSearch,
-            "showHeadings" => $this->showHeadings,
-            "maxItems" => $this->maxItems,
-            "query" => $this->query,
-            "tags" => $this->tags,
-        ];
+        $data = new \stdClass;
+        $data->keepTime = $this->keepTime;
+        $data->includeVars = $this->includeVars;
+        $data->showStarred = $this->showStarred;
+        $data->showRecentlyViewed = $this->showRecentlyViewed;
+        $data->showSearch = $this->showSearch;
+        $data->showHeadings = $this->showHeadings;
+        $data->maxItems = $this->maxItems;
+        $data->query = $this->query;
+        $data->tags = $this->tags;
         if (isset($this->folderId)) {
-            $data["folderId"] = $this->folderId;
+            $data->folderId = $this->folderId;
         }
         if (isset($this->folderUID)) {
-            $data["folderUID"] = $this->folderUID;
+            $data->folderUID = $this->folderUID;
         }
         return $data;
     }

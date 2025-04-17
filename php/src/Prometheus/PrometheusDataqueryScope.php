@@ -27,13 +27,12 @@ class PrometheusDataqueryScope implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "matchers" => $this->matchers,
-        ];
+        $data = new \stdClass;
+        $data->matchers = $this->matchers;
         return $data;
     }
 }

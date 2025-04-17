@@ -52,29 +52,28 @@ class Placement implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->top)) {
-            $data["top"] = $this->top;
+            $data->top = $this->top;
         }
         if (isset($this->left)) {
-            $data["left"] = $this->left;
+            $data->left = $this->left;
         }
         if (isset($this->right)) {
-            $data["right"] = $this->right;
+            $data->right = $this->right;
         }
         if (isset($this->bottom)) {
-            $data["bottom"] = $this->bottom;
+            $data->bottom = $this->bottom;
         }
         if (isset($this->width)) {
-            $data["width"] = $this->width;
+            $data->width = $this->width;
         }
         if (isset($this->height)) {
-            $data["height"] = $this->height;
+            $data->height = $this->height;
         }
         return $data;
     }

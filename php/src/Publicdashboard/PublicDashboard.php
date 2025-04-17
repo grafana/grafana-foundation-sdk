@@ -70,19 +70,18 @@ class PublicDashboard implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "uid" => $this->uid,
-            "dashboardUid" => $this->dashboardUid,
-            "isEnabled" => $this->isEnabled,
-            "annotationsEnabled" => $this->annotationsEnabled,
-            "timeSelectionEnabled" => $this->timeSelectionEnabled,
-        ];
+        $data = new \stdClass;
+        $data->uid = $this->uid;
+        $data->dashboardUid = $this->dashboardUid;
+        $data->isEnabled = $this->isEnabled;
+        $data->annotationsEnabled = $this->annotationsEnabled;
+        $data->timeSelectionEnabled = $this->timeSelectionEnabled;
         if (isset($this->accessToken)) {
-            $data["accessToken"] = $this->accessToken;
+            $data->accessToken = $this->accessToken;
         }
         return $data;
     }

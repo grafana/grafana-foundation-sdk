@@ -37,16 +37,15 @@ class Key implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-            "tick" => $this->tick,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
+        $data->tick = $this->tick;
         if (isset($this->uid)) {
-            $data["uid"] = $this->uid;
+            $data->uid = $this->uid;
         }
         return $data;
     }

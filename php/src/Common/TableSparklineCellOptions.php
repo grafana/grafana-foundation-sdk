@@ -223,108 +223,107 @@ class TableSparklineCellOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
         if (isset($this->drawStyle)) {
-            $data["drawStyle"] = $this->drawStyle;
+            $data->drawStyle = $this->drawStyle;
         }
         if (isset($this->gradientMode)) {
-            $data["gradientMode"] = $this->gradientMode;
+            $data->gradientMode = $this->gradientMode;
         }
         if (isset($this->thresholdsStyle)) {
-            $data["thresholdsStyle"] = $this->thresholdsStyle;
+            $data->thresholdsStyle = $this->thresholdsStyle;
         }
         if (isset($this->lineColor)) {
-            $data["lineColor"] = $this->lineColor;
+            $data->lineColor = $this->lineColor;
         }
         if (isset($this->lineWidth)) {
-            $data["lineWidth"] = $this->lineWidth;
+            $data->lineWidth = $this->lineWidth;
         }
         if (isset($this->lineInterpolation)) {
-            $data["lineInterpolation"] = $this->lineInterpolation;
+            $data->lineInterpolation = $this->lineInterpolation;
         }
         if (isset($this->lineStyle)) {
-            $data["lineStyle"] = $this->lineStyle;
+            $data->lineStyle = $this->lineStyle;
         }
         if (isset($this->fillColor)) {
-            $data["fillColor"] = $this->fillColor;
+            $data->fillColor = $this->fillColor;
         }
         if (isset($this->fillOpacity)) {
-            $data["fillOpacity"] = $this->fillOpacity;
+            $data->fillOpacity = $this->fillOpacity;
         }
         if (isset($this->showPoints)) {
-            $data["showPoints"] = $this->showPoints;
+            $data->showPoints = $this->showPoints;
         }
         if (isset($this->pointSize)) {
-            $data["pointSize"] = $this->pointSize;
+            $data->pointSize = $this->pointSize;
         }
         if (isset($this->pointColor)) {
-            $data["pointColor"] = $this->pointColor;
+            $data->pointColor = $this->pointColor;
         }
         if (isset($this->axisPlacement)) {
-            $data["axisPlacement"] = $this->axisPlacement;
+            $data->axisPlacement = $this->axisPlacement;
         }
         if (isset($this->axisColorMode)) {
-            $data["axisColorMode"] = $this->axisColorMode;
+            $data->axisColorMode = $this->axisColorMode;
         }
         if (isset($this->axisLabel)) {
-            $data["axisLabel"] = $this->axisLabel;
+            $data->axisLabel = $this->axisLabel;
         }
         if (isset($this->axisWidth)) {
-            $data["axisWidth"] = $this->axisWidth;
+            $data->axisWidth = $this->axisWidth;
         }
         if (isset($this->axisSoftMin)) {
-            $data["axisSoftMin"] = $this->axisSoftMin;
+            $data->axisSoftMin = $this->axisSoftMin;
         }
         if (isset($this->axisSoftMax)) {
-            $data["axisSoftMax"] = $this->axisSoftMax;
+            $data->axisSoftMax = $this->axisSoftMax;
         }
         if (isset($this->axisGridShow)) {
-            $data["axisGridShow"] = $this->axisGridShow;
+            $data->axisGridShow = $this->axisGridShow;
         }
         if (isset($this->scaleDistribution)) {
-            $data["scaleDistribution"] = $this->scaleDistribution;
+            $data->scaleDistribution = $this->scaleDistribution;
         }
         if (isset($this->axisCenteredZero)) {
-            $data["axisCenteredZero"] = $this->axisCenteredZero;
+            $data->axisCenteredZero = $this->axisCenteredZero;
         }
         if (isset($this->barAlignment)) {
-            $data["barAlignment"] = $this->barAlignment;
+            $data->barAlignment = $this->barAlignment;
         }
         if (isset($this->barWidthFactor)) {
-            $data["barWidthFactor"] = $this->barWidthFactor;
+            $data->barWidthFactor = $this->barWidthFactor;
         }
         if (isset($this->stacking)) {
-            $data["stacking"] = $this->stacking;
+            $data->stacking = $this->stacking;
         }
         if (isset($this->hideFrom)) {
-            $data["hideFrom"] = $this->hideFrom;
+            $data->hideFrom = $this->hideFrom;
         }
         if (isset($this->hideValue)) {
-            $data["hideValue"] = $this->hideValue;
+            $data->hideValue = $this->hideValue;
         }
         if (isset($this->transform)) {
-            $data["transform"] = $this->transform;
+            $data->transform = $this->transform;
         }
         if (isset($this->spanNulls)) {
-            $data["spanNulls"] = $this->spanNulls;
+            $data->spanNulls = $this->spanNulls;
         }
         if (isset($this->fillBelowTo)) {
-            $data["fillBelowTo"] = $this->fillBelowTo;
+            $data->fillBelowTo = $this->fillBelowTo;
         }
         if (isset($this->pointSymbol)) {
-            $data["pointSymbol"] = $this->pointSymbol;
+            $data->pointSymbol = $this->pointSymbol;
         }
         if (isset($this->axisBorderShow)) {
-            $data["axisBorderShow"] = $this->axisBorderShow;
+            $data->axisBorderShow = $this->axisBorderShow;
         }
         if (isset($this->barMaxWidth)) {
-            $data["barMaxWidth"] = $this->barMaxWidth;
+            $data->barMaxWidth = $this->barMaxWidth;
         }
         return $data;
     }

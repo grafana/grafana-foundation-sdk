@@ -62,22 +62,21 @@ class Role implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "name" => $this->name,
-            "hidden" => $this->hidden,
-        ];
+        $data = new \stdClass;
+        $data->name = $this->name;
+        $data->hidden = $this->hidden;
         if (isset($this->displayName)) {
-            $data["displayName"] = $this->displayName;
+            $data->displayName = $this->displayName;
         }
         if (isset($this->groupName)) {
-            $data["groupName"] = $this->groupName;
+            $data->groupName = $this->groupName;
         }
         if (isset($this->description)) {
-            $data["description"] = $this->description;
+            $data->description = $this->description;
         }
         return $data;
     }
