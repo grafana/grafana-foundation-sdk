@@ -83,28 +83,27 @@ class MapLayerOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-            "name" => $this->name,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
+        $data->name = $this->name;
         if (isset($this->config)) {
-            $data["config"] = $this->config;
+            $data->config = $this->config;
         }
         if (isset($this->location)) {
-            $data["location"] = $this->location;
+            $data->location = $this->location;
         }
         if (isset($this->filterData)) {
-            $data["filterData"] = $this->filterData;
+            $data->filterData = $this->filterData;
         }
         if (isset($this->opacity)) {
-            $data["opacity"] = $this->opacity;
+            $data->opacity = $this->opacity;
         }
         if (isset($this->tooltip)) {
-            $data["tooltip"] = $this->tooltip;
+            $data->tooltip = $this->tooltip;
         }
         return $data;
     }

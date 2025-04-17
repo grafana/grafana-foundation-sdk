@@ -54,14 +54,13 @@ class RoleBinding implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "role" => $this->role,
-            "subject" => $this->subject,
-        ];
+        $data = new \stdClass;
+        $data->role = $this->role;
+        $data->subject = $this->subject;
         return $data;
     }
 }

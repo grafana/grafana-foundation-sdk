@@ -37,15 +37,14 @@ class UpdateConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "render" => $this->render,
-            "dataChanged" => $this->dataChanged,
-            "schemaChanged" => $this->schemaChanged,
-        ];
+        $data = new \stdClass;
+        $data->render = $this->render;
+        $data->dataChanged = $this->dataChanged;
+        $data->schemaChanged = $this->schemaChanged;
         return $data;
     }
 }

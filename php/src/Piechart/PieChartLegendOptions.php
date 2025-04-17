@@ -78,31 +78,30 @@ class PieChartLegendOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "values" => $this->values,
-            "displayMode" => $this->displayMode,
-            "placement" => $this->placement,
-            "showLegend" => $this->showLegend,
-            "calcs" => $this->calcs,
-        ];
+        $data = new \stdClass;
+        $data->values = $this->values;
+        $data->displayMode = $this->displayMode;
+        $data->placement = $this->placement;
+        $data->showLegend = $this->showLegend;
+        $data->calcs = $this->calcs;
         if (isset($this->asTable)) {
-            $data["asTable"] = $this->asTable;
+            $data->asTable = $this->asTable;
         }
         if (isset($this->isVisible)) {
-            $data["isVisible"] = $this->isVisible;
+            $data->isVisible = $this->isVisible;
         }
         if (isset($this->sortBy)) {
-            $data["sortBy"] = $this->sortBy;
+            $data->sortBy = $this->sortBy;
         }
         if (isset($this->sortDesc)) {
-            $data["sortDesc"] = $this->sortDesc;
+            $data->sortDesc = $this->sortDesc;
         }
         if (isset($this->width)) {
-            $data["width"] = $this->width;
+            $data->width = $this->width;
         }
         return $data;
     }
