@@ -45,20 +45,19 @@ class NodesQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->count)) {
-            $data["count"] = $this->count;
+            $data->count = $this->count;
         }
         if (isset($this->seed)) {
-            $data["seed"] = $this->seed;
+            $data->seed = $this->seed;
         }
         if (isset($this->type)) {
-            $data["type"] = $this->type;
+            $data->type = $this->type;
         }
         return $data;
     }

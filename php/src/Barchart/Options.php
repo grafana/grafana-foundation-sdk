@@ -147,36 +147,35 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "orientation" => $this->orientation,
-            "xTickLabelRotation" => $this->xTickLabelRotation,
-            "xTickLabelMaxLength" => $this->xTickLabelMaxLength,
-            "stacking" => $this->stacking,
-            "showValue" => $this->showValue,
-            "barWidth" => $this->barWidth,
-            "groupWidth" => $this->groupWidth,
-            "legend" => $this->legend,
-            "tooltip" => $this->tooltip,
-            "fullHighlight" => $this->fullHighlight,
-        ];
+        $data = new \stdClass;
+        $data->orientation = $this->orientation;
+        $data->xTickLabelRotation = $this->xTickLabelRotation;
+        $data->xTickLabelMaxLength = $this->xTickLabelMaxLength;
+        $data->stacking = $this->stacking;
+        $data->showValue = $this->showValue;
+        $data->barWidth = $this->barWidth;
+        $data->groupWidth = $this->groupWidth;
+        $data->legend = $this->legend;
+        $data->tooltip = $this->tooltip;
+        $data->fullHighlight = $this->fullHighlight;
         if (isset($this->xField)) {
-            $data["xField"] = $this->xField;
+            $data->xField = $this->xField;
         }
         if (isset($this->colorByField)) {
-            $data["colorByField"] = $this->colorByField;
+            $data->colorByField = $this->colorByField;
         }
         if (isset($this->barRadius)) {
-            $data["barRadius"] = $this->barRadius;
+            $data->barRadius = $this->barRadius;
         }
         if (isset($this->xTickLabelSpacing)) {
-            $data["xTickLabelSpacing"] = $this->xTickLabelSpacing;
+            $data->xTickLabelSpacing = $this->xTickLabelSpacing;
         }
         if (isset($this->text)) {
-            $data["text"] = $this->text;
+            $data->text = $this->text;
         }
         return $data;
     }

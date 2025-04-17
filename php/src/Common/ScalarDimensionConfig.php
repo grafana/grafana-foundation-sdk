@@ -50,22 +50,21 @@ class ScalarDimensionConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "min" => $this->min,
-            "max" => $this->max,
-        ];
+        $data = new \stdClass;
+        $data->min = $this->min;
+        $data->max = $this->max;
         if (isset($this->fixed)) {
-            $data["fixed"] = $this->fixed;
+            $data->fixed = $this->fixed;
         }
         if (isset($this->field)) {
-            $data["field"] = $this->field;
+            $data->field = $this->field;
         }
         if (isset($this->mode)) {
-            $data["mode"] = $this->mode;
+            $data->mode = $this->mode;
         }
         return $data;
     }
