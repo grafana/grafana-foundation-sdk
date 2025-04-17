@@ -50,20 +50,19 @@ class Scenario implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "id" => $this->id,
-            "name" => $this->name,
-            "stringInput" => $this->stringInput,
-        ];
+        $data = new \stdClass;
+        $data->id = $this->id;
+        $data->name = $this->name;
+        $data->stringInput = $this->stringInput;
         if (isset($this->description)) {
-            $data["description"] = $this->description;
+            $data->description = $this->description;
         }
         if (isset($this->hideAliasField)) {
-            $data["hideAliasField"] = $this->hideAliasField;
+            $data->hideAliasField = $this->hideAliasField;
         }
         return $data;
     }

@@ -168,38 +168,37 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "color" => $this->color,
-            "showValue" => $this->showValue,
-            "yAxis" => $this->yAxis,
-            "legend" => $this->legend,
-            "tooltip" => $this->tooltip,
-            "exemplars" => $this->exemplars,
-        ];
+        $data = new \stdClass;
+        $data->color = $this->color;
+        $data->showValue = $this->showValue;
+        $data->yAxis = $this->yAxis;
+        $data->legend = $this->legend;
+        $data->tooltip = $this->tooltip;
+        $data->exemplars = $this->exemplars;
         if (isset($this->calculate)) {
-            $data["calculate"] = $this->calculate;
+            $data->calculate = $this->calculate;
         }
         if (isset($this->calculation)) {
-            $data["calculation"] = $this->calculation;
+            $data->calculation = $this->calculation;
         }
         if (isset($this->filterValues)) {
-            $data["filterValues"] = $this->filterValues;
+            $data->filterValues = $this->filterValues;
         }
         if (isset($this->rowsFrame)) {
-            $data["rowsFrame"] = $this->rowsFrame;
+            $data->rowsFrame = $this->rowsFrame;
         }
         if (isset($this->cellGap)) {
-            $data["cellGap"] = $this->cellGap;
+            $data->cellGap = $this->cellGap;
         }
         if (isset($this->cellRadius)) {
-            $data["cellRadius"] = $this->cellRadius;
+            $data->cellRadius = $this->cellRadius;
         }
         if (isset($this->cellValues)) {
-            $data["cellValues"] = $this->cellValues;
+            $data->cellValues = $this->cellValues;
         }
         return $data;
     }

@@ -48,18 +48,17 @@ class ElasticsearchMovingFunctionSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "script" => $this->script,
-        ];
+        $data = new \stdClass;
+        $data->script = $this->script;
         if (isset($this->window)) {
-            $data["window"] = $this->window;
+            $data->window = $this->window;
         }
         if (isset($this->shift)) {
-            $data["shift"] = $this->shift;
+            $data->shift = $this->shift;
         }
         return $data;
     }

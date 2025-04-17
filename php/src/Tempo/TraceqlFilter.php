@@ -78,27 +78,26 @@ class TraceqlFilter implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "id" => $this->id,
-        ];
+        $data = new \stdClass;
+        $data->id = $this->id;
         if (isset($this->tag)) {
-            $data["tag"] = $this->tag;
+            $data->tag = $this->tag;
         }
         if (isset($this->operator)) {
-            $data["operator"] = $this->operator;
+            $data->operator = $this->operator;
         }
         if (isset($this->value)) {
-            $data["value"] = $this->value;
+            $data->value = $this->value;
         }
         if (isset($this->valueType)) {
-            $data["valueType"] = $this->valueType;
+            $data->valueType = $this->valueType;
         }
         if (isset($this->scope)) {
-            $data["scope"] = $this->scope;
+            $data->scope = $this->scope;
         }
         return $data;
     }

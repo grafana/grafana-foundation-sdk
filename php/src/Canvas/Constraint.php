@@ -32,17 +32,16 @@ class Constraint implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->horizontal)) {
-            $data["horizontal"] = $this->horizontal;
+            $data->horizontal = $this->horizontal;
         }
         if (isset($this->vertical)) {
-            $data["vertical"] = $this->vertical;
+            $data->vertical = $this->vertical;
         }
         return $data;
     }

@@ -103,28 +103,27 @@ class LibraryPanel implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "uid" => $this->uid,
-            "name" => $this->name,
-            "type" => $this->type,
-            "version" => $this->version,
-            "model" => $this->model,
-        ];
+        $data = new \stdClass;
+        $data->uid = $this->uid;
+        $data->name = $this->name;
+        $data->type = $this->type;
+        $data->version = $this->version;
+        $data->model = $this->model;
         if (isset($this->folderUid)) {
-            $data["folderUid"] = $this->folderUid;
+            $data->folderUid = $this->folderUid;
         }
         if (isset($this->description)) {
-            $data["description"] = $this->description;
+            $data->description = $this->description;
         }
         if (isset($this->schemaVersion)) {
-            $data["schemaVersion"] = $this->schemaVersion;
+            $data->schemaVersion = $this->schemaVersion;
         }
         if (isset($this->meta)) {
-            $data["meta"] = $this->meta;
+            $data->meta = $this->meta;
         }
         return $data;
     }

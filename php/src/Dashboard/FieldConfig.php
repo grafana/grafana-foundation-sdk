@@ -203,59 +203,58 @@ class FieldConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->displayName)) {
-            $data["displayName"] = $this->displayName;
+            $data->displayName = $this->displayName;
         }
         if (isset($this->displayNameFromDS)) {
-            $data["displayNameFromDS"] = $this->displayNameFromDS;
+            $data->displayNameFromDS = $this->displayNameFromDS;
         }
         if (isset($this->description)) {
-            $data["description"] = $this->description;
+            $data->description = $this->description;
         }
         if (isset($this->path)) {
-            $data["path"] = $this->path;
+            $data->path = $this->path;
         }
         if (isset($this->writeable)) {
-            $data["writeable"] = $this->writeable;
+            $data->writeable = $this->writeable;
         }
         if (isset($this->filterable)) {
-            $data["filterable"] = $this->filterable;
+            $data->filterable = $this->filterable;
         }
         if (isset($this->unit)) {
-            $data["unit"] = $this->unit;
+            $data->unit = $this->unit;
         }
         if (isset($this->decimals)) {
-            $data["decimals"] = $this->decimals;
+            $data->decimals = $this->decimals;
         }
         if (isset($this->min)) {
-            $data["min"] = $this->min;
+            $data->min = $this->min;
         }
         if (isset($this->max)) {
-            $data["max"] = $this->max;
+            $data->max = $this->max;
         }
         if (isset($this->mappings)) {
-            $data["mappings"] = $this->mappings;
+            $data->mappings = $this->mappings;
         }
         if (isset($this->thresholds)) {
-            $data["thresholds"] = $this->thresholds;
+            $data->thresholds = $this->thresholds;
         }
         if (isset($this->color)) {
-            $data["color"] = $this->color;
+            $data->color = $this->color;
         }
         if (isset($this->links)) {
-            $data["links"] = $this->links;
+            $data->links = $this->links;
         }
         if (isset($this->noValue)) {
-            $data["noValue"] = $this->noValue;
+            $data->noValue = $this->noValue;
         }
         if (isset($this->custom)) {
-            $data["custom"] = $this->custom;
+            $data->custom = $this->custom;
         }
         return $data;
     }

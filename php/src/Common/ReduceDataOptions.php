@@ -58,21 +58,20 @@ class ReduceDataOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "calcs" => $this->calcs,
-        ];
+        $data = new \stdClass;
+        $data->calcs = $this->calcs;
         if (isset($this->values)) {
-            $data["values"] = $this->values;
+            $data->values = $this->values;
         }
         if (isset($this->limit)) {
-            $data["limit"] = $this->limit;
+            $data->limit = $this->limit;
         }
         if (isset($this->fields)) {
-            $data["fields"] = $this->fields;
+            $data->fields = $this->fields;
         }
         return $data;
     }

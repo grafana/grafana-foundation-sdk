@@ -132,46 +132,45 @@ class MetricQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "projectName" => $this->projectName,
-            "editorMode" => $this->editorMode,
-            "metricType" => $this->metricType,
-            "crossSeriesReducer" => $this->crossSeriesReducer,
-            "query" => $this->query,
-        ];
+        $data = new \stdClass;
+        $data->projectName = $this->projectName;
+        $data->editorMode = $this->editorMode;
+        $data->metricType = $this->metricType;
+        $data->crossSeriesReducer = $this->crossSeriesReducer;
+        $data->query = $this->query;
         if (isset($this->perSeriesAligner)) {
-            $data["perSeriesAligner"] = $this->perSeriesAligner;
+            $data->perSeriesAligner = $this->perSeriesAligner;
         }
         if (isset($this->alignmentPeriod)) {
-            $data["alignmentPeriod"] = $this->alignmentPeriod;
+            $data->alignmentPeriod = $this->alignmentPeriod;
         }
         if (isset($this->aliasBy)) {
-            $data["aliasBy"] = $this->aliasBy;
+            $data->aliasBy = $this->aliasBy;
         }
         if (isset($this->groupBys)) {
-            $data["groupBys"] = $this->groupBys;
+            $data->groupBys = $this->groupBys;
         }
         if (isset($this->filters)) {
-            $data["filters"] = $this->filters;
+            $data->filters = $this->filters;
         }
         if (isset($this->metricKind)) {
-            $data["metricKind"] = $this->metricKind;
+            $data->metricKind = $this->metricKind;
         }
         if (isset($this->valueType)) {
-            $data["valueType"] = $this->valueType;
+            $data->valueType = $this->valueType;
         }
         if (isset($this->view)) {
-            $data["view"] = $this->view;
+            $data->view = $this->view;
         }
         if (isset($this->preprocessor)) {
-            $data["preprocessor"] = $this->preprocessor;
+            $data->preprocessor = $this->preprocessor;
         }
         if (isset($this->graphPeriod)) {
-            $data["graphPeriod"] = $this->graphPeriod;
+            $data->graphPeriod = $this->graphPeriod;
         }
         return $data;
     }

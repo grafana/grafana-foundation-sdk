@@ -41,17 +41,16 @@ class RowsHeatmapOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->value)) {
-            $data["value"] = $this->value;
+            $data->value = $this->value;
         }
         if (isset($this->layout)) {
-            $data["layout"] = $this->layout;
+            $data->layout = $this->layout;
         }
         return $data;
     }

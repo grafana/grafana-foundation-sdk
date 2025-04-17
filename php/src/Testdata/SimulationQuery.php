@@ -49,21 +49,20 @@ class SimulationQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "key" => $this->key,
-        ];
+        $data = new \stdClass;
+        $data->key = $this->key;
         if (isset($this->config)) {
-            $data["config"] = $this->config;
+            $data->config = $this->config;
         }
         if (isset($this->stream)) {
-            $data["stream"] = $this->stream;
+            $data->stream = $this->stream;
         }
         if (isset($this->last)) {
-            $data["last"] = $this->last;
+            $data->last = $this->last;
         }
         return $data;
     }

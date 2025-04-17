@@ -9446,7 +9446,8 @@ func (resource DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested) Ma
 	if resource.Nested != nil {
 		return json.Marshal(resource.Nested)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested` from JSON.
@@ -9463,7 +9464,7 @@ func (resource *DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested) U
 
 	discriminator, found := parsedAsMap["type"]
 	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -9517,7 +9518,7 @@ func (resource *DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested) U
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DateHistogramOrHistogramOrTermsOrFiltersOrGeoHashGridOrNested` from JSON.
@@ -9778,7 +9779,8 @@ func (resource CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSe
 	if resource.TopMetrics != nil {
 		return json.Marshal(resource.TopMetrics)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics` from JSON.
@@ -9795,7 +9797,7 @@ func (resource *CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrS
 
 	discriminator, found := parsedAsMap["type"]
 	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -9953,7 +9955,7 @@ func (resource *CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrS
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CountOrMovingAverageOrDerivativeOrCumulativeSumOrBucketScriptOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingFunctionOrLogsOrRateOrTopMetrics` from JSON.
@@ -10440,7 +10442,8 @@ func (resource MovingAverageOrDerivativeOrCumulativeSumOrBucketScript) MarshalJS
 	if resource.BucketScript != nil {
 		return json.Marshal(resource.BucketScript)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `MovingAverageOrDerivativeOrCumulativeSumOrBucketScript` from JSON.
@@ -10457,7 +10460,7 @@ func (resource *MovingAverageOrDerivativeOrCumulativeSumOrBucketScript) Unmarsha
 
 	discriminator, found := parsedAsMap["type"]
 	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -10495,7 +10498,7 @@ func (resource *MovingAverageOrDerivativeOrCumulativeSumOrBucketScript) Unmarsha
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MovingAverageOrDerivativeOrCumulativeSumOrBucketScript` from JSON.
@@ -10806,7 +10809,8 @@ func (resource BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRaw
 	if resource.TopMetrics != nil {
 		return json.Marshal(resource.TopMetrics)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics` from JSON.
@@ -10823,7 +10827,7 @@ func (resource *BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRa
 
 	discriminator, found := parsedAsMap["type"]
 	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -10973,7 +10977,7 @@ func (resource *BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRa
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BucketScriptOrCumulativeSumOrDerivativeOrSerialDiffOrRawDataOrRawDocumentOrUniqueCountOrPercentilesOrExtendedStatsOrMinOrMaxOrSumOrAverageOrMovingAverageOrMovingFunctionOrLogsOrRateOrTopMetrics` from JSON.
