@@ -70,29 +70,28 @@ class ControlsOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->showZoom)) {
-            $data["showZoom"] = $this->showZoom;
+            $data->showZoom = $this->showZoom;
         }
         if (isset($this->mouseWheelZoom)) {
-            $data["mouseWheelZoom"] = $this->mouseWheelZoom;
+            $data->mouseWheelZoom = $this->mouseWheelZoom;
         }
         if (isset($this->showAttribution)) {
-            $data["showAttribution"] = $this->showAttribution;
+            $data->showAttribution = $this->showAttribution;
         }
         if (isset($this->showScale)) {
-            $data["showScale"] = $this->showScale;
+            $data->showScale = $this->showScale;
         }
         if (isset($this->showDebug)) {
-            $data["showDebug"] = $this->showDebug;
+            $data->showDebug = $this->showDebug;
         }
         if (isset($this->showMeasure)) {
-            $data["showMeasure"] = $this->showMeasure;
+            $data->showMeasure = $this->showMeasure;
         }
         return $data;
     }

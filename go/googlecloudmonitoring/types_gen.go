@@ -1584,7 +1584,9 @@ type LegacyCloudMonitoringAnnotationQuery struct {
 
 // NewLegacyCloudMonitoringAnnotationQuery creates a new LegacyCloudMonitoringAnnotationQuery object.
 func NewLegacyCloudMonitoringAnnotationQuery() *LegacyCloudMonitoringAnnotationQuery {
-	return &LegacyCloudMonitoringAnnotationQuery{}
+	return &LegacyCloudMonitoringAnnotationQuery{
+		Filters: []string{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LegacyCloudMonitoringAnnotationQuery` from JSON.

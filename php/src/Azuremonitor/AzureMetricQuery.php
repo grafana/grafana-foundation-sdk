@@ -179,65 +179,64 @@ class AzureMetricQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->resources)) {
-            $data["resources"] = $this->resources;
+            $data->resources = $this->resources;
         }
         if (isset($this->metricNamespace)) {
-            $data["metricNamespace"] = $this->metricNamespace;
+            $data->metricNamespace = $this->metricNamespace;
         }
         if (isset($this->customNamespace)) {
-            $data["customNamespace"] = $this->customNamespace;
+            $data->customNamespace = $this->customNamespace;
         }
         if (isset($this->metricName)) {
-            $data["metricName"] = $this->metricName;
+            $data->metricName = $this->metricName;
         }
         if (isset($this->region)) {
-            $data["region"] = $this->region;
+            $data->region = $this->region;
         }
         if (isset($this->timeGrain)) {
-            $data["timeGrain"] = $this->timeGrain;
+            $data->timeGrain = $this->timeGrain;
         }
         if (isset($this->aggregation)) {
-            $data["aggregation"] = $this->aggregation;
+            $data->aggregation = $this->aggregation;
         }
         if (isset($this->dimensionFilters)) {
-            $data["dimensionFilters"] = $this->dimensionFilters;
+            $data->dimensionFilters = $this->dimensionFilters;
         }
         if (isset($this->top)) {
-            $data["top"] = $this->top;
+            $data->top = $this->top;
         }
         if (isset($this->allowedTimeGrainsMs)) {
-            $data["allowedTimeGrainsMs"] = $this->allowedTimeGrainsMs;
+            $data->allowedTimeGrainsMs = $this->allowedTimeGrainsMs;
         }
         if (isset($this->alias)) {
-            $data["alias"] = $this->alias;
+            $data->alias = $this->alias;
         }
         if (isset($this->timeGrainUnit)) {
-            $data["timeGrainUnit"] = $this->timeGrainUnit;
+            $data->timeGrainUnit = $this->timeGrainUnit;
         }
         if (isset($this->dimension)) {
-            $data["dimension"] = $this->dimension;
+            $data->dimension = $this->dimension;
         }
         if (isset($this->dimensionFilter)) {
-            $data["dimensionFilter"] = $this->dimensionFilter;
+            $data->dimensionFilter = $this->dimensionFilter;
         }
         if (isset($this->metricDefinition)) {
-            $data["metricDefinition"] = $this->metricDefinition;
+            $data->metricDefinition = $this->metricDefinition;
         }
         if (isset($this->resourceUri)) {
-            $data["resourceUri"] = $this->resourceUri;
+            $data->resourceUri = $this->resourceUri;
         }
         if (isset($this->resourceGroup)) {
-            $data["resourceGroup"] = $this->resourceGroup;
+            $data->resourceGroup = $this->resourceGroup;
         }
         if (isset($this->resourceName)) {
-            $data["resourceName"] = $this->resourceName;
+            $data->resourceName = $this->resourceName;
         }
         return $data;
     }

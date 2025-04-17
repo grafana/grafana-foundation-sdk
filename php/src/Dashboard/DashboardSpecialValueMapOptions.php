@@ -42,14 +42,13 @@ class DashboardSpecialValueMapOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "match" => $this->match,
-            "result" => $this->result,
-        ];
+        $data = new \stdClass;
+        $data->match = $this->match;
+        $data->result = $this->result;
         return $data;
     }
 }

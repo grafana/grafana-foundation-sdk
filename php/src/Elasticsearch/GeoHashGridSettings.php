@@ -27,14 +27,13 @@ class GeoHashGridSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->precision)) {
-            $data["precision"] = $this->precision;
+            $data->precision = $this->precision;
         }
         return $data;
     }

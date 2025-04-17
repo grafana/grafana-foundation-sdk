@@ -47,26 +47,25 @@ class TermsSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->order)) {
-            $data["order"] = $this->order;
+            $data->order = $this->order;
         }
         if (isset($this->size)) {
-            $data["size"] = $this->size;
+            $data->size = $this->size;
         }
         if (isset($this->minDocCount)) {
-            $data["min_doc_count"] = $this->minDocCount;
+            $data->min_doc_count = $this->minDocCount;
         }
         if (isset($this->orderBy)) {
-            $data["orderBy"] = $this->orderBy;
+            $data->orderBy = $this->orderBy;
         }
         if (isset($this->missing)) {
-            $data["missing"] = $this->missing;
+            $data->missing = $this->missing;
         }
         return $data;
     }

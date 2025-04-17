@@ -159,89 +159,88 @@ class DashboardMeta implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->annotationsPermissions)) {
-            $data["annotationsPermissions"] = $this->annotationsPermissions;
+            $data->annotationsPermissions = $this->annotationsPermissions;
         }
         if (isset($this->canAdmin)) {
-            $data["canAdmin"] = $this->canAdmin;
+            $data->canAdmin = $this->canAdmin;
         }
         if (isset($this->canDelete)) {
-            $data["canDelete"] = $this->canDelete;
+            $data->canDelete = $this->canDelete;
         }
         if (isset($this->canEdit)) {
-            $data["canEdit"] = $this->canEdit;
+            $data->canEdit = $this->canEdit;
         }
         if (isset($this->canSave)) {
-            $data["canSave"] = $this->canSave;
+            $data->canSave = $this->canSave;
         }
         if (isset($this->canStar)) {
-            $data["canStar"] = $this->canStar;
+            $data->canStar = $this->canStar;
         }
         if (isset($this->created)) {
-            $data["created"] = $this->created;
+            $data->created = $this->created;
         }
         if (isset($this->createdBy)) {
-            $data["createdBy"] = $this->createdBy;
+            $data->createdBy = $this->createdBy;
         }
         if (isset($this->expires)) {
-            $data["expires"] = $this->expires;
+            $data->expires = $this->expires;
         }
         if (isset($this->folderId)) {
-            $data["folderId"] = $this->folderId;
+            $data->folderId = $this->folderId;
         }
         if (isset($this->folderTitle)) {
-            $data["folderTitle"] = $this->folderTitle;
+            $data->folderTitle = $this->folderTitle;
         }
         if (isset($this->folderUid)) {
-            $data["folderUid"] = $this->folderUid;
+            $data->folderUid = $this->folderUid;
         }
         if (isset($this->folderUrl)) {
-            $data["folderUrl"] = $this->folderUrl;
+            $data->folderUrl = $this->folderUrl;
         }
         if (isset($this->hasAcl)) {
-            $data["hasAcl"] = $this->hasAcl;
+            $data->hasAcl = $this->hasAcl;
         }
         if (isset($this->isFolder)) {
-            $data["isFolder"] = $this->isFolder;
+            $data->isFolder = $this->isFolder;
         }
         if (isset($this->isSnapshot)) {
-            $data["isSnapshot"] = $this->isSnapshot;
+            $data->isSnapshot = $this->isSnapshot;
         }
         if (isset($this->isStarred)) {
-            $data["isStarred"] = $this->isStarred;
+            $data->isStarred = $this->isStarred;
         }
         if (isset($this->provisioned)) {
-            $data["provisioned"] = $this->provisioned;
+            $data->provisioned = $this->provisioned;
         }
         if (isset($this->provisionedExternalId)) {
-            $data["provisionedExternalId"] = $this->provisionedExternalId;
+            $data->provisionedExternalId = $this->provisionedExternalId;
         }
         if (isset($this->publicDashboardEnabled)) {
-            $data["publicDashboardEnabled"] = $this->publicDashboardEnabled;
+            $data->publicDashboardEnabled = $this->publicDashboardEnabled;
         }
         if (isset($this->slug)) {
-            $data["slug"] = $this->slug;
+            $data->slug = $this->slug;
         }
         if (isset($this->type)) {
-            $data["type"] = $this->type;
+            $data->type = $this->type;
         }
         if (isset($this->updated)) {
-            $data["updated"] = $this->updated;
+            $data->updated = $this->updated;
         }
         if (isset($this->updatedBy)) {
-            $data["updatedBy"] = $this->updatedBy;
+            $data->updatedBy = $this->updatedBy;
         }
         if (isset($this->url)) {
-            $data["url"] = $this->url;
+            $data->url = $this->url;
         }
         if (isset($this->version)) {
-            $data["version"] = $this->version;
+            $data->version = $this->version;
         }
         return $data;
     }

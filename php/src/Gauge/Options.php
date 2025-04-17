@@ -70,21 +70,20 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "showThresholdLabels" => $this->showThresholdLabels,
-            "showThresholdMarkers" => $this->showThresholdMarkers,
-            "sizing" => $this->sizing,
-            "minVizWidth" => $this->minVizWidth,
-            "reduceOptions" => $this->reduceOptions,
-            "minVizHeight" => $this->minVizHeight,
-            "orientation" => $this->orientation,
-        ];
+        $data = new \stdClass;
+        $data->showThresholdLabels = $this->showThresholdLabels;
+        $data->showThresholdMarkers = $this->showThresholdMarkers;
+        $data->sizing = $this->sizing;
+        $data->minVizWidth = $this->minVizWidth;
+        $data->reduceOptions = $this->reduceOptions;
+        $data->minVizHeight = $this->minVizHeight;
+        $data->orientation = $this->orientation;
         if (isset($this->text)) {
-            $data["text"] = $this->text;
+            $data->text = $this->text;
         }
         return $data;
     }

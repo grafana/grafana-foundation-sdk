@@ -41,16 +41,15 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "mode" => $this->mode,
-            "content" => $this->content,
-        ];
+        $data = new \stdClass;
+        $data->mode = $this->mode;
+        $data->content = $this->content;
         if (isset($this->code)) {
-            $data["code"] = $this->code;
+            $data->code = $this->code;
         }
         return $data;
     }

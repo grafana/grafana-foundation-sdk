@@ -49,15 +49,14 @@ class PromQLQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "projectName" => $this->projectName,
-            "expr" => $this->expr,
-            "step" => $this->step,
-        ];
+        $data = new \stdClass;
+        $data->projectName = $this->projectName;
+        $data->expr = $this->expr;
+        $data->step = $this->step;
         return $data;
     }
 }

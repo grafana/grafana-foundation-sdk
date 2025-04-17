@@ -62,26 +62,25 @@ class CandlestickFieldMap implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->open)) {
-            $data["open"] = $this->open;
+            $data->open = $this->open;
         }
         if (isset($this->high)) {
-            $data["high"] = $this->high;
+            $data->high = $this->high;
         }
         if (isset($this->low)) {
-            $data["low"] = $this->low;
+            $data->low = $this->low;
         }
         if (isset($this->close)) {
-            $data["close"] = $this->close;
+            $data->close = $this->close;
         }
         if (isset($this->volume)) {
-            $data["volume"] = $this->volume;
+            $data->volume = $this->volume;
         }
         return $data;
     }

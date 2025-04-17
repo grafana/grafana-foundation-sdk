@@ -37,15 +37,14 @@ class LibraryElementDTOMetaUser implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "id" => $this->id,
-            "name" => $this->name,
-            "avatarUrl" => $this->avatarUrl,
-        ];
+        $data = new \stdClass;
+        $data->id = $this->id;
+        $data->name = $this->name;
+        $data->avatarUrl = $this->avatarUrl;
         return $data;
     }
 }

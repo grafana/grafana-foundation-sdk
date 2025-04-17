@@ -147,39 +147,38 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "expression" => $this->expression,
-            "reducer" => $this->reducer,
-            "refId" => $this->refId,
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->expression = $this->expression;
+        $data->reducer = $this->reducer;
+        $data->refId = $this->refId;
+        $data->type = $this->type;
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->intervalMs)) {
-            $data["intervalMs"] = $this->intervalMs;
+            $data->intervalMs = $this->intervalMs;
         }
         if (isset($this->maxDataPoints)) {
-            $data["maxDataPoints"] = $this->maxDataPoints;
+            $data->maxDataPoints = $this->maxDataPoints;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->resultAssertions)) {
-            $data["resultAssertions"] = $this->resultAssertions;
+            $data->resultAssertions = $this->resultAssertions;
         }
         if (isset($this->settings)) {
-            $data["settings"] = $this->settings;
+            $data->settings = $this->settings;
         }
         if (isset($this->timeRange)) {
-            $data["timeRange"] = $this->timeRange;
+            $data->timeRange = $this->timeRange;
         }
         return $data;
     }
