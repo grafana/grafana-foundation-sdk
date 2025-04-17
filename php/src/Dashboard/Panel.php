@@ -290,67 +290,66 @@ class Panel implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-            "transparent" => $this->transparent,
-            "transformations" => $this->transformations,
-            "options" => $this->options,
-            "fieldConfig" => $this->fieldConfig,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
+        $data->transparent = $this->transparent;
+        $data->transformations = $this->transformations;
+        $data->options = $this->options;
+        $data->fieldConfig = $this->fieldConfig;
         if (isset($this->id)) {
-            $data["id"] = $this->id;
+            $data->id = $this->id;
         }
         if (isset($this->pluginVersion)) {
-            $data["pluginVersion"] = $this->pluginVersion;
+            $data->pluginVersion = $this->pluginVersion;
         }
         if (isset($this->tags)) {
-            $data["tags"] = $this->tags;
+            $data->tags = $this->tags;
         }
         if (isset($this->targets)) {
-            $data["targets"] = $this->targets;
+            $data->targets = $this->targets;
         }
         if (isset($this->title)) {
-            $data["title"] = $this->title;
+            $data->title = $this->title;
         }
         if (isset($this->description)) {
-            $data["description"] = $this->description;
+            $data->description = $this->description;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         if (isset($this->gridPos)) {
-            $data["gridPos"] = $this->gridPos;
+            $data->gridPos = $this->gridPos;
         }
         if (isset($this->links)) {
-            $data["links"] = $this->links;
+            $data->links = $this->links;
         }
         if (isset($this->repeat)) {
-            $data["repeat"] = $this->repeat;
+            $data->repeat = $this->repeat;
         }
         if (isset($this->repeatDirection)) {
-            $data["repeatDirection"] = $this->repeatDirection;
+            $data->repeatDirection = $this->repeatDirection;
         }
         if (isset($this->repeatPanelId)) {
-            $data["repeatPanelId"] = $this->repeatPanelId;
+            $data->repeatPanelId = $this->repeatPanelId;
         }
         if (isset($this->maxDataPoints)) {
-            $data["maxDataPoints"] = $this->maxDataPoints;
+            $data->maxDataPoints = $this->maxDataPoints;
         }
         if (isset($this->interval)) {
-            $data["interval"] = $this->interval;
+            $data->interval = $this->interval;
         }
         if (isset($this->timeFrom)) {
-            $data["timeFrom"] = $this->timeFrom;
+            $data->timeFrom = $this->timeFrom;
         }
         if (isset($this->timeShift)) {
-            $data["timeShift"] = $this->timeShift;
+            $data->timeShift = $this->timeShift;
         }
         if (isset($this->libraryPanel)) {
-            $data["libraryPanel"] = $this->libraryPanel;
+            $data->libraryPanel = $this->libraryPanel;
         }
         return $data;
     }

@@ -31,15 +31,14 @@ class AppInsightsMetricNameQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "kind" => $this->kind,
-        ];
+        $data = new \stdClass;
+        $data->kind = $this->kind;
         if (isset($this->rawQuery)) {
-            $data["rawQuery"] = $this->rawQuery;
+            $data->rawQuery = $this->rawQuery;
         }
         return $data;
     }

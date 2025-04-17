@@ -40,15 +40,14 @@ class CodeOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "language" => $this->language,
-            "showLineNumbers" => $this->showLineNumbers,
-            "showMiniMap" => $this->showMiniMap,
-        ];
+        $data = new \stdClass;
+        $data->language = $this->language;
+        $data->showLineNumbers = $this->showLineNumbers;
+        $data->showMiniMap = $this->showMiniMap;
         return $data;
     }
 }

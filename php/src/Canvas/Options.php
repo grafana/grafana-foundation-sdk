@@ -51,15 +51,14 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "inlineEditing" => $this->inlineEditing,
-            "showAdvancedTypes" => $this->showAdvancedTypes,
-            "root" => $this->root,
-        ];
+        $data = new \stdClass;
+        $data->inlineEditing = $this->inlineEditing;
+        $data->showAdvancedTypes = $this->showAdvancedTypes;
+        $data->root = $this->root;
         return $data;
     }
 }

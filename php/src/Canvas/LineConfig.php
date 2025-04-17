@@ -36,17 +36,16 @@ class LineConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->color)) {
-            $data["color"] = $this->color;
+            $data->color = $this->color;
         }
         if (isset($this->width)) {
-            $data["width"] = $this->width;
+            $data->width = $this->width;
         }
         return $data;
     }

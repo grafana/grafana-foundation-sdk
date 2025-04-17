@@ -108,30 +108,29 @@ class AnnotationQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "name" => $this->name,
-            "datasource" => $this->datasource,
-            "enable" => $this->enable,
-            "iconColor" => $this->iconColor,
-        ];
+        $data = new \stdClass;
+        $data->name = $this->name;
+        $data->datasource = $this->datasource;
+        $data->enable = $this->enable;
+        $data->iconColor = $this->iconColor;
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->filter)) {
-            $data["filter"] = $this->filter;
+            $data->filter = $this->filter;
         }
         if (isset($this->target)) {
-            $data["target"] = $this->target;
+            $data->target = $this->target;
         }
         if (isset($this->type)) {
-            $data["type"] = $this->type;
+            $data->type = $this->type;
         }
         if (isset($this->expr)) {
-            $data["expr"] = $this->expr;
+            $data->expr = $this->expr;
         }
         return $data;
     }

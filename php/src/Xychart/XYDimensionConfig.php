@@ -40,18 +40,17 @@ class XYDimensionConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "frame" => $this->frame,
-        ];
+        $data = new \stdClass;
+        $data->frame = $this->frame;
         if (isset($this->x)) {
-            $data["x"] = $this->x;
+            $data->x = $this->x;
         }
         if (isset($this->exclude)) {
-            $data["exclude"] = $this->exclude;
+            $data->exclude = $this->exclude;
         }
         return $data;
     }

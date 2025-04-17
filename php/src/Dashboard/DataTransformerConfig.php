@@ -65,19 +65,18 @@ class DataTransformerConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "id" => $this->id,
-            "options" => $this->options,
-        ];
+        $data = new \stdClass;
+        $data->id = $this->id;
+        $data->options = $this->options;
         if (isset($this->disabled)) {
-            $data["disabled"] = $this->disabled;
+            $data->disabled = $this->disabled;
         }
         if (isset($this->filter)) {
-            $data["filter"] = $this->filter;
+            $data->filter = $this->filter;
         }
         return $data;
     }

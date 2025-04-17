@@ -37,18 +37,17 @@ class DashboardGraphPanelLegend implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "show" => $this->show,
-        ];
+        $data = new \stdClass;
+        $data->show = $this->show;
         if (isset($this->sort)) {
-            $data["sort"] = $this->sort;
+            $data->sort = $this->sort;
         }
         if (isset($this->sortDesc)) {
-            $data["sortDesc"] = $this->sortDesc;
+            $data->sortDesc = $this->sortDesc;
         }
         return $data;
     }

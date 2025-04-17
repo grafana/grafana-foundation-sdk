@@ -65,19 +65,18 @@ class LibraryElementDTOMeta implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "folderName" => $this->folderName,
-            "folderUid" => $this->folderUid,
-            "connectedDashboards" => $this->connectedDashboards,
-            "created" => $this->created,
-            "updated" => $this->updated,
-            "createdBy" => $this->createdBy,
-            "updatedBy" => $this->updatedBy,
-        ];
+        $data = new \stdClass;
+        $data->folderName = $this->folderName;
+        $data->folderUid = $this->folderUid;
+        $data->connectedDashboards = $this->connectedDashboards;
+        $data->created = $this->created;
+        $data->updated = $this->updated;
+        $data->createdBy = $this->createdBy;
+        $data->updatedBy = $this->updatedBy;
         return $data;
     }
 }

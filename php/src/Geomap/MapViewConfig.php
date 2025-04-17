@@ -77,42 +77,41 @@ class MapViewConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "id" => $this->id,
-        ];
+        $data = new \stdClass;
+        $data->id = $this->id;
         if (isset($this->lat)) {
-            $data["lat"] = $this->lat;
+            $data->lat = $this->lat;
         }
         if (isset($this->lon)) {
-            $data["lon"] = $this->lon;
+            $data->lon = $this->lon;
         }
         if (isset($this->zoom)) {
-            $data["zoom"] = $this->zoom;
+            $data->zoom = $this->zoom;
         }
         if (isset($this->minZoom)) {
-            $data["minZoom"] = $this->minZoom;
+            $data->minZoom = $this->minZoom;
         }
         if (isset($this->maxZoom)) {
-            $data["maxZoom"] = $this->maxZoom;
+            $data->maxZoom = $this->maxZoom;
         }
         if (isset($this->padding)) {
-            $data["padding"] = $this->padding;
+            $data->padding = $this->padding;
         }
         if (isset($this->allLayers)) {
-            $data["allLayers"] = $this->allLayers;
+            $data->allLayers = $this->allLayers;
         }
         if (isset($this->lastOnly)) {
-            $data["lastOnly"] = $this->lastOnly;
+            $data->lastOnly = $this->lastOnly;
         }
         if (isset($this->layer)) {
-            $data["layer"] = $this->layer;
+            $data->layer = $this->layer;
         }
         if (isset($this->shared)) {
-            $data["shared"] = $this->shared;
+            $data->shared = $this->shared;
         }
         return $data;
     }

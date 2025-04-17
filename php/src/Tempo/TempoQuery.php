@@ -150,47 +150,46 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "refId" => $this->refId,
-            "query" => $this->query,
-            "filters" => $this->filters,
-        ];
+        $data = new \stdClass;
+        $data->refId = $this->refId;
+        $data->query = $this->query;
+        $data->filters = $this->filters;
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->search)) {
-            $data["search"] = $this->search;
+            $data->search = $this->search;
         }
         if (isset($this->serviceName)) {
-            $data["serviceName"] = $this->serviceName;
+            $data->serviceName = $this->serviceName;
         }
         if (isset($this->spanName)) {
-            $data["spanName"] = $this->spanName;
+            $data->spanName = $this->spanName;
         }
         if (isset($this->minDuration)) {
-            $data["minDuration"] = $this->minDuration;
+            $data->minDuration = $this->minDuration;
         }
         if (isset($this->maxDuration)) {
-            $data["maxDuration"] = $this->maxDuration;
+            $data->maxDuration = $this->maxDuration;
         }
         if (isset($this->serviceMapQuery)) {
-            $data["serviceMapQuery"] = $this->serviceMapQuery;
+            $data->serviceMapQuery = $this->serviceMapQuery;
         }
         if (isset($this->serviceMapIncludeNamespace)) {
-            $data["serviceMapIncludeNamespace"] = $this->serviceMapIncludeNamespace;
+            $data->serviceMapIncludeNamespace = $this->serviceMapIncludeNamespace;
         }
         if (isset($this->limit)) {
-            $data["limit"] = $this->limit;
+            $data->limit = $this->limit;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         return $data;
     }

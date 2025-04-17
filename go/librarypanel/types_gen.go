@@ -620,8 +620,9 @@ type PanelModel struct {
 // NewPanelModel creates a new PanelModel object.
 func NewPanelModel() *PanelModel {
 	return &PanelModel{
-		Transparent: false,
-		FieldConfig: *dashboard.NewFieldConfigSource(),
+		Transparent:     false,
+		Transformations: []dashboard.DataTransformerConfig{},
+		FieldConfig:     *dashboard.NewFieldConfigSource(),
 	}
 }
 

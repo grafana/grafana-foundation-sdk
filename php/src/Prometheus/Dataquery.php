@@ -137,46 +137,45 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "expr" => $this->expr,
-            "refId" => $this->refId,
-        ];
+        $data = new \stdClass;
+        $data->expr = $this->expr;
+        $data->refId = $this->refId;
         if (isset($this->instant)) {
-            $data["instant"] = $this->instant;
+            $data->instant = $this->instant;
         }
         if (isset($this->range)) {
-            $data["range"] = $this->range;
+            $data->range = $this->range;
         }
         if (isset($this->exemplar)) {
-            $data["exemplar"] = $this->exemplar;
+            $data->exemplar = $this->exemplar;
         }
         if (isset($this->editorMode)) {
-            $data["editorMode"] = $this->editorMode;
+            $data->editorMode = $this->editorMode;
         }
         if (isset($this->format)) {
-            $data["format"] = $this->format;
+            $data->format = $this->format;
         }
         if (isset($this->legendFormat)) {
-            $data["legendFormat"] = $this->legendFormat;
+            $data->legendFormat = $this->legendFormat;
         }
         if (isset($this->intervalFactor)) {
-            $data["intervalFactor"] = $this->intervalFactor;
+            $data->intervalFactor = $this->intervalFactor;
         }
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         if (isset($this->interval)) {
-            $data["interval"] = $this->interval;
+            $data->interval = $this->interval;
         }
         return $data;
     }

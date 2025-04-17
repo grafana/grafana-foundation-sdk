@@ -1124,7 +1124,8 @@ func (resource TypeClassicConditions) DataqueryType() string {
 // NewTypeClassicConditions creates a new TypeClassicConditions object.
 func NewTypeClassicConditions() *TypeClassicConditions {
 	return &TypeClassicConditions{
-		Type: "classic_conditions",
+		Conditions: []ExprTypeClassicConditionsConditions{},
+		Type:       "classic_conditions",
 	}
 }
 
@@ -1456,7 +1457,8 @@ func (resource TypeThreshold) DataqueryType() string {
 // NewTypeThreshold creates a new TypeThreshold object.
 func NewTypeThreshold() *TypeThreshold {
 	return &TypeThreshold{
-		Type: "threshold",
+		Conditions: []ExprTypeThresholdConditions{},
+		Type:       "threshold",
 	}
 }
 
@@ -2138,7 +2140,8 @@ func (resource TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeTh
 	if resource.TypeSql != nil {
 		return json.Marshal(resource.TypeSql)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql` from JSON.
@@ -2155,7 +2158,7 @@ func (resource *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeT
 
 	discriminator, found := parsedAsMap["type"]
 	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -2209,7 +2212,7 @@ func (resource *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeT
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql` from JSON.
@@ -2416,7 +2419,9 @@ type ExprTypeMathResultAssertions struct {
 
 // NewExprTypeMathResultAssertions creates a new ExprTypeMathResultAssertions object.
 func NewExprTypeMathResultAssertions() *ExprTypeMathResultAssertions {
-	return &ExprTypeMathResultAssertions{}
+	return &ExprTypeMathResultAssertions{
+		TypeVersion: []int64{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeMathResultAssertions` from JSON.
@@ -2625,7 +2630,9 @@ type ExprTypeReduceResultAssertions struct {
 
 // NewExprTypeReduceResultAssertions creates a new ExprTypeReduceResultAssertions object.
 func NewExprTypeReduceResultAssertions() *ExprTypeReduceResultAssertions {
-	return &ExprTypeReduceResultAssertions{}
+	return &ExprTypeReduceResultAssertions{
+		TypeVersion: []int64{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeReduceResultAssertions` from JSON.
@@ -2921,7 +2928,9 @@ type ExprTypeResampleResultAssertions struct {
 
 // NewExprTypeResampleResultAssertions creates a new ExprTypeResampleResultAssertions object.
 func NewExprTypeResampleResultAssertions() *ExprTypeResampleResultAssertions {
-	return &ExprTypeResampleResultAssertions{}
+	return &ExprTypeResampleResultAssertions{
+		TypeVersion: []int64{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeResampleResultAssertions` from JSON.
@@ -3114,7 +3123,9 @@ type ExprTypeClassicConditionsConditionsEvaluator struct {
 
 // NewExprTypeClassicConditionsConditionsEvaluator creates a new ExprTypeClassicConditionsConditionsEvaluator object.
 func NewExprTypeClassicConditionsConditionsEvaluator() *ExprTypeClassicConditionsConditionsEvaluator {
-	return &ExprTypeClassicConditionsConditionsEvaluator{}
+	return &ExprTypeClassicConditionsConditionsEvaluator{
+		Params: []float64{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditionsEvaluator` from JSON.
@@ -3261,7 +3272,9 @@ type ExprTypeClassicConditionsConditionsQuery struct {
 
 // NewExprTypeClassicConditionsConditionsQuery creates a new ExprTypeClassicConditionsConditionsQuery object.
 func NewExprTypeClassicConditionsConditionsQuery() *ExprTypeClassicConditionsConditionsQuery {
-	return &ExprTypeClassicConditionsConditionsQuery{}
+	return &ExprTypeClassicConditionsConditionsQuery{
+		Params: []string{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsConditionsQuery` from JSON.
@@ -3555,7 +3568,9 @@ type ExprTypeClassicConditionsResultAssertions struct {
 
 // NewExprTypeClassicConditionsResultAssertions creates a new ExprTypeClassicConditionsResultAssertions object.
 func NewExprTypeClassicConditionsResultAssertions() *ExprTypeClassicConditionsResultAssertions {
-	return &ExprTypeClassicConditionsResultAssertions{}
+	return &ExprTypeClassicConditionsResultAssertions{
+		TypeVersion: []int64{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeClassicConditionsResultAssertions` from JSON.
@@ -3748,7 +3763,9 @@ type ExprTypeThresholdConditionsEvaluator struct {
 
 // NewExprTypeThresholdConditionsEvaluator creates a new ExprTypeThresholdConditionsEvaluator object.
 func NewExprTypeThresholdConditionsEvaluator() *ExprTypeThresholdConditionsEvaluator {
-	return &ExprTypeThresholdConditionsEvaluator{}
+	return &ExprTypeThresholdConditionsEvaluator{
+		Params: []float64{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdConditionsEvaluator` from JSON.
@@ -3836,7 +3853,9 @@ type ExprTypeThresholdConditionsUnloadEvaluator struct {
 
 // NewExprTypeThresholdConditionsUnloadEvaluator creates a new ExprTypeThresholdConditionsUnloadEvaluator object.
 func NewExprTypeThresholdConditionsUnloadEvaluator() *ExprTypeThresholdConditionsUnloadEvaluator {
-	return &ExprTypeThresholdConditionsUnloadEvaluator{}
+	return &ExprTypeThresholdConditionsUnloadEvaluator{
+		Params: []float64{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdConditionsUnloadEvaluator` from JSON.
@@ -4058,7 +4077,9 @@ type ExprTypeThresholdResultAssertions struct {
 
 // NewExprTypeThresholdResultAssertions creates a new ExprTypeThresholdResultAssertions object.
 func NewExprTypeThresholdResultAssertions() *ExprTypeThresholdResultAssertions {
-	return &ExprTypeThresholdResultAssertions{}
+	return &ExprTypeThresholdResultAssertions{
+		TypeVersion: []int64{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeThresholdResultAssertions` from JSON.
@@ -4267,7 +4288,9 @@ type ExprTypeSqlResultAssertions struct {
 
 // NewExprTypeSqlResultAssertions creates a new ExprTypeSqlResultAssertions object.
 func NewExprTypeSqlResultAssertions() *ExprTypeSqlResultAssertions {
-	return &ExprTypeSqlResultAssertions{}
+	return &ExprTypeSqlResultAssertions{
+		TypeVersion: []int64{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ExprTypeSqlResultAssertions` from JSON.

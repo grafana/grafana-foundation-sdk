@@ -36,6 +36,7 @@ func NewOptions() *Options {
 		ShowHeadings:       true,
 		MaxItems:           10,
 		Query:              "",
+		Tags:               []string{},
 	}
 }
 

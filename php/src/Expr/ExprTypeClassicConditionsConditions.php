@@ -58,16 +58,15 @@ class ExprTypeClassicConditionsConditions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "evaluator" => $this->evaluator,
-            "operator" => $this->operator,
-            "query" => $this->query,
-            "reducer" => $this->reducer,
-        ];
+        $data = new \stdClass;
+        $data->evaluator = $this->evaluator;
+        $data->operator = $this->operator;
+        $data->query = $this->query;
+        $data->reducer = $this->reducer;
         return $data;
     }
 }
