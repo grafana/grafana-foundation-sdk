@@ -75,26 +75,25 @@ class Query implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->datasourceUid)) {
-            $data["datasourceUid"] = $this->datasourceUid;
+            $data->datasourceUid = $this->datasourceUid;
         }
         if (isset($this->model)) {
-            $data["model"] = $this->model;
+            $data->model = $this->model;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->refId)) {
-            $data["refId"] = $this->refId;
+            $data->refId = $this->refId;
         }
         if (isset($this->relativeTimeRange)) {
-            $data["relativeTimeRange"] = $this->relativeTimeRange;
+            $data->relativeTimeRange = $this->relativeTimeRange;
         }
         return $data;
     }

@@ -1796,7 +1796,9 @@ type AzureTracesFilter struct {
 
 // NewAzureTracesFilter creates a new AzureTracesFilter object.
 func NewAzureTracesFilter() *AzureTracesFilter {
-	return &AzureTracesFilter{}
+	return &AzureTracesFilter{
+		Filters: []string{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureTracesFilter` from JSON.
@@ -3344,7 +3346,8 @@ func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscription
 	if resource.UnknownQuery != nil {
 		return json.Marshal(resource.UnknownQuery)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery` from JSON.
@@ -3361,7 +3364,7 @@ func (resource *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptio
 
 	discriminator, found := parsedAsMap["kind"]
 	if !found {
-		return errors.New("discriminator field 'kind' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -3447,7 +3450,7 @@ func (resource *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptio
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery` from JSON.

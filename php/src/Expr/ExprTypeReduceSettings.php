@@ -41,15 +41,14 @@ class ExprTypeReduceSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "mode" => $this->mode,
-        ];
+        $data = new \stdClass;
+        $data->mode = $this->mode;
         if (isset($this->replaceWithValue)) {
-            $data["replaceWithValue"] = $this->replaceWithValue;
+            $data->replaceWithValue = $this->replaceWithValue;
         }
         return $data;
     }

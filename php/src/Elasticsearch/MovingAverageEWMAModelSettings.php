@@ -49,18 +49,17 @@ class MovingAverageEWMAModelSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "model" => $this->model,
-            "window" => $this->window,
-            "minimize" => $this->minimize,
-            "predict" => $this->predict,
-        ];
+        $data = new \stdClass;
+        $data->model = $this->model;
+        $data->window = $this->window;
+        $data->minimize = $this->minimize;
+        $data->predict = $this->predict;
         if (isset($this->settings)) {
-            $data["settings"] = $this->settings;
+            $data->settings = $this->settings;
         }
         return $data;
     }

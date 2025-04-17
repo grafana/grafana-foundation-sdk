@@ -54,23 +54,22 @@ class MetricDefinitionsQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "kind" => $this->kind,
-            "subscription" => $this->subscription,
-            "resourceGroup" => $this->resourceGroup,
-        ];
+        $data = new \stdClass;
+        $data->kind = $this->kind;
+        $data->subscription = $this->subscription;
+        $data->resourceGroup = $this->resourceGroup;
         if (isset($this->rawQuery)) {
-            $data["rawQuery"] = $this->rawQuery;
+            $data->rawQuery = $this->rawQuery;
         }
         if (isset($this->metricNamespace)) {
-            $data["metricNamespace"] = $this->metricNamespace;
+            $data->metricNamespace = $this->metricNamespace;
         }
         if (isset($this->resourceName)) {
-            $data["resourceName"] = $this->resourceName;
+            $data->resourceName = $this->resourceName;
         }
         return $data;
     }

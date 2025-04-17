@@ -49,16 +49,15 @@ class TimeSeriesQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "projectName" => $this->projectName,
-            "query" => $this->query,
-        ];
+        $data = new \stdClass;
+        $data->projectName = $this->projectName;
+        $data->query = $this->query;
         if (isset($this->graphPeriod)) {
-            $data["graphPeriod"] = $this->graphPeriod;
+            $data->graphPeriod = $this->graphPeriod;
         }
         return $data;
     }

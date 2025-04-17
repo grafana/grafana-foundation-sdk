@@ -42,14 +42,13 @@ class DashboardRegexMapOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "pattern" => $this->pattern,
-            "result" => $this->result,
-        ];
+        $data = new \stdClass;
+        $data->pattern = $this->pattern;
+        $data->result = $this->result;
         return $data;
     }
 }

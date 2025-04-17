@@ -3066,7 +3066,9 @@ type ReduceDataOptions struct {
 
 // NewReduceDataOptions creates a new ReduceDataOptions object.
 func NewReduceDataOptions() *ReduceDataOptions {
-	return &ReduceDataOptions{}
+	return &ReduceDataOptions{
+		Calcs: []string{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ReduceDataOptions` from JSON.
@@ -4969,7 +4971,9 @@ type TableFooterOptions struct {
 
 // NewTableFooterOptions creates a new TableFooterOptions object.
 func NewTableFooterOptions() *TableFooterOptions {
-	return &TableFooterOptions{}
+	return &TableFooterOptions{
+		Reducer: []string{},
+	}
 }
 func (resource *TableFooterOptions) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
@@ -7234,7 +7238,7 @@ func (resource BoolOrFloat64) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.Float64)
 	}
 
-	return nil, fmt.Errorf("no value for disjunction of scalars")
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `BoolOrFloat64` from JSON.
@@ -7379,7 +7383,8 @@ func (resource TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCel
 	if resource.TableJsonViewCellOptions != nil {
 		return json.Marshal(resource.TableJsonViewCellOptions)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions` from JSON.
@@ -7396,7 +7401,7 @@ func (resource *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCe
 
 	discriminator, found := parsedAsMap["type"]
 	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -7466,7 +7471,7 @@ func (resource *TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCe
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableJsonViewCellOptions` from JSON.

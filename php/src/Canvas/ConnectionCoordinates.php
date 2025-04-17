@@ -32,14 +32,13 @@ class ConnectionCoordinates implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "x" => $this->x,
-            "y" => $this->y,
-        ];
+        $data = new \stdClass;
+        $data->x = $this->x;
+        $data->y = $this->y;
         return $data;
     }
 }

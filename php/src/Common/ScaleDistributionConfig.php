@@ -40,18 +40,17 @@ class ScaleDistributionConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
         if (isset($this->log)) {
-            $data["log"] = $this->log;
+            $data->log = $this->log;
         }
         if (isset($this->linearThreshold)) {
-            $data["linearThreshold"] = $this->linearThreshold;
+            $data->linearThreshold = $this->linearThreshold;
         }
         return $data;
     }
