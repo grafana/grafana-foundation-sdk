@@ -26,6 +26,7 @@ func NewAccessPolicy() *AccessPolicy {
 	return &AccessPolicy{
 		Scope: *NewResourceRef(),
 		Role:  *NewRoleRef(),
+		Rules: []AccessRule{},
 	}
 }
 

@@ -91,32 +91,31 @@ class Preferences implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->homeDashboardUID)) {
-            $data["homeDashboardUID"] = $this->homeDashboardUID;
+            $data->homeDashboardUID = $this->homeDashboardUID;
         }
         if (isset($this->timezone)) {
-            $data["timezone"] = $this->timezone;
+            $data->timezone = $this->timezone;
         }
         if (isset($this->weekStart)) {
-            $data["weekStart"] = $this->weekStart;
+            $data->weekStart = $this->weekStart;
         }
         if (isset($this->theme)) {
-            $data["theme"] = $this->theme;
+            $data->theme = $this->theme;
         }
         if (isset($this->language)) {
-            $data["language"] = $this->language;
+            $data->language = $this->language;
         }
         if (isset($this->queryHistory)) {
-            $data["queryHistory"] = $this->queryHistory;
+            $data->queryHistory = $this->queryHistory;
         }
         if (isset($this->cookiePreferences)) {
-            $data["cookiePreferences"] = $this->cookiePreferences;
+            $data->cookiePreferences = $this->cookiePreferences;
         }
         return $data;
     }

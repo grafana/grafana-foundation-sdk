@@ -50,20 +50,19 @@ class HeatmapCalculationBucketConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->mode)) {
-            $data["mode"] = $this->mode;
+            $data->mode = $this->mode;
         }
         if (isset($this->value)) {
-            $data["value"] = $this->value;
+            $data->value = $this->value;
         }
         if (isset($this->scale)) {
-            $data["scale"] = $this->scale;
+            $data->scale = $this->scale;
         }
         return $data;
     }

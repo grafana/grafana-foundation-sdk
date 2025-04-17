@@ -47,26 +47,25 @@ class ElasticsearchDateHistogramSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->interval)) {
-            $data["interval"] = $this->interval;
+            $data->interval = $this->interval;
         }
         if (isset($this->minDocCount)) {
-            $data["min_doc_count"] = $this->minDocCount;
+            $data->min_doc_count = $this->minDocCount;
         }
         if (isset($this->trimEdges)) {
-            $data["trimEdges"] = $this->trimEdges;
+            $data->trimEdges = $this->trimEdges;
         }
         if (isset($this->offset)) {
-            $data["offset"] = $this->offset;
+            $data->offset = $this->offset;
         }
         if (isset($this->timeZone)) {
-            $data["timeZone"] = $this->timeZone;
+            $data->timeZone = $this->timeZone;
         }
         return $data;
     }

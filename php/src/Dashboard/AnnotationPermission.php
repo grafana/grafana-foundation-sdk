@@ -40,17 +40,16 @@ class AnnotationPermission implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->dashboard)) {
-            $data["dashboard"] = $this->dashboard;
+            $data->dashboard = $this->dashboard;
         }
         if (isset($this->organization)) {
-            $data["organization"] = $this->organization;
+            $data->organization = $this->organization;
         }
         return $data;
     }

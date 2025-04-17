@@ -172,36 +172,35 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "refId" => $this->refId,
-        ];
+        $data = new \stdClass;
+        $data->refId = $this->refId;
         if (isset($this->alias)) {
-            $data["alias"] = $this->alias;
+            $data->alias = $this->alias;
         }
         if (isset($this->query)) {
-            $data["query"] = $this->query;
+            $data->query = $this->query;
         }
         if (isset($this->timeField)) {
-            $data["timeField"] = $this->timeField;
+            $data->timeField = $this->timeField;
         }
         if (isset($this->bucketAggs)) {
-            $data["bucketAggs"] = $this->bucketAggs;
+            $data->bucketAggs = $this->bucketAggs;
         }
         if (isset($this->metrics)) {
-            $data["metrics"] = $this->metrics;
+            $data->metrics = $this->metrics;
         }
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         return $data;
     }

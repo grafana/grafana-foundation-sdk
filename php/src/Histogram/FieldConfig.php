@@ -110,53 +110,52 @@ class FieldConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->lineWidth)) {
-            $data["lineWidth"] = $this->lineWidth;
+            $data->lineWidth = $this->lineWidth;
         }
         if (isset($this->fillOpacity)) {
-            $data["fillOpacity"] = $this->fillOpacity;
+            $data->fillOpacity = $this->fillOpacity;
         }
         if (isset($this->axisPlacement)) {
-            $data["axisPlacement"] = $this->axisPlacement;
+            $data->axisPlacement = $this->axisPlacement;
         }
         if (isset($this->axisColorMode)) {
-            $data["axisColorMode"] = $this->axisColorMode;
+            $data->axisColorMode = $this->axisColorMode;
         }
         if (isset($this->axisLabel)) {
-            $data["axisLabel"] = $this->axisLabel;
+            $data->axisLabel = $this->axisLabel;
         }
         if (isset($this->axisWidth)) {
-            $data["axisWidth"] = $this->axisWidth;
+            $data->axisWidth = $this->axisWidth;
         }
         if (isset($this->axisSoftMin)) {
-            $data["axisSoftMin"] = $this->axisSoftMin;
+            $data->axisSoftMin = $this->axisSoftMin;
         }
         if (isset($this->axisSoftMax)) {
-            $data["axisSoftMax"] = $this->axisSoftMax;
+            $data->axisSoftMax = $this->axisSoftMax;
         }
         if (isset($this->axisGridShow)) {
-            $data["axisGridShow"] = $this->axisGridShow;
+            $data->axisGridShow = $this->axisGridShow;
         }
         if (isset($this->scaleDistribution)) {
-            $data["scaleDistribution"] = $this->scaleDistribution;
+            $data->scaleDistribution = $this->scaleDistribution;
         }
         if (isset($this->axisCenteredZero)) {
-            $data["axisCenteredZero"] = $this->axisCenteredZero;
+            $data->axisCenteredZero = $this->axisCenteredZero;
         }
         if (isset($this->hideFrom)) {
-            $data["hideFrom"] = $this->hideFrom;
+            $data->hideFrom = $this->hideFrom;
         }
         if (isset($this->gradientMode)) {
-            $data["gradientMode"] = $this->gradientMode;
+            $data->gradientMode = $this->gradientMode;
         }
         if (isset($this->axisBorderShow)) {
-            $data["axisBorderShow"] = $this->axisBorderShow;
+            $data->axisBorderShow = $this->axisBorderShow;
         }
         return $data;
     }

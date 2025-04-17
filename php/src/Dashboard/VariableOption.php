@@ -65,16 +65,15 @@ class VariableOption implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "text" => $this->text,
-            "value" => $this->value,
-        ];
+        $data = new \stdClass;
+        $data->text = $this->text;
+        $data->value = $this->value;
         if (isset($this->selected)) {
-            $data["selected"] = $this->selected;
+            $data->selected = $this->selected;
         }
         return $data;
     }

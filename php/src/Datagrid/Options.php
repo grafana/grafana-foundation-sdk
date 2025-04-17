@@ -27,13 +27,12 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "selectedSeries" => $this->selectedSeries,
-        ];
+        $data = new \stdClass;
+        $data->selectedSeries = $this->selectedSeries;
         return $data;
     }
 }

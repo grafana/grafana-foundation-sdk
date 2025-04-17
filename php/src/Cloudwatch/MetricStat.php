@@ -110,32 +110,31 @@ class MetricStat implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "region" => $this->region,
-            "namespace" => $this->namespace,
-            "dimensions" => $this->dimensions,
-        ];
+        $data = new \stdClass;
+        $data->region = $this->region;
+        $data->namespace = $this->namespace;
+        $data->dimensions = $this->dimensions;
         if (isset($this->metricName)) {
-            $data["metricName"] = $this->metricName;
+            $data->metricName = $this->metricName;
         }
         if (isset($this->matchExact)) {
-            $data["matchExact"] = $this->matchExact;
+            $data->matchExact = $this->matchExact;
         }
         if (isset($this->period)) {
-            $data["period"] = $this->period;
+            $data->period = $this->period;
         }
         if (isset($this->accountId)) {
-            $data["accountId"] = $this->accountId;
+            $data->accountId = $this->accountId;
         }
         if (isset($this->statistic)) {
-            $data["statistic"] = $this->statistic;
+            $data->statistic = $this->statistic;
         }
         if (isset($this->statistics)) {
-            $data["statistics"] = $this->statistics;
+            $data->statistics = $this->statistics;
         }
         return $data;
     }

@@ -48,23 +48,22 @@ class USAQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->mode)) {
-            $data["mode"] = $this->mode;
+            $data->mode = $this->mode;
         }
         if (isset($this->period)) {
-            $data["period"] = $this->period;
+            $data->period = $this->period;
         }
         if (isset($this->fields)) {
-            $data["fields"] = $this->fields;
+            $data->fields = $this->fields;
         }
         if (isset($this->states)) {
-            $data["states"] = $this->states;
+            $data->states = $this->states;
         }
         return $data;
     }

@@ -34,14 +34,13 @@ class ElasticsearchFiltersSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->filters)) {
-            $data["filters"] = $this->filters;
+            $data->filters = $this->filters;
         }
         return $data;
     }

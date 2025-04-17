@@ -40,20 +40,19 @@ class BarConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->barAlignment)) {
-            $data["barAlignment"] = $this->barAlignment;
+            $data->barAlignment = $this->barAlignment;
         }
         if (isset($this->barWidthFactor)) {
-            $data["barWidthFactor"] = $this->barWidthFactor;
+            $data->barWidthFactor = $this->barWidthFactor;
         }
         if (isset($this->barMaxWidth)) {
-            $data["barMaxWidth"] = $this->barMaxWidth;
+            $data->barMaxWidth = $this->barMaxWidth;
         }
         return $data;
     }

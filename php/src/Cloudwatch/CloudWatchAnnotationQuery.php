@@ -197,52 +197,51 @@ class CloudWatchAnnotationQuery implements \JsonSerializable, \Grafana\Foundatio
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "queryMode" => $this->queryMode,
-            "refId" => $this->refId,
-            "region" => $this->region,
-            "namespace" => $this->namespace,
-            "dimensions" => $this->dimensions,
-        ];
+        $data = new \stdClass;
+        $data->queryMode = $this->queryMode;
+        $data->refId = $this->refId;
+        $data->region = $this->region;
+        $data->namespace = $this->namespace;
+        $data->dimensions = $this->dimensions;
         if (isset($this->prefixMatching)) {
-            $data["prefixMatching"] = $this->prefixMatching;
+            $data->prefixMatching = $this->prefixMatching;
         }
         if (isset($this->actionPrefix)) {
-            $data["actionPrefix"] = $this->actionPrefix;
+            $data->actionPrefix = $this->actionPrefix;
         }
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->metricName)) {
-            $data["metricName"] = $this->metricName;
+            $data->metricName = $this->metricName;
         }
         if (isset($this->matchExact)) {
-            $data["matchExact"] = $this->matchExact;
+            $data->matchExact = $this->matchExact;
         }
         if (isset($this->period)) {
-            $data["period"] = $this->period;
+            $data->period = $this->period;
         }
         if (isset($this->accountId)) {
-            $data["accountId"] = $this->accountId;
+            $data->accountId = $this->accountId;
         }
         if (isset($this->statistic)) {
-            $data["statistic"] = $this->statistic;
+            $data->statistic = $this->statistic;
         }
         if (isset($this->alarmNamePrefix)) {
-            $data["alarmNamePrefix"] = $this->alarmNamePrefix;
+            $data->alarmNamePrefix = $this->alarmNamePrefix;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         if (isset($this->statistics)) {
-            $data["statistics"] = $this->statistics;
+            $data->statistics = $this->statistics;
         }
         return $data;
     }

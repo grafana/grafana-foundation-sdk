@@ -131,42 +131,41 @@ class NotificationPolicy implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "match_re" => $this->matchRe,
-            "matchers" => $this->matchers,
-            "object_matchers" => $this->objectMatchers,
-            "provenance" => $this->provenance,
-        ];
+        $data = new \stdClass;
+        $data->match_re = $this->matchRe;
+        $data->matchers = $this->matchers;
+        $data->object_matchers = $this->objectMatchers;
+        $data->provenance = $this->provenance;
         if (isset($this->continue)) {
-            $data["continue"] = $this->continue;
+            $data->continue = $this->continue;
         }
         if (isset($this->groupBy)) {
-            $data["group_by"] = $this->groupBy;
+            $data->group_by = $this->groupBy;
         }
         if (isset($this->groupInterval)) {
-            $data["group_interval"] = $this->groupInterval;
+            $data->group_interval = $this->groupInterval;
         }
         if (isset($this->groupWait)) {
-            $data["group_wait"] = $this->groupWait;
+            $data->group_wait = $this->groupWait;
         }
         if (isset($this->match)) {
-            $data["match"] = $this->match;
+            $data->match = $this->match;
         }
         if (isset($this->muteTimeIntervals)) {
-            $data["mute_time_intervals"] = $this->muteTimeIntervals;
+            $data->mute_time_intervals = $this->muteTimeIntervals;
         }
         if (isset($this->receiver)) {
-            $data["receiver"] = $this->receiver;
+            $data->receiver = $this->receiver;
         }
         if (isset($this->repeatInterval)) {
-            $data["repeat_interval"] = $this->repeatInterval;
+            $data->repeat_interval = $this->repeatInterval;
         }
         if (isset($this->routes)) {
-            $data["routes"] = $this->routes;
+            $data->routes = $this->routes;
         }
         return $data;
     }
