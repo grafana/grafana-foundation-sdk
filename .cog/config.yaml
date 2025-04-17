@@ -133,6 +133,10 @@ inputs:
   - cue:
       entrypoint: '%__config_dir%/schemas/units'
 
+  # The schema for resource manifests
+  - cue:
+      entrypoint: '%__config_dir%/schemas/resource'
+
 transformations:
   schemas:
     - '%__config_dir%/compiler/common_passes.yaml'
