@@ -46,17 +46,16 @@ class HeatmapCalculationOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->xBuckets)) {
-            $data["xBuckets"] = $this->xBuckets;
+            $data->xBuckets = $this->xBuckets;
         }
         if (isset($this->yBuckets)) {
-            $data["yBuckets"] = $this->yBuckets;
+            $data->yBuckets = $this->yBuckets;
         }
         return $data;
     }

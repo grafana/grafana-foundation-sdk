@@ -45,23 +45,22 @@ class PointsConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->showPoints)) {
-            $data["showPoints"] = $this->showPoints;
+            $data->showPoints = $this->showPoints;
         }
         if (isset($this->pointSize)) {
-            $data["pointSize"] = $this->pointSize;
+            $data->pointSize = $this->pointSize;
         }
         if (isset($this->pointColor)) {
-            $data["pointColor"] = $this->pointColor;
+            $data->pointColor = $this->pointColor;
         }
         if (isset($this->pointSymbol)) {
-            $data["pointSymbol"] = $this->pointSymbol;
+            $data->pointSymbol = $this->pointSymbol;
         }
         return $data;
     }

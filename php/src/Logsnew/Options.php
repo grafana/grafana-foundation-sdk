@@ -60,22 +60,21 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "showTime" => $this->showTime,
-            "wrapLogMessage" => $this->wrapLogMessage,
-            "enableLogDetails" => $this->enableLogDetails,
-            "sortOrder" => $this->sortOrder,
-            "dedupStrategy" => $this->dedupStrategy,
-        ];
+        $data = new \stdClass;
+        $data->showTime = $this->showTime;
+        $data->wrapLogMessage = $this->wrapLogMessage;
+        $data->enableLogDetails = $this->enableLogDetails;
+        $data->sortOrder = $this->sortOrder;
+        $data->dedupStrategy = $this->dedupStrategy;
         if (isset($this->enableInfiniteScrolling)) {
-            $data["enableInfiniteScrolling"] = $this->enableInfiniteScrolling;
+            $data->enableInfiniteScrolling = $this->enableInfiniteScrolling;
         }
         if (isset($this->onNewLogsReceived)) {
-            $data["onNewLogsReceived"] = $this->onNewLogsReceived;
+            $data->onNewLogsReceived = $this->onNewLogsReceived;
         }
         return $data;
     }

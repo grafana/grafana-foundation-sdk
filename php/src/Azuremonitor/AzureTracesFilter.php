@@ -47,15 +47,14 @@ class AzureTracesFilter implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "property" => $this->property,
-            "operation" => $this->operation,
-            "filters" => $this->filters,
-        ];
+        $data = new \stdClass;
+        $data->property = $this->property;
+        $data->operation = $this->operation;
+        $data->filters = $this->filters;
         return $data;
     }
 }

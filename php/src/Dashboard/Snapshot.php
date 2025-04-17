@@ -134,28 +134,27 @@ class Snapshot implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "created" => $this->created,
-            "expires" => $this->expires,
-            "external" => $this->external,
-            "externalUrl" => $this->externalUrl,
-            "originalUrl" => $this->originalUrl,
-            "id" => $this->id,
-            "key" => $this->key,
-            "name" => $this->name,
-            "orgId" => $this->orgId,
-            "updated" => $this->updated,
-            "userId" => $this->userId,
-        ];
+        $data = new \stdClass;
+        $data->created = $this->created;
+        $data->expires = $this->expires;
+        $data->external = $this->external;
+        $data->externalUrl = $this->externalUrl;
+        $data->originalUrl = $this->originalUrl;
+        $data->id = $this->id;
+        $data->key = $this->key;
+        $data->name = $this->name;
+        $data->orgId = $this->orgId;
+        $data->updated = $this->updated;
+        $data->userId = $this->userId;
         if (isset($this->url)) {
-            $data["url"] = $this->url;
+            $data->url = $this->url;
         }
         if (isset($this->dashboard)) {
-            $data["dashboard"] = $this->dashboard;
+            $data->dashboard = $this->dashboard;
         }
         return $data;
     }

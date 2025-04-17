@@ -39,14 +39,13 @@ class SpecialValueMap implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-            "options" => $this->options,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
+        $data->options = $this->options;
         return $data;
     }
 }

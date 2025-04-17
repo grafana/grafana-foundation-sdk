@@ -31,13 +31,12 @@ class XychartXYSeriesConfigColor implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "matcher" => $this->matcher,
-        ];
+        $data = new \stdClass;
+        $data->matcher = $this->matcher;
         return $data;
     }
 }

@@ -425,7 +425,9 @@ type ResultAssertions struct {
 
 // NewResultAssertions creates a new ResultAssertions object.
 func NewResultAssertions() *ResultAssertions {
-	return &ResultAssertions{}
+	return &ResultAssertions{
+		TypeVersion: []int64{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResultAssertions` from JSON.

@@ -30,13 +30,12 @@ class NavbarPreference implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "bookmarkUrls" => $this->bookmarkUrls,
-        ];
+        $data = new \stdClass;
+        $data->bookmarkUrls = $this->bookmarkUrls;
         return $data;
     }
 }

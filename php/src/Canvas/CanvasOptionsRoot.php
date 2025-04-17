@@ -50,15 +50,14 @@ class CanvasOptionsRoot implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "name" => $this->name,
-            "type" => $this->type,
-            "elements" => $this->elements,
-        ];
+        $data = new \stdClass;
+        $data->name = $this->name;
+        $data->type = $this->type;
+        $data->elements = $this->elements;
         return $data;
     }
 }

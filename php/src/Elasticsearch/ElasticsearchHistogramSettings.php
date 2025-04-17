@@ -32,17 +32,16 @@ class ElasticsearchHistogramSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->interval)) {
-            $data["interval"] = $this->interval;
+            $data->interval = $this->interval;
         }
         if (isset($this->minDocCount)) {
-            $data["min_doc_count"] = $this->minDocCount;
+            $data->min_doc_count = $this->minDocCount;
         }
         return $data;
     }
