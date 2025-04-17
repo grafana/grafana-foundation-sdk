@@ -76,29 +76,28 @@ class XYSeriesConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->name)) {
-            $data["name"] = $this->name;
+            $data->name = $this->name;
         }
         if (isset($this->frame)) {
-            $data["frame"] = $this->frame;
+            $data->frame = $this->frame;
         }
         if (isset($this->x)) {
-            $data["x"] = $this->x;
+            $data->x = $this->x;
         }
         if (isset($this->y)) {
-            $data["y"] = $this->y;
+            $data->y = $this->y;
         }
         if (isset($this->color)) {
-            $data["color"] = $this->color;
+            $data->color = $this->color;
         }
         if (isset($this->size)) {
-            $data["size"] = $this->size;
+            $data->size = $this->size;
         }
         return $data;
     }

@@ -35,6 +35,7 @@
  * <span class="badge package-core"></span> [preferences](./preferences/index.md)
  * <span class="badge package-variant-dataquery"></span> [prometheus](./prometheus/index.md)
  * <span class="badge package-core"></span> [publicdashboard](./publicdashboard/index.md)
+ * [resource](./resource/index.md)
  * <span class="badge package-variant-panelcfg"></span> [stat](./stat/index.md)
  * <span class="badge package-variant-panelcfg"></span> [statetimeline](./statetimeline/index.md)
  * <span class="badge package-variant-panelcfg"></span> [statushistory](./statushistory/index.md)

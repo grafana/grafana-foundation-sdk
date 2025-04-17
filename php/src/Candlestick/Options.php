@@ -96,21 +96,20 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "mode" => $this->mode,
-            "candleStyle" => $this->candleStyle,
-            "colorStrategy" => $this->colorStrategy,
-            "fields" => $this->fields,
-            "colors" => $this->colors,
-            "legend" => $this->legend,
-            "tooltip" => $this->tooltip,
-        ];
+        $data = new \stdClass;
+        $data->mode = $this->mode;
+        $data->candleStyle = $this->candleStyle;
+        $data->colorStrategy = $this->colorStrategy;
+        $data->fields = $this->fields;
+        $data->colors = $this->colors;
+        $data->legend = $this->legend;
+        $data->tooltip = $this->tooltip;
         if (isset($this->includeAllFields)) {
-            $data["includeAllFields"] = $this->includeAllFields;
+            $data->includeAllFields = $this->includeAllFields;
         }
         return $data;
     }

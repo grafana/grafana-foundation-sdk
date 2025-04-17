@@ -51,20 +51,19 @@ class NodeOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->mainStatUnit)) {
-            $data["mainStatUnit"] = $this->mainStatUnit;
+            $data->mainStatUnit = $this->mainStatUnit;
         }
         if (isset($this->secondaryStatUnit)) {
-            $data["secondaryStatUnit"] = $this->secondaryStatUnit;
+            $data->secondaryStatUnit = $this->secondaryStatUnit;
         }
         if (isset($this->arcs)) {
-            $data["arcs"] = $this->arcs;
+            $data->arcs = $this->arcs;
         }
         return $data;
     }

@@ -27,14 +27,13 @@ class ElasticsearchMetricAggregationWithMissingSupportSettings implements \JsonS
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->missing)) {
-            $data["missing"] = $this->missing;
+            $data->missing = $this->missing;
         }
         return $data;
     }

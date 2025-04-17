@@ -46,14 +46,13 @@ class ThresholdsConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "mode" => $this->mode,
-            "steps" => $this->steps,
-        ];
+        $data = new \stdClass;
+        $data->mode = $this->mode;
+        $data->steps = $this->steps;
         return $data;
     }
 }

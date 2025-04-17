@@ -89,31 +89,30 @@ class CanvasElementOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "name" => $this->name,
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->name = $this->name;
+        $data->type = $this->type;
         if (isset($this->config)) {
-            $data["config"] = $this->config;
+            $data->config = $this->config;
         }
         if (isset($this->constraint)) {
-            $data["constraint"] = $this->constraint;
+            $data->constraint = $this->constraint;
         }
         if (isset($this->placement)) {
-            $data["placement"] = $this->placement;
+            $data->placement = $this->placement;
         }
         if (isset($this->background)) {
-            $data["background"] = $this->background;
+            $data->background = $this->background;
         }
         if (isset($this->border)) {
-            $data["border"] = $this->border;
+            $data->border = $this->border;
         }
         if (isset($this->connections)) {
-            $data["connections"] = $this->connections;
+            $data->connections = $this->connections;
         }
         return $data;
     }

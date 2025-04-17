@@ -40,20 +40,19 @@ class ElasticsearchTopMetricsSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->order)) {
-            $data["order"] = $this->order;
+            $data->order = $this->order;
         }
         if (isset($this->orderBy)) {
-            $data["orderBy"] = $this->orderBy;
+            $data->orderBy = $this->orderBy;
         }
         if (isset($this->metrics)) {
-            $data["metrics"] = $this->metrics;
+            $data->metrics = $this->metrics;
         }
         return $data;
     }

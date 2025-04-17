@@ -53,21 +53,20 @@ class RuleGroup implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "interval" => $this->interval,
-        ];
+        $data = new \stdClass;
+        $data->interval = $this->interval;
         if (isset($this->folderUid)) {
-            $data["folderUid"] = $this->folderUid;
+            $data->folderUid = $this->folderUid;
         }
         if (isset($this->rules)) {
-            $data["rules"] = $this->rules;
+            $data->rules = $this->rules;
         }
         if (isset($this->title)) {
-            $data["title"] = $this->title;
+            $data->title = $this->title;
         }
         return $data;
     }

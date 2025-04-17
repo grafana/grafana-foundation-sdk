@@ -57,22 +57,21 @@ class TableFooterOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "show" => $this->show,
-            "reducer" => $this->reducer,
-        ];
+        $data = new \stdClass;
+        $data->show = $this->show;
+        $data->reducer = $this->reducer;
         if (isset($this->fields)) {
-            $data["fields"] = $this->fields;
+            $data->fields = $this->fields;
         }
         if (isset($this->enablePagination)) {
-            $data["enablePagination"] = $this->enablePagination;
+            $data->enablePagination = $this->enablePagination;
         }
         if (isset($this->countRows)) {
-            $data["countRows"] = $this->countRows;
+            $data->countRows = $this->countRows;
         }
         return $data;
     }

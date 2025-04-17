@@ -58,7 +58,10 @@ type PieChartLegendOptions struct {
 
 // NewPieChartLegendOptions creates a new PieChartLegendOptions object.
 func NewPieChartLegendOptions() *PieChartLegendOptions {
-	return &PieChartLegendOptions{}
+	return &PieChartLegendOptions{
+		Values: []PieChartLegendValues{},
+		Calcs:  []string{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PieChartLegendOptions` from JSON.

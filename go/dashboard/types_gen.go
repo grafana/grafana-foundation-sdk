@@ -2147,6 +2147,7 @@ type DashboardLink struct {
 // NewDashboardLink creates a new DashboardLink object.
 func NewDashboardLink() *DashboardLink {
 	return &DashboardLink{
+		Tags:        []string{},
 		AsDropdown:  false,
 		TargetBlank: false,
 		IncludeVars: false,
@@ -2718,7 +2719,8 @@ type FieldConfigSource struct {
 // NewFieldConfigSource creates a new FieldConfigSource object.
 func NewFieldConfigSource() *FieldConfigSource {
 	return &FieldConfigSource{
-		Defaults: *NewFieldConfig(),
+		Defaults:  *NewFieldConfig(),
+		Overrides: []DashboardFieldConfigSourceOverrides{},
 	}
 }
 
@@ -3315,7 +3317,8 @@ type ValueMap struct {
 // NewValueMap creates a new ValueMap object.
 func NewValueMap() *ValueMap {
 	return &ValueMap{
-		Type: MappingTypeValueToText,
+		Type:    MappingTypeValueToText,
+		Options: map[string]ValueMappingResult{},
 	}
 }
 
@@ -3888,7 +3891,9 @@ type ThresholdsConfig struct {
 
 // NewThresholdsConfig creates a new ThresholdsConfig object.
 func NewThresholdsConfig() *ThresholdsConfig {
-	return &ThresholdsConfig{}
+	return &ThresholdsConfig{
+		Steps: []Threshold{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ThresholdsConfig` from JSON.
@@ -4344,6 +4349,7 @@ func NewRowPanel() *RowPanel {
 	return &RowPanel{
 		Type:      "row",
 		Collapsed: false,
+		Panels:    []Panel{},
 	}
 }
 
@@ -5697,6 +5703,7 @@ type AnnotationPanelFilter struct {
 func NewAnnotationPanelFilter() *AnnotationPanelFilter {
 	return &AnnotationPanelFilter{
 		Exclude: (func(input bool) *bool { return &input })(false),
+		Ids:     []uint8{},
 	}
 }
 
@@ -5799,7 +5806,9 @@ type AnnotationTarget struct {
 
 // NewAnnotationTarget creates a new AnnotationTarget object.
 func NewAnnotationTarget() *AnnotationTarget {
-	return &AnnotationTarget{}
+	return &AnnotationTarget{
+		Tags: []string{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationTarget` from JSON.
@@ -7239,7 +7248,8 @@ type DashboardFieldConfigSourceOverrides struct {
 // NewDashboardFieldConfigSourceOverrides creates a new DashboardFieldConfigSourceOverrides object.
 func NewDashboardFieldConfigSourceOverrides() *DashboardFieldConfigSourceOverrides {
 	return &DashboardFieldConfigSourceOverrides{
-		Matcher: *NewMatcherConfig(),
+		Matcher:    *NewMatcherConfig(),
+		Properties: []DynamicConfigValue{},
 	}
 }
 
@@ -7690,7 +7700,8 @@ func (resource PanelOrRowPanel) MarshalJSON() ([]byte, error) {
 	if resource.RowPanel != nil {
 		return json.Marshal(resource.RowPanel)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `PanelOrRowPanel` from JSON.
@@ -7707,7 +7718,7 @@ func (resource *PanelOrRowPanel) UnmarshalJSON(raw []byte) error {
 
 	discriminator, found := parsedAsMap["type"]
 	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -7729,7 +7740,7 @@ func (resource *PanelOrRowPanel) UnmarshalJSON(raw []byte) error {
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `PanelOrRowPanel` from JSON.
@@ -7842,7 +7853,8 @@ func (resource ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) MarshalJSON() ([]b
 	if resource.SpecialValueMap != nil {
 		return json.Marshal(resource.SpecialValueMap)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `ValueMapOrRangeMapOrRegexMapOrSpecialValueMap` from JSON.
@@ -7859,7 +7871,7 @@ func (resource *ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) UnmarshalJSON(raw
 
 	discriminator, found := parsedAsMap["type"]
 	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -7897,7 +7909,7 @@ func (resource *ValueMapOrRangeMapOrRegexMapOrSpecialValueMap) UnmarshalJSON(raw
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ValueMapOrRangeMapOrRegexMapOrSpecialValueMap` from JSON.
@@ -8048,7 +8060,7 @@ func (resource StringOrMap) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.Map)
 	}
 
-	return nil, fmt.Errorf("no value for disjunction of scalars")
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrMap` from JSON.
@@ -8173,7 +8185,7 @@ func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.ArrayOfString)
 	}
 
-	return nil, fmt.Errorf("no value for disjunction of scalars")
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrArrayOfString` from JSON.

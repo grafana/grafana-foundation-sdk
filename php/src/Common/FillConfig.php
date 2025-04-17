@@ -40,20 +40,19 @@ class FillConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->fillColor)) {
-            $data["fillColor"] = $this->fillColor;
+            $data->fillColor = $this->fillColor;
         }
         if (isset($this->fillOpacity)) {
-            $data["fillOpacity"] = $this->fillOpacity;
+            $data->fillOpacity = $this->fillOpacity;
         }
         if (isset($this->fillBelowTo)) {
-            $data["fillBelowTo"] = $this->fillBelowTo;
+            $data->fillBelowTo = $this->fillBelowTo;
         }
         return $data;
     }

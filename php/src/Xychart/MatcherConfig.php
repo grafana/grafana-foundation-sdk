@@ -44,15 +44,14 @@ class MatcherConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "id" => $this->id,
-        ];
+        $data = new \stdClass;
+        $data->id = $this->id;
         if (isset($this->options)) {
-            $data["options"] = $this->options;
+            $data->options = $this->options;
         }
         return $data;
     }

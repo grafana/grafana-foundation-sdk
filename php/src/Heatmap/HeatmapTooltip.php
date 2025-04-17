@@ -59,24 +59,23 @@ class HeatmapTooltip implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "mode" => $this->mode,
-        ];
+        $data = new \stdClass;
+        $data->mode = $this->mode;
         if (isset($this->maxHeight)) {
-            $data["maxHeight"] = $this->maxHeight;
+            $data->maxHeight = $this->maxHeight;
         }
         if (isset($this->maxWidth)) {
-            $data["maxWidth"] = $this->maxWidth;
+            $data->maxWidth = $this->maxWidth;
         }
         if (isset($this->yHistogram)) {
-            $data["yHistogram"] = $this->yHistogram;
+            $data->yHistogram = $this->yHistogram;
         }
         if (isset($this->showColorScale)) {
-            $data["showColorScale"] = $this->showColorScale;
+            $data->showColorScale = $this->showColorScale;
         }
         return $data;
     }
