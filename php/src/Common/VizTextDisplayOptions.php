@@ -41,17 +41,16 @@ class VizTextDisplayOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->titleSize)) {
-            $data["titleSize"] = $this->titleSize;
+            $data->titleSize = $this->titleSize;
         }
         if (isset($this->valueSize)) {
-            $data["valueSize"] = $this->valueSize;
+            $data->valueSize = $this->valueSize;
         }
         return $data;
     }

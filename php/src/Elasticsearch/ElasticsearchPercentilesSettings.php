@@ -51,18 +51,17 @@ class ElasticsearchPercentilesSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "script" => $this->script,
-        ];
+        $data = new \stdClass;
+        $data->script = $this->script;
         if (isset($this->missing)) {
-            $data["missing"] = $this->missing;
+            $data->missing = $this->missing;
         }
         if (isset($this->percents)) {
-            $data["percents"] = $this->percents;
+            $data->percents = $this->percents;
         }
         return $data;
     }

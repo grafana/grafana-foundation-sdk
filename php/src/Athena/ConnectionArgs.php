@@ -47,26 +47,25 @@ class ConnectionArgs implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->region)) {
-            $data["region"] = $this->region;
+            $data->region = $this->region;
         }
         if (isset($this->catalog)) {
-            $data["catalog"] = $this->catalog;
+            $data->catalog = $this->catalog;
         }
         if (isset($this->database)) {
-            $data["database"] = $this->database;
+            $data->database = $this->database;
         }
         if (isset($this->resultReuseEnabled)) {
-            $data["resultReuseEnabled"] = $this->resultReuseEnabled;
+            $data->resultReuseEnabled = $this->resultReuseEnabled;
         }
         if (isset($this->resultReuseMaxAgeInMinutes)) {
-            $data["resultReuseMaxAgeInMinutes"] = $this->resultReuseMaxAgeInMinutes;
+            $data->resultReuseMaxAgeInMinutes = $this->resultReuseMaxAgeInMinutes;
         }
         return $data;
     }

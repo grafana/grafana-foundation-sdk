@@ -75,22 +75,21 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "onlyFromThisDashboard" => $this->onlyFromThisDashboard,
-            "onlyInTimeRange" => $this->onlyInTimeRange,
-            "tags" => $this->tags,
-            "limit" => $this->limit,
-            "showUser" => $this->showUser,
-            "showTime" => $this->showTime,
-            "showTags" => $this->showTags,
-            "navigateToPanel" => $this->navigateToPanel,
-            "navigateBefore" => $this->navigateBefore,
-            "navigateAfter" => $this->navigateAfter,
-        ];
+        $data = new \stdClass;
+        $data->onlyFromThisDashboard = $this->onlyFromThisDashboard;
+        $data->onlyInTimeRange = $this->onlyInTimeRange;
+        $data->tags = $this->tags;
+        $data->limit = $this->limit;
+        $data->showUser = $this->showUser;
+        $data->showTime = $this->showTime;
+        $data->showTags = $this->showTags;
+        $data->navigateToPanel = $this->navigateToPanel;
+        $data->navigateBefore = $this->navigateBefore;
+        $data->navigateAfter = $this->navigateAfter;
         return $data;
     }
 }

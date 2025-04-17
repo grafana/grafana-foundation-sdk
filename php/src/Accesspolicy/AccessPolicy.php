@@ -60,15 +60,14 @@ class AccessPolicy implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "scope" => $this->scope,
-            "role" => $this->role,
-            "rules" => $this->rules,
-        ];
+        $data = new \stdClass;
+        $data->scope = $this->scope;
+        $data->role = $this->role;
+        $data->rules = $this->rules;
         return $data;
     }
 }

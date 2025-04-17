@@ -41,15 +41,14 @@ class TableSortByFieldState implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "displayName" => $this->displayName,
-        ];
+        $data = new \stdClass;
+        $data->displayName = $this->displayName;
         if (isset($this->desc)) {
-            $data["desc"] = $this->desc;
+            $data->desc = $this->desc;
         }
         return $data;
     }

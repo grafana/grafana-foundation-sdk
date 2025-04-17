@@ -39,16 +39,15 @@ class Filters implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "id" => $this->id,
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->id = $this->id;
+        $data->type = $this->type;
         if (isset($this->settings)) {
-            $data["settings"] = $this->settings;
+            $data->settings = $this->settings;
         }
         return $data;
     }

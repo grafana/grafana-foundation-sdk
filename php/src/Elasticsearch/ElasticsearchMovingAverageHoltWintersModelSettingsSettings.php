@@ -47,26 +47,25 @@ class ElasticsearchMovingAverageHoltWintersModelSettingsSettings implements \Jso
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->alpha)) {
-            $data["alpha"] = $this->alpha;
+            $data->alpha = $this->alpha;
         }
         if (isset($this->beta)) {
-            $data["beta"] = $this->beta;
+            $data->beta = $this->beta;
         }
         if (isset($this->gamma)) {
-            $data["gamma"] = $this->gamma;
+            $data->gamma = $this->gamma;
         }
         if (isset($this->period)) {
-            $data["period"] = $this->period;
+            $data->period = $this->period;
         }
         if (isset($this->pad)) {
-            $data["pad"] = $this->pad;
+            $data->pad = $this->pad;
         }
         return $data;
     }
