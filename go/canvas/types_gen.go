@@ -1181,7 +1181,8 @@ type CanvasOptionsRoot struct {
 // NewCanvasOptionsRoot creates a new CanvasOptionsRoot object.
 func NewCanvasOptionsRoot() *CanvasOptionsRoot {
 	return &CanvasOptionsRoot{
-		Type: "frame",
+		Type:     "frame",
+		Elements: []CanvasElementOptions{},
 	}
 }
 

@@ -106,22 +106,21 @@ class DashboardLink implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "title" => $this->title,
-            "type" => $this->type,
-            "icon" => $this->icon,
-            "tooltip" => $this->tooltip,
-            "url" => $this->url,
-            "tags" => $this->tags,
-            "asDropdown" => $this->asDropdown,
-            "targetBlank" => $this->targetBlank,
-            "includeVars" => $this->includeVars,
-            "keepTime" => $this->keepTime,
-        ];
+        $data = new \stdClass;
+        $data->title = $this->title;
+        $data->type = $this->type;
+        $data->icon = $this->icon;
+        $data->tooltip = $this->tooltip;
+        $data->url = $this->url;
+        $data->tags = $this->tags;
+        $data->asDropdown = $this->asDropdown;
+        $data->targetBlank = $this->targetBlank;
+        $data->includeVars = $this->includeVars;
+        $data->keepTime = $this->keepTime;
         return $data;
     }
 }

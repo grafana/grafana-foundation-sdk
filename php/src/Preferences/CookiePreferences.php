@@ -46,20 +46,19 @@ class CookiePreferences implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->analytics)) {
-            $data["analytics"] = $this->analytics;
+            $data->analytics = $this->analytics;
         }
         if (isset($this->performance)) {
-            $data["performance"] = $this->performance;
+            $data->performance = $this->performance;
         }
         if (isset($this->functional)) {
-            $data["functional"] = $this->functional;
+            $data->functional = $this->functional;
         }
         return $data;
     }

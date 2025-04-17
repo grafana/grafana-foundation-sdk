@@ -74,29 +74,28 @@ class AzureLogsQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->query)) {
-            $data["query"] = $this->query;
+            $data->query = $this->query;
         }
         if (isset($this->resultFormat)) {
-            $data["resultFormat"] = $this->resultFormat;
+            $data->resultFormat = $this->resultFormat;
         }
         if (isset($this->resources)) {
-            $data["resources"] = $this->resources;
+            $data->resources = $this->resources;
         }
         if (isset($this->intersectTime)) {
-            $data["intersectTime"] = $this->intersectTime;
+            $data->intersectTime = $this->intersectTime;
         }
         if (isset($this->workspace)) {
-            $data["workspace"] = $this->workspace;
+            $data->workspace = $this->workspace;
         }
         if (isset($this->resource)) {
-            $data["resource"] = $this->resource;
+            $data->resource = $this->resource;
         }
         return $data;
     }

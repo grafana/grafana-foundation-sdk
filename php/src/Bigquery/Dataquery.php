@@ -148,62 +148,61 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "format" => $this->format,
-            "rawSql" => $this->rawSql,
-            "refId" => $this->refId,
-        ];
+        $data = new \stdClass;
+        $data->format = $this->format;
+        $data->rawSql = $this->rawSql;
+        $data->refId = $this->refId;
         if (isset($this->dataset)) {
-            $data["dataset"] = $this->dataset;
+            $data->dataset = $this->dataset;
         }
         if (isset($this->table)) {
-            $data["table"] = $this->table;
+            $data->table = $this->table;
         }
         if (isset($this->project)) {
-            $data["project"] = $this->project;
+            $data->project = $this->project;
         }
         if (isset($this->rawQuery)) {
-            $data["rawQuery"] = $this->rawQuery;
+            $data->rawQuery = $this->rawQuery;
         }
         if (isset($this->location)) {
-            $data["location"] = $this->location;
+            $data->location = $this->location;
         }
         if (isset($this->partitioned)) {
-            $data["partitioned"] = $this->partitioned;
+            $data->partitioned = $this->partitioned;
         }
         if (isset($this->partitionedField)) {
-            $data["partitionedField"] = $this->partitionedField;
+            $data->partitionedField = $this->partitionedField;
         }
         if (isset($this->convertToUTC)) {
-            $data["convertToUTC"] = $this->convertToUTC;
+            $data->convertToUTC = $this->convertToUTC;
         }
         if (isset($this->sharded)) {
-            $data["sharded"] = $this->sharded;
+            $data->sharded = $this->sharded;
         }
         if (isset($this->queryPriority)) {
-            $data["queryPriority"] = $this->queryPriority;
+            $data->queryPriority = $this->queryPriority;
         }
         if (isset($this->timeShift)) {
-            $data["timeShift"] = $this->timeShift;
+            $data->timeShift = $this->timeShift;
         }
         if (isset($this->editorMode)) {
-            $data["editorMode"] = $this->editorMode;
+            $data->editorMode = $this->editorMode;
         }
         if (isset($this->sql)) {
-            $data["sql"] = $this->sql;
+            $data->sql = $this->sql;
         }
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         return $data;
     }

@@ -62,17 +62,16 @@ class Playlist implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "uid" => $this->uid,
-            "name" => $this->name,
-            "interval" => $this->interval,
-        ];
+        $data = new \stdClass;
+        $data->uid = $this->uid;
+        $data->name = $this->name;
+        $data->interval = $this->interval;
         if (isset($this->items)) {
-            $data["items"] = $this->items;
+            $data->items = $this->items;
         }
         return $data;
     }

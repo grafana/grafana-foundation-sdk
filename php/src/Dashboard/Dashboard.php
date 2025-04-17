@@ -271,71 +271,70 @@ class Dashboard implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "style" => $this->style,
-            "editable" => $this->editable,
-            "graphTooltip" => $this->graphTooltip,
-            "schemaVersion" => $this->schemaVersion,
-            "templating" => $this->templating,
-            "annotations" => $this->annotations,
-        ];
+        $data = new \stdClass;
+        $data->style = $this->style;
+        $data->editable = $this->editable;
+        $data->graphTooltip = $this->graphTooltip;
+        $data->schemaVersion = $this->schemaVersion;
+        $data->templating = $this->templating;
+        $data->annotations = $this->annotations;
         if (isset($this->id)) {
-            $data["id"] = $this->id;
+            $data->id = $this->id;
         }
         if (isset($this->uid)) {
-            $data["uid"] = $this->uid;
+            $data->uid = $this->uid;
         }
         if (isset($this->title)) {
-            $data["title"] = $this->title;
+            $data->title = $this->title;
         }
         if (isset($this->description)) {
-            $data["description"] = $this->description;
+            $data->description = $this->description;
         }
         if (isset($this->revision)) {
-            $data["revision"] = $this->revision;
+            $data->revision = $this->revision;
         }
         if (isset($this->gnetId)) {
-            $data["gnetId"] = $this->gnetId;
+            $data->gnetId = $this->gnetId;
         }
         if (isset($this->tags)) {
-            $data["tags"] = $this->tags;
+            $data->tags = $this->tags;
         }
         if (isset($this->timezone)) {
-            $data["timezone"] = $this->timezone;
+            $data->timezone = $this->timezone;
         }
         if (isset($this->time)) {
-            $data["time"] = $this->time;
+            $data->time = $this->time;
         }
         if (isset($this->timepicker)) {
-            $data["timepicker"] = $this->timepicker;
+            $data->timepicker = $this->timepicker;
         }
         if (isset($this->fiscalYearStartMonth)) {
-            $data["fiscalYearStartMonth"] = $this->fiscalYearStartMonth;
+            $data->fiscalYearStartMonth = $this->fiscalYearStartMonth;
         }
         if (isset($this->liveNow)) {
-            $data["liveNow"] = $this->liveNow;
+            $data->liveNow = $this->liveNow;
         }
         if (isset($this->weekStart)) {
-            $data["weekStart"] = $this->weekStart;
+            $data->weekStart = $this->weekStart;
         }
         if (isset($this->refresh)) {
-            $data["refresh"] = $this->refresh;
+            $data->refresh = $this->refresh;
         }
         if (isset($this->version)) {
-            $data["version"] = $this->version;
+            $data->version = $this->version;
         }
         if (isset($this->panels)) {
-            $data["panels"] = $this->panels;
+            $data->panels = $this->panels;
         }
         if (isset($this->links)) {
-            $data["links"] = $this->links;
+            $data->links = $this->links;
         }
         if (isset($this->snapshot)) {
-            $data["snapshot"] = $this->snapshot;
+            $data->snapshot = $this->snapshot;
         }
         return $data;
     }

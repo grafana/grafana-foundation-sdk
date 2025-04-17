@@ -69,26 +69,25 @@ class LineConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->lineColor)) {
-            $data["lineColor"] = $this->lineColor;
+            $data->lineColor = $this->lineColor;
         }
         if (isset($this->lineWidth)) {
-            $data["lineWidth"] = $this->lineWidth;
+            $data->lineWidth = $this->lineWidth;
         }
         if (isset($this->lineInterpolation)) {
-            $data["lineInterpolation"] = $this->lineInterpolation;
+            $data->lineInterpolation = $this->lineInterpolation;
         }
         if (isset($this->lineStyle)) {
-            $data["lineStyle"] = $this->lineStyle;
+            $data->lineStyle = $this->lineStyle;
         }
         if (isset($this->spanNulls)) {
-            $data["spanNulls"] = $this->spanNulls;
+            $data->spanNulls = $this->spanNulls;
         }
         return $data;
     }

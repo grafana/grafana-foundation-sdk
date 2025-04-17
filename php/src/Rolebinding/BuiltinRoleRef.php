@@ -31,14 +31,13 @@ class BuiltinRoleRef implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "kind" => $this->kind,
-            "name" => $this->name,
-        ];
+        $data = new \stdClass;
+        $data->kind = $this->kind;
+        $data->name = $this->name;
         return $data;
     }
 }

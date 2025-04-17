@@ -101,27 +101,26 @@ class RowPanel implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-            "collapsed" => $this->collapsed,
-            "id" => $this->id,
-            "panels" => $this->panels,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
+        $data->collapsed = $this->collapsed;
+        $data->id = $this->id;
+        $data->panels = $this->panels;
         if (isset($this->title)) {
-            $data["title"] = $this->title;
+            $data->title = $this->title;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         if (isset($this->gridPos)) {
-            $data["gridPos"] = $this->gridPos;
+            $data->gridPos = $this->gridPos;
         }
         if (isset($this->repeat)) {
-            $data["repeat"] = $this->repeat;
+            $data->repeat = $this->repeat;
         }
         return $data;
     }

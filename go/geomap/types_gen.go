@@ -28,6 +28,7 @@ func NewOptions() *Options {
 		View:     *NewMapViewConfig(),
 		Controls: *NewControlsOptions(),
 		Basemap:  *common.NewMapLayerOptions(),
+		Layers:   []common.MapLayerOptions{},
 		Tooltip:  *NewTooltipOptions(),
 	}
 }

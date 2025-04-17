@@ -216,64 +216,63 @@ class VariableModel implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "id" => $this->id,
-            "type" => $this->type,
-            "name" => $this->name,
-            "hide" => $this->hide,
-            "skipUrlSync" => $this->skipUrlSync,
-        ];
+        $data = new \stdClass;
+        $data->id = $this->id;
+        $data->type = $this->type;
+        $data->name = $this->name;
+        $data->hide = $this->hide;
+        $data->skipUrlSync = $this->skipUrlSync;
         if (isset($this->label)) {
-            $data["label"] = $this->label;
+            $data->label = $this->label;
         }
         if (isset($this->description)) {
-            $data["description"] = $this->description;
+            $data->description = $this->description;
         }
         if (isset($this->query)) {
-            $data["query"] = $this->query;
+            $data->query = $this->query;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         if (isset($this->allFormat)) {
-            $data["allFormat"] = $this->allFormat;
+            $data->allFormat = $this->allFormat;
         }
         if (isset($this->current)) {
-            $data["current"] = $this->current;
+            $data->current = $this->current;
         }
         if (isset($this->multi)) {
-            $data["multi"] = $this->multi;
+            $data->multi = $this->multi;
         }
         if (isset($this->options)) {
-            $data["options"] = $this->options;
+            $data->options = $this->options;
         }
         if (isset($this->refresh)) {
-            $data["refresh"] = $this->refresh;
+            $data->refresh = $this->refresh;
         }
         if (isset($this->sort)) {
-            $data["sort"] = $this->sort;
+            $data->sort = $this->sort;
         }
         if (isset($this->includeAll)) {
-            $data["includeAll"] = $this->includeAll;
+            $data->includeAll = $this->includeAll;
         }
         if (isset($this->allValue)) {
-            $data["allValue"] = $this->allValue;
+            $data->allValue = $this->allValue;
         }
         if (isset($this->regex)) {
-            $data["regex"] = $this->regex;
+            $data->regex = $this->regex;
         }
         if (isset($this->auto)) {
-            $data["auto"] = $this->auto;
+            $data->auto = $this->auto;
         }
         if (isset($this->autoMin)) {
-            $data["auto_min"] = $this->autoMin;
+            $data->auto_min = $this->autoMin;
         }
         if (isset($this->autoCount)) {
-            $data["auto_count"] = $this->autoCount;
+            $data->auto_count = $this->autoCount;
         }
         return $data;
     }

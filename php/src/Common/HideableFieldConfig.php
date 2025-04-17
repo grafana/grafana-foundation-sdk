@@ -34,14 +34,13 @@ class HideableFieldConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->hideFrom)) {
-            $data["hideFrom"] = $this->hideFrom;
+            $data->hideFrom = $this->hideFrom;
         }
         return $data;
     }

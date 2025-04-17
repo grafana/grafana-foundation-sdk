@@ -114,53 +114,52 @@ class YAxisConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->unit)) {
-            $data["unit"] = $this->unit;
+            $data->unit = $this->unit;
         }
         if (isset($this->reverse)) {
-            $data["reverse"] = $this->reverse;
+            $data->reverse = $this->reverse;
         }
         if (isset($this->decimals)) {
-            $data["decimals"] = $this->decimals;
+            $data->decimals = $this->decimals;
         }
         if (isset($this->min)) {
-            $data["min"] = $this->min;
+            $data->min = $this->min;
         }
         if (isset($this->axisPlacement)) {
-            $data["axisPlacement"] = $this->axisPlacement;
+            $data->axisPlacement = $this->axisPlacement;
         }
         if (isset($this->axisColorMode)) {
-            $data["axisColorMode"] = $this->axisColorMode;
+            $data->axisColorMode = $this->axisColorMode;
         }
         if (isset($this->axisLabel)) {
-            $data["axisLabel"] = $this->axisLabel;
+            $data->axisLabel = $this->axisLabel;
         }
         if (isset($this->axisWidth)) {
-            $data["axisWidth"] = $this->axisWidth;
+            $data->axisWidth = $this->axisWidth;
         }
         if (isset($this->axisSoftMin)) {
-            $data["axisSoftMin"] = $this->axisSoftMin;
+            $data->axisSoftMin = $this->axisSoftMin;
         }
         if (isset($this->axisSoftMax)) {
-            $data["axisSoftMax"] = $this->axisSoftMax;
+            $data->axisSoftMax = $this->axisSoftMax;
         }
         if (isset($this->axisGridShow)) {
-            $data["axisGridShow"] = $this->axisGridShow;
+            $data->axisGridShow = $this->axisGridShow;
         }
         if (isset($this->scaleDistribution)) {
-            $data["scaleDistribution"] = $this->scaleDistribution;
+            $data->scaleDistribution = $this->scaleDistribution;
         }
         if (isset($this->max)) {
-            $data["max"] = $this->max;
+            $data->max = $this->max;
         }
         if (isset($this->axisCenteredZero)) {
-            $data["axisCenteredZero"] = $this->axisCenteredZero;
+            $data->axisCenteredZero = $this->axisCenteredZero;
         }
         return $data;
     }
