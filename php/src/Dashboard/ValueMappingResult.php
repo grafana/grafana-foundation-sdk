@@ -57,23 +57,22 @@ class ValueMappingResult implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->text)) {
-            $data["text"] = $this->text;
+            $data->text = $this->text;
         }
         if (isset($this->color)) {
-            $data["color"] = $this->color;
+            $data->color = $this->color;
         }
         if (isset($this->icon)) {
-            $data["icon"] = $this->icon;
+            $data->icon = $this->icon;
         }
         if (isset($this->index)) {
-            $data["index"] = $this->index;
+            $data->index = $this->index;
         }
         return $data;
     }

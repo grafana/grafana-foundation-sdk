@@ -54,19 +54,18 @@ class LogGroup implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "arn" => $this->arn,
-            "name" => $this->name,
-        ];
+        $data = new \stdClass;
+        $data->arn = $this->arn;
+        $data->name = $this->name;
         if (isset($this->accountId)) {
-            $data["accountId"] = $this->accountId;
+            $data->accountId = $this->accountId;
         }
         if (isset($this->accountLabel)) {
-            $data["accountLabel"] = $this->accountLabel;
+            $data->accountLabel = $this->accountLabel;
         }
         return $data;
     }

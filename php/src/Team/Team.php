@@ -38,15 +38,14 @@ class Team implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "name" => $this->name,
-        ];
+        $data = new \stdClass;
+        $data->name = $this->name;
         if (isset($this->email)) {
-            $data["email"] = $this->email;
+            $data->email = $this->email;
         }
         return $data;
     }

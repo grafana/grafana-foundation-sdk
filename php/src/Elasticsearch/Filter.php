@@ -32,14 +32,13 @@ class Filter implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "query" => $this->query,
-            "label" => $this->label,
-        ];
+        $data = new \stdClass;
+        $data->query = $this->query;
+        $data->label = $this->label;
         return $data;
     }
 }
