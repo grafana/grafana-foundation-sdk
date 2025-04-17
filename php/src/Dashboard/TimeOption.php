@@ -40,15 +40,14 @@ class TimeOption implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "display" => $this->display,
-            "from" => $this->from,
-            "to" => $this->to,
-        ];
+        $data = new \stdClass;
+        $data->display = $this->display;
+        $data->from = $this->from;
+        $data->to = $this->to;
         return $data;
     }
 }

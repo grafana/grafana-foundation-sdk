@@ -38,18 +38,17 @@ class TableImageCellOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
         if (isset($this->alt)) {
-            $data["alt"] = $this->alt;
+            $data->alt = $this->alt;
         }
         if (isset($this->title)) {
-            $data["title"] = $this->title;
+            $data->title = $this->title;
         }
         return $data;
     }

@@ -45,20 +45,19 @@ class BackgroundConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->color)) {
-            $data["color"] = $this->color;
+            $data->color = $this->color;
         }
         if (isset($this->image)) {
-            $data["image"] = $this->image;
+            $data->image = $this->image;
         }
         if (isset($this->size)) {
-            $data["size"] = $this->size;
+            $data->size = $this->size;
         }
         return $data;
     }

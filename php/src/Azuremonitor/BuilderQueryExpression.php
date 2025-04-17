@@ -99,38 +99,37 @@ class BuilderQueryExpression implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->from)) {
-            $data["from"] = $this->from;
+            $data->from = $this->from;
         }
         if (isset($this->columns)) {
-            $data["columns"] = $this->columns;
+            $data->columns = $this->columns;
         }
         if (isset($this->where)) {
-            $data["where"] = $this->where;
+            $data->where = $this->where;
         }
         if (isset($this->reduce)) {
-            $data["reduce"] = $this->reduce;
+            $data->reduce = $this->reduce;
         }
         if (isset($this->groupBy)) {
-            $data["groupBy"] = $this->groupBy;
+            $data->groupBy = $this->groupBy;
         }
         if (isset($this->limit)) {
-            $data["limit"] = $this->limit;
+            $data->limit = $this->limit;
         }
         if (isset($this->orderBy)) {
-            $data["orderBy"] = $this->orderBy;
+            $data->orderBy = $this->orderBy;
         }
         if (isset($this->fuzzySearch)) {
-            $data["fuzzySearch"] = $this->fuzzySearch;
+            $data->fuzzySearch = $this->fuzzySearch;
         }
         if (isset($this->timeFilter)) {
-            $data["timeFilter"] = $this->timeFilter;
+            $data->timeFilter = $this->timeFilter;
         }
         return $data;
     }

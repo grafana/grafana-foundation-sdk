@@ -105,29 +105,28 @@ class SLOQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "projectName" => $this->projectName,
-            "selectorName" => $this->selectorName,
-            "serviceId" => $this->serviceId,
-            "serviceName" => $this->serviceName,
-            "sloId" => $this->sloId,
-            "sloName" => $this->sloName,
-        ];
+        $data = new \stdClass;
+        $data->projectName = $this->projectName;
+        $data->selectorName = $this->selectorName;
+        $data->serviceId = $this->serviceId;
+        $data->serviceName = $this->serviceName;
+        $data->sloId = $this->sloId;
+        $data->sloName = $this->sloName;
         if (isset($this->perSeriesAligner)) {
-            $data["perSeriesAligner"] = $this->perSeriesAligner;
+            $data->perSeriesAligner = $this->perSeriesAligner;
         }
         if (isset($this->alignmentPeriod)) {
-            $data["alignmentPeriod"] = $this->alignmentPeriod;
+            $data->alignmentPeriod = $this->alignmentPeriod;
         }
         if (isset($this->goal)) {
-            $data["goal"] = $this->goal;
+            $data->goal = $this->goal;
         }
         if (isset($this->lookbackPeriod)) {
-            $data["lookbackPeriod"] = $this->lookbackPeriod;
+            $data->lookbackPeriod = $this->lookbackPeriod;
         }
         return $data;
     }

@@ -79,25 +79,24 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "frameIndex" => $this->frameIndex,
-            "showHeader" => $this->showHeader,
-        ];
+        $data = new \stdClass;
+        $data->frameIndex = $this->frameIndex;
+        $data->showHeader = $this->showHeader;
         if (isset($this->showTypeIcons)) {
-            $data["showTypeIcons"] = $this->showTypeIcons;
+            $data->showTypeIcons = $this->showTypeIcons;
         }
         if (isset($this->sortBy)) {
-            $data["sortBy"] = $this->sortBy;
+            $data->sortBy = $this->sortBy;
         }
         if (isset($this->footer)) {
-            $data["footer"] = $this->footer;
+            $data->footer = $this->footer;
         }
         if (isset($this->cellHeight)) {
-            $data["cellHeight"] = $this->cellHeight;
+            $data->cellHeight = $this->cellHeight;
         }
         return $data;
     }

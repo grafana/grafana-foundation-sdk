@@ -67,25 +67,24 @@ class ContactPoint implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "settings" => $this->settings,
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->settings = $this->settings;
+        $data->type = $this->type;
         if (isset($this->disableResolveMessage)) {
-            $data["disableResolveMessage"] = $this->disableResolveMessage;
+            $data->disableResolveMessage = $this->disableResolveMessage;
         }
         if (isset($this->name)) {
-            $data["name"] = $this->name;
+            $data->name = $this->name;
         }
         if (isset($this->provenance)) {
-            $data["provenance"] = $this->provenance;
+            $data->provenance = $this->provenance;
         }
         if (isset($this->uid)) {
-            $data["uid"] = $this->uid;
+            $data->uid = $this->uid;
         }
         return $data;
     }

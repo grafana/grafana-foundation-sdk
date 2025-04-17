@@ -72,25 +72,24 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "legend" => $this->legend,
-            "tooltip" => $this->tooltip,
-        ];
+        $data = new \stdClass;
+        $data->legend = $this->legend;
+        $data->tooltip = $this->tooltip;
         if (isset($this->bucketCount)) {
-            $data["bucketCount"] = $this->bucketCount;
+            $data->bucketCount = $this->bucketCount;
         }
         if (isset($this->bucketSize)) {
-            $data["bucketSize"] = $this->bucketSize;
+            $data->bucketSize = $this->bucketSize;
         }
         if (isset($this->bucketOffset)) {
-            $data["bucketOffset"] = $this->bucketOffset;
+            $data->bucketOffset = $this->bucketOffset;
         }
         if (isset($this->combine)) {
-            $data["combine"] = $this->combine;
+            $data->combine = $this->combine;
         }
         return $data;
     }

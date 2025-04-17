@@ -39,17 +39,16 @@ class MuteTiming implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->name)) {
-            $data["name"] = $this->name;
+            $data->name = $this->name;
         }
         if (isset($this->timeIntervals)) {
-            $data["time_intervals"] = $this->timeIntervals;
+            $data->time_intervals = $this->timeIntervals;
         }
         return $data;
     }

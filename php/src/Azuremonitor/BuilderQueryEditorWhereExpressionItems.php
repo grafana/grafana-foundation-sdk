@@ -45,15 +45,14 @@ class BuilderQueryEditorWhereExpressionItems implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "property" => $this->property,
-            "operator" => $this->operator,
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->property = $this->property;
+        $data->operator = $this->operator;
+        $data->type = $this->type;
         return $data;
     }
 }

@@ -98,32 +98,31 @@ class CanvasConnection implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "source" => $this->source,
-            "target" => $this->target,
-            "path" => $this->path,
-        ];
+        $data = new \stdClass;
+        $data->source = $this->source;
+        $data->target = $this->target;
+        $data->path = $this->path;
         if (isset($this->targetName)) {
-            $data["targetName"] = $this->targetName;
+            $data->targetName = $this->targetName;
         }
         if (isset($this->color)) {
-            $data["color"] = $this->color;
+            $data->color = $this->color;
         }
         if (isset($this->size)) {
-            $data["size"] = $this->size;
+            $data->size = $this->size;
         }
         if (isset($this->vertices)) {
-            $data["vertices"] = $this->vertices;
+            $data->vertices = $this->vertices;
         }
         if (isset($this->sourceOriginal)) {
-            $data["sourceOriginal"] = $this->sourceOriginal;
+            $data->sourceOriginal = $this->sourceOriginal;
         }
         if (isset($this->targetOriginal)) {
-            $data["targetOriginal"] = $this->targetOriginal;
+            $data->targetOriginal = $this->targetOriginal;
         }
         return $data;
     }

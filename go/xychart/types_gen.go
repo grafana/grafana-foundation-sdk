@@ -831,6 +831,7 @@ func NewOptions() *Options {
 	return &Options{
 		Legend:  *common.NewVizLegendOptions(),
 		Tooltip: *common.NewVizTooltipOptions(),
+		Series:  []XYSeriesConfig{},
 	}
 }
 

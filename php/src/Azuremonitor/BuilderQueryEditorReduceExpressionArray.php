@@ -39,14 +39,13 @@ class BuilderQueryEditorReduceExpressionArray implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "expressions" => $this->expressions,
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->expressions = $this->expressions;
+        $data->type = $this->type;
         return $data;
     }
 }

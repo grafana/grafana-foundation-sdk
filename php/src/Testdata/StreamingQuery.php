@@ -59,21 +59,20 @@ class StreamingQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "noise" => $this->noise,
-            "speed" => $this->speed,
-            "spread" => $this->spread,
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->noise = $this->noise;
+        $data->speed = $this->speed;
+        $data->spread = $this->spread;
+        $data->type = $this->type;
         if (isset($this->bands)) {
-            $data["bands"] = $this->bands;
+            $data->bands = $this->bands;
         }
         if (isset($this->url)) {
-            $data["url"] = $this->url;
+            $data->url = $this->url;
         }
         return $data;
     }
