@@ -65,18 +65,17 @@ class GridPos implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "h" => $this->h,
-            "w" => $this->w,
-            "x" => $this->x,
-            "y" => $this->y,
-        ];
+        $data = new \stdClass;
+        $data->h = $this->h;
+        $data->w = $this->w;
+        $data->x = $this->x;
+        $data->y = $this->y;
         if (isset($this->static)) {
-            $data["static"] = $this->static;
+            $data->static = $this->static;
         }
         return $data;
     }

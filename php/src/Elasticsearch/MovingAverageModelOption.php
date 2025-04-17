@@ -32,14 +32,13 @@ class MovingAverageModelOption implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "label" => $this->label,
-            "value" => $this->value,
-        ];
+        $data = new \stdClass;
+        $data->label = $this->label;
+        $data->value = $this->value;
         return $data;
     }
 }

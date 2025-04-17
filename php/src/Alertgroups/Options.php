@@ -46,15 +46,14 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "labels" => $this->labels,
-            "alertmanager" => $this->alertmanager,
-            "expandAll" => $this->expandAll,
-        ];
+        $data = new \stdClass;
+        $data->labels = $this->labels;
+        $data->alertmanager = $this->alertmanager;
+        $data->expandAll = $this->expandAll;
         return $data;
     }
 }

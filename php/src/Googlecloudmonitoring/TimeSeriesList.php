@@ -140,49 +140,48 @@ class TimeSeriesList implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "projectName" => $this->projectName,
-            "crossSeriesReducer" => $this->crossSeriesReducer,
-        ];
+        $data = new \stdClass;
+        $data->projectName = $this->projectName;
+        $data->crossSeriesReducer = $this->crossSeriesReducer;
         if (isset($this->alignmentPeriod)) {
-            $data["alignmentPeriod"] = $this->alignmentPeriod;
+            $data->alignmentPeriod = $this->alignmentPeriod;
         }
         if (isset($this->perSeriesAligner)) {
-            $data["perSeriesAligner"] = $this->perSeriesAligner;
+            $data->perSeriesAligner = $this->perSeriesAligner;
         }
         if (isset($this->groupBys)) {
-            $data["groupBys"] = $this->groupBys;
+            $data->groupBys = $this->groupBys;
         }
         if (isset($this->filters)) {
-            $data["filters"] = $this->filters;
+            $data->filters = $this->filters;
         }
         if (isset($this->view)) {
-            $data["view"] = $this->view;
+            $data->view = $this->view;
         }
         if (isset($this->title)) {
-            $data["title"] = $this->title;
+            $data->title = $this->title;
         }
         if (isset($this->text)) {
-            $data["text"] = $this->text;
+            $data->text = $this->text;
         }
         if (isset($this->secondaryCrossSeriesReducer)) {
-            $data["secondaryCrossSeriesReducer"] = $this->secondaryCrossSeriesReducer;
+            $data->secondaryCrossSeriesReducer = $this->secondaryCrossSeriesReducer;
         }
         if (isset($this->secondaryAlignmentPeriod)) {
-            $data["secondaryAlignmentPeriod"] = $this->secondaryAlignmentPeriod;
+            $data->secondaryAlignmentPeriod = $this->secondaryAlignmentPeriod;
         }
         if (isset($this->secondaryPerSeriesAligner)) {
-            $data["secondaryPerSeriesAligner"] = $this->secondaryPerSeriesAligner;
+            $data->secondaryPerSeriesAligner = $this->secondaryPerSeriesAligner;
         }
         if (isset($this->secondaryGroupBys)) {
-            $data["secondaryGroupBys"] = $this->secondaryGroupBys;
+            $data->secondaryGroupBys = $this->secondaryGroupBys;
         }
         if (isset($this->preprocessor)) {
-            $data["preprocessor"] = $this->preprocessor;
+            $data->preprocessor = $this->preprocessor;
         }
         return $data;
     }

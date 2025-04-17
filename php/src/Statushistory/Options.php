@@ -72,21 +72,20 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "rowHeight" => $this->rowHeight,
-            "showValue" => $this->showValue,
-            "legend" => $this->legend,
-            "tooltip" => $this->tooltip,
-        ];
+        $data = new \stdClass;
+        $data->rowHeight = $this->rowHeight;
+        $data->showValue = $this->showValue;
+        $data->legend = $this->legend;
+        $data->tooltip = $this->tooltip;
         if (isset($this->timezone)) {
-            $data["timezone"] = $this->timezone;
+            $data->timezone = $this->timezone;
         }
         if (isset($this->colWidth)) {
-            $data["colWidth"] = $this->colWidth;
+            $data->colWidth = $this->colWidth;
         }
         return $data;
     }
