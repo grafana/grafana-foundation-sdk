@@ -39,15 +39,14 @@ class AnnotationPanelFilter implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "ids" => $this->ids,
-        ];
+        $data = new \stdClass;
+        $data->ids = $this->ids;
         if (isset($this->exclude)) {
-            $data["exclude"] = $this->exclude;
+            $data->exclude = $this->exclude;
         }
         return $data;
     }

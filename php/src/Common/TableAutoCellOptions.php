@@ -24,13 +24,12 @@ class TableAutoCellOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
         return $data;
     }
 }

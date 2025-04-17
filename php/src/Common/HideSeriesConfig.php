@@ -40,15 +40,14 @@ class HideSeriesConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "tooltip" => $this->tooltip,
-            "legend" => $this->legend,
-            "viz" => $this->viz,
-        ];
+        $data = new \stdClass;
+        $data->tooltip = $this->tooltip;
+        $data->legend = $this->legend;
+        $data->viz = $this->viz;
         return $data;
     }
 }

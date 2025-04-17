@@ -47,26 +47,25 @@ class PulseWaveQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->timeStep)) {
-            $data["timeStep"] = $this->timeStep;
+            $data->timeStep = $this->timeStep;
         }
         if (isset($this->onCount)) {
-            $data["onCount"] = $this->onCount;
+            $data->onCount = $this->onCount;
         }
         if (isset($this->offCount)) {
-            $data["offCount"] = $this->offCount;
+            $data->offCount = $this->offCount;
         }
         if (isset($this->onValue)) {
-            $data["onValue"] = $this->onValue;
+            $data->onValue = $this->onValue;
         }
         if (isset($this->offValue)) {
-            $data["offValue"] = $this->offValue;
+            $data->offValue = $this->offValue;
         }
         return $data;
     }

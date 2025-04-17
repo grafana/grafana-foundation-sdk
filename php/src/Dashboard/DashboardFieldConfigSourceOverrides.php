@@ -43,14 +43,13 @@ class DashboardFieldConfigSourceOverrides implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "matcher" => $this->matcher,
-            "properties" => $this->properties,
-        ];
+        $data = new \stdClass;
+        $data->matcher = $this->matcher;
+        $data->properties = $this->properties;
         return $data;
     }
 }

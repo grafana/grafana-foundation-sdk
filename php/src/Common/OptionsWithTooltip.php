@@ -34,13 +34,12 @@ class OptionsWithTooltip implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "tooltip" => $this->tooltip,
-        ];
+        $data = new \stdClass;
+        $data->tooltip = $this->tooltip;
         return $data;
     }
 }

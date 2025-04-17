@@ -37,18 +37,17 @@ class NotificationTemplate implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "provenance" => $this->provenance,
-        ];
+        $data = new \stdClass;
+        $data->provenance = $this->provenance;
         if (isset($this->name)) {
-            $data["name"] = $this->name;
+            $data->name = $this->name;
         }
         if (isset($this->template)) {
-            $data["template"] = $this->template;
+            $data->template = $this->template;
         }
         return $data;
     }

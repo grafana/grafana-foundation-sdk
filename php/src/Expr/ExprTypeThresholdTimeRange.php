@@ -38,14 +38,13 @@ class ExprTypeThresholdTimeRange implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "from" => $this->from,
-            "to" => $this->to,
-        ];
+        $data = new \stdClass;
+        $data->from = $this->from;
+        $data->to = $this->to;
         return $data;
     }
 }

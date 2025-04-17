@@ -1851,7 +1851,7 @@ func (resource StringOrInt64) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.Int64)
 	}
 
-	return nil, fmt.Errorf("no value for disjunction of scalars")
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrInt64` from JSON.

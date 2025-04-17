@@ -38,18 +38,17 @@ class TableBarGaugeCellOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
         if (isset($this->mode)) {
-            $data["mode"] = $this->mode;
+            $data->mode = $this->mode;
         }
         if (isset($this->valueDisplayMode)) {
-            $data["valueDisplayMode"] = $this->valueDisplayMode;
+            $data->valueDisplayMode = $this->valueDisplayMode;
         }
         return $data;
     }
