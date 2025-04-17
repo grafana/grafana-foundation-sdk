@@ -76,22 +76,21 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "pieType" => $this->pieType,
-            "tooltip" => $this->tooltip,
-            "reduceOptions" => $this->reduceOptions,
-            "legend" => $this->legend,
-            "orientation" => $this->orientation,
-        ];
+        $data = new \stdClass;
+        $data->pieType = $this->pieType;
+        $data->tooltip = $this->tooltip;
+        $data->reduceOptions = $this->reduceOptions;
+        $data->legend = $this->legend;
+        $data->orientation = $this->orientation;
         if (isset($this->displayLabels)) {
-            $data["displayLabels"] = $this->displayLabels;
+            $data->displayLabels = $this->displayLabels;
         }
         if (isset($this->text)) {
-            $data["text"] = $this->text;
+            $data->text = $this->text;
         }
         return $data;
     }

@@ -235,72 +235,71 @@ class PanelModel implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
         if (isset($this->pluginVersion)) {
-            $data["pluginVersion"] = $this->pluginVersion;
+            $data->pluginVersion = $this->pluginVersion;
         }
         if (isset($this->targets)) {
-            $data["targets"] = $this->targets;
+            $data->targets = $this->targets;
         }
         if (isset($this->title)) {
-            $data["title"] = $this->title;
+            $data->title = $this->title;
         }
         if (isset($this->description)) {
-            $data["description"] = $this->description;
+            $data->description = $this->description;
         }
         if (isset($this->transparent)) {
-            $data["transparent"] = $this->transparent;
+            $data->transparent = $this->transparent;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         if (isset($this->links)) {
-            $data["links"] = $this->links;
+            $data->links = $this->links;
         }
         if (isset($this->repeat)) {
-            $data["repeat"] = $this->repeat;
+            $data->repeat = $this->repeat;
         }
         if (isset($this->repeatDirection)) {
-            $data["repeatDirection"] = $this->repeatDirection;
+            $data->repeatDirection = $this->repeatDirection;
         }
         if (isset($this->maxPerRow)) {
-            $data["maxPerRow"] = $this->maxPerRow;
+            $data->maxPerRow = $this->maxPerRow;
         }
         if (isset($this->maxDataPoints)) {
-            $data["maxDataPoints"] = $this->maxDataPoints;
+            $data->maxDataPoints = $this->maxDataPoints;
         }
         if (isset($this->transformations)) {
-            $data["transformations"] = $this->transformations;
+            $data->transformations = $this->transformations;
         }
         if (isset($this->interval)) {
-            $data["interval"] = $this->interval;
+            $data->interval = $this->interval;
         }
         if (isset($this->timeFrom)) {
-            $data["timeFrom"] = $this->timeFrom;
+            $data->timeFrom = $this->timeFrom;
         }
         if (isset($this->timeShift)) {
-            $data["timeShift"] = $this->timeShift;
+            $data->timeShift = $this->timeShift;
         }
         if (isset($this->hideTimeOverride)) {
-            $data["hideTimeOverride"] = $this->hideTimeOverride;
+            $data->hideTimeOverride = $this->hideTimeOverride;
         }
         if (isset($this->cacheTimeout)) {
-            $data["cacheTimeout"] = $this->cacheTimeout;
+            $data->cacheTimeout = $this->cacheTimeout;
         }
         if (isset($this->queryCachingTTL)) {
-            $data["queryCachingTTL"] = $this->queryCachingTTL;
+            $data->queryCachingTTL = $this->queryCachingTTL;
         }
         if (isset($this->options)) {
-            $data["options"] = $this->options;
+            $data->options = $this->options;
         }
         if (isset($this->fieldConfig)) {
-            $data["fieldConfig"] = $this->fieldConfig;
+            $data->fieldConfig = $this->fieldConfig;
         }
         return $data;
     }

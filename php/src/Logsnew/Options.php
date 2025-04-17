@@ -86,30 +86,29 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "showControls" => $this->showControls,
-            "showTime" => $this->showTime,
-            "wrapLogMessage" => $this->wrapLogMessage,
-            "enableLogDetails" => $this->enableLogDetails,
-            "syntaxHighlighting" => $this->syntaxHighlighting,
-            "sortOrder" => $this->sortOrder,
-            "dedupStrategy" => $this->dedupStrategy,
-        ];
+        $data = new \stdClass;
+        $data->showControls = $this->showControls;
+        $data->showTime = $this->showTime;
+        $data->wrapLogMessage = $this->wrapLogMessage;
+        $data->enableLogDetails = $this->enableLogDetails;
+        $data->syntaxHighlighting = $this->syntaxHighlighting;
+        $data->sortOrder = $this->sortOrder;
+        $data->dedupStrategy = $this->dedupStrategy;
         if (isset($this->grammar)) {
-            $data["grammar"] = $this->grammar;
+            $data->grammar = $this->grammar;
         }
         if (isset($this->enableInfiniteScrolling)) {
-            $data["enableInfiniteScrolling"] = $this->enableInfiniteScrolling;
+            $data->enableInfiniteScrolling = $this->enableInfiniteScrolling;
         }
         if (isset($this->onLogOptionsChange)) {
-            $data["onLogOptionsChange"] = $this->onLogOptionsChange;
+            $data->onLogOptionsChange = $this->onLogOptionsChange;
         }
         if (isset($this->onNewLogsReceived)) {
-            $data["onNewLogsReceived"] = $this->onNewLogsReceived;
+            $data->onNewLogsReceived = $this->onNewLogsReceived;
         }
         return $data;
     }

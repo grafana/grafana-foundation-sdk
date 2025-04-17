@@ -2164,7 +2164,9 @@ type BuilderQueryEditorWhereExpressionArray struct {
 
 // NewBuilderQueryEditorWhereExpressionArray creates a new BuilderQueryEditorWhereExpressionArray object.
 func NewBuilderQueryEditorWhereExpressionArray() *BuilderQueryEditorWhereExpressionArray {
-	return &BuilderQueryEditorWhereExpressionArray{}
+	return &BuilderQueryEditorWhereExpressionArray{
+		Expressions: []BuilderQueryEditorWhereExpression{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorWhereExpressionArray` from JSON.
@@ -2274,7 +2276,9 @@ type BuilderQueryEditorWhereExpression struct {
 
 // NewBuilderQueryEditorWhereExpression creates a new BuilderQueryEditorWhereExpression object.
 func NewBuilderQueryEditorWhereExpression() *BuilderQueryEditorWhereExpression {
-	return &BuilderQueryEditorWhereExpression{}
+	return &BuilderQueryEditorWhereExpression{
+		Expressions: []BuilderQueryEditorWhereExpressionItems{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorWhereExpression` from JSON.
@@ -2600,7 +2604,9 @@ type BuilderQueryEditorReduceExpressionArray struct {
 
 // NewBuilderQueryEditorReduceExpressionArray creates a new BuilderQueryEditorReduceExpressionArray object.
 func NewBuilderQueryEditorReduceExpressionArray() *BuilderQueryEditorReduceExpressionArray {
-	return &BuilderQueryEditorReduceExpressionArray{}
+	return &BuilderQueryEditorReduceExpressionArray{
+		Expressions: []BuilderQueryEditorReduceExpression{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorReduceExpressionArray` from JSON.
@@ -2973,7 +2979,9 @@ type BuilderQueryEditorGroupByExpressionArray struct {
 
 // NewBuilderQueryEditorGroupByExpressionArray creates a new BuilderQueryEditorGroupByExpressionArray object.
 func NewBuilderQueryEditorGroupByExpressionArray() *BuilderQueryEditorGroupByExpressionArray {
-	return &BuilderQueryEditorGroupByExpressionArray{}
+	return &BuilderQueryEditorGroupByExpressionArray{
+		Expressions: []BuilderQueryEditorGroupByExpression{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorGroupByExpressionArray` from JSON.
@@ -3230,7 +3238,9 @@ type BuilderQueryEditorOrderByExpressionArray struct {
 
 // NewBuilderQueryEditorOrderByExpressionArray creates a new BuilderQueryEditorOrderByExpressionArray object.
 func NewBuilderQueryEditorOrderByExpressionArray() *BuilderQueryEditorOrderByExpressionArray {
-	return &BuilderQueryEditorOrderByExpressionArray{}
+	return &BuilderQueryEditorOrderByExpressionArray{
+		Expressions: []BuilderQueryEditorOrderByExpression{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuilderQueryEditorOrderByExpressionArray` from JSON.
@@ -3753,7 +3763,9 @@ type AzureTracesFilter struct {
 
 // NewAzureTracesFilter creates a new AzureTracesFilter object.
 func NewAzureTracesFilter() *AzureTracesFilter {
-	return &AzureTracesFilter{}
+	return &AzureTracesFilter{
+		Filters: []string{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureTracesFilter` from JSON.
@@ -5389,7 +5401,8 @@ func (resource AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscription
 	if resource.UnknownQuery != nil {
 		return json.Marshal(resource.UnknownQuery)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery` from JSON.
@@ -5406,7 +5419,7 @@ func (resource *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptio
 
 	discriminator, found := parsedAsMap["kind"]
 	if !found {
-		return errors.New("discriminator field 'kind' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -5492,7 +5505,7 @@ func (resource *AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptio
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery` from JSON.

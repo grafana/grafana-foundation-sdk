@@ -108,32 +108,31 @@ class TableFieldOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "align" => $this->align,
-            "cellOptions" => $this->cellOptions,
-            "inspect" => $this->inspect,
-        ];
+        $data = new \stdClass;
+        $data->align = $this->align;
+        $data->cellOptions = $this->cellOptions;
+        $data->inspect = $this->inspect;
         if (isset($this->width)) {
-            $data["width"] = $this->width;
+            $data->width = $this->width;
         }
         if (isset($this->minWidth)) {
-            $data["minWidth"] = $this->minWidth;
+            $data->minWidth = $this->minWidth;
         }
         if (isset($this->displayMode)) {
-            $data["displayMode"] = $this->displayMode;
+            $data->displayMode = $this->displayMode;
         }
         if (isset($this->hidden)) {
-            $data["hidden"] = $this->hidden;
+            $data->hidden = $this->hidden;
         }
         if (isset($this->filterable)) {
-            $data["filterable"] = $this->filterable;
+            $data->filterable = $this->filterable;
         }
         if (isset($this->hideHeader)) {
-            $data["hideHeader"] = $this->hideHeader;
+            $data->hideHeader = $this->hideHeader;
         }
         return $data;
     }

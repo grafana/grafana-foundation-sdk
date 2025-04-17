@@ -40,20 +40,19 @@ class AnnotationActions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->canAdd)) {
-            $data["canAdd"] = $this->canAdd;
+            $data->canAdd = $this->canAdd;
         }
         if (isset($this->canDelete)) {
-            $data["canDelete"] = $this->canDelete;
+            $data->canDelete = $this->canDelete;
         }
         if (isset($this->canEdit)) {
-            $data["canEdit"] = $this->canEdit;
+            $data->canEdit = $this->canEdit;
         }
         return $data;
     }

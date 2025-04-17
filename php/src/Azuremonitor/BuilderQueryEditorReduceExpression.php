@@ -57,23 +57,22 @@ class BuilderQueryEditorReduceExpression implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->property)) {
-            $data["property"] = $this->property;
+            $data->property = $this->property;
         }
         if (isset($this->reduce)) {
-            $data["reduce"] = $this->reduce;
+            $data->reduce = $this->reduce;
         }
         if (isset($this->parameters)) {
-            $data["parameters"] = $this->parameters;
+            $data->parameters = $this->parameters;
         }
         if (isset($this->focus)) {
-            $data["focus"] = $this->focus;
+            $data->focus = $this->focus;
         }
         return $data;
     }

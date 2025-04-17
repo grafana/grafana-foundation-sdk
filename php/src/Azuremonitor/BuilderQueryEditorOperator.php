@@ -37,16 +37,15 @@ class BuilderQueryEditorOperator implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "name" => $this->name,
-            "value" => $this->value,
-        ];
+        $data = new \stdClass;
+        $data->name = $this->name;
+        $data->value = $this->value;
         if (isset($this->labelValue)) {
-            $data["labelValue"] = $this->labelValue;
+            $data->labelValue = $this->labelValue;
         }
         return $data;
     }

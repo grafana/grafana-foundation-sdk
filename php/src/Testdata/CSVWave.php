@@ -42,23 +42,22 @@ class CSVWave implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->labels)) {
-            $data["labels"] = $this->labels;
+            $data->labels = $this->labels;
         }
         if (isset($this->name)) {
-            $data["name"] = $this->name;
+            $data->name = $this->name;
         }
         if (isset($this->timeStep)) {
-            $data["timeStep"] = $this->timeStep;
+            $data->timeStep = $this->timeStep;
         }
         if (isset($this->valuesCSV)) {
-            $data["valuesCSV"] = $this->valuesCSV;
+            $data->valuesCSV = $this->valuesCSV;
         }
         return $data;
     }

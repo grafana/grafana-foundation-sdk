@@ -32,14 +32,13 @@ class BuilderQueryEditorProperty implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-            "name" => $this->name,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
+        $data->name = $this->name;
         return $data;
     }
 }

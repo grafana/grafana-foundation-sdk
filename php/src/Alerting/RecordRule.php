@@ -46,16 +46,15 @@ class RecordRule implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "from" => $this->from,
-            "metric" => $this->metric,
-        ];
+        $data = new \stdClass;
+        $data->from = $this->from;
+        $data->metric = $this->metric;
         if (isset($this->targetDatasourceUid)) {
-            $data["target_datasource_uid"] = $this->targetDatasourceUid;
+            $data->target_datasource_uid = $this->targetDatasourceUid;
         }
         return $data;
     }

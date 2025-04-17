@@ -35,17 +35,16 @@ class StackingConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->mode)) {
-            $data["mode"] = $this->mode;
+            $data->mode = $this->mode;
         }
         if (isset($this->group)) {
-            $data["group"] = $this->group;
+            $data->group = $this->group;
         }
         return $data;
     }

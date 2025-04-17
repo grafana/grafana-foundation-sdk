@@ -32,17 +32,16 @@ class DayOfMonthRange implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->begin)) {
-            $data["begin"] = $this->begin;
+            $data->begin = $this->begin;
         }
         if (isset($this->end)) {
-            $data["end"] = $this->end;
+            $data->end = $this->end;
         }
         return $data;
     }

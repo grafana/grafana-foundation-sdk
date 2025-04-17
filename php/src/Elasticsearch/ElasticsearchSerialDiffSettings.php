@@ -27,14 +27,13 @@ class ElasticsearchSerialDiffSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->lag)) {
-            $data["lag"] = $this->lag;
+            $data->lag = $this->lag;
         }
         return $data;
     }
