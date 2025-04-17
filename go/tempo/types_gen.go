@@ -63,7 +63,9 @@ func (resource TempoQuery) DataqueryType() string {
 
 // NewTempoQuery creates a new TempoQuery object.
 func NewTempoQuery() *TempoQuery {
-	return &TempoQuery{}
+	return &TempoQuery{
+		Filters: []TraceqlFilter{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TempoQuery` from JSON.
@@ -753,7 +755,7 @@ func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.ArrayOfString)
 	}
 
-	return nil, fmt.Errorf("no value for disjunction of scalars")
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrArrayOfString` from JSON.

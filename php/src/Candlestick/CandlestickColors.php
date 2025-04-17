@@ -37,15 +37,14 @@ class CandlestickColors implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "up" => $this->up,
-            "down" => $this->down,
-            "flat" => $this->flat,
-        ];
+        $data = new \stdClass;
+        $data->up = $this->up;
+        $data->down = $this->down;
+        $data->flat = $this->flat;
         return $data;
     }
 }

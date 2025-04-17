@@ -1264,6 +1264,7 @@ func NewOptions() *Options {
 		Dims:    *NewXYDimensionConfig(),
 		Legend:  *common.NewVizLegendOptions(),
 		Tooltip: *common.NewVizTooltipOptions(),
+		Series:  []ScatterSeriesConfig{},
 	}
 }
 

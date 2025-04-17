@@ -385,7 +385,8 @@ func (resource BuiltinRoleRefOrCustomRoleRef) MarshalJSON() ([]byte, error) {
 	if resource.CustomRoleRef != nil {
 		return json.Marshal(resource.CustomRoleRef)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `BuiltinRoleRefOrCustomRoleRef` from JSON.
@@ -402,7 +403,7 @@ func (resource *BuiltinRoleRefOrCustomRoleRef) UnmarshalJSON(raw []byte) error {
 
 	discriminator, found := parsedAsMap["kind"]
 	if !found {
-		return errors.New("discriminator field 'kind' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -424,7 +425,7 @@ func (resource *BuiltinRoleRefOrCustomRoleRef) UnmarshalJSON(raw []byte) error {
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BuiltinRoleRefOrCustomRoleRef` from JSON.

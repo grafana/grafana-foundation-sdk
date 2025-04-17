@@ -324,119 +324,118 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->alias)) {
-            $data["alias"] = $this->alias;
+            $data->alias = $this->alias;
         }
         if (isset($this->channel)) {
-            $data["channel"] = $this->channel;
+            $data->channel = $this->channel;
         }
         if (isset($this->csvContent)) {
-            $data["csvContent"] = $this->csvContent;
+            $data->csvContent = $this->csvContent;
         }
         if (isset($this->csvFileName)) {
-            $data["csvFileName"] = $this->csvFileName;
+            $data->csvFileName = $this->csvFileName;
         }
         if (isset($this->csvWave)) {
-            $data["csvWave"] = $this->csvWave;
+            $data->csvWave = $this->csvWave;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         if (isset($this->dropPercent)) {
-            $data["dropPercent"] = $this->dropPercent;
+            $data->dropPercent = $this->dropPercent;
         }
         if (isset($this->errorType)) {
-            $data["errorType"] = $this->errorType;
+            $data->errorType = $this->errorType;
         }
         if (isset($this->flamegraphDiff)) {
-            $data["flamegraphDiff"] = $this->flamegraphDiff;
+            $data->flamegraphDiff = $this->flamegraphDiff;
         }
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->intervalMs)) {
-            $data["intervalMs"] = $this->intervalMs;
+            $data->intervalMs = $this->intervalMs;
         }
         if (isset($this->labels)) {
-            $data["labels"] = $this->labels;
+            $data->labels = $this->labels;
         }
         if (isset($this->levelColumn)) {
-            $data["levelColumn"] = $this->levelColumn;
+            $data->levelColumn = $this->levelColumn;
         }
         if (isset($this->lines)) {
-            $data["lines"] = $this->lines;
+            $data->lines = $this->lines;
         }
         if (isset($this->max)) {
-            $data["max"] = $this->max;
+            $data->max = $this->max;
         }
         if (isset($this->maxDataPoints)) {
-            $data["maxDataPoints"] = $this->maxDataPoints;
+            $data->maxDataPoints = $this->maxDataPoints;
         }
         if (isset($this->min)) {
-            $data["min"] = $this->min;
+            $data->min = $this->min;
         }
         if (isset($this->nodes)) {
-            $data["nodes"] = $this->nodes;
+            $data->nodes = $this->nodes;
         }
         if (isset($this->noise)) {
-            $data["noise"] = $this->noise;
+            $data->noise = $this->noise;
         }
         if (isset($this->points)) {
-            $data["points"] = $this->points;
+            $data->points = $this->points;
         }
         if (isset($this->pulseWave)) {
-            $data["pulseWave"] = $this->pulseWave;
+            $data->pulseWave = $this->pulseWave;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->rawFrameContent)) {
-            $data["rawFrameContent"] = $this->rawFrameContent;
+            $data->rawFrameContent = $this->rawFrameContent;
         }
         if (isset($this->refId)) {
-            $data["refId"] = $this->refId;
+            $data->refId = $this->refId;
         }
         if (isset($this->resultAssertions)) {
-            $data["resultAssertions"] = $this->resultAssertions;
+            $data->resultAssertions = $this->resultAssertions;
         }
         if (isset($this->scenarioId)) {
-            $data["scenarioId"] = $this->scenarioId;
+            $data->scenarioId = $this->scenarioId;
         }
         if (isset($this->seriesCount)) {
-            $data["seriesCount"] = $this->seriesCount;
+            $data->seriesCount = $this->seriesCount;
         }
         if (isset($this->sim)) {
-            $data["sim"] = $this->sim;
+            $data->sim = $this->sim;
         }
         if (isset($this->spanCount)) {
-            $data["spanCount"] = $this->spanCount;
+            $data->spanCount = $this->spanCount;
         }
         if (isset($this->spread)) {
-            $data["spread"] = $this->spread;
+            $data->spread = $this->spread;
         }
         if (isset($this->startValue)) {
-            $data["startValue"] = $this->startValue;
+            $data->startValue = $this->startValue;
         }
         if (isset($this->stream)) {
-            $data["stream"] = $this->stream;
+            $data->stream = $this->stream;
         }
         if (isset($this->stringInput)) {
-            $data["stringInput"] = $this->stringInput;
+            $data->stringInput = $this->stringInput;
         }
         if (isset($this->timeRange)) {
-            $data["timeRange"] = $this->timeRange;
+            $data->timeRange = $this->timeRange;
         }
         if (isset($this->usa)) {
-            $data["usa"] = $this->usa;
+            $data->usa = $this->usa;
         }
         if (isset($this->withNil)) {
-            $data["withNil"] = $this->withNil;
+            $data->withNil = $this->withNil;
         }
         return $data;
     }

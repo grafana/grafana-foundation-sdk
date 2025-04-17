@@ -67,21 +67,20 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "showLabels" => $this->showLabels,
-            "showCommonLabels" => $this->showCommonLabels,
-            "showTime" => $this->showTime,
-            "showLogContextToggle" => $this->showLogContextToggle,
-            "wrapLogMessage" => $this->wrapLogMessage,
-            "prettifyLogMessage" => $this->prettifyLogMessage,
-            "enableLogDetails" => $this->enableLogDetails,
-            "sortOrder" => $this->sortOrder,
-            "dedupStrategy" => $this->dedupStrategy,
-        ];
+        $data = new \stdClass;
+        $data->showLabels = $this->showLabels;
+        $data->showCommonLabels = $this->showCommonLabels;
+        $data->showTime = $this->showTime;
+        $data->showLogContextToggle = $this->showLogContextToggle;
+        $data->wrapLogMessage = $this->wrapLogMessage;
+        $data->prettifyLogMessage = $this->prettifyLogMessage;
+        $data->enableLogDetails = $this->enableLogDetails;
+        $data->sortOrder = $this->sortOrder;
+        $data->dedupStrategy = $this->dedupStrategy;
         return $data;
     }
 }

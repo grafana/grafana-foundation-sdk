@@ -106,32 +106,31 @@ class SQLExpression implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->select)) {
-            $data["select"] = $this->select;
+            $data->select = $this->select;
         }
         if (isset($this->from)) {
-            $data["from"] = $this->from;
+            $data->from = $this->from;
         }
         if (isset($this->where)) {
-            $data["where"] = $this->where;
+            $data->where = $this->where;
         }
         if (isset($this->groupBy)) {
-            $data["groupBy"] = $this->groupBy;
+            $data->groupBy = $this->groupBy;
         }
         if (isset($this->orderBy)) {
-            $data["orderBy"] = $this->orderBy;
+            $data->orderBy = $this->orderBy;
         }
         if (isset($this->orderByDirection)) {
-            $data["orderByDirection"] = $this->orderByDirection;
+            $data->orderByDirection = $this->orderByDirection;
         }
         if (isset($this->limit)) {
-            $data["limit"] = $this->limit;
+            $data->limit = $this->limit;
         }
         return $data;
     }
