@@ -123,35 +123,34 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "conditions" => $this->conditions,
-            "refId" => $this->refId,
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->conditions = $this->conditions;
+        $data->refId = $this->refId;
+        $data->type = $this->type;
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->intervalMs)) {
-            $data["intervalMs"] = $this->intervalMs;
+            $data->intervalMs = $this->intervalMs;
         }
         if (isset($this->maxDataPoints)) {
-            $data["maxDataPoints"] = $this->maxDataPoints;
+            $data->maxDataPoints = $this->maxDataPoints;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->resultAssertions)) {
-            $data["resultAssertions"] = $this->resultAssertions;
+            $data->resultAssertions = $this->resultAssertions;
         }
         if (isset($this->timeRange)) {
-            $data["timeRange"] = $this->timeRange;
+            $data->timeRange = $this->timeRange;
         }
         return $data;
     }

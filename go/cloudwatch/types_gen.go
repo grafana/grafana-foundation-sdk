@@ -1541,7 +1541,9 @@ type QueryEditorArrayExpression struct {
 
 // NewQueryEditorArrayExpression creates a new QueryEditorArrayExpression object.
 func NewQueryEditorArrayExpression() *QueryEditorArrayExpression {
-	return &QueryEditorArrayExpression{}
+	return &QueryEditorArrayExpression{
+		Expressions: []QueryEditorExpression{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpression` from JSON.
@@ -2944,7 +2946,7 @@ func (resource StringOrArrayOfString) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.ArrayOfString)
 	}
 
-	return nil, fmt.Errorf("no value for disjunction of scalars")
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrArrayOfString` from JSON.
@@ -3066,7 +3068,8 @@ func (resource QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Mar
 	if resource.QueryEditorFunctionExpression != nil {
 		return json.Marshal(resource.QueryEditorFunctionExpression)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `QueryEditorPropertyExpressionOrQueryEditorFunctionExpression` from JSON.
@@ -3083,7 +3086,7 @@ func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Un
 
 	discriminator, found := parsedAsMap["type"]
 	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -3105,7 +3108,7 @@ func (resource *QueryEditorPropertyExpressionOrQueryEditorFunctionExpression) Un
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorPropertyExpressionOrQueryEditorFunctionExpression` from JSON.
@@ -3226,7 +3229,8 @@ func (resource QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryE
 	if resource.QueryEditorOperatorExpression != nil {
 		return json.Marshal(resource.QueryEditorOperatorExpression)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` from JSON.
@@ -3243,7 +3247,7 @@ func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQuery
 
 	discriminator, found := parsedAsMap["type"]
 	if !found {
-		return errors.New("discriminator field 'type' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -3305,7 +3309,7 @@ func (resource *QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQuery
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `type = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression` from JSON.
@@ -3518,7 +3522,7 @@ func (resource StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType) MarshalJSON(
 		return json.Marshal(resource.ArrayOfQueryEditorOperatorType)
 	}
 
-	return nil, fmt.Errorf("no value for disjunction of scalars")
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType` from JSON.
@@ -3717,7 +3721,7 @@ func (resource StringOrBoolOrInt64) MarshalJSON() ([]byte, error) {
 		return json.Marshal(resource.Int64)
 	}
 
-	return nil, fmt.Errorf("no value for disjunction of scalars")
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrBoolOrInt64` from JSON.
@@ -3878,7 +3882,8 @@ func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotation
 	if resource.CloudWatchAnnotationQuery != nil {
 		return json.Marshal(resource.CloudWatchAnnotationQuery)
 	}
-	return nil, fmt.Errorf("no value for disjunction of refs")
+
+	return []byte("null"), nil
 }
 
 // UnmarshalJSON implements a custom JSON unmarshalling logic to decode `CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery` from JSON.
@@ -3895,7 +3900,7 @@ func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotatio
 
 	discriminator, found := parsedAsMap["queryMode"]
 	if !found {
-		return errors.New("discriminator field 'queryMode' not found in payload")
+		return nil
 	}
 
 	switch discriminator {
@@ -3925,7 +3930,7 @@ func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotatio
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal resource with `queryMode = %v`", discriminator)
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery` from JSON.

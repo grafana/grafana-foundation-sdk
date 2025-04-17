@@ -70,21 +70,20 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "graphMode" => $this->graphMode,
-            "colorMode" => $this->colorMode,
-            "justifyMode" => $this->justifyMode,
-            "textMode" => $this->textMode,
-            "reduceOptions" => $this->reduceOptions,
-            "wideLayout" => $this->wideLayout,
-            "orientation" => $this->orientation,
-        ];
+        $data = new \stdClass;
+        $data->graphMode = $this->graphMode;
+        $data->colorMode = $this->colorMode;
+        $data->justifyMode = $this->justifyMode;
+        $data->textMode = $this->textMode;
+        $data->reduceOptions = $this->reduceOptions;
+        $data->wideLayout = $this->wideLayout;
+        $data->orientation = $this->orientation;
         if (isset($this->text)) {
-            $data["text"] = $this->text;
+            $data->text = $this->text;
         }
         return $data;
     }

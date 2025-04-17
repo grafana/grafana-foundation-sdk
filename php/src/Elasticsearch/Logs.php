@@ -44,19 +44,18 @@ class Logs implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "type" => $this->type,
-            "id" => $this->id,
-        ];
+        $data = new \stdClass;
+        $data->type = $this->type;
+        $data->id = $this->id;
         if (isset($this->settings)) {
-            $data["settings"] = $this->settings;
+            $data->settings = $this->settings;
         }
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         return $data;
     }

@@ -38,17 +38,16 @@ class AzureResourceGraphQuery implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->query)) {
-            $data["query"] = $this->query;
+            $data->query = $this->query;
         }
         if (isset($this->resultFormat)) {
-            $data["resultFormat"] = $this->resultFormat;
+            $data->resultFormat = $this->resultFormat;
         }
         return $data;
     }

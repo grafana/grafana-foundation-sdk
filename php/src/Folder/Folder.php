@@ -50,16 +50,15 @@ class Folder implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "uid" => $this->uid,
-            "title" => $this->title,
-        ];
+        $data = new \stdClass;
+        $data->uid = $this->uid;
+        $data->title = $this->title;
         if (isset($this->description)) {
-            $data["description"] = $this->description;
+            $data->description = $this->description;
         }
         return $data;
     }

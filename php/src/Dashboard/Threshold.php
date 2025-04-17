@@ -43,15 +43,14 @@ class Threshold implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "color" => $this->color,
-        ];
+        $data = new \stdClass;
+        $data->color = $this->color;
         if (isset($this->value)) {
-            $data["value"] = $this->value;
+            $data->value = $this->value;
         }
         return $data;
     }

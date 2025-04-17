@@ -35,15 +35,14 @@ class MovingAverageLinearModelSettings implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "model" => $this->model,
-            "window" => $this->window,
-            "predict" => $this->predict,
-        ];
+        $data = new \stdClass;
+        $data->model = $this->model;
+        $data->window = $this->window;
+        $data->predict = $this->predict;
         return $data;
     }
 }

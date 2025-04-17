@@ -32,14 +32,13 @@ class PipelineVariable implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "name" => $this->name,
-            "pipelineAgg" => $this->pipelineAgg,
-        ];
+        $data = new \stdClass;
+        $data->name = $this->name;
+        $data->pipelineAgg = $this->pipelineAgg;
         return $data;
     }
 }

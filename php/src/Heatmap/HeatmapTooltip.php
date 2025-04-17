@@ -49,18 +49,17 @@ class HeatmapTooltip implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "show" => $this->show,
-        ];
+        $data = new \stdClass;
+        $data->show = $this->show;
         if (isset($this->yHistogram)) {
-            $data["yHistogram"] = $this->yHistogram;
+            $data->yHistogram = $this->yHistogram;
         }
         if (isset($this->showColorScale)) {
-            $data["showColorScale"] = $this->showColorScale;
+            $data->showColorScale = $this->showColorScale;
         }
         return $data;
     }

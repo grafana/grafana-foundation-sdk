@@ -48,16 +48,15 @@ class SingleStatBaseOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "reduceOptions" => $this->reduceOptions,
-            "orientation" => $this->orientation,
-        ];
+        $data = new \stdClass;
+        $data->reduceOptions = $this->reduceOptions;
+        $data->orientation = $this->orientation;
         if (isset($this->text)) {
-            $data["text"] = $this->text;
+            $data->text = $this->text;
         }
         return $data;
     }
