@@ -45,19 +45,18 @@ class VizTooltipOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "mode" => $this->mode,
-            "sort" => $this->sort,
-        ];
+        $data = new \stdClass;
+        $data->mode = $this->mode;
+        $data->sort = $this->sort;
         if (isset($this->maxWidth)) {
-            $data["maxWidth"] = $this->maxWidth;
+            $data->maxWidth = $this->maxWidth;
         }
         if (isset($this->maxHeight)) {
-            $data["maxHeight"] = $this->maxHeight;
+            $data->maxHeight = $this->maxHeight;
         }
         return $data;
     }

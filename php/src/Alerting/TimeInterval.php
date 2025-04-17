@@ -87,27 +87,26 @@ class TimeInterval implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "location" => $this->location,
-        ];
+        $data = new \stdClass;
+        $data->location = $this->location;
         if (isset($this->times)) {
-            $data["times"] = $this->times;
+            $data->times = $this->times;
         }
         if (isset($this->weekdays)) {
-            $data["weekdays"] = $this->weekdays;
+            $data->weekdays = $this->weekdays;
         }
         if (isset($this->daysOfMonth)) {
-            $data["days_of_month"] = $this->daysOfMonth;
+            $data->days_of_month = $this->daysOfMonth;
         }
         if (isset($this->months)) {
-            $data["months"] = $this->months;
+            $data->months = $this->months;
         }
         if (isset($this->years)) {
-            $data["years"] = $this->years;
+            $data->years = $this->years;
         }
         return $data;
     }

@@ -88,27 +88,26 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "showValue" => $this->showValue,
-            "rowHeight" => $this->rowHeight,
-            "legend" => $this->legend,
-            "tooltip" => $this->tooltip,
-        ];
+        $data = new \stdClass;
+        $data->showValue = $this->showValue;
+        $data->rowHeight = $this->rowHeight;
+        $data->legend = $this->legend;
+        $data->tooltip = $this->tooltip;
         if (isset($this->mergeValues)) {
-            $data["mergeValues"] = $this->mergeValues;
+            $data->mergeValues = $this->mergeValues;
         }
         if (isset($this->alignValue)) {
-            $data["alignValue"] = $this->alignValue;
+            $data->alignValue = $this->alignValue;
         }
         if (isset($this->timezone)) {
-            $data["timezone"] = $this->timezone;
+            $data->timezone = $this->timezone;
         }
         if (isset($this->perPage)) {
-            $data["perPage"] = $this->perPage;
+            $data->perPage = $this->perPage;
         }
         return $data;
     }

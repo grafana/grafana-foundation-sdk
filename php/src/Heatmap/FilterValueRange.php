@@ -41,17 +41,16 @@ class FilterValueRange implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->le)) {
-            $data["le"] = $this->le;
+            $data->le = $this->le;
         }
         if (isset($this->ge)) {
-            $data["ge"] = $this->ge;
+            $data->ge = $this->ge;
         }
         return $data;
     }

@@ -38,17 +38,16 @@ class LineStyle implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->fill)) {
-            $data["fill"] = $this->fill;
+            $data->fill = $this->fill;
         }
         if (isset($this->dash)) {
-            $data["dash"] = $this->dash;
+            $data->dash = $this->dash;
         }
         return $data;
     }

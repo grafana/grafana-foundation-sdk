@@ -63,16 +63,15 @@ class AnnotationTarget implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "limit" => $this->limit,
-            "matchAny" => $this->matchAny,
-            "tags" => $this->tags,
-            "type" => $this->type,
-        ];
+        $data = new \stdClass;
+        $data->limit = $this->limit;
+        $data->matchAny = $this->matchAny;
+        $data->tags = $this->tags;
+        $data->type = $this->type;
         return $data;
     }
 }

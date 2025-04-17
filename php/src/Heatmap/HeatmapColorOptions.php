@@ -97,28 +97,27 @@ class HeatmapColorOptions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "scheme" => $this->scheme,
-            "fill" => $this->fill,
-            "exponent" => $this->exponent,
-            "steps" => $this->steps,
-            "reverse" => $this->reverse,
-        ];
+        $data = new \stdClass;
+        $data->scheme = $this->scheme;
+        $data->fill = $this->fill;
+        $data->exponent = $this->exponent;
+        $data->steps = $this->steps;
+        $data->reverse = $this->reverse;
         if (isset($this->mode)) {
-            $data["mode"] = $this->mode;
+            $data->mode = $this->mode;
         }
         if (isset($this->scale)) {
-            $data["scale"] = $this->scale;
+            $data->scale = $this->scale;
         }
         if (isset($this->min)) {
-            $data["min"] = $this->min;
+            $data->min = $this->min;
         }
         if (isset($this->max)) {
-            $data["max"] = $this->max;
+            $data->max = $this->max;
         }
         return $data;
     }

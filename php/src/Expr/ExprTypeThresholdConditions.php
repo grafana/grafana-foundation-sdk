@@ -48,18 +48,17 @@ class ExprTypeThresholdConditions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "evaluator" => $this->evaluator,
-        ];
+        $data = new \stdClass;
+        $data->evaluator = $this->evaluator;
         if (isset($this->loadedDimensions)) {
-            $data["loadedDimensions"] = $this->loadedDimensions;
+            $data->loadedDimensions = $this->loadedDimensions;
         }
         if (isset($this->unloadEvaluator)) {
-            $data["unloadEvaluator"] = $this->unloadEvaluator;
+            $data->unloadEvaluator = $this->unloadEvaluator;
         }
         return $data;
     }

@@ -35,17 +35,16 @@ class TimeRange implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->from)) {
-            $data["from"] = $this->from;
+            $data->from = $this->from;
         }
         if (isset($this->to)) {
-            $data["to"] = $this->to;
+            $data->to = $this->to;
         }
         return $data;
     }

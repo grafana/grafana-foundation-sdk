@@ -60,18 +60,17 @@ class ExprTypeClassicConditionsResultAssertions implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "typeVersion" => $this->typeVersion,
-        ];
+        $data = new \stdClass;
+        $data->typeVersion = $this->typeVersion;
         if (isset($this->maxFrames)) {
-            $data["maxFrames"] = $this->maxFrames;
+            $data->maxFrames = $this->maxFrames;
         }
         if (isset($this->type)) {
-            $data["type"] = $this->type;
+            $data->type = $this->type;
         }
         return $data;
     }
