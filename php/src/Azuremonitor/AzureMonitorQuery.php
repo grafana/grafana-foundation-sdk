@@ -196,55 +196,54 @@ class AzureMonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Da
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "refId" => $this->refId,
-            "grafanaTemplateVariableFn" => $this->grafanaTemplateVariableFn,
-        ];
+        $data = new \stdClass;
+        $data->refId = $this->refId;
+        $data->grafanaTemplateVariableFn = $this->grafanaTemplateVariableFn;
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->subscription)) {
-            $data["subscription"] = $this->subscription;
+            $data->subscription = $this->subscription;
         }
         if (isset($this->subscriptions)) {
-            $data["subscriptions"] = $this->subscriptions;
+            $data->subscriptions = $this->subscriptions;
         }
         if (isset($this->azureMonitor)) {
-            $data["azureMonitor"] = $this->azureMonitor;
+            $data->azureMonitor = $this->azureMonitor;
         }
         if (isset($this->azureLogAnalytics)) {
-            $data["azureLogAnalytics"] = $this->azureLogAnalytics;
+            $data->azureLogAnalytics = $this->azureLogAnalytics;
         }
         if (isset($this->azureResourceGraph)) {
-            $data["azureResourceGraph"] = $this->azureResourceGraph;
+            $data->azureResourceGraph = $this->azureResourceGraph;
         }
         if (isset($this->azureTraces)) {
-            $data["azureTraces"] = $this->azureTraces;
+            $data->azureTraces = $this->azureTraces;
         }
         if (isset($this->resourceGroup)) {
-            $data["resourceGroup"] = $this->resourceGroup;
+            $data->resourceGroup = $this->resourceGroup;
         }
         if (isset($this->namespace)) {
-            $data["namespace"] = $this->namespace;
+            $data->namespace = $this->namespace;
         }
         if (isset($this->resource)) {
-            $data["resource"] = $this->resource;
+            $data->resource = $this->resource;
         }
         if (isset($this->region)) {
-            $data["region"] = $this->region;
+            $data->region = $this->region;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         if (isset($this->query)) {
-            $data["query"] = $this->query;
+            $data->query = $this->query;
         }
         return $data;
     }

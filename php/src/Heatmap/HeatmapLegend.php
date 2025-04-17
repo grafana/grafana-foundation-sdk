@@ -33,13 +33,12 @@ class HeatmapLegend implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "show" => $this->show,
-        ];
+        $data = new \stdClass;
+        $data->show = $this->show;
         return $data;
     }
 }

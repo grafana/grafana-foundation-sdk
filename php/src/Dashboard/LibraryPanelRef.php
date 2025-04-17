@@ -43,14 +43,13 @@ class LibraryPanelRef implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "name" => $this->name,
-            "uid" => $this->uid,
-        ];
+        $data = new \stdClass;
+        $data->name = $this->name;
+        $data->uid = $this->uid;
         return $data;
     }
 }

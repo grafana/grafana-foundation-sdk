@@ -30,6 +30,7 @@ func NewOptions() *Options {
 	return &Options{
 		OnlyFromThisDashboard: false,
 		OnlyInTimeRange:       false,
+		Tags:                  []string{},
 		Limit:                 10,
 		ShowUser:              true,
 		ShowTime:              true,

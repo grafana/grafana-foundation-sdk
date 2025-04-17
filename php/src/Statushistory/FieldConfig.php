@@ -41,20 +41,19 @@ class FieldConfig implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->lineWidth)) {
-            $data["lineWidth"] = $this->lineWidth;
+            $data->lineWidth = $this->lineWidth;
         }
         if (isset($this->hideFrom)) {
-            $data["hideFrom"] = $this->hideFrom;
+            $data->hideFrom = $this->hideFrom;
         }
         if (isset($this->fillOpacity)) {
-            $data["fillOpacity"] = $this->fillOpacity;
+            $data->fillOpacity = $this->fillOpacity;
         }
         return $data;
     }

@@ -422,7 +422,9 @@ type NavbarPreference struct {
 
 // NewNavbarPreference creates a new NavbarPreference object.
 func NewNavbarPreference() *NavbarPreference {
-	return &NavbarPreference{}
+	return &NavbarPreference{
+		BookmarkUrls: []string{},
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NavbarPreference` from JSON.

@@ -49,18 +49,17 @@ class FieldColor implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "mode" => $this->mode,
-        ];
+        $data = new \stdClass;
+        $data->mode = $this->mode;
         if (isset($this->fixedColor)) {
-            $data["fixedColor"] = $this->fixedColor;
+            $data->fixedColor = $this->fixedColor;
         }
         if (isset($this->seriesBy)) {
-            $data["seriesBy"] = $this->seriesBy;
+            $data->seriesBy = $this->seriesBy;
         }
         return $data;
     }

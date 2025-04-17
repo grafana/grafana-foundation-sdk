@@ -41,17 +41,16 @@ class DataSourceRef implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->type)) {
-            $data["type"] = $this->type;
+            $data->type = $this->type;
         }
         if (isset($this->uid)) {
-            $data["uid"] = $this->uid;
+            $data->uid = $this->uid;
         }
         return $data;
     }

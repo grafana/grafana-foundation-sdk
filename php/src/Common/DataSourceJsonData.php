@@ -50,26 +50,25 @@ class DataSourceJsonData implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->authType)) {
-            $data["authType"] = $this->authType;
+            $data->authType = $this->authType;
         }
         if (isset($this->defaultRegion)) {
-            $data["defaultRegion"] = $this->defaultRegion;
+            $data->defaultRegion = $this->defaultRegion;
         }
         if (isset($this->profile)) {
-            $data["profile"] = $this->profile;
+            $data->profile = $this->profile;
         }
         if (isset($this->manageAlerts)) {
-            $data["manageAlerts"] = $this->manageAlerts;
+            $data->manageAlerts = $this->manageAlerts;
         }
         if (isset($this->alertmanagerUid)) {
-            $data["alertmanagerUid"] = $this->alertmanagerUid;
+            $data->alertmanagerUid = $this->alertmanagerUid;
         }
         return $data;
     }

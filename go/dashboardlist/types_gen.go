@@ -40,6 +40,7 @@ func NewOptions() *Options {
 		ShowFolderNames:    true,
 		MaxItems:           10,
 		Query:              "",
+		Tags:               []string{},
 	}
 }
 

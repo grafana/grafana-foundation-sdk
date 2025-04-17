@@ -35,17 +35,16 @@ class Options implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-        ];
+        $data = new \stdClass;
         if (isset($this->feedUrl)) {
-            $data["feedUrl"] = $this->feedUrl;
+            $data->feedUrl = $this->feedUrl;
         }
         if (isset($this->showImage)) {
-            $data["showImage"] = $this->showImage;
+            $data->showImage = $this->showImage;
         }
         return $data;
     }
