@@ -232,65 +232,64 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
     }
 
     /**
-     * @return array<string, mixed>
+     * @return mixed
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
-        $data = [
-            "queryMode" => $this->queryMode,
-            "id" => $this->id,
-            "refId" => $this->refId,
-            "region" => $this->region,
-            "namespace" => $this->namespace,
-            "dimensions" => $this->dimensions,
-        ];
+        $data = new \stdClass;
+        $data->queryMode = $this->queryMode;
+        $data->id = $this->id;
+        $data->refId = $this->refId;
+        $data->region = $this->region;
+        $data->namespace = $this->namespace;
+        $data->dimensions = $this->dimensions;
         if (isset($this->metricQueryType)) {
-            $data["metricQueryType"] = $this->metricQueryType;
+            $data->metricQueryType = $this->metricQueryType;
         }
         if (isset($this->metricEditorMode)) {
-            $data["metricEditorMode"] = $this->metricEditorMode;
+            $data->metricEditorMode = $this->metricEditorMode;
         }
         if (isset($this->alias)) {
-            $data["alias"] = $this->alias;
+            $data->alias = $this->alias;
         }
         if (isset($this->label)) {
-            $data["label"] = $this->label;
+            $data->label = $this->label;
         }
         if (isset($this->expression)) {
-            $data["expression"] = $this->expression;
+            $data->expression = $this->expression;
         }
         if (isset($this->sqlExpression)) {
-            $data["sqlExpression"] = $this->sqlExpression;
+            $data->sqlExpression = $this->sqlExpression;
         }
         if (isset($this->hide)) {
-            $data["hide"] = $this->hide;
+            $data->hide = $this->hide;
         }
         if (isset($this->queryType)) {
-            $data["queryType"] = $this->queryType;
+            $data->queryType = $this->queryType;
         }
         if (isset($this->metricName)) {
-            $data["metricName"] = $this->metricName;
+            $data->metricName = $this->metricName;
         }
         if (isset($this->matchExact)) {
-            $data["matchExact"] = $this->matchExact;
+            $data->matchExact = $this->matchExact;
         }
         if (isset($this->period)) {
-            $data["period"] = $this->period;
+            $data->period = $this->period;
         }
         if (isset($this->accountId)) {
-            $data["accountId"] = $this->accountId;
+            $data->accountId = $this->accountId;
         }
         if (isset($this->statistic)) {
-            $data["statistic"] = $this->statistic;
+            $data->statistic = $this->statistic;
         }
         if (isset($this->sql)) {
-            $data["sql"] = $this->sql;
+            $data->sql = $this->sql;
         }
         if (isset($this->datasource)) {
-            $data["datasource"] = $this->datasource;
+            $data->datasource = $this->datasource;
         }
         if (isset($this->statistics)) {
-            $data["statistics"] = $this->statistics;
+            $data->statistics = $this->statistics;
         }
         return $data;
     }
