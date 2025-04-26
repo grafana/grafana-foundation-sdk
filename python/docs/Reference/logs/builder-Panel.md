@@ -34,6 +34,12 @@ Panel color configuration
 def color_scheme(color: cogbuilder.Builder[dashboard.FieldColor]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> controls_storage_key
+
+```python
+def controls_storage_key(controls_storage_key: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> data_links
 
 The behavior when clicking on a result
@@ -272,6 +278,12 @@ def on_click_hide_field(on_click_hide_field: object) -> typing.Self
 def on_click_show_field(on_click_show_field: object) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> on_log_options_change
+
+```python
+def on_log_options_change(on_log_options_change: object) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> on_new_logs_received
 
 ```python
@@ -352,6 +364,12 @@ def repeat_direction(repeat_direction: typing.Literal["h", "v"]) -> typing.Self
 
 ```python
 def show_common_labels(show_common_labels: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> show_controls
+
+```python
+def show_controls(show_controls: bool) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> show_labels

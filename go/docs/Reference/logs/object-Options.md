@@ -11,6 +11,8 @@ type Options struct {
     ShowCommonLabels bool `json:"showCommonLabels"`
     ShowTime bool `json:"showTime"`
     ShowLogContextToggle bool `json:"showLogContextToggle"`
+    ShowControls *bool `json:"showControls,omitempty"`
+    ControlsStorageKey *string `json:"controlsStorageKey,omitempty"`
     WrapLogMessage bool `json:"wrapLogMessage"`
     PrettifyLogMessage bool `json:"prettifyLogMessage"`
     EnableLogDetails bool `json:"enableLogDetails"`
@@ -25,6 +27,7 @@ type Options struct {
     OnClickFilterOutString any `json:"onClickFilterOutString,omitempty"`
     OnClickShowField any `json:"onClickShowField,omitempty"`
     OnClickHideField any `json:"onClickHideField,omitempty"`
+    OnLogOptionsChange any `json:"onLogOptionsChange,omitempty"`
     LogRowMenuIconsBefore any `json:"logRowMenuIconsBefore,omitempty"`
     LogRowMenuIconsAfter any `json:"logRowMenuIconsAfter,omitempty"`
     OnNewLogsReceived any `json:"onNewLogsReceived,omitempty"`

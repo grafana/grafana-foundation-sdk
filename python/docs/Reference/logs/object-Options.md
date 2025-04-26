@@ -11,6 +11,8 @@ class Options:
     show_common_labels: bool
     show_time: bool
     show_log_context_toggle: bool
+    show_controls: typing.Optional[bool]
+    controls_storage_key: typing.Optional[str]
     wrap_log_message: bool
     prettify_log_message: bool
     enable_log_details: bool
@@ -25,6 +27,7 @@ class Options:
     on_click_filter_out_string: typing.Optional[object]
     on_click_show_field: typing.Optional[object]
     on_click_hide_field: typing.Optional[object]
+    on_log_options_change: typing.Optional[object]
     log_row_menu_icons_before: typing.Optional[object]
     log_row_menu_icons_after: typing.Optional[object]
     on_new_logs_received: typing.Optional[object]

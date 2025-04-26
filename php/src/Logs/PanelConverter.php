@@ -561,6 +561,32 @@ final class PanelConverter
     
     
     }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->showControls !== null) {
+    
+        
+    $buffer = 'showControls(';
+        $arg0 =\var_export($input->options->showControls, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->controlsStorageKey !== null && $input->options->controlsStorageKey !== "") {
+    
+        
+    $buffer = 'controlsStorageKey(';
+        $arg0 =\var_export($input->options->controlsStorageKey, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options) {
     
         
@@ -722,6 +748,19 @@ final class PanelConverter
         
     $buffer = 'onClickHideField(';
         $arg0 =\var_export($input->options->onClickHideField, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->onLogOptionsChange !== null) {
+    
+        
+    $buffer = 'onLogOptionsChange(';
+        $arg0 =\var_export($input->options->onLogOptionsChange, true);
         $buffer .= $arg0;
         
     $buffer .= ')';

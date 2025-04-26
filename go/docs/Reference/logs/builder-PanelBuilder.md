@@ -34,6 +34,12 @@ Panel color configuration
 func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> ControlsStorageKey
+
+```go
+func (builder *PanelBuilder) ControlsStorageKey(controlsStorageKey string) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> DataLinks
 
 The behavior when clicking on a result
@@ -272,6 +278,12 @@ func (builder *PanelBuilder) OnClickHideField(onClickHideField any) *PanelBuilde
 func (builder *PanelBuilder) OnClickShowField(onClickShowField any) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> OnLogOptionsChange
+
+```go
+func (builder *PanelBuilder) OnLogOptionsChange(onLogOptionsChange any) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> OnNewLogsReceived
 
 ```go
@@ -352,6 +364,12 @@ func (builder *PanelBuilder) RepeatDirection(repeatDirection dashboard.PanelRepe
 
 ```go
 func (builder *PanelBuilder) ShowCommonLabels(showCommonLabels bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> ShowControls
+
+```go
+func (builder *PanelBuilder) ShowControls(showControls bool) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> ShowLabels

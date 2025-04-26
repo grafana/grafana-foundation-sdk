@@ -12,6 +12,10 @@ class Options implements \JsonSerializable
 
     public bool $showLogContextToggle;
 
+    public ?bool $showControls;
+
+    public ?string $controlsStorageKey;
+
     public bool $wrapLogMessage;
 
     public bool $prettifyLogMessage;
@@ -63,6 +67,11 @@ class Options implements \JsonSerializable
     /**
      * @var mixed|null
      */
+    public $onLogOptionsChange;
+
+    /**
+     * @var mixed|null
+     */
     public $logRowMenuIconsBefore;
 
     /**
@@ -85,6 +94,8 @@ class Options implements \JsonSerializable
      * @param bool|null $showCommonLabels
      * @param bool|null $showTime
      * @param bool|null $showLogContextToggle
+     * @param bool|null $showControls
+     * @param string|null $controlsStorageKey
      * @param bool|null $wrapLogMessage
      * @param bool|null $prettifyLogMessage
      * @param bool|null $enableLogDetails
@@ -98,17 +109,20 @@ class Options implements \JsonSerializable
      * @param mixed|null $onClickFilterOutString
      * @param mixed|null $onClickShowField
      * @param mixed|null $onClickHideField
+     * @param mixed|null $onLogOptionsChange
      * @param mixed|null $logRowMenuIconsBefore
      * @param mixed|null $logRowMenuIconsAfter
      * @param mixed|null $onNewLogsReceived
      * @param array<string>|null $displayedFields
      */
-    public function __construct(?bool $showLabels = null, ?bool $showCommonLabels = null, ?bool $showTime = null, ?bool $showLogContextToggle = null, ?bool $wrapLogMessage = null, ?bool $prettifyLogMessage = null, ?bool $enableLogDetails = null, ?\Grafana\Foundation\Common\LogsSortOrder $sortOrder = null, ?\Grafana\Foundation\Common\LogsDedupStrategy $dedupStrategy = null, ?bool $enableInfiniteScrolling = null,  $onClickFilterLabel = null,  $onClickFilterOutLabel = null,  $isFilterLabelActive = null,  $onClickFilterString = null,  $onClickFilterOutString = null,  $onClickShowField = null,  $onClickHideField = null,  $logRowMenuIconsBefore = null,  $logRowMenuIconsAfter = null,  $onNewLogsReceived = null, ?array $displayedFields = null)
+    public function __construct(?bool $showLabels = null, ?bool $showCommonLabels = null, ?bool $showTime = null, ?bool $showLogContextToggle = null, ?bool $showControls = null, ?string $controlsStorageKey = null, ?bool $wrapLogMessage = null, ?bool $prettifyLogMessage = null, ?bool $enableLogDetails = null, ?\Grafana\Foundation\Common\LogsSortOrder $sortOrder = null, ?\Grafana\Foundation\Common\LogsDedupStrategy $dedupStrategy = null, ?bool $enableInfiniteScrolling = null,  $onClickFilterLabel = null,  $onClickFilterOutLabel = null,  $isFilterLabelActive = null,  $onClickFilterString = null,  $onClickFilterOutString = null,  $onClickShowField = null,  $onClickHideField = null,  $onLogOptionsChange = null,  $logRowMenuIconsBefore = null,  $logRowMenuIconsAfter = null,  $onNewLogsReceived = null, ?array $displayedFields = null)
     {
         $this->showLabels = $showLabels ?: false;
         $this->showCommonLabels = $showCommonLabels ?: false;
         $this->showTime = $showTime ?: false;
         $this->showLogContextToggle = $showLogContextToggle ?: false;
+        $this->showControls = $showControls;
+        $this->controlsStorageKey = $controlsStorageKey;
         $this->wrapLogMessage = $wrapLogMessage ?: false;
         $this->prettifyLogMessage = $prettifyLogMessage ?: false;
         $this->enableLogDetails = $enableLogDetails ?: false;
@@ -122,6 +136,7 @@ class Options implements \JsonSerializable
         $this->onClickFilterOutString = $onClickFilterOutString;
         $this->onClickShowField = $onClickShowField;
         $this->onClickHideField = $onClickHideField;
+        $this->onLogOptionsChange = $onLogOptionsChange;
         $this->logRowMenuIconsBefore = $logRowMenuIconsBefore;
         $this->logRowMenuIconsAfter = $logRowMenuIconsAfter;
         $this->onNewLogsReceived = $onNewLogsReceived;
@@ -133,13 +148,15 @@ class Options implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{showLabels?: bool, showCommonLabels?: bool, showTime?: bool, showLogContextToggle?: bool, wrapLogMessage?: bool, prettifyLogMessage?: bool, enableLogDetails?: bool, sortOrder?: string, dedupStrategy?: string, enableInfiniteScrolling?: bool, onClickFilterLabel?: mixed, onClickFilterOutLabel?: mixed, isFilterLabelActive?: mixed, onClickFilterString?: mixed, onClickFilterOutString?: mixed, onClickShowField?: mixed, onClickHideField?: mixed, logRowMenuIconsBefore?: mixed, logRowMenuIconsAfter?: mixed, onNewLogsReceived?: mixed, displayedFields?: array<string>} $inputData */
+        /** @var array{showLabels?: bool, showCommonLabels?: bool, showTime?: bool, showLogContextToggle?: bool, showControls?: bool, controlsStorageKey?: string, wrapLogMessage?: bool, prettifyLogMessage?: bool, enableLogDetails?: bool, sortOrder?: string, dedupStrategy?: string, enableInfiniteScrolling?: bool, onClickFilterLabel?: mixed, onClickFilterOutLabel?: mixed, isFilterLabelActive?: mixed, onClickFilterString?: mixed, onClickFilterOutString?: mixed, onClickShowField?: mixed, onClickHideField?: mixed, onLogOptionsChange?: mixed, logRowMenuIconsBefore?: mixed, logRowMenuIconsAfter?: mixed, onNewLogsReceived?: mixed, displayedFields?: array<string>} $inputData */
         $data = $inputData;
         return new self(
             showLabels: $data["showLabels"] ?? null,
             showCommonLabels: $data["showCommonLabels"] ?? null,
             showTime: $data["showTime"] ?? null,
             showLogContextToggle: $data["showLogContextToggle"] ?? null,
+            showControls: $data["showControls"] ?? null,
+            controlsStorageKey: $data["controlsStorageKey"] ?? null,
             wrapLogMessage: $data["wrapLogMessage"] ?? null,
             prettifyLogMessage: $data["prettifyLogMessage"] ?? null,
             enableLogDetails: $data["enableLogDetails"] ?? null,
@@ -153,6 +170,7 @@ class Options implements \JsonSerializable
             onClickFilterOutString: $data["onClickFilterOutString"] ?? null,
             onClickShowField: $data["onClickShowField"] ?? null,
             onClickHideField: $data["onClickHideField"] ?? null,
+            onLogOptionsChange: $data["onLogOptionsChange"] ?? null,
             logRowMenuIconsBefore: $data["logRowMenuIconsBefore"] ?? null,
             logRowMenuIconsAfter: $data["logRowMenuIconsAfter"] ?? null,
             onNewLogsReceived: $data["onNewLogsReceived"] ?? null,
@@ -175,6 +193,12 @@ class Options implements \JsonSerializable
         $data->enableLogDetails = $this->enableLogDetails;
         $data->sortOrder = $this->sortOrder;
         $data->dedupStrategy = $this->dedupStrategy;
+        if (isset($this->showControls)) {
+            $data->showControls = $this->showControls;
+        }
+        if (isset($this->controlsStorageKey)) {
+            $data->controlsStorageKey = $this->controlsStorageKey;
+        }
         if (isset($this->enableInfiniteScrolling)) {
             $data->enableInfiniteScrolling = $this->enableInfiniteScrolling;
         }
@@ -198,6 +222,9 @@ class Options implements \JsonSerializable
         }
         if (isset($this->onClickHideField)) {
             $data->onClickHideField = $this->onClickHideField;
+        }
+        if (isset($this->onLogOptionsChange)) {
+            $data->onLogOptionsChange = $this->onLogOptionsChange;
         }
         if (isset($this->logRowMenuIconsBefore)) {
             $data->logRowMenuIconsBefore = $this->logRowMenuIconsBefore;

@@ -648,6 +648,28 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function showControls(bool $showControls): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Logs\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
+        $this->internal->options->showControls = $showControls;
+    
+        return $this;
+    }
+
+    public function controlsStorageKey(string $controlsStorageKey): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Logs\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
+        $this->internal->options->controlsStorageKey = $controlsStorageKey;
+    
+        return $this;
+    }
+
     public function wrapLogMessage(bool $wrapLogMessage): static
     {    
         if ($this->internal->options === null) {
@@ -809,6 +831,20 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
         $this->internal->options->onClickHideField = $onClickHideField;
+    
+        return $this;
+    }
+
+    /**
+     * @param mixed $onLogOptionsChange
+     */
+    public function onLogOptionsChange( $onLogOptionsChange): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Logs\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
+        $this->internal->options->onLogOptionsChange = $onLogOptionsChange;
     
         return $this;
     }

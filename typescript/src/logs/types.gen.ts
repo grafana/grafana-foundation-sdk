@@ -8,6 +8,8 @@ export interface Options {
 	showCommonLabels: boolean;
 	showTime: boolean;
 	showLogContextToggle: boolean;
+	showControls?: boolean;
+	controlsStorageKey?: string;
 	wrapLogMessage: boolean;
 	prettifyLogMessage: boolean;
 	enableLogDetails: boolean;
@@ -22,6 +24,7 @@ export interface Options {
 	onClickFilterOutString?: any;
 	onClickShowField?: any;
 	onClickHideField?: any;
+	onLogOptionsChange?: any;
 	logRowMenuIconsBefore?: any;
 	logRowMenuIconsAfter?: any;
 	onNewLogsReceived?: any;

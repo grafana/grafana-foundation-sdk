@@ -589,6 +589,22 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def show_controls(self, show_controls: bool) -> typing.Self:    
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.show_controls = show_controls
+    
+        return self
+    
+    def controls_storage_key(self, controls_storage_key: str) -> typing.Self:    
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.controls_storage_key = controls_storage_key
+    
+        return self
+    
     def wrap_log_message(self, wrap_log_message: bool) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = logs.Options()
@@ -694,6 +710,14 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             self._internal.options = logs.Options()
         assert isinstance(self._internal.options, logs.Options)
         self._internal.options.on_click_hide_field = on_click_hide_field
+    
+        return self
+    
+    def on_log_options_change(self, on_log_options_change: object) -> typing.Self:    
+        if self._internal.options is None:
+            self._internal.options = logs.Options()
+        assert isinstance(self._internal.options, logs.Options)
+        self._internal.options.on_log_options_change = on_log_options_change
     
         return self
     

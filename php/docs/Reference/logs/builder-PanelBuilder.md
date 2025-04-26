@@ -36,6 +36,12 @@ Panel color configuration
 colorScheme(\Grafana\Foundation\Cog\Builder $color)
 ```
 
+### <span class="badge object-method"></span> controlsStorageKey
+
+```php
+controlsStorageKey(string $controlsStorageKey)
+```
+
 ### <span class="badge object-method"></span> dataLinks
 
 The behavior when clicking on a result
@@ -300,6 +306,14 @@ onClickHideField($onClickHideField)
 onClickShowField($onClickShowField)
 ```
 
+### <span class="badge object-method"></span> onLogOptionsChange
+
+@param mixed $onLogOptionsChange
+
+```php
+onLogOptionsChange($onLogOptionsChange)
+```
+
 ### <span class="badge object-method"></span> onNewLogsReceived
 
 @param mixed $onNewLogsReceived
@@ -392,6 +406,12 @@ repeatDirection(\Grafana\Foundation\Dashboard\PanelRepeatDirection $repeatDirect
 
 ```php
 showCommonLabels(bool $showCommonLabels)
+```
+
+### <span class="badge object-method"></span> showControls
+
+```php
+showControls(bool $showControls)
 ```
 
 ### <span class="badge object-method"></span> showLabels

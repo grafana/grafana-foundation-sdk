@@ -19,6 +19,8 @@ type Options struct {
 	ShowCommonLabels        bool                     `json:"showCommonLabels"`
 	ShowTime                bool                     `json:"showTime"`
 	ShowLogContextToggle    bool                     `json:"showLogContextToggle"`
+	ShowControls            *bool                    `json:"showControls,omitempty"`
+	ControlsStorageKey      *string                  `json:"controlsStorageKey,omitempty"`
 	WrapLogMessage          bool                     `json:"wrapLogMessage"`
 	PrettifyLogMessage      bool                     `json:"prettifyLogMessage"`
 	EnableLogDetails        bool                     `json:"enableLogDetails"`
@@ -33,6 +35,7 @@ type Options struct {
 	OnClickFilterOutString any      `json:"onClickFilterOutString,omitempty"`
 	OnClickShowField       any      `json:"onClickShowField,omitempty"`
 	OnClickHideField       any      `json:"onClickHideField,omitempty"`
+	OnLogOptionsChange     any      `json:"onLogOptionsChange,omitempty"`
 	LogRowMenuIconsBefore  any      `json:"logRowMenuIconsBefore,omitempty"`
 	LogRowMenuIconsAfter   any      `json:"logRowMenuIconsAfter,omitempty"`
 	OnNewLogsReceived      any      `json:"onNewLogsReceived,omitempty"`
@@ -111,6 +114,28 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "showLogContextToggle")
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("showLogContextToggle", errors.New("required field is missing from input"))...)
+	}
+	// Field "showControls"
+	if fields["showControls"] != nil {
+		if string(fields["showControls"]) != "null" {
+			if err := json.Unmarshal(fields["showControls"], &resource.ShowControls); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showControls", err)...)
+			}
+
+		}
+		delete(fields, "showControls")
+
+	}
+	// Field "controlsStorageKey"
+	if fields["controlsStorageKey"] != nil {
+		if string(fields["controlsStorageKey"]) != "null" {
+			if err := json.Unmarshal(fields["controlsStorageKey"], &resource.ControlsStorageKey); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("controlsStorageKey", err)...)
+			}
+
+		}
+		delete(fields, "controlsStorageKey")
+
 	}
 	// Field "wrapLogMessage"
 	if fields["wrapLogMessage"] != nil {
@@ -270,6 +295,17 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "onClickHideField")
 
 	}
+	// Field "onLogOptionsChange"
+	if fields["onLogOptionsChange"] != nil {
+		if string(fields["onLogOptionsChange"]) != "null" {
+			if err := json.Unmarshal(fields["onLogOptionsChange"], &resource.OnLogOptionsChange); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("onLogOptionsChange", err)...)
+			}
+
+		}
+		delete(fields, "onLogOptionsChange")
+
+	}
 	// Field "logRowMenuIconsBefore"
 	if fields["logRowMenuIconsBefore"] != nil {
 		if string(fields["logRowMenuIconsBefore"]) != "null" {
@@ -341,6 +377,24 @@ func (resource Options) Equals(other Options) bool {
 	if resource.ShowLogContextToggle != other.ShowLogContextToggle {
 		return false
 	}
+	if resource.ShowControls == nil && other.ShowControls != nil || resource.ShowControls != nil && other.ShowControls == nil {
+		return false
+	}
+
+	if resource.ShowControls != nil {
+		if *resource.ShowControls != *other.ShowControls {
+			return false
+		}
+	}
+	if resource.ControlsStorageKey == nil && other.ControlsStorageKey != nil || resource.ControlsStorageKey != nil && other.ControlsStorageKey == nil {
+		return false
+	}
+
+	if resource.ControlsStorageKey != nil {
+		if *resource.ControlsStorageKey != *other.ControlsStorageKey {
+			return false
+		}
+	}
 	if resource.WrapLogMessage != other.WrapLogMessage {
 		return false
 	}
@@ -391,6 +445,10 @@ func (resource Options) Equals(other Options) bool {
 	}
 	// is DeepEqual good enough here?
 	if !reflect.DeepEqual(resource.OnClickHideField, other.OnClickHideField) {
+		return false
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.OnLogOptionsChange, other.OnLogOptionsChange) {
 		return false
 	}
 	// is DeepEqual good enough here?
