@@ -1,7 +1,7 @@
 # Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-from ..models import common
 import typing
+from ..models import common
 from ..cog import runtime as cogruntime
 
 
@@ -10,6 +10,8 @@ class Options:
     show_common_labels: bool
     show_time: bool
     show_log_context_toggle: bool
+    show_controls: typing.Optional[bool]
+    controls_storage_key: typing.Optional[str]
     wrap_log_message: bool
     prettify_log_message: bool
     enable_log_details: bool
@@ -24,16 +26,19 @@ class Options:
     on_click_filter_out_string: typing.Optional[object]
     on_click_show_field: typing.Optional[object]
     on_click_hide_field: typing.Optional[object]
+    on_log_options_change: typing.Optional[object]
     log_row_menu_icons_before: typing.Optional[object]
     log_row_menu_icons_after: typing.Optional[object]
     on_new_logs_received: typing.Optional[object]
     displayed_fields: typing.Optional[list[str]]
 
-    def __init__(self, show_labels: bool = False, show_common_labels: bool = False, show_time: bool = False, show_log_context_toggle: bool = False, wrap_log_message: bool = False, prettify_log_message: bool = False, enable_log_details: bool = False, sort_order: typing.Optional[common.LogsSortOrder] = None, dedup_strategy: typing.Optional[common.LogsDedupStrategy] = None, enable_infinite_scrolling: typing.Optional[bool] = None, on_click_filter_label: typing.Optional[object] = None, on_click_filter_out_label: typing.Optional[object] = None, is_filter_label_active: typing.Optional[object] = None, on_click_filter_string: typing.Optional[object] = None, on_click_filter_out_string: typing.Optional[object] = None, on_click_show_field: typing.Optional[object] = None, on_click_hide_field: typing.Optional[object] = None, log_row_menu_icons_before: typing.Optional[object] = None, log_row_menu_icons_after: typing.Optional[object] = None, on_new_logs_received: typing.Optional[object] = None, displayed_fields: typing.Optional[list[str]] = None):
+    def __init__(self, show_labels: bool = False, show_common_labels: bool = False, show_time: bool = False, show_log_context_toggle: bool = False, show_controls: typing.Optional[bool] = None, controls_storage_key: typing.Optional[str] = None, wrap_log_message: bool = False, prettify_log_message: bool = False, enable_log_details: bool = False, sort_order: typing.Optional[common.LogsSortOrder] = None, dedup_strategy: typing.Optional[common.LogsDedupStrategy] = None, enable_infinite_scrolling: typing.Optional[bool] = None, on_click_filter_label: typing.Optional[object] = None, on_click_filter_out_label: typing.Optional[object] = None, is_filter_label_active: typing.Optional[object] = None, on_click_filter_string: typing.Optional[object] = None, on_click_filter_out_string: typing.Optional[object] = None, on_click_show_field: typing.Optional[object] = None, on_click_hide_field: typing.Optional[object] = None, on_log_options_change: typing.Optional[object] = None, log_row_menu_icons_before: typing.Optional[object] = None, log_row_menu_icons_after: typing.Optional[object] = None, on_new_logs_received: typing.Optional[object] = None, displayed_fields: typing.Optional[list[str]] = None):
         self.show_labels = show_labels
         self.show_common_labels = show_common_labels
         self.show_time = show_time
         self.show_log_context_toggle = show_log_context_toggle
+        self.show_controls = show_controls
+        self.controls_storage_key = controls_storage_key
         self.wrap_log_message = wrap_log_message
         self.prettify_log_message = prettify_log_message
         self.enable_log_details = enable_log_details
@@ -47,6 +52,7 @@ class Options:
         self.on_click_filter_out_string = on_click_filter_out_string
         self.on_click_show_field = on_click_show_field
         self.on_click_hide_field = on_click_hide_field
+        self.on_log_options_change = on_log_options_change
         self.log_row_menu_icons_before = log_row_menu_icons_before
         self.log_row_menu_icons_after = log_row_menu_icons_after
         self.on_new_logs_received = on_new_logs_received
@@ -64,6 +70,10 @@ class Options:
             "sortOrder": self.sort_order,
             "dedupStrategy": self.dedup_strategy,
         }
+        if self.show_controls is not None:
+            payload["showControls"] = self.show_controls
+        if self.controls_storage_key is not None:
+            payload["controlsStorageKey"] = self.controls_storage_key
         if self.enable_infinite_scrolling is not None:
             payload["enableInfiniteScrolling"] = self.enable_infinite_scrolling
         if self.on_click_filter_label is not None:
@@ -80,6 +90,8 @@ class Options:
             payload["onClickShowField"] = self.on_click_show_field
         if self.on_click_hide_field is not None:
             payload["onClickHideField"] = self.on_click_hide_field
+        if self.on_log_options_change is not None:
+            payload["onLogOptionsChange"] = self.on_log_options_change
         if self.log_row_menu_icons_before is not None:
             payload["logRowMenuIconsBefore"] = self.log_row_menu_icons_before
         if self.log_row_menu_icons_after is not None:
@@ -102,6 +114,10 @@ class Options:
             args["show_time"] = data["showTime"]
         if "showLogContextToggle" in data:
             args["show_log_context_toggle"] = data["showLogContextToggle"]
+        if "showControls" in data:
+            args["show_controls"] = data["showControls"]
+        if "controlsStorageKey" in data:
+            args["controls_storage_key"] = data["controlsStorageKey"]
         if "wrapLogMessage" in data:
             args["wrap_log_message"] = data["wrapLogMessage"]
         if "prettifyLogMessage" in data:
@@ -128,6 +144,8 @@ class Options:
             args["on_click_show_field"] = data["onClickShowField"]
         if "onClickHideField" in data:
             args["on_click_hide_field"] = data["onClickHideField"]
+        if "onLogOptionsChange" in data:
+            args["on_log_options_change"] = data["onLogOptionsChange"]
         if "logRowMenuIconsBefore" in data:
             args["log_row_menu_icons_before"] = data["logRowMenuIconsBefore"]
         if "logRowMenuIconsAfter" in data:

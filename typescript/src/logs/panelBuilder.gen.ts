@@ -473,6 +473,22 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    showControls(showControls: boolean): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.showControls = showControls;
+        return this;
+    }
+
+    controlsStorageKey(controlsStorageKey: string): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.controlsStorageKey = controlsStorageKey;
+        return this;
+    }
+
     wrapLogMessage(wrapLogMessage: boolean): this {
         if (!this.internal.options) {
             this.internal.options = logs.defaultOptions();
@@ -575,6 +591,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
             this.internal.options = logs.defaultOptions();
         }
         this.internal.options.onClickHideField = onClickHideField;
+        return this;
+    }
+
+    onLogOptionsChange(onLogOptionsChange: any): this {
+        if (!this.internal.options) {
+            this.internal.options = logs.defaultOptions();
+        }
+        this.internal.options.onLogOptionsChange = onLogOptionsChange;
         return this;
     }
 

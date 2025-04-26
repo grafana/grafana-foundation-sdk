@@ -28,6 +28,12 @@
         "showLogContextToggle": {
           "type": "boolean"
         },
+        "showControls": {
+          "type": "boolean"
+        },
+        "controlsStorageKey": {
+          "type": "string"
+        },
         "wrapLogMessage": {
           "type": "boolean"
         },
@@ -72,6 +78,10 @@
           "additionalProperties": {}
         },
         "onClickHideField": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "onLogOptionsChange": {
           "type": "object",
           "additionalProperties": {}
         },

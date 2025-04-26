@@ -398,6 +398,22 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
+    public PanelBuilder showControls(Boolean showControls) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logs.Options();
+		}
+        ((Options) this.internal.options).showControls = showControls;
+        return this;
+    }
+    
+    public PanelBuilder controlsStorageKey(String controlsStorageKey) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logs.Options();
+		}
+        ((Options) this.internal.options).controlsStorageKey = controlsStorageKey;
+        return this;
+    }
+    
     public PanelBuilder wrapLogMessage(Boolean wrapLogMessage) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.logs.Options();
@@ -499,6 +515,14 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.options = new com.grafana.foundation.logs.Options();
 		}
         ((Options) this.internal.options).onClickHideField = onClickHideField;
+        return this;
+    }
+    
+    public PanelBuilder onLogOptionsChange(Object onLogOptionsChange) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.logs.Options();
+		}
+        ((Options) this.internal.options).onLogOptionsChange = onLogOptionsChange;
         return this;
     }
     

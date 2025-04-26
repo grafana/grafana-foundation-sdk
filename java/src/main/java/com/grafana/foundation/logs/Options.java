@@ -20,6 +20,12 @@ public class Options {
     public Boolean showTime;
     @JsonProperty("showLogContextToggle")
     public Boolean showLogContextToggle;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("showControls")
+    public Boolean showControls;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("controlsStorageKey")
+    public String controlsStorageKey;
     @JsonProperty("wrapLogMessage")
     public Boolean wrapLogMessage;
     @JsonProperty("prettifyLogMessage")
@@ -58,6 +64,9 @@ public class Options {
     @JsonProperty("onClickHideField")
     public Object onClickHideField;
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("onLogOptionsChange")
+    public Object onLogOptionsChange;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("logRowMenuIconsBefore")
     public Object logRowMenuIconsBefore;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -71,11 +80,13 @@ public class Options {
     public List<String> displayedFields;
     public Options() {
     }
-    public Options(Boolean showLabels,Boolean showCommonLabels,Boolean showTime,Boolean showLogContextToggle,Boolean wrapLogMessage,Boolean prettifyLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy,Boolean enableInfiniteScrolling,Object onClickFilterLabel,Object onClickFilterOutLabel,Object isFilterLabelActive,Object onClickFilterString,Object onClickFilterOutString,Object onClickShowField,Object onClickHideField,Object logRowMenuIconsBefore,Object logRowMenuIconsAfter,Object onNewLogsReceived,List<String> displayedFields) {
+    public Options(Boolean showLabels,Boolean showCommonLabels,Boolean showTime,Boolean showLogContextToggle,Boolean showControls,String controlsStorageKey,Boolean wrapLogMessage,Boolean prettifyLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy,Boolean enableInfiniteScrolling,Object onClickFilterLabel,Object onClickFilterOutLabel,Object isFilterLabelActive,Object onClickFilterString,Object onClickFilterOutString,Object onClickShowField,Object onClickHideField,Object onLogOptionsChange,Object logRowMenuIconsBefore,Object logRowMenuIconsAfter,Object onNewLogsReceived,List<String> displayedFields) {
         this.showLabels = showLabels;
         this.showCommonLabels = showCommonLabels;
         this.showTime = showTime;
         this.showLogContextToggle = showLogContextToggle;
+        this.showControls = showControls;
+        this.controlsStorageKey = controlsStorageKey;
         this.wrapLogMessage = wrapLogMessage;
         this.prettifyLogMessage = prettifyLogMessage;
         this.enableLogDetails = enableLogDetails;
@@ -89,6 +100,7 @@ public class Options {
         this.onClickFilterOutString = onClickFilterOutString;
         this.onClickShowField = onClickShowField;
         this.onClickHideField = onClickHideField;
+        this.onLogOptionsChange = onLogOptionsChange;
         this.logRowMenuIconsBefore = logRowMenuIconsBefore;
         this.logRowMenuIconsAfter = logRowMenuIconsAfter;
         this.onNewLogsReceived = onNewLogsReceived;

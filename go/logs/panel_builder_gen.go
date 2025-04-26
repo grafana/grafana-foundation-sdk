@@ -514,6 +514,24 @@ func (builder *PanelBuilder) ShowLogContextToggle(showLogContextToggle bool) *Pa
 	return builder
 }
 
+func (builder *PanelBuilder) ShowControls(showControls bool) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).ShowControls = &showControls
+
+	return builder
+}
+
+func (builder *PanelBuilder) ControlsStorageKey(controlsStorageKey string) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).ControlsStorageKey = &controlsStorageKey
+
+	return builder
+}
+
 func (builder *PanelBuilder) WrapLogMessage(wrapLogMessage bool) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
@@ -628,6 +646,15 @@ func (builder *PanelBuilder) OnClickHideField(onClickHideField any) *PanelBuilde
 		builder.internal.Options = NewOptions()
 	}
 	builder.internal.Options.(*Options).OnClickHideField = &onClickHideField
+
+	return builder
+}
+
+func (builder *PanelBuilder) OnLogOptionsChange(onLogOptionsChange any) *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).OnLogOptionsChange = &onLogOptionsChange
 
 	return builder
 }

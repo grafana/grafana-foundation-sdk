@@ -512,6 +512,30 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
+	if input.Options != nil && input.Options.(*Options).ShowControls != nil {
+
+		buffer.WriteString(`ShowControls(`)
+		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).ShowControls)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Options != nil && input.Options.(*Options).ControlsStorageKey != nil && *input.Options.(*Options).ControlsStorageKey != "" {
+
+		buffer.WriteString(`ControlsStorageKey(`)
+		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).ControlsStorageKey)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Options != nil {
 
 		buffer.WriteString(`WrapLogMessage(`)
@@ -660,6 +684,18 @@ func PanelConverter(input dashboard.Panel) string {
 
 		buffer.WriteString(`OnClickHideField(`)
 		arg0 := cog.Dump(input.Options.(*Options).OnClickHideField)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Options != nil && input.Options.(*Options).OnLogOptionsChange != nil {
+
+		buffer.WriteString(`OnLogOptionsChange(`)
+		arg0 := cog.Dump(input.Options.(*Options).OnLogOptionsChange)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -16,6 +16,10 @@ class Options implements \JsonSerializable
 
     public bool $showLogContextToggle;
 
+    public ?bool $showControls;
+
+    public ?string $controlsStorageKey;
+
     public bool $wrapLogMessage;
 
     public bool $prettifyLogMessage;
@@ -63,6 +67,11 @@ class Options implements \JsonSerializable
      * @var mixed|null
      */
     public $onClickHideField;
+
+    /**
+     * @var mixed|null
+     */
+    public $onLogOptionsChange;
 
     /**
      * @var mixed|null

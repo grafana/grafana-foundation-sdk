@@ -34,6 +34,12 @@ Panel color configuration
 colorScheme(color: cog.Builder<dashboard.FieldColor>)
 ```
 
+### <span class="badge object-method"></span> controlsStorageKey
+
+```typescript
+controlsStorageKey(controlsStorageKey: string)
+```
+
 ### <span class="badge object-method"></span> dataLinks
 
 The behavior when clicking on a result
@@ -272,6 +278,12 @@ onClickHideField(onClickHideField: any)
 onClickShowField(onClickShowField: any)
 ```
 
+### <span class="badge object-method"></span> onLogOptionsChange
+
+```typescript
+onLogOptionsChange(onLogOptionsChange: any)
+```
+
 ### <span class="badge object-method"></span> onNewLogsReceived
 
 ```typescript
@@ -355,6 +367,12 @@ repeatDirection(repeatDirection: "h" | "v")
 
 ```typescript
 showCommonLabels(showCommonLabels: boolean)
+```
+
+### <span class="badge object-method"></span> showControls
+
+```typescript
+showControls(showControls: boolean)
 ```
 
 ### <span class="badge object-method"></span> showLabels
