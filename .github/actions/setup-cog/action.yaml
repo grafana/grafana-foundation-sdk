@@ -5,17 +5,22 @@ inputs:
     description: "Cog version to install"
     required: true
     default: "0.0.31"
+outputs:
+  bin-path:
+    description: "Path to the cog binary"
+    value: ${{ steps.setup.outputs.bin-path }}
 runs:
   using: "composite"
   steps:
     - name: Download cog
       shell: bash
       env:
-        INPUTS_VERSION: ${{ inputs.version }}
+        COG_VERSION: ${{ inputs.version }}
       run: |
+        version="$(echo "${COG_VERSION}" | sed 's/[^a-zA-Z0-9._\/-]//g')"
         mkdir -p "${HOME}/.local/bin/"
-        wget https://github.com/grafana/cog/releases/download/v${INPUTS_VERSION}/cog_Linux_x86_64.tar.gz
+        wget https://github.com/grafana/cog/releases/download/v${version}/cog_Linux_x86_64.tar.gz
         tar -xzf cog_Linux_x86_64.tar.gz
         mv cog "${HOME}/.local/bin/cog"
         chmod +x "${HOME}/.local/bin/cog"
-        echo "${HOME}/.local/bin" >> $GITHUB_PATH
+        echo "bin-path=${HOME}/.local/bin" >> "${GITHUB_OUTPUT}"

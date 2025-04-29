@@ -133,7 +133,7 @@ jobs:
           EOF
 
       - name: Find preview comment
-        uses: peter-evans/find-comment@d5fe37641ad8451bdd80312415672ba26c86575e
+        uses: peter-evans/find-comment@a0b5124c1959e5e7c25efa20d957d507d54a6f4e  #v3.1.0
         id: preview-comment-find
         if: "!contains(github.actor, 'dependabot') && github.repository == 'grafana/grafana-foundation-sdk'" # only run on main repo, and not on dependabot PRs
         with:
@@ -142,7 +142,7 @@ jobs:
           body-includes: 'grafana-foundation-sdk-diff-preview-marker'
 
       - name: Upsert preview comment
-        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043
+        uses: peter-evans/create-or-update-comment@17c956346987a35d40d2d723c6930f90f594400d #v4.0.0
         if: "!contains(github.actor, 'dependabot') && github.repository == 'grafana/grafana-foundation-sdk'" # only run on main repo, and not on dependabot PRs
         with:
           comment-id: ${{ steps.preview-comment-find.outputs.comment-id }}
