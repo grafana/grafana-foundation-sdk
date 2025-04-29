@@ -10,9 +10,11 @@ runs:
   steps:
     - name: Download cog
       shell: bash
+      env:
+        INPUTS_VERSION: ${{ inputs.version }}
       run: |
         mkdir -p "${HOME}/.local/bin/"
-        wget https://github.com/grafana/cog/releases/download/v${{ inputs.version }}/cog_Linux_x86_64.tar.gz
+        wget https://github.com/grafana/cog/releases/download/v${INPUTS_VERSION}/cog_Linux_x86_64.tar.gz
         tar -xzf cog_Linux_x86_64.tar.gz
         mv cog "${HOME}/.local/bin/cog"
         chmod +x "${HOME}/.local/bin/cog"

@@ -8,8 +8,6 @@ env:
 
 permissions:
   contents: read
-  # to comment on PRs
-  pull-requests: write
 
 defaults:
   run:
@@ -22,6 +20,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Setup cog
         uses: ./.github/actions/setup-cog
@@ -31,6 +31,7 @@ jobs:
         with:
           repository: grafana/kind-registry
           path: kind-registry
+          persist-credentials: false
 
       - name: Validate cog's config
         run: |
@@ -41,9 +42,13 @@ jobs:
   diff_preview:
     name: Generate diff
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Setup cog
         uses: ./.github/actions/setup-cog
@@ -72,6 +77,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
         with:
           ref: main
+          persist-credentials: false
 
       # re-install cog since the PR and main branch might use different versions.
       - name: Setup cog
@@ -127,7 +133,7 @@ jobs:
           EOF
 
       - name: Find preview comment
-        uses: peter-evans/find-comment@v3
+        uses: peter-evans/find-comment@d5fe37641ad8451bdd80312415672ba26c86575e
         id: preview-comment-find
         if: "!contains(github.actor, 'dependabot') && github.repository == 'grafana/grafana-foundation-sdk'" # only run on main repo, and not on dependabot PRs
         with:
@@ -136,7 +142,7 @@ jobs:
           body-includes: 'grafana-foundation-sdk-diff-preview-marker'
 
       - name: Upsert preview comment
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043
         if: "!contains(github.actor, 'dependabot') && github.repository == 'grafana/grafana-foundation-sdk'" # only run on main repo, and not on dependabot PRs
         with:
           comment-id: ${{ steps.preview-comment-find.outputs.comment-id }}
