@@ -10,7 +10,8 @@ public class XychartXYSeriesConfigColorBuilder implements com.grafana.foundation
         this.internal = new XychartXYSeriesConfigColor();
     }
     public XychartXYSeriesConfigColorBuilder matcher(com.grafana.foundation.cog.Builder<MatcherConfig> matcher) {
-        this.internal.matcher = matcher.build();
+    MatcherConfig matcherResource = matcher.build();
+        this.internal.matcher = matcherResource;
         return this;
     }
     public XychartXYSeriesConfigColor build() {

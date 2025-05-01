@@ -20,6 +20,7 @@ public class Histogram {
     @JsonProperty("settings")
     public ElasticsearchHistogramSettings settings;
     public Histogram() {
+        this.id = "";
         this.type = BucketAggregationType.HISTOGRAM;
     }
     public Histogram(String field,String id,ElasticsearchHistogramSettings settings) {

@@ -15,7 +15,8 @@ public class RawDataBuilder implements com.grafana.foundation.cog.Builder<RawDat
     }
     
     public RawDataBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchRawDataSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchRawDataSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

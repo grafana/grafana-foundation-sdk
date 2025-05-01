@@ -23,6 +23,8 @@ public class Options {
     @JsonProperty("xField")
     public String xField;
     public Options() {
+        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
     }
     public Options(VizLegendOptions legend,VizTooltipOptions tooltip,String xField) {
         this.legend = legend;

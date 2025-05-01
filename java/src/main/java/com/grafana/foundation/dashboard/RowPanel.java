@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
@@ -43,7 +44,10 @@ public class RowPanel {
     @JsonProperty("repeat")
     public String repeat;
     public RowPanel() {
+        this.type = "";
         this.collapsed = false;
+        this.id = 0;
+        this.panels = new LinkedList<>();
     }
     public RowPanel(String type,Boolean collapsed,String title,DataSourceRef datasource,GridPos gridPos,Integer id,List<Panel> panels,String repeat) {
         this.type = type;

@@ -17,6 +17,8 @@ public class Key {
     @JsonProperty("uid")
     public String uid;
     public Key() {
+        this.tick = 0.0;
+        this.type = "";
     }
     public Key(Double tick,String type,String uid) {
         this.tick = tick;

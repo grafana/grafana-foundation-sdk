@@ -3,6 +3,7 @@
 package com.grafana.foundation.expr;
 
 import java.util.List;
+import java.util.LinkedList;
 import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class TypeClassicConditionsBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
@@ -12,8 +13,13 @@ public class TypeClassicConditionsBuilder implements com.grafana.foundation.cog.
         this.internal = new TypeClassicConditions();
         this.internal.type = "classic_conditions";
     }
-    public TypeClassicConditionsBuilder conditions(com.grafana.foundation.cog.Builder<List<ExprTypeClassicConditionsConditions>> conditions) {
-        this.internal.conditions = conditions.build();
+    public TypeClassicConditionsBuilder conditions(List<com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditions>> conditions) {
+        List<ExprTypeClassicConditionsConditions> conditionsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditions> r1 : conditions) {
+                ExprTypeClassicConditionsConditions conditionsDepth1 = r1.build();
+                conditionsResources.add(conditionsDepth1); 
+        }
+        this.internal.conditions = conditionsResources;
         return this;
     }
     
@@ -48,12 +54,14 @@ public class TypeClassicConditionsBuilder implements com.grafana.foundation.cog.
     }
     
     public TypeClassicConditionsBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsResultAssertions> resultAssertions) {
-        this.internal.resultAssertions = resultAssertions.build();
+    ExprTypeClassicConditionsResultAssertions resultAssertionsResource = resultAssertions.build();
+        this.internal.resultAssertions = resultAssertionsResource;
         return this;
     }
     
     public TypeClassicConditionsBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsTimeRange> timeRange) {
-        this.internal.timeRange = timeRange.build();
+    ExprTypeClassicConditionsTimeRange timeRangeResource = timeRange.build();
+        this.internal.timeRange = timeRangeResource;
         return this;
     }
     public TypeClassicConditions build() {

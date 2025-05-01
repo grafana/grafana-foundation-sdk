@@ -10,7 +10,8 @@ public class OptionsWithTextFormattingBuilder implements com.grafana.foundation.
         this.internal = new OptionsWithTextFormatting();
     }
     public OptionsWithTextFormattingBuilder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text) {
-        this.internal.text = text.build();
+    VizTextDisplayOptions textResource = text.build();
+        this.internal.text = textResource;
         return this;
     }
     public OptionsWithTextFormatting build() {

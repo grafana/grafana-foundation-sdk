@@ -27,6 +27,7 @@ public class ExtendedStats {
     public Boolean hide;
     public ExtendedStats() {
         this.type = MetricAggregationType.EXTENDED_STATS;
+        this.id = "";
     }
     public ExtendedStats(ElasticsearchExtendedStatsSettings settings,String field,String id,Object meta,Boolean hide) {
         this.type = MetricAggregationType.EXTENDED_STATS;
