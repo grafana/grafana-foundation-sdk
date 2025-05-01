@@ -70,6 +70,8 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonProperty("interval")
     public String interval;
     public Dataquery() {
+        this.expr = "";
+        this.refId = "";
     }
     public Dataquery(String expr,Boolean instant,Boolean range,Boolean exemplar,QueryEditorMode editorMode,PromQueryFormat format,String legendFormat,Double intervalFactor,String refId,Boolean hide,String queryType,Object datasource,String interval) {
         this.expr = expr;

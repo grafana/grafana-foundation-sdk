@@ -16,6 +16,8 @@ public class MovingAverageSimpleModelSettings {
     public String predict;
     public MovingAverageSimpleModelSettings() {
         this.model = MovingAverageModel.SIMPLE;
+        this.window = "";
+        this.predict = "";
     }
     public MovingAverageSimpleModelSettings(String window,String predict) {
         this.model = MovingAverageModel.SIMPLE;

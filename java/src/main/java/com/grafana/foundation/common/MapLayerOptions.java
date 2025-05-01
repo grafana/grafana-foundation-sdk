@@ -37,6 +37,8 @@ public class MapLayerOptions {
     @JsonProperty("tooltip")
     public Boolean tooltip;
     public MapLayerOptions() {
+        this.type = "";
+        this.name = "";
     }
     public MapLayerOptions(String type,String name,Object config,FrameGeometrySource location,Object filterData,Long opacity,Boolean tooltip) {
         this.type = type;

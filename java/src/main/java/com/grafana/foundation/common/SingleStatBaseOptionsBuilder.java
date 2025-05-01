@@ -10,12 +10,14 @@ public class SingleStatBaseOptionsBuilder implements com.grafana.foundation.cog.
         this.internal = new SingleStatBaseOptions();
     }
     public SingleStatBaseOptionsBuilder reduceOptions(com.grafana.foundation.cog.Builder<ReduceDataOptions> reduceOptions) {
-        this.internal.reduceOptions = reduceOptions.build();
+    ReduceDataOptions reduceOptionsResource = reduceOptions.build();
+        this.internal.reduceOptions = reduceOptionsResource;
         return this;
     }
     
     public SingleStatBaseOptionsBuilder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text) {
-        this.internal.text = text.build();
+    VizTextDisplayOptions textResource = text.build();
+        this.internal.text = textResource;
         return this;
     }
     

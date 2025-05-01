@@ -55,12 +55,14 @@ public class TypeResampleBuilder implements com.grafana.foundation.cog.Builder<c
     }
     
     public TypeResampleBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeResampleResultAssertions> resultAssertions) {
-        this.internal.resultAssertions = resultAssertions.build();
+    ExprTypeResampleResultAssertions resultAssertionsResource = resultAssertions.build();
+        this.internal.resultAssertions = resultAssertionsResource;
         return this;
     }
     
     public TypeResampleBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeResampleTimeRange> timeRange) {
-        this.internal.timeRange = timeRange.build();
+    ExprTypeResampleTimeRange timeRangeResource = timeRange.build();
+        this.internal.timeRange = timeRangeResource;
         return this;
     }
     

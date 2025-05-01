@@ -23,6 +23,9 @@ public class Scenario {
     @JsonProperty("hideAliasField")
     public Boolean hideAliasField;
     public Scenario() {
+        this.id = "";
+        this.name = "";
+        this.stringInput = "";
     }
     public Scenario(String id,String name,String stringInput,String description,Boolean hideAliasField) {
         this.id = id;
