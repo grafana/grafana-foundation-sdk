@@ -13,6 +13,7 @@ public class ExemplarConfig {
     @JsonProperty("color")
     public String color;
     public ExemplarConfig() {
+        this.color = "";
     }
     public ExemplarConfig(String color) {
         this.color = color;

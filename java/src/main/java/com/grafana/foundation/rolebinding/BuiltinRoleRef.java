@@ -15,6 +15,8 @@ public class BuiltinRoleRef {
     @JsonProperty("name")
     public BuiltinRoleRefName name;
     public BuiltinRoleRef() {
+        this.kind = "";
+        this.name = BuiltinRoleRefName.VIEWER;
     }
     public BuiltinRoleRef(String kind,BuiltinRoleRefName name) {
         this.kind = kind;

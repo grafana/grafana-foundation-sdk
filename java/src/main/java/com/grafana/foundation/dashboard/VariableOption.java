@@ -23,6 +23,8 @@ public class VariableOption {
     @JsonProperty("value")
     public StringOrArrayOfString value;
     public VariableOption() {
+        this.text = new com.grafana.foundation.dashboard.StringOrArrayOfString();
+        this.value = new com.grafana.foundation.dashboard.StringOrArrayOfString();
     }
     public VariableOption(Boolean selected,StringOrArrayOfString text,StringOrArrayOfString value) {
         this.selected = selected;

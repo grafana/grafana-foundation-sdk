@@ -3,6 +3,7 @@
 package com.grafana.foundation.alerting;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class TimeIntervalBuilder implements com.grafana.foundation.cog.Builder<TimeInterval> {
     protected final TimeInterval internal;
@@ -10,28 +11,53 @@ public class TimeIntervalBuilder implements com.grafana.foundation.cog.Builder<T
     public TimeIntervalBuilder() {
         this.internal = new TimeInterval();
     }
-    public TimeIntervalBuilder times(com.grafana.foundation.cog.Builder<List<TimeRange>> times) {
-        this.internal.times = times.build();
+    public TimeIntervalBuilder times(List<com.grafana.foundation.cog.Builder<TimeRange>> times) {
+        List<TimeRange> timesResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<TimeRange> r1 : times) {
+                TimeRange timesDepth1 = r1.build();
+                timesResources.add(timesDepth1); 
+        }
+        this.internal.times = timesResources;
         return this;
     }
     
-    public TimeIntervalBuilder weekdays(com.grafana.foundation.cog.Builder<List<WeekdayRange>> weekdays) {
-        this.internal.weekdays = weekdays.build();
+    public TimeIntervalBuilder weekdays(List<com.grafana.foundation.cog.Builder<WeekdayRange>> weekdays) {
+        List<WeekdayRange> weekdaysResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<WeekdayRange> r1 : weekdays) {
+                WeekdayRange weekdaysDepth1 = r1.build();
+                weekdaysResources.add(weekdaysDepth1); 
+        }
+        this.internal.weekdays = weekdaysResources;
         return this;
     }
     
-    public TimeIntervalBuilder daysOfMonth(com.grafana.foundation.cog.Builder<List<DayOfMonthRange>> daysOfMonth) {
-        this.internal.daysOfMonth = daysOfMonth.build();
+    public TimeIntervalBuilder daysOfMonth(List<com.grafana.foundation.cog.Builder<DayOfMonthRange>> daysOfMonth) {
+        List<DayOfMonthRange> daysOfMonthResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<DayOfMonthRange> r1 : daysOfMonth) {
+                DayOfMonthRange daysOfMonthDepth1 = r1.build();
+                daysOfMonthResources.add(daysOfMonthDepth1); 
+        }
+        this.internal.daysOfMonth = daysOfMonthResources;
         return this;
     }
     
-    public TimeIntervalBuilder months(com.grafana.foundation.cog.Builder<List<MonthRange>> months) {
-        this.internal.months = months.build();
+    public TimeIntervalBuilder months(List<com.grafana.foundation.cog.Builder<MonthRange>> months) {
+        List<MonthRange> monthsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<MonthRange> r1 : months) {
+                MonthRange monthsDepth1 = r1.build();
+                monthsResources.add(monthsDepth1); 
+        }
+        this.internal.months = monthsResources;
         return this;
     }
     
-    public TimeIntervalBuilder years(com.grafana.foundation.cog.Builder<List<YearRange>> years) {
-        this.internal.years = years.build();
+    public TimeIntervalBuilder years(List<com.grafana.foundation.cog.Builder<YearRange>> years) {
+        List<YearRange> yearsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<YearRange> r1 : years) {
+                YearRange yearsDepth1 = r1.build();
+                yearsResources.add(yearsDepth1); 
+        }
+        this.internal.years = yearsResources;
         return this;
     }
     

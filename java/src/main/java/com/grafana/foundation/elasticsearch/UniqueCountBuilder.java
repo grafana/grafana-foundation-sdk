@@ -20,7 +20,8 @@ public class UniqueCountBuilder implements com.grafana.foundation.cog.Builder<Un
     }
     
     public UniqueCountBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchUniqueCountSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchUniqueCountSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     
