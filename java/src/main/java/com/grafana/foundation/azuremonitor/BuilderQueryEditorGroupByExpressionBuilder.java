@@ -10,12 +10,14 @@ public class BuilderQueryEditorGroupByExpressionBuilder implements com.grafana.f
         this.internal = new BuilderQueryEditorGroupByExpression();
     }
     public BuilderQueryEditorGroupByExpressionBuilder property(com.grafana.foundation.cog.Builder<BuilderQueryEditorProperty> property) {
-        this.internal.property = property.build();
+    BuilderQueryEditorProperty propertyResource = property.build();
+        this.internal.property = propertyResource;
         return this;
     }
     
     public BuilderQueryEditorGroupByExpressionBuilder interval(com.grafana.foundation.cog.Builder<BuilderQueryEditorProperty> interval) {
-        this.internal.interval = interval.build();
+    BuilderQueryEditorProperty intervalResource = interval.build();
+        this.internal.interval = intervalResource;
         return this;
     }
     

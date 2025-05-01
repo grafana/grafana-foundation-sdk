@@ -17,6 +17,7 @@ public class BuilderQueryEditorColumnsExpression {
     @JsonProperty("type")
     public BuilderQueryEditorExpressionType type;
     public BuilderQueryEditorColumnsExpression() {
+        this.type = BuilderQueryEditorExpressionType.PROPERTY;
     }
     public BuilderQueryEditorColumnsExpression(List<String> columns,BuilderQueryEditorExpressionType type) {
         this.columns = columns;

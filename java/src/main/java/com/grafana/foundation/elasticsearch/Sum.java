@@ -24,6 +24,7 @@ public class Sum {
     public Boolean hide;
     public Sum() {
         this.type = MetricAggregationType.SUM;
+        this.id = "";
     }
     public Sum(String field,String id,ElasticsearchSumSettings settings,Boolean hide) {
         this.type = MetricAggregationType.SUM;

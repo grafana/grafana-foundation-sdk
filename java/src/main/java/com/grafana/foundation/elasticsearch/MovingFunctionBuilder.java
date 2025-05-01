@@ -25,7 +25,8 @@ public class MovingFunctionBuilder implements com.grafana.foundation.cog.Builder
     }
     
     public MovingFunctionBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingFunctionSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchMovingFunctionSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

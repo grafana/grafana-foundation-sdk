@@ -10,7 +10,8 @@ public class MetricAggregationWithMissingSupportBuilder implements com.grafana.f
         this.internal = new MetricAggregationWithMissingSupport();
     }
     public MetricAggregationWithMissingSupportBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMetricAggregationWithMissingSupportSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchMetricAggregationWithMissingSupportSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

@@ -56,6 +56,9 @@ public class TypeMath implements com.grafana.foundation.cog.variants.Dataquery {
     @JsonProperty("type")
     public String type;
     public TypeMath() {
+        this.expression = "";
+        this.refId = "";
+        this.type = "";
     }
     public TypeMath(DataSourceRef datasource,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeMathResultAssertions resultAssertions,ExprTypeMathTimeRange timeRange,String type) {
         this.datasource = datasource;

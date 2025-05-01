@@ -29,8 +29,13 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
         return this;
     }
     
-    public RuleBuilder queries(com.grafana.foundation.cog.Builder<List<Query>> data) {
-        this.internal.data = data.build();
+    public RuleBuilder queries(List<com.grafana.foundation.cog.Builder<Query>> data) {
+        List<Query> dataResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<Query> r1 : data) {
+                Query dataDepth1 = r1.build();
+                dataResources.add(dataDepth1); 
+        }
+        this.internal.data = dataResources;
         return this;
     }
     
@@ -38,7 +43,8 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
 		if (this.internal.data == null) {
 			this.internal.data = new LinkedList<>();
 		}
-        this.internal.data.add(data.build());
+    Query dataResource = data.build();
+        this.internal.data.add(dataResource);
         return this;
     }
     
@@ -88,7 +94,8 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
     }
     
     public RuleBuilder notificationSettings(com.grafana.foundation.cog.Builder<NotificationSettings> notificationSettings) {
-        this.internal.notificationSettings = notificationSettings.build();
+    NotificationSettings notificationSettingsResource = notificationSettings.build();
+        this.internal.notificationSettings = notificationSettingsResource;
         return this;
     }
     
@@ -103,7 +110,8 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
     }
     
     public RuleBuilder record(com.grafana.foundation.cog.Builder<RecordRule> record) {
-        this.internal.record = record.build();
+    RecordRule recordResource = record.build();
+        this.internal.record = recordResource;
         return this;
     }
     

@@ -1,5 +1,5 @@
 # Installing
 
 ```shell
-yarn add '@grafana/grafana-foundation-sdk@~next-cogv0.0.x.1745704101'
+yarn add '@grafana/grafana-foundation-sdk@~next-cogv0.0.x.1746136270'
 ```

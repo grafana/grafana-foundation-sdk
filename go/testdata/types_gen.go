@@ -1211,6 +1211,7 @@ type Dataquery struct {
 	//  - `"random_walk_with_error"`
 	//  - `"raw_frame"`
 	//  - `"server_error_500"`
+	//  - `"steps"`
 	//  - `"simulation"`
 	//  - `"slow_query"`
 	//  - `"streaming_client"`
@@ -2196,6 +2197,7 @@ const (
 	DataqueryScenarioIdRandomWalkWithError          DataqueryScenarioId = "random_walk_with_error"
 	DataqueryScenarioIdRawFrame                     DataqueryScenarioId = "raw_frame"
 	DataqueryScenarioIdServerError500               DataqueryScenarioId = "server_error_500"
+	DataqueryScenarioIdSteps                        DataqueryScenarioId = "steps"
 	DataqueryScenarioIdSimulation                   DataqueryScenarioId = "simulation"
 	DataqueryScenarioIdSlowQuery                    DataqueryScenarioId = "slow_query"
 	DataqueryScenarioIdStreamingClient              DataqueryScenarioId = "streaming_client"

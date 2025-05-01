@@ -21,6 +21,8 @@ public class BucketAggregationWithField {
     @JsonProperty("settings")
     public Object settings;
     public BucketAggregationWithField() {
+        this.id = "";
+        this.type = BucketAggregationType.TERMS;
     }
     public BucketAggregationWithField(String field,String id,BucketAggregationType type,Object settings) {
         this.field = field;

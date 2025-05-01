@@ -24,6 +24,9 @@ public class Filter {
     @JsonProperty("condition")
     public String condition;
     public Filter() {
+        this.key = "";
+        this.operator = "";
+        this.value = "";
     }
     public Filter(String key,String operator,String value,String condition) {
         this.key = key;

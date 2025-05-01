@@ -57,6 +57,10 @@ public class TypeSql implements com.grafana.foundation.cog.variants.Dataquery {
     @JsonProperty("type")
     public String type;
     public TypeSql() {
+        this.expression = "";
+        this.format = "";
+        this.refId = "";
+        this.type = "";
     }
     public TypeSql(DataSourceRef datasource,String expression,String format,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeSqlResultAssertions resultAssertions,ExprTypeSqlTimeRange timeRange,String type) {
         this.datasource = datasource;

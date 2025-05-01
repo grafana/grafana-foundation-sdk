@@ -270,6 +270,8 @@ Possible enum values:
 
  - `"server_error_500"` 
 
+ - `"steps"` 
+
  - `"simulation"` 
 
  - `"slow_query"` 

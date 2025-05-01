@@ -225,6 +225,15 @@ final class DataqueryScenarioId implements \JsonSerializable, \Stringable {
         return self::$instances["ServerError500"];
     }
 
+    public static function steps(): self
+    {
+        if (!isset(self::$instances["Steps"])) {
+            self::$instances["Steps"] = new self("steps");
+        }
+
+        return self::$instances["Steps"];
+    }
+
     public static function simulation(): self
     {
         if (!isset(self::$instances["Simulation"])) {
@@ -380,6 +389,10 @@ final class DataqueryScenarioId implements \JsonSerializable, \Stringable {
 
         if ($value === "server_error_500") {
             return self::serverError500();
+        }
+
+        if ($value === "steps") {
+            return self::steps();
         }
 
         if ($value === "simulation") {

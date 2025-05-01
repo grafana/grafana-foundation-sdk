@@ -58,6 +58,7 @@ public class CloudMonitoringQuery implements com.grafana.foundation.cog.variants
     @JsonProperty("intervalMs")
     public Double intervalMs;
     public CloudMonitoringQuery() {
+        this.refId = "";
     }
     public CloudMonitoringQuery(String refId,Boolean hide,String queryType,String aliasBy,TimeSeriesList timeSeriesList,TimeSeriesQuery timeSeriesQuery,SLOQuery sloQuery,PromQLQuery promQLQuery,DataSourceRef datasource,Double intervalMs) {
         this.refId = refId;

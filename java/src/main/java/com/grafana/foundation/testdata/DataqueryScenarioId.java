@@ -31,6 +31,7 @@ public enum DataqueryScenarioId {
     RANDOM_WALK_WITH_ERROR("random_walk_with_error"),
     RAW_FRAME("raw_frame"),
     SERVER_ERROR500("server_error_500"),
+    STEPS("steps"),
     SIMULATION("simulation"),
     SLOW_QUERY("slow_query"),
     STREAMING_CLIENT("streaming_client"),

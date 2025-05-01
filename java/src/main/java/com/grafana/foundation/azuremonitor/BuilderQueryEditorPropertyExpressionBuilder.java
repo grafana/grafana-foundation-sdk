@@ -10,7 +10,8 @@ public class BuilderQueryEditorPropertyExpressionBuilder implements com.grafana.
         this.internal = new BuilderQueryEditorPropertyExpression();
     }
     public BuilderQueryEditorPropertyExpressionBuilder property(com.grafana.foundation.cog.Builder<BuilderQueryEditorProperty> property) {
-        this.internal.property = property.build();
+    BuilderQueryEditorProperty propertyResource = property.build();
+        this.internal.property = propertyResource;
         return this;
     }
     

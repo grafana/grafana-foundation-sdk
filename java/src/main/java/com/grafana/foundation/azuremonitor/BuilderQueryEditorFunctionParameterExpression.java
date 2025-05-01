@@ -18,6 +18,9 @@ public class BuilderQueryEditorFunctionParameterExpression {
     @JsonProperty("type")
     public BuilderQueryEditorExpressionType type;
     public BuilderQueryEditorFunctionParameterExpression() {
+        this.value = "";
+        this.fieldType = BuilderQueryEditorPropertyType.NUMBER;
+        this.type = BuilderQueryEditorExpressionType.PROPERTY;
     }
     public BuilderQueryEditorFunctionParameterExpression(String value,BuilderQueryEditorPropertyType fieldType,BuilderQueryEditorExpressionType type) {
         this.value = value;

@@ -80,6 +80,7 @@ type Dataquery struct {
     //  - `"random_walk_with_error"` 
     //  - `"raw_frame"` 
     //  - `"server_error_500"` 
+    //  - `"steps"` 
     //  - `"simulation"` 
     //  - `"slow_query"` 
     //  - `"streaming_client"` 

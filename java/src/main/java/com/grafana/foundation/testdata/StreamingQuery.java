@@ -30,6 +30,10 @@ public class StreamingQuery {
     @JsonProperty("url")
     public String url;
     public StreamingQuery() {
+        this.noise = 0.0;
+        this.speed = 0.0;
+        this.spread = 0.0;
+        this.type = StreamingQueryType.FETCH;
     }
     public StreamingQuery(Long bands,Double noise,Double speed,Double spread,StreamingQueryType type,String url) {
         this.bands = bands;

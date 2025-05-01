@@ -15,6 +15,7 @@ public class AppInsightsMetricNameQuery {
     @JsonProperty("kind")
     public String kind;
     public AppInsightsMetricNameQuery() {
+        this.kind = "";
     }
     public AppInsightsMetricNameQuery(String rawQuery,String kind) {
         this.rawQuery = rawQuery;

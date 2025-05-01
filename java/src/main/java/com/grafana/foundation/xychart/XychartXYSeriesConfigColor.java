@@ -13,6 +13,7 @@ public class XychartXYSeriesConfigColor {
     @JsonProperty("matcher")
     public MatcherConfig matcher;
     public XychartXYSeriesConfigColor() {
+        this.matcher = new com.grafana.foundation.xychart.MatcherConfigBuilder().build();
     }
     public XychartXYSeriesConfigColor(MatcherConfig matcher) {
         this.matcher = matcher;

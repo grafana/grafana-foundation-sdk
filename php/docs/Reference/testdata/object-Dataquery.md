@@ -136,6 +136,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      *  - `"random_walk_with_error"` 
      *  - `"raw_frame"` 
      *  - `"server_error_500"` 
+     *  - `"steps"` 
      *  - `"simulation"` 
      *  - `"slow_query"` 
      *  - `"streaming_client"` 

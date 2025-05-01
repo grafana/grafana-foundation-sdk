@@ -20,7 +20,8 @@ public class DateHistogramBuilder implements com.grafana.foundation.cog.Builder<
     }
     
     public DateHistogramBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchDateHistogramSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchDateHistogramSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     public DateHistogram build() {

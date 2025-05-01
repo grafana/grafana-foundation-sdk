@@ -24,6 +24,7 @@ public class Average {
     public Boolean hide;
     public Average() {
         this.type = MetricAggregationType.AVG;
+        this.id = "";
     }
     public Average(String field,String id,ElasticsearchAverageSettings settings,Boolean hide) {
         this.type = MetricAggregationType.AVG;

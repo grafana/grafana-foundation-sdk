@@ -555,7 +555,7 @@ class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
     
         return self
     
-    def scenario_id(self, scenario_id: typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "error_with_source", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]) -> typing.Self:    
+    def scenario_id(self, scenario_id: typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "error_with_source", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "steps", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]) -> typing.Self:    
         """
         Possible enum values:
          - `"annotations"` 
@@ -581,6 +581,7 @@ class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
          - `"random_walk_with_error"` 
          - `"raw_frame"` 
          - `"server_error_500"` 
+         - `"steps"` 
          - `"simulation"` 
          - `"slow_query"` 
          - `"streaming_client"` 
