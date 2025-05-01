@@ -28,6 +28,7 @@ public class Role {
     @JsonProperty("hidden")
     public Boolean hidden;
     public Role() {
+        this.name = "";
         this.hidden = false;
     }
     public Role(String name,String displayName,String groupName,String description,Boolean hidden) {

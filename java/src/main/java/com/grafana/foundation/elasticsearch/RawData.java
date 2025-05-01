@@ -21,6 +21,7 @@ public class RawData {
     public Boolean hide;
     public RawData() {
         this.type = MetricAggregationType.RAW_DATA;
+        this.id = "";
     }
     public RawData(String id,ElasticsearchRawDataSettings settings,Boolean hide) {
         this.type = MetricAggregationType.RAW_DATA;

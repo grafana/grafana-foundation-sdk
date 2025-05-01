@@ -30,6 +30,9 @@ public class CanvasConnection {
     @JsonProperty("size")
     public ScaleDimensionConfig size;
     public CanvasConnection() {
+        this.source = new com.grafana.foundation.canvas.ConnectionCoordinatesBuilder().build();
+        this.target = new com.grafana.foundation.canvas.ConnectionCoordinatesBuilder().build();
+        this.path = ConnectionPath.STRAIGHT;
     }
     public CanvasConnection(ConnectionCoordinates source,ConnectionCoordinates target,String targetName,ConnectionPath path,ColorDimensionConfig color,ScaleDimensionConfig size) {
         this.source = source;

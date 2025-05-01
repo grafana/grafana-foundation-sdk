@@ -15,6 +15,8 @@ public class ExtendedStat {
     @JsonProperty("value")
     public ExtendedStatMetaType value;
     public ExtendedStat() {
+        this.label = "";
+        this.value = ExtendedStatMetaType.AVG;
     }
     public ExtendedStat(String label,ExtendedStatMetaType value) {
         this.label = label;

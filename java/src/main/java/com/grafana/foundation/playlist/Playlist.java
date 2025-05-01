@@ -27,6 +27,8 @@ public class Playlist {
     @JsonProperty("items")
     public List<PlaylistItem> items;
     public Playlist() {
+        this.uid = "";
+        this.name = "";
         this.interval = "5m";
     }
     public Playlist(String uid,String name,String interval,List<PlaylistItem> items) {

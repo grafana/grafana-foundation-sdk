@@ -24,6 +24,7 @@ public class Min {
     public Boolean hide;
     public Min() {
         this.type = MetricAggregationType.MIN;
+        this.id = "";
     }
     public Min(String field,String id,ElasticsearchMinSettings settings,Boolean hide) {
         this.type = MetricAggregationType.MIN;

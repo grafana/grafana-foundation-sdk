@@ -22,6 +22,7 @@ public class DashboardRangeMapOptions {
     @JsonProperty("result")
     public ValueMappingResult result;
     public DashboardRangeMapOptions() {
+        this.result = new com.grafana.foundation.dashboard.ValueMappingResult();
     }
     public DashboardRangeMapOptions(Double from,Double to,ValueMappingResult result) {
         this.from = from;

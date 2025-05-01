@@ -29,8 +29,13 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
         return this;
     }
     
-    public RuleBuilder queries(com.grafana.foundation.cog.Builder<List<Query>> data) {
-        this.internal.data = data.build();
+    public RuleBuilder queries(List<com.grafana.foundation.cog.Builder<Query>> data) {
+        List<Query> dataResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<Query> r1 : data) {
+                Query dataDepth1 = r1.build();
+                dataResources.add(dataDepth1); 
+        }
+        this.internal.data = dataResources;
         return this;
     }
     
@@ -38,7 +43,8 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
 		if (this.internal.data == null) {
 			this.internal.data = new LinkedList<>();
 		}
-        this.internal.data.add(data.build());
+    Query dataResource = data.build();
+        this.internal.data.add(dataResource);
         return this;
     }
     

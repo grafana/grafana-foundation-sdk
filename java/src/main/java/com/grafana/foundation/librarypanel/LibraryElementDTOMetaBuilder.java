@@ -35,12 +35,14 @@ public class LibraryElementDTOMetaBuilder implements com.grafana.foundation.cog.
     }
     
     public LibraryElementDTOMetaBuilder createdBy(com.grafana.foundation.cog.Builder<LibraryElementDTOMetaUser> createdBy) {
-        this.internal.createdBy = createdBy.build();
+    LibraryElementDTOMetaUser createdByResource = createdBy.build();
+        this.internal.createdBy = createdByResource;
         return this;
     }
     
     public LibraryElementDTOMetaBuilder updatedBy(com.grafana.foundation.cog.Builder<LibraryElementDTOMetaUser> updatedBy) {
-        this.internal.updatedBy = updatedBy.build();
+    LibraryElementDTOMetaUser updatedByResource = updatedBy.build();
+        this.internal.updatedBy = updatedByResource;
         return this;
     }
     public LibraryElementDTOMeta build() {

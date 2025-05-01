@@ -4,6 +4,7 @@ package com.grafana.foundation.librarypanel;
 
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
+import java.util.LinkedList;
 import com.grafana.foundation.dashboard.DataSourceRef;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.DataTransformerConfig;
@@ -33,8 +34,13 @@ public class PanelModelBuilder implements com.grafana.foundation.cog.Builder<Pan
         return this;
     }
     
-    public PanelModelBuilder targets(com.grafana.foundation.cog.Builder<List<Dataquery>> targets) {
-        this.internal.targets = targets.build();
+    public PanelModelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
+        List<Dataquery> targetsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<Dataquery> r1 : targets) {
+                Dataquery targetsDepth1 = r1.build();
+                targetsResources.add(targetsDepth1); 
+        }
+        this.internal.targets = targetsResources;
         return this;
     }
     
@@ -58,8 +64,13 @@ public class PanelModelBuilder implements com.grafana.foundation.cog.Builder<Pan
         return this;
     }
     
-    public PanelModelBuilder links(com.grafana.foundation.cog.Builder<List<DashboardLink>> links) {
-        this.internal.links = links.build();
+    public PanelModelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+        List<DashboardLink> linksResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<DashboardLink> r1 : links) {
+                DashboardLink linksDepth1 = r1.build();
+                linksResources.add(linksDepth1); 
+        }
+        this.internal.links = linksResources;
         return this;
     }
     

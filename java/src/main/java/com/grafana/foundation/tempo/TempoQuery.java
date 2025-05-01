@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.dashboard.DataSourceRef;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -75,6 +76,9 @@ public class TempoQuery implements com.grafana.foundation.cog.variants.Dataquery
     @JsonProperty("filters")
     public List<TraceqlFilter> filters;
     public TempoQuery() {
+        this.refId = "";
+        this.query = "";
+        this.filters = new LinkedList<>();
     }
     public TempoQuery(String refId,Boolean hide,String queryType,String query,String search,String serviceName,String spanName,String minDuration,String maxDuration,String serviceMapQuery,Boolean serviceMapIncludeNamespace,Long limit,DataSourceRef datasource,List<TraceqlFilter> filters) {
         this.refId = refId;

@@ -66,6 +66,8 @@ public class AnnotationQuery {
     @JsonProperty("text")
     public String text;
     public AnnotationQuery() {
+        this.projectName = "";
+        this.crossSeriesReducer = "";
     }
     public AnnotationQuery(String projectName,String crossSeriesReducer,String alignmentPeriod,String perSeriesAligner,List<String> groupBys,List<String> filters,String view,String secondaryCrossSeriesReducer,String secondaryAlignmentPeriod,String secondaryPerSeriesAligner,List<String> secondaryGroupBys,String title,PreprocessorType preprocessor,String text) {
         this.projectName = projectName;

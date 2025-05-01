@@ -21,6 +21,8 @@ public class MetricAggregationWithInlineScript {
     @JsonProperty("hide")
     public Boolean hide;
     public MetricAggregationWithInlineScript() {
+        this.type = MetricAggregationType.COUNT;
+        this.id = "";
     }
     public MetricAggregationWithInlineScript(ElasticsearchMetricAggregationWithInlineScriptSettings settings,MetricAggregationType type,String id,Boolean hide) {
         this.settings = settings;

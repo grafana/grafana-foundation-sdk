@@ -45,7 +45,8 @@ public class AxisConfigBuilder implements com.grafana.foundation.cog.Builder<Axi
     }
     
     public AxisConfigBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
-        this.internal.scaleDistribution = scaleDistribution.build();
+    ScaleDistributionConfig scaleDistributionResource = scaleDistribution.build();
+        this.internal.scaleDistribution = scaleDistributionResource;
         return this;
     }
     

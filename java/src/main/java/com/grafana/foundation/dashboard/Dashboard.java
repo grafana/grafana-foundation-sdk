@@ -116,11 +116,14 @@ public class Dashboard {
     @JsonProperty("snapshot")
     public Snapshot snapshot;
     public Dashboard() {
+        this.style = DashboardStyle.LIGHT;
         this.timezone = "browser";
         this.editable = true;
         this.graphTooltip = DashboardCursorSync.OFF;
         this.fiscalYearStartMonth = 0;
         this.schemaVersion = 36;
+        this.templating = new com.grafana.foundation.dashboard.DashboardDashboardTemplatingBuilder().build();
+        this.annotations = new com.grafana.foundation.dashboard.AnnotationContainer();
     }
     public Dashboard(Long id,String uid,String title,String description,Long revision,String gnetId,List<String> tags,DashboardStyle style,String timezone,Boolean editable,DashboardCursorSync graphTooltip,DashboardDashboardTime time,TimePicker timepicker,Integer fiscalYearStartMonth,Boolean liveNow,String weekStart,StringOrBool refresh,Short schemaVersion,Integer version,List<PanelOrRowPanel> panels,DashboardDashboardTemplating templating,AnnotationContainer annotations,List<DashboardLink> links,Snapshot snapshot) {
         this.id = id;

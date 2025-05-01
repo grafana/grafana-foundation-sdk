@@ -12,12 +12,14 @@ public class CanvasConnectionBuilder implements com.grafana.foundation.cog.Build
         this.internal = new CanvasConnection();
     }
     public CanvasConnectionBuilder source(com.grafana.foundation.cog.Builder<ConnectionCoordinates> source) {
-        this.internal.source = source.build();
+    ConnectionCoordinates sourceResource = source.build();
+        this.internal.source = sourceResource;
         return this;
     }
     
     public CanvasConnectionBuilder target(com.grafana.foundation.cog.Builder<ConnectionCoordinates> target) {
-        this.internal.target = target.build();
+    ConnectionCoordinates targetResource = target.build();
+        this.internal.target = targetResource;
         return this;
     }
     
@@ -32,12 +34,14 @@ public class CanvasConnectionBuilder implements com.grafana.foundation.cog.Build
     }
     
     public CanvasConnectionBuilder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color) {
-        this.internal.color = color.build();
+    ColorDimensionConfig colorResource = color.build();
+        this.internal.color = colorResource;
         return this;
     }
     
     public CanvasConnectionBuilder size(com.grafana.foundation.cog.Builder<ScaleDimensionConfig> size) {
-        this.internal.size = size.build();
+    ScaleDimensionConfig sizeResource = size.build();
+        this.internal.size = sizeResource;
         return this;
     }
     public CanvasConnection build() {

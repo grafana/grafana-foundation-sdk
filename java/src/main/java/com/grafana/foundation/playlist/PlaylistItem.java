@@ -28,6 +28,8 @@ public class PlaylistItem {
     @JsonProperty("title")
     public String title;
     public PlaylistItem() {
+        this.type = PlaylistItemType.DASHBOARD_BY_UID;
+        this.value = "";
     }
     public PlaylistItem(PlaylistItemType type,String value,String title) {
         this.type = type;

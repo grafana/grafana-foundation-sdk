@@ -31,17 +31,20 @@ public class CloudMonitoringQueryBuilder implements com.grafana.foundation.cog.B
     }
     
     public CloudMonitoringQueryBuilder timeSeriesList(com.grafana.foundation.cog.Builder<TimeSeriesList> timeSeriesList) {
-        this.internal.timeSeriesList = timeSeriesList.build();
+    TimeSeriesList timeSeriesListResource = timeSeriesList.build();
+        this.internal.timeSeriesList = timeSeriesListResource;
         return this;
     }
     
     public CloudMonitoringQueryBuilder timeSeriesQuery(com.grafana.foundation.cog.Builder<TimeSeriesQuery> timeSeriesQuery) {
-        this.internal.timeSeriesQuery = timeSeriesQuery.build();
+    TimeSeriesQuery timeSeriesQueryResource = timeSeriesQuery.build();
+        this.internal.timeSeriesQuery = timeSeriesQueryResource;
         return this;
     }
     
     public CloudMonitoringQueryBuilder sloQuery(com.grafana.foundation.cog.Builder<SLOQuery> sloQuery) {
-        this.internal.sloQuery = sloQuery.build();
+    SLOQuery sloQueryResource = sloQuery.build();
+        this.internal.sloQuery = sloQueryResource;
         return this;
     }
     

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
@@ -46,6 +47,12 @@ public class DashboardLink {
     @JsonProperty("keepTime")
     public Boolean keepTime;
     public DashboardLink() {
+        this.title = "";
+        this.type = DashboardLinkType.LINK;
+        this.icon = "";
+        this.tooltip = "";
+        this.url = "";
+        this.tags = new LinkedList<>();
         this.asDropdown = false;
         this.targetBlank = false;
         this.includeVars = false;
