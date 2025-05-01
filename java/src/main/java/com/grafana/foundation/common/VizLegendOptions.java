@@ -42,6 +42,7 @@ public class VizLegendOptions {
     public VizLegendOptions() {
         this.displayMode = LegendDisplayMode.LIST;
         this.placement = LegendPlacement.BOTTOM;
+        this.showLegend = false;
         this.calcs = List.of();
     }
     public VizLegendOptions(LegendDisplayMode displayMode,LegendPlacement placement,Boolean showLegend,Boolean asTable,Boolean isVisible,String sortBy,Boolean sortDesc,Double width,List<String> calcs) {

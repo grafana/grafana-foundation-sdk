@@ -20,6 +20,10 @@ public class Manifest {
     @JsonProperty("spec")
     public Object spec;
     public Manifest() {
+        this.apiVersion = "";
+        this.kind = "";
+        this.metadata = new com.grafana.foundation.resource.MetadataBuilder().build();
+        this.spec = new Object();
     }
     public Manifest(String apiVersion,String kind,Metadata metadata,Object spec) {
         this.apiVersion = apiVersion;

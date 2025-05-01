@@ -20,7 +20,8 @@ public class MaxBuilder implements com.grafana.foundation.cog.Builder<Max> {
     }
     
     public MaxBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMaxSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchMaxSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

@@ -36,6 +36,8 @@ public class Options {
     public Options() {
         this.rowHeight = 0.9f;
         this.showValue = VisibilityMode.AUTO;
+        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
         this.colWidth = 0.9;
     }
     public Options(Float rowHeight,VisibilityMode showValue,VizLegendOptions legend,VizTooltipOptions tooltip,List<String> timezone,Double colWidth) {

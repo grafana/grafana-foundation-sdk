@@ -18,6 +18,7 @@ public class TableSortByFieldState {
     @JsonProperty("desc")
     public Boolean desc;
     public TableSortByFieldState() {
+        this.displayName = "";
     }
     public TableSortByFieldState(String displayName,Boolean desc) {
         this.displayName = displayName;

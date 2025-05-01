@@ -3,6 +3,7 @@
 package com.grafana.foundation.alerting;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class MuteTimingBuilder implements com.grafana.foundation.cog.Builder<MuteTiming> {
     protected final MuteTiming internal;
@@ -15,8 +16,13 @@ public class MuteTimingBuilder implements com.grafana.foundation.cog.Builder<Mut
         return this;
     }
     
-    public MuteTimingBuilder timeIntervals(com.grafana.foundation.cog.Builder<List<TimeInterval>> timeIntervals) {
-        this.internal.timeIntervals = timeIntervals.build();
+    public MuteTimingBuilder timeIntervals(List<com.grafana.foundation.cog.Builder<TimeInterval>> timeIntervals) {
+        List<TimeInterval> timeIntervalsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<TimeInterval> r1 : timeIntervals) {
+                TimeInterval timeIntervalsDepth1 = r1.build();
+                timeIntervalsResources.add(timeIntervalsDepth1); 
+        }
+        this.internal.timeIntervals = timeIntervalsResources;
         return this;
     }
     public MuteTiming build() {

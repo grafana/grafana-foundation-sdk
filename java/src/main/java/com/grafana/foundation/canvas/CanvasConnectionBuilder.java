@@ -5,6 +5,7 @@ package com.grafana.foundation.canvas;
 import com.grafana.foundation.common.ColorDimensionConfig;
 import com.grafana.foundation.common.ScaleDimensionConfig;
 import java.util.List;
+import java.util.LinkedList;
 
 public class CanvasConnectionBuilder implements com.grafana.foundation.cog.Builder<CanvasConnection> {
     protected final CanvasConnection internal;
@@ -13,12 +14,14 @@ public class CanvasConnectionBuilder implements com.grafana.foundation.cog.Build
         this.internal = new CanvasConnection();
     }
     public CanvasConnectionBuilder source(com.grafana.foundation.cog.Builder<ConnectionCoordinates> source) {
-        this.internal.source = source.build();
+    ConnectionCoordinates sourceResource = source.build();
+        this.internal.source = sourceResource;
         return this;
     }
     
     public CanvasConnectionBuilder target(com.grafana.foundation.cog.Builder<ConnectionCoordinates> target) {
-        this.internal.target = target.build();
+    ConnectionCoordinates targetResource = target.build();
+        this.internal.target = targetResource;
         return this;
     }
     
@@ -33,27 +36,36 @@ public class CanvasConnectionBuilder implements com.grafana.foundation.cog.Build
     }
     
     public CanvasConnectionBuilder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color) {
-        this.internal.color = color.build();
+    ColorDimensionConfig colorResource = color.build();
+        this.internal.color = colorResource;
         return this;
     }
     
     public CanvasConnectionBuilder size(com.grafana.foundation.cog.Builder<ScaleDimensionConfig> size) {
-        this.internal.size = size.build();
+    ScaleDimensionConfig sizeResource = size.build();
+        this.internal.size = sizeResource;
         return this;
     }
     
-    public CanvasConnectionBuilder vertices(com.grafana.foundation.cog.Builder<List<ConnectionCoordinates>> vertices) {
-        this.internal.vertices = vertices.build();
+    public CanvasConnectionBuilder vertices(List<com.grafana.foundation.cog.Builder<ConnectionCoordinates>> vertices) {
+        List<ConnectionCoordinates> verticesResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<ConnectionCoordinates> r1 : vertices) {
+                ConnectionCoordinates verticesDepth1 = r1.build();
+                verticesResources.add(verticesDepth1); 
+        }
+        this.internal.vertices = verticesResources;
         return this;
     }
     
     public CanvasConnectionBuilder sourceOriginal(com.grafana.foundation.cog.Builder<ConnectionCoordinates> sourceOriginal) {
-        this.internal.sourceOriginal = sourceOriginal.build();
+    ConnectionCoordinates sourceOriginalResource = sourceOriginal.build();
+        this.internal.sourceOriginal = sourceOriginalResource;
         return this;
     }
     
     public CanvasConnectionBuilder targetOriginal(com.grafana.foundation.cog.Builder<ConnectionCoordinates> targetOriginal) {
-        this.internal.targetOriginal = targetOriginal.build();
+    ConnectionCoordinates targetOriginalResource = targetOriginal.build();
+        this.internal.targetOriginal = targetOriginalResource;
         return this;
     }
     public CanvasConnection build() {

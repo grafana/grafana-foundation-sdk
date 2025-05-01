@@ -3,6 +3,7 @@
 package com.grafana.foundation.canvas;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class CanvasElementOptionsBuilder implements com.grafana.foundation.cog.Builder<CanvasElementOptions> {
     protected final CanvasElementOptions internal;
@@ -26,27 +27,36 @@ public class CanvasElementOptionsBuilder implements com.grafana.foundation.cog.B
     }
     
     public CanvasElementOptionsBuilder constraint(com.grafana.foundation.cog.Builder<Constraint> constraint) {
-        this.internal.constraint = constraint.build();
+    Constraint constraintResource = constraint.build();
+        this.internal.constraint = constraintResource;
         return this;
     }
     
     public CanvasElementOptionsBuilder placement(com.grafana.foundation.cog.Builder<Placement> placement) {
-        this.internal.placement = placement.build();
+    Placement placementResource = placement.build();
+        this.internal.placement = placementResource;
         return this;
     }
     
     public CanvasElementOptionsBuilder background(com.grafana.foundation.cog.Builder<BackgroundConfig> background) {
-        this.internal.background = background.build();
+    BackgroundConfig backgroundResource = background.build();
+        this.internal.background = backgroundResource;
         return this;
     }
     
     public CanvasElementOptionsBuilder border(com.grafana.foundation.cog.Builder<LineConfig> border) {
-        this.internal.border = border.build();
+    LineConfig borderResource = border.build();
+        this.internal.border = borderResource;
         return this;
     }
     
-    public CanvasElementOptionsBuilder connections(com.grafana.foundation.cog.Builder<List<CanvasConnection>> connections) {
-        this.internal.connections = connections.build();
+    public CanvasElementOptionsBuilder connections(List<com.grafana.foundation.cog.Builder<CanvasConnection>> connections) {
+        List<CanvasConnection> connectionsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<CanvasConnection> r1 : connections) {
+                CanvasConnection connectionsDepth1 = r1.build();
+                connectionsResources.add(connectionsDepth1); 
+        }
+        this.internal.connections = connectionsResources;
         return this;
     }
     public CanvasElementOptions build() {

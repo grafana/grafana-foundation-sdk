@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
@@ -63,6 +64,10 @@ public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataqu
     @JsonProperty("type")
     public String type;
     public TypeThreshold() {
+        this.conditions = new LinkedList<>();
+        this.expression = "";
+        this.refId = "";
+        this.type = "";
     }
     public TypeThreshold(List<ExprTypeThresholdConditions> conditions,DataSourceRef datasource,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeThresholdResultAssertions resultAssertions,ExprTypeThresholdTimeRange timeRange,String type) {
         this.conditions = conditions;

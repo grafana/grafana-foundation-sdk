@@ -24,6 +24,7 @@ public class UniqueCount {
     public Boolean hide;
     public UniqueCount() {
         this.type = MetricAggregationType.CARDINALITY;
+        this.id = "";
     }
     public UniqueCount(String field,String id,ElasticsearchUniqueCountSettings settings,Boolean hide) {
         this.type = MetricAggregationType.CARDINALITY;

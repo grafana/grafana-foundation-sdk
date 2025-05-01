@@ -17,6 +17,8 @@ public class WorkspacesQuery {
     @JsonProperty("subscription")
     public String subscription;
     public WorkspacesQuery() {
+        this.kind = "";
+        this.subscription = "";
     }
     public WorkspacesQuery(String rawQuery,String kind,String subscription) {
         this.rawQuery = rawQuery;
