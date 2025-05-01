@@ -117,6 +117,8 @@ public class Dashboard {
         this.graphTooltip = DashboardCursorSync.OFF;
         this.fiscalYearStartMonth = 0;
         this.schemaVersion = 36;
+        this.templating = new com.grafana.foundation.dashboard.DashboardDashboardTemplatingBuilder().build();
+        this.annotations = new com.grafana.foundation.dashboard.AnnotationContainer();
     }
     public Dashboard(Long id,String uid,String title,String description,Long revision,String gnetId,List<String> tags,String timezone,Boolean editable,DashboardCursorSync graphTooltip,DashboardDashboardTime time,TimePickerConfig timepicker,Integer fiscalYearStartMonth,Boolean liveNow,String weekStart,String refresh,Short schemaVersion,Integer version,List<PanelOrRowPanel> panels,DashboardDashboardTemplating templating,AnnotationContainer annotations,List<DashboardLink> links,Snapshot snapshot) {
         this.id = id;

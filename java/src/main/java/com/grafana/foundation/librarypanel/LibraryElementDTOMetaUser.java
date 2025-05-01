@@ -15,6 +15,9 @@ public class LibraryElementDTOMetaUser {
     @JsonProperty("avatarUrl")
     public String avatarUrl;
     public LibraryElementDTOMetaUser() {
+        this.id = 0L;
+        this.name = "";
+        this.avatarUrl = "";
     }
     public LibraryElementDTOMetaUser(Long id,String name,String avatarUrl) {
         this.id = id;

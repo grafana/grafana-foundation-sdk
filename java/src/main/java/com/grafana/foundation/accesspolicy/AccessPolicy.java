@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
@@ -26,6 +27,9 @@ public class AccessPolicy {
     @JsonProperty("rules")
     public List<AccessRule> rules;
     public AccessPolicy() {
+        this.scope = new com.grafana.foundation.accesspolicy.ResourceRefBuilder().build();
+        this.role = new com.grafana.foundation.accesspolicy.RoleRefBuilder().build();
+        this.rules = new LinkedList<>();
     }
     public AccessPolicy(ResourceRef scope,RoleRef role,List<AccessRule> rules) {
         this.scope = scope;

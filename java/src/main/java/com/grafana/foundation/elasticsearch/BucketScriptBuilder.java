@@ -3,6 +3,7 @@
 package com.grafana.foundation.elasticsearch;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class BucketScriptBuilder implements com.grafana.foundation.cog.Builder<BucketScript> {
     protected final BucketScript internal;
@@ -10,8 +11,13 @@ public class BucketScriptBuilder implements com.grafana.foundation.cog.Builder<B
     public BucketScriptBuilder() {
         this.internal = new BucketScript();
     }
-    public BucketScriptBuilder pipelineVariables(com.grafana.foundation.cog.Builder<List<PipelineVariable>> pipelineVariables) {
-        this.internal.pipelineVariables = pipelineVariables.build();
+    public BucketScriptBuilder pipelineVariables(List<com.grafana.foundation.cog.Builder<PipelineVariable>> pipelineVariables) {
+        List<PipelineVariable> pipelineVariablesResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<PipelineVariable> r1 : pipelineVariables) {
+                PipelineVariable pipelineVariablesDepth1 = r1.build();
+                pipelineVariablesResources.add(pipelineVariablesDepth1); 
+        }
+        this.internal.pipelineVariables = pipelineVariablesResources;
         return this;
     }
     
@@ -21,7 +27,8 @@ public class BucketScriptBuilder implements com.grafana.foundation.cog.Builder<B
     }
     
     public BucketScriptBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchBucketScriptSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchBucketScriptSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

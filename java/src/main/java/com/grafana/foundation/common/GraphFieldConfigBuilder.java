@@ -20,7 +20,8 @@ public class GraphFieldConfigBuilder implements com.grafana.foundation.cog.Build
     }
     
     public GraphFieldConfigBuilder thresholdsStyle(com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> thresholdsStyle) {
-        this.internal.thresholdsStyle = thresholdsStyle.build();
+    GraphThresholdsStyleConfig thresholdsStyleResource = thresholdsStyle.build();
+        this.internal.thresholdsStyle = thresholdsStyleResource;
         return this;
     }
     
@@ -40,7 +41,8 @@ public class GraphFieldConfigBuilder implements com.grafana.foundation.cog.Build
     }
     
     public GraphFieldConfigBuilder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle) {
-        this.internal.lineStyle = lineStyle.build();
+    LineStyle lineStyleResource = lineStyle.build();
+        this.internal.lineStyle = lineStyleResource;
         return this;
     }
     
@@ -105,7 +107,8 @@ public class GraphFieldConfigBuilder implements com.grafana.foundation.cog.Build
     }
     
     public GraphFieldConfigBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
-        this.internal.scaleDistribution = scaleDistribution.build();
+    ScaleDistributionConfig scaleDistributionResource = scaleDistribution.build();
+        this.internal.scaleDistribution = scaleDistributionResource;
         return this;
     }
     
@@ -125,12 +128,14 @@ public class GraphFieldConfigBuilder implements com.grafana.foundation.cog.Build
     }
     
     public GraphFieldConfigBuilder stacking(com.grafana.foundation.cog.Builder<StackingConfig> stacking) {
-        this.internal.stacking = stacking.build();
+    StackingConfig stackingResource = stacking.build();
+        this.internal.stacking = stackingResource;
         return this;
     }
     
     public GraphFieldConfigBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
-        this.internal.hideFrom = hideFrom.build();
+    HideSeriesConfig hideFromResource = hideFrom.build();
+        this.internal.hideFrom = hideFromResource;
         return this;
     }
     

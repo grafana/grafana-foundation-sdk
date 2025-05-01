@@ -18,6 +18,8 @@ public class BaseBucketAggregation {
     @JsonProperty("settings")
     public Object settings;
     public BaseBucketAggregation() {
+        this.id = "";
+        this.type = BucketAggregationType.TERMS;
     }
     public BaseBucketAggregation(String id,BucketAggregationType type,Object settings) {
         this.id = id;

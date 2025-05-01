@@ -42,6 +42,11 @@ public class HeatmapColorOptions {
     @JsonProperty("max")
     public Float max;
     public HeatmapColorOptions() {
+        this.scheme = "";
+        this.fill = "";
+        this.exponent = 0.0f;
+        this.steps = 0L;
+        this.reverse = false;
     }
     public HeatmapColorOptions(HeatmapColorMode mode,String scheme,String fill,HeatmapColorScale scale,Float exponent,Long steps,Boolean reverse,Float min,Float max) {
         this.mode = mode;

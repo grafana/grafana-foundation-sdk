@@ -26,6 +26,9 @@ public class MetricDefinitionsQuery {
     @JsonProperty("resourceName")
     public String resourceName;
     public MetricDefinitionsQuery() {
+        this.kind = "";
+        this.subscription = "";
+        this.resourceGroup = "";
     }
     public MetricDefinitionsQuery(String rawQuery,String kind,String subscription,String resourceGroup,String metricNamespace,String resourceName) {
         this.rawQuery = rawQuery;

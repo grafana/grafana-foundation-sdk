@@ -10,7 +10,8 @@ public class DashboardMetaBuilder implements com.grafana.foundation.cog.Builder<
         this.internal = new DashboardMeta();
     }
     public DashboardMetaBuilder annotationsPermissions(com.grafana.foundation.cog.Builder<AnnotationPermission> annotationsPermissions) {
-        this.internal.annotationsPermissions = annotationsPermissions.build();
+    AnnotationPermission annotationsPermissionsResource = annotationsPermissions.build();
+        this.internal.annotationsPermissions = annotationsPermissionsResource;
         return this;
     }
     

@@ -13,6 +13,7 @@ public class ExprTypeClassicConditionsConditionsOperator {
     @JsonProperty("type")
     public ExprTypeClassicConditionsConditionsOperatorType type;
     public ExprTypeClassicConditionsConditionsOperator() {
+        this.type = ExprTypeClassicConditionsConditionsOperatorType.AND;
     }
     public ExprTypeClassicConditionsConditionsOperator(ExprTypeClassicConditionsConditionsOperatorType type) {
         this.type = type;

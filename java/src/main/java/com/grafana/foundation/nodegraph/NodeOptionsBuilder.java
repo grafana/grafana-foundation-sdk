@@ -3,6 +3,7 @@
 package com.grafana.foundation.nodegraph;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class NodeOptionsBuilder implements com.grafana.foundation.cog.Builder<NodeOptions> {
     protected final NodeOptions internal;
@@ -20,8 +21,13 @@ public class NodeOptionsBuilder implements com.grafana.foundation.cog.Builder<No
         return this;
     }
     
-    public NodeOptionsBuilder arcs(com.grafana.foundation.cog.Builder<List<ArcOption>> arcs) {
-        this.internal.arcs = arcs.build();
+    public NodeOptionsBuilder arcs(List<com.grafana.foundation.cog.Builder<ArcOption>> arcs) {
+        List<ArcOption> arcsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<ArcOption> r1 : arcs) {
+                ArcOption arcsDepth1 = r1.build();
+                arcsResources.add(arcsDepth1); 
+        }
+        this.internal.arcs = arcsResources;
         return this;
     }
     public NodeOptions build() {

@@ -25,6 +25,7 @@ public class Options {
     public VizTooltipOptions tooltip;
     public Options() {
         this.legend = new VizLegendOptions(LegendDisplayMode.LIST, LegendPlacement.BOTTOM, false, false, false, "", false, 0.0, List.of());
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
     }
     public Options(List<String> timezone,VizLegendOptions legend,VizTooltipOptions tooltip) {
         this.timezone = timezone;
