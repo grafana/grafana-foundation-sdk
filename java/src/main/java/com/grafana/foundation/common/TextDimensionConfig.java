@@ -20,6 +20,7 @@ public class TextDimensionConfig {
     @JsonProperty("fixed")
     public String fixed;
     public TextDimensionConfig() {
+        this.mode = TextDimensionMode.FIXED;
     }
     public TextDimensionConfig(TextDimensionMode mode,String field,String fixed) {
         this.mode = mode;

@@ -3,6 +3,7 @@
 package com.grafana.foundation.canvas;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class CanvasOptionsRootBuilder implements com.grafana.foundation.cog.Builder<CanvasOptionsRoot> {
     protected final CanvasOptionsRoot internal;
@@ -16,8 +17,13 @@ public class CanvasOptionsRootBuilder implements com.grafana.foundation.cog.Buil
         return this;
     }
     
-    public CanvasOptionsRootBuilder elements(com.grafana.foundation.cog.Builder<List<CanvasElementOptions>> elements) {
-        this.internal.elements = elements.build();
+    public CanvasOptionsRootBuilder elements(List<com.grafana.foundation.cog.Builder<CanvasElementOptions>> elements) {
+        List<CanvasElementOptions> elementsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<CanvasElementOptions> r1 : elements) {
+                CanvasElementOptions elementsDepth1 = r1.build();
+                elementsResources.add(elementsDepth1); 
+        }
+        this.internal.elements = elementsResources;
         return this;
     }
     public CanvasOptionsRoot build() {

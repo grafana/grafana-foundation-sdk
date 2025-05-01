@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
@@ -22,6 +23,7 @@ public class AnnotationPanelFilter {
     public List<Integer> ids;
     public AnnotationPanelFilter() {
         this.exclude = false;
+        this.ids = new LinkedList<>();
     }
     public AnnotationPanelFilter(Boolean exclude,List<Integer> ids) {
         this.exclude = exclude;

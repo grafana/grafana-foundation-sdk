@@ -55,12 +55,14 @@ public class TypeSqlBuilder implements com.grafana.foundation.cog.Builder<com.gr
     }
     
     public TypeSqlBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeSqlResultAssertions> resultAssertions) {
-        this.internal.resultAssertions = resultAssertions.build();
+    ExprTypeSqlResultAssertions resultAssertionsResource = resultAssertions.build();
+        this.internal.resultAssertions = resultAssertionsResource;
         return this;
     }
     
     public TypeSqlBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeSqlTimeRange> timeRange) {
-        this.internal.timeRange = timeRange.build();
+    ExprTypeSqlTimeRange timeRangeResource = timeRange.build();
+        this.internal.timeRange = timeRangeResource;
         return this;
     }
     public TypeSql build() {
