@@ -13,6 +13,7 @@ public class HeatmapLegend {
     @JsonProperty("show")
     public Boolean show;
     public HeatmapLegend() {
+        this.show = false;
     }
     public HeatmapLegend(Boolean show) {
         this.show = show;

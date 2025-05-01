@@ -15,7 +15,8 @@ public class RawDocumentBuilder implements com.grafana.foundation.cog.Builder<Ra
     }
     
     public RawDocumentBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchRawDocumentSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchRawDocumentSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

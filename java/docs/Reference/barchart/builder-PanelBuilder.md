@@ -1,0 +1,605 @@
+---
+title: <span class="badge builder"></span> PanelBuilder
+---
+# <span class="badge builder"></span> PanelBuilder
+
+## Constructor
+
+```java
+new PanelBuilder()
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```java
+public Panel build()
+```
+
+### <span class="badge object-method"></span> axisBorderShow
+
+```java
+public PanelBuilder axisBorderShow(Boolean axisBorderShow)
+```
+
+### <span class="badge object-method"></span> axisCenteredZero
+
+```java
+public PanelBuilder axisCenteredZero(Boolean axisCenteredZero)
+```
+
+### <span class="badge object-method"></span> axisColorMode
+
+```java
+public PanelBuilder axisColorMode(AxisColorMode axisColorMode)
+```
+
+### <span class="badge object-method"></span> axisGridShow
+
+```java
+public PanelBuilder axisGridShow(Boolean axisGridShow)
+```
+
+### <span class="badge object-method"></span> axisLabel
+
+```java
+public PanelBuilder axisLabel(String axisLabel)
+```
+
+### <span class="badge object-method"></span> axisPlacement
+
+```java
+public PanelBuilder axisPlacement(AxisPlacement axisPlacement)
+```
+
+### <span class="badge object-method"></span> axisSoftMax
+
+```java
+public PanelBuilder axisSoftMax(Double axisSoftMax)
+```
+
+### <span class="badge object-method"></span> axisSoftMin
+
+```java
+public PanelBuilder axisSoftMin(Double axisSoftMin)
+```
+
+### <span class="badge object-method"></span> axisWidth
+
+```java
+public PanelBuilder axisWidth(Double axisWidth)
+```
+
+### <span class="badge object-method"></span> barRadius
+
+Controls the radius of each bar.
+
+```java
+public PanelBuilder barRadius(Double barRadius)
+```
+
+### <span class="badge object-method"></span> barWidth
+
+Controls the width of bars. 1 = Max width, 0 = Min width.
+
+```java
+public PanelBuilder barWidth(Double barWidth)
+```
+
+### <span class="badge object-method"></span> colorByField
+
+Use the color value for a sibling field to color each bar value.
+
+```java
+public PanelBuilder colorByField(String colorByField)
+```
+
+### <span class="badge object-method"></span> colorScheme
+
+Panel color configuration
+
+```java
+public PanelBuilder colorScheme(FieldColor color)
+```
+
+### <span class="badge object-method"></span> dataLinks
+
+The behavior when clicking on a result
+
+```java
+public PanelBuilder dataLinks(List<DashboardLink> links)
+```
+
+### <span class="badge object-method"></span> datasource
+
+The datasource used in all targets.
+
+```java
+public PanelBuilder datasource(DataSourceRef datasource)
+```
+
+### <span class="badge object-method"></span> decimals
+
+Specify the number of decimals Grafana includes in the rendered value.
+
+If you leave this field blank, Grafana automatically truncates the number of decimals based on the value.
+
+For example 1.1234 will display as 1.12 and 100.456 will display as 100.
+
+To display all decimals, set the unit to `String`.
+
+```java
+public PanelBuilder decimals(Double decimals)
+```
+
+### <span class="badge object-method"></span> description
+
+Panel description.
+
+```java
+public PanelBuilder description(String description)
+```
+
+### <span class="badge object-method"></span> displayName
+
+The display value for this field.  This supports template variables blank is auto
+
+```java
+public PanelBuilder displayName(String displayName)
+```
+
+### <span class="badge object-method"></span> fillOpacity
+
+Controls the fill opacity of the bars.
+
+```java
+public PanelBuilder fillOpacity(Integer fillOpacity)
+```
+
+### <span class="badge object-method"></span> fullHighlight
+
+Enables mode which highlights the entire bar area and shows tooltip when cursor
+
+hovers over highlighted area
+
+```java
+public PanelBuilder fullHighlight(Boolean fullHighlight)
+```
+
+### <span class="badge object-method"></span> gradientMode
+
+Set the mode of the gradient fill. Fill gradient is based on the line color. To change the color, use the standard color scheme field option.
+
+Gradient appearance is influenced by the Fill opacity setting.
+
+```java
+public PanelBuilder gradientMode(GraphGradientMode gradientMode)
+```
+
+### <span class="badge object-method"></span> gridPos
+
+Grid position.
+
+```java
+public PanelBuilder gridPos(GridPos gridPos)
+```
+
+### <span class="badge object-method"></span> groupWidth
+
+Controls the width of groups. 1 = max with, 0 = min width.
+
+```java
+public PanelBuilder groupWidth(Double groupWidth)
+```
+
+### <span class="badge object-method"></span> height
+
+Panel height. The height is the number of rows from the top edge of the panel.
+
+```java
+public PanelBuilder height(Integer h)
+```
+
+### <span class="badge object-method"></span> hideFrom
+
+```java
+public PanelBuilder hideFrom(HideSeriesConfig hideFrom)
+```
+
+### <span class="badge object-method"></span> hideTimeOverride
+
+Controls if the timeFrom or timeShift overrides are shown in the panel header
+
+```java
+public PanelBuilder hideTimeOverride(Boolean hideTimeOverride)
+```
+
+### <span class="badge object-method"></span> id
+
+Unique identifier of the panel. Generated by Grafana when creating a new panel. It must be unique within a dashboard, but not globally.
+
+```java
+public PanelBuilder id(Integer id)
+```
+
+### <span class="badge object-method"></span> interval
+
+The min time interval setting defines a lower limit for the $__interval and $__interval_ms variables.
+
+This value must be formatted as a number followed by a valid time
+
+identifier like: "40s", "3d", etc.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```java
+public PanelBuilder interval(String interval)
+```
+
+### <span class="badge object-method"></span> legend
+
+```java
+public PanelBuilder legend(VizLegendOptions legend)
+```
+
+### <span class="badge object-method"></span> libraryPanel
+
+Dynamically load the panel
+
+```java
+public PanelBuilder libraryPanel(LibraryPanelRef libraryPanel)
+```
+
+### <span class="badge object-method"></span> lineWidth
+
+Controls line width of the bars.
+
+```java
+public PanelBuilder lineWidth(Integer lineWidth)
+```
+
+### <span class="badge object-method"></span> links
+
+Panel links.
+
+```java
+public PanelBuilder links(List<DashboardLink> links)
+```
+
+### <span class="badge object-method"></span> mappings
+
+Convert input values into a display string
+
+```java
+public PanelBuilder mappings(List<ValueMapping> mappings)
+```
+
+### <span class="badge object-method"></span> max
+
+The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+
+```java
+public PanelBuilder max(Double max)
+```
+
+### <span class="badge object-method"></span> maxDataPoints
+
+The maximum number of data points that the panel queries are retrieving.
+
+```java
+public PanelBuilder maxDataPoints(Double maxDataPoints)
+```
+
+### <span class="badge object-method"></span> maxPerRow
+
+Option for repeated panels that controls max items per row
+
+Only relevant for horizontally repeated panels
+
+```java
+public PanelBuilder maxPerRow(Double maxPerRow)
+```
+
+### <span class="badge object-method"></span> min
+
+The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+
+```java
+public PanelBuilder min(Double min)
+```
+
+### <span class="badge object-method"></span> noValue
+
+Alternative to empty string
+
+```java
+public PanelBuilder noValue(String noValue)
+```
+
+### <span class="badge object-method"></span> orientation
+
+Controls the orientation of the bar chart, either vertical or horizontal.
+
+```java
+public PanelBuilder orientation(VizOrientation orientation)
+```
+
+### <span class="badge object-method"></span> overrideByFieldType
+
+Adds override rules for all the fields of the given type.
+
+```java
+public PanelBuilder overrideByFieldType(String fieldType, List<DynamicConfigValue> properties)
+```
+
+### <span class="badge object-method"></span> overrideByName
+
+Adds override rules for a specific field, referred to by its name.
+
+```java
+public PanelBuilder overrideByName(String name, List<DynamicConfigValue> properties)
+```
+
+### <span class="badge object-method"></span> overrideByQuery
+
+```java
+public PanelBuilder overrideByQuery(String queryRefId, List<DynamicConfigValue> properties)
+```
+
+### <span class="badge object-method"></span> overrideByRegexp
+
+Adds override rules for the fields whose name match the given regexp.
+
+```java
+public PanelBuilder overrideByRegexp(String regexp, List<DynamicConfigValue> properties)
+```
+
+### <span class="badge object-method"></span> overrides
+
+Overrides are the options applied to specific fields overriding the defaults.
+
+```java
+public PanelBuilder overrides(List<DashboardFieldConfigSourceOverrides> overrides)
+```
+
+### <span class="badge object-method"></span> repeat
+
+Name of template variable to repeat for.
+
+```java
+public PanelBuilder repeat(String repeat)
+```
+
+### <span class="badge object-method"></span> repeatDirection
+
+Direction to repeat in if 'repeat' is set.
+
+`h` for horizontal, `v` for vertical.
+
+```java
+public PanelBuilder repeatDirection(PanelRepeatDirection repeatDirection)
+```
+
+### <span class="badge object-method"></span> scaleDistribution
+
+```java
+public PanelBuilder scaleDistribution(ScaleDistributionConfig scaleDistribution)
+```
+
+### <span class="badge object-method"></span> showValue
+
+This controls whether values are shown on top or to the left of bars.
+
+```java
+public PanelBuilder showValue(VisibilityMode showValue)
+```
+
+### <span class="badge object-method"></span> span
+
+Panel width. The width is the number of columns from the left edge of the panel.
+
+```java
+public PanelBuilder span(Integer w)
+```
+
+### <span class="badge object-method"></span> stacking
+
+Controls whether bars are stacked or not, either normally or in percent mode.
+
+```java
+public PanelBuilder stacking(StackingMode stacking)
+```
+
+### <span class="badge object-method"></span> targets
+
+Depends on the panel plugin. See the plugin documentation for details.
+
+```java
+public PanelBuilder targets(List<Dataquery> targets)
+```
+
+### <span class="badge object-method"></span> text
+
+```java
+public PanelBuilder text(VizTextDisplayOptions text)
+```
+
+### <span class="badge object-method"></span> thresholds
+
+Map numeric values to states
+
+```java
+public PanelBuilder thresholds(ThresholdsConfig thresholds)
+```
+
+### <span class="badge object-method"></span> thresholdsStyle
+
+Threshold rendering
+
+```java
+public PanelBuilder thresholdsStyle(GraphThresholdsStyleConfig thresholdsStyle)
+```
+
+### <span class="badge object-method"></span> timeFrom
+
+Overrides the relative time range for individual panels,
+
+which causes them to be different than what is selected in
+
+the dashboard time picker in the top-right corner of the dashboard. You can use this to show metrics from different
+
+time periods or days on the same dashboard.
+
+The value is formatted as time operation like: `now-5m` (Last 5 minutes), `now/d` (the day so far),
+
+`now-5d/d`(Last 5 days), `now/w` (This week so far), `now-2y/y` (Last 2 years).
+
+Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```java
+public PanelBuilder timeFrom(String timeFrom)
+```
+
+### <span class="badge object-method"></span> timeShift
+
+Overrides the time range for individual panels by shifting its start and end relative to the time picker.
+
+For example, you can shift the time range for the panel to be two hours earlier than the dashboard time picker setting `2h`.
+
+Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```java
+public PanelBuilder timeShift(String timeShift)
+```
+
+### <span class="badge object-method"></span> title
+
+Panel title.
+
+```java
+public PanelBuilder title(String title)
+```
+
+### <span class="badge object-method"></span> tooltip
+
+```java
+public PanelBuilder tooltip(VizTooltipOptions tooltip)
+```
+
+### <span class="badge object-method"></span> transformations
+
+List of transformations that are applied to the panel data before rendering.
+
+When there are multiple transformations, Grafana applies them in the order they are listed.
+
+Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+
+```java
+public PanelBuilder transformations(List<DataTransformerConfig> transformations)
+```
+
+### <span class="badge object-method"></span> transparent
+
+Whether to display the panel without a background.
+
+```java
+public PanelBuilder transparent(Boolean transparent)
+```
+
+### <span class="badge object-method"></span> unit
+
+Unit a field should use. The unit you select is applied to all fields except time.
+
+You can use the units ID availables in Grafana or a custom unit.
+
+Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
+
+As custom unit, you can use the following formats:
+
+`suffix:<suffix>` for custom unit that should go after value.
+
+`prefix:<prefix>` for custom unit that should go before value.
+
+`time:<format>` For custom date time formats type for example `time:YYYY-MM-DD`.
+
+`si:<base scale><unit characters>` for custom SI units. For example: `si: mF`. This one is a bit more advanced as you can specify both a unit and the source data scale. So if your source data is represented as milli (thousands of) something prefix the unit with that SI scale character.
+
+`count:<unit>` for a custom count unit.
+
+`currency:<unit>` for custom a currency unit.
+
+```java
+public PanelBuilder unit(String unit)
+```
+
+### <span class="badge object-method"></span> withOverride
+
+Overrides are the options applied to specific fields overriding the defaults.
+
+```java
+public PanelBuilder withOverride(DashboardFieldConfigSourceOverrides override)
+```
+
+### <span class="badge object-method"></span> withTarget
+
+Depends on the panel plugin. See the plugin documentation for details.
+
+```java
+public PanelBuilder withTarget(Dataquery target)
+```
+
+### <span class="badge object-method"></span> withTransformation
+
+List of transformations that are applied to the panel data before rendering.
+
+When there are multiple transformations, Grafana applies them in the order they are listed.
+
+Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+
+```java
+public PanelBuilder withTransformation(DataTransformerConfig transformation)
+```
+
+### <span class="badge object-method"></span> xField
+
+Manually select which field from the dataset to represent the x field.
+
+```java
+public PanelBuilder xField(String xField)
+```
+
+### <span class="badge object-method"></span> xTickLabelMaxLength
+
+Sets the max length that a label can have before it is truncated.
+
+```java
+public PanelBuilder xTickLabelMaxLength(Integer xTickLabelMaxLength)
+```
+
+### <span class="badge object-method"></span> xTickLabelRotation
+
+Controls the rotation of the x axis labels.
+
+```java
+public PanelBuilder xTickLabelRotation(Integer xTickLabelRotation)
+```
+
+### <span class="badge object-method"></span> xTickLabelSpacing
+
+Controls the spacing between x axis labels.
+
+negative values indicate backwards skipping behavior
+
+```java
+public PanelBuilder xTickLabelSpacing(Integer xTickLabelSpacing)
+```
+
+## See also
+
+ * <span class="badge object-type-class"></span> [dashboard.Panel](../dashboard/object-Panel.md)

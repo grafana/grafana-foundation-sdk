@@ -23,6 +23,7 @@ public class Options {
     public Options() {
         this.inlineEditing = true;
         this.showAdvancedTypes = true;
+        this.root = new com.grafana.foundation.canvas.CanvasOptionsRootBuilder().build();
     }
     public Options(Boolean inlineEditing,Boolean showAdvancedTypes,CanvasOptionsRoot root) {
         this.inlineEditing = inlineEditing;

@@ -16,6 +16,8 @@ public class RoleBindingSubject {
     @JsonProperty("name")
     public String name;
     public RoleBindingSubject() {
+        this.kind = RoleBindingSubjectKind.TEAM;
+        this.name = "";
     }
     public RoleBindingSubject(RoleBindingSubjectKind kind,String name) {
         this.kind = kind;

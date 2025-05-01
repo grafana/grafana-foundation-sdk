@@ -44,7 +44,9 @@ public class Options {
         this.colorMode = BigValueColorMode.VALUE;
         this.justifyMode = BigValueJustifyMode.AUTO;
         this.textMode = BigValueTextMode.AUTO;
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
         this.wideLayout = true;
+        this.orientation = VizOrientation.AUTO;
     }
     public Options(BigValueGraphMode graphMode,BigValueColorMode colorMode,BigValueJustifyMode justifyMode,BigValueTextMode textMode,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,Boolean wideLayout,VizOrientation orientation) {
         this.graphMode = graphMode;

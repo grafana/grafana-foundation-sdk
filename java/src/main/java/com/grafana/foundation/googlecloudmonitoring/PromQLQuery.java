@@ -19,6 +19,9 @@ public class PromQLQuery {
     @JsonProperty("step")
     public String step;
     public PromQLQuery() {
+        this.projectName = "";
+        this.expr = "";
+        this.step = "";
     }
     public PromQLQuery(String projectName,String expr,String step) {
         this.projectName = projectName;

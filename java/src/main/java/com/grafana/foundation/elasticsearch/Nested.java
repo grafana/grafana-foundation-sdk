@@ -20,6 +20,7 @@ public class Nested {
     @JsonProperty("settings")
     public Object settings;
     public Nested() {
+        this.id = "";
         this.type = BucketAggregationType.NESTED;
     }
     public Nested(String field,String id,Object settings) {

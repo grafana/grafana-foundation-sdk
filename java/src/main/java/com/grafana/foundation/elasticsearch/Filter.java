@@ -13,6 +13,8 @@ public class Filter {
     @JsonProperty("label")
     public String label;
     public Filter() {
+        this.query = "";
+        this.label = "";
     }
     public Filter(String query,String label) {
         this.query = query;

@@ -21,6 +21,8 @@ public class MetricAggregationWithMissingSupport {
     @JsonProperty("hide")
     public Boolean hide;
     public MetricAggregationWithMissingSupport() {
+        this.type = MetricAggregationType.COUNT;
+        this.id = "";
     }
     public MetricAggregationWithMissingSupport(ElasticsearchMetricAggregationWithMissingSupportSettings settings,MetricAggregationType type,String id,Boolean hide) {
         this.settings = settings;

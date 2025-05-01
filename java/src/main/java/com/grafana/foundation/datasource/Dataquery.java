@@ -37,6 +37,8 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonProperty("datasource")
     public DataSourceRef datasource;
     public Dataquery() {
+        this.panelId = 0;
+        this.refId = "";
     }
     public Dataquery(Integer panelId,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
         this.panelId = panelId;
