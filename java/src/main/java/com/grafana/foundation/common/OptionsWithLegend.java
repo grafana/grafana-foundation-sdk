@@ -14,6 +14,7 @@ public class OptionsWithLegend {
     @JsonProperty("legend")
     public VizLegendOptions legend;
     public OptionsWithLegend() {
+        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
     }
     public OptionsWithLegend(VizLegendOptions legend) {
         this.legend = legend;

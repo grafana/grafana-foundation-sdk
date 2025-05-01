@@ -3,6 +3,7 @@
 package com.grafana.foundation.testdata;
 
 import java.util.List;
+import java.util.LinkedList;
 import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
@@ -31,8 +32,13 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
         return this;
     }
     
-    public DataqueryBuilder csvWave(com.grafana.foundation.cog.Builder<List<CSVWave>> csvWave) {
-        this.internal.csvWave = csvWave.build();
+    public DataqueryBuilder csvWave(List<com.grafana.foundation.cog.Builder<CSVWave>> csvWave) {
+        List<CSVWave> csvWaveResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<CSVWave> r1 : csvWave) {
+                CSVWave csvWaveDepth1 = r1.build();
+                csvWaveResources.add(csvWaveDepth1); 
+        }
+        this.internal.csvWave = csvWaveResources;
         return this;
     }
     
@@ -97,7 +103,8 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
     }
     
     public DataqueryBuilder nodes(com.grafana.foundation.cog.Builder<NodesQuery> nodes) {
-        this.internal.nodes = nodes.build();
+    NodesQuery nodesResource = nodes.build();
+        this.internal.nodes = nodesResource;
         return this;
     }
     
@@ -112,7 +119,8 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
     }
     
     public DataqueryBuilder pulseWave(com.grafana.foundation.cog.Builder<PulseWaveQuery> pulseWave) {
-        this.internal.pulseWave = pulseWave.build();
+    PulseWaveQuery pulseWaveResource = pulseWave.build();
+        this.internal.pulseWave = pulseWaveResource;
         return this;
     }
     
@@ -132,7 +140,8 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
     }
     
     public DataqueryBuilder resultAssertions(com.grafana.foundation.cog.Builder<ResultAssertions> resultAssertions) {
-        this.internal.resultAssertions = resultAssertions.build();
+    ResultAssertions resultAssertionsResource = resultAssertions.build();
+        this.internal.resultAssertions = resultAssertionsResource;
         return this;
     }
     
@@ -147,7 +156,8 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
     }
     
     public DataqueryBuilder sim(com.grafana.foundation.cog.Builder<SimulationQuery> sim) {
-        this.internal.sim = sim.build();
+    SimulationQuery simResource = sim.build();
+        this.internal.sim = simResource;
         return this;
     }
     
@@ -167,7 +177,8 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
     }
     
     public DataqueryBuilder stream(com.grafana.foundation.cog.Builder<StreamingQuery> stream) {
-        this.internal.stream = stream.build();
+    StreamingQuery streamResource = stream.build();
+        this.internal.stream = streamResource;
         return this;
     }
     
@@ -177,12 +188,14 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
     }
     
     public DataqueryBuilder timeRange(com.grafana.foundation.cog.Builder<TimeRange> timeRange) {
-        this.internal.timeRange = timeRange.build();
+    TimeRange timeRangeResource = timeRange.build();
+        this.internal.timeRange = timeRangeResource;
         return this;
     }
     
     public DataqueryBuilder usa(com.grafana.foundation.cog.Builder<USAQuery> usa) {
-        this.internal.usa = usa.build();
+    USAQuery usaResource = usa.build();
+        this.internal.usa = usaResource;
         return this;
     }
     

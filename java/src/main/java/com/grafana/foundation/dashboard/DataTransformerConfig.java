@@ -33,6 +33,8 @@ public class DataTransformerConfig {
     @JsonProperty("options")
     public Object options;
     public DataTransformerConfig() {
+        this.id = "";
+        this.options = new Object();
     }
     public DataTransformerConfig(String id,Boolean disabled,MatcherConfig filter,DataTransformerConfigTopic topic,Object options) {
         this.id = id;

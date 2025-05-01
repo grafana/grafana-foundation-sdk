@@ -3,6 +3,7 @@
 package com.grafana.foundation.cloudwatch;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class QueryEditorFunctionExpressionBuilder implements com.grafana.foundation.cog.Builder<QueryEditorFunctionExpression> {
     protected final QueryEditorFunctionExpression internal;
@@ -15,8 +16,13 @@ public class QueryEditorFunctionExpressionBuilder implements com.grafana.foundat
         return this;
     }
     
-    public QueryEditorFunctionExpressionBuilder parameters(com.grafana.foundation.cog.Builder<List<QueryEditorFunctionParameterExpression>> parameters) {
-        this.internal.parameters = parameters.build();
+    public QueryEditorFunctionExpressionBuilder parameters(List<com.grafana.foundation.cog.Builder<QueryEditorFunctionParameterExpression>> parameters) {
+        List<QueryEditorFunctionParameterExpression> parametersResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<QueryEditorFunctionParameterExpression> r1 : parameters) {
+                QueryEditorFunctionParameterExpression parametersDepth1 = r1.build();
+                parametersResources.add(parametersDepth1); 
+        }
+        this.internal.parameters = parametersResources;
         return this;
     }
     public QueryEditorFunctionExpression build() {

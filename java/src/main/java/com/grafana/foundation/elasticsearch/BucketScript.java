@@ -25,6 +25,7 @@ public class BucketScript {
     public Boolean hide;
     public BucketScript() {
         this.type = MetricAggregationType.BUCKET_SCRIPT;
+        this.id = "";
     }
     public BucketScript(List<PipelineVariable> pipelineVariables,String id,ElasticsearchBucketScriptSettings settings,Boolean hide) {
         this.type = MetricAggregationType.BUCKET_SCRIPT;

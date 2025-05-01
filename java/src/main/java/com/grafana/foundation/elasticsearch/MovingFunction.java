@@ -27,6 +27,7 @@ public class MovingFunction {
     public Boolean hide;
     public MovingFunction() {
         this.type = MetricAggregationType.MOVING_FN;
+        this.id = "";
     }
     public MovingFunction(String pipelineAgg,String field,String id,ElasticsearchMovingFunctionSettings settings,Boolean hide) {
         this.pipelineAgg = pipelineAgg;

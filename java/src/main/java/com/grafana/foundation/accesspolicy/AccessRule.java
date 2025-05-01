@@ -22,6 +22,7 @@ public class AccessRule {
     public String target;
     public AccessRule() {
         this.kind = "*";
+        this.verb = "";
     }
     public AccessRule(String kind,String verb,String target) {
         this.kind = kind;

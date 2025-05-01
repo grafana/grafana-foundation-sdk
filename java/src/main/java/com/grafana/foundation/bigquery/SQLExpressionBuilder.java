@@ -3,6 +3,7 @@
 package com.grafana.foundation.bigquery;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class SQLExpressionBuilder implements com.grafana.foundation.cog.Builder<SQLExpression> {
     protected final SQLExpression internal;
@@ -10,8 +11,13 @@ public class SQLExpressionBuilder implements com.grafana.foundation.cog.Builder<
     public SQLExpressionBuilder() {
         this.internal = new SQLExpression();
     }
-    public SQLExpressionBuilder columns(com.grafana.foundation.cog.Builder<List<QueryEditorFunctionExpression>> columns) {
-        this.internal.columns = columns.build();
+    public SQLExpressionBuilder columns(List<com.grafana.foundation.cog.Builder<QueryEditorFunctionExpression>> columns) {
+        List<QueryEditorFunctionExpression> columnsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<QueryEditorFunctionExpression> r1 : columns) {
+                QueryEditorFunctionExpression columnsDepth1 = r1.build();
+                columnsResources.add(columnsDepth1); 
+        }
+        this.internal.columns = columnsResources;
         return this;
     }
     
@@ -25,13 +31,19 @@ public class SQLExpressionBuilder implements com.grafana.foundation.cog.Builder<
         return this;
     }
     
-    public SQLExpressionBuilder groupBy(com.grafana.foundation.cog.Builder<List<QueryEditorGroupByExpression>> groupBy) {
-        this.internal.groupBy = groupBy.build();
+    public SQLExpressionBuilder groupBy(List<com.grafana.foundation.cog.Builder<QueryEditorGroupByExpression>> groupBy) {
+        List<QueryEditorGroupByExpression> groupByResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<QueryEditorGroupByExpression> r1 : groupBy) {
+                QueryEditorGroupByExpression groupByDepth1 = r1.build();
+                groupByResources.add(groupByDepth1); 
+        }
+        this.internal.groupBy = groupByResources;
         return this;
     }
     
     public SQLExpressionBuilder orderBy(com.grafana.foundation.cog.Builder<QueryEditorPropertyExpression> orderBy) {
-        this.internal.orderBy = orderBy.build();
+    QueryEditorPropertyExpression orderByResource = orderBy.build();
+        this.internal.orderBy = orderByResource;
         return this;
     }
     

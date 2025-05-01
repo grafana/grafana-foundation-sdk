@@ -24,6 +24,8 @@ public class LogGroup {
     @JsonProperty("accountLabel")
     public String accountLabel;
     public LogGroup() {
+        this.arn = "";
+        this.name = "";
     }
     public LogGroup(String arn,String name,String accountId,String accountLabel) {
         this.arn = arn;

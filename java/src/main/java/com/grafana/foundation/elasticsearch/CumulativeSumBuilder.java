@@ -25,7 +25,8 @@ public class CumulativeSumBuilder implements com.grafana.foundation.cog.Builder<
     }
     
     public CumulativeSumBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchCumulativeSumSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchCumulativeSumSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

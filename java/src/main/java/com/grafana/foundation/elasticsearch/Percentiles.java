@@ -24,6 +24,7 @@ public class Percentiles {
     public Boolean hide;
     public Percentiles() {
         this.type = MetricAggregationType.PERCENTILES;
+        this.id = "";
     }
     public Percentiles(String field,String id,ElasticsearchPercentilesSettings settings,Boolean hide) {
         this.type = MetricAggregationType.PERCENTILES;

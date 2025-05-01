@@ -25,7 +25,8 @@ public class DerivativeBuilder implements com.grafana.foundation.cog.Builder<Der
     }
     
     public DerivativeBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchDerivativeSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchDerivativeSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     
