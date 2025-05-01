@@ -49,8 +49,11 @@ public class AnnotationQuery {
     @JsonProperty("expr")
     public String expr;
     public AnnotationQuery() {
+        this.name = "";
+        this.datasource = new com.grafana.foundation.dashboard.DataSourceRef();
         this.enable = true;
         this.hide = false;
+        this.iconColor = "";
         this.builtIn = 0.0;
     }
     public AnnotationQuery(String name,DataSourceRef datasource,Boolean enable,Boolean hide,String iconColor,AnnotationPanelFilter filter,AnnotationTarget target,String type,Double builtIn,String expr) {

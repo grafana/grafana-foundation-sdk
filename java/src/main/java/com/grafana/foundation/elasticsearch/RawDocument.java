@@ -21,6 +21,7 @@ public class RawDocument {
     public Boolean hide;
     public RawDocument() {
         this.type = MetricAggregationType.RAW_DOCUMENT;
+        this.id = "";
     }
     public RawDocument(String id,ElasticsearchRawDocumentSettings settings,Boolean hide) {
         this.type = MetricAggregationType.RAW_DOCUMENT;

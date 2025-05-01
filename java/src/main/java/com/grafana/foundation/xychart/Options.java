@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.grafana.foundation.common.VizTooltipOptions;
@@ -27,6 +28,10 @@ public class Options {
     @JsonProperty("series")
     public List<XYSeriesConfig> series;
     public Options() {
+        this.mapping = SeriesMapping.AUTO;
+        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
+        this.series = new LinkedList<>();
     }
     public Options(SeriesMapping mapping,VizLegendOptions legend,VizTooltipOptions tooltip,List<XYSeriesConfig> series) {
         this.mapping = mapping;

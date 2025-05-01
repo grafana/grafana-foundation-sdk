@@ -10,7 +10,8 @@ public class XychartXYSeriesConfigXBuilder implements com.grafana.foundation.cog
         this.internal = new XychartXYSeriesConfigX();
     }
     public XychartXYSeriesConfigXBuilder matcher(com.grafana.foundation.cog.Builder<MatcherConfig> matcher) {
-        this.internal.matcher = matcher.build();
+    MatcherConfig matcherResource = matcher.build();
+        this.internal.matcher = matcherResource;
         return this;
     }
     public XychartXYSeriesConfigX build() {

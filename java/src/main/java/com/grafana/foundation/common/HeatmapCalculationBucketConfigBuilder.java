@@ -20,7 +20,8 @@ public class HeatmapCalculationBucketConfigBuilder implements com.grafana.founda
     }
     
     public HeatmapCalculationBucketConfigBuilder scale(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scale) {
-        this.internal.scale = scale.build();
+    ScaleDistributionConfig scaleResource = scale.build();
+        this.internal.scale = scaleResource;
         return this;
     }
     public HeatmapCalculationBucketConfig build() {

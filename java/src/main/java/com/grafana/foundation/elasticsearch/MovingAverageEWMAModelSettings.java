@@ -22,6 +22,9 @@ public class MovingAverageEWMAModelSettings {
     public String predict;
     public MovingAverageEWMAModelSettings() {
         this.model = MovingAverageModel.EWMA;
+        this.window = "";
+        this.minimize = false;
+        this.predict = "";
     }
     public MovingAverageEWMAModelSettings(ElasticsearchMovingAverageEWMAModelSettingsSettings settings,String window,Boolean minimize,String predict) {
         this.model = MovingAverageModel.EWMA;

@@ -21,6 +21,7 @@ public class ExprTypeReduceSettings {
     @JsonProperty("replaceWithValue")
     public Double replaceWithValue;
     public ExprTypeReduceSettings() {
+        this.mode = ExprTypeReduceSettingsMode.DROP_NN;
     }
     public ExprTypeReduceSettings(ExprTypeReduceSettingsMode mode,Double replaceWithValue) {
         this.mode = mode;

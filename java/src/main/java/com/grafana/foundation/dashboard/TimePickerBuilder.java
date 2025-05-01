@@ -3,6 +3,7 @@
 package com.grafana.foundation.dashboard;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class TimePickerBuilder implements com.grafana.foundation.cog.Builder<TimePickerConfig> {
     protected final TimePickerConfig internal;
@@ -20,8 +21,13 @@ public class TimePickerBuilder implements com.grafana.foundation.cog.Builder<Tim
         return this;
     }
     
-    public TimePickerBuilder quickRanges(com.grafana.foundation.cog.Builder<List<TimeOption>> quickRanges) {
-        this.internal.quickRanges = quickRanges.build();
+    public TimePickerBuilder quickRanges(List<com.grafana.foundation.cog.Builder<TimeOption>> quickRanges) {
+        List<TimeOption> quickRangesResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<TimeOption> r1 : quickRanges) {
+                TimeOption quickRangesDepth1 = r1.build();
+                quickRangesResources.add(quickRangesDepth1); 
+        }
+        this.internal.quickRanges = quickRangesResources;
         return this;
     }
     

@@ -13,6 +13,7 @@ public class XychartXYSeriesConfigX {
     @JsonProperty("matcher")
     public MatcherConfig matcher;
     public XychartXYSeriesConfigX() {
+        this.matcher = new com.grafana.foundation.xychart.MatcherConfigBuilder().build();
     }
     public XychartXYSeriesConfigX(MatcherConfig matcher) {
         this.matcher = matcher;

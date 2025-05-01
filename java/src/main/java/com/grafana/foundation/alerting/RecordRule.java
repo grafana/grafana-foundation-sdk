@@ -15,6 +15,8 @@ public class RecordRule {
     @JsonProperty("metric")
     public String metric;
     public RecordRule() {
+        this.from = "";
+        this.metric = "";
     }
     public RecordRule(String from,String metric) {
         this.from = from;

@@ -16,6 +16,9 @@ public class TimeOption {
     @JsonProperty("to")
     public String to;
     public TimeOption() {
+        this.display = "";
+        this.from = "";
+        this.to = "";
     }
     public TimeOption(String display,String from,String to) {
         this.display = display;

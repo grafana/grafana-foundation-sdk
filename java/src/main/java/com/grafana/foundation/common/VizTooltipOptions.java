@@ -26,6 +26,8 @@ public class VizTooltipOptions {
     @JsonProperty("hideZeros")
     public Boolean hideZeros;
     public VizTooltipOptions() {
+        this.mode = TooltipDisplayMode.SINGLE;
+        this.sort = SortOrder.ASCENDING;
     }
     public VizTooltipOptions(TooltipDisplayMode mode,SortOrder sort,Double maxWidth,Double maxHeight,Boolean hideZeros) {
         this.mode = mode;

@@ -36,6 +36,8 @@ public class Options {
     public Options() {
         this.bucketCount = 30;
         this.bucketOffset = 0.0f;
+        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
     }
     public Options(Integer bucketCount,Integer bucketSize,Float bucketOffset,VizLegendOptions legend,VizTooltipOptions tooltip,Boolean combine) {
         this.bucketCount = bucketCount;

@@ -16,6 +16,7 @@ public class QueryEditorProperty {
     @JsonProperty("name")
     public String name;
     public QueryEditorProperty() {
+        this.type = QueryEditorPropertyType.STRING;
     }
     public QueryEditorProperty(QueryEditorPropertyType type,String name) {
         this.type = type;

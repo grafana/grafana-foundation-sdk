@@ -30,6 +30,11 @@ public class Options {
     @JsonProperty("onNewLogsReceived")
     public Object onNewLogsReceived;
     public Options() {
+        this.showTime = false;
+        this.wrapLogMessage = false;
+        this.enableLogDetails = false;
+        this.sortOrder = LogsSortOrder.DESCENDING;
+        this.dedupStrategy = LogsDedupStrategy.NONE;
     }
     public Options(Boolean showTime,Boolean wrapLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy,Boolean enableInfiniteScrolling,Object onNewLogsReceived) {
         this.showTime = showTime;

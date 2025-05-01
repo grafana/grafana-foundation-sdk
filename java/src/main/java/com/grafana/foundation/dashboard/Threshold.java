@@ -20,6 +20,7 @@ public class Threshold {
     @JsonProperty("color")
     public String color;
     public Threshold() {
+        this.color = "";
     }
     public Threshold(Double value,String color) {
         this.value = value;

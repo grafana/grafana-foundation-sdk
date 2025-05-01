@@ -17,6 +17,8 @@ public class DashboardRegexMapOptions {
     @JsonProperty("result")
     public ValueMappingResult result;
     public DashboardRegexMapOptions() {
+        this.pattern = "";
+        this.result = new com.grafana.foundation.dashboard.ValueMappingResult();
     }
     public DashboardRegexMapOptions(String pattern,ValueMappingResult result) {
         this.pattern = pattern;

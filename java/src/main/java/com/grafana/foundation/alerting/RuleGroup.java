@@ -15,7 +15,6 @@ public class RuleGroup {
     public String folderUid;
     // The interval, in seconds, at which all rules in the group are evaluated.
     // If a group contains many rules, the rules are evaluated sequentially.
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("interval")
     public Long interval;
     @JsonInclude(JsonInclude.Include.NON_NULL)

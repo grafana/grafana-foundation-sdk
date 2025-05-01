@@ -108,7 +108,8 @@ public class CloudWatchMetricsQueryBuilder implements com.grafana.foundation.cog
     }
     
     public CloudWatchMetricsQueryBuilder sql(com.grafana.foundation.cog.Builder<SQLExpression> sql) {
-        this.internal.sql = sql.build();
+    SQLExpression sqlResource = sql.build();
+        this.internal.sql = sqlResource;
         return this;
     }
     

@@ -50,12 +50,14 @@ public class TypeMathBuilder implements com.grafana.foundation.cog.Builder<com.g
     }
     
     public TypeMathBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeMathResultAssertions> resultAssertions) {
-        this.internal.resultAssertions = resultAssertions.build();
+    ExprTypeMathResultAssertions resultAssertionsResource = resultAssertions.build();
+        this.internal.resultAssertions = resultAssertionsResource;
         return this;
     }
     
     public TypeMathBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeMathTimeRange> timeRange) {
-        this.internal.timeRange = timeRange.build();
+    ExprTypeMathTimeRange timeRangeResource = timeRange.build();
+        this.internal.timeRange = timeRangeResource;
         return this;
     }
     public TypeMath build() {

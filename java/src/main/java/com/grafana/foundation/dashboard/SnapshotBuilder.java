@@ -55,7 +55,8 @@ public class SnapshotBuilder implements com.grafana.foundation.cog.Builder<Snaps
     }
     
     public SnapshotBuilder dashboard(com.grafana.foundation.cog.Builder<Dashboard> dashboard) {
-        this.internal.dashboard = dashboard.build();
+    Dashboard dashboardResource = dashboard.build();
+        this.internal.dashboard = dashboardResource;
         return this;
     }
     public Snapshot build() {

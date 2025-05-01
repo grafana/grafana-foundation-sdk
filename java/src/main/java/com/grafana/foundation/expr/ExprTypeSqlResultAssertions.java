@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
@@ -38,6 +39,7 @@ public class ExprTypeSqlResultAssertions {
     @JsonProperty("typeVersion")
     public List<Long> typeVersion;
     public ExprTypeSqlResultAssertions() {
+        this.typeVersion = new LinkedList<>();
     }
     public ExprTypeSqlResultAssertions(Long maxFrames,ExprTypeSqlResultAssertionsType type,List<Long> typeVersion) {
         this.maxFrames = maxFrames;
