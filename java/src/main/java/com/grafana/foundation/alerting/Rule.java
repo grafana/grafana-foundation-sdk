@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -53,7 +54,6 @@ public class Rule {
     public NotificationSettings notificationSettings;
     @JsonProperty("orgID")
     public Long orgID;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("provenance")
     public String provenance;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -70,6 +70,15 @@ public class Rule {
     @JsonProperty("updated")
     public String updated;
     public Rule() {
+        this.condition = "";
+        this.data = new LinkedList<>();
+        this.execErrState = RuleExecErrState.OK;
+        this.folderUID = "";
+        this.forArg = "";
+        this.noDataState = RuleNoDataState.ALERTING;
+        this.orgID = 0L;
+        this.ruleGroup = "";
+        this.title = "";
     }
     public Rule(Map<String, String> annotations,String condition,List<Query> data,RuleExecErrState execErrState,String folderUID,String forArg,Long id,Boolean isPaused,String keepFiringFor,Map<String, String> labels,Long missingSeriesEvalsToResolve,RuleNoDataState noDataState,NotificationSettings notificationSettings,Long orgID,String provenance,RecordRule record,String ruleGroup,String title,String uid,String updated) {
         this.annotations = annotations;

@@ -25,7 +25,8 @@ public class BuilderQueryEditorOperatorTypeBuilder implements com.grafana.founda
     }
     
     public BuilderQueryEditorOperatorTypeBuilder selectableValue(com.grafana.foundation.cog.Builder<SelectableValue> selectableValue) {
-        this.internal.selectableValue = selectableValue.build();
+    SelectableValue selectableValueResource = selectableValue.build();
+        this.internal.selectableValue = selectableValueResource;
         return this;
     }
     public BuilderQueryEditorOperatorType build() {

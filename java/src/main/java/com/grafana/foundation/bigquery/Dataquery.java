@@ -77,6 +77,9 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonProperty("datasource")
     public DataSourceRef datasource;
     public Dataquery() {
+        this.format = QueryFormat.TIMESERIES;
+        this.rawSql = "";
+        this.refId = "";
     }
     public Dataquery(String dataset,String table,String project,QueryFormat format,Boolean rawQuery,String rawSql,String location,Boolean partitioned,String partitionedField,Boolean convertToUTC,Boolean sharded,QueryPriority queryPriority,String timeShift,EditorMode editorMode,SQLExpression sql,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
         this.dataset = dataset;

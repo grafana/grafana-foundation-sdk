@@ -34,6 +34,7 @@ public class DataQuery {
     @JsonProperty("datasource")
     public Object datasource;
     public DataQuery() {
+        this.refId = "";
     }
     public DataQuery(String refId,Boolean hide,String queryType,Object datasource) {
         this.refId = refId;

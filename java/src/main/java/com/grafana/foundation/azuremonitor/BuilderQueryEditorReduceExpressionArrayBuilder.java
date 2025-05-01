@@ -3,6 +3,7 @@
 package com.grafana.foundation.azuremonitor;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class BuilderQueryEditorReduceExpressionArrayBuilder implements com.grafana.foundation.cog.Builder<BuilderQueryEditorReduceExpressionArray> {
     protected final BuilderQueryEditorReduceExpressionArray internal;
@@ -10,8 +11,13 @@ public class BuilderQueryEditorReduceExpressionArrayBuilder implements com.grafa
     public BuilderQueryEditorReduceExpressionArrayBuilder() {
         this.internal = new BuilderQueryEditorReduceExpressionArray();
     }
-    public BuilderQueryEditorReduceExpressionArrayBuilder expressions(com.grafana.foundation.cog.Builder<List<BuilderQueryEditorReduceExpression>> expressions) {
-        this.internal.expressions = expressions.build();
+    public BuilderQueryEditorReduceExpressionArrayBuilder expressions(List<com.grafana.foundation.cog.Builder<BuilderQueryEditorReduceExpression>> expressions) {
+        List<BuilderQueryEditorReduceExpression> expressionsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<BuilderQueryEditorReduceExpression> r1 : expressions) {
+                BuilderQueryEditorReduceExpression expressionsDepth1 = r1.build();
+                expressionsResources.add(expressionsDepth1); 
+        }
+        this.internal.expressions = expressionsResources;
         return this;
     }
     

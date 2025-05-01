@@ -10,12 +10,14 @@ public class BuilderQueryEditorWhereExpressionItemsBuilder implements com.grafan
         this.internal = new BuilderQueryEditorWhereExpressionItems();
     }
     public BuilderQueryEditorWhereExpressionItemsBuilder property(com.grafana.foundation.cog.Builder<BuilderQueryEditorProperty> property) {
-        this.internal.property = property.build();
+    BuilderQueryEditorProperty propertyResource = property.build();
+        this.internal.property = propertyResource;
         return this;
     }
     
     public BuilderQueryEditorWhereExpressionItemsBuilder operator(com.grafana.foundation.cog.Builder<BuilderQueryEditorOperator> operator) {
-        this.internal.operator = operator.build();
+    BuilderQueryEditorOperator operatorResource = operator.build();
+        this.internal.operator = operatorResource;
         return this;
     }
     

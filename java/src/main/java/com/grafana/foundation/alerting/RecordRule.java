@@ -20,6 +20,8 @@ public class RecordRule {
     @JsonProperty("target_datasource_uid")
     public String targetDatasourceUid;
     public RecordRule() {
+        this.from = "";
+        this.metric = "";
     }
     public RecordRule(String from,String metric,String targetDatasourceUid) {
         this.from = from;

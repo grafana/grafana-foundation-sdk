@@ -1,0 +1,47 @@
+---
+title: <span class="badge builder"></span> BuilderQueryEditorReduceExpressionBuilder
+---
+# <span class="badge builder"></span> BuilderQueryEditorReduceExpressionBuilder
+
+## Constructor
+
+```java
+new BuilderQueryEditorReduceExpressionBuilder()
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```java
+public BuilderQueryEditorReduceExpression build()
+```
+
+### <span class="badge object-method"></span> focus
+
+```java
+public BuilderQueryEditorReduceExpressionBuilder focus(Boolean focus)
+```
+
+### <span class="badge object-method"></span> parameters
+
+```java
+public BuilderQueryEditorReduceExpressionBuilder parameters(List<BuilderQueryEditorFunctionParameterExpression> parameters)
+```
+
+### <span class="badge object-method"></span> property
+
+```java
+public BuilderQueryEditorReduceExpressionBuilder property(BuilderQueryEditorProperty property)
+```
+
+### <span class="badge object-method"></span> reduce
+
+```java
+public BuilderQueryEditorReduceExpressionBuilder reduce(BuilderQueryEditorProperty reduce)
+```
+
+## See also
+
+ * <span class="badge object-type-class"></span> [BuilderQueryEditorReduceExpression](./object-BuilderQueryEditorReduceExpression.md)

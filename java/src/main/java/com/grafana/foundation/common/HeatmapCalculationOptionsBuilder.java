@@ -10,12 +10,14 @@ public class HeatmapCalculationOptionsBuilder implements com.grafana.foundation.
         this.internal = new HeatmapCalculationOptions();
     }
     public HeatmapCalculationOptionsBuilder xBuckets(com.grafana.foundation.cog.Builder<HeatmapCalculationBucketConfig> xBuckets) {
-        this.internal.xBuckets = xBuckets.build();
+    HeatmapCalculationBucketConfig xBucketsResource = xBuckets.build();
+        this.internal.xBuckets = xBucketsResource;
         return this;
     }
     
     public HeatmapCalculationOptionsBuilder yBuckets(com.grafana.foundation.cog.Builder<HeatmapCalculationBucketConfig> yBuckets) {
-        this.internal.yBuckets = yBuckets.build();
+    HeatmapCalculationBucketConfig yBucketsResource = yBuckets.build();
+        this.internal.yBuckets = yBucketsResource;
         return this;
     }
     public HeatmapCalculationOptions build() {

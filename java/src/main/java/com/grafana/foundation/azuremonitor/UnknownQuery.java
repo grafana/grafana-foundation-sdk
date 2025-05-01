@@ -15,6 +15,7 @@ public class UnknownQuery {
     @JsonProperty("kind")
     public String kind;
     public UnknownQuery() {
+        this.kind = "";
     }
     public UnknownQuery(String rawQuery,String kind) {
         this.rawQuery = rawQuery;

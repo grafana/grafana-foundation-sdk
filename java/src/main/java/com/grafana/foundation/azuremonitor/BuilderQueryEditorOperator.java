@@ -17,6 +17,8 @@ public class BuilderQueryEditorOperator {
     @JsonProperty("labelValue")
     public String labelValue;
     public BuilderQueryEditorOperator() {
+        this.name = "";
+        this.value = "";
     }
     public BuilderQueryEditorOperator(String name,String value,String labelValue) {
         this.name = name;

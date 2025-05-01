@@ -260,6 +260,7 @@ func (builder *DataqueryBuilder) ResultAssertions(resultAssertions cog.Builder[R
 //   - `"random_walk_with_error"`
 //   - `"raw_frame"`
 //   - `"server_error_500"`
+//   - `"steps"`
 //   - `"simulation"`
 //   - `"slow_query"`
 //   - `"streaming_client"`

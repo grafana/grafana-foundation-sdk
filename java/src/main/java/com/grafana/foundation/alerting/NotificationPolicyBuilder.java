@@ -4,6 +4,7 @@ package com.grafana.foundation.alerting;
 
 import java.util.List;
 import java.util.Map;
+import java.util.LinkedList;
 
 public class NotificationPolicyBuilder implements com.grafana.foundation.cog.Builder<NotificationPolicy> {
     protected final NotificationPolicy internal;
@@ -46,8 +47,13 @@ public class NotificationPolicyBuilder implements com.grafana.foundation.cog.Bui
         return this;
     }
     
-    public NotificationPolicyBuilder matchers(List<Matcher> matchers) {
-        this.internal.matchers = matchers;
+    public NotificationPolicyBuilder matchers(List<com.grafana.foundation.cog.Builder<Matcher>> matchers) {
+        List<Matcher> matchersResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<Matcher> r1 : matchers) {
+                Matcher matchersDepth1 = r1.build();
+                matchersResources.add(matchersDepth1); 
+        }
+        this.internal.matchers = matchersResources;
         return this;
     }
     
@@ -76,8 +82,13 @@ public class NotificationPolicyBuilder implements com.grafana.foundation.cog.Bui
         return this;
     }
     
-    public NotificationPolicyBuilder routes(com.grafana.foundation.cog.Builder<List<NotificationPolicy>> routes) {
-        this.internal.routes = routes.build();
+    public NotificationPolicyBuilder routes(List<com.grafana.foundation.cog.Builder<NotificationPolicy>> routes) {
+        List<NotificationPolicy> routesResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<NotificationPolicy> r1 : routes) {
+                NotificationPolicy routesDepth1 = r1.build();
+                routesResources.add(routesDepth1); 
+        }
+        this.internal.routes = routesResources;
         return this;
     }
     public NotificationPolicy build() {

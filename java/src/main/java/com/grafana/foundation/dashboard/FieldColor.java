@@ -23,6 +23,7 @@ public class FieldColor {
     @JsonProperty("seriesBy")
     public FieldColorSeriesByMode seriesBy;
     public FieldColor() {
+        this.mode = FieldColorModeId.THRESHOLDS;
     }
     public FieldColor(FieldColorModeId mode,String fixedColor,FieldColorSeriesByMode seriesBy) {
         this.mode = mode;

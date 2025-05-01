@@ -48,6 +48,7 @@ public class NotificationSettings {
     public String repeatInterval;
     public NotificationSettings() {
         this.groupBy = List.of("alertname", "grafana_folder");
+        this.receiver = "";
     }
     public NotificationSettings(List<String> groupBy,String groupInterval,String groupWait,List<String> muteTimeIntervals,String receiver,String repeatInterval) {
         this.groupBy = groupBy;

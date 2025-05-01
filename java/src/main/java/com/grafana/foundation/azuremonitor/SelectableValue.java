@@ -13,6 +13,8 @@ public class SelectableValue {
     @JsonProperty("value")
     public String value;
     public SelectableValue() {
+        this.label = "";
+        this.value = "";
     }
     public SelectableValue(String label,String value) {
         this.label = label;

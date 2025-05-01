@@ -19,6 +19,7 @@ public class SpecialValueMap {
     public DashboardSpecialValueMapOptions options;
     public SpecialValueMap() {
         this.type = MappingType.SPECIAL_VALUE;
+        this.options = new com.grafana.foundation.dashboard.DashboardSpecialValueMapOptionsBuilder().build();
     }
     public SpecialValueMap(DashboardSpecialValueMapOptions options) {
         this.type = MappingType.SPECIAL_VALUE;

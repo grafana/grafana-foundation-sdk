@@ -19,6 +19,9 @@ public class BuilderQueryEditorOrderByExpression {
     @JsonProperty("type")
     public BuilderQueryEditorExpressionType type;
     public BuilderQueryEditorOrderByExpression() {
+        this.property = new com.grafana.foundation.azuremonitor.BuilderQueryEditorPropertyBuilder().build();
+        this.order = BuilderQueryEditorOrderByOptions.ASC;
+        this.type = BuilderQueryEditorExpressionType.PROPERTY;
     }
     public BuilderQueryEditorOrderByExpression(BuilderQueryEditorProperty property,BuilderQueryEditorOrderByOptions order,BuilderQueryEditorExpressionType type) {
         this.property = property;

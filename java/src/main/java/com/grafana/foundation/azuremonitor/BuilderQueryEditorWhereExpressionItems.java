@@ -19,6 +19,9 @@ public class BuilderQueryEditorWhereExpressionItems {
     @JsonProperty("type")
     public BuilderQueryEditorExpressionType type;
     public BuilderQueryEditorWhereExpressionItems() {
+        this.property = new com.grafana.foundation.azuremonitor.BuilderQueryEditorPropertyBuilder().build();
+        this.operator = new com.grafana.foundation.azuremonitor.BuilderQueryEditorOperatorBuilder().build();
+        this.type = BuilderQueryEditorExpressionType.PROPERTY;
     }
     public BuilderQueryEditorWhereExpressionItems(BuilderQueryEditorProperty property,BuilderQueryEditorOperator operator,BuilderQueryEditorExpressionType type) {
         this.property = property;

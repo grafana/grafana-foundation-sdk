@@ -51,7 +51,8 @@ public class AzureLogsQueryBuilder implements com.grafana.foundation.cog.Builder
     }
     
     public AzureLogsQueryBuilder builderQuery(com.grafana.foundation.cog.Builder<BuilderQueryExpression> builderQuery) {
-        this.internal.builderQuery = builderQuery.build();
+    BuilderQueryExpression builderQueryResource = builderQuery.build();
+        this.internal.builderQuery = builderQueryResource;
         return this;
     }
     

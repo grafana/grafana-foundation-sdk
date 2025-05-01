@@ -15,6 +15,8 @@ public class BuilderQueryEditorProperty {
     @JsonProperty("name")
     public String name;
     public BuilderQueryEditorProperty() {
+        this.type = BuilderQueryEditorPropertyType.NUMBER;
+        this.name = "";
     }
     public BuilderQueryEditorProperty(BuilderQueryEditorPropertyType type,String name) {
         this.type = type;

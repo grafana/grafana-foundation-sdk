@@ -11,6 +11,7 @@ public class ExprTypeClassicConditionsConditionsReducer {
     @JsonProperty("type")
     public String type;
     public ExprTypeClassicConditionsConditionsReducer() {
+        this.type = "";
     }
     public ExprTypeClassicConditionsConditionsReducer(String type) {
         this.type = type;

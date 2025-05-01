@@ -10,7 +10,8 @@ public class ExtendedStatsBuilder implements com.grafana.foundation.cog.Builder<
         this.internal = new ExtendedStats();
     }
     public ExtendedStatsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchExtendedStatsSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchExtendedStatsSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

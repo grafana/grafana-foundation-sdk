@@ -55,17 +55,20 @@ public class TypeReduceBuilder implements com.grafana.foundation.cog.Builder<com
     }
     
     public TypeReduceBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeReduceResultAssertions> resultAssertions) {
-        this.internal.resultAssertions = resultAssertions.build();
+    ExprTypeReduceResultAssertions resultAssertionsResource = resultAssertions.build();
+        this.internal.resultAssertions = resultAssertionsResource;
         return this;
     }
     
     public TypeReduceBuilder settings(com.grafana.foundation.cog.Builder<ExprTypeReduceSettings> settings) {
-        this.internal.settings = settings.build();
+    ExprTypeReduceSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     
     public TypeReduceBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeReduceTimeRange> timeRange) {
-        this.internal.timeRange = timeRange.build();
+    ExprTypeReduceTimeRange timeRangeResource = timeRange.build();
+        this.internal.timeRange = timeRangeResource;
         return this;
     }
     public TypeReduce build() {
