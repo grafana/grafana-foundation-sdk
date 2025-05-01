@@ -34,6 +34,8 @@ public class CanvasElementOptions {
     @JsonProperty("connections")
     public List<CanvasConnection> connections;
     public CanvasElementOptions() {
+        this.name = "";
+        this.type = "";
     }
     public CanvasElementOptions(String name,String type,Object config,Constraint constraint,Placement placement,BackgroundConfig background,LineConfig border,List<CanvasConnection> connections) {
         this.name = name;

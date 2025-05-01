@@ -21,6 +21,7 @@ public class ResourceDimensionConfig {
     @JsonProperty("fixed")
     public String fixed;
     public ResourceDimensionConfig() {
+        this.mode = ResourceDimensionMode.FIXED;
     }
     public ResourceDimensionConfig(ResourceDimensionMode mode,String field,String fixed) {
         this.mode = mode;

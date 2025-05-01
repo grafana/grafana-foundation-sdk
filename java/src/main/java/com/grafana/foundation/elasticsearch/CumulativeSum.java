@@ -27,6 +27,7 @@ public class CumulativeSum {
     public Boolean hide;
     public CumulativeSum() {
         this.type = MetricAggregationType.CUMULATIVE_SUM;
+        this.id = "";
     }
     public CumulativeSum(String pipelineAgg,String field,String id,ElasticsearchCumulativeSumSettings settings,Boolean hide) {
         this.pipelineAgg = pipelineAgg;

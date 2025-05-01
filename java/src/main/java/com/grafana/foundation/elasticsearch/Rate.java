@@ -24,6 +24,7 @@ public class Rate {
     public Boolean hide;
     public Rate() {
         this.type = MetricAggregationType.RATE;
+        this.id = "";
     }
     public Rate(String field,String id,ElasticsearchRateSettings settings,Boolean hide) {
         this.type = MetricAggregationType.RATE;

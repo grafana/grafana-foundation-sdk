@@ -21,6 +21,7 @@ public class Logs {
     public Boolean hide;
     public Logs() {
         this.type = MetricAggregationType.LOGS;
+        this.id = "";
     }
     public Logs(String id,ElasticsearchLogsSettings settings,Boolean hide) {
         this.type = MetricAggregationType.LOGS;

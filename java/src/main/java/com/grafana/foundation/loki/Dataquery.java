@@ -62,6 +62,8 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonProperty("datasource")
     public DataSourceRef datasource;
     public Dataquery() {
+        this.expr = "";
+        this.refId = "";
     }
     public Dataquery(String expr,String legendFormat,Long maxLines,Long resolution,QueryEditorMode editorMode,Boolean range,Boolean instant,String step,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
         this.expr = expr;

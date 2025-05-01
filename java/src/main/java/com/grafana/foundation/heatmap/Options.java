@@ -79,7 +79,9 @@ public class Options {
         this.filterValues = new FilterValueRange(0.0f, 0.0f);
         this.showValue = VisibilityMode.AUTO;
         this.cellGap = 1;
+        this.yAxis = new com.grafana.foundation.heatmap.YAxisConfigBuilder().build();
         this.legend = new HeatmapLegend(true);
+        this.tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
         this.exemplars = new ExemplarConfig("rgba(255,0,255,0.7)");
         this.selectionMode = HeatmapSelectionMode.X;
     }

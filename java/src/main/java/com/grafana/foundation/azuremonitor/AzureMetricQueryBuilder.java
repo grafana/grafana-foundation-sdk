@@ -3,6 +3,7 @@
 package com.grafana.foundation.azuremonitor;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class AzureMetricQueryBuilder implements com.grafana.foundation.cog.Builder<AzureMetricQuery> {
     protected final AzureMetricQuery internal;
@@ -10,8 +11,13 @@ public class AzureMetricQueryBuilder implements com.grafana.foundation.cog.Build
     public AzureMetricQueryBuilder() {
         this.internal = new AzureMetricQuery();
     }
-    public AzureMetricQueryBuilder resources(com.grafana.foundation.cog.Builder<List<AzureMonitorResource>> resources) {
-        this.internal.resources = resources.build();
+    public AzureMetricQueryBuilder resources(List<com.grafana.foundation.cog.Builder<AzureMonitorResource>> resources) {
+        List<AzureMonitorResource> resourcesResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<AzureMonitorResource> r1 : resources) {
+                AzureMonitorResource resourcesDepth1 = r1.build();
+                resourcesResources.add(resourcesDepth1); 
+        }
+        this.internal.resources = resourcesResources;
         return this;
     }
     
@@ -45,8 +51,13 @@ public class AzureMetricQueryBuilder implements com.grafana.foundation.cog.Build
         return this;
     }
     
-    public AzureMetricQueryBuilder dimensionFilters(com.grafana.foundation.cog.Builder<List<AzureMetricDimension>> dimensionFilters) {
-        this.internal.dimensionFilters = dimensionFilters.build();
+    public AzureMetricQueryBuilder dimensionFilters(List<com.grafana.foundation.cog.Builder<AzureMetricDimension>> dimensionFilters) {
+        List<AzureMetricDimension> dimensionFiltersResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<AzureMetricDimension> r1 : dimensionFilters) {
+                AzureMetricDimension dimensionFiltersDepth1 = r1.build();
+                dimensionFiltersResources.add(dimensionFiltersDepth1); 
+        }
+        this.internal.dimensionFilters = dimensionFiltersResources;
         return this;
     }
     

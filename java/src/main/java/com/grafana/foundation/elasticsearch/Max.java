@@ -24,6 +24,7 @@ public class Max {
     public Boolean hide;
     public Max() {
         this.type = MetricAggregationType.MAX;
+        this.id = "";
     }
     public Max(String field,String id,ElasticsearchMaxSettings settings,Boolean hide) {
         this.type = MetricAggregationType.MAX;

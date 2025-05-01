@@ -37,22 +37,26 @@ public class AzureMonitorQueryBuilder implements com.grafana.foundation.cog.Buil
     }
     
     public AzureMonitorQueryBuilder azureMonitor(com.grafana.foundation.cog.Builder<AzureMetricQuery> azureMonitor) {
-        this.internal.azureMonitor = azureMonitor.build();
+    AzureMetricQuery azureMonitorResource = azureMonitor.build();
+        this.internal.azureMonitor = azureMonitorResource;
         return this;
     }
     
     public AzureMonitorQueryBuilder azureLogAnalytics(com.grafana.foundation.cog.Builder<AzureLogsQuery> azureLogAnalytics) {
-        this.internal.azureLogAnalytics = azureLogAnalytics.build();
+    AzureLogsQuery azureLogAnalyticsResource = azureLogAnalytics.build();
+        this.internal.azureLogAnalytics = azureLogAnalyticsResource;
         return this;
     }
     
     public AzureMonitorQueryBuilder azureResourceGraph(com.grafana.foundation.cog.Builder<AzureResourceGraphQuery> azureResourceGraph) {
-        this.internal.azureResourceGraph = azureResourceGraph.build();
+    AzureResourceGraphQuery azureResourceGraphResource = azureResourceGraph.build();
+        this.internal.azureResourceGraph = azureResourceGraphResource;
         return this;
     }
     
     public AzureMonitorQueryBuilder azureTraces(com.grafana.foundation.cog.Builder<AzureTracesQuery> azureTraces) {
-        this.internal.azureTraces = azureTraces.build();
+    AzureTracesQuery azureTracesResource = azureTraces.build();
+        this.internal.azureTraces = azureTracesResource;
         return this;
     }
     

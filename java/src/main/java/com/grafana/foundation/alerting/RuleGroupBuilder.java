@@ -22,8 +22,13 @@ public class RuleGroupBuilder implements com.grafana.foundation.cog.Builder<Rule
         return this;
     }
     
-    public RuleGroupBuilder rules(com.grafana.foundation.cog.Builder<List<Rule>> rules) {
-        this.internal.rules = rules.build();
+    public RuleGroupBuilder rules(List<com.grafana.foundation.cog.Builder<Rule>> rules) {
+        List<Rule> rulesResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<Rule> r1 : rules) {
+                Rule rulesDepth1 = r1.build();
+                rulesResources.add(rulesDepth1); 
+        }
+        this.internal.rules = rulesResources;
         return this;
     }
     
@@ -31,7 +36,8 @@ public class RuleGroupBuilder implements com.grafana.foundation.cog.Builder<Rule
 		if (this.internal.rules == null) {
 			this.internal.rules = new LinkedList<>();
 		}
-        this.internal.rules.add(rule.build());
+    Rule ruleResource = rule.build();
+        this.internal.rules.add(ruleResource);
         return this;
     }
     
