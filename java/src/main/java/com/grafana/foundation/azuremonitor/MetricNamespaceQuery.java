@@ -25,6 +25,9 @@ public class MetricNamespaceQuery {
     @JsonProperty("resourceName")
     public String resourceName;
     public MetricNamespaceQuery() {
+        this.kind = "";
+        this.subscription = "";
+        this.resourceGroup = "";
     }
     public MetricNamespaceQuery(String rawQuery,String kind,String subscription,String resourceGroup,String metricNamespace,String resourceName) {
         this.rawQuery = rawQuery;

@@ -68,7 +68,8 @@ public class YAxisConfigBuilder implements com.grafana.foundation.cog.Builder<YA
     }
     
     public YAxisConfigBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
-        this.internal.scaleDistribution = scaleDistribution.build();
+    ScaleDistributionConfig scaleDistributionResource = scaleDistribution.build();
+        this.internal.scaleDistribution = scaleDistributionResource;
         return this;
     }
     

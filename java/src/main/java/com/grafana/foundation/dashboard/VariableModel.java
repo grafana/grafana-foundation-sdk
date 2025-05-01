@@ -96,6 +96,9 @@ public class VariableModel {
     public Integer autoCount;
     public VariableModel() {
         this.id = "00000000-0000-0000-0000-000000000000";
+        this.type = VariableType.QUERY;
+        this.name = "";
+        this.hide = VariableHide.DONT_HIDE;
         this.skipUrlSync = false;
         this.multi = false;
         this.includeAll = false;

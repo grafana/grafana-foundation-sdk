@@ -15,7 +15,8 @@ public class TopMetricsBuilder implements com.grafana.foundation.cog.Builder<Top
     }
     
     public TopMetricsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchTopMetricsSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchTopMetricsSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

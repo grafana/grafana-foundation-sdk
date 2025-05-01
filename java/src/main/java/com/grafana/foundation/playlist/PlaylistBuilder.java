@@ -3,6 +3,7 @@
 package com.grafana.foundation.playlist;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class PlaylistBuilder implements com.grafana.foundation.cog.Builder<Playlist> {
     protected final Playlist internal;
@@ -25,8 +26,13 @@ public class PlaylistBuilder implements com.grafana.foundation.cog.Builder<Playl
         return this;
     }
     
-    public PlaylistBuilder items(com.grafana.foundation.cog.Builder<List<PlaylistItem>> items) {
-        this.internal.items = items.build();
+    public PlaylistBuilder items(List<com.grafana.foundation.cog.Builder<PlaylistItem>> items) {
+        List<PlaylistItem> itemsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<PlaylistItem> r1 : items) {
+                PlaylistItem itemsDepth1 = r1.build();
+                itemsResources.add(itemsDepth1); 
+        }
+        this.internal.items = itemsResources;
         return this;
     }
     public Playlist build() {

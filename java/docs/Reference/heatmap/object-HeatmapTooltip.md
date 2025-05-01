@@ -1,0 +1,18 @@
+---
+title: <span class="badge object-type-class"></span> HeatmapTooltip
+---
+# <span class="badge object-type-class"></span> HeatmapTooltip
+
+Controls tooltip options
+
+## Definition
+
+```java
+public class HeatmapTooltip {
+  public Boolean show;
+  public Boolean yHistogram;
+}
+```
+## See also
+
+ * <span class="badge builder"></span> [HeatmapTooltipBuilder](./builder-HeatmapTooltipBuilder.md)

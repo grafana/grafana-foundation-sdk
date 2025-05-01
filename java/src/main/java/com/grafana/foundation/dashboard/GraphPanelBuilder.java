@@ -11,7 +11,8 @@ public class GraphPanelBuilder implements com.grafana.foundation.cog.Builder<Gra
         this.internal.type = "graph";
     }
     public GraphPanelBuilder legend(com.grafana.foundation.cog.Builder<DashboardGraphPanelLegend> legend) {
-        this.internal.legend = legend.build();
+    DashboardGraphPanelLegend legendResource = legend.build();
+        this.internal.legend = legendResource;
         return this;
     }
     public GraphPanel build() {

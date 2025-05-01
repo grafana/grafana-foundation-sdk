@@ -22,6 +22,8 @@ public class PipelineMetricAggregationWithMultipleBucketPaths {
     @JsonProperty("hide")
     public Boolean hide;
     public PipelineMetricAggregationWithMultipleBucketPaths() {
+        this.type = MetricAggregationType.COUNT;
+        this.id = "";
     }
     public PipelineMetricAggregationWithMultipleBucketPaths(List<PipelineVariable> pipelineVariables,MetricAggregationType type,String id,Boolean hide) {
         this.pipelineVariables = pipelineVariables;

@@ -18,6 +18,7 @@ public class GraphPanel {
     @JsonProperty("legend")
     public DashboardGraphPanelLegend legend;
     public GraphPanel() {
+        this.type = "";
     }
     public GraphPanel(String type,DashboardGraphPanelLegend legend) {
         this.type = type;

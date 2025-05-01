@@ -18,6 +18,9 @@ public class Options {
     @JsonProperty("expandAll")
     public Boolean expandAll;
     public Options() {
+        this.labels = "";
+        this.alertmanager = "";
+        this.expandAll = false;
     }
     public Options(String labels,String alertmanager,Boolean expandAll) {
         this.labels = labels;

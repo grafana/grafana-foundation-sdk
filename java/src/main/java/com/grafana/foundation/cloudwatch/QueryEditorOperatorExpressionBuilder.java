@@ -10,12 +10,14 @@ public class QueryEditorOperatorExpressionBuilder implements com.grafana.foundat
         this.internal = new QueryEditorOperatorExpression();
     }
     public QueryEditorOperatorExpressionBuilder property(com.grafana.foundation.cog.Builder<QueryEditorProperty> property) {
-        this.internal.property = property.build();
+    QueryEditorProperty propertyResource = property.build();
+        this.internal.property = propertyResource;
         return this;
     }
     
     public QueryEditorOperatorExpressionBuilder operator(com.grafana.foundation.cog.Builder<QueryEditorOperator> operator) {
-        this.internal.operator = operator.build();
+    QueryEditorOperator operatorResource = operator.build();
+        this.internal.operator = operatorResource;
         return this;
     }
     public QueryEditorOperatorExpression build() {

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
@@ -20,6 +21,8 @@ public class ExprTypeThresholdConditionsEvaluator {
     @JsonProperty("type")
     public ExprTypeThresholdConditionsEvaluatorType type;
     public ExprTypeThresholdConditionsEvaluator() {
+        this.params = new LinkedList<>();
+        this.type = ExprTypeThresholdConditionsEvaluatorType.GT;
     }
     public ExprTypeThresholdConditionsEvaluator(List<Double> params,ExprTypeThresholdConditionsEvaluatorType type) {
         this.params = params;

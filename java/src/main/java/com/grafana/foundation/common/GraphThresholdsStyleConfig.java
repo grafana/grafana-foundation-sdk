@@ -14,6 +14,7 @@ public class GraphThresholdsStyleConfig {
     @JsonProperty("mode")
     public GraphTresholdsStyleMode mode;
     public GraphThresholdsStyleConfig() {
+        this.mode = GraphTresholdsStyleMode.OFF;
     }
     public GraphThresholdsStyleConfig(GraphTresholdsStyleMode mode) {
         this.mode = mode;

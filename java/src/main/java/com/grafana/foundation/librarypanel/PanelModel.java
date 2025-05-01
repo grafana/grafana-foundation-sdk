@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
@@ -111,7 +112,11 @@ public class PanelModel {
     @JsonProperty("fieldConfig")
     public FieldConfigSource fieldConfig;
     public PanelModel() {
+        this.type = "";
         this.transparent = false;
+        this.transformations = new LinkedList<>();
+        this.options = new Object();
+        this.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
     }
     public PanelModel(String type,String pluginVersion,List<String> tags,List<Dataquery> targets,String title,String description,Boolean transparent,DataSourceRef datasource,List<DashboardLink> links,String repeat,PanelModelRepeatDirection repeatDirection,Long repeatPanelId,Double maxDataPoints,List<DataTransformerConfig> transformations,String interval,String timeFrom,String timeShift,Object options,FieldConfigSource fieldConfig) {
         this.type = type;

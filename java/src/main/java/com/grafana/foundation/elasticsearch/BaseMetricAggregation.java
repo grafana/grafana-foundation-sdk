@@ -18,6 +18,8 @@ public class BaseMetricAggregation {
     @JsonProperty("hide")
     public Boolean hide;
     public BaseMetricAggregation() {
+        this.type = MetricAggregationType.COUNT;
+        this.id = "";
     }
     public BaseMetricAggregation(MetricAggregationType type,String id,Boolean hide) {
         this.type = type;

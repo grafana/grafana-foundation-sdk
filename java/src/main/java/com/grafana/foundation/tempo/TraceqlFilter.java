@@ -33,6 +33,7 @@ public class TraceqlFilter {
     @JsonProperty("scope")
     public TraceqlSearchScope scope;
     public TraceqlFilter() {
+        this.id = "";
     }
     public TraceqlFilter(String id,String tag,String operator,StringOrArrayOfString value,String valueType,TraceqlSearchScope scope) {
         this.id = id;

@@ -4,6 +4,7 @@ package com.grafana.foundation.tempo;
 
 import com.grafana.foundation.dashboard.DataSourceRef;
 import java.util.List;
+import java.util.LinkedList;
 
 public class TempoQueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
     protected final TempoQuery internal;
@@ -76,8 +77,13 @@ public class TempoQueryBuilder implements com.grafana.foundation.cog.Builder<com
         return this;
     }
     
-    public TempoQueryBuilder filters(com.grafana.foundation.cog.Builder<List<TraceqlFilter>> filters) {
-        this.internal.filters = filters.build();
+    public TempoQueryBuilder filters(List<com.grafana.foundation.cog.Builder<TraceqlFilter>> filters) {
+        List<TraceqlFilter> filtersResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<TraceqlFilter> r1 : filters) {
+                TraceqlFilter filtersDepth1 = r1.build();
+                filtersResources.add(filtersDepth1); 
+        }
+        this.internal.filters = filtersResources;
         return this;
     }
     public TempoQuery build() {

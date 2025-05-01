@@ -18,6 +18,7 @@ public class HeatmapTooltip {
     @JsonProperty("yHistogram")
     public Boolean yHistogram;
     public HeatmapTooltip() {
+        this.show = false;
     }
     public HeatmapTooltip(Boolean show,Boolean yHistogram) {
         this.show = show;

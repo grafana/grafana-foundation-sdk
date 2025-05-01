@@ -22,6 +22,8 @@ public class Folder {
     @JsonProperty("description")
     public String description;
     public Folder() {
+        this.uid = "";
+        this.title = "";
     }
     public Folder(String uid,String title,String description) {
         this.uid = uid;

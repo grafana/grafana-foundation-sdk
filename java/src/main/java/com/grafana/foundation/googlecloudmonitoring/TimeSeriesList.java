@@ -66,6 +66,8 @@ public class TimeSeriesList {
     @JsonProperty("text")
     public String text;
     public TimeSeriesList() {
+        this.projectName = "";
+        this.crossSeriesReducer = "";
     }
     public TimeSeriesList(String projectName,String crossSeriesReducer,String alignmentPeriod,String perSeriesAligner,List<String> groupBys,List<String> filters,String view,String secondaryCrossSeriesReducer,String secondaryAlignmentPeriod,String secondaryPerSeriesAligner,List<String> secondaryGroupBys,PreprocessorType preprocessor,String title,String text) {
         this.projectName = projectName;
