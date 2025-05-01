@@ -45,6 +45,12 @@ public class SLOQuery {
     @JsonProperty("lookbackPeriod")
     public String lookbackPeriod;
     public SLOQuery() {
+        this.projectName = "";
+        this.selectorName = "";
+        this.serviceId = "";
+        this.serviceName = "";
+        this.sloId = "";
+        this.sloName = "";
     }
     public SLOQuery(String projectName,String perSeriesAligner,String alignmentPeriod,String selectorName,String serviceId,String serviceName,String sloId,String sloName,Double goal,String lookbackPeriod) {
         this.projectName = projectName;

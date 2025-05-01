@@ -78,6 +78,7 @@ public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Da
     @JsonProperty("query")
     public String query;
     public AzureMonitorQuery() {
+        this.refId = "";
     }
     public AzureMonitorQuery(String refId,Boolean hide,String queryType,String subscription,List<String> subscriptions,AzureMetricQuery azureMonitor,AzureLogsQuery azureLogAnalytics,AzureResourceGraphQuery azureResourceGraph,AzureTracesQuery azureTraces,GrafanaTemplateVariableQuery grafanaTemplateVariableFn,String resourceGroup,String namespace,String resource,String region,DataSourceRef datasource,String query) {
         this.refId = refId;

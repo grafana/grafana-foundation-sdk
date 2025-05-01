@@ -20,7 +20,8 @@ public class ManifestBuilder implements com.grafana.foundation.cog.Builder<Manif
     }
     
     public ManifestBuilder metadata(com.grafana.foundation.cog.Builder<Metadata> metadata) {
-        this.internal.metadata = metadata.build();
+    Metadata metadataResource = metadata.build();
+        this.internal.metadata = metadataResource;
         return this;
     }
     

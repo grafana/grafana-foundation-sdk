@@ -29,6 +29,7 @@ public class MovingAverage {
     public Boolean hide;
     public MovingAverage() {
         this.type = MetricAggregationType.MOVING_AVG;
+        this.id = "";
     }
     public MovingAverage(String pipelineAgg,String field,String id,Map<String, Object> settings,Boolean hide) {
         this.pipelineAgg = pipelineAgg;

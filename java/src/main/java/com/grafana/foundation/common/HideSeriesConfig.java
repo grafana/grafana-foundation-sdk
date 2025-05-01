@@ -16,6 +16,9 @@ public class HideSeriesConfig {
     @JsonProperty("viz")
     public Boolean viz;
     public HideSeriesConfig() {
+        this.tooltip = false;
+        this.legend = false;
+        this.viz = false;
     }
     public HideSeriesConfig(Boolean tooltip,Boolean legend,Boolean viz) {
         this.tooltip = tooltip;

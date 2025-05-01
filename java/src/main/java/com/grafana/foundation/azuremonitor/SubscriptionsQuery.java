@@ -15,6 +15,7 @@ public class SubscriptionsQuery {
     @JsonProperty("kind")
     public String kind;
     public SubscriptionsQuery() {
+        this.kind = "";
     }
     public SubscriptionsQuery(String rawQuery,String kind) {
         this.rawQuery = rawQuery;

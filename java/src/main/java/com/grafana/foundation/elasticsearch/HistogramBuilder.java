@@ -20,7 +20,8 @@ public class HistogramBuilder implements com.grafana.foundation.cog.Builder<Hist
     }
     
     public HistogramBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchHistogramSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchHistogramSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     public Histogram build() {

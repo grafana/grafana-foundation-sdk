@@ -79,6 +79,12 @@ public class TypeResample implements com.grafana.foundation.cog.variants.Dataque
     @JsonProperty("window")
     public String window;
     public TypeResample() {
+        this.downsampler = TypeResampleDownsampler.SUM;
+        this.expression = "";
+        this.refId = "";
+        this.type = "";
+        this.upsampler = TypeResampleUpsampler.PAD;
+        this.window = "";
     }
     public TypeResample(DataSourceRef datasource,TypeResampleDownsampler downsampler,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeResampleResultAssertions resultAssertions,ExprTypeResampleTimeRange timeRange,String type,TypeResampleUpsampler upsampler,String window) {
         this.datasource = datasource;

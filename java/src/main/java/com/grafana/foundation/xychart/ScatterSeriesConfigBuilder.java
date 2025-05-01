@@ -39,17 +39,20 @@ public class ScatterSeriesConfigBuilder implements com.grafana.foundation.cog.Bu
     }
     
     public ScatterSeriesConfigBuilder pointSize(com.grafana.foundation.cog.Builder<ScaleDimensionConfig> pointSize) {
-        this.internal.pointSize = pointSize.build();
+    ScaleDimensionConfig pointSizeResource = pointSize.build();
+        this.internal.pointSize = pointSizeResource;
         return this;
     }
     
     public ScatterSeriesConfigBuilder pointColor(com.grafana.foundation.cog.Builder<ColorDimensionConfig> pointColor) {
-        this.internal.pointColor = pointColor.build();
+    ColorDimensionConfig pointColorResource = pointColor.build();
+        this.internal.pointColor = pointColorResource;
         return this;
     }
     
     public ScatterSeriesConfigBuilder lineColor(com.grafana.foundation.cog.Builder<ColorDimensionConfig> lineColor) {
-        this.internal.lineColor = lineColor.build();
+    ColorDimensionConfig lineColorResource = lineColor.build();
+        this.internal.lineColor = lineColorResource;
         return this;
     }
     
@@ -62,7 +65,8 @@ public class ScatterSeriesConfigBuilder implements com.grafana.foundation.cog.Bu
     }
     
     public ScatterSeriesConfigBuilder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle) {
-        this.internal.lineStyle = lineStyle.build();
+    LineStyle lineStyleResource = lineStyle.build();
+        this.internal.lineStyle = lineStyleResource;
         return this;
     }
     
@@ -72,7 +76,8 @@ public class ScatterSeriesConfigBuilder implements com.grafana.foundation.cog.Bu
     }
     
     public ScatterSeriesConfigBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
-        this.internal.hideFrom = hideFrom.build();
+    HideSeriesConfig hideFromResource = hideFrom.build();
+        this.internal.hideFrom = hideFromResource;
         return this;
     }
     
@@ -112,7 +117,8 @@ public class ScatterSeriesConfigBuilder implements com.grafana.foundation.cog.Bu
     }
     
     public ScatterSeriesConfigBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
-        this.internal.scaleDistribution = scaleDistribution.build();
+    ScaleDistributionConfig scaleDistributionResource = scaleDistribution.build();
+        this.internal.scaleDistribution = scaleDistributionResource;
         return this;
     }
     
@@ -127,7 +133,8 @@ public class ScatterSeriesConfigBuilder implements com.grafana.foundation.cog.Bu
     }
     
     public ScatterSeriesConfigBuilder labelValue(com.grafana.foundation.cog.Builder<TextDimensionConfig> labelValue) {
-        this.internal.labelValue = labelValue.build();
+    TextDimensionConfig labelValueResource = labelValue.build();
+        this.internal.labelValue = labelValueResource;
         return this;
     }
     

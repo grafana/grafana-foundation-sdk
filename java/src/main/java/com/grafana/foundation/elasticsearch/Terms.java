@@ -20,6 +20,7 @@ public class Terms {
     @JsonProperty("settings")
     public ElasticsearchTermsSettings settings;
     public Terms() {
+        this.id = "";
         this.type = BucketAggregationType.TERMS;
     }
     public Terms(String field,String id,ElasticsearchTermsSettings settings) {

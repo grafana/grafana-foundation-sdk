@@ -41,7 +41,8 @@ public class RowBuilder implements com.grafana.foundation.cog.Builder<RowPanel> 
 		if (this.internal.panels == null) {
 			this.internal.panels = new LinkedList<>();
 		}
-        this.internal.panels.add(panel.build());
+    Panel panelResource = panel.build();
+        this.internal.panels.add(panelResource);
         this.internal.collapsed = true;
         return this;
     }

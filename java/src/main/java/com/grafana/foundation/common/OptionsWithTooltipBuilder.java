@@ -10,7 +10,8 @@ public class OptionsWithTooltipBuilder implements com.grafana.foundation.cog.Bui
         this.internal = new OptionsWithTooltip();
     }
     public OptionsWithTooltipBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
-        this.internal.tooltip = tooltip.build();
+    VizTooltipOptions tooltipResource = tooltip.build();
+        this.internal.tooltip = tooltipResource;
         return this;
     }
     public OptionsWithTooltip build() {

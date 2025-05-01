@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
@@ -22,6 +23,9 @@ public class AzureTracesFilter {
     @JsonProperty("filters")
     public List<String> filters;
     public AzureTracesFilter() {
+        this.property = "";
+        this.operation = "";
+        this.filters = new LinkedList<>();
     }
     public AzureTracesFilter(String property,String operation,List<String> filters) {
         this.property = property;
