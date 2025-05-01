@@ -13,6 +13,8 @@ public class ResourceRef {
     @JsonProperty("name")
     public String name;
     public ResourceRef() {
+        this.kind = "";
+        this.name = "";
     }
     public ResourceRef(String kind,String name) {
         this.kind = kind;

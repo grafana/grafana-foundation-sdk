@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
@@ -31,6 +32,10 @@ public class AnnotationTarget {
     @JsonProperty("type")
     public String type;
     public AnnotationTarget() {
+        this.limit = 0L;
+        this.matchAny = false;
+        this.tags = new LinkedList<>();
+        this.type = "";
     }
     public AnnotationTarget(Long limit,Boolean matchAny,List<String> tags,String type) {
         this.limit = limit;

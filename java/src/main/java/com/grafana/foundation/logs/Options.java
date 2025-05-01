@@ -32,6 +32,15 @@ public class Options {
     @JsonProperty("dedupStrategy")
     public LogsDedupStrategy dedupStrategy;
     public Options() {
+        this.showLabels = false;
+        this.showCommonLabels = false;
+        this.showTime = false;
+        this.showLogContextToggle = false;
+        this.wrapLogMessage = false;
+        this.prettifyLogMessage = false;
+        this.enableLogDetails = false;
+        this.sortOrder = LogsSortOrder.DESCENDING;
+        this.dedupStrategy = LogsDedupStrategy.NONE;
     }
     public Options(Boolean showLabels,Boolean showCommonLabels,Boolean showTime,Boolean showLogContextToggle,Boolean wrapLogMessage,Boolean prettifyLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy) {
         this.showLabels = showLabels;

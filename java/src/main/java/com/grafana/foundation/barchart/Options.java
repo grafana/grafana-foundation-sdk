@@ -73,11 +73,14 @@ public class Options {
         this.orientation = VizOrientation.AUTO;
         this.barRadius = 0.0;
         this.xTickLabelRotation = 0;
+        this.xTickLabelMaxLength = 0;
         this.xTickLabelSpacing = 0;
         this.stacking = StackingMode.NONE;
         this.showValue = VisibilityMode.AUTO;
         this.barWidth = 1.0;
         this.groupWidth = 0.7;
+        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
         this.fullHighlight = false;
     }
     public Options(String xField,String colorByField,VizOrientation orientation,Double barRadius,Integer xTickLabelRotation,Integer xTickLabelMaxLength,Integer xTickLabelSpacing,StackingMode stacking,VisibilityMode showValue,Double barWidth,Double groupWidth,VizLegendOptions legend,VizTooltipOptions tooltip,VizTextDisplayOptions text,Boolean fullHighlight) {

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
@@ -22,6 +23,9 @@ public class CanvasOptionsRoot {
     @JsonProperty("elements")
     public List<CanvasElementOptions> elements;
     public CanvasOptionsRoot() {
+        this.name = "";
+        this.type = "";
+        this.elements = new LinkedList<>();
     }
     public CanvasOptionsRoot(String name,String type,List<CanvasElementOptions> elements) {
         this.name = name;

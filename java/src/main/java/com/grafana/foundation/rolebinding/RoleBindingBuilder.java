@@ -15,7 +15,8 @@ public class RoleBindingBuilder implements com.grafana.foundation.cog.Builder<Ro
     }
     
     public RoleBindingBuilder subject(com.grafana.foundation.cog.Builder<RoleBindingSubject> subject) {
-        this.internal.subject = subject.build();
+    RoleBindingSubject subjectResource = subject.build();
+        this.internal.subject = subjectResource;
         return this;
     }
     public RoleBinding build() {

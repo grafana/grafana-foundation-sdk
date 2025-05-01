@@ -26,6 +26,13 @@ public class LibraryElementDTOMeta {
     @JsonProperty("updatedBy")
     public LibraryElementDTOMetaUser updatedBy;
     public LibraryElementDTOMeta() {
+        this.folderName = "";
+        this.folderUid = "";
+        this.connectedDashboards = 0L;
+        this.created = "";
+        this.updated = "";
+        this.createdBy = new com.grafana.foundation.librarypanel.LibraryElementDTOMetaUserBuilder().build();
+        this.updatedBy = new com.grafana.foundation.librarypanel.LibraryElementDTOMetaUserBuilder().build();
     }
     public LibraryElementDTOMeta(String folderName,String folderUid,Long connectedDashboards,String created,String updated,LibraryElementDTOMetaUser createdBy,LibraryElementDTOMetaUser updatedBy) {
         this.folderName = folderName;
