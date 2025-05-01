@@ -23,6 +23,11 @@ public class MetricNamesQuery {
     @JsonProperty("metricNamespace")
     public String metricNamespace;
     public MetricNamesQuery() {
+        this.kind = "";
+        this.subscription = "";
+        this.resourceGroup = "";
+        this.resourceName = "";
+        this.metricNamespace = "";
     }
     public MetricNamesQuery(String rawQuery,String kind,String subscription,String resourceGroup,String resourceName,String metricNamespace) {
         this.rawQuery = rawQuery;

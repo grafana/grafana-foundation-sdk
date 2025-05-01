@@ -81,7 +81,8 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
     }
     
     public DataqueryBuilder sql(com.grafana.foundation.cog.Builder<SQLExpression> sql) {
-        this.internal.sql = sql.build();
+    SQLExpression sqlResource = sql.build();
+        this.internal.sql = sqlResource;
         return this;
     }
     

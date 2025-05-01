@@ -70,6 +70,15 @@ public class Options {
     @JsonProperty("displayedFields")
     public List<String> displayedFields;
     public Options() {
+        this.showLabels = false;
+        this.showCommonLabels = false;
+        this.showTime = false;
+        this.showLogContextToggle = false;
+        this.wrapLogMessage = false;
+        this.prettifyLogMessage = false;
+        this.enableLogDetails = false;
+        this.sortOrder = LogsSortOrder.DESCENDING;
+        this.dedupStrategy = LogsDedupStrategy.NONE;
     }
     public Options(Boolean showLabels,Boolean showCommonLabels,Boolean showTime,Boolean showLogContextToggle,Boolean wrapLogMessage,Boolean prettifyLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy,Boolean enableInfiniteScrolling,Object onClickFilterLabel,Object onClickFilterOutLabel,Object isFilterLabelActive,Object onClickFilterString,Object onClickFilterOutString,Object onClickShowField,Object onClickHideField,Object logRowMenuIconsBefore,Object logRowMenuIconsAfter,Object onNewLogsReceived,List<String> displayedFields) {
         this.showLabels = showLabels;

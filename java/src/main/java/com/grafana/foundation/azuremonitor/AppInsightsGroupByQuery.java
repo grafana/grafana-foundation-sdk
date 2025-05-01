@@ -17,6 +17,8 @@ public class AppInsightsGroupByQuery {
     @JsonProperty("metricName")
     public String metricName;
     public AppInsightsGroupByQuery() {
+        this.kind = "";
+        this.metricName = "";
     }
     public AppInsightsGroupByQuery(String rawQuery,String kind,String metricName) {
         this.rawQuery = rawQuery;

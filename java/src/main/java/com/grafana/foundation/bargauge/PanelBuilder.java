@@ -39,8 +39,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder targets(com.grafana.foundation.cog.Builder<List<Dataquery>> targets) {
-        this.internal.targets = targets.build();
+    public PanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
+        List<Dataquery> targetsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<Dataquery> r1 : targets) {
+                Dataquery targetsDepth1 = r1.build();
+                targetsResources.add(targetsDepth1); 
+        }
+        this.internal.targets = targetsResources;
         return this;
     }
     
@@ -48,7 +53,8 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		if (this.internal.targets == null) {
 			this.internal.targets = new LinkedList<>();
 		}
-        this.internal.targets.add(target.build());
+    Dataquery targetResource = target.build();
+        this.internal.targets.add(targetResource);
         return this;
     }
     
@@ -102,8 +108,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder links(com.grafana.foundation.cog.Builder<List<DashboardLink>> links) {
-        this.internal.links = links.build();
+    public PanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+        List<DashboardLink> linksResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<DashboardLink> r1 : links) {
+                DashboardLink linksDepth1 = r1.build();
+                linksResources.add(linksDepth1); 
+        }
+        this.internal.links = linksResources;
         return this;
     }
     
@@ -248,7 +259,8 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-        this.internal.fieldConfig.defaults.thresholds = thresholds.build();
+    ThresholdsConfig thresholdsResource = thresholds.build();
+        this.internal.fieldConfig.defaults.thresholds = thresholdsResource;
         return this;
     }
     
@@ -259,18 +271,24 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-        this.internal.fieldConfig.defaults.color = color.build();
+    FieldColor colorResource = color.build();
+        this.internal.fieldConfig.defaults.color = colorResource;
         return this;
     }
     
-    public PanelBuilder dataLinks(com.grafana.foundation.cog.Builder<List<DashboardLink>> links) {
+    public PanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
 		if (this.internal.fieldConfig.defaults == null) {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-        this.internal.fieldConfig.defaults.links = links.build();
+        List<DashboardLink> linksResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<DashboardLink> r1 : links) {
+                DashboardLink linksDepth1 = r1.build();
+                linksResources.add(linksDepth1); 
+        }
+        this.internal.fieldConfig.defaults.links = linksResources;
         return this;
     }
     
@@ -285,11 +303,16 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrides(com.grafana.foundation.cog.Builder<List<DashboardFieldConfigSourceOverrides>> overrides) {
+    public PanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
-        this.internal.fieldConfig.overrides = overrides.build();
+        List<DashboardFieldConfigSourceOverrides> overridesResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> r1 : overrides) {
+                DashboardFieldConfigSourceOverrides overridesDepth1 = r1.build();
+                overridesResources.add(overridesDepth1); 
+        }
+        this.internal.fieldConfig.overrides = overridesResources;
         return this;
     }
     
@@ -300,7 +323,8 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		if (this.internal.fieldConfig.overrides == null) {
 			this.internal.fieldConfig.overrides = new LinkedList<>();
 		}
-        this.internal.fieldConfig.overrides.add(override.build());
+    DashboardFieldConfigSourceOverrides overrideResource = override.build();
+        this.internal.fieldConfig.overrides.add(overrideResource);
         return this;
     }
     
@@ -432,7 +456,8 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.bargauge.Options();
 		}
-        ((Options) this.internal.options).legend = legend.build();
+    VizLegendOptions legendResource = legend.build();
+        ((Options) this.internal.options).legend = legendResource;
         return this;
     }
     
@@ -440,7 +465,8 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.bargauge.Options();
 		}
-        ((Options) this.internal.options).reduceOptions = reduceOptions.build();
+    ReduceDataOptions reduceOptionsResource = reduceOptions.build();
+        ((Options) this.internal.options).reduceOptions = reduceOptionsResource;
         return this;
     }
     
@@ -448,7 +474,8 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.bargauge.Options();
 		}
-        ((Options) this.internal.options).text = text.build();
+    VizTextDisplayOptions textResource = text.build();
+        ((Options) this.internal.options).text = textResource;
         return this;
     }
     

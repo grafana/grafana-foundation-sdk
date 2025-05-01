@@ -19,6 +19,7 @@ public class RegexMap {
     public DashboardRegexMapOptions options;
     public RegexMap() {
         this.type = MappingType.REGEX_TO_TEXT;
+        this.options = new com.grafana.foundation.dashboard.DashboardRegexMapOptionsBuilder().build();
     }
     public RegexMap(DashboardRegexMapOptions options) {
         this.type = MappingType.REGEX_TO_TEXT;

@@ -3,6 +3,7 @@
 package com.grafana.foundation.tempo;
 
 import java.util.List;
+import java.util.LinkedList;
 import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class TempoQueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
@@ -76,13 +77,23 @@ public class TempoQueryBuilder implements com.grafana.foundation.cog.Builder<com
         return this;
     }
     
-    public TempoQueryBuilder filters(com.grafana.foundation.cog.Builder<List<TraceqlFilter>> filters) {
-        this.internal.filters = filters.build();
+    public TempoQueryBuilder filters(List<com.grafana.foundation.cog.Builder<TraceqlFilter>> filters) {
+        List<TraceqlFilter> filtersResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<TraceqlFilter> r1 : filters) {
+                TraceqlFilter filtersDepth1 = r1.build();
+                filtersResources.add(filtersDepth1); 
+        }
+        this.internal.filters = filtersResources;
         return this;
     }
     
-    public TempoQueryBuilder groupBy(com.grafana.foundation.cog.Builder<List<TraceqlFilter>> groupBy) {
-        this.internal.groupBy = groupBy.build();
+    public TempoQueryBuilder groupBy(List<com.grafana.foundation.cog.Builder<TraceqlFilter>> groupBy) {
+        List<TraceqlFilter> groupByResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<TraceqlFilter> r1 : groupBy) {
+                TraceqlFilter groupByDepth1 = r1.build();
+                groupByResources.add(groupByDepth1); 
+        }
+        this.internal.groupBy = groupByResources;
         return this;
     }
     

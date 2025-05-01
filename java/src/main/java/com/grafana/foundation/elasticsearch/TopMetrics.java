@@ -21,6 +21,7 @@ public class TopMetrics {
     public Boolean hide;
     public TopMetrics() {
         this.type = MetricAggregationType.TOP_METRICS;
+        this.id = "";
     }
     public TopMetrics(String id,ElasticsearchTopMetricsSettings settings,Boolean hide) {
         this.type = MetricAggregationType.TOP_METRICS;

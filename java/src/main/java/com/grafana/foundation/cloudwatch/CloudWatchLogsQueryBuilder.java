@@ -3,6 +3,7 @@
 package com.grafana.foundation.cloudwatch;
 
 import java.util.List;
+import java.util.LinkedList;
 import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class CloudWatchLogsQueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
@@ -36,8 +37,13 @@ public class CloudWatchLogsQueryBuilder implements com.grafana.foundation.cog.Bu
         return this;
     }
     
-    public CloudWatchLogsQueryBuilder logGroups(com.grafana.foundation.cog.Builder<List<LogGroup>> logGroups) {
-        this.internal.logGroups = logGroups.build();
+    public CloudWatchLogsQueryBuilder logGroups(List<com.grafana.foundation.cog.Builder<LogGroup>> logGroups) {
+        List<LogGroup> logGroupsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<LogGroup> r1 : logGroups) {
+                LogGroup logGroupsDepth1 = r1.build();
+                logGroupsResources.add(logGroupsDepth1); 
+        }
+        this.internal.logGroups = logGroupsResources;
         return this;
     }
     

@@ -7,6 +7,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import java.util.Map;
 import com.grafana.foundation.dashboard.DataSourceRef;
 import java.util.List;
@@ -56,7 +58,7 @@ public class CloudWatchAnnotationQuery implements com.grafana.foundation.cog.var
     @JsonProperty("metricName")
     public String metricName;
     // The dimensions of the metric
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("dimensions")
     public Map<String, StringOrArrayOfString> dimensions;
     // Only show metrics that exactly match all defined dimension names.
@@ -94,6 +96,9 @@ public class CloudWatchAnnotationQuery implements com.grafana.foundation.cog.var
     public List<String> statistics;
     public CloudWatchAnnotationQuery() {
         this.queryMode = CloudWatchQueryMode.ANNOTATIONS;
+        this.refId = "";
+        this.region = "";
+        this.namespace = "";
     }
     public CloudWatchAnnotationQuery(CloudWatchQueryMode queryMode,Boolean prefixMatching,String actionPrefix,String refId,Boolean hide,String queryType,String region,String namespace,String metricName,Map<String, StringOrArrayOfString> dimensions,Boolean matchExact,String period,String accountId,String statistic,String alarmNamePrefix,DataSourceRef datasource,List<String> statistics) {
         this.queryMode = queryMode;

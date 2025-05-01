@@ -10,32 +10,38 @@ public class XYSeriesConfigBuilder implements com.grafana.foundation.cog.Builder
         this.internal = new XYSeriesConfig();
     }
     public XYSeriesConfigBuilder name(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigName> name) {
-        this.internal.name = name.build();
+    XychartXYSeriesConfigName nameResource = name.build();
+        this.internal.name = nameResource;
         return this;
     }
     
     public XYSeriesConfigBuilder frame(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigFrame> frame) {
-        this.internal.frame = frame.build();
+    XychartXYSeriesConfigFrame frameResource = frame.build();
+        this.internal.frame = frameResource;
         return this;
     }
     
     public XYSeriesConfigBuilder x(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigX> x) {
-        this.internal.x = x.build();
+    XychartXYSeriesConfigX xResource = x.build();
+        this.internal.x = xResource;
         return this;
     }
     
     public XYSeriesConfigBuilder y(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigY> y) {
-        this.internal.y = y.build();
+    XychartXYSeriesConfigY yResource = y.build();
+        this.internal.y = yResource;
         return this;
     }
     
     public XYSeriesConfigBuilder color(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigColor> color) {
-        this.internal.color = color.build();
+    XychartXYSeriesConfigColor colorResource = color.build();
+        this.internal.color = colorResource;
         return this;
     }
     
     public XYSeriesConfigBuilder size(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigSize> size) {
-        this.internal.size = size.build();
+    XychartXYSeriesConfigSize sizeResource = size.build();
+        this.internal.size = sizeResource;
         return this;
     }
     public XYSeriesConfig build() {

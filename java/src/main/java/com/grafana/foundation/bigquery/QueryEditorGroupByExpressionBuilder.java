@@ -10,7 +10,8 @@ public class QueryEditorGroupByExpressionBuilder implements com.grafana.foundati
         this.internal = new QueryEditorGroupByExpression();
     }
     public QueryEditorGroupByExpressionBuilder property(com.grafana.foundation.cog.Builder<QueryEditorProperty> property) {
-        this.internal.property = property.build();
+    QueryEditorProperty propertyResource = property.build();
+        this.internal.property = propertyResource;
         return this;
     }
     public QueryEditorGroupByExpression build() {

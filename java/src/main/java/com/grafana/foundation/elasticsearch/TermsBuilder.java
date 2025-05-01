@@ -20,7 +20,8 @@ public class TermsBuilder implements com.grafana.foundation.cog.Builder<Terms> {
     }
     
     public TermsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchTermsSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchTermsSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     public Terms build() {

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.Map;
@@ -21,6 +22,7 @@ public class ValueMap {
     public Map<String, ValueMappingResult> options;
     public ValueMap() {
         this.type = MappingType.VALUE_TO_TEXT;
+        this.options = new HashMap<>();
     }
     public ValueMap(Map<String, ValueMappingResult> options) {
         this.type = MappingType.VALUE_TO_TEXT;

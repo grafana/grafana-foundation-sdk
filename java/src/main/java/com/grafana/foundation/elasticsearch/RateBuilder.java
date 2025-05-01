@@ -20,7 +20,8 @@ public class RateBuilder implements com.grafana.foundation.cog.Builder<Rate> {
     }
     
     public RateBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchRateSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchRateSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

@@ -25,6 +25,8 @@ public class ScaleDimensionConfig {
     @JsonProperty("mode")
     public ScaleDimensionMode mode;
     public ScaleDimensionConfig() {
+        this.min = 0.0;
+        this.max = 0.0;
     }
     public ScaleDimensionConfig(Double min,Double max,Double fixed,String field,ScaleDimensionMode mode) {
         this.min = min;

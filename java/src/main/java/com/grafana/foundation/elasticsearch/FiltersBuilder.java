@@ -15,7 +15,8 @@ public class FiltersBuilder implements com.grafana.foundation.cog.Builder<Filter
     }
     
     public FiltersBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchFiltersSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchFiltersSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     public Filters build() {

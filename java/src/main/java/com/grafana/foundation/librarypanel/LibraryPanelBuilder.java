@@ -51,12 +51,14 @@ public class LibraryPanelBuilder implements com.grafana.foundation.cog.Builder<L
     }
     
     public LibraryPanelBuilder model(com.grafana.foundation.cog.Builder<PanelModel> model) {
-        this.internal.model = model.build();
+    PanelModel modelResource = model.build();
+        this.internal.model = modelResource;
         return this;
     }
     
     public LibraryPanelBuilder meta(com.grafana.foundation.cog.Builder<LibraryElementDTOMeta> meta) {
-        this.internal.meta = meta.build();
+    LibraryElementDTOMeta metaResource = meta.build();
+        this.internal.meta = metaResource;
         return this;
     }
     public LibraryPanel build() {

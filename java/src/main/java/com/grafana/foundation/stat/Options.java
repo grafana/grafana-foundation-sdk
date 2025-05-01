@@ -52,7 +52,9 @@ public class Options {
         this.textMode = BigValueTextMode.AUTO;
         this.wideLayout = true;
         this.showPercentChange = false;
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
         this.percentChangeColorMode = PercentChangeColorMode.STANDARD;
+        this.orientation = VizOrientation.AUTO;
     }
     public Options(BigValueGraphMode graphMode,BigValueColorMode colorMode,BigValueJustifyMode justifyMode,BigValueTextMode textMode,Boolean wideLayout,Boolean showPercentChange,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,PercentChangeColorMode percentChangeColorMode,VizOrientation orientation) {
         this.graphMode = graphMode;

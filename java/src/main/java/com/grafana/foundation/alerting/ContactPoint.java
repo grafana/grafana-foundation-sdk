@@ -34,6 +34,8 @@ public class ContactPoint {
     @JsonProperty("uid")
     public String uid;
     public ContactPoint() {
+        this.settings = new Object();
+        this.type = ContactPointType.ALERTMANAGER;
     }
     public ContactPoint(Boolean disableResolveMessage,String name,String provenance,Object settings,ContactPointType type,String uid) {
         this.disableResolveMessage = disableResolveMessage;
