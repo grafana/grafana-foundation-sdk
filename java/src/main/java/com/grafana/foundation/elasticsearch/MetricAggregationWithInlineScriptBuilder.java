@@ -10,7 +10,8 @@ public class MetricAggregationWithInlineScriptBuilder implements com.grafana.fou
         this.internal = new MetricAggregationWithInlineScript();
     }
     public MetricAggregationWithInlineScriptBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMetricAggregationWithInlineScriptSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchMetricAggregationWithInlineScriptSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

@@ -3,6 +3,7 @@
 package com.grafana.foundation.azuremonitor;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class AzureTracesQueryBuilder implements com.grafana.foundation.cog.Builder<AzureTracesQuery> {
     protected final AzureTracesQuery internal;
@@ -30,8 +31,13 @@ public class AzureTracesQueryBuilder implements com.grafana.foundation.cog.Build
         return this;
     }
     
-    public AzureTracesQueryBuilder filters(com.grafana.foundation.cog.Builder<List<AzureTracesFilter>> filters) {
-        this.internal.filters = filters.build();
+    public AzureTracesQueryBuilder filters(List<com.grafana.foundation.cog.Builder<AzureTracesFilter>> filters) {
+        List<AzureTracesFilter> filtersResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<AzureTracesFilter> r1 : filters) {
+                AzureTracesFilter filtersDepth1 = r1.build();
+                filtersResources.add(filtersDepth1); 
+        }
+        this.internal.filters = filtersResources;
         return this;
     }
     

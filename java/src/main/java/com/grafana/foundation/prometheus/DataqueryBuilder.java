@@ -52,7 +52,8 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
     }
     
     public DataqueryBuilder scope(com.grafana.foundation.cog.Builder<PrometheusDataqueryScope> scope) {
-        this.internal.scope = scope.build();
+    PrometheusDataqueryScope scopeResource = scope.build();
+        this.internal.scope = scopeResource;
         return this;
     }
     

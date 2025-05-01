@@ -11,7 +11,8 @@ public class SimulationQueryBuilder implements com.grafana.foundation.cog.Builde
         this.internal = new SimulationQuery();
     }
     public SimulationQueryBuilder key(com.grafana.foundation.cog.Builder<Key> key) {
-        this.internal.key = key.build();
+    Key keyResource = key.build();
+        this.internal.key = keyResource;
         return this;
     }
     

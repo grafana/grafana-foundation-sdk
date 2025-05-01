@@ -20,7 +20,8 @@ public class GeoHashGridBuilder implements com.grafana.foundation.cog.Builder<Ge
     }
     
     public GeoHashGridBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchGeoHashGridSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchGeoHashGridSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     public GeoHashGrid build() {

@@ -13,6 +13,8 @@ public class ConnectionCoordinates {
     @JsonProperty("y")
     public Double y;
     public ConnectionCoordinates() {
+        this.x = 0.0;
+        this.y = 0.0;
     }
     public ConnectionCoordinates(Double x,Double y) {
         this.x = x;

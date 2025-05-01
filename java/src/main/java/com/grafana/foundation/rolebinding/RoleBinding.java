@@ -18,6 +18,8 @@ public class RoleBinding {
     @JsonProperty("subject")
     public RoleBindingSubject subject;
     public RoleBinding() {
+        this.role = new com.grafana.foundation.rolebinding.BuiltinRoleRefOrCustomRoleRef();
+        this.subject = new com.grafana.foundation.rolebinding.RoleBindingSubjectBuilder().build();
     }
     public RoleBinding(BuiltinRoleRefOrCustomRoleRef role,RoleBindingSubject subject) {
         this.role = role;

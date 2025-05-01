@@ -17,6 +17,8 @@ public class ResourceGroupsQuery {
     @JsonProperty("subscription")
     public String subscription;
     public ResourceGroupsQuery() {
+        this.kind = "";
+        this.subscription = "";
     }
     public ResourceGroupsQuery(String rawQuery,String kind,String subscription) {
         this.rawQuery = rawQuery;

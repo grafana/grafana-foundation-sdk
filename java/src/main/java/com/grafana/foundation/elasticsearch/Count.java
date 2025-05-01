@@ -18,6 +18,7 @@ public class Count {
     public Boolean hide;
     public Count() {
         this.type = MetricAggregationType.COUNT;
+        this.id = "";
     }
     public Count(String id,Boolean hide) {
         this.type = MetricAggregationType.COUNT;

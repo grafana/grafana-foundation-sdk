@@ -17,6 +17,9 @@ public class BaseMovingAverageModelSettings {
     @JsonProperty("predict")
     public String predict;
     public BaseMovingAverageModelSettings() {
+        this.model = MovingAverageModel.SIMPLE;
+        this.window = "";
+        this.predict = "";
     }
     public BaseMovingAverageModelSettings(MovingAverageModel model,String window,String predict) {
         this.model = model;

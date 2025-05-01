@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
@@ -44,6 +45,11 @@ public class PieChartLegendOptions {
     @JsonProperty("calcs")
     public List<String> calcs;
     public PieChartLegendOptions() {
+        this.values = new LinkedList<>();
+        this.displayMode = LegendDisplayMode.LIST;
+        this.placement = LegendPlacement.BOTTOM;
+        this.showLegend = false;
+        this.calcs = new LinkedList<>();
     }
     public PieChartLegendOptions(List<PieChartLegendValues> values,LegendDisplayMode displayMode,LegendPlacement placement,Boolean showLegend,Boolean asTable,Boolean isVisible,String sortBy,Boolean sortDesc,Double width,List<String> calcs) {
         this.values = values;

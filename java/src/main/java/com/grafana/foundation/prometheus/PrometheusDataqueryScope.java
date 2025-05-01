@@ -11,6 +11,7 @@ public class PrometheusDataqueryScope {
     @JsonProperty("matchers")
     public String matchers;
     public PrometheusDataqueryScope() {
+        this.matchers = "";
     }
     public PrometheusDataqueryScope(String matchers) {
         this.matchers = matchers;

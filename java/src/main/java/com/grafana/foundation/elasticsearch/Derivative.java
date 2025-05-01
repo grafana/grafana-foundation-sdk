@@ -27,6 +27,7 @@ public class Derivative {
     public Boolean hide;
     public Derivative() {
         this.type = MetricAggregationType.DERIVATIVE;
+        this.id = "";
     }
     public Derivative(String pipelineAgg,String field,String id,ElasticsearchDerivativeSettings settings,Boolean hide) {
         this.pipelineAgg = pipelineAgg;

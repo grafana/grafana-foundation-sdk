@@ -20,7 +20,8 @@ public class PercentilesBuilder implements com.grafana.foundation.cog.Builder<Pe
     }
     
     public PercentilesBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchPercentilesSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchPercentilesSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

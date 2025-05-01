@@ -25,7 +25,8 @@ public class LineConfigBuilder implements com.grafana.foundation.cog.Builder<Lin
     }
     
     public LineConfigBuilder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle) {
-        this.internal.lineStyle = lineStyle.build();
+    LineStyle lineStyleResource = lineStyle.build();
+        this.internal.lineStyle = lineStyleResource;
         return this;
     }
     
