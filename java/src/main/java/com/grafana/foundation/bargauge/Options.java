@@ -53,7 +53,9 @@ public class Options {
         this.sizing = BarGaugeSizing.AUTO;
         this.minVizWidth = 8;
         this.minVizHeight = 16;
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
         this.maxVizHeight = 300;
+        this.orientation = VizOrientation.AUTO;
     }
     public Options(BarGaugeDisplayMode displayMode,BarGaugeValueMode valueMode,BarGaugeNamePlacement namePlacement,Boolean showUnfilled,BarGaugeSizing sizing,Integer minVizWidth,Integer minVizHeight,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,Integer maxVizHeight,VizOrientation orientation) {
         this.displayMode = displayMode;

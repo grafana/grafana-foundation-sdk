@@ -20,6 +20,7 @@ public class GeoHashGrid {
     @JsonProperty("settings")
     public ElasticsearchGeoHashGridSettings settings;
     public GeoHashGrid() {
+        this.id = "";
         this.type = BucketAggregationType.GEOHASH_GRID;
     }
     public GeoHashGrid(String field,String id,ElasticsearchGeoHashGridSettings settings) {

@@ -33,6 +33,7 @@ public class FrameGeometrySource {
     @JsonProperty("gazetteer")
     public String gazetteer;
     public FrameGeometrySource() {
+        this.mode = FrameGeometrySourceMode.AUTO;
     }
     public FrameGeometrySource(FrameGeometrySourceMode mode,String geohash,String latitude,String longitude,String wkt,String lookup,String gazetteer) {
         this.mode = mode;

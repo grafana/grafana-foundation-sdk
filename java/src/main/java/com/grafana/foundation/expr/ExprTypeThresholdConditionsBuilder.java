@@ -10,7 +10,8 @@ public class ExprTypeThresholdConditionsBuilder implements com.grafana.foundatio
         this.internal = new ExprTypeThresholdConditions();
     }
     public ExprTypeThresholdConditionsBuilder evaluator(com.grafana.foundation.cog.Builder<ExprTypeThresholdConditionsEvaluator> evaluator) {
-        this.internal.evaluator = evaluator.build();
+    ExprTypeThresholdConditionsEvaluator evaluatorResource = evaluator.build();
+        this.internal.evaluator = evaluatorResource;
         return this;
     }
     
@@ -20,7 +21,8 @@ public class ExprTypeThresholdConditionsBuilder implements com.grafana.foundatio
     }
     
     public ExprTypeThresholdConditionsBuilder unloadEvaluator(com.grafana.foundation.cog.Builder<ExprTypeThresholdConditionsUnloadEvaluator> unloadEvaluator) {
-        this.internal.unloadEvaluator = unloadEvaluator.build();
+    ExprTypeThresholdConditionsUnloadEvaluator unloadEvaluatorResource = unloadEvaluator.build();
+        this.internal.unloadEvaluator = unloadEvaluatorResource;
         return this;
     }
     public ExprTypeThresholdConditions build() {

@@ -35,12 +35,14 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
     }
     
     public AnnotationQueryBuilder filter(com.grafana.foundation.cog.Builder<AnnotationPanelFilter> filter) {
-        this.internal.filter = filter.build();
+    AnnotationPanelFilter filterResource = filter.build();
+        this.internal.filter = filterResource;
         return this;
     }
     
     public AnnotationQueryBuilder target(com.grafana.foundation.cog.Builder<AnnotationTarget> target) {
-        this.internal.target = target.build();
+    AnnotationTarget targetResource = target.build();
+        this.internal.target = targetResource;
         return this;
     }
     

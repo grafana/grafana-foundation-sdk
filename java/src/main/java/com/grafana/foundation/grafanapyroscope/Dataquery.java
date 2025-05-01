@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -54,6 +55,9 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public DataSourceRef datasource;
     public Dataquery() {
         this.labelSelector = "{}";
+        this.profileTypeId = "";
+        this.groupBy = new LinkedList<>();
+        this.refId = "";
     }
     public Dataquery(String labelSelector,List<String> spanSelector,String profileTypeId,List<String> groupBy,Long maxNodes,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
         this.labelSelector = labelSelector;

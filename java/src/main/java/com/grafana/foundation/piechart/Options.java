@@ -36,6 +36,11 @@ public class Options {
     @JsonProperty("orientation")
     public VizOrientation orientation;
     public Options() {
+        this.pieType = PieChartType.PIE;
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
+        this.legend = new com.grafana.foundation.piechart.PieChartLegendOptionsBuilder().build();
+        this.orientation = VizOrientation.AUTO;
     }
     public Options(PieChartType pieType,List<PieChartLabels> displayLabels,VizTooltipOptions tooltip,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,PieChartLegendOptions legend,VizOrientation orientation) {
         this.pieType = pieType;

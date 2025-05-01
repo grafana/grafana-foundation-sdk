@@ -12,7 +12,6 @@ public class NotificationTemplate {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("name")
     public String name;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("provenance")
     public String provenance;
     @JsonInclude(JsonInclude.Include.NON_NULL)

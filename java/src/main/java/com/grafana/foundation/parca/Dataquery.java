@@ -39,6 +39,8 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public DataSourceRef datasource;
     public Dataquery() {
         this.labelSelector = "{}";
+        this.profileTypeId = "";
+        this.refId = "";
     }
     public Dataquery(String labelSelector,String profileTypeId,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
         this.labelSelector = labelSelector;

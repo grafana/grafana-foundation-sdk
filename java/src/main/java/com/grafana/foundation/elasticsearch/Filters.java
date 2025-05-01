@@ -17,6 +17,7 @@ public class Filters {
     @JsonProperty("settings")
     public ElasticsearchFiltersSettings settings;
     public Filters() {
+        this.id = "";
         this.type = BucketAggregationType.FILTERS;
     }
     public Filters(String id,ElasticsearchFiltersSettings settings) {

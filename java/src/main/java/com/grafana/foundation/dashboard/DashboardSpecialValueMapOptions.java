@@ -18,6 +18,8 @@ public class DashboardSpecialValueMapOptions {
     @JsonProperty("result")
     public ValueMappingResult result;
     public DashboardSpecialValueMapOptions() {
+        this.match = SpecialValueMatch.TRUE;
+        this.result = new com.grafana.foundation.dashboard.ValueMappingResult();
     }
     public DashboardSpecialValueMapOptions(SpecialValueMatch match,ValueMappingResult result) {
         this.match = match;

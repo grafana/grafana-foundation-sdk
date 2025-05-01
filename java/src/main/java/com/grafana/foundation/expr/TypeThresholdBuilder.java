@@ -3,6 +3,7 @@
 package com.grafana.foundation.expr;
 
 import java.util.List;
+import java.util.LinkedList;
 import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class TypeThresholdBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
@@ -12,8 +13,13 @@ public class TypeThresholdBuilder implements com.grafana.foundation.cog.Builder<
         this.internal = new TypeThreshold();
         this.internal.type = "threshold";
     }
-    public TypeThresholdBuilder conditions(com.grafana.foundation.cog.Builder<List<ExprTypeThresholdConditions>> conditions) {
-        this.internal.conditions = conditions.build();
+    public TypeThresholdBuilder conditions(List<com.grafana.foundation.cog.Builder<ExprTypeThresholdConditions>> conditions) {
+        List<ExprTypeThresholdConditions> conditionsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<ExprTypeThresholdConditions> r1 : conditions) {
+                ExprTypeThresholdConditions conditionsDepth1 = r1.build();
+                conditionsResources.add(conditionsDepth1); 
+        }
+        this.internal.conditions = conditionsResources;
         return this;
     }
     
@@ -56,12 +62,14 @@ public class TypeThresholdBuilder implements com.grafana.foundation.cog.Builder<
     }
     
     public TypeThresholdBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeThresholdResultAssertions> resultAssertions) {
-        this.internal.resultAssertions = resultAssertions.build();
+    ExprTypeThresholdResultAssertions resultAssertionsResource = resultAssertions.build();
+        this.internal.resultAssertions = resultAssertionsResource;
         return this;
     }
     
     public TypeThresholdBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeThresholdTimeRange> timeRange) {
-        this.internal.timeRange = timeRange.build();
+    ExprTypeThresholdTimeRange timeRangeResource = timeRange.build();
+        this.internal.timeRange = timeRangeResource;
         return this;
     }
     public TypeThreshold build() {
