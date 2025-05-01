@@ -20,6 +20,7 @@ public class XYDimensionConfig {
     @JsonProperty("exclude")
     public List<String> exclude;
     public XYDimensionConfig() {
+        this.frame = 0;
     }
     public XYDimensionConfig(Integer frame,String x,List<String> exclude) {
         this.frame = frame;

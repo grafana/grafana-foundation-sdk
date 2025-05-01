@@ -15,6 +15,8 @@ public class MovingAverageModelOption {
     @JsonProperty("value")
     public MovingAverageModel value;
     public MovingAverageModelOption() {
+        this.label = "";
+        this.value = MovingAverageModel.SIMPLE;
     }
     public MovingAverageModelOption(String label,MovingAverageModel value) {
         this.label = label;

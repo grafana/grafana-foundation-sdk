@@ -16,7 +16,8 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
     }
     
     public DataqueryBuilder connectionArgs(com.grafana.foundation.cog.Builder<ConnectionArgs> connectionArgs) {
-        this.internal.connectionArgs = connectionArgs.build();
+    ConnectionArgs connectionArgsResource = connectionArgs.build();
+        this.internal.connectionArgs = connectionArgsResource;
         return this;
     }
     

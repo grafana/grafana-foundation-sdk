@@ -20,6 +20,7 @@ public class DateHistogram {
     @JsonProperty("settings")
     public ElasticsearchDateHistogramSettings settings;
     public DateHistogram() {
+        this.id = "";
         this.type = BucketAggregationType.DATE_HISTOGRAM;
     }
     public DateHistogram(String field,String id,ElasticsearchDateHistogramSettings settings) {

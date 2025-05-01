@@ -27,6 +27,7 @@ public class SerialDiff {
     public Boolean hide;
     public SerialDiff() {
         this.type = MetricAggregationType.SERIAL_DIFF;
+        this.id = "";
     }
     public SerialDiff(String pipelineAgg,String field,String id,ElasticsearchSerialDiffSettings settings,Boolean hide) {
         this.pipelineAgg = pipelineAgg;

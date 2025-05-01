@@ -38,7 +38,9 @@ public class Options {
         this.showThresholdMarkers = true;
         this.sizing = BarGaugeSizing.AUTO;
         this.minVizWidth = 75;
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
         this.minVizHeight = 75;
+        this.orientation = VizOrientation.AUTO;
     }
     public Options(Boolean showThresholdLabels,Boolean showThresholdMarkers,BarGaugeSizing sizing,Integer minVizWidth,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,Integer minVizHeight,VizOrientation orientation) {
         this.showThresholdLabels = showThresholdLabels;
