@@ -21,6 +21,8 @@ public class MetricAggregationWithField {
     @JsonProperty("hide")
     public Boolean hide;
     public MetricAggregationWithField() {
+        this.type = MetricAggregationType.COUNT;
+        this.id = "";
     }
     public MetricAggregationWithField(String field,MetricAggregationType type,String id,Boolean hide) {
         this.field = field;

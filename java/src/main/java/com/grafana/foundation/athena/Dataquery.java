@@ -52,6 +52,9 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonProperty("datasource")
     public DataSourceRef datasource;
     public Dataquery() {
+        this.format = FormatOptions.TIME_SERIES;
+        this.connectionArgs = new com.grafana.foundation.athena.ConnectionArgsBuilder().build();
+        this.refId = "";
         this.rawSQL = "";
     }
     public Dataquery(FormatOptions format,ConnectionArgs connectionArgs,String table,String column,String queryID,String refId,Boolean hide,String queryType,String rawSQL,DataSourceRef datasource) {

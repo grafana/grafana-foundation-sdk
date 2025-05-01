@@ -25,7 +25,8 @@ public class MapLayerOptionsBuilder implements com.grafana.foundation.cog.Builde
     }
     
     public MapLayerOptionsBuilder location(com.grafana.foundation.cog.Builder<FrameGeometrySource> location) {
-        this.internal.location = location.build();
+    FrameGeometrySource locationResource = location.build();
+        this.internal.location = locationResource;
         return this;
     }
     

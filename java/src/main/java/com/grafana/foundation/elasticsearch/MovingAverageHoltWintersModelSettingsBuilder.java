@@ -10,7 +10,8 @@ public class MovingAverageHoltWintersModelSettingsBuilder implements com.grafana
         this.internal = new MovingAverageHoltWintersModelSettings();
     }
     public MovingAverageHoltWintersModelSettingsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageHoltWintersModelSettingsSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchMovingAverageHoltWintersModelSettingsSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

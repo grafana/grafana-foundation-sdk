@@ -31,13 +31,13 @@ public class NotificationPolicy {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("match")
     public Map<String, String> match;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("match_re")
     public Map<String, String> matchRe;
     // Matchers is a slice of Matchers that is sortable, implements Stringer, and
     // provides a Matches method to match a LabelSet against all Matchers in the
     // slice. Note that some users of Matchers might require it to be sorted.
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("matchers")
     public List<Matcher> matchers;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -49,7 +49,6 @@ public class NotificationPolicy {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("object_matchers")
     public List<Matcher> objectMatchers;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("provenance")
     public String provenance;
     @JsonInclude(JsonInclude.Include.NON_NULL)

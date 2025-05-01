@@ -15,7 +15,8 @@ public class LogsBuilder implements com.grafana.foundation.cog.Builder<Logs> {
     }
     
     public LogsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchLogsSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchLogsSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

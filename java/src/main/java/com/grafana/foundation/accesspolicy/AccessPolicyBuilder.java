@@ -11,12 +11,14 @@ public class AccessPolicyBuilder implements com.grafana.foundation.cog.Builder<A
         this.internal = new AccessPolicy();
     }
     public AccessPolicyBuilder scope(com.grafana.foundation.cog.Builder<ResourceRef> scope) {
-        this.internal.scope = scope.build();
+    ResourceRef scopeResource = scope.build();
+        this.internal.scope = scopeResource;
         return this;
     }
     
     public AccessPolicyBuilder role(com.grafana.foundation.cog.Builder<RoleRef> role) {
-        this.internal.role = role.build();
+    RoleRef roleResource = role.build();
+        this.internal.role = roleResource;
         return this;
     }
     
@@ -24,7 +26,8 @@ public class AccessPolicyBuilder implements com.grafana.foundation.cog.Builder<A
 		if (this.internal.rules == null) {
 			this.internal.rules = new LinkedList<>();
 		}
-        this.internal.rules.add(rule.build());
+    AccessRule ruleResource = rule.build();
+        this.internal.rules.add(ruleResource);
         return this;
     }
     public AccessPolicy build() {

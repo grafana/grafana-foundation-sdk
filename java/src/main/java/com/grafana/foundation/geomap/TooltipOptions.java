@@ -13,6 +13,7 @@ public class TooltipOptions {
     @JsonProperty("mode")
     public TooltipMode mode;
     public TooltipOptions() {
+        this.mode = TooltipMode.NONE;
     }
     public TooltipOptions(TooltipMode mode) {
         this.mode = mode;

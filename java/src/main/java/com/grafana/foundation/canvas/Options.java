@@ -27,6 +27,7 @@ public class Options {
         this.inlineEditing = true;
         this.showAdvancedTypes = true;
         this.panZoom = true;
+        this.root = new com.grafana.foundation.canvas.CanvasOptionsRootBuilder().build();
     }
     public Options(Boolean inlineEditing,Boolean showAdvancedTypes,Boolean panZoom,CanvasOptionsRoot root) {
         this.inlineEditing = inlineEditing;

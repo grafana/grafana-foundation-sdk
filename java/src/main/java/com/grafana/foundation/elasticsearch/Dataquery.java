@@ -55,6 +55,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonProperty("datasource")
     public DataSourceRef datasource;
     public Dataquery() {
+        this.refId = "";
     }
     public Dataquery(String alias,String query,String timeField,List<BucketAggregation> bucketAggs,List<MetricAggregation> metrics,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
         this.alias = alias;

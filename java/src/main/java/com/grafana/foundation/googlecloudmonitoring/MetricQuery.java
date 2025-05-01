@@ -62,6 +62,11 @@ public class MetricQuery {
     @JsonProperty("graphPeriod")
     public String graphPeriod;
     public MetricQuery() {
+        this.projectName = "";
+        this.editorMode = "";
+        this.metricType = "";
+        this.crossSeriesReducer = "";
+        this.query = "";
         this.graphPeriod = "disabled";
     }
     public MetricQuery(String projectName,String perSeriesAligner,String alignmentPeriod,String aliasBy,String editorMode,String metricType,String crossSeriesReducer,List<String> groupBys,List<String> filters,MetricKind metricKind,String valueType,String view,String query,PreprocessorType preprocessor,String graphPeriod) {

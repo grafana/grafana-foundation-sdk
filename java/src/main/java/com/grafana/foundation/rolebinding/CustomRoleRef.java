@@ -13,6 +13,8 @@ public class CustomRoleRef {
     @JsonProperty("name")
     public String name;
     public CustomRoleRef() {
+        this.kind = "";
+        this.name = "";
     }
     public CustomRoleRef(String kind,String name) {
         this.kind = kind;

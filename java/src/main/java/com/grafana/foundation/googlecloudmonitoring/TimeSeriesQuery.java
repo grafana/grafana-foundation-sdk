@@ -21,6 +21,8 @@ public class TimeSeriesQuery {
     @JsonProperty("graphPeriod")
     public String graphPeriod;
     public TimeSeriesQuery() {
+        this.projectName = "";
+        this.query = "";
         this.graphPeriod = "disabled";
     }
     public TimeSeriesQuery(String projectName,String query,String graphPeriod) {

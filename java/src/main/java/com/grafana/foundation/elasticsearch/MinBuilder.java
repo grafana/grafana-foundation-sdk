@@ -20,7 +20,8 @@ public class MinBuilder implements com.grafana.foundation.cog.Builder<Min> {
     }
     
     public MinBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMinSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchMinSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

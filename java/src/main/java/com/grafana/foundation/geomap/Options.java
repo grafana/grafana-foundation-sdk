@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.MapLayerOptions;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -29,6 +30,11 @@ public class Options {
     @JsonProperty("tooltip")
     public TooltipOptions tooltip;
     public Options() {
+        this.view = new com.grafana.foundation.geomap.MapViewConfigBuilder().build();
+        this.controls = new com.grafana.foundation.geomap.ControlsOptionsBuilder().build();
+        this.basemap = new com.grafana.foundation.common.MapLayerOptionsBuilder().build();
+        this.layers = new LinkedList<>();
+        this.tooltip = new com.grafana.foundation.geomap.TooltipOptionsBuilder().build();
     }
     public Options(MapViewConfig view,ControlsOptions controls,MapLayerOptions basemap,List<MapLayerOptions> layers,TooltipOptions tooltip) {
         this.view = view;

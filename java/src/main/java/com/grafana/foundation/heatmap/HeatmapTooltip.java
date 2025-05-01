@@ -24,6 +24,7 @@ public class HeatmapTooltip {
     @JsonProperty("showColorScale")
     public Boolean showColorScale;
     public HeatmapTooltip() {
+        this.mode = TooltipDisplayMode.SINGLE;
     }
     public HeatmapTooltip(TooltipDisplayMode mode,Boolean yHistogram,Boolean showColorScale) {
         this.mode = mode;

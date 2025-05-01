@@ -52,6 +52,16 @@ public class Snapshot {
     @JsonProperty("dashboard")
     public Dashboard dashboard;
     public Snapshot() {
+        this.created = "";
+        this.expires = "";
+        this.external = false;
+        this.externalUrl = "";
+        this.id = 0;
+        this.key = "";
+        this.name = "";
+        this.orgId = 0;
+        this.updated = "";
+        this.userId = 0;
     }
     public Snapshot(String created,String expires,Boolean external,String externalUrl,Integer id,String key,String name,Integer orgId,String updated,String url,Integer userId,Dashboard dashboard) {
         this.created = created;

@@ -74,12 +74,14 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
     }
     
     public DashboardBuilder time(com.grafana.foundation.cog.Builder<DashboardDashboardTime> time) {
-        this.internal.time = time.build();
+    DashboardDashboardTime timeResource = time.build();
+        this.internal.time = timeResource;
         return this;
     }
     
     public DashboardBuilder timepicker(com.grafana.foundation.cog.Builder<TimePickerConfig> timepicker) {
-        this.internal.timepicker = timepicker.build();
+    TimePickerConfig timepickerResource = timepicker.build();
+        this.internal.timepicker = timepickerResource;
         return this;
     }
     
@@ -118,8 +120,9 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
 		if (this.internal.panels == null) {
 			this.internal.panels = new LinkedList<>();
 		}
+    Panel panelResource = panel.build();
     PanelOrRowPanel panelOrRowPanel = new PanelOrRowPanel();
-        panelOrRowPanel.panel = panel.build();
+        panelOrRowPanel.panel = panelResource;
 
     if (panelOrRowPanel.panel.gridPos == null) {
         panelOrRowPanel.panel.gridPos = new GridPos();
@@ -161,8 +164,9 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
 		if (this.internal.panels == null) {
 			this.internal.panels = new LinkedList<>();
 		}
+    RowPanel rowPanelResource = rowPanel.build();
     PanelOrRowPanel panelOrRowPanel = new PanelOrRowPanel();
-        panelOrRowPanel.rowPanel = rowPanel.build();
+        panelOrRowPanel.rowPanel = rowPanelResource;
 
     // Position the row on the grid
     if (panelOrRowPanel.rowPanel.gridPos == null || (panelOrRowPanel.rowPanel.gridPos.x == 0 && panelOrRowPanel.rowPanel.gridPos.y == 0)) {
@@ -182,11 +186,16 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
         return this;
     }
     
-    public DashboardBuilder variables(com.grafana.foundation.cog.Builder<List<VariableModel>> variables) {
+    public DashboardBuilder variables(List<com.grafana.foundation.cog.Builder<VariableModel>> variables) {
 		if (this.internal.templating == null) {
 			this.internal.templating = new com.grafana.foundation.dashboard.DashboardDashboardTemplatingBuilder().build();
 		}
-        this.internal.templating.list = variables.build();
+        List<VariableModel> variablesResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<VariableModel> r1 : variables) {
+                VariableModel variablesDepth1 = r1.build();
+                variablesResources.add(variablesDepth1); 
+        }
+        this.internal.templating.list = variablesResources;
         return this;
     }
     
@@ -197,15 +206,21 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
 		if (this.internal.templating.list == null) {
 			this.internal.templating.list = new LinkedList<>();
 		}
-        this.internal.templating.list.add(variable.build());
+    VariableModel variableResource = variable.build();
+        this.internal.templating.list.add(variableResource);
         return this;
     }
     
-    public DashboardBuilder annotations(com.grafana.foundation.cog.Builder<List<AnnotationQuery>> annotations) {
+    public DashboardBuilder annotations(List<com.grafana.foundation.cog.Builder<AnnotationQuery>> annotations) {
 		if (this.internal.annotations == null) {
 			this.internal.annotations = new com.grafana.foundation.dashboard.AnnotationContainer();
 		}
-        this.internal.annotations.list = annotations.build();
+        List<AnnotationQuery> annotationsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<AnnotationQuery> r1 : annotations) {
+                AnnotationQuery annotationsDepth1 = r1.build();
+                annotationsResources.add(annotationsDepth1); 
+        }
+        this.internal.annotations.list = annotationsResources;
         return this;
     }
     
@@ -216,12 +231,18 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
 		if (this.internal.annotations.list == null) {
 			this.internal.annotations.list = new LinkedList<>();
 		}
-        this.internal.annotations.list.add(annotation.build());
+    AnnotationQuery annotationResource = annotation.build();
+        this.internal.annotations.list.add(annotationResource);
         return this;
     }
     
-    public DashboardBuilder links(com.grafana.foundation.cog.Builder<List<DashboardLink>> links) {
-        this.internal.links = links.build();
+    public DashboardBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+        List<DashboardLink> linksResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<DashboardLink> r1 : links) {
+                DashboardLink linksDepth1 = r1.build();
+                linksResources.add(linksDepth1); 
+        }
+        this.internal.links = linksResources;
         return this;
     }
     
@@ -229,12 +250,14 @@ public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dash
 		if (this.internal.links == null) {
 			this.internal.links = new LinkedList<>();
 		}
-        this.internal.links.add(link.build());
+    DashboardLink linkResource = link.build();
+        this.internal.links.add(linkResource);
         return this;
     }
     
     public DashboardBuilder snapshot(com.grafana.foundation.cog.Builder<Snapshot> snapshot) {
-        this.internal.snapshot = snapshot.build();
+    Snapshot snapshotResource = snapshot.build();
+        this.internal.snapshot = snapshotResource;
         return this;
     }
     public Dashboard build() {
