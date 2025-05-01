@@ -25,7 +25,8 @@ public class SerialDiffBuilder implements com.grafana.foundation.cog.Builder<Ser
     }
     
     public SerialDiffBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchSerialDiffSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchSerialDiffSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

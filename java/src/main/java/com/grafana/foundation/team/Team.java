@@ -15,6 +15,7 @@ public class Team {
     @JsonProperty("name")
     public String name;
     public Team() {
+        this.name = "";
     }
     public Team(String email,String name) {
         this.email = email;

@@ -16,6 +16,7 @@ public class Options {
     @JsonProperty("counters")
     public UpdateConfig counters;
     public Options() {
+        this.mode = DebugMode.RENDER;
     }
     public Options(DebugMode mode,UpdateConfig counters) {
         this.mode = mode;

@@ -20,6 +20,7 @@ public class ScaleDistributionConfig {
     @JsonProperty("linearThreshold")
     public Double linearThreshold;
     public ScaleDistributionConfig() {
+        this.type = ScaleDistribution.LINEAR;
     }
     public ScaleDistributionConfig(ScaleDistribution type,Double log,Double linearThreshold) {
         this.type = type;

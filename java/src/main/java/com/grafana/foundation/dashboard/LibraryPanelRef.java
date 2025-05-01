@@ -18,6 +18,8 @@ public class LibraryPanelRef {
     @JsonProperty("uid")
     public String uid;
     public LibraryPanelRef() {
+        this.name = "";
+        this.uid = "";
     }
     public LibraryPanelRef(String name,String uid) {
         this.name = name;

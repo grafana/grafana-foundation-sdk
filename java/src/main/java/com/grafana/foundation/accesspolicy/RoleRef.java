@@ -19,6 +19,9 @@ public class RoleRef {
     @JsonProperty("xname")
     public String xname;
     public RoleRef() {
+        this.kind = RoleRefKind.ROLE;
+        this.name = "";
+        this.xname = "";
     }
     public RoleRef(RoleRefKind kind,String name,String xname) {
         this.kind = kind;

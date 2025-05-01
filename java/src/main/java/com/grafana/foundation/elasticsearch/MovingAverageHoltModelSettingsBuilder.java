@@ -10,7 +10,8 @@ public class MovingAverageHoltModelSettingsBuilder implements com.grafana.founda
         this.internal = new MovingAverageHoltModelSettings();
     }
     public MovingAverageHoltModelSettingsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageHoltModelSettingsSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchMovingAverageHoltModelSettingsSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

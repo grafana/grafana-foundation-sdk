@@ -13,6 +13,8 @@ public class PipelineVariable {
     @JsonProperty("pipelineAgg")
     public String pipelineAgg;
     public PipelineVariable() {
+        this.name = "";
+        this.pipelineAgg = "";
     }
     public PipelineVariable(String name,String pipelineAgg) {
         this.name = name;

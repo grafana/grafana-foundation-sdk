@@ -16,6 +16,7 @@ public class QueryEditorGroupByExpression {
     public QueryEditorProperty property;
     public QueryEditorGroupByExpression() {
         this.type = QueryEditorExpressionType.GROUP_BY;
+        this.property = new com.grafana.foundation.cloudwatch.QueryEditorPropertyBuilder().build();
     }
     public QueryEditorGroupByExpression(QueryEditorProperty property) {
         this.type = QueryEditorExpressionType.GROUP_BY;

@@ -25,7 +25,6 @@ public class TimeInterval {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("years")
     public List<YearRange> years;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("location")
     public String location;
     public TimeInterval() {

@@ -23,6 +23,8 @@ public class VizTooltipOptions {
     @JsonProperty("maxHeight")
     public Double maxHeight;
     public VizTooltipOptions() {
+        this.mode = TooltipDisplayMode.SINGLE;
+        this.sort = SortOrder.ASCENDING;
     }
     public VizTooltipOptions(TooltipDisplayMode mode,SortOrder sort,Double maxWidth,Double maxHeight) {
         this.mode = mode;
