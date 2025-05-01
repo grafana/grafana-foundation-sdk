@@ -20,7 +20,8 @@ public class AverageBuilder implements com.grafana.foundation.cog.Builder<Averag
     }
     
     public AverageBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchAverageSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchAverageSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

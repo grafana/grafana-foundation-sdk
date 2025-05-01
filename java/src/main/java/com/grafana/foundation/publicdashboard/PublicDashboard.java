@@ -29,6 +29,11 @@ public class PublicDashboard {
     @JsonProperty("timeSelectionEnabled")
     public Boolean timeSelectionEnabled;
     public PublicDashboard() {
+        this.uid = "";
+        this.dashboardUid = "";
+        this.isEnabled = false;
+        this.annotationsEnabled = false;
+        this.timeSelectionEnabled = false;
     }
     public PublicDashboard(String uid,String dashboardUid,String accessToken,Boolean isEnabled,Boolean annotationsEnabled,Boolean timeSelectionEnabled) {
         this.uid = uid;

@@ -17,7 +17,8 @@ public class QueryBuilder implements com.grafana.foundation.cog.Builder<Query> {
     }
     
     public QueryBuilder model(com.grafana.foundation.cog.Builder<Dataquery> model) {
-        this.internal.model = model.build();
+    Dataquery modelResource = model.build();
+        this.internal.model = modelResource;
         return this;
     }
     

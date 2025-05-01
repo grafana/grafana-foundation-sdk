@@ -22,6 +22,10 @@ public class ExprTypeClassicConditionsConditions {
     @JsonProperty("reducer")
     public ExprTypeClassicConditionsConditionsReducer reducer;
     public ExprTypeClassicConditionsConditions() {
+        this.evaluator = new com.grafana.foundation.expr.ExprTypeClassicConditionsConditionsEvaluatorBuilder().build();
+        this.operator = new com.grafana.foundation.expr.ExprTypeClassicConditionsConditionsOperatorBuilder().build();
+        this.query = new com.grafana.foundation.expr.ExprTypeClassicConditionsConditionsQueryBuilder().build();
+        this.reducer = new com.grafana.foundation.expr.ExprTypeClassicConditionsConditionsReducerBuilder().build();
     }
     public ExprTypeClassicConditionsConditions(ExprTypeClassicConditionsConditionsEvaluator evaluator,ExprTypeClassicConditionsConditionsOperator operator,ExprTypeClassicConditionsConditionsQuery query,ExprTypeClassicConditionsConditionsReducer reducer) {
         this.evaluator = evaluator;

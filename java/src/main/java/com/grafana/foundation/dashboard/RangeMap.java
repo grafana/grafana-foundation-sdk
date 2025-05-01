@@ -19,6 +19,7 @@ public class RangeMap {
     public DashboardRangeMapOptions options;
     public RangeMap() {
         this.type = MappingType.RANGE_TO_TEXT;
+        this.options = new com.grafana.foundation.dashboard.DashboardRangeMapOptionsBuilder().build();
     }
     public RangeMap(DashboardRangeMapOptions options) {
         this.type = MappingType.RANGE_TO_TEXT;
