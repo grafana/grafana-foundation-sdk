@@ -20,7 +20,8 @@ public class SumBuilder implements com.grafana.foundation.cog.Builder<Sum> {
     }
     
     public SumBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchSumSettings> settings) {
-        this.internal.settings = settings.build();
+    ElasticsearchSumSettings settingsResource = settings.build();
+        this.internal.settings = settingsResource;
         return this;
     }
     

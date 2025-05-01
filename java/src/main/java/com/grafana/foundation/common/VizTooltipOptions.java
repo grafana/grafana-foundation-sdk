@@ -17,6 +17,8 @@ public class VizTooltipOptions {
     @JsonProperty("sort")
     public SortOrder sort;
     public VizTooltipOptions() {
+        this.mode = TooltipDisplayMode.SINGLE;
+        this.sort = SortOrder.ASCENDING;
     }
     public VizTooltipOptions(TooltipDisplayMode mode,SortOrder sort) {
         this.mode = mode;

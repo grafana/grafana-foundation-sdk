@@ -23,6 +23,8 @@ public class BasePipelineMetricAggregation {
     @JsonProperty("hide")
     public Boolean hide;
     public BasePipelineMetricAggregation() {
+        this.type = "";
+        this.id = "";
     }
     public BasePipelineMetricAggregation(String pipelineAgg,String field,String type,String id,Boolean hide) {
         this.pipelineAgg = pipelineAgg;

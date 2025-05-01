@@ -23,6 +23,7 @@ public class SimulationQuery {
     @JsonProperty("last")
     public Boolean last;
     public SimulationQuery() {
+        this.key = new com.grafana.foundation.testdata.KeyBuilder().build();
     }
     public SimulationQuery(Key key,Map<String, Object> config,Boolean stream,Boolean last) {
         this.key = key;

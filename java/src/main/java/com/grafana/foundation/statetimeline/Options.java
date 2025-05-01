@@ -42,6 +42,8 @@ public class Options {
         this.showValue = VisibilityMode.AUTO;
         this.rowHeight = 0.9;
         this.mergeValues = true;
+        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
         this.alignValue = TimelineValueAlignment.LEFT;
     }
     public Options(VisibilityMode showValue,Double rowHeight,Boolean mergeValues,VizLegendOptions legend,VizTooltipOptions tooltip,List<String> timezone,TimelineValueAlignment alignValue) {

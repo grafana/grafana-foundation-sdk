@@ -12,12 +12,14 @@ public class BackgroundConfigBuilder implements com.grafana.foundation.cog.Build
         this.internal = new BackgroundConfig();
     }
     public BackgroundConfigBuilder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color) {
-        this.internal.color = color.build();
+    ColorDimensionConfig colorResource = color.build();
+        this.internal.color = colorResource;
         return this;
     }
     
     public BackgroundConfigBuilder image(com.grafana.foundation.cog.Builder<ResourceDimensionConfig> image) {
-        this.internal.image = image.build();
+    ResourceDimensionConfig imageResource = image.build();
+        this.internal.image = imageResource;
         return this;
     }
     

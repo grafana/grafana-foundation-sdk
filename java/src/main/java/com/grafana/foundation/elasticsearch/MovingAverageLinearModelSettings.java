@@ -16,6 +16,8 @@ public class MovingAverageLinearModelSettings {
     public String predict;
     public MovingAverageLinearModelSettings() {
         this.model = MovingAverageModel.LINEAR;
+        this.window = "";
+        this.predict = "";
     }
     public MovingAverageLinearModelSettings(String window,String predict) {
         this.model = MovingAverageModel.LINEAR;

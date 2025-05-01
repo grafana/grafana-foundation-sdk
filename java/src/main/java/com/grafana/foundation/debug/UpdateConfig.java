@@ -15,6 +15,9 @@ public class UpdateConfig {
     @JsonProperty("schemaChanged")
     public Boolean schemaChanged;
     public UpdateConfig() {
+        this.render = false;
+        this.dataChanged = false;
+        this.schemaChanged = false;
     }
     public UpdateConfig(Boolean render,Boolean dataChanged,Boolean schemaChanged) {
         this.render = render;

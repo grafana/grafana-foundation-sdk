@@ -10,7 +10,8 @@ public class StackableFieldConfigBuilder implements com.grafana.foundation.cog.B
         this.internal = new StackableFieldConfig();
     }
     public StackableFieldConfigBuilder stacking(com.grafana.foundation.cog.Builder<StackingConfig> stacking) {
-        this.internal.stacking = stacking.build();
+    StackingConfig stackingResource = stacking.build();
+        this.internal.stacking = stackingResource;
         return this;
     }
     public StackableFieldConfig build() {

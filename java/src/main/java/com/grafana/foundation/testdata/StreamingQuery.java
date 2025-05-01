@@ -25,6 +25,10 @@ public class StreamingQuery {
     @JsonProperty("url")
     public String url;
     public StreamingQuery() {
+        this.type = StreamingQueryType.SIGNAL;
+        this.speed = 0;
+        this.spread = 0;
+        this.noise = 0;
     }
     public StreamingQuery(StreamingQueryType type,Integer speed,Integer spread,Integer noise,Integer bands,String url) {
         this.type = type;

@@ -40,6 +40,7 @@ public class Metadata {
     @JsonProperty("deletionTimestamp")
     public String deletionTimestamp;
     public Metadata() {
+        this.name = "";
     }
     public Metadata(String name,String namespace,Map<String, String> labels,Map<String, String> annotations,String uid,String resourceVersion,Long generation,String creationTimestamp,String updateTimestamp,String deletionTimestamp) {
         this.name = name;

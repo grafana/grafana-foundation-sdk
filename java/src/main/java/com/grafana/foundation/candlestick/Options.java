@@ -41,7 +41,9 @@ public class Options {
         this.mode = VizDisplayMode.CANDLES_VOLUME;
         this.candleStyle = CandleStyle.CANDLES;
         this.colorStrategy = ColorStrategy.OPEN_CLOSE;
+        this.fields = new com.grafana.foundation.candlestick.CandlestickFieldMapBuilder().build();
         this.colors = new CandlestickColors("green", "red", "gray");
+        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
         this.includeAllFields = false;
     }
     public Options(VizDisplayMode mode,CandleStyle candleStyle,ColorStrategy colorStrategy,CandlestickFieldMap fields,CandlestickColors colors,VizLegendOptions legend,Boolean includeAllFields) {

@@ -75,6 +75,8 @@ public class VariableModel {
     @JsonProperty("auto_count")
     public Integer autoCount;
     public VariableModel() {
+        this.type = VariableType.QUERY;
+        this.name = "";
         this.skipUrlSync = false;
         this.multi = false;
         this.auto = false;
