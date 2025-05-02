@@ -6,6 +6,7 @@ use Grafana\Foundation\Common as SDKCommon;
 use Grafana\Foundation\Dashboard as SDKDashboard;
 use Grafana\Foundation\Stat;
 use Grafana\Foundation\Timeseries;
+use Grafana\Foundation\Units\Constants as Units;
 
 class CPU
 {
@@ -37,7 +38,7 @@ PROMQL;
             ->description("Total CPU utilization percent is a metric that indicates the overall level of central processing unit (CPU) usage in a computer system.\nIt represents the combined load placed on all CPU cores or processors.\n\nFor instance, if the total CPU utilization percent is 50%, it means that,\non average, half of the CPU's processing capacity is being used to execute tasks. A higher percentage indicates that the CPU is working more intensively, potentially leading to system slowdowns if it remains consistently high.")
             ->min(0)
             ->max(100)
-            ->unit('percent')
+            ->unit(Units::PERCENT)
             ->WithTarget(
                 Common::prometheusQuery($query, '')
             )
@@ -69,7 +70,7 @@ PROMQL;
             ->WithTarget(Common::prometheusQuery($query, 'CPU {{cpu}}'))
             ->min(0)
             ->max(100)
-            ->unit('percent')
+            ->unit(Units::PERCENT)
             ->thresholds(
                 (new SDKDashboard\ThresholdsConfigBuilder())
                     ->mode(SDKDashboard\ThresholdsMode::absolute())
@@ -100,7 +101,7 @@ PROMQL;
             )
             ->min(0)
             ->decimals(2)
-            ->unit('short')
+            ->unit(Units::SHORT)
             ->thresholds(
                 (new SDKDashboard\ThresholdsConfigBuilder())
                     ->mode(SDKDashboard\ThresholdsMode::absolute())
@@ -109,14 +110,11 @@ PROMQL;
                         new SDKDashboard\Threshold(value: 80, color: 'red'),
                     ])
             )
-            ->withOverride(
-                (new SDKDashboard\MatcherConfig(id: 'byRegexp', options: 'Cores')),
-                [
-                    (new SDKDashboard\DynamicConfigValue(id: 'color', value: ['fixedColor' => 'light-orange', 'mode' => 'fixed'])),
-                    (new SDKDashboard\DynamicConfigValue(id: 'custom.fillOpacity', value: 0)),
-                    (new SDKDashboard\DynamicConfigValue(id: 'custom.lineStyle', value: ['dash' => [10, 10], 'fill' => 'dash'])),
-                ],
-            )
+            ->overrideByRegexp('Cores', [
+                (new SDKDashboard\DynamicConfigValue(id: 'color', value: ['fixedColor' => 'light-orange', 'mode' => 'fixed'])),
+                (new SDKDashboard\DynamicConfigValue(id: 'custom.fillOpacity', value: 0)),
+                (new SDKDashboard\DynamicConfigValue(id: 'custom.lineStyle', value: ['dash' => [10, 10], 'fill' => 'dash'])),
+            ])
         ;
     }
 }

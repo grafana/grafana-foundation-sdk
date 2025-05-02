@@ -4,8 +4,8 @@ namespace App\Linux;
 
 use Grafana\Foundation\Common as SDKCommon;
 use Grafana\Foundation\Dashboard as SDKDashboard;
-use Grafana\Foundation\Table;
 use Grafana\Foundation\Timeseries;
+use Grafana\Foundation\Units\Constants as Units;
 
 class Network
 {
@@ -29,12 +29,11 @@ class Network
                 node_network_transmit_bytes_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__range]
                 ) > 0', '{{ device }} transmitted'))
             ->decimals(1)
-            ->unit('bps')
+            ->unit(Units::BITS_PER_SECOND_SI)
             ->gradientMode(SDKCommon\GraphGradientMode::opacity())
-            ->withOverride(
-                (new SDKDashboard\MatcherConfig(id: 'byRegexp', options: '/transmit|tx|out/')),
-                [(new SDKDashboard\DynamicConfigValue(id: 'custom.transform', value: 'negative-Y'))],
-            )
+            ->overrideByRegexp('/transmit|tx|out/', [
+                new SDKDashboard\DynamicConfigValue(id: 'custom.transform', value: 'negative-Y'),
+            ])
         ;
     }
 
@@ -65,12 +64,11 @@ Dropped packets can impact network performance and lead to issues such as degrad
             ->withTarget(Common::prometheusQuery('irate(node_network_transmit_drop_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0', '{{ device }} transmitted dropped'))
             ->withTarget(Common::prometheusQuery('irate(node_network_receive_drop_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0', '{{ device }} received dropped'))
             ->decimals(1)
-            ->unit('pps')
+            ->unit(Units::PACKETS_PER_SECOND)
             ->gradientMode(SDKCommon\GraphGradientMode::opacity())
-            ->withOverride(
-                (new SDKDashboard\MatcherConfig(id: 'byRegexp', options: '/transmit|tx|out/')),
-                [(new SDKDashboard\DynamicConfigValue(id: 'custom.transform', value: 'negative-Y'))],
-            )
+            ->overrideByRegexp('/transmit|tx|out/', [
+                new SDKDashboard\DynamicConfigValue(id: 'custom.transform', value: 'negative-Y'),
+            ])
         ;
     }
 }

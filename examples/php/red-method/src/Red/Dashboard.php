@@ -25,6 +25,7 @@ use Grafana\Foundation\Dashboard\RowBuilder;
 use Grafana\Foundation\Dashboard\TimePickerBuilder;
 use Grafana\Foundation\Testdata;
 use Grafana\Foundation\Timeseries;
+use Grafana\Foundation\Units\Constants as Units;
 
 class Dashboard
 {
@@ -44,7 +45,6 @@ class Dashboard
             ->timepicker(
                 (new TimePickerBuilder())
                     ->refreshIntervals(['5s', '10s', '30s', '1m', '5m', '15m', '30m', '1h', '2h', '1d'])
-                    ->timeOptions(['5m', '15m', '1h', '6h', '12h', '24h', '2d', '7d', '30d'])
             )
 		    // More info about the RED method
             ->link(
@@ -74,7 +74,7 @@ class Dashboard
         return self::defaultTimeseries()
             ->title('Request rate')
             ->description('Number of requests handled by the service, per second.')
-            ->unit('reqps')
+            ->unit(Units::REQUESTS_PER_SECOND)
             ->withTarget(self::randomData())
         ;
     }
@@ -84,7 +84,7 @@ class Dashboard
         return self::defaultTimeseries()
             ->title('Error rate')
             ->description('Number of failed requests, per second.')
-            ->unit('reqps')
+            ->unit(Units::REQUESTS_PER_SECOND)
             ->withTarget(self::randomData())
         ;
     }
@@ -94,7 +94,7 @@ class Dashboard
         return self::defaultTimeseries()
             ->title('Duration')
             ->description('Time taken to process the requests.')
-            ->unit('s')
+            ->unit(Units::SECONDS)
             ->withTarget(self::randomData())
         ;
     }

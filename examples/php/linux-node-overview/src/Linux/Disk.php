@@ -7,6 +7,7 @@ use Grafana\Foundation\Dashboard as SDKDashboard;
 use Grafana\Foundation\Stat;
 use Grafana\Foundation\Table;
 use Grafana\Foundation\Timeseries;
+use Grafana\Foundation\Units\Constants as Units;
 
 class Disk
 {
@@ -18,7 +19,7 @@ class Disk
             ->WithTarget(
                 Common::prometheusQuery('node_filesystem_size_bytes{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance", mountpoint="/", fstype!="rootfs"}', '')
             )
-            ->unit('bytes')
+            ->unit(Units::BYTES_IEC)
             ->colorMode(SDKCommon\BigValueColorMode::none())
         ;
     }
@@ -32,17 +33,14 @@ class Disk
             ->WithTarget(Common::prometheusQuery('irate(node_disk_written_bytes_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance", device!=""}[$__rate_interval])', '{{ device }} written'))
             ->WithTarget(Common::prometheusQuery('irate(node_disk_io_time_seconds_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance", device!=""}[$__rate_interval])', '{{ device }} io util'))
             ->decimals(0)
-            ->unit('Bps')
+            ->unit(Units::BYTES_PER_SECOND_SI)
             ->fillOpacity(1)
             ->gradientMode(SDKCommon\GraphGradientMode::opacity())
-            ->withOverride(
-                (new SDKDashboard\MatcherConfig(id: 'byRegexp', options: '/time|used|busy|util/')),
-                [
-                    (new SDKDashboard\DynamicConfigValue(id: 'custom.axisSoftMax', value: 100)),
-                    (new SDKDashboard\DynamicConfigValue(id: 'custom.drawStyle', value: 'points')),
-                    (new SDKDashboard\DynamicConfigValue(id: 'unit', value: 'percent')),
-                ],
-            )
+            ->overrideByRegexp('/time|used|busy|util/', [
+                (new SDKDashboard\DynamicConfigValue(id: 'custom.axisSoftMax', value: 100)),
+                (new SDKDashboard\DynamicConfigValue(id: 'custom.drawStyle', value: 'points')),
+                (new SDKDashboard\DynamicConfigValue(id: 'unit', value: Units::PERCENT)),
+            ])
         ;
     }
 
@@ -65,7 +63,7 @@ class Disk
                     ->legendFormat('{{ mountpoint }} free')
                     ->instant(),
             ])
-            ->unit('bytes')
+            ->unit(Units::BYTES_IEC)
             ->thresholds(
                 (new SDKDashboard\ThresholdsConfigBuilder())
                     ->mode(SDKDashboard\ThresholdsMode::absolute())
@@ -158,34 +156,27 @@ class Disk
                 ],
             ))
             // Overrides
-            ->withOverride(
-                new SDKDashboard\MatcherConfig(id: 'byName', options: 'Mounted on'),
-                [new SDKDashboard\DynamicConfigValue(id: 'custom.width', value: 260)],
-            )
-            ->withOverride(
-                new SDKDashboard\MatcherConfig(id: 'byName', options: 'Size'),
-                [new SDKDashboard\DynamicConfigValue(id: 'custom.width', value: 80)],
-            )
-            ->withOverride(
-                new SDKDashboard\MatcherConfig(id: 'byName', options: 'Used'),
-                [new SDKDashboard\DynamicConfigValue(id: 'custom.width', value: 80)],
-            )
-            ->withOverride(
-                new SDKDashboard\MatcherConfig(id: 'byName', options: 'Available'),
-                [new SDKDashboard\DynamicConfigValue(id: 'custom.width', value: 80)],
-            )
-            ->withOverride(
-                new SDKDashboard\MatcherConfig(id: 'byName', options: 'Used, %'),
-                [
-                    new SDKDashboard\DynamicConfigValue(id: 'custom.cellOptions', value: [
-                        'mode' => 'basic',
-                        'type' => 'gauge',
-                    ]),
-                    new SDKDashboard\DynamicConfigValue(id: 'min', value: 0),
-                    new SDKDashboard\DynamicConfigValue(id: 'max', value: 1),
-                    new SDKDashboard\DynamicConfigValue(id: 'unit', value: 'percentunit'),
-                ],
-            )
+            ->overrideByName('Mounted on', [
+                new SDKDashboard\DynamicConfigValue(id: 'custom.width', value: 260),
+            ])
+            ->overrideByName('Size', [
+                new SDKDashboard\DynamicConfigValue(id: 'custom.width', value: 80),
+            ])
+            ->overrideByName('Used', [
+                new SDKDashboard\DynamicConfigValue(id: 'custom.width', value: 80),
+            ])
+            ->overrideByName('Available', [
+                new SDKDashboard\DynamicConfigValue(id: 'custom.width', value: 80),
+            ])
+            ->overrideByName('Used, %', [
+                new SDKDashboard\DynamicConfigValue(id: 'custom.cellOptions', value: [
+                    'mode' => 'basic',
+                    'type' => 'gauge',
+                ]),
+                new SDKDashboard\DynamicConfigValue(id: 'min', value: 0),
+                new SDKDashboard\DynamicConfigValue(id: 'max', value: 1),
+                new SDKDashboard\DynamicConfigValue(id: 'unit', value: Units::PERCENT_UNIT),
+            ])
         ;
     }
 }

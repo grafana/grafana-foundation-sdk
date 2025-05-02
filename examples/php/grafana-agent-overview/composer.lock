@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "601fc8a4184c6158d736c6559126462a",
+    "content-hash": "a84ceaf9e23cefd8467844675e984bf4",
     "packages": [
         {
             "name": "grafana/foundation-sdk",
-            "version": "dev-v11.3.x+cog-v0.0.x",
+            "version": "dev-v11.6.x+cog-v0.0.x",
             "source": {
                 "type": "git",
                 "url": "https://github.com/grafana/grafana-foundation-sdk.git",
-                "reference": "dd60a15e7a2bd6ec939591188522f3270cfa438f"
+                "reference": "e22983a17becc636d750bde32757950cabca96a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grafana/grafana-foundation-sdk/zipball/dd60a15e7a2bd6ec939591188522f3270cfa438f",
-                "reference": "dd60a15e7a2bd6ec939591188522f3270cfa438f",
+                "url": "https://api.github.com/repos/grafana/grafana-foundation-sdk/zipball/e22983a17becc636d750bde32757950cabca96a9",
+                "reference": "e22983a17becc636d750bde32757950cabca96a9",
                 "shasum": ""
             },
             "type": "library",
@@ -42,9 +42,9 @@
             ],
             "support": {
                 "issues": "https://github.com/grafana/grafana-foundation-sdk/issues",
-                "source": "https://github.com/grafana/grafana-foundation-sdk/tree/v11.3.x+cog-v0.0.x"
+                "source": "https://github.com/grafana/grafana-foundation-sdk/tree/v11.6.x+cog-v0.0.x"
             },
-            "time": "2024-10-31T12:48:39+00:00"
+            "time": "2025-05-01T22:09:44+00:00"
         }
     ],
     "packages-dev": [],
