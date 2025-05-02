@@ -5,6 +5,7 @@ import (
 	"github.com/grafana/grafana-foundation-sdk/go/common"
 	"github.com/grafana/grafana-foundation-sdk/go/dashboard"
 	"github.com/grafana/grafana-foundation-sdk/go/stat"
+	"github.com/grafana/grafana-foundation-sdk/go/units"
 )
 
 func uptimeStat() *stat.PanelBuilder {
@@ -14,7 +15,7 @@ func uptimeStat() *stat.PanelBuilder {
 		WithTarget(
 			prometheusQuery(`time() - node_boot_time_seconds{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}`, ""),
 		).
-		Unit("dtdurations").
+		Unit(units.DurationSeconds).
 		Thresholds(dashboard.NewThresholdsConfigBuilder().
 			Mode(dashboard.ThresholdsModeAbsolute).
 			Steps([]dashboard.Threshold{

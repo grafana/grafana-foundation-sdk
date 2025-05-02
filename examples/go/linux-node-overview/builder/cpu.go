@@ -6,6 +6,7 @@ import (
 	"github.com/grafana/grafana-foundation-sdk/go/dashboard"
 	"github.com/grafana/grafana-foundation-sdk/go/stat"
 	"github.com/grafana/grafana-foundation-sdk/go/timeseries"
+	"github.com/grafana/grafana-foundation-sdk/go/units"
 )
 
 func cpuCountStat() *stat.PanelBuilder {
@@ -32,7 +33,7 @@ count by(instance) (count(node_cpu_seconds_total{job=~"integrations/(node_export
 		WithTarget(prometheusQuery(query, "")).
 		Min(0).
 		Max(100).
-		Unit("percent").
+		Unit(units.Percent).
 		Thresholds(
 			dashboard.NewThresholdsConfigBuilder().
 				Mode(dashboard.ThresholdsModeAbsolute).
@@ -58,7 +59,7 @@ func cpuUsageTimeseries() *timeseries.PanelBuilder {
 		Min(0).
 		Max(100).
 		Decimals(1).
-		Unit("percent").
+		Unit(units.Percent).
 		Thresholds(
 			dashboard.NewThresholdsConfigBuilder().
 				Mode(dashboard.ThresholdsModeAbsolute).
@@ -87,7 +88,7 @@ func loadAverageTimeseries() *timeseries.PanelBuilder {
 		).
 		Min(0).
 		Decimals(2).
-		Unit("short").
+		Unit(units.Short).
 		Thresholds(
 			dashboard.NewThresholdsConfigBuilder().
 				Mode(dashboard.ThresholdsModeAbsolute).
@@ -96,24 +97,21 @@ func loadAverageTimeseries() *timeseries.PanelBuilder {
 					{Value: cog.ToPtr[float64](80), Color: "red"},
 				}),
 		).
-		WithOverride(
-			dashboard.MatcherConfig{Id: "byRegexp", Options: "Cores"},
-			[]dashboard.DynamicConfigValue{
-				{
-					Id: "color",
-					Value: map[string]any{
-						"fixedColor": "light-orange",
-						"mode":       "fixed",
-					},
-				},
-				{Id: "custom.fillOpacity", Value: 0},
-				{
-					Id: "custom.lineStyle",
-					Value: map[string]any{
-						"dash": []int{10, 10},
-						"fill": "dash",
-					},
+		OverrideByRegexp("Cores", []dashboard.DynamicConfigValue{
+			{
+				Id: "color",
+				Value: map[string]any{
+					"fixedColor": "light-orange",
+					"mode":       "fixed",
 				},
 			},
-		)
+			{Id: "custom.fillOpacity", Value: 0},
+			{
+				Id: "custom.lineStyle",
+				Value: map[string]any{
+					"dash": []int{10, 10},
+					"fill": "dash",
+				},
+			},
+		})
 }

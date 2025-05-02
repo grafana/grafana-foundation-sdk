@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/grafana/grafana-foundation-sdk/go/timeseries"
+	"github.com/grafana/grafana-foundation-sdk/go/units"
 )
 
 func avgScrapeIntervalDurationTimeseries() *timeseries.PanelBuilder {
@@ -9,7 +10,7 @@ func avgScrapeIntervalDurationTimeseries() *timeseries.PanelBuilder {
 		Title("Average Scrape Interval Duration").
 		Description("Actual intervals between scrapes.").
 		Datasource(datasourceRef("$prometheus_datasource")).
-		Unit("s").
+		Unit(units.Seconds).
 		WithTarget(prometheusQuery(
 			`rate(prometheus_target_interval_length_seconds_sum{job=~"$job", instance=~"$instance"}[$__rate_interval]) / rate(prometheus_target_interval_length_seconds_count{job=~"$job", instance=~"$instance"}[$__rate_interval])`,
 			"{{instance}} {{interval}} configured",
@@ -21,7 +22,7 @@ func scrapeFailuresTimeseries() *timeseries.PanelBuilder {
 		Title("Scrape failures").
 		Description("Shows all scrape failures (sample limit exceeded, duplicate, out of bounds, out of order).").
 		Datasource(datasourceRef("$prometheus_datasource")).
-		Unit("short").
+		Unit(units.Short).
 		WithTarget(prometheusQuery(
 			`sum by (job) (rate(prometheus_target_scrapes_exceeded_sample_limit_total{job=~"$job", instance=~"$instance"}[$__rate_interval]))`,
 			"exceeded sample limit: {{job}}",
@@ -45,7 +46,7 @@ func appendedSamplesTimeseries() *timeseries.PanelBuilder {
 		Title("Appended Samples").
 		Description("Total number of samples appended to the WAL.").
 		Datasource(datasourceRef("$prometheus_datasource")).
-		Unit("short").
+		Unit(units.Short).
 		WithTarget(prometheusQuery(
 			`sum by (job, instance_group_name) (rate(agent_wal_samples_appended_total{job=~"$job", instance=~"$instance"}[$__rate_interval]))`,
 			"{{job}} {{instance_group_name}}",

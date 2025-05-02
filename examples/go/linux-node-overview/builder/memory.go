@@ -6,6 +6,7 @@ import (
 	"github.com/grafana/grafana-foundation-sdk/go/dashboard"
 	"github.com/grafana/grafana-foundation-sdk/go/stat"
 	"github.com/grafana/grafana-foundation-sdk/go/timeseries"
+	"github.com/grafana/grafana-foundation-sdk/go/units"
 )
 
 func memoryTotalStat() *stat.PanelBuilder {
@@ -16,7 +17,7 @@ func memoryTotalStat() *stat.PanelBuilder {
 			prometheusQuery(`node_memory_MemTotal_bytes{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}`, ""),
 		).
 		Decimals(2).
-		Unit("bytes").
+		Unit(units.BytesIEC).
 		ColorMode(common.BigValueColorModeNone)
 }
 
@@ -27,7 +28,7 @@ func swapTotalStat() *stat.PanelBuilder {
 		WithTarget(
 			prometheusQuery(`node_memory_SwapTotal_bytes{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}`, ""),
 		).
-		Unit("bytes").
+		Unit(units.BytesIEC).
 		ColorMode(common.BigValueColorModeNone)
 }
 
@@ -45,7 +46,7 @@ func memoryUsageStat() *stat.PanelBuilder {
 		WithTarget(prometheusQuery(query, "")).
 		Min(0).
 		Max(100).
-		Unit("percent").
+		Unit(units.Percent).
 		Thresholds(
 			dashboard.NewThresholdsConfigBuilder().
 				Mode(dashboard.ThresholdsModeAbsolute).
@@ -77,26 +78,23 @@ func memoryUsageTimeseries() *timeseries.PanelBuilder {
 		WithTarget(prometheusQuery(`node_memory_MemFree_bytes{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}`, "Memory free")).
 		WithTarget(prometheusQuery(`node_memory_MemTotal_bytes{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}`, "Memory total")).
 		Decimals(2).
-		Unit("bytes").
+		Unit(units.BytesIEC).
 		GradientMode(common.GraphGradientModeOpacity).
-		WithOverride(
-			dashboard.MatcherConfig{Id: "byRegexp", Options: ".*(T|t)otal.*"},
-			[]dashboard.DynamicConfigValue{
-				{
-					Id: "color",
-					Value: map[string]any{
-						"fixedColor": "light-orange",
-						"mode":       "fixed",
-					},
-				},
-				{Id: "custom.fillOpacity", Value: 0},
-				{
-					Id: "custom.lineStyle",
-					Value: map[string]any{
-						"dash": []int{10, 10},
-						"fill": "dash",
-					},
+		OverrideByRegexp(".*(T|t)otal.*", []dashboard.DynamicConfigValue{
+			{
+				Id: "color",
+				Value: map[string]any{
+					"fixedColor": "light-orange",
+					"mode":       "fixed",
 				},
 			},
-		)
+			{Id: "custom.fillOpacity", Value: 0},
+			{
+				Id: "custom.lineStyle",
+				Value: map[string]any{
+					"dash": []int{10, 10},
+					"fill": "dash",
+				},
+			},
+		})
 }

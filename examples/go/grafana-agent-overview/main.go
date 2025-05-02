@@ -19,8 +19,7 @@ func main() {
 		Time("now-30m", "now").
 		Timezone(common.TimeZoneBrowser).
 		Timepicker(dashboard.NewTimePickerBuilder().
-			RefreshIntervals([]string{"5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"}).
-			TimeOptions([]string{"5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"}),
+			RefreshIntervals([]string{"5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"}),
 		).
 		// Links to other agent-related dashboards
 		Link(dashboard.NewDashboardLinkBuilder("Grafana Agent Dashboards").
@@ -40,10 +39,10 @@ func main() {
 		// "Job" variable
 		WithVariable(dashboard.NewQueryVariableBuilder("job").
 			Label("Job").
-			Query(dashboard.StringOrMap{String: cog.ToPtr[string]("label_values(agent_build_info, job)")}).
+			Query(dashboard.StringOrMap{String: cog.ToPtr("label_values(agent_build_info, job)")}).
 			Datasource(datasourceRef("$prometheus_datasource")).
 			Current(dashboard.VariableOption{
-				Selected: cog.ToPtr[bool](true),
+				Selected: cog.ToPtr(true),
 				Text:     dashboard.StringOrArrayOfString{ArrayOfString: []string{"All"}},
 				Value:    dashboard.StringOrArrayOfString{ArrayOfString: []string{"$__all"}},
 			}).
@@ -55,10 +54,10 @@ func main() {
 		// "Instance" variable
 		WithVariable(dashboard.NewQueryVariableBuilder("instance").
 			Label("Instance").
-			Query(dashboard.StringOrMap{String: cog.ToPtr[string]("label_values(agent_build_info{job=~\"$job\"}, instance)")}).
+			Query(dashboard.StringOrMap{String: cog.ToPtr("label_values(agent_build_info{job=~\"$job\"}, instance)")}).
 			Datasource(datasourceRef("$prometheus_datasource")).
 			Current(dashboard.VariableOption{
-				Selected: cog.ToPtr[bool](true),
+				Selected: cog.ToPtr(true),
 				Text:     dashboard.StringOrArrayOfString{ArrayOfString: []string{"All"}},
 				Value:    dashboard.StringOrArrayOfString{ArrayOfString: []string{"$__all"}},
 			}).

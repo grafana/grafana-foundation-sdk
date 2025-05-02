@@ -4,6 +4,7 @@ import (
 	"github.com/grafana/grafana-foundation-sdk/go/common"
 	"github.com/grafana/grafana-foundation-sdk/go/dashboard"
 	"github.com/grafana/grafana-foundation-sdk/go/table"
+	"github.com/grafana/grafana-foundation-sdk/go/units"
 )
 
 func runningInstancesTable() *table.PanelBuilder {
@@ -38,10 +39,7 @@ func runningInstancesTable() *table.PanelBuilder {
 			},
 		}).
 		// Overrides
-		WithOverride(
-			dashboard.MatcherConfig{Id: "byName", Options: "Value #B"},
-			[]dashboard.DynamicConfigValue{
-				{Id: "unit", Value: "s"},
-			},
-		)
+		OverrideByName("Value #B", []dashboard.DynamicConfigValue{
+			{Id: "unit", Value: units.Seconds},
+		})
 }

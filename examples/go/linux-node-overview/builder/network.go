@@ -4,6 +4,7 @@ import (
 	"github.com/grafana/grafana-foundation-sdk/go/common"
 	"github.com/grafana/grafana-foundation-sdk/go/dashboard"
 	"github.com/grafana/grafana-foundation-sdk/go/timeseries"
+	"github.com/grafana/grafana-foundation-sdk/go/units"
 )
 
 func networkTrafficTimeseries() *timeseries.PanelBuilder {
@@ -25,14 +26,11 @@ increase(
     node_network_transmit_bytes_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__range]
     ) > 0`, "{{ device }} transmitted")).
 		Decimals(1).
-		Unit("bps").
+		Unit(units.BitsPerSecondSI).
 		GradientMode(common.GraphGradientModeOpacity).
-		WithOverride(
-			dashboard.MatcherConfig{Id: "byRegexp", Options: "/transmit|tx|out/"},
-			[]dashboard.DynamicConfigValue{
-				{Id: "custom.transform", Value: "negative-Y"},
-			},
-		)
+		OverrideByRegexp("/transmit|tx|out/", []dashboard.DynamicConfigValue{
+			{Id: "custom.transform", Value: "negative-Y"},
+		})
 }
 
 func networkErrorsTimeseries() *timeseries.PanelBuilder {
@@ -61,12 +59,9 @@ Dropped packets can impact network performance and lead to issues such as degrad
 		WithTarget(prometheusQuery(`irate(node_network_transmit_drop_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0`, "{{ device }} transmitted dropped")).
 		WithTarget(prometheusQuery(`irate(node_network_receive_drop_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0`, "{{ device }} received dropped")).
 		Decimals(1).
-		Unit("pps").
+		Unit(units.PacketsPerSecond).
 		GradientMode(common.GraphGradientModeOpacity).
-		WithOverride(
-			dashboard.MatcherConfig{Id: "byRegexp", Options: "/transmit|tx|out/"},
-			[]dashboard.DynamicConfigValue{
-				{Id: "custom.transform", Value: "negative-Y"},
-			},
-		)
+		OverrideByRegexp("/transmit|tx|out/", []dashboard.DynamicConfigValue{
+			{Id: "custom.transform", Value: "negative-Y"},
+		})
 }
