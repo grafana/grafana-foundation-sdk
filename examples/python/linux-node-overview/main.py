@@ -1,7 +1,9 @@
 from grafana_foundation_sdk.builders import dashboard
 from grafana_foundation_sdk.cog.encoder import JSONEncoder
 from grafana_foundation_sdk.models.dashboard import (
-    DashboardCursorSync, DashboardLinkType, VariableHide
+    DashboardCursorSync,
+    DashboardLinkType,
+    VariableHide,
 )
 
 from src import common, cpu, disk, host, memory, network
@@ -16,14 +18,14 @@ builder = (
     .time("now-30m", "now")
     .timezone("browser")
     .timepicker(
-        dashboard.TimePicker()
-        .refresh_intervals(["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"])
-        .time_options(["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"])
+        dashboard.TimePicker().refresh_intervals(
+            ["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"]
+        )
     )
     # "Back to fleet" link
     .link(
         dashboard.DashboardLink("Back to Linux node / fleet")
-        .type_val(DashboardLinkType.LINK)
+        .type(DashboardLinkType.LINK)
         .url("/d/node-fleet")
         .tags(["grafana-agent-integration"])
         .keep_time(True)
@@ -31,7 +33,7 @@ builder = (
     # Links to other linux-node-related dashboards
     .link(
         dashboard.DashboardLink("All Linux node /  dashboards")
-        .type_val(DashboardLinkType.DASHBOARDS)
+        .type(DashboardLinkType.DASHBOARDS)
         .tags(["linux-node-integration"])
         .include_vars(True)
         .as_dropdown(True)
@@ -41,7 +43,7 @@ builder = (
     .with_variable(
         dashboard.DatasourceVariable("datasource")
         .label("Data source")
-        .type_val("prometheus")
+        .type("prometheus")
         .regex("(?!grafanacloud-usage|grafanacloud-ml-metrics).+")
         .multi(False)
     )
@@ -49,7 +51,7 @@ builder = (
     .with_variable(
         dashboard.DatasourceVariable("loki_datasource")
         .label("Loki data source")
-        .type_val("loki")
+        .type("loki")
         .regex("(?!grafanacloud.+usage-insights|grafanacloud.+alert-state-history).+")
         .multi(False)
         .hide(VariableHide.HIDE_VARIABLE)
@@ -57,20 +59,26 @@ builder = (
     # "Cluster" variable
     .with_variable(
         common.query_variable(
-            "cluster", "Cluster", 'label_values(node_uname_info{job=~"integrations/(node_exporter|unix)"}, cluster)')
-        .all_value(".*")
+            "cluster",
+            "Cluster",
+            'label_values(node_uname_info{job=~"integrations/(node_exporter|unix)"}, cluster)',
+        ).all_value(".*")
     )
     # "Job" variable
     .with_variable(
         common.query_variable(
-            "job", "Job", 'label_values(node_uname_info{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster"}, job)')
-        .all_value(".+")
+            "job",
+            "Job",
+            'label_values(node_uname_info{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster"}, job)',
+        ).all_value(".+")
     )
     # "Instance" variable
     .with_variable(
         common.query_variable(
-            "instance", "Instance", 'label_values(node_uname_info{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job"}, instance)')
-        .all_value(".+")
+            "instance",
+            "Instance",
+            'label_values(node_uname_info{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job"}, instance)',
+        ).all_value(".+")
     )
     # Panels
     .with_row(dashboard.Row("Overview"))
@@ -97,5 +105,5 @@ builder = (
     .with_panel(network.errors_timeseries().height(8))
 )
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(JSONEncoder(sort_keys=True, indent=2).encode(builder.build()))

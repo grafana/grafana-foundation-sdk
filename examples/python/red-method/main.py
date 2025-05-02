@@ -8,5 +8,5 @@ red_dashboard = red(
     service_ids=["sample-service", "payments", "front-gateway"],
 )
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(JSONEncoder(sort_keys=True, indent=2).encode(red_dashboard.build()))

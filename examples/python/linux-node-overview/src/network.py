@@ -1,6 +1,7 @@
 from grafana_foundation_sdk.builders import timeseries
 from grafana_foundation_sdk.models.common import AxisPlacement, GraphGradientMode
-from grafana_foundation_sdk.models.dashboard import DynamicConfigValue, MatcherConfig
+from grafana_foundation_sdk.models.dashboard import DynamicConfigValue
+from grafana_foundation_sdk.models import units
 
 from .common import prometheus_query, default_timeseries
 
@@ -23,19 +24,19 @@ increase(
     return (
         default_timeseries()
         .title("Network traffic")
-        .description("Network traffic (bits per sec) measures data transmitted and received.")
+        .description(
+            "Network traffic (bits per sec) measures data transmitted and received."
+        )
         .axis_label("out(-) | in(+)")
         .axis_placement(AxisPlacement.AUTO)
         .with_target(prometheus_query(received_query, "{{ device }} received"))
         .with_target(prometheus_query(transmitted_query, "{{ device }} transmitted"))
         .decimals(1)
-        .unit("bps")
+        .unit(units.BitsPerSecondSI)
         .gradient_mode(GraphGradientMode.OPACITY)
-        .with_override(
-            matcher=MatcherConfig(id_val="byRegexp", options="/transmit|tx|out/"),
-            properties=[
-                DynamicConfigValue(id_val="custom.transform", value="negative-Y"),
-            ],
+        .override_by_regexp(
+            "/transmit|tx|out/",
+            [DynamicConfigValue(id_val="custom.transform", value="negative-Y")],
         )
     )
 
@@ -64,29 +65,35 @@ Dropped packets can impact network performance and lead to issues such as degrad
         .description(description)
         .axis_label("out(-) | in(+)")
         .axis_placement(AxisPlacement.AUTO)
-        .with_target(prometheus_query(
-            'irate(node_network_transmit_errs_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0',
-            "{{ device }} errors transmitted",
-        ))
-        .with_target(prometheus_query(
-            'irate(node_network_receive_errs_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0',
-            "{{ device }} errors received",
-        ))
-        .with_target(prometheus_query(
-            'irate(node_network_transmit_drop_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0',
-            "{{ device }} transmitted dropped",
-        ))
-        .with_target(prometheus_query(
-            'irate(node_network_receive_drop_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0',
-            "{{ device }} received dropped",
-        ))
+        .with_target(
+            prometheus_query(
+                'irate(node_network_transmit_errs_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0',
+                "{{ device }} errors transmitted",
+            )
+        )
+        .with_target(
+            prometheus_query(
+                'irate(node_network_receive_errs_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0',
+                "{{ device }} errors received",
+            )
+        )
+        .with_target(
+            prometheus_query(
+                'irate(node_network_transmit_drop_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0',
+                "{{ device }} transmitted dropped",
+            )
+        )
+        .with_target(
+            prometheus_query(
+                'irate(node_network_receive_drop_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}[$__rate_interval])>0',
+                "{{ device }} received dropped",
+            )
+        )
         .decimals(1)
-        .unit("pps")
+        .unit(units.PacketsPerSecond)
         .gradient_mode(GraphGradientMode.OPACITY)
-        .with_override(
-            matcher=MatcherConfig(id_val="byRegexp", options="/transmit|tx|out/"),
-            properties=[
-                DynamicConfigValue(id_val="custom.transform", value="negative-Y"),
-            ],
+        .override_by_regexp(
+            "/transmit|tx|out/",
+            [DynamicConfigValue(id_val="custom.transform", value="negative-Y")],
         )
     )

@@ -1,6 +1,11 @@
 from grafana_foundation_sdk.builders import dashboard, stat, timeseries
 from grafana_foundation_sdk.models.common import BigValueColorMode, BigValueGraphMode
-from grafana_foundation_sdk.models.dashboard import DynamicConfigValue, MatcherConfig, ThresholdsMode, Threshold
+from grafana_foundation_sdk.models.dashboard import (
+    DynamicConfigValue,
+    ThresholdsMode,
+    Threshold,
+)
+from grafana_foundation_sdk.models import units
 
 from .common import prometheus_query, default_stat, default_timeseries
 
@@ -9,11 +14,15 @@ def count_stat() -> stat.Panel:
     return (
         default_stat()
         .title("CPU count")
-        .description("CPU count is the number of processor cores or central processing units (CPUs) in a computer,\ndetermining its processing capability and ability to handle tasks concurrently.")
-        .with_target(prometheus_query(
-            query='count without (cpu) (node_cpu_seconds_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance", mode="idle"})',
-            legend="Cores",
-        ))
+        .description(
+            "CPU count is the number of processor cores or central processing units (CPUs) in a computer,\ndetermining its processing capability and ability to handle tasks concurrently."
+        )
+        .with_target(
+            prometheus_query(
+                query='count without (cpu) (node_cpu_seconds_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance", mode="idle"})',
+                legend="Cores",
+            )
+        )
         .decimals(0)
         .color_mode(BigValueColorMode.NONE)
     )
@@ -37,16 +46,18 @@ on average, half of the CPU's processing capacity is being used to execute tasks
         .title("CPU usage")
         .description(description)
         .with_target(prometheus_query(query=query))
-        .min_val(0)
-        .max_val(100)
-        .unit("percent")
+        .min(0)
+        .max(100)
+        .unit(units.Percent)
         .thresholds(
             dashboard.ThresholdsConfig()
             .mode(ThresholdsMode.ABSOLUTE)
-            .steps([
-                Threshold(color="green"),
-                Threshold(value=80, color="red"),
-            ])
+            .steps(
+                [
+                    Threshold(color="green"),
+                    Threshold(value=80, color="red"),
+                ]
+            )
         )
         .graph_mode(BigValueGraphMode.AREA)
     )
@@ -69,18 +80,20 @@ on average, half of the CPU's processing capacity is being used to execute tasks
         default_timeseries()
         .title("CPU usage")
         .description(description)
-        .unit("percent")
+        .unit(units.Percent)
         .decimals(1)
-        .with_target(prometheus_query(query=query, legend='CPU {{cpu}}'))
-        .min_val(0)
-        .max_val(100)
+        .with_target(prometheus_query(query=query, legend="CPU {{cpu}}"))
+        .min(0)
+        .max(100)
         .thresholds(
             dashboard.ThresholdsConfig()
             .mode(ThresholdsMode.ABSOLUTE)
-            .steps([
-                Threshold(color="green"),
-                Threshold(value=80, color="red"),
-            ])
+            .steps(
+                [
+                    Threshold(color="green"),
+                    Threshold(value=80, color="red"),
+                ]
+            )
         )
     )
 
@@ -94,50 +107,54 @@ A measurement of how many processes are waiting for CPU cycles. The maximum numb
         default_timeseries()
         .title("Load average")
         .description(description)
-        .with_target(prometheus_query(
-            query='node_load1{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}',
-            legend='1m',
-        ))
-        .with_target(prometheus_query(
-            query='node_load5{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}',
-            legend='5m',
-        ))
-        .with_target(prometheus_query(
-            query='node_load15{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}',
-            legend='15m',
-        ))
-        .with_target(prometheus_query(
-            query='count without (cpu) (node_cpu_seconds_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance", mode="idle"})',
-            legend='Cores',
-        ))
-        .unit("short")
+        .with_target(
+            prometheus_query(
+                query='node_load1{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}',
+                legend="1m",
+            )
+        )
+        .with_target(
+            prometheus_query(
+                query='node_load5{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}',
+                legend="5m",
+            )
+        )
+        .with_target(
+            prometheus_query(
+                query='node_load15{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}',
+                legend="15m",
+            )
+        )
+        .with_target(
+            prometheus_query(
+                query='count without (cpu) (node_cpu_seconds_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance", mode="idle"})',
+                legend="Cores",
+            )
+        )
+        .unit(units.Short)
         .decimals(2)
-        .min_val(0)
+        .min(0)
         .thresholds(
             dashboard.ThresholdsConfig()
             .mode(ThresholdsMode.ABSOLUTE)
-            .steps([
-                Threshold(color="green"),
-                Threshold(value=80, color="red"),
-            ])
+            .steps(
+                [
+                    Threshold(color="green"),
+                    Threshold(value=80, color="red"),
+                ]
+            )
         )
-        .with_override(
-            matcher=MatcherConfig(id_val="byRegexp", options="Cores"),
-            properties=[
+        .override_by_regexp(
+            "Cores",
+            [
                 DynamicConfigValue(
                     id_val="color",
-                    value={
-                        "fixedColor": "light-orange",
-                        "mode": "fixed",
-                    },
+                    value={"fixedColor": "light-orange", "mode": "fixed"},
                 ),
                 DynamicConfigValue(id_val="custom.fillOpacity", value=0),
                 DynamicConfigValue(
                     id_val="custom.lineStyle",
-                    value={
-                        "dash": [10, 10],
-                        "fill": "dash",
-                    },
+                    value={"dash": [10, 10], "fill": "dash"},
                 ),
             ],
         )

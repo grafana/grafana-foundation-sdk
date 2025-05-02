@@ -35,7 +35,9 @@ Note, the Grafana Foundation SDK requires Python 3.11+.
 From an example's folder:
 
 ```console
-$ python -m pip install -r requirements.txt
+$ python -m venv .venv
+$ source .venv/bin/activate
+$ pip install -r requirements.txt
 $ python main.py
 ```
 

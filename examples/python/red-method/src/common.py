@@ -24,7 +24,8 @@ def default_timeseries() -> timeseries.Panel:
             .sort(common.SortOrder.DESCENDING)
         )
         .thresholds_style(
-            common_builder.GraphThresholdsStyleConfig()
-            .mode(common.GraphThresholdsStyleMode.OFF)
+            common_builder.GraphThresholdsStyleConfig().mode(
+                common.GraphThresholdsStyleMode.OFF
+            )
         )
     )
