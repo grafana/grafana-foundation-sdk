@@ -1,23 +1,23 @@
 import * as dashboard from '@grafana/grafana-foundation-sdk/dashboard';
 
 export interface CustomPanelOptions {
-    makeBeautiful?: boolean;
+  makeBeautiful?: boolean;
 }
 
 export const defaultCustomPanelOptions = (): CustomPanelOptions => ({});
 
 export class CustomPanelBuilder extends dashboard.PanelBuilder {
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.internal.type = "custom-panel"; // panel plugin ID
-    }
+    this.internal.type = "custom-panel"; // panel plugin ID
+  }
 
-    makeBeautiful(): this {
-        if (!this.internal.options) {
-            this.internal.options = defaultCustomPanelOptions();
-        }
-        this.internal.options.makeBeautiful = true;
-        return this;
+  makeBeautiful(): this {
+    if (!this.internal.options) {
+      this.internal.options = defaultCustomPanelOptions();
     }
+    this.internal.options.makeBeautiful = true;
+    return this;
+  }
 }
