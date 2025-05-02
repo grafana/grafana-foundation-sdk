@@ -34,10 +34,10 @@ From an example's folder:
 
 ```console
 $ go mod vendor
-$ go run *.go
+$ go run .
 ```
 
 > [!NOTE]
 > [Grizzly](https://github.com/grafana/grizzly/) can be used to preview the examples locally:
 >
-> `grr serve -w -S 'go run *.go' .`
+> `grr serve -w -S 'go run .' .`

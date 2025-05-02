@@ -50,6 +50,6 @@ func defaultTimeseries() *timeseries.PanelBuilder {
 			common.NewGraphThresholdsStyleConfigBuilder().
 				Mode(common.GraphThresholdsStyleModeOff),
 		).
-		SpanNulls(common.BoolOrFloat64{Bool: cog.ToPtr[bool](false)}).
+		SpanNulls(common.BoolOrFloat64{Bool: cog.ToPtr(false)}).
 		AxisBorderShow(false)
 }

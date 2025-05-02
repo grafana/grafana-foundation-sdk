@@ -7,6 +7,7 @@ import (
 	"github.com/grafana/grafana-foundation-sdk/go/dashboard"
 	"github.com/grafana/grafana-foundation-sdk/go/testdata"
 	"github.com/grafana/grafana-foundation-sdk/go/timeseries"
+	"github.com/grafana/grafana-foundation-sdk/go/units"
 )
 
 type redConfig struct {
@@ -24,8 +25,7 @@ func red(config redConfig) *dashboard.DashboardBuilder {
 		Time("now-30m", "now").
 		Timezone(common.TimeZoneBrowser).
 		Timepicker(dashboard.NewTimePickerBuilder().
-			RefreshIntervals([]string{"5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"}).
-			TimeOptions([]string{"5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"}),
+			RefreshIntervals([]string{"5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"}),
 		).
 		// More info about the RED method
 		Link(dashboard.NewDashboardLinkBuilder("RED method").
@@ -49,7 +49,7 @@ func requestRateTimeseries() *timeseries.PanelBuilder {
 	return defaultTimeseries().
 		Title("Request rate").
 		Description("Number of requests handled by the service, per second.").
-		Unit("reqps").
+		Unit(units.RequestsPerSecond).
 		WithTarget(
 			testdata.NewDataqueryBuilder().
 				QueryType("randomWalk").
@@ -61,7 +61,7 @@ func errorRateTimeseries() *timeseries.PanelBuilder {
 	return defaultTimeseries().
 		Title("Error rate").
 		Description("Number of failed requests, per second.").
-		Unit("reqps").
+		Unit(units.RequestsPerSecond).
 		WithTarget(
 			testdata.NewDataqueryBuilder().
 				QueryType("randomWalk").
@@ -74,7 +74,7 @@ func durationTimeseries() *timeseries.PanelBuilder {
 		Title("Duration").
 		Description("Time taken to process the requests.").
 		Datasource(grafanaDatasourceRef()).
-		Unit("s").
+		Unit(units.Seconds).
 		WithTarget(
 			testdata.NewDataqueryBuilder().
 				QueryType("randomWalk").

@@ -18,10 +18,10 @@ func datasourceRef(uid string) dashboard.DataSourceRef {
 func queryVariable(name string, label string, query string) *dashboard.QueryVariableBuilder {
 	return dashboard.NewQueryVariableBuilder(name).
 		Label(label).
-		Query(dashboard.StringOrMap{String: cog.ToPtr[string](query)}).
+		Query(dashboard.StringOrMap{String: cog.ToPtr(query)}).
 		Datasource(datasourceRef("$datasource")).
 		Current(dashboard.VariableOption{
-			Selected: cog.ToPtr[bool](true),
+			Selected: cog.ToPtr(true),
 			Text:     dashboard.StringOrArrayOfString{ArrayOfString: []string{"All"}},
 			Value:    dashboard.StringOrArrayOfString{ArrayOfString: []string{"$__all"}},
 		}).
@@ -88,6 +88,6 @@ func defaultTimeseries() *timeseries.PanelBuilder {
 			common.NewGraphThresholdsStyleConfigBuilder().
 				Mode(common.GraphThresholdsStyleModeOff),
 		).
-		SpanNulls(common.BoolOrFloat64{Bool: cog.ToPtr[bool](false)}).
+		SpanNulls(common.BoolOrFloat64{Bool: cog.ToPtr(false)}).
 		AxisBorderShow(false)
 }

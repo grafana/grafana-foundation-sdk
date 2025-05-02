@@ -7,6 +7,7 @@ import (
 	"github.com/grafana/grafana-foundation-sdk/go/stat"
 	"github.com/grafana/grafana-foundation-sdk/go/table"
 	"github.com/grafana/grafana-foundation-sdk/go/timeseries"
+	"github.com/grafana/grafana-foundation-sdk/go/units"
 )
 
 func rootMountSizeStat() *stat.PanelBuilder {
@@ -16,7 +17,7 @@ func rootMountSizeStat() *stat.PanelBuilder {
 		WithTarget(
 			prometheusQuery(`node_filesystem_size_bytes{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance", mountpoint="/", fstype!="rootfs"}`, ""),
 		).
-		Unit("bytes").
+		Unit(units.BytesIEC).
 		ColorMode(common.BigValueColorModeNone)
 }
 
@@ -28,17 +29,14 @@ func diskReadWriteTimeseries() *timeseries.PanelBuilder {
 		WithTarget(prometheusQuery(`irate(node_disk_written_bytes_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance", device!=""}[$__rate_interval])`, "{{ device }} written")).
 		WithTarget(prometheusQuery(`irate(node_disk_io_time_seconds_total{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance", device!=""}[$__rate_interval])`, "{{ device }} io util")).
 		Decimals(0).
-		Unit("Bps").
+		Unit(units.BytesPerSecondSI).
 		FillOpacity(1).
 		GradientMode(common.GraphGradientModeOpacity).
-		WithOverride(
-			dashboard.MatcherConfig{Id: "byRegexp", Options: "/time|used|busy|util/"},
-			[]dashboard.DynamicConfigValue{
-				{Id: "custom.axisSoftMax", Value: 100},
-				{Id: "custom.drawStyle", Value: "points"},
-				{Id: "unit", Value: "percent"},
-			},
-		)
+		OverrideByRegexp("/time|used|busy|util/", []dashboard.DynamicConfigValue{
+			{Id: "custom.axisSoftMax", Value: 100},
+			{Id: "custom.drawStyle", Value: "points"},
+			{Id: "unit", Value: units.Percent},
+		})
 }
 
 func diskSpaceUsageTable() *table.PanelBuilder {
@@ -56,14 +54,14 @@ func diskSpaceUsageTable() *table.PanelBuilder {
 				LegendFormat("{{ mountpoint }} free").
 				Instant(),
 		).
-		Unit("bytes").
+		Unit(units.BytesIEC).
 		Thresholds(
 			dashboard.NewThresholdsConfigBuilder().
 				Mode(dashboard.ThresholdsModeAbsolute).
 				Steps([]dashboard.Threshold{
 					{Value: nil, Color: "light-blue"},
-					{Value: cog.ToPtr[float64](0.8), Color: "light-yellow"},
-					{Value: cog.ToPtr[float64](0.9), Color: "light-red"},
+					{Value: cog.ToPtr(0.8), Color: "light-yellow"},
+					{Value: cog.ToPtr(0.9), Color: "light-red"},
 				}),
 		).
 		// Transformations
@@ -150,43 +148,28 @@ func diskSpaceUsageTable() *table.PanelBuilder {
 			},
 		}).
 		// Overrides
-		WithOverride(
-			dashboard.MatcherConfig{Id: "byName", Options: "Mounted on"},
-			[]dashboard.DynamicConfigValue{
-				{Id: "custom.width", Value: "260"},
-			},
-		).
-		WithOverride(
-			dashboard.MatcherConfig{Id: "byName", Options: "Size"},
-			[]dashboard.DynamicConfigValue{
-				{Id: "custom.width", Value: "80"},
-			},
-		).
-		WithOverride(
-			dashboard.MatcherConfig{Id: "byName", Options: "Used"},
-			[]dashboard.DynamicConfigValue{
-				{Id: "custom.width", Value: "80"},
-			},
-		).
-		WithOverride(
-			dashboard.MatcherConfig{Id: "byName", Options: "Available"},
-			[]dashboard.DynamicConfigValue{
-				{Id: "custom.width", Value: "80"},
-			},
-		).
-		WithOverride(
-			dashboard.MatcherConfig{Id: "byName", Options: "Used, %"},
-			[]dashboard.DynamicConfigValue{
-				{
-					Id: "custom.cellOptions",
-					Value: map[string]any{
-						"mode": "basic",
-						"type": "gauge",
-					},
+		OverrideByName("Mounted on", []dashboard.DynamicConfigValue{
+			{Id: "custom.width", Value: "260"},
+		}).
+		OverrideByName("Size", []dashboard.DynamicConfigValue{
+			{Id: "custom.width", Value: "80"},
+		}).
+		OverrideByName("Used", []dashboard.DynamicConfigValue{
+			{Id: "custom.width", Value: "80"},
+		}).
+		OverrideByName("Available", []dashboard.DynamicConfigValue{
+			{Id: "custom.width", Value: "80"},
+		}).
+		OverrideByName("Used, %", []dashboard.DynamicConfigValue{
+			{
+				Id: "custom.cellOptions",
+				Value: map[string]any{
+					"mode": "basic",
+					"type": "gauge",
 				},
-				{Id: "min", Value: 0},
-				{Id: "max", Value: 1},
-				{Id: "unit", Value: "percentunit"},
 			},
-		)
+			{Id: "min", Value: 0},
+			{Id: "max", Value: 1},
+			{Id: "unit", Value: units.PercentUnit},
+		})
 }
