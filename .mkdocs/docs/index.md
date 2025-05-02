@@ -190,7 +190,6 @@ provided for a range of versions of Grafana.
         encoder = JSONEncoder(sort_keys=True, indent=2)
 
         print(encoder.encode(dashboard))
-
     ```
 
 === "Typescript"
