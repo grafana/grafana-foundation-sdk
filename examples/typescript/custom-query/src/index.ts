@@ -3,13 +3,13 @@ import { PanelBuilder as TimeSeriesBuilder } from "@grafana/grafana-foundation-s
 import { CustomQueryBuilder } from "./customQuery";
 
 const builder = new DashboardBuilder('[Example] Custom query')
-    .uid('example-custom-query')
-    .withPanel(
-        new TimeSeriesBuilder()
-            .title('Sample panel')
-            .withTarget(
-                new CustomQueryBuilder("query here")
-            )
-    );
+  .uid('example-custom-query')
+  .withPanel(
+    new TimeSeriesBuilder()
+      .title('Sample panel')
+      .withTarget(
+        new CustomQueryBuilder("query here")
+      )
+  );
 
 console.log(JSON.stringify(builder.build(), null, 2));
