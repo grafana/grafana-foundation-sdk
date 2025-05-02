@@ -1,11 +1,10 @@
 package agent;
 
-import com.grafana.foundation.common.TableFooterOptions;
-import com.grafana.foundation.dashboard.DashboardFieldConfigSourceOverrides;
+import com.grafana.foundation.common.TableFooterOptionsBuilder;
 import com.grafana.foundation.dashboard.DataTransformerConfig;
 import com.grafana.foundation.dashboard.DynamicConfigValue;
-import com.grafana.foundation.dashboard.MatcherConfig;
 import com.grafana.foundation.table.PanelBuilder;
+import com.grafana.foundation.units.Constants;
 
 import java.util.List;
 import java.util.Map;
@@ -15,20 +14,12 @@ import static agent.Common.tablePrometheusQuery;
 
 public class Overview {
     static PanelBuilder runningInstancesTable() {
-        MatcherConfig matcherConfig = new MatcherConfig();
-        matcherConfig.id = "byName";
-        matcherConfig.options = "Value #B";
-
-        DynamicConfigValue dynamicConfigValue = new DynamicConfigValue();
-        dynamicConfigValue.id = "unit";
-        dynamicConfigValue.value = "s";
-
         return new PanelBuilder().
                 title("Running instances").
                 description("General statistics of running grafana agent instances.").
                 height(7).
                 span(24).
-                footer(new TableFooterOptions.Builder().
+                footer(new TableFooterOptionsBuilder().
                         countRows(false).
                         reducer(List.of("sum"))
                 ).
@@ -44,7 +35,9 @@ public class Overview {
                         "excludeByName", Map.of("Time", true, "Value #A", true),
                         "renameByName", Map.of("Value #B", "Uptime")))
                 ).
-                withOverride(new DashboardFieldConfigSourceOverrides.Builder().matcher(matcherConfig).properties(List.of(dynamicConfigValue)));
+                overrideByName("Value #B", List.of(
+                        new DynamicConfigValue("unit", Constants.Seconds)
+                ));
     }
 
     private static DataTransformerConfig transformationConfig(String id, Map<String, Object> map) {

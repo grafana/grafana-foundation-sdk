@@ -2,23 +2,21 @@ package agent;
 
 import com.grafana.foundation.common.*;
 import com.grafana.foundation.dashboard.DataSourceRef;
-import com.grafana.foundation.prometheus.Dataquery;
+import com.grafana.foundation.prometheus.DataqueryBuilder;
 import com.grafana.foundation.prometheus.PromQueryFormat;
 import com.grafana.foundation.timeseries.PanelBuilder;
 
 public class Common {
     static DataSourceRef datasourceRef() {
-        DataSourceRef ref = new DataSourceRef();
-        ref.uid = "$prometheus_datasource";
-        return ref;
+        return new DataSourceRef("prometheus", "$prometheus_datasource");
     }
 
-    static Dataquery.Builder prometheusQuery(String query, String refId) {
-        return new Dataquery.Builder().expr(query).refId(refId);
+    static DataqueryBuilder prometheusQuery(String query, String refId) {
+        return new DataqueryBuilder().expr(query).refId(refId);
     }
 
-    static Dataquery.Builder tablePrometheusQuery(String query, String refId) {
-        return new Dataquery.Builder().
+    static DataqueryBuilder tablePrometheusQuery(String query, String refId) {
+        return new DataqueryBuilder().
                 expr(query).
                 format(PromQueryFormat.TABLE).
                 instant().
@@ -36,16 +34,16 @@ public class Common {
                 showPoints(VisibilityMode.AUTO).
                 drawStyle(GraphDrawStyle.LINE).
                 gradientMode(GraphGradientMode.NONE).
-                legend(new VizLegendOptions.Builder().
+                legend(new VizLegendOptionsBuilder().
                         displayMode(LegendDisplayMode.LIST).
                         placement(LegendPlacement.BOTTOM).
                         showLegend(true)
                 ).
-                tooltip(new VizTooltipOptions.Builder().
+                tooltip(new VizTooltipOptionsBuilder().
                         mode(TooltipDisplayMode.SINGLE).
                         sort(SortOrder.NONE)
                 ).
-                thresholdsStyle(new GraphThresholdsStyleConfig.Builder().
+                thresholdsStyle(new GraphThresholdsStyleConfigBuilder().
                         mode(GraphThresholdsStyleMode.OFF)
                 ).
                 spanNulls(BoolOrFloat64.createBool(false))

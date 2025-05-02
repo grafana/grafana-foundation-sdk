@@ -1,6 +1,7 @@
 package agent;
 
 import com.grafana.foundation.timeseries.PanelBuilder;
+import com.grafana.foundation.units.Constants;
 
 import static agent.Common.*;
 
@@ -10,7 +11,7 @@ public class Retrieval {
                 title("Average Scrape Interval Duration").
                 description("Actual intervals between scrapes.").
                 datasource(datasourceRef()).
-                unit("s").
+                unit(Constants.Seconds).
                 withTarget(
                         prometheusQuery(
                                 "rate(prometheus_target_interval_length_seconds_sum{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval]) / rate(prometheus_target_interval_length_seconds_count{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])",
@@ -25,7 +26,7 @@ public class Retrieval {
                 title("Scrape failures").
                 description("Shows all scrape failures (sample limit exceeded, duplicate, out of bounds, out of order).").
                 datasource(datasourceRef()).
-                unit("short").
+                unit(Constants.Short).
                 withTarget(
                         prometheusQuery(
                                 "sum by (job) (rate(prometheus_target_scrapes_exceeded_sample_limit_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])",
@@ -57,7 +58,7 @@ public class Retrieval {
                 title("Appended Samples").
                 description("Total number of samples appended to the WAL.").
                 datasource(datasourceRef()).
-                unit("short").
+                unit(Constants.Short).
                 withTarget(
                         prometheusQuery(
                                 "sum by (job, instance_group_name) (rate(agent_wal_samples_appended_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval]))",
