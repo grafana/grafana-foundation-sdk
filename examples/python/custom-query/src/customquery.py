@@ -13,7 +13,9 @@ class CustomQuery(cogvariants.Dataquery):
     # query is specific to the CustomQuery type
     query: str
 
-    def __init__(self, query: str, ref_id: Optional[str] = None, hide: Optional[bool] = None):
+    def __init__(
+        self, query: str, ref_id: Optional[str] = None, hide: Optional[bool] = None
+    ):
         self.query = query
         self.ref_id = ref_id
         self.hide = hide
@@ -68,4 +70,3 @@ class CustomQueryBuilder(builder.Builder[CustomQuery]):
         self.__internal.hide = hide
 
         return self
-

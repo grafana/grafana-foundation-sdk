@@ -1,16 +1,20 @@
 from grafana_foundation_sdk.builders import dashboard
 from grafana_foundation_sdk.cog.encoder import JSONEncoder
 from grafana_foundation_sdk.models.dashboard import (
-    DataSourceRef, DashboardCursorSync, DashboardLinkType,
-    VariableOption, VariableRefresh, VariableSort
+    DataSourceRef,
+    DashboardCursorSync,
+    DashboardLinkType,
+    VariableOption,
+    VariableRefresh,
+    VariableSort,
 )
 
 from src import overview, discovery, retrieval
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     builder = (
         dashboard.Dashboard("[Example] Grafana Agent Overview")
-        .uid('example-grafana-agent-overview')
+        .uid("example-grafana-agent-overview")
         .tags(["generated", "grafana-foundation-sdk", "grafana-agent-integration"])
         .editable()
         .tooltip(DashboardCursorSync.CROSSHAIR)
@@ -18,14 +22,14 @@ if __name__ == '__main__':
         .time("now-30m", "now")
         .timezone("browser")
         .timepicker(
-            dashboard.TimePicker()
-            .refresh_intervals(["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"])
-            .time_options(["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"])
+            dashboard.TimePicker().refresh_intervals(
+                ["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"]
+            )
         )
         # Links to other agent-related dashboards
         .link(
             dashboard.DashboardLink("Grafana Agent Dashboards")
-            .type_val(DashboardLinkType.DASHBOARDS)
+            .type(DashboardLinkType.DASHBOARDS)
             .tags(["grafana-agent-integration"])
             .include_vars(True)
             .keep_time(True)
@@ -34,7 +38,7 @@ if __name__ == '__main__':
         .with_variable(
             dashboard.DatasourceVariable("prometheus_datasource")
             .label("Data source")
-            .type_val("prometheus")
+            .type("prometheus")
             .regex("(?!grafanacloud-usage|grafanacloud-ml-metrics).+")
             .multi(False)
         )
