@@ -32,6 +32,7 @@ provided for a range of versions of Grafana.
         "github.com/grafana/grafana-foundation-sdk/go/dashboard"
         "github.com/grafana/grafana-foundation-sdk/go/prometheus"
         "github.com/grafana/grafana-foundation-sdk/go/timeseries"
+        "github.com/grafana/grafana-foundation-sdk/go/units"
     )
 
     func main() {
@@ -45,7 +46,7 @@ provided for a range of versions of Grafana.
             WithPanel(
                 timeseries.NewPanelBuilder().
                     Title("Network Received").
-                    Unit("bps").
+                    Unit(units.BitsPerSecondSI).
                     Min(0).
                     WithTarget(
                         prometheus.NewDataqueryBuilder().
@@ -70,32 +71,42 @@ provided for a range of versions of Grafana.
 === "Java"
 
     ```java
+    package example;
+
+    import com.fasterxml.jackson.core.JsonProcessingException;
+    import com.grafana.foundation.dashboard.Dashboard;
+    import com.grafana.foundation.common.Constants;
+    import com.grafana.foundation.dashboard.DashboardBuilder;
+    import com.grafana.foundation.dashboard.DashboardDashboardTimeBuilder;
+    import com.grafana.foundation.dashboard.RowBuilder;
+    import com.grafana.foundation.prometheus.DataqueryBuilder;
+    import com.grafana.foundation.timeseries.PanelBuilder;
+
+    import java.util.List;
+
     public class Main {
-        public static void main(String[] args) {
-            Dashboard dashboard = new Dashboard.Builder("Sample Dashboard").
-                    Uid("generated-from-java").
-                    Tags(List.of("generated", "from", "java")).
-                    Refresh("1m").Time(new DashboardDashboardTime.Builder().
-                            From("now-30m").
-                            To("now")
+        public static void main(String[] args) throws JsonProcessingException {
+            Dashboard dashboard = new DashboardBuilder("Sample Dashboard").
+                    uid("generated-from-java").
+                    tags(List.of("generated", "from", "java")).
+                    refresh("1m").
+                    time(new DashboardDashboardTimeBuilder().
+                            from("now-30m").
+                            to("now")
                     ).
-                    Timezone(Constants.TimeZoneBrowser).
-                    WithRow(new RowPanel.Builder("Overview")).
-                    WithPanel(new PanelBuilder().
-                            Title("Network Received").
-                            Unit("bps").
-                            Min(0.0).
-                            WithTarget(new Dataquery.Builder().
-                                    Expr("rate(node_network_receive_bytes_total{job=\"integrations/raspberrypi-node\", device!=\"lo\"}[$__rate_interval]) * 8").
-                                    LegendFormat("{{ device }}")
+                    timezone(Constants.TimeZoneBrowser).
+                    withRow(new RowBuilder("Overview")).
+                    withPanel(new PanelBuilder().
+                            title("Network Received").
+                            unit("bps").
+                            min(0.0).
+                            withTarget(new DataqueryBuilder().
+                                    expr("rate(node_network_receive_bytes_total{job=\"integrations/raspberrypi-node\", device!=\"lo\"}[$__rate_interval]) * 8").
+                                    legendFormat("{{ device }}")
                             )
                     ).build();
 
-            try {
-                System.out.println(dashboard.toJSON());
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            System.out.println(dashboard.toJSON());
         }
     }
     ```
@@ -110,6 +121,7 @@ provided for a range of versions of Grafana.
     use Grafana\Foundation\Dashboard\RowBuilder;
     use Grafana\Foundation\Prometheus;
     use Grafana\Foundation\Timeseries;
+    use Grafana\Foundation\Units\Constants as Units;
 
     require_once __DIR__.'/vendor/autoload.php';
 
@@ -123,7 +135,7 @@ provided for a range of versions of Grafana.
         ->withPanel(
             (new Timeseries\PanelBuilder())
                 ->title('Network received')
-                ->unit('bps')
+                ->unit(Units::BITS_PER_SECOND_SI)
                 ->min(0)
                 ->withTarget(
                     (new Prometheus\DataqueryBuilder())
@@ -140,30 +152,31 @@ provided for a range of versions of Grafana.
 
     ```python
     from grafana_foundation_sdk.builders.dashboard import Dashboard, Row
-    from grafana_foundation_sdk.builders.prometheus import Dataquery as PrometheusQuery
-    from grafana_foundation_sdk.builders.timeseries import Panel as Timeseries
+    from grafana_foundation_sdk.builders import prometheus, timeseries
     from grafana_foundation_sdk.cog.encoder import JSONEncoder
     from grafana_foundation_sdk.models.common import TimeZoneBrowser
+    from grafana_foundation_sdk.models import units
+
 
     def build_dashboard() -> Dashboard:
         builder = (
             Dashboard("[TEST] Node Exporter / Raspberry")
             .uid("test-dashboard-raspberry")
             .tags(["generated", "raspberrypi-node-integration"])
-
             .refresh("1m")
             .time("now-30m", "now")
             .timezone(TimeZoneBrowser)
-
             .with_row(Row("Overview"))
             .with_panel(
-                Timeseries()
+                timeseries.Panel()
                 .title("Network Received")
-                .unit("bps")
-                .min_val(0)
+                .unit(units.BitsPerSecondSI)
+                .min(0)
                 .with_target(
-                    PrometheusQuery()
-                    .expr('rate(node_network_receive_bytes_total{job="integrations/raspberrypi-node", device!="lo"}[$__rate_interval]) * 8')
+                    prometheus.Dataquery()
+                    .expr(
+                        'rate(node_network_receive_bytes_total{job="integrations/raspberrypi-node", device!="lo"}[$__rate_interval]) * 8'
+                    )
                     .legend_format("{{ device }}")
                 )
             )
@@ -172,11 +185,12 @@ provided for a range of versions of Grafana.
         return builder
 
 
-    if __name__ == '__main__':
+    if __name__ == "__main__":
         dashboard = build_dashboard().build()
         encoder = JSONEncoder(sort_keys=True, indent=2)
 
         print(encoder.encode(dashboard))
+
     ```
 
 === "Typescript"
@@ -185,20 +199,21 @@ provided for a range of versions of Grafana.
     import { DashboardBuilder, RowBuilder } from '@grafana/grafana-foundation-sdk/dashboard';
     import { DataqueryBuilder } from '@grafana/grafana-foundation-sdk/prometheus';
     import { PanelBuilder } from '@grafana/grafana-foundation-sdk/timeseries';
-
+    import * as units from '@grafana/grafana-foundation-sdk/units';
+    
     const builder = new DashboardBuilder('[TEST] Node Exporter / Raspberry')
       .uid('test-dashboard-raspberry')
       .tags(['generated', 'raspberrypi-node-integration'])
-
+    
       .refresh('1m')
       .time({from: 'now-30m', to: 'now'})
       .timezone('browser')
-
+    
       .withRow(new RowBuilder('Overview'))
       .withPanel(
         new PanelBuilder()
           .title('Network Received')
-          .unit('bps')
+          .unit(units.BitsPerSecondSI)
           .min(0)
           .withTarget(
             new DataqueryBuilder()
@@ -207,7 +222,7 @@ provided for a range of versions of Grafana.
           )
       )
     ;
-
+    
     console.log(JSON.stringify(builder.build(), null, 2));
     ```
 
