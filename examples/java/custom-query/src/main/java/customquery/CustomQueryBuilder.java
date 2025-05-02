@@ -23,6 +23,6 @@ public class CustomQueryBuilder implements Builder<Dataquery> {
 
     @Override
     public CustomQuery build() {
-            return this.internal;
-        }
+        return this.internal;
+    }
 }
