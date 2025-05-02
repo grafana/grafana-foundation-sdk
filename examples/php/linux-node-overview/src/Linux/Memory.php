@@ -6,6 +6,7 @@ use Grafana\Foundation\Common as SDKCommon;
 use Grafana\Foundation\Dashboard as SDKDashboard;
 use Grafana\Foundation\Stat;
 use Grafana\Foundation\Timeseries;
+use Grafana\Foundation\Units\Constants as Units;
 
 class Memory
 {
@@ -18,7 +19,7 @@ class Memory
                 Common::prometheusQuery('node_memory_MemTotal_bytes{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}', '')
             )
             ->decimals(2)
-            ->unit('bytes')
+            ->unit(Units::BYTES_IEC)
             ->colorMode(SDKCommon\BigValueColorMode::none())
         ;
     }
@@ -31,7 +32,7 @@ class Memory
             ->WithTarget(
                 Common::prometheusQuery('node_memory_SwapTotal_bytes{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}', '')
             )
-            ->unit('bytes')
+            ->unit(Units::BYTES_IEC)
             ->colorMode(SDKCommon\BigValueColorMode::none())
         ;
     }
@@ -53,7 +54,7 @@ PROMQL;
             ->WithTarget(Common::prometheusQuery($query, ''))
             ->min(0)
             ->max(100)
-            ->unit('percent')
+            ->unit(Units::PERCENT)
             ->thresholds(
                 (new SDKDashboard\ThresholdsConfigBuilder())
                     ->mode(SDKDashboard\ThresholdsMode::absolute())
@@ -91,16 +92,13 @@ PROMQL;
             ->WithTarget(Common::prometheusQuery('node_memory_MemFree_bytes{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}', 'Memory free'))
             ->WithTarget(Common::prometheusQuery('node_memory_MemTotal_bytes{job=~"integrations/(node_exporter|unix)",cluster=~"$cluster",job=~"$job",instance=~"$instance"}', 'Memory total'))
             ->decimals(2)
-            ->unit('bytes')
+            ->unit(Units::BYTES_IEC)
             ->gradientMode(SDKCommon\GraphGradientMode::opacity())
-            ->withOverride(
-                (new SDKDashboard\MatcherConfig(id: 'byRegexp', options: '.*(T|t)otal.*')),
-                [
-                    (new SDKDashboard\DynamicConfigValue(id: 'color', value: ['fixedColor' => 'light-orange', 'mode' => 'fixed'])),
-                    (new SDKDashboard\DynamicConfigValue(id: 'custom.fillOpacity', value: 0)),
-                    (new SDKDashboard\DynamicConfigValue(id: 'custom.lineStyle', value: ['dash' => [10, 10], 'fill' => 'dash'])),
-                ],
-            )
+            ->overrideByRegexp('.*(T|t)otal.*', [
+                (new SDKDashboard\DynamicConfigValue(id: 'color', value: ['fixedColor' => 'light-orange', 'mode' => 'fixed'])),
+                (new SDKDashboard\DynamicConfigValue(id: 'custom.fillOpacity', value: 0)),
+                (new SDKDashboard\DynamicConfigValue(id: 'custom.lineStyle', value: ['dash' => [10, 10], 'fill' => 'dash'])),
+            ])
         ;
     }
 }

@@ -7,6 +7,7 @@ use Grafana\Foundation\Dashboard as SDKDashboard;
 use Grafana\Foundation\Prometheus;
 use Grafana\Foundation\Table;
 use Grafana\Foundation\Timeseries;
+use Grafana\Foundation\Units\Constants as Units;
 
 class Dashboard
 {
@@ -23,7 +24,6 @@ class Dashboard
             ->timepicker(
                 (new SDKDashboard\TimePickerBuilder())
                     ->refreshIntervals(['5s', '10s', '30s', '1m', '5m', '15m', '30m', '1h', '2h', '1d'])
-                    ->timeOptions(['5m', '15m', '1h', '6h', '12h', '24h', '2d', '7d', '30d'])
             )
             // Links to other agent-related dashboards
             ->link(
@@ -100,7 +100,7 @@ class Dashboard
             ->span(24)
             ->footer((new Common\TableFooterOptionsBuilder())->countRows(false)->reducer(['sum']))
             ->datasource(new SDKDashboard\DataSourceRef(uid: '$prometheus_datasource'))
-            ->unit('s')
+            ->unit(Units::SECONDS)
             ->withTarget(self::tablePrometheusQuery(
                 'count by (instance, version) (agent_build_info{job=~"$job", instance=~"$instance"})',
                 'A',
@@ -127,10 +127,9 @@ class Dashboard
                 ],
             ))
             // Overrides
-            ->withOverride(
-                new SDKDashboard\MatcherConfig(id: 'byName', options: 'Value #B'),
-                [new SDKDashboard\DynamicConfigValue(id: 'unit', value: 's'),],
-            )
+            ->overrideByName('Value #B', [
+                new SDKDashboard\DynamicConfigValue(id: 'unit', value: 's'),
+            ])
         ;
     }
 
@@ -140,7 +139,7 @@ class Dashboard
             ->title('Target Sync')
             ->description('Actual interval to sync the scrape pool.')
             ->datasource(new SDKDashboard\DataSourceRef(uid: '$prometheus_datasource'))
-            ->unit('s')
+            ->unit(Units::SECONDS)
             ->withTarget(self::prometheusQuery(
                 'sum(rate(prometheus_target_sync_length_seconds_sum{job=~"$job", instance=~"$instance"}[$__rate_interval])) by (instance, scrape_job)',
                 '{{instance}}/{{scrape_job}}',
@@ -154,7 +153,7 @@ class Dashboard
             ->title('Targets')
             ->description('Discovered targets by prometheus service discovery.')
             ->datasource(new SDKDashboard\DataSourceRef(uid: '$prometheus_datasource'))
-            ->unit('short')
+            ->unit(Units::SHORT)
             ->withTarget(self::prometheusQuery(
                 'sum by (instance) (prometheus_sd_discovered_targets{job=~"$job", instance=~"$instance"})',
                 '{{instance}}',
@@ -168,7 +167,7 @@ class Dashboard
             ->title('Average Scrape Interval Duration')
             ->description('Actual intervals between scrapes.')
             ->datasource(new SDKDashboard\DataSourceRef(uid: '$prometheus_datasource'))
-            ->unit('s')
+            ->unit(Units::SECONDS)
             ->withTarget(self::prometheusQuery(
                 'rate(prometheus_target_interval_length_seconds_sum{job=~"$job", instance=~"$instance"}[$__rate_interval]) / rate(prometheus_target_interval_length_seconds_count{job=~"$job", instance=~"$instance"}[$__rate_interval])',
                 '{{instance}} {{interval}} configured',
@@ -182,7 +181,7 @@ class Dashboard
             ->title('Scrape failures')
             ->description('Shows all scrape failures (sample limit exceeded, duplicate, out of bounds, out of order).')
             ->datasource(new SDKDashboard\DataSourceRef(uid: '$prometheus_datasource'))
-            ->unit('s')
+            ->unit(Units::SECONDS)
             ->withTarget(self::prometheusQuery(
                 'sum by (job) (rate(prometheus_target_scrapes_exceeded_sample_limit_total{job=~"$job", instance=~"$instance"}[$__rate_interval]))',
                 'exceeded sample limit: {{job}}',
@@ -208,7 +207,7 @@ class Dashboard
             ->title('Appended Samples')
             ->description('Total number of samples appended to the WAL.')
             ->datasource(new SDKDashboard\DataSourceRef(uid: '$prometheus_datasource'))
-            ->unit('short')
+            ->unit(Units::SHORT)
             ->withTarget(self::prometheusQuery(
                 'sum by (job, instance_group_name) (rate(agent_wal_samples_appended_total{job=~"$job", instance=~"$instance"}[$__rate_interval]))',
                 '{{job}} {{instance_group_name}}',
