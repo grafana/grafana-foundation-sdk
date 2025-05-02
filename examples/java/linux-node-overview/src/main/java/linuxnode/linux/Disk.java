@@ -3,46 +3,35 @@ package linuxnode.linux;
 import com.grafana.foundation.cog.Builder;
 import com.grafana.foundation.common.FieldTextAlignment;
 import com.grafana.foundation.common.TableCellHeight;
-import com.grafana.foundation.common.TableFooterOptions;
-import com.grafana.foundation.dashboard.DashboardFieldConfigSourceOverrides;
-import com.grafana.foundation.dashboard.DataTransformerConfig;
-import com.grafana.foundation.dashboard.DynamicConfigValue;
-import com.grafana.foundation.dashboard.MatcherConfig;
+import com.grafana.foundation.common.TableFooterOptionsBuilder;
+import com.grafana.foundation.dashboard.*;
 import com.grafana.foundation.timeseries.PanelBuilder;
+import com.grafana.foundation.units.Constants;
 
 import java.util.List;
 import java.util.Map;
 
 public class Disk {
     public static PanelBuilder diskIOTimeseries() {
-        MatcherConfig matcher = new MatcherConfig();
-        matcher.id = "byRegexp";
-        matcher.options = "/ io time/";
-
-        DynamicConfigValue dcv = new DynamicConfigValue();
-        dcv.id = "unit";
-        dcv.value = "percentunit";
-
         return Common.defaultTimeSeries().
                 title("Disk I/O").
                 fillOpacity(0.0).
-                unit("Bps").
+                unit(Constants.BytesPerSecondSI).
                 withTarget(Common.basicPrometheusQuery("rate(node_disk_read_bytes_total{job=\"integrations/raspberrypi-node\", instance=\"$instance\", device!=\"\"}[$__rate_interval])", "{{device}} read")).
                 withTarget(Common.basicPrometheusQuery("rate(node_disk_written_bytes_total{job=\"integrations/raspberrypi-node\", instance=\"$instance\", device!=\"\"}[$__rate_interval])", "{{device}} written")).
                 withTarget(Common.basicPrometheusQuery("rate(node_disk_io_time_seconds_total{job=\"integrations/raspberrypi-node\", instance=\"$instance\", device!=\"\"}[$__rate_interval])", "{{device}} IO time")).
-                withOverride(new DashboardFieldConfigSourceOverrides.Builder().
-                        matcher(matcher).
-                        properties(List.of(dcv))
-                );
+                overrideByRegexp("/ io time/", List.of(
+                        new DynamicConfigValue("unit", Constants.PercentUnit)
+                ));
     }
 
     public static com.grafana.foundation.table.PanelBuilder diskSpaceUsageTable() {
         return new com.grafana.foundation.table.PanelBuilder().
                 title("Disk Space Usage").
                 align(FieldTextAlignment.AUTO).
-                unit("decbytes").
+                unit(Constants.BytesSI).
                 cellHeight(TableCellHeight.SM).
-                footer(new TableFooterOptions.Builder().
+                footer(new TableFooterOptionsBuilder().
                         countRows(false).
                         reducer(List.of("sum"))
                 ).
@@ -159,7 +148,7 @@ public class Disk {
         DynamicConfigValue dynamicConfigValue = new DynamicConfigValue();
         dynamicConfigValue.id = "custom.width";
         dynamicConfigValue.value = value;
-        return new DashboardFieldConfigSourceOverrides.Builder().matcher(matcherConfig).properties(List.of(dynamicConfigValue));
+        return new DashboardFieldConfigSourceOverridesBuilder().matcher(matcherConfig).properties(List.of(dynamicConfigValue));
     }
 
     private static Builder<DashboardFieldConfigSourceOverrides> complexOverrides() {
@@ -183,7 +172,7 @@ public class Disk {
         dynamicConfigValue4.id = "max";
         dynamicConfigValue4.value = 1;
 
-        return new DashboardFieldConfigSourceOverrides.Builder().
+        return new DashboardFieldConfigSourceOverridesBuilder().
                 matcher(matcherConfig).
                 properties(List.of(dynamicConfigValue1, dynamicConfigValue2, dynamicConfigValue3, dynamicConfigValue4));
     }

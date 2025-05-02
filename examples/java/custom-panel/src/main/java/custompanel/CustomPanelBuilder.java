@@ -1,12 +1,25 @@
 package custompanel;
 
+import com.grafana.foundation.cog.Builder;
+import com.grafana.foundation.cog.variants.Dataquery;
 import com.grafana.foundation.dashboard.Panel;
 
-public class CustomPanelBuilder extends Panel.Builder<CustomPanelBuilder> {
+public class CustomPanelBuilder implements Builder<Panel> {
+    private final Panel internal;
 
     public CustomPanelBuilder() {
-        super();
-        this.internal.type = "custompanel";
+        this.internal = new Panel();
+        this.internal.type = "custom-panel";
+    }
+
+    public CustomPanelBuilder title(String title) {
+        this.internal.title = title;
+        return this;
+    }
+
+    public CustomPanelBuilder withTarget(Builder<Dataquery> target) {
+        this.internal.targets.add(target.build());
+        return this;
     }
 
     public CustomPanelBuilder makeItBeautiful() {
@@ -19,5 +32,10 @@ public class CustomPanelBuilder extends Panel.Builder<CustomPanelBuilder> {
 
         this.internal.options = options;
         return this;
+    }
+
+    @Override
+    public Panel build() {
+        return internal;
     }
 }

@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    withJavadocJar()
+    withSourcesJar()
+}
+
+application {
+    mainClass = "red.Main"
+}
+
+allprojects {
+    version = rootProject.version
+    apply plugin: "java"
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+dependencies {
+    implementation("com.grafana:grafana-foundation-sdk:11.6.0-1746136285")
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.addStringOption('Xdoclint:-missing', '-quiet')
+}

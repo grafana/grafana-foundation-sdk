@@ -1,7 +1,6 @@
 package red;
 
 import com.grafana.foundation.common.*;
-import com.grafana.foundation.testdata.Datasource;
 import com.grafana.foundation.timeseries.PanelBuilder;
 
 public class Common {
@@ -16,16 +15,16 @@ public class Common {
                 spanNulls(BoolOrFloat64.createBool(false)).
                 axisBorderShow(false).
                 lineInterpolation(LineInterpolation.SMOOTH).
-                legend(new VizLegendOptions.Builder().
+                legend(new VizLegendOptionsBuilder().
                         displayMode(LegendDisplayMode.LIST).
                         placement(LegendPlacement.BOTTOM).
                         showLegend(true)
                 ).
-                tooltip(new VizTooltipOptions.Builder().
+                tooltip(new VizTooltipOptionsBuilder().
                         mode(TooltipDisplayMode.MULTI).
                         sort(SortOrder.DESCENDING)
                 ).
-                thresholdsStyle(new GraphThresholdsStyleConfig.Builder().
+                thresholdsStyle(new GraphThresholdsStyleConfigBuilder().
                         mode(GraphThresholdsStyleMode.OFF)
                 );
     }

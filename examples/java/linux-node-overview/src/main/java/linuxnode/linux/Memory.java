@@ -1,16 +1,16 @@
 package linuxnode.linux;
 
-import com.grafana.foundation.common.StackingConfig;
+import com.grafana.foundation.common.StackingConfigBuilder;
 import com.grafana.foundation.common.StackingMode;
 import com.grafana.foundation.dashboard.Threshold;
-import com.grafana.foundation.dashboard.ThresholdsConfig;
+import com.grafana.foundation.dashboard.ThresholdsConfigBuilder;
 import com.grafana.foundation.dashboard.ThresholdsMode;
 import com.grafana.foundation.timeseries.PanelBuilder;
+import com.grafana.foundation.units.Constants;
 
 import java.util.List;
 
 public class Memory {
-
     public static PanelBuilder memoryUsageTimeseries() {
         String memUsedQuery = "(" +
                 "  node_memory_MemTotal_bytes{job=\"integrations/raspberrypi-node\", instance=\"$instance\"}" +
@@ -22,23 +22,19 @@ public class Memory {
                 "  node_memory_Cached_bytes{job=\"integrations/raspberrypi-node\", instance=\"$instance\"}" +
                 ")";
 
-        Threshold th1 = new Threshold();
-        th1.color = "green";
-
-        Threshold th2 = new Threshold();
-        th2.color = "red";
-        th2.value = 80.0;
-
         return Common.defaultTimeSeries().
                 title("Memory Usage").
                 span(18).
-                stacking(new StackingConfig.Builder().mode(StackingMode.NORMAL)).
-                thresholds(new ThresholdsConfig.Builder().
+                stacking(new StackingConfigBuilder().mode(StackingMode.NORMAL)).
+                thresholds(new ThresholdsConfigBuilder().
                         mode(ThresholdsMode.ABSOLUTE).
-                        steps(List.of(th1, th2))
+                        steps(List.of(
+                                new Threshold(null, "green"),
+                                new Threshold(80.0, "red")
+                        ))
                 ).
                 min(0.0).
-                unit("bytes").
+                unit(Constants.BytesIEC).
                 decimals(2.0).
                 withTarget(Common.basicPrometheusQuery(memUsedQuery, "Used")).
                 withTarget(
@@ -58,26 +54,19 @@ public class Memory {
                 "  avg(node_memory_MemTotal_bytes{job=\"integrations/raspberrypi-node\", instance=\"$instance\"})" +
                 "* 100)";
 
-        Threshold th1 = new Threshold();
-        th1.color = "rgba(50, 172, 45, 0.97)";
-
-        Threshold th2 = new Threshold();
-        th2.value = 80.0;
-        th2.color = "rgba(237, 129, 40, 0.89)";
-
-        Threshold th3 = new Threshold();
-        th3.value = 90.0;
-        th3.color = "rgba(245, 54, 54, 0.9)";
-
         return Common.defaultGauge().
                 title("Memory Usage").
                 span(6).
                 min(30.0).
                 max(100.0).
-                unit("percent").
-                thresholds(new ThresholdsConfig.Builder().
+                unit(Constants.Percent).
+                thresholds(new ThresholdsConfigBuilder().
                         mode(ThresholdsMode.ABSOLUTE).
-                        steps(List.of(th1, th2, th3))
+                        steps(List.of(
+                                new Threshold(null, "rgba(50, 172, 45, 0.97)"),
+                                new Threshold(80.0, "rgba(237, 129, 40, 0.89)"),
+                                new Threshold(90.0, "rgba(245, 54, 54, 0.9)")
+                        ))
                 ).
                 withTarget(Common.basicPrometheusQuery(query, ""));
     }
