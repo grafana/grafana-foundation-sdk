@@ -32,7 +32,7 @@ public class Main {
                         min(0.0).
                         withTarget(new DataqueryBuilder().
                                 expr("rate(node_network_receive_bytes_total{job=\"integrations/raspberrypi-node\", device!=\"lo\"}[$__rate_interval]) * 8").
-                                legendFormat("{{ device }}")
+                                legendFormat({{ `"{{ device }}"` }})
                         )
                 ).build();
 
