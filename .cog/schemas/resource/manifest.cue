@@ -1,5 +1,9 @@
 package resource
 
+DashboardV1Beta1: "dashboard.grafana.app/v1beta1"
+DashboardV2Alpha1: "dashboard.grafana.app/v2alpha1"
+DashboardKind: "Dashboard"
+
 Manifest: {
     apiVersion: string
     kind: string
