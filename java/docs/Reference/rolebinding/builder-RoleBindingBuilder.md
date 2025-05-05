@@ -31,7 +31,7 @@ public RoleBindingBuilder role(BuiltinRoleRefOrCustomRoleRef role)
 The team or user that has the specified role
 
 ```java
-public RoleBindingBuilder subject(RoleBindingSubject subject)
+public RoleBindingBuilder subject(com.grafana.foundation.cog.Builder<RoleBindingSubject> subject)
 ```
 
 ## See also

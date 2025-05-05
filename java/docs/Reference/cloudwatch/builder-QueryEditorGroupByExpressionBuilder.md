@@ -21,7 +21,7 @@ public QueryEditorGroupByExpression build()
 ### <span class="badge object-method"></span> property
 
 ```java
-public QueryEditorGroupByExpressionBuilder property(QueryEditorProperty property)
+public QueryEditorGroupByExpressionBuilder property(com.grafana.foundation.cog.Builder<QueryEditorProperty> property)
 ```
 
 ## See also

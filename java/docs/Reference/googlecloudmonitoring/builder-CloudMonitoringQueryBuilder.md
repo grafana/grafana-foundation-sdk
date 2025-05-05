@@ -61,7 +61,7 @@ public CloudMonitoringQueryBuilder intervalMs(Double intervalMs)
 PromQL sub-query properties.
 
 ```java
-public CloudMonitoringQueryBuilder promQLQuery(PromQLQuery promQLQuery)
+public CloudMonitoringQueryBuilder promQLQuery(com.grafana.foundation.cog.Builder<PromQLQuery> promQLQuery)
 ```
 
 ### <span class="badge object-method"></span> queryType
@@ -91,7 +91,7 @@ public CloudMonitoringQueryBuilder refId(String refId)
 SLO sub-query properties.
 
 ```java
-public CloudMonitoringQueryBuilder sloQuery(SLOQuery sloQuery)
+public CloudMonitoringQueryBuilder sloQuery(com.grafana.foundation.cog.Builder<SLOQuery> sloQuery)
 ```
 
 ### <span class="badge object-method"></span> timeSeriesList
@@ -103,7 +103,7 @@ queryType: #QueryType
 Time Series List sub-query properties.
 
 ```java
-public CloudMonitoringQueryBuilder timeSeriesList(TimeSeriesList timeSeriesList)
+public CloudMonitoringQueryBuilder timeSeriesList(com.grafana.foundation.cog.Builder<TimeSeriesList> timeSeriesList)
 ```
 
 ### <span class="badge object-method"></span> timeSeriesQuery
@@ -111,7 +111,7 @@ public CloudMonitoringQueryBuilder timeSeriesList(TimeSeriesList timeSeriesList)
 Time Series sub-query properties.
 
 ```java
-public CloudMonitoringQueryBuilder timeSeriesQuery(TimeSeriesQuery timeSeriesQuery)
+public CloudMonitoringQueryBuilder timeSeriesQuery(com.grafana.foundation.cog.Builder<TimeSeriesQuery> timeSeriesQuery)
 ```
 
 ## See also

@@ -33,7 +33,7 @@ public TermsBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public TermsBuilder settings(ElasticsearchTermsSettings settings)
+public TermsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchTermsSettings> settings)
 ```
 
 ## See also

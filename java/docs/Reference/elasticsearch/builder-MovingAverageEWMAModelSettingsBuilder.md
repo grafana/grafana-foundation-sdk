@@ -33,7 +33,7 @@ public MovingAverageEWMAModelSettingsBuilder predict(String predict)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public MovingAverageEWMAModelSettingsBuilder settings(ElasticsearchMovingAverageEWMAModelSettingsSettings settings)
+public MovingAverageEWMAModelSettingsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageEWMAModelSettingsSettings> settings)
 ```
 
 ### <span class="badge object-method"></span> window

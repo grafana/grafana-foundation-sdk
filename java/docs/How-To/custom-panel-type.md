@@ -6,7 +6,11 @@ private/third-party plugins.
 To do so, define a type for the custom panel's options:
 
 ```java
-public class CustomOptions {
+package custompanel;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class CustomPanelOptions {
     @JsonProperty("makeItBeautiful")
     private Boolean makeItBeautiful;
 
@@ -16,69 +20,42 @@ public class CustomOptions {
 }
 ```
 
-Optionally you can add FieldConfig:
+Then, create the builder for your new panel:
 
 ```java
-public class CustomFieldConfig {
-    @JsonProperty("sayHello")
-    private String sayHello;
+package custompanel;
 
-    public void setSayHello(String sayHello) {
-        this.sayHello = sayHello;
-    }
-}
-```
+import com.grafana.foundation.cog.Builder;
+import com.grafana.foundation.cog.variants.Dataquery;
+import com.grafana.foundation.dashboard.Panel;
 
-After that you need to create the panel's builder for your new panel:
-
-```java
-public class PanelBuilder implements Builder<Panel> {
+public class CustomPanelBuilder implements Builder<Panel> {
     private final Panel internal;
 
-    public PanelBuilder() {
+    public CustomPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "custom-panel";
     }
 
-    public PanelBuilder title(String title) {
+    public CustomPanelBuilder title(String title) {
         this.internal.title = title;
         return this;
     }
 
-    public PanelBuilder withTarget(Builder<Dataquery> target) {
+    public CustomPanelBuilder withTarget(Builder<Dataquery> target) {
         this.internal.targets.add(target.build());
         return this;
     }
 
-    public PanelBuilder makeItBeautiful() {
+    public CustomPanelBuilder makeItBeautiful() {
         if (this.internal.options == null) {
-            this.internal.options = new CustomOptions();
+            this.internal.options = new CustomPanelOptions();
         }
 
-        CustomOptions options = (CustomOptions) this.internal.options;
+        CustomPanelOptions options = (CustomPanelOptions) this.internal.options;
         options.setMakeItBeautiful(true);
 
         this.internal.options = options;
-        return this;
-    }
-
-    public PanelBuilder sayHello() {
-        if (this.internal.fieldConfig == null) {
-            this.internal.fieldConfig = new FieldConfigSource();
-        }
-
-        if (this.internal.fieldConfig.defaults == null) {
-            this.internal.fieldConfig.defaults = new FieldConfig();
-        }
-
-        if (this.internal.fieldConfig.defaults.custom == null) {
-            this.internal.fieldConfig.defaults.custom = new CustomFieldConfig();
-        }
-
-        CustomFieldConfig customFieldConfig = (CustomFieldConfig) this.internal.fieldConfig.defaults.custom;
-        customFieldConfig.setSayHello("hello!");
-
-        this.internal.fieldConfig.defaults.custom = customFieldConfig;
         return this;
     }
 
@@ -89,30 +66,29 @@ public class PanelBuilder implements Builder<Panel> {
 }
 ```
 
-Register the type with cog, and use it as usual to build a dashboard:
+Register the type with the SDK, and use it as usual to build a dashboard:
 
 ```java
-public class Main {
-    public static void main(String[] args) {
-        Registry.registerPanel("custom-panel", CustomOptions.class, CustomFieldConfig.class);
+package custompanel;
 
-        Dashboard dashboard = new Dashboard.Builder("Custom panel type").
-                uid("test-custom-panel").
-                refresh("1m").
-                time(new DashboardDashboardTime.Builder().from("now-30m").to("now")).
-                withRow(new RowPanel.Builder("Overview")).
-                withPanel(new PanelBuilder().
-                        title("Sample panel").
-                        makeItBeautiful().
-                        sayHello()
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.grafana.foundation.cog.variants.Registry;
+import com.grafana.foundation.dashboard.Dashboard;
+import com.grafana.foundation.dashboard.DashboardBuilder;
+
+public class Main {
+    public static void main(String[] args) throws JsonProcessingException {
+        Registry.registerPanel("custom-panel", CustomPanelOptions.class, null);
+
+        Dashboard dashboard = new DashboardBuilder("[Example] Custom Panel").
+                uid("example-custom-panel").
+                withPanel(new CustomPanelBuilder().
+                        title("Sample custom panel").
+                        makeItBeautiful()
                 ).
                 build();
 
-        try {
-            System.out.println(dashboard.toJSON());
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        System.out.println(dashboard.toJSON());
     }
 }
 ```

@@ -23,7 +23,7 @@ public Preferences build()
 Cookie preferences
 
 ```java
-public PreferencesBuilder cookiePreferences(CookiePreferences cookiePreferences)
+public PreferencesBuilder cookiePreferences(com.grafana.foundation.cog.Builder<CookiePreferences> cookiePreferences)
 ```
 
 ### <span class="badge object-method"></span> homeDashboardUID
@@ -47,7 +47,7 @@ public PreferencesBuilder language(String language)
 Explore query history preferences
 
 ```java
-public PreferencesBuilder queryHistory(QueryHistoryPreference queryHistory)
+public PreferencesBuilder queryHistory(com.grafana.foundation.cog.Builder<QueryHistoryPreference> queryHistory)
 ```
 
 ### <span class="badge object-method"></span> theme
