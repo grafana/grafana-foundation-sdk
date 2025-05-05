@@ -33,7 +33,7 @@ public HistogramBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public HistogramBuilder settings(ElasticsearchHistogramSettings settings)
+public HistogramBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchHistogramSettings> settings)
 ```
 
 ## See also

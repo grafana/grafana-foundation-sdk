@@ -21,7 +21,7 @@ public OptionsWithTooltip build()
 ### <span class="badge object-method"></span> tooltip
 
 ```java
-public OptionsWithTooltipBuilder tooltip(VizTooltipOptions tooltip)
+public OptionsWithTooltipBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip)
 ```
 
 ## See also
