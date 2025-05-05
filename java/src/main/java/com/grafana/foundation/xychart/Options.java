@@ -29,8 +29,8 @@ public class Options {
     public List<XYSeriesConfig> series;
     public Options() {
         this.mapping = SeriesMapping.AUTO;
-        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
-        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
+        this.legend = new com.grafana.foundation.common.VizLegendOptions();
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptions();
         this.series = new LinkedList<>();
     }
     public Options(SeriesMapping mapping,VizLegendOptions legend,VizTooltipOptions tooltip,List<XYSeriesConfig> series) {

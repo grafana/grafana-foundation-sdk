@@ -39,7 +39,7 @@ public RateBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public RateBuilder settings(ElasticsearchRateSettings settings)
+public RateBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchRateSettings> settings)
 ```
 
 ## See also

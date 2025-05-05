@@ -45,7 +45,7 @@ public CumulativeSumBuilder pipelineAgg(String pipelineAgg)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public CumulativeSumBuilder settings(ElasticsearchCumulativeSumSettings settings)
+public CumulativeSumBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchCumulativeSumSettings> settings)
 ```
 
 ## See also

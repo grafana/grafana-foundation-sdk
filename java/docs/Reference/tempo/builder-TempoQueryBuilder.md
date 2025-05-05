@@ -43,7 +43,7 @@ public TempoQueryBuilder exemplars(Long exemplars)
 ### <span class="badge object-method"></span> filters
 
 ```java
-public TempoQueryBuilder filters(List<TraceqlFilter> filters)
+public TempoQueryBuilder filters(List<com.grafana.foundation.cog.Builder<TraceqlFilter>> filters)
 ```
 
 ### <span class="badge object-method"></span> groupBy
@@ -51,7 +51,7 @@ public TempoQueryBuilder filters(List<TraceqlFilter> filters)
 Filters that are used to query the metrics summary
 
 ```java
-public TempoQueryBuilder groupBy(List<TraceqlFilter> groupBy)
+public TempoQueryBuilder groupBy(List<com.grafana.foundation.cog.Builder<TraceqlFilter>> groupBy)
 ```
 
 ### <span class="badge object-method"></span> hide

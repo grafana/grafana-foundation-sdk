@@ -27,8 +27,8 @@ public class AccessPolicy {
     @JsonProperty("rules")
     public List<AccessRule> rules;
     public AccessPolicy() {
-        this.scope = new com.grafana.foundation.accesspolicy.ResourceRefBuilder().build();
-        this.role = new com.grafana.foundation.accesspolicy.RoleRefBuilder().build();
+        this.scope = new com.grafana.foundation.accesspolicy.ResourceRef();
+        this.role = new com.grafana.foundation.accesspolicy.RoleRef();
         this.rules = new LinkedList<>();
     }
     public AccessPolicy(ResourceRef scope,RoleRef role,List<AccessRule> rules) {

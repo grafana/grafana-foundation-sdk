@@ -33,7 +33,7 @@ public MovingAverageHoltWintersModelSettingsBuilder predict(String predict)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public MovingAverageHoltWintersModelSettingsBuilder settings(ElasticsearchMovingAverageHoltWintersModelSettingsSettings settings)
+public MovingAverageHoltWintersModelSettingsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingAverageHoltWintersModelSettingsSettings> settings)
 ```
 
 ### <span class="badge object-method"></span> window

@@ -27,7 +27,7 @@ public DataqueryBuilder column(String column)
 ### <span class="badge object-method"></span> connectionArgs
 
 ```java
-public DataqueryBuilder connectionArgs(ConnectionArgs connectionArgs)
+public DataqueryBuilder connectionArgs(com.grafana.foundation.cog.Builder<ConnectionArgs> connectionArgs)
 ```
 
 ### <span class="badge object-method"></span> datasource
