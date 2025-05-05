@@ -27,13 +27,13 @@ public BuilderQueryEditorGroupByExpressionBuilder focus(Boolean focus)
 ### <span class="badge object-method"></span> interval
 
 ```java
-public BuilderQueryEditorGroupByExpressionBuilder interval(BuilderQueryEditorProperty interval)
+public BuilderQueryEditorGroupByExpressionBuilder interval(com.grafana.foundation.cog.Builder<BuilderQueryEditorProperty> interval)
 ```
 
 ### <span class="badge object-method"></span> property
 
 ```java
-public BuilderQueryEditorGroupByExpressionBuilder property(BuilderQueryEditorProperty property)
+public BuilderQueryEditorGroupByExpressionBuilder property(com.grafana.foundation.cog.Builder<BuilderQueryEditorProperty> property)
 ```
 
 ### <span class="badge object-method"></span> type

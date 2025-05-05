@@ -23,7 +23,7 @@ public AnnotationPermission build()
 +k8s:deepcopy-gen=true
 
 ```java
-public AnnotationPermissionBuilder dashboard(AnnotationActions dashboard)
+public AnnotationPermissionBuilder dashboard(com.grafana.foundation.cog.Builder<AnnotationActions> dashboard)
 ```
 
 ### <span class="badge object-method"></span> organization
@@ -31,7 +31,7 @@ public AnnotationPermissionBuilder dashboard(AnnotationActions dashboard)
 +k8s:deepcopy-gen=true
 
 ```java
-public AnnotationPermissionBuilder organization(AnnotationActions organization)
+public AnnotationPermissionBuilder organization(com.grafana.foundation.cog.Builder<AnnotationActions> organization)
 ```
 
 ## See also

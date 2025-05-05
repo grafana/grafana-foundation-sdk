@@ -21,7 +21,7 @@ public SQLExpression build()
 ### <span class="badge object-method"></span> columns
 
 ```java
-public SQLExpressionBuilder columns(List<QueryEditorFunctionExpression> columns)
+public SQLExpressionBuilder columns(List<com.grafana.foundation.cog.Builder<QueryEditorFunctionExpression>> columns)
 ```
 
 ### <span class="badge object-method"></span> from
@@ -33,7 +33,7 @@ public SQLExpressionBuilder from(String from)
 ### <span class="badge object-method"></span> groupBy
 
 ```java
-public SQLExpressionBuilder groupBy(List<QueryEditorGroupByExpression> groupBy)
+public SQLExpressionBuilder groupBy(List<com.grafana.foundation.cog.Builder<QueryEditorGroupByExpression>> groupBy)
 ```
 
 ### <span class="badge object-method"></span> limit
@@ -51,7 +51,7 @@ public SQLExpressionBuilder offset(Long offset)
 ### <span class="badge object-method"></span> orderBy
 
 ```java
-public SQLExpressionBuilder orderBy(QueryEditorPropertyExpression orderBy)
+public SQLExpressionBuilder orderBy(com.grafana.foundation.cog.Builder<QueryEditorPropertyExpression> orderBy)
 ```
 
 ### <span class="badge object-method"></span> orderByDirection

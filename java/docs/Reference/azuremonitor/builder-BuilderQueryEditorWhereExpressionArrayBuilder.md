@@ -21,7 +21,7 @@ public BuilderQueryEditorWhereExpressionArray build()
 ### <span class="badge object-method"></span> expressions
 
 ```java
-public BuilderQueryEditorWhereExpressionArrayBuilder expressions(List<BuilderQueryEditorWhereExpression> expressions)
+public BuilderQueryEditorWhereExpressionArrayBuilder expressions(List<com.grafana.foundation.cog.Builder<BuilderQueryEditorWhereExpression>> expressions)
 ```
 
 ### <span class="badge object-method"></span> type

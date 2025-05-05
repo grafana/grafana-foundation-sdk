@@ -23,13 +23,13 @@ public QueryEditorOperatorExpression build()
 TS type is operator: QueryEditorOperator<QueryEditorOperatorValueType>, extended in veneer
 
 ```java
-public QueryEditorOperatorExpressionBuilder operator(QueryEditorOperator operator)
+public QueryEditorOperatorExpressionBuilder operator(com.grafana.foundation.cog.Builder<QueryEditorOperator> operator)
 ```
 
 ### <span class="badge object-method"></span> property
 
 ```java
-public QueryEditorOperatorExpressionBuilder property(QueryEditorProperty property)
+public QueryEditorOperatorExpressionBuilder property(com.grafana.foundation.cog.Builder<QueryEditorProperty> property)
 ```
 
 ## See also

@@ -33,7 +33,7 @@ public BuilderQueryEditorOperatorTypeBuilder float64(Double float64)
 ### <span class="badge object-method"></span> selectableValue
 
 ```java
-public BuilderQueryEditorOperatorTypeBuilder selectableValue(SelectableValue selectableValue)
+public BuilderQueryEditorOperatorTypeBuilder selectableValue(com.grafana.foundation.cog.Builder<SelectableValue> selectableValue)
 ```
 
 ### <span class="badge object-method"></span> string

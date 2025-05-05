@@ -77,7 +77,7 @@ Note: since panels added directly to a row will be stripped by Grafana unless th
 this option will set the current row as collapsed.
 
 ```java
-public RowBuilder withPanel(Panel panel)
+public RowBuilder withPanel(com.grafana.foundation.cog.Builder<Panel> panel)
 ```
 
 ## See also

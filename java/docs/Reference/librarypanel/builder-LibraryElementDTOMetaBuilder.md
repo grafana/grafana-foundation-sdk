@@ -33,7 +33,7 @@ public LibraryElementDTOMetaBuilder created(String created)
 ### <span class="badge object-method"></span> createdBy
 
 ```java
-public LibraryElementDTOMetaBuilder createdBy(LibraryElementDTOMetaUser createdBy)
+public LibraryElementDTOMetaBuilder createdBy(com.grafana.foundation.cog.Builder<LibraryElementDTOMetaUser> createdBy)
 ```
 
 ### <span class="badge object-method"></span> folderName
@@ -57,7 +57,7 @@ public LibraryElementDTOMetaBuilder updated(String updated)
 ### <span class="badge object-method"></span> updatedBy
 
 ```java
-public LibraryElementDTOMetaBuilder updatedBy(LibraryElementDTOMetaUser updatedBy)
+public LibraryElementDTOMetaBuilder updatedBy(com.grafana.foundation.cog.Builder<LibraryElementDTOMetaUser> updatedBy)
 ```
 
 ## See also

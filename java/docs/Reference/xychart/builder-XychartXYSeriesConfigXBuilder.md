@@ -21,7 +21,7 @@ public XychartXYSeriesConfigX build()
 ### <span class="badge object-method"></span> matcher
 
 ```java
-public XychartXYSeriesConfigXBuilder matcher(MatcherConfig matcher)
+public XychartXYSeriesConfigXBuilder matcher(com.grafana.foundation.cog.Builder<MatcherConfig> matcher)
 ```
 
 ## See also

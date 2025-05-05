@@ -27,19 +27,19 @@ public BuilderQueryEditorReduceExpressionBuilder focus(Boolean focus)
 ### <span class="badge object-method"></span> parameters
 
 ```java
-public BuilderQueryEditorReduceExpressionBuilder parameters(List<BuilderQueryEditorFunctionParameterExpression> parameters)
+public BuilderQueryEditorReduceExpressionBuilder parameters(List<com.grafana.foundation.cog.Builder<BuilderQueryEditorFunctionParameterExpression>> parameters)
 ```
 
 ### <span class="badge object-method"></span> property
 
 ```java
-public BuilderQueryEditorReduceExpressionBuilder property(BuilderQueryEditorProperty property)
+public BuilderQueryEditorReduceExpressionBuilder property(com.grafana.foundation.cog.Builder<BuilderQueryEditorProperty> property)
 ```
 
 ### <span class="badge object-method"></span> reduce
 
 ```java
-public BuilderQueryEditorReduceExpressionBuilder reduce(BuilderQueryEditorProperty reduce)
+public BuilderQueryEditorReduceExpressionBuilder reduce(com.grafana.foundation.cog.Builder<BuilderQueryEditorProperty> reduce)
 ```
 
 ## See also

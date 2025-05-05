@@ -21,7 +21,7 @@ public BuilderQueryEditorReduceExpressionArray build()
 ### <span class="badge object-method"></span> expressions
 
 ```java
-public BuilderQueryEditorReduceExpressionArrayBuilder expressions(List<BuilderQueryEditorReduceExpression> expressions)
+public BuilderQueryEditorReduceExpressionArrayBuilder expressions(List<com.grafana.foundation.cog.Builder<BuilderQueryEditorReduceExpression>> expressions)
 ```
 
 ### <span class="badge object-method"></span> type

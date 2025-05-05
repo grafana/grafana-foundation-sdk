@@ -22,7 +22,7 @@ public class MovingAverageHoltModelSettings {
     public String predict;
     public MovingAverageHoltModelSettings() {
         this.model = MovingAverageModel.HOLT;
-        this.settings = new com.grafana.foundation.elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettingsBuilder().build();
+        this.settings = new com.grafana.foundation.elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettings();
         this.window = "";
         this.minimize = false;
         this.predict = "";

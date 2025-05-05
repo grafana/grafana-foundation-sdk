@@ -21,7 +21,7 @@ public BuilderQueryEditorOrderByExpressionArray build()
 ### <span class="badge object-method"></span> expressions
 
 ```java
-public BuilderQueryEditorOrderByExpressionArrayBuilder expressions(List<BuilderQueryEditorOrderByExpression> expressions)
+public BuilderQueryEditorOrderByExpressionArrayBuilder expressions(List<com.grafana.foundation.cog.Builder<BuilderQueryEditorOrderByExpression>> expressions)
 ```
 
 ### <span class="badge object-method"></span> type
